@@ -10,6 +10,7 @@
 |------|-------------|----------|
 | `option → text` | 1 | **yes** |
 | `label → option` | 2 | **yes** |
+| `content → option` | 1 | **yes** |
 | `label → text` | 10 | **yes** |
 | `title → text` | 21 | related |
 | `description → text` | 10 | related |
@@ -75,6 +76,12 @@
 | Component | Source → Target | File | Expression |
 |-----------|-----------------|------|------------|
 | [list.ItemContent.option](packages/list/src/helperComponents/ItemContent/ItemContent.tsx) | `option` → `text` | [ItemContent.tsx:61](packages/list/src/helperComponents/ItemContent/ItemContent.tsx) | `String(option)` |
+
+## content → option (1)
+
+| Component | Source → Target | File | Expression |
+|-----------|-----------------|------|------------|
+| [list.BaseItem.content](packages/list/src/components/Items/BaseItem/BaseItem.tsx) | `content` → `option` | [BaseItem.tsx:164](packages/list/src/components/Items/BaseItem/BaseItem.tsx) | `option={content}` (primitive-content шорткат) |
 
 ## label → option (2)
 

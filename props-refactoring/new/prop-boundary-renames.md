@@ -1,26 +1,26 @@
 # Prop boundary renames (JSX)
 
-- Generated: 2026-07-10T11:28:40.119Z
+- Generated: 2026-07-16T10:34:10.380Z
 - Command: `pnpm extract:prop-renames`
-- Total: 4801
+- Total: 4808
 
 ## By source → target pair
 
-### `styles → className` (1127)
+### `styles → className` (1124)
 
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:104` (`styles.acrylic`)
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:105` (`styles.stateLayer`)
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:112` (`styles.titleContent`)
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:118` (`styles.titleWrapper`)
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:119` (`styles.titleLine`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:123` (`styles.title`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:129` (`styles.afterTitle`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:135` (`styles.subTitle`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:153` (`styles.collapse`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:162` (`styles.content`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:124` (`styles.title`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:131` (`styles.afterTitle`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:137` (`styles.subTitle`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:155` (`styles.collapse`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:164` (`styles.content`)
 - ai-button-chevron.AiButtonChevron — `packages/ai-button-chevron/src/AiButtonChevron.tsx:60` (`styles.icon`)
 - ai-button-chevron.AiButtonChevron — `packages/ai-button-chevron/src/AiButtonChevron.tsx:78` (`styles.icon`)
-- … +1115 more
+- … +1112 more
 
 ### `sizePx → width` (481)
 
@@ -56,11 +56,11 @@
 
 ### `TEST_IDS → data-test-id` (421)
 
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:124` (`TEST_IDS.title`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:129` (`TEST_IDS.afterTitle`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:135` (`TEST_IDS.subTitle`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:146` (`TEST_IDS.chevron`)
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:162` (`TEST_IDS.content`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:125` (`TEST_IDS.title`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:131` (`TEST_IDS.afterTitle`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:137` (`TEST_IDS.subTitle`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:148` (`TEST_IDS.chevron`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:164` (`TEST_IDS.content`)
 - ai-card.AiCard — `packages/ai-card/src/AiCard.tsx:71` (`TEST_IDS.title`)
 - ai-card.AiCard — `packages/ai-card/src/AiCard.tsx:76` (`TEST_IDS.content`)
 - ai-chain-of-thoughts.AiChainOfThoughts — `packages/ai-chain-of-thoughts/src/components/AiChainOfThoughts/AiChainOfThoughts.tsx:47` (`TEST_IDS.headline`)
@@ -70,7 +70,7 @@
 - ai-chain-of-thoughts.AiChainOfThoughtsHeadline — `packages/ai-chain-of-thoughts/src/components/AiChainOfThoughtsHeadline/AiChainOfThoughtsHeadline.tsx:68` (`TEST_IDS.headlineLabel`)
 - … +409 more
 
-### `size → data-size` (137)
+### `size → data-size` (138)
 
 - ai-field-banner.AiFieldBanner — `packages/ai-field-banner/src/AiFieldBanner.tsx:30` (`size`)
 - ai-field-banner.AiFieldBanner — `packages/ai-field-banner/src/AiFieldBanner.tsx:34` (`size`)
@@ -84,7 +84,7 @@
 - ai-suggestion.AiSuggestionParentChip — `packages/ai-suggestion/src/AiSuggestionParent/AiSuggestionParentChip.tsx:56` (`size`)
 - ai-suggestion.AiSuggestionSimple — `packages/ai-suggestion/src/AiSuggestionSimple/AiSuggestionSimple.tsx:45` (`size`)
 - alert.AlertBase — `packages/alert/src/components/AlertBase/AlertBase.tsx:206` (`size`)
-- … +125 more
+- … +126 more
 
 ### `fieldStyles → className` (116)
 
@@ -125,7 +125,7 @@
 - fields.FieldColor — `packages/fields/src/components/FieldColor/FieldColor.tsx:389` (`VIEW.Function`)
 - fields.FieldColor — `packages/fields/src/components/FieldColor/FieldColor.tsx:397` (`VIEW.Filled`)
 - table.CopyCell — `packages/table/src/helperComponents/Cells/CopyCell/CopyCell.tsx:45` (`VIEW.Function`)
-- table.RowActionsButton — `packages/table/src/helperComponents/Cells/RowActionsCell/components/RowActionsButton.tsx:18` (`VIEW.Function`)
+- table.RowActionsButton — `packages/table/src/helperComponents/Cells/RowActionsCell/components/RowActionsButton.tsx:20` (`VIEW.Function`)
 - table.TreeCell — `packages/table/src/helperComponents/Cells/TreeCell/TreeCell.tsx:303` (`VIEW.Function`)
 - table.useColumnsSettingsToolbarSlot — `packages/table/src/hooks/useColumnsSettingsToolbarSlot/useColumnsSettingsToolbarSlot.tsx:70` (`VIEW.Function`)
 - uikit-product-card-predefined.Action — `packages/uikit-product-card-predefined/src/components/CardCustom/Footer/components/Action/Action.tsx:22` (`VIEW.Filled`)
@@ -144,9 +144,9 @@
 - uikit-product-load-status.LoadStatus — `packages/uikit-product-load-status/src/components/LoadStatus/LoadStatus.tsx:66` (`SIZE.m`)
 - uikit-product-load-status.LoadStatus — `packages/uikit-product-load-status/src/components/LoadStatus/LoadStatus.tsx:73` (`SIZE.m`)
 - uikit-product-load-status.LoadStatus — `packages/uikit-product-load-status/src/components/LoadStatus/LoadStatus.tsx:87` (`SIZE.m`)
-- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:56` (`SIZE.M`)
-- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:68` (`SIZE.M`)
-- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:73` (`SIZE.M`)
+- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:58` (`SIZE.M`)
+- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:70` (`SIZE.M`)
+- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:75` (`SIZE.M`)
 - uikit-product-page-layout.Headline — `packages/uikit-product-page-layout/src/components/Headline/Headline.tsx:27` (`SIZE.s`)
 - … +30 more
 
@@ -166,7 +166,7 @@
 - uikit-product-load-status.LoadStatus — `packages/uikit-product-load-status/src/components/LoadStatus/LoadStatus.tsx:73` (`VARIANT.body`)
 - … +28 more
 
-### `APPEARANCE → appearance` (38)
+### `APPEARANCE → appearance` (35)
 
 - ai-suggestion.AiSuggestionParent — `packages/ai-suggestion/src/AiSuggestionParent/AiSuggestionParent.tsx:57` (`APPEARANCE.Primary`)
 - color-picker.ColorPicker — `packages/color-picker/src/components/ColorPicker/ColorPicker.tsx:472` (`APPEARANCE.Neutral`)
@@ -180,23 +180,23 @@
 - uikit-product-card-predefined.Action — `packages/uikit-product-card-predefined/src/components/CardCustom/Footer/components/Action/Action.tsx:27` (`APPEARANCE.Neutral`)
 - uikit-product-card-predefined.Promo — `packages/uikit-product-card-predefined/src/components/CardCustom/Footer/components/Promo/Promo.tsx:27` (`APPEARANCE.Primary`)
 - uikit-product-fields-predefined.FieldChat — `packages/uikit-product-fields-predefined/src/components/FieldChat/FieldChat.tsx:89` (`APPEARANCE.Neutral`)
-- … +26 more
+- … +23 more
 
-### `styles → triggerClassName` (26)
+### `styles → triggerClassName` (27)
 
 - breadcrumbs.Collapse — `packages/breadcrumbs/src/components/Collapse/Collapse.tsx:53` (`styles.triggerClassName`)
 - button-combo.ButtonCombo — `packages/button-combo/src/ButtonCombo.tsx:83` (`styles.trigger`)
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:234` (`styles.inlineFlex`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:233` (`styles.inlineFlex`)
 - chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:240` (`styles.inlineFlex`)
 - fields.FieldStepper — `packages/fields/src/components/FieldStepper/FieldStepper.tsx:334` (`styles.stepButtonTrigger`)
 - markdown.ButtonHeading — `packages/markdown/src/helperComponents/ButtonHeading/ButtonHeading.tsx:77` (`styles.trigger`)
 - markdown.Toolbar — `packages/markdown/src/components/Toolbar/Toolbar.tsx:153` (`styles.tooltipTrigger`)
 - markdown.Toolbar — `packages/markdown/src/components/Toolbar/Toolbar.tsx:259` (`styles.tooltipTrigger`)
 - markdown.Toolbar — `packages/markdown/src/components/Toolbar/Toolbar.tsx:262` (`styles.tooltipTrigger`)
+- tag.TagMore — `packages/tag/src/helperComponents/TagMore/TagMore.tsx:24` (`styles.moreTrigger`)
 - toolbar.BulkActionsControls — `packages/toolbar/src/helperComponents/BulkActions/components/BulkActionsControls/BulkActionsControls.tsx:73` (`styles.triggerClassName`)
 - toolbar.BulkActionsControls — `packages/toolbar/src/helperComponents/BulkActions/components/BulkActionsControls/BulkActionsControls.tsx:110` (`styles.triggerClassName`)
-- toolbar.FilterButton — `packages/toolbar/src/helperComponents/FilterButton/FilterButton.tsx:25` (`styles.trigger`)
-- … +14 more
+- … +15 more
 
 ### `appearance → data-appearance` (24)
 
@@ -216,7 +216,7 @@
 
 ### `title → text` (21)
 
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:126` (`title`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:127` (`title`)
 - alert.AlertBase — `packages/alert/src/components/AlertBase/AlertBase.tsx:159` (`title`)
 - attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:21` (`title`)
 - modal.ModalHeader — `packages/modal/src/helperComponents/ModalHeader/ModalHeader.tsx:43` (`title`)
@@ -246,6 +246,22 @@
 - divider.Divider — `packages/divider/src/Divider.tsx:41` (`variant`)
 - … +6 more
 
+### `CHIP_CHOICE_TEST_IDS → data-test-id` (18)
+
+- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:132` (`CHIP_CHOICE_TEST_IDS.icon`)
+- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:139` (`CHIP_CHOICE_TEST_IDS.label`)
+- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:145` (`CHIP_CHOICE_TEST_IDS.spinner`)
+- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:149` (`CHIP_CHOICE_TEST_IDS.value`)
+- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:159` (`CHIP_CHOICE_TEST_IDS.clearButton`)
+- chips.ChipChoiceCustom — `packages/chips/src/components/ChipChoice/components/ChipChoiceCustom.tsx:82` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.ChipChoiceDate — `packages/chips/src/components/ChipChoice/components/ChipChoiceDate.tsx:133` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.ChipChoiceDateRange — `packages/chips/src/components/ChipChoice/components/ChipChoiceDateRange.tsx:90` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:186` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:158` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:115` (`CHIP_CHOICE_TEST_IDS.droplist`)
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:51` (`CHIP_CHOICE_TEST_IDS.footer`)
+- … +6 more
+
 ### `handleKeyDown → onKeyDown` (18)
 
 - color-picker.ChannelSlider — `packages/color-picker/src/helperComponents/ChannelSlider/ChannelSlider.tsx:122` (`handleKeyDown`)
@@ -265,12 +281,12 @@
 ### `index → key` (16)
 
 - ai-field-notice.AiFieldNoticeAnimatedDescription — `packages/ai-field-notice/src/components/AiFieldNoticeAnimatedDescription/AiFieldNoticeAnimatedDescription.tsx:29` (`index`)
-- rating.Rating — `packages/rating/src/Rating.tsx:94` (`index`)
+- rating.Rating — `packages/rating/src/components/Rating/Rating.tsx:94` (`index`)
 - skeleton.SkeletonText — `packages/skeleton/src/components/SkeletonText/SkeletonText.tsx:48` (`index`)
 - table.TreeCell — `packages/table/src/helperComponents/Cells/TreeCell/TreeCell.tsx:219` (`index`)
 - uikit-product-fields-predefined.FieldCode — `packages/uikit-product-fields-predefined/src/components/FieldCode/FieldCode.tsx:119` (`index`)
 - uikit-product-page-layout.DesktopActions — `packages/uikit-product-page-layout/src/components/Actions/DesktopActions.tsx:18` (`index`)
-- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:90` (`index`)
+- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:100` (`index`)
 - uikit-product-page-layout.MobileActions — `packages/uikit-product-page-layout/src/components/Actions/MobileActions.tsx:150` (`index`)
 - uikit-product-price-summary.DiscountBlock — `packages/uikit-product-price-summary/src/components/PriceSummary/components/DiscountBlock/DiscountBlock.tsx:31` (`index`)
 - uikit-product-price-summary.InvoiceBlock — `packages/uikit-product-price-summary/src/components/PriceSummary/components/InvoiceBlock/InvoiceBlock.tsx:30` (`index`)
@@ -288,8 +304,8 @@
 - calendar.MobileCalendarDropdown — `packages/calendar/src/helperComponents/MobileCalendarDropdown/MobileCalendarDropdown.tsx:81` (`testId`)
 - calendar.MobileTimePickerDropdown — `packages/calendar/src/helperComponents/MobileTimePickerDropdown/MobileTimePickerDropdown.tsx:122` (`testId`)
 - calendar.TimePicker — `packages/calendar/src/components/TimePicker/TimePicker.tsx:212` (`testId`)
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:33` (`getStepTestId(testId)`)
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:44` (`getTailTestId(testId)`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:40` (`getStepTestId(testId)`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:51` (`getTailTestId(testId)`)
 - stepper.DesktopStepper — `packages/stepper/src/helperComponents/DesktopStepper/DesktopStepper.tsx:31` (`testId`)
 - stepper.DesktopStepper — `packages/stepper/src/helperComponents/DesktopStepper/DesktopStepper.tsx:36` (`testId`)
 - … +4 more
@@ -310,22 +326,6 @@
 - fields.FieldText — `packages/fields/src/components/FieldText/FieldText.tsx:476` (`readOnly`)
 - … +4 more
 
-### `CHIP_CHOICE_TEST_IDS → data-test-id` (14)
-
-- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:132` (`CHIP_CHOICE_TEST_IDS.icon`)
-- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:139` (`CHIP_CHOICE_TEST_IDS.label`)
-- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:145` (`CHIP_CHOICE_TEST_IDS.spinner`)
-- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:149` (`CHIP_CHOICE_TEST_IDS.value`)
-- chips.ChipChoiceBase — `packages/chips/src/components/ChipChoice/components/ChipChoiceBase/ChipChoiceBase.tsx:159` (`CHIP_CHOICE_TEST_IDS.clearButton`)
-- chips.ChipChoiceCustom — `packages/chips/src/components/ChipChoice/components/ChipChoiceCustom.tsx:82` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.ChipChoiceDate — `packages/chips/src/components/ChipChoice/components/ChipChoiceDate.tsx:133` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.ChipChoiceDateRange — `packages/chips/src/components/ChipChoice/components/ChipChoiceDateRange.tsx:90` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:168` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:156` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:115` (`CHIP_CHOICE_TEST_IDS.droplist`)
-- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:34` (`CHIP_CHOICE_TEST_IDS.footer`)
-- … +2 more
-
 ### `handleBlur → onBlur` (13)
 
 - attachment.Actions — `packages/attachment/src/helperComponents/Actions/Actions.tsx:58` (`handleBlur`)
@@ -342,19 +342,34 @@
 - uikit-product-fields-predefined.FieldName — `packages/uikit-product-fields-predefined/src/components/FieldName/FieldName.tsx:116` (`handleBlur`)
 - … +1 more
 
+### `label → text` (12)
+
+- chips.ChipAssist — `packages/chips/src/components/ChipAssist/ChipAssist.tsx:73` (`label`)
+- chips.ChipToggle — `packages/chips/src/components/ChipToggle/ChipToggle.tsx:85` (`label`)
+- link.Link — `packages/link/src/Link.tsx:57` (`label`)
+- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:61` (`String(label)`)
+- list.Separator — `packages/list/src/helperComponents/Separator/Separator.tsx:88` (`label`)
+- segment-control.Segment — `packages/segment-control/src/helperComponents/Segment/Segment.tsx:74` (`label`)
+- toaster.ToastUserAction — `packages/toaster/src/components/ToastUserAction/ToastUserAction.tsx:58` (`label`)
+- uikit-product-config-selector.ConfigSelector — `packages/uikit-product-config-selector/src/components/ConfigSelector/ConfigSelector.tsx:98` (`label`)
+- uikit-product-info-row.DesktopInfoRow — `packages/uikit-product-info-row/src/helperComponents/DesktopInfoRow/DesktopInfoRow.tsx:61` (`label`)
+- uikit-product-info-row.DesktopInfoRow — `packages/uikit-product-info-row/src/helperComponents/DesktopInfoRow/DesktopInfoRow.tsx:88` (`label`)
+- uikit-product-info-row.MobileInfoRow — `packages/uikit-product-info-row/src/helperComponents/MobileInfoRow/MobileInfoRow.tsx:64` (`label`)
+- uikit-product-notification.NotificationCard — `packages/uikit-product-notification/src/components/NotificationCard/NotificationCard.tsx:173` (`label`)
+
 ### `handleOpenChange → onOpenChange` (12)
 
 - chips.ChipChoiceCustom — `packages/chips/src/components/ChipChoice/components/ChipChoiceCustom.tsx:81` (`handleOpenChange`)
 - chips.ChipChoiceDate — `packages/chips/src/components/ChipChoice/components/ChipChoiceDate.tsx:131` (`handleOpenChange`)
 - chips.ChipChoiceDateRange — `packages/chips/src/components/ChipChoice/components/ChipChoiceDateRange.tsx:91` (`handleOpenChange`)
-- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:170` (`handleOpenChange`)
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:165` (`handleOpenChange`)
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:188` (`handleOpenChange`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:168` (`handleOpenChange`)
 - chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:113` (`handleOpenChange`)
 - fields.FieldColor — `packages/fields/src/components/FieldColor/FieldColor.tsx:368` (`handleOpenChange`)
 - fields.FieldDate — `packages/fields/src/components/FieldDate/FieldDate.tsx:642` (`handleOpenChange`)
-- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:656` (`handleOpenChange`)
+- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:657` (`handleOpenChange`)
 - fields.FieldTime — `packages/fields/src/components/FieldTime/FieldTime.tsx:388` (`handleOpenChange`)
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:287` (`handleOpenChange`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:293` (`handleOpenChange`)
 - uikit-product-quota.QuotaWidget — `packages/uikit-product-quota/src/components/QuotaWidget/QuotaWidget.tsx:63` (`handleOpenChange`)
 
 ### `SVG_COLOR → stroke` (12)
@@ -426,19 +441,6 @@
 - uikit-product-flex.Flex — `packages/uikit-product-flex/src/Flex.tsx:123` (`innerRef`)
 - uikit-product-title-clickable.TitleClickable — `packages/uikit-product-title-clickable/src/components/TitleClickable/TitleClickable.tsx:35` (`innerRef`)
 
-### `description → text` (10)
-
-- attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:28` (`description`)
-- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:72` (`description`)
-- toaster.ToastSystemEvent — `packages/toaster/src/components/ToastSystemEvent/ToastSystemEvent.tsx:71` (`description`)
-- toaster.ToastUploadTitleLine — `packages/toaster/src/helperComponents/ToastUploadTitleLine/ToastUploadTitleLine.tsx:87` (`description`)
-- uikit-product-avatar-detail.AvatarDetail — `packages/uikit-product-avatar-detail/src/AvatarDetail.tsx:70` (`description`)
-- uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:95` (`description`)
-- uikit-product-card-predefined.CardService — `packages/uikit-product-card-predefined/src/components/CardService/CardService.tsx:68` (`description`)
-- uikit-product-card-predefined.CardSuggest — `packages/uikit-product-card-predefined/src/components/CardSuggest/CardSuggest.tsx:90` (`description`)
-- uikit-product-card-predefined.Header — `packages/uikit-product-card-predefined/src/components/CardCustom/Header/Header.tsx:86` (`description`)
-- uikit-product-toggles-predefined.ToggleCard — `packages/uikit-product-toggles-predefined/src/components/ToggleCard/ToggleCard.tsx:96` (`description`)
-
 ### `setOpen → onOpenChange` (10)
 
 - button-combo.ButtonCombo — `packages/button-combo/src/ButtonCombo.tsx:80` (`setOpen`)
@@ -452,19 +454,6 @@
 - uikit-product-widget.ButtonDroplist — `packages/uikit-product-widget/src/helperComponents/ButtonDroplist/ButtonDroplist.tsx:44` (`setOpen`)
 - uikit-product-widget.ButtonKebab — `packages/uikit-product-widget/src/helperComponents/ButtonKebab/ButtonKebab.tsx:27` (`setOpen`)
 
-### `label → text` (10)
-
-- chips.ChipAssist — `packages/chips/src/components/ChipAssist/ChipAssist.tsx:73` (`label`)
-- chips.ChipToggle — `packages/chips/src/components/ChipToggle/ChipToggle.tsx:85` (`label`)
-- list.Separator — `packages/list/src/helperComponents/Separator/Separator.tsx:88` (`label`)
-- segment-control.Segment — `packages/segment-control/src/helperComponents/Segment/Segment.tsx:74` (`label`)
-- toaster.ToastUserAction — `packages/toaster/src/components/ToastUserAction/ToastUserAction.tsx:58` (`label`)
-- uikit-product-config-selector.ConfigSelector — `packages/uikit-product-config-selector/src/components/ConfigSelector/ConfigSelector.tsx:98` (`label`)
-- uikit-product-info-row.DesktopInfoRow — `packages/uikit-product-info-row/src/helperComponents/DesktopInfoRow/DesktopInfoRow.tsx:61` (`label`)
-- uikit-product-info-row.DesktopInfoRow — `packages/uikit-product-info-row/src/helperComponents/DesktopInfoRow/DesktopInfoRow.tsx:88` (`label`)
-- uikit-product-info-row.MobileInfoRow — `packages/uikit-product-info-row/src/helperComponents/MobileInfoRow/MobileInfoRow.tsx:64` (`label`)
-- uikit-product-notification.NotificationCard — `packages/uikit-product-notification/src/components/NotificationCard/NotificationCard.tsx:173` (`label`)
-
 ### `handleChange → onChange` (10)
 
 - chips.ChipToggle — `packages/chips/src/components/ChipToggle/ChipToggle.tsx:60` (`handleChange`)
@@ -475,8 +464,8 @@
 - uikit-product-fields-predefined.FieldName — `packages/uikit-product-fields-predefined/src/components/FieldName/FieldName.tsx:114` (`handleChange`)
 - uikit-product-fields-predefined.FieldNameRHF — `packages/uikit-product-fields-predefined/src/components/FieldName/FieldNameRHF.tsx:99` (`handleChange`)
 - uikit-product-fields-predefined.FieldPhone — `packages/uikit-product-fields-predefined/src/components/FieldPhone/FieldPhone.tsx:237` (`handleChange`)
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:83` (`handleChange`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:78` (`handleChange`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:88` (`handleChange`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:83` (`handleChange`)
 
 ### `orientation → data-orientation` (10)
 
@@ -534,10 +523,10 @@
 - toolbar.MoreActions — `packages/toolbar/src/helperComponents/MoreActions/MoreActions.tsx:46` (`isOpen`)
 - tooltip.DesktopQuestionTooltip — `packages/tooltip/src/helperComponents/DesktopQuestionTooltip/DesktopQuestionTooltip.tsx:35` (`isOpen`)
 - tooltip.MobileQuestionTooltip — `packages/tooltip/src/helperComponents/MobileQuestionTooltip/MobileQuestionTooltip.tsx:46` (`isOpen`)
-- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:44` (`isOpen`)
+- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:45` (`isOpen`)
 - uikit-product-page-layout.ConditionalPopover — `packages/uikit-product-page-layout/src/components/TreeNavigation/helperComponents/ConditionalPopover/ConditionalPopover.tsx:19` (`isOpen`)
 - uikit-product-page-layout.MobileActions — `packages/uikit-product-page-layout/src/components/Actions/MobileActions.tsx:135` (`isOpen`)
-- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:63` (`isOpen`)
+- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:64` (`isOpen`)
 - uikit-product-quota.QuotaWidget — `packages/uikit-product-quota/src/components/QuotaWidget/QuotaWidget.tsx:62` (`isOpen`)
 
 ### `truncate → maxLines` (8)
@@ -545,7 +534,7 @@
 - attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:23` (`truncate?.title`)
 - attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:30` (`truncate?.description`)
 - attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:36` (`truncate?.error`)
-- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:62` (`truncate.option`)
+- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:62` (`truncate.label`)
 - list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:73` (`truncate.description`)
 - uikit-product-card-predefined.CardServiceLight — `packages/uikit-product-card-predefined/src/components/CardServiceLight/CardServiceLight.tsx:130` (`truncate?.title`)
 - uikit-product-card-predefined.CardServiceSmall — `packages/uikit-product-card-predefined/src/components/CardServiceSmall/CardServiceSmall.tsx:145` (`truncate?.title`)
@@ -619,10 +608,10 @@
 - calendar.MobileCalendarDropdown — `packages/calendar/src/helperComponents/MobileCalendarDropdown/MobileCalendarDropdown.tsx:65` (`handleClose`)
 - calendar.MobileTimePickerDropdown — `packages/calendar/src/helperComponents/MobileTimePickerDropdown/MobileTimePickerDropdown.tsx:103` (`handleClose`)
 - dropdown.MobileDropdown — `packages/dropdown/src/helperComponents/MobileDropdown/MobileDropdown.tsx:68` (`handleClose`)
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:57` (`handleClose`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:58` (`handleClose`)
 - uikit-product-modal-predefined.DesktopReleaseNotes — `packages/uikit-product-modal-predefined/src/helperComponents/DesktopReleaseNotes/DesktopReleaseNotes.tsx:39` (`handleClose`)
 - uikit-product-modal-predefined.MobileReleaseNotes — `packages/uikit-product-modal-predefined/src/helperComponents/MobileReleaseNotes/MobileReleaseNotes.tsx:46` (`handleClose`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:52` (`handleClose`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:53` (`handleClose`)
 
 ### `ariaLabel → aria-label` (7)
 
@@ -688,8 +677,8 @@
 - toggles.Favourite — `packages/toggles/src/components/Favourite/Favourite.tsx:97` (`inputRef`)
 - toggles.Radio — `packages/toggles/src/components/Radio/Radio.tsx:65` (`inputRef`)
 - toggles.Switch — `packages/toggles/src/components/Switch/Switch.tsx:75` (`inputRef`)
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:74` (`inputRef`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:69` (`inputRef`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:79` (`inputRef`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:74` (`inputRef`)
 
 ### `id → labelFor` (6)
 
@@ -699,6 +688,15 @@
 - fields.FieldStepper — `packages/fields/src/components/FieldStepper/FieldStepper.tsx:444` (`id`)
 - fields.FieldTextArea — `packages/fields/src/components/FieldTextArea/FieldTextArea.tsx:365` (`id`)
 - fields.FieldTime — `packages/fields/src/components/FieldTime/FieldTime.tsx:372` (`id`)
+
+### `content → text` (6)
+
+- toaster.ToastSystemEvent — `packages/toaster/src/components/ToastSystemEvent/ToastSystemEvent.tsx:71` (`content`)
+- uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:95` (`content`)
+- uikit-product-card-predefined.CardService — `packages/uikit-product-card-predefined/src/components/CardService/CardService.tsx:67` (`content`)
+- uikit-product-card-predefined.CardSuggest — `packages/uikit-product-card-predefined/src/components/CardSuggest/CardSuggest.tsx:90` (`content`)
+- uikit-product-copy.CopyLine — `packages/uikit-product-copy/src/components/CopyLine/CopyLine.tsx:55` (`String(content)`)
+- uikit-product-toggles-predefined.ToggleCard — `packages/uikit-product-toggles-predefined/src/components/ToggleCard/ToggleCard.tsx:96` (`content`)
 
 ### `appearance → data-acrylic-appearance` (5)
 
@@ -728,8 +726,8 @@
 
 - chips.ChipChoiceDate — `packages/chips/src/components/ChipChoice/components/ChipChoiceDate.tsx:132` (`dropDownClassName`)
 - chips.ChipChoiceDateRange — `packages/chips/src/components/ChipChoice/components/ChipChoiceDateRange.tsx:92` (`dropDownClassName`)
-- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:172` (`dropDownClassName`)
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:161` (`dropDownClassName`)
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:190` (`dropDownClassName`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:164` (`dropDownClassName`)
 - chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:114` (`dropDownClassName`)
 
 ### `inputTabIndex → tabIndex` (5)
@@ -752,9 +750,9 @@
 
 - toolbar.MoreActions — `packages/toolbar/src/helperComponents/MoreActions/MoreActions.tsx:49` (`setIsOpen`)
 - tooltip.DesktopQuestionTooltip — `packages/tooltip/src/helperComponents/DesktopQuestionTooltip/DesktopQuestionTooltip.tsx:36` (`setIsOpen`)
-- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:45` (`setIsOpen`)
+- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:46` (`setIsOpen`)
 - uikit-product-page-layout.MobileActions — `packages/uikit-product-page-layout/src/components/Actions/MobileActions.tsx:135` (`setIsOpen`)
-- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:64` (`setIsOpen`)
+- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:65` (`setIsOpen`)
 
 ### `ICON_POSITION → iconPosition` (5)
 
@@ -797,16 +795,23 @@
 ### `isChecked → checked` (4)
 
 - attachment.AttachmentSquare — `packages/attachment/src/components/AttachmentSquare/AttachmentSquare.tsx:66` (`isChecked`)
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:201` (`isChecked`)
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:220` (`isChecked`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:212` (`isChecked`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:228` (`isChecked`)
 - uikit-product-toggles-predefined.ToggleCard — `packages/uikit-product-toggles-predefined/src/components/ToggleCard/ToggleCard.tsx:58` (`isChecked`)
+
+### `description → text` (4)
+
+- attachment.TextBlock — `packages/attachment/src/helperComponents/TextBlock/TextBlock.tsx:28` (`description`)
+- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:72` (`description`)
+- uikit-product-avatar-detail.AvatarDetail — `packages/uikit-product-avatar-detail/src/AvatarDetail.tsx:70` (`description`)
+- uikit-product-card-predefined.Header — `packages/uikit-product-card-predefined/src/components/CardCustom/Header/Header.tsx:86` (`description`)
 
 ### `buttonRef → ref` (4)
 
 - breadcrumbs.Collapse — `packages/breadcrumbs/src/components/Collapse/Collapse.tsx:60` (`buttonRef`)
 - segment-control.Segment — `packages/segment-control/src/helperComponents/Segment/Segment.tsx:57` (`buttonRef`)
-- tag.TagMore — `packages/tag/src/helperComponents/TagMore/TagMore.tsx:40` (`buttonRef`)
-- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:68` (`buttonRef`)
+- tag.TagMore — `packages/tag/src/helperComponents/TagMore/TagMore.tsx:41` (`buttonRef`)
+- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:69` (`buttonRef`)
 
 ### `localRef → triggerRef` (4)
 
@@ -1100,9 +1105,15 @@
 - chips.ChipChoiceDateRange — `packages/chips/src/components/ChipChoice/components/ChipChoiceDateRange.tsx:84` (`closeDroplist`)
 - chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:106` (`closeDroplist`)
 
+### `footerNode → footer` (3)
+
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:200` (`footerNode`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:179` (`footerNode`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:282` (`footerNode`)
+
 ### `CHIP_CHOICE_ROW_TEST_IDS → data-test-id` (3)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:233` (`CHIP_CHOICE_ROW_TEST_IDS.addButtonTooltip`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:232` (`CHIP_CHOICE_ROW_TEST_IDS.addButtonTooltip`)
 - chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:251` (`CHIP_CHOICE_ROW_TEST_IDS.addButton`)
 - chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:266` (`CHIP_CHOICE_ROW_TEST_IDS.clearButton`)
 
@@ -1157,7 +1168,7 @@
 ### `handleListKeyDown → onKeyDown` (3)
 
 - list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:203` (`handleListKeyDown`)
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:258` (`handleListKeyDown`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:261` (`handleListKeyDown`)
 - list.NextListItem — `packages/list/src/components/Items/NextListItem/NextListItem.tsx:114` (`handleListKeyDown`)
 
 ### `stopPropagation → onFocus` (3)
@@ -1186,8 +1197,8 @@
 
 ### `step → data-state` (3)
 
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:26` (`step.state`)
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:34` (`step.state`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:33` (`step.state`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:41` (`step.state`)
 - stepper.MobileStep — `packages/stepper/src/helperComponents/MobileStep/MobileStep.tsx:40` (`step.state`)
 
 ### `header → key` (3)
@@ -1283,12 +1294,12 @@
 ### `handleClose → onClick` (3)
 
 - uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:80` (`handleClose`)
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:96` (`handleClose`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:91` (`handleClose`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:101` (`handleClose`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:96` (`handleClose`)
 
 ### `tagLabel → label` (3)
 
-- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:55` (`tagLabel`)
+- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:56` (`tagLabel`)
 - uikit-product-notification.ActionsButton — `packages/uikit-product-notification/src/helperComponents/ActionsButton/ActionsButton.tsx:57` (`tagLabel`)
 - uikit-product-notification.NotificationPanelSettingsDroplist — `packages/uikit-product-notification/src/components/NotificationPanelContent/components/NotificationPanelSettings/NotificationPanelSettingsDroplist.tsx:36` (`tagLabel`)
 
@@ -1306,9 +1317,9 @@
 
 ### `WIDTH → width` (3)
 
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:60` (`WIDTH.S`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:61` (`WIDTH.S`)
 - uikit-product-modal-predefined.DesktopReleaseNotes — `packages/uikit-product-modal-predefined/src/helperComponents/DesktopReleaseNotes/DesktopReleaseNotes.tsx:41` (`WIDTH.M`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:55` (`WIDTH.S`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:56` (`WIDTH.S`)
 
 ### `list → items` (3)
 
@@ -1449,7 +1460,7 @@
 ### `handleBack → onBackButtonClick` (2)
 
 - calendar.MobileCalendar — `packages/calendar/src/helperComponents/MobileCalendar/MobileCalendar.tsx:505` (`handleBack`)
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:201` (`handleBack`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:207` (`handleBack`)
 
 ### `virtualRow → key` (2)
 
@@ -1498,7 +1509,7 @@
 
 ### `i → key` (2)
 
-- carousel.ItemProvider — `packages/carousel/src/helperComponents/ItemProvider/ItemProvider.tsx:199` (`i`)
+- carousel.ItemProvider — `packages/carousel/src/helperComponents/ItemProvider/ItemProvider.tsx:203` (`i`)
 - markdown.CodeBlock — `packages/markdown/src/components/Markdown/CodeBlock.tsx:81` (`i`)
 
 ### `handleClearButtonClick → onClick` (2)
@@ -1523,28 +1534,33 @@
 
 ### `chipRef → triggerElemRef` (2)
 
-- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:163` (`chipRef`)
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:159` (`chipRef`)
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:180` (`chipRef`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:161` (`chipRef`)
+
+### `searchable → headerDivider` (2)
+
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:191` (`searchable`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:170` (`searchable`)
 
 ### `chipRef → ref` (2)
 
-- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:187` (`chipRef`)
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:181` (`chipRef`)
+- chips.ChipChoiceMultiple — `packages/chips/src/components/ChipChoice/components/ChipChoiceMultiple.tsx:208` (`chipRef`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:187` (`chipRef`)
 
 ### `filter → key` (2)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:201` (`filter.id`)
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:216` (`filter.id`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:200` (`filter.id`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:215` (`filter.id`)
 
 ### `filter → onClearButtonClick` (2)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:206` (`handleClearPinnedFilter(filter.id)`)
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:221` (`handleRemoveVisibleFilter(filter.id)`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:205` (`handleClearPinnedFilter(filter.id)`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:220` (`handleRemoveVisibleFilter(filter.id)`)
 
-### `label → option` (2)
+### `onApprove → onClick` (2)
 
-- chips.options — `packages/chips/src/components/ChipChoice/utils/options.tsx:22` (`label`)
-- chips.options — `packages/chips/src/components/ChipChoice/utils/options.tsx:55` (`label`)
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:71` (`onApprove`)
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:103` (`onApprove`)
 
 ### `colorMode → data-mode` (2)
 
@@ -1561,11 +1577,6 @@
 - drawer.DrawerCustom — `packages/drawer/src/components/DrawerCustom/DrawerCustom.tsx:161` (`showBlackout`)
 - drawer.MobileDrawer — `packages/drawer/src/helperComponents/MobileDrawer/MobileDrawer.tsx:44` (`showBlackout`)
 
-### `subtitle → subHeadline` (2)
-
-- drawer.MobileDrawer — `packages/drawer/src/helperComponents/MobileDrawer/MobileDrawer.tsx:46` (`subtitle`)
-- modal.MobileModal — `packages/modal/src/helperComponents/MobileModal/MobileModal.tsx:51` (`subtitle`)
-
 ### `state → icon` (2)
 
 - dropdown.DropdownBody — `packages/dropdown/src/helperComponents/DropdownBody/DropdownBody.tsx:57` (`state.icon`)
@@ -1574,7 +1585,7 @@
 ### `handleOpen → onClick` (2)
 
 - dropdown.MobileDropdown — `packages/dropdown/src/helperComponents/MobileDropdown/MobileDropdown.tsx:50` (`handleOpen`)
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:116` (`handleOpen`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:118` (`handleOpen`)
 
 ### `handleFileSelect → onChange` (2)
 
@@ -1651,19 +1662,29 @@
 - link.Link — `packages/link/src/Link.tsx:50` (`role`)
 - promo-tag.PromoTag — `packages/promo-tag/src/PromoTag/PromoTag.tsx:35` (`role`)
 
+### `content → label` (2)
+
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:164` (`content`)
+- uikit-product-error-pages.ErrorPage — `packages/uikit-product-error-pages/src/components/ErrorPage/ErrorPage.tsx:77` (`String(content.statusCode)`)
+
 ### `collapseContextValue → value` (2)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:243` (`collapseContextValue`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:246` (`collapseContextValue`)
 - list.List — `packages/list/src/components/Lists/List/List.tsx:105` (`collapseContextValue`)
 
 ### `focusListContextValue → value` (2)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:244` (`focusListContextValue`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:247` (`focusListContextValue`)
 - list.List — `packages/list/src/components/Lists/List/List.tsx:106` (`focusListContextValue`)
+
+### `header → title` (2)
+
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:276` (`header`)
+- uikit-product-page-layout.useItemsCreator — `packages/uikit-product-page-layout/src/components/PageSidebar/hooks/useItemsCreator.tsx:44` (`header.label`)
 
 ### `DEFAULT_FALLBACK_PLACEMENTS → fallbackPlacements` (2)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:281` (`DEFAULT_FALLBACK_PLACEMENTS`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:287` (`DEFAULT_FALLBACK_PLACEMENTS`)
 - tooltip.Tooltip — `packages/tooltip/src/components/Tooltip/Tooltip.tsx:57` (`DEFAULT_FALLBACK_PLACEMENTS`)
 
 ### `truncate → variant` (2)
@@ -1708,7 +1729,7 @@
 
 ### `step → onClick` (2)
 
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:31` (`step.onClick`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:38` (`step.onClick`)
 - stepper.MobileStep — `packages/stepper/src/helperComponents/MobileStep/MobileStep.tsx:37` (`step.onClick`)
 
 ### `stepperApi → value` (2)
@@ -1949,7 +1970,7 @@
 ### `truncateLines → maxLines` (2)
 
 - uikit-product-card-predefined.CardSuggest — `packages/uikit-product-card-predefined/src/components/CardSuggest/CardSuggest.tsx:85` (`truncateLines.title`)
-- uikit-product-card-predefined.CardSuggest — `packages/uikit-product-card-predefined/src/components/CardSuggest/CardSuggest.tsx:91` (`truncateLines.description`)
+- uikit-product-card-predefined.CardSuggest — `packages/uikit-product-card-predefined/src/components/CardSuggest/CardSuggest.tsx:91` (`truncateLines.content`)
 
 ### `ICON_SIZE → size` (2)
 
@@ -2026,15 +2047,15 @@
 - uikit-product-layout.EmptyBlock — `packages/uikit-product-layout/src/components/EmptyBlock/EmptyBlock.tsx:72` (`INFO_SIZE.L`)
 - uikit-product-layout.NoAccess — `packages/uikit-product-layout/src/components/NoAccess/NoAccess.tsx:41` (`INFO_SIZE.M`)
 
-### `titleTooltip → slotAfterHeadline` (2)
+### `titleTooltip → tip` (2)
 
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:66` (`titleTooltip`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:61` (`titleTooltip`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:70` (`titleTooltip`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:65` (`titleTooltip`)
 
 ### `handleApproveClick → onClick` (2)
 
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:104` (`handleApproveClick`)
-- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:99` (`handleApproveClick`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:109` (`handleApproveClick`)
+- uikit-product-modal-predefined.RecallModal — `packages/uikit-product-modal-predefined/src/components/RecallModal/RecallModal.tsx:104` (`handleApproveClick`)
 
 ### `contentState → data-content-state` (2)
 
@@ -2134,9 +2155,9 @@
 
 - accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:96` (`component`)
 
-### `chevron → data-chevron` (1)
+### `chevronPosition → data-chevron-position` (1)
 
-- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:115` (`chevron`)
+- accordion.CollapseBlock — `packages/accordion/src/components/CollapseBlock/CollapseBlock.tsx:115` (`chevronPosition`)
 
 ### `hasContent → collapsible` (1)
 
@@ -2186,7 +2207,7 @@
 
 - ai-field-notice.AiFieldNotice — `packages/ai-field-notice/src/components/AiFieldNotice/AiFieldNotice.tsx:78` (`resolvedBanner.bannerVariant`)
 
-### `resolvedDescription → description` (1)
+### `resolvedDescription → content` (1)
 
 - ai-field-notice.AiFieldNotice — `packages/ai-field-notice/src/components/AiFieldNotice/AiFieldNotice.tsx:79` (`resolvedDescription`)
 
@@ -2724,7 +2745,7 @@
 
 ### `handleSlideClick → onClick` (1)
 
-- carousel.ItemProvider — `packages/carousel/src/helperComponents/ItemProvider/ItemProvider.tsx:204` (`handleSlideClick`)
+- carousel.ItemProvider — `packages/carousel/src/helperComponents/ItemProvider/ItemProvider.tsx:208` (`handleSlideClick`)
 
 ### `handleChipClick → onClick` (1)
 
@@ -2744,15 +2765,15 @@
 
 ### `filter → onOpenChange` (1)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:223` (`handleChipOpen(filter.id)`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:222` (`handleChipOpen(filter.id)`)
 
 ### `setAddListOpen → onOpenChange` (1)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:238` (`setAddListOpen`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:237` (`setAddListOpen`)
 
 ### `addSelectorOptions → items` (1)
 
-- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:239` (`addSelectorOptions`)
+- chips.ChipChoiceRow — `packages/chips/src/components/ChipChoiceRow/ChipChoiceRow.tsx:238` (`addSelectorOptions`)
 
 ### `handleFiltersClear → onClick` (1)
 
@@ -2760,19 +2781,27 @@
 
 ### `autoApply → closeDroplistOnItemClick` (1)
 
-- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:162` (`autoApply`)
+- chips.ChipChoiceSingle — `packages/chips/src/components/ChipChoice/components/ChipChoiceSingle.tsx:165` (`autoApply`)
 
 ### `setSelectedValue → onChangeValue` (1)
 
 - chips.ChipChoiceTime — `packages/chips/src/components/ChipChoice/components/ChipChoiceTime.tsx:104` (`setSelectedValue`)
 
+### `onReset → onClick` (1)
+
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:61` (`onReset`)
+
+### `cancelRef → innerRef` (1)
+
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:89` (`cancelRef`)
+
 ### `onCancel → onClick` (1)
 
-- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:40` (`onCancel`)
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:94` (`onCancel`)
 
-### `onApprove → onClick` (1)
+### `approveRef → innerRef` (1)
 
-- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:48` (`onApprove`)
+- chips.useAutoApply — `packages/chips/src/components/ChipChoice/hooks/useAutoApply.tsx:98` (`approveRef`)
 
 ### `setWrapperRef → ref` (1)
 
@@ -2946,15 +2975,7 @@
 
 - drawer.DrawerCustom — `packages/drawer/src/components/DrawerCustom/DrawerCustom.tsx:121` (`heightAutoVertical`)
 
-### `headline → title` (1)
-
-- dropdown.MobileDropdown — `packages/dropdown/src/helperComponents/MobileDropdown/MobileDropdown.tsx:69` (`headline`)
-
-### `headlineHint → slotAfterHeadline` (1)
-
-- dropdown.MobileDropdown — `packages/dropdown/src/helperComponents/MobileDropdown/MobileDropdown.tsx:70` (`headlineHint`)
-
-### `search → subHeadline` (1)
+### `search → subtitle` (1)
 
 - dropdown.MobileDropdown — `packages/dropdown/src/helperComponents/MobileDropdown/MobileDropdown.tsx:71` (`search`)
 
@@ -3084,19 +3105,19 @@
 
 ### `filteredPinTop → pinTop` (1)
 
-- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:648` (`filteredPinTop`)
+- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:649` (`filteredPinTop`)
 
 ### `filteredPinBottom → pinBottom` (1)
 
-- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:649` (`filteredPinBottom`)
+- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:650` (`filteredPinBottom`)
 
 ### `inputRef → triggerElemRef` (1)
 
-- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:653` (`inputRef`)
+- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:654` (`inputRef`)
 
 ### `droplistSelection → selection` (1)
 
-- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:657` (`droplistSelection`)
+- fields.FieldSelect — `packages/fields/src/components/FieldSelect/FieldSelect.tsx:658` (`droplistSelection`)
 
 ### `handleSliderChange → onChange` (1)
 
@@ -3168,35 +3189,35 @@
 
 ### `commonStyles → className` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:169` (`commonStyles.stateLayer`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:180` (`commonStyles.stateLayer`)
 
 ### `stateLayerState → data-state` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:169` (`stateLayerState`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:180` (`stateLayerState`)
 
 ### `handleItemClick → onClick` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:177` (`handleItemClick`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:188` (`handleItemClick`)
 
 ### `handleItemMouseDown → onMouseDown` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:178` (`handleItemMouseDown`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:189` (`handleItemMouseDown`)
 
 ### `handleItemKeyDown → onKeyDown` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:183` (`handleItemKeyDown`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:194` (`handleItemKeyDown`)
 
 ### `handleItemFocus → onFocus` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:184` (`handleItemFocus`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:195` (`handleItemFocus`)
 
 ### `handleCheckboxClick → onClick` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:203` (`handleCheckboxClick`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:214` (`handleCheckboxClick`)
 
 ### `handleExpandIconClick → onClick` (1)
 
-- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:237` (`handleExpandIconClick`)
+- list.BaseItem — `packages/list/src/components/Items/BaseItem/BaseItem.tsx:245` (`handleExpandIconClick`)
 
 ### `searchItem → itemRef` (1)
 
@@ -3208,27 +3229,19 @@
 
 ### `openListContextValue → value` (1)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:245` (`openListContextValue`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:248` (`openListContextValue`)
 
 ### `handleContentKeyDown → onKeyDown` (1)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:251` (`handleContentKeyDown`)
-
-### `header → headline` (1)
-
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:273` (`header`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:254` (`handleContentKeyDown`)
 
 ### `searchNode → search` (1)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:275` (`searchNode`)
-
-### `footerNode → footer` (1)
-
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:276` (`footerNode`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:281` (`searchNode`)
 
 ### `effectiveWidthStrategy → widthStrategy` (1)
 
-- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:284` (`effectiveWidthStrategy`)
+- list.DesktopDroplist — `packages/list/src/helperComponents/DesktopDroplist/DesktopDroplist.tsx:290` (`effectiveWidthStrategy`)
 
 ### `stopPropagation → onKeyDown` (1)
 
@@ -3258,10 +3271,6 @@
 
 - list.hooks — `packages/list/src/components/Items/hooks.tsx:76` (`id`)
 
-### `option → text` (1)
-
-- list.ItemContent — `packages/list/src/helperComponents/ItemContent/ItemContent.tsx:61` (`String(option)`)
-
 ### `props → virtualized` (1)
 
 - list.List — `packages/list/src/components/Lists/List/List.tsx:102` (`props.virtualized`)
@@ -3280,23 +3289,27 @@
 
 ### `levelItems → items` (1)
 
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:162` (`levelItems`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:164` (`levelItems`)
 
 ### `listSelection → selection` (1)
 
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:163` (`listSelection`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:165` (`listSelection`)
 
 ### `rest → noDataState` (1)
 
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:169` (`rest.noDataState`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:171` (`rest.noDataState`)
 
 ### `rest → noResultsState` (1)
 
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:170` (`rest.noResultsState`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:172` (`rest.noResultsState`)
 
 ### `rest → errorDataState` (1)
 
-- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:171` (`rest.errorDataState`)
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:173` (`rest.errorDataState`)
+
+### `undefined → className` (1)
+
+- list.MobileDroplist — `packages/list/src/helperComponents/MobileDroplist/MobileDroplist.tsx:180` (`undefined`)
 
 ### `handleOutsideClick → outsideClick` (1)
 
@@ -3552,15 +3565,15 @@
 
 ### `starIndex → handleMouseEnter` (1)
 
-- rating.Rating — `packages/rating/src/Rating.tsx:99` (`handleMouseEnter(starIndex)`)
+- rating.Rating — `packages/rating/src/components/Rating/Rating.tsx:99` (`handleMouseEnter(starIndex)`)
 
 ### `starIndex → handleKeyDown` (1)
 
-- rating.Rating — `packages/rating/src/Rating.tsx:101` (`handleKeyDown(starIndex)`)
+- rating.Rating — `packages/rating/src/components/Rating/Rating.tsx:101` (`handleKeyDown(starIndex)`)
 
 ### `starIndex → handleClick` (1)
 
-- rating.Rating — `packages/rating/src/Rating.tsx:102` (`handleClick(starIndex)`)
+- rating.Rating — `packages/rating/src/components/Rating/Rating.tsx:102` (`handleClick(starIndex)`)
 
 ### `value → data-value` (1)
 
@@ -3640,11 +3653,11 @@
 
 ### `step → state` (1)
 
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:37` (`step.state`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:44` (`step.state`)
 
 ### `step → number` (1)
 
-- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:37` (`step.number`)
+- stepper.DesktopStep — `packages/stepper/src/helperComponents/DesktopStep/DesktopStep.tsx:44` (`step.number`)
 
 ### `setNodeRef → ref` (1)
 
@@ -4034,9 +4047,9 @@
 
 - toaster.ToastSlot — `packages/toaster/src/components/Toaster/ToastSlot.tsx:56` (`renderedStatus`)
 
-### `link → text` (1)
+### `link → label` (1)
 
-- toaster.ToastSystemEvent — `packages/toaster/src/components/ToastSystemEvent/ToastSystemEvent.tsx:81` (`link.text`)
+- toaster.ToastSystemEvent — `packages/toaster/src/components/ToastSystemEvent/ToastSystemEvent.tsx:81` (`link.label`)
 
 ### `link → href` (1)
 
@@ -4070,9 +4083,9 @@
 
 - toaster.ToastUpload — `packages/toaster/src/components/ToastUpload/ToastUpload.tsx:62` (`handleCloseClick`)
 
-### `linkInfo → text` (1)
+### `linkInfo → label` (1)
 
-- toaster.ToastUploadFileLine — `packages/toaster/src/helperComponents/ToastUploadFileLine/ToastUploadFileLine.tsx:56` (`linkInfo.text`)
+- toaster.ToastUploadFileLine — `packages/toaster/src/helperComponents/ToastUploadFileLine/ToastUploadFileLine.tsx:56` (`linkInfo.label`)
 
 ### `linkInfo → href` (1)
 
@@ -4121,6 +4134,10 @@
 ### `status → data-status` (1)
 
 - toaster.ToastUploadTitleLine — `packages/toaster/src/helperComponents/ToastUploadTitleLine/ToastUploadTitleLine.tsx:86` (`status`)
+
+### `hint → text` (1)
+
+- toaster.ToastUploadTitleLine — `packages/toaster/src/helperComponents/ToastUploadTitleLine/ToastUploadTitleLine.tsx:87` (`hint`)
 
 ### `icon → data-icon` (1)
 
@@ -4334,9 +4351,9 @@
 
 - uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:89` (`title`)
 
-### `description → key` (1)
+### `content → key` (1)
 
-- uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:94` (`description`)
+- uikit-product-card-predefined.CardBanner — `packages/uikit-product-card-predefined/src/components/CardBanner/CardBanner.tsx:94` (`content`)
 
 ### `props → src` (1)
 
@@ -4352,7 +4369,7 @@
 
 ### `buttonRef → triggerElemRef` (1)
 
-- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:50` (`buttonRef`)
+- uikit-product-card-predefined.FunctionBadge — `packages/uikit-product-card-predefined/src/components/CardCustom/FunctionBadge/FunctionBadge.tsx:51` (`buttonRef`)
 
 ### `metadata → text` (1)
 
@@ -4366,17 +4383,9 @@
 
 - uikit-product-copy.CopyLine — `packages/uikit-product-copy/src/components/CopyLine/CopyLine.tsx:51` (`copyButtonHideStrategy`)
 
-### `content → text` (1)
-
-- uikit-product-copy.CopyLine — `packages/uikit-product-copy/src/components/CopyLine/CopyLine.tsx:55` (`String(content)`)
-
 ### `CLOUD_BRAND_GREEN → fill` (1)
 
 - uikit-product-error-pages.CloudLogo — `packages/uikit-product-error-pages/src/components/CloudLogo/CloudLogo.tsx:18` (`CLOUD_BRAND_GREEN`)
-
-### `content → label` (1)
-
-- uikit-product-error-pages.ErrorPage — `packages/uikit-product-error-pages/src/components/ErrorPage/ErrorPage.tsx:77` (`String(content.statusCode)`)
 
 ### `mainPageUrl → href` (1)
 
@@ -4544,11 +4553,11 @@
 
 ### `confirmPlaceholder → placeholder` (1)
 
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:82` (`confirmPlaceholder`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:87` (`confirmPlaceholder`)
 
 ### `deleting → loading` (1)
 
-- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:103` (`deleting`)
+- uikit-product-modal-predefined.DeleteModal — `packages/uikit-product-modal-predefined/src/components/DeleteModal/DeleteModal.tsx:108` (`deleting`)
 
 ### `handleReadLaterClick → onReadLaterClick` (1)
 
@@ -4590,7 +4599,7 @@
 
 - uikit-product-modal-predefined.ReleaseNotesContent — `packages/uikit-product-modal-predefined/src/helperComponents/ReleaseNotesContent/ReleaseNotesContent.tsx:71` (`errorTitle`)
 
-### `errorDescription → description` (1)
+### `errorDescription → content` (1)
 
 - uikit-product-modal-predefined.ReleaseNotesContent — `packages/uikit-product-modal-predefined/src/helperComponents/ReleaseNotesContent/ReleaseNotesContent.tsx:72` (`errorDescription`)
 
@@ -4606,7 +4615,7 @@
 
 - uikit-product-modal-predefined.ReleaseNotesContent — `packages/uikit-product-modal-predefined/src/helperComponents/ReleaseNotesContent/ReleaseNotesContent.tsx:96` (`noDataTitle`)
 
-### `noDataDescription → description` (1)
+### `noDataDescription → content` (1)
 
 - uikit-product-modal-predefined.ReleaseNotesContent — `packages/uikit-product-modal-predefined/src/helperComponents/ReleaseNotesContent/ReleaseNotesContent.tsx:97` (`noDataDescription`)
 
@@ -4690,6 +4699,10 @@
 
 - uikit-product-notification.NotificationPanelSettings — `packages/uikit-product-notification/src/components/NotificationPanelContent/components/NotificationPanelSettings/NotificationPanelSettings.tsx:33` (`buttonProps`)
 
+### `sentinelRef → ref` (1)
+
+- uikit-product-page-layout.DesktopPageForm — `packages/uikit-product-page-layout/src/components/PageForm/DesktopPageForm.tsx:88` (`sentinelRef`)
+
 ### `limitContentMaxWidth → data-limited` (1)
 
 - uikit-product-page-layout.DesktopPageServices — `packages/uikit-product-page-layout/src/components/PageServices/DesktopPageServices.tsx:33` (`limitContentMaxWidth`)
@@ -4708,19 +4721,19 @@
 
 ### `openMore → open` (1)
 
-- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:50` (`openMore`)
+- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:65` (`openMore`)
 
 ### `setOpenMore → onOpenChange` (1)
 
-- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:51` (`setOpenMore`)
+- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:66` (`setOpenMore`)
 
 ### `openPriceSummary → open` (1)
 
-- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:90` (`openPriceSummary`)
+- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:104` (`openPriceSummary`)
 
 ### `setOpenPriceSummary → onOpenChange` (1)
 
-- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:91` (`setOpenPriceSummary`)
+- uikit-product-page-layout.MobilePageForm — `packages/uikit-product-page-layout/src/components/PageForm/MobilePageForm.tsx:105` (`setOpenPriceSummary`)
 
 ### `LOADER_SIZE → size` (1)
 
@@ -4744,7 +4757,7 @@
 
 ### `allItems → items` (1)
 
-- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:62` (`allItems`)
+- uikit-product-page-layout.SidebarSelect — `packages/uikit-product-page-layout/src/components/PageSidebar/helperComponents/SidebarSelect/SidebarSelect.tsx:63` (`allItems`)
 
 ### `items → menuItems` (1)
 
@@ -4757,10 +4770,6 @@
 ### `menu → tip` (1)
 
 - uikit-product-page-layout.TreeNavigation — `packages/uikit-product-page-layout/src/components/TreeNavigation/TreeNavigation.tsx:62` (`menu`)
-
-### `header → title` (1)
-
-- uikit-product-page-layout.useItemsCreator — `packages/uikit-product-page-layout/src/components/PageSidebar/hooks/useItemsCreator.tsx:44` (`header.label`)
 
 ### `header → icon` (1)
 
@@ -4834,13 +4843,17 @@
 
 - uikit-product-price-summary.TotalValueBlock — `packages/uikit-product-price-summary/src/components/PriceSummary/components/TotalValueBlock/TotalValueBlock.tsx:75` (`hintLink?.href`)
 
-### `hintLink → text` (1)
+### `hintLink → label` (1)
 
-- uikit-product-price-summary.TotalValueBlock — `packages/uikit-product-price-summary/src/components/PriceSummary/components/TotalValueBlock/TotalValueBlock.tsx:76` (`hintLink?.text`)
+- uikit-product-price-summary.TotalValueBlock — `packages/uikit-product-price-summary/src/components/PriceSummary/components/TotalValueBlock/TotalValueBlock.tsx:76` (`hintLink?.label`)
 
 ### `HOVER_DELAY_OPEN_MS → hoverDelayOpen` (1)
 
 - uikit-product-promo-tag-predefined.PromoTagPredefined — `packages/uikit-product-promo-tag-predefined/src/components/PromoTagPredefined/PromoTagPredefined.tsx:73` (`HOVER_DELAY_OPEN_MS`)
+
+### `text → label` (1)
+
+- uikit-product-promo-tag-predefined.PromoTagPredefined — `packages/uikit-product-promo-tag-predefined/src/components/PromoTagPredefined/PromoTagPredefined.tsx:76` (`text`)
 
 ### `quota → key` (1)
 

@@ -1,10 +1,10 @@
 # Private component props (Code)
 
-- Generated: 2026-07-10T11:27:47.350Z
+- Generated: 2026-07-16T10:18:54.772Z
 - Command: `pnpm aggregate:props`
 - Packages: 50
-- Components: 439
-- Props: 2945
+- Components: 440
+- Props: 2943
 
 ai-field-notice (AiFieldNoticeAnimatedDescription)
 - items: [readonly AiFieldNoticeDescriptionListItem[]]
@@ -48,7 +48,7 @@ alert (AlertBase)
 - align: horizontal, vertical
 - appearance: error, info, neutral, primary, success, warning
 - collapsible: true, false
-- description: [ReactNode]
+- content: [ReactNode]
 - icon: true, false
 - outline: true, false
 - size: m, s
@@ -589,13 +589,13 @@ chips (ChipChoiceMultiple)
 - valueRender: [((option?: BaseOption<T>[]) => ReactNode)]
 - virtualized: true, false
 - widthStrategy: auto, eq, gte
-- errorDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noResultsState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noResultsState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.icon: [IconPredefinedProps | undefined] [nested]
 - className: [string] [infra]
@@ -646,13 +646,13 @@ chips (ChipChoiceSingle)
 - valueRender: [((option?: BaseOption<T>) => ReactNode)]
 - virtualized: true, false
 - widthStrategy: auto, eq, gte
-- errorDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noResultsState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noResultsState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.icon: [IconPredefinedProps | undefined] [nested]
 - className: [string] [infra]
@@ -730,13 +730,13 @@ chips (ForwardedChipChoice)
 - valueRender: [((value: any) => ReactNode) | ((value?: Date) => ReactNode) | ((value?: Range) => ReactNode) ...]
 - virtualized: true, false
 - widthStrategy: auto, eq, gte
-- errorDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.icon: [IconPredefinedProps | undefined] [nested]
-- noResultsState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noResultsState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.icon: [IconPredefinedProps | undefined] [nested]
 - className: [string] [infra]
@@ -758,9 +758,12 @@ chips (ForwardedChipChoice)
 
 chips (useAutoApply)
 - autoApply: true, false
+- mobile: true, false
+- selectedCount: [number]
 - size: l, m, s
 - onApprove: [() => void] [callback]
 - onCancel: [() => void] [callback]
+- onReset: [(() => void)] [callback]
 
 color-picker (ChannelSlider) [surface: exported-helper]
 - alpha: true, false
@@ -943,7 +946,6 @@ drawer (DialogFooter)
 drawer (DialogHeader)
 - actionButton: [ReactNode]
 - slotAfterHeadline: [ReactNode]
-- subHeadline: [ReactNode]
 - subtitle: [ReactNode]
 - title: [ReactNode]
 - titleId: [string]
@@ -964,7 +966,6 @@ drawer (DrawerFooter) [surface: exported-helper]
 drawer (DrawerHeader) [surface: exported-helper]
 - actionButton: [ReactNode]
 - slotAfterHeadline: [ReactNode]
-- subHeadline: [ReactNode]
 - subtitle: [ReactNode]
 - title: [ReactNode]
 - titleId: [string]
@@ -1110,8 +1111,6 @@ dropdown (DesktopDropdown) [surface: exported-helper]
 - footer: [ReactNode]
 - footerDivider: true, false
 - headerDivider: true, false
-- headline: [ReactNode]
-- headlineHint: [ReactNode]
 - hoverDelayClose: [number]
 - hoverDelayOpen: [number]
 - offset: [number]
@@ -1119,7 +1118,9 @@ dropdown (DesktopDropdown) [surface: exported-helper]
 - outsideClick: [boolean | OutsideClickHandler]
 - placement: bottom, bottom-end, bottom-start, left, left-end, left-start, right, right-end, right-start, top, top-end, top-start
 - search: [ReactNode]
+- slotAfterHeadline: [ReactNode]
 - state: [DropdownState]
+- title: [ReactNode]
 - trigger: click, clickAndFocusVisible, focus, focusVisible, hover, hoverAndFocus, hoverAndFocusVisible
 - triggerClassName: [string]
 - triggerClickByKeys: true, false
@@ -1144,8 +1145,6 @@ dropdown (MobileDropdown) [surface: exported-helper]
 - footer: [ReactNode]
 - footerDivider: true, false
 - headerDivider: true, false
-- headline: [ReactNode]
-- headlineHint: [ReactNode]
 - hoverDelayClose: [number]
 - hoverDelayOpen: [number]
 - offset: [number]
@@ -1153,7 +1152,9 @@ dropdown (MobileDropdown) [surface: exported-helper]
 - outsideClick: [boolean | OutsideClickHandler]
 - placement: bottom, bottom-end, bottom-start, left, left-end, left-start, right, right-end, right-start, top, top-end, top-start
 - search: [ReactNode]
+- slotAfterHeadline: [ReactNode]
 - state: [DropdownState]
+- title: [ReactNode]
 - trigger: click, clickAndFocusVisible, focus, focusVisible, hover, hoverAndFocus, hoverAndFocusVisible
 - triggerClassName: [string]
 - triggerClickByKeys: true, false
@@ -1443,29 +1444,29 @@ list (DesktopDroplist) [surface: exported-helper]
 - untouchableScrollbars: true, false
 - virtualized: true, false
 - widthStrategy: auto, eq, gte
-- errorDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.icon: [IconPredefinedProps | undefined] [nested]
 - errorDataState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - errorDataState.icon.decor: [boolean | undefined] [nested]
 - errorDataState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- errorDataState.icon.shape: round, square [nested]
+- errorDataState.icon.shape: rounded, square [nested]
 - errorDataState.icon.size: 5xl, l, m [nested]
-- noDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.icon: [IconPredefinedProps | undefined] [nested]
 - noDataState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - noDataState.icon.decor: [boolean | undefined] [nested]
 - noDataState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- noDataState.icon.shape: round, square [nested]
+- noDataState.icon.shape: rounded, square [nested]
 - noDataState.icon.size: 5xl, l, m [nested]
-- noResultsState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noResultsState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.icon: [IconPredefinedProps | undefined] [nested]
 - noResultsState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - noResultsState.icon.decor: [boolean | undefined] [nested]
 - noResultsState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- noResultsState.icon.shape: round, square [nested]
+- noResultsState.icon.shape: rounded, square [nested]
 - noResultsState.icon.size: 5xl, l, m [nested]
 - children: [ReactNode | ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хен...] [infra]
 - className: [string] [infra]
@@ -1522,29 +1523,29 @@ list (MobileDroplist) [surface: exported-helper]
 - slotAfterHeadline: [ReactNode]
 - untouchableScrollbars: true, false
 - virtualized: true, false
-- errorDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorDataState.icon: [IconPredefinedProps | undefined] [nested]
 - errorDataState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - errorDataState.icon.decor: [boolean | undefined] [nested]
 - errorDataState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- errorDataState.icon.shape: round, square [nested]
+- errorDataState.icon.shape: rounded, square [nested]
 - errorDataState.icon.size: 5xl, l, m [nested]
-- noDataState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noDataState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noDataState.icon: [IconPredefinedProps | undefined] [nested]
 - noDataState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - noDataState.icon.decor: [boolean | undefined] [nested]
 - noDataState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- noDataState.icon.shape: round, square [nested]
+- noDataState.icon.shape: rounded, square [nested]
 - noDataState.icon.size: 5xl, l, m [nested]
-- noResultsState.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- noResultsState.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - noResultsState.icon: [IconPredefinedProps | undefined] [nested]
 - noResultsState.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - noResultsState.icon.decor: [boolean | undefined] [nested]
 - noResultsState.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- noResultsState.icon.shape: round, square [nested]
+- noResultsState.icon.shape: rounded, square [nested]
 - noResultsState.icon.size: 5xl, l, m [nested]
 - children: [ReactNode | ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хен...] [infra]
 - className: [string] [infra]
@@ -1589,10 +1590,10 @@ list (nextListOption)
 - content.caption: [string] [nested]
 - content.description: [string] [nested]
 - content.disabled: true, false [nested]
-- content.option: [string | number] [nested]
+- content.label: [string | number] [nested]
 - content.truncate: [TruncateProps] [nested]
 - content.truncate.description: [number | undefined] [nested]
-- content.truncate.option: [number | undefined] [nested]
+- content.truncate.label: [number | undefined] [nested]
 - content.truncate.variant: end, middle [nested]
 - className: [string] [infra]
 - content.className: [string] [infra, nested]
@@ -1702,7 +1703,6 @@ modal (DialogFooter)
 modal (DialogHeader)
 - actionButton: [ReactNode]
 - slotAfterHeadline: [ReactNode]
-- subHeadline: [ReactNode]
 - subtitle: [ReactNode]
 - title: [ReactNode]
 - titleId: [string]
@@ -1751,7 +1751,6 @@ modal (ModalFooter) [surface: exported-helper]
 modal (ModalHeader) [surface: exported-helper]
 - actionButton: [ReactNode]
 - slotAfterHeadline: [ReactNode]
-- subHeadline: [ReactNode]
 - subtitle: [ReactNode]
 - title: [ReactNode]
 - titleId: [string]
@@ -2072,13 +2071,13 @@ table (TableEmptyState) [surface: exported-helper]
 - dataFiltered: true, false
 - emptyStates: [{ noDataState: EmptyStateProps; noResultsState: EmptyStateProps; errorDataState: EmptyStatePr...]
 - tableRowsLength: [number]
-- emptyStates.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- emptyStates.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - emptyStates.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - emptyStates.icon: [IconPredefinedProps | undefined] [nested]
 - emptyStates.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - emptyStates.icon.decor: [boolean | undefined] [nested]
 - emptyStates.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- emptyStates.icon.shape: round, square [nested]
+- emptyStates.icon.shape: rounded, square [nested]
 - emptyStates.icon.size: 5xl, l, m [nested]
 - emptyStates.title: [string | undefined] [nested]
 - emptyStates.className: [string | undefined] [infra, nested]
@@ -2248,7 +2247,6 @@ tag (TagLink)
 - className: [string] [infra]
 - data-test-id: [string] [infra]
 - tabIndex: [number] [infra]
-- onDelete: [MouseEventHandler<HTMLButtonElement>] [callback]
 
 tag (TagList) [surface: exported-helper]
 - items: [TagRowItemInner[]]
@@ -2340,8 +2338,8 @@ toaster (ToastSystemEventProgress) [surface: exported-helper]
 
 toaster (ToastUploadTitleLine) [surface: exported-helper]
 - closable: true, false
-- description: [string]
 - generalActions: [Omit<UploadActions, "onCancel">]
+- hint: [string]
 - isCollapsed: true, false
 - progress: [{ current: number; total: number; }]
 - status: error, errorUploaded, loading, pause, uploaded
@@ -2502,7 +2500,7 @@ tree (TreeNode) [surface: exported-helper]
 - expandedIcon: [ReactNode]
 - href: [string]
 - icon: [ReactNode]
-- isLoading: true, false
+- loading: true, false
 - nested: [(ChildTreeNode | ParentTreeNode)[]]
 - parentNode: [ParentNode]
 - tabIndexAvailable: true, false
@@ -2568,7 +2566,7 @@ uikit-product-card-predefined (Emblem) [surface: exported-helper]
 - appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow
 - decor: true, false
 - icon: [JSXElementConstructor<{ size?: number | undefined; className?: string | undefined; }>]
-- shape: round, square
+- shape: rounded, square
 - src: [string]
 
 uikit-product-card-predefined (FooterAction)
@@ -2668,7 +2666,7 @@ uikit-product-fields-predefined (Attachments)
 - files.icon.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - files.icon.decor: [boolean | undefined] [nested]
 - files.icon.icon: [((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode)...] [nested]
-- files.icon.shape: round, square [nested]
+- files.icon.shape: rounded, square [nested]
 - files.icon.size: 5xl, l, m [nested]
 - files.loading: [boolean | undefined] [nested]
 - files.size: m, s [nested]
@@ -3539,6 +3537,8 @@ uikit-product-page-layout (useButtonWithTooltip)
 
 uikit-product-page-layout (useSearchFilter) [surface: exported-helper]
 
+uikit-product-page-layout (useStickyFooterShadow)
+
 uikit-product-price-summary (ContentBlock)
 - dataError: true, false
 - loading: true, false
@@ -3557,14 +3557,14 @@ uikit-product-price-summary (DiscountPercentCell)
 uikit-product-price-summary (HeaderBlock)
 - period: day, hour, minute, month, year
 - periodOptions: [PricePeriod[]]
-- promoBadge: [string | Pick<PromoTagProps, "text" | "appearance">]
+- promoBadge: [string | Pick<PromoTagProps, "label" | "appearance">]
 - vatType: excluding, including
 - promoBadge.afterContent: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - promoBadge.appearance: blue, green, neutral, orange, pink, primary, red, violet, yellow [nested]
 - promoBadge.beforeContent: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- promoBadge.label: [string | undefined] [nested]
 - promoBadge.role: accent, decor [nested]
 - promoBadge.size: m, s, xs [nested]
-- promoBadge.text: [string | undefined] [nested]
 - promoBadge.as: [T | undefined] [infra, nested]
 - promoBadge.className: [string | undefined] [infra, nested]
 - promoBadge.data-test-id: [string | undefined] [infra, nested]
@@ -3595,7 +3595,7 @@ uikit-product-price-summary (PeriodDropdown)
 uikit-product-price-summary (TotalValueBlock)
 - hint: [string]
 - hintAppearance: default, systemError, userError, warning
-- hintLink: [{ href?: string; text: string; }]
+- hintLink: [{ href?: string; label: string; }]
 - hintTooltipText: [ReactNode]
 - showHintLink: true, false
 - showHintTooltip: true, false
@@ -3606,7 +3606,7 @@ uikit-product-price-summary (TotalValueBlock)
 uikit-product-quota (Grid) [surface: exported-helper]
 - disableSorting: true, false
 - isAccordion: true, false
-- isLoading: true, false
+- loading: true, false
 - quotas: [QuotaItem[]]
 
 uikit-product-quota (ProjectHeader)
@@ -3622,7 +3622,7 @@ uikit-product-quota (QuotaCardsGrid) [surface: exported-helper]
 - disableSorting: true, false
 - isAccordion: true, false
 - isError: true, false
-- isLoading: true, false
+- loading: true, false
 - quotas: [QuotaItem[]]
 - onRefresh: [() => void] [callback]
 
@@ -3633,7 +3633,7 @@ uikit-product-quota (QuotaTooltip)
 - quota: [QuotaItem]
 
 uikit-product-quota (QuotaWidgetCardsSkeleton)
-- isLoading: true, false
+- loading: true, false
 
 uikit-product-switch-row (Title)
 - disableTitleTruncate: true, false
@@ -3791,7 +3791,7 @@ uikit-product-widget (Content) [surface: exported-helper]
 - errorState.errorDescription: [string | undefined] [nested]
 - errorState.errorIcon: [IconPredefinedProps | undefined] [nested]
 - errorState.errorIcon.align: horizontal, vertical [nested]
-- errorState.errorIcon.description: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
+- errorState.errorIcon.content: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorState.errorIcon.footer: [string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable...] [nested]
 - errorState.errorIcon.icon: [IconPredefinedProps | undefined] [nested]
 - errorState.errorIcon.size: l, m, s [nested]
