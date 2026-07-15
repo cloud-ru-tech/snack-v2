@@ -41,7 +41,7 @@ export function Emblem(props: EmblemProps) {
       appearance={props.appearance ?? 'primary'}
       decor={props.decor ?? true}
       size={ICON_SIZE_MAP[radius]}
-      shape={props.shape ?? 'round'}
+      shape={props.shape ?? 'rounded'}
       data-test-id={TEST_IDS.emblemIcon}
     />
   );

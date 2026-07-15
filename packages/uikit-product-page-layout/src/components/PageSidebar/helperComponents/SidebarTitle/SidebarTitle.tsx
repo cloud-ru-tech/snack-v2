@@ -19,8 +19,8 @@ export function SidebarTitle({ title, className, icon, afterContent }: SidebarTi
     <div className={cn(className, styles.wrapper)}>
       <div className={styles.icon}>
         {/* Иконка сайдбара 24px (Figma density/size/icon/s, node 3334:70387 → itemPinTop). У @ds/icon-predefined
-            нет ключа 's'; SIZE.M square даёт ровно 24px-глиф — визуальный паритет с легаси size='s'. */}
-        <IconPredefined appearance={APPEARANCE.Neutral} size={SIZE.M} shape='square' icon={icon} />
+            нет ключа 's'; SIZE.M squared даёт ровно 24px-глиф — визуальный паритет с легаси size='s'. */}
+        <IconPredefined appearance={APPEARANCE.Neutral} size={SIZE.M} shape='squared' icon={icon} />
       </div>
       <div className={styles.title}>
         <Typography variant={VARIANT.label} size={TYPOGRAPHY_SIZE.l}>

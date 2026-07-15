@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<IconPredefinedProps>;
 
 const keySizes = Object.values(SIZE);
-const keyShapes = ['round', 'square'] as const;
+const keyShapes = ['rounded', 'squared'] as const;
 const keyAppearances = Object.values(APPEARANCE);
 
 const columnHeaders = keySizes.flatMap(size => keyShapes.map(shape => `${size} ${shape}`));

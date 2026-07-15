@@ -6,11 +6,11 @@ import { buildStoryOptions, TEST_IDS } from './helpers';
 const KEY_COMBOS: ReadonlyArray<{
   size: (typeof SIZE)[keyof typeof SIZE];
   appearance: (typeof APPEARANCE)[keyof typeof APPEARANCE];
-  shape: 'round' | 'square';
+  shape: 'rounded' | 'squared';
 }> = [
-  { size: SIZE.M, appearance: APPEARANCE.Primary, shape: 'round' },
-  { size: SIZE.L, appearance: APPEARANCE.Red, shape: 'square' },
-  { size: SIZE['5XL'], appearance: APPEARANCE.Blue, shape: 'round' },
+  { size: SIZE.M, appearance: APPEARANCE.Primary, shape: 'rounded' },
+  { size: SIZE.L, appearance: APPEARANCE.Red, shape: 'squared' },
+  { size: SIZE['5XL'], appearance: APPEARANCE.Blue, shape: 'rounded' },
 ];
 
 test.describe('IconPredefined — rendering', () => {

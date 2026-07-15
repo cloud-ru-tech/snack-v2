@@ -18,7 +18,7 @@ export type IconPredefinedProps = WithSupportProps<{
   /** Размер */
   size?: Size;
   /** Форма: круглая или квадратная */
-  shape?: 'round' | 'square';
+  shape?: 'rounded' | 'squared';
 }>;
 
 /**
@@ -31,7 +31,7 @@ export function IconPredefined({
   size = SIZE.M,
   icon: IconComponent,
   appearance = APPEARANCE.Primary,
-  shape = 'round',
+  shape = 'rounded',
   ...rest
 }: IconPredefinedProps) {
   return (

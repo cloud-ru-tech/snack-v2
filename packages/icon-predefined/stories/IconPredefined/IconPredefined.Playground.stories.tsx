@@ -22,7 +22,7 @@ const meta: Meta<PlaygroundArgs> = {
     iconKey: 'Placeholder',
     appearance: APPEARANCE.Primary,
     size: SIZE.M,
-    shape: 'round',
+    shape: 'rounded',
     decor: true,
     'data-test-id': TEST_IDS.root,
   },
@@ -45,7 +45,7 @@ const meta: Meta<PlaygroundArgs> = {
     },
     shape: {
       control: 'radio',
-      options: ['round', 'square'],
+      options: ['rounded', 'squared'],
       description: 'Форма: круглая или квадратная',
     },
     decor: {
@@ -69,7 +69,7 @@ export const Playground: Story = {
       <DemoPage>
         <DemoPanel>
           <DemoTitle>Playground</DemoTitle>
-          <DemoHint>Иконка с предустановленной цветной подложкой и формой round или square.</DemoHint>
+          <DemoHint>Иконка с предустановленной цветной подложкой и формой rounded или squared.</DemoHint>
           <DemoActions align='center'>
             <IconPredefined {...rest} icon={IconComponent} />
           </DemoActions>

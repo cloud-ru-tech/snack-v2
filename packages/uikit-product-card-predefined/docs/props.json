@@ -1199,8 +1199,8 @@
         "type": "enum",
         "required": false,
         "values": [
-          "round",
-          "square"
+          "rounded",
+          "squared"
         ],
         "description": "Форма: круглая или квадратная"
       },

@@ -48,10 +48,10 @@
         "type": "enum",
         "required": false,
         "values": [
-          "round",
-          "square"
+          "rounded",
+          "squared"
         ],
-        "defaultValue": "round",
+        "defaultValue": "rounded",
         "description": "Форма: круглая или квадратная"
       },
       "size": {

@@ -34,7 +34,7 @@ export function MainContent({ title, description, icon, imageData, className }: 
           icon={icon ?? FileSVG}
           decor
           appearance='neutral'
-          shape='square'
+          shape='squared'
           data-test-id={TEST_IDS.icon}
         />
       </div>

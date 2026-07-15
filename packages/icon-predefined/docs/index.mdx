@@ -39,7 +39,7 @@ import { figmaNode } from '#docs/lib/figma'
 Размер контейнера: `m` — дефолт в строках и карточках, `l` — заголовки разделов, `5xl` — крупные empty-state.
 
 ### Shape
-Форма контейнера: `round` — круглый (по умолчанию), `square` — со скруглёнными углами для технических объектов.
+Форма контейнера: `rounded` — круглый (по умолчанию), `squared` — со скруглёнными углами для технических объектов.
 
 ### Decor
 `decor={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
@@ -64,7 +64,7 @@ import { IconPredefined, APPEARANCE, SIZE } from '@ds/icon-predefined'
   <Sizes client:visible />
 </Example>
 
-<Example title='Форма и подложка' description='`round` / `square`, отключение decor.' code={ShapesSrc}>
+<Example title='Форма и подложка' description='`rounded` / `squared`, отключение decor.' code={ShapesSrc}>
   <Shapes client:visible />
 </Example>
 

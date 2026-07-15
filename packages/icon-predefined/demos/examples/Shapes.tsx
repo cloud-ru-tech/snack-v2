@@ -4,9 +4,9 @@ import { PlaceholderSVG } from '@ds/icons/interface/system';
 export function Shapes() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <IconPredefined icon={PlaceholderSVG} shape='round' />
-      <IconPredefined icon={PlaceholderSVG} shape='square' />
-      <IconPredefined icon={PlaceholderSVG} shape='round' decor={false} />
+      <IconPredefined icon={PlaceholderSVG} shape='rounded' />
+      <IconPredefined icon={PlaceholderSVG} shape='squared' />
+      <IconPredefined icon={PlaceholderSVG} shape='rounded' decor={false} />
     </div>
   );
 }

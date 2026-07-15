@@ -3,11 +3,7 @@
 
 $sizes: 'm', 'l', '5xl';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
-$shapes: 'round', 'square';
-$shapeMap: (
-  'round': 'rounded',
-  'square': 'squared',
-);
+$shapes: 'rounded', 'squared';
 
 .decor {
   overflow: hidden;
@@ -34,13 +30,7 @@ $shapeMap: (
 
       @each $shape in $shapes {
         &[data-shape='#{$shape}'] {
-          @include base.composite-var(
-            iconPredefined.$iconPredefined,
-            'anatomy',
-            'size',
-            $size,
-            base.simple-var($shapeMap, $shape)
-          );
+          @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size, $shape);
         }
       }
     }

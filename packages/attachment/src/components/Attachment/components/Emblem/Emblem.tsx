@@ -49,7 +49,7 @@ export function Emblem({ loading, icon, imageData, title }: EmblemProps) {
       icon={icon ?? FileSVG}
       decor
       appearance='neutral'
-      shape='square'
+      shape='squared'
       data-test-id={TEST_IDS.icon}
     />
   );

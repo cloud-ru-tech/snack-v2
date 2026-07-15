@@ -14,7 +14,7 @@ import { TEST_IDS } from './testIds';
 function CardPlaygroundExampleContent() {
   return (
     <div className={styles.playgroundExample}>
-      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} size={ICON_SIZE.M} shape='round' />
+      <IconPredefined icon={PlaceholderSVG} appearance={APPEARANCE.Primary} size={ICON_SIZE.M} shape='rounded' />
       <div className={styles.playgroundExampleText}>
         <Typography variant={VARIANT.title} size={SIZE.s}>
           Title text

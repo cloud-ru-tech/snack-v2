@@ -181,11 +181,11 @@
             "description": "JSX иконки"
           },
           "shape": {
-            "type": "\"round\" | \"square\" | undefined",
+            "type": "\"rounded\" | \"squared\" | undefined",
             "required": false,
             "values": [
-              "round",
-              "square"
+              "rounded",
+              "squared"
             ],
             "description": "Форма: круглая или квадратная"
           },

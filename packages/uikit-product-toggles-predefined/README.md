@@ -222,7 +222,7 @@ export function Controlled() {
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
 | `decor` | `boolean \| undefined` | — | Наличие цветной подложки |
 | `icon` | `((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — | JSX иконки |
-| `shape` | `"round"` \| `"square"` | — | Форма: круглая или квадратная |
+| `shape` | `"rounded"` \| `"squared"` | — | Форма: круглая или квадратная |
 
 **EmblemPicture**
 
