@@ -14,24 +14,24 @@ export function useGetContentByErrorType({ errorType, custom }: ErrorTypeConfig)
   return useMemo(() => {
     switch (errorType) {
       case ERROR_TYPE.PageUnavailable:
-        return { title: t('pageUnavailableTitle'), text: t('actionRedirectTitle'), statusCode: 403 };
+        return { title: t('pageUnavailableTitle'), description: t('actionRedirectTitle'), statusCode: 403 };
       case ERROR_TYPE.PageNotFound:
-        return { title: t('pageNotFoundTitle'), text: t('actionRedirectTitle'), statusCode: 404 };
+        return { title: t('pageNotFoundTitle'), description: t('actionRedirectTitle'), statusCode: 404 };
       case ERROR_TYPE.Offline:
-        return { title: t('offlineTitle'), text: t('offlineText') };
+        return { title: t('offlineTitle'), description: t('offlineText') };
       case ERROR_TYPE.Redirect:
-        return { title: t('redirectTitle'), text: t('redirectText') };
+        return { title: t('redirectTitle'), description: t('redirectText') };
       case ERROR_TYPE.Custom:
         return {
           title: custom?.title ?? t('frontendErrorTitle'),
-          text: custom?.text ?? t('actionRedirectTitle'),
+          description: custom?.description ?? t('actionRedirectTitle'),
           statusCode: custom?.statusCode,
         };
       case ERROR_TYPE.FrontendError:
       default:
-        return { title: t('frontendErrorTitle'), text: t('actionRedirectTitle') };
+        return { title: t('frontendErrorTitle'), description: t('actionRedirectTitle') };
     }
-  }, [custom?.statusCode, custom?.text, custom?.title, errorType, t]);
+  }, [custom?.statusCode, custom?.description, custom?.title, errorType, t]);
 }
 
 export type UseGetButtonPropsByErrorTypeParams = ErrorTypeConfig & {

@@ -81,7 +81,7 @@ export function ErrorPage({
             </h1>
 
             <div className={cn(styles.actions, isCustomErrorType ? custom?.actionWrapperClassName : undefined)}>
-              <span className={styles.actionsTitle}>{content.text}</span>
+              <span className={styles.actionsTitle}>{content.description}</span>
 
               <div className={styles.actionsLink}>
                 {hasMainPageLink && (

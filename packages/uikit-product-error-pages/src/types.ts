@@ -23,7 +23,7 @@ export type ErrorPageCustomConfig = {
   /** Кастомный заголовок. */
   title?: string;
   /** Кастомный текст под заголовком. */
-  text?: string;
+  description?: string;
   /** Кастомный код статуса. */
   statusCode?: number;
   /** Кастомные настройки основной кнопки. */
@@ -54,7 +54,7 @@ export type ErrorTypeConfig =
 
 export type ErrorPageContent = {
   title: string;
-  text: string;
+  description: string;
   statusCode?: number;
 };
 

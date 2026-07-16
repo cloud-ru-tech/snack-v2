@@ -48,7 +48,7 @@ export const Playground: Story = {
             {...args}
             logoVariant={logoVariant}
             errorType={ERROR_TYPE.Custom}
-            custom={{ title: 'Custom title', text: 'Custom text', statusCode: 418 }}
+            custom={{ title: 'Custom title', description: 'Custom text', statusCode: 418 }}
             onSupportCenterClick={onSupportCenterClick}
           />
         ) : (

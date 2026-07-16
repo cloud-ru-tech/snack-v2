@@ -37,7 +37,7 @@ const renderByErrorType = (errorType: (typeof errorTypes)[number]) => {
       <ErrorPage
         data-test-id={dataTestId}
         errorType={ERROR_TYPE.Custom}
-        custom={{ title: 'Custom title', text: 'Custom text', statusCode: 418 }}
+        custom={{ title: 'Custom title', description: 'Custom text', statusCode: 418 }}
         logoVariant={LOGO_VARIANT.Cloud}
       />,
     );

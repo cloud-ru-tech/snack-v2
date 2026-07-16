@@ -34,7 +34,7 @@ export const InteractionTest: Story = {
               onSupportCenterClick={onSupportCenterClick}
               custom={{
                 title: 'Custom error',
-                text: 'Something went wrong',
+                description: 'Something went wrong',
                 statusCode: 500,
                 mainButton: { label: 'Retry', onClick: onMainButtonClick },
               }}

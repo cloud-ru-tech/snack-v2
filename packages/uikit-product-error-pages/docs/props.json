@@ -78,6 +78,11 @@
             "required": false,
             "description": "Кастомный класс для контейнера с действиями."
           },
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Кастомный текст под заголовком."
+          },
           "mainButton": {
             "type": "MainButtonConfig | undefined",
             "required": false,
@@ -100,11 +105,6 @@
             "type": "number | undefined",
             "required": false,
             "description": "Кастомный код статуса."
-          },
-          "text": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Кастомный текст под заголовком."
           },
           "title": {
             "type": "string | undefined",

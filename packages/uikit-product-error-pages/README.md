@@ -42,7 +42,7 @@
 При `errorType='Custom'` объект `custom` задаёт:
 
 - `title` — заголовок.
-- `text` — текст под заголовком.
+- `description` — текст под заголовком.
 - `statusCode` — код статуса в теге у заголовка.
 - `mainButton` — `label` / `href` / `onClick` / `icon` главной кнопки.
 - `showMainPageLink` / `showBackLink` — видимость ссылок.
@@ -108,7 +108,7 @@ export function Custom() {
       mainPageUrl='/dashboard'
       custom={{
         title: 'Quota exceeded',
-        text: 'Your project reached its resource limit. Upgrade the plan to continue.',
+        description: 'Your project reached its resource limit. Upgrade the plan to continue.',
         statusCode: 429,
         mainButton: { label: 'Upgrade plan', href: '/billing' },
         showMainPageLink: true,
@@ -142,11 +142,11 @@ export function Custom() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionWrapperClassName` | `string \| undefined` | — | Кастомный класс для контейнера с действиями. |
+| `description` | `string \| undefined` | — | Кастомный текст под заголовком. |
 | `mainButton` | `MainButtonConfig` | — | Кастомные настройки основной кнопки. |
 | `showBackLink` | `boolean \| undefined` | — | Принудительно показать/скрыть ссылку «Назад». <br/> Если не задано, используется поведение по умолчанию. |
 | `showMainPageLink` | `boolean \| undefined` | — | Принудительно показать/скрыть ссылку на главную страницу. <br/> Если не задано, используется поведение по умолчанию. |
 | `statusCode` | `number \| undefined` | — | Кастомный код статуса. |
-| `text` | `string \| undefined` | — | Кастомный текст под заголовком. |
 | `title` | `string \| undefined` | — | Кастомный заголовок. |
 
 **MainButtonConfig**

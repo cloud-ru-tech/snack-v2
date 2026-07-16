@@ -37,7 +37,7 @@ export const Custom: Story = {
               mainPageUrl='/dashboard'
               custom={{
                 title: 'Quota exceeded',
-                text: 'Your project reached its resource limit. Upgrade the plan to continue.',
+                description: 'Your project reached its resource limit. Upgrade the plan to continue.',
                 statusCode: 429,
                 mainButton: { label: 'Upgrade plan', href: '/billing' },
                 showMainPageLink: true,
