@@ -24,7 +24,7 @@ function TableWithRowActions() {
         pinned: true,
         actionsGenerator: cell => [
           {
-            content: { option: 'Удалить' },
+            content: { label: 'Удалить' },
             onClick: () => setUsers(prev => prev.filter(user => user.id !== cell.row.original.id)),
           },
         ],

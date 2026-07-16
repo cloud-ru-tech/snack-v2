@@ -120,8 +120,8 @@ function ToolbarPlayground({
     onRefresh: showRefresh ? () => setSearch('') : undefined,
     moreActions: showMoreActions
       ? [
-          { content: { option: 'Экспорт' }, onClick: () => undefined },
-          { content: { option: 'Настройки' }, onClick: () => undefined },
+          { content: { label: 'Экспорт' }, onClick: () => undefined },
+          { content: { label: 'Настройки' }, onClick: () => undefined },
         ]
       : undefined,
     after: showExtraSlot ? (

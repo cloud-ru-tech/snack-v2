@@ -12,10 +12,10 @@ export function MultipleSelection() {
         size='s'
         selection={{ mode: 'multiple', value, onChange: setValue }}
         items={[
-          { id: 'email', content: { option: 'Email' } },
-          { id: 'push', content: { option: 'Push-уведомления' } },
-          { id: 'sms', content: { option: 'SMS' } },
-          { id: 'telegram', content: { option: 'Telegram', description: 'Требует привязки аккаунта' } },
+          { id: 'email', content: { label: 'Email' } },
+          { id: 'push', content: { label: 'Push-уведомления' } },
+          { id: 'sms', content: { label: 'SMS' } },
+          { id: 'telegram', content: { label: 'Telegram', description: 'Требует привязки аккаунта' } },
         ]}
       />
     </div>

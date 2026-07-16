@@ -21,8 +21,8 @@ const meta: Meta<typeof NotificationCardStack> = {
     onOpenChanged: fn(),
     children: cards,
     actions: [
-      { content: { option: 'Прочитать всё' }, onClick: fn() },
-      { content: { option: 'Скрыть' }, onClick: fn() },
+      { content: { label: 'Прочитать всё' }, onClick: fn() },
+      { content: { label: 'Скрыть' }, onClick: fn() },
     ],
     'data-test-id': TEST_IDS.panel.cardStack.wrapper,
   },

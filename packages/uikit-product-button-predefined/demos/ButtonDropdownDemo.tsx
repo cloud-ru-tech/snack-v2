@@ -4,8 +4,8 @@ import componentDoc from '../docs/props.json';
 import { Basic } from './examples/Basic';
 
 const items = [
-  { id: 'month', content: { option: 'Month' }, onClick: () => undefined },
-  { id: 'year', content: { option: 'Year' }, onClick: () => undefined },
+  { id: 'month', content: { label: 'Month' }, onClick: () => undefined },
+  { id: 'year', content: { label: 'Year' }, onClick: () => undefined },
 ];
 
 export function ButtonDropdownDemo() {

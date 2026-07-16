@@ -97,7 +97,7 @@ function mapSlotButtonToAction(element: ReactElement): MoreAction | null {
   }
 
   return {
-    content: optionLabel ? { option: optionLabel } : { option: '' },
+    content: optionLabel ? { label: optionLabel } : { label: '' },
     icon,
     onClick,
     disabled,
@@ -114,7 +114,7 @@ export function buildMobileOverflowActions({
 
   if (onRefresh) {
     actions.push({
-      content: { option: refreshLabel },
+      content: { label: refreshLabel },
       icon: <UpdateSVG />,
       onClick: onRefresh,
       'data-test-id': TEST_IDS.refreshOption,

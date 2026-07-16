@@ -7,7 +7,7 @@ import { SAMPLE_TREE } from './fixtures';
 import styles from './stories.module.scss';
 import { TEST_IDS } from './testIds';
 
-const rowActions = () => [{ id: 'more', content: { option: 'Action' }, onClick: () => undefined }];
+const rowActions = () => [{ id: 'more', content: { label: 'Action' }, onClick: () => undefined }];
 
 // StoryArgs не наследуется от discriminated union `TreeBaseProps` (View / Single /
 // Multi): после Omit или intersection distributive-ветви теряют поля вроде

@@ -25,7 +25,7 @@ export function WithSearch() {
     () =>
       ALL.filter(name => name.toLowerCase().includes(query.toLowerCase())).map(name => ({
         id: name,
-        content: { option: name },
+        content: { label: name },
       })),
     [query],
   );

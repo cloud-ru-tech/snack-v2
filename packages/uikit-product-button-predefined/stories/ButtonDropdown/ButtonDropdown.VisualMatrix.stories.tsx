@@ -7,8 +7,8 @@ import { StoryTable } from '#storybook/components';
 import styles from './styles.module.scss';
 
 const items = [
-  { id: '1', content: { option: 'Year' }, onClick: () => undefined },
-  { id: '2', content: { option: 'Month' }, onClick: () => undefined },
+  { id: '1', content: { label: 'Year' }, onClick: () => undefined },
+  { id: '2', content: { label: 'Month' }, onClick: () => undefined },
 ];
 
 const sizes = ['s', 'm', 'l'] as const;

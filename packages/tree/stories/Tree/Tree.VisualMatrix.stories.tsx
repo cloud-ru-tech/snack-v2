@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Tree>;
 const EXPANDED = ['fruits', 'vegetables', 'meat', 'citrus'];
 const sizes = Object.values(SIZE);
 
-const rowActions = () => [{ id: 'more', content: { option: 'Action' }, onClick: () => undefined }];
+const rowActions = () => [{ id: 'more', content: { label: 'Action' }, onClick: () => undefined }];
 
 const DEEP_TREE: TreeNodeProps[] = [
   {

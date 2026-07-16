@@ -36,8 +36,8 @@ const meta: Meta<typeof Widget> = {
         variant: BUTTON_TYPE.Kebab,
         list: {
           items: [
-            { content: { option: 'Export' }, onClick: () => undefined },
-            { content: { option: 'Archive' }, onClick: () => undefined },
+            { content: { label: 'Export' }, onClick: () => undefined },
+            { content: { label: 'Archive' }, onClick: () => undefined },
           ],
         },
       },

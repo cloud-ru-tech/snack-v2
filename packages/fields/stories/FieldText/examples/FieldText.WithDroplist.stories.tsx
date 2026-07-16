@@ -9,9 +9,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } 
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const ITEMS = [
-  { id: '1', content: { option: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-1` },
-  { id: '2', content: { option: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-2` },
-  { id: '3', content: { option: 'Content text 3' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-3` },
+  { id: '1', content: { label: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-1` },
+  { id: '2', content: { label: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-2` },
+  { id: '3', content: { label: 'Content text 3' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-3` },
 ];
 
 const meta: Meta<typeof FieldText> = {

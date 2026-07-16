@@ -35,7 +35,7 @@ const getItemsContent = (items: SidebarItem[], onSelect?: (id: string | number) 
     const newItem = {
       id,
       content: {
-        option: label,
+        label: label,
       },
       itemWrapRender: (item: ReactNode) => {
         if (!disabledReason) {

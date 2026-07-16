@@ -20,8 +20,8 @@ const meta: Meta<typeof NotificationCard> = {
     secondaryButton: { label: 'Скрыть', onClick: fn() },
     link: { label: 'Подробнее', href: '#', onClick: fn() },
     actions: [
-      { content: { option: 'Прочитано' }, onClick: fn() },
-      { content: { option: 'Удалить' }, onClick: fn() },
+      { content: { label: 'Прочитано' }, onClick: fn() },
+      { content: { label: 'Удалить' }, onClick: fn() },
     ],
     'data-test-id': TEST_IDS.card.root,
   },

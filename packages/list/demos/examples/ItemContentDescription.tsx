@@ -11,7 +11,7 @@ export function ItemContentDescription() {
           {
             id: 'eu-west',
             content: {
-              option: 'eu-west-1',
+              label: 'eu-west-1',
               caption: 'Доступно',
               description: 'Ирландия — основной регион размещения',
             },
@@ -19,7 +19,7 @@ export function ItemContentDescription() {
           {
             id: 'us-east',
             content: {
-              option: 'us-east-1',
+              label: 'us-east-1',
               caption: 'Деградация',
               description: 'Северная Виргиния — повышенная задержка отклика',
             },

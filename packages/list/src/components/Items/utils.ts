@@ -59,11 +59,11 @@ export function isReorderBaseItem(item: ReorderItem): item is SimpleItem {
   return !isReorderGroup(item);
 }
 export function isContentItem(item: unknown): item is ItemContentProps {
-  return isRecord(item) && item['option'] !== undefined;
+  return isRecord(item) && item['label'] !== undefined;
 }
 
 /**
- * Примитивный `content` (строка/число) — это шорткат для `{ option: content }`:
+ * Примитивный `content` (строка/число) — это шорткат для `{ label: content }`:
  * такой айтем рендерится через `ItemContent` и получает размерную высоту строки
  * (`min-height` по `size`), а не схлопывается до высоты текста, как произвольный ReactNode.
  */

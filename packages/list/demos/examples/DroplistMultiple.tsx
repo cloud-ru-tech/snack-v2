@@ -14,10 +14,10 @@ export function DroplistMultiple() {
         placement='bottom-start'
         selection={{ mode: 'multiple', value, onChange: setValue }}
         items={[
-          { id: 'email', content: { option: 'Email' } },
-          { id: 'push', content: { option: 'Push-уведомления' } },
-          { id: 'sms', content: { option: 'SMS' } },
-          { id: 'telegram', content: { option: 'Telegram' } },
+          { id: 'email', content: { label: 'Email' } },
+          { id: 'push', content: { label: 'Push-уведомления' } },
+          { id: 'sms', content: { label: 'SMS' } },
+          { id: 'telegram', content: { label: 'Telegram' } },
         ]}
       >
         <Button size='s' appearance='neutral' view='outline' label={`Каналы: ${value.length}`} />

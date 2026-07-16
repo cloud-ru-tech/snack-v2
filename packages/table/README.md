@@ -579,7 +579,7 @@ export function RowActions() {
 
           return [
             {
-              content: { option: user.status === 'blocked' ? 'Активировать' : 'Заблокировать' },
+              content: { label: user.status === 'blocked' ? 'Активировать' : 'Заблокировать' },
               onClick: () =>
                 setUsers(prev =>
                   prev.map(item =>
@@ -588,7 +588,7 @@ export function RowActions() {
                 ),
             },
             {
-              content: { option: 'Удалить' },
+              content: { label: 'Удалить' },
               onClick: () => setUsers(prev => prev.filter(item => item.id !== user.id)),
             },
           ];
@@ -2151,7 +2151,7 @@ const columnDefinitions: ColumnDefinition<Entity>[] = [
   { id: 'name', accessorKey: 'name', header: 'Name', enableSorting: true },
   { id: 'owner', accessorKey: 'owner', header: 'Owner', enableSorting: true },
   getRowActionsColumnDef({
-    actionsGenerator: cell => [{ content: { option: `Open ${cell.row.original.name}` }, onClick: () => {} }],
+    actionsGenerator: cell => [{ content: { label: `Open ${cell.row.original.name}` }, onClick: () => {} }],
   }),
 ];
 
@@ -2229,7 +2229,7 @@ const columnDefinitions: ColumnDefinition<Entity>[] = [
   { id: 'name', accessorKey: 'name', header: 'Name', enableSorting: true },
   { id: 'owner', accessorKey: 'owner', header: 'Owner', enableSorting: true },
   getRowActionsColumnDef({
-    actionsGenerator: cell => [{ content: { option: `Open ${cell.row.original.name}` }, onClick: () => {} }],
+    actionsGenerator: cell => [{ content: { label: `Open ${cell.row.original.name}` }, onClick: () => {} }],
   }),
 ];
 
@@ -2323,7 +2323,7 @@ const columnDefinitions: ColumnDefinition<Entity>[] = [
   { id: 'name', accessorKey: 'name', header: 'Name', enableSorting: true },
   { id: 'service', accessorKey: 'service', header: 'Service', enableSorting: true },
   getRowActionsColumnDef({
-    actionsGenerator: cell => [{ content: { option: `Open ${cell.row.original.name}` }, onClick: () => {} }],
+    actionsGenerator: cell => [{ content: { label: `Open ${cell.row.original.name}` }, onClick: () => {} }],
   }),
 ];
 

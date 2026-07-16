@@ -30,9 +30,9 @@ export function DeployFailureCard() {
         onClick: () => window.open('/logs/api-gateway/2.18.3', '_blank'),
       }}
       actions={[
-        { content: { option: 'Отметить прочитанным' }, onClick: () => setStatus('dismissed') },
-        { content: { option: 'Заглушить на 1 час' }, onClick: () => setStatus('dismissed') },
-        { content: { option: 'Удалить' }, onClick: () => setStatus('dismissed') },
+        { content: { label: 'Отметить прочитанным' }, onClick: () => setStatus('dismissed') },
+        { content: { label: 'Заглушить на 1 час' }, onClick: () => setStatus('dismissed') },
+        { content: { label: 'Удалить' }, onClick: () => setStatus('dismissed') },
       ]}
     />
   );

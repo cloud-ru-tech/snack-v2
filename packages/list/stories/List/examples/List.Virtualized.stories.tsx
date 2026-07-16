@@ -21,7 +21,7 @@ function VirtualizedScenario() {
     () =>
       Array.from({ length: 10000 }, (_, i) => ({
         id: `item-${i}`,
-        content: { option: `Item ${i + 1}`, description: `Description for row ${i + 1}` },
+        content: { label: `Item ${i + 1}`, description: `Description for row ${i + 1}` },
       })),
     [],
   );

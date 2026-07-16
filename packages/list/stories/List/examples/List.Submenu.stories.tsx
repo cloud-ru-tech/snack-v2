@@ -22,23 +22,23 @@ export default meta;
 type Story = StoryObj<typeof List>;
 
 const items: Item[] = [
-  { id: 'home', beforeContent: <HomeSVG />, content: { option: 'Home' } },
+  { id: 'home', beforeContent: <HomeSVG />, content: { label: 'Home' } },
   {
     id: 'workspace',
     type: 'next-list',
     beforeContent: <FolderSVG />,
-    content: { option: 'Workspace' },
+    content: { label: 'Workspace' },
     items: [
-      { id: 'w-overview', content: { option: 'Overview' } },
-      { id: 'w-analytics', content: { option: 'Analytics' } },
+      { id: 'w-overview', content: { label: 'Overview' } },
+      { id: 'w-analytics', content: { label: 'Analytics' } },
       {
         id: 'w-projects',
         type: 'next-list',
         beforeContent: <FileSVG />,
-        content: { option: 'Projects' },
+        content: { label: 'Projects' },
         items: [
-          { id: 'p-frontend', content: { option: 'Frontend' } },
-          { id: 'p-backend', content: { option: 'Backend' } },
+          { id: 'p-frontend', content: { label: 'Frontend' } },
+          { id: 'p-backend', content: { label: 'Backend' } },
         ],
       },
     ],
@@ -49,12 +49,12 @@ const items: Item[] = [
     id: 'reports',
     type: 'next-list',
     beforeContent: <FileSVG />,
-    content: { option: 'Reports (loading)' },
+    content: { label: 'Reports (loading)' },
     loading: true,
-    items: [{ id: 'r-pending', content: { option: 'Pending…' } }],
+    items: [{ id: 'r-pending', content: { label: 'Pending…' } }],
   },
-  { id: 'favourites', beforeContent: <StarSVG />, content: { option: 'Favourites' } },
-  { id: 'settings', beforeContent: <SettingsSVG />, content: { option: 'Settings' } },
+  { id: 'favourites', beforeContent: <StarSVG />, content: { label: 'Favourites' } },
+  { id: 'settings', beforeContent: <SettingsSVG />, content: { label: 'Settings' } },
 ];
 
 export const Submenu: Story = {

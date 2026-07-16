@@ -268,7 +268,7 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "option": {
+          "label": {
             "type": "string | number",
             "required": true
           },

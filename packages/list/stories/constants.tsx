@@ -25,19 +25,19 @@ export const ERROR_DATA_STATE = { content: 'Не удалось загрузит
 // Демо-контент: 100 элементов, чтобы скролл и virtualized были показательны.
 export const DEMO_ITEMS: ItemProps[] = Array.from({ length: 100 }, (_, i) => ({
   id: `item-${i}`,
-  content: { option: `Item ${i + 1}` },
+  content: { label: `Item ${i + 1}` },
 }));
 
 export const REORDERABLE_ITEMS: ReorderItem[] = [
-  { id: 'catalog', beforeContent: <HomeSVG />, content: { option: 'Каталог' } },
+  { id: 'catalog', beforeContent: <HomeSVG />, content: { label: 'Каталог' } },
   {
     type: 'group',
     id: 'group-1',
     label: 'Группа 1',
     divider: true,
     items: [
-      { id: 'profile', beforeContent: <UserSVG />, content: { option: 'Профиль' } },
-      { id: 'settings-2', beforeContent: <OrganizationSVG />, content: { option: 'Организация' } },
+      { id: 'profile', beforeContent: <UserSVG />, content: { label: 'Профиль' } },
+      { id: 'settings-2', beforeContent: <OrganizationSVG />, content: { label: 'Организация' } },
     ],
   },
   {
@@ -49,11 +49,11 @@ export const REORDERABLE_ITEMS: ReorderItem[] = [
       {
         id: 'orders',
         beforeContent: <FileSVG />,
-        content: { option: 'Заказы' },
+        content: { label: 'Заказы' },
       },
-      { id: 'favorites', beforeContent: <StarSVG />, content: { option: 'Избранное' } },
-      { id: 'settings', beforeContent: <SettingsSVG />, content: { option: 'Настройки' }, disabled: true },
-      { id: 'trash', beforeContent: <FolderSVG />, content: { option: 'Корзина' } },
+      { id: 'favorites', beforeContent: <StarSVG />, content: { label: 'Избранное' } },
+      { id: 'settings', beforeContent: <SettingsSVG />, content: { label: 'Настройки' }, disabled: true },
+      { id: 'trash', beforeContent: <FolderSVG />, content: { label: 'Корзина' } },
     ],
   },
 ];

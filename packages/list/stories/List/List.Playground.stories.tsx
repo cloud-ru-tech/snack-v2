@@ -20,7 +20,7 @@ const demoItems: Item[] = Array.from({ length: 100 }, (_, i) => {
     id: `item-${i}`,
     beforeContent: <Icon />,
     content: {
-      option: `Item ${i + 1}`,
+      label: `Item ${i + 1}`,
       content: `Description for row ${i + 1}`,
       caption: i % 3 === 0 ? `${i + 1} items` : undefined,
     },

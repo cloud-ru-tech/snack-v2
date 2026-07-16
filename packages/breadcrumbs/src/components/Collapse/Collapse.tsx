@@ -26,7 +26,7 @@ export function Collapse({ currentConfig, className }: CollapseProps) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       (node: { element: typeof ELEMENT_TYPE.Item; width: number; item: InnerItem }) => ({
-        content: { option: node.item.label },
+        content: { label: node.item.label },
         ...(node.item.href
           ? {
               itemWrapRender: crumb => (

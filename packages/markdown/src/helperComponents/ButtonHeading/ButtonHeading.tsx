@@ -54,7 +54,7 @@ export function ButtonHeading({ api }: ButtonHeadingProps) {
   const items: BaseItemProps[] = [
     {
       id: 'paragraph',
-      content: { option: 'Paragraph' },
+      content: { label: 'Paragraph' },
       checked: activeLevel == null,
       onClick: () => selectLevel(null),
       'data-test-id': headingOptionTestId('paragraph'),
@@ -64,7 +64,7 @@ export function ButtonHeading({ api }: ButtonHeadingProps) {
       return {
         id: `heading-${lvl}`,
         beforeContent: <Icon />,
-        content: { option: `Heading ${lvl}` },
+        content: { label: `Heading ${lvl}` },
         checked: activeLevel === lvl,
         onClick: () => selectLevel(lvl),
         'data-test-id': headingOptionTestId(lvl),

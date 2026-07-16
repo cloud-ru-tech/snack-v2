@@ -9,9 +9,9 @@ const INITIAL_ITEMS: ReorderItem[] = [
     type: 'group',
     label: 'Избранное',
     items: [
-      { id: 'catalog', content: { option: 'Каталог' } },
-      { id: 'orders', content: { option: 'Заказы' } },
-      { id: 'favorites', content: { option: 'Избранное' } },
+      { id: 'catalog', content: { label: 'Каталог' } },
+      { id: 'orders', content: { label: 'Заказы' } },
+      { id: 'favorites', content: { label: 'Избранное' } },
     ],
   },
   {
@@ -19,8 +19,8 @@ const INITIAL_ITEMS: ReorderItem[] = [
     type: 'group',
     label: 'Система',
     items: [
-      { id: 'settings', content: { option: 'Настройки' } },
-      { id: 'trash', content: { option: 'Корзина' } },
+      { id: 'settings', content: { label: 'Настройки' } },
+      { id: 'trash', content: { label: 'Корзина' } },
     ],
   },
 ];

@@ -73,7 +73,7 @@ export const ActionVariants: Story = {
                     variant: BUTTON_TYPE.Droplist,
                     button: { label: 'More menu' },
                     list: {
-                      items: [{ content: { option: 'From droplist' }, onClick: fn() }],
+                      items: [{ content: { label: 'From droplist' }, onClick: fn() }],
                     },
                   },
                   { label: 'Overflow', onClick: fn() },
@@ -93,8 +93,8 @@ export const ActionVariants: Story = {
                           label: 'Group',
                           divider: true,
                           items: [
-                            { content: { option: 'Pick' }, onClick: onDroplistPick },
-                            { content: { option: 'Hidden item' }, hidden: true },
+                            { content: { label: 'Pick' }, onClick: onDroplistPick },
+                            { content: { label: 'Hidden item' }, hidden: true },
                           ],
                         },
                       ],
@@ -109,7 +109,7 @@ export const ActionVariants: Story = {
                     variant: BUTTON_TYPE.Droplist,
                     button: { label: 'Menu function' },
                     list: {
-                      items: [{ content: { option: 'Secondary' }, onClick: fn() }],
+                      items: [{ content: { label: 'Secondary' }, onClick: fn() }],
                       closeDroplistOnItemClick: true,
                     },
                   },

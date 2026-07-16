@@ -10,8 +10,8 @@ export function Basic() {
         search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
         onRefresh={() => setSearch('')}
         moreActions={[
-          { content: { option: 'Экспорт' }, onClick: () => undefined },
-          { content: { option: 'Настройки' }, onClick: () => undefined },
+          { content: { label: 'Экспорт' }, onClick: () => undefined },
+          { content: { label: 'Настройки' }, onClick: () => undefined },
         ]}
       />
     </div>

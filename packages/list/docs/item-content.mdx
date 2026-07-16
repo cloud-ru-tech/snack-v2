@@ -1,7 +1,7 @@
 ---
 title: ItemContent
 package: '@ds/list'
-description: Каноничная разметка содержимого элемента списка — option / caption / description с единым truncate-поведением.
+description: Каноничная разметка содержимого элемента списка — label / caption / description с единым truncate-поведением.
 order: 4
 ---
 
@@ -21,7 +21,7 @@ import listDoc from './props.json'
 
 # ItemContent
 
-`ItemContent` — каноничная разметка основного контента item'а: заголовок (`option`), мета справа (`caption`), подпись снизу (`description`). Используется как значение поля `item.content`, а также экспортируется отдельно для кастомного рендеринга внутри `contentRender`.
+`ItemContent` — каноничная разметка основного контента item'а: заголовок (`label`), мета справа (`caption`), подпись снизу (`description`). Используется как значение поля `item.content`, а также экспортируется отдельно для кастомного рендеринга внутри `contentRender`.
 
 ## Когда использовать
 
@@ -38,7 +38,7 @@ import listDoc from './props.json'
 
 ### Slots
 
-- `option` *(required)* — заголовок item'а (имя файла, название валюты, email-адрес).
+- `label` *(required)* — заголовок item'а (имя файла, название валюты, email-адрес).
 - `caption` — короткая мета справа (счётчик, дата, badge, shortcut).
 - `description` — подпись под заголовком (хвост описания, короткая справка, секундный статус).
 
@@ -57,8 +57,8 @@ import listDoc from './props.json'
 
 ### Truncate
 
-- Дефолт: `option` — 1 строка, `description` — 2 строки, вариант обрезки — `end` (многоточие в конце).
-- Переопределяется через `truncate.option`, `truncate.description`, `truncate.variant` (`end` / `middle`).
+- Дефолт: `label` — 1 строка, `description` — 2 строки, вариант обрезки — `end` (многоточие в конце).
+- Переопределяется через `truncate.label`, `truncate.description`, `truncate.variant` (`end` / `middle`).
 
 ## Установка
 
@@ -74,7 +74,7 @@ import { ItemContent } from '@ds/list'
 
 <Example
   title='content как объект'
-  description='item.content = { option, caption, description } — List оборачивает в ItemContent сам.'
+  description='item.content = { label, caption, description } — List оборачивает в ItemContent сам.'
   code={BasicListSrc}
 >
   <BasicList client:visible />
@@ -90,7 +90,7 @@ import { ItemContent } from '@ds/list'
 
 <Example
   title='Заголовок, caption и description вместе'
-  description='option + caption (мета справа) + description (подпись снизу) в одном item.'
+  description='label + caption (мета справа) + description (подпись снизу) в одном item.'
   code={ItemContentDescriptionSrc}
 >
   <ItemContentDescription client:visible />
@@ -98,7 +98,7 @@ import { ItemContent } from '@ds/list'
 
 <Example
   title='Обрезка текста (truncate)'
-  description='truncate.option/description задают число строк, variant — место многоточия (end/middle). В узком контейнере длинный текст обрезается.'
+  description='truncate.label/description задают число строк, variant — место многоточия (end/middle). В узком контейнере длинный текст обрезается.'
   code={ItemContentTruncateSrc}
 >
   <ItemContentTruncate client:visible />
@@ -108,7 +108,7 @@ import { ItemContent } from '@ds/list'
 
 ## Доступность
 
-- `option` остаётся текстовым заголовком — ассистивные технологии прочитают его как основное имя элемента.
+- `label` остаётся текстовым заголовком — ассистивные технологии прочитают его как основное имя элемента.
 - `caption` и `description` находятся в том же DOM-узле и читаются следом за заголовком.
 - Визуальные truncate-поведения реализованы через CSS `-webkit-line-clamp`, текст не вырезается из DOM и остаётся доступен скринридеру целиком.
 - Disabled-элементы получают уменьшенный контраст + `data-disabled`, но цвет не единственный сигнал: интерактивность выключается и на уровне родительского item'а.

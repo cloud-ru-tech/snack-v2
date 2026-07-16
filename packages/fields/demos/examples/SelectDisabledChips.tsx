@@ -3,10 +3,10 @@ import { ItemId, ItemProps } from '@ds/list';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
-  { id: 'read', content: { option: 'Чтение' }, disabled: true },
-  { id: 'write', content: { option: 'Запись' } },
-  { id: 'delete', content: { option: 'Удаление' } },
-  { id: 'admin', content: { option: 'Администрирование' } },
+  { id: 'read', content: { label: 'Чтение' }, disabled: true },
+  { id: 'write', content: { label: 'Запись' } },
+  { id: 'delete', content: { label: 'Удаление' } },
+  { id: 'admin', content: { label: 'Администрирование' } },
 ];
 
 export function SelectDisabledChips() {

@@ -12,24 +12,24 @@ export function NestedLevels() {
           {
             type: 'collapse',
             id: 'catalog',
-            content: { option: 'Каталог' },
+            content: { label: 'Каталог' },
             items: [
               {
                 type: 'collapse',
                 id: 'catalog/books',
-                content: { option: 'Книги' },
+                content: { label: 'Книги' },
                 items: [
-                  { id: 'catalog/books/fiction', content: { option: 'Художественные' } },
-                  { id: 'catalog/books/science', content: { option: 'Научные' } },
+                  { id: 'catalog/books/fiction', content: { label: 'Художественные' } },
+                  { id: 'catalog/books/science', content: { label: 'Научные' } },
                 ],
               },
               {
                 type: 'collapse',
                 id: 'catalog/music',
-                content: { option: 'Музыка' },
+                content: { label: 'Музыка' },
                 items: [
-                  { id: 'catalog/music/rock', content: { option: 'Рок' } },
-                  { id: 'catalog/music/jazz', content: { option: 'Джаз' } },
+                  { id: 'catalog/music/rock', content: { label: 'Рок' } },
+                  { id: 'catalog/music/jazz', content: { label: 'Джаз' } },
                 ],
               },
             ],

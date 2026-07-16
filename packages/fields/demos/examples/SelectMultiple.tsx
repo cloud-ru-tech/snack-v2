@@ -3,10 +3,10 @@ import { ItemId, ItemProps } from '@ds/list';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
-  { id: 'ru-1', content: { option: 'ru-central1-a' } },
-  { id: 'ru-2', content: { option: 'ru-central1-b' } },
-  { id: 'ru-3', content: { option: 'ru-central1-c' } },
-  { id: 'kz-1', content: { option: 'kz-central1-a' } },
+  { id: 'ru-1', content: { label: 'ru-central1-a' } },
+  { id: 'ru-2', content: { label: 'ru-central1-b' } },
+  { id: 'ru-3', content: { label: 'ru-central1-c' } },
+  { id: 'kz-1', content: { label: 'kz-central1-a' } },
 ];
 
 export function SelectMultiple() {

@@ -41,7 +41,7 @@ function MobileExample() {
                 data-test-id={TEST_IDS.mobile}
                 search={{ value: search, onChange: setSearch }}
                 onRefresh={() => undefined}
-                moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+                moreActions={[{ content: { label: 'Действие' }, onClick: () => undefined }]}
                 checked={checked}
                 onCheck={() => setChecked(v => !v)}
                 selectedCount={checked ? 12 : 0}

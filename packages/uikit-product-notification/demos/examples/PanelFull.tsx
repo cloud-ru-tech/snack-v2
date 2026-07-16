@@ -43,7 +43,7 @@ export function PanelFull() {
         title='Уведомления'
         settings={{
           button: { onClick: () => setMuted(false) },
-          actions: [{ content: { option: 'Снять заглушение' }, onClick: () => setMuted(false) }],
+          actions: [{ content: { label: 'Снять заглушение' }, onClick: () => setMuted(false) }],
         }}
         content={<NotificationPanelContent.Blank />}
       />
@@ -70,9 +70,9 @@ export function PanelFull() {
       settings={{
         button: {},
         actions: [
-          { content: { option: 'Только непрочитанные' }, onClick: () => setFilter('unread') },
-          { content: { option: 'Показать все' }, onClick: () => setFilter('all') },
-          { content: { option: 'Заглушить на 1 час' }, onClick: () => setMuted(true) },
+          { content: { label: 'Только непрочитанные' }, onClick: () => setFilter('unread') },
+          { content: { label: 'Показать все' }, onClick: () => setFilter('all') },
+          { content: { label: 'Заглушить на 1 час' }, onClick: () => setMuted(true) },
         ],
       }}
       readAllButton={{
@@ -122,8 +122,8 @@ export function PanelFull() {
                 title='Лимит дисковой квоты · 3 хоста'
                 unread={isUnread('stack-quota')}
                 actions={[
-                  { content: { option: 'Прочитать все' }, onClick: () => markRead('stack-quota') },
-                  { content: { option: 'Заглушить группу' }, onClick: () => setMuted(true) },
+                  { content: { label: 'Прочитать все' }, onClick: () => markRead('stack-quota') },
+                  { content: { label: 'Заглушить группу' }, onClick: () => setMuted(true) },
                 ]}
                 onOpenChanged={open => open && markRead('stack-quota')}
               >

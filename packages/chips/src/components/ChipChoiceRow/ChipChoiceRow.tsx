@@ -170,7 +170,7 @@ export function ChipChoiceRow<TState extends FiltersState>({
 
           res.push({
             id: filter.id,
-            content: { option: filter.label ?? filter.id },
+            content: { label: filter.label ?? filter.id },
             onClick: () => {
               setAddListValue((prevValue?: string[]) => [...(prevValue ?? []), filter.id]);
               setAddListOpen(false);

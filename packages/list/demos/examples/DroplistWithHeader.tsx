@@ -19,10 +19,10 @@ export function DroplistWithHeader() {
         footer='4 варианта сортировки'
         footerDivider
         items={[
-          { id: 'relevance', content: { option: 'Релевантности' } },
-          { id: 'date', content: { option: 'Дате создания' } },
-          { id: 'name', content: { option: 'Имени' } },
-          { id: 'size', content: { option: 'Размеру' } },
+          { id: 'relevance', content: { label: 'Релевантности' } },
+          { id: 'date', content: { label: 'Дате создания' } },
+          { id: 'name', content: { label: 'Имени' } },
+          { id: 'size', content: { label: 'Размеру' } },
         ]}
       >
         <Button size='s' appearance='neutral' view='outline' label='Сортировка' />

@@ -16,8 +16,8 @@ const DATA: TreeNodeProps[] = [
 ];
 
 const actions = () => [
-  { id: 'edit', content: { option: 'Edit' }, onClick: () => undefined },
-  { id: 'delete', content: { option: 'Delete' }, onClick: () => undefined },
+  { id: 'edit', content: { label: 'Edit' }, onClick: () => undefined },
+  { id: 'delete', content: { label: 'Delete' }, onClick: () => undefined },
 ];
 
 function RowActionsTree() {

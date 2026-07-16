@@ -7,12 +7,12 @@ import { useState } from 'react';
 const options: ItemProps[] = [
   {
     id: 'docs',
-    content: { option: 'Документация' },
+    content: { label: 'Документация' },
     itemWrapRender: node => <a href='/docs'>{node}</a>,
   },
   {
     id: 'api',
-    content: { option: 'API Reference' },
+    content: { label: 'API Reference' },
     itemWrapRender: node => (
       <a href='https://example.com/api' target='_blank' rel='noopener noreferrer'>
         {node}

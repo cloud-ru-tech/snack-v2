@@ -20,13 +20,13 @@ export function LinkItems() {
         items={[
           {
             id: 'docs',
-            content: { option: 'Документация', caption: '↗' },
+            content: { label: 'Документация', caption: '↗' },
             itemWrapRender: asLink('https://cloud.ru/docs'),
           },
-          { id: 'blog', content: { option: 'Блог', caption: '↗' }, itemWrapRender: asLink('https://cloud.ru/blog') },
+          { id: 'blog', content: { label: 'Блог', caption: '↗' }, itemWrapRender: asLink('https://cloud.ru/blog') },
           {
             id: 'status',
-            content: { option: 'Статус', caption: '↗' },
+            content: { label: 'Статус', caption: '↗' },
             itemWrapRender: asLink('https://cloud.ru/status'),
           },
         ]}

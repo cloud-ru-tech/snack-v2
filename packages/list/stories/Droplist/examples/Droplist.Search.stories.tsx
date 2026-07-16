@@ -7,19 +7,19 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from '../../testIds';
 
-// satisfies сохраняет литеральный тип элементов: фильтр читает `content.option` без кастов.
+// satisfies сохраняет литеральный тип элементов: фильтр читает `content.label` без кастов.
 const ALL_ITEMS = [
-  { id: 'overview', content: { option: 'Overview' } },
-  { id: 'analytics', content: { option: 'Analytics' } },
-  { id: 'billing', content: { option: 'Billing' } },
-  { id: 'settings', content: { option: 'Settings' } },
-  { id: 'members', content: { option: 'Members' } },
+  { id: 'overview', content: { label: 'Overview' } },
+  { id: 'analytics', content: { label: 'Analytics' } },
+  { id: 'billing', content: { label: 'Billing' } },
+  { id: 'settings', content: { label: 'Settings' } },
+  { id: 'members', content: { label: 'Members' } },
 ] satisfies Item[];
 
 function SearchRender(args: DroplistProps) {
   const [query, setQuery] = useState('');
 
-  const items = ALL_ITEMS.filter(item => item.content.option.toLowerCase().includes(query.toLowerCase()));
+  const items = ALL_ITEMS.filter(item => item.content.label.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <DemoPage>

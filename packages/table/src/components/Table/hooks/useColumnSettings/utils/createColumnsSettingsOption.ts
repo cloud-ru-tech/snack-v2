@@ -50,7 +50,7 @@ export function createColumnsSettingsOption<TData extends object>(
   const option: SimpleItem = {
     id: getColumnIdentifier(columnDefinition),
     content: {
-      option: getColumnsSettingsOptionLabel(columnDefinition),
+      label: getColumnsSettingsOptionLabel(columnDefinition),
     },
     switch: true,
     showSwitchIcon: true,

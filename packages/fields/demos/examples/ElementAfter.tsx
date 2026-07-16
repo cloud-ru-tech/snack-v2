@@ -2,9 +2,9 @@ import { FieldText } from '@ds/fields';
 import { useState } from 'react';
 
 const CURRENCIES = [
-  { id: 'USD', content: { option: 'USD — доллар' } },
-  { id: 'EUR', content: { option: 'EUR — евро' } },
-  { id: 'RUB', content: { option: 'RUB — рубль' } },
+  { id: 'USD', content: { label: 'USD — доллар' } },
+  { id: 'EUR', content: { label: 'EUR — евро' } },
+  { id: 'RUB', content: { label: 'RUB — рубль' } },
 ];
 
 export function ElementAfter() {

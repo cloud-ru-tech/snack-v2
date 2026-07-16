@@ -22,18 +22,18 @@ export default meta;
 type Story = StoryObj<typeof List>;
 
 const items: Item[] = [
-  { id: 'a', content: { option: 'Overview' } },
-  { id: 'b', content: { option: 'Analytics' } },
-  { id: 'c', content: { option: 'Billing' } },
-  { id: 'd', content: { option: 'Settings' } },
+  { id: 'a', content: { label: 'Overview' } },
+  { id: 'b', content: { label: 'Analytics' } },
+  { id: 'c', content: { label: 'Billing' } },
+  { id: 'd', content: { label: 'Settings' } },
 ];
 
 function SearchScenario() {
   const [value, setValue] = useState('');
   const filtered = items.filter(item => {
     const content = 'content' in item ? item.content : undefined;
-    if (typeof content === 'object' && content && 'option' in content) {
-      return String(content.option).toLowerCase().includes(value.toLowerCase());
+    if (typeof content === 'object' && content && 'label' in content) {
+      return String(content.label).toLowerCase().includes(value.toLowerCase());
     }
     return true;
   });

@@ -47,7 +47,7 @@ import buttonPredefinedDoc from './props.json'
 
 ### items
 
-Массив пунктов `Droplist` (`content.option`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
+Массив пунктов `Droplist` (`content.label`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
 
 ### Size (default `s`)
 
@@ -86,8 +86,8 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
   size='s'
   closeDroplistOnItemClick
   items={[
-    { id: 'month', content: { option: 'Month' }, onClick: () => setPeriod('month') },
-    { id: 'year', content: { option: 'Year' }, onClick: () => setPeriod('year') },
+    { id: 'month', content: { label: 'Month' }, onClick: () => setPeriod('month') },
+    { id: 'year', content: { label: 'Year' }, onClick: () => setPeriod('year') },
   ]}
 />
 ```

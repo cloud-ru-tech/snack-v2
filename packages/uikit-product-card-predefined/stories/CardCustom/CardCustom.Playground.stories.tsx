@@ -27,9 +27,9 @@ const PROMO_FOOTER: CardCustom.FooterPromoProps = {
 };
 
 const FUNCTION_BADGE_OPTIONS: CardCustom.FunctionBadgeProps['options'] = [
-  { content: { option: 'Option 1' }, onClick: fn() },
-  { content: { option: 'Option 2' }, onClick: fn() },
-  { content: { option: 'Option 3' }, tagLabel: 'Tag', onClick: fn() },
+  { content: { label: 'Option 1' }, onClick: fn() },
+  { content: { label: 'Option 2' }, onClick: fn() },
+  { content: { label: 'Option 3' }, tagLabel: 'Tag', onClick: fn() },
 ];
 
 type ImageMode = (typeof MODE)[keyof typeof MODE];

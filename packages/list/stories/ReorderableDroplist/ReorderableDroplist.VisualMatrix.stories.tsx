@@ -19,9 +19,9 @@ type Story = StoryObj<typeof ReorderableDroplist>;
 const keySizes = Object.values(SIZE);
 
 const items: ReorderItem[] = [
-  { id: 'catalog', content: { option: 'Каталог' } },
-  { id: 'orders', content: { option: 'Заказы' } },
-  { id: 'trash', content: { option: 'Корзина' } },
+  { id: 'catalog', content: { label: 'Каталог' } },
+  { id: 'orders', content: { label: 'Заказы' } },
+  { id: 'trash', content: { label: 'Корзина' } },
 ];
 
 function TriggerCell({ size }: { size?: (typeof keySizes)[number] }) {

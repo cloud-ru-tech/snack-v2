@@ -83,8 +83,8 @@ const meta: Meta<typeof NotificationCardStack> = {
       options: ['preset'],
       mapping: {
         preset: [
-          { content: { option: 'Прочитать всё' }, onClick: fn() },
-          { content: { option: 'Скрыть' }, onClick: fn() },
+          { content: { label: 'Прочитать всё' }, onClick: fn() },
+          { content: { label: 'Скрыть' }, onClick: fn() },
         ],
       },
     },

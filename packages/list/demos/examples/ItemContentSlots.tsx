@@ -12,13 +12,13 @@ export function ItemContentSlots() {
           {
             id: 'reports',
             beforeContent: <FolderSVG />,
-            content: { option: 'Отчёты', caption: '24' },
+            content: { label: 'Отчёты', caption: '24' },
             afterContent: <StarSVG />,
           },
           {
             id: 'invoice',
             beforeContent: <FileSVG />,
-            content: { option: 'invoice-2024.pdf', caption: '1.2 МБ' },
+            content: { label: 'invoice-2024.pdf', caption: '1.2 МБ' },
           },
         ]}
       />

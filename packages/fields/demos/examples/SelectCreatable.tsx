@@ -3,9 +3,9 @@ import { ItemId, ItemProps } from '@ds/list';
 import { useState } from 'react';
 
 const PRESET_TAGS: ItemProps[] = [
-  { id: 'frontend', content: { option: 'frontend' } },
-  { id: 'backend', content: { option: 'backend' } },
-  { id: 'infra', content: { option: 'infra' } },
+  { id: 'frontend', content: { label: 'frontend' } },
+  { id: 'backend', content: { label: 'backend' } },
+  { id: 'infra', content: { label: 'infra' } },
 ];
 
 export function SelectCreatable() {

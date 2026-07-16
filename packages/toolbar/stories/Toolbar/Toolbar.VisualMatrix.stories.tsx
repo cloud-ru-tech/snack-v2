@@ -74,7 +74,7 @@ function ToolbarMatrixCell({
           data-test-id={TOOLBAR_TEST_IDS.main}
           search={{ value: '', onChange: noop, placeholder: 'Поиск' }}
           onRefresh={noop}
-          moreActions={[{ content: { option: 'Экспорт' }, onClick: noop }]}
+          moreActions={[{ content: { label: 'Экспорт' }, onClick: noop }]}
           after={
             withAfter ? (
               <Button

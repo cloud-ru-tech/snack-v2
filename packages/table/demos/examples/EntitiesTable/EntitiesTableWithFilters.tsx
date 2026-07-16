@@ -40,7 +40,7 @@ const columnDefinitions: ColumnDefinition<Entity>[] = [
   { id: 'name', accessorKey: 'name', header: 'Name', enableSorting: true },
   { id: 'service', accessorKey: 'service', header: 'Service', enableSorting: true },
   getRowActionsColumnDef({
-    actionsGenerator: cell => [{ content: { option: `Open ${cell.row.original.name}` }, onClick: () => {} }],
+    actionsGenerator: cell => [{ content: { label: `Open ${cell.row.original.name}` }, onClick: () => {} }],
   }),
 ];
 

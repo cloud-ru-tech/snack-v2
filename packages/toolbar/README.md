@@ -70,8 +70,8 @@ export function Basic() {
         search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
         onRefresh={() => setSearch('')}
         moreActions={[
-          { content: { option: 'Экспорт' }, onClick: () => undefined },
-          { content: { option: 'Настройки' }, onClick: () => undefined },
+          { content: { label: 'Экспорт' }, onClick: () => undefined },
+          { content: { label: 'Настройки' }, onClick: () => undefined },
         ]}
       />
     </div>
@@ -183,7 +183,7 @@ export function WithDataView() {
           />
         }
         dataView={{ show: true }}
-        moreActions={[{ content: { option: 'Ещё' }, onClick: () => undefined }]}
+        moreActions={[{ content: { label: 'Ещё' }, onClick: () => undefined }]}
       />
     </div>
   );
@@ -261,7 +261,7 @@ export function MobileLayout() {
           <Toolbar
             search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
             onRefresh={() => setSearch('')}
-            moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+            moreActions={[{ content: { label: 'Действие' }, onClick: () => undefined }]}
             checked={checked}
             onCheck={() => setChecked(value => !value)}
             selectedCount={checked ? 12 : 0}

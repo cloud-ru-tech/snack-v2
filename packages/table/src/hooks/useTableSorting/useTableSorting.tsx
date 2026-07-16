@@ -169,7 +169,7 @@ export function useTableSorting<TData extends object>({
       return {
         id: `sort-${columnId}`,
         content: {
-          option: headerLabel,
+          label: headerLabel,
         },
         afterContent: sortIcon,
         onClick: () => handleColumnSortToggle(columnId),
@@ -216,7 +216,7 @@ export function useTableSorting<TData extends object>({
       {
         id: 'snack-internal-clear-id',
         content: {
-          option: t('clearSort'),
+          label: t('clearSort'),
         },
         afterContent: <UpdateSVG />,
         onClick: handleClearSort,

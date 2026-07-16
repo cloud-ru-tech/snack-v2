@@ -10,8 +10,8 @@ import { TEST_IDS } from '../testIds';
 
 const presetAdminRowActions: NonNullable<AdminTableInput<(typeof PRESET_ADMIN_USERS)[number]>['rowActions']> = {
   actionsGenerator: () => [
-    { content: { option: 'Дублировать' }, onClick: () => {} },
-    { content: { option: 'Удалить' }, onClick: () => {} },
+    { content: { label: 'Дублировать' }, onClick: () => {} },
+    { content: { label: 'Удалить' }, onClick: () => {} },
   ],
 };
 

@@ -31,10 +31,10 @@ const items: Item[] = [
     groupVariant: 'subtitle',
     selectButtonLabel: 'Select all',
     items: [
-      { id: 'p1', content: { option: 'Project alpha' } },
-      { id: 'p2', content: { option: 'Project beta' } },
-      { id: 'p3', content: { option: 'Project gamma' } },
-      { id: 'p4', content: { option: 'Project delta' } },
+      { id: 'p1', content: { label: 'Project alpha' } },
+      { id: 'p2', content: { label: 'Project beta' } },
+      { id: 'p3', content: { label: 'Project gamma' } },
+      { id: 'p4', content: { label: 'Project delta' } },
     ],
   },
 ];

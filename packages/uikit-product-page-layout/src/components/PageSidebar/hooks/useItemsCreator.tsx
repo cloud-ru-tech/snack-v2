@@ -56,7 +56,7 @@ export function useTopPinnedContent(
         return {
           pinTop: [
             {
-              content: { option: `${t('PageSidebar.backTo')} ${header.label}` },
+              content: { label: `${t('PageSidebar.backTo')} ${header.label}` },
               beforeContent: <ChevronLeftSVG />,
               onClick: header.href ? undefined : header.onClick,
               itemWrapRender: header.href
@@ -114,7 +114,7 @@ export function useItemsContent(items: SidebarItem[], onSelect?: (id: string | n
 
           const newItem = {
             id,
-            content: { option: label },
+            content: { label: label },
             itemWrapRender: (item: ReactNode) => {
               if (!disabledReason) {
                 return href ? (

@@ -16,10 +16,10 @@ export function MobileDroplist() {
           closeDroplistOnItemClick
           selection={{ mode: 'single', value, onChange: setValue }}
           items={[
-            { id: 'usd', content: { option: 'USD — Доллар США' } },
-            { id: 'eur', content: { option: 'EUR — Евро' } },
-            { id: 'rub', content: { option: 'RUB — Российский рубль' } },
-            { id: 'cny', content: { option: 'CNY — Китайский юань' } },
+            { id: 'usd', content: { label: 'USD — Доллар США' } },
+            { id: 'eur', content: { label: 'EUR — Евро' } },
+            { id: 'rub', content: { label: 'RUB — Российский рубль' } },
+            { id: 'cny', content: { label: 'CNY — Китайский юань' } },
           ]}
         >
           <Button size='s' appearance='neutral' view='outline' label={`Валюта: ${String(value).toUpperCase()}`} />

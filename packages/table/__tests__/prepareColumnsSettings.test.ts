@@ -23,7 +23,7 @@ const t = ((key: string) => `t:${key}`) as unknown as PrepareArgs['t'];
 
 type SettingsOption = {
   id: string;
-  content: { option: string };
+  content: { label: string };
   switch: boolean;
   showSwitchIcon: boolean;
   disabled?: boolean;
@@ -83,8 +83,8 @@ describe('prepareColumnsSettings', () => {
     const status = unpinnedGroup.items.find(item => item.id === 'status');
     const createdAt = unpinnedGroup.items.find(item => item.id === 'createdAt');
 
-    expect(status).toMatchObject({ disabled: true, checked: true, content: { option: 'Status' } });
-    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { option: 'Created' } });
+    expect(status).toMatchObject({ disabled: true, checked: true, content: { label: 'Status' } });
+    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { label: 'Created' } });
   });
 
   it('sorts options inside a group according to columnOrder', () => {
@@ -105,7 +105,7 @@ describe('prepareColumnsSettings', () => {
 
     expect(option).toEqual({
       id: 'pinned-a',
-      content: { option: 'Pinned A' },
+      content: { label: 'Pinned A' },
       switch: true,
       showSwitchIcon: true,
       disabled: false,

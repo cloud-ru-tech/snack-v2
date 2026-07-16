@@ -10,7 +10,7 @@ const RUSSIA: FieldPhoneOptionsProps = {
   iso2: 'RU',
   mask: 'XXX XXX-XX-XX',
   beforeContent: null,
-  content: { option: 'Россия', caption: '+7' },
+  content: { label: 'Россия', caption: '+7' },
 };
 
 const ABKHAZIA: FieldPhoneOptionsProps = {
@@ -18,7 +18,7 @@ const ABKHAZIA: FieldPhoneOptionsProps = {
   iso2: 'RU',
   mask: 'XXX XXX-XX-XX',
   beforeContent: null,
-  content: { option: 'Абхазия', caption: '+7' },
+  content: { label: 'Абхазия', caption: '+7' },
 };
 
 const USA: FieldPhoneOptionsProps = {
@@ -26,7 +26,7 @@ const USA: FieldPhoneOptionsProps = {
   iso2: 'US',
   mask: 'XXX XXX-XXXX',
   beforeContent: null,
-  content: { option: 'США', caption: '+1' },
+  content: { label: 'США', caption: '+1' },
 };
 
 const FRANCE: FieldPhoneOptionsProps = {
@@ -34,7 +34,7 @@ const FRANCE: FieldPhoneOptionsProps = {
   iso2: 'FR',
   mask: 'X XX XX XX XX',
   beforeContent: null,
-  content: { option: 'Франция', caption: '+33' },
+  content: { label: 'Франция', caption: '+33' },
 };
 
 const OPTIONS = [RUSSIA, ABKHAZIA, USA, FRANCE];

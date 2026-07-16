@@ -2,20 +2,20 @@ import { FieldSelect } from '@ds/fields';
 import { ItemId, ItemProps } from '@ds/list';
 import { useState } from 'react';
 
-// Айтемы @ds/list поддерживают option (лейбл) + caption + description.
+// Айтемы @ds/list поддерживают label + caption + description.
 // Поиск (extractSearchText) матчит запрос по всем трём полям.
 const options: ItemProps[] = [
   {
     id: 's',
-    content: { option: 'Small', caption: '1 vCPU · 2 GB', description: 'Для dev-окружений и небольших сервисов' },
+    content: { label: 'Small', caption: '1 vCPU · 2 GB', description: 'Для dev-окружений и небольших сервисов' },
   },
   {
     id: 'm',
-    content: { option: 'Medium', caption: '2 vCPU · 4 GB', description: 'Стандартная нагрузка, веб-приложения' },
+    content: { label: 'Medium', caption: '2 vCPU · 4 GB', description: 'Стандартная нагрузка, веб-приложения' },
   },
   {
     id: 'l',
-    content: { option: 'Large', caption: '4 vCPU · 8 GB', description: 'Базы данных, аналитика, очереди' },
+    content: { label: 'Large', caption: '4 vCPU · 8 GB', description: 'Базы данных, аналитика, очереди' },
   },
 ];
 

@@ -40,8 +40,8 @@ export const InteractionTest: Story = {
         variant: BUTTON_TYPE.Kebab,
         list: {
           items: [
-            { content: { option: 'Export' }, onClick: fn() },
-            { content: { option: 'Archive' }, onClick: fn() },
+            { content: { label: 'Export' }, onClick: fn() },
+            { content: { label: 'Archive' }, onClick: fn() },
           ],
         },
       },

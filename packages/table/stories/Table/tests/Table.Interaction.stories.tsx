@@ -58,7 +58,7 @@ const treeColumns: ColumnDefinition<User>[] = [
   { accessorKey: 'email', header: 'Email', enableSorting: true, size: 260 },
   getRowActionsColumnDef<User>({
     pinned: true,
-    actionsGenerator: () => [{ content: { option: 'Открыть' }, onClick: () => onRowAction() }],
+    actionsGenerator: () => [{ content: { label: 'Открыть' }, onClick: () => onRowAction() }],
   }),
 ];
 

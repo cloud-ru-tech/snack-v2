@@ -23,13 +23,13 @@ const items: Item[] = [
   {
     id: 'docs',
     beforeContent: <FileSVG />,
-    content: { option: 'Documentation' },
+    content: { label: 'Documentation' },
     itemWrapRender: node => <a href='https://cloud.ru/docs'>{node}</a>,
   },
   {
     id: 'external',
     beforeContent: <StarSVG />,
-    content: { option: 'External link' },
+    content: { label: 'External link' },
     itemWrapRender: node => (
       <a href='https://cloud.ru/' target='_blank' rel='noopener noreferrer'>
         {node}

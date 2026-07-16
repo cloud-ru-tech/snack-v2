@@ -166,9 +166,9 @@ export function BaseItem({
   if (content && isContentItem(content)) {
     contentNode = contentRender?.({ id, content, disabled }) ?? <ItemContent disabled={disabled} {...content} />;
   } else if (isPrimitiveContent(content)) {
-    // Примитивный content — шорткат `{ option: content }`: рендерим через ItemContent,
+    // Примитивный content — шорткат `{ label: content }`: рендерим через ItemContent,
     // чтобы строка получила размерную высоту, а не схлопывалась до высоты текста.
-    contentNode = <ItemContent disabled={disabled} option={content} />;
+    contentNode = <ItemContent disabled={disabled} label={content} />;
   } else {
     contentNode = <div className={styles.content}> {content} </div>;
   }

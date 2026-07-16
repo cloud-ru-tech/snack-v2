@@ -7,10 +7,10 @@ import { expect, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 const OPTIONS: ItemProps[] = [
-  { id: 'ru-central1-a', content: { option: 'ru-central1-a' } },
-  { id: 'ru-central1-b', content: { option: 'ru-central1-b' } },
-  { id: 'ru-central1-c', content: { option: 'ru-central1-c' } },
-  { id: 'kz-central1-a', content: { option: 'kz-central1-a' } },
+  { id: 'ru-central1-a', content: { label: 'ru-central1-a' } },
+  { id: 'ru-central1-b', content: { label: 'ru-central1-b' } },
+  { id: 'ru-central1-c', content: { label: 'ru-central1-c' } },
+  { id: 'kz-central1-a', content: { label: 'kz-central1-a' } },
 ];
 
 // Multiple-режим: значение — `ItemId[]`, выбранные показываются чипами (@ds/tag) внутри поля.

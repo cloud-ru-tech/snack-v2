@@ -21,25 +21,25 @@ const items: Item[] = [
   {
     id: 'general',
     type: 'collapse',
-    content: { option: 'General' },
+    content: { label: 'General' },
     items: [
-      { id: 'general-overview', content: { option: 'Overview' } },
-      { id: 'general-analytics', content: { option: 'Analytics' } },
+      { id: 'general-overview', content: { label: 'Overview' } },
+      { id: 'general-analytics', content: { label: 'Analytics' } },
     ],
   },
   {
     id: 'billing',
     type: 'collapse',
-    content: { option: 'Billing' },
+    content: { label: 'Billing' },
     items: [
-      { id: 'billing-invoices', content: { option: 'Invoices' } },
+      { id: 'billing-invoices', content: { label: 'Invoices' } },
       {
         id: 'billing-methods',
         type: 'collapse',
-        content: { option: 'Payment methods' },
+        content: { label: 'Payment methods' },
         items: [
-          { id: 'billing-card', content: { option: 'Card' } },
-          { id: 'billing-wire', content: { option: 'Wire transfer' } },
+          { id: 'billing-card', content: { label: 'Card' } },
+          { id: 'billing-wire', content: { label: 'Wire transfer' } },
         ],
       },
     ],
@@ -54,15 +54,15 @@ const items: Item[] = [
       {
         id: 'workspace-resources',
         type: 'collapse',
-        content: { option: 'Resources' },
+        content: { label: 'Resources' },
         items: [
-          { id: 'workspace-servers', content: { option: 'Servers' } },
-          { id: 'workspace-storage', content: { option: 'Storage' } },
+          { id: 'workspace-servers', content: { label: 'Servers' } },
+          { id: 'workspace-storage', content: { label: 'Storage' } },
         ],
       },
     ],
   },
-  { id: 'settings', content: { option: 'Settings' } },
+  { id: 'settings', content: { label: 'Settings' } },
 ];
 
 function CollapseScenario() {

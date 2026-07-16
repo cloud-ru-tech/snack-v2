@@ -3,11 +3,11 @@ import { ItemId, ItemProps } from '@ds/list';
 import { useState } from 'react';
 
 const options: ItemProps[] = [
-  { id: 'ubuntu', content: { option: 'Ubuntu 22.04 LTS' } },
-  { id: 'debian', content: { option: 'Debian 12' } },
-  { id: 'centos', content: { option: 'CentOS Stream 9' } },
-  { id: 'alpine', content: { option: 'Alpine Linux 3.19' } },
-  { id: 'rocky', content: { option: 'Rocky Linux 9' } },
+  { id: 'ubuntu', content: { label: 'Ubuntu 22.04 LTS' } },
+  { id: 'debian', content: { label: 'Debian 12' } },
+  { id: 'centos', content: { label: 'CentOS Stream 9' } },
+  { id: 'alpine', content: { label: 'Alpine Linux 3.19' } },
+  { id: 'rocky', content: { label: 'Rocky Linux 9' } },
 ];
 
 export function SelectSearchable() {

@@ -1178,7 +1178,7 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "option": {
+          "label": {
             "type": "string | number",
             "required": true
           },
@@ -1504,7 +1504,7 @@
         "type": "boolean",
         "required": false
       },
-      "option": {
+      "label": {
         "type": "string | number",
         "required": true
       },
@@ -1524,7 +1524,7 @@
             "type": "number | undefined",
             "required": false
           },
-          "option": {
+          "label": {
             "type": "number | undefined",
             "required": false
           },
@@ -3114,7 +3114,7 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "option": {
+          "label": {
             "type": "string | number",
             "required": true
           },
@@ -4037,7 +4037,7 @@
   "nextListOption": {
     "displayName": "nextListOption",
     "propsTypeName": null,
-    "description": "Текст `option` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список.",
+    "description": "Текст `label` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список.",
     "props": {
       "afterContent": {
         "type": "ReactElement",

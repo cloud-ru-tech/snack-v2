@@ -6,7 +6,7 @@ import { AccordionOption, BaseOption, ContentRenderProps, FilterOption, NestList
 
 const DEFAULT_MIN_SEARCH_INPUT_LENGTH = 2;
 
-/** Нечеткий поиск среди айтемов по полям 'content.option', 'content.caption', 'content.description', 'label' */
+/** Нечеткий поиск среди айтемов по полям 'content.label', 'content.caption', 'content.description', 'label' */
 export function useOptionSearch<T extends ContentRenderProps = ContentRenderProps>({
   options,
   flatMapOptions,

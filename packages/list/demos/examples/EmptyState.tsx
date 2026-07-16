@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 export function EmptyState() {
   const [query, setQuery] = useState('qwerty');
 
-  const items = query.length > 3 ? [] : [{ id: 'a', content: { option: 'Пример результата' } }];
+  const items = query.length > 3 ? [] : [{ id: 'a', content: { label: 'Пример результата' } }];
 
   return (
     <div className={styles.box}>

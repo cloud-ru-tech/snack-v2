@@ -67,7 +67,7 @@ function MobilePageFormBase({
                 items={sideBlock.map(({ label }, idx) => ({
                   id: idx,
                   content: {
-                    option: label,
+                    label: label,
                   },
                   onClick: () => {
                     setOpenMoreContentIndex(idx);

@@ -10,16 +10,16 @@ import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const options: ItemProps[] = [
-  { id: 's', content: { option: 'Small' } },
-  { id: 'm', content: { option: 'Medium' } },
-  { id: 'l', content: { option: 'Large' } },
+  { id: 's', content: { label: 'Small' } },
+  { id: 'm', content: { label: 'Medium' } },
+  { id: 'l', content: { label: 'Large' } },
 ];
 
 // Право «Чтение» обязательно (disabled): его чип не получает кнопку удаления и не сбрасывается очисткой.
 const permissionOptions: ItemProps[] = [
-  { id: 'read', content: { option: 'Read' }, disabled: true },
-  { id: 'write', content: { option: 'Write' } },
-  { id: 'delete', content: { option: 'Delete' } },
+  { id: 'read', content: { label: 'Read' }, disabled: true },
+  { id: 'write', content: { label: 'Write' } },
+  { id: 'delete', content: { label: 'Delete' } },
 ];
 
 const onChangeSingle = fn();

@@ -7,10 +7,10 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 
 const items: Item[] = [
-  { id: 'relevance', content: { option: 'Релевантности' } },
-  { id: 'date', content: { option: 'Дате создания' } },
-  { id: 'name', content: { option: 'Имени' } },
-  { id: 'size', content: { option: 'Размеру' } },
+  { id: 'relevance', content: { label: 'Релевантности' } },
+  { id: 'date', content: { label: 'Дате создания' } },
+  { id: 'name', content: { label: 'Имени' } },
+  { id: 'size', content: { label: 'Размеру' } },
 ];
 
 const meta: Meta<DroplistProps> = {

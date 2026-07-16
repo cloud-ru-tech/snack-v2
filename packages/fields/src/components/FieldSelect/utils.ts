@@ -21,8 +21,8 @@ export function extractLabel(item: WithIdContent): string {
     return String(content);
   }
 
-  if (typeof content === 'object' && content !== null && 'option' in content) {
-    return String((content as { option: unknown }).option);
+  if (typeof content === 'object' && content !== null && 'label' in content) {
+    return String((content as { label: unknown }).label);
   }
 
   return String(id ?? '');

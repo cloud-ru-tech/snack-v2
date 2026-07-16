@@ -8,9 +8,9 @@ import { expect, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 const ALL_OPTIONS: ItemProps[] = [
-  { id: 'ru-central1-a', content: { option: 'ru-central1-a' } },
-  { id: 'ru-central1-b', content: { option: 'ru-central1-b' } },
-  { id: 'kz-central1-a', content: { option: 'kz-central1-a' } },
+  { id: 'ru-central1-a', content: { label: 'ru-central1-a' } },
+  { id: 'ru-central1-b', content: { label: 'ru-central1-b' } },
+  { id: 'kz-central1-a', content: { label: 'kz-central1-a' } },
 ];
 
 // Имитация backend-состояний дроплиста: потребитель сам ведёт стейт-машину и переключает

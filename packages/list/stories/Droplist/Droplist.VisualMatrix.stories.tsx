@@ -16,9 +16,9 @@ export default meta;
 type Story = StoryObj<typeof Droplist>;
 
 const items: Item[] = [
-  { id: 'a', content: { option: 'Overview' } },
-  { id: 'b', content: { option: 'Analytics' } },
-  { id: 'c', content: { option: 'Billing' } },
+  { id: 'a', content: { label: 'Overview' } },
+  { id: 'b', content: { label: 'Analytics' } },
+  { id: 'c', content: { label: 'Billing' } },
 ];
 
 const keySizes = Object.values(SIZE);
@@ -69,8 +69,8 @@ export const VisualMatrix: Story = {
                 size: 'm',
                 selection: { mode: 'multiple', defaultValue: ['a'] },
                 items: [
-                  { id: 'a', content: { option: 'Overview' } },
-                  { id: 'notify', switch: true, content: { option: 'Notifications' } },
+                  { id: 'a', content: { label: 'Overview' } },
+                  { id: 'notify', switch: true, content: { label: 'Notifications' } },
                 ],
               }),
               renderSurface({
@@ -85,8 +85,8 @@ export const VisualMatrix: Story = {
                       {
                         id: 'nested',
                         type: 'collapse',
-                        content: { option: 'Resources' },
-                        items: [{ id: 'leaf', content: { option: 'Servers' } }],
+                        content: { label: 'Resources' },
+                        items: [{ id: 'leaf', content: { label: 'Servers' } }],
                       },
                     ],
                   },

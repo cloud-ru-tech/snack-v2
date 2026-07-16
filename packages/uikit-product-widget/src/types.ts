@@ -38,7 +38,7 @@ export type WidgetErrorStateProps = {
 };
 
 export type WidgetActionListItem = {
-  content: { option: string };
+  content: { label: string };
   beforeContent?: ReactNode;
   disabled?: boolean;
   hidden?: boolean;

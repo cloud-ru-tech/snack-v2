@@ -12,21 +12,21 @@ export function GroupsCollapsible() {
           {
             type: 'collapse',
             id: 'projects',
-            content: { option: 'Проекты' },
+            content: { label: 'Проекты' },
             items: [
-              { id: 'p-web', content: { option: 'Web-портал' } },
-              { id: 'p-mobile', content: { option: 'Mobile' } },
-              { id: 'p-admin', content: { option: 'Admin' } },
+              { id: 'p-web', content: { label: 'Web-портал' } },
+              { id: 'p-mobile', content: { label: 'Mobile' } },
+              { id: 'p-admin', content: { label: 'Admin' } },
             ],
           },
           {
             type: 'collapse',
             id: 'settings',
-            content: { option: 'Настройки' },
+            content: { label: 'Настройки' },
             items: [
-              { id: 's-profile', content: { option: 'Профиль' } },
-              { id: 's-team', content: { option: 'Команда' } },
-              { id: 's-billing', content: { option: 'Оплата' } },
+              { id: 's-profile', content: { label: 'Профиль' } },
+              { id: 's-team', content: { label: 'Команда' } },
+              { id: 's-billing', content: { label: 'Оплата' } },
             ],
           },
         ]}

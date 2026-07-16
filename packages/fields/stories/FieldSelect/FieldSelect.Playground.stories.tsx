@@ -15,10 +15,10 @@ import { expect, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 const options: ItemProps[] = [
-  { id: 's', content: { option: 'Small (1 vCPU, 2 GB)' } },
-  { id: 'm', content: { option: 'Medium (2 vCPU, 4 GB)' } },
-  { id: 'l', content: { option: 'Large (4 vCPU, 8 GB)' } },
-  { id: 'xl', content: { option: 'X-Large (8 vCPU, 16 GB)' } },
+  { id: 's', content: { label: 'Small (1 vCPU, 2 GB)' } },
+  { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB)' } },
+  { id: 'l', content: { label: 'Large (4 vCPU, 8 GB)' } },
+  { id: 'xl', content: { label: 'X-Large (8 vCPU, 16 GB)' } },
 ];
 
 // FieldSelectProps — дискриминированный union по `selection`. Для Playground'а нужен плоский

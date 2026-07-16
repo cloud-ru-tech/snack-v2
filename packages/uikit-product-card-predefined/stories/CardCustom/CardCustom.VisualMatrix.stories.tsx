@@ -25,9 +25,9 @@ type FooterMode = 'action' | 'callToAction' | 'promo' | 'dimension';
 type EmblemKind = 'icon' | 'picture' | undefined;
 
 const FUNCTION_BADGE_OPTIONS: CardCustom.FunctionBadgeProps['options'] = [
-  { content: { option: 'Option 1' } },
-  { content: { option: 'Option 2' } },
-  { content: { option: 'Option 3' }, tagLabel: 'Tag' },
+  { content: { label: 'Option 1' } },
+  { content: { label: 'Option 2' } },
+  { content: { label: 'Option 3' }, tagLabel: 'Tag' },
 ];
 
 const keyRadii = Object.values(RADIUS);

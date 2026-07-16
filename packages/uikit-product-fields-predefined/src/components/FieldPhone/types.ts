@@ -7,7 +7,7 @@ export type FieldPhoneOptionsProps = {
   id: string;
   beforeContent: ReactNode;
   content: {
-    option: string;
+    label: string;
     caption: string;
   };
   mask: string;

@@ -4,11 +4,11 @@ import { MouseEvent } from 'react';
 import { BaseItemProps, Item, NextListItem } from '../../components/Items';
 import { ITEM_TYPE } from '../../constants';
 
-/** Текст `option` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список. */
+/** Текст `label` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список. */
 export function nextListOption(item: NextListItem): string | undefined {
   const { content } = item;
-  if (content && typeof content === 'object' && 'option' in content) {
-    return String((content as { option: string | number }).option);
+  if (content && typeof content === 'object' && 'label' in content) {
+    return String((content as { label: string | number }).label);
   }
   return undefined;
 }

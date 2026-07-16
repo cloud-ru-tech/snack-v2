@@ -8,8 +8,8 @@ import { TEST_IDS } from '../../src/constants';
 import styles from './styles.module.scss';
 
 const items = [
-  { id: '1', content: { option: 'Option A' }, onClick: () => undefined },
-  { id: '2', content: { option: 'Option B' }, onClick: () => undefined },
+  { id: '1', content: { label: 'Option A' }, onClick: () => undefined },
+  { id: '2', content: { label: 'Option B' }, onClick: () => undefined },
 ];
 
 const meta: Meta<typeof ButtonDropdown> = {

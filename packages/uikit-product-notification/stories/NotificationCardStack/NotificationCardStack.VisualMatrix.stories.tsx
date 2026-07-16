@@ -72,8 +72,8 @@ export const VisualMatrix: Story = {
                 <NotificationCardStack
                   title='backup-cluster-1'
                   actions={[
-                    { content: { option: 'Отметить как прочитанное' }, onClick: fn() },
-                    { content: { option: 'Удалить всё' }, onClick: fn() },
+                    { content: { label: 'Отметить как прочитанное' }, onClick: fn() },
+                    { content: { label: 'Удалить всё' }, onClick: fn() },
                   ]}
                 >
                   {makeCards(3)}

@@ -2,8 +2,8 @@ import { FieldSelect } from '@ds/fields';
 import { ItemProps } from '@ds/list';
 
 const options: ItemProps[] = [
-  { id: 'm', content: { option: 'Medium (2 vCPU, 4 GB)' } },
-  { id: 'l', content: { option: 'Large (4 vCPU, 8 GB)' } },
+  { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB)' } },
+  { id: 'l', content: { label: 'Large (4 vCPU, 8 GB)' } },
 ];
 
 export function SelectReadonly() {

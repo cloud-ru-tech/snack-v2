@@ -48,7 +48,7 @@ describe('prepareReorderableColumnsSettings', () => {
     const createdAt = result.items.find(item => item.id === 'createdAt');
 
     expect(status).toMatchObject({ disabled: true, checked: true });
-    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { option: 'Created' } });
+    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { label: 'Created' } });
   });
 
   it('sorts unpinned items according to columnOrder', () => {
@@ -65,7 +65,7 @@ describe('prepareReorderableColumnsSettings', () => {
 
     expect(age).toEqual({
       id: 'age',
-      content: { option: 'Age' },
+      content: { label: 'Age' },
       switch: true,
       showSwitchIcon: true,
       disabled: false,

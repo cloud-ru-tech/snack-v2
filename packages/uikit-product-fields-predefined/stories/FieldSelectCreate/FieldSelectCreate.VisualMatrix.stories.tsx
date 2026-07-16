@@ -9,9 +9,9 @@ import styles from './styles.module.scss';
 const sizes = Object.values(SIZE);
 
 const ITEMS = [
-  { id: '1', content: { option: 'Production' } },
-  { id: '2', content: { option: 'Staging' } },
-  { id: '3', content: { option: 'Development' } },
+  { id: '1', content: { label: 'Production' } },
+  { id: '2', content: { label: 'Staging' } },
+  { id: '3', content: { label: 'Development' } },
 ];
 
 const entityName = { single: 'Окружение', plural: 'Окружения' };

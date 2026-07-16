@@ -129,7 +129,7 @@ const meta: Meta<StoryArgs> = {
     fullWidth: true,
     loading: false,
     pagination: { options: [5, 10, 20] },
-    moreActions: [{ content: { option: 'Архивировать' }, onClick: fn() }],
+    moreActions: [{ content: { label: 'Архивировать' }, onClick: fn() }],
     toolbarCheckBoxMode: ToolbarCheckBoxMode.PageRows,
     onRefresh: fn(),
     onExport: fn(),
@@ -307,8 +307,8 @@ function PlaygroundRender({
         getRowActionsColumnDef<User>({
           pinned: true,
           actionsGenerator: () => [
-            { content: { option: 'Дублировать' }, onClick: rowActionClick },
-            { content: { option: 'Удалить' }, onClick: rowActionClick },
+            { content: { label: 'Дублировать' }, onClick: rowActionClick },
+            { content: { label: 'Удалить' }, onClick: rowActionClick },
           ],
         }),
       ];

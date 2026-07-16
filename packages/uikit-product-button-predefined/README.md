@@ -29,7 +29,7 @@
 
 ### items
 
-Массив пунктов `Droplist` (`content.option`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
+Массив пунктов `Droplist` (`content.label`, `onClick`, `id`). При `closeDroplistOnItemClick` список закрывается после выбора.
 
 ### Size (default `s`)
 
@@ -68,8 +68,8 @@ import { ButtonDropdown } from '@ds/uikit-product-button-predefined'
   size='s'
   closeDroplistOnItemClick
   items={[
-    { id: 'month', content: { option: 'Month' }, onClick: () => setPeriod('month') },
-    { id: 'year', content: { option: 'Year' }, onClick: () => setPeriod('year') },
+    { id: 'month', content: { label: 'Month' }, onClick: () => setPeriod('month') },
+    { id: 'year', content: { label: 'Year' }, onClick: () => setPeriod('year') },
   ]}
 />
 ```
@@ -97,7 +97,7 @@ export function DesktopBasic() {
 
   const items = periods.map(option => ({
     id: option.id,
-    content: { option: option.label },
+    content: { label: option.label },
     onClick: () => setPeriod(option),
   }));
 
@@ -128,7 +128,7 @@ export function DesktopOpen() {
 
   const items = periods.map(option => ({
     id: option.id,
-    content: { option: option.label },
+    content: { label: option.label },
     onClick: () => setPeriod(option),
   }));
 
@@ -159,7 +159,7 @@ export function MobileLayout() {
 
   const items = periods.map(option => ({
     id: option.id,
-    content: { option: option.label },
+    content: { label: option.label },
     onClick: () => setPeriod(option),
   }));
 

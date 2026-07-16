@@ -23,25 +23,25 @@ const onClickA = fn();
 const onClickB = fn();
 
 const items: Item[] = [
-  { id: 'a', beforeContent: <HomeSVG />, content: { option: 'Overview' }, onClick: onClickA },
-  { id: 'b', beforeContent: <StarSVG />, content: { option: 'Analytics' }, onClick: onClickB },
-  { id: 'c', content: { option: 'Billing' } },
-  { id: 'notify', switch: true, content: { option: 'Notifications' } },
+  { id: 'a', beforeContent: <HomeSVG />, content: { label: 'Overview' }, onClick: onClickA },
+  { id: 'b', beforeContent: <StarSVG />, content: { label: 'Analytics' }, onClick: onClickB },
+  { id: 'c', content: { label: 'Billing' } },
+  { id: 'notify', switch: true, content: { label: 'Notifications' } },
   // inactive: рендерится, но не выбирается и выпадает из навигации; без onClick → data-non-pointer.
-  { id: 'dim', inactive: true, content: { option: 'Inactive row' } },
+  { id: 'dim', inactive: true, content: { label: 'Inactive row' } },
   // hidden: не рендерится в DOM вовсе.
-  { id: 'ghost', hidden: true, content: { option: 'Hidden row' } },
+  { id: 'ghost', hidden: true, content: { label: 'Hidden row' } },
 ];
 
-const pinTop: Item[] = [{ id: 'pinned', beforeContent: <FolderSVG />, content: { option: 'Pinned' } }];
+const pinTop: Item[] = [{ id: 'pinned', beforeContent: <FolderSVG />, content: { label: 'Pinned' } }];
 
 // Отдельный список с contentRender — кастомный рендер заменяет дефолтный ItemContent.
 const CONTENT_RENDER_ROOT = 'list-content-render';
 const CONTENT_RENDER_CUSTOM = 'list-content-render__custom';
-const contentRenderItems: Item[] = [{ id: 'cr', content: { option: 'Original option' } }];
+const contentRenderItems: Item[] = [{ id: 'cr', content: { label: 'Original option' } }];
 
 function renderContent({ content }: { content?: ItemContentProps | ReactNode }): ReactNode {
-  const option = content && typeof content === 'object' && 'option' in content ? content.option : '';
+  const option = content && typeof content === 'object' && 'label' in content ? content.label : '';
   return <span data-test-id={CONTENT_RENDER_CUSTOM}>Custom · {option}</span>;
 }
 
@@ -51,8 +51,8 @@ const SEARCH_INPUT_TEST_ID = 'search__field-input';
 
 function matchesSearch(item: Item, query: string): boolean {
   const content = 'content' in item ? item.content : undefined;
-  if (typeof content === 'object' && content && 'option' in content) {
-    return String(content.option).toLowerCase().includes(query.toLowerCase());
+  if (typeof content === 'object' && content && 'label' in content) {
+    return String(content.label).toLowerCase().includes(query.toLowerCase());
   }
   return true;
 }
@@ -147,7 +147,7 @@ export const InteractionTest: Story = {
     await step('contentRender replaces the default ItemContent', async () => {
       const crRoot = canvas.getByTestId(CONTENT_RENDER_ROOT);
       await expect(within(crRoot).getByTestId(CONTENT_RENDER_CUSTOM)).toBeVisible();
-      await expect(within(crRoot).queryByTestId(INTERNAL_TEST_IDS.baseItemOption)).toBeNull();
+      await expect(within(crRoot).queryByTestId(INTERNAL_TEST_IDS.baseItemLabel)).toBeNull();
     });
 
     await step('search: typing filters items by content option', async () => {

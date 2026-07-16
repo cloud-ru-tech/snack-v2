@@ -22,7 +22,7 @@ export function WithDataView() {
           />
         }
         dataView={{ show: true }}
-        moreActions={[{ content: { option: 'Ещё' }, onClick: () => undefined }]}
+        moreActions={[{ content: { label: 'Ещё' }, onClick: () => undefined }]}
       />
     </div>
   );

@@ -16,25 +16,25 @@ export default meta;
 type Story = StoryObj<typeof FieldSelect>;
 
 const options: ItemProps[] = [
-  { id: 's', content: { option: 'Small' } },
-  { id: 'm', content: { option: 'Medium' } },
-  { id: 'l', content: { option: 'Large' } },
+  { id: 's', content: { label: 'Small' } },
+  { id: 'm', content: { label: 'Medium' } },
+  { id: 'l', content: { label: 'Large' } },
 ];
 
 const zoneOptions: ItemProps[] = [
-  { id: 'a', content: { option: 'ru-central1-a' } },
-  { id: 'b', content: { option: 'ru-central1-b' } },
-  { id: 'c', content: { option: 'ru-central1-c' } },
-  { id: 'd', content: { option: 'kz-central1-a' } },
+  { id: 'a', content: { label: 'ru-central1-a' } },
+  { id: 'b', content: { label: 'ru-central1-b' } },
+  { id: 'c', content: { label: 'ru-central1-c' } },
+  { id: 'd', content: { label: 'kz-central1-a' } },
 ];
 
 // item.appearance задаёт цвет чипа выбранного значения (extractAppearance → Tag appearance).
 // `appearance` — additive-поле: компонент читает его через WithIdContent, но публичный
 // тип ItemProps его не объявляет — поэтому расширяем тип литерала здесь.
 const coloredOptions: (ItemProps & { appearance: string })[] = [
-  { id: 'a', content: { option: 'ru-central1-a' }, appearance: 'green' },
-  { id: 'b', content: { option: 'ru-central1-b' }, appearance: 'blue' },
-  { id: 'c', content: { option: 'ru-central1-c' }, appearance: 'violet' },
+  { id: 'a', content: { label: 'ru-central1-a' }, appearance: 'green' },
+  { id: 'b', content: { label: 'ru-central1-b' }, appearance: 'blue' },
+  { id: 'c', content: { label: 'ru-central1-c' }, appearance: 'violet' },
 ];
 
 const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;

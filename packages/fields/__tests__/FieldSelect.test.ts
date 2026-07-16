@@ -37,8 +37,8 @@ describe('extractLabel', () => {
   });
 
   it('reads option field from object content', () => {
-    expect(extractLabel({ id: 'a', content: { option: 'Large' } })).toBe('Large');
-    expect(extractLabel({ id: 'a', content: { option: 3 } })).toBe('3');
+    expect(extractLabel({ id: 'a', content: { label: 'Large' } })).toBe('Large');
+    expect(extractLabel({ id: 'a', content: { label: 3 } })).toBe('3');
   });
 
   it('falls back to id when object content has no option', () => {
@@ -48,12 +48,12 @@ describe('extractLabel', () => {
 
 describe('extractSearchText', () => {
   it('joins label + caption + description', () => {
-    const item: WithIdContent = { id: 'a', content: { option: 'Small', caption: 'cheap', description: 'entry tier' } };
+    const item: WithIdContent = { id: 'a', content: { label: 'Small', caption: 'cheap', description: 'entry tier' } };
     expect(extractSearchText(item)).toBe('Small cheap entry tier');
   });
 
   it('omits non-string caption/description', () => {
-    const item: WithIdContent = { id: 'a', content: { option: 'Small', caption: 5, description: null } };
+    const item: WithIdContent = { id: 'a', content: { label: 'Small', caption: 5, description: null } };
     expect(extractSearchText(item)).toBe('Small');
   });
 
@@ -133,9 +133,9 @@ describe('isFuzzyMatch', () => {
 
 describe('filterItems', () => {
   const items = [
-    { id: 's', content: { option: 'Small' } },
-    { id: 'm', content: { option: 'Medium' } },
-    { id: 'l', content: { option: 'Large' } },
+    { id: 's', content: { label: 'Small' } },
+    { id: 'm', content: { label: 'Medium' } },
+    { id: 'l', content: { label: 'Large' } },
   ] as unknown as Parameters<typeof filterItems>[0];
 
   it('returns all items for empty query', () => {
@@ -155,13 +155,13 @@ describe('filterItems', () => {
     const grouped = [
       {
         id: 'g',
-        content: { option: 'Group' },
+        content: { label: 'Group' },
         items: [
-          { id: 'gs', content: { option: 'Small' } },
-          { id: 'gl', content: { option: 'Large' } },
+          { id: 'gs', content: { label: 'Small' } },
+          { id: 'gl', content: { label: 'Large' } },
         ],
       },
-      { id: 'top', content: { option: 'Topmost' } },
+      { id: 'top', content: { label: 'Topmost' } },
     ] as unknown as Parameters<typeof filterItems>[0];
 
     const result = filterItems(grouped, 'small', false);

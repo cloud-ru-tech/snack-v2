@@ -20,17 +20,17 @@ export function ListItemWrap() {
         items={[
           {
             id: 'prod',
-            content: { option: 'Production', caption: 'open' },
+            content: { label: 'Production', caption: 'open' },
             itemWrapRender: asExternalLink('https://console.cloud.ru/prod'),
           },
           {
             id: 'staging',
-            content: { option: 'Staging', caption: 'open' },
+            content: { label: 'Staging', caption: 'open' },
             itemWrapRender: asExternalLink('https://console.cloud.ru/staging'),
           },
           {
             id: 'legacy',
-            content: { option: 'Legacy', description: 'Среда выведена из эксплуатации — недоступна для перехода' },
+            content: { label: 'Legacy', description: 'Среда выведена из эксплуатации — недоступна для перехода' },
             inactive: true,
           },
         ]}

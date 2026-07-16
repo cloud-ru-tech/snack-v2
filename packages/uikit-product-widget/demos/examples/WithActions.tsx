@@ -29,8 +29,8 @@ export function WithActions() {
             variant: BUTTON_TYPE.Kebab,
             list: {
               items: [
-                { content: { option: 'Export' }, onClick: () => setLastAction('Export') },
-                { content: { option: 'Archive' }, onClick: () => setLastAction('Archive') },
+                { content: { label: 'Export' }, onClick: () => setLastAction('Export') },
+                { content: { label: 'Archive' }, onClick: () => setLastAction('Archive') },
               ],
             },
           },

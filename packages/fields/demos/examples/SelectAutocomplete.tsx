@@ -3,11 +3,11 @@ import { ItemId, ItemProps } from '@ds/list';
 import { useMemo, useState } from 'react';
 
 const ALL_REGIONS: ItemProps[] = [
-  { id: 'ru-moscow', content: { option: 'Москва' } },
-  { id: 'ru-spb', content: { option: 'Санкт-Петербург' } },
-  { id: 'ru-novosibirsk', content: { option: 'Новосибирск' } },
-  { id: 'ru-ekaterinburg', content: { option: 'Екатеринбург' } },
-  { id: 'ru-kazan', content: { option: 'Казань' } },
+  { id: 'ru-moscow', content: { label: 'Москва' } },
+  { id: 'ru-spb', content: { label: 'Санкт-Петербург' } },
+  { id: 'ru-novosibirsk', content: { label: 'Новосибирск' } },
+  { id: 'ru-ekaterinburg', content: { label: 'Екатеринбург' } },
+  { id: 'ru-kazan', content: { label: 'Казань' } },
 ];
 
 export function SelectAutocomplete() {
@@ -21,7 +21,7 @@ export function SelectAutocomplete() {
     if (!q) return ALL_REGIONS;
     return ALL_REGIONS.filter(item => {
       const content = 'content' in item ? item.content : undefined;
-      const option = content && typeof content === 'object' && 'option' in content ? String(content.option) : '';
+      const option = content && typeof content === 'object' && 'label' in content ? String(content.label) : '';
       return option.toLowerCase().includes(q);
     });
   }, [query]);

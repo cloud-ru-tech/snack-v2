@@ -9,9 +9,9 @@ import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
 // `open` форсится статически без триггера — эти stories нужны только для снимков открытого
 // Droplist (@ds/list nesting — портальная поверхность, в VisualMatrix не собирается).
 const options: ItemProps[] = [
-  { id: 's', content: { option: 'Small (1 vCPU, 2 GB)' } },
-  { id: 'm', content: { option: 'Medium (2 vCPU, 4 GB)' } },
-  { id: 'l', content: { option: 'Large (4 vCPU, 8 GB)' } },
+  { id: 's', content: { label: 'Small (1 vCPU, 2 GB)' } },
+  { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB)' } },
+  { id: 'l', content: { label: 'Large (4 vCPU, 8 GB)' } },
 ];
 
 const groupedItems: ItemProps[] = [
@@ -19,8 +19,8 @@ const groupedItems: ItemProps[] = [
     type: 'group',
     label: 'Standard',
     items: [
-      { id: 's', content: { option: 'Small' } },
-      { id: 'm', content: { option: 'Medium' } },
+      { id: 's', content: { label: 'Small' } },
+      { id: 'm', content: { label: 'Medium' } },
     ],
   },
   {
@@ -28,8 +28,8 @@ const groupedItems: ItemProps[] = [
     label: 'High-memory',
     divider: true,
     items: [
-      { id: 'r-m', content: { option: 'Memory M' } },
-      { id: 'r-l', content: { option: 'Memory L' } },
+      { id: 'r-m', content: { label: 'Memory M' } },
+      { id: 'r-l', content: { label: 'Memory L' } },
     ],
   },
 ];
@@ -41,8 +41,8 @@ const groupSelectItems: ItemProps[] = [
     label: 'Standard',
     selectButtonLabel: 'Select all',
     items: [
-      { id: 's', content: { option: 'Small' } },
-      { id: 'm', content: { option: 'Medium' } },
+      { id: 's', content: { label: 'Small' } },
+      { id: 'm', content: { label: 'Medium' } },
     ],
   },
   {
@@ -51,36 +51,36 @@ const groupSelectItems: ItemProps[] = [
     label: 'High-memory',
     selectButtonLabel: 'Select all',
     items: [
-      { id: 'r-m', content: { option: 'Memory M' } },
-      { id: 'r-l', content: { option: 'Memory L' } },
+      { id: 'r-m', content: { label: 'Memory M' } },
+      { id: 'r-l', content: { label: 'Memory L' } },
     ],
   },
 ];
 
 const nestedItems: ItemProps[] = [
-  { id: 's', content: { option: 'Small' } },
+  { id: 's', content: { label: 'Small' } },
   {
     type: 'next-list',
     id: 'regions',
     beforeContent: <PlaceholderSVG />,
-    content: { option: 'Regions' },
+    content: { label: 'Regions' },
     items: [
-      { id: 'ru', content: { option: 'ru-central1' } },
-      { id: 'kz', content: { option: 'kz-central1' } },
+      { id: 'ru', content: { label: 'ru-central1' } },
+      { id: 'kz', content: { label: 'kz-central1' } },
     ],
   },
 ];
 
 const accordionItems: ItemProps[] = [
-  { id: 's', content: { option: 'Small' } },
+  { id: 's', content: { label: 'Small' } },
   {
     type: 'collapse',
     id: 'advanced',
     beforeContent: <FolderSVG />,
-    content: { option: 'Advanced sizes' },
+    content: { label: 'Advanced sizes' },
     items: [
-      { id: 'xl', content: { option: 'X-Large' } },
-      { id: 'xxl', content: { option: 'XX-Large' } },
+      { id: 'xl', content: { label: 'X-Large' } },
+      { id: 'xxl', content: { label: 'XX-Large' } },
     ],
   },
 ];
@@ -203,8 +203,8 @@ export const OpenPinned: Story = {
         data-test-id={TEST_IDS.fieldSelect}
         label='Region'
         items={options}
-        pinTop={[{ id: 'recommended', content: { option: 'Recommended', caption: 'ru-central1-a' } }]}
-        pinBottom={[{ id: 'all', content: { option: 'Show all regions' } }]}
+        pinTop={[{ id: 'recommended', content: { label: 'Recommended', caption: 'ru-central1-a' } }]}
+        pinBottom={[{ id: 'all', content: { label: 'Show all regions' } }]}
         selection='single'
         open
       />

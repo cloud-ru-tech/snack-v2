@@ -22,29 +22,29 @@ type Story = StoryObj<typeof List>;
 const keySizes = Object.values(SIZE);
 
 const baseItems: Item[] = [
-  { id: 'a', content: { option: 'Overview', description: 'Summary' } },
-  { id: 'b', content: { option: 'Analytics', description: 'Metrics' } },
-  { id: 'c', content: { option: 'Billing', description: 'Invoices' } },
+  { id: 'a', content: { label: 'Overview', description: 'Summary' } },
+  { id: 'b', content: { label: 'Analytics', description: 'Metrics' } },
+  { id: 'c', content: { label: 'Billing', description: 'Invoices' } },
 ];
 
 const withDisabled: Item[] = [
-  { id: 'a', content: { option: 'Overview' } },
-  { id: 'b', content: { option: 'Archived' }, disabled: true },
-  { id: 'c', content: { option: 'Settings' } },
+  { id: 'a', content: { label: 'Overview' } },
+  { id: 'b', content: { label: 'Archived' }, disabled: true },
+  { id: 'c', content: { label: 'Settings' } },
 ];
 
 // Figma listItem demo. Статические состояния: default, checked, disabled
 // (hover/pressed зависят от псевдоклассов — снимаются в visual.spec.ts).
 const singleItems: Item[] = [
-  { id: 'a', content: { option: 'Default', description: 'Description text' } },
-  { id: 'b', content: { option: 'Checked', description: 'Description text' } },
-  { id: 'c', content: { option: 'Disabled', description: 'Description text' }, disabled: true },
+  { id: 'a', content: { label: 'Default', description: 'Description text' } },
+  { id: 'b', content: { label: 'Checked', description: 'Description text' } },
+  { id: 'c', content: { label: 'Disabled', description: 'Description text' }, disabled: true },
 ];
 
 const multipleItems: Item[] = [
-  { id: 'a', content: { option: 'Default', description: 'Description text' } },
-  { id: 'b', content: { option: 'Checked', description: 'Description text' } },
-  { id: 'c', content: { option: 'Disabled', description: 'Description text' }, disabled: true },
+  { id: 'a', content: { label: 'Default', description: 'Description text' } },
+  { id: 'b', content: { label: 'Checked', description: 'Description text' } },
+  { id: 'c', content: { label: 'Disabled', description: 'Description text' }, disabled: true },
 ];
 
 function renderList(props: Parameters<typeof List>[0]) {
@@ -69,10 +69,10 @@ const collapseItems: Item[] = [
   {
     id: 'col',
     type: 'collapse',
-    content: { option: 'Section' },
+    content: { label: 'Section' },
     items: [
-      { id: 'col-1', content: { option: 'Child one' } },
-      { id: 'col-2', content: { option: 'Child two' } },
+      { id: 'col-1', content: { label: 'Child one' } },
+      { id: 'col-2', content: { label: 'Child two' } },
     ],
   },
 ];
@@ -86,14 +86,14 @@ const groupWithCollapse: Item[] = [
       {
         id: 'gc',
         type: 'collapse',
-        content: { option: 'Nested section' },
-        items: [{ id: 'gc-1', content: { option: 'Leaf item' } }],
+        content: { label: 'Nested section' },
+        items: [{ id: 'gc-1', content: { label: 'Leaf item' } }],
       },
     ],
   },
 ];
 
-// `content` как сырой ReactNode (ветка `!isContentItem` в BaseItem) — без option/caption/TruncateString.
+// `content` как сырой ReactNode (ветка `!isContentItem` в BaseItem) — без label/caption/TruncateString.
 const rawContentItems: Item[] = [
   { id: 'r1', content: <strong>Custom raw node</strong> },
   {
@@ -110,14 +110,14 @@ const rawContentItems: Item[] = [
 const truncateOption: Item[] = [
   {
     id: 't1',
-    content: { option: 'A very long option label that overflows the cell', truncate: { option: 1 } },
+    content: { label: 'A very long option label that overflows the cell', truncate: { label: 1 } },
   },
 ];
 const truncateDescription: Item[] = [
   {
     id: 't2',
     content: {
-      option: 'Title',
+      label: 'Title',
       description: 'A very long multi-line description that clamps after two lines and shows an ellipsis',
       truncate: { description: 2 },
     },
@@ -126,7 +126,7 @@ const truncateDescription: Item[] = [
 const truncateMiddle: Item[] = [
   {
     id: 't3',
-    content: { option: 'documents/2024/q3/report-final-version.pdf', truncate: { option: 1, variant: 'middle' } },
+    content: { label: 'documents/2024/q3/report-final-version.pdf', truncate: { label: 1, variant: 'middle' } },
   },
 ];
 
@@ -207,17 +207,17 @@ export const VisualMatrix: Story = {
             renderList({
               size,
               selection: { mode: 'multiple', defaultValue: [] },
-              items: [{ id: 'notify', switch: true, content: { option: 'Notifications' } }],
+              items: [{ id: 'notify', switch: true, content: { label: 'Notifications' } }],
             }),
             renderList({
               size,
               selection: { mode: 'multiple', defaultValue: ['notify'] },
-              items: [{ id: 'notify', switch: true, content: { option: 'Notifications' } }],
+              items: [{ id: 'notify', switch: true, content: { label: 'Notifications' } }],
             }),
             renderList({
               size,
               selection: { mode: 'multiple', defaultValue: ['notify'] },
-              items: [{ id: 'notify', switch: true, disabled: true, content: { option: 'Notifications' } }],
+              items: [{ id: 'notify', switch: true, disabled: true, content: { label: 'Notifications' } }],
             }),
           ],
         }))}
@@ -232,17 +232,17 @@ export const VisualMatrix: Story = {
           cells: [
             renderList({
               items: [
-                { id: 'a', beforeContent: <HomeSVG />, content: { option: 'Home' } },
-                { id: 'b', beforeContent: <FileSVG />, content: { option: 'Documents' } },
-                { id: 'c', beforeContent: <StarSVG />, content: { option: 'Favourites' } },
+                { id: 'a', beforeContent: <HomeSVG />, content: { label: 'Home' } },
+                { id: 'b', beforeContent: <FileSVG />, content: { label: 'Documents' } },
+                { id: 'c', beforeContent: <StarSVG />, content: { label: 'Favourites' } },
               ],
               size,
             }),
             renderList({
               items: [
-                { id: 'a', afterContent: <ChevronRightSVG />, content: { option: 'Overview' } },
-                { id: 'b', afterContent: <ChevronRightSVG />, content: { option: 'Analytics' } },
-                { id: 'c', afterContent: <ChevronRightSVG />, content: { option: 'Billing' } },
+                { id: 'a', afterContent: <ChevronRightSVG />, content: { label: 'Overview' } },
+                { id: 'b', afterContent: <ChevronRightSVG />, content: { label: 'Analytics' } },
+                { id: 'c', afterContent: <ChevronRightSVG />, content: { label: 'Billing' } },
               ],
               size,
             }),
@@ -252,19 +252,19 @@ export const VisualMatrix: Story = {
                   id: 'a',
                   beforeContent: <HomeSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Home' },
+                  content: { label: 'Home' },
                 },
                 {
                   id: 'b',
                   beforeContent: <SettingsSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Settings' },
+                  content: { label: 'Settings' },
                 },
                 {
                   id: 'c',
                   beforeContent: <FolderSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Projects' },
+                  content: { label: 'Projects' },
                 },
               ],
               size,
@@ -275,19 +275,19 @@ export const VisualMatrix: Story = {
                   id: 'a',
                   beforeContent: <HomeSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Overview', caption: '12' },
+                  content: { label: 'Overview', caption: '12' },
                 },
                 {
                   id: 'b',
                   beforeContent: <FileSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Analytics', caption: 'Today' },
+                  content: { label: 'Analytics', caption: 'Today' },
                 },
                 {
                   id: 'c',
                   beforeContent: <StarSVG />,
                   afterContent: <ChevronRightSVG />,
-                  content: { option: 'Favourites', caption: '∞', description: 'Pinned items' },
+                  content: { label: 'Favourites', caption: '∞', description: 'Pinned items' },
                 },
               ],
               size,
@@ -326,8 +326,8 @@ export const VisualMatrix: Story = {
                   beforeContent: <FolderSVG />,
                   groupVariant: 'subtitle',
                   items: [
-                    { id: 'w1', content: { option: 'Overview' } },
-                    { id: 'w2', content: { option: 'Analytics' } },
+                    { id: 'w1', content: { label: 'Overview' } },
+                    { id: 'w2', content: { label: 'Analytics' } },
                   ],
                 },
               ],
@@ -341,8 +341,8 @@ export const VisualMatrix: Story = {
                   beforeContent: <SettingsSVG />,
                   groupVariant: 'subtitleTertiary',
                   items: [
-                    { id: 's1', content: { option: 'Profile' } },
-                    { id: 's2', content: { option: 'Security' } },
+                    { id: 's1', content: { label: 'Profile' } },
+                    { id: 's2', content: { label: 'Security' } },
                   ],
                 },
               ],
@@ -357,8 +357,8 @@ export const VisualMatrix: Story = {
                   groupVariant: 'subtitle',
                   divider: true,
                   items: [
-                    { id: 'wd1', content: { option: 'Overview' } },
-                    { id: 'wd2', content: { option: 'Analytics' } },
+                    { id: 'wd1', content: { label: 'Overview' } },
+                    { id: 'wd2', content: { label: 'Analytics' } },
                   ],
                 },
               ],
@@ -366,11 +366,11 @@ export const VisualMatrix: Story = {
             renderList({
               size,
               items: [
-                { id: 'a', content: { option: 'Above divider' } },
+                { id: 'a', content: { label: 'Above divider' } },
                 {
                   type: 'group',
                   divider: true,
-                  items: [{ id: 'b', content: { option: 'Below divider' } }],
+                  items: [{ id: 'b', content: { label: 'Below divider' } }],
                 },
               ],
             }),
@@ -382,7 +382,7 @@ export const VisualMatrix: Story = {
                   label: 'A very long group subtitle that gets truncated',
                   groupVariant: 'subtitle',
                   truncate: { variant: 'end' },
-                  items: [{ id: 'lt1', content: { option: 'Child item' } }],
+                  items: [{ id: 'lt1', content: { label: 'Child item' } }],
                 },
               ],
             }),
@@ -448,7 +448,7 @@ export const VisualMatrix: Story = {
                   {
                     id: 'pinned-top',
                     beforeContent: <FolderSVG />,
-                    content: { option: 'Pinned action', caption: 'Quick access' },
+                    content: { label: 'Pinned action', caption: 'Quick access' },
                     afterContent: <ChevronRightSVG />,
                   },
                 ],
@@ -465,7 +465,7 @@ export const VisualMatrix: Story = {
                   {
                     id: 'pinned-bottom',
                     beforeContent: <FolderSVG />,
-                    content: { option: 'Pinned footer', caption: 'Sticky bottom' },
+                    content: { label: 'Pinned footer', caption: 'Sticky bottom' },
                     afterContent: <ChevronRightSVG />,
                   },
                 ],

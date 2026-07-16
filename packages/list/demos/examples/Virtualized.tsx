@@ -11,7 +11,7 @@ export function Virtualized() {
     () =>
       Array.from({ length: TOTAL }, (_, i) => ({
         id: `row-${i}`,
-        content: { option: `Запись #${i + 1}`, caption: i % 5 === 0 ? 'new' : undefined },
+        content: { label: `Запись #${i + 1}`, caption: i % 5 === 0 ? 'new' : undefined },
       })),
     [],
   );

@@ -18,7 +18,7 @@ export function MobileLayout() {
               list: {
                 items: [
                   {
-                    content: { option: 'Delete bucket' },
+                    content: { label: 'Delete bucket' },
                     onClick: () => setLastAction('Delete bucket'),
                   },
                 ],

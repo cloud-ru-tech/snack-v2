@@ -9,8 +9,8 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../../src/constants';
 
 const ITEMS = [
-  { id: '1', content: { option: 'Production' } },
-  { id: '2', content: { option: 'Staging' } },
+  { id: '1', content: { label: 'Production' } },
+  { id: '2', content: { label: 'Staging' } },
 ];
 
 const meta: Meta<typeof FieldSelectCreate> = {

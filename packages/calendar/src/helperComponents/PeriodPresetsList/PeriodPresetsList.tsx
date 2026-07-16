@@ -21,7 +21,7 @@ export function PeriodPresetsList({ items, onChange, className }: PresetsListPro
       items.map(item => ({
         id: item.id,
         content: {
-          option: item.label,
+          label: item.label,
         },
         onClick() {
           onChange(item.range);

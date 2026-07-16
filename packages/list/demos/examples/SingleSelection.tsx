@@ -13,10 +13,10 @@ export function SingleSelection() {
         marker
         selection={{ mode: 'single', value, onChange: setValue }}
         items={[
-          { id: 'usd', content: { option: 'Доллар США', caption: 'USD' } },
-          { id: 'eur', content: { option: 'Евро', caption: 'EUR' } },
-          { id: 'rub', content: { option: 'Российский рубль', caption: 'RUB' } },
-          { id: 'cny', content: { option: 'Китайский юань', caption: 'CNY' } },
+          { id: 'usd', content: { label: 'Доллар США', caption: 'USD' } },
+          { id: 'eur', content: { label: 'Евро', caption: 'EUR' } },
+          { id: 'rub', content: { label: 'Российский рубль', caption: 'RUB' } },
+          { id: 'cny', content: { label: 'Китайский юань', caption: 'CNY' } },
         ]}
       />
     </div>

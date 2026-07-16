@@ -79,7 +79,7 @@ const pinnedColumns: ColumnDefinition<User>[] = [
   ...buildUserColumns({ withStatusColumn: true }),
   getRowActionsColumnDef<User>({
     pinned: true,
-    actionsGenerator: () => [{ content: { option: 'Открыть' }, onClick: noop }],
+    actionsGenerator: () => [{ content: { label: 'Открыть' }, onClick: noop }],
   }),
 ];
 
@@ -355,7 +355,7 @@ export const VisualMatrix: Story = {
                   rowSelection={{ enable: true, multiRow: true, initialState: { 'u-1': true, 'u-2': true } }}
                   onRefresh={noop}
                   onExport={noop}
-                  moreActions={[{ content: { option: 'Ещё' }, onClick: noop }]}
+                  moreActions={[{ content: { label: 'Ещё' }, onClick: noop }]}
                   suppressPagination
                   outline
                 />

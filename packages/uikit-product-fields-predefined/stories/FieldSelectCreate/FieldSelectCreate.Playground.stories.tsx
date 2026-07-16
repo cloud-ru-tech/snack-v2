@@ -23,9 +23,9 @@ const meta: Meta<typeof FieldSelectCreate> = {
   },
   render: function Render(args) {
     const [items, setItems] = useState([
-      { id: '1', content: { option: 'Production' } },
-      { id: '2', content: { option: 'Staging' } },
-      { id: '3', content: { option: 'Development' } },
+      { id: '1', content: { label: 'Production' } },
+      { id: '2', content: { label: 'Staging' } },
+      { id: '3', content: { label: 'Development' } },
     ]);
     const [value, setValue] = useState<ItemId>();
 
@@ -44,7 +44,7 @@ const meta: Meta<typeof FieldSelectCreate> = {
               selectProps={{ label: 'Окружение', items, value, onChange: setValue }}
               submitHandler={() => {
                 const id = String(items.length + 1);
-                setItems(prev => [...prev, { id, content: { option: `Окружение ${id}` } }]);
+                setItems(prev => [...prev, { id, content: { label: `Окружение ${id}` } }]);
                 return Promise.resolve(id);
               }}
               createLayoutProps={{ title: 'Создание окружения', content: <FieldText label='Название' /> }}

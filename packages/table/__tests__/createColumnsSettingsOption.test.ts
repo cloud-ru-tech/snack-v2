@@ -45,7 +45,7 @@ describe('createColumnsSettingsOption', () => {
       }),
     ).toEqual({
       id: 'name',
-      content: { option: 'Name' },
+      content: { label: 'Name' },
       switch: true,
       showSwitchIcon: true,
       disabled: false,
@@ -62,7 +62,7 @@ describe('createColumnsSettingsOption', () => {
 
     expect(createColumnsSettingsOption<Row>({ accessorKey: 'name', header: 'Имя' })).toMatchObject({
       id: 'name',
-      content: { option: 'Имя' },
+      content: { label: 'Имя' },
       disabled: true,
       checked: true,
     });

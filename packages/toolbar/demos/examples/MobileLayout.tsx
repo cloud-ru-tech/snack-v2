@@ -25,7 +25,7 @@ export function MobileLayout() {
           <Toolbar
             search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
             onRefresh={() => setSearch('')}
-            moreActions={[{ content: { option: 'Действие' }, onClick: () => undefined }]}
+            moreActions={[{ content: { label: 'Действие' }, onClick: () => undefined }]}
             checked={checked}
             onCheck={() => setChecked(value => !value)}
             selectedCount={checked ? 12 : 0}

@@ -36,7 +36,7 @@ const adaptiveContent = (
       onChange: fn(),
     }}
     chipToggle={{ label: 'Только важные', checked: true, onChange: fn() }}
-    settings={{ button: { onClick: fn() }, actions: [{ content: { option: 'Настройки' }, onClick: fn() }] }}
+    settings={{ button: { onClick: fn() }, actions: [{ content: { label: 'Настройки' }, onClick: fn() }] }}
   />
 );
 
@@ -130,7 +130,7 @@ export const VisualMatrix: Story = {
                   chipToggle={{ label: 'Только важные', checked: true, onChange: fn() }}
                   settings={{
                     button: { onClick: fn() },
-                    actions: [{ content: { option: 'Настройки' }, onClick: fn() }],
+                    actions: [{ content: { label: 'Настройки' }, onClick: fn() }],
                   }}
                 />,
               ),

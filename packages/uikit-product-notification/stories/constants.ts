@@ -21,8 +21,8 @@ export const BUTTONS_PROPS: Pick<NotificationCardProps, 'primaryButton' | 'secon
 };
 
 export const ACTIONS: NotificationCardProps['actions'] = [
-  { content: { option: 'action 1' }, onClick: fn() },
-  { content: { option: 'action 2' }, onClick: fn() },
+  { content: { label: 'action 1' }, onClick: fn() },
+  { content: { label: 'action 2' }, onClick: fn() },
 ];
 
 export const NOTIFICATION_PANEL_PROPS_MOCK: NotificationPanelContentProps = {

@@ -9,9 +9,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 
 const items: Item[] = [
-  { id: 'overview', content: { option: 'Overview' } },
-  { id: 'analytics', content: { option: 'Analytics' } },
-  { id: 'billing', content: { option: 'Billing' } },
+  { id: 'overview', content: { label: 'Overview' } },
+  { id: 'analytics', content: { label: 'Analytics' } },
+  { id: 'billing', content: { label: 'Billing' } },
 ];
 
 const meta: Meta<typeof Droplist> = {

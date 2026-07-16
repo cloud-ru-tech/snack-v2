@@ -37,7 +37,7 @@ export const TEST_IDS = {
   baseItemMarker: 'list__base-item-marker',
   baseItemCheckbox: 'list__base-item-checkbox',
   baseItemSwitch: 'list__base-item-switch',
-  baseItemOption: 'list__base-item-option',
+  baseItemLabel: 'list__base-item-label',
   baseItemDescription: 'list__base-item-description',
   searchItem: 'list__search-item',
   bulkSelectButton: 'list__bulk-select-button',

@@ -49,7 +49,7 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
         const simpleAction = action as SimpleButtonAction;
 
         acc.push({
-          content: { option: simpleAction.label ?? '' },
+          content: { label: simpleAction.label ?? '' },
           onClick: event => {
             setIsOpen(false);
             simpleAction.onClick?.(event);

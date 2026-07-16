@@ -18,21 +18,21 @@ type Story = StoryObj<typeof ReorderableList>;
 const keySizes = Object.values(SIZE);
 
 const flatItems: ReorderItem[] = [
-  { id: 'inbox', content: { option: 'Входящие', caption: '12' } },
-  { id: 'sent', content: { option: 'Отправленные' } },
-  { id: 'trash', content: { option: 'Корзина', description: 'Удаляется через 30 дней' } },
+  { id: 'inbox', content: { label: 'Входящие', caption: '12' } },
+  { id: 'sent', content: { label: 'Отправленные' } },
+  { id: 'trash', content: { label: 'Корзина', description: 'Удаляется через 30 дней' } },
 ];
 
 const groupedItems: ReorderItem[] = [
-  { id: 'catalog', content: { option: 'Каталог' } },
+  { id: 'catalog', content: { label: 'Каталог' } },
   {
     type: 'group',
     id: 'group-1',
     label: 'Группа',
     divider: true,
     items: [
-      { id: 'orders', content: { option: 'Заказы' } },
-      { id: 'settings', content: { option: 'Настройки' }, disabled: true },
+      { id: 'orders', content: { label: 'Заказы' } },
+      { id: 'settings', content: { label: 'Настройки' }, disabled: true },
     ],
   },
 ];
@@ -79,8 +79,8 @@ export const VisualMatrix: Story = {
                 <MatrixCell
                   size='m'
                   items={[
-                    { id: 'long', content: { option: 'Очень длинное название строки, которое не влезает' } },
-                    { id: 'short', content: { option: 'Коротко' } },
+                    { id: 'long', content: { label: 'Очень длинное название строки, которое не влезает' } },
+                    { id: 'short', content: { label: 'Коротко' } },
                   ]}
                 />
               </div>,

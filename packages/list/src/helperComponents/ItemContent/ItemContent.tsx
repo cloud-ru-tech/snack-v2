@@ -8,13 +8,13 @@ import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
 type TruncateProps = {
-  option?: number;
+  label?: number;
   description?: number;
   variant?: TruncateStringProps['variant'];
 };
 
 export type ItemContentProps = WithSupportProps<{
-  option: string | number;
+  label: string | number;
   caption?: string;
   description?: string;
   truncate?: TruncateProps;
@@ -23,7 +23,7 @@ export type ItemContentProps = WithSupportProps<{
 }>;
 
 const DEFAULT_TRUNCATE: TruncateProps = {
-  option: 1,
+  label: 1,
   description: 2,
   variant: 'end',
 };
@@ -32,7 +32,7 @@ export function ItemContent({
   truncate: truncateProp,
   caption,
   description,
-  option,
+  label,
   className,
   disabled,
   ...rest
@@ -58,9 +58,9 @@ export function ItemContent({
         <div className={styles.label}>
           <TruncateString
             variant={truncate.variant}
-            text={String(option)}
-            maxLines={truncate.option}
-            data-test-id={TEST_IDS.baseItemOption}
+            text={String(label)}
+            maxLines={truncate.label}
+            data-test-id={TEST_IDS.baseItemLabel}
           />
         </div>
         {caption && <span className={styles.caption}>{caption}</span>}

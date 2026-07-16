@@ -31,8 +31,8 @@ export const InteractionTest: Story = {
                 closeDroplistOnItemClick
                 data-test-id={TEST_IDS.buttonDropdown}
                 items={[
-                  { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
-                  { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
+                  { id: 'y', content: { label: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
+                  { id: 'm', content: { label: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
                 ]}
               />
             </div>
@@ -71,8 +71,8 @@ export const MobileInteractionTest: Story = {
                 closeDroplistOnItemClick
                 data-test-id={TEST_IDS.buttonDropdown}
                 items={[
-                  { id: 'y', content: { option: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
-                  { id: 'm', content: { option: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
+                  { id: 'y', content: { label: 'Year' }, onClick: fn(), 'data-test-id': TEST_IDS.itemYear },
+                  { id: 'm', content: { label: 'Month' }, onClick: fn(), 'data-test-id': TEST_IDS.itemMonth },
                 ]}
               />
             </div>

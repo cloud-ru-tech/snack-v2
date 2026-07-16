@@ -31,7 +31,7 @@ export function actionToListItem(action: WidgetAction, close?: () => void) {
   >;
 
   return {
-    content: { option: label },
+    content: { label: label },
     beforeContent: icon,
     tooltip,
     disabled,

@@ -14,7 +14,7 @@ import {
 import { ITEM_PREFIXES, ITEM_TYPE } from '../src/constants';
 
 describe('Items type guards', () => {
-  const baseItem = { id: 'a', content: { option: 'A' } } satisfies Item;
+  const baseItem = { id: 'a', content: { label: 'A' } } satisfies Item;
   const accordionItem = { type: ITEM_TYPE.Collapse, items: [baseItem] } as Item;
   const nextListItem = { type: ITEM_TYPE.NextList, items: [baseItem] } as Item;
   const groupItem = { type: ITEM_TYPE.Group, items: [baseItem] } as Item;
@@ -47,9 +47,9 @@ describe('Items type guards', () => {
     expect(isGroupItem(42)).toBe(false);
   });
 
-  it('isContentItem matches ItemContent shape (has `option`)', () => {
-    expect(isContentItem({ option: 'Title' })).toBe(true);
-    expect(isContentItem({ caption: 'no option' })).toBe(false);
+  it('isContentItem matches ItemContent shape (has `label`)', () => {
+    expect(isContentItem({ label: 'Title' })).toBe(true);
+    expect(isContentItem({ caption: 'no label' })).toBe(false);
     expect(isContentItem(null)).toBe(false);
     expect(isContentItem('text')).toBe(false);
   });
@@ -58,8 +58,8 @@ describe('Items type guards', () => {
 describe('kindFlattenItems', () => {
   it('flattens a plain list keeping declared ids', () => {
     const items: Item[] = [
-      { id: 'a', content: { option: 'A' } },
-      { id: 'b', content: { option: 'B' } },
+      { id: 'a', content: { label: 'A' } },
+      { id: 'b', content: { label: 'B' } },
     ];
     const { flattenItems, allChildIds } = kindFlattenItems({ items });
 
@@ -70,8 +70,8 @@ describe('kindFlattenItems', () => {
 
   it('skips hidden items', () => {
     const items: Item[] = [
-      { id: 'a', content: { option: 'A' } },
-      { id: 'b', content: { option: 'B' }, hidden: true },
+      { id: 'a', content: { label: 'A' } },
+      { id: 'b', content: { label: 'B' }, hidden: true },
     ];
     const { flattenItems } = kindFlattenItems({ items });
 
@@ -85,8 +85,8 @@ describe('kindFlattenItems', () => {
         type: ITEM_TYPE.Group,
         label: 'Group',
         items: [
-          { id: 'g1', content: { option: 'G1' } },
-          { id: 'g2', content: { option: 'G2' } },
+          { id: 'g1', content: { label: 'G1' } },
+          { id: 'g2', content: { label: 'G2' } },
         ],
       },
     ];
@@ -98,7 +98,7 @@ describe('kindFlattenItems', () => {
   });
 
   it('builds auto-ids from prefix for items without explicit id', () => {
-    const items: Item[] = [{ content: { option: 'No id' } }];
+    const items: Item[] = [{ content: { label: 'No id' } }];
     const { flattenItems } = kindFlattenItems({ items, prefix: ITEM_PREFIXES.default });
 
     const keys = Object.keys(flattenItems);
@@ -109,8 +109,8 @@ describe('kindFlattenItems', () => {
   // React key должен следовать за item.id, а не за позицией в дереве: иначе при
   // onItemsReorder инстанс Switch/Checkbox остаётся в слоте и анимирует смену checked.
   it('uses stable item id as React key (not positional autoId)', () => {
-    const email: Item = { id: 'email', content: { option: 'Email' }, switch: true };
-    const role: Item = { id: 'role', content: { option: 'Role' }, switch: true };
+    const email: Item = { id: 'email', content: { label: 'Email' }, switch: true };
+    const role: Item = { id: 'role', content: { label: 'Role' }, switch: true };
     const { focusFlattenItems, focusCloseChildIds } = kindFlattenItems({
       items: [email, role],
       prefix: ITEM_PREFIXES.default,
@@ -132,9 +132,9 @@ describe('kindFlattenItems', () => {
 describe('extractActiveItems', () => {
   it('collects enabled items and skips the disabled one', () => {
     const items: Item[] = [
-      { id: 'a', content: { option: 'A' } },
-      { id: 'b', content: { option: 'B' }, disabled: true },
-      { id: 'c', content: { option: 'C' } },
+      { id: 'a', content: { label: 'A' } },
+      { id: 'b', content: { label: 'B' }, disabled: true },
+      { id: 'c', content: { label: 'C' } },
     ];
     const { focusFlattenItems, focusCloseChildIds } = kindFlattenItems({ items });
 
@@ -152,9 +152,9 @@ describe('extractActiveItems', () => {
 
   it('skips an inactive item (drops out of keyboard nav like disabled)', () => {
     const items: Item[] = [
-      { id: 'a', content: { option: 'A' } },
-      { id: 'b', content: { option: 'B' }, inactive: true },
-      { id: 'c', content: { option: 'C' } },
+      { id: 'a', content: { label: 'A' } },
+      { id: 'b', content: { label: 'B' }, inactive: true },
+      { id: 'c', content: { label: 'C' } },
     ];
     const { focusFlattenItems, focusCloseChildIds } = kindFlattenItems({ items });
 
@@ -175,8 +175,8 @@ describe('extractActiveItems', () => {
       {
         id: 'grp',
         type: ITEM_TYPE.Collapse,
-        content: { option: 'Group' },
-        items: [{ id: 'child', content: { option: 'Child' } }],
+        content: { label: 'Group' },
+        items: [{ id: 'child', content: { label: 'Child' } }],
       },
     ];
     const { focusFlattenItems, focusCloseChildIds } = kindFlattenItems({ items });

@@ -17,16 +17,16 @@ const playgroundItems: Item[] = [
   {
     id: 'overview',
     beforeContent: <HomeSVG />,
-    content: { option: 'Overview', description: 'Сводка по проекту', caption: '⌘O' },
+    content: { label: 'Overview', description: 'Сводка по проекту', caption: '⌘O' },
   },
-  { id: 'analytics', beforeContent: <FileSVG />, content: { option: 'Analytics', description: 'Метрики и отчёты' } },
+  { id: 'analytics', beforeContent: <FileSVG />, content: { label: 'Analytics', description: 'Метрики и отчёты' } },
   {
     id: 'resources',
     type: 'collapse',
-    content: { option: 'Resources' },
+    content: { label: 'Resources' },
     items: [
-      { id: 'servers', content: { option: 'Servers' } },
-      { id: 'databases', content: { option: 'Databases' } },
+      { id: 'servers', content: { label: 'Servers' } },
+      { id: 'databases', content: { label: 'Databases' } },
     ],
   },
   {
@@ -34,26 +34,26 @@ const playgroundItems: Item[] = [
     label: 'Workspace',
     groupVariant: 'subtitle',
     items: [
-      { id: 'billing', beforeContent: <StarSVG />, content: { option: 'Billing', caption: 'Pro' } },
-      { id: 'members', content: { option: 'Members', description: '12 человек' } },
-      { id: 'notifications', switch: true, content: { option: 'Notifications' } },
+      { id: 'billing', beforeContent: <StarSVG />, content: { label: 'Billing', caption: 'Pro' } },
+      { id: 'members', content: { label: 'Members', description: '12 человек' } },
+      { id: 'notifications', switch: true, content: { label: 'Notifications' } },
     ],
   },
   {
     id: 'settings',
     type: 'next-list',
     beforeContent: <SettingsSVG />,
-    content: { option: 'Settings' },
+    content: { label: 'Settings' },
     items: [
-      { id: 's-general', content: { option: 'General' } },
+      { id: 's-general', content: { label: 'General' } },
       {
         id: 's-advanced',
         type: 'next-list',
         beforeContent: <FolderSVG />,
-        content: { option: 'Advanced' },
+        content: { label: 'Advanced' },
         items: [
-          { id: 's-flags', content: { option: 'Feature flags' } },
-          { id: 's-tokens', content: { option: 'API tokens' } },
+          { id: 's-flags', content: { label: 'Feature flags' } },
+          { id: 's-tokens', content: { label: 'API tokens' } },
         ],
       },
     ],
@@ -63,7 +63,7 @@ const playgroundItems: Item[] = [
 // Виртуализация рендерит только viewport — нужна большая коллекция, иначе эффект не виден.
 const virtualizedItems: Item[] = Array.from({ length: 10000 }, (_, i) => ({
   id: `item-${i}`,
-  content: { option: `Item ${i + 1}` },
+  content: { label: `Item ${i + 1}` },
 }));
 
 type StoryProps = DroplistProps & {
@@ -84,14 +84,14 @@ function buildSelection(mode?: StorySelection): DroplistProps['selection'] {
   return undefined;
 }
 
-/** Текст айтема (`option`) или `label` группы — для рекурсивного фильтра поиска. */
+/** Текст айтема (`label`) или `label` группы — для рекурсивного фильтра поиска. */
 function itemText(item: Item): string {
   if ('label' in item && item.label) {
     return String(item.label);
   }
   const content = 'content' in item ? item.content : undefined;
-  if (content && typeof content === 'object' && 'option' in content) {
-    return String((content as { option: string | number }).option);
+  if (content && typeof content === 'object' && 'label' in content) {
+    return String((content as { label: string | number }).label);
   }
   return '';
 }

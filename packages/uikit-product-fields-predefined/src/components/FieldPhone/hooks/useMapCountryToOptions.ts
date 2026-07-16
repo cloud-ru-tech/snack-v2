@@ -12,7 +12,7 @@ export function useMapCountryToOptions() {
       id,
       mask,
       content: {
-        option: t(`FieldPhone.${id}`),
+        label: t(`FieldPhone.${id}`),
         caption,
       },
       beforeContent: createElement(icon, { size: FLAG_ICON_SIZE }),

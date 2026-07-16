@@ -254,8 +254,8 @@ export function WithActions() {
   const [lastItemAction, setLastItemAction] = useState<string>('');
 
   const nodeActions = (node: TreeNodeProps) => [
-    { id: 'rename', content: { option: `Rename ${node.id}` }, onClick: () => setLastItemAction(`rename ${node.id}`) },
-    { id: 'delete', content: { option: 'Delete' }, onClick: () => setLastItemAction(`delete ${node.id}`) },
+    { id: 'rename', content: { label: `Rename ${node.id}` }, onClick: () => setLastItemAction(`rename ${node.id}`) },
+    { id: 'delete', content: { label: 'Delete' }, onClick: () => setLastItemAction(`delete ${node.id}`) },
   ];
 
   return (

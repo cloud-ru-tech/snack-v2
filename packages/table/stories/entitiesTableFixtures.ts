@@ -136,12 +136,12 @@ export const entitiesColumnDefinitions: ColumnDefinition<StoryEntity>[] = [
     actionsGenerator: cell => [
       {
         id: 'open',
-        content: { option: `Open ${cell.row.original.name}` },
+        content: { label: `Open ${cell.row.original.name}` },
         onClick: noop,
       },
       {
         id: 'edit',
-        content: { option: `Edit ${cell.row.original.name}` },
+        content: { label: `Edit ${cell.row.original.name}` },
         onClick: noop,
       },
     ],

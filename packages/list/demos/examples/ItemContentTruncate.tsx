@@ -11,11 +11,11 @@ export function ItemContentTruncate() {
           {
             id: 'truncated',
             content: {
-              option: 'very-long-instance-name-that-overflows.example.internal',
+              label: 'very-long-instance-name-that-overflows.example.internal',
               caption: '8',
               description:
                 'Длинное описание ресурса, которое не помещается в одну строку и обрезается по заданному числу строк',
-              truncate: { option: 1, description: 2, variant: 'middle' },
+              truncate: { label: 1, description: 2, variant: 'middle' },
             },
           },
         ]}

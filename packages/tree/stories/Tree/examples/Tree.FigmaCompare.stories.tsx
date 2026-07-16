@@ -37,9 +37,9 @@ const FIGMA_TREE: TreeNodeProps[] = [
 const INITIAL_EXPANDED = ['l0-1', 'l1-1', 'l2-1', 'l3-selected', 'l4-1', 'l5-1', 'l6-1'];
 
 const rowActions = () => [
-  { id: 'edit', content: { option: 'Edit' }, onClick: () => undefined },
-  { id: 'rename', content: { option: 'Rename' }, onClick: () => undefined },
-  { id: 'delete', content: { option: 'Delete' }, onClick: () => undefined },
+  { id: 'edit', content: { label: 'Edit' }, onClick: () => undefined },
+  { id: 'rename', content: { label: 'Rename' }, onClick: () => undefined },
+  { id: 'delete', content: { label: 'Delete' }, onClick: () => undefined },
 ];
 
 type SharedProps = {

@@ -21,7 +21,7 @@ export function PeriodDropdown({ period, onPeriodChanged = () => {}, periodOptio
     .filter(item => item !== period)
     .map(item => ({
       id: item,
-      content: { option: formatPeriod(item) },
+      content: { label: formatPeriod(item) },
       onClick: () => onPeriodChanged(item),
       'data-test-id': PERIOD_OPTION_TEST_IDS[item],
     }));

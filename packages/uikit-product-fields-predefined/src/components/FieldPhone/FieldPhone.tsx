@@ -72,7 +72,7 @@ export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function
   const filteredOptions = useMemo(() => {
     if (dropdownSearch.length) {
       return options.filter(opt =>
-        [opt.content.option, opt.content.caption].some(val =>
+        [opt.content.label, opt.content.caption].some(val =>
           String(val).toLowerCase().includes(dropdownSearch.toLowerCase()),
         ),
       );
@@ -86,7 +86,7 @@ export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function
       filteredOptions.map(opt => ({
         id: opt.id,
         beforeContent: opt.beforeContent,
-        content: { option: opt.content.option, caption: opt.content.caption },
+        content: { label: opt.content.label, caption: opt.content.caption },
       })),
     [filteredOptions],
   );

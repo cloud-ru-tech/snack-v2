@@ -44,7 +44,7 @@ function renderItem(item: WidgetActionListEntry, index: number, close: () => voi
       appearance='neutral'
       size='s'
       icon={item.beforeContent}
-      label={item.content.option}
+      label={item.content.label}
       disabled={item.disabled}
       fullWidth
       onClick={(event: MouseEvent<HTMLButtonElement>) => {

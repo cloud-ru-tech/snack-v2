@@ -18,7 +18,7 @@ export function mapBulkActionToDroplistItem(action: BulkAction, index: number) {
 
   return {
     id: getBulkActionKey(action, index),
-    content: { option: label },
+    content: { label },
     beforeContent: <Icon />,
     onClick,
     disabled,

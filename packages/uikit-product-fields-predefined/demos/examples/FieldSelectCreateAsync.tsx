@@ -19,7 +19,7 @@ export function FieldSelectCreateAsync() {
         entityName={{ single: 'Окружение', plural: 'Окружения' }}
         selectProps={{
           label: 'Окружение',
-          items: [{ id: '1', content: { option: 'Production' } }],
+          items: [{ id: '1', content: { label: 'Production' } }],
           value,
           onChange: setValue,
           loading,

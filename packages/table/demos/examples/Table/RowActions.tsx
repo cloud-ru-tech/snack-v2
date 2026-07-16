@@ -36,7 +36,7 @@ export function RowActions() {
 
           return [
             {
-              content: { option: user.status === 'blocked' ? 'Активировать' : 'Заблокировать' },
+              content: { label: user.status === 'blocked' ? 'Активировать' : 'Заблокировать' },
               onClick: () =>
                 setUsers(prev =>
                   prev.map(item =>
@@ -45,7 +45,7 @@ export function RowActions() {
                 ),
             },
             {
-              content: { option: 'Удалить' },
+              content: { label: 'Удалить' },
               onClick: () => setUsers(prev => prev.filter(item => item.id !== user.id)),
             },
           ];

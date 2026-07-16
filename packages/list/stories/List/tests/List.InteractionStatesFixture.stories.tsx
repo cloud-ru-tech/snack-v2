@@ -15,7 +15,7 @@ import styles from '../stories.module.scss';
 const items: Item[] = [
   {
     id: 'x',
-    content: { option: 'Content text', description: 'Description text', caption: 'Caption' },
+    content: { label: 'Content text', description: 'Description text', caption: 'Caption' },
   },
 ];
 
@@ -24,7 +24,7 @@ const items: Item[] = [
 const multipleItems: Item[] = [
   {
     id: 'y',
-    content: { option: 'Content text', description: 'Description text', caption: 'Caption' },
+    content: { label: 'Content text', description: 'Description text', caption: 'Caption' },
   },
 ];
 

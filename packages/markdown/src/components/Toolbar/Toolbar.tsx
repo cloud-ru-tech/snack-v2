@@ -99,7 +99,7 @@ export function Toolbar({ api, items }: ToolbarProps) {
       { type: 'group', content: '', divider: true },
       {
         content: {
-          option: t('table.customize'),
+          label: t('table.customize'),
           className: styles.tableCustomizeOption,
         },
         onClick: openCustomize,
@@ -208,7 +208,7 @@ export function Toolbar({ api, items }: ToolbarProps) {
     const base = {
       id,
       beforeContent: spec?.icon,
-      content: { option: t(spec.nameKey), caption: spec.hotkey },
+      content: { label: t(spec.nameKey), caption: spec.hotkey },
       onClick: () => handleMoreSelect(id),
       'data-test-id': toolbarButtonTestId(id),
     };
@@ -227,7 +227,7 @@ export function Toolbar({ api, items }: ToolbarProps) {
       {
         ...base,
         beforeContent: spec.icon,
-        content: { option: t(spec.nameKey), caption: spec.hotkey },
+        content: { label: t(spec.nameKey), caption: spec.hotkey },
         checked: api.isActive(id),
       },
     ];

@@ -735,15 +735,15 @@ import { useState } from 'react';
 
 export function FieldSelectCreateBasic() {
   const [items, setItems] = useState([
-    { id: '1', content: { option: 'Production' } },
-    { id: '2', content: { option: 'Staging' } },
+    { id: '1', content: { label: 'Production' } },
+    { id: '2', content: { label: 'Staging' } },
   ]);
   const [value, setValue] = useState<ItemId>();
   const [name, setName] = useState('');
 
   const submitHandler = () => {
     const id = String(items.length + 1);
-    setItems(prev => [...prev, { id, content: { option: name.trim() || `Окружение ${id}` } }]);
+    setItems(prev => [...prev, { id, content: { label: name.trim() || `Окружение ${id}` } }]);
     setName('');
     return Promise.resolve(id);
   };
@@ -790,7 +790,7 @@ export function FieldSelectCreateAsync() {
         entityName={{ single: 'Окружение', plural: 'Окружения' }}
         selectProps={{
           label: 'Окружение',
-          items: [{ id: '1', content: { option: 'Production' } }],
+          items: [{ id: '1', content: { label: 'Production' } }],
           value,
           onChange: setValue,
           loading,
@@ -817,15 +817,15 @@ import { useState } from 'react';
 
 export function FieldSelectCreateModal() {
   const [items, setItems] = useState([
-    { id: '1', content: { option: 'Production' } },
-    { id: '2', content: { option: 'Staging' } },
+    { id: '1', content: { label: 'Production' } },
+    { id: '2', content: { label: 'Staging' } },
   ]);
   const [value, setValue] = useState<ItemId>();
   const [name, setName] = useState('');
 
   const submitHandler = () => {
     const id = String(items.length + 1);
-    setItems(prev => [...prev, { id, content: { option: name.trim() || `Окружение ${id}` } }]);
+    setItems(prev => [...prev, { id, content: { label: name.trim() || `Окружение ${id}` } }]);
     setName('');
     return Promise.resolve(id);
   };

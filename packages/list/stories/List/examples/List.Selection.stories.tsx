@@ -22,25 +22,25 @@ const items: Item[] = [
   {
     id: 'overview',
     beforeContent: <HomeSVG />,
-    content: { option: 'Overview', description: 'Summary of the project', caption: '12 items' },
+    content: { label: 'Overview', description: 'Summary of the project', caption: '12 items' },
     afterContent: <ChevronRightSVG />,
   },
   {
     id: 'analytics',
     beforeContent: <FileSVG />,
-    content: { option: 'Analytics', description: 'Usage metrics', caption: 'Today' },
+    content: { label: 'Analytics', description: 'Usage metrics', caption: 'Today' },
     afterContent: <ChevronRightSVG />,
   },
   {
     id: 'billing',
     beforeContent: <StarSVG />,
-    content: { option: 'Billing', description: 'Invoices and payments', caption: '₽ 1 240' },
+    content: { label: 'Billing', description: 'Invoices and payments', caption: '₽ 1 240' },
     afterContent: <ChevronRightSVG />,
   },
   {
     id: 'settings',
     beforeContent: <SettingsSVG />,
-    content: { option: 'Settings', description: 'Workspace preferences' },
+    content: { label: 'Settings', description: 'Workspace preferences' },
     afterContent: <ChevronRightSVG />,
   },
 ];

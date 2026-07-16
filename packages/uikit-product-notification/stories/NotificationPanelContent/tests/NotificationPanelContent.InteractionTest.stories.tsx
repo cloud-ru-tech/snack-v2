@@ -18,8 +18,8 @@ const meta: Meta<typeof NotificationPanelContent> = {
     settings: {
       button: { onClick: fn() },
       actions: [
-        { content: { option: 'Настройки' }, onClick: fn() },
-        { content: { option: 'Архив' }, onClick: fn() },
+        { content: { label: 'Настройки' }, onClick: fn() },
+        { content: { label: 'Архив' }, onClick: fn() },
       ],
     },
     segments: {

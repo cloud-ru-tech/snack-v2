@@ -49,8 +49,8 @@ const meta: Meta<typeof NotificationCard> = {
       options: ['preset'],
       mapping: {
         preset: [
-          { content: { option: 'Прочитано' }, onClick: fn() },
-          { content: { option: 'Удалить' }, onClick: fn() },
+          { content: { label: 'Прочитано' }, onClick: fn() },
+          { content: { label: 'Удалить' }, onClick: fn() },
         ],
       },
     },

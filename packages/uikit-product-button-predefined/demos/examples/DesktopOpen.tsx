@@ -12,7 +12,7 @@ export function DesktopOpen() {
 
   const items = periods.map(option => ({
     id: option.id,
-    content: { option: option.label },
+    content: { label: option.label },
     onClick: () => setPeriod(option),
   }));
 

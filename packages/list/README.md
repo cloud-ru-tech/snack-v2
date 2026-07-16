@@ -40,7 +40,7 @@ import '@ds/list/style.css'
 - ****List**** — основной компонент. Принимает `items` (+ `pinTop` / `pinBottom` / `footer`), управляет выбором через `selection`, раскрытием групп через `collapse`, поиском через `search`. Поддерживает виртуализацию для 1000+ элементов.
 - ****Droplist**** — тот же список в popover. Оборачивает `children`-триггер и открывает список рядом с ним. Передаёт почти все пропсы `List`.
 - ****ReorderableList**** — список с drag&drop-переупорядочиванием строк через `@dnd-kit` (плюс `ReorderableDroplist` — то же в поповере).
-- ****ItemContent**** — каноничная разметка содержимого item: `option` (заголовок), `caption` (мета справа), `description` (подпись снизу). Используется как значение `item.content`.
+- ****ItemContent**** — каноничная разметка содержимого item: `label` (заголовок), `caption` (мета справа), `description` (подпись снизу). Используется как значение `item.content`.
 
 ## Общие принципы
 
@@ -105,7 +105,7 @@ Visual signal: marker (вертикальная полоса) + фоновая �
 
 Один элемент = одна строка данных. Слоты:
 
-- `option` — заголовок (обязателен).
+- `label` — заголовок (обязателен).
 - `caption` — мета справа (счётчик, дата, badge).
 - `description` — подпись под заголовком (1–2 строки).
 - `beforeContent` — иконка / аватар слева.
@@ -137,10 +137,10 @@ export function BasicList() {
       <List
         size='s'
         items={[
-          { id: 'inbox', content: { option: 'Входящие', caption: '12' } },
-          { id: 'sent', content: { option: 'Отправленные' } },
-          { id: 'archive', content: { option: 'Архив', caption: '238' } },
-          { id: 'trash', content: { option: 'Корзина', description: 'Удаляется через 30 дней' } },
+          { id: 'inbox', content: { label: 'Входящие', caption: '12' } },
+          { id: 'sent', content: { label: 'Отправленные' } },
+          { id: 'archive', content: { label: 'Архив', caption: '238' } },
+          { id: 'trash', content: { label: 'Корзина', description: 'Удаляется через 30 дней' } },
         ]}
       />
     </div>
@@ -168,10 +168,10 @@ export function SingleSelection() {
         marker
         selection={{ mode: 'single', value, onChange: setValue }}
         items={[
-          { id: 'usd', content: { option: 'Доллар США', caption: 'USD' } },
-          { id: 'eur', content: { option: 'Евро', caption: 'EUR' } },
-          { id: 'rub', content: { option: 'Российский рубль', caption: 'RUB' } },
-          { id: 'cny', content: { option: 'Китайский юань', caption: 'CNY' } },
+          { id: 'usd', content: { label: 'Доллар США', caption: 'USD' } },
+          { id: 'eur', content: { label: 'Евро', caption: 'EUR' } },
+          { id: 'rub', content: { label: 'Российский рубль', caption: 'RUB' } },
+          { id: 'cny', content: { label: 'Китайский юань', caption: 'CNY' } },
         ]}
       />
     </div>
@@ -198,10 +198,10 @@ export function MultipleSelection() {
         size='s'
         selection={{ mode: 'multiple', value, onChange: setValue }}
         items={[
-          { id: 'email', content: { option: 'Email' } },
-          { id: 'push', content: { option: 'Push-уведомления' } },
-          { id: 'sms', content: { option: 'SMS' } },
-          { id: 'telegram', content: { option: 'Telegram', description: 'Требует привязки аккаунта' } },
+          { id: 'email', content: { label: 'Email' } },
+          { id: 'push', content: { label: 'Push-уведомления' } },
+          { id: 'sms', content: { label: 'SMS' } },
+          { id: 'telegram', content: { label: 'Telegram', description: 'Требует привязки аккаунта' } },
         ]}
       />
     </div>
@@ -228,21 +228,21 @@ export function GroupsCollapsible() {
           {
             type: 'collapse',
             id: 'projects',
-            content: { option: 'Проекты' },
+            content: { label: 'Проекты' },
             items: [
-              { id: 'p-web', content: { option: 'Web-портал' } },
-              { id: 'p-mobile', content: { option: 'Mobile' } },
-              { id: 'p-admin', content: { option: 'Admin' } },
+              { id: 'p-web', content: { label: 'Web-портал' } },
+              { id: 'p-mobile', content: { label: 'Mobile' } },
+              { id: 'p-admin', content: { label: 'Admin' } },
             ],
           },
           {
             type: 'collapse',
             id: 'settings',
-            content: { option: 'Настройки' },
+            content: { label: 'Настройки' },
             items: [
-              { id: 's-profile', content: { option: 'Профиль' } },
-              { id: 's-team', content: { option: 'Команда' } },
-              { id: 's-billing', content: { option: 'Оплата' } },
+              { id: 's-profile', content: { label: 'Профиль' } },
+              { id: 's-team', content: { label: 'Команда' } },
+              { id: 's-billing', content: { label: 'Оплата' } },
             ],
           },
         ]}
@@ -271,24 +271,24 @@ export function NestedLevels() {
           {
             type: 'collapse',
             id: 'catalog',
-            content: { option: 'Каталог' },
+            content: { label: 'Каталог' },
             items: [
               {
                 type: 'collapse',
                 id: 'catalog/books',
-                content: { option: 'Книги' },
+                content: { label: 'Книги' },
                 items: [
-                  { id: 'catalog/books/fiction', content: { option: 'Художественные' } },
-                  { id: 'catalog/books/science', content: { option: 'Научные' } },
+                  { id: 'catalog/books/fiction', content: { label: 'Художественные' } },
+                  { id: 'catalog/books/science', content: { label: 'Научные' } },
                 ],
               },
               {
                 type: 'collapse',
                 id: 'catalog/music',
-                content: { option: 'Музыка' },
+                content: { label: 'Музыка' },
                 items: [
-                  { id: 'catalog/music/rock', content: { option: 'Рок' } },
-                  { id: 'catalog/music/jazz', content: { option: 'Джаз' } },
+                  { id: 'catalog/music/rock', content: { label: 'Рок' } },
+                  { id: 'catalog/music/jazz', content: { label: 'Джаз' } },
                 ],
               },
             ],
@@ -332,7 +332,7 @@ export function WithSearch() {
     () =>
       ALL.filter(name => name.toLowerCase().includes(query.toLowerCase())).map(name => ({
         id: name,
-        content: { option: name },
+        content: { label: name },
       })),
     [query],
   );
@@ -360,16 +360,16 @@ export function PinnedItems() {
       <List
         size='s'
         pinTop={[
-          { id: 'all', content: { option: 'Все задачи', caption: '128' } },
-          { id: 'mine', content: { option: 'Мои задачи', caption: '14' } },
+          { id: 'all', content: { label: 'Все задачи', caption: '128' } },
+          { id: 'mine', content: { label: 'Мои задачи', caption: '14' } },
         ]}
         items={[
-          { id: 'design', content: { option: 'Дизайн' } },
-          { id: 'backend', content: { option: 'Бэкенд' } },
-          { id: 'frontend', content: { option: 'Фронтенд' } },
-          { id: 'qa', content: { option: 'QA' } },
+          { id: 'design', content: { label: 'Дизайн' } },
+          { id: 'backend', content: { label: 'Бэкенд' } },
+          { id: 'frontend', content: { label: 'Фронтенд' } },
+          { id: 'qa', content: { label: 'QA' } },
         ]}
-        pinBottom={[{ id: 'archive', content: { option: 'Архив', description: 'Завершённые задачи' } }]}
+        pinBottom={[{ id: 'archive', content: { label: 'Архив', description: 'Завершённые задачи' } }]}
       />
     </div>
   );
@@ -394,7 +394,7 @@ export function Virtualized() {
     () =>
       Array.from({ length: TOTAL }, (_, i) => ({
         id: `row-${i}`,
-        content: { option: `Запись #${i + 1}`, caption: i % 5 === 0 ? 'new' : undefined },
+        content: { label: `Запись #${i + 1}`, caption: i % 5 === 0 ? 'new' : undefined },
       })),
     [],
   );
@@ -437,7 +437,7 @@ import styles from './styles.module.scss';
 export function EmptyState() {
   const [query, setQuery] = useState('qwerty');
 
-  const items = query.length > 3 ? [] : [{ id: 'a', content: { option: 'Пример результата' } }];
+  const items = query.length > 3 ? [] : [{ id: 'a', content: { label: 'Пример результата' } }];
 
   return (
     <div className={styles.box}>
@@ -482,17 +482,17 @@ export function ListItemWrap() {
         items={[
           {
             id: 'prod',
-            content: { option: 'Production', caption: 'open' },
+            content: { label: 'Production', caption: 'open' },
             itemWrapRender: asExternalLink('https://console.cloud.ru/prod'),
           },
           {
             id: 'staging',
-            content: { option: 'Staging', caption: 'open' },
+            content: { label: 'Staging', caption: 'open' },
             itemWrapRender: asExternalLink('https://console.cloud.ru/staging'),
           },
           {
             id: 'legacy',
-            content: { option: 'Legacy', description: 'Среда выведена из эксплуатации — недоступна для перехода' },
+            content: { label: 'Legacy', description: 'Среда выведена из эксплуатации — недоступна для перехода' },
             inactive: true,
           },
         ]}
@@ -671,10 +671,10 @@ export function BasicDroplist() {
         closeDroplistOnItemClick
         selection={{ mode: 'single', value, onChange: setValue }}
         items={[
-          { id: 'usd', content: { option: 'USD — Доллар США' } },
-          { id: 'eur', content: { option: 'EUR — Евро' } },
-          { id: 'rub', content: { option: 'RUB — Российский рубль' } },
-          { id: 'cny', content: { option: 'CNY — Китайский юань' } },
+          { id: 'usd', content: { label: 'USD — Доллар США' } },
+          { id: 'eur', content: { label: 'EUR — Евро' } },
+          { id: 'rub', content: { label: 'RUB — Российский рубль' } },
+          { id: 'cny', content: { label: 'CNY — Китайский юань' } },
         ]}
       >
         <Button size='s' appearance='neutral' view='outline' label={`Валюта: ${String(value).toUpperCase()}`} />
@@ -705,10 +705,10 @@ export function DroplistMultiple() {
         placement='bottom-start'
         selection={{ mode: 'multiple', value, onChange: setValue }}
         items={[
-          { id: 'email', content: { option: 'Email' } },
-          { id: 'push', content: { option: 'Push-уведомления' } },
-          { id: 'sms', content: { option: 'SMS' } },
-          { id: 'telegram', content: { option: 'Telegram' } },
+          { id: 'email', content: { label: 'Email' } },
+          { id: 'push', content: { label: 'Push-уведомления' } },
+          { id: 'sms', content: { label: 'SMS' } },
+          { id: 'telegram', content: { label: 'Telegram' } },
         ]}
       >
         <Button size='s' appearance='neutral' view='outline' label={`Каналы: ${value.length}`} />
@@ -752,7 +752,7 @@ export function DroplistWithSearch() {
     () =>
       COUNTRIES.filter(name => name.toLowerCase().includes(query.toLowerCase())).map(name => ({
         id: name,
-        content: { option: name },
+        content: { label: name },
       })),
     [query],
   );
@@ -789,12 +789,12 @@ export function DroplistAsFormSelect() {
   const [value, setValue] = useState<string | number | undefined>('m');
 
   const options = [
-    { id: 's', content: { option: 'Small (1 vCPU, 2 GB RAM)' } },
-    { id: 'm', content: { option: 'Medium (2 vCPU, 4 GB RAM)' } },
-    { id: 'l', content: { option: 'Large (4 vCPU, 8 GB RAM)' } },
-    { id: 'xl', content: { option: 'X-Large (8 vCPU, 16 GB RAM)' } },
+    { id: 's', content: { label: 'Small (1 vCPU, 2 GB RAM)' } },
+    { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB RAM)' } },
+    { id: 'l', content: { label: 'Large (4 vCPU, 8 GB RAM)' } },
+    { id: 'xl', content: { label: 'X-Large (8 vCPU, 16 GB RAM)' } },
   ];
-  const label = options.find(o => o.id === value)?.content.option ?? 'Выбрать';
+  const label = options.find(o => o.id === value)?.content.label ?? 'Выбрать';
 
   return (
     <div className={styles.formSelect}>
@@ -839,10 +839,10 @@ export function DroplistWithHeader() {
         footer='4 варианта сортировки'
         footerDivider
         items={[
-          { id: 'relevance', content: { option: 'Релевантности' } },
-          { id: 'date', content: { option: 'Дате создания' } },
-          { id: 'name', content: { option: 'Имени' } },
-          { id: 'size', content: { option: 'Размеру' } },
+          { id: 'relevance', content: { label: 'Релевантности' } },
+          { id: 'date', content: { label: 'Дате создания' } },
+          { id: 'name', content: { label: 'Имени' } },
+          { id: 'size', content: { label: 'Размеру' } },
         ]}
       >
         <Button size='s' appearance='neutral' view='outline' label='Сортировка' />
@@ -971,7 +971,7 @@ export function DroplistWithHeader() {
 | `data-test-id` | `string \| undefined` | — |  |
 | `description` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — |  |
-| `option` | `string \| number` | — |  |
+| `label` | `string \| number` | — |  |
 | `truncate` | `TruncateProps` | — |  |
 
 - `ItemId` = `string | number`
@@ -1115,10 +1115,10 @@ export function MobileDroplist() {
           closeDroplistOnItemClick
           selection={{ mode: 'single', value, onChange: setValue }}
           items={[
-            { id: 'usd', content: { option: 'USD — Доллар США' } },
-            { id: 'eur', content: { option: 'EUR — Евро' } },
-            { id: 'rub', content: { option: 'RUB — Российский рубль' } },
-            { id: 'cny', content: { option: 'CNY — Китайский юань' } },
+            { id: 'usd', content: { label: 'USD — Доллар США' } },
+            { id: 'eur', content: { label: 'EUR — Евро' } },
+            { id: 'rub', content: { label: 'RUB — Российский рубль' } },
+            { id: 'cny', content: { label: 'CNY — Китайский юань' } },
           ]}
         >
           <Button size='s' appearance='neutral' view='outline' label={`Валюта: ${String(value).toUpperCase()}`} />
@@ -1133,9 +1133,9 @@ export function MobileDroplist() {
 
 ## ItemContent
 
-Каноничная разметка содержимого элемента списка — option / caption / description с единым truncate-поведением.
+Каноничная разметка содержимого элемента списка — label / caption / description с единым truncate-поведением.
 
-`ItemContent` — каноничная разметка основного контента item'а: заголовок (`option`), мета справа (`caption`), подпись снизу (`description`). Используется как значение поля `item.content`, а также экспортируется отдельно для кастомного рендеринга внутри `contentRender`.
+`ItemContent` — каноничная разметка основного контента item'а: заголовок (`label`), мета справа (`caption`), подпись снизу (`description`). Используется как значение поля `item.content`, а также экспортируется отдельно для кастомного рендеринга внутри `contentRender`.
 
 ### Когда использовать
 
@@ -1152,7 +1152,7 @@ export function MobileDroplist() {
 
 #### Slots
 
-- `option` *(required)* — заголовок item'а (имя файла, название валюты, email-адрес).
+- `label` *(required)* — заголовок item'а (имя файла, название валюты, email-адрес).
 - `caption` — короткая мета справа (счётчик, дата, badge, shortcut).
 - `description` — подпись под заголовком (хвост описания, короткая справка, секундный статус).
 
@@ -1171,8 +1171,8 @@ export function MobileDroplist() {
 
 #### Truncate
 
-- Дефолт: `option` — 1 строка, `description` — 2 строки, вариант обрезки — `end` (многоточие в конце).
-- Переопределяется через `truncate.option`, `truncate.description`, `truncate.variant` (`end` / `middle`).
+- Дефолт: `label` — 1 строка, `description` — 2 строки, вариант обрезки — `end` (многоточие в конце).
+- Переопределяется через `truncate.label`, `truncate.description`, `truncate.variant` (`end` / `middle`).
 
 ### Примеры использования
 
@@ -1180,7 +1180,7 @@ export function MobileDroplist() {
 
 #### content как объект
 
-item.content = { option, caption, description } — List оборачивает в ItemContent сам.
+item.content = { label, caption, description } — List оборачивает в ItemContent сам.
 
 ```tsx
 import { List } from '@ds/list';
@@ -1193,10 +1193,10 @@ export function BasicList() {
       <List
         size='s'
         items={[
-          { id: 'inbox', content: { option: 'Входящие', caption: '12' } },
-          { id: 'sent', content: { option: 'Отправленные' } },
-          { id: 'archive', content: { option: 'Архив', caption: '238' } },
-          { id: 'trash', content: { option: 'Корзина', description: 'Удаляется через 30 дней' } },
+          { id: 'inbox', content: { label: 'Входящие', caption: '12' } },
+          { id: 'sent', content: { label: 'Отправленные' } },
+          { id: 'archive', content: { label: 'Архив', caption: '238' } },
+          { id: 'trash', content: { label: 'Корзина', description: 'Удаляется через 30 дней' } },
         ]}
       />
     </div>
@@ -1223,13 +1223,13 @@ export function ItemContentSlots() {
           {
             id: 'reports',
             beforeContent: <FolderSVG />,
-            content: { option: 'Отчёты', caption: '24' },
+            content: { label: 'Отчёты', caption: '24' },
             afterContent: <StarSVG />,
           },
           {
             id: 'invoice',
             beforeContent: <FileSVG />,
-            content: { option: 'invoice-2024.pdf', caption: '1.2 МБ' },
+            content: { label: 'invoice-2024.pdf', caption: '1.2 МБ' },
           },
         ]}
       />
@@ -1240,7 +1240,7 @@ export function ItemContentSlots() {
 
 #### Заголовок, caption и description вместе
 
-option + caption (мета справа) + description (подпись снизу) в одном item.
+label + caption (мета справа) + description (подпись снизу) в одном item.
 
 ```tsx
 import { List } from '@ds/list';
@@ -1256,7 +1256,7 @@ export function ItemContentDescription() {
           {
             id: 'eu-west',
             content: {
-              option: 'eu-west-1',
+              label: 'eu-west-1',
               caption: 'Доступно',
               description: 'Ирландия — основной регион размещения',
             },
@@ -1264,7 +1264,7 @@ export function ItemContentDescription() {
           {
             id: 'us-east',
             content: {
-              option: 'us-east-1',
+              label: 'us-east-1',
               caption: 'Деградация',
               description: 'Северная Виргиния — повышенная задержка отклика',
             },
@@ -1278,7 +1278,7 @@ export function ItemContentDescription() {
 
 #### Обрезка текста (truncate)
 
-truncate.option/description задают число строк, variant — место многоточия (end/middle). В узком контейнере длинный текст обрезается.
+truncate.label/description задают число строк, variant — место многоточия (end/middle). В узком контейнере длинный текст обрезается.
 
 ```tsx
 import { List } from '@ds/list';
@@ -1294,11 +1294,11 @@ export function ItemContentTruncate() {
           {
             id: 'truncated',
             content: {
-              option: 'very-long-instance-name-that-overflows.example.internal',
+              label: 'very-long-instance-name-that-overflows.example.internal',
               caption: '8',
               description:
                 'Длинное описание ресурса, которое не помещается в одну строку и обрезается по заданному числу строк',
-              truncate: { option: 1, description: 2, variant: 'middle' },
+              truncate: { label: 1, description: 2, variant: 'middle' },
             },
           },
         ]}
@@ -1321,7 +1321,7 @@ export function ItemContentTruncate() {
 | `data-test-id` | `string` | — |  |
 | `description` | `string` | — |  |
 | `disabled` | `boolean` | — |  |
-| `option` | `string \| number` | — |  |
+| `label` | `string \| number` | — |  |
 | `truncate` | `TruncateProps` | — |  |
 
 ##### Related types
@@ -1331,7 +1331,7 @@ export function ItemContentTruncate() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `description` | `number \| undefined` | — |  |
-| `option` | `number \| undefined` | — |  |
+| `label` | `number \| undefined` | — |  |
 | `variant` | `"end"` \| `"middle"` | — |  |
 
 ### Storybook
@@ -1340,7 +1340,7 @@ export function ItemContentTruncate() {
 
 ### Доступность
 
-- `option` остаётся текстовым заголовком — ассистивные технологии прочитают его как основное имя элемента.
+- `label` остаётся текстовым заголовком — ассистивные технологии прочитают его как основное имя элемента.
 - `caption` и `description` находятся в том же DOM-узле и читаются следом за заголовком.
 - Визуальные truncate-поведения реализованы через CSS `-webkit-line-clamp`, текст не вырезается из DOM и остаётся доступен скринридеру целиком.
 - Disabled-элементы получают уменьшенный контраст + `data-disabled`, но цвет не единственный сигнал: интерактивность выключается и на уровне родительского item'а.
@@ -1354,10 +1354,10 @@ import { useState } from 'react';
 import styles from './styles.module.scss';
 
 const INITIAL_ITEMS: SimpleItem[] = [
-  { id: 'inbox', content: { option: 'Входящие', caption: '12' } },
-  { id: 'sent', content: { option: 'Отправленные' } },
-  { id: 'archive', content: { option: 'Архив', caption: '238' } },
-  { id: 'trash', content: { option: 'Корзина', description: 'Удаляется через 30 дней' } },
+  { id: 'inbox', content: { label: 'Входящие', caption: '12' } },
+  { id: 'sent', content: { label: 'Отправленные' } },
+  { id: 'archive', content: { label: 'Архив', caption: '238' } },
+  { id: 'trash', content: { label: 'Корзина', description: 'Удаляется через 30 дней' } },
 ];
 
 export function ListReorder() {

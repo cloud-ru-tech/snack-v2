@@ -7,9 +7,9 @@ import { CardCustom } from '@ds/uikit-product-card-predefined';
 import { DEMO_CARD_IMAGE_ALT, DEMO_CARD_IMAGE_SRC } from '../../constants';
 
 const FUNCTION_BADGE_OPTIONS = [
-  { content: { option: 'Option 1' } },
-  { content: { option: 'Option 2' } },
-  { content: { option: 'Option 3' }, tagLabel: 'Tag' },
+  { content: { label: 'Option 1' } },
+  { content: { label: 'Option 2' } },
+  { content: { label: 'Option 3' }, tagLabel: 'Tag' },
 ];
 
 export function Basic() {

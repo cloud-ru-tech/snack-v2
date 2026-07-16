@@ -20,7 +20,7 @@ import { BaseChipProps, Size } from '../../types';
 export type AnyType = any;
 
 /** Пропсы, которые прокидываются в кастомный рендер контента опции */
-export type ContentRenderProps = Omit<ItemContentProps, 'option' | 'disabled'>;
+export type ContentRenderProps = Omit<ItemContentProps, 'label' | 'disabled'>;
 
 export type Range = [Date, Date];
 
