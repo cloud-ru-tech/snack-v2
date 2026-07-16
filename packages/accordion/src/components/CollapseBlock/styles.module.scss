@@ -110,6 +110,7 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   display: flex;
   flex: 1 0 0;
   align-items: center;
+  min-width: 0;
 }
 
 .chevronWrapper {
