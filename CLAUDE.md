@@ -18,6 +18,8 @@
 
 **Действуют всегда (любая правка):** [dont-do-that](.claude/rules/dont-do-that.md) (запреты, безопасность) · [writing-style](.claude/rules/writing-style.md) (любой текст для людей) · [complexity-tiers](.claude/rules/complexity-tiers.md) (объём артефактов = поверхность API, «Критерий обоснованности»).
 
+**Именование пропсов:** заводишь/переименовываешь публичный проп — сверься с каноном [`prop-naming`](.claude/skills/prop-naming.md) (роль слота → имя: `label`/`title`/`content`/`caption`/`hint`/`subtitle`, item shape `{ label, value }`, `loading` не `isLoading`, `selectionMode` `single`/`multiple`, `shape` `rounded`/`square`).
+
 **Финальный gate перед MR:** [`pre-mr-audit`](.claude/skills/pre-mr-audit.md) — греп-скан легаси-нитов A–L + консолидированные чек-листы по доменам (раньше дублировались в теле каждого рула).
 
 Запуск команд — селективно по одному пакету (см. [fast-build-commands](.claude/rules/fast-build-commands.md)); полные прогоны только перед PR.

@@ -143,6 +143,7 @@ export * from './<Name>'
 
 ## Связанное
 
+- [prop-naming](../skills/prop-naming.md) — **канон имён пропсов** (какое имя дать семантическому слоту: `label`/`title`/`content`/`caption`/`hint`/`subtitle`, item shape `{ label, value }`, `loading` не `isLoading`). Этот файл — про механику типов, prop-naming — про выбор имени.
 - [constants/types/utils split — stories-standard.md](./stories-standard.md) (структура stories под эти API).
 - [imports-exports.md](./imports-exports.md) — форма импорта/экспорта.
 - [react-types.md](./react-types.md) — типы из `'react'`.

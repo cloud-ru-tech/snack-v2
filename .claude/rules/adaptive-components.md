@@ -41,7 +41,7 @@ export function X(props: XProps) {
 ```
 
 - Общее тело (контент/состояния) выносится в отдельный helper-компонент и переиспользуется обеими поверхностями (`helperComponents/XBody/XBody.tsx`).
-- Mobile-поверхность портальных компонентов = `@ds/bottom-sheet` (`BottomSheet`/`BottomSheetCustom`). Слоты компонента маппятся на API sheet'а (заголовок → `title`, подсказка → `slotAfterHeadline`, контент → `content`, футер → `footer`, разделители → `withDividers` и т.п.). Триггер (`children`) клонируется для открытия; controlled `open`/`onOpenChange` поддерживаются через `useValueControl`.
+- Mobile-поверхность портальных компонентов = `@ds/bottom-sheet` (`BottomSheet`/`BottomSheetCustom`). Слоты компонента маппятся на API sheet'а (заголовок → `title`, подсказка → `slotAfterTitle`, контент → `content`, футер → `footer`, разделители → `withDividers` и т.п.). Триггер (`children`) клонируется для открытия; controlled `open`/`onOpenChange` поддерживаются через `useValueControl`.
 - Для композитов база экспортирует **точку потребления** — адаптивный компонент целиком либо резолвер-хук поверхности (`useAdaptive<X>Custom`-style, возвращает `XCustom | BottomSheetCustom`).
 
 ## Класс 2 — preset-defaults
