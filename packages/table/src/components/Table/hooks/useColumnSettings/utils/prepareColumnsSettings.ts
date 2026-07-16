@@ -14,7 +14,7 @@ type PrepareColumnsSettingsProps<TData extends object> = {
 
 /**
  * Отвечает за создание списка колонок в настройках с учётом порядка и всех групп.
- * Неактивные колонки (`mode: hidden` / без `columnSettings`) — disabled + checked.
+ * Неактивные колонки (`mode: locked` / без `columnSettings`) — disabled + checked.
  */
 export function prepareColumnsSettings<TData extends object>({
   pinnedGroups,

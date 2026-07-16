@@ -6,7 +6,7 @@ import { ColumnDefinition } from '../../../../../types';
  */
 export function isColumnEnabledInitially<TData extends object>(colDef: ColumnDefinition<TData>): boolean {
   if ('columnSettings' in colDef && colDef.columnSettings !== undefined) {
-    return colDef.columnSettings?.mode !== 'defaultFalse';
+    return colDef.columnSettings?.mode !== 'defaultHidden';
   }
 
   return true;

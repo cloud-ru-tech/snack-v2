@@ -13,10 +13,10 @@ export function isColumnVisibilityConfigurable<TData extends object>(colDef: Col
     }
 
     switch (mode) {
-      case 'hidden':
+      case 'locked':
         return false;
-      case 'defaultTrue':
-      case 'defaultFalse':
+      case 'defaultVisible':
+      case 'defaultHidden':
       default:
         return true;
     }

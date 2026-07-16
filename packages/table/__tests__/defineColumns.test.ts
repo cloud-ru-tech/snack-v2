@@ -44,7 +44,7 @@ describe('defineColumns', () => {
   it('applies hidden column settings', () => {
     const [column] = defineColumns<Row>([{ key: 'name', header: 'Имя', hidden: true }]);
 
-    expect(column.columnSettings).toEqual({ label: 'Имя', mode: COLUMN_SETTINGS_MODE.DefaultFalse });
+    expect(column.columnSettings).toEqual({ label: 'Имя', mode: COLUMN_SETTINGS_MODE.DefaultHidden });
   });
 
   it('uses escape hatch column definition', () => {

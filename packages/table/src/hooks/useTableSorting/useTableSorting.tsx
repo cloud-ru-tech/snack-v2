@@ -54,7 +54,7 @@ export function useTableSorting<TData extends object>({
     const hidden = new Set<string>();
 
     columnDefMap.forEach((colDef, columnId) => {
-      if ((colDef as { columnSettings?: { mode?: string } }).columnSettings?.mode === 'hidden') {
+      if ((colDef as { columnSettings?: { mode?: string } }).columnSettings?.mode === 'locked') {
         hidden.add(columnId);
       }
     });

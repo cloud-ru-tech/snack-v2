@@ -11,10 +11,12 @@ export const COLUMN_ALIGN = {
 } as const;
 
 export const COLUMN_SETTINGS_MODE = {
-  /* В меню disabled (свитч нельзя выключить), колонка всегда видима */
-  Hidden: 'hidden',
-  DefaultTrue: 'defaultTrue',
-  DefaultFalse: 'defaultFalse',
+  /** В меню настроек `Switch` заблокирован, колонка всегда видима */
+  Locked: 'locked',
+  /** В меню, по умолчанию включена */
+  DefaultVisible: 'defaultVisible',
+  /** В меню, по умолчанию выключена */
+  DefaultHidden: 'defaultHidden',
 } as const;
 
 export const SORT_FN = {

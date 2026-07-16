@@ -25,7 +25,7 @@ describe('isColumnsSettingsMenuItem', () => {
     expect(
       isColumnsSettingsMenuItem<Row>({
         accessorKey: 'amount',
-        columnSettings: { mode: COLUMN_SETTINGS_MODE.Hidden },
+        columnSettings: { mode: COLUMN_SETTINGS_MODE.Locked },
       }),
     ).toBe(true);
   });
@@ -56,7 +56,7 @@ describe('createColumnsSettingsOption', () => {
     expect(
       createColumnsSettingsOption<Row>({
         accessorKey: 'amount',
-        columnSettings: { label: 'Balance', mode: COLUMN_SETTINGS_MODE.Hidden },
+        columnSettings: { label: 'Balance', mode: COLUMN_SETTINGS_MODE.Locked },
       }),
     ).toMatchObject({ id: 'amount', disabled: true, checked: true });
 

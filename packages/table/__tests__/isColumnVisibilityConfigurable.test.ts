@@ -22,22 +22,22 @@ describe('isColumnVisibilityConfigurable', () => {
     expect(
       isColumnVisibilityConfigurable<Row>({
         accessorKey: 'name',
-        columnSettings: { mode: COLUMN_SETTINGS_MODE.Hidden },
+        columnSettings: { mode: COLUMN_SETTINGS_MODE.Locked },
       }),
     ).toBe(false);
   });
 
-  it('returns true for defaultTrue and defaultFalse modes', () => {
+  it('returns true for defaultVisible and defaultHidden modes', () => {
     expect(
       isColumnVisibilityConfigurable<Row>({
         accessorKey: 'name',
-        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultTrue },
+        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultVisible },
       }),
     ).toBe(true);
     expect(
       isColumnVisibilityConfigurable<Row>({
         accessorKey: 'name',
-        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultFalse },
+        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultHidden },
       }),
     ).toBe(true);
   });

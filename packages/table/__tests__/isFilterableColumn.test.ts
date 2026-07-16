@@ -28,16 +28,16 @@ describe('isFilterableColumn', () => {
 
   it('returns false for hidden mode', () => {
     expect(
-      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.Hidden } }),
+      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.Locked } }),
     ).toBe(false);
   });
 
-  it('returns true for defaultTrue and defaultFalse modes', () => {
+  it('returns true for defaultVisible and defaultHidden modes', () => {
     expect(
-      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultTrue } }),
+      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultVisible } }),
     ).toBe(true);
     expect(
-      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultFalse } }),
+      isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultHidden } }),
     ).toBe(true);
   });
 

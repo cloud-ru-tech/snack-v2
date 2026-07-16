@@ -26,8 +26,8 @@ const LOCAL_STORAGE_KEY = 'tbl-column-settings';
 
 const configurableColumns: ColumnDefinition<Row>[] = [
   { accessorKey: 'name', columnSettings: { label: 'Name' } },
-  { accessorKey: 'age', columnSettings: { label: 'Age', mode: COLUMN_SETTINGS_MODE.DefaultFalse } },
-  { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.DefaultTrue } },
+  { accessorKey: 'age', columnSettings: { label: 'Age', mode: COLUMN_SETTINGS_MODE.DefaultHidden } },
+  { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.DefaultVisible } },
 ];
 
 const savedState: SavedState = { id: 'tbl', columnSettings: true };
@@ -53,7 +53,7 @@ afterEach(() => {
 });
 
 describe('getEnabledColumnsInitialState', () => {
-  it('returns initially enabled columns outside the browser (defaultFalse excluded)', () => {
+  it('returns initially enabled columns outside the browser (defaultHidden excluded)', () => {
     expect(getEnabledColumnsInitialState(configurableColumns, savedState, LOCAL_STORAGE_KEY)).toEqual([
       'name',
       'status',

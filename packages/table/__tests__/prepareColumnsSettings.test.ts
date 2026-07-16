@@ -46,8 +46,8 @@ const pinnedGroups: PinnedGroupsState<Row> = {
   ],
   unpinned: [
     { accessorKey: 'name', header: 'Name', columnSettings: { label: 'Name' } },
-    // mode: hidden — в меню есть, но disabled + checked.
-    { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Hidden } },
+    // mode: locked — в меню есть, но disabled + checked.
+    { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Locked } },
     { accessorKey: 'age', columnSettings: { label: 'Age' } },
     // Без columnSettings — в меню есть, disabled + checked, label из header.
     { accessorKey: 'createdAt', header: 'Created' },

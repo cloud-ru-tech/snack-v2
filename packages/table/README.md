@@ -256,9 +256,9 @@ Bulk-бар в тулбаре (чекбокс «выбрать все» и сч�
 
 Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`):
 
-- `hidden` — колонка есть в меню, но строка disabled (всегда видима, свитч нельзя выключить).
-- `defaultTrue` — в меню, по умолчанию включена.
-- `defaultFalse` — в меню, по умолчанию выключена.
+- `locked` — колонка есть в меню, но строка disabled (всегда видима, свитч нельзя выключить).
+- `defaultVisible` — в меню, по умолчанию включена.
+- `defaultHidden` — в меню, по умолчанию выключена.
 
 `columnSettings.label` — название колонки в меню настроек. Колонки без `columnSettings` тоже показываются в меню (disabled, label из `header`); исключение — служебные `selection` / `rowActions`.
 
@@ -705,7 +705,7 @@ const columns: ColumnDefinition<User>[] = [
     accessorKey: 'name',
     header: 'Имя',
     size: 200,
-    columnSettings: { label: 'Имя', mode: COLUMN_SETTINGS_MODE.Hidden },
+    columnSettings: { label: 'Имя', mode: COLUMN_SETTINGS_MODE.Locked },
   },
   { accessorKey: 'email', header: 'Email', size: 240, columnSettings: { label: 'Email' } },
   { accessorKey: 'role', header: 'Роль', size: 140, columnSettings: { label: 'Роль' } },
@@ -714,7 +714,7 @@ const columns: ColumnDefinition<User>[] = [
     accessorKey: 'createdAt',
     header: 'Создан',
     size: 160,
-    columnSettings: { label: 'Дата создания', mode: COLUMN_SETTINGS_MODE.DefaultFalse },
+    columnSettings: { label: 'Дата создания', mode: COLUMN_SETTINGS_MODE.DefaultHidden },
   },
 ];
 

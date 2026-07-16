@@ -22,7 +22,7 @@ const columns: ColumnDefinition<User>[] = [
     accessorKey: 'name',
     header: 'Имя',
     size: 200,
-    columnSettings: { label: 'Имя', mode: COLUMN_SETTINGS_MODE.Hidden },
+    columnSettings: { label: 'Имя', mode: COLUMN_SETTINGS_MODE.Locked },
   },
   { accessorKey: 'email', header: 'Email', size: 240, columnSettings: { label: 'Email' } },
   { accessorKey: 'role', header: 'Роль', size: 140, columnSettings: { label: 'Роль' } },
@@ -31,7 +31,7 @@ const columns: ColumnDefinition<User>[] = [
     accessorKey: 'createdAt',
     header: 'Создан',
     size: 160,
-    columnSettings: { label: 'Дата создания', mode: COLUMN_SETTINGS_MODE.DefaultFalse },
+    columnSettings: { label: 'Дата создания', mode: COLUMN_SETTINGS_MODE.DefaultHidden },
   },
 ];
 

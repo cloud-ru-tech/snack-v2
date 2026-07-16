@@ -19,25 +19,25 @@ describe('isColumnEnabledInitially', () => {
     expect(isColumnEnabledInitially<Row>({ accessorKey: 'name', columnSettings: {} })).toBe(true);
   });
 
-  it('returns true for defaultTrue and hidden modes', () => {
-    const defaultTrue: ColumnDefinition<Row> = {
+  it('returns true for defaultVisible and locked modes', () => {
+    const defaultVisible: ColumnDefinition<Row> = {
       accessorKey: 'name',
-      columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultTrue },
+      columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultVisible },
     };
     const hidden: ColumnDefinition<Row> = {
       accessorKey: 'name',
-      columnSettings: { mode: COLUMN_SETTINGS_MODE.Hidden },
+      columnSettings: { mode: COLUMN_SETTINGS_MODE.Locked },
     };
 
-    expect(isColumnEnabledInitially(defaultTrue)).toBe(true);
+    expect(isColumnEnabledInitially(defaultVisible)).toBe(true);
     expect(isColumnEnabledInitially(hidden)).toBe(true);
   });
 
-  it('returns false only for defaultFalse mode', () => {
+  it('returns false only for defaultHidden mode', () => {
     expect(
       isColumnEnabledInitially<Row>({
         accessorKey: 'name',
-        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultFalse },
+        columnSettings: { mode: COLUMN_SETTINGS_MODE.DefaultHidden },
       }),
     ).toBe(false);
   });

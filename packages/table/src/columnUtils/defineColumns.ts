@@ -55,7 +55,7 @@ export function defineColumns<T extends object>(defs: SimpleColumnDef<T>[]): Col
       ...(def.align ? { align: def.align, headerAlign: def.align } : {}),
       ...(def.resizable ? { enableResizing: true } : {}),
       columnSettings: def.hidden
-        ? { label: def.header, mode: COLUMN_SETTINGS_MODE.DefaultFalse }
+        ? { label: def.header, mode: COLUMN_SETTINGS_MODE.DefaultHidden }
         : { label: def.header },
     } as ColumnDefinition<T>;
 

@@ -10,6 +10,6 @@ export function isFilterableColumn<TData extends object>(
   return (
     ('id' in colDef || 'accessorKey' in colDef) &&
     'columnSettings' in colDef &&
-    colDef.columnSettings?.mode !== 'hidden'
+    colDef.columnSettings?.mode !== 'locked'
   );
 }

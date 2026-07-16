@@ -24,7 +24,7 @@ const pinnedGroups: PinnedGroupsState<Row> = {
   ],
   unpinned: [
     { accessorKey: 'name', columnSettings: { label: 'Name' } },
-    { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Hidden } },
+    { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Locked } },
     { accessorKey: 'age', columnSettings: { label: 'Age' } },
     { accessorKey: 'createdAt', header: 'Created' },
   ],
