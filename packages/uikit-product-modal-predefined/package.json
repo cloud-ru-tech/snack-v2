@@ -42,6 +42,7 @@
     "@ds/modal": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/skeleton": "workspace:^",
+    "@ds/tooltip": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/uikit-product-copy": "workspace:^",
     "@ds/utils": "workspace:^",

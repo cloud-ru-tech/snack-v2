@@ -1,5 +1,6 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { ModalCustom, WIDTH } from '@ds/modal';
+import { QuestionTooltip } from '@ds/tooltip';
 import { useRef } from 'react';
 
 import { TEST_IDS } from '../../constants';
@@ -58,7 +59,11 @@ export function RecallModal({
       {...rest}
     >
       <div className={styles.safeAreaTop} />
-      <ModalCustom.Header title={t('recallModal.title')} subtitle={subtitle} slotAfterHeadline={titleTooltip} />
+      <ModalCustom.Header
+        title={t('recallModal.title')}
+        subtitle={subtitle}
+        slotAfterHeadline={titleTooltip ? <QuestionTooltip size='s' tip={titleTooltip} /> : undefined}
+      />
       <ModalCustom.Body
         className={styles.body}
         content={

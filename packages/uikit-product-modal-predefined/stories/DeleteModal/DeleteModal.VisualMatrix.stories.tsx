@@ -48,6 +48,7 @@ function VisualMatrixCanvas() {
           onClose={close}
           objectType='виртуальную машину'
           description='После удаления восстановить объект будет невозможно.'
+          titleTooltip='Удаление затронет все связанные ресурсы'
           confirmable={isConfirmable}
           confirmText={isConfirmable ? 'vm-production-01' : undefined}
           confirmTextVariant={active === 'confirmableText' ? CONFIRM_TEXT_VARIANT.Text : CONFIRM_TEXT_VARIANT.Name}

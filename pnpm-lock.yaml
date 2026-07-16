@@ -2764,6 +2764,9 @@ importers:
       '@ds/skeleton':
         specifier: workspace:^
         version: link:../skeleton
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography

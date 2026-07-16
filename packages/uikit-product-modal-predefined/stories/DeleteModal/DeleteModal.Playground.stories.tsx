@@ -43,7 +43,7 @@ const meta: Meta<DeleteModalProps> = {
   component: DeleteModal,
   parameters: { layout: 'fullscreen' },
   args: {
-    objectType: 'виртуальную машину',
+    objectType: 'виртуальной машины',
     description: 'После удаления восстановить объект будет невозможно.',
     subtitle: 'Действие необратимо',
     titleTooltip: 'Удаление затронет все связанные ресурсы',
