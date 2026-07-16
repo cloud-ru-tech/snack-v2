@@ -15,8 +15,8 @@ type TriggerProps = { onClick?(event: MouseEvent<HTMLElement>): void };
 export function MobileDropdown({
   children,
   content,
-  headline,
-  headlineHint,
+  title,
+  slotAfterHeadline,
   search,
   footer,
   headerDivider,
@@ -66,8 +66,8 @@ export function MobileDropdown({
       <BottomSheet
         open={open ?? false}
         onClose={handleClose}
-        title={headline}
-        slotAfterHeadline={headlineHint}
+        title={title}
+        slotAfterHeadline={slotAfterHeadline}
         subHeadline={search}
         withDividers={Boolean(headerDivider || footerDivider)}
         footer={footer}

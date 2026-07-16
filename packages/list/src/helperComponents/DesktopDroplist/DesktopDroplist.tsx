@@ -279,7 +279,7 @@ export function DesktopDroplist({
                   </div>
                 }
                 bodyPadding={false}
-                headline={header}
+                title={header}
                 // Divider под topBar рисуется, если явно запрошен header'ом либо когда в topBar
                 // есть поиск: строка поиска визуально отделяется от тела списка (как в PinTopGroupItem
                 // у inline-List). @ds/dropdown рисует один divider на весь topBar (headline + search).

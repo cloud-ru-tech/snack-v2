@@ -114,8 +114,6 @@ export function NotFound() {
 | `footer` | `ReactNode` | — | Слот футера (bottomBar) |
 | `footerDivider` | `boolean` | — | Divider между body и футером |
 | `headerDivider` | `boolean` | — | Divider между шапкой и body |
-| `headline` | `ReactNode` | — | Заголовок в шапке (topBar) |
-| `headlineHint` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |
 | `offset` | `number` | `0` | Отступ поповера от его триггер-элемента (в пикселях). |
@@ -124,8 +122,10 @@ export function NotFound() {
 | `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `search` | `ReactNode` | — | Слот поиска в шапке (topBar) |
+| `slotAfterHeadline` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
 | `state` | `ActionButtonProps` \| `BlockProps` \| `BlockPropsWithIcon` \| `DropdownState` | — | Состояние |
 | `stopPropagation` | `StopPropagationHandlers` | `{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }` | Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`). <br/> По умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите <br/> `onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`. |
+| `title` | `ReactNode` | — | Заголовок в шапке (topBar) |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerClickByKeys` | `boolean` | `true` | Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`) |
@@ -194,7 +194,7 @@ export function NotFound() {
 | `placement`, `widthStrategy`, `offset`, `fallbackPlacements` | используется | игнорируется |
 | `hoverDelayOpen`, `hoverDelayClose`, `closeOnEscapeKey`, `triggerClickByKeys`, `outsideClick` | используется | игнорируется |
 | `disableSpanWrapper`, `triggerClassName`, `triggerRef`, `container` | используется | игнорируется |
-| `content`, `headline`, `headlineHint`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
+| `content`, `title`, `slotAfterHeadline`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
 | `state`, `open`, `onOpenChange`, `closeOnPopstate`, `className` | используется | используется |
 
 На mobile портал `BottomSheet` берётся из `@ds/portal-context`, поэтому `container` не действует.

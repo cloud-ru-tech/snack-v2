@@ -368,7 +368,7 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
         onOpenChange={handleOpenChange}
         headerDivider={mobile}
         footerDivider={mobile}
-        headline={
+        title={
           mobile ? (
             <span className={styles.sheetTitle} data-test-id={TEST_IDS.fieldColorSheetTitle}>
               {(draft || '').toUpperCase()}

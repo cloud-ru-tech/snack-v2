@@ -65,16 +65,6 @@
         "required": false,
         "description": "Divider между шапкой и body"
       },
-      "headline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Заголовок в шапке (topBar)"
-      },
-      "headlineHint": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
-      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -131,6 +121,11 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
       "state": {
         "type": "DropdownState",
         "required": false,
@@ -141,6 +136,11 @@
         "required": false,
         "defaultValue": "{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }",
         "description": "Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`).\nПо умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите\n`onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
       },
       "trigger": {
         "type": "enum",
@@ -260,16 +260,6 @@
         "required": false,
         "description": "Divider между шапкой и body"
       },
-      "headline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Заголовок в шапке (topBar)"
-      },
-      "headlineHint": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
-      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -332,6 +322,11 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
       "state": {
         "type": "DropdownState",
         "required": false,
@@ -351,6 +346,11 @@
         "typeRefs": [
           "StopPropagationHandlers"
         ]
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
       },
       "trigger": {
         "type": "enum",
@@ -680,16 +680,6 @@
         "required": false,
         "description": "Divider между шапкой и body"
       },
-      "headline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Заголовок в шапке (topBar)"
-      },
-      "headlineHint": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
-      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -746,6 +736,11 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
+      "slotAfterHeadline": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
       "state": {
         "type": "DropdownState",
         "required": false,
@@ -756,6 +751,11 @@
         "required": false,
         "defaultValue": "{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }",
         "description": "Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`).\nПо умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите\n`onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`."
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок в шапке (topBar)"
       },
       "trigger": {
         "type": "enum",

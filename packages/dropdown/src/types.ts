@@ -30,7 +30,7 @@ export type DropdownState =
  * `placement`, `widthStrategy`, `offset`, `fallbackPlacements`, `hoverDelayOpen`, `hoverDelayClose`,
  * `closeOnEscapeKey`, `triggerClickByKeys`, `outsideClick`, `disableSpanWrapper`, `triggerClassName`,
  * `triggerRef`, `container` (на mobile портал берётся из `@ds/portal-context`), `stopPropagation`.
- * Кросс-платформенные: `content`, `headline`, `headlineHint`, `search`, `footer`, `headerDivider`,
+ * Кросс-платформенные: `content`, `title`, `slotAfterHeadline`, `search`, `footer`, `headerDivider`,
  * `footerDivider`, `state`, `open`, `onOpenChange`, `closeOnPopstate`, `className`, `bodyPadding`.
  */
 export type DropdownProps = WithSupportProps<
@@ -38,9 +38,9 @@ export type DropdownProps = WithSupportProps<
     /** Содержимое внутри поповера (body) */
     content: ReactNode;
     /** Заголовок в шапке (topBar) */
-    headline?: ReactNode;
+    title?: ReactNode;
     /** Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) */
-    headlineHint?: ReactNode;
+    slotAfterHeadline?: ReactNode;
     /** Слот поиска в шапке (topBar) */
     search?: ReactNode;
     /** Слот футера (bottomBar) */
