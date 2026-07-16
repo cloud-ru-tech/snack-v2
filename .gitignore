@@ -104,3 +104,7 @@ playwright/coverage/.stories.json
 # Vitest JUnit report (@cloud-ru/ft-config-vitest)
 /reports/
 
+
+# props-refactoring: регенерируемые снапшоты аудита пропсов (pnpm aggregate:props / analyze:props)
+# Якорь к корню: иначе паттерн матчит и tooling в scripts/props-refactoring/.
+/props-refactoring/
