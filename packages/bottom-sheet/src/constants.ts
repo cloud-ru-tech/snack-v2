@@ -48,7 +48,7 @@ export const NO_DRAG_ATTRIBUTE = 'data-bottom-sheet-no-drag';
  *   Figma `topBar`               → код `header` / `onBackButtonClick`
  *   Figma `bottomBar`            → код `footer`
  *   Figma `+ slotMedia`          → код `media`
- *   Figma `+ slotSubHeadline`    → код `subHeadline`
+ *   Figma `+ slotSubHeadline`    → код `subtitle`
  *   Figma `+ slotAfterHeadline`  → код `slotAfterHeadline`
  *   Figma `+ slotBottomBar`      → код `footer` (ReactNode)
  *   Figma `buttonBefore` (48×48) → код auto-back-button по `onBackButtonClick`

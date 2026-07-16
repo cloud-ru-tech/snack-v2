@@ -10,12 +10,12 @@ import styles from './styles.module.scss';
 
 export type SheetHeaderProps = BottomSheetHeaderProps;
 
-/** Header bottom-sheet'а: back-button + headline + slotAfterHeadline + actionButton + subHeadline. */
+/** Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle. */
 export function SheetHeader({
   title,
   titleId,
   slotAfterHeadline,
-  subHeadline,
+  subtitle,
   onBackButtonClick,
   actionButton,
   className,
@@ -64,9 +64,9 @@ export function SheetHeader({
         </div>
       )}
 
-      {subHeadline && (
+      {subtitle && (
         <div className={styles.subHeadlineWrapper} data-test-id={TEST_IDS.subHeadline}>
-          {subHeadline}
+          {subtitle}
         </div>
       )}
     </div>

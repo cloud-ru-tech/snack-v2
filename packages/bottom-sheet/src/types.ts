@@ -60,10 +60,10 @@ export type BottomSheetHeaderProps = WithSupportProps<{
   /** Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). */
   slotAfterHeadline?: ReactNode;
   /**
-   * Slot под headline-строкой во весь блок subHeadlineWrapper —
+   * Slot под title-строкой во весь блок subtitleWrapper —
    * типично `SearchBar`, `SegmentControl` или `Filter`.
    */
-  subHeadline?: ReactNode;
+  subtitle?: ReactNode;
   /**
    * Callback клика на back-кнопку (слева в шапке).
    * Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`.
@@ -181,8 +181,8 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
   title?: ReactNode;
   /** Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. */
   slotAfterHeadline?: ReactNode;
-  /** Slot под headline-строкой — типично `SearchBar`, `SegmentControl`. */
-  subHeadline?: ReactNode;
+  /** Slot под title-строкой — типично `SearchBar`, `SegmentControl`. */
+  subtitle?: ReactNode;
   /**
    * Callback клика на back-кнопку (слева в шапке).
    * Наличие callback'а рендерит ArrowLeft-кнопку.

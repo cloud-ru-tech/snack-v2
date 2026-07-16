@@ -146,7 +146,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -243,15 +243,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -274,7 +269,7 @@
   "MobileModal": {
     "displayName": "MobileModal",
     "propsTypeName": null,
-    "description": "Mobile-поверхность Modal'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(`subtitle→subHeadline`, остальное 1:1). Internal. Desktop-only пропы уходят в `...rest`.",
+    "description": "Mobile-поверхность Modal'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(пропы 1:1). Internal. Desktop-only пропы уходят в `...rest`.",
     "props": {
       "additionalButton": {
         "type": "BottomSheetActionButton",
@@ -396,7 +391,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -562,7 +557,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -1083,15 +1078,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -1157,15 +1147,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",

@@ -35,7 +35,7 @@ function WithSubHeadlineRender() {
         onClose={() => setOpen(false)}
         container={portalRoot.current || undefined}
         title='Filters'
-        subHeadline={<div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl placeholder</div>}
+        subtitle={<div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl placeholder</div>}
         content={<p>SubHeadline располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />

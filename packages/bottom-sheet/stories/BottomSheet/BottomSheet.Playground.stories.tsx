@@ -95,7 +95,7 @@ function PlaygroundRender(args: StoryProps) {
             <span data-test-id={PUBLIC_TEST_IDS.slotAfterHeadline}>NEW</span>
           ) : undefined
         }
-        subHeadline={
+        subtitle={
           showHeader && showSubHeadline ? (
             <div data-test-id={PUBLIC_TEST_IDS.subHeadline}>SearchBar / SegmentControl …</div>
           ) : undefined
@@ -164,7 +164,7 @@ export const Playground: Story = {
     content: { table: { disable: true } },
     actionButton: { table: { disable: true } },
     slotAfterHeadline: { table: { disable: true } },
-    subHeadline: { table: { disable: true } },
+    subtitle: { table: { disable: true } },
     footer: { table: { disable: true } },
     onBackButtonClick: { table: { disable: true } },
     // Пропсы, которыми управляет render (story-toggle / preset / portal context root),

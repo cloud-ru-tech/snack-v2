@@ -6074,7 +6074,7 @@
           "subtitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Подзаголовок под заголовком (на sheet используется `subHeadline`)."
+            "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\n\n\nПодзаголовок под заголовком."
           },
           "title": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",

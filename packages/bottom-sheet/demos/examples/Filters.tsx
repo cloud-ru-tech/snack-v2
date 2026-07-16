@@ -17,7 +17,7 @@ const PERIOD_ITEMS = [
 
 /**
  * Реальный сценарий «Фильтры»: back-кнопка + заголовок с подсказкой, sticky-зона chips
- * над контентом (subHeadline), форма с SegmentControl и переключателями в теле и пара
+ * над контентом (subtitle), форма с SegmentControl и переключателями в теле и пара
  * действий «Применить / Сбросить» в футере.
  */
 export function Filters() {
@@ -36,7 +36,7 @@ export function Filters() {
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
         slotAfterHeadline={<QuestionTooltip tip='Настройте параметры выборки' />}
-        subHeadline={
+        subtitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (
               <Tag

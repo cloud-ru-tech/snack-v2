@@ -20,7 +20,7 @@ const PERIOD_ITEMS = [
 ];
 
 /**
- * Figma-сценарий «Фильтры»: back-кнопка + заголовок с подсказкой, chips в subHeadline,
+ * Figma-сценарий «Фильтры»: back-кнопка + заголовок с подсказкой, chips в subtitle,
  * SegmentControl и переключатели в теле, «Применить / Сбросить» в футере.
  */
 function FiltersRender() {
@@ -35,7 +35,7 @@ function FiltersRender() {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Filters</DemoTitle>
-        <DemoHint>Фильтры: chips в subHeadline, SegmentControl и переключатели в теле, два действия в футере.</DemoHint>
+        <DemoHint>Фильтры: chips в subtitle, SegmentControl и переключатели в теле, два действия в футере.</DemoHint>
         <DemoActions align='center'>
           <Button
             data-test-id={TEST_IDS.triggerOpen}
@@ -54,7 +54,7 @@ function FiltersRender() {
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
         slotAfterHeadline={<QuestionTooltip tip='Настройте параметры выборки' />}
-        subHeadline={
+        subtitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (
               <Tag

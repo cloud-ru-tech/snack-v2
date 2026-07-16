@@ -166,7 +166,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -259,15 +259,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -453,7 +448,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -842,7 +837,7 @@
           "subtitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Подзаголовок под заголовком."
+            "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\n\n\nПодзаголовок под заголовком."
           },
           "swipeEnabled": {
             "type": "boolean | undefined",
@@ -1279,15 +1274,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -1348,15 +1338,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "title": {
         "type": "ReactNode",
@@ -1374,7 +1359,7 @@
   "MobileDrawer": {
     "displayName": "MobileDrawer",
     "propsTypeName": null,
-    "description": "Mobile-поверхность Drawer'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(`subtitle→subHeadline`, `showBlackout→showBackdrop`, остальное 1:1). Internal. Desktop-only пропы\nуходят в `...rest`.",
+    "description": "Mobile-поверхность Drawer'а: контент в `BottomSheet`, слоты маппятся на API sheet'а\n(`subtitle` 1:1, `showBlackout→showBackdrop`, остальное 1:1). Internal. Desktop-only пропы\nуходят в `...rest`.",
     "props": {
       "additionalButton": {
         "type": "BottomSheetActionButton",
@@ -1517,7 +1502,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Подзаголовок под заголовком."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
       },
       "swipeEnabled": {
         "type": "boolean",

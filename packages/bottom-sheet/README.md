@@ -27,7 +27,7 @@ Drag-индикатор 32×4px сверху — визуальная подск
 - `slotAfterHeadline` — slot справа от title (QuestionTooltip, badge).
 - `onBackButtonClick` — авто-рендерит back-кнопку слева.
 - `actionButton` — кастомный slot справа.
-- `subHeadline` — slot под headline-строкой (SearchBar / SegmentControl).
+- `subtitle` — slot под title-строкой (SearchBar / SegmentControl).
 
 ### Media
 - `kind='image'` — full-bleed image, min-height 184px; прижато к шапке (убирает верхний отступ контент-блока). Горизонтальные паддинги body не меняются — для edge-to-edge body передайте `bodyPadding={false}`.
@@ -224,7 +224,7 @@ export function WithSubHeadline() {
         onClose={() => setOpen(false)}
         title='Filters'
         // В продакшене сюда — `@ds/search::SearchBar` или `@ds/segment-control::SegmentControl`.
-        subHeadline={<div>SearchBar / SegmentControl placeholder</div>}
+        subtitle={<div>SearchBar / SegmentControl placeholder</div>}
         content={<p>SubHeadline располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />
@@ -390,7 +390,7 @@ export function Expandable() {
 
 ### Фильтры
 
-Back-кнопка + подсказка, chips в subHeadline, SegmentControl и переключатели, «Применить / Сбросить»
+Back-кнопка + подсказка, chips в subtitle, SegmentControl и переключатели, «Применить / Сбросить»
 
 ```tsx
 import { BottomSheet } from '@ds/bottom-sheet';
@@ -412,7 +412,7 @@ const PERIOD_ITEMS = [
 
 /**
  * Реальный сценарий «Фильтры»: back-кнопка + заголовок с подсказкой, sticky-зона chips
- * над контентом (subHeadline), форма с SegmentControl и переключателями в теле и пара
+ * над контентом (subtitle), форма с SegmentControl и переключателями в теле и пара
  * действий «Применить / Сбросить» в футере.
  */
 export function Filters() {
@@ -431,7 +431,7 @@ export function Filters() {
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
         slotAfterHeadline={<QuestionTooltip tip='Настройте параметры выборки' />}
-        subHeadline={
+        subtitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (
               <Tag
@@ -544,7 +544,7 @@ export function SelectionList() {
 
 ### Picker тегов
 
-Поиск в subHeadline фильтрует сетку тегов; клик переключает выбор
+Поиск в subtitle фильтрует сетку тегов; клик переключает выбор
 
 ```tsx
 import { BottomSheet } from '@ds/bottom-sheet';
@@ -560,7 +560,7 @@ import styles from './styles.module.scss';
 const ALL_TAGS = ['Production', 'Staging', 'Dev', 'Backend', 'Frontend', 'Database', 'Network', 'Critical', 'Billing'];
 
 /**
- * Picker тегов: заголовок с подсказкой, поиск в sticky-зоне (subHeadline) фильтрует список,
+ * Picker тегов: заголовок с подсказкой, поиск в sticky-зоне (subtitle) фильтрует список,
  * сетка тегов в теле переключает выбор по клику, футер подтверждает выбор.
  */
 export function TagPicker() {
@@ -581,7 +581,7 @@ export function TagPicker() {
         onClose={() => setOpen(false)}
         title='Теги'
         slotAfterHeadline={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
-        subHeadline={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
+        subtitle={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
         content={
           <div className={styles.tagGrid}>
             {visible.map(tag => (
@@ -687,7 +687,7 @@ export function NonModal() {
 | `slotAfterHeadline` | `ReactNode` | — | Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. |
 | `snapIndex` | `number` | — | Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е; <br/> swipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен <br/> передать новое значение. |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
-| `subHeadline` | `ReactNode` | — | Slot под headline-строкой — типично `SearchBar`, `SegmentControl`. |
+| `subtitle` | `ReactNode` | — | Slot под title-строкой — типично `SearchBar`, `SegmentControl`. |
 | `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `title` | `ReactNode` | — | Заголовок в шапке. |
 | `withDividers` | `boolean` | `false` | Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а, <br/> чтобы разграничить sticky-header / footer от плывущего контента. |
@@ -772,7 +772,7 @@ export function NonModal() {
 ### Анатомия
 
 #### Header
-Слот `BottomSheetCustom.Header` — `title`, `slotAfterHeadline`, `subHeadline`, `onBackButtonClick`, `actionButton`.
+Слот `BottomSheetCustom.Header` — `title`, `slotAfterHeadline`, `subtitle`, `onBackButtonClick`, `actionButton`.
 
 > **Accessible name.** В отличие от высокоуровневого `BottomSheet`, низкоуровневый `BottomSheetCustom` не связывает `Header.title` с dialog'ом автоматически — задайте имя сами: `aria-label` (или `aria-labelledby` на узел заголовка) прямо на `BottomSheetCustom`. Без него screen reader озвучит просто «dialog».
 

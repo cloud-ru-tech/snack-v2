@@ -11,7 +11,7 @@ import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
 export type ModalHeaderProps = SheetHeaderProps & {
-  /** Подзаголовок под заголовком (на sheet используется `subHeadline`). */
+  /** Подзаголовок под заголовком. */
   subtitle?: ReactNode;
   /** Усечение `title`/`subtitle` (TruncateString). */
   truncate?: {

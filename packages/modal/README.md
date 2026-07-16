@@ -212,7 +212,7 @@ export function Forced() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
 | `slotAfterHeadline` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
-| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком (на sheet используется `subHeadline`). |
+| `subtitle` | `ReactNode` | — | Slot под title-строкой во весь блок subtitleWrapper — <br/> типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Подзаголовок под заголовком. |
 | `title` | `ReactNode` | — | Заголовок (Typography title-l). |
 | `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение `title`/`subtitle` (TruncateString). |
 | `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |

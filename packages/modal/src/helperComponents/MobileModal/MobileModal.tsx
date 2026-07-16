@@ -8,7 +8,7 @@ import { TEST_IDS } from '../../constants';
 
 /**
  * Mobile-поверхность Modal'а: контент в `BottomSheet`, слоты маппятся на API sheet'а
- * (`subtitle→subHeadline`, остальное 1:1). Internal. Desktop-only пропы уходят в `...rest`.
+ * (пропы 1:1). Internal. Desktop-only пропы уходят в `...rest`.
  */
 export function MobileModal({
   open = false,
@@ -48,7 +48,7 @@ export function MobileModal({
       open={open}
       onClose={onClose}
       title={title}
-      subHeadline={subtitle}
+      subtitle={subtitle}
       slotAfterHeadline={slotAfterHeadline}
       onBackButtonClick={onBackButtonClick}
       media={media}

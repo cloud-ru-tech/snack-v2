@@ -18,7 +18,7 @@ const TAG_APPEARANCES = ['neutral', 'primary', 'red', 'orange', 'yellow', 'green
 
 /**
  * Пиксельная сверка с Figma-макетом `sheet` (node 12689-13277, вариант padding=true):
- * handle + topBar (back + headline + QuestionTooltip + actionButton) + Search в subHeadline +
+ * handle + topBar (back + headline + QuestionTooltip + actionButton) + Search в subtitle +
  * tagRow в body + два действия в футере горизонтальным рядом (space-between: secondary слева /
  * primary справа) — как в Figma `bottomBar.buttonGroup`. Лейблы — как в макете («Label text»).
  * Панель Figma рядом со story (`parameters.design`) — для прямого сравнения.
@@ -60,7 +60,7 @@ function FigmaMatchRender() {
             onClick={() => undefined}
           />
         }
-        subHeadline={
+        subtitle={
           <Search
             value=''
             size='s'

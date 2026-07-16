@@ -16,7 +16,7 @@ function isMediaProps(value: BottomSheetMediaProps | ReactNode): value is Bottom
 export function BottomSheet({
   title,
   slotAfterHeadline,
-  subHeadline,
+  subtitle,
   onBackButtonClick,
   actionButton,
   media,
@@ -35,7 +35,7 @@ export function BottomSheet({
   className,
   ...rest
 }: BottomSheetProps) {
-  const hasHeader = Boolean(title || onBackButtonClick || actionButton || slotAfterHeadline || subHeadline);
+  const hasHeader = Boolean(title || onBackButtonClick || actionButton || slotAfterHeadline || subtitle);
   const hasMedia = media != null;
   const hasFullWidthMediaImage = hasMedia && isMediaProps(media) && (media.kind ?? 'image') === 'image';
 
@@ -89,7 +89,7 @@ export function BottomSheet({
               title={title}
               titleId={titleId}
               slotAfterHeadline={slotAfterHeadline}
-              subHeadline={subHeadline}
+              subtitle={subtitle}
               onBackButtonClick={onBackButtonClick}
               actionButton={actionButton}
             />

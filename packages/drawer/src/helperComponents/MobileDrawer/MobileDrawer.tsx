@@ -6,7 +6,7 @@ import { TEST_IDS } from '../../constants';
 
 /**
  * Mobile-поверхность Drawer'а: контент в `BottomSheet`, слоты маппятся на API sheet'а
- * (`subtitle→subHeadline`, `showBlackout→showBackdrop`, остальное 1:1). Internal. Desktop-only пропы
+ * (`subtitle` 1:1, `showBlackout→showBackdrop`, остальное 1:1). Internal. Desktop-only пропы
  * уходят в `...rest`.
  */
 export function MobileDrawer({
@@ -43,7 +43,7 @@ export function MobileDrawer({
       onClose={onClose}
       showBackdrop={showBlackout}
       title={title}
-      subHeadline={subtitle}
+      subtitle={subtitle}
       slotAfterHeadline={slotAfterHeadline}
       onBackButtonClick={onBackButtonClick}
       media={media}

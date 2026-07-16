@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 const ALL_TAGS = ['Production', 'Staging', 'Dev', 'Backend', 'Frontend', 'Database', 'Network', 'Critical', 'Billing'];
 
 /**
- * Picker тегов: заголовок с подсказкой, поиск в sticky-зоне (subHeadline) фильтрует список,
+ * Picker тегов: заголовок с подсказкой, поиск в sticky-зоне (subtitle) фильтрует список,
  * сетка тегов в теле переключает выбор по клику, футер подтверждает выбор.
  */
 export function TagPicker() {
@@ -32,7 +32,7 @@ export function TagPicker() {
         onClose={() => setOpen(false)}
         title='Теги'
         slotAfterHeadline={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
-        subHeadline={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
+        subtitle={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
         content={
           <div className={styles.tagGrid}>
             {visible.map(tag => (

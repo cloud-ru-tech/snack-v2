@@ -167,10 +167,10 @@
           "SnapPoint"
         ]
       },
-      "subHeadline": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под headline-строкой — типично `SearchBar`, `SegmentControl`."
+        "description": "Slot под title-строкой — типично `SearchBar`, `SegmentControl`."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -616,7 +616,7 @@
   "BottomSheetCustom.Header": {
     "displayName": "BottomSheetCustom.Header",
     "propsTypeName": null,
-    "description": "Header bottom-sheet'а: back-button + headline + slotAfterHeadline + actionButton + subHeadline.",
+    "description": "Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -642,10 +642,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
       },
       "title": {
         "type": "ReactNode",
@@ -835,7 +835,7 @@
   "SheetHeader": {
     "displayName": "SheetHeader",
     "propsTypeName": "SheetHeaderProps",
-    "description": "Header bottom-sheet'а: back-button + headline + slotAfterHeadline + actionButton + subHeadline.",
+    "description": "Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -861,10 +861,10 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
-      "subHeadline": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под headline-строкой во весь блок subHeadlineWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
       },
       "title": {
         "type": "ReactNode",

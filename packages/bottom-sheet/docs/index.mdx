@@ -76,7 +76,7 @@ Drag-индикатор 32×4px сверху — визуальная подск
 - `slotAfterHeadline` — slot справа от title (QuestionTooltip, badge).
 - `onBackButtonClick` — авто-рендерит back-кнопку слева.
 - `actionButton` — кастомный slot справа.
-- `subHeadline` — slot под headline-строкой (SearchBar / SegmentControl).
+- `subtitle` — slot под title-строкой (SearchBar / SegmentControl).
 
 ### Media
 - `kind='image'` — full-bleed image, min-height 184px; прижато к шапке (убирает верхний отступ контент-блока). Горизонтальные паддинги body не меняются — для edge-to-edge body передайте `bodyPadding={false}`.
@@ -195,7 +195,7 @@ import { BottomSheet, BottomSheetCustom, TEST_IDS } from '@ds/bottom-sheet'
   <Expandable client:visible />
 </Example>
 
-<Example title='Фильтры' description='Back-кнопка + подсказка, chips в subHeadline, SegmentControl и переключатели, «Применить / Сбросить»' code={FiltersSrc}>
+<Example title='Фильтры' description='Back-кнопка + подсказка, chips в subtitle, SegmentControl и переключатели, «Применить / Сбросить»' code={FiltersSrc}>
   <Filters client:visible />
 </Example>
 
@@ -203,7 +203,7 @@ import { BottomSheet, BottomSheetCustom, TEST_IDS } from '@ds/bottom-sheet'
   <SelectionList client:visible />
 </Example>
 
-<Example title='Picker тегов' description='Поиск в subHeadline фильтрует сетку тегов; клик переключает выбор' code={TagPickerSrc}>
+<Example title='Picker тегов' description='Поиск в subtitle фильтрует сетку тегов; клик переключает выбор' code={TagPickerSrc}>
   <TagPicker client:visible />
 </Example>
 

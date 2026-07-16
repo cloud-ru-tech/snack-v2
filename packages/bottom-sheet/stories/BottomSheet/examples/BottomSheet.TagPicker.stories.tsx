@@ -15,7 +15,7 @@ import { TEST_IDS } from '../testIds';
 const ALL_TAGS = ['Production', 'Staging', 'Dev', 'Backend', 'Frontend', 'Database', 'Network', 'Critical', 'Billing'];
 
 /**
- * Figma-сценарий picker'а тегов: подсказка в шапке, поиск в subHeadline фильтрует сетку тегов,
+ * Figma-сценарий picker'а тегов: подсказка в шапке, поиск в subtitle фильтрует сетку тегов,
  * клик по тегу переключает выбор, футер подтверждает выбор со счётчиком.
  */
 function TagPickerRender() {
@@ -33,7 +33,7 @@ function TagPickerRender() {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>TagPicker</DemoTitle>
-        <DemoHint>Поиск в subHeadline фильтрует сетку тегов; клик переключает выбор.</DemoHint>
+        <DemoHint>Поиск в subtitle фильтрует сетку тегов; клик переключает выбор.</DemoHint>
         <DemoActions align='center'>
           <Button
             data-test-id={TEST_IDS.triggerOpen}
@@ -51,7 +51,7 @@ function TagPickerRender() {
         container={portalRoot.current || undefined}
         title='Теги'
         slotAfterHeadline={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
-        subHeadline={
+        subtitle={
           <Search data-test-id={TEST_IDS.tagPicker.search} value={query} onChange={setQuery} placeholder='Поиск тега' />
         }
         content={

@@ -15,7 +15,7 @@ export function WithSubHeadline() {
         onClose={() => setOpen(false)}
         title='Filters'
         // В продакшене сюда — `@ds/search::SearchBar` или `@ds/segment-control::SegmentControl`.
-        subHeadline={<div>SearchBar / SegmentControl placeholder</div>}
+        subtitle={<div>SearchBar / SegmentControl placeholder</div>}
         content={<p>SubHeadline располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />
