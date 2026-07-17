@@ -17,7 +17,7 @@ type Story = StoryObj<typeof CardService>;
 const emblem = <IconPredefined size='l' icon={PlaceholderSVG} appearance='primary' />;
 const serviceProps = {
   title: 'Облачный сервис',
-  description: 'Платформа для разработчиков с API доступом',
+  content: 'Платформа для разработчиков с API доступом',
   actionLabel: 'Перейти',
   emblem,
 };

@@ -18,7 +18,7 @@ export function RecallModal({
   titleTooltip,
   onRecall,
   loading,
-  description,
+  content,
   confirmable = false,
   confirmText,
   hideConfirmCopyButton,
@@ -68,7 +68,7 @@ export function RecallModal({
         className={styles.body}
         content={
           <div className={styles.content}>
-            {description ?? t('recallModal.description')}
+            {content ?? t('recallModal.content')}
             {shouldShowConfirm && (
               <InputConfirm
                 ref={inputRef}

@@ -27,7 +27,7 @@ export type AlertSharedFieldProps = {
     title?: number;
   };
   /** Описание */
-  description: ReactNode;
+  content: ReactNode;
   /** Колбек закрытия */
   onClose?: () => void;
   /** Внешний вид */
@@ -96,7 +96,7 @@ export function AlertBase(props: AlertBaseProps) {
     icon = true,
     title,
     truncate,
-    description,
+    content,
     onClose,
     appearance = APPEARANCE.Neutral,
     className,
@@ -119,7 +119,7 @@ export function AlertBase(props: AlertBaseProps) {
   const collapse = useAlertCollapse({
     collapsible,
     title,
-    description,
+    content,
     hasFooterActions,
   });
 
@@ -163,7 +163,7 @@ export function AlertBase(props: AlertBaseProps) {
   const descriptionShared = {
     className: styles.description,
     'data-size': size,
-    'data-test-id': testIds.description,
+    'data-test-id': testIds.content,
     ...inlineColorProps,
   };
 
@@ -173,10 +173,10 @@ export function AlertBase(props: AlertBaseProps) {
       {...descriptionShared}
       data-collapsed={titleCollapsed || undefined}
     >
-      {description}
+      {content}
     </div>
   ) : (
-    <div {...descriptionShared}>{description}</div>
+    <div {...descriptionShared}>{content}</div>
   );
 
   const actionsContent = actions && (

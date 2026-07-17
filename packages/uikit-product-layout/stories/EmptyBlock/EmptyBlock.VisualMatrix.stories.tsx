@@ -42,7 +42,7 @@ export const VisualMatrix: Story = {
               <div className={cellClass}>
                 <EmptyBlock
                   title='Title text'
-                  description='Body text'
+                  content='Body text'
                   icon={{ icon: PlaceholderSVG }}
                   footer={withFooter ? footer : undefined}
                 />

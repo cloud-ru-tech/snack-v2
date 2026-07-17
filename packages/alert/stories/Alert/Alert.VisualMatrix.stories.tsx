@@ -52,7 +52,7 @@ export const VisualMatrix: Story = {
                 size={size}
                 align={ALIGN.Horizontal}
                 title={`Alert ${appearance}`}
-                description='Краткое описание'
+                content='Краткое описание'
               />
             </div>
           )),
@@ -72,7 +72,7 @@ export const VisualMatrix: Story = {
                 size='m'
                 align={ALIGN.Vertical}
                 title={`Alert ${appearance}`}
-                description='Краткое описание уведомления, занимающее несколько строк для демонстрации vertical-выравнивания.'
+                content='Краткое описание уведомления, занимающее несколько строк для демонстрации vertical-выравнивания.'
               />
             </div>,
           ],
@@ -93,7 +93,7 @@ export const VisualMatrix: Story = {
                   size='m'
                   align={align}
                   title='With primary action'
-                  description='Краткое описание'
+                  content='Краткое описание'
                   actions={{ primary: { label: 'Принять' } }}
                 />
               </div>
@@ -108,7 +108,7 @@ export const VisualMatrix: Story = {
                   size='m'
                   align={align}
                   title='With actions'
-                  description='Краткое описание'
+                  content='Краткое описание'
                   actions={{
                     primary: { label: 'Принять' },
                     secondary: { label: 'Отклонить' },
@@ -126,7 +126,7 @@ export const VisualMatrix: Story = {
                   size='m'
                   align={align}
                   title='Closable'
-                  description='Краткое описание'
+                  content='Краткое описание'
                   onClose={fn()}
                 />
               </div>
@@ -142,7 +142,7 @@ export const VisualMatrix: Story = {
                   align={align}
                   collapsible
                   title='Collapsible alert with a long title that requires expansion to read fully'
-                  description='Длинное описание уведомления, скрытое до раскрытия в режиме collapsible. Подробности раскрываются по клику на алёрт.'
+                  content='Длинное описание уведомления, скрытое до раскрытия в режиме collapsible. Подробности раскрываются по клику на алёрт.'
                   onClose={fn()}
                 />
               </div>
@@ -165,7 +165,7 @@ export const VisualMatrix: Story = {
                 size='m'
                 align={ALIGN.Horizontal}
                 title={`Alert ${appearance}`}
-                description='Краткое описание'
+                content='Краткое описание'
               />
             </div>
           )),
@@ -185,7 +185,7 @@ export const VisualMatrix: Story = {
                   appearance={APPEARANCE.Info}
                   size='m'
                   title={ADAPTIVE_LONG_TITLE}
-                  description='Краткое описание уведомления.'
+                  content='Краткое описание уведомления.'
                 />
               </div>
             </AdaptiveProvider>,

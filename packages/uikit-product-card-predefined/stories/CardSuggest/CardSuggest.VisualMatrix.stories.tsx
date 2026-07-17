@@ -17,7 +17,7 @@ type Story = StoryObj<typeof CardSuggest>;
 
 const suggestProps = {
   title: 'Подсказка для пользователя',
-  description: 'Краткое описание действия или функциональности',
+  content: 'Краткое описание действия или функциональности',
 };
 
 const longTitle =
@@ -88,12 +88,12 @@ export const VisualMatrix: Story = {
           {
             variantLabel: 'long text',
             cells: [
-              <CardSuggest key='long-default' title={longTitle} description={longDescription} />,
+              <CardSuggest key='long-default' title={longTitle} content={longDescription} />,
               <CardSuggest
                 key='long-truncate'
                 title={longTitle}
-                description={longDescription}
-                truncate={{ title: 2, description: 3 }}
+                content={longDescription}
+                truncate={{ title: 2, content: 3 }}
               />,
             ],
           },

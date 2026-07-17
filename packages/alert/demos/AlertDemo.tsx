@@ -12,7 +12,7 @@ export function AlertDemo() {
       componentDoc={alertDoc.Alert}
       defaultProps={{
         title: 'Alert title',
-        description: 'Alert description text',
+        content: 'Alert description text',
         appearance: 'neutral',
         size: 'm',
         align: 'horizontal',
@@ -22,7 +22,7 @@ export function AlertDemo() {
       }}
       controls={{
         title: { type: 'text' },
-        description: { type: 'text' },
+        content: { type: 'text' },
         appearance: {
           type: 'select',
           options: ['neutral', 'primary', 'info', 'success', 'warning', 'error'],

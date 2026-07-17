@@ -16,7 +16,7 @@ export function EmptyState() {
         items={items}
         dataFiltered
         noResultsState={{
-          description: 'Ничего не нашли. Проверьте раскладку или измените запрос.',
+          content: 'Ничего не нашли. Проверьте раскладку или измените запрос.',
         }}
       />
     </div>

@@ -92,9 +92,9 @@ export function DeleteConfirmable() {
 | `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
 | `confirmTextVariant` | `"name"` \| `"text"` | `name` | Тип текста подтверждения |
 | `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
+| `content` | `ReactNode` | — | Основной текст модалки |
 | `data-test-id` | `string` | — |  |
 | `deleting` | `boolean` | — | Состояние загрузки кнопки удаления |
-| `description` | `ReactNode` | — | Описание |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
 | `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
 | `objectType` | `string` | — | Тип удаляемого объекта, отображается в заголовке |
@@ -169,8 +169,8 @@ export function RecallConfirmable() {
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
 | `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
 | `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
+| `content` | `ReactNode` | — | Основной текст модалки |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Описание |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
 | `loading` | `boolean` | — | Состояние загрузки кнопки отзыва |
 | `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |

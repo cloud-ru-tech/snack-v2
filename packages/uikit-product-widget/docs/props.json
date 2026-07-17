@@ -701,14 +701,14 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
           "footer": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",

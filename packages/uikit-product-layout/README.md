@@ -37,8 +37,6 @@ import '@ds/uikit-product-layout/style.css';
 
 ### EmptyBlock со слотом действий
 
-Слот footer принимает любой контент, например ButtonGroup
-
 ```tsx
 import { ButtonGroup } from '@ds/button';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -49,7 +47,7 @@ export function EmptyBlockWithFooter() {
     <EmptyBlock
       icon={{ icon: PlaceholderSVG }}
       title='Нет данных'
-      description='Создайте первую запись, чтобы начать работу'
+      content='Создайте первую запись, чтобы начать работу'
       footer={<ButtonGroup primaryAction={{ label: 'Создать' }} secondaryAction={{ label: 'Импортировать' }} />}
     />
   );
@@ -57,8 +55,6 @@ export function EmptyBlockWithFooter() {
 ```
 
 ### NoAccess с названием сервиса
-
-Локализованное сообщение и заголовок сервиса сверху
 
 ```tsx
 import { LocaleProvider } from '@ds/locale';
@@ -83,8 +79,8 @@ export function NoAccessBasic() {
 |------|------|---------|-------------|
 | `align` | `"horizontal"` \| `"vertical"` | — | Выравнивание иконки и текста |
 | `className` | `string` | — | Дополнительный класс |
+| `content` | `ReactNode` | — | Описание под заголовком |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Описание под заголовком |
 | `footer` | `ReactNode` | — | Слот действий под текстом (например, `ButtonGroup`) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `layoutPresets` | `EmptyBlockLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `EMPTY_BLOCK_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
@@ -128,10 +124,10 @@ export function NoAccessBasic() {
 import { EmptyBlock } from '@ds/uikit-product-layout'
 
 // Явный проп — задаёт DESKTOP-значение; mobile остаётся vertical
-<EmptyBlock align='horizontal' title='…' description='…' />
+<EmptyBlock align='horizontal' title='…' content='…' />
 
 // Изменить mobile — только через layoutPresets
-<EmptyBlock layoutPresets={{ mobile: { align: 'horizontal' } }} title='…' description='…' />
+<EmptyBlock layoutPresets={{ mobile: { align: 'horizontal' } }} title='…' content='…' />
 ```
 
 ### NoAccess

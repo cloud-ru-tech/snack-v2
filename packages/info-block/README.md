@@ -38,13 +38,11 @@ import { InfoBlock } from '@ds/info-block'
 import { InfoBlock } from '@ds/info-block';
 
 export function Basic() {
-  return <InfoBlock title='Заголовок' description='Короткое описание под заголовком.' />;
+  return <InfoBlock title='Заголовок' content='Короткое описание под заголовком.' />;
 }
 ```
 
 ### Горизонтальное выравнивание
-
-Иконка и текст рядом, а не друг под другом.
 
 ```tsx
 import { InfoBlock } from '@ds/info-block';
@@ -55,7 +53,7 @@ export function Horizontal() {
       align='horizontal'
       size='m'
       title='Горизонтальный вариант'
-      description='Иконка (если есть) и текст располагаются в строку.'
+      content='Иконка (если есть) и текст располагаются в строку.'
     />
   );
 }
@@ -69,9 +67,9 @@ import { InfoBlock } from '@ds/info-block';
 export function Sizes() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <InfoBlock size='s' title='Size S' description='Компактный блок' />
-      <InfoBlock size='m' title='Size M' description='Средний блок' />
-      <InfoBlock size='l' title='Size L' description='Крупный блок для пустых состояний' />
+      <InfoBlock size='s' title='Size S' content='Компактный блок' />
+      <InfoBlock size='m' title='Size M' content='Средний блок' />
+      <InfoBlock size='l' title='Size L' content='Крупный блок для пустых состояний' />
     </div>
   );
 }
@@ -89,7 +87,7 @@ export function WithIcon() {
   return (
     <InfoBlock
       title='С иконкой'
-      description='Иконка передаётся через проп icon как IconPredefinedProps.'
+      content='Иконка передаётся через проп icon как IconPredefinedProps.'
       icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
     />
   );
@@ -103,8 +101,8 @@ export function WithIcon() {
 |------|------|---------|-------------|
 | `align` | `"horizontal"` \| `"vertical"` | `vertical` | Расположение элементов |
 | `className` | `string` | — | Дополнительный класс |
+| `content` | `ReactNode` | — | Подзаголовок |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Подзаголовок |
 | `footer` | `ReactNode` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |

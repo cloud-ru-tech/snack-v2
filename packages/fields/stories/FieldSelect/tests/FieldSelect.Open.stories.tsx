@@ -237,7 +237,7 @@ export const OpenEmpty: Story = {
         label='Instance size'
         items={[]}
         selection='single'
-        noDataState={{ description: 'No sizes available' }}
+        noDataState={{ content: 'No sizes available' }}
         open
       />
     </OpenHost>

@@ -49,7 +49,7 @@ import { Alert } from '@ds/alert';
 
 export function Info() {
   return (
-    <Alert appearance='info' title='Настройки сохранены' description='Изменения применены ко всем активным проектам.' />
+    <Alert appearance='info' title='Настройки сохранены' content='Изменения применены ко всем активным проектам.' />
   );
 }
 ```
@@ -64,7 +64,7 @@ export function Error() {
     <Alert
       appearance='error'
       title='Не удалось сохранить'
-      description='Проверьте подключение к сети и повторите попытку.'
+      content='Проверьте подключение к сети и повторите попытку.'
       onClose={() => undefined}
     />
   );
@@ -81,7 +81,7 @@ export function WithActions() {
     <Alert
       appearance='warning'
       title='Требуется подтверждение'
-      description='Операция необратима. Продолжить?'
+      content='Операция необратима. Продолжить?'
       actions={{
         primary: { label: 'Продолжить', onClick: () => undefined },
         secondary: { label: 'Отмена', onClick: () => undefined },
@@ -93,8 +93,6 @@ export function WithActions() {
 
 #### 4. Сворачиваемый алерт
 
-Длинное описание скрыто до клика по заголовку
-
 ```tsx
 import { Alert } from '@ds/alert';
 
@@ -104,7 +102,7 @@ export function Collapsible() {
       appearance='info'
       collapsible
       title='Совет по настройке'
-      description='Полное описание того, как правильно настроить функцию. Текст длинный и сворачивается до раскрытия.'
+      content='Полное описание того, как правильно настроить функцию. Текст длинный и сворачивается до раскрытия.'
     />
   );
 }
@@ -120,8 +118,8 @@ export function Collapsible() {
 | `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
 | `className` | `string` | — | CSS-класс |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop). <br/> При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
+| `content` | `ReactNode` | — | Описание |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
 | `layoutPresets` | `AlertLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
 | `onClose` | `(() => void)` | — | Колбек закрытия |
@@ -188,13 +186,13 @@ export function Collapsible() {
 import { Alert } from '@ds/alert'
 
 // 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся 2 строки (mobile не ломается)
-<Alert truncate={{ title: 3 }} title='…' description='…' />
+<Alert truncate={{ title: 3 }} title='…' content='…' />
 
 // 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
-<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' description='…' />
+<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' content='…' />
 
 // 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
-<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' description='…' />
+<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' content='…' />
 ```
 
 DS-пресет (`ALERT_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
@@ -209,7 +207,7 @@ import { Alert } from '@ds/alert'
 
 // поддерево — вложенный провайдер
 <AdaptiveProvider layoutType='mobile'>
-  <Alert title='…' description='…' />
+  <Alert title='…' content='…' />
 </AdaptiveProvider>
 
 // компонент/секция — HOC (module-scope, не в рендере)
@@ -232,7 +230,7 @@ export function AdaptiveTruncate() {
   return (
     <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
       <div style={{ maxWidth: 360 }}>
-        <Alert appearance='info' title={LONG_TITLE} description='На узком экране заголовок усекается в две строки.' />
+        <Alert appearance='info' title={LONG_TITLE} content='На узком экране заголовок усекается в две строки.' />
       </div>
     </AdaptiveProvider>
   );
@@ -278,7 +276,7 @@ export function SystemNotice() {
     <AlertTop
       appearance='info'
       title='Плановые работы'
-      description='Сегодня с 22:00 до 23:00 возможны кратковременные перебои.'
+      content='Сегодня с 22:00 до 23:00 возможны кратковременные перебои.'
     />
   );
 }
@@ -295,8 +293,8 @@ export function SystemNotice() {
 | `appearance` | `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"` | — | Внешний вид |
 | `className` | `string` | — | CSS-класс |
 | `collapsible` | `boolean` | — | Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop). <br/> При `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию. |
+| `content` | `ReactNode` | — | Описание |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Описание |
 | `icon` | `boolean` | — | Отображать иконку |
 | `layoutPresets` | `AlertTopLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `ALERT_TOP_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
 | `onClose` | `(() => void)` | — | Колбек закрытия |
@@ -362,13 +360,13 @@ export function SystemNotice() {
 import { AlertTop } from '@ds/alert'
 
 // 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся collapsible (mobile не ломается)
-<AlertTop collapsible={false} title='…' description='…' />
+<AlertTop collapsible={false} title='…' content='…' />
 
 // 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
-<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' description='…' />
+<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' content='…' />
 
 // 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
-<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' description='…' />
+<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' content='…' />
 ```
 
 DS-пресет (`ALERT_TOP_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
@@ -383,7 +381,7 @@ import { AlertTop } from '@ds/alert'
 
 // поддерево — вложенный провайдер
 <AdaptiveProvider layoutType='mobile'>
-  <AlertTop title='…' description='…' />
+  <AlertTop title='…' content='…' />
 </AdaptiveProvider>
 
 // компонент/секция — HOC (module-scope, не в рендере)

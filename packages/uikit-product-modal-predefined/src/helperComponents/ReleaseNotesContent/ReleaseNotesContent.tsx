@@ -69,7 +69,7 @@ export function ReleaseNotesContent({
           className={styles.state}
           size='l'
           title={errorTitle}
-          description={errorDescription}
+          content={errorDescription}
           icon={{ icon: CrossSVG, appearance: 'neutral', decor: true }}
           data-test-id={TEST_IDS.releaseNotesError}
           footer={
@@ -94,7 +94,7 @@ export function ReleaseNotesContent({
           className={styles.state}
           size='l'
           title={noDataTitle}
-          description={noDataDescription}
+          content={noDataDescription}
           data-test-id={TEST_IDS.releaseNotesNoData}
         />
       </div>

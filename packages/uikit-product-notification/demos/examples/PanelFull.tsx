@@ -89,7 +89,7 @@ export function PanelFull() {
                   label='INC-4821'
                   appearance={APPEARANCE.Error}
                   title='Кластер k8s-prod-1 деградирован'
-                  content='3 из 5 нод недоступны последние 6 минут.'
+                  description='3 из 5 нод недоступны последние 6 минут.'
                   date='03:14'
                   link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
                   unread={isUnread('inc-4821')}
@@ -102,7 +102,7 @@ export function PanelFull() {
                   label='api-gateway · v2.18.3'
                   appearance={APPEARANCE.Error}
                   title='Деплой не прошёл health-check'
-                  content='Readiness probe вернул 503 на 4 из 6 подов.'
+                  description='Readiness probe вернул 503 на 4 из 6 подов.'
                   date='02:50'
                   primaryButton={{ label: 'Повторить', onClick: () => markRead('deploy-9217') }}
                   secondaryButton={{
@@ -132,7 +132,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='prod-1 · /var/data'
-                  content='Использовано 92% — осталось 38 ГБ из 480 ГБ.'
+                  description='Использовано 92% — осталось 38 ГБ из 480 ГБ.'
                   date='01:12'
                 />
                 <NotificationCard
@@ -140,7 +140,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='prod-2 · /var/log'
-                  content='Использовано 87% — осталось 62 ГБ из 480 ГБ.'
+                  description='Использовано 87% — осталось 62 ГБ из 480 ГБ.'
                   date='00:48'
                 />
                 <NotificationCard
@@ -148,7 +148,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='stage-1 · /var/data'
-                  content='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
+                  description='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
               </NotificationPanelContent.Stack>
@@ -161,7 +161,7 @@ export function PanelFull() {
               label='@you · billing/PR-1402'
               appearance={APPEARANCE.Default}
               title='А. Иванов упомянул вас в PR'
-              content='Пересмотрите расчёт grace-period в BillingScheduler.tsx:142'
+              description='Пересмотрите расчёт grace-period в BillingScheduler.tsx:142'
               date='вчера · 18:20'
               link={{ text: 'Открыть PR', href: '/billing/pulls/1402' }}
               unread={isUnread('mention-1')}
@@ -176,7 +176,7 @@ export function PanelFull() {
                 label='Backup'
                 appearance={APPEARANCE.Success}
                 title='Резервная копия завершена'
-                content='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
+                description='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
                 date='вчера · 14:32'
               />
             </>

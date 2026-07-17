@@ -5,7 +5,7 @@ export function Error() {
     <Alert
       appearance='error'
       title='Не удалось сохранить'
-      description='Проверьте подключение к сети и повторите попытку.'
+      content='Проверьте подключение к сети и повторите попытку.'
       onClose={() => undefined}
     />
   );

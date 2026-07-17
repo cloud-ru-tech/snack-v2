@@ -447,7 +447,7 @@ export function EmptyState() {
         items={items}
         dataFiltered
         noResultsState={{
-          description: 'Ничего не нашли. Проверьте раскладку или измените запрос.',
+          content: 'Ничего не нашли. Проверьте раскладку или измените запрос.',
         }}
       />
     </div>
@@ -955,8 +955,8 @@ export function DroplistWithHeader() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | Дополнительный класс |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `data-test-id` | `string \| undefined` | — |  |
-| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `footer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 

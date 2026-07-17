@@ -202,7 +202,7 @@ export function Controlled() {
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — |  |
-| `description` | `string` | — | Описание под заголовком |
+| `description` | `string` | — | Основной текст под заголовком |
 | `disabled` | `boolean` | `false` | Заблокированное состояние: интерактив отключён |
 | `emblem` | `Emblem` \| `EmblemIcon` \| `EmblemPicture` | — | Ведущая эмблема. Передаются только параметры — сам `IconPredefined` <br/> встроен в компонент; `size` эмблемы выводится из `size` карточки. |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-бейдж в правом верхнем углу карточки |

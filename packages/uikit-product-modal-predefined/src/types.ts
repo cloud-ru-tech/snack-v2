@@ -32,8 +32,8 @@ type BaseActionModalProps = Pick<ModalCustomProps, 'open' | 'onClose' | 'mode' |
   confirmText?: string;
   /** Скрыть кнопку копирования текста подтверждения */
   hideConfirmCopyButton?: boolean;
-  /** Описание */
-  description?: ReactNode;
+  /** Основной текст модалки */
+  content?: ReactNode;
   /** Подзаголовок */
   subtitle?: ReactNode;
 };

@@ -6,7 +6,7 @@ export function NotFound() {
     <Dropdown
       state={{
         type: STATE.NotFound,
-        description: 'Ничего не нашли',
+        content: 'Ничего не нашли',
         actionLabel: 'Сбросить фильтры',
         onActionClick: () => {},
       }}

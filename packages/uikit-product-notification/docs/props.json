@@ -68,11 +68,6 @@
         "required": false,
         "description": "CSS-класс"
       },
-      "content": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Контент уведомления"
-      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -81,6 +76,11 @@
         "type": "string",
         "required": true,
         "description": "Дата уведомления"
+      },
+      "description": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Описание уведомления — вторичный текст под заголовком"
       },
       "id": {
         "type": "string",
@@ -1069,14 +1069,14 @@
         "required": false,
         "description": "Дополнительный класс"
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "icon": {
         "type": "IconPredefinedProps",
@@ -1769,14 +1769,14 @@
         "required": false,
         "description": "Дополнительный класс"
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "icon": {
         "type": "IconPredefinedProps",

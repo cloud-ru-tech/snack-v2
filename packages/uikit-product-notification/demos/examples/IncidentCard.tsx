@@ -7,7 +7,7 @@ export function IncidentCard() {
       label='INC-4821'
       appearance={APPEARANCE.Error}
       title='Кластер k8s-prod-1 деградирован'
-      content='3 из 5 нод недоступны последние 6 минут. Pod scheduling приостановлен.'
+      description='3 из 5 нод недоступны последние 6 минут. Pod scheduling приостановлен.'
       date='сегодня · 03:14'
       link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
       unread

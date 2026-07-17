@@ -28,14 +28,14 @@
         "required": false,
         "description": "Дополнительный класс"
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": false,
         "description": "Описание под заголовком"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "footer": {
         "type": "ReactNode",

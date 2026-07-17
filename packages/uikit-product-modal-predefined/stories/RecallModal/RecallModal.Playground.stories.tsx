@@ -43,7 +43,7 @@ const meta: Meta<RecallModalProps> = {
   component: RecallModal,
   parameters: { layout: 'fullscreen' },
   args: {
-    description: 'Действие будет отозвано для всех связанных объектов.',
+    content: 'Действие будет отозвано для всех связанных объектов.',
     subtitle: 'Отзыв применится сразу',
     titleTooltip: 'Отзыв затронет все связанные операции',
     confirmable: true,

@@ -42,7 +42,7 @@ function VisualMatrixCanvas() {
         <RecallModal
           open
           onClose={close}
-          description='Действие будет отозвано для всех связанных объектов.'
+          content='Действие будет отозвано для всех связанных объектов.'
           titleTooltip='Отзыв затронет все связанные операции'
           confirmable={active === 'confirmable'}
           confirmText={active === 'confirmable' ? 'recall-operation-01' : undefined}

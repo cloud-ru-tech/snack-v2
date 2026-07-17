@@ -64,14 +64,14 @@
         "required": false,
         "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": true,
         "description": "Описание"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "icon": {
         "type": "boolean",
@@ -336,14 +336,14 @@
         "required": false,
         "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": true,
         "description": "Описание"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "icon": {
         "type": "boolean",
@@ -566,14 +566,14 @@
         "required": false,
         "description": "Режим сворачивания: длинный текст, ссылка и кнопки скрыты до раскрытия (inline; как MobileAlertTop).\nПри `true` не используйте `TruncateString` на том же узле, что и измерение — см. документацию."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "description": {
+      "content": {
         "type": "ReactNode",
         "required": true,
         "description": "Описание"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
       },
       "icon": {
         "type": "boolean",

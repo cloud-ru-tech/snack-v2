@@ -2,7 +2,7 @@ import { InfoBlock, InfoBlockProps } from '@ds/info-block';
 
 import styles from './styles.module.scss';
 
-export type EmptyStateProps = Pick<InfoBlockProps, 'title' | 'description' | 'icon' | 'footer' | 'className'>;
+export type EmptyStateProps = Pick<InfoBlockProps, 'title' | 'content' | 'icon' | 'footer' | 'className'>;
 
 export type TableEmptyState = {
   emptyStates: {

@@ -14,7 +14,7 @@ const meta: Meta<AlertTopPlaygroundArgs> = {
   parameters: { layout: 'fullscreen' },
   args: {
     title: 'Системное уведомление',
-    description: 'Краткое описание изменения, которое касается всех пользователей.',
+    content: 'Краткое описание изменения, которое касается всех пользователей.',
     appearance: APPEARANCE.Info,
     icon: true,
     onClose: fn(),
@@ -22,7 +22,7 @@ const meta: Meta<AlertTopPlaygroundArgs> = {
   },
   argTypes: {
     title: { control: 'text', description: 'Заголовок' },
-    description: { control: 'text', description: 'Описание' },
+    content: { control: 'text', description: 'Описание' },
     appearance: { control: 'select', options: Object.values(APPEARANCE), description: 'Внешний вид' },
     icon: { control: 'boolean', description: 'Отображать иконку' },
     onClose: { table: { disable: true } },

@@ -35,7 +35,7 @@ export const VisualMatrix: Story = {
             <InfoBlock
               key={`${align}-${size}`}
               title='Title text'
-              description='Content text'
+              content='Content text'
               icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
               size={size}
               align={align}

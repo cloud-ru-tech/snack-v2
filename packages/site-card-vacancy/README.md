@@ -68,8 +68,6 @@ import { CardVacancy } from '@ds/site-card-vacancy'
 ## Примеры использования
 ### Нейтральная карточка
 
-appearance="neutral" (по умолчанию): href + title + description
-
 ```tsx
 import { CardVacancy } from '@ds/site-card-vacancy';
 
@@ -80,8 +78,6 @@ export function Neutral() {
 
 ### Акцентная карточка
 
-appearance="primary": акцентный фон с декоративным паттерном
-
 ```tsx
 import { APPEARANCE, CardVacancy } from '@ds/site-card-vacancy';
 
@@ -91,15 +87,13 @@ export function Primary() {
       href='#lead'
       appearance={APPEARANCE.Primary}
       title='Lead Product Designer'
-      description='Hybrid · Full-time'
+      content='Hybrid · Full-time'
     />
   );
 }
 ```
 
 ### Мобильная версия
-
-mobile: компактнее — меньше высота и типографика
 
 ```tsx
 import { APPEARANCE, CardVacancy } from '@ds/site-card-vacancy';
@@ -111,15 +105,13 @@ export function Mobile() {
       mobile
       appearance={APPEARANCE.Primary}
       title='Backend Engineer'
-      description='Remote · Contract'
+      content='Remote · Contract'
     />
   );
 }
 ```
 
 ### Внешняя ссылка
-
-target='_blank' → rel='noopener noreferrer' автоматически
 
 ```tsx
 import { CardVacancy } from '@ds/site-card-vacancy';
@@ -137,8 +129,6 @@ export function External() {
 ```
 
 ### Как кнопка (полиморфизм)
-
-as='button' с onClick — для онклик-сценариев без перехода
 
 ```tsx
 import { CardVacancy } from '@ds/site-card-vacancy';

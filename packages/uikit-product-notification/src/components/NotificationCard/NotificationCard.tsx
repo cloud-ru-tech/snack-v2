@@ -28,8 +28,8 @@ export type NotificationCardProps = WithSupportProps<{
   unread?: boolean;
   /** Заголовок уведомления */
   title: string;
-  /** Контент уведомления */
-  content: ReactNode;
+  /** Описание уведомления — вторичный текст под заголовком */
+  description?: ReactNode;
   /** Ссылка (рендерится как `<a href>` через `@ds/link`) */
   link?: PickLinkProps<'a', 'text' | 'insideText' | 'truncateVariant'>;
   /** Дата уведомления */
@@ -61,7 +61,7 @@ export function NotificationCard({
   label,
   unread,
   title,
-  content,
+  description,
   link,
   date,
   onClick,
@@ -184,15 +184,15 @@ export function NotificationCard({
         </Typography>
       </div>
 
-      {content != null && content !== '' && (
+      {description != null && description !== '' && (
         <Typography
           variant='body'
           size='s'
           as='div'
           className={styles.notificationCardContent}
-          data-test-id={TEST_IDS.card.content}
+          data-test-id={TEST_IDS.card.description}
         >
-          {content}
+          {description}
         </Typography>
       )}
 

@@ -84,7 +84,7 @@ export function NotFound() {
     <Dropdown
       state={{
         type: STATE.NotFound,
-        description: 'Ничего не нашли',
+        content: 'Ничего не нашли',
         actionLabel: 'Сбросить фильтры',
         onActionClick: () => {},
       }}
@@ -145,13 +145,13 @@ export function NotFound() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 
 **BlockPropsWithIcon**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 
 - `DropdownState` = `{ type: typeof STATE.Loading; } | ({ type: typeof STATE.NotFound; } & ActionButtonProps & BlockProps) | ({ type: typeof STATE.NoData; } & ActionButtonProps & BlockPropsWithIcon) | ({ type: typeof STATE.DataError; } & ActionButtonProps & BlockPropsWithIcon)`

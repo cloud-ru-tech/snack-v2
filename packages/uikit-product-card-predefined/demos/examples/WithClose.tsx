@@ -18,7 +18,7 @@ export function WithClose() {
   return (
     <CardBanner
       title='Заголовок карточки'
-      description='Кнопка закрытия появляется при передаче onClose'
+      content='Кнопка закрытия появляется при передаче onClose'
       actionLabel='Подробнее'
       image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
       onClose={() => setVisible(false)}

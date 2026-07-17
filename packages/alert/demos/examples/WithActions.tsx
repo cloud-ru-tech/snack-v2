@@ -5,7 +5,7 @@ export function WithActions() {
     <Alert
       appearance='warning'
       title='Требуется подтверждение'
-      description='Операция необратима. Продолжить?'
+      content='Операция необратима. Продолжить?'
       actions={{
         primary: { label: 'Продолжить', onClick: () => undefined },
         secondary: { label: 'Отмена', onClick: () => undefined },

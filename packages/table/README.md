@@ -1000,7 +1000,7 @@ export function FullWidth() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | Дополнительный класс |
-| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `footer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string \| undefined` | — | Заголовок |
@@ -1384,7 +1384,7 @@ export function ServerDriven() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | Дополнительный класс |
-| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `footer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Вложенный контент (например ButtonGroup) |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string \| undefined` | — | Заголовок |

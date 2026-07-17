@@ -12,7 +12,7 @@ type BaseCardServiceProps = {
   /** Заголовок карточки */
   title: string;
   /** Описание */
-  description: string;
+  content: string;
   /** Текст кнопки действия */
   actionLabel: string;
   /** Эмблема — передавайте `<IconPredefined icon={...} />` или произвольный ReactElement */
@@ -34,7 +34,7 @@ export type CardServiceProps<T extends ElementType = 'div'> = BaseCardServicePro
 
 export function CardService<T extends ElementType = 'div'>({
   title,
-  description,
+  content,
   actionLabel,
   emblem,
   disabled,
@@ -64,12 +64,7 @@ export function CardService<T extends ElementType = 'div'>({
         </div>
 
         <Typography as='p' variant='body' size='m' className={styles.description}>
-          <TruncateString
-            text={description}
-            maxLines={3}
-            variant='end'
-            data-test-id={TEST_IDS.cardServiceDescription}
-          />
+          <TruncateString text={content} maxLines={3} variant='end' data-test-id={TEST_IDS.cardServiceContent} />
         </Typography>
 
         <CardAction actionLabel={actionLabel} />

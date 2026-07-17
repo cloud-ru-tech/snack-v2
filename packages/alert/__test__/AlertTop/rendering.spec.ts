@@ -40,7 +40,7 @@ test.describe('AlertTop — rendering', () => {
       'Extra padding text to guarantee container overflow and the appearance of the chevron icon.';
 
     test('desktop layout keeps alert flat (no expand chevron)', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ description: LONG_DESCRIPTION }, undefined, { layoutType: 'desktop' }));
+      await gotoStory(buildStoryOptions({ content: LONG_DESCRIPTION }, undefined, { layoutType: 'desktop' }));
       await expect(getByTestId(TEST_IDS.alertTop.root)).toBeVisible();
       await expect(getByTestId(TEST_IDS.alertTop.expandingIcon)).toHaveCount(0);
     });
@@ -51,7 +51,7 @@ test.describe('AlertTop — rendering', () => {
       getByTestId,
     }) => {
       await page.setViewportSize(MOBILE_VIEWPORT);
-      await gotoStory(buildStoryOptions({ description: LONG_DESCRIPTION }, undefined, { layoutType: 'mobile' }));
+      await gotoStory(buildStoryOptions({ content: LONG_DESCRIPTION }, undefined, { layoutType: 'mobile' }));
       await expect(getByTestId(TEST_IDS.alertTop.root)).toBeVisible();
       await expect(getByTestId(TEST_IDS.alertTop.expandingIcon)).toBeVisible();
     });

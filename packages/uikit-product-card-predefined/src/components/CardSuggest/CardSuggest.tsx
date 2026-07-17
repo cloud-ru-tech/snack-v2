@@ -13,7 +13,7 @@ type BaseCardSuggestProps = {
   /** Заголовок */
   title: string;
   /** Описание */
-  description: string;
+  content: string;
   /**
    * Размер: управляет типографикой и отступами.
    * `'m'` — roleTitle/m + roleBody/m, padding 16px;
@@ -25,8 +25,8 @@ type BaseCardSuggestProps = {
   truncate?: {
     /** Максимальное количество строк заголовка */
     title?: number;
-    /** Максимальное количество строк описания */
-    description?: number;
+    /** Максимальное количество строк содержимого */
+    content?: number;
   };
   /** Неактивное состояние */
   disabled?: boolean;
@@ -50,7 +50,7 @@ export type CardSuggestProps<T extends ElementType = 'div'> = BaseCardSuggestPro
 
 export function CardSuggest<T extends ElementType = 'div'>({
   title,
-  description,
+  content,
   size = CARD_SIZE.M,
   truncate,
   disabled,
@@ -87,10 +87,10 @@ export function CardSuggest<T extends ElementType = 'div'>({
 
         <Typography as='p' variant='body' size={size} className={styles.description}>
           <TruncateString
-            text={description}
-            maxLines={truncateLines.description}
+            text={content}
+            maxLines={truncateLines.content}
             variant='end'
-            data-test-id={TEST_IDS.cardSuggestDescription}
+            data-test-id={TEST_IDS.cardSuggestContent}
           />
         </Typography>
       </div>

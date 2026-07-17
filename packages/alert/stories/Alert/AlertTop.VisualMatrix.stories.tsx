@@ -44,7 +44,7 @@ export const VisualMatrix: Story = {
                 appearance={appearance}
                 icon={icon}
                 title={`AlertTop ${appearance}`}
-                description='Краткое описание системного уведомления.'
+                content='Краткое описание системного уведомления.'
               />
             </div>
           )),
@@ -61,7 +61,7 @@ export const VisualMatrix: Story = {
               <AlertTop
                 appearance={appearance}
                 title={`AlertTop ${appearance}`}
-                description='Краткое описание системного уведомления.'
+                content='Краткое описание системного уведомления.'
                 actions={{
                   primary: { label: 'Принять' },
                   secondary: { label: 'Отклонить' },
@@ -72,7 +72,7 @@ export const VisualMatrix: Story = {
               <AlertTop
                 appearance={appearance}
                 title={`AlertTop ${appearance}`}
-                description='Краткое описание системного уведомления.'
+                content='Краткое описание системного уведомления.'
                 onClose={fn()}
               />
             </div>,
@@ -93,7 +93,7 @@ export const VisualMatrix: Story = {
                   appearance={APPEARANCE.Warning}
                   icon
                   title={ADAPTIVE_COLLAPSE_TITLE}
-                  description={ADAPTIVE_COLLAPSE_DESCRIPTION}
+                  content={ADAPTIVE_COLLAPSE_DESCRIPTION}
                   onClose={fn()}
                 />
               </div>

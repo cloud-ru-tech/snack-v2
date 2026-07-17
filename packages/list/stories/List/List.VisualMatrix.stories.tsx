@@ -497,7 +497,7 @@ export const VisualMatrix: Story = {
                 items: [],
                 size: 'm',
                 dataError: true,
-                errorDataState: { description: 'Failed to load data' },
+                errorDataState: { content: 'Failed to load data' },
               }),
             ],
           },

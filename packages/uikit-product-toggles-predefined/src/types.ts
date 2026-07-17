@@ -27,7 +27,7 @@ export type ToggleCardProps = WithSupportProps<{
   title: string;
   /** Значение карточки в контексте `ToggleGroup` */
   value: string;
-  /** Описание под заголовком */
+  /** Основной текст под заголовком */
   description?: string;
   /**
    * Ведущая эмблема. Передаются только параметры — сам `IconPredefined`
@@ -45,7 +45,7 @@ export type ToggleCardProps = WithSupportProps<{
   truncate?: {
     /** Максимум строк заголовка */
     title?: number;
-    /** Максимум строк описания */
+    /** Максимум строк содержимого */
     description?: number;
   };
   /** Заблокированное состояние: интерактив отключён */

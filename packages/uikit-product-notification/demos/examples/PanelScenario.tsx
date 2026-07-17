@@ -48,7 +48,7 @@ export function PanelScenario() {
                   label='INC-4821'
                   appearance={APPEARANCE.Error}
                   title='Кластер k8s-prod-1 деградирован'
-                  content='3 из 5 нод недоступны последние 6 минут.'
+                  description='3 из 5 нод недоступны последние 6 минут.'
                   date='03:14'
                   link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
                   unread={!readIds.has('inc-4821')}
@@ -59,7 +59,7 @@ export function PanelScenario() {
                   label='api-gateway · v2.18.3'
                   appearance={APPEARANCE.Error}
                   title='Деплой не прошёл health-check'
-                  content='Readiness probe вернул 503 на 4 из 6 подов.'
+                  description='Readiness probe вернул 503 на 4 из 6 подов.'
                   date='02:50'
                   primaryButton={{ label: 'Повторить', onClick: () => markRead('deploy-9217') }}
                   secondaryButton={{
@@ -74,7 +74,7 @@ export function PanelScenario() {
                   label='Backup'
                   appearance={APPEARANCE.Success}
                   title='Резервная копия завершена'
-                  content='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
+                  description='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
                   date='вчера · 14:32'
                 />
               </>

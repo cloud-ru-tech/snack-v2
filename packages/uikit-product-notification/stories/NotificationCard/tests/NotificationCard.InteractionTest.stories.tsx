@@ -13,7 +13,7 @@ const meta: Meta<typeof NotificationCard> = {
   args: {
     id: 'card-it',
     title: 'Резервная копия завершена',
-    content: 'Бэкап загружен',
+    description: 'Бэкап загружен',
     date: 'сегодня · 14:32',
     onClick: fn(),
     primaryButton: { label: 'Открыть', onClick: fn() },

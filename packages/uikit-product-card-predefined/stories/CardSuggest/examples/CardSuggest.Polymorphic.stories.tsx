@@ -19,7 +19,7 @@ export const Polymorphic: Story = {
       as='a'
       href='https://sbercloud.ru'
       title='Подсказка-ссылка'
-      description='Это якорный элемент'
+      content='Это якорный элемент'
       data-test-id={TEST_IDS.cardSuggest}
     />
   ),

@@ -14,7 +14,7 @@ export function DeployFailureCard() {
       label='api-gateway · v2.18.3'
       appearance={APPEARANCE.Error}
       title='Деплой не прошёл health-check'
-      content='Readiness probe вернул 503 на 4 из 6 подов. Traffic не переключён на новую версию.'
+      description='Readiness probe вернул 503 на 4 из 6 подов. Traffic не переключён на новую версию.'
       date='5 минут назад'
       primaryButton={{
         label: status === 'retrying' ? 'Запускаю…' : 'Повторить деплой',

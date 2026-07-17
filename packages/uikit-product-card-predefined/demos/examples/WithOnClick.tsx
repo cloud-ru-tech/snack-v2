@@ -11,7 +11,7 @@ export function WithOnClick() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <CardBanner
         title='Заголовок карточки'
-        description='Клик по карточке обрабатывается через onClick'
+        content='Клик по карточке обрабатывается через onClick'
         actionLabel='Подробнее'
         image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
         onClick={() => setClicks(c => c + 1)}

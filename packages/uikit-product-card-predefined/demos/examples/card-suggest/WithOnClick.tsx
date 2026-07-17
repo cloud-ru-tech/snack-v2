@@ -9,7 +9,7 @@ export function WithOnClick() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <CardSuggest
         title='Подсказка для пользователя'
-        description='Краткое описание действия или функциональности'
+        content='Краткое описание действия или функциональности'
         onClick={() => setClicks(c => c + 1)}
       />
 

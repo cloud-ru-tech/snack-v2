@@ -12,7 +12,7 @@ export function UnreadCard() {
         label='Storage'
         appearance={APPEARANCE.Warning}
         title='Лимит дисковой квоты'
-        content='Использовано 92% квоты на /var/data — осталось 38 ГБ из 480 ГБ.'
+        description='Использовано 92% квоты на /var/data — осталось 38 ГБ из 480 ГБ.'
         date='вчера · 19:04'
         unread={!readIds.has('quota-var-data')}
         onVisible={markRead}
@@ -22,7 +22,7 @@ export function UnreadCard() {
         label='Storage'
         appearance={APPEARANCE.Warning}
         title='Лимит дисковой квоты'
-        content='Использовано 87% квоты на /var/log — осталось 62 ГБ из 480 ГБ.'
+        description='Использовано 87% квоты на /var/log — осталось 62 ГБ из 480 ГБ.'
         date='вчера · 17:50'
         unread={!readIds.has('quota-var-log')}
         onVisible={markRead}

@@ -30,7 +30,7 @@ export function DropdownBody({
       return (
         <InfoBlock
           className={styles.infoBlock}
-          description={state.description || t('states.notFound.title')}
+          content={state.content || t('states.notFound.title')}
           footer={
             state.onActionClick ? (
               <ButtonGroup
@@ -53,7 +53,7 @@ export function DropdownBody({
       return (
         <InfoBlock
           className={styles.infoBlock}
-          description={state.description || t('states.noData.title')}
+          content={state.content || t('states.noData.title')}
           icon={state.icon}
           footer={
             state.onActionClick ? (
@@ -77,7 +77,7 @@ export function DropdownBody({
       return (
         <InfoBlock
           className={styles.infoBlock}
-          description={state.description || t('states.dataError.title')}
+          content={state.content || t('states.dataError.title')}
           icon={state.icon}
           footer={
             state.onActionClick ? (

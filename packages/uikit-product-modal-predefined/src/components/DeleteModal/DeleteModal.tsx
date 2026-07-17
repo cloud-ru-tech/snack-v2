@@ -19,7 +19,7 @@ export function DeleteModal({
   titleTooltip,
   onDelete,
   deleting,
-  description,
+  content,
   confirmable = false,
   confirmText,
   hideConfirmCopyButton,
@@ -73,7 +73,7 @@ export function DeleteModal({
         className={styles.body}
         content={
           <div className={styles.content}>
-            {description ?? t('deleteModal.description')}
+            {content ?? t('deleteModal.content')}
             {shouldShowConfirm && (
               <InputConfirm
                 ref={inputRef}

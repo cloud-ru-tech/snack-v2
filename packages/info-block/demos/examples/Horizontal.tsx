@@ -6,7 +6,7 @@ export function Horizontal() {
       align='horizontal'
       size='m'
       title='Горизонтальный вариант'
-      description='Иконка (если есть) и текст располагаются в строку.'
+      content='Иконка (если есть) и текст располагаются в строку.'
     />
   );
 }

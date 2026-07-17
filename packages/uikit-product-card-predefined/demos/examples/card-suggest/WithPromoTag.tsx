@@ -5,7 +5,7 @@ export function WithPromoTag() {
   return (
     <CardSuggest
       title='Подсказка для пользователя'
-      description='Краткое описание действия или функциональности'
+      content='Краткое описание действия или функциональности'
       promoBadge={{
         text: 'New',
         appearance: APPEARANCE.Primary,

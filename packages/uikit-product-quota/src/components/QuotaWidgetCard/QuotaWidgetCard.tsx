@@ -50,7 +50,7 @@ export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefr
           size='s'
           align='vertical'
           title={quota.name}
-          description={t('errorText')}
+          content={t('errorText')}
           footer={
             onRefresh ? (
               <Button

@@ -12,13 +12,13 @@ export function EmptyBlockDemo() {
       componentDoc={doc.EmptyBlock}
       defaultProps={{
         title: 'Title text',
-        description: 'Body text',
+        content: 'Body text',
         icon: { icon: PlaceholderSVG },
         'data-test-id': 'empty-block-demo',
       }}
       controls={{
         title: { type: 'text' },
-        description: { type: 'text' },
+        content: { type: 'text' },
       }}
     />
   );

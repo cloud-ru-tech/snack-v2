@@ -32,6 +32,11 @@
         "defaultValue": "false",
         "description": "Состояние с подтверждением через ввод текста"
       },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Основной текст модалки"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -40,11 +45,6 @@
         "type": "boolean",
         "required": false,
         "description": "Состояние загрузки кнопки удаления"
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Описание"
       },
       "hideConfirmCopyButton": {
         "type": "boolean",
@@ -378,14 +378,14 @@
         "defaultValue": "false",
         "description": "Состояние с подтверждением через ввод текста"
       },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Основной текст модалки"
+      },
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Описание"
       },
       "hideConfirmCopyButton": {
         "type": "boolean",

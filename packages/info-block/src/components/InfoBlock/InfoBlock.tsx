@@ -11,7 +11,7 @@ export type InfoBlockProps = WithSupportProps<{
   /** Заголовок */
   title?: string;
   /** Подзаголовок */
-  description?: ReactNode;
+  content?: ReactNode;
   /** Иконка */
   icon?: IconPredefinedProps;
   /** Размер */
@@ -26,7 +26,7 @@ export type InfoBlockProps = WithSupportProps<{
 
 export function InfoBlock({
   title,
-  description,
+  content,
   icon,
   size = SIZE.M,
   footer,
@@ -56,9 +56,9 @@ export function InfoBlock({
             </div>
           )}
 
-          {description && (
-            <div className={styles.description} data-test-id={TEST_IDS.description}>
-              {description}
+          {content && (
+            <div className={styles.description} data-test-id={TEST_IDS.content}>
+              {content}
             </div>
           )}
         </div>

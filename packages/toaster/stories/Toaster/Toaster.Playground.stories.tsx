@@ -282,7 +282,7 @@ const meta: Meta<PlaygroundArgs> = {
     type: {
       control: 'radio',
       options: Object.values(TOASTER_TYPE),
-      description: 'Тип контейнера.',
+      content: 'Тип контейнера.',
     },
     position: {
       control: 'select',
@@ -294,49 +294,49 @@ const meta: Meta<PlaygroundArgs> = {
     width: {
       control: 'radio',
       options: Object.values(TOASTER_WIDTH),
-      description: 'Ширина контейнера: auto (по контенту) или full (на всю ширину).',
+      content: 'Ширина контейнера: auto (по контенту) или full (на всю ширину).',
     },
     stacked: {
       control: 'boolean',
-      description: 'Свернуть тосты в collapsed-стек, раскрывать по hover. Не применяется для UserAction.',
+      content: 'Свернуть тосты в collapsed-стек, раскрывать по hover. Не применяется для UserAction.',
       if: { arg: 'type', neq: TOASTER_TYPE.UserAction },
     },
     limit: {
       control: { type: 'number', min: 1, max: 10 },
-      description: 'Максимум одновременно видимых тостов. Старые скрываются при превышении.',
+      content: 'Максимум одновременно видимых тостов. Старые скрываются при превышении.',
     },
     autoCloseEnabled: {
       control: 'boolean',
-      description: 'Включить автозакрытие. False → autoClose: false (тост закрывается только пользователем).',
+      content: 'Включить автозакрытие. False → autoClose: false (тост закрывается только пользователем).',
     },
     autoCloseMs: {
       control: { type: 'number', min: 500, step: 500 },
-      description: 'Дефолтное время автозакрытия (мс). Переопределяется per-toast `autoClose` опцией.',
+      content: 'Дефолтное время автозакрытия (мс). Переопределяется per-toast `autoClose` опцией.',
       if: { arg: 'autoCloseEnabled', truthy: true },
     },
     displayCloseAllButton: {
       control: 'boolean',
-      description: 'Кнопка «Закрыть все» при ≥ CLOSE_ALL_THRESHOLD (2) тостах. Не применяется для UserAction.',
+      content: 'Кнопка «Закрыть все» при ≥ CLOSE_ALL_THRESHOLD (2) тостах. Не применяется для UserAction.',
       if: { arg: 'type', neq: TOASTER_TYPE.UserAction },
     },
     draggable: {
       control: 'boolean',
-      description: 'Swipe-to-dismiss: тост закрывается свайпом мыши/пальцем. Для Upload не применяется.',
+      content: 'Swipe-to-dismiss: тост закрывается свайпом мыши/пальцем. Для Upload не применяется.',
       if: { arg: 'type', neq: TOASTER_TYPE.Upload },
     },
     draggableDirection: {
       control: 'radio',
       options: ['auto', ...Object.values(DRAGGABLE_DIRECTION)] as DraggableDirectionArg[],
-      description: 'Ось свайпа. auto — выводится из position: top-/bottom-center → y, иначе → x.',
+      content: 'Ось свайпа. auto — выводится из position: top-/bottom-center → y, иначе → x.',
       if: { arg: 'draggable', truthy: true },
     },
     containerId: {
       control: 'text',
-      description: 'Явный id контейнера. По умолчанию — `playground-<type>` (отдельный на каждый тип в этой стори).',
+      content: 'Явный id контейнера. По умолчанию — `playground-<type>` (отдельный на каждый тип в этой стори).',
     },
     dataTestId: {
       control: 'text',
-      description: 'Override `data-test-id` корня контейнера. По умолчанию — `TEST_IDS.toasterContainer`.',
+      content: 'Override `data-test-id` корня контейнера. По умолчанию — `TEST_IDS.toasterContainer`.',
     },
     scopeToFrame: {
       control: 'boolean',

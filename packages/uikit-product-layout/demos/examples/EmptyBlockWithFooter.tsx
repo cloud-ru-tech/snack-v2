@@ -7,7 +7,7 @@ export function EmptyBlockWithFooter() {
     <EmptyBlock
       icon={{ icon: PlaceholderSVG }}
       title='Нет данных'
-      description='Создайте первую запись, чтобы начать работу'
+      content='Создайте первую запись, чтобы начать работу'
       footer={<ButtonGroup primaryAction={{ label: 'Создать' }} secondaryAction={{ label: 'Импортировать' }} />}
     />
   );

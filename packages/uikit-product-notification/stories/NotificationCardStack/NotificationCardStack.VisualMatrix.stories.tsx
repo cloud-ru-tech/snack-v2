@@ -20,7 +20,7 @@ function makeCards(count: number) {
       key={i}
       id={`s${i}`}
       title={`Событие #${i + 1}`}
-      content='Краткое описание события'
+      description='Краткое описание события'
       date='сегодня · 14:32'
       appearance={APPEARANCE.Default}
     />

@@ -7,9 +7,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 
 const cards = [
-  <NotificationCard key='1' id='s1' title='Событие 1' content='c' date='today' appearance={APPEARANCE.Default} />,
-  <NotificationCard key='2' id='s2' title='Событие 2' content='c' date='today' appearance={APPEARANCE.Default} />,
-  <NotificationCard key='3' id='s3' title='Событие 3' content='c' date='today' appearance={APPEARANCE.Default} />,
+  <NotificationCard key='1' id='s1' title='Событие 1' description='c' date='today' appearance={APPEARANCE.Default} />,
+  <NotificationCard key='2' id='s2' title='Событие 2' description='c' date='today' appearance={APPEARANCE.Default} />,
+  <NotificationCard key='3' id='s3' title='Событие 3' description='c' date='today' appearance={APPEARANCE.Default} />,
 ];
 
 const meta: Meta<typeof NotificationCardStack> = {

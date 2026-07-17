@@ -76,7 +76,7 @@ export function renderPanelContent({
       <NotificationPanelContent.Blank
         title='Нет уведомлений'
         icon={{ icon: SearchSVG, appearance: 'neutral' }}
-        description='Здесь появятся новые уведомления о событиях, когда что-то произойдёт.'
+        content='Здесь появятся новые уведомления о событиях, когда что-то произойдёт.'
       />
     );
   }

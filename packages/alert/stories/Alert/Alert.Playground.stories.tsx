@@ -25,7 +25,7 @@ const meta: Meta<AlertPlaygroundArgs> = {
   ),
   args: {
     title: 'Alert title',
-    description: 'Alert description text',
+    content: 'Alert description text',
     appearance: APPEARANCE.Info,
     size: SIZE.M,
     align: ALIGN.Horizontal,
@@ -37,7 +37,7 @@ const meta: Meta<AlertPlaygroundArgs> = {
   },
   argTypes: {
     title: { control: 'text', description: 'Заголовок' },
-    description: { control: 'text', description: 'Описание' },
+    content: { control: 'text', description: 'Описание' },
     appearance: { control: 'select', options: Object.values(APPEARANCE), description: 'Внешний вид' },
     size: { control: 'radio', options: Object.values(SIZE), description: 'Размер' },
     align: { control: 'radio', options: Object.values(ALIGN), description: 'Выравнивание контента' },

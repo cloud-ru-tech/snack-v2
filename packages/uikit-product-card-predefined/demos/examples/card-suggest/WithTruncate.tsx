@@ -8,7 +8,7 @@ const longDescription =
 export function WithTruncate() {
   return (
     <div style={{ maxWidth: 320 }}>
-      <CardSuggest title={longTitle} description={longDescription} truncate={{ title: 2, description: 3 }} />
+      <CardSuggest title={longTitle} content={longDescription} truncate={{ title: 2, content: 3 }} />
     </div>
   );
 }

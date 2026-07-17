@@ -65,7 +65,7 @@ const Template: StoryFn<StoryProps> = ({
     <NotificationPanelContent.Blank
       icon={{ icon: CrossSVG, appearance: 'neutral' }}
       title='Мы уже это исправляем'
-      description='Ваши уведомления скоро появятся здесь'
+      content='Ваши уведомления скоро появятся здесь'
     />
   ) : (
     renderPanelContent({ cards, groupSize, stackSize, showDivider, stackTitle, loading })

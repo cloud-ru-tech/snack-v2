@@ -74,7 +74,7 @@ export const VisualMatrix: Story = {
               <div key='not-found' className={styles.cell}>
                 <Dropdown
                   open
-                  state={{ type: STATE.NotFound, description: 'Ничего не найдено', actionLabel: 'Retry' }}
+                  state={{ type: STATE.NotFound, content: 'Ничего не найдено', actionLabel: 'Retry' }}
                   content={null}
                 >
                   <Button label='not-found' />
@@ -83,7 +83,7 @@ export const VisualMatrix: Story = {
               <div key='no-data' className={styles.cell}>
                 <Dropdown
                   open
-                  state={{ type: STATE.NoData, description: 'Нет данных', actionLabel: 'Retry' }}
+                  state={{ type: STATE.NoData, content: 'Нет данных', actionLabel: 'Retry' }}
                   content={null}
                 >
                   <Button label='no-data' />
@@ -92,7 +92,7 @@ export const VisualMatrix: Story = {
               <div key='data-error' className={styles.cell}>
                 <Dropdown
                   open
-                  state={{ type: STATE.DataError, description: 'Ошибка загрузки', actionLabel: 'Retry' }}
+                  state={{ type: STATE.DataError, content: 'Ошибка загрузки', actionLabel: 'Retry' }}
                   content={null}
                 >
                   <Button label='data-error' />

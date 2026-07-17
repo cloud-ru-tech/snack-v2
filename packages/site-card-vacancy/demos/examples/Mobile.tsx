@@ -7,7 +7,7 @@ export function Mobile() {
       mobile
       appearance={APPEARANCE.Primary}
       title='Backend Engineer'
-      description='Remote · Contract'
+      content='Remote · Contract'
     />
   );
 }

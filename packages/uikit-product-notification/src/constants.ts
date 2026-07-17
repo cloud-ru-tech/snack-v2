@@ -10,7 +10,7 @@ export const TEST_IDS = {
     root: 'notification-card',
     label: 'notification-card__label',
     title: 'notification-card__title',
-    content: 'notification-card__content',
+    description: 'notification-card__description',
     link: 'notification-card__link',
     date: 'notification-card__date',
     statusIndicator: 'notification-card__status-indicator',

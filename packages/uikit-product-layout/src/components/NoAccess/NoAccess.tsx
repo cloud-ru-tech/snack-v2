@@ -41,7 +41,7 @@ export function NoAccess({ serviceName, className, ...rest }: NoAccessProps) {
           size={INFO_SIZE.M}
           icon={{ icon: LockSVG }}
           title={t('noAccessTitle')}
-          description={
+          content={
             <div className={styles.description}>
               <div className={styles.text}>{t('noAccessSubtitle')}</div>
               <div className={styles.text}>{t('noAccessText')}</div>

@@ -82,8 +82,8 @@ function AsyncStatesDemo() {
             onChange={setValue}
             loading={state === 'loading'}
             dataError={state === 'error'}
-            noDataState={{ description: 'Зоны недоступны' }}
-            errorDataState={{ description: 'Не удалось загрузить зоны' }}
+            noDataState={{ content: 'Зоны недоступны' }}
+            errorDataState={{ content: 'Не удалось загрузить зоны' }}
           />
         </DemoActions>
       </DemoPanel>

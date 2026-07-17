@@ -18,18 +18,18 @@ export function useEmptyState({
   return useMemo(() => {
     const noDataState: EmptyStateProps = {
       icon: { icon: SearchSVG, appearance: 'neutral', decor: true },
-      description: t('noData.description'),
+      content: t('noData.description'),
       ...noDataStateProp,
     };
 
     const noResultsState: EmptyStateProps = {
-      description: t('noResults.description'),
+      content: t('noResults.description'),
       ...noResultsStateProp,
     };
 
     const errorDataState: EmptyStateProps = {
       icon: { icon: CrossSVG, appearance: 'neutral', decor: true },
-      description: t('errorData.description'),
+      content: t('errorData.description'),
       ...errorDataStateProp,
     };
 

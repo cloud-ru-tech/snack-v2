@@ -28,15 +28,15 @@
         "required": false,
         "description": "Содержимое"
       },
+      "content": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false,
+        "description": "Подзаголовок"
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Стабильный идентификатор для e2e/tests"
-      },
-      "description": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false,
-        "description": "Подзаголовок"
       },
       "size": {
         "type": "enum",

@@ -65,7 +65,7 @@ import '@ds/uikit-product-layout/style.css';
 
 <Example
   title='EmptyBlock со слотом действий'
-  description='Слот footer принимает любой контент, например ButtonGroup'
+  content='Слот footer принимает любой контент, например ButtonGroup'
   code={EmptyBlockWithFooterSrc}
 >
   <EmptyBlockWithFooter client:visible />
@@ -73,7 +73,7 @@ import '@ds/uikit-product-layout/style.css';
 
 <Example
   title='NoAccess с названием сервиса'
-  description='Локализованное сообщение и заголовок сервиса сверху'
+  content='Локализованное сообщение и заголовок сервиса сверху'
   code={NoAccessBasicSrc}
 >
   <NoAccessBasic client:visible />
@@ -109,10 +109,10 @@ import '@ds/uikit-product-layout/style.css';
 import { EmptyBlock } from '@ds/uikit-product-layout'
 
 // Явный проп — задаёт DESKTOP-значение; mobile остаётся vertical
-<EmptyBlock align='horizontal' title='…' description='…' />
+<EmptyBlock align='horizontal' title='…' content='…' />
 
 // Изменить mobile — только через layoutPresets
-<EmptyBlock layoutPresets={{ mobile: { align: 'horizontal' } }} title='…' description='…' />
+<EmptyBlock layoutPresets={{ mobile: { align: 'horizontal' } }} title='…' content='…' />
 ```
 
 ### NoAccess

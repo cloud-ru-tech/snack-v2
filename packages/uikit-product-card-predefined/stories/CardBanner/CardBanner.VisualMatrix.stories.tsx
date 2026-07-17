@@ -21,7 +21,7 @@ type Story = StoryObj<typeof CardBanner>;
 
 const bannerProps = {
   title: 'Заголовок карточки',
-  description: 'Краткое описание сервиса',
+  content: 'Краткое описание сервиса',
   actionLabel: 'Подробнее',
   image: { src: illustrationSrc, alt: 'Иллюстрация сервиса' },
 };

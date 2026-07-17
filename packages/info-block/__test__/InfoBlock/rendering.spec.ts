@@ -14,7 +14,7 @@ test.describe('InfoBlock — rendering', () => {
       await gotoStory(buildStoryOptions());
 
       await expect(getByTestId(TEST_IDS.title)).toBeVisible();
-      await expect(getByTestId(TEST_IDS.description)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.content)).toBeVisible();
     });
   });
 

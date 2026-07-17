@@ -68,7 +68,7 @@ export const VisualMatrix: Story = {
                     <NotificationPanelContent.Blank
                       icon={{ icon: SearchSVG, appearance: 'neutral' }}
                       title='Нет уведомлений'
-                      description='Здесь будут новые события'
+                      content='Здесь будут новые события'
                     />
                   }
                 />,
@@ -85,7 +85,7 @@ export const VisualMatrix: Story = {
                     <NotificationPanelContent.Blank
                       icon={{ icon: CrossSVG, appearance: 'neutral' }}
                       title='Не удалось загрузить'
-                      description='Попробуйте позже'
+                      content='Попробуйте позже'
                     />
                   }
                 />,
@@ -148,7 +148,7 @@ export const VisualMatrix: Story = {
                         <NotificationCard
                           id='g1'
                           title='Бэкап завершён'
-                          content='prod-1'
+                          description='prod-1'
                           date='14:32'
                           appearance={APPEARANCE.Success}
                         />

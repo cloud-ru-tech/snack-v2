@@ -70,7 +70,7 @@ export function BasicCard() {
       label='Backup'
       appearance={APPEARANCE.Success}
       title='Резервная копия завершена'
-      content='Бэкап БД prod-1 (412 ГБ) загружен в холодное хранилище s3://backups-prod/2026-05-27/'
+      description='Бэкап БД prod-1 (412 ГБ) загружен в холодное хранилище s3://backups-prod/2026-05-27/'
       date='сегодня · 14:32'
     />
   );
@@ -96,7 +96,7 @@ export function UnreadCard() {
         label='Storage'
         appearance={APPEARANCE.Warning}
         title='Лимит дисковой квоты'
-        content='Использовано 92% квоты на /var/data — осталось 38 ГБ из 480 ГБ.'
+        description='Использовано 92% квоты на /var/data — осталось 38 ГБ из 480 ГБ.'
         date='вчера · 19:04'
         unread={!readIds.has('quota-var-data')}
         onVisible={markRead}
@@ -106,7 +106,7 @@ export function UnreadCard() {
         label='Storage'
         appearance={APPEARANCE.Warning}
         title='Лимит дисковой квоты'
-        content='Использовано 87% квоты на /var/log — осталось 62 ГБ из 480 ГБ.'
+        description='Использовано 87% квоты на /var/log — осталось 62 ГБ из 480 ГБ.'
         date='вчера · 17:50'
         unread={!readIds.has('quota-var-log')}
         onVisible={markRead}
@@ -130,7 +130,7 @@ export function IncidentCard() {
       label='INC-4821'
       appearance={APPEARANCE.Error}
       title='Кластер k8s-prod-1 деградирован'
-      content='3 из 5 нод недоступны последние 6 минут. Pod scheduling приостановлен.'
+      description='3 из 5 нод недоступны последние 6 минут. Pod scheduling приостановлен.'
       date='сегодня · 03:14'
       link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
       unread
@@ -160,7 +160,7 @@ export function DeployFailureCard() {
       label='api-gateway · v2.18.3'
       appearance={APPEARANCE.Error}
       title='Деплой не прошёл health-check'
-      content='Readiness probe вернул 503 на 4 из 6 подов. Traffic не переключён на новую версию.'
+      description='Readiness probe вернул 503 на 4 из 6 подов. Traffic не переключён на новую версию.'
       date='5 минут назад'
       primaryButton={{
         label: status === 'retrying' ? 'Запускаю…' : 'Повторить деплой',
@@ -194,9 +194,9 @@ export function DeployFailureCard() {
 | `actions` | `Action` | — | Дополнительные действия у карточки |
 | `appearance` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Тип уведомления |
 | `className` | `string` | — | CSS-класс |
-| `content` | `ReactNode` | — | Контент уведомления |
 | `data-test-id` | `string` | — |  |
 | `date` | `string` | — | Дата уведомления |
+| `description` | `ReactNode` | — | Описание уведомления — вторичный текст под заголовком |
 | `id` | `string` | — | Идентификатор уведомления |
 | `label` | `string` | — | Лейбл перед заголовком |
 | `link` | `PickLinkProps` | — | Ссылка (рендерится как `<a href>` через `@ds/link`) |
@@ -293,7 +293,7 @@ export function PanelBasic() {
             label='INC-4821'
             appearance={APPEARANCE.Error}
             title='Кластер k8s-prod-1 деградирован'
-            content='3 из 5 нод недоступны последние 6 минут.'
+            description='3 из 5 нод недоступны последние 6 минут.'
             date='03:14'
             link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
             unread={!readIds.has('inc-4821')}
@@ -304,7 +304,7 @@ export function PanelBasic() {
             label='Storage'
             appearance={APPEARANCE.Warning}
             title='Лимит дисковой квоты'
-            content='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
+            description='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
             date='02:50'
             unread={!readIds.has('quota-var-data')}
             onVisible={markRead}
@@ -314,7 +314,7 @@ export function PanelBasic() {
             label='api-gateway · v2.18.3'
             appearance={APPEARANCE.Error}
             title='Деплой не прошёл health-check'
-            content='Readiness probe вернул 503 на 4 из 6 подов.'
+            description='Readiness probe вернул 503 на 4 из 6 подов.'
             date='вчера · 23:11'
             unread={!readIds.has('deploy-9217')}
             onVisible={markRead}
@@ -324,7 +324,7 @@ export function PanelBasic() {
             label='Backup'
             appearance={APPEARANCE.Success}
             title='Резервная копия завершена'
-            content='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
+            description='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
             date='вчера · 14:32'
           />
         </>
@@ -458,7 +458,7 @@ export function PanelFull() {
                   label='INC-4821'
                   appearance={APPEARANCE.Error}
                   title='Кластер k8s-prod-1 деградирован'
-                  content='3 из 5 нод недоступны последние 6 минут.'
+                  description='3 из 5 нод недоступны последние 6 минут.'
                   date='03:14'
                   link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
                   unread={isUnread('inc-4821')}
@@ -471,7 +471,7 @@ export function PanelFull() {
                   label='api-gateway · v2.18.3'
                   appearance={APPEARANCE.Error}
                   title='Деплой не прошёл health-check'
-                  content='Readiness probe вернул 503 на 4 из 6 подов.'
+                  description='Readiness probe вернул 503 на 4 из 6 подов.'
                   date='02:50'
                   primaryButton={{ label: 'Повторить', onClick: () => markRead('deploy-9217') }}
                   secondaryButton={{
@@ -501,7 +501,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='prod-1 · /var/data'
-                  content='Использовано 92% — осталось 38 ГБ из 480 ГБ.'
+                  description='Использовано 92% — осталось 38 ГБ из 480 ГБ.'
                   date='01:12'
                 />
                 <NotificationCard
@@ -509,7 +509,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='prod-2 · /var/log'
-                  content='Использовано 87% — осталось 62 ГБ из 480 ГБ.'
+                  description='Использовано 87% — осталось 62 ГБ из 480 ГБ.'
                   date='00:48'
                 />
                 <NotificationCard
@@ -517,7 +517,7 @@ export function PanelFull() {
                   label='Storage'
                   appearance={APPEARANCE.Warning}
                   title='stage-1 · /var/data'
-                  content='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
+                  description='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
               </NotificationPanelContent.Stack>
@@ -530,7 +530,7 @@ export function PanelFull() {
               label='@you · billing/PR-1402'
               appearance={APPEARANCE.Default}
               title='А. Иванов упомянул вас в PR'
-              content='Пересмотрите расчёт grace-period в BillingScheduler.tsx:142'
+              description='Пересмотрите расчёт grace-period в BillingScheduler.tsx:142'
               date='вчера · 18:20'
               link={{ text: 'Открыть PR', href: '/billing/pulls/1402' }}
               unread={isUnread('mention-1')}
@@ -545,7 +545,7 @@ export function PanelFull() {
                 label='Backup'
                 appearance={APPEARANCE.Success}
                 title='Резервная копия завершена'
-                content='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
+                description='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
                 date='вчера · 14:32'
               />
             </>
@@ -642,8 +642,8 @@ export function PanelFull() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | Дополнительный класс |
+| `content` | `ReactNode` | — | Подзаголовок |
 | `data-test-id` | `string` | — |  |
-| `description` | `ReactNode` | — | Подзаголовок |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string` | — | Заголовок |
 

@@ -12,13 +12,13 @@ export function InfoBlockDemo() {
       componentDoc={infoBlockDoc.InfoBlock}
       defaultProps={{
         title: 'Заголовок блока',
-        description: 'Пояснительный текст, который помогает пользователю понять контекст.',
+        content: 'Пояснительный текст, который помогает пользователю понять контекст.',
         size: 's',
         align: 'vertical',
       }}
       controls={{
         title: { type: 'text' },
-        description: { type: 'text' },
+        content: { type: 'text' },
         size: { type: 'select', options: ['s', 'm', 'l'] },
         align: { type: 'radio', options: ['vertical', 'horizontal'] },
       }}

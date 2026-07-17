@@ -2444,7 +2444,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -4028,7 +4028,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -5206,7 +5206,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -6434,7 +6434,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -7647,7 +7647,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -8903,7 +8903,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -10528,7 +10528,7 @@
             "required": false,
             "description": "Дополнительный класс"
           },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"

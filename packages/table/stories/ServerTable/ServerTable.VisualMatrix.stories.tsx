@@ -79,7 +79,7 @@ export const VisualMatrix: Story = {
                   offset={0}
                   onChangePage={noop}
                   columnDefinitions={columns}
-                  noDataState={{ title: 'Нет данных', description: 'Список пуст' }}
+                  noDataState={{ title: 'Нет данных', content: 'Список пуст' }}
                   outline
                 />
               </div>,

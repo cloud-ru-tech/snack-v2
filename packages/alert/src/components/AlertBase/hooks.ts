@@ -6,7 +6,7 @@ export const ONE_LINE_TEXT_HEIGHT = 20;
 export type UseAlertCollapseParams = {
   collapsible: boolean;
   title?: string;
-  description: unknown;
+  content: unknown;
   hasFooterActions: boolean;
 };
 
@@ -32,7 +32,7 @@ function updateIsLarge(ref: RefObject<HTMLDivElement | null>, setter: (value: bo
 export function useAlertCollapse({
   collapsible,
   title,
-  description,
+  content,
   hasFooterActions,
 }: UseAlertCollapseParams): UseAlertCollapseResult {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -90,7 +90,7 @@ export function useAlertCollapse({
       return;
     }
     updateDescriptionLarge();
-  }, [collapsible, description, updateDescriptionLarge]);
+  }, [collapsible, content, updateDescriptionLarge]);
 
   const canExpand = collapsible && (isTitleLarge || isDescriptionLarge || hasFooterActions);
 

@@ -5,14 +5,14 @@ const MODAL_PREDEFINED_MESSAGES = defineMessages({
     deleteModal: {
       title: 'Delete {{objectType}}',
       fallbackTitle: 'Delete object',
-      description: 'This action cannot be undone.',
+      content: 'This action cannot be undone.',
       confirmLabel: 'To allow deletion, enter:',
       approve: 'Delete',
       cancel: 'Cancel',
     },
     recallModal: {
       title: 'Recall request',
-      description: 'This action cannot be undone.',
+      content: 'This action cannot be undone.',
       confirmLabel: 'To recall the request, enter:',
       approve: 'Recall request',
       cancel: 'Cancel',
@@ -39,14 +39,14 @@ const MODAL_PREDEFINED_MESSAGES = defineMessages({
     deleteModal: {
       title: 'Удаление {{objectType}}',
       fallbackTitle: 'Удалить объект',
-      description: 'Это действие нельзя отменить.',
+      content: 'Это действие нельзя отменить.',
       confirmLabel: 'Чтобы разрешить удаление, введите:',
       approve: 'Удалить',
       cancel: 'Отмена',
     },
     recallModal: {
       title: 'Отзыв заявки',
-      description: 'Это действие нельзя отменить.',
+      content: 'Это действие нельзя отменить.',
       confirmLabel: 'Чтобы отозвать заявку, введите:',
       approve: 'Отозвать заявку',
       cancel: 'Отмена',

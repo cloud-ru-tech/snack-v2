@@ -7,7 +7,7 @@ export function AdaptiveTruncate() {
   return (
     <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
       <div style={{ maxWidth: 360 }}>
-        <Alert appearance='info' title={LONG_TITLE} description='На узком экране заголовок усекается в две строки.' />
+        <Alert appearance='info' title={LONG_TITLE} content='На узком экране заголовок усекается в две строки.' />
       </div>
     </AdaptiveProvider>
   );

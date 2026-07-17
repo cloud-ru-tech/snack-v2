@@ -19,7 +19,7 @@ export function PanelBasic() {
             label='INC-4821'
             appearance={APPEARANCE.Error}
             title='Кластер k8s-prod-1 деградирован'
-            content='3 из 5 нод недоступны последние 6 минут.'
+            description='3 из 5 нод недоступны последние 6 минут.'
             date='03:14'
             link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
             unread={!readIds.has('inc-4821')}
@@ -30,7 +30,7 @@ export function PanelBasic() {
             label='Storage'
             appearance={APPEARANCE.Warning}
             title='Лимит дисковой квоты'
-            content='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
+            description='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
             date='02:50'
             unread={!readIds.has('quota-var-data')}
             onVisible={markRead}
@@ -40,7 +40,7 @@ export function PanelBasic() {
             label='api-gateway · v2.18.3'
             appearance={APPEARANCE.Error}
             title='Деплой не прошёл health-check'
-            content='Readiness probe вернул 503 на 4 из 6 подов.'
+            description='Readiness probe вернул 503 на 4 из 6 подов.'
             date='вчера · 23:11'
             unread={!readIds.has('deploy-9217')}
             onVisible={markRead}
@@ -50,7 +50,7 @@ export function PanelBasic() {
             label='Backup'
             appearance={APPEARANCE.Success}
             title='Резервная копия завершена'
-            content='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
+            description='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
             date='вчера · 14:32'
           />
         </>

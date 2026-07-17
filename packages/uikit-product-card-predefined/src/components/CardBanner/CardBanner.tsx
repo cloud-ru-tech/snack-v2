@@ -14,7 +14,7 @@ type BaseCardBannerProps = {
   /** Заголовок карточки */
   title: string;
   /** Описание */
-  description: string;
+  content: string;
   /** Текст кнопки действия */
   actionLabel: string;
   /** Изображение */
@@ -41,7 +41,7 @@ export type CardBannerProps<T extends ElementType = 'div'> = BaseCardBannerProps
 
 export function CardBanner<T extends ElementType = 'div'>({
   title,
-  description,
+  content,
   actionLabel,
   image,
   onClose,
@@ -91,11 +91,11 @@ export function CardBanner<T extends ElementType = 'div'>({
 
           <Typography as='p' variant='body' size='m' className={styles.description}>
             <TruncateString
-              key={description}
-              text={description}
+              key={content}
+              text={content}
               maxLines={2}
               variant='end'
-              data-test-id={TEST_IDS.cardBannerDescription}
+              data-test-id={TEST_IDS.cardBannerContent}
             />
           </Typography>
 

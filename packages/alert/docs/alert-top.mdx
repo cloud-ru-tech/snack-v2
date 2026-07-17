@@ -84,13 +84,13 @@ import { AlertTop } from '@ds/alert'
 import { AlertTop } from '@ds/alert'
 
 // 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся collapsible (mobile не ломается)
-<AlertTop collapsible={false} title='…' description='…' />
+<AlertTop collapsible={false} title='…' content='…' />
 
 // 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
-<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' description='…' />
+<AlertTop layoutPresets={{ mobile: { collapsible: false } }} title='…' content='…' />
 
 // 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
-<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' description='…' />
+<AlertTop layoutPresets={{ desktop: { collapsible: true } }} title='…' content='…' />
 ```
 
 DS-пресет (`ALERT_TOP_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
@@ -105,7 +105,7 @@ import { AlertTop } from '@ds/alert'
 
 // поддерево — вложенный провайдер
 <AdaptiveProvider layoutType='mobile'>
-  <AlertTop title='…' description='…' />
+  <AlertTop title='…' content='…' />
 </AdaptiveProvider>
 
 // компонент/секция — HOC (module-scope, не в рендере)

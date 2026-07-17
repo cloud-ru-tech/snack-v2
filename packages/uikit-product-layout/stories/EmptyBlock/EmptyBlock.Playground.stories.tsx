@@ -19,7 +19,7 @@ const meta: Meta<PlaygroundArgs> = {
   parameters: { layout: 'fullscreen' },
   args: {
     title: 'Title text',
-    description: 'Body text',
+    content: 'Body text',
     icon: { icon: PlaceholderSVG },
     showFooter: true,
     'data-test-id': TEST_IDS.emptyBlock.root,

@@ -9,7 +9,7 @@ export function PolymorphicLink() {
       href='https://cloud.ru'
       target='_blank'
       title='Перейти на сайт'
-      description='Откроется в новой вкладке'
+      content='Откроется в новой вкладке'
       actionLabel='Подробнее'
       image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
     />

@@ -4,7 +4,7 @@ import { ListPrivateProps } from '../../components/Lists/types';
 import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
-export type EmptyStateProps = Pick<InfoBlockProps, 'description' | 'icon' | 'data-test-id' | 'footer' | 'className'>;
+export type EmptyStateProps = Pick<InfoBlockProps, 'content' | 'icon' | 'data-test-id' | 'footer' | 'className'>;
 
 export type ListEmptyState = {
   emptyStates: {

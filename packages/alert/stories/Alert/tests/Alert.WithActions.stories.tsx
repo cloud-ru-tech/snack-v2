@@ -35,7 +35,7 @@ export const WithActions: Story = {
   tags: ['test', 'dev'],
   args: {
     title: 'Alert title',
-    description: 'Alert description text',
+    content: 'Alert description text',
     'data-test-id': TEST_IDS.alert.root,
     onClose: fn(),
     actions: {

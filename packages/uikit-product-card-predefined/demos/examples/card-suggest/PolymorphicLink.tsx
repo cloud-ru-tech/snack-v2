@@ -7,7 +7,7 @@ export function PolymorphicLink() {
       href='https://cloud.ru'
       target='_blank'
       title='Подсказка-ссылка'
-      description='Это якорный элемент'
+      content='Это якорный элемент'
     />
   );
 }

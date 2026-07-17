@@ -12,8 +12,8 @@ type ActionButtonProps = {
   onActionClick?(): void;
 };
 
-type BlockProps = Pick<InfoBlockProps, 'description'>;
-type BlockPropsWithIcon = Pick<InfoBlockProps, 'description' | 'icon'>;
+type BlockProps = Pick<InfoBlockProps, 'content'>;
+type BlockPropsWithIcon = Pick<InfoBlockProps, 'content' | 'icon'>;
 
 export type DropdownState =
   | { type: typeof STATE.Loading }

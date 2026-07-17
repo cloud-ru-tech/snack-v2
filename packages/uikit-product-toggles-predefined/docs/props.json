@@ -16,7 +16,7 @@
       "description": {
         "type": "string",
         "required": false,
-        "description": "Описание под заголовком"
+        "description": "Основной текст под заголовком"
       },
       "disabled": {
         "type": "boolean",

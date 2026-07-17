@@ -69,15 +69,15 @@
         "required": false,
         "description": "CSS-класс корневого элемента"
       },
+      "content": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Support prop для тестов"
-      },
-      "description": {
-        "type": "string",
-        "required": true,
-        "description": "Описание"
       },
       "disabled": {
         "type": "boolean",
@@ -139,15 +139,15 @@
         "required": false,
         "description": "CSS-класс корневого элемента"
       },
+      "content": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Support prop для тестов"
-      },
-      "description": {
-        "type": "string",
-        "required": true,
-        "description": "Описание"
       },
       "disabled": {
         "type": "boolean",
@@ -854,15 +854,15 @@
         "required": false,
         "description": "CSS-класс корневого элемента"
       },
+      "content": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "description": "Support prop для тестов"
-      },
-      "description": {
-        "type": "string",
-        "required": true,
-        "description": "Описание"
       },
       "disabled": {
         "type": "boolean",
@@ -906,7 +906,7 @@
         "description": "Заголовок"
       },
       "truncate": {
-        "type": "{ title?: number; description?: number; } | undefined",
+        "type": "{ title?: number; content?: number; } | undefined",
         "required": false,
         "description": "Настройки обрезки текста"
       }

@@ -21,7 +21,7 @@ export type EmptyBlockProps = WithSupportProps<
     /** Заголовок */
     title?: string;
     /** Описание под заголовком */
-    description?: ReactNode;
+    content?: ReactNode;
     /** Иконка */
     icon?: IconPredefinedProps;
     /** Слот действий под текстом (например, `ButtonGroup`) */
@@ -47,7 +47,7 @@ export const EMPTY_BLOCK_LAYOUT_PRESETS: LayoutPresets<EmptyBlockLayoutDefaults>
  */
 export function EmptyBlock({
   title,
-  description,
+  content,
   icon,
   footer,
   align,
@@ -67,7 +67,7 @@ export function EmptyBlock({
         <InfoBlock
           className={styles.infoBlock}
           title={title}
-          description={description}
+          content={content}
           icon={icon}
           size={INFO_SIZE.L}
           align={resolvedAlign}

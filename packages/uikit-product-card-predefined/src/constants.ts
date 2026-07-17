@@ -1,10 +1,10 @@
 export const TEST_IDS = {
   cardBanner: 'card-banner',
-  cardBannerDescription: 'card-banner__description',
+  cardBannerContent: 'card-banner__content',
   cardBannerImage: 'card-banner__image',
   cardBannerClose: 'card-banner__close',
   cardService: 'card-service',
-  cardServiceDescription: 'card-service__description',
+  cardServiceContent: 'card-service__content',
   cardServiceSmall: 'card-service-small',
   cardServiceSmallTitle: 'card-service-small__title',
   cardServiceSmallFavorite: 'card-service-small__favorite',
@@ -14,7 +14,7 @@ export const TEST_IDS = {
   cardServiceLightPromoTag: 'card-service-light__promo-tag',
   cardServiceLightFavorite: 'card-service-light__favorite',
   cardSuggest: 'card-suggest',
-  cardSuggestDescription: 'card-suggest__description',
+  cardSuggestContent: 'card-suggest__content',
   cardSuggestPromoBadge: 'card-suggest__promo-badge',
 } as const;
 
@@ -25,7 +25,7 @@ export const VISIBILITY_STRATEGY = {
 
 export const CARD_SUGGEST_TRUNCATE_DEFAULTS = {
   title: 2,
-  description: 3,
+  content: 3,
 } as const;
 
 export const CARD_SIZE = {

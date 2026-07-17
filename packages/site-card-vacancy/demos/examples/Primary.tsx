@@ -6,7 +6,7 @@ export function Primary() {
       href='#lead'
       appearance={APPEARANCE.Primary}
       title='Lead Product Designer'
-      description='Hybrid · Full-time'
+      content='Hybrid · Full-time'
     />
   );
 }

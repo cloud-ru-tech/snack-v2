@@ -42,7 +42,7 @@ export function Basic() {
   return (
     <CardBanner
       title='Заголовок карточки'
-      description='Краткое описание сервиса или предложения для пользователя'
+      content='Краткое описание сервиса или предложения для пользователя'
       actionLabel='Подробнее'
       image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
     />
@@ -68,7 +68,7 @@ export function WithOnClick() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <CardBanner
         title='Заголовок карточки'
-        description='Клик по карточке обрабатывается через onClick'
+        content='Клик по карточке обрабатывается через onClick'
         actionLabel='Подробнее'
         image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
         onClick={() => setClicks(c => c + 1)}
@@ -107,7 +107,7 @@ export function WithClose() {
   return (
     <CardBanner
       title='Заголовок карточки'
-      description='Кнопка закрытия появляется при передаче onClose'
+      content='Кнопка закрытия появляется при передаче onClose'
       actionLabel='Подробнее'
       image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
       onClose={() => setVisible(false)}
@@ -132,7 +132,7 @@ export function PolymorphicLink() {
       href='https://cloud.ru'
       target='_blank'
       title='Перейти на сайт'
-      description='Откроется в новой вкладке'
+      content='Откроется в новой вкладке'
       actionLabel='Подробнее'
       image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
     />
@@ -149,8 +149,8 @@ export function PolymorphicLink() {
 | `actionLabel` | `string` | — | Текст кнопки действия |
 | `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
+| `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
-| `description` | `string` | — | Описание |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `image` | `{ src: string; alt: string; }` | — | Изображение |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
@@ -177,8 +177,8 @@ export function PolymorphicLink() {
 | `actionLabel` | `string` | — | Текст кнопки действия |
 | `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
+| `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
-| `description` | `string` | — | Описание |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `emblem` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Эмблема — передавайте `<IconPredefined icon={...} />` или произвольный ReactElement |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
@@ -654,7 +654,7 @@ export function Basic() {
   return (
     <CardSuggest
       title='Подсказка для пользователя'
-      description='Краткое описание действия или функциональности'
+      content='Краткое описание действия или функциональности'
       size={CARD_SIZE.M}
     />
   );
@@ -672,7 +672,7 @@ export function SizeSmall() {
   return (
     <CardSuggest
       title='Подсказка для пользователя'
-      description='Краткое описание действия или функциональности'
+      content='Краткое описание действия или функциональности'
       size={CARD_SIZE.S}
     />
   );
@@ -691,7 +691,7 @@ export function WithPromoTag() {
   return (
     <CardSuggest
       title='Подсказка для пользователя'
-      description='Краткое описание действия или функциональности'
+      content='Краткое описание действия или функциональности'
       promoBadge={{
         text: 'New',
         appearance: APPEARANCE.Primary,
@@ -718,7 +718,7 @@ const longDescription =
 export function WithTruncate() {
   return (
     <div style={{ maxWidth: 320 }}>
-      <CardSuggest title={longTitle} description={longDescription} truncate={{ title: 2, description: 3 }} />
+      <CardSuggest title={longTitle} content={longDescription} truncate={{ title: 2, content: 3 }} />
     </div>
   );
 }
@@ -733,11 +733,7 @@ import { CardSuggest } from '@ds/uikit-product-card-predefined';
 
 export function Disabled() {
   return (
-    <CardSuggest
-      title='Подсказка для пользователя'
-      description='Краткое описание действия или функциональности'
-      disabled
-    />
+    <CardSuggest title='Подсказка для пользователя' content='Краткое описание действия или функциональности' disabled />
   );
 }
 ```
@@ -758,7 +754,7 @@ export function WithOnClick() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <CardSuggest
         title='Подсказка для пользователя'
-        description='Краткое описание действия или функциональности'
+        content='Краткое описание действия или функциональности'
         onClick={() => setClicks(c => c + 1)}
       />
 
@@ -784,7 +780,7 @@ export function PolymorphicLink() {
       href='https://cloud.ru'
       target='_blank'
       title='Подсказка-ссылка'
-      description='Это якорный элемент'
+      content='Это якорный элемент'
     />
   );
 }
@@ -798,14 +794,14 @@ export function PolymorphicLink() {
 |------|------|---------|-------------|
 | `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
+| `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
-| `description` | `string` | — | Описание |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-тег. <br/> Используйте `PromoTagProps` из `@ds/promo-tag`. |
 | `size` | `"m"` \| `"s"` | `m` | Размер: управляет типографикой и отступами. <br/> `'m'` — roleTitle/m + roleBody/m, padding 16px; <br/> `'s'` — roleTitle/s + roleBody/s, padding 8px. |
 | `title` | `string` | — | Заголовок |
-| `truncate` | `{ title?: number; description?: number; } \| undefined` | — | Настройки обрезки текста |
+| `truncate` | `{ title?: number; content?: number; } \| undefined` | — | Настройки обрезки текста |
 
 ##### Related types
 

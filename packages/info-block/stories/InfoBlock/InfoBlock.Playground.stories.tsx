@@ -17,7 +17,7 @@ const meta: Meta<PlaygroundArgs> = {
   args: {
     'data-test-id': TEST_IDS.root,
     title: 'Title text',
-    description: 'Content text',
+    content: 'Content text',
     size: SIZE.S,
     align: ALIGN.Vertical,
     showIcon: true,
@@ -33,7 +33,7 @@ const meta: Meta<PlaygroundArgs> = {
       control: 'text',
       description: 'Заголовок',
     },
-    description: {
+    content: {
       control: 'text',
       description: 'Подзаголовок',
     },
@@ -81,7 +81,7 @@ export const Playground: Story = {
         <DemoActions align='center'>
           <InfoBlock
             title={args.title}
-            description={args.description}
+            content={args.content}
             size={args.size}
             align={args.align}
             icon={args.showIcon ? args.icon : undefined}

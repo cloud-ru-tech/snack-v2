@@ -13,7 +13,7 @@ export const TEST_IDS = {
   root: 'info-block',
   icon: 'info-block__icon',
   title: 'info-block__title',
-  description: 'info-block__description',
+  content: 'info-block__content',
   footer: 'info-block__footer',
 };
 

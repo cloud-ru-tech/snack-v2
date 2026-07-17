@@ -420,7 +420,7 @@
       "BlockProps": {
         "kind": "interface",
         "props": {
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"
@@ -431,7 +431,7 @@
       "BlockPropsWithIcon": {
         "kind": "interface",
         "props": {
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Подзаголовок"

@@ -72,7 +72,7 @@ import { Alert } from '@ds/alert'
 
 <Example
   title='4. Сворачиваемый алерт'
-  description='Длинное описание скрыто до клика по заголовку'
+  content='Длинное описание скрыто до клика по заголовку'
   code={CollapsibleSrc}
 >
   <Collapsible client:visible />
@@ -103,13 +103,13 @@ import { Alert } from '@ds/alert'
 import { Alert } from '@ds/alert'
 
 // 1. Явный проп — задаёт DESKTOP-значение; mobile остаётся 2 строки (mobile не ломается)
-<Alert truncate={{ title: 3 }} title='…' description='…' />
+<Alert truncate={{ title: 3 }} title='…' content='…' />
 
 // 2. layoutPresets.mobile — единственный способ изменить mobile (явно)
-<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' description='…' />
+<Alert layoutPresets={{ mobile: { truncate: { title: 3 } } }} title='…' content='…' />
 
 // 2b. layoutPresets.desktop — изменить только desktop, mobile-адаптив сохранён
-<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' description='…' />
+<Alert layoutPresets={{ desktop: { truncate: { title: 3 } } }} title='…' content='…' />
 ```
 
 DS-пресет (`ALERT_LAYOUT_PRESETS`) — точка форка mobile-дефолтов на уровне всей дизайн-системы.
@@ -124,7 +124,7 @@ import { Alert } from '@ds/alert'
 
 // поддерево — вложенный провайдер
 <AdaptiveProvider layoutType='mobile'>
-  <Alert title='…' description='…' />
+  <Alert title='…' content='…' />
 </AdaptiveProvider>
 
 // компонент/секция — HOC (module-scope, не в рендере)

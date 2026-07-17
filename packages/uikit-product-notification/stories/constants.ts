@@ -1,11 +1,11 @@
 import { NotificationCardProps, NotificationPanelContentProps } from '@ds/uikit-product-notification';
 import { fn } from 'storybook/test';
 
-export const BASE_PROPS: Pick<NotificationCardProps, 'id' | 'title' | 'content' | 'date' | 'link' | 'label'> = {
+export const BASE_PROPS: Pick<NotificationCardProps, 'id' | 'title' | 'description' | 'date' | 'link' | 'label'> = {
   label: ['Category', 'Subcategory'].join('・'),
   id: 'card',
   title: 'Title truncate two line',
-  content: `Demo content.
+  description: `Demo content.
 
 For replacement, use Property: ◆ProdContent. Replace this element with your local component with the original content.`,
   link: {

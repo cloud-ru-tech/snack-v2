@@ -15,7 +15,7 @@ export function QuotaError({ onRefresh }: QuotaErrorProps) {
     <InfoBlock
       size='m'
       align='vertical'
-      description={t('errorText')}
+      content={t('errorText')}
       icon={{ icon: CrossSVG, appearance: 'neutral', decor: true }}
       footer={
         <Button

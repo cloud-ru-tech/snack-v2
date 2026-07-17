@@ -24,7 +24,7 @@ export const TEST_IDS = {
   alert: {
     root: 'alert',
     title: 'alert__title',
-    description: 'alert__description',
+    content: 'alert__content',
     closeButton: 'alert__close-button',
     icon: 'alert__icon',
     expandingIcon: 'alert__expanding-icon',
@@ -32,7 +32,7 @@ export const TEST_IDS = {
   alertTop: {
     root: 'alert-top',
     title: 'alert-top__title',
-    description: 'alert-top__description',
+    content: 'alert-top__content',
     closeButton: 'alert-top__close-button',
     icon: 'alert-top__icon',
     expandingIcon: 'alert-top__expanding-icon',
