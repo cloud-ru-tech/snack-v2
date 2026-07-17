@@ -2,10 +2,10 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import pagefind from 'astro-pagefind';
-import remarkGfm from 'remark-gfm';
 import fs from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import remarkGfm from 'remark-gfm';
 
 import { collectPackages, generateLlmsFiles, renderIndex, renderPackage } from './src/lib/llms.ts';
 import { patchAstroReactCheck } from './src/lib/patchAstroReactCheck.mjs';
@@ -107,22 +107,27 @@ export default defineConfig({
   // Support deployment on subpaths via BASE_PATH env variable
   base: process.env.BASE_PATH || '/',
   trailingSlash: 'always',
+  // remark-плагины задаются на markdown-уровне: в Astro 7 @astrojs/mdx наследует их отсюда
+  // (задавать `remarkPlugins` прямо на `mdx({...})` устарело). remark-gfm идёт первым — GFM-таблицы
+  // (и strikethrough/task-list/autolink) должны быть распарсены до работы остальных плагинов.
+  // Astro 7 помечает и `markdown.remarkPlugins` как deprecated в пользу `markdown.processor`
+  // (unified-процессор), но @astrojs/markdown-remark@7.1.2 ещё не экспортирует нужный `unified`-
+  // хелпер — мигрируем, когда он появится. Предупреждение при билде безвредно (removal — не раньше
+  // следующего мажора). .md-контента в доке нет (только .mdx), так что scope плагинов не меняется.
+  markdown: {
+    remarkPlugins: [
+      remarkGfm,
+      remarkExampleCode,
+      remarkInternalBaseUrl,
+      remarkExampleHeadings,
+      remarkPropsTableHeadings,
+      remarkMermaid,
+      remarkSectionOrder,
+    ],
+  },
   integrations: [
     react(),
-    mdx({
-      remarkPlugins: [
-        // remark-gfm включает GFM-таблицы (и strikethrough/task-list/autolink) для MDX —
-        // @astrojs/mdx с кастомным remarkPlugins их сам не подключает. Идёт первым, чтобы
-        // таблицы уже были распарсены к моменту работы остальных плагинов.
-        remarkGfm,
-        remarkExampleCode,
-        remarkInternalBaseUrl,
-        remarkExampleHeadings,
-        remarkPropsTableHeadings,
-        remarkMermaid,
-        remarkSectionOrder,
-      ],
-    }),
+    mdx(),
     // Pagefind index is expensive (~2-4s). Skip it for local fast builds via SKIP_PAGEFIND=1.
     ...(process.env.SKIP_PAGEFIND ? [] : [pagefind()]),
     llmsTxtIntegration(),
@@ -178,13 +183,21 @@ export default defineConfig({
             root,
             'node_modules/@cloud-ru/ft-formatters/dist/esm/formatters/formatNumber.js',
           ),
+          // Same legacy pattern: dist/esm/index.js imports ./constants, ./helpers without .js.
+          // Under Vite 8 (Astro 7) SSR prerender the bare package id gets externalized and
+          // Node native ESM can't resolve extensionless. Aliasing to the concrete index.js
+          // forces Vite to bundle it and resolve the internal imports itself.
+          '@cloud-ru/ft-request-payload-transform': resolve(
+            root,
+            'node_modules/@cloud-ru/ft-request-payload-transform/dist/esm/index.js',
+          ),
           ...dsWorkspaceSourceAliases(),
         }).map(([find, replacement]) => ({ find, replacement })),
       ],
     },
     optimizeDeps: {
       // Alias points at a single .js file; prebundling under package id breaks client hydration.
-      exclude: ['@cloud-ru/ft-formatters'],
+      exclude: ['@cloud-ru/ft-formatters', '@cloud-ru/ft-request-payload-transform'],
     },
     css: {
       modules: { localsConvention: 'camelCaseOnly' },

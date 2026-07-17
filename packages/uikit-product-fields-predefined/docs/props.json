@@ -3,11 +3,17 @@
     "displayName": "AbkhaziaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -16,11 +22,17 @@
     "displayName": "AfghanistanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -29,11 +41,17 @@
     "displayName": "AlbaniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -42,11 +60,17 @@
     "displayName": "AlgeriaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -55,11 +79,17 @@
     "displayName": "AndorraSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -68,11 +98,17 @@
     "displayName": "AngolaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -81,11 +117,17 @@
     "displayName": "AntiguaAndBarbudaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -94,11 +136,17 @@
     "displayName": "ArgentinaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -107,11 +155,17 @@
     "displayName": "ArmeniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -137,11 +191,17 @@
     "displayName": "AustraliaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -150,11 +210,17 @@
     "displayName": "AustriaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -163,11 +229,17 @@
     "displayName": "AzerbaijanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -176,11 +248,17 @@
     "displayName": "BahamasSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -189,11 +267,17 @@
     "displayName": "BahrainSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -202,11 +286,17 @@
     "displayName": "BangladeshSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -215,11 +305,17 @@
     "displayName": "BarbadosSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -228,11 +324,17 @@
     "displayName": "BelarusSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -241,11 +343,17 @@
     "displayName": "BelgiumSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -254,11 +362,17 @@
     "displayName": "BelizeSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -267,11 +381,17 @@
     "displayName": "BeninSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -280,11 +400,17 @@
     "displayName": "BhutanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -293,11 +419,17 @@
     "displayName": "BosniaAndHerzegovinaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -306,11 +438,17 @@
     "displayName": "BotswanaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -319,11 +457,17 @@
     "displayName": "BrazilSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -332,11 +476,17 @@
     "displayName": "CambodiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -345,11 +495,17 @@
     "displayName": "CameroonSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -358,11 +514,17 @@
     "displayName": "CaymanIslandsSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -442,11 +604,17 @@
     "displayName": "CentralAfricanRepublicSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -455,11 +623,17 @@
     "displayName": "ChadSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -468,11 +642,17 @@
     "displayName": "ChileSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -481,11 +661,17 @@
     "displayName": "ColombiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -494,11 +680,17 @@
     "displayName": "CongoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -507,11 +699,17 @@
     "displayName": "CostaRicaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -520,11 +718,17 @@
     "displayName": "CoteDIvoireSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -533,11 +737,17 @@
     "displayName": "CroatiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -546,11 +756,17 @@
     "displayName": "CyprusSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -559,11 +775,17 @@
     "displayName": "DenmarkSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -572,11 +794,17 @@
     "displayName": "DjiboutiSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -585,11 +813,17 @@
     "displayName": "DominicanRepublicSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -598,11 +832,17 @@
     "displayName": "EcuadorSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -611,11 +851,17 @@
     "displayName": "EgyptSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -624,11 +870,17 @@
     "displayName": "EstoniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -637,11 +889,17 @@
     "displayName": "EthiopiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7174,11 +7432,17 @@
     "displayName": "FijiSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7187,11 +7451,17 @@
     "displayName": "FinlandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7200,11 +7470,17 @@
     "displayName": "FranceSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7213,11 +7489,17 @@
     "displayName": "FrenchPolynesiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7226,11 +7508,17 @@
     "displayName": "GeorgiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7239,11 +7527,17 @@
     "displayName": "GermanySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7252,11 +7546,17 @@
     "displayName": "GhanaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7265,11 +7565,17 @@
     "displayName": "GibraltarSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7278,11 +7584,17 @@
     "displayName": "GreeceSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7291,11 +7603,17 @@
     "displayName": "GuatemalaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7304,11 +7622,17 @@
     "displayName": "GuernseySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7317,11 +7641,17 @@
     "displayName": "GuineaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7330,11 +7660,17 @@
     "displayName": "GuyanaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7343,11 +7679,17 @@
     "displayName": "HaitiSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7356,11 +7698,17 @@
     "displayName": "HondurasSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7369,11 +7717,17 @@
     "displayName": "HongKongSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7382,11 +7736,17 @@
     "displayName": "HungarySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7395,11 +7755,17 @@
     "displayName": "IcelandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7408,11 +7774,17 @@
     "displayName": "IndiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7421,11 +7793,17 @@
     "displayName": "IndonesiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7434,11 +7812,17 @@
     "displayName": "IranSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7447,11 +7831,17 @@
     "displayName": "IraqSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7460,11 +7850,17 @@
     "displayName": "IrelandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7473,11 +7869,17 @@
     "displayName": "IsleOfManSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7486,11 +7888,17 @@
     "displayName": "IsraelSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7499,11 +7907,17 @@
     "displayName": "ItalySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7512,11 +7926,17 @@
     "displayName": "JapanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7525,11 +7945,17 @@
     "displayName": "JordanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7538,11 +7964,17 @@
     "displayName": "KazakhstanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7551,11 +7983,17 @@
     "displayName": "KenyaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7564,11 +8002,17 @@
     "displayName": "KiribatiSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7577,11 +8021,17 @@
     "displayName": "KosovoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7590,11 +8040,17 @@
     "displayName": "KyrgyzstanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7603,11 +8059,17 @@
     "displayName": "LatviaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7616,11 +8078,17 @@
     "displayName": "LebanonSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7629,11 +8097,17 @@
     "displayName": "LesothoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7642,11 +8116,17 @@
     "displayName": "LibyaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7655,11 +8135,17 @@
     "displayName": "LiechtensteinSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7668,11 +8154,17 @@
     "displayName": "LithuaniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7681,11 +8173,17 @@
     "displayName": "LuxembourgSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7694,11 +8192,17 @@
     "displayName": "MadagascarSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7707,11 +8211,17 @@
     "displayName": "MalaysiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7720,11 +8230,17 @@
     "displayName": "MaldivesSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7733,11 +8249,17 @@
     "displayName": "MaliSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7746,11 +8268,17 @@
     "displayName": "MaltaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7759,11 +8287,17 @@
     "displayName": "MauritaniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7772,11 +8306,17 @@
     "displayName": "MauritiusSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7785,11 +8325,17 @@
     "displayName": "MayotteSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7798,11 +8344,17 @@
     "displayName": "MoldovaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7811,11 +8363,17 @@
     "displayName": "MonacoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7824,11 +8382,17 @@
     "displayName": "MontenegroSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7837,11 +8401,17 @@
     "displayName": "MoroccoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7850,11 +8420,17 @@
     "displayName": "MozambiqueSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7863,11 +8439,17 @@
     "displayName": "MyanmarSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7876,11 +8458,17 @@
     "displayName": "NamibiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7889,11 +8477,17 @@
     "displayName": "NetherlandsSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7902,11 +8496,17 @@
     "displayName": "NewCaledoniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7915,11 +8515,17 @@
     "displayName": "NewZealandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7928,11 +8534,17 @@
     "displayName": "NicaraguaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7941,11 +8553,17 @@
     "displayName": "NigerSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7954,11 +8572,17 @@
     "displayName": "NigeriaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7967,11 +8591,17 @@
     "displayName": "NorfolkIslandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7980,11 +8610,17 @@
     "displayName": "NorthMacedoniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -7993,11 +8629,17 @@
     "displayName": "NorwaySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8006,11 +8648,17 @@
     "displayName": "OmanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8019,11 +8667,17 @@
     "displayName": "PalestineSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8032,11 +8686,17 @@
     "displayName": "ParaguaySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8045,11 +8705,17 @@
     "displayName": "PeruSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8058,11 +8724,17 @@
     "displayName": "PolandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8071,11 +8743,17 @@
     "displayName": "PortugalSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8084,11 +8762,36 @@
     "displayName": "QatarSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "RepublicOfKoreaSVG": {
+    "displayName": "RepublicOfKoreaSVG",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "number",
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8141,11 +8844,17 @@
     "displayName": "RomaniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8154,11 +8863,17 @@
     "displayName": "RussiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8167,11 +8882,17 @@
     "displayName": "RwandaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8180,11 +8901,17 @@
     "displayName": "SaintPierreAndMiquelonSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8193,11 +8920,17 @@
     "displayName": "SanMarinoSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8206,11 +8939,17 @@
     "displayName": "SaoTomeAndPrincipeSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8219,11 +8958,17 @@
     "displayName": "SaudiArabiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8252,11 +8997,17 @@
     "displayName": "SenegalSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8265,11 +9016,17 @@
     "displayName": "SerbiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8278,11 +9035,17 @@
     "displayName": "SierraLeoneSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8291,11 +9054,17 @@
     "displayName": "SingaporeSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8304,11 +9073,17 @@
     "displayName": "SintMaartenSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8317,11 +9092,17 @@
     "displayName": "SlovakiaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8330,11 +9111,17 @@
     "displayName": "SomalilandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8343,24 +9130,17 @@
     "displayName": "SouthAfricaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "SouthKoreaSVG": {
-    "displayName": "SouthKoreaSVG",
-    "propsTypeName": null,
-    "props": {
-      "size": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8369,11 +9149,17 @@
     "displayName": "SouthSudanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8382,11 +9168,17 @@
     "displayName": "SpainSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8395,11 +9187,17 @@
     "displayName": "SriLankaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8408,11 +9206,17 @@
     "displayName": "SudanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8421,11 +9225,17 @@
     "displayName": "SurinameSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8434,11 +9244,17 @@
     "displayName": "SwedenSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8447,11 +9263,17 @@
     "displayName": "SwitzerlandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8460,11 +9282,17 @@
     "displayName": "SyriaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8473,11 +9301,17 @@
     "displayName": "TaiwanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8486,11 +9320,17 @@
     "displayName": "TajikistanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8499,11 +9339,17 @@
     "displayName": "TanzaniaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8529,11 +9375,17 @@
     "displayName": "ThailandSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8542,11 +9394,17 @@
     "displayName": "TongaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8555,11 +9413,17 @@
     "displayName": "TransnistriaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8568,11 +9432,17 @@
     "displayName": "TurkeySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8581,11 +9451,17 @@
     "displayName": "TurkmenistanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8594,11 +9470,17 @@
     "displayName": "TuvaluSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8607,11 +9489,17 @@
     "displayName": "UgandaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8620,11 +9508,17 @@
     "displayName": "UkraineSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8633,11 +9527,17 @@
     "displayName": "UnitedArabEmiratesSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8646,11 +9546,17 @@
     "displayName": "UruguaySVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8659,11 +9565,17 @@
     "displayName": "UzbekistanSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8672,11 +9584,17 @@
     "displayName": "VanuatuSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8685,11 +9603,17 @@
     "displayName": "VenezuelaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8698,11 +9622,17 @@
     "displayName": "VietnamSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8711,11 +9641,17 @@
     "displayName": "WallisAndFutunaSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8724,11 +9660,17 @@
     "displayName": "YemenSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -8737,11 +9679,17 @@
     "displayName": "ZimbabweSVG",
     "propsTypeName": null,
     "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
       "size": {
         "type": "number",
-        "required": false,
-        "defaultValue": "24",
-        "description": "Размер флага в пикселях (выставляет width и height)."
+        "required": false
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false
       }
     },
     "relatedTypes": {}

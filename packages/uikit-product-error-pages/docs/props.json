@@ -1,11 +1,4 @@
 {
-  "CloudLogo": {
-    "displayName": "CloudLogo",
-    "propsTypeName": null,
-    "description": "Логотип cloud.ru. Знак — фиксированный брендовый зелёный; текст использует\n`currentColor`, поэтому перекрашивается под тему через `color` родителя\n(см. `.logo` в `ErrorPage/styles.module.scss`).\n\nTODO: SVG зашит инлайн — коллекция Logos в DS ещё не заведена. Когда появится\nпакет/коллекция с логотипами, заменить инлайн-разметку на импорт из неё и\nудалить локальную константу бренд-цвета.",
-    "props": {},
-    "relatedTypes": {}
-  },
   "ErrorPage": {
     "displayName": "ErrorPage",
     "propsTypeName": "ErrorPageProps",

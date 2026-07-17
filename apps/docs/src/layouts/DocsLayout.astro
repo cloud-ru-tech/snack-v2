@@ -6,7 +6,6 @@ import { GitlabLink } from '../components/layout/GitlabLink'
 import { SupportLink } from '../components/layout/SupportLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
-import { SpriteHost } from '../components/layout/SpriteHost'
 import { ThemeHtmlApplier } from '../components/layout/ThemeHtmlApplier'
 import { PortalRootApplier } from '../components/layout/PortalRootApplier'
 import { NavProgress } from '../components/layout/NavProgress'
@@ -43,7 +42,6 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
   <body>
     <ThemeHtmlApplier client:load transition:persist />
     <PortalRootApplier client:load transition:persist />
-    <SpriteHost transition:persist />
     <NavProgress client:load transition:persist />
     <!-- Top header -->
     <header class="header" transition:persist>
