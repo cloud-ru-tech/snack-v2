@@ -1,4 +1,4 @@
-import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons/interface/system';
 import { Toolbar } from '@ds/toolbar';
 import { useState } from 'react';
 

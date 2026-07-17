@@ -1,4 +1,4 @@
-import { ChevronRightSVG } from '@ds/icons';
+import { ChevronRightSVG } from '@ds/icons/interface/system';
 import { MouseEvent } from 'react';
 
 import { BaseItemProps, Item, NextListItem } from '../../components/Items';

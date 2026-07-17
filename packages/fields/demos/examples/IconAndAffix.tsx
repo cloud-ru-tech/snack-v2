@@ -1,5 +1,5 @@
 import { FieldText } from '@ds/fields';
-import { WebIcons } from '@ds/icons';
+import { BankCardSVG } from '@ds/icons/interface/web';
 import { useState } from 'react';
 
 export function IconAndAffix() {
@@ -7,7 +7,7 @@ export function IconAndAffix() {
   return (
     <FieldText
       label='Сумма пополнения'
-      iconBefore={<WebIcons.BankCardSVG />}
+      iconBefore={<BankCardSVG />}
       prefix='₽'
       postfix='/мес'
       value={value}

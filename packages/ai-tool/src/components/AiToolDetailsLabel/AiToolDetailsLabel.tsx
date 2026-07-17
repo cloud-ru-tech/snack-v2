@@ -1,4 +1,4 @@
-import { EyeClosedSVG, EyeSVG } from '@ds/icons';
+import { EyeClosedSVG, EyeSVG } from '@ds/icons/interface/system';
 import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, MouseEvent, ReactElement, ReactNode } from 'react';

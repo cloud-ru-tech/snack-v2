@@ -1,4 +1,4 @@
-import { ArrowDownSVG, ArrowUpSVG } from '@ds/icons';
+import { ArrowDownSVG, ArrowUpSVG } from '@ds/icons/interface/system';
 import { SortDirection } from '@tanstack/react-table';
 import { MouseEventHandler } from 'react';
 

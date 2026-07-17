@@ -1,4 +1,4 @@
-import { CheckSVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { Sun } from '@ds/loader';
 import { ReactNode } from 'react';
 

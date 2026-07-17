@@ -1,4 +1,4 @@
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 

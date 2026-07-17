@@ -1,9 +1,9 @@
 import {
-  NotifierCriticalFilledSpriteSVG,
-  NotifierInfoFilledSpriteSVG,
-  NotifierSuccessFilledSpriteSVG,
-  NotifierWarningFilledSpriteSVG,
-} from '@ds/icons';
+  NotifierCriticalFilledSVG,
+  NotifierInfoFilledSVG,
+  NotifierSuccessFilledSVG,
+  NotifierWarningFilledSVG,
+} from '@ds/icons/interface/system';
 
 import { APPEARANCE } from '../../constants';
 import { Appearance } from '../../types';
@@ -11,14 +11,14 @@ import { Appearance } from '../../types';
 export function getAlertAppearanceIcon(appearance: Appearance) {
   switch (appearance) {
     case APPEARANCE.Success:
-      return <NotifierSuccessFilledSpriteSVG />;
+      return <NotifierSuccessFilledSVG />;
     case APPEARANCE.Error:
-      return <NotifierCriticalFilledSpriteSVG />;
+      return <NotifierCriticalFilledSVG />;
     case APPEARANCE.Warning:
-      return <NotifierWarningFilledSpriteSVG />;
+      return <NotifierWarningFilledSVG />;
     case APPEARANCE.Primary:
     case APPEARANCE.Neutral:
     default:
-      return <NotifierInfoFilledSpriteSVG />;
+      return <NotifierInfoFilledSVG />;
   }
 }

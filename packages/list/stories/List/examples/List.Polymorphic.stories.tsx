@@ -1,4 +1,4 @@
-import { FileSVG, StarSVG } from '@ds/icons';
+import { FileSVG, StarSVG } from '@ds/icons/interface/system';
 import { ItemProps as Item, List } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';

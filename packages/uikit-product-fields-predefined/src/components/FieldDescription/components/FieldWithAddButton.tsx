@@ -1,7 +1,7 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, ICON_POSITION, VIEW } from '@ds/button';
 import { FieldTextAreaProps } from '@ds/fields';
-import { PlusSVG } from '@ds/icons';
+import { PlusSVG } from '@ds/icons/interface/system';
 import { ReactNode, RefObject, useCallback, useEffect, useState } from 'react';
 
 import { TEST_IDS } from '../../../constants';

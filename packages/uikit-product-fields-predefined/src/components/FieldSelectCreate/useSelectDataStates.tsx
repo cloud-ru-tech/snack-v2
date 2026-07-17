@@ -1,6 +1,6 @@
 import { APPEARANCE, Button, ICON_POSITION, VIEW } from '@ds/button';
 import { FieldSelectSingleProps } from '@ds/fields';
-import { CrossCircleSVG, SearchSVG, UpdateSVG } from '@ds/icons';
+import { CrossCircleSVG, SearchSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';

@@ -113,6 +113,7 @@ import {
   PolandSVG,
   PortugalSVG,
   QatarSVG,
+  RepublicOfKoreaSVG,
   RomaniaSVG,
   RussiaSVG,
   RwandaSVG,
@@ -128,7 +129,6 @@ import {
   SlovakiaSVG,
   SomalilandSVG,
   SouthAfricaSVG,
-  SouthKoreaSVG,
   SouthSudanSVG,
   SpainSVG,
   SriLankaSVG,
@@ -157,7 +157,7 @@ import {
   WallisAndFutunaSVG,
   YemenSVG,
   ZimbabweSVG,
-} from './flags';
+} from '@ds/icons/flags';
 
 export const RUSSIA_COUNTRY_CODE = {
   value: 'russia',
@@ -1208,7 +1208,7 @@ export const SOUTH_KOREA_COUNTRY_CODE = {
   iso2: 'KR',
   caption: '+82',
   mask: 'XX XXXX-XXXX',
-  icon: SouthKoreaSVG,
+  icon: RepublicOfKoreaSVG,
   enabled: true,
 } as const;
 

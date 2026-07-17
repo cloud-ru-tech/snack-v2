@@ -105,7 +105,7 @@ export function WithCustomBefore() {
 fullWidth: шеврон уезжает в правый край контейнера
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function FullWidth() {
@@ -130,7 +130,7 @@ export function External() {
 showArrow={false}: компактный режим без визуального аффорданса
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function HiddenArrow() {
@@ -192,7 +192,7 @@ export function WithAvatar() {
 ## TitleClickableIcon
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable, TitleClickableIcon } from '@ds/uikit-product-title-clickable';
 
 export function WithIcon() {

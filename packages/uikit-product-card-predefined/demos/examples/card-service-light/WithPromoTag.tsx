@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 

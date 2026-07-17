@@ -1,5 +1,5 @@
 import { FieldText } from '@ds/fields';
-import { QuestionSVG } from '@ds/icons';
+import { QuestionSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
 export function IconAfter() {

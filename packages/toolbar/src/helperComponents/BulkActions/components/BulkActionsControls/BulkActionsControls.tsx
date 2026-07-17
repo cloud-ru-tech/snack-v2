@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import { useDynamicList } from '@ds/utils';

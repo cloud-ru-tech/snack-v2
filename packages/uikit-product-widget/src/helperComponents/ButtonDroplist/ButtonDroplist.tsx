@@ -1,6 +1,6 @@
 import { Button, ICON_POSITION, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { useValueControl } from '@ds/utils';
 import { memo, useMemo } from 'react';
 

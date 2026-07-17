@@ -1,7 +1,7 @@
 // Имя совпадает с мастер-нодой Figma (`fieldSecure`). Легаси-проп `prefixIcon` ниже
 // сохраняет совместимость с `@snack-uikit/fields` (`FieldSecure.prefixIcon`).
 import { Divider } from '@ds/divider';
-import { EyeClosedSpriteSVG, EyeSpriteSVG } from '@ds/icons';
+import { EyeClosedSVG, EyeSVG } from '@ds/icons/interface/system';
 import { InputPrivate, InputPrivateProps, TYPE, useButtonNavigation } from '@ds/input-private';
 import { Skeleton, WithSkeleton } from '@ds/skeleton';
 import { useValueControl } from '@ds/utils';
@@ -360,7 +360,7 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
             ref={hideButtonRef}
             variant='after'
             size={size}
-            action={hidden ? <EyeSpriteSVG /> : <EyeClosedSpriteSVG />}
+            action={hidden ? <EyeSVG /> : <EyeClosedSVG />}
             onClick={toggleHidden}
             onKeyDown={onEyeKeyDown}
             disabled={disabled}

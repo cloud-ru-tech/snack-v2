@@ -1,5 +1,5 @@
 import { APPEARANCE, IconPredefined, IconPredefinedProps, SIZE } from '@ds/icon-predefined';
-import { HeartSVG, PlaceholderSVG, StarFilledSVG } from '@ds/icons';
+import { HeartSVG, PlaceholderSVG, StarFilledSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';

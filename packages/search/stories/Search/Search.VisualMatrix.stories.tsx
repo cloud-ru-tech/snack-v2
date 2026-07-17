@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Search, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';

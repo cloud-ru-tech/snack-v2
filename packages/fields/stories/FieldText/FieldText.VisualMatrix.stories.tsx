@@ -1,5 +1,5 @@
 import { FieldText, SIZE, VALIDATION_STATE } from '@ds/fields';
-import { CalendarSVG, ChevronDownSVG, PlaceholderSVG, SearchSVG } from '@ds/icons';
+import { CalendarSVG, ChevronDownSVG, PlaceholderSVG, SearchSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';

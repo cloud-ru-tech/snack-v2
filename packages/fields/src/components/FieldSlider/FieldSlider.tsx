@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { INPUT_MODE, InputPrivate, TYPE } from '@ds/input-private';
 import { Slider, SliderProps } from '@ds/slider';
 import { extractSupportProps, useValueControl } from '@ds/utils';

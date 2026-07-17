@@ -202,7 +202,7 @@ export function PolymorphicLink() {
 Компактная строка с иконкой и заголовком.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
 export function Basic() {
@@ -215,7 +215,7 @@ export function Basic() {
 Через promoTag рядом с заголовком отображается промо-бейдж.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
@@ -240,7 +240,7 @@ export function WithPromoTag() {
 truncate.title ограничивает число строк заголовка через TruncateString.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
 const longTitle =
@@ -260,7 +260,7 @@ export function WithTruncate() {
 favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
@@ -287,7 +287,7 @@ export function WithFavorite() {
 favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 
 export function WithFavoriteHover() {
@@ -309,7 +309,7 @@ export function WithFavoriteHover() {
 disabled блокирует взаимодействие с карточкой.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
 export function Disabled() {
@@ -322,7 +322,7 @@ export function Disabled() {
 onClick передаётся в корневой Card — карточка интерактивна по умолчанию.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
@@ -347,7 +347,7 @@ export function WithOnClick() {
 Через as и href карточка рендерится как якорь.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
 export function PolymorphicLink() {
@@ -407,7 +407,7 @@ export function PolymorphicLink() {
 Компактная строка с эмблемой и заголовком.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 export function Basic() {
@@ -420,7 +420,7 @@ export function Basic() {
 Через promoBadge в правом верхнем углу отображается промо-бейдж.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
@@ -445,7 +445,7 @@ export function WithPromoTag() {
 truncate.title ограничивает число строк заголовка через TruncateString.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 const longTitle =
@@ -465,7 +465,7 @@ export function WithTruncate() {
 checked подсвечивает карточку как выбранную.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 export function WithChecked() {
@@ -478,7 +478,7 @@ export function WithChecked() {
 outline добавляет контур вокруг карточки.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 export function WithOutline() {
@@ -491,7 +491,7 @@ export function WithOutline() {
 favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
@@ -518,7 +518,7 @@ export function WithFavorite() {
 favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 
 export function WithFavoriteHover() {
@@ -540,7 +540,7 @@ export function WithFavoriteHover() {
 disabled блокирует взаимодействие с карточкой.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 export function Disabled() {
@@ -553,7 +553,7 @@ export function Disabled() {
 onClick передаётся в корневой Card — карточка интерактивна по умолчанию.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
@@ -582,7 +582,7 @@ export function WithOnClick() {
 Через as и href карточка рендерится как якорь.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceSmall } from '@ds/uikit-product-card-predefined';
 
 export function PolymorphicLink() {

@@ -1,4 +1,4 @@
-import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { MouseEvent } from 'react';
 

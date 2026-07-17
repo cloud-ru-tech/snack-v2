@@ -1,5 +1,5 @@
 import { Dropdown } from '@ds/dropdown';
-import { ChevronRightSVG } from '@ds/icons';
+import { ChevronRightSVG } from '@ds/icons/interface/system';
 import { KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { ITEM_PREFIXES } from '../../../constants';

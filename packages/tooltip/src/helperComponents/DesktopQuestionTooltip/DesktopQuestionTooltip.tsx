@@ -1,4 +1,4 @@
-import { QuestionSpriteSVG } from '@ds/icons';
+import { QuestionSVG } from '@ds/icons/interface/system';
 import { TRIGGER } from '@ds/popover-private';
 import cn from 'classnames';
 import { useUncontrolledProp } from 'uncontrollable';
@@ -47,7 +47,7 @@ export function DesktopQuestionTooltip({
         data-size={size}
         data-test-id={TEST_IDS.questionTooltip.triggerOpen}
       >
-        <QuestionSpriteSVG size={getIconSize(size)} />
+        <QuestionSVG size={getIconSize(size)} />
       </button>
     </Tooltip>
   );

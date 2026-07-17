@@ -1,4 +1,4 @@
-import { ChevronRightSVG, MoreSVG } from '@ds/icons';
+import { ChevronRightSVG, MoreSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps, ItemProps } from '@ds/list';
 import { usePortalContext } from '@ds/portal-context';
 import { Tooltip } from '@ds/tooltip';

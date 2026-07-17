@@ -1,4 +1,4 @@
-import { HeartFilledSVG, HeartSVG, StarFilledSVG, StarSVG } from '@ds/icons';
+import { HeartFilledSVG, HeartSVG, StarFilledSVG, StarSVG } from '@ds/icons/interface/system';
 import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import { KeyboardEventHandler, useState } from 'react';

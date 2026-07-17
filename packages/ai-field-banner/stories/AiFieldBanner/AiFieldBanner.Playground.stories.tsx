@@ -1,5 +1,5 @@
 import { AiFieldBanner, AiFieldBannerProps, SIZE, TYPE, TYPE_ORDER } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 

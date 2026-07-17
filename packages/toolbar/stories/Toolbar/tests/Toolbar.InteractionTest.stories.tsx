@@ -1,5 +1,5 @@
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { CheckSVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { NATIVE_INPUT_SUFFIX } from '@ds/toggles';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';

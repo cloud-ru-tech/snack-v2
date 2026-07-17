@@ -1,4 +1,4 @@
-import { CheckSVG } from '@ds/icons';
+import { CheckSVG } from '@ds/icons/interface/system';
 import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import { useState } from 'react';

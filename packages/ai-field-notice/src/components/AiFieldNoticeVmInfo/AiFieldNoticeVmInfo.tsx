@@ -1,4 +1,4 @@
-import { WebIcons } from '@ds/icons';
+import { EvolutionComputeSVG, PublicIpSVG } from '@ds/icons/services';
 import cn from 'classnames';
 import { ReactElement } from 'react';
 
@@ -11,13 +11,13 @@ export function AiFieldNoticeVmInfo({ vmName, vmIp, size, className }: AiFieldNo
     <div className={cn(styles.root, className)} data-size={size} data-test-id={TEST_IDS.vmInfo}>
       <span className={styles.item} data-test-id={TEST_IDS.vmName}>
         <span className={styles.icon} aria-hidden>
-          <WebIcons.EvolutionComputeSVG />
+          <EvolutionComputeSVG />
         </span>
         <span className={styles.label}>{vmName}</span>
       </span>
       <span className={styles.item} data-test-id={TEST_IDS.vmIp}>
         <span className={styles.icon} aria-hidden>
-          <WebIcons.PublicIpSVG />
+          <PublicIpSVG />
         </span>
         <span className={styles.label}>{vmIp}</span>
       </span>

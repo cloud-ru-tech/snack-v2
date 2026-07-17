@@ -109,7 +109,7 @@ export function Sizes() {
 label + icon, или icon без label для плотных тулбаров
 
 ```tsx
-import { HomeSVG, PlusSVG, SettingsSVG } from '@ds/icons';
+import { HomeSVG, PlusSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { SegmentControl } from '@ds/segment-control';
 
 export function WithIcons() {

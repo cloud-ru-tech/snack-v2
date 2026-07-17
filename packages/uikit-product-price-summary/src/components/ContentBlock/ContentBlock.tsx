@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { UpdateSVG } from '@ds/icons';
+import { UpdateSVG } from '@ds/icons/interface/system';
 import { Sun } from '@ds/loader';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { PropsWithChildren } from 'react';

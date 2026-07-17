@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
-import { ChevronDownSVG } from '@ds/icons';
+import { ChevronDownSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';

@@ -2,7 +2,7 @@ import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, ButtonProps } from '@ds/button';
 import { ChipToggle } from '@ds/chips';
 import { Divider } from '@ds/divider';
-import { DecorCheckedSpriteSVG } from '@ds/icons';
+import { DecorCheckedSVG } from '@ds/icons/interface/product';
 import { Scroll } from '@ds/scroll';
 import { SegmentControl, SegmentControlProps } from '@ds/segment-control';
 import { SkeletonContextProvider, WithSkeleton } from '@ds/skeleton';
@@ -97,7 +97,7 @@ export function NotificationPanelContent({
               <WithTooltip tooltip={readAllTooltip}>
                 <Button
                   {...readAllButtonProps}
-                  icon={readAllButtonProps.icon || <DecorCheckedSpriteSVG />}
+                  icon={readAllButtonProps.icon || <DecorCheckedSVG />}
                   view='function'
                   appearance='neutral'
                   size={buttonSize}

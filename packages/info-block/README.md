@@ -82,7 +82,7 @@ export function Sizes() {
 Иконка через проп icon (IconPredefinedProps).
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 
 export function WithIcon() {

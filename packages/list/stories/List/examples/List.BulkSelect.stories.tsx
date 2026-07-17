@@ -1,4 +1,4 @@
-import { FolderSVG } from '@ds/icons';
+import { FolderSVG } from '@ds/icons/interface/system';
 import { ItemProps as Item, List, TEST_IDS as INTERNAL_TEST_IDS } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';

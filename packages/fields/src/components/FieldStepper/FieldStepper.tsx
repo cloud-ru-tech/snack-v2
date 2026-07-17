@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
-import { CheckSVG, CopySVG, MinusSVG, PlusSVG } from '@ds/icons';
+import { CheckSVG, CopySVG, MinusSVG, PlusSVG } from '@ds/icons/interface/system';
 import { InputPrivate, TYPE } from '@ds/input-private';
 import { Tooltip, TooltipProps } from '@ds/tooltip';
 import { extractSupportProps, useValueControl } from '@ds/utils';

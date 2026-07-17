@@ -3,7 +3,7 @@ import { AttachmentSquareProps } from '@ds/attachment';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { FileUpload, UPLOAD_MODE } from '@ds/dropzone';
 import { FieldTextArea } from '@ds/fields';
-import { ProductIcons } from '@ds/icons';
+import { AttachmentSVG } from '@ds/icons/interface/product';
 import { Tooltip } from '@ds/tooltip';
 import { KeyboardEvent, useMemo } from 'react';
 
@@ -88,7 +88,7 @@ export function FieldChat({ handleSubmit: handleSubmitProp, value, attachment, a
                         view={VIEW.Function}
                         appearance={APPEARANCE.Neutral}
                         size='s'
-                        icon={<ProductIcons.AttachmentSVG />}
+                        icon={<AttachmentSVG />}
                         disabled={isInactive}
                         data-test-id={TEST_IDS.fieldChatUpload}
                       />

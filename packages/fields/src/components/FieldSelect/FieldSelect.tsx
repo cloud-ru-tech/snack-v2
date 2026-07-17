@@ -1,4 +1,4 @@
-import { ChevronDownSVG } from '@ds/icons';
+import { ChevronDownSVG } from '@ds/icons/interface/system';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { Droplist, ItemId } from '@ds/list';
 import { Tag } from '@ds/tag';

@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { ToggleCard, ToggleGroup } from '@ds/uikit-product-toggles-predefined';
 
 export function WithPromoBadge() {

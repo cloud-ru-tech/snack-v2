@@ -3,7 +3,7 @@ import {
   NotifierInfoFilledSVG,
   NotifierSuccessFilledSVG,
   NotifierWarningFilledSVG,
-} from '@ds/icons';
+} from '@ds/icons/interface/system';
 
 import { ToastSystemEventAppearance } from './types';
 

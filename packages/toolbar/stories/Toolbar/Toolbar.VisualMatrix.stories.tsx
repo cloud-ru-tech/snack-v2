@@ -1,6 +1,6 @@
 import { AdaptiveProvider } from '@ds/adaptive';
 import { Button } from '@ds/button';
-import { CheckSVG, CrossSVG, PlaceholderSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar, ToolbarDataViewValue } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement } from 'react';

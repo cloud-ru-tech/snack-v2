@@ -1,7 +1,7 @@
 import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
 import { APPEARANCE, Button, BUTTON_GROUP_ACTION_SLOT, ButtonGroup, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { ChevronRightSVG, KebabSVG } from '@ds/icons';
+import { ChevronRightSVG, KebabSVG } from '@ds/icons/interface/system';
 import { Droplist } from '@ds/list';
 import { ModalCustom } from '@ds/modal';
 import { WithTooltip } from '@ds/tooltip';

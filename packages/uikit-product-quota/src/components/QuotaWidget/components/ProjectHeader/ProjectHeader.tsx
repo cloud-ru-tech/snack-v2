@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { QuotaSVG } from '@ds/icons/interface/product';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 import { TEST_IDS } from '../../../../constants';
@@ -38,7 +38,7 @@ export function ProjectHeader({
           title={t(widgetTitle, { project: projectName })}
           href={quotasUrl}
           target='_blank'
-          icon={<ProductIcons.QuotaSVG />}
+          icon={<QuotaSVG />}
           onClick={onQuotasUrlClick}
         />
 

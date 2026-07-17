@@ -482,7 +482,7 @@ export function StatusColumn() {
 Множественный выбор, bulk-бар с действием удаления и `resetRowSelection`.
 
 ```tsx
-import { TrashSVG } from '@ds/icons';
+import { TrashSVG } from '@ds/icons/interface/system';
 import { ColumnDefinition, RowSelectionState, Table } from '@ds/table';
 import { useState } from 'react';
 

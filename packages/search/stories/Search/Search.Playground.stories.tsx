@@ -1,4 +1,4 @@
-import { PlaceholderSVG, SearchSVG } from '@ds/icons';
+import { PlaceholderSVG, SearchSVG } from '@ds/icons/interface/system';
 import { Search, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';

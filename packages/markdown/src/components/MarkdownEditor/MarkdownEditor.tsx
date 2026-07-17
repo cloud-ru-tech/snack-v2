@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { FieldShell } from '@ds/fields';
-import { CrossCircleSVG } from '@ds/icons';
+import { CrossCircleSVG } from '@ds/icons/interface/system';
 import { Scroll } from '@ds/scroll';
 import { Switch } from '@ds/toggles';
 import { extractSupportProps, isBrowser, useDebounce, useValueControl } from '@ds/utils';

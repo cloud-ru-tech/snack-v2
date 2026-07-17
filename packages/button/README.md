@@ -133,11 +133,11 @@ export function Actions() {
 Critical + иконка — визуально подкрепляет риск
 
 ```tsx
-import { Button } from '@ds/button'
-import { TrashSVG } from '@ds/icons'
+import { Button } from '@ds/button';
+import { TrashSVG } from '@ds/icons/interface/system';
 
 export function Destructive() {
-  return <Button appearance='critical' view='filled' icon={<TrashSVG />} label='Удалить' />
+  return <Button appearance='critical' view='filled' icon={<TrashSVG />} label='Удалить' />;
 }
 ```
 
@@ -146,11 +146,11 @@ export function Destructive() {
 Без label, но с aria-label для скринридеров
 
 ```tsx
-import { Button } from '@ds/button'
-import { SettingsSVG } from '@ds/icons'
+import { Button } from '@ds/button';
+import { SettingsSVG } from '@ds/icons/interface/system';
 
 export function IconOnly() {
-  return <Button view='function' icon={<SettingsSVG />} aria-label='Настройки' />
+  return <Button view='function' icon={<SettingsSVG />} aria-label='Настройки' />;
 }
 ```
 
@@ -171,18 +171,11 @@ export function LinkButton() {
 iconPosition='after' + counter → счётчик превращается в badge над иконкой
 
 ```tsx
-import { Button } from '@ds/button'
-import { EmailSVG } from '@ds/icons'
+import { Button } from '@ds/button';
+import { EmailSVG } from '@ds/icons/interface/system';
 
 export function CounterBadge() {
-  return (
-    <Button
-      icon={<EmailSVG />}
-      iconPosition='after'
-      label='Сообщения'
-      counter={{ value: 12 }}
-    />
-  )
+  return <Button icon={<EmailSVG />} iconPosition='after' label='Сообщения' counter={{ value: 12 }} />;
 }
 ```
 
@@ -191,19 +184,11 @@ export function CounterBadge() {
 loading заменяет лейбл спиннером и проставляет aria-busy='true'
 
 ```tsx
-import { Button } from '@ds/button'
-import { DownloadSVG } from '@ds/icons'
+import { Button } from '@ds/button';
+import { DownloadSVG } from '@ds/icons/interface/system';
 
 export function Loading() {
-  return (
-    <Button
-      appearance='primary'
-      view='filled'
-      icon={<DownloadSVG />}
-      label='Скачать отчёт'
-      loading
-    />
-  )
+  return <Button appearance='primary' view='filled' icon={<DownloadSVG />} label='Скачать отчёт' loading />;
 }
 ```
 

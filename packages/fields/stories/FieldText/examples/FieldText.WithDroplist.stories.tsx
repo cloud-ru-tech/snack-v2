@@ -1,5 +1,5 @@
 import { FieldText, SIZE, TEST_IDS } from '@ds/fields';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';

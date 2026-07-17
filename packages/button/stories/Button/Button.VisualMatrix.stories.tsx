@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, ICON_POSITION, SIZE, VIEW } from '@ds/button';
-import { SettingsSVG } from '@ds/icons';
+import { SettingsSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, ReactElement } from 'react';
 

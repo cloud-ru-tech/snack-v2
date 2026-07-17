@@ -1,6 +1,6 @@
-import { Button } from '@ds/button'
-import { TrashSVG } from '@ds/icons'
+import { Button } from '@ds/button';
+import { TrashSVG } from '@ds/icons/interface/system';
 
 export function Destructive() {
-  return <Button appearance='critical' view='filled' icon={<TrashSVG />} label='Удалить' />
+  return <Button appearance='critical' view='filled' icon={<TrashSVG />} label='Удалить' />;
 }

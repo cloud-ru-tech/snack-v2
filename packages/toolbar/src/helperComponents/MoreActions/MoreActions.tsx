@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { BaseItem, Droplist } from '@ds/list';
 import { Tag } from '@ds/tag';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';

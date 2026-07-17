@@ -1,5 +1,5 @@
 import { FieldSelect, SIZE, VALIDATION_STATE } from '@ds/fields';
-import { SearchSVG } from '@ds/icons';
+import { SearchSVG } from '@ds/icons/interface/system';
 import { ItemId, ItemProps } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 

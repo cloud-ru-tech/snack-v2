@@ -1,4 +1,4 @@
-import { ArrowRightSVG } from '@ds/icons';
+import { ArrowRightSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import cn from 'classnames';
 import { ReactElement } from 'react';

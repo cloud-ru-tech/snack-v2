@@ -1,4 +1,4 @@
-import { DotSmallSVG } from '@ds/icons';
+import { DotSmallSVG } from '@ds/icons/interface/product';
 import cn from 'classnames';
 import { ReactElement } from 'react';
 

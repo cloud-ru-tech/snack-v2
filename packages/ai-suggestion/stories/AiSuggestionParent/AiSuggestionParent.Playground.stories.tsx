@@ -1,5 +1,5 @@
 import { AiSuggestionParent, AiSuggestionParentProps, CHILD_TYPE, SIZE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
 

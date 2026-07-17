@@ -1,4 +1,8 @@
-import { NotifierCriticalFilledSVG, NotifierSuccessFilledSVG, NotifierWarningFilledSVG } from '@ds/icons';
+import {
+  NotifierCriticalFilledSVG,
+  NotifierSuccessFilledSVG,
+  NotifierWarningFilledSVG,
+} from '@ds/icons/interface/system';
 
 import { TOAST_USER_ACTION_APPEARANCE } from './constants';
 import { ToastUserActionAppearance } from './types';

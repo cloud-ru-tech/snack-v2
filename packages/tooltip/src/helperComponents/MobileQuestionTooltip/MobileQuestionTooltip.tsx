@@ -1,5 +1,5 @@
 import { BottomSheet } from '@ds/bottom-sheet';
-import { QuestionSpriteSVG } from '@ds/icons';
+import { QuestionSVG } from '@ds/icons/interface/system';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useUncontrolledProp } from 'uncontrollable';
@@ -40,7 +40,7 @@ export function MobileQuestionTooltip({
         data-test-id={TEST_IDS.questionTooltip.triggerOpen}
         onClick={() => setIsOpen(true)}
       >
-        <QuestionSpriteSVG size={getIconSize(size)} />
+        <QuestionSVG size={getIconSize(size)} />
       </button>
       <BottomSheet
         open={isOpen}

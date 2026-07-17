@@ -1,7 +1,7 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { ChipChoiceRow, FiltersState } from '@ds/chips';
-import { UpdateSVG } from '@ds/icons';
+import { UpdateSVG } from '@ds/icons/interface/system';
 import { useThemeClassnames } from '@ds/theme';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';

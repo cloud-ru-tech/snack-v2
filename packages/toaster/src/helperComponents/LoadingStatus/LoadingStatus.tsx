@@ -1,4 +1,4 @@
-import { NotifierSuccessFilledSVG, PauseSVG, PlaySVG, UpdateSVG } from '@ds/icons';
+import { NotifierSuccessFilledSVG, PauseSVG, PlaySVG, UpdateSVG } from '@ds/icons/interface/system';
 
 import { ToastUploadStatus, UploadActions } from '../../components/ToastUpload/types';
 import { TEST_IDS } from '../../constants';

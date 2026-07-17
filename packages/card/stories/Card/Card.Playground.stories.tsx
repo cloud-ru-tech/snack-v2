@@ -1,6 +1,6 @@
 import { Card, RADIUS, VIEW } from '@ds/card';
 import { APPEARANCE, IconPredefined, SIZE as ICON_SIZE } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { Meta, StoryObj } from '@storybook/react';

@@ -1,4 +1,4 @@
-import { ArrowLinksSVG, ChevronRightSVG } from '@ds/icons';
+import { ArrowLinksSVG, ChevronRightSVG } from '@ds/icons/interface/system';
 import cn from 'classnames';
 import { ElementType } from 'react';
 

@@ -1,5 +1,5 @@
 import { Button, ButtonProps, VIEW } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 

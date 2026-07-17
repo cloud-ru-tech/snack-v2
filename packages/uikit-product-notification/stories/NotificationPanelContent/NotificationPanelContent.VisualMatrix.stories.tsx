@@ -1,5 +1,5 @@
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { CrossSVG, SearchSVG } from '@ds/icons';
+import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';

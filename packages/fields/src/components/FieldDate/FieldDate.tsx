@@ -1,5 +1,5 @@
 import { CalendarDropdown, CalendarDropdownProps } from '@ds/calendar';
-import { CalendarSVG } from '@ds/icons';
+import { CalendarSVG } from '@ds/icons/interface/system';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';

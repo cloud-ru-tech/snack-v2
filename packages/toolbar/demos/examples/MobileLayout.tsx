@@ -1,5 +1,5 @@
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { CheckSVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { Checkbox } from '@ds/toggles';
 import { Toolbar } from '@ds/toolbar';
 import { useId, useState } from 'react';

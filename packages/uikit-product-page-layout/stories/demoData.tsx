@@ -1,7 +1,21 @@
 import { Accordion } from '@ds/accordion';
 import { APPEARANCE as BUTTON_APPEARANCE, Button, SIZE as BUTTON_SIZE, VIEW } from '@ds/button';
 import { Card } from '@ds/card';
-import { ProductIcons } from '@ds/icons';
+import {
+  ApiKeysSVG,
+  BoxSVG,
+  CloudCheckmarkSVG,
+  CloudSVG,
+  CpuSVG,
+  HomeFilledSVG,
+  InfoOutlineSVG,
+  KeySVG,
+  ListSVG,
+  MonitoringSVG,
+  NetworkCardSVG,
+  SwitcherSettingSVG,
+  VerticalMenuOpenSVG,
+} from '@ds/icons/interface/product';
 import { Status } from '@ds/status';
 import { SIZE as TAG_SIZE, Tag } from '@ds/tag';
 import { QuestionTooltip } from '@ds/tooltip';
@@ -26,24 +40,24 @@ const PREVIEW_BADGE = <Tag label='Preview' size={TAG_SIZE.Xs} appearance='primar
  * Часть пунктов несёт `afterContent`-бейдж «Preview» — фичи на стадии превью.
  */
 export const SIDEBAR_SERVICE_ITEMS: SidebarItem[] = [
-  { id: 'info', label: 'Информация', href: '#info', beforeContent: <ProductIcons.InfoOutlineSVG /> },
-  { id: 'network', label: 'Сетевые параметры', href: '#network', beforeContent: <ProductIcons.NetworkCardSVG /> },
-  { id: 'disks', label: 'Диски', href: '#disks', beforeContent: <ProductIcons.BoxSVG /> },
-  { id: 'backups', label: 'Резервные копии', href: '#backups', beforeContent: <ProductIcons.CloudCheckmarkSVG /> },
-  { id: 'monitoring', label: 'Мониторинг', href: '#monitoring', beforeContent: <ProductIcons.MonitoringSVG /> },
-  { id: 'auth', label: 'Настройки авторизации', href: '#auth', beforeContent: <ProductIcons.KeySVG /> },
+  { id: 'info', label: 'Информация', href: '#info', beforeContent: <InfoOutlineSVG /> },
+  { id: 'network', label: 'Сетевые параметры', href: '#network', beforeContent: <NetworkCardSVG /> },
+  { id: 'disks', label: 'Диски', href: '#disks', beforeContent: <BoxSVG /> },
+  { id: 'backups', label: 'Резервные копии', href: '#backups', beforeContent: <CloudCheckmarkSVG /> },
+  { id: 'monitoring', label: 'Мониторинг', href: '#monitoring', beforeContent: <MonitoringSVG /> },
+  { id: 'auth', label: 'Настройки авторизации', href: '#auth', beforeContent: <KeySVG /> },
   {
     id: 'console',
     label: 'Виртуальная консоль',
     href: '#console',
-    beforeContent: <ProductIcons.ListSVG />,
+    beforeContent: <ListSVG />,
     afterContent: PREVIEW_BADGE,
   },
   {
     id: 'serial',
     label: 'Серийная консоль',
     href: '#serial',
-    beforeContent: <ProductIcons.SwitcherSettingSVG />,
+    beforeContent: <SwitcherSettingSVG />,
     afterContent: PREVIEW_BADGE,
   },
 ];
@@ -54,21 +68,21 @@ export const SIDEBAR_ITEMS: SidebarItem[] = [
     id: 'overview',
     label: 'Обзор',
     href: '#overview',
-    beforeContent: <ProductIcons.HomeFilledSVG />,
+    beforeContent: <HomeFilledSVG />,
   },
   {
     id: 'compute',
     label: 'Вычисления',
     type: 'group',
     items: [
-      { id: 'instances', label: 'Инстансы', href: '#instances', beforeContent: <ProductIcons.CpuSVG /> },
-      { id: 'images', label: 'Образы', href: '#images', beforeContent: <ProductIcons.BoxSVG /> },
+      { id: 'instances', label: 'Инстансы', href: '#instances', beforeContent: <CpuSVG /> },
+      { id: 'images', label: 'Образы', href: '#images', beforeContent: <BoxSVG /> },
       {
         id: 'gpu',
         label: 'GPU-кластеры',
         disabledReason: 'Недоступно в текущем тарифе',
         disabledReasonPlacement: 'right',
-        beforeContent: <ProductIcons.CpuSVG />,
+        beforeContent: <CpuSVG />,
       },
     ],
   },
@@ -95,21 +109,21 @@ export const SIDEBAR_ITEMS: SidebarItem[] = [
     type: 'collapse',
     divider: true,
     items: [
-      { id: 'buckets', label: 'Бакеты', href: '#buckets', beforeContent: <ProductIcons.CloudSVG /> },
-      { id: 'volumes', label: 'Диски', href: '#volumes', beforeContent: <ProductIcons.BoxSVG /> },
+      { id: 'buckets', label: 'Бакеты', href: '#buckets', beforeContent: <CloudSVG /> },
+      { id: 'volumes', label: 'Диски', href: '#volumes', beforeContent: <BoxSVG /> },
     ],
   },
 ];
 
 export const SIDEBAR_FOOTER_ITEMS: SidebarItem[] = [
-  { id: 'docs', label: 'Документация', href: '#docs', beforeContent: <ProductIcons.ListSVG /> },
-  { id: 'support', label: 'Поддержка', href: '#support', beforeContent: <ProductIcons.InfoOutlineSVG /> },
+  { id: 'docs', label: 'Документация', href: '#docs', beforeContent: <ListSVG /> },
+  { id: 'support', label: 'Поддержка', href: '#support', beforeContent: <InfoOutlineSVG /> },
 ];
 
 export const SIDEBAR_HEADER_TITLE = {
   type: 'title',
   label: 'Облачные сервисы',
-  icon: ProductIcons.VerticalMenuOpenSVG,
+  icon: VerticalMenuOpenSVG,
 } as const;
 
 export const SIDEBAR_HEADER_BACK = {
@@ -248,37 +262,37 @@ const CATALOG_SERVICES: ServiceCard[] = [
     id: 'compute',
     title: 'Виртуальные машины',
     description: 'Масштабируемые инстансы под любые нагрузки',
-    icon: <ProductIcons.CpuSVG />,
+    icon: <CpuSVG />,
   },
   {
     id: 'storage',
     title: 'Объектное хранилище',
     description: 'S3-совместимое хранилище для файлов и бэкапов',
-    icon: <ProductIcons.CloudSVG />,
+    icon: <CloudSVG />,
   },
   {
     id: 'network',
     title: 'Виртуальные сети',
     description: 'Изолированные сети, подсети и маршрутизация',
-    icon: <ProductIcons.NetworkCardSVG />,
+    icon: <NetworkCardSVG />,
   },
   {
     id: 'db',
     title: 'Управляемые базы данных',
     description: 'PostgreSQL, MySQL и Redis с автобэкапами',
-    icon: <ProductIcons.BoxSVG />,
+    icon: <BoxSVG />,
   },
   {
     id: 'monitoring',
     title: 'Мониторинг',
     description: 'Метрики, дашборды и алерты по ресурсам',
-    icon: <ProductIcons.MonitoringSVG />,
+    icon: <MonitoringSVG />,
   },
   {
     id: 'keys',
     title: 'Управление доступом',
     description: 'API-ключи, роли и политики IAM',
-    icon: <ProductIcons.ApiKeysSVG />,
+    icon: <ApiKeysSVG />,
   },
 ];
 

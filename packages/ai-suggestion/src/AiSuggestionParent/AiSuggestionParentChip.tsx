@@ -1,4 +1,4 @@
-import { ChevronRightSVG } from '@ds/icons';
+import { ChevronRightSVG } from '@ds/icons/interface/system';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ButtonHTMLAttributes, forwardRef, MouseEvent, ReactNode } from 'react';

@@ -1,4 +1,4 @@
-import { ChevronLeftSVG } from '@ds/icons';
+import { ChevronLeftSVG } from '@ds/icons/interface/system';
 import { ITEM_TYPE, ItemProps } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import cn from 'classnames';

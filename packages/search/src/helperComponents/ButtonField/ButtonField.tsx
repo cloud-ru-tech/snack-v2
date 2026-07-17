@@ -1,4 +1,4 @@
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Sun, SUN_SIZE } from '@ds/loader';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { type KeyboardEvent, ReactNode, useCallback, useMemo, useState } from 'react';

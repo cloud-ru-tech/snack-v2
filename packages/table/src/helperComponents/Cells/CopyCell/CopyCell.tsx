@@ -1,5 +1,5 @@
 import { Button, VIEW } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { copyToClipboard } from '@ds/utils';
 import { MouseEvent, useEffect, useRef, useState } from 'react';

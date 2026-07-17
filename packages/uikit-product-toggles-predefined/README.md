@@ -90,7 +90,7 @@ export function Basic() {
 ### С иконками
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { ToggleCard, ToggleGroup } from '@ds/uikit-product-toggles-predefined';
 
 export function WithIcon() {
@@ -108,7 +108,7 @@ export function WithIcon() {
 promoBadge — строка или объект для PromoTag в правом верхнем углу карточки.
 
 ```tsx
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { ToggleCard, ToggleGroup } from '@ds/uikit-product-toggles-predefined';
 
 export function WithPromoBadge() {

@@ -1,5 +1,5 @@
 import { Button, VIEW } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { CloseSVG } from '@ds/icons/interface/product';
 import { Status } from '@ds/status';
 import { Headline } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
@@ -52,7 +52,7 @@ export const VisualMatrix: Story = {
               <div key='ba' className={styles.frame}>
                 <Headline
                   title='Виртуальные машины'
-                  beforeHeadline={<Button view={VIEW.Simple} icon={<ProductIcons.CloseSVG />} />}
+                  beforeHeadline={<Button view={VIEW.Simple} icon={<CloseSVG />} />}
                   afterHeadline={<Status label='Активно' appearance='green' />}
                 />
               </div>,

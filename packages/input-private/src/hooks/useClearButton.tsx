@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossCircleSVG } from '@ds/icons';
+import { CrossCircleSVG } from '@ds/icons/interface/system';
 import { useEventHandler } from '@ds/utils';
 import { MouseEventHandler, RefObject, useMemo } from 'react';
 

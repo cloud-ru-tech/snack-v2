@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossSVG, UpdateSVG } from '@ds/icons';
+import { CrossSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 
 import { quotaLocale } from '../../../../locale';

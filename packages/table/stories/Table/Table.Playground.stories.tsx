@@ -1,5 +1,5 @@
 import { APPEARANCE as BUTTON_APPEARANCE, Button, VIEW as BUTTON_VIEW } from '@ds/button';
-import { TrashSVG } from '@ds/icons';
+import { TrashSVG } from '@ds/icons/interface/system';
 import {
   ClientTableProps,
   ColumnDefinition,

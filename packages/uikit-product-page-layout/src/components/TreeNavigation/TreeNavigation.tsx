@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { BurgerSVG, CloseSVG } from '@ds/icons/interface/product';
 import { Status } from '@ds/status';
 import { SIZE as TYPOGRAPHY_SIZE, Typography, VARIANT } from '@ds/typography';
 import cn from 'classnames';
@@ -68,7 +68,7 @@ export function TreeNavigation({
                     appearance={APPEARANCE.Neutral}
                     size={SIZE.S}
                     aria-label={open ? t('TreeNavigation.closeMenu') : t('TreeNavigation.openMenu')}
-                    icon={open ? <ProductIcons.CloseSVG /> : <ProductIcons.BurgerSVG />}
+                    icon={open ? <CloseSVG /> : <BurgerSVG />}
                     onClick={() => setOpen(!open)}
                   />
                 </div>

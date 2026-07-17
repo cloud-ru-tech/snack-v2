@@ -1,7 +1,7 @@
 import { APPEARANCE, Button, ICON_POSITION, VIEW } from '@ds/button';
 import { Drawer, DrawerProps, POSITION, Position } from '@ds/drawer';
 import { FieldSelect } from '@ds/fields';
-import { PlusSVG } from '@ds/icons';
+import { PlusSVG } from '@ds/icons/interface/system';
 import { Modal, ModalProps } from '@ds/modal';
 import { Tooltip } from '@ds/tooltip';
 import { extractSupportProps } from '@ds/utils';

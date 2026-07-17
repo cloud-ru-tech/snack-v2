@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, ICON_POSITION, VIEW } from '@ds/button';
-import { PlusSVG } from '@ds/icons';
+import { PlusSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 
 import { TEST_IDS } from '../../../../constants';

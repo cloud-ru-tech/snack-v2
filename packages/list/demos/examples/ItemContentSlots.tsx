@@ -1,4 +1,4 @@
-import { FileSVG, FolderSVG, StarSVG } from '@ds/icons';
+import { FileSVG, FolderSVG, StarSVG } from '@ds/icons/interface/system';
 import { List } from '@ds/list';
 
 import styles from './styles.module.scss';

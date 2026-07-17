@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { HorizontalMenuCloseSVG, HorizontalMenuOpenSVG } from '@ds/icons/interface/product';
 import { Tree, TreeNodeId, TreeNodeProps } from '@ds/tree';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { useMemo, useState } from 'react';
@@ -49,7 +49,7 @@ export function Menu({
               view={VIEW.Simple}
               appearance={APPEARANCE.Neutral}
               label={isExpanded ? t('TreeNavigation.collapseAll') : t('TreeNavigation.expandAll')}
-              icon={isExpanded ? <ProductIcons.HorizontalMenuCloseSVG /> : <ProductIcons.HorizontalMenuOpenSVG />}
+              icon={isExpanded ? <HorizontalMenuCloseSVG /> : <HorizontalMenuOpenSVG />}
               onClick={isExpanded ? handleCollapseAll : handleExpandAll}
             />
           )}

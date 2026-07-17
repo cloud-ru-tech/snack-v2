@@ -1,4 +1,4 @@
-import { FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons';
+import { FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
 import { SELECTION_MODE, Tree, TreeNodeProps } from '@ds/tree';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';

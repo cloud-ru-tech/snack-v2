@@ -1,4 +1,5 @@
-import { ArrowDownSVG, ArrowUpSVG, ProductIcons } from '@ds/icons';
+import { SortSVG } from '@ds/icons/interface/product';
+import { ArrowDownSVG, ArrowUpSVG } from '@ds/icons/interface/system';
 import { ComponentType, MouseEvent, ReactNode } from 'react';
 
 import { TEST_IDS } from '../constants';
@@ -17,7 +18,7 @@ export function renderTableSortingOverflowButton({
   selectedSortId,
   currentSortDesc,
 }: RenderTableSortingOverflowButtonParams): ReactNode {
-  let SortIcon: ComponentType = ProductIcons.SortSVG;
+  let SortIcon: ComponentType = SortSVG;
 
   if (selectedSortId) {
     SortIcon = currentSortDesc ? ArrowDownSVG : ArrowUpSVG;

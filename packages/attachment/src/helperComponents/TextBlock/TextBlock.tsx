@@ -1,4 +1,4 @@
-import { CrossCircleSVG } from '@ds/icons';
+import { CrossCircleSVG } from '@ds/icons/interface/system';
 import cn from 'classnames';
 
 import { TEST_IDS } from '../../constants';

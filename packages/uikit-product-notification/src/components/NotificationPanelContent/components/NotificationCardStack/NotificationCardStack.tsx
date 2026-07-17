@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { ChevronDownSVG, ChevronUpSVG, KebabSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG, KebabSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';

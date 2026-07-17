@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ArrowUpSVG } from '@ds/icons';
+import { ArrowUpSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 
 import { fieldsPredefinedLocale } from '../../../../locale';

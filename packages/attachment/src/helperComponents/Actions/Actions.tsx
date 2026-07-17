@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { DownloadSVG, TrashSVG, UpdateSVG } from '@ds/icons';
+import { DownloadSVG, TrashSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { MouseEvent } from 'react';
 
 import { TEST_IDS } from '../../constants';

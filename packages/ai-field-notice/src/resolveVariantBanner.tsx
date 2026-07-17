@@ -1,5 +1,5 @@
 import { Size, TYPE as BANNER_TYPE, Type as BannerType } from '@ds/ai-field-banner';
-import { ProductIcons } from '@ds/icons';
+import { HeadphonesSVG, PasswordLockSVG } from '@ds/icons/interface/product';
 import { ReactElement, ReactNode } from 'react';
 
 import { AiFieldNoticeVmInfo } from './components/AiFieldNoticeVmInfo';
@@ -27,21 +27,21 @@ export function resolveVariantBanner(
     case VARIANT.Password:
       return {
         bannerVariant: BANNER_TYPE.Security,
-        icon: <ProductIcons.PasswordLockSVG />,
+        icon: <PasswordLockSVG />,
         description: buildSecureDescription(VARIANT_MESSAGES.passwordPrompt),
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Password],
       };
     case VARIANT.Ssh:
       return {
         bannerVariant: BANNER_TYPE.Security,
-        icon: <ProductIcons.PasswordLockSVG />,
+        icon: <PasswordLockSVG />,
         description: buildSecureDescription(VARIANT_MESSAGES.sshPrompt),
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Ssh],
       };
     case VARIANT.Support:
       return {
         bannerVariant: BANNER_TYPE.Help,
-        icon: <ProductIcons.HeadphonesSVG />,
+        icon: <HeadphonesSVG />,
         description: VARIANT_MESSAGES.support,
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Support],
       };

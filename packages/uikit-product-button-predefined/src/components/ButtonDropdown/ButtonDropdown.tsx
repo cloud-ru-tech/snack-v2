@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import { useValueControl, WithSupportProps } from '@ds/utils';
 

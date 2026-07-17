@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons';
+import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
 import { Checkbox, Radio } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
 import { useHierarchicalSelection } from '@ds/utils';

@@ -1,5 +1,5 @@
 import { Button, VIEW } from '@ds/button';
-import { CrossSVG, UpdateSVG } from '@ds/icons';
+import { CrossSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { Skeleton } from '@ds/skeleton';
 import { memo, ReactNode } from 'react';

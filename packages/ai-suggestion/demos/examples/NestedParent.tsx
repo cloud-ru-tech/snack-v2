@@ -1,5 +1,5 @@
 import { AiSuggestionParent, CHILD_TYPE, SIZE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function NestedParent() {
   return (

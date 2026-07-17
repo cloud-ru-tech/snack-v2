@@ -1,4 +1,4 @@
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { NotificationPanelContent, NotificationPanelContentProps } from '@ds/uikit-product-notification';
 import { ValueOf } from '@ds/utils';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';

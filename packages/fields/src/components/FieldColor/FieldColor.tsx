@@ -3,7 +3,7 @@ import { NO_DRAG_ATTRIBUTE } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { ColorPicker, colorPickerLocale, ColorPickerProps, RawColor } from '@ds/color-picker';
 import { Dropdown } from '@ds/dropdown';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { InputPrivate, InputPrivateProps, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';

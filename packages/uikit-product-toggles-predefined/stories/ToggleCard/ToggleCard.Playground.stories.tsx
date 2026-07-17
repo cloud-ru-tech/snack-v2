@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { SIZE, ToggleCard, ToggleGroup } from '@ds/uikit-product-toggles-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';

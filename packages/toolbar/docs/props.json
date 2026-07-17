@@ -149,7 +149,7 @@
       "items": {
         "type": "Segment<DataViewValue>[]",
         "required": false,
-        "defaultValue": "[\n  { value: DATA_VIEW_VALUE.List, label: '', icon: <ProductIcons.ViewTableSVG /> },\n  { value: DATA_VIEW_VALUE.Compact, label: '', icon: <ProductIcons.ViewCardSVG /> },\n]"
+        "defaultValue": "[\n  { value: DATA_VIEW_VALUE.List, label: '', icon: <ViewTableSVG /> },\n  { value: DATA_VIEW_VALUE.Compact, label: '', icon: <ViewCardSVG /> },\n]"
       },
       "onChange": {
         "type": "((value: DataViewValue) => void)",

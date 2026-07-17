@@ -1,4 +1,4 @@
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { Link } from '@ds/link';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps } from '@ds/utils';

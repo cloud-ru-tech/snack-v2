@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { BUTTON_SIZE_MAP, ButtonProps, Size as InputPrivateSize } from '@ds/input-private';
 import { useEventHandler } from '@ds/utils';
 import { MouseEvent, MouseEventHandler, Ref, RefObject, useEffect, useMemo, useRef, useState } from 'react';

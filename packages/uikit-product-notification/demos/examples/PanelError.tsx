@@ -1,4 +1,4 @@
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { NotificationPanelContent } from '@ds/uikit-product-notification';
 
 export function PanelError() {

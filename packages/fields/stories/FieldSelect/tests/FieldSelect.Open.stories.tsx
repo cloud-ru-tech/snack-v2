@@ -1,5 +1,5 @@
 import { FieldSelect, TEST_IDS } from '@ds/fields';
-import { FolderSVG, PlaceholderSVG } from '@ds/icons';
+import { FolderSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { ItemProps } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';

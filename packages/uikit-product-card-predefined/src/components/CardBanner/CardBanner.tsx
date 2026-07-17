@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { Card, PolymorphicRef } from '@ds/card';
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import cn from 'classnames';

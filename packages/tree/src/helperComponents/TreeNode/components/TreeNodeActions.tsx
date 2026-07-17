@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist, ItemProps } from '@ds/list';
 import { Dispatch, KeyboardEventHandler, SetStateAction, useEffect, useRef } from 'react';
 

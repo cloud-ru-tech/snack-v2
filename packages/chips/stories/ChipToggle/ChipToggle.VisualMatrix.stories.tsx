@@ -1,5 +1,5 @@
 import { ChipToggle } from '@ds/chips';
-import { SettingsSVG } from '@ds/icons';
+import { SettingsSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';

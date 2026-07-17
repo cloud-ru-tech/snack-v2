@@ -41,7 +41,7 @@ import '@ds/uikit-product-layout/style.css';
 
 ```tsx
 import { ButtonGroup } from '@ds/button';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { EmptyBlock } from '@ds/uikit-product-layout';
 
 export function EmptyBlockWithFooter() {

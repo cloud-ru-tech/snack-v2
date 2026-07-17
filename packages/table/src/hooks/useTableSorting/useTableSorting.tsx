@@ -1,4 +1,4 @@
-import { ArrowDownSVG, ArrowUpSVG, UpdateSVG } from '@ds/icons';
+import { ArrowDownSVG, ArrowUpSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { DroplistProps, ITEM_TYPE, SelectionSingleState } from '@ds/list';
 import { Header, SortingState, Table } from '@tanstack/react-table';
 import { ReactNode, useCallback, useMemo } from 'react';

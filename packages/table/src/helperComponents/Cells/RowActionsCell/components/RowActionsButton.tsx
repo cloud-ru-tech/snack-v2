@@ -1,5 +1,5 @@
 import { Button, VIEW } from '@ds/button';
-import { KebabSVG, MoreSVG } from '@ds/icons';
+import { KebabSVG, MoreSVG } from '@ds/icons/interface/system';
 import { ComponentProps } from 'react';
 
 import { TEST_IDS } from '../../../../constants';

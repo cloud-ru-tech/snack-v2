@@ -1,4 +1,4 @@
-import { CrossSVG, NotifierInfoFilledSVG, NotifierWarningFilledSVG, QuestionSVG } from '@ds/icons';
+import { CrossSVG, NotifierInfoFilledSVG, NotifierWarningFilledSVG, QuestionSVG } from '@ds/icons/interface/system';
 
 import { APPEARANCE_STATE } from '../constants';
 import { AppearanceState } from '../types';

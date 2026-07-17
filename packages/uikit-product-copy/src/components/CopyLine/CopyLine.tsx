@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, useCopyToClipboard, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';

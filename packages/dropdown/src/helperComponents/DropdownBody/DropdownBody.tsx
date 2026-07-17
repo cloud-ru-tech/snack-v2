@@ -1,5 +1,5 @@
 import { ButtonGroup } from '@ds/button';
-import { UpdateSVG } from '@ds/icons';
+import { UpdateSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { Spinner } from '@ds/loader';
 

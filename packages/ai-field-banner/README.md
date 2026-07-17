@@ -71,7 +71,7 @@ Information с иконкой, описанием и действием
 
 ```tsx
 import { AiFieldBanner, TYPE } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Default() {
   return (
@@ -92,7 +92,7 @@ export function Default() {
 
 ```tsx
 import { AiFieldBanner, TYPE_ORDER } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 const types = TYPE_ORDER;
 
@@ -119,7 +119,7 @@ export function Types() {
 
 ```tsx
 import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Mobile() {
   return (
@@ -140,7 +140,7 @@ export function Mobile() {
 
 ```tsx
 import { AiFieldBanner, TYPE } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function WithAdditionalSlot() {
   return (

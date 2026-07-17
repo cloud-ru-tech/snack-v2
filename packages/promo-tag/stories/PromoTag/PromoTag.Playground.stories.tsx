@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, PromoTag, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';

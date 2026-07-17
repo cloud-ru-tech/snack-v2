@@ -1207,7 +1207,7 @@ export function BasicList() {
 Иконка слева, caption-счётчик справа от заголовка и trailing-иконка в afterContent.
 
 ```tsx
-import { FileSVG, FolderSVG, StarSVG } from '@ds/icons';
+import { FileSVG, FolderSVG, StarSVG } from '@ds/icons/interface/system';
 import { List } from '@ds/list';
 
 import styles from './styles.module.scss';

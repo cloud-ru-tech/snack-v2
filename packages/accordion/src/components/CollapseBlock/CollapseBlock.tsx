@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import {
   BACKGROUND_PREDEFINED_FILL,
   type BackgroundPredefinedFill,

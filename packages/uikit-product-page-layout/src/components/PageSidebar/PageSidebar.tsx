@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { VerticalMenuCloseSVG, VerticalMenuOpenSVG } from '@ds/icons/interface/product';
 import { List, ListProps } from '@ds/list';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -89,7 +89,7 @@ function PrivateSideBar({
           appearance={APPEARANCE.Neutral}
           className={styles.expandButton}
           data-test-id={TEST_IDS.sidebarToggle.expand}
-          icon={<ProductIcons.VerticalMenuOpenSVG />}
+          icon={<VerticalMenuOpenSVG />}
           onClick={() => toggleOpen(true)}
         />
       )}
@@ -122,7 +122,7 @@ function PrivateSideBar({
               <Button
                 view={VIEW.Elevated}
                 appearance={APPEARANCE.Neutral}
-                icon={<ProductIcons.VerticalMenuCloseSVG />}
+                icon={<VerticalMenuCloseSVG />}
                 className={styles.button}
                 data-test-id={TEST_IDS.sidebarToggle.collapse}
                 onClick={() => toggleOpen(false)}

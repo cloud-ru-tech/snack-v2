@@ -91,7 +91,7 @@ Counter, иконка-«verified», `status` и ручной `StatusIndicator` �
 ```tsx
 import { Avatar, AVATAR_TO_STATUS_INDICATOR_SIZE, SIZE } from '@ds/avatar';
 import { Counter, SIZE as COUNTER_SIZE } from '@ds/counter';
-import { CheckSVG } from '@ds/icons';
+import { CheckSVG } from '@ds/icons/interface/system';
 import { APPEARANCE as STATUS_APPEARANCE, StatusIndicator } from '@ds/status';
 
 import styles from './CustomBadge.module.scss';

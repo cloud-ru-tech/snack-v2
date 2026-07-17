@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { NotifierInfoFilledSVG } from '@ds/icons';
+import { NotifierInfoFilledSVG } from '@ds/icons/interface/system';
 import { LinkProps } from '@ds/link';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { QuestionTooltip } from '@ds/tooltip';

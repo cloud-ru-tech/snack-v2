@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from 'storybook/test';

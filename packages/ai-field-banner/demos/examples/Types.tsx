@@ -1,5 +1,5 @@
 import { AiFieldBanner, TYPE_ORDER } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 const types = TYPE_ORDER;
 

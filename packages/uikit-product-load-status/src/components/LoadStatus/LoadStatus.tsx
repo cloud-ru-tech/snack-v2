@@ -1,4 +1,4 @@
-import { NotifierCriticalFilledSVG } from '@ds/icons';
+import { NotifierCriticalFilledSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, PROGRESS_BAR_SIZE, ProgressBar, ProgressBarProps } from '@ds/progress-bar';
 import { SIZE, Typography, VARIANT, WEIGHT } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';

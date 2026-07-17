@@ -1,5 +1,5 @@
 import { SIZE } from '@ds/chips';
-import { SettingsSVG } from '@ds/icons';
+import { SettingsSVG } from '@ds/icons/interface/system';
 
 export const SIZES = Object.values(SIZE);
 export const COLUMN_HEADERS = SIZES.map(s => s.toUpperCase());

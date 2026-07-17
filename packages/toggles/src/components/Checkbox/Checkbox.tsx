@@ -1,4 +1,4 @@
-import { CheckSVG, MinusSVG } from '@ds/icons';
+import { CheckSVG, MinusSVG } from '@ds/icons/interface/system';
 import { LOADER_SIZE, Spinner } from '@ds/loader';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';

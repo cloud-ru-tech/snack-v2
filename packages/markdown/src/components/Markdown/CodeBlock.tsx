@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { Scroll } from '@ds/scroll';
 import cn from 'classnames';
 import { Children, isValidElement, ReactNode, useRef, useState } from 'react';

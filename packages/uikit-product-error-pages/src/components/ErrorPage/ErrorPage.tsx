@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { EmailSVG } from '@ds/icons';
+import { EmailSVG } from '@ds/icons/interface/system';
 import { Link } from '@ds/link';
 import { Tag } from '@ds/tag';
 import { useThemeClassnames } from '@ds/theme';

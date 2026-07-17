@@ -1,5 +1,5 @@
 import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Mobile() {
   return (

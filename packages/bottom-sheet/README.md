@@ -241,7 +241,7 @@ onBackButtonClick авто-рендерит back-кнопку; actionButton — 
 import { BottomSheet } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
 import { MobilePreview } from '../MobilePreview';

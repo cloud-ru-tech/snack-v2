@@ -1,11 +1,11 @@
-import { HomeSVG, UpdateSVG } from '@ds/icons';
+import { HomeSVG, UpdateSVG } from '@ds/icons/interface/system';
+import { CloudFullLogo } from '@ds/icons/logos';
 import { isBrowser } from '@ds/utils';
 import { ReactNode, useMemo } from 'react';
 
 import { ERROR_TYPE, LOGO_VARIANT } from '../../constants';
 import { errorPageLocale } from '../../locale';
 import { ErrorPageContent, ErrorTypeConfig, LogoVariant, MainButtonConfig } from '../../types';
-import { CloudLogo } from '../CloudLogo';
 import styles from './styles.module.scss';
 
 export function useGetContentByErrorType({ errorType, custom }: ErrorTypeConfig): ErrorPageContent {
@@ -79,7 +79,7 @@ export function useLogoNode(logoVariant: LogoVariant, logo: ReactNode, dataTestI
 
     switch (true) {
       case logoVariant === LOGO_VARIANT.Cloud:
-        return wrap(<CloudLogo />);
+        return wrap(<CloudFullLogo />);
       case Boolean(logoVariant === LOGO_VARIANT.Custom && logo):
         return wrap(logo);
       case logoVariant === LOGO_VARIANT.None:

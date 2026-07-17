@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { WithSupportProps } from '@ds/utils';
 import { useState } from 'react';
 

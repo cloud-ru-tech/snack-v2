@@ -11,7 +11,7 @@ import {
   OrderedListSVG,
   StrikeSVG,
   TableSVG,
-} from '@ds/icons';
+} from '@ds/icons/interface/system';
 import { ReactNode } from 'react';
 
 import { TOOLBAR_ITEM } from '../../constants';

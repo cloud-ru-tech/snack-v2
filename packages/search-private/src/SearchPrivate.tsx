@@ -1,4 +1,4 @@
-import { SearchSVG } from '@ds/icons';
+import { SearchSVG } from '@ds/icons/interface/system';
 import {
   InputPrivate,
   InputPrivateProps,

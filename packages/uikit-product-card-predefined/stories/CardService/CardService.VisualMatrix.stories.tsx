@@ -1,5 +1,5 @@
 import { IconPredefined } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardService } from '@ds/uikit-product-card-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 

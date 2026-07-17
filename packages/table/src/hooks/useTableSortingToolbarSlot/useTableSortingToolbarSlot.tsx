@@ -1,6 +1,7 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { APPEARANCE, Button, VIEW as BUTTON_VIEW } from '@ds/button';
-import { ArrowDownSVG, ArrowUpSVG, ProductIcons } from '@ds/icons';
+import { SortSVG } from '@ds/icons/interface/product';
+import { ArrowDownSVG, ArrowUpSVG } from '@ds/icons/interface/system';
 import { Droplist } from '@ds/list';
 import { SortingState, Table } from '@tanstack/react-table';
 import { ComponentType, ReactNode, useState } from 'react';
@@ -63,7 +64,7 @@ export function useTableSortingToolbarSlot<TData extends object>({
 
   const clearItem = pinBottom?.[0] ? [{ ...pinBottom[0], onClick: handleClear }] : undefined;
 
-  let SortIcon: ComponentType = ProductIcons.SortSVG;
+  let SortIcon: ComponentType = SortSVG;
 
   if (currentSort) {
     SortIcon = currentSort.desc ? ArrowDownSVG : ArrowUpSVG;

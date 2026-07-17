@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { FilterSVG } from '@ds/icons';
+import { FilterSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 

@@ -1,4 +1,4 @@
-import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons/interface/system';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';

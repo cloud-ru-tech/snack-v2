@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons';
+import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons/interface/system';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef } from 'react';

@@ -1,4 +1,4 @@
-import { ChevronDownSpriteSVG, ChevronUpSpriteSVG, CrossSpriteSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -186,7 +186,7 @@ export function AlertBase(props: AlertBaseProps) {
   const closeButton = onClose && showCloseButton && (
     <AlertButton
       data-test-id={testIds.closeButton}
-      icon={<CrossSpriteSVG />}
+      icon={<CrossSVG />}
       onClick={handleOnClose}
       size={size}
       variant={buttonVariant}
@@ -234,7 +234,7 @@ export function AlertBase(props: AlertBaseProps) {
           {showExpandChevron && (
             <AlertButton
               data-test-id={testIds.expandingIcon}
-              icon={isExpanded ? <ChevronUpSpriteSVG /> : <ChevronDownSpriteSVG />}
+              icon={isExpanded ? <ChevronUpSVG /> : <ChevronDownSVG />}
               size={size}
               variant={buttonVariant}
               invertFocusOutlineColor={invertFocusOutlineColor}

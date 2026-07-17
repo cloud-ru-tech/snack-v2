@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable, TitleClickableIcon } from '@ds/uikit-product-title-clickable';
 
 export function WithIcon() {

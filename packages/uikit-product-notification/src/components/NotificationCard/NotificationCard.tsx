@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { Link, PickLinkProps } from '@ds/link';
 import { StatusIndicator } from '@ds/status';
 import { TruncateString } from '@ds/truncate-string';

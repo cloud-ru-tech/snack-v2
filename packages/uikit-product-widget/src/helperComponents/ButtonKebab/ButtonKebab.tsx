@@ -1,6 +1,6 @@
 import { Button, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { useValueControl } from '@ds/utils';
 import { memo } from 'react';
 

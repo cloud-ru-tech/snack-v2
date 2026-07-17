@@ -1,14 +1,8 @@
-import { ProductIcons } from '@ds/icons';
+import { PdfSVG, TxtSVG } from '@ds/icons/interface/product';
 import { describe, expect, it } from 'vitest';
 
 import { FileSizeUnits, UploadFilesAcceptItem } from '../src/types';
-import {
-  formatFileDescription,
-  formatFileSize,
-  joinWithConjunction,
-  makeId,
-  resolveFileIcon,
-} from '../src/utils';
+import { formatFileDescription, formatFileSize, joinWithConjunction, makeId, resolveFileIcon } from '../src/utils';
 
 const units: FileSizeUnits = { b: 'Б', kb: 'Кб', mb: 'Мб', gb: 'Гб' };
 
@@ -80,13 +74,13 @@ describe('joinWithConjunction', () => {
 
 describe('resolveFileIcon', () => {
   const accept: UploadFilesAcceptItem[] = [
-    { extention: '.pdf', icon: ProductIcons.PdfSVG, displayExtension: 'PDF' },
-    { extention: 'txt', icon: ProductIcons.TxtSVG, displayExtension: 'TXT' },
+    { extention: '.pdf', icon: PdfSVG, displayExtension: 'PDF' },
+    { extention: 'txt', icon: TxtSVG, displayExtension: 'TXT' },
   ];
 
   it('resolves an icon by extension regardless of leading dot or case', () => {
-    expect(resolveFileIcon(makeFile('a.PDF'), accept)).toBe(ProductIcons.PdfSVG);
-    expect(resolveFileIcon(makeFile('notes.txt'), accept)).toBe(ProductIcons.TxtSVG);
+    expect(resolveFileIcon(makeFile('a.PDF'), accept)).toBe(PdfSVG);
+    expect(resolveFileIcon(makeFile('notes.txt'), accept)).toBe(TxtSVG);
   });
 
   it('returns undefined for an unknown extension', () => {

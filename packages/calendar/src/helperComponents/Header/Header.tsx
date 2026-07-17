@@ -1,4 +1,4 @@
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 
 import { GRID_SIZE, SIZE, VIEW_MODE } from '../../constants';
 import { useCalendarContext } from '../../hooks';

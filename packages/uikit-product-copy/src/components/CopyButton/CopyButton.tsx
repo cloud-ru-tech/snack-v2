@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { CheckSVG, CopySVG } from '@ds/icons';
+import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { extractSupportProps, useCopyToClipboard, WithSupportProps } from '@ds/utils';
 import { MouseEventHandler } from 'react';
 

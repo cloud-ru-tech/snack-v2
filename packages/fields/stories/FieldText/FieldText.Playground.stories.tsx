@@ -1,5 +1,5 @@
 import { FieldText, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
-import { CalendarSVG, SearchSVG } from '@ds/icons';
+import { CalendarSVG, SearchSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 

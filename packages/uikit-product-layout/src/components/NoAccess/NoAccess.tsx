@@ -1,6 +1,6 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Block, SIZE as BLOCK_SIZE } from '@ds/block';
-import { ProductIcons } from '@ds/icons';
+import { LockSVG } from '@ds/icons/interface/product';
 import { InfoBlock, SIZE as INFO_SIZE } from '@ds/info-block';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -39,7 +39,7 @@ export function NoAccess({ serviceName, className, ...rest }: NoAccessProps) {
       <Block size={BLOCK_SIZE.L} className={styles.block}>
         <InfoBlock
           size={INFO_SIZE.M}
-          icon={{ icon: ProductIcons.LockSVG }}
+          icon={{ icon: LockSVG }}
           title={t('noAccessTitle')}
           description={
             <div className={styles.description}>

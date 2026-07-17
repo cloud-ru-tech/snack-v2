@@ -1,4 +1,4 @@
-import { StarFilledSVG } from '@ds/icons';
+import { StarFilledSVG } from '@ds/icons/interface/system';
 import cn from 'classnames';
 import { KeyboardEventHandler } from 'react';
 

@@ -1,4 +1,4 @@
-import { TrashSVG } from '@ds/icons';
+import { TrashSVG } from '@ds/icons/interface/system';
 import { getPageNumberTestId } from '@ds/pagination';
 import { RowSelectionState, Table, ToolbarCheckBoxMode } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';

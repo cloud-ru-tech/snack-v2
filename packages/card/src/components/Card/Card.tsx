@@ -1,4 +1,4 @@
-import { CheckSVG } from '@ds/icons';
+import { CheckSVG } from '@ds/icons/interface/system';
 import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';

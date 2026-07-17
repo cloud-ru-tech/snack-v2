@@ -1,5 +1,5 @@
 import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';

@@ -1,4 +1,11 @@
-import { Heading1SVG, Heading2SVG, Heading3SVG, Heading4SVG, Heading5SVG, HeadingSVG } from '@ds/icons';
+import {
+  Heading1SVG,
+  Heading2SVG,
+  Heading3SVG,
+  Heading4SVG,
+  Heading5SVG,
+  HeadingSVG,
+} from '@ds/icons/interface/system';
 import { BaseItemProps, Droplist } from '@ds/list';
 import { usePortalContext } from '@ds/portal-context';
 import { ComponentType, useState } from 'react';

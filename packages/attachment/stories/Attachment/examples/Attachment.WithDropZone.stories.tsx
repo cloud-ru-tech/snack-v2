@@ -1,7 +1,7 @@
 import { Attachment } from '@ds/attachment';
 import { Button } from '@ds/button';
 import { FileUpload } from '@ds/dropzone';
-import { UploadSVG } from '@ds/icons';
+import { UploadSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 

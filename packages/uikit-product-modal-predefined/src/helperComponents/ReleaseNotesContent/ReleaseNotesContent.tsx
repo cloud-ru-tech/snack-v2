@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { Carousel } from '@ds/carousel';
-import { CrossSVG } from '@ds/icons';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { Skeleton } from '@ds/skeleton';
 import cn from 'classnames';

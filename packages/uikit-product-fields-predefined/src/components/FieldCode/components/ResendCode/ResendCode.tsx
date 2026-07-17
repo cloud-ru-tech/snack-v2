@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, ButtonProps, ICON_POSITION, VIEW } from '@ds/button';
-import { UpdateSVG } from '@ds/icons';
+import { UpdateSVG } from '@ds/icons/interface/system';
 
 import { TEST_IDS } from '../../../../constants';
 import { fieldsPredefinedLocale } from '../../../../locale';

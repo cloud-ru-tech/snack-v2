@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons';
+import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons/interface/system';
 import { MouseEvent } from 'react';
 
 import { TEST_IDS } from '../../constants';

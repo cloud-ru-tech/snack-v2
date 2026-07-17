@@ -1,5 +1,5 @@
 import { IconPredefined } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Sizes() {
   return (

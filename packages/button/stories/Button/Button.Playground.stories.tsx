@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, ICON_POSITION, SIZE, VIEW } from '@ds/button';
-import { DownloadSVG, PlusSVG, SettingsSVG } from '@ds/icons';
+import { DownloadSVG, PlusSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 

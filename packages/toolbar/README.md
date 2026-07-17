@@ -126,7 +126,7 @@ export function WithFilters() {
 Bulk-панель под фильтрами с чекбоксом и tonal-кнопками
 
 ```tsx
-import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CopySVG, CrossSVG } from '@ds/icons/interface/system';
 import { Toolbar } from '@ds/toolbar';
 import { useState } from 'react';
 
@@ -160,7 +160,7 @@ export function BulkActions() {
 
 ```tsx
 import { Button } from '@ds/button';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Toolbar } from '@ds/toolbar';
 import { useState } from 'react';
 
@@ -235,7 +235,7 @@ Mobile-раскладка — включите чекбокс, чтобы отк
 
 ```tsx
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
-import { CheckSVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { Checkbox } from '@ds/toggles';
 import { Toolbar } from '@ds/toolbar';
 import { useId, useState } from 'react';

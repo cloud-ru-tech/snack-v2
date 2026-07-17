@@ -1,4 +1,4 @@
-import { HomeSVG } from '@ds/icons';
+import { HomeSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { CSSProperties, useState } from 'react';
 

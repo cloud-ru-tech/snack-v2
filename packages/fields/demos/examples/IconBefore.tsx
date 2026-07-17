@@ -1,5 +1,5 @@
 import { FieldText } from '@ds/fields';
-import { SearchSVG } from '@ds/icons';
+import { SearchSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
 export function IconBefore() {

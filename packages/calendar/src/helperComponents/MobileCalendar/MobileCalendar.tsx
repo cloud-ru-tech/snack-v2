@@ -1,6 +1,6 @@
 import { BottomSheet } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
-import { ChevronDownSVG, FunctionSettingsSVG, WatchSVG } from '@ds/icons';
+import { ChevronDownSVG, FunctionSettingsSVG, WatchSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
 import { useLayoutEffect } from '@ds/utils';
 import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';

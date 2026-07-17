@@ -39,7 +39,7 @@ import { AiSuggestionSimple, AiSuggestionParent, APPEARANCE, CHILD_TYPE, SIZE } 
 
 ```tsx
 import { AiSuggestionSimple, APPEARANCE, SIZE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Basic() {
   return (
@@ -61,7 +61,7 @@ export function Basic() {
 
 ```tsx
 import { AiSuggestionParent, CHILD_TYPE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function ParentExpandable() {
   return (
@@ -93,7 +93,7 @@ export function ParentExpandable() {
 
 ```tsx
 import { AiSuggestionParent, SIZE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
 export function ControlledParent() {
@@ -116,7 +116,7 @@ export function ControlledParent() {
 
 ```tsx
 import { AiSuggestionParent, CHILD_TYPE, SIZE } from '@ds/ai-suggestion';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function NestedParent() {
   return (

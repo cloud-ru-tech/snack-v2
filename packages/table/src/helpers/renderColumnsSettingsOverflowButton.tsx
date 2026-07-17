@@ -1,4 +1,4 @@
-import { FunctionSettingsSVG } from '@ds/icons';
+import { FunctionSettingsSVG } from '@ds/icons/interface/system';
 import { MouseEvent, ReactNode } from 'react';
 
 import { TEST_IDS } from '../constants';

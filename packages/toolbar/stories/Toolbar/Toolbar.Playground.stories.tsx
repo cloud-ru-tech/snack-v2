@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossSVG, PlaceholderSVG } from '@ds/icons';
+import { CrossSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';

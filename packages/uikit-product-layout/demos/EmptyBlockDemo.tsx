@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { EmptyBlock } from '@ds/uikit-product-layout';
 
 import { Canvas } from '#docs/components/Canvas';

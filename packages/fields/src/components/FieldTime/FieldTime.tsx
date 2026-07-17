@@ -1,5 +1,5 @@
 import { TimePickerDropdown, TimeValue } from '@ds/calendar';
-import { WatchSVG } from '@ds/icons';
+import { WatchSVG } from '@ds/icons/interface/system';
 import { INPUT_MODE, InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';

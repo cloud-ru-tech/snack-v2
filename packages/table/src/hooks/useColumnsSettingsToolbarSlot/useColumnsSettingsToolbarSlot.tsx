@@ -1,6 +1,6 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, VIEW } from '@ds/button';
-import { FunctionSettingsSVG } from '@ds/icons';
+import { FunctionSettingsSVG } from '@ds/icons/interface/system';
 import { Droplist, GroupSelectItemProps, SelectionMultipleState, SIZE } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import { ReactNode, useState } from 'react';

@@ -1,4 +1,4 @@
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { CardServiceLight, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 

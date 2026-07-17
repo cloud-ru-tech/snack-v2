@@ -1,5 +1,5 @@
 import { FieldSlider, SIZE, VALIDATION_STATE } from '@ds/fields';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 

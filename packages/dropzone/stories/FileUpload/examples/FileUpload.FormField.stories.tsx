@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { UploadSVG } from '@ds/icons';
+import { UploadSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';

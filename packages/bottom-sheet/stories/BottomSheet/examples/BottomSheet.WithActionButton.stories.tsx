@@ -1,7 +1,7 @@
 import { BottomSheet } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { usePortalContext } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';

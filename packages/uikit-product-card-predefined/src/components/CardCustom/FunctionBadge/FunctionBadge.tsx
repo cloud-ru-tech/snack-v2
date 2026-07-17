@@ -1,5 +1,5 @@
 import { TEST_IDS, useCardContext } from '@ds/card';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { BaseItemProps, Droplist } from '@ds/list';
 import { Tag } from '@ds/tag';
 import { useLayoutEffect } from '@ds/utils';

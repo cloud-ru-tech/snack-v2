@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { SettingsSVG } from '@ds/icons';
+import { SettingsSVG } from '@ds/icons/interface/system';
 import { ElementType } from 'react';
 
 import { TEST_IDS } from '../../../../constants';

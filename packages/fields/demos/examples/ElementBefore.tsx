@@ -1,5 +1,5 @@
 import { FieldText } from '@ds/fields';
-import { CalendarSVG } from '@ds/icons';
+import { CalendarSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
 function formatToday(): string {

@@ -1,4 +1,4 @@
-import { FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons';
+import { FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
 import { Tree, TreeNodeProps } from '@ds/tree';
 import { useState } from 'react';
 

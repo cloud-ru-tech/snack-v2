@@ -1,4 +1,4 @@
-import { CrossSVG, SearchSVG } from '@ds/icons';
+import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { useMemo } from 'react';
 
 import { tableLocale } from '../../locale';

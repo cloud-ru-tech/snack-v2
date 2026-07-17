@@ -44,7 +44,7 @@ import { IconPredefined, APPEARANCE, SIZE } from '@ds/icon-predefined'
 
 ```tsx
 import { IconPredefined } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Appearances() {
   return (
@@ -66,7 +66,7 @@ export function Appearances() {
 
 ```tsx
 import { IconPredefined } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Sizes() {
   return (
@@ -85,7 +85,7 @@ export function Sizes() {
 
 ```tsx
 import { IconPredefined } from '@ds/icon-predefined';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Shapes() {
   return (

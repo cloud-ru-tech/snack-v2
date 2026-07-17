@@ -1,5 +1,6 @@
 import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
-import { ProductIcons, SearchSVG } from '@ds/icons';
+import { VerticalMenuRightCloseSVG } from '@ds/icons/interface/product';
+import { SearchSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 
 import { TEST_IDS } from '../../../../constants';
@@ -28,7 +29,7 @@ export function SidebarSearchToggle() {
         size={SIZE.M}
         data-test-id={TEST_IDS.sidebarSearch.trigger}
         onClick={toggle}
-        icon={searchOpened ? <ProductIcons.VerticalMenuRightCloseSVG /> : <SearchSVG />}
+        icon={searchOpened ? <VerticalMenuRightCloseSVG /> : <SearchSVG />}
       />
     </Tooltip>
   );

@@ -1,5 +1,5 @@
 import { Attachment, AttachmentProps, SIZE } from '@ds/attachment';
-import { FileSVG, FolderSVG } from '@ds/icons';
+import { FileSVG, FolderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentType, MouseEvent, useEffect, useState } from 'react';
 import { expect, fn, within } from 'storybook/test';

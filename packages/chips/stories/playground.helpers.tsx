@@ -1,5 +1,5 @@
 import { SIZE } from '@ds/chips';
-import { SettingsSVG } from '@ds/icons';
+import { SettingsSVG } from '@ds/icons/interface/system';
 import { Args, ArgTypes } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 

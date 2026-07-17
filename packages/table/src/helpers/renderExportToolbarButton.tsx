@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW as BUTTON_VIEW } from '@ds/button';
-import { DownloadSVG } from '@ds/icons';
+import { DownloadSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 import { MouseEvent, ReactNode } from 'react';
 

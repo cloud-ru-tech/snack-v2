@@ -1,6 +1,6 @@
 import { BottomSheet } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { MoreSVG } from '@ds/icons';
+import { MoreSVG } from '@ds/icons/interface/system';
 import { usePortalContext } from '@ds/portal-context';
 import { Search } from '@ds/search';
 import { Tag } from '@ds/tag';

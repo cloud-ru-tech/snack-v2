@@ -1,6 +1,6 @@
 import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
 import { Button, VIEW } from '@ds/button';
-import { KebabSVG } from '@ds/icons';
+import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps, Item } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import { quotaLocale, QuotaWidget } from '@ds/uikit-product-quota';

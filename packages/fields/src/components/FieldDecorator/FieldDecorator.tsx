@@ -1,8 +1,8 @@
 import {
-  NotifierCriticalFilledSpriteSVG,
-  NotifierSuccessFilledSpriteSVG,
-  NotifierWarningFilledSpriteSVG,
-} from '@ds/icons';
+  NotifierCriticalFilledSVG,
+  NotifierSuccessFilledSVG,
+  NotifierWarningFilledSVG,
+} from '@ds/icons/interface/system';
 import { QuestionTooltip, QuestionTooltipProps } from '@ds/tooltip';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -16,11 +16,11 @@ import { Size, ValidationState } from './types';
 function getHintIcon(validationState: ValidationState) {
   switch (validationState) {
     case VALIDATION_STATE.Error:
-      return <NotifierCriticalFilledSpriteSVG />;
+      return <NotifierCriticalFilledSVG />;
     case VALIDATION_STATE.Warning:
-      return <NotifierWarningFilledSpriteSVG />;
+      return <NotifierWarningFilledSVG />;
     case VALIDATION_STATE.Success:
-      return <NotifierSuccessFilledSpriteSVG />;
+      return <NotifierSuccessFilledSVG />;
     case VALIDATION_STATE.Valid:
     default:
       return null;

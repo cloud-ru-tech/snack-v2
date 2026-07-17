@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { FieldTextArea, SIZE, VALIDATION_STATE } from '@ds/fields';
-import { BoldSVG, BulletListSVG, ImageSVG, InlineCodeSVG, LinkSVG } from '@ds/icons';
+import { BoldSVG, BulletListSVG, ImageSVG, InlineCodeSVG, LinkSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';

@@ -1,4 +1,4 @@
-import { HomeSVG, PlusSVG, SettingsSVG } from '@ds/icons';
+import { HomeSVG, PlusSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { Segment, SegmentControl, SIZE } from '@ds/segment-control';
 import { Meta, StoryObj } from '@storybook/react';
 

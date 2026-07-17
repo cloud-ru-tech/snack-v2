@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { FileSVG, FolderSVG, HomeSVG, SettingsSVG, StarSVG } from '@ds/icons';
+import { FileSVG, FolderSVG, HomeSVG, SettingsSVG, StarSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps, ItemProps as Item } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 

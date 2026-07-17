@@ -1,4 +1,4 @@
-import { CheckSVG, CrossSVG } from '@ds/icons';
+import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { Sun, SUN_SIZE } from '@ds/loader';
 import cn from 'classnames';
 import { ReactElement } from 'react';

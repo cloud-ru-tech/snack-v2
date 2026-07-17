@@ -1,5 +1,5 @@
 import { Card, RADIUS, Radius } from '@ds/card';
-import { KebabSVG, PlaceholderSVG } from '@ds/icons';
+import { KebabSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Typography, VARIANT } from '@ds/typography';
 import { CardCustom, MODE } from '@ds/uikit-product-card-predefined';

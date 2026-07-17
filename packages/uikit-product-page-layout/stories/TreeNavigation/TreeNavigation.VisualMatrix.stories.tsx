@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { CloudSVG } from '@ds/icons/interface/product';
 import { TREE_NAVIGATION_MODE, TreeNavigation } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof TreeNavigation>;
 
 const header = {
   title: 'Облачный проект',
-  icon: <ProductIcons.CloudSVG />,
+  icon: <CloudSVG />,
   description: 'Управление сетевыми ресурсами проекта',
   status: { label: 'Активно', appearance: 'green' as const },
   actions: (

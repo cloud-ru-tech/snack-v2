@@ -1,4 +1,4 @@
-import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons';
+import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
 import { Spinner } from '@ds/loader';
 import { Checkbox, Radio } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';

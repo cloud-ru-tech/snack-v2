@@ -1,6 +1,6 @@
 import { SheetHeaderProps } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
-import { ArrowLeftSVG } from '@ds/icons';
+import { ArrowLeftSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';

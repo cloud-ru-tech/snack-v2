@@ -1,5 +1,5 @@
 import { IconPredefined } from '@ds/icon-predefined';
-import { FileSVG } from '@ds/icons';
+import { FileSVG } from '@ds/icons/interface/system';
 import { Spinner } from '@ds/loader';
 import { useEffect, useState } from 'react';
 

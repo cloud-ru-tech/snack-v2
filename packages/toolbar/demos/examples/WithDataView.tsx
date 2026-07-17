@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { PlaceholderSVG } from '@ds/icons';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Toolbar } from '@ds/toolbar';
 import { useState } from 'react';
 

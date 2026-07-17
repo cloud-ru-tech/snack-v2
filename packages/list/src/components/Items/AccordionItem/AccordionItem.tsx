@@ -1,4 +1,4 @@
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { useCallback } from 'react';
 
 import { TEST_IDS } from '../../../constants';
