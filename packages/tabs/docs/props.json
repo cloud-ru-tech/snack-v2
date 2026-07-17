@@ -279,7 +279,7 @@
           "before"
         ],
         "defaultValue": "after",
-        "description": "Позиция маркера",
+        "description": "Позиция маркера относительно таб-бара.\n\nЗначения ориентационно-нейтральны, в Figma та же ось названа сторонами:\n`before` = Figma `top` (horizontal) / `left` (vertical),\n`after`  = Figma `bottom` (horizontal) / `right` (vertical).",
         "typeRefs": [
           "MarkerPosition"
         ]
@@ -594,7 +594,7 @@
           "after",
           "before"
         ],
-        "description": "Позиция маркера"
+        "description": "Позиция маркера относительно таб-бара.\n\nЗначения ориентационно-нейтральны, в Figma та же ось названа сторонами:\n`before` = Figma `top` (horizontal) / `left` (vertical),\n`after`  = Figma `bottom` (horizontal) / `right` (vertical)."
       },
       "orientation": {
         "type": "enum",

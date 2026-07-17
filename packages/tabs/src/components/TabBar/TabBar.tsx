@@ -34,7 +34,13 @@ export type TabBarProps = WithSupportProps<{
   after?: ReactNode;
   /** Ориентация */
   orientation?: Orientation;
-  /** Позиция маркера */
+  /**
+   * Позиция маркера относительно таб-бара.
+   *
+   * Значения ориентационно-нейтральны, в Figma та же ось названа сторонами:
+   * `before` = Figma `top` (horizontal) / `left` (vertical),
+   * `after`  = Figma `bottom` (horizontal) / `right` (vertical).
+   */
   markerPosition?: MarkerPosition;
   /** Размер панели табов: L — верхнеуровневый, M — на уровне контента */
   size?: Size;

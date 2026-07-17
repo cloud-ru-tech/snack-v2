@@ -227,7 +227,7 @@ export function Vertical() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `disableDivider` | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
-| `markerPosition` | `"after"` \| `"before"` | `after` | Позиция маркера |
+| `markerPosition` | `"after"` \| `"before"` | `after` | Позиция маркера относительно таб-бара. <br/> Значения ориентационно-нейтральны, в Figma та же ось названа сторонами: <br/> `before` = Figma `top` (horizontal) / `left` (vertical), <br/> `after` = Figma `bottom` (horizontal) / `right` (vertical). |
 | `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация |
 | `size` | `"l"` \| `"m"` | `l` | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
 
