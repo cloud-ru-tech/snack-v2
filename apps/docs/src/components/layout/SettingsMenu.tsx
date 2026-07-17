@@ -1,6 +1,7 @@
 import { Button } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
-import { DaySVG, NightSVG, ProductIcons, SettingsSVG } from '@ds/icons';
+import { LaptopSVG, MobilePhoneSVG } from '@ds/icons/interface/product';
+import { DaySVG, NightSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { PortalContextProvider } from '@ds/portal-context';
 import { type Segment, SegmentControl } from '@ds/segment-control';
 import { BRAND, BRAND_ROLE, COLOR_SCHEME, DENSITY, getGlobalThemeStore, useThemeAppearance } from '@ds/theme';
@@ -8,8 +9,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import { ensureThemeStore, setThemeAppearance } from '../../lib/themeStore';
 import styles from './SettingsMenu.module.scss';
-
-const { LaptopSVG, MobilePhoneSVG } = ProductIcons;
 
 // Стор оформления инициализируется из localStorage до первого рендера компонента.
 ensureThemeStore();

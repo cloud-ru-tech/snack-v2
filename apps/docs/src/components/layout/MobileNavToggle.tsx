@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { ProductIcons } from '@ds/icons';
+import { BurgerSVG } from '@ds/icons/interface/product';
 import { useEffect, useState } from 'react';
 
 function applyNav(open: boolean) {
@@ -49,7 +49,7 @@ export function MobileNavToggle() {
       size='s'
       view='simple'
       appearance='neutral'
-      icon={<ProductIcons.BurgerSVG />}
+      icon={<BurgerSVG />}
       onClick={toggle}
       aria-label='Toggle navigation'
       aria-expanded={open}

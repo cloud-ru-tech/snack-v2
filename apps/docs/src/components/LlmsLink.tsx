@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { FileSVG } from '@ds/icons';
+import { FileSVG } from '@ds/icons/interface/system';
 
 type LlmsLinkProps = {
   /** Ссылка на .txt-файл (без хвостового слеша). */

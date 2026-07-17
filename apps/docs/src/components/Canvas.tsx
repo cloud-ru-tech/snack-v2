@@ -1,5 +1,14 @@
 import { Button } from '@ds/button';
-import { CheckSVG, CopySVG, DaySVG, EyeClosedSVG, EyeSVG, NightSVG, ThemeContrastSVG, UpdateSVG } from '@ds/icons';
+import {
+  CheckSVG,
+  CopySVG,
+  DaySVG,
+  EyeClosedSVG,
+  EyeSVG,
+  NightSVG,
+  ThemeContrastSVG,
+  UpdateSVG,
+} from '@ds/icons/interface/system';
 import { Switch } from '@ds/toggles';
 import { type ComponentType, type ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 

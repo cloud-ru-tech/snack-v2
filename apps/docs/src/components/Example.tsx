@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CopySVG } from '@ds/icons';
+import { CopySVG } from '@ds/icons/interface/system';
 import { type ReactNode } from 'react';
 
 import styles from './Example.module.scss';

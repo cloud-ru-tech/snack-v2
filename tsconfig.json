@@ -25,6 +25,24 @@
       "@ds/*/locale": [
         "./packages/*/src/locale"
       ],
+      "@ds/icons/interface/*": [
+        "./packages/icons/src/components/*"
+      ],
+      "@ds/icons/sprite": [
+        "./packages/icons/src/sprite"
+      ],
+      "@ds/icons/flags": [
+        "./packages/icons/src/components/flags"
+      ],
+      "@ds/icons/logos": [
+        "./packages/icons/src/components/logos"
+      ],
+      "@ds/icons/services": [
+        "./packages/icons/src/components/services"
+      ],
+      "@ds/icons/extensions": [
+        "./packages/icons/src/components/extensions"
+      ],
       "@ds/*": [
         "./packages/*/src"
       ],

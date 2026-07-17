@@ -2,6 +2,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import pagefind from 'astro-pagefind';
+import remarkGfm from 'remark-gfm';
 import fs from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -63,19 +64,41 @@ function llmsTxtIntegration() {
   };
 }
 
-/** Vite aliases: @ds/* → package source so SCSS modules resolve in docs dev/build. */
+/**
+ * Vite aliases: @ds/* (и все его подпути из package.json::exports, например
+ * @ds/icons/interface/system) → исходники, чтобы SCSS-модули резолвились в docs dev/build.
+ * Источник истины — `exports` пакета: любая запись с полем `source` получает алиас
+ * `<pkgName><subpath>` → этот `source`-файл.
+ */
 function dsWorkspaceSourceAliases() {
   const packagesDir = resolve(root, 'packages');
   const aliases = {};
   for (const folder of fs.readdirSync(packagesDir, { withFileTypes: true })) {
     if (!folder.isDirectory()) continue;
-    const manifestPath = resolve(packagesDir, folder.name, 'package.json');
+    const pkgDir = resolve(packagesDir, folder.name);
+    const manifestPath = resolve(pkgDir, 'package.json');
     if (!fs.existsSync(manifestPath)) continue;
     const pkg = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     if (typeof pkg.name !== 'string' || !pkg.name.startsWith('@ds/')) continue;
-    const entry = resolve(packagesDir, folder.name, 'src/index.ts');
-    if (!fs.existsSync(entry)) continue;
-    aliases[pkg.name] = entry;
+
+    if (pkg.exports) {
+      // Vite matches string aliases by prefix ('@ds/icons' also matches '@ds/icons/foo'), so the
+      // more specific subpath entries must be inserted before the root '.' entry — otherwise the
+      // root alias would be tried first and silently swallow every subpath import (same reasoning
+      // as the '@ds/theme/ssr' vs '@ds/theme' ordering below).
+      const entries = Object.entries(pkg.exports).sort(([a], [b]) => Number(a === '.') - Number(b === '.'));
+      for (const [subpath, condition] of entries) {
+        if (subpath === './package.json' || typeof condition === 'string') continue;
+        const source = condition.source;
+        if (typeof source !== 'string') continue;
+        const specifier = subpath === '.' ? pkg.name : `${pkg.name}/${subpath.replace(/^\.\//, '')}`;
+        aliases[specifier] = resolve(pkgDir, source);
+      }
+      continue;
+    }
+
+    const entry = resolve(pkgDir, 'src/index.ts');
+    if (fs.existsSync(entry)) aliases[pkg.name] = entry;
   }
   return aliases;
 }
@@ -88,6 +111,10 @@ export default defineConfig({
     react(),
     mdx({
       remarkPlugins: [
+        // remark-gfm включает GFM-таблицы (и strikethrough/task-list/autolink) для MDX —
+        // @astrojs/mdx с кастомным remarkPlugins их сам не подключает. Идёт первым, чтобы
+        // таблицы уже были распарсены к моменту работы остальных плагинов.
+        remarkGfm,
         remarkExampleCode,
         remarkInternalBaseUrl,
         remarkExampleHeadings,

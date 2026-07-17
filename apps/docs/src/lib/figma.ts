@@ -17,6 +17,10 @@ const INTERFACES_ICONS = {
   fileKey: 'WGeuaJKutP2gAFPThLAexW',
   fileName: 'Interfaces-icons--variables-',
 } as const;
+const FLAGS_ICONS = { fileKey: '2G33pzutIspgectd2FCq1r', fileName: 'National-flags' } as const;
+const LOGOS_ICONS = { fileKey: '9ahk0VlU4EBLhD7UbliixQ', fileName: 'Logos--variables-' } as const;
+const SERVICES_ICONS = { fileKey: '19zgJYqRSh8IZc5W74L8Gm', fileName: 'Service-icons' } as const;
+const EXTENSIONS_ICONS = { fileKey: 'xtFhDSwyZXO1s1N4ztW6GV', fileName: 'Extensions' } as const;
 const AI_COMPONENTS = {
   fileKey: 'tCbbB5RUGyJeBRtjF3dt4d',
   fileName: 'AI-COMPONENTS',
@@ -299,7 +303,16 @@ export const FIGMA_NODES = {
     'notification-drawer': { ...PRODUCT, nodeId: '3165:4972' }, // обёртка: notificationDrawer (desktop)
     'notification-bottom-sheet': { ...PRODUCT, nodeId: '3166:6162' }, // notificationBottomSheet (mobile)
   },
-  icons: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Interfaces icons (отдельный файл)
+  icons: {
+    _: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons → Icons (вся страница Interfaces icons)
+    system: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons/system → тот же canvas, секция System
+    product: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons/product → тот же canvas, секция Product
+    web: { ...INTERFACES_ICONS, nodeId: '3-102' }, // icons/web → тот же canvas, секция Web
+    flags: { ...FLAGS_ICONS, nodeId: '0-1' }, // icons/flags → National flags (страница целиком)
+    logos: { ...LOGOS_ICONS, nodeId: '1502-3' }, // icons/logos → Logos (страница целиком)
+    services: { ...SERVICES_ICONS, nodeId: '0-1' }, // icons/services → Service icons (страница целиком)
+    extensions: { ...EXTENSIONS_ICONS, nodeId: '0-1' }, // icons/extensions → Extensions (страница целиком)
+  },
   materials: { ...SNACK, nodeId: '2014-81002' }, // materials → material
   typography: { ...SNACK, nodeId: '2461-23501' }, // typography → variables & styles
 } as const satisfies Record<string, NodeOrSub>;

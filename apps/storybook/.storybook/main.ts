@@ -1,4 +1,4 @@
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -119,17 +119,46 @@ function withCategoryGrouping(indexers: Indexer[] = []): Indexer[] {
 }
 
 /**
- * Автоматически собирает алиасы `@ds/<pkg>` для всех `packages/<pkg>` с `src/index.ts`.
- * Чтобы добавить новый пакет в Storybook, достаточно создать `packages/<pkg>/src/index.ts` —
- * вручную править этот список не нужно.
+ * Автоматически собирает алиасы `@ds/<pkg>` (и все его подпути из `package.json::exports`,
+ * например `@ds/icons/interface/system`) на исходники. Источник истины — `exports` пакета:
+ * любая запись с полем `source` получает алиас `<pkgName><subpath>` → этот `source`-файл.
+ * Чтобы добавить новый пакет/подпуть в Storybook, достаточно завести его в `package.json`
+ * пакета — вручную этот список не правится.
  */
 function collectDsAliases(): Record<string, string> {
   const packagesDir = join(root, 'packages');
-  return Object.fromEntries(
-    readdirSync(packagesDir, { withFileTypes: true })
-      .filter(entry => entry.isDirectory() && existsSync(join(packagesDir, entry.name, 'src/index.ts')))
-      .map(entry => [`@ds/${entry.name}`, join(packagesDir, entry.name, 'src/index.ts')]),
-  );
+  const aliases: Record<string, string> = {};
+
+  for (const entry of readdirSync(packagesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const pkgDir = join(packagesDir, entry.name);
+    const pkgJsonPath = join(pkgDir, 'package.json');
+    if (!existsSync(pkgJsonPath)) continue;
+
+    const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf-8')) as {
+      name?: string;
+      exports?: Record<string, { source?: string } | string>;
+    };
+    if (typeof pkg.name !== 'string' || !pkg.name.startsWith('@ds/')) continue;
+
+    if (pkg.exports) {
+      // Vite matches string aliases by prefix ('@ds/icons' also matches '@ds/icons/foo'), so the
+      // more specific subpath entries must be inserted before the root '.' entry — otherwise the
+      // root alias would be tried first and silently swallow every subpath import.
+      const entries = Object.entries(pkg.exports).sort(([a], [b]) => Number(a === '.') - Number(b === '.'));
+      for (const [subpath, condition] of entries) {
+        if (subpath === './package.json' || typeof condition === 'string') continue;
+        const source = condition.source;
+        if (typeof source !== 'string') continue;
+        const specifier = subpath === '.' ? pkg.name : `${pkg.name}/${subpath.replace(/^\.\//, '')}`;
+        aliases[specifier] = join(pkgDir, source);
+      }
+    } else if (existsSync(join(pkgDir, 'src/index.ts'))) {
+      aliases[pkg.name] = join(pkgDir, 'src/index.ts');
+    }
+  }
+
+  return aliases;
 }
 
 /**

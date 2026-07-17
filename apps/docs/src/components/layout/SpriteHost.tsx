@@ -1,11 +1,20 @@
-import { Sprite, SpriteProductIconsSVG, SpriteSnackIconsSVG, SpriteWebIconsSVG } from '@ds/icons';
+import {
+  Sprite,
+  SpriteExtensionsSVG,
+  SpriteProductSVG,
+  SpriteServicesSVG,
+  SpriteSystemSVG,
+  SpriteWebSVG,
+} from '@ds/icons/sprite';
 
 export function SpriteHost() {
   return (
     <>
-      <Sprite content={SpriteSnackIconsSVG} data-test-id='sprite-snack-icons' />
-      <Sprite content={SpriteProductIconsSVG} data-test-id='sprite-product-icons' />
-      <Sprite content={SpriteWebIconsSVG} data-test-id='sprite-web-icons' />
+      <Sprite content={SpriteSystemSVG} data-test-id='sprite-snack-icons' />
+      <Sprite content={SpriteProductSVG} data-test-id='sprite-product-icons' />
+      <Sprite content={SpriteWebSVG} data-test-id='sprite-web-icons' />
+      <Sprite content={SpriteServicesSVG} data-test-id='sprite-services-icons' />
+      <Sprite content={SpriteExtensionsSVG} data-test-id='sprite-extensions-icons' />
     </>
   );
 }

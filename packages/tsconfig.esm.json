@@ -28,9 +28,6 @@
       "path": "./context-kit/tsconfig.esm.json"
     },
     {
-      "path": "./icons/tsconfig.esm.json"
-    },
-    {
       "path": "./locale/tsconfig.esm.json"
     },
     {
@@ -46,22 +43,13 @@
       "path": "./adaptive/tsconfig.esm.json"
     },
     {
-      "path": "./ai-button-chevron/tsconfig.esm.json"
-    },
-    {
       "path": "./ai-card/tsconfig.esm.json"
     },
     {
       "path": "./ai-icon-giga/tsconfig.esm.json"
     },
     {
-      "path": "./ai-reasoning/tsconfig.esm.json"
-    },
-    {
       "path": "./ai-shimmer/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-chain-of-thoughts/tsconfig.esm.json"
     },
     {
       "path": "./counter/tsconfig.esm.json"
@@ -74,6 +62,18 @@
     },
     {
       "path": "./icon-predefined/tsconfig.esm.json"
+    },
+    {
+      "path": "./icons/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-button-chevron/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-chain-of-thoughts/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-reasoning/tsconfig.esm.json"
     },
     {
       "path": "./info-block/tsconfig.esm.json"
