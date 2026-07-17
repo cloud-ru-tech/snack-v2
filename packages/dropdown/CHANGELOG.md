@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-17)
+
+### Features
+
+- **FF-8716:** add stopPropagation prop ([557b049](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/557b04974f92517394fd023cfbfd5db69a20dcc3))
+- **FF-8716:** drag&drop inside List ([ff49005](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ff4900583d4ad048ed37b684accc2a273969a7e5))
+
 ## 1.0.4 (2026-07-17)
 
 ### Bug Fixes

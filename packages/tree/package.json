@@ -1,6 +1,6 @@
 {
   "name": "@ds/tree",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

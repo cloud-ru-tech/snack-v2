@@ -1,6 +1,6 @@
 {
   "name": "@ds/list",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
@@ -33,6 +33,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@dnd-kit/core": "catalog:",
+    "@dnd-kit/sortable": "catalog:",
+    "@dnd-kit/utilities": "catalog:",
     "@ds/adaptive": "workspace:^",
     "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",
@@ -48,9 +51,6 @@
     "@ds/toggles": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@dnd-kit/core": "catalog:",
-    "@dnd-kit/sortable": "catalog:",
-    "@dnd-kit/utilities": "catalog:",
     "@tanstack/react-virtual": "catalog:",
     "classnames": "catalog:",
     "merge-refs": "catalog:"

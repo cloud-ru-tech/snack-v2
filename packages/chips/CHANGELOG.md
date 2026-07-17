@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-07-17)
+
+### Features
+
+- **FF-8716:** drag&drop inside List ([ff49005](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ff4900583d4ad048ed37b684accc2a273969a7e5))
+
 ## 1.1.2 (2026-07-17)
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-17)
+
+### Features
+
+- **FF-8716:** drag&drop inside List ([ff49005](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ff4900583d4ad048ed37b684accc2a273969a7e5))
+- **FF-8717:** add drag to table column settings ([aa5c5bc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/aa5c5bc3ad10e63503b20f118d1afa5272de58e1))
+
+### BREAKING CHANGES
+
+- **FF-8717:** rename column-settings mode values (hidden→locked, defaultTrue→defaultVisible, defaultFalse→defaultHidden) ([6c3a4d4](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6c3a4d44277ff9ab2b8a3a88490960c61775d13b))
+
 ## 1.1.3 (2026-07-17)
 
 ### Bug Fixes
