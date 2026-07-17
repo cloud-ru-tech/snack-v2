@@ -98,6 +98,12 @@ test.describe('Drawer — visual regression', () => {
     await getByTestId(TEST_IDS.drawer.triggerOpen).click();
     await getByTestId(TEST_IDS.drawer.nestedTrigger).click();
     await expect(getByTestId(TEST_IDS.nestedDrawer)).toBeVisible();
+    // Вложенный Drawer открывается JS-motion'ом (slide-in вложенного + сдвиг
+    // родителя влево + затемнение backdrop). `toBeVisible` проходит сразу после
+    // mount, до конца анимации — без ожидания скриншот ловит случайный кадр
+    // (родитель недосдвинут, backdrop недозатемнён). Ждём стабилизации bbox
+    // вложенного Drawer'а: он слайдится последним, к его остановке сцена собрана.
+    await waitForStableBbox(getByTestId(TEST_IDS.nestedDrawer));
 
     // Snapshot всей viewport, а не `#storybook-root` — drawer покрывает viewport
     // вертикально, а demo-обёртка (`DemoPage`/`DemoPanel`) даёт ниже drawer'а

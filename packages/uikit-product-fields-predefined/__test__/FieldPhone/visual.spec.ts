@@ -1,4 +1,4 @@
-import { SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import {
@@ -51,6 +51,6 @@ test.describe('FieldPhone — visual regression', () => {
     // Триггер + весь плавающий контейнер popover'а (полная ширина и высота;
     // вертикальный overflow списка стран допустим — клипится скроллом внутри).
     const png = await screenshotRegion(page, [trigger, floatingRoot], 16, SCREENSHOT_DEFAULT_OPTS);
-    expect(png).toMatchSnapshot('open-droplist.png');
+    expect(png).toMatchSnapshot('open-droplist.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 });
