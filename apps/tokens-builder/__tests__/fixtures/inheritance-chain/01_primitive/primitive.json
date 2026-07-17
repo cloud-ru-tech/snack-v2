@@ -1,0 +1,12 @@
+{
+  "sn": {
+    "primitive": {
+      "dimension": {
+        "8": { "$type": "number", "$value": "8" }
+      },
+      "strokeWeight": {
+        "strokeRegular": { "$type": "number", "$value": "1" }
+      }
+    }
+  }
+}

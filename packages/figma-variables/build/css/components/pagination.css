@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-pagination {
+  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-minWidth: var(--sn-primitive-dimension-32, 32px);
+  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-height: var(--sn-primitive-dimension-32, 32px);
+  --sn-pagination-anatomy-size-m-paginationNumber-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
+  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-pagination-anatomy-size-s-paginationNumber-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-width: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-height: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-width: var(--sn-primitive-dimension-12, 12px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-height: var(--sn-primitive-dimension-12, 12px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-width: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-height: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-width: var(--sn-primitive-dimension-12, 12px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-height: var(--sn-primitive-dimension-12, 12px);
+  --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-s-paginationSlider-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-height: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-width: var(--sn-primitive-dimension-8, 8px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedTrue-default-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-height: var(--sn-primitive-dimension-6, 6px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-width: var(--sn-primitive-dimension-6, 6px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-default-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-height: var(--sn-primitive-dimension-10, 10px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-width: var(--sn-primitive-dimension-10, 10px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-hovered-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-height: var(--sn-primitive-dimension-6, 6px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-width: var(--sn-primitive-dimension-6, 6px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-slider-activatedFalse-pressed-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-minWidth: var(--sn-primitive-dimension-16, 16px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-height: var(--sn-primitive-dimension-16, 16px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-itemPaginationSlider-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-pagination-anatomy-size-xs-paginationSlider-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+}

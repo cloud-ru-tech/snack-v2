@@ -1,0 +1,416 @@
+{
+  "sn": {
+    "avatar": {
+      "anatomy": {
+        "size": {
+          "xs": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            }
+          },
+          "s": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.24}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            }
+          },
+          "m": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.32}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              }
+            }
+          },
+          "l": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.40}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              }
+            }
+          },
+          "3xl": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.64}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              }
+            }
+          },
+          "6xl": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.88}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.16}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.16}"
+              }
+            }
+          },
+          "9xl": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.112}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.20}"
+              }
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeThin}"
+            },
+            "badge": {
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.20}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

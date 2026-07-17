@@ -1,0 +1,22 @@
+{
+  "name": "@ds/figma-variables",
+  "version": "4.0.0",
+  "description": "Figma design tokens (CSS custom properties, SCSS modules, TS) для дизайн-системы",
+  "author": "Nikita Ershov <niershov@cloud.ru>",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./build/ts/styles.js",
+  "types": "./build/ts/styles.d.ts",
+  "scripts": {
+    "build:tokens": "tsx ../../apps/tokens-builder/src/cli.ts",
+    "clean": "rimraf logs"
+  },
+  "files": [
+    "build/css",
+    "build/scss",
+    "build/ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

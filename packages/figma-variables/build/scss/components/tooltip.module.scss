@@ -1,0 +1,29 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-tooltip-anatomy-container-borderRadius: var(--sn-tooltip-anatomy-container-borderRadius, #{st.$sn-brand-anatomy-radius-tooltip-xs});
+$sn-tooltip-anatomy-pointer-paddingHorizontal: var(--sn-tooltip-anatomy-pointer-paddingHorizontal, #{$sn-tooltip-anatomy-container-borderRadius});
+$sn-tooltip-anatomy-container-padding: var(--sn-tooltip-anatomy-container-padding, #{st.$sn-brand-anatomy-spacing-tooltip-padding});
+$sn-tooltip-anatomy-container-maxWidth: 256px;
+$sn-tooltip-anatomy-container-minWidth: var(--sn-tooltip-anatomy-container-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-tooltip-anatomy-container-minHeight: var(--sn-tooltip-anatomy-container-minHeight, #{st.$sn-primitive-dimension-32});
+
+$tooltip: (
+  "anatomy": (
+    "pointer": (
+      "padding-left": $sn-tooltip-anatomy-pointer-paddingHorizontal,
+      "padding-right": $sn-tooltip-anatomy-pointer-paddingHorizontal
+    ),
+    "container": (
+      "border-radius": $sn-tooltip-anatomy-container-borderRadius,
+      "padding": $sn-tooltip-anatomy-container-padding,
+      "max-width": $sn-tooltip-anatomy-container-maxWidth,
+      "min-width": $sn-tooltip-anatomy-container-minWidth,
+      "min-height": $sn-tooltip-anatomy-container-minHeight
+    )
+  )
+);

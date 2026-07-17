@@ -1,0 +1,11 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-hotSpot {
+  --sn-hotSpot-anatomy-dot-square: var(--sn-primitive-dimension-8, 8px);
+  --sn-hotSpot-anatomy-dot-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-hotSpot-anatomy-pulse-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-hotSpot-anatomy-pulse-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-hotSpot-effect-opacity-pulse-opacity: 0.24;
+}

@@ -1,0 +1,174 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minWidth: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minWidth, #{st.$sn-density-size-l});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-horizontalPadding: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-borderRadius: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-gap: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minHeight: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minHeight, #{st.$sn-density-size-m});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-horizontalPadding: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-horizontalPadding, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsVertical-tabContainer-minHeight: var(--sn-tabs-anatomy-size-l-tabsVertical-tabContainer-minHeight, #{st.$sn-density-size-l});
+$sn-tabs-anatomy-size-l-tabsVertical-gap: var(--sn-tabs-anatomy-size-l-tabsVertical-gap, #{st.$sn-primitive-dimension-0});
+$sn-tabs-anatomy-size-l-tabsVertical-selected-borderRadius: var(--sn-tabs-anatomy-size-l-tabsVertical-selected-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-tabs-anatomy-size-l-tabsVertical-selected-height: var(--sn-tabs-anatomy-size-l-tabsVertical-selected-height, #{st.$sn-primitive-dimension-2});
+$sn-tabs-anatomy-size-l-tabsVertical-actionSlot-gap: var(--sn-tabs-anatomy-size-l-tabsVertical-actionSlot-gap, #{st.$sn-primitive-dimension-16});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minWidth: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minWidth, #{st.$sn-density-size-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minHeight: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minHeight, #{st.$sn-density-size-m});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-gap: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-borderRadius: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-horizontalPadding: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-minHeight: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-minHeight, #{st.$sn-density-size-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-horizontalPadding: var(--sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-horizontalPadding, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-selected-height: var(--sn-tabs-anatomy-size-l-tabsHorizontal-selected-height, #{st.$sn-primitive-dimension-2});
+$sn-tabs-anatomy-size-l-tabsHorizontal-selected-borderRadius: var(--sn-tabs-anatomy-size-l-tabsHorizontal-selected-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-tabs-anatomy-size-l-tabsHorizontal-gap: var(--sn-tabs-anatomy-size-l-tabsHorizontal-gap, #{st.$sn-primitive-dimension-0});
+$sn-tabs-anatomy-size-l-tabsHorizontal-actionSlot-gap: var(--sn-tabs-anatomy-size-l-tabsHorizontal-actionSlot-gap, #{st.$sn-primitive-dimension-16});
+$sn-tabs-anatomy-size-l-control-forward-padding: var(--sn-tabs-anatomy-size-l-control-forward-padding, #{st.$sn-primitive-dimension-4});
+$sn-tabs-anatomy-size-l-control-back-padding: var(--sn-tabs-anatomy-size-l-control-back-padding, #{st.$sn-primitive-dimension-4});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-minHeight: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-minHeight, #{st.$sn-density-size-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-horizontalPadding: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-borderRadius: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minWidth: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minWidth, #{st.$sn-density-size-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-gap: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minHeight: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minHeight, #{st.$sn-density-size-s});
+$sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-horizontalPadding: var(--sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-horizontalPadding, #{st.$sn-primitive-dimension-0});
+$sn-tabs-anatomy-size-m-tabsHorizontal-selected-borderRadius: var(--sn-tabs-anatomy-size-m-tabsHorizontal-selected-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-tabs-anatomy-size-m-tabsHorizontal-selected-height: var(--sn-tabs-anatomy-size-m-tabsHorizontal-selected-height, #{st.$sn-primitive-dimension-2});
+$sn-tabs-anatomy-size-m-tabsHorizontal-gap: var(--sn-tabs-anatomy-size-m-tabsHorizontal-gap, #{st.$sn-density-spacing-interval-l});
+$sn-tabs-anatomy-size-m-tabsHorizontal-actionSlot-gap: var(--sn-tabs-anatomy-size-m-tabsHorizontal-actionSlot-gap, #{st.$sn-primitive-dimension-16});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minWidth: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minWidth, #{st.$sn-primitive-dimension-0});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-gap: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minHeight: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minHeight, #{st.$sn-density-size-s});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-borderRadius: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-horizontalPadding: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-horizontalPadding: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-horizontalPadding, #{st.$sn-density-spacing-interval-m});
+$sn-tabs-anatomy-size-m-tabsVertical-tabContainer-minHeight: var(--sn-tabs-anatomy-size-m-tabsVertical-tabContainer-minHeight, #{st.$sn-density-size-m});
+$sn-tabs-anatomy-size-m-tabsVertical-selected-borderRadius: var(--sn-tabs-anatomy-size-m-tabsVertical-selected-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-tabs-anatomy-size-m-tabsVertical-selected-height: var(--sn-tabs-anatomy-size-m-tabsVertical-selected-height, #{st.$sn-primitive-dimension-2});
+$sn-tabs-anatomy-size-m-tabsVertical-gap: var(--sn-tabs-anatomy-size-m-tabsVertical-gap, #{st.$sn-primitive-dimension-0});
+$sn-tabs-anatomy-size-m-tabsVertical-actionSlot-gap: var(--sn-tabs-anatomy-size-m-tabsVertical-actionSlot-gap, #{st.$sn-primitive-dimension-16});
+$sn-tabs-anatomy-size-m-control-forward-padding: var(--sn-tabs-anatomy-size-m-control-forward-padding, #{st.$sn-primitive-dimension-2});
+$sn-tabs-anatomy-size-m-control-back-padding: var(--sn-tabs-anatomy-size-m-control-back-padding, #{st.$sn-primitive-dimension-2});
+
+$tabs: (
+  "anatomy": (
+    "size": (
+      "l": (
+        "tabsVertical": (
+          "tabContainer": (
+            "textWrapper": (
+              "min-width": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minWidth,
+              "padding-left": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-horizontalPadding,
+              "padding-right": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-horizontalPadding,
+              "border-radius": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-borderRadius,
+              "gap": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-gap,
+              "min-height": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minHeight
+            ),
+            "padding-left": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-horizontalPadding,
+            "padding-right": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-horizontalPadding,
+            "min-height": $sn-tabs-anatomy-size-l-tabsVertical-tabContainer-minHeight
+          ),
+          "gap": $sn-tabs-anatomy-size-l-tabsVertical-gap,
+          "selected": (
+            "border-radius": $sn-tabs-anatomy-size-l-tabsVertical-selected-borderRadius,
+            "height": $sn-tabs-anatomy-size-l-tabsVertical-selected-height
+          ),
+          "actionSlot": (
+            "gap": $sn-tabs-anatomy-size-l-tabsVertical-actionSlot-gap
+          )
+        ),
+        "tabsHorizontal": (
+          "tabContainer": (
+            "textWrapper": (
+              "min-width": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minWidth,
+              "min-height": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minHeight,
+              "gap": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-gap,
+              "border-radius": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-borderRadius,
+              "padding-left": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-horizontalPadding,
+              "padding-right": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-horizontalPadding
+            ),
+            "min-height": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-minHeight,
+            "padding-left": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-horizontalPadding,
+            "padding-right": $sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-horizontalPadding
+          ),
+          "selected": (
+            "height": $sn-tabs-anatomy-size-l-tabsHorizontal-selected-height,
+            "border-radius": $sn-tabs-anatomy-size-l-tabsHorizontal-selected-borderRadius
+          ),
+          "gap": $sn-tabs-anatomy-size-l-tabsHorizontal-gap,
+          "actionSlot": (
+            "gap": $sn-tabs-anatomy-size-l-tabsHorizontal-actionSlot-gap
+          )
+        ),
+        "control": (
+          "forward": (
+            "padding": $sn-tabs-anatomy-size-l-control-forward-padding
+          ),
+          "back": (
+            "padding": $sn-tabs-anatomy-size-l-control-back-padding
+          )
+        )
+      ),
+      "m": (
+        "tabsHorizontal": (
+          "tabContainer": (
+            "min-height": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-minHeight,
+            "textWrapper": (
+              "padding-left": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-horizontalPadding,
+              "padding-right": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-horizontalPadding,
+              "border-radius": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-borderRadius,
+              "min-width": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minWidth,
+              "gap": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-gap,
+              "min-height": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minHeight
+            ),
+            "padding-left": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-horizontalPadding,
+            "padding-right": $sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-horizontalPadding
+          ),
+          "selected": (
+            "border-radius": $sn-tabs-anatomy-size-m-tabsHorizontal-selected-borderRadius,
+            "height": $sn-tabs-anatomy-size-m-tabsHorizontal-selected-height
+          ),
+          "gap": $sn-tabs-anatomy-size-m-tabsHorizontal-gap,
+          "actionSlot": (
+            "gap": $sn-tabs-anatomy-size-m-tabsHorizontal-actionSlot-gap
+          )
+        ),
+        "tabsVertical": (
+          "tabContainer": (
+            "textWrapper": (
+              "min-width": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minWidth,
+              "gap": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-gap,
+              "min-height": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minHeight,
+              "border-radius": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-borderRadius,
+              "padding-left": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-horizontalPadding,
+              "padding-right": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-horizontalPadding
+            ),
+            "padding-left": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-horizontalPadding,
+            "padding-right": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-horizontalPadding,
+            "min-height": $sn-tabs-anatomy-size-m-tabsVertical-tabContainer-minHeight
+          ),
+          "selected": (
+            "border-radius": $sn-tabs-anatomy-size-m-tabsVertical-selected-borderRadius,
+            "height": $sn-tabs-anatomy-size-m-tabsVertical-selected-height
+          ),
+          "gap": $sn-tabs-anatomy-size-m-tabsVertical-gap,
+          "actionSlot": (
+            "gap": $sn-tabs-anatomy-size-m-tabsVertical-actionSlot-gap
+          )
+        ),
+        "control": (
+          "forward": (
+            "padding": $sn-tabs-anatomy-size-m-control-forward-padding
+          ),
+          "back": (
+            "padding": $sn-tabs-anatomy-size-m-control-back-padding
+          )
+        )
+      )
+    )
+  )
+);

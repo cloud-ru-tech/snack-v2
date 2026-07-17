@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-carousel-anatomy-contentWrapper-content-paddingVertical: var(--sn-carousel-anatomy-contentWrapper-content-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-carousel-anatomy-contentWrapper-content-paddingHorizontal: var(--sn-carousel-anatomy-contentWrapper-content-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingTop: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingTop, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingBottom: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingBottom, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingLeft: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingRight: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingRight, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingTop: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingTop, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingBottom: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingBottom, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingLeft: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingRight: var(--sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingRight, #{st.$sn-primitive-dimension-0});
+$sn-carousel-anatomy-sliderWrapper-paddingTop: var(--sn-carousel-anatomy-sliderWrapper-paddingTop, #{st.$sn-primitive-dimension-8});
+
+$carousel: (
+  "anatomy": (
+    "contentWrapper": (
+      "content": (
+        "padding-top": $sn-carousel-anatomy-contentWrapper-content-paddingVertical,
+        "padding-bottom": $sn-carousel-anatomy-contentWrapper-content-paddingVertical,
+        "padding-left": $sn-carousel-anatomy-contentWrapper-content-paddingHorizontal,
+        "padding-right": $sn-carousel-anatomy-contentWrapper-content-paddingHorizontal
+      ),
+      "controlWrapper": (
+        "controlBack": (
+          "padding-top": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingTop,
+          "padding-bottom": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingBottom,
+          "padding-left": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingLeft,
+          "padding-right": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlBack-paddingRight
+        ),
+        "controlForward": (
+          "padding-top": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingTop,
+          "padding-bottom": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingBottom,
+          "padding-left": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingLeft,
+          "padding-right": $sn-carousel-anatomy-contentWrapper-controlWrapper-controlForward-paddingRight
+        )
+      )
+    ),
+    "sliderWrapper": (
+      "padding-top": $sn-carousel-anatomy-sliderWrapper-paddingTop
+    )
+  )
+);

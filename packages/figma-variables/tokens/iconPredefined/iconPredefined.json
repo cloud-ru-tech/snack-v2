@@ -1,0 +1,190 @@
+{
+  "sn": {
+    "iconPredefined": {
+      "anatomy": {
+        "size": {
+          "m": {
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              }
+            },
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.32}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            }
+          },
+          "l": {
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              }
+            },
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.40}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            }
+          },
+          "5xl": {
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              }
+            },
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.80}"
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            }
+          },
+          "s": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.24}"
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            }
+          },
+          "3xl": {
+            "square": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.64}"
+            },
+            "squared": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              }
+            },
+            "rounded": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.full}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

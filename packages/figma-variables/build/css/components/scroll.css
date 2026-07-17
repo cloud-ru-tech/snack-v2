@@ -1,0 +1,12 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-scroll {
+  --sn-scroll-anatomy-slider-size-s-square: var(--sn-primitive-dimension-4, 4px);
+  --sn-scroll-anatomy-slider-size-s-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-scroll-anatomy-slider-size-m-square: var(--sn-primitive-dimension-6, 6px);
+  --sn-scroll-anatomy-slider-size-m-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-scroll-anatomy-container-size-s-square: var(--sn-primitive-dimension-8, 8px);
+  --sn-scroll-anatomy-container-size-m-square: var(--sn-primitive-dimension-16, 16px);
+}

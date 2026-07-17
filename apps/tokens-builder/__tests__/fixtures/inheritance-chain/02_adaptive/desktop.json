@@ -1,0 +1,12 @@
+{
+  "sn": {
+    "adaptive": {
+      "spacing": {
+        "interval": {
+          "s": { "$type": "number", "$value": "{sn.primitive.dimension.8}" },
+          "m": { "$type": "number", "$value": "{sn.primitive.dimension.8}" }
+        }
+      }
+    }
+  }
+}

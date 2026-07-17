@@ -1,0 +1,49 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-bottomSheet-anatomy-safeArea-paddingBottom: var(--sn-bottomSheet-anatomy-safeArea-paddingBottom, #{st.$sn-primitive-dimension-32});
+$sn-bottomSheet-anatomy-safeArea-paddingTop: var(--sn-bottomSheet-anatomy-safeArea-paddingTop, #{st.$sn-primitive-dimension-32});
+$sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius: var(--sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-bottomSheet-anatomy-badgeHandle-handle-width: var(--sn-bottomSheet-anatomy-badgeHandle-handle-width, #{st.$sn-primitive-dimension-32});
+$sn-bottomSheet-anatomy-badgeHandle-handle-minHeight: var(--sn-bottomSheet-anatomy-badgeHandle-handle-minHeight, #{st.$sn-primitive-dimension-4});
+$sn-bottomSheet-anatomy-badgeHandle-height: var(--sn-bottomSheet-anatomy-badgeHandle-height, #{st.$sn-primitive-dimension-12});
+$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal: var(--sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom: var(--sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom, #{st.$sn-density-spacing-interval-l});
+$sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop: var(--sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop, #{st.$sn-density-spacing-interval-m});
+$sn-bottomSheet-anatomy-container-borderTopRightRadius: var(--sn-bottomSheet-anatomy-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-bottomSheet-anatomy-container-borderTopLeftRadius: var(--sn-bottomSheet-anatomy-container-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-bottomSheet-anatomy-container-paddingTop: var(--sn-bottomSheet-anatomy-container-paddingTop, #{st.$sn-primitive-dimension-0});
+
+$bottomSheet: (
+  "anatomy": (
+    "safeArea": (
+      "padding-bottom": $sn-bottomSheet-anatomy-safeArea-paddingBottom,
+      "padding-top": $sn-bottomSheet-anatomy-safeArea-paddingTop
+    ),
+    "badgeHandle": (
+      "handle": (
+        "border-radius": $sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius,
+        "width": $sn-bottomSheet-anatomy-badgeHandle-handle-width,
+        "min-height": $sn-bottomSheet-anatomy-badgeHandle-handle-minHeight
+      ),
+      "height": $sn-bottomSheet-anatomy-badgeHandle-height
+    ),
+    "container": (
+      "content": (
+        "bodyWrapper": (
+          "padding-left": $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal,
+          "padding-right": $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal,
+          "padding-bottom": $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom,
+          "padding-top": $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop
+        )
+      ),
+      "border-top-right-radius": $sn-bottomSheet-anatomy-container-borderTopRightRadius,
+      "border-top-left-radius": $sn-bottomSheet-anatomy-container-borderTopLeftRadius,
+      "padding-top": $sn-bottomSheet-anatomy-container-paddingTop
+    )
+  )
+);

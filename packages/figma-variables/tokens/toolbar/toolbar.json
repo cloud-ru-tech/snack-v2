@@ -1,0 +1,116 @@
+{
+  "sn": {
+    "toolbar": {
+      "anatomy": {
+        "container": {
+          "tool": {
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+            },
+            "borderRadius": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.toolbar.xs}"
+            },
+            "bulkAction": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              },
+              "paddingLeft": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            },
+            "search": {
+              "minHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.density.size.m}"
+              },
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.anatomy.radius.field.m}"
+              }
+            },
+            "paddingHorizontal": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.xs}"
+            },
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.xs}"
+            },
+            "minHeight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.size.l}"
+            }
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.density.spacing.interval.xs}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-labelDecorator-size-s-labelWrapper-labelContent-gap: var(--sn-labelDecorator-size-s-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-s-labelWrapper-gap: var(--sn-labelDecorator-size-s-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-labelDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-labelDecorator-size-s-hintWrapper-gap: var(--sn-labelDecorator-size-s-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-s-hintWrapper-hintContent-gap: var(--sn-labelDecorator-size-s-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-s-hintWrapper-hintContent-iconWrapper-height: var(--sn-labelDecorator-size-s-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-labelDecorator-size-s-gap: var(--sn-labelDecorator-size-s-gap, #{st.$sn-primitive-dimension-4});
+$sn-labelDecorator-size-s-slotDecorator-gap: var(--sn-labelDecorator-size-s-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+$sn-labelDecorator-size-l-labelWrapper-labelContent-gap: var(--sn-labelDecorator-size-l-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-l-labelWrapper-gap: var(--sn-labelDecorator-size-l-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-labelDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-labelDecorator-size-l-hintWrapper-gap: var(--sn-labelDecorator-size-l-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-l-hintWrapper-hintContent-gap: var(--sn-labelDecorator-size-l-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-l-hintWrapper-hintContent-iconWrapper-height: var(--sn-labelDecorator-size-l-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-labelDecorator-size-l-gap: var(--sn-labelDecorator-size-l-gap, #{st.$sn-primitive-dimension-4});
+$sn-labelDecorator-size-l-slotDecorator-gap: var(--sn-labelDecorator-size-l-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+$sn-labelDecorator-size-m-labelWrapper-labelContent-gap: var(--sn-labelDecorator-size-m-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-m-labelWrapper-gap: var(--sn-labelDecorator-size-m-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-labelDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-labelDecorator-size-m-hintWrapper-gap: var(--sn-labelDecorator-size-m-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-labelDecorator-size-m-hintWrapper-hintContent-gap: var(--sn-labelDecorator-size-m-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-labelDecorator-size-m-hintWrapper-hintContent-iconWrapper-height: var(--sn-labelDecorator-size-m-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-labelDecorator-size-m-gap: var(--sn-labelDecorator-size-m-gap, #{st.$sn-primitive-dimension-4});
+$sn-labelDecorator-size-m-slotDecorator-gap: var(--sn-labelDecorator-size-m-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+
+$labelDecorator: (
+  "size": (
+    "s": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-labelDecorator-size-s-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-labelDecorator-size-s-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-labelDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-labelDecorator-size-s-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-labelDecorator-size-s-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-labelDecorator-size-s-hintWrapper-hintContent-iconWrapper-height
+          )
+        )
+      ),
+      "gap": $sn-labelDecorator-size-s-gap,
+      "slotDecorator": (
+        "gap": $sn-labelDecorator-size-s-slotDecorator-gap
+      )
+    ),
+    "l": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-labelDecorator-size-l-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-labelDecorator-size-l-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-labelDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-labelDecorator-size-l-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-labelDecorator-size-l-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-labelDecorator-size-l-hintWrapper-hintContent-iconWrapper-height
+          )
+        )
+      ),
+      "gap": $sn-labelDecorator-size-l-gap,
+      "slotDecorator": (
+        "gap": $sn-labelDecorator-size-l-slotDecorator-gap
+      )
+    ),
+    "m": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-labelDecorator-size-m-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-labelDecorator-size-m-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-labelDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-labelDecorator-size-m-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-labelDecorator-size-m-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-labelDecorator-size-m-hintWrapper-hintContent-iconWrapper-height
+          )
+        )
+      ),
+      "gap": $sn-labelDecorator-size-m-gap,
+      "slotDecorator": (
+        "gap": $sn-labelDecorator-size-m-slotDecorator-gap
+      )
+    )
+  )
+);

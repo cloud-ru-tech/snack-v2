@@ -29,6 +29,8 @@ export default [
       'packages/icons/scripts/**/*',
       // Placeholder-templated source for scaffolded packages — not valid TS.
       'scripts/templates/**/*',
+      // Generated design tokens — не линтим (байт-в-байт с build:tokens, eslint OOM на styles.js).
+      'packages/figma-variables/build/**/*',
     ],
   },
   {

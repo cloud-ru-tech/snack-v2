@@ -1,0 +1,37 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-table {
+  --sn-table-anatomy-content-tableHead-paddingLeft: var(--sn-primitive-dimension-12, 12px);
+  --sn-table-anatomy-content-tableHead-paddingRight: var(--sn-primitive-dimension-12, 12px);
+  --sn-table-anatomy-content-tableHead-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-table-anatomy-content-tableHead-minHeight: var(--sn-primitive-dimension-40, 40px);
+  --sn-table-anatomy-content-tableHead-paddingTop: var(--sn-primitive-dimension-6, 6px);
+  --sn-table-anatomy-content-tableHead-paddingBottom: var(--sn-primitive-dimension-6, 6px);
+  --sn-table-anatomy-content-tableCell-paddingLeft: var(--sn-primitive-dimension-12, 12px);
+  --sn-table-anatomy-content-tableCell-paddingRight: var(--sn-primitive-dimension-12, 12px);
+  --sn-table-anatomy-content-tableCell-paddingTop: var(--sn-primitive-dimension-6, 6px);
+  --sn-table-anatomy-content-tableCell-paddingBottom: var(--sn-primitive-dimension-6, 6px);
+  --sn-table-anatomy-content-tableCell-contentWrapper-paddingTop: var(--sn-primitive-dimension-2, 2px);
+  --sn-table-anatomy-content-tableCell-contentWrapper-paddingBottom: var(--sn-primitive-dimension-2, 2px);
+  --sn-table-anatomy-content-tableCell-contentWrapper-slot-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-table-anatomy-content-tableCell-minHeight: var(--sn-primitive-dimension-40, 40px);
+  --sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-primitive-dimension-32, 32px);
+  --sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width: var(--sn-primitive-dimension-24, 24px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-primitive-dimension-32, 32px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-table-anatomy-content-borderRadius: var(--sn-brand-anatomy-radius-table-m, 4px);
+  --sn-table-anatomy-content-body-minHeight: 304px;
+  --sn-table-anatomy-view-line-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-table-anatomy-view-card-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-table-anatomy-content-body-slot-gap: var(--sn-table-anatomy-view-card-gap, var(--sn-primitive-dimension-8, 8px));
+}

@@ -1,0 +1,72 @@
+{
+  "sn": {
+    "tooltip": {
+      "anatomy": {
+        "pointer": {
+          "paddingHorizontal": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.tooltip.anatomy.container.borderRadius}"
+          }
+        },
+        "container": {
+          "borderRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.tooltip.xs}"
+          },
+          "padding": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.spacing.tooltip.padding}"
+          },
+          "maxWidth": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 256
+          },
+          "minWidth": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.32}"
+          },
+          "minHeight": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.32}"
+          }
+        }
+      }
+    }
+  }
+}

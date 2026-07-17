@@ -1,0 +1,52 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-timeline-anatomy-size-container-track-paddingTop: var(--sn-timeline-anatomy-size-container-track-paddingTop, #{st.$sn-primitive-dimension-4});
+$sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, #{st.$sn-primitive-dimension-4});
+$sn-timeline-anatomy-size-container-track-paddingHorizontal: var(--sn-timeline-anatomy-size-container-track-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-timeline-anatomy-size-container-track-dot-minHeight: var(--sn-timeline-anatomy-size-container-track-dot-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-timeline-anatomy-size-container-track-dot-borderWidth: var(--sn-timeline-anatomy-size-container-track-dot-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-timeline-anatomy-size-container-track-dot-borderRadius: var(--sn-timeline-anatomy-size-container-track-dot-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-timeline-anatomy-size-container-track-dot-subEvent-square: var(--sn-timeline-anatomy-size-container-track-dot-subEvent-square, #{st.$sn-primitive-dimension-8});
+$sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth: var(--sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-timeline-anatomy-size-container-track-dot-topLine-height: var(--sn-timeline-anatomy-size-container-track-dot-topLine-height, #{$sn-timeline-anatomy-size-container-track-paddingTop});
+$sn-timeline-anatomy-size-container-gap: var(--sn-timeline-anatomy-size-container-gap, #{st.$sn-density-spacing-interval-m});
+$sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-content-paddingBottom, #{$sn-timeline-anatomy-size-container-track-paddingBottom});
+
+$timeline: (
+  "anatomy": (
+    "size": (
+      "container": (
+        "track": (
+          "padding-top": $sn-timeline-anatomy-size-container-track-paddingTop,
+          "padding-bottom": $sn-timeline-anatomy-size-container-track-paddingBottom,
+          "padding-left": $sn-timeline-anatomy-size-container-track-paddingHorizontal,
+          "padding-right": $sn-timeline-anatomy-size-container-track-paddingHorizontal,
+          "dot": (
+            "min-height": $sn-timeline-anatomy-size-container-track-dot-minHeight,
+            "border-width": $sn-timeline-anatomy-size-container-track-dot-borderWidth,
+            "border-radius": $sn-timeline-anatomy-size-container-track-dot-borderRadius,
+            "subEvent": (
+              "width": $sn-timeline-anatomy-size-container-track-dot-subEvent-square,
+              "height": $sn-timeline-anatomy-size-container-track-dot-subEvent-square
+            ),
+            "trackLine": (
+              "border-width": $sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth
+            ),
+            "topLine": (
+              "height": $sn-timeline-anatomy-size-container-track-dot-topLine-height
+            )
+          )
+        ),
+        "gap": $sn-timeline-anatomy-size-container-gap,
+        "content": (
+          "padding-bottom": $sn-timeline-anatomy-size-container-content-paddingBottom
+        )
+      )
+    )
+  )
+);

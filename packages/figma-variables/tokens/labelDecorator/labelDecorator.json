@@ -1,0 +1,296 @@
+{
+  "sn": {
+    "labelDecorator": {
+      "size": {
+        "s": {
+          "labelWrapper": {
+            "labelContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            },
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "questionTooltipWrapper": {
+              "maxHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.density.typography.roleLabel.lineHeightM}"
+              }
+            }
+          },
+          "hintWrapper": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "hintContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              },
+              "iconWrapper": {
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleLabel.lineHeightS}"
+                }
+              }
+            }
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.4}"
+          },
+          "slotDecorator": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.4}"
+            }
+          }
+        },
+        "l": {
+          "labelWrapper": {
+            "labelContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            },
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "questionTooltipWrapper": {
+              "maxHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.density.typography.roleLabel.lineHeightL}"
+              }
+            }
+          },
+          "hintWrapper": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "hintContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              },
+              "iconWrapper": {
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleLabel.lineHeightL}"
+                }
+              }
+            }
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.4}"
+          },
+          "slotDecorator": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.4}"
+            }
+          }
+        },
+        "m": {
+          "labelWrapper": {
+            "labelContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            },
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "questionTooltipWrapper": {
+              "maxHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.density.typography.roleLabel.lineHeightM}"
+              }
+            }
+          },
+          "hintWrapper": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "hintContent": {
+              "gap": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              },
+              "iconWrapper": {
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleLabel.lineHeightM}"
+                }
+              }
+            }
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.4}"
+          },
+          "slotDecorator": {
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.4}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

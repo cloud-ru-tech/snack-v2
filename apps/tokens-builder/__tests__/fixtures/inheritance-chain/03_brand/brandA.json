@@ -1,0 +1,17 @@
+{
+  "sn": {
+    "brand": {
+      "anatomy": {
+        "radius": {
+          "block": {
+            "s": { "$type": "number", "$value": "{sn.primitive.dimension.8}" },
+            "m": { "$type": "number", "$value": "{sn.primitive.dimension.8}" }
+          },
+          "tooltip": {
+            "xs": { "$type": "number", "$value": "{sn.primitive.dimension.8}" }
+          }
+        }
+      }
+    }
+  }
+}

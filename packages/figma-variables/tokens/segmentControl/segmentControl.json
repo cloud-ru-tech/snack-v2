@@ -1,0 +1,316 @@
+{
+  "sn": {
+    "segmentControl": {
+      "anatomy": {
+        "size": {
+          "l": {
+            "container": {
+              "borderWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              },
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.anatomy.radius.button.l}"
+              }
+            },
+            "segment": {
+              "container": {
+                "iconOnly": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.l}"
+                  }
+                },
+                "borderRadius": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.brand.anatomy.radius.button.l}"
+                },
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.horizontal.l}"
+                },
+                "borderWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeSemiBold}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.l}"
+                }
+              },
+              "textWrapper": {
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
+                },
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
+                }
+              }
+            }
+          },
+          "m": {
+            "container": {
+              "borderWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              },
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.anatomy.radius.button.m}"
+              }
+            },
+            "segment": {
+              "container": {
+                "iconOnly": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.m}"
+                  }
+                },
+                "borderRadius": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.brand.anatomy.radius.button.m}"
+                },
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.horizontal.m}"
+                },
+                "borderWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeSemiBold}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.m}"
+                }
+              },
+              "textWrapper": {
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
+                },
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
+                }
+              }
+            }
+          },
+          "s": {
+            "container": {
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.anatomy.radius.button.s}"
+              },
+              "borderWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              }
+            },
+            "segment": {
+              "container": {
+                "iconOnly": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.s}"
+                  }
+                },
+                "borderRadius": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.brand.anatomy.radius.button.s}"
+                },
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.horizontal.s}"
+                },
+                "borderWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeSemiBold}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.s}"
+                }
+              },
+              "textWrapper": {
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
+                },
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

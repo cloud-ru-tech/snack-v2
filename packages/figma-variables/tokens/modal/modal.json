@@ -1,0 +1,184 @@
+{
+  "sn": {
+    "modal": {
+      "anatomy": {
+        "paddingLeft": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "number",
+          "$value": "{sn.density.spacing.interval.l}"
+        },
+        "paddingRight": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "number",
+          "$value": "{sn.density.spacing.interval.l}"
+        },
+        "paddingTop": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "number",
+          "$value": "{sn.density.spacing.interval.3xl}"
+        },
+        "paddingBottom": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "number",
+          "$value": "{sn.density.spacing.interval.3xl}"
+        },
+        "container": {
+          "borderTopLeftRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.window.m}"
+          },
+          "borderTopRightRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.window.m}"
+          },
+          "width": {
+            "s": {
+              "maxWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": 464
+              }
+            },
+            "m": {
+              "maxWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": 864
+              }
+            },
+            "l": {
+              "maxWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": 1872
+              }
+            }
+          },
+          "height": {
+            "maxHeight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 900
+            }
+          },
+          "borderBottomRightRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.window.m}"
+          },
+          "borderBottomLeftRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.window.m}"
+          },
+          "safeArea": {
+            "paddingBottom": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.s}"
+            },
+            "paddingTop": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.l}"
+            }
+          },
+          "bodyWrapper": {
+            "paddingHorizontal": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.l}"
+            },
+            "paddingBottom": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.m}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

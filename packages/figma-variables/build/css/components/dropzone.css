@@ -1,0 +1,27 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-dropzone {
+  --sn-dropzone-anatomy-size-s-borderRadius: var(--sn-brand-anatomy-radius-field-s, 2px);
+  --sn-dropzone-anatomy-size-s-minHeight: var(--sn-density-size-s, 48px);
+  --sn-dropzone-anatomy-size-s-borderWidth: var(--sn-brand-anatomy-line-field-strokeWeight, 1px);
+  --sn-dropzone-anatomy-size-s-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-dropzone-anatomy-size-s-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
+  --sn-dropzone-anatomy-size-s-contentWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-dropzone-anatomy-size-s-contentWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-s, 8px);
+  --sn-dropzone-anatomy-size-m-borderRadius: var(--sn-brand-anatomy-radius-field-m, 2px);
+  --sn-dropzone-anatomy-size-m-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-dropzone-anatomy-size-m-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 8px);
+  --sn-dropzone-anatomy-size-m-contentWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-dropzone-anatomy-size-m-contentWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-m, 8px);
+  --sn-dropzone-anatomy-size-m-minHeight: var(--sn-density-size-m, 56px);
+  --sn-dropzone-anatomy-size-m-borderWidth: var(--sn-brand-anatomy-line-field-strokeWeight, 1px);
+  --sn-dropzone-anatomy-size-l-borderRadius: var(--sn-brand-anatomy-radius-field-l, 2px);
+  --sn-dropzone-anatomy-size-l-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-dropzone-anatomy-size-l-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-l, 8px);
+  --sn-dropzone-anatomy-size-l-minHeight: var(--sn-density-size-l, 64px);
+  --sn-dropzone-anatomy-size-l-borderWidth: var(--sn-brand-anatomy-line-field-strokeWeight, 1px);
+}

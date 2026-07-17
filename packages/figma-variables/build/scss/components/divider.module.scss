@@ -1,0 +1,32 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-divider-anatomy-container-height: var(--sn-divider-anatomy-container-height, #{st.$sn-primitive-dimension-1});
+$sn-divider-anatomy-container-line-regular-width: var(--sn-divider-anatomy-container-line-regular-width, #{st.$sn-primitive-dimension-1});
+$sn-divider-anatomy-container-line-regular-height: var(--sn-divider-anatomy-container-line-regular-height, #{st.$sn-primitive-dimension-1});
+$sn-divider-anatomy-container-line-thin-width: var(--sn-divider-anatomy-container-line-thin-width, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-divider-anatomy-container-line-thin-height: var(--sn-divider-anatomy-container-line-thin-height, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-divider-anatomy-container-width: var(--sn-divider-anatomy-container-width, #{st.$sn-primitive-dimension-1});
+
+$divider: (
+  "anatomy": (
+    "container": (
+      "height": $sn-divider-anatomy-container-height,
+      "line": (
+        "regular": (
+          "width": $sn-divider-anatomy-container-line-regular-width,
+          "height": $sn-divider-anatomy-container-line-regular-height
+        ),
+        "thin": (
+          "width": $sn-divider-anatomy-container-line-thin-width,
+          "height": $sn-divider-anatomy-container-line-thin-height
+        )
+      ),
+      "width": $sn-divider-anatomy-container-width
+    )
+  )
+);

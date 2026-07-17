@@ -1,0 +1,27 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-tag {
+  --sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-tag-anatomy-size-m-container-minHeight: var(--sn-primitive-dimension-32, 32px);
+  --sn-tag-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-tag-m, 2px);
+  --sn-tag-anatomy-size-m-container-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-tag-anatomy-size-m-container-minWidth: var(--sn-primitive-dimension-32, 32px);
+  --sn-tag-anatomy-size-m-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-tag-anatomy-size-m-tagRow-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
+  --sn-tag-anatomy-size-s-container-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-tag-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-tag-s, 2px);
+  --sn-tag-anatomy-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-tag-anatomy-size-s-container-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-tag-anatomy-size-s-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-tag-anatomy-size-s-tagRow-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-tag-anatomy-size-xs-container-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-tag-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-tag-xs, 2px);
+  --sn-tag-anatomy-size-xs-container-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
+  --sn-tag-anatomy-size-xs-container-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
+  --sn-tag-anatomy-size-xs-container-minWidth: var(--sn-primitive-dimension-16, 16px);
+  --sn-tag-anatomy-size-xs-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-tag-anatomy-size-xs-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 8px);
+}

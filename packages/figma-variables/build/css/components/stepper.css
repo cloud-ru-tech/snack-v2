@@ -1,0 +1,26 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-stepper {
+  --sn-stepper-anatomy-size-m-stepStatus-height: var(--sn-primitive-dimension-32, 32px);
+  --sn-stepper-anatomy-size-m-stepStatus-width: var(--sn-primitive-dimension-32, 32px);
+  --sn-stepper-anatomy-size-m-stepStatus-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-stepper-anatomy-size-m-stepStatus-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-stepper-anatomy-size-m-progressWrapper-progressLine-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-stepper-anatomy-size-m-progressWrapper-progressLine-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-stepper-anatomy-size-m-progressWrapper-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+  --sn-stepper-anatomy-size-m-progressWrapper-height: var(--sn-stepper-anatomy-size-m-progressWrapper-progressLine-height, var(--sn-primitive-dimension-2, 2px));
+  --sn-stepper-anatomy-size-s-stepStatus-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-stepper-anatomy-size-s-stepStatus-width: var(--sn-primitive-dimension-24, 24px);
+  --sn-stepper-anatomy-size-s-stepStatus-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-stepper-anatomy-size-s-stepStatus-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-stepper-anatomy-size-s-progressWrapper-progressLine-height: var(--sn-primitive-dimension-4, 4px);
+  --sn-stepper-anatomy-size-s-progressWrapper-progressLine-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-stepper-anatomy-size-s-progressWrapper-height: var(--sn-stepper-anatomy-size-s-progressWrapper-progressLine-height, var(--sn-primitive-dimension-4, 4px));
+  --sn-stepper-anatomy-step-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-stepper-anatomy-step-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-stepper-anatomy-stepRow-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal: var(--sn-stepper-anatomy-step-paddingHorizontal, var(--sn-primitive-dimension-4, 4px));
+}

@@ -1,0 +1,18 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-bottomSheet {
+  --sn-bottomSheet-anatomy-safeArea-paddingBottom: var(--sn-primitive-dimension-32, 32px);
+  --sn-bottomSheet-anatomy-safeArea-paddingTop: var(--sn-primitive-dimension-32, 32px);
+  --sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-bottomSheet-anatomy-badgeHandle-handle-width: var(--sn-primitive-dimension-32, 32px);
+  --sn-bottomSheet-anatomy-badgeHandle-handle-minHeight: var(--sn-primitive-dimension-4, 4px);
+  --sn-bottomSheet-anatomy-badgeHandle-height: var(--sn-primitive-dimension-12, 12px);
+  --sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom: var(--sn-density-spacing-interval-l, 24px);
+  --sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop: var(--sn-density-spacing-interval-m, 16px);
+  --sn-bottomSheet-anatomy-container-borderTopRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-bottomSheet-anatomy-container-borderTopLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-bottomSheet-anatomy-container-paddingTop: var(--sn-primitive-dimension-0, 0px);
+}

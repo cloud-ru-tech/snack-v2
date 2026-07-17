@@ -1,0 +1,134 @@
+{
+  "sn": {
+    "progressBar": {
+      "anatomy": {
+        "size": {
+          "xs": {
+            "line": {
+              "container": {
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
+                },
+                "borderRadius": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.radius.xs}"
+                }
+              }
+            },
+            "circle": {
+              "container": {
+                "square": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.16}"
+                },
+                "borderWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.progressBar.anatomy.size.xs.line.container.height}"
+                },
+                "progress": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.12}"
+                  }
+                }
+              }
+            }
+          },
+          "s": {
+            "line": {
+              "container": {
+                "borderRadius": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.radius.s}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.4}"
+                }
+              }
+            },
+            "circle": {
+              "container": {
+                "square": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.24}"
+                },
+                "borderWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.progressBar.anatomy.size.s.line.container.height}"
+                },
+                "progress": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

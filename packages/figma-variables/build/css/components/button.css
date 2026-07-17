@@ -1,0 +1,49 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-button {
+  --sn-button-anatomy-size-s-container-minHeight: var(--sn-density-size-s, 48px);
+  --sn-button-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
+  --sn-button-anatomy-size-s-container-minWidth: var(--sn-density-size-4xl, 96px);
+  --sn-button-anatomy-size-s-container-iconOnly-minWidth: var(--sn-density-size-s, 48px);
+  --sn-button-anatomy-size-s-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-button-anatomy-size-s-container-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-s-container-iconBefore-paddingLeft: var(--sn-brand-anatomy-spacing-button-s-element-paddingHorizontal, 4px);
+  --sn-button-anatomy-size-s-container-iconBefore-paddingRight: var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-s-container-iconAfter-paddingLeft: var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-s-container-iconAfter-paddingRight: var(--sn-brand-anatomy-spacing-button-s-element-paddingHorizontal, 4px);
+  --sn-button-anatomy-size-s-container-labelOnly-paddingLeft: var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-s-container-labelOnly-paddingRight: var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-s-badge-paddingTop: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-s-badge-paddingRight: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-m-container-minHeight: var(--sn-density-size-m, 56px);
+  --sn-button-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-button-anatomy-size-m-container-minWidth: var(--sn-density-size-7xl, 120px);
+  --sn-button-anatomy-size-m-container-iconOnly-minWidth: var(--sn-density-size-m, 56px);
+  --sn-button-anatomy-size-m-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-button-anatomy-size-m-container-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-button-anatomy-size-m-container-iconAfter-paddingLeft: var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-m-container-iconAfter-paddingRight: var(--sn-brand-anatomy-spacing-button-m-element-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-m-container-labelOnly-paddingLeft: var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-m-container-labelOnly-paddingRight: var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-m-container-iconBefore-paddingLeft: var(--sn-brand-anatomy-spacing-button-m-element-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-m-container-iconBefore-paddingRight: var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-m-badge-paddingTop: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-m-badge-paddingRight: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-l-container-minHeight: var(--sn-density-size-l, 64px);
+  --sn-button-anatomy-size-l-container-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-button-anatomy-size-l-container-minWidth: var(--sn-density-size-10xl, 136px);
+  --sn-button-anatomy-size-l-container-iconOnly-minWidth: var(--sn-density-size-l, 64px);
+  --sn-button-anatomy-size-l-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
+  --sn-button-anatomy-size-l-container-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-button-anatomy-size-l-container-iconAfter-paddingLeft: var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-l-container-iconAfter-paddingRight: var(--sn-brand-anatomy-spacing-button-l-element-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-l-container-labelOnly-paddingLeft: var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-l-container-labelOnly-paddingRight: var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-l-container-iconBefore-paddingLeft: var(--sn-brand-anatomy-spacing-button-l-element-paddingHorizontal, 8px);
+  --sn-button-anatomy-size-l-container-iconBefore-paddingRight: var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 16px);
+  --sn-button-anatomy-size-l-badge-paddingTop: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-size-l-badge-paddingRight: var(--sn-primitive-dimension-2, 2px);
+  --sn-button-anatomy-buttonGroup-container-gap: var(--sn-primitive-dimension-8, 8px);
+}

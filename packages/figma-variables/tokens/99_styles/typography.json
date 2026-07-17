@@ -1,0 +1,535 @@
+{
+  "sn": {
+    "regular": {
+      "display": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.display.s}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize40}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.display.m}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize48}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.display.l}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize56}"
+          }
+        }
+      },
+      "headline": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.s}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize24}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.m}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize28}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.l}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize32}"
+          }
+        }
+      },
+      "title": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.s}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.m}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.l}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize20}"
+          }
+        }
+      },
+      "label": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.s}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize11}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.m}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.l}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        }
+      },
+      "body": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.s}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.m}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.regular.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.l}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        }
+      }
+    },
+    "thin": {
+      "display": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.display.s}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize40}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.display.m}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize48}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.display.l}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize56}"
+          }
+        }
+      },
+      "headline": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.headline.s}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize24}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.headline.m}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize28}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.headline.l}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize32}"
+          }
+        }
+      },
+      "title": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.title.s}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.title.m}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.title.l}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize20}"
+          }
+        }
+      },
+      "label": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.label.s}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize11}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.label.m}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.label.l}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        }
+      },
+      "body": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.body.s}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.body.m}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.thin.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.body.l}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        }
+      }
+    },
+    "mono": {
+      "display": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.thin.display.s}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize40}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.display.m}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize48}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.display}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.display.l}",
+            "lineHeight": "{sn.density.typography.roleDisplay.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleDisplay.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize56}"
+          }
+        }
+      },
+      "headline": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.s}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize24}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.m}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize28}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.headline}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.headline.l}",
+            "lineHeight": "{sn.density.typography.roleHeadline.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleHeadline.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.xs}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize32}"
+          }
+        }
+      },
+      "title": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.s}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.m}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.title}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.title.l}",
+            "lineHeight": "{sn.density.typography.roleTitle.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleTitle.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.l}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize20}"
+          }
+        }
+      },
+      "label": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.s}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize11}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.m}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.label}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.label.l}",
+            "lineHeight": "{sn.density.typography.roleLabel.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleLabel.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.s}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        }
+      },
+      "body": {
+        "s": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.s}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightS}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeS}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize12}"
+          }
+        },
+        "m": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.m}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightM}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeM}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize14}"
+          }
+        },
+        "l": {
+          "$type": "typography",
+          "$value": {
+            "fontFamily": "{sn.brand.font.fontFamily.mono.body}",
+            "fontWeight": "{sn.theme.typography.fontWeight.regular.body.l}",
+            "lineHeight": "{sn.density.typography.roleBody.lineHeightL}",
+            "fontSize": "{sn.density.typography.roleBody.fontSizeL}",
+            "letterSpacing": "{sn.primitive.font.letterSpacing.m}",
+            "paragraphSpacing": "{sn.primitive.font.paragraphSpacing.byFontSize16}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-rating-anatomy-size-s-container-minWidth: var(--sn-rating-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-rating-anatomy-size-s-container-borderRadius: var(--sn-rating-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-s});
+$sn-rating-anatomy-size-s-container-minHeight: var(--sn-rating-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-rating-anatomy-size-xs-container-minWidth: var(--sn-rating-anatomy-size-xs-container-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-rating-anatomy-size-xs-container-minHeight: var(--sn-rating-anatomy-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-rating-anatomy-size-xs-container-borderRadius: var(--sn-rating-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-xs});
+
+$rating: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-width": $sn-rating-anatomy-size-s-container-minWidth,
+          "border-radius": $sn-rating-anatomy-size-s-container-borderRadius,
+          "min-height": $sn-rating-anatomy-size-s-container-minHeight
+        )
+      ),
+      "xs": (
+        "container": (
+          "min-width": $sn-rating-anatomy-size-xs-container-minWidth,
+          "min-height": $sn-rating-anatomy-size-xs-container-minHeight,
+          "border-radius": $sn-rating-anatomy-size-xs-container-borderRadius
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,1622 @@
+{
+  "sn": {
+    "language": {
+      "text": {
+        "boolean": {
+          "showEn": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "boolean",
+            "$value": "true"
+          },
+          "showRu": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "boolean",
+            "$value": "false"
+          }
+        },
+        "component": {
+          "calendar": {
+            "day": {
+              "showOnMobile": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "boolean",
+                "$value": "false"
+              },
+              "1day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Sun"
+              },
+              "2day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Mon"
+              },
+              "3day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Tue"
+              },
+              "4day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Wed"
+              },
+              "5day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Thu"
+              },
+              "6day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Fri"
+              },
+              "7day": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Sat"
+              }
+            },
+            "month": {
+              "january": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "January"
+              },
+              "february": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "February "
+              },
+              "march": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "March"
+              },
+              "april": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "April"
+              },
+              "may": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "May"
+              },
+              "june": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "June"
+              },
+              "july": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "July"
+              },
+              "august": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "August"
+              },
+              "september": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "September"
+              },
+              "october": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "October"
+              },
+              "november": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "November"
+              },
+              "december": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "December"
+              }
+            },
+            "buttonText": {
+              "date": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "January 2026"
+              },
+              "month": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2026"
+              },
+              "year": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2020-2029"
+              },
+              "time": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "January 8 2026"
+              },
+              "preset": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Presets"
+              },
+              "dateNext": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "February 2026"
+              },
+              "monthNext": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2027"
+              },
+              "monthNext2": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2028"
+              },
+              "dateNext2": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "March 2026"
+              },
+              "yearNext": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2030-2039"
+              },
+              "yearNext2": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "2040-2049"
+              }
+            },
+            "timeWrapper": {
+              "timeHeader": {
+                "time": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "00:00:00"
+                }
+              }
+            }
+          },
+          "counter": {
+            "signA": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "text",
+              "$value": "+"
+            },
+            "signB": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "text",
+              "$value": "K"
+            }
+          },
+          "chip": {
+            "noValue": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "All"
+            },
+            "valueMultiple": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "2/5"
+            },
+            "label": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "label text:"
+            }
+          },
+          "notification": {
+            "header": {
+              "title": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Notifications"
+              },
+              "markAll": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Mark all as read"
+              },
+              "filter": {
+                "all": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "All"
+                },
+                "unread": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Unread"
+                },
+                "system": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "System"
+                }
+              }
+            },
+            "footer": {
+              "allEvents": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "All events"
+              }
+            },
+            "noData": {
+              "title": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "No notifications"
+              },
+              "description": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Here you will see new event notifications when something happens"
+              }
+            },
+            "error": {
+              "title": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "We're already fixing it"
+              },
+              "description": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Your notifications will appear here soon"
+              }
+            },
+            "card": {
+              "readed": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Readed"
+              }
+            }
+          },
+          "toolbar": {
+            "filters": {
+              "hideFilters": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Hide filters"
+              },
+              "showFiltres": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Show filtres"
+              },
+              "multipleActions": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Multiple actions"
+              }
+            },
+            "counterSelected": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "Selected:"
+            },
+            "rowVolume": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "Row volume:"
+            },
+            "volume": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "10 of 100"
+            },
+            "rowSelectedTrue": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "5 of 100"
+            },
+            "rowSelectedFalse": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "0"
+            },
+            "rowSelectedAll": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "TEXT_CONTENT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "100 of 100"
+            }
+          },
+          "toaster": {
+            "toastUpload": {
+              "title": {
+                "errorLoading": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Error loading"
+                },
+                "loading": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Loading..."
+                },
+                "pauseLoading": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Pause loading"
+                },
+                "uploaded": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Uploaded"
+                },
+                "errorUploaded": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Error uploaded"
+                }
+              },
+              "status": {
+                "uploaded": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Uploaded"
+                },
+                "paused": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Paused"
+                },
+                "error": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Error"
+                },
+                "loading": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Loading..."
+                }
+              },
+              "show": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Show"
+              },
+              "mb": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "MB"
+              },
+              "statusText": {
+                "3minutesLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "3 minutes left"
+                },
+                "checkTheFiles": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Check the files"
+                },
+                "clickToContinue": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Click to continue"
+                },
+                "allSuccessful": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "All successful"
+                },
+                "tryAgain": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Try again"
+                }
+              },
+              "fileName": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "file_name.extension"
+              },
+              "cancelAll": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cancel all"
+              }
+            },
+            "toast": {
+              "systemEvent": {
+                "closeAll": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Close all"
+                },
+                "expand": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Expand"
+                },
+                "collapse": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "text",
+                  "$value": "Collapse"
+                }
+              }
+            }
+          },
+          "timeline": {
+            "oppositionTitle": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "text",
+              "$value": "Opposition title"
+            },
+            "contentTitle": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "text",
+              "$value": "Content title"
+            }
+          },
+          "table": {
+            "cell": {
+              "cell1": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 1"
+              },
+              "cellTree": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell tree"
+              },
+              "cell2": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 2"
+              },
+              "cell3": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 3"
+              },
+              "cell4": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 4"
+              },
+              "cell5": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 5"
+              },
+              "cell6": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 6"
+              },
+              "cell7": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Cell 7"
+              }
+            },
+            "column": {
+              "column1": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 1"
+              },
+              "column2": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 2"
+              },
+              "column3": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 3"
+              },
+              "column4": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 4"
+              },
+              "column5": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 5"
+              },
+              "column6": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 6"
+              },
+              "column7": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column 7"
+              },
+              "columnTree": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Column tree"
+              }
+            },
+            "data": {
+              "notFound": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Try entering another query"
+              },
+              "noData": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Try refreshing the page"
+              },
+              "dataError": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "Try refreshing the page"
+              }
+            }
+          }
+        },
+        "hint": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Hint text"
+        },
+        "input": {
+          "placeholder": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Placeholder"
+          },
+          "value": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Input value"
+          },
+          "noValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "—"
+          },
+          "multiLineValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Multiline input value"
+          },
+          "endValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "end value"
+          },
+          "hiddenValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "•••••••••••"
+          },
+          "placeholderSearch": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Search"
+          }
+        },
+        "caption": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Caption"
+        },
+        "description": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Description text"
+        },
+        "label": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Label text"
+        },
+        "item": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Item text"
+        },
+        "actions": {
+          "selectAll": {
+            "true": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "Clear all"
+            },
+            "false": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "text",
+              "$value": "Select all"
+            }
+          },
+          "apply": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Apply"
+          },
+          "cancel": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Cancel"
+          },
+          "current": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Current"
+          },
+          "add": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "Add"
+          },
+          "clear": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "Clear"
+          },
+          "update": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "Update"
+          }
+        },
+        "title": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Title text"
+        },
+        "subtitle": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Subtitle text"
+        },
+        "headline": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Headline text"
+        },
+        "textContent": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Content text"
+        },
+        "prefix": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Prefix"
+        },
+        "postfix": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Postfix"
+        },
+        "inputDate": {
+          "datePlaceholder": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "MM.DD.YYYY"
+          },
+          "timePlaceholder": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "hh:mm"
+          },
+          "timeSecondsPlaceholder": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": ":ss"
+          },
+          "timeSecondsValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": ":00"
+          },
+          "dateValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "09.30.2023"
+          },
+          "timeValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "00:00"
+          },
+          "dateNoValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "--.--.----"
+          },
+          "timeNoValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "--:--"
+          },
+          "timeSeparator": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": ","
+          },
+          "timeSecondsNoValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": ":--"
+          },
+          "rangeDivider": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "−"
+          }
+        },
+        "required": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "*"
+        },
+        "category": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Category"
+        },
+        "subcategory": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Subcategory"
+        },
+        "link": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Link text"
+        },
+        "breadcrumb": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "Crumb text"
+        },
+        "data": {
+          "notFound": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Not found"
+          },
+          "noData": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "No data"
+          },
+          "dataError": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "text",
+            "$value": "Data error"
+          }
+        },
+        "text": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Text"
+        },
+        "primary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Primary"
+        },
+        "secondary": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Secondary"
+        },
+        "time": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Time"
+        },
+        "bodyText": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Body text"
+        },
+        "stepName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "text",
+          "$value": "Step name"
+        }
+      },
+      "kitService": {
+        "modificationName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "en"
+        },
+        "modeName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "06_language:"
+        }
+      }
+    }
+  }
+}

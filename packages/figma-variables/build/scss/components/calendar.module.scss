@@ -1,0 +1,191 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-calendar-anatomy-size-s-timePicker-minWidth: 160px;
+$sn-calendar-anatomy-size-s-timePicker-minHeight: 224px;
+$sn-calendar-anatomy-size-s-timePicker-drum-maxWidth: 240px;
+$sn-calendar-anatomy-size-s-timePicker-gap: var(--sn-calendar-anatomy-size-s-timePicker-gap, #{st.$sn-primitive-dimension-24});
+$sn-calendar-anatomy-size-s-timePicker-padding: var(--sn-calendar-anatomy-size-s-timePicker-padding, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-s-timePicker-selectedTime-gap: var(--sn-calendar-anatomy-size-s-timePicker-selectedTime-gap, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-s-itemCalendar-container-borderRadius: var(--sn-calendar-anatomy-size-s-itemCalendar-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-height: var(--sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-height, #{st.$sn-primitive-dimension-2});
+$sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-width: var(--sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-width, #{st.$sn-primitive-dimension-12});
+$sn-calendar-anatomy-size-s-itemCalendar-minHeight: var(--sn-calendar-anatomy-size-s-itemCalendar-minHeight, #{st.$sn-density-size-s});
+$sn-calendar-anatomy-size-s-itemCalendar-minWidth: var(--sn-calendar-anatomy-size-s-itemCalendar-minWidth, #{st.$sn-density-size-s});
+$sn-calendar-anatomy-size-s-gridDate-minWidth: 232px;
+$sn-calendar-anatomy-size-s-gridDate-minHeight: 224px;
+$sn-calendar-anatomy-size-s-gridDate-paddingHorizontal: var(--sn-calendar-anatomy-size-s-gridDate-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-calendar-anatomy-size-s-header-paddingHorizontal: var(--sn-calendar-anatomy-size-s-header-paddingHorizontal, #{st.$sn-primitive-dimension-6});
+$sn-calendar-anatomy-size-s-header-height: var(--sn-calendar-anatomy-size-s-header-height, #{st.$sn-primitive-dimension-32});
+$sn-calendar-anatomy-size-m-itemCalendar-minHeight: var(--sn-calendar-anatomy-size-m-itemCalendar-minHeight, #{st.$sn-density-size-m});
+$sn-calendar-anatomy-size-m-itemCalendar-minWidth: var(--sn-calendar-anatomy-size-m-itemCalendar-minWidth, #{st.$sn-density-size-m});
+$sn-calendar-anatomy-size-m-itemCalendar-container-borderRadius: var(--sn-calendar-anatomy-size-m-itemCalendar-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-height: var(--sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-height, #{st.$sn-primitive-dimension-2});
+$sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-width: var(--sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-width, #{st.$sn-primitive-dimension-16});
+$sn-calendar-anatomy-size-m-gridDate-minWidth: 232px;
+$sn-calendar-anatomy-size-m-gridDate-minHeight: 224px;
+$sn-calendar-anatomy-size-m-gridDate-paddingHorizontal: var(--sn-calendar-anatomy-size-m-gridDate-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-calendar-anatomy-size-m-timePicker-minWidth: 192px;
+$sn-calendar-anatomy-size-m-timePicker-minHeight: 224px;
+$sn-calendar-anatomy-size-m-timePicker-drum-maxWidth: 240px;
+$sn-calendar-anatomy-size-m-timePicker-gap: var(--sn-calendar-anatomy-size-m-timePicker-gap, #{st.$sn-primitive-dimension-32});
+$sn-calendar-anatomy-size-m-timePicker-padding: var(--sn-calendar-anatomy-size-m-timePicker-padding, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-m-timePicker-selectedTime-gap: var(--sn-calendar-anatomy-size-m-timePicker-selectedTime-gap, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-m-header-paddingHorizontal: var(--sn-calendar-anatomy-size-m-header-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-m-header-height: var(--sn-calendar-anatomy-size-m-header-height, #{st.$sn-primitive-dimension-40});
+$sn-calendar-anatomy-size-l-itemCalendar-minHeight: var(--sn-calendar-anatomy-size-l-itemCalendar-minHeight, #{st.$sn-density-size-l});
+$sn-calendar-anatomy-size-l-itemCalendar-minWidth: var(--sn-calendar-anatomy-size-l-itemCalendar-minWidth, #{st.$sn-density-size-l});
+$sn-calendar-anatomy-size-l-itemCalendar-container-borderRadius: var(--sn-calendar-anatomy-size-l-itemCalendar-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-height: var(--sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-height, #{st.$sn-primitive-dimension-2});
+$sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-width: var(--sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-width, #{st.$sn-primitive-dimension-20});
+$sn-calendar-anatomy-size-l-gridDate-minWidth: 296px;
+$sn-calendar-anatomy-size-l-gridDate-minHeight: 280px;
+$sn-calendar-anatomy-size-l-gridDate-paddingHorizontal: var(--sn-calendar-anatomy-size-l-gridDate-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-calendar-anatomy-size-l-timePicker-minWidth: 224px;
+$sn-calendar-anatomy-size-l-timePicker-minHeight: 280px;
+$sn-calendar-anatomy-size-l-timePicker-drum-maxWidth: 300px;
+$sn-calendar-anatomy-size-l-timePicker-gap: var(--sn-calendar-anatomy-size-l-timePicker-gap, #{st.$sn-primitive-dimension-40});
+$sn-calendar-anatomy-size-l-timePicker-padding: var(--sn-calendar-anatomy-size-l-timePicker-padding, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-l-timePicker-selectedTime-gap: var(--sn-calendar-anatomy-size-l-timePicker-selectedTime-gap, #{st.$sn-primitive-dimension-8});
+$sn-calendar-anatomy-size-l-header-paddingHorizontal: var(--sn-calendar-anatomy-size-l-header-paddingHorizontal, #{st.$sn-primitive-dimension-12});
+$sn-calendar-anatomy-size-l-header-height: var(--sn-calendar-anatomy-size-l-header-height, #{st.$sn-primitive-dimension-56});
+
+$calendar: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "timePicker": (
+          "min-width": $sn-calendar-anatomy-size-s-timePicker-minWidth,
+          "min-height": $sn-calendar-anatomy-size-s-timePicker-minHeight,
+          "drum": (
+            "max-width": $sn-calendar-anatomy-size-s-timePicker-drum-maxWidth
+          ),
+          "gap": $sn-calendar-anatomy-size-s-timePicker-gap,
+          "padding": $sn-calendar-anatomy-size-s-timePicker-padding,
+          "selectedTime": (
+            "gap": $sn-calendar-anatomy-size-s-timePicker-selectedTime-gap
+          )
+        ),
+        "itemCalendar": (
+          "container": (
+            "border-radius": $sn-calendar-anatomy-size-s-itemCalendar-container-borderRadius,
+            "labelWrapper": (
+              "padding-left": $sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "padding-right": $sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "marker": (
+                "height": $sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-height,
+                "border-radius": $sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-borderRadius,
+                "width": $sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-width
+              )
+            )
+          ),
+          "min-height": $sn-calendar-anatomy-size-s-itemCalendar-minHeight,
+          "min-width": $sn-calendar-anatomy-size-s-itemCalendar-minWidth
+        ),
+        "gridDate": (
+          "min-width": $sn-calendar-anatomy-size-s-gridDate-minWidth,
+          "min-height": $sn-calendar-anatomy-size-s-gridDate-minHeight,
+          "padding-left": $sn-calendar-anatomy-size-s-gridDate-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-s-gridDate-paddingHorizontal
+        ),
+        "header": (
+          "padding-left": $sn-calendar-anatomy-size-s-header-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-s-header-paddingHorizontal,
+          "height": $sn-calendar-anatomy-size-s-header-height
+        )
+      ),
+      "m": (
+        "itemCalendar": (
+          "min-height": $sn-calendar-anatomy-size-m-itemCalendar-minHeight,
+          "min-width": $sn-calendar-anatomy-size-m-itemCalendar-minWidth,
+          "container": (
+            "border-radius": $sn-calendar-anatomy-size-m-itemCalendar-container-borderRadius,
+            "labelWrapper": (
+              "padding-left": $sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "padding-right": $sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "marker": (
+                "height": $sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-height,
+                "border-radius": $sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-borderRadius,
+                "width": $sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-width
+              )
+            )
+          )
+        ),
+        "gridDate": (
+          "min-width": $sn-calendar-anatomy-size-m-gridDate-minWidth,
+          "min-height": $sn-calendar-anatomy-size-m-gridDate-minHeight,
+          "padding-left": $sn-calendar-anatomy-size-m-gridDate-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-m-gridDate-paddingHorizontal
+        ),
+        "timePicker": (
+          "min-width": $sn-calendar-anatomy-size-m-timePicker-minWidth,
+          "min-height": $sn-calendar-anatomy-size-m-timePicker-minHeight,
+          "drum": (
+            "max-width": $sn-calendar-anatomy-size-m-timePicker-drum-maxWidth
+          ),
+          "gap": $sn-calendar-anatomy-size-m-timePicker-gap,
+          "padding": $sn-calendar-anatomy-size-m-timePicker-padding,
+          "selectedTime": (
+            "gap": $sn-calendar-anatomy-size-m-timePicker-selectedTime-gap
+          )
+        ),
+        "header": (
+          "padding-left": $sn-calendar-anatomy-size-m-header-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-m-header-paddingHorizontal,
+          "height": $sn-calendar-anatomy-size-m-header-height
+        )
+      ),
+      "l": (
+        "itemCalendar": (
+          "min-height": $sn-calendar-anatomy-size-l-itemCalendar-minHeight,
+          "min-width": $sn-calendar-anatomy-size-l-itemCalendar-minWidth,
+          "container": (
+            "border-radius": $sn-calendar-anatomy-size-l-itemCalendar-container-borderRadius,
+            "labelWrapper": (
+              "padding-left": $sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "padding-right": $sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-paddingHorizontal,
+              "marker": (
+                "height": $sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-height,
+                "border-radius": $sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-borderRadius,
+                "width": $sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-width
+              )
+            )
+          )
+        ),
+        "gridDate": (
+          "min-width": $sn-calendar-anatomy-size-l-gridDate-minWidth,
+          "min-height": $sn-calendar-anatomy-size-l-gridDate-minHeight,
+          "padding-left": $sn-calendar-anatomy-size-l-gridDate-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-l-gridDate-paddingHorizontal
+        ),
+        "timePicker": (
+          "min-width": $sn-calendar-anatomy-size-l-timePicker-minWidth,
+          "min-height": $sn-calendar-anatomy-size-l-timePicker-minHeight,
+          "drum": (
+            "max-width": $sn-calendar-anatomy-size-l-timePicker-drum-maxWidth
+          ),
+          "gap": $sn-calendar-anatomy-size-l-timePicker-gap,
+          "padding": $sn-calendar-anatomy-size-l-timePicker-padding,
+          "selectedTime": (
+            "gap": $sn-calendar-anatomy-size-l-timePicker-selectedTime-gap
+          )
+        ),
+        "header": (
+          "padding-left": $sn-calendar-anatomy-size-l-header-paddingHorizontal,
+          "padding-right": $sn-calendar-anatomy-size-l-header-paddingHorizontal,
+          "height": $sn-calendar-anatomy-size-l-header-height
+        )
+      )
+    )
+  )
+);

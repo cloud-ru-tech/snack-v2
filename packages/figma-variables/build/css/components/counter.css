@@ -1,0 +1,20 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-counter {
+  --sn-counter-anatomy-size-xs-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-counter-anatomy-size-xs-minWidth: var(--sn-primitive-dimension-16, 16px);
+  --sn-counter-anatomy-size-xs-container-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-counter-anatomy-size-xs-container-minHeight: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
+  --sn-counter-anatomy-size-xs-container-minWidth: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
+  --sn-counter-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-counter-xs, 10000px);
+  --sn-counter-anatomy-size-xs-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-counter-anatomy-size-s-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-counter-anatomy-size-s-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-counter-anatomy-size-s-container-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-counter-anatomy-size-s-container-minHeight: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-counter-anatomy-size-s-container-minWidth: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-counter-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-counter-s, 10000px);
+  --sn-counter-anatomy-size-s-container-borderWidth: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
+}

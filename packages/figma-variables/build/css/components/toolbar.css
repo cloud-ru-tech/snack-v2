@@ -1,0 +1,16 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-toolbar {
+  --sn-toolbar-anatomy-container-tool-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-brand-anatomy-radius-toolbar-xs, 4px);
+  --sn-toolbar-anatomy-container-tool-bulkAction-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-toolbar-anatomy-container-tool-search-minHeight: var(--sn-density-size-m, 56px);
+  --sn-toolbar-anatomy-container-tool-search-borderRadius: var(--sn-brand-anatomy-radius-field-m, 2px);
+  --sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-toolbar-anatomy-container-tool-gap: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-toolbar-anatomy-container-tool-minHeight: var(--sn-density-size-l, 64px);
+  --sn-toolbar-anatomy-container-gap: var(--sn-density-spacing-interval-xs, 4px);
+}

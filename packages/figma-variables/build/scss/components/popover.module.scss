@@ -1,0 +1,37 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-popover-anatomy-privatePopover-offset: var(--sn-popover-anatomy-privatePopover-offset, #{st.$sn-primitive-dimension-4});
+$sn-popover-anatomy-container-borderRadius: var(--sn-popover-anatomy-container-borderRadius, #{st.$sn-brand-anatomy-radius-popover-xl});
+$sn-popover-anatomy-privatePopover-pointer-paddingHorizontal: var(--sn-popover-anatomy-privatePopover-pointer-paddingHorizontal, #{$sn-popover-anatomy-container-borderRadius});
+$sn-popover-anatomy-privatePopover-pointer-borderRadius: var(--sn-popover-anatomy-privatePopover-pointer-borderRadius, #{st.$sn-primitive-dimension-1});
+$sn-popover-anatomy-privatePopover-pointer-height: var(--sn-popover-anatomy-privatePopover-pointer-height, #{st.$sn-primitive-dimension-6});
+$sn-popover-anatomy-privatePopover-pointer-width: var(--sn-popover-anatomy-privatePopover-pointer-width, #{st.$sn-primitive-dimension-12});
+$sn-popover-anatomy-container-padding: var(--sn-popover-anatomy-container-padding, #{st.$sn-brand-anatomy-spacing-popover-padding});
+$sn-popover-anatomy-container-minWidth: var(--sn-popover-anatomy-container-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-popover-anatomy-container-minHeight: var(--sn-popover-anatomy-container-minHeight, #{st.$sn-primitive-dimension-32});
+
+$popover: (
+  "anatomy": (
+    "privatePopover": (
+      "offset": $sn-popover-anatomy-privatePopover-offset,
+      "pointer": (
+        "padding-left": $sn-popover-anatomy-privatePopover-pointer-paddingHorizontal,
+        "padding-right": $sn-popover-anatomy-privatePopover-pointer-paddingHorizontal,
+        "border-radius": $sn-popover-anatomy-privatePopover-pointer-borderRadius,
+        "height": $sn-popover-anatomy-privatePopover-pointer-height,
+        "width": $sn-popover-anatomy-privatePopover-pointer-width
+      )
+    ),
+    "container": (
+      "padding": $sn-popover-anatomy-container-padding,
+      "border-radius": $sn-popover-anatomy-container-borderRadius,
+      "min-width": $sn-popover-anatomy-container-minWidth,
+      "min-height": $sn-popover-anatomy-container-minHeight
+    )
+  )
+);

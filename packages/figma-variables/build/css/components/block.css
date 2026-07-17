@@ -1,0 +1,15 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-block {
+  --sn-block-anatomy-s-borderRadius: var(--sn-brand-anatomy-radius-block-s, 4px);
+  --sn-block-anatomy-s-padding: var(--sn-density-spacing-block-s-padding, 16px);
+  --sn-block-anatomy-s-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-block-anatomy-m-borderRadius: var(--sn-brand-anatomy-radius-block-m, 4px);
+  --sn-block-anatomy-m-padding: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-block-anatomy-m-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-block-anatomy-l-borderRadius: var(--sn-brand-anatomy-radius-block-l, 4px);
+  --sn-block-anatomy-l-padding: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-block-anatomy-l-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+}

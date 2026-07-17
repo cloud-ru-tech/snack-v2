@@ -1,0 +1,62 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-list {
+  --sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by12, 16px);
+  --sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-s, 8px);
+  --sn-list-anatomy-size-s-listItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingVertical: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-s-listItem-marker-maxWidth: var(--sn-primitive-dimension-4, 4px);
+  --sn-list-anatomy-size-s-listItem-marker-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-s-listItem-marker-maxHeight: var(--sn-primitive-dimension-full, 10000px);
+  --sn-list-anatomy-size-s-listItem-marker-borderTopRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-s-listItem-marker-borderBottomRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-s-listItem-marker-borderBottomLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-s-listItem-gap: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-list-anatomy-size-s-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
+  --sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
+  --sn-list-anatomy-size-s-listItem-centeredWrapper-minHeight: var(--sn-density-size-icon-xs, 24px);
+  --sn-list-anatomy-size-s-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 0px);
+  --sn-list-anatomy-size-s-subtitle-paddingTop: var(--sn-primitive-dimension-8, 8px);
+  --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by14, 20px);
+  --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-m, 8px);
+  --sn-list-anatomy-size-m-listItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-list-anatomy-size-m-listItem-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-list-anatomy-size-m-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 8px);
+  --sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 8px);
+  --sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-list-anatomy-size-m-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 0px);
+  --sn-list-anatomy-size-m-listItem-marker-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-m-listItem-marker-borderTopRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-m-listItem-marker-borderBottomRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-m-listItem-marker-borderBottomLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingVertical: var(--sn-primitive-dimension-4, 4px);
+  --sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-m-subtitle-paddingTop: var(--sn-primitive-dimension-10, 10px);
+  --sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by16, 24px);
+  --sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-l, 8px);
+  --sn-list-anatomy-size-l-listItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-list-anatomy-size-l-listItem-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-list-anatomy-size-l-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-list-anatomy-size-l-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-l, 0px);
+  --sn-list-anatomy-size-l-listItem-marker-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-l-listItem-marker-borderTopRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-l-listItem-marker-borderBottomRightRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-list-anatomy-size-l-listItem-marker-borderBottomLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingVertical: var(--sn-primitive-dimension-6, 6px);
+  --sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+  --sn-list-anatomy-size-l-subtitle-paddingTop: var(--sn-primitive-dimension-12, 12px);
+}

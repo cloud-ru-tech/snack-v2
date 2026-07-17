@@ -6,6 +6,11 @@ node_modules.macos-bak
 # Build outputs
 dist
 build
+# Vendored design tokens: generated `build/` is committed as a source-controlled asset
+# (same convention as icons' generated src/). Regenerate via `pnpm run build:tokens` when
+# `packages/figma-variables/tokens/` change, then commit.
+!packages/figma-variables/build
+!packages/figma-variables/build/**
 .turbo
 *.tsbuildinfo
 

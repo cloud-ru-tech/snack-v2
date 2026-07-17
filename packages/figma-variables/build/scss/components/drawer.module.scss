@@ -1,0 +1,127 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-drawer-anatomy-container-vertical-positionLeft-paddingBottom: var(--sn-drawer-anatomy-container-vertical-positionLeft-paddingBottom, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight: var(--sn-drawer-anatomy-container-vertical-positionLeft-paddingRight, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-vertical-positionLeft-paddingLeft: var(--sn-drawer-anatomy-container-vertical-positionLeft-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionLeft-paddingTop: var(--sn-drawer-anatomy-container-vertical-positionLeft-paddingTop, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius: var(--sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius: var(--sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomRightRadius: var(--sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomLeftRadius: var(--sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-width-container-s-maxWidth: 464px;
+$sn-drawer-anatomy-container-vertical-width-container-l-maxWidth: 1872px;
+$sn-drawer-anatomy-container-vertical-width-container-m-maxWidth: 864px;
+$sn-drawer-anatomy-container-vertical-positionRight-container-borderTopLeftRadius: var(--sn-drawer-anatomy-container-vertical-positionRight-container-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-vertical-positionRight-container-borderTopRightRadius: var(--sn-drawer-anatomy-container-vertical-positionRight-container-borderTopRightRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomRightRadius: var(--sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomRightRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomLeftRadius: var(--sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-vertical-positionRight-paddingLeft: var(--sn-drawer-anatomy-container-vertical-positionRight-paddingLeft, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-vertical-positionRight-paddingBottom: var(--sn-drawer-anatomy-container-vertical-positionRight-paddingBottom, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionRight-paddingRight: var(--sn-drawer-anatomy-container-vertical-positionRight-paddingRight, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-vertical-positionRight-paddingTop: var(--sn-drawer-anatomy-container-vertical-positionRight-paddingTop, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-paddingTop: var(--sn-drawer-anatomy-container-horizontal-positionTop-paddingTop, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-paddingRight: var(--sn-drawer-anatomy-container-horizontal-positionTop-paddingRight, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-paddingBottom: var(--sn-drawer-anatomy-container-horizontal-positionTop-paddingBottom, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-horizontal-positionTop-paddingLeft: var(--sn-drawer-anatomy-container-horizontal-positionTop-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopLeftRadius: var(--sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopRightRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomLeftRadius: var(--sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-horizontal-positionBottom-paddingTop: var(--sn-drawer-anatomy-container-horizontal-positionBottom-paddingTop, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-horizontal-positionBottom-paddingRight: var(--sn-drawer-anatomy-container-horizontal-positionBottom-paddingRight, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionBottom-paddingBottom: var(--sn-drawer-anatomy-container-horizontal-positionBottom-paddingBottom, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionBottom-paddingLeft: var(--sn-drawer-anatomy-container-horizontal-positionBottom-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopLeftRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-drawer-anatomy-container-safeArea-paddingTop: var(--sn-drawer-anatomy-container-safeArea-paddingTop, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-safeArea-paddingBottom: var(--sn-drawer-anatomy-container-safeArea-paddingBottom, #{st.$sn-density-spacing-interval-s});
+$sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-drawer-anatomy-container-bodyWrapper-paddingBottom: var(--sn-drawer-anatomy-container-bodyWrapper-paddingBottom, #{st.$sn-density-spacing-interval-m});
+
+$drawer: (
+  "anatomy": (
+    "container": (
+      "vertical": (
+        "positionLeft": (
+          "padding-bottom": $sn-drawer-anatomy-container-vertical-positionLeft-paddingBottom,
+          "padding-right": $sn-drawer-anatomy-container-vertical-positionLeft-paddingRight,
+          "padding-left": $sn-drawer-anatomy-container-vertical-positionLeft-paddingLeft,
+          "padding-top": $sn-drawer-anatomy-container-vertical-positionLeft-paddingTop,
+          "container": (
+            "border-top-right-radius": $sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius,
+            "border-top-left-radius": $sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius,
+            "border-bottom-right-radius": $sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomLeftRadius
+          )
+        ),
+        "width": (
+          "container": (
+            "s": (
+              "max-width": $sn-drawer-anatomy-container-vertical-width-container-s-maxWidth
+            ),
+            "l": (
+              "max-width": $sn-drawer-anatomy-container-vertical-width-container-l-maxWidth
+            ),
+            "m": (
+              "max-width": $sn-drawer-anatomy-container-vertical-width-container-m-maxWidth
+            )
+          )
+        ),
+        "positionRight": (
+          "container": (
+            "border-top-left-radius": $sn-drawer-anatomy-container-vertical-positionRight-container-borderTopLeftRadius,
+            "border-top-right-radius": $sn-drawer-anatomy-container-vertical-positionRight-container-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomLeftRadius
+          ),
+          "padding-left": $sn-drawer-anatomy-container-vertical-positionRight-paddingLeft,
+          "padding-bottom": $sn-drawer-anatomy-container-vertical-positionRight-paddingBottom,
+          "padding-right": $sn-drawer-anatomy-container-vertical-positionRight-paddingRight,
+          "padding-top": $sn-drawer-anatomy-container-vertical-positionRight-paddingTop
+        )
+      ),
+      "horizontal": (
+        "positionTop": (
+          "padding-top": $sn-drawer-anatomy-container-horizontal-positionTop-paddingTop,
+          "padding-right": $sn-drawer-anatomy-container-horizontal-positionTop-paddingRight,
+          "padding-bottom": $sn-drawer-anatomy-container-horizontal-positionTop-paddingBottom,
+          "padding-left": $sn-drawer-anatomy-container-horizontal-positionTop-paddingLeft,
+          "container": (
+            "border-top-left-radius": $sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopLeftRadius,
+            "border-top-right-radius": $sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomLeftRadius
+          )
+        ),
+        "positionBottom": (
+          "padding-top": $sn-drawer-anatomy-container-horizontal-positionBottom-paddingTop,
+          "padding-right": $sn-drawer-anatomy-container-horizontal-positionBottom-paddingRight,
+          "padding-bottom": $sn-drawer-anatomy-container-horizontal-positionBottom-paddingBottom,
+          "padding-left": $sn-drawer-anatomy-container-horizontal-positionBottom-paddingLeft,
+          "container": (
+            "border-top-left-radius": $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopLeftRadius,
+            "border-top-right-radius": $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius
+          )
+        )
+      ),
+      "safeArea": (
+        "padding-top": $sn-drawer-anatomy-container-safeArea-paddingTop,
+        "padding-bottom": $sn-drawer-anatomy-container-safeArea-paddingBottom
+      ),
+      "bodyWrapper": (
+        "padding-left": $sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal,
+        "padding-right": $sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal,
+        "padding-bottom": $sn-drawer-anatomy-container-bodyWrapper-paddingBottom
+      )
+    )
+  )
+);

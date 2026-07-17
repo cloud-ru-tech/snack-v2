@@ -1,0 +1,10 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-dropdown {
+  --sn-dropdown-anatomy-container-paddingVertical: var(--sn-brand-anatomy-spacing-dropdown-paddingVertical, 4px);
+  --sn-dropdown-anatomy-container-borderRadius: var(--sn-brand-anatomy-radius-dropdown-s, 4px);
+  --sn-dropdown-anatomy-container-dropdownInfoBlock-paddingVertical: var(--sn-primitive-dimension-24, 24px);
+  --sn-dropdown-anatomy-container-bodyWrapper-padding: var(--sn-primitive-dimension-8, 8px);
+}

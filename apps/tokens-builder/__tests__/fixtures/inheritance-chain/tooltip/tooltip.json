@@ -1,0 +1,16 @@
+{
+  "sn": {
+    "tooltip": {
+      "anatomy": {
+        "container": {
+          "borderRadius": { "$type": "number", "$value": "{sn.brand.anatomy.radius.tooltip.xs}" },
+          "padding": { "$type": "number", "$value": "8" },
+          "maxWidth": { "$type": "number", "$value": "256" }
+        },
+        "pointer": {
+          "padding": { "$type": "number", "$value": "{sn.tooltip.anatomy.container.borderRadius}" }
+        }
+      }
+    }
+  }
+}

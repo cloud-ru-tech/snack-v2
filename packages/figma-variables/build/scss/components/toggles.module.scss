@@ -1,0 +1,246 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-toggles-anatomy-size-xs-switch-framing-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-xs-switch-framing-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width, #{st.$sn-primitive-dimension-8});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height, #{st.$sn-primitive-dimension-8});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width, #{st.$sn-primitive-dimension-12});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height, #{st.$sn-primitive-dimension-12});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-switch-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
+$sn-toggles-anatomy-size-xs-switch-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-switch-container-minWidth: var(--sn-toggles-anatomy-size-xs-switch-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-xs-switch-container-minHeight: var(--sn-toggles-anatomy-size-xs-switch-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-minWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-minWidth, #{$sn-toggles-anatomy-size-xs-radio-framing-minWidth});
+$sn-toggles-anatomy-size-xs-radio-framing-minHeight: var(--sn-toggles-anatomy-size-xs-radio-framing-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-minHeight, #{$sn-toggles-anatomy-size-xs-radio-framing-minHeight});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width, #{st.$sn-primitive-dimension-8});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height, #{st.$sn-primitive-dimension-8});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-radio-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-radio-framing-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-toggles-anatomy-size-xs-radio-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-radio-container-minWidth: var(--sn-toggles-anatomy-size-xs-radio-container-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-container-minHeight: var(--sn-toggles-anatomy-size-xs-radio-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-minWidth, #{$sn-toggles-anatomy-size-xs-checkbox-framing-minWidth});
+$sn-toggles-anatomy-size-xs-checkbox-framing-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-minHeight, #{$sn-toggles-anatomy-size-xs-checkbox-framing-minHeight});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-flag-surface-xs});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-checkbox-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-checkbox-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-s});
+$sn-toggles-anatomy-size-xs-checkbox-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-checkbox-container-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-container-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-container-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-s-radio-framing-minWidth: var(--sn-toggles-anatomy-size-s-radio-framing-minWidth, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-checkbox-framing-minWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-minWidth, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-radio-framing-flag-minWidth: var(--sn-toggles-anatomy-size-s-radio-framing-flag-minWidth, #{$sn-toggles-anatomy-size-s-checkbox-framing-minWidth});
+$sn-toggles-anatomy-size-s-checkbox-framing-minHeight: var(--sn-toggles-anatomy-size-s-checkbox-framing-minHeight, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-radio-framing-flag-minHeight: var(--sn-toggles-anatomy-size-s-radio-framing-flag-minHeight, #{$sn-toggles-anatomy-size-s-checkbox-framing-minHeight});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-width: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-width, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-height: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-height, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-radio-framing-minHeight: var(--sn-toggles-anatomy-size-s-radio-framing-minHeight, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-radio-framing-borderRadius: var(--sn-toggles-anatomy-size-s-radio-framing-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-toggles-anatomy-size-s-radio-framing-borderWidth: var(--sn-toggles-anatomy-size-s-radio-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-radio-container-minWidth: var(--sn-toggles-anatomy-size-s-radio-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-radio-container-minHeight: var(--sn-toggles-anatomy-size-s-radio-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-minWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-minWidth, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-minHeight: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-minHeight, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-width: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-width, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-flag-surface-s});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-checkbox-framing-borderRadius: var(--sn-toggles-anatomy-size-s-checkbox-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-s});
+$sn-toggles-anatomy-size-s-checkbox-framing-borderWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-checkbox-container-minWidth: var(--sn-toggles-anatomy-size-s-checkbox-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-container-minHeight: var(--sn-toggles-anatomy-size-s-checkbox-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-switch-framing-minWidth: var(--sn-toggles-anatomy-size-s-switch-framing-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-toggles-anatomy-size-s-switch-framing-minHeight: var(--sn-toggles-anatomy-size-s-switch-framing-minHeight, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-s-switch-framing-borderRadius: var(--sn-toggles-anatomy-size-s-switch-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-s});
+$sn-toggles-anatomy-size-s-switch-framing-flag-minWidth: var(--sn-toggles-anatomy-size-s-switch-framing-flag-minWidth, #{$sn-toggles-anatomy-size-s-switch-framing-minHeight});
+$sn-toggles-anatomy-size-s-switch-framing-flag-minHeight: var(--sn-toggles-anatomy-size-s-switch-framing-flag-minHeight, #{$sn-toggles-anatomy-size-s-switch-framing-minHeight});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-width: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-width, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-height: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-height, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderRadius: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-s});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderWidth: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-width: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-switch-framing-borderWidth: var(--sn-toggles-anatomy-size-s-switch-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-switch-container-minWidth: var(--sn-toggles-anatomy-size-s-switch-container-minWidth, #{st.$sn-primitive-dimension-36});
+$sn-toggles-anatomy-size-s-switch-container-minHeight: var(--sn-toggles-anatomy-size-s-switch-container-minHeight, #{st.$sn-primitive-dimension-24});
+
+$toggles: (
+  "anatomy": (
+    "size": (
+      "xs": (
+        "switch": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-xs-switch-framing-minWidth,
+            "min-height": $sn-toggles-anatomy-size-xs-switch-framing-minHeight,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight,
+              "surface": (
+                "checkedFalse": (
+                  "width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width,
+                  "height": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height,
+                  "border-radius": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderRadius,
+                  "border-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderWidth
+                ),
+                "checkedTrue": (
+                  "width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width,
+                  "height": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height,
+                  "border-radius": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius,
+                  "border-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth
+                )
+              )
+            ),
+            "border-radius": $sn-toggles-anatomy-size-xs-switch-framing-borderRadius,
+            "border-width": $sn-toggles-anatomy-size-xs-switch-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-xs-switch-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-xs-switch-container-minHeight
+          )
+        ),
+        "radio": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-xs-radio-framing-minWidth,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-xs-radio-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-xs-radio-framing-flag-minHeight,
+              "surface": (
+                "width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width,
+                "height": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height,
+                "border-radius": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius,
+                "border-width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth
+              )
+            ),
+            "min-height": $sn-toggles-anatomy-size-xs-radio-framing-minHeight,
+            "border-radius": $sn-toggles-anatomy-size-xs-radio-framing-borderRadius,
+            "border-width": $sn-toggles-anatomy-size-xs-radio-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-xs-radio-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-xs-radio-container-minHeight
+          )
+        ),
+        "checkbox": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-xs-checkbox-framing-minWidth,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-minHeight,
+              "surface": (
+                "width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width,
+                "height": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height,
+                "border-radius": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius,
+                "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth
+              )
+            ),
+            "min-height": $sn-toggles-anatomy-size-xs-checkbox-framing-minHeight,
+            "border-radius": $sn-toggles-anatomy-size-xs-checkbox-framing-borderRadius,
+            "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-xs-checkbox-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-xs-checkbox-container-minHeight
+          )
+        )
+      ),
+      "s": (
+        "radio": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-s-radio-framing-minWidth,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-s-radio-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-s-radio-framing-flag-minHeight,
+              "surface": (
+                "width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-width,
+                "height": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-height,
+                "border-radius": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius,
+                "border-width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth
+              )
+            ),
+            "min-height": $sn-toggles-anatomy-size-s-radio-framing-minHeight,
+            "border-radius": $sn-toggles-anatomy-size-s-radio-framing-borderRadius,
+            "border-width": $sn-toggles-anatomy-size-s-radio-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-s-radio-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-s-radio-container-minHeight
+          )
+        ),
+        "checkbox": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-s-checkbox-framing-minWidth,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-s-checkbox-framing-flag-minHeight,
+              "surface": (
+                "width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-width,
+                "height": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height,
+                "border-radius": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius,
+                "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth
+              )
+            ),
+            "min-height": $sn-toggles-anatomy-size-s-checkbox-framing-minHeight,
+            "border-radius": $sn-toggles-anatomy-size-s-checkbox-framing-borderRadius,
+            "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-s-checkbox-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-s-checkbox-container-minHeight
+          )
+        ),
+        "switch": (
+          "framing": (
+            "min-width": $sn-toggles-anatomy-size-s-switch-framing-minWidth,
+            "min-height": $sn-toggles-anatomy-size-s-switch-framing-minHeight,
+            "border-radius": $sn-toggles-anatomy-size-s-switch-framing-borderRadius,
+            "flag": (
+              "min-width": $sn-toggles-anatomy-size-s-switch-framing-flag-minWidth,
+              "min-height": $sn-toggles-anatomy-size-s-switch-framing-flag-minHeight,
+              "surface": (
+                "checkedFalse": (
+                  "width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-width,
+                  "height": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-height,
+                  "border-radius": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderRadius,
+                  "border-width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedFalse-borderWidth
+                ),
+                "checkedTrue": (
+                  "width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-width,
+                  "height": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height,
+                  "border-radius": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius,
+                  "border-width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth
+                )
+              )
+            ),
+            "border-width": $sn-toggles-anatomy-size-s-switch-framing-borderWidth
+          ),
+          "container": (
+            "min-width": $sn-toggles-anatomy-size-s-switch-container-minWidth,
+            "min-height": $sn-toggles-anatomy-size-s-switch-container-minHeight
+          )
+        )
+      )
+    )
+  )
+);

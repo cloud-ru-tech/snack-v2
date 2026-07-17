@@ -1,0 +1,147 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-avatar-anatomy-size-xs-square: var(--sn-avatar-anatomy-size-xs-square, #{st.$sn-primitive-dimension-16});
+$sn-avatar-anatomy-size-xs-rounded-borderRadius: var(--sn-avatar-anatomy-size-xs-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-xs-squared-borderRadius: var(--sn-avatar-anatomy-size-xs-squared-borderRadius, #{st.$sn-primitive-dimension-2});
+$sn-avatar-anatomy-size-xs-borderWidth: var(--sn-avatar-anatomy-size-xs-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-xs-badge-padding: var(--sn-avatar-anatomy-size-xs-badge-padding, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-s-square: var(--sn-avatar-anatomy-size-s-square, #{st.$sn-primitive-dimension-24});
+$sn-avatar-anatomy-size-s-rounded-borderRadius: var(--sn-avatar-anatomy-size-s-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-s-squared-borderRadius: var(--sn-avatar-anatomy-size-s-squared-borderRadius, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-s-borderWidth: var(--sn-avatar-anatomy-size-s-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-s-badge-padding: var(--sn-avatar-anatomy-size-s-badge-padding, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-m-square: var(--sn-avatar-anatomy-size-m-square, #{st.$sn-primitive-dimension-32});
+$sn-avatar-anatomy-size-m-rounded-borderRadius: var(--sn-avatar-anatomy-size-m-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-m-squared-borderRadius: var(--sn-avatar-anatomy-size-m-squared-borderRadius, #{st.$sn-primitive-dimension-6});
+$sn-avatar-anatomy-size-m-borderWidth: var(--sn-avatar-anatomy-size-m-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-m-badge-padding: var(--sn-avatar-anatomy-size-m-badge-padding, #{st.$sn-primitive-dimension-6});
+$sn-avatar-anatomy-size-l-square: var(--sn-avatar-anatomy-size-l-square, #{st.$sn-primitive-dimension-40});
+$sn-avatar-anatomy-size-l-rounded-borderRadius: var(--sn-avatar-anatomy-size-l-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-l-squared-borderRadius: var(--sn-avatar-anatomy-size-l-squared-borderRadius, #{st.$sn-primitive-dimension-8});
+$sn-avatar-anatomy-size-l-borderWidth: var(--sn-avatar-anatomy-size-l-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-l-badge-padding: var(--sn-avatar-anatomy-size-l-badge-padding, #{st.$sn-primitive-dimension-8});
+$sn-avatar-anatomy-size-3xl-square: var(--sn-avatar-anatomy-size-3xl-square, #{st.$sn-primitive-dimension-64});
+$sn-avatar-anatomy-size-3xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-3xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-3xl-squared-borderRadius: var(--sn-avatar-anatomy-size-3xl-squared-borderRadius, #{st.$sn-primitive-dimension-12});
+$sn-avatar-anatomy-size-3xl-borderWidth: var(--sn-avatar-anatomy-size-3xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-3xl-badge-padding: var(--sn-avatar-anatomy-size-3xl-badge-padding, #{st.$sn-primitive-dimension-12});
+$sn-avatar-anatomy-size-6xl-square: var(--sn-avatar-anatomy-size-6xl-square, #{st.$sn-primitive-dimension-88});
+$sn-avatar-anatomy-size-6xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-6xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-6xl-squared-borderRadius: var(--sn-avatar-anatomy-size-6xl-squared-borderRadius, #{st.$sn-primitive-dimension-16});
+$sn-avatar-anatomy-size-6xl-borderWidth: var(--sn-avatar-anatomy-size-6xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-6xl-badge-padding: var(--sn-avatar-anatomy-size-6xl-badge-padding, #{st.$sn-primitive-dimension-16});
+$sn-avatar-anatomy-size-9xl-square: var(--sn-avatar-anatomy-size-9xl-square, #{st.$sn-primitive-dimension-112});
+$sn-avatar-anatomy-size-9xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-9xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-avatar-anatomy-size-9xl-squared-borderRadius: var(--sn-avatar-anatomy-size-9xl-squared-borderRadius, #{st.$sn-primitive-dimension-20});
+$sn-avatar-anatomy-size-9xl-borderWidth: var(--sn-avatar-anatomy-size-9xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-avatar-anatomy-size-9xl-badge-padding: var(--sn-avatar-anatomy-size-9xl-badge-padding, #{st.$sn-primitive-dimension-20});
+
+$avatar: (
+  "anatomy": (
+    "size": (
+      "xs": (
+        "width": $sn-avatar-anatomy-size-xs-square,
+        "height": $sn-avatar-anatomy-size-xs-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-xs-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-xs-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-xs-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-xs-badge-padding
+        )
+      ),
+      "s": (
+        "width": $sn-avatar-anatomy-size-s-square,
+        "height": $sn-avatar-anatomy-size-s-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-s-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-s-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-s-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-s-badge-padding
+        )
+      ),
+      "m": (
+        "width": $sn-avatar-anatomy-size-m-square,
+        "height": $sn-avatar-anatomy-size-m-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-m-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-m-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-m-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-m-badge-padding
+        )
+      ),
+      "l": (
+        "width": $sn-avatar-anatomy-size-l-square,
+        "height": $sn-avatar-anatomy-size-l-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-l-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-l-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-l-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-l-badge-padding
+        )
+      ),
+      "3xl": (
+        "width": $sn-avatar-anatomy-size-3xl-square,
+        "height": $sn-avatar-anatomy-size-3xl-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-3xl-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-3xl-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-3xl-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-3xl-badge-padding
+        )
+      ),
+      "6xl": (
+        "width": $sn-avatar-anatomy-size-6xl-square,
+        "height": $sn-avatar-anatomy-size-6xl-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-6xl-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-6xl-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-6xl-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-6xl-badge-padding
+        )
+      ),
+      "9xl": (
+        "width": $sn-avatar-anatomy-size-9xl-square,
+        "height": $sn-avatar-anatomy-size-9xl-square,
+        "rounded": (
+          "border-radius": $sn-avatar-anatomy-size-9xl-rounded-borderRadius
+        ),
+        "squared": (
+          "border-radius": $sn-avatar-anatomy-size-9xl-squared-borderRadius
+        ),
+        "border-width": $sn-avatar-anatomy-size-9xl-borderWidth,
+        "badge": (
+          "padding": $sn-avatar-anatomy-size-9xl-badge-padding
+        )
+      )
+    )
+  )
+);

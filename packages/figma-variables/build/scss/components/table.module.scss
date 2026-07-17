@@ -1,0 +1,126 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-table-anatomy-content-tableHead-paddingLeft: var(--sn-table-anatomy-content-tableHead-paddingLeft, #{st.$sn-primitive-dimension-12});
+$sn-table-anatomy-content-tableHead-paddingRight: var(--sn-table-anatomy-content-tableHead-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-table-anatomy-content-tableHead-gap: var(--sn-table-anatomy-content-tableHead-gap, #{st.$sn-primitive-dimension-2});
+$sn-table-anatomy-content-tableHead-minHeight: var(--sn-table-anatomy-content-tableHead-minHeight, #{st.$sn-primitive-dimension-40});
+$sn-table-anatomy-content-tableHead-paddingTop: var(--sn-table-anatomy-content-tableHead-paddingTop, #{st.$sn-primitive-dimension-6});
+$sn-table-anatomy-content-tableHead-paddingBottom: var(--sn-table-anatomy-content-tableHead-paddingBottom, #{st.$sn-primitive-dimension-6});
+$sn-table-anatomy-content-tableCell-paddingLeft: var(--sn-table-anatomy-content-tableCell-paddingLeft, #{st.$sn-primitive-dimension-12});
+$sn-table-anatomy-content-tableCell-paddingRight: var(--sn-table-anatomy-content-tableCell-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-table-anatomy-content-tableCell-paddingTop: var(--sn-table-anatomy-content-tableCell-paddingTop, #{st.$sn-primitive-dimension-6});
+$sn-table-anatomy-content-tableCell-paddingBottom: var(--sn-table-anatomy-content-tableCell-paddingBottom, #{st.$sn-primitive-dimension-6});
+$sn-table-anatomy-content-tableCell-contentWrapper-paddingTop: var(--sn-table-anatomy-content-tableCell-contentWrapper-paddingTop, #{st.$sn-primitive-dimension-2});
+$sn-table-anatomy-content-tableCell-contentWrapper-paddingBottom: var(--sn-table-anatomy-content-tableCell-contentWrapper-paddingBottom, #{st.$sn-primitive-dimension-2});
+$sn-table-anatomy-content-tableCell-contentWrapper-slot-gap: var(--sn-table-anatomy-content-tableCell-contentWrapper-slot-gap, #{st.$sn-primitive-dimension-2});
+$sn-table-anatomy-content-tableCell-minHeight: var(--sn-table-anatomy-content-tableCell-minHeight, #{st.$sn-primitive-dimension-40});
+$sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width, #{st.$sn-primitive-dimension-32});
+$sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth: var(--sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth: var(--sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft, #{st.$sn-density-spacing-interval-xs});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width, #{st.$sn-primitive-dimension-24});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width, #{st.$sn-primitive-dimension-32});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap, #{st.$sn-primitive-dimension-4});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-table-anatomy-content-borderRadius: var(--sn-table-anatomy-content-borderRadius, #{st.$sn-brand-anatomy-radius-table-m});
+$sn-table-anatomy-content-body-minHeight: 304px;
+$sn-table-anatomy-view-card-gap: var(--sn-table-anatomy-view-card-gap, #{st.$sn-primitive-dimension-8});
+$sn-table-anatomy-content-body-slot-gap: var(--sn-table-anatomy-content-body-slot-gap, #{$sn-table-anatomy-view-card-gap});
+$sn-table-anatomy-view-line-gap: var(--sn-table-anatomy-view-line-gap, #{st.$sn-primitive-dimension-4});
+
+$table: (
+  "anatomy": (
+    "content": (
+      "tableHead": (
+        "padding-left": $sn-table-anatomy-content-tableHead-paddingLeft,
+        "padding-right": $sn-table-anatomy-content-tableHead-paddingRight,
+        "gap": $sn-table-anatomy-content-tableHead-gap,
+        "min-height": $sn-table-anatomy-content-tableHead-minHeight,
+        "padding-top": $sn-table-anatomy-content-tableHead-paddingTop,
+        "padding-bottom": $sn-table-anatomy-content-tableHead-paddingBottom
+      ),
+      "tableCell": (
+        "padding-left": $sn-table-anatomy-content-tableCell-paddingLeft,
+        "padding-right": $sn-table-anatomy-content-tableCell-paddingRight,
+        "padding-top": $sn-table-anatomy-content-tableCell-paddingTop,
+        "padding-bottom": $sn-table-anatomy-content-tableCell-paddingBottom,
+        "contentWrapper": (
+          "padding-top": $sn-table-anatomy-content-tableCell-contentWrapper-paddingTop,
+          "padding-bottom": $sn-table-anatomy-content-tableCell-contentWrapper-paddingBottom,
+          "slot": (
+            "gap": $sn-table-anatomy-content-tableCell-contentWrapper-slot-gap
+          )
+        ),
+        "min-height": $sn-table-anatomy-content-tableCell-minHeight
+      ),
+      "headLine": (
+        "pinnedWrapper": (
+          "elementWrapper": (
+            "padding-left": $sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft,
+            "cellToggles": (
+              "padding-left": $sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft,
+              "width": $sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width
+            )
+          )
+        )
+      ),
+      "tableLine": (
+        "background": (
+          "regular": (
+            "width": $sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth
+          ),
+          "interaction": (
+            "width": $sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth
+          )
+        ),
+        "pinnedWrapper": (
+          "elementWrapper": (
+            "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft,
+            "treeControl": (
+              "nestingLevel": (
+                "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft
+              ),
+              "centeredWrapper": (
+                "width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width
+              )
+            ),
+            "cellToggles": (
+              "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft,
+              "width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width
+            ),
+            "cellTree": (
+              "gap": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap
+            ),
+            "dividerWrapper": (
+              "gap": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap
+            )
+          )
+        )
+      ),
+      "border-radius": $sn-table-anatomy-content-borderRadius,
+      "body": (
+        "min-height": $sn-table-anatomy-content-body-minHeight,
+        "slot": (
+          "gap": $sn-table-anatomy-content-body-slot-gap
+        )
+      )
+    ),
+    "view": (
+      "line": (
+        "gap": $sn-table-anatomy-view-line-gap
+      ),
+      "card": (
+        "gap": $sn-table-anatomy-view-card-gap
+      )
+    )
+  )
+);

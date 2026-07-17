@@ -1,0 +1,68 @@
+{
+  "sn": {
+    "hotSpot": {
+      "anatomy": {
+        "dot": {
+          "square": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.8}"
+          },
+          "borderRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.full}"
+          }
+        },
+        "pulse": {
+          "square": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.16}"
+          },
+          "borderRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.full}"
+          }
+        }
+      },
+      "effect": {
+        "opacity": {
+          "pulse": {
+            "opacity": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 24
+            }
+          }
+        }
+      }
+    }
+  }
+}

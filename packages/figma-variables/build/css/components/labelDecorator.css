@@ -1,0 +1,30 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-labelDecorator {
+  --sn-labelDecorator-size-s-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-s-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightM, 24px);
+  --sn-labelDecorator-size-s-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-s-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-s-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
+  --sn-labelDecorator-size-s-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-labelDecorator-size-s-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-labelDecorator-size-l-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-l-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-labelDecorator-size-l-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-l-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-l-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-labelDecorator-size-l-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-labelDecorator-size-l-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-labelDecorator-size-m-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-m-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightM, 24px);
+  --sn-labelDecorator-size-m-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-labelDecorator-size-m-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-labelDecorator-size-m-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightM, 24px);
+  --sn-labelDecorator-size-m-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-labelDecorator-size-m-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+}

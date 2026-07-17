@@ -1,0 +1,12 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-divider {
+  --sn-divider-anatomy-container-height: var(--sn-primitive-dimension-1, 1px);
+  --sn-divider-anatomy-container-line-regular-width: var(--sn-primitive-dimension-1, 1px);
+  --sn-divider-anatomy-container-line-regular-height: var(--sn-primitive-dimension-1, 1px);
+  --sn-divider-anatomy-container-line-thin-width: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-divider-anatomy-container-line-thin-height: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-divider-anatomy-container-width: var(--sn-primitive-dimension-1, 1px);
+}

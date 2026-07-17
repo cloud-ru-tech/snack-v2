@@ -1,0 +1,12 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-rating {
+  --sn-rating-anatomy-size-s-container-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-rating-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-toggles-checkbox-framing-s, 2px);
+  --sn-rating-anatomy-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-rating-anatomy-size-xs-container-minWidth: var(--sn-primitive-dimension-16, 16px);
+  --sn-rating-anatomy-size-xs-container-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-rating-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-toggles-checkbox-framing-xs, 2px);
+}

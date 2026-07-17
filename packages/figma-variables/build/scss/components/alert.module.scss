@@ -1,0 +1,86 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-alert-anatomy-size-m-container-borderRadius: var(--sn-alert-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-alert-m});
+$sn-alert-anatomy-size-m-container-content-text-paddingVertical: var(--sn-alert-anatomy-size-m-container-content-text-paddingVertical, #{st.$sn-density-spacing-interval-2xs});
+$sn-alert-anatomy-size-m-container-content-text-paddingHorizontal: var(--sn-alert-anatomy-size-m-container-content-text-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-size-m-container-gap: var(--sn-alert-anatomy-size-m-container-gap, #{st.$sn-density-spacing-interval-m});
+$sn-alert-anatomy-size-m-container-actionWrapper-gap: var(--sn-alert-anatomy-size-m-container-actionWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-size-m-container-centeredWrapper-height: var(--sn-alert-anatomy-size-m-container-centeredWrapper-height, #{st.$sn-primitive-dimension-24});
+$sn-alert-anatomy-size-m-container-actionWrapper-height: var(--sn-alert-anatomy-size-m-container-actionWrapper-height, #{$sn-alert-anatomy-size-m-container-centeredWrapper-height});
+$sn-alert-anatomy-size-m-container-paddingVertical: var(--sn-alert-anatomy-size-m-container-paddingVertical, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-size-m-container-borderWidth: var(--sn-alert-anatomy-size-m-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-alert-anatomy-size-m-container-paddingHorizontal: var(--sn-alert-anatomy-size-m-container-paddingHorizontal, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-size-s-container-borderRadius: var(--sn-alert-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-alert-s});
+$sn-alert-anatomy-size-s-container-borderWidth: var(--sn-alert-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-alert-anatomy-size-s-container-content-text-paddingVertical: var(--sn-alert-anatomy-size-s-container-content-text-paddingVertical, #{st.$sn-density-spacing-interval-xs});
+$sn-alert-anatomy-size-s-container-content-text-paddingHorizontal: var(--sn-alert-anatomy-size-s-container-content-text-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-alert-anatomy-size-s-container-gap: var(--sn-alert-anatomy-size-s-container-gap, #{st.$sn-density-spacing-interval-s});
+$sn-alert-anatomy-size-s-container-actionWrapper-gap: var(--sn-alert-anatomy-size-s-container-actionWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-size-s-container-centeredWrapper-height: var(--sn-alert-anatomy-size-s-container-centeredWrapper-height, #{st.$sn-primitive-dimension-24});
+$sn-alert-anatomy-size-s-container-actionWrapper-height: var(--sn-alert-anatomy-size-s-container-actionWrapper-height, #{$sn-alert-anatomy-size-s-container-centeredWrapper-height});
+$sn-alert-anatomy-size-s-container-paddingVertical: var(--sn-alert-anatomy-size-s-container-paddingVertical, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-size-s-container-paddingHorizontal: var(--sn-alert-anatomy-size-s-container-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+
+$alert: (
+  "anatomy": (
+    "size": (
+      "m": (
+        "container": (
+          "border-radius": $sn-alert-anatomy-size-m-container-borderRadius,
+          "content": (
+            "text": (
+              "padding-top": $sn-alert-anatomy-size-m-container-content-text-paddingVertical,
+              "padding-bottom": $sn-alert-anatomy-size-m-container-content-text-paddingVertical,
+              "padding-left": $sn-alert-anatomy-size-m-container-content-text-paddingHorizontal,
+              "padding-right": $sn-alert-anatomy-size-m-container-content-text-paddingHorizontal
+            )
+          ),
+          "gap": $sn-alert-anatomy-size-m-container-gap,
+          "actionWrapper": (
+            "gap": $sn-alert-anatomy-size-m-container-actionWrapper-gap,
+            "height": $sn-alert-anatomy-size-m-container-actionWrapper-height
+          ),
+          "padding-top": $sn-alert-anatomy-size-m-container-paddingVertical,
+          "padding-bottom": $sn-alert-anatomy-size-m-container-paddingVertical,
+          "border-width": $sn-alert-anatomy-size-m-container-borderWidth,
+          "centeredWrapper": (
+            "height": $sn-alert-anatomy-size-m-container-centeredWrapper-height
+          ),
+          "padding-left": $sn-alert-anatomy-size-m-container-paddingHorizontal,
+          "padding-right": $sn-alert-anatomy-size-m-container-paddingHorizontal
+        )
+      ),
+      "s": (
+        "container": (
+          "border-radius": $sn-alert-anatomy-size-s-container-borderRadius,
+          "border-width": $sn-alert-anatomy-size-s-container-borderWidth,
+          "content": (
+            "text": (
+              "padding-top": $sn-alert-anatomy-size-s-container-content-text-paddingVertical,
+              "padding-bottom": $sn-alert-anatomy-size-s-container-content-text-paddingVertical,
+              "padding-left": $sn-alert-anatomy-size-s-container-content-text-paddingHorizontal,
+              "padding-right": $sn-alert-anatomy-size-s-container-content-text-paddingHorizontal
+            )
+          ),
+          "gap": $sn-alert-anatomy-size-s-container-gap,
+          "actionWrapper": (
+            "gap": $sn-alert-anatomy-size-s-container-actionWrapper-gap,
+            "height": $sn-alert-anatomy-size-s-container-actionWrapper-height
+          ),
+          "padding-top": $sn-alert-anatomy-size-s-container-paddingVertical,
+          "padding-bottom": $sn-alert-anatomy-size-s-container-paddingVertical,
+          "centeredWrapper": (
+            "height": $sn-alert-anatomy-size-s-container-centeredWrapper-height
+          ),
+          "padding-left": $sn-alert-anatomy-size-s-container-paddingHorizontal,
+          "padding-right": $sn-alert-anatomy-size-s-container-paddingHorizontal
+        )
+      )
+    )
+  )
+);

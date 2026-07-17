@@ -1,0 +1,140 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-colorPicker-anatomy-size-s-colorPicker-gap: var(--sn-colorPicker-anatomy-size-s-colorPicker-gap, #{st.$sn-primitive-dimension-8});
+$sn-colorPicker-anatomy-size-s-colorPicker-sliderTrack-borderRadius: var(--sn-colorPicker-anatomy-size-s-colorPicker-sliderTrack-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-s-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-s-colorPicker-parameter-gap, #{$sn-colorPicker-anatomy-size-s-colorPicker-gap});
+$sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minHeight: 200px;
+$sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minWidth: 200px;
+$sn-colorPicker-anatomy-size-s-colorPicker-colorArea-borderRadius: var(--sn-colorPicker-anatomy-size-s-colorPicker-colorArea-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-colorPicker-anatomy-size-s-handleColor-bg-borderRadius: var(--sn-colorPicker-anatomy-size-s-handleColor-bg-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-s-handleColor-bg-borderWidth: var(--sn-colorPicker-anatomy-size-s-handleColor-bg-borderWidth, #{st.$sn-primitive-dimension-4});
+$sn-colorPicker-anatomy-size-s-handleColor-bg-width: var(--sn-colorPicker-anatomy-size-s-handleColor-bg-width, #{st.$sn-density-size-s});
+$sn-colorPicker-anatomy-size-s-handleColor-bg-height: var(--sn-colorPicker-anatomy-size-s-handleColor-bg-height, #{st.$sn-density-size-s});
+$sn-colorPicker-anatomy-size-s-previewColor-borderRadius: var(--sn-colorPicker-anatomy-size-s-previewColor-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-colorPicker-anatomy-size-s-previewColor-width: var(--sn-colorPicker-anatomy-size-s-previewColor-width, #{st.$sn-density-size-icon-xs});
+$sn-colorPicker-anatomy-size-s-previewColor-height: var(--sn-colorPicker-anatomy-size-s-previewColor-height, #{st.$sn-density-size-icon-xs});
+$sn-colorPicker-anatomy-size-m-colorPicker-gap: var(--sn-colorPicker-anatomy-size-m-colorPicker-gap, #{st.$sn-primitive-dimension-8});
+$sn-colorPicker-anatomy-size-m-colorPicker-sliderTrack-borderRadius: var(--sn-colorPicker-anatomy-size-m-colorPicker-sliderTrack-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-m-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-m-colorPicker-parameter-gap, #{$sn-colorPicker-anatomy-size-m-colorPicker-gap});
+$sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minWidth: 232px;
+$sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minHeight: 232px;
+$sn-colorPicker-anatomy-size-m-colorPicker-colorArea-borderRadius: var(--sn-colorPicker-anatomy-size-m-colorPicker-colorArea-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-colorPicker-anatomy-size-m-handleColor-bg-borderRadius: var(--sn-colorPicker-anatomy-size-m-handleColor-bg-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-m-handleColor-bg-borderWidth: var(--sn-colorPicker-anatomy-size-m-handleColor-bg-borderWidth, #{st.$sn-primitive-dimension-6});
+$sn-colorPicker-anatomy-size-m-handleColor-bg-width: var(--sn-colorPicker-anatomy-size-m-handleColor-bg-width, #{st.$sn-density-size-m});
+$sn-colorPicker-anatomy-size-m-handleColor-bg-height: var(--sn-colorPicker-anatomy-size-m-handleColor-bg-height, #{st.$sn-density-size-m});
+$sn-colorPicker-anatomy-size-m-previewColor-borderRadius: var(--sn-colorPicker-anatomy-size-m-previewColor-borderRadius, #{st.$sn-density-radius-s});
+$sn-colorPicker-anatomy-size-m-previewColor-width: var(--sn-colorPicker-anatomy-size-m-previewColor-width, #{st.$sn-density-size-icon-s});
+$sn-colorPicker-anatomy-size-m-previewColor-height: var(--sn-colorPicker-anatomy-size-m-previewColor-height, #{st.$sn-density-size-icon-s});
+$sn-colorPicker-anatomy-size-l-colorPicker-gap: var(--sn-colorPicker-anatomy-size-l-colorPicker-gap, #{st.$sn-primitive-dimension-8});
+$sn-colorPicker-anatomy-size-l-colorPicker-sliderTrack-borderRadius: var(--sn-colorPicker-anatomy-size-l-colorPicker-sliderTrack-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-l-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-l-colorPicker-parameter-gap, #{$sn-colorPicker-anatomy-size-l-colorPicker-gap});
+$sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minWidth: 296px;
+$sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minHeight: 292px;
+$sn-colorPicker-anatomy-size-l-colorPicker-colorArea-borderRadius: var(--sn-colorPicker-anatomy-size-l-colorPicker-colorArea-borderRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-colorPicker-anatomy-size-l-handleColor-bg-borderRadius: var(--sn-colorPicker-anatomy-size-l-handleColor-bg-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-colorPicker-anatomy-size-l-handleColor-bg-borderWidth: var(--sn-colorPicker-anatomy-size-l-handleColor-bg-borderWidth, #{st.$sn-primitive-dimension-8});
+$sn-colorPicker-anatomy-size-l-handleColor-bg-width: var(--sn-colorPicker-anatomy-size-l-handleColor-bg-width, #{st.$sn-density-size-l});
+$sn-colorPicker-anatomy-size-l-handleColor-bg-height: var(--sn-colorPicker-anatomy-size-l-handleColor-bg-height, #{st.$sn-density-size-l});
+$sn-colorPicker-anatomy-size-l-previewColor-borderRadius: var(--sn-colorPicker-anatomy-size-l-previewColor-borderRadius, #{st.$sn-density-radius-s});
+$sn-colorPicker-anatomy-size-l-previewColor-width: var(--sn-colorPicker-anatomy-size-l-previewColor-width, #{st.$sn-density-size-icon-m});
+$sn-colorPicker-anatomy-size-l-previewColor-height: var(--sn-colorPicker-anatomy-size-l-previewColor-height, #{st.$sn-density-size-icon-m});
+
+$colorPicker: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "colorPicker": (
+          "gap": $sn-colorPicker-anatomy-size-s-colorPicker-gap,
+          "sliderTrack": (
+            "border-radius": $sn-colorPicker-anatomy-size-s-colorPicker-sliderTrack-borderRadius
+          ),
+          "parameter": (
+            "gap": $sn-colorPicker-anatomy-size-s-colorPicker-parameter-gap
+          ),
+          "colorArea": (
+            "min-height": $sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minHeight,
+            "min-width": $sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minWidth,
+            "border-radius": $sn-colorPicker-anatomy-size-s-colorPicker-colorArea-borderRadius
+          )
+        ),
+        "handleColor": (
+          "bg": (
+            "border-radius": $sn-colorPicker-anatomy-size-s-handleColor-bg-borderRadius,
+            "border-width": $sn-colorPicker-anatomy-size-s-handleColor-bg-borderWidth,
+            "width": $sn-colorPicker-anatomy-size-s-handleColor-bg-width,
+            "height": $sn-colorPicker-anatomy-size-s-handleColor-bg-height
+          )
+        ),
+        "previewColor": (
+          "border-radius": $sn-colorPicker-anatomy-size-s-previewColor-borderRadius,
+          "width": $sn-colorPicker-anatomy-size-s-previewColor-width,
+          "height": $sn-colorPicker-anatomy-size-s-previewColor-height
+        )
+      ),
+      "m": (
+        "colorPicker": (
+          "gap": $sn-colorPicker-anatomy-size-m-colorPicker-gap,
+          "sliderTrack": (
+            "border-radius": $sn-colorPicker-anatomy-size-m-colorPicker-sliderTrack-borderRadius
+          ),
+          "parameter": (
+            "gap": $sn-colorPicker-anatomy-size-m-colorPicker-parameter-gap
+          ),
+          "colorArea": (
+            "min-width": $sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minWidth,
+            "min-height": $sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minHeight,
+            "border-radius": $sn-colorPicker-anatomy-size-m-colorPicker-colorArea-borderRadius
+          )
+        ),
+        "handleColor": (
+          "bg": (
+            "border-radius": $sn-colorPicker-anatomy-size-m-handleColor-bg-borderRadius,
+            "border-width": $sn-colorPicker-anatomy-size-m-handleColor-bg-borderWidth,
+            "width": $sn-colorPicker-anatomy-size-m-handleColor-bg-width,
+            "height": $sn-colorPicker-anatomy-size-m-handleColor-bg-height
+          )
+        ),
+        "previewColor": (
+          "border-radius": $sn-colorPicker-anatomy-size-m-previewColor-borderRadius,
+          "width": $sn-colorPicker-anatomy-size-m-previewColor-width,
+          "height": $sn-colorPicker-anatomy-size-m-previewColor-height
+        )
+      ),
+      "l": (
+        "colorPicker": (
+          "gap": $sn-colorPicker-anatomy-size-l-colorPicker-gap,
+          "sliderTrack": (
+            "border-radius": $sn-colorPicker-anatomy-size-l-colorPicker-sliderTrack-borderRadius
+          ),
+          "parameter": (
+            "gap": $sn-colorPicker-anatomy-size-l-colorPicker-parameter-gap
+          ),
+          "colorArea": (
+            "min-width": $sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minWidth,
+            "min-height": $sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minHeight,
+            "border-radius": $sn-colorPicker-anatomy-size-l-colorPicker-colorArea-borderRadius
+          )
+        ),
+        "handleColor": (
+          "bg": (
+            "border-radius": $sn-colorPicker-anatomy-size-l-handleColor-bg-borderRadius,
+            "border-width": $sn-colorPicker-anatomy-size-l-handleColor-bg-borderWidth,
+            "width": $sn-colorPicker-anatomy-size-l-handleColor-bg-width,
+            "height": $sn-colorPicker-anatomy-size-l-handleColor-bg-height
+          )
+        ),
+        "previewColor": (
+          "border-radius": $sn-colorPicker-anatomy-size-l-previewColor-borderRadius,
+          "width": $sn-colorPicker-anatomy-size-l-previewColor-width,
+          "height": $sn-colorPicker-anatomy-size-l-previewColor-height
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,60 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-calendar {
+  --sn-calendar-anatomy-size-s-timePicker-minWidth: 160px;
+  --sn-calendar-anatomy-size-s-timePicker-minHeight: 224px;
+  --sn-calendar-anatomy-size-s-timePicker-drum-maxWidth: 240px;
+  --sn-calendar-anatomy-size-s-timePicker-gap: var(--sn-primitive-dimension-24, 24px);
+  --sn-calendar-anatomy-size-s-timePicker-padding: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-s-timePicker-selectedTime-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-s-itemCalendar-container-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
+  --sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-calendar-anatomy-size-s-itemCalendar-container-labelWrapper-marker-width: var(--sn-primitive-dimension-12, 12px);
+  --sn-calendar-anatomy-size-s-itemCalendar-minHeight: var(--sn-density-size-s, 48px);
+  --sn-calendar-anatomy-size-s-itemCalendar-minWidth: var(--sn-density-size-s, 48px);
+  --sn-calendar-anatomy-size-s-gridDate-minWidth: 232px;
+  --sn-calendar-anatomy-size-s-gridDate-minHeight: 224px;
+  --sn-calendar-anatomy-size-s-gridDate-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-calendar-anatomy-size-s-header-paddingHorizontal: var(--sn-primitive-dimension-6, 6px);
+  --sn-calendar-anatomy-size-s-header-height: var(--sn-primitive-dimension-32, 32px);
+  --sn-calendar-anatomy-size-m-itemCalendar-minHeight: var(--sn-density-size-m, 56px);
+  --sn-calendar-anatomy-size-m-itemCalendar-minWidth: var(--sn-density-size-m, 56px);
+  --sn-calendar-anatomy-size-m-itemCalendar-container-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-calendar-anatomy-size-m-itemCalendar-container-labelWrapper-marker-width: var(--sn-primitive-dimension-16, 16px);
+  --sn-calendar-anatomy-size-m-gridDate-minWidth: 232px;
+  --sn-calendar-anatomy-size-m-gridDate-minHeight: 224px;
+  --sn-calendar-anatomy-size-m-gridDate-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-calendar-anatomy-size-m-timePicker-minWidth: 192px;
+  --sn-calendar-anatomy-size-m-timePicker-minHeight: 224px;
+  --sn-calendar-anatomy-size-m-timePicker-drum-maxWidth: 240px;
+  --sn-calendar-anatomy-size-m-timePicker-gap: var(--sn-primitive-dimension-32, 32px);
+  --sn-calendar-anatomy-size-m-timePicker-padding: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-m-timePicker-selectedTime-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-m-header-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-m-header-height: var(--sn-primitive-dimension-40, 40px);
+  --sn-calendar-anatomy-size-l-itemCalendar-minHeight: var(--sn-density-size-l, 64px);
+  --sn-calendar-anatomy-size-l-itemCalendar-minWidth: var(--sn-density-size-l, 64px);
+  --sn-calendar-anatomy-size-l-itemCalendar-container-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-calendar-anatomy-size-l-itemCalendar-container-labelWrapper-marker-width: var(--sn-primitive-dimension-20, 20px);
+  --sn-calendar-anatomy-size-l-gridDate-minWidth: 296px;
+  --sn-calendar-anatomy-size-l-gridDate-minHeight: 280px;
+  --sn-calendar-anatomy-size-l-gridDate-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-calendar-anatomy-size-l-timePicker-minWidth: 224px;
+  --sn-calendar-anatomy-size-l-timePicker-minHeight: 280px;
+  --sn-calendar-anatomy-size-l-timePicker-drum-maxWidth: 300px;
+  --sn-calendar-anatomy-size-l-timePicker-gap: var(--sn-primitive-dimension-40, 40px);
+  --sn-calendar-anatomy-size-l-timePicker-padding: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-l-timePicker-selectedTime-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-calendar-anatomy-size-l-header-paddingHorizontal: var(--sn-primitive-dimension-12, 12px);
+  --sn-calendar-anatomy-size-l-header-height: var(--sn-primitive-dimension-56, 56px);
+}

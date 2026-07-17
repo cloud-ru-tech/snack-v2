@@ -1,0 +1,62 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-promoTag-anatomy-size-s-container-minHeight: var(--sn-promoTag-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-promoTag-anatomy-size-s-container-padding: var(--sn-promoTag-anatomy-size-s-container-padding, #{st.$sn-primitive-dimension-4});
+$sn-promoTag-anatomy-size-s-container-borderRadius: var(--sn-promoTag-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-s});
+$sn-promoTag-anatomy-size-s-container-minWidth: var(--sn-promoTag-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-promoTag-anatomy-size-s-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-s-container-textWrapper-padding, #{st.$sn-primitive-dimension-2});
+$sn-promoTag-anatomy-size-xs-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-xs-container-textWrapper-padding, #{st.$sn-primitive-dimension-2});
+$sn-promoTag-anatomy-size-xs-container-minHeight: var(--sn-promoTag-anatomy-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-promoTag-anatomy-size-xs-container-padding: var(--sn-promoTag-anatomy-size-xs-container-padding, #{st.$sn-primitive-dimension-2});
+$sn-promoTag-anatomy-size-xs-container-minWidth: var(--sn-promoTag-anatomy-size-xs-container-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-promoTag-anatomy-size-xs-container-borderRadius: var(--sn-promoTag-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-xs});
+$sn-promoTag-anatomy-size-m-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-m-container-textWrapper-padding, #{st.$sn-primitive-dimension-4});
+$sn-promoTag-anatomy-size-m-container-padding: var(--sn-promoTag-anatomy-size-m-container-padding, #{st.$sn-primitive-dimension-4});
+$sn-promoTag-anatomy-size-m-container-borderRadius: var(--sn-promoTag-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-m});
+$sn-promoTag-anatomy-size-m-container-minHeight: var(--sn-promoTag-anatomy-size-m-container-minHeight, #{st.$sn-primitive-dimension-32});
+$sn-promoTag-anatomy-size-m-container-minWidth: var(--sn-promoTag-anatomy-size-m-container-minWidth, #{st.$sn-primitive-dimension-32});
+
+$promoTag: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-height": $sn-promoTag-anatomy-size-s-container-minHeight,
+          "padding": $sn-promoTag-anatomy-size-s-container-padding,
+          "border-radius": $sn-promoTag-anatomy-size-s-container-borderRadius,
+          "min-width": $sn-promoTag-anatomy-size-s-container-minWidth,
+          "textWrapper": (
+            "padding": $sn-promoTag-anatomy-size-s-container-textWrapper-padding
+          )
+        )
+      ),
+      "xs": (
+        "container": (
+          "textWrapper": (
+            "padding": $sn-promoTag-anatomy-size-xs-container-textWrapper-padding
+          ),
+          "min-height": $sn-promoTag-anatomy-size-xs-container-minHeight,
+          "padding": $sn-promoTag-anatomy-size-xs-container-padding,
+          "min-width": $sn-promoTag-anatomy-size-xs-container-minWidth,
+          "border-radius": $sn-promoTag-anatomy-size-xs-container-borderRadius
+        )
+      ),
+      "m": (
+        "container": (
+          "textWrapper": (
+            "padding": $sn-promoTag-anatomy-size-m-container-textWrapper-padding
+          ),
+          "padding": $sn-promoTag-anatomy-size-m-container-padding,
+          "border-radius": $sn-promoTag-anatomy-size-m-container-borderRadius,
+          "min-height": $sn-promoTag-anatomy-size-m-container-minHeight,
+          "min-width": $sn-promoTag-anatomy-size-m-container-minWidth
+        )
+      )
+    )
+  )
+);

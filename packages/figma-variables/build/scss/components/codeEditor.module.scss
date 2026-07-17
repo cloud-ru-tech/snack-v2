@@ -1,0 +1,45 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-codeEditor-anatomy-size-rowNumbers-paddingLeft: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-codeEditor-anatomy-size-rowNumbers-paddingRight: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingRight, #{st.$sn-primitive-dimension-24});
+$sn-codeEditor-anatomy-size-rowNumbers-paddingVertical: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-codeEditor-anatomy-size-rowNumbers-gap: var(--sn-codeEditor-anatomy-size-rowNumbers-gap, #{st.$sn-primitive-dimension-4});
+$sn-codeEditor-anatomy-size-content-paddingVertical: var(--sn-codeEditor-anatomy-size-content-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-codeEditor-anatomy-size-scroll-borderWidth: var(--sn-codeEditor-anatomy-size-scroll-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-codeEditor-anatomy-size-header-paddingLeft: var(--sn-codeEditor-anatomy-size-header-paddingLeft, #{st.$sn-primitive-dimension-12});
+$sn-codeEditor-anatomy-size-header-paddingRight: var(--sn-codeEditor-anatomy-size-header-paddingRight, #{st.$sn-primitive-dimension-2});
+$sn-codeEditor-anatomy-size-header-paddingVertical: var(--sn-codeEditor-anatomy-size-header-paddingVertical, #{st.$sn-primitive-dimension-2});
+$sn-codeEditor-anatomy-size-header-gap: var(--sn-codeEditor-anatomy-size-header-gap, #{st.$sn-primitive-dimension-8});
+
+$codeEditor: (
+  "anatomy": (
+    "size": (
+      "rowNumbers": (
+        "padding-left": $sn-codeEditor-anatomy-size-rowNumbers-paddingLeft,
+        "padding-right": $sn-codeEditor-anatomy-size-rowNumbers-paddingRight,
+        "padding-top": $sn-codeEditor-anatomy-size-rowNumbers-paddingVertical,
+        "padding-bottom": $sn-codeEditor-anatomy-size-rowNumbers-paddingVertical,
+        "gap": $sn-codeEditor-anatomy-size-rowNumbers-gap
+      ),
+      "content": (
+        "padding-top": $sn-codeEditor-anatomy-size-content-paddingVertical,
+        "padding-bottom": $sn-codeEditor-anatomy-size-content-paddingVertical
+      ),
+      "scroll": (
+        "border-width": $sn-codeEditor-anatomy-size-scroll-borderWidth
+      ),
+      "header": (
+        "padding-left": $sn-codeEditor-anatomy-size-header-paddingLeft,
+        "padding-right": $sn-codeEditor-anatomy-size-header-paddingRight,
+        "padding-top": $sn-codeEditor-anatomy-size-header-paddingVertical,
+        "padding-bottom": $sn-codeEditor-anatomy-size-header-paddingVertical,
+        "gap": $sn-codeEditor-anatomy-size-header-gap
+      )
+    )
+  )
+);

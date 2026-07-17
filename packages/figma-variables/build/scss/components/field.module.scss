@@ -1,0 +1,277 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-field-anatomy-size-s-fieldContainer-paddingVertical: var(--sn-field-anatomy-size-s-fieldContainer-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
+$sn-field-anatomy-size-s-fieldContainer-contentWrapper-verticalPadding: var(--sn-field-anatomy-size-s-fieldContainer-contentWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-s});
+$sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-horizontalPadding: var(--sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-gap: var(--sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-field-anatomy-size-s-fieldContainer-minHeight: var(--sn-field-anatomy-size-s-fieldContainer-minHeight, #{st.$sn-density-size-s});
+$sn-field-anatomy-size-s-fieldContainer-borderLeftWidth: var(--sn-field-anatomy-size-s-fieldContainer-borderLeftWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-s-fieldContainer-borderTopLeftRadius: var(--sn-field-anatomy-size-s-fieldContainer-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-fieldContainer-borderTopWidth: var(--sn-field-anatomy-size-s-fieldContainer-borderTopWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-s-fieldContainer-borderRightWidth: var(--sn-field-anatomy-size-s-fieldContainer-borderRightWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-s-fieldContainer-borderBottomWidth: var(--sn-field-anatomy-size-s-fieldContainer-borderBottomWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-s-fieldContainer-borderTopRightRadius: var(--sn-field-anatomy-size-s-fieldContainer-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-fieldContainer-borderBottomLeftRadius: var(--sn-field-anatomy-size-s-fieldContainer-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-fieldContainer-borderBottomRightRadius: var(--sn-field-anatomy-size-s-fieldContainer-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-fieldContainer-centeredWrapper-maxHeight: var(--sn-field-anatomy-size-s-fieldContainer-centeredWrapper-maxHeight, #{st.$sn-density-typography-roleBody-lineHeightS});
+$sn-field-anatomy-size-s-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding: var(--sn-field-anatomy-size-s-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-s});
+$sn-field-anatomy-size-s-fieldContainer-resizeWrapper-maxWidth: var(--sn-field-anatomy-size-s-fieldContainer-resizeWrapper-maxWidth, #{st.$sn-primitive-dimension-8});
+$sn-field-anatomy-size-s-fieldContainer-multiLine-minHeight: var(--sn-field-anatomy-size-s-fieldContainer-multiLine-minHeight, #{st.$sn-primitive-dimension-56});
+$sn-field-anatomy-size-s-fieldContainer-paddingLeft: var(--sn-field-anatomy-size-s-fieldContainer-paddingLeft, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-field-anatomy-size-s-fieldContainer-paddingRight: var(--sn-field-anatomy-size-s-fieldContainer-paddingRight, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-field-anatomy-size-s-buttonField-container-minWidth: var(--sn-field-anatomy-size-s-buttonField-container-minWidth, #{st.$sn-density-size-s});
+$sn-field-anatomy-size-s-buttonField-container-borderRadius: var(--sn-field-anatomy-size-s-buttonField-container-borderRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-buttonField-container-paddingHorizontal: var(--sn-field-anatomy-size-s-buttonField-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-field-anatomy-size-s-buttonField-elementWrapper-gap: var(--sn-field-anatomy-size-s-buttonField-elementWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-field-anatomy-size-s-elementWrapper-lineWrapper-padding: var(--sn-field-anatomy-size-s-elementWrapper-lineWrapper-padding, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingHorizontal: var(--sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingHorizontal, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-field-anatomy-size-s-sliderWrapper-lineWrapper-maxHeight: var(--sn-field-anatomy-size-s-sliderWrapper-lineWrapper-maxHeight, #{st.$sn-primitive-font-fontSize-24});
+$sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingTop: var(--sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingTop, #{st.$sn-primitive-dimension-4});
+$sn-field-anatomy-size-m-fieldContainer-minHeight: var(--sn-field-anatomy-size-m-fieldContainer-minHeight, #{st.$sn-density-size-m});
+$sn-field-anatomy-size-m-fieldContainer-multiLine-minHeight: var(--sn-field-anatomy-size-m-fieldContainer-multiLine-minHeight, #{st.$sn-primitive-dimension-68});
+$sn-field-anatomy-size-m-fieldContainer-paddingVertical: var(--sn-field-anatomy-size-m-fieldContainer-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
+$sn-field-anatomy-size-m-fieldContainer-borderTopLeftRadius: var(--sn-field-anatomy-size-m-fieldContainer-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-fieldContainer-borderTopRightRadius: var(--sn-field-anatomy-size-m-fieldContainer-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-fieldContainer-borderBottomRightRadius: var(--sn-field-anatomy-size-m-fieldContainer-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-fieldContainer-borderBottomLeftRadius: var(--sn-field-anatomy-size-m-fieldContainer-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-fieldContainer-borderLeftWidth: var(--sn-field-anatomy-size-m-fieldContainer-borderLeftWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-m-fieldContainer-borderTopWidth: var(--sn-field-anatomy-size-m-fieldContainer-borderTopWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-m-fieldContainer-borderRightWidth: var(--sn-field-anatomy-size-m-fieldContainer-borderRightWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-m-fieldContainer-borderBottomWidth: var(--sn-field-anatomy-size-m-fieldContainer-borderBottomWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding: var(--sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-gap: var(--sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding: var(--sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-m});
+$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight: var(--sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight, #{st.$sn-density-typography-roleBody-lineHeightM});
+$sn-field-anatomy-size-m-fieldContainer-resizeWrapper-maxWidth: var(--sn-field-anatomy-size-m-fieldContainer-resizeWrapper-maxWidth, #{st.$sn-primitive-dimension-8});
+$sn-field-anatomy-size-m-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding: var(--sn-field-anatomy-size-m-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-m});
+$sn-field-anatomy-size-m-fieldContainer-paddingLeft: var(--sn-field-anatomy-size-m-fieldContainer-paddingLeft, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-field-anatomy-size-m-fieldContainer-paddingRight: var(--sn-field-anatomy-size-m-fieldContainer-paddingRight, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-field-anatomy-size-m-elementWrapper-lineWrapper-padding: var(--sn-field-anatomy-size-m-elementWrapper-lineWrapper-padding, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-m-sliderWrapper-lineWrapper-maxHeight: var(--sn-field-anatomy-size-m-sliderWrapper-lineWrapper-maxHeight, #{st.$sn-primitive-dimension-24});
+$sn-field-anatomy-size-m-sliderWrapper-lineWrapper-paddingHorizontal: var(--sn-field-anatomy-size-m-sliderWrapper-lineWrapper-paddingHorizontal, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-buttonField-container-minWidth: var(--sn-field-anatomy-size-m-buttonField-container-minWidth, #{st.$sn-density-size-m});
+$sn-field-anatomy-size-m-buttonField-container-paddingHorizontal: var(--sn-field-anatomy-size-m-buttonField-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-field-anatomy-size-m-buttonField-container-borderRadius: var(--sn-field-anatomy-size-m-buttonField-container-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-field-anatomy-size-m-buttonField-elementWrapper-gap: var(--sn-field-anatomy-size-m-buttonField-elementWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-field-anatomy-size-l-fieldContainer-minHeight: var(--sn-field-anatomy-size-l-fieldContainer-minHeight, #{st.$sn-density-size-l});
+$sn-field-anatomy-size-l-fieldContainer-multiLine-minHeight: var(--sn-field-anatomy-size-l-fieldContainer-multiLine-minHeight, #{st.$sn-primitive-dimension-88});
+$sn-field-anatomy-size-l-fieldContainer-paddingVertical: var(--sn-field-anatomy-size-l-fieldContainer-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
+$sn-field-anatomy-size-l-fieldContainer-borderTopLeftRadius: var(--sn-field-anatomy-size-l-fieldContainer-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-fieldContainer-borderTopRightRadius: var(--sn-field-anatomy-size-l-fieldContainer-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-fieldContainer-borderBottomRightRadius: var(--sn-field-anatomy-size-l-fieldContainer-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-fieldContainer-borderBottomLeftRadius: var(--sn-field-anatomy-size-l-fieldContainer-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-fieldContainer-borderLeftWidth: var(--sn-field-anatomy-size-l-fieldContainer-borderLeftWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-l-fieldContainer-borderTopWidth: var(--sn-field-anatomy-size-l-fieldContainer-borderTopWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-l-fieldContainer-borderRightWidth: var(--sn-field-anatomy-size-l-fieldContainer-borderRightWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-l-fieldContainer-borderBottomWidth: var(--sn-field-anatomy-size-l-fieldContainer-borderBottomWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-horizontalPadding: var(--sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-horizontalPadding, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-gap: var(--sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-field-anatomy-size-l-fieldContainer-contentWrapper-verticalPadding: var(--sn-field-anatomy-size-l-fieldContainer-contentWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-l});
+$sn-field-anatomy-size-l-fieldContainer-centeredWrapper-maxHeight: var(--sn-field-anatomy-size-l-fieldContainer-centeredWrapper-maxHeight, #{st.$sn-density-typography-roleBody-lineHeightL});
+$sn-field-anatomy-size-l-fieldContainer-resizeWrapper-maxWidth: var(--sn-field-anatomy-size-l-fieldContainer-resizeWrapper-maxWidth, #{st.$sn-primitive-dimension-8});
+$sn-field-anatomy-size-l-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding: var(--sn-field-anatomy-size-l-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding, #{st.$sn-density-spacing-control-wrapper-vertical-l});
+$sn-field-anatomy-size-l-fieldContainer-paddingLeft: var(--sn-field-anatomy-size-l-fieldContainer-paddingLeft, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-field-anatomy-size-l-fieldContainer-paddingRight: var(--sn-field-anatomy-size-l-fieldContainer-paddingRight, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-field-anatomy-size-l-elementWrapper-lineWrapper-padding: var(--sn-field-anatomy-size-l-elementWrapper-lineWrapper-padding, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-field-anatomy-size-l-sliderWrapper-lineWrapper-maxHeight: var(--sn-field-anatomy-size-l-sliderWrapper-lineWrapper-maxHeight, #{st.$sn-primitive-dimension-24});
+$sn-field-anatomy-size-l-sliderWrapper-lineWrapper-paddingHorizontal: var(--sn-field-anatomy-size-l-sliderWrapper-lineWrapper-paddingHorizontal, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-buttonField-container-minWidth: var(--sn-field-anatomy-size-l-buttonField-container-minWidth, #{st.$sn-density-size-l});
+$sn-field-anatomy-size-l-buttonField-container-paddingHorizontal: var(--sn-field-anatomy-size-l-buttonField-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-field-anatomy-size-l-buttonField-container-borderRadius: var(--sn-field-anatomy-size-l-buttonField-container-borderRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-field-anatomy-size-l-buttonField-elementWrapper-gap: var(--sn-field-anatomy-size-l-buttonField-elementWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-field-effect-focusedFrame-opacity: var(--sn-field-effect-focusedFrame-opacity, #{st.$sn-brand-effect-opacity-focusedFrame});
+
+$field: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "fieldContainer": (
+          "padding-top": $sn-field-anatomy-size-s-fieldContainer-paddingVertical,
+          "padding-bottom": $sn-field-anatomy-size-s-fieldContainer-paddingVertical,
+          "contentWrapper": (
+            "padding-top": $sn-field-anatomy-size-s-fieldContainer-contentWrapper-verticalPadding,
+            "padding-bottom": $sn-field-anatomy-size-s-fieldContainer-contentWrapper-verticalPadding,
+            "inputLine": (
+              "padding-left": $sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "padding-right": $sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "gap": $sn-field-anatomy-size-s-fieldContainer-contentWrapper-inputLine-gap
+            )
+          ),
+          "min-height": $sn-field-anatomy-size-s-fieldContainer-minHeight,
+          "width": $sn-field-anatomy-size-s-fieldContainer-borderBottomWidth,
+          "border-top-left-radius": $sn-field-anatomy-size-s-fieldContainer-borderTopLeftRadius,
+          "border-top-right-radius": $sn-field-anatomy-size-s-fieldContainer-borderTopRightRadius,
+          "border-bottom-left-radius": $sn-field-anatomy-size-s-fieldContainer-borderBottomLeftRadius,
+          "border-bottom-right-radius": $sn-field-anatomy-size-s-fieldContainer-borderBottomRightRadius,
+          "centeredWrapper": (
+            "max-height": $sn-field-anatomy-size-s-fieldContainer-centeredWrapper-maxHeight
+          ),
+          "resizeWrapper": (
+            "scrollWrapper": (
+              "padding-top": $sn-field-anatomy-size-s-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding,
+              "padding-bottom": $sn-field-anatomy-size-s-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding
+            ),
+            "max-width": $sn-field-anatomy-size-s-fieldContainer-resizeWrapper-maxWidth
+          ),
+          "multiLine": (
+            "min-height": $sn-field-anatomy-size-s-fieldContainer-multiLine-minHeight
+          ),
+          "padding-left": $sn-field-anatomy-size-s-fieldContainer-paddingLeft,
+          "padding-right": $sn-field-anatomy-size-s-fieldContainer-paddingRight
+        ),
+        "buttonField": (
+          "container": (
+            "min-width": $sn-field-anatomy-size-s-buttonField-container-minWidth,
+            "border-radius": $sn-field-anatomy-size-s-buttonField-container-borderRadius,
+            "padding-left": $sn-field-anatomy-size-s-buttonField-container-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-s-buttonField-container-paddingHorizontal
+          ),
+          "elementWrapper": (
+            "gap": $sn-field-anatomy-size-s-buttonField-elementWrapper-gap
+          )
+        ),
+        "elementWrapper": (
+          "lineWrapper": (
+            "padding": $sn-field-anatomy-size-s-elementWrapper-lineWrapper-padding
+          )
+        ),
+        "sliderWrapper": (
+          "lineWrapper": (
+            "padding-left": $sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingHorizontal,
+            "max-height": $sn-field-anatomy-size-s-sliderWrapper-lineWrapper-maxHeight,
+            "padding-top": $sn-field-anatomy-size-s-sliderWrapper-lineWrapper-paddingTop
+          )
+        )
+      ),
+      "m": (
+        "fieldContainer": (
+          "min-height": $sn-field-anatomy-size-m-fieldContainer-minHeight,
+          "multiLine": (
+            "min-height": $sn-field-anatomy-size-m-fieldContainer-multiLine-minHeight
+          ),
+          "padding-top": $sn-field-anatomy-size-m-fieldContainer-paddingVertical,
+          "padding-bottom": $sn-field-anatomy-size-m-fieldContainer-paddingVertical,
+          "border-top-left-radius": $sn-field-anatomy-size-m-fieldContainer-borderTopLeftRadius,
+          "border-top-right-radius": $sn-field-anatomy-size-m-fieldContainer-borderTopRightRadius,
+          "border-bottom-right-radius": $sn-field-anatomy-size-m-fieldContainer-borderBottomRightRadius,
+          "border-bottom-left-radius": $sn-field-anatomy-size-m-fieldContainer-borderBottomLeftRadius,
+          "width": $sn-field-anatomy-size-m-fieldContainer-borderBottomWidth,
+          "contentWrapper": (
+            "inputLine": (
+              "padding-left": $sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "padding-right": $sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "gap": $sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-gap
+            ),
+            "padding-top": $sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding,
+            "padding-bottom": $sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding
+          ),
+          "centeredWrapper": (
+            "max-height": $sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight
+          ),
+          "resizeWrapper": (
+            "max-width": $sn-field-anatomy-size-m-fieldContainer-resizeWrapper-maxWidth,
+            "scrollWrapper": (
+              "padding-top": $sn-field-anatomy-size-m-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding,
+              "padding-bottom": $sn-field-anatomy-size-m-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding
+            )
+          ),
+          "padding-left": $sn-field-anatomy-size-m-fieldContainer-paddingLeft,
+          "padding-right": $sn-field-anatomy-size-m-fieldContainer-paddingRight
+        ),
+        "elementWrapper": (
+          "lineWrapper": (
+            "padding": $sn-field-anatomy-size-m-elementWrapper-lineWrapper-padding
+          )
+        ),
+        "sliderWrapper": (
+          "lineWrapper": (
+            "max-height": $sn-field-anatomy-size-m-sliderWrapper-lineWrapper-maxHeight,
+            "padding-left": $sn-field-anatomy-size-m-sliderWrapper-lineWrapper-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-m-sliderWrapper-lineWrapper-paddingHorizontal
+          )
+        ),
+        "buttonField": (
+          "container": (
+            "min-width": $sn-field-anatomy-size-m-buttonField-container-minWidth,
+            "padding-left": $sn-field-anatomy-size-m-buttonField-container-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-m-buttonField-container-paddingHorizontal,
+            "border-radius": $sn-field-anatomy-size-m-buttonField-container-borderRadius
+          ),
+          "elementWrapper": (
+            "gap": $sn-field-anatomy-size-m-buttonField-elementWrapper-gap
+          )
+        )
+      ),
+      "l": (
+        "fieldContainer": (
+          "min-height": $sn-field-anatomy-size-l-fieldContainer-minHeight,
+          "multiLine": (
+            "min-height": $sn-field-anatomy-size-l-fieldContainer-multiLine-minHeight
+          ),
+          "padding-top": $sn-field-anatomy-size-l-fieldContainer-paddingVertical,
+          "padding-bottom": $sn-field-anatomy-size-l-fieldContainer-paddingVertical,
+          "border-top-left-radius": $sn-field-anatomy-size-l-fieldContainer-borderTopLeftRadius,
+          "border-top-right-radius": $sn-field-anatomy-size-l-fieldContainer-borderTopRightRadius,
+          "border-bottom-right-radius": $sn-field-anatomy-size-l-fieldContainer-borderBottomRightRadius,
+          "border-bottom-left-radius": $sn-field-anatomy-size-l-fieldContainer-borderBottomLeftRadius,
+          "width": $sn-field-anatomy-size-l-fieldContainer-borderBottomWidth,
+          "contentWrapper": (
+            "inputLine": (
+              "padding-left": $sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "padding-right": $sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-horizontalPadding,
+              "gap": $sn-field-anatomy-size-l-fieldContainer-contentWrapper-inputLine-gap
+            ),
+            "padding-top": $sn-field-anatomy-size-l-fieldContainer-contentWrapper-verticalPadding,
+            "padding-bottom": $sn-field-anatomy-size-l-fieldContainer-contentWrapper-verticalPadding
+          ),
+          "centeredWrapper": (
+            "max-height": $sn-field-anatomy-size-l-fieldContainer-centeredWrapper-maxHeight
+          ),
+          "resizeWrapper": (
+            "max-width": $sn-field-anatomy-size-l-fieldContainer-resizeWrapper-maxWidth,
+            "scrollWrapper": (
+              "padding-top": $sn-field-anatomy-size-l-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding,
+              "padding-bottom": $sn-field-anatomy-size-l-fieldContainer-resizeWrapper-scrollWrapper-verticalPadding
+            )
+          ),
+          "padding-left": $sn-field-anatomy-size-l-fieldContainer-paddingLeft,
+          "padding-right": $sn-field-anatomy-size-l-fieldContainer-paddingRight
+        ),
+        "elementWrapper": (
+          "lineWrapper": (
+            "padding": $sn-field-anatomy-size-l-elementWrapper-lineWrapper-padding
+          )
+        ),
+        "sliderWrapper": (
+          "lineWrapper": (
+            "max-height": $sn-field-anatomy-size-l-sliderWrapper-lineWrapper-maxHeight,
+            "padding-left": $sn-field-anatomy-size-l-sliderWrapper-lineWrapper-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-l-sliderWrapper-lineWrapper-paddingHorizontal
+          )
+        ),
+        "buttonField": (
+          "container": (
+            "min-width": $sn-field-anatomy-size-l-buttonField-container-minWidth,
+            "padding-left": $sn-field-anatomy-size-l-buttonField-container-paddingHorizontal,
+            "padding-right": $sn-field-anatomy-size-l-buttonField-container-paddingHorizontal,
+            "border-radius": $sn-field-anatomy-size-l-buttonField-container-borderRadius
+          ),
+          "elementWrapper": (
+            "gap": $sn-field-anatomy-size-l-buttonField-elementWrapper-gap
+          )
+        )
+      )
+    )
+  ),
+  "effect": (
+    "focusedFrame": (
+      "opacity": $sn-field-effect-focusedFrame-opacity
+    )
+  )
+);

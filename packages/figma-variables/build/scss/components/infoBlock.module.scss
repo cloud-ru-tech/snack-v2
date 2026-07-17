@@ -1,0 +1,62 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-infoBlock-anatomy-size-s-container-gap: var(--sn-infoBlock-anatomy-size-s-container-gap, #{st.$sn-density-spacing-interval-s});
+$sn-infoBlock-anatomy-size-s-container-content-gap: var(--sn-infoBlock-anatomy-size-s-container-content-gap, #{st.$sn-density-spacing-interval-m});
+$sn-infoBlock-anatomy-size-s-container-content-text-gap: var(--sn-infoBlock-anatomy-size-s-container-content-text-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-infoBlock-anatomy-size-s-container-maxWidth: 624px;
+$sn-infoBlock-anatomy-size-m-container-gap: var(--sn-infoBlock-anatomy-size-m-container-gap, #{st.$sn-density-spacing-interval-m});
+$sn-infoBlock-anatomy-size-m-container-content-gap: var(--sn-infoBlock-anatomy-size-m-container-content-gap, #{st.$sn-density-spacing-interval-l});
+$sn-infoBlock-anatomy-size-m-container-content-text-gap: var(--sn-infoBlock-anatomy-size-m-container-content-text-gap, #{st.$sn-density-spacing-interval-s});
+$sn-infoBlock-anatomy-size-m-container-maxWidth: 624px;
+$sn-infoBlock-anatomy-size-l-container-gap: var(--sn-infoBlock-anatomy-size-l-container-gap, #{st.$sn-density-spacing-interval-l});
+$sn-infoBlock-anatomy-size-l-container-content-gap: var(--sn-infoBlock-anatomy-size-l-container-content-gap, #{st.$sn-density-spacing-interval-l});
+$sn-infoBlock-anatomy-size-l-container-content-text-gap: var(--sn-infoBlock-anatomy-size-l-container-content-text-gap, #{st.$sn-density-spacing-interval-s});
+$sn-infoBlock-anatomy-size-l-container-maxWidth: 624px;
+
+$infoBlock: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "gap": $sn-infoBlock-anatomy-size-s-container-gap,
+          "content": (
+            "gap": $sn-infoBlock-anatomy-size-s-container-content-gap,
+            "text": (
+              "gap": $sn-infoBlock-anatomy-size-s-container-content-text-gap
+            )
+          ),
+          "max-width": $sn-infoBlock-anatomy-size-s-container-maxWidth
+        )
+      ),
+      "m": (
+        "container": (
+          "gap": $sn-infoBlock-anatomy-size-m-container-gap,
+          "content": (
+            "gap": $sn-infoBlock-anatomy-size-m-container-content-gap,
+            "text": (
+              "gap": $sn-infoBlock-anatomy-size-m-container-content-text-gap
+            )
+          ),
+          "max-width": $sn-infoBlock-anatomy-size-m-container-maxWidth
+        )
+      ),
+      "l": (
+        "container": (
+          "gap": $sn-infoBlock-anatomy-size-l-container-gap,
+          "content": (
+            "gap": $sn-infoBlock-anatomy-size-l-container-content-gap,
+            "text": (
+              "gap": $sn-infoBlock-anatomy-size-l-container-content-text-gap
+            )
+          ),
+          "max-width": $sn-infoBlock-anatomy-size-l-container-maxWidth
+        )
+      )
+    )
+  )
+);

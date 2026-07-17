@@ -1,0 +1,18 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-yes {
+  --sn-acrylic-colorEffect2Level: var(--sn-theme-effect-acrylic-color2Level, #333333);
+  --sn-acrylic-colorEffect1Level: var(--sn-theme-effect-acrylic-color1Level, #929292);
+  --sn-acrylic-colorEffect: var(--sn-theme-effect-acrylic-color, #1c1c1c);
+  --sn-acrylic-effect: "true";
+  --sn-acrylic-kitService-modeName: "07_acrylic:";
+  --sn-acrylic-kitService-modificationName: "yes";
+  --sn-acrylic-blurBackground1Level: var(--sn-theme-effect-acrylic-blur1Level, 50px);
+  --sn-acrylic-opacityBackground: var(--sn-theme-effect-acrylic-opacity, 0.7);
+  --sn-acrylic-blurBackground2Level: var(--sn-theme-effect-acrylic-blur2Level, 50px);
+  --sn-acrylic-blurBackground: var(--sn-theme-effect-acrylic-blur, 50px);
+  --sn-acrylic-opacityBackground1Level: var(--sn-theme-effect-acrylic-opacity1Level, 0.7);
+  --sn-acrylic-opacityBackground2Level: var(--sn-theme-effect-acrylic-opacity2Level, 0.7);
+}

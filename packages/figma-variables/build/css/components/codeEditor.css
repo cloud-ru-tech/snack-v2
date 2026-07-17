@@ -1,0 +1,16 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-codeEditor {
+  --sn-codeEditor-anatomy-size-rowNumbers-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-codeEditor-anatomy-size-rowNumbers-paddingRight: var(--sn-primitive-dimension-24, 24px);
+  --sn-codeEditor-anatomy-size-rowNumbers-paddingVertical: var(--sn-primitive-dimension-4, 4px);
+  --sn-codeEditor-anatomy-size-rowNumbers-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-codeEditor-anatomy-size-content-paddingVertical: var(--sn-primitive-dimension-4, 4px);
+  --sn-codeEditor-anatomy-size-scroll-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-codeEditor-anatomy-size-header-paddingLeft: var(--sn-primitive-dimension-12, 12px);
+  --sn-codeEditor-anatomy-size-header-paddingRight: var(--sn-primitive-dimension-2, 2px);
+  --sn-codeEditor-anatomy-size-header-paddingVertical: var(--sn-primitive-dimension-2, 2px);
+  --sn-codeEditor-anatomy-size-header-gap: var(--sn-primitive-dimension-8, 8px);
+}

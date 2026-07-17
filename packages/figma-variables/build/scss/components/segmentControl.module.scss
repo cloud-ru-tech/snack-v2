@@ -1,0 +1,104 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-segmentControl-anatomy-size-l-container-borderWidth: var(--sn-segmentControl-anatomy-size-l-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-segmentControl-anatomy-size-l-container-borderRadius: var(--sn-segmentControl-anatomy-size-l-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-segmentControl-anatomy-size-l-segment-container-iconOnly-minWidth: var(--sn-segmentControl-anatomy-size-l-segment-container-iconOnly-minWidth, #{st.$sn-density-size-l});
+$sn-segmentControl-anatomy-size-l-segment-container-borderRadius: var(--sn-segmentControl-anatomy-size-l-segment-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-segmentControl-anatomy-size-l-segment-container-padding: var(--sn-segmentControl-anatomy-size-l-segment-container-padding, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-segmentControl-anatomy-size-l-segment-container-borderWidth: var(--sn-segmentControl-anatomy-size-l-segment-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-segmentControl-anatomy-size-l-segment-container-height: var(--sn-segmentControl-anatomy-size-l-segment-container-height, #{st.$sn-density-size-l});
+$sn-segmentControl-anatomy-size-l-segment-textWrapper-padding: var(--sn-segmentControl-anatomy-size-l-segment-textWrapper-padding, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-segmentControl-anatomy-size-l-segment-textWrapper-gap: var(--sn-segmentControl-anatomy-size-l-segment-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-segmentControl-anatomy-size-m-container-borderWidth: var(--sn-segmentControl-anatomy-size-m-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-segmentControl-anatomy-size-m-container-borderRadius: var(--sn-segmentControl-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-segmentControl-anatomy-size-m-segment-container-iconOnly-minWidth: var(--sn-segmentControl-anatomy-size-m-segment-container-iconOnly-minWidth, #{st.$sn-density-size-m});
+$sn-segmentControl-anatomy-size-m-segment-container-borderRadius: var(--sn-segmentControl-anatomy-size-m-segment-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-segmentControl-anatomy-size-m-segment-container-padding: var(--sn-segmentControl-anatomy-size-m-segment-container-padding, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-segmentControl-anatomy-size-m-segment-container-borderWidth: var(--sn-segmentControl-anatomy-size-m-segment-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-segmentControl-anatomy-size-m-segment-container-height: var(--sn-segmentControl-anatomy-size-m-segment-container-height, #{st.$sn-density-size-m});
+$sn-segmentControl-anatomy-size-m-segment-textWrapper-padding: var(--sn-segmentControl-anatomy-size-m-segment-textWrapper-padding, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-segmentControl-anatomy-size-m-segment-textWrapper-gap: var(--sn-segmentControl-anatomy-size-m-segment-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-segmentControl-anatomy-size-s-container-borderRadius: var(--sn-segmentControl-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-segmentControl-anatomy-size-s-container-borderWidth: var(--sn-segmentControl-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-segmentControl-anatomy-size-s-segment-container-iconOnly-minWidth: var(--sn-segmentControl-anatomy-size-s-segment-container-iconOnly-minWidth, #{st.$sn-density-size-s});
+$sn-segmentControl-anatomy-size-s-segment-container-borderRadius: var(--sn-segmentControl-anatomy-size-s-segment-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-segmentControl-anatomy-size-s-segment-container-padding: var(--sn-segmentControl-anatomy-size-s-segment-container-padding, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-segmentControl-anatomy-size-s-segment-container-borderWidth: var(--sn-segmentControl-anatomy-size-s-segment-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-segmentControl-anatomy-size-s-segment-container-height: var(--sn-segmentControl-anatomy-size-s-segment-container-height, #{st.$sn-density-size-s});
+$sn-segmentControl-anatomy-size-s-segment-textWrapper-padding: var(--sn-segmentControl-anatomy-size-s-segment-textWrapper-padding, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-segmentControl-anatomy-size-s-segment-textWrapper-gap: var(--sn-segmentControl-anatomy-size-s-segment-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+
+$segmentControl: (
+  "anatomy": (
+    "size": (
+      "l": (
+        "container": (
+          "border-width": $sn-segmentControl-anatomy-size-l-container-borderWidth,
+          "border-radius": $sn-segmentControl-anatomy-size-l-container-borderRadius
+        ),
+        "segment": (
+          "container": (
+            "iconOnly": (
+              "min-width": $sn-segmentControl-anatomy-size-l-segment-container-iconOnly-minWidth
+            ),
+            "border-radius": $sn-segmentControl-anatomy-size-l-segment-container-borderRadius,
+            "padding": $sn-segmentControl-anatomy-size-l-segment-container-padding,
+            "border-width": $sn-segmentControl-anatomy-size-l-segment-container-borderWidth,
+            "height": $sn-segmentControl-anatomy-size-l-segment-container-height
+          ),
+          "textWrapper": (
+            "padding": $sn-segmentControl-anatomy-size-l-segment-textWrapper-padding,
+            "gap": $sn-segmentControl-anatomy-size-l-segment-textWrapper-gap
+          )
+        )
+      ),
+      "m": (
+        "container": (
+          "border-width": $sn-segmentControl-anatomy-size-m-container-borderWidth,
+          "border-radius": $sn-segmentControl-anatomy-size-m-container-borderRadius
+        ),
+        "segment": (
+          "container": (
+            "iconOnly": (
+              "min-width": $sn-segmentControl-anatomy-size-m-segment-container-iconOnly-minWidth
+            ),
+            "border-radius": $sn-segmentControl-anatomy-size-m-segment-container-borderRadius,
+            "padding": $sn-segmentControl-anatomy-size-m-segment-container-padding,
+            "border-width": $sn-segmentControl-anatomy-size-m-segment-container-borderWidth,
+            "height": $sn-segmentControl-anatomy-size-m-segment-container-height
+          ),
+          "textWrapper": (
+            "padding": $sn-segmentControl-anatomy-size-m-segment-textWrapper-padding,
+            "gap": $sn-segmentControl-anatomy-size-m-segment-textWrapper-gap
+          )
+        )
+      ),
+      "s": (
+        "container": (
+          "border-radius": $sn-segmentControl-anatomy-size-s-container-borderRadius,
+          "border-width": $sn-segmentControl-anatomy-size-s-container-borderWidth
+        ),
+        "segment": (
+          "container": (
+            "iconOnly": (
+              "min-width": $sn-segmentControl-anatomy-size-s-segment-container-iconOnly-minWidth
+            ),
+            "border-radius": $sn-segmentControl-anatomy-size-s-segment-container-borderRadius,
+            "padding": $sn-segmentControl-anatomy-size-s-segment-container-padding,
+            "border-width": $sn-segmentControl-anatomy-size-s-segment-container-borderWidth,
+            "height": $sn-segmentControl-anatomy-size-s-segment-container-height
+          ),
+          "textWrapper": (
+            "padding": $sn-segmentControl-anatomy-size-s-segment-textWrapper-padding,
+            "gap": $sn-segmentControl-anatomy-size-s-segment-textWrapper-gap
+          )
+        )
+      )
+    )
+  )
+);

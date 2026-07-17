@@ -1,0 +1,33 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-accordion {
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-chevronWrapper-height: var(--sn-density-typography-roleTitle-lineHeightL, 28px);
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingTop: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingHorizontal: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingBottom: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-accordion-anatomy-accordionPrimary-container-borderRadius: var(--sn-brand-anatomy-radius-block-l, 4px);
+  --sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingVertical: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingHorizontal: var(--sn-density-spacing-block-l-padding, 32px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-chevronWrapper-height: var(--sn-density-typography-roleTitle-lineHeightM, 24px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingTop: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingHorizontal: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingBottom: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-accordion-anatomy-accordionSecondary-container-borderRadius: var(--sn-brand-anatomy-radius-block-m, 4px);
+  --sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingVertical: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingHorizontal: var(--sn-density-spacing-block-m-padding, 24px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-chevronWrapper-height: var(--sn-density-typography-roleTitle-lineHeightS, 20px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingTop: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingBottom: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-borderRadius: var(--sn-brand-anatomy-radius-block-s, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
+}

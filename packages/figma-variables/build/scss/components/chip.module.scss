@@ -1,0 +1,98 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-chip-anatomy-size-l-container-minHeight: var(--sn-chip-anatomy-size-l-container-minHeight, #{st.$sn-density-size-l});
+$sn-chip-anatomy-size-l-container-borderRadius: var(--sn-chip-anatomy-size-l-container-borderRadius, #{st.$sn-brand-anatomy-radius-chips-l});
+$sn-chip-anatomy-size-l-container-borderWidth: var(--sn-chip-anatomy-size-l-container-borderWidth, #{st.$sn-brand-anatomy-line-chips-strokeWeight});
+$sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal: var(--sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-chip-anatomy-size-l-container-textWrapper-gap: var(--sn-chip-anatomy-size-l-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-chip-anatomy-size-l-container-paddingHorizontal: var(--sn-chip-anatomy-size-l-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-chip-anatomy-size-l-container-minWidth: var(--sn-chip-anatomy-size-l-container-minWidth, #{st.$sn-density-size-l});
+$sn-chip-anatomy-size-l-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-l-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-l-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-l-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-m-container-textWrapper-gap: var(--sn-chip-anatomy-size-m-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-chip-anatomy-size-m-container-paddingHorizontal: var(--sn-chip-anatomy-size-m-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-chip-anatomy-size-m-container-borderWidth: var(--sn-chip-anatomy-size-m-container-borderWidth, #{st.$sn-brand-anatomy-line-chips-strokeWeight});
+$sn-chip-anatomy-size-m-container-borderRadius: var(--sn-chip-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-chips-m});
+$sn-chip-anatomy-size-m-container-minHeight: var(--sn-chip-anatomy-size-m-container-minHeight, #{st.$sn-density-size-m});
+$sn-chip-anatomy-size-m-container-minWidth: var(--sn-chip-anatomy-size-m-container-minWidth, #{st.$sn-density-size-m});
+$sn-chip-anatomy-size-m-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-m-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-m-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-m-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-s-container-textWrapper-gap: var(--sn-chip-anatomy-size-s-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-chip-anatomy-size-s-container-paddingHorizontal: var(--sn-chip-anatomy-size-s-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-chip-anatomy-size-s-container-borderWidth: var(--sn-chip-anatomy-size-s-container-borderWidth, #{st.$sn-brand-anatomy-line-chips-strokeWeight});
+$sn-chip-anatomy-size-s-container-borderRadius: var(--sn-chip-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-chips-s});
+$sn-chip-anatomy-size-s-container-minHeight: var(--sn-chip-anatomy-size-s-container-minHeight, #{st.$sn-density-size-s});
+$sn-chip-anatomy-size-s-container-minWidth: var(--sn-chip-anatomy-size-s-container-minWidth, #{st.$sn-density-size-s});
+$sn-chip-anatomy-size-s-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-s-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-xs});
+$sn-chip-anatomy-size-s-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-s-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-xs});
+
+$chip: (
+  "anatomy": (
+    "size": (
+      "l": (
+        "container": (
+          "min-height": $sn-chip-anatomy-size-l-container-minHeight,
+          "border-radius": $sn-chip-anatomy-size-l-container-borderRadius,
+          "border-width": $sn-chip-anatomy-size-l-container-borderWidth,
+          "textWrapper": (
+            "padding-left": $sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal,
+            "padding-right": $sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal,
+            "gap": $sn-chip-anatomy-size-l-container-textWrapper-gap
+          ),
+          "padding-left": $sn-chip-anatomy-size-l-container-paddingHorizontal,
+          "padding-right": $sn-chip-anatomy-size-l-container-paddingHorizontal,
+          "min-width": $sn-chip-anatomy-size-l-container-minWidth
+        ),
+        "centeredWrapper": (
+          "max-width": $sn-chip-anatomy-size-l-centeredWrapper-maxWidth,
+          "max-height": $sn-chip-anatomy-size-l-centeredWrapper-maxHeight
+        )
+      ),
+      "m": (
+        "container": (
+          "textWrapper": (
+            "gap": $sn-chip-anatomy-size-m-container-textWrapper-gap,
+            "padding-left": $sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal,
+            "padding-right": $sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal
+          ),
+          "padding-left": $sn-chip-anatomy-size-m-container-paddingHorizontal,
+          "padding-right": $sn-chip-anatomy-size-m-container-paddingHorizontal,
+          "border-width": $sn-chip-anatomy-size-m-container-borderWidth,
+          "border-radius": $sn-chip-anatomy-size-m-container-borderRadius,
+          "min-height": $sn-chip-anatomy-size-m-container-minHeight,
+          "min-width": $sn-chip-anatomy-size-m-container-minWidth
+        ),
+        "centeredWrapper": (
+          "max-width": $sn-chip-anatomy-size-m-centeredWrapper-maxWidth,
+          "max-height": $sn-chip-anatomy-size-m-centeredWrapper-maxHeight
+        )
+      ),
+      "s": (
+        "container": (
+          "textWrapper": (
+            "gap": $sn-chip-anatomy-size-s-container-textWrapper-gap,
+            "padding-left": $sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal,
+            "padding-right": $sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal
+          ),
+          "padding-left": $sn-chip-anatomy-size-s-container-paddingHorizontal,
+          "padding-right": $sn-chip-anatomy-size-s-container-paddingHorizontal,
+          "border-width": $sn-chip-anatomy-size-s-container-borderWidth,
+          "border-radius": $sn-chip-anatomy-size-s-container-borderRadius,
+          "min-height": $sn-chip-anatomy-size-s-container-minHeight,
+          "min-width": $sn-chip-anatomy-size-s-container-minWidth
+        ),
+        "centeredWrapper": (
+          "max-width": $sn-chip-anatomy-size-s-centeredWrapper-maxWidth,
+          "max-height": $sn-chip-anatomy-size-s-centeredWrapper-maxHeight
+        )
+      )
+    )
+  )
+);

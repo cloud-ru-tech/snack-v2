@@ -1,0 +1,47 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-popupPrivate {
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minWidth: var(--sn-primitive-dimension-32, 32px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minHeight: var(--sn-primitive-dimension-32, 32px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius: var(--sn-brand-anatomy-radius-window-buttonClosed-m, 10000px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingLeft: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingLeft, 0px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingRight: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingRight, 48px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingTop: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingTop, 48px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingBottom: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingBottom, 0px);
+  --sn-popupPrivate-anatomy-window-header-gap: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-popupPrivate-anatomy-window-header-paddingBottom: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-header-headline-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-window-header-headline-height: var(--sn-density-size-m, 56px);
+  --sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingLeft: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingRight: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-header-headline-paddingHorizontal: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-window-header-subHeadlineWrapper-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-footer-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-footer-paddingBottom: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-window-media-image-minHeight: 184px;
+  --sn-popupPrivate-anatomy-window-media-icon-paddingTop: var(--sn-primitive-dimension-32, 32px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-gap: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-paddingBottom: var(--sn-density-spacing-interval-m, 16px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical: var(--sn-primitive-dimension-10, 10px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight: var(--sn-density-spacing-interval-s, 8px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-paddingTop: var(--sn-density-spacing-interval-m, 16px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-subHeadlineWrapper-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-bottomSheet-header-secondWrapper-paddingHorizontal: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap, var(--sn-density-spacing-interval-s, 8px));
+  --sn-popupPrivate-anatomy-bottomSheet-footer-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-bottomSheet-footer-paddingTop: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-bottomSheet-footer-paddingBottom: var(--sn-density-spacing-interval-l, 24px);
+  --sn-popupPrivate-anatomy-dropdown-header-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-popupPrivate-anatomy-dropdown-footer-paddingTop: var(--sn-primitive-dimension-8, 8px);
+  --sn-popupPrivate-anatomy-dropdown-footer-paddingBottom: var(--sn-primitive-dimension-4, 4px);
+}

@@ -1,0 +1,146 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-button-anatomy-size-s-container-minHeight: var(--sn-button-anatomy-size-s-container-minHeight, #{st.$sn-density-size-s});
+$sn-button-anatomy-size-s-container-borderRadius: var(--sn-button-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-button-anatomy-size-s-container-minWidth: var(--sn-button-anatomy-size-s-container-minWidth, #{st.$sn-density-size-4xl});
+$sn-button-anatomy-size-s-container-iconOnly-minWidth: var(--sn-button-anatomy-size-s-container-iconOnly-minWidth, #{st.$sn-density-size-s});
+$sn-button-anatomy-size-s-container-borderWidth: var(--sn-button-anatomy-size-s-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-button-anatomy-size-s-container-gap: var(--sn-button-anatomy-size-s-container-gap, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-s-container-iconBefore-paddingLeft: var(--sn-button-anatomy-size-s-container-iconBefore-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-s-element-paddingHorizontal});
+$sn-button-anatomy-size-s-container-iconBefore-paddingRight: var(--sn-button-anatomy-size-s-container-iconBefore-paddingRight, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
+$sn-button-anatomy-size-s-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-s-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
+$sn-button-anatomy-size-s-container-iconAfter-paddingRight: var(--sn-button-anatomy-size-s-container-iconAfter-paddingRight, #{st.$sn-brand-anatomy-spacing-button-s-element-paddingHorizontal});
+$sn-button-anatomy-size-s-container-labelOnly-paddingLeft: var(--sn-button-anatomy-size-s-container-labelOnly-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
+$sn-button-anatomy-size-s-container-labelOnly-paddingRight: var(--sn-button-anatomy-size-s-container-labelOnly-paddingRight, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
+$sn-button-anatomy-size-s-badge-paddingTop: var(--sn-button-anatomy-size-s-badge-paddingTop, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-s-badge-paddingRight: var(--sn-button-anatomy-size-s-badge-paddingRight, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-m-container-minHeight: var(--sn-button-anatomy-size-m-container-minHeight, #{st.$sn-density-size-m});
+$sn-button-anatomy-size-m-container-borderRadius: var(--sn-button-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-button-anatomy-size-m-container-minWidth: var(--sn-button-anatomy-size-m-container-minWidth, #{st.$sn-density-size-7xl});
+$sn-button-anatomy-size-m-container-iconOnly-minWidth: var(--sn-button-anatomy-size-m-container-iconOnly-minWidth, #{st.$sn-density-size-m});
+$sn-button-anatomy-size-m-container-borderWidth: var(--sn-button-anatomy-size-m-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-button-anatomy-size-m-container-gap: var(--sn-button-anatomy-size-m-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-button-anatomy-size-m-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-m-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
+$sn-button-anatomy-size-m-container-iconAfter-paddingRight: var(--sn-button-anatomy-size-m-container-iconAfter-paddingRight, #{st.$sn-brand-anatomy-spacing-button-m-element-paddingHorizontal});
+$sn-button-anatomy-size-m-container-labelOnly-paddingLeft: var(--sn-button-anatomy-size-m-container-labelOnly-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
+$sn-button-anatomy-size-m-container-labelOnly-paddingRight: var(--sn-button-anatomy-size-m-container-labelOnly-paddingRight, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
+$sn-button-anatomy-size-m-container-iconBefore-paddingLeft: var(--sn-button-anatomy-size-m-container-iconBefore-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-m-element-paddingHorizontal});
+$sn-button-anatomy-size-m-container-iconBefore-paddingRight: var(--sn-button-anatomy-size-m-container-iconBefore-paddingRight, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
+$sn-button-anatomy-size-m-badge-paddingTop: var(--sn-button-anatomy-size-m-badge-paddingTop, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-m-badge-paddingRight: var(--sn-button-anatomy-size-m-badge-paddingRight, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-l-container-minHeight: var(--sn-button-anatomy-size-l-container-minHeight, #{st.$sn-density-size-l});
+$sn-button-anatomy-size-l-container-borderRadius: var(--sn-button-anatomy-size-l-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-button-anatomy-size-l-container-minWidth: var(--sn-button-anatomy-size-l-container-minWidth, #{st.$sn-density-size-10xl});
+$sn-button-anatomy-size-l-container-iconOnly-minWidth: var(--sn-button-anatomy-size-l-container-iconOnly-minWidth, #{st.$sn-density-size-l});
+$sn-button-anatomy-size-l-container-borderWidth: var(--sn-button-anatomy-size-l-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-button-anatomy-size-l-container-gap: var(--sn-button-anatomy-size-l-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-button-anatomy-size-l-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-l-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});
+$sn-button-anatomy-size-l-container-iconAfter-paddingRight: var(--sn-button-anatomy-size-l-container-iconAfter-paddingRight, #{st.$sn-brand-anatomy-spacing-button-l-element-paddingHorizontal});
+$sn-button-anatomy-size-l-container-labelOnly-paddingLeft: var(--sn-button-anatomy-size-l-container-labelOnly-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});
+$sn-button-anatomy-size-l-container-labelOnly-paddingRight: var(--sn-button-anatomy-size-l-container-labelOnly-paddingRight, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});
+$sn-button-anatomy-size-l-container-iconBefore-paddingLeft: var(--sn-button-anatomy-size-l-container-iconBefore-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-l-element-paddingHorizontal});
+$sn-button-anatomy-size-l-container-iconBefore-paddingRight: var(--sn-button-anatomy-size-l-container-iconBefore-paddingRight, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});
+$sn-button-anatomy-size-l-badge-paddingTop: var(--sn-button-anatomy-size-l-badge-paddingTop, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-l-badge-paddingRight: var(--sn-button-anatomy-size-l-badge-paddingRight, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-buttonGroup-container-gap: var(--sn-button-anatomy-buttonGroup-container-gap, #{st.$sn-primitive-dimension-8});
+
+$button: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "min-height": $sn-button-anatomy-size-s-container-minHeight,
+          "border-radius": $sn-button-anatomy-size-s-container-borderRadius,
+          "min-width": $sn-button-anatomy-size-s-container-minWidth,
+          "iconOnly": (
+            "min-width": $sn-button-anatomy-size-s-container-iconOnly-minWidth
+          ),
+          "border-width": $sn-button-anatomy-size-s-container-borderWidth,
+          "gap": $sn-button-anatomy-size-s-container-gap,
+          "iconBefore": (
+            "padding-left": $sn-button-anatomy-size-s-container-iconBefore-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-s-container-iconBefore-paddingRight
+          ),
+          "iconAfter": (
+            "padding-left": $sn-button-anatomy-size-s-container-iconAfter-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-s-container-iconAfter-paddingRight
+          ),
+          "labelOnly": (
+            "padding-left": $sn-button-anatomy-size-s-container-labelOnly-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-s-container-labelOnly-paddingRight
+          )
+        ),
+        "badge": (
+          "padding-top": $sn-button-anatomy-size-s-badge-paddingTop,
+          "padding-right": $sn-button-anatomy-size-s-badge-paddingRight
+        )
+      ),
+      "m": (
+        "container": (
+          "min-height": $sn-button-anatomy-size-m-container-minHeight,
+          "border-radius": $sn-button-anatomy-size-m-container-borderRadius,
+          "min-width": $sn-button-anatomy-size-m-container-minWidth,
+          "iconOnly": (
+            "min-width": $sn-button-anatomy-size-m-container-iconOnly-minWidth
+          ),
+          "border-width": $sn-button-anatomy-size-m-container-borderWidth,
+          "gap": $sn-button-anatomy-size-m-container-gap,
+          "iconAfter": (
+            "padding-left": $sn-button-anatomy-size-m-container-iconAfter-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-m-container-iconAfter-paddingRight
+          ),
+          "labelOnly": (
+            "padding-left": $sn-button-anatomy-size-m-container-labelOnly-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-m-container-labelOnly-paddingRight
+          ),
+          "iconBefore": (
+            "padding-left": $sn-button-anatomy-size-m-container-iconBefore-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-m-container-iconBefore-paddingRight
+          )
+        ),
+        "badge": (
+          "padding-top": $sn-button-anatomy-size-m-badge-paddingTop,
+          "padding-right": $sn-button-anatomy-size-m-badge-paddingRight
+        )
+      ),
+      "l": (
+        "container": (
+          "min-height": $sn-button-anatomy-size-l-container-minHeight,
+          "border-radius": $sn-button-anatomy-size-l-container-borderRadius,
+          "min-width": $sn-button-anatomy-size-l-container-minWidth,
+          "iconOnly": (
+            "min-width": $sn-button-anatomy-size-l-container-iconOnly-minWidth
+          ),
+          "border-width": $sn-button-anatomy-size-l-container-borderWidth,
+          "gap": $sn-button-anatomy-size-l-container-gap,
+          "iconAfter": (
+            "padding-left": $sn-button-anatomy-size-l-container-iconAfter-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-l-container-iconAfter-paddingRight
+          ),
+          "labelOnly": (
+            "padding-left": $sn-button-anatomy-size-l-container-labelOnly-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-l-container-labelOnly-paddingRight
+          ),
+          "iconBefore": (
+            "padding-left": $sn-button-anatomy-size-l-container-iconBefore-paddingLeft,
+            "padding-right": $sn-button-anatomy-size-l-container-iconBefore-paddingRight
+          )
+        ),
+        "badge": (
+          "padding-top": $sn-button-anatomy-size-l-badge-paddingTop,
+          "padding-right": $sn-button-anatomy-size-l-badge-paddingRight
+        )
+      )
+    ),
+    "buttonGroup": (
+      "container": (
+        "gap": $sn-button-anatomy-buttonGroup-container-gap
+      )
+    )
+  )
+);

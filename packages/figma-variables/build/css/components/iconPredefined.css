@@ -1,0 +1,21 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-iconPredefined {
+  --sn-iconPredefined-anatomy-size-m-squared-borderRadius: var(--sn-primitive-dimension-6, 6px);
+  --sn-iconPredefined-anatomy-size-m-square: var(--sn-primitive-dimension-32, 32px);
+  --sn-iconPredefined-anatomy-size-m-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-iconPredefined-anatomy-size-l-squared-borderRadius: var(--sn-primitive-dimension-8, 8px);
+  --sn-iconPredefined-anatomy-size-l-square: var(--sn-primitive-dimension-40, 40px);
+  --sn-iconPredefined-anatomy-size-l-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-iconPredefined-anatomy-size-5xl-squared-borderRadius: var(--sn-primitive-dimension-12, 12px);
+  --sn-iconPredefined-anatomy-size-5xl-square: var(--sn-primitive-dimension-80, 80px);
+  --sn-iconPredefined-anatomy-size-5xl-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-iconPredefined-anatomy-size-s-square: var(--sn-primitive-dimension-24, 24px);
+  --sn-iconPredefined-anatomy-size-s-squared-borderRadius: var(--sn-primitive-dimension-4, 4px);
+  --sn-iconPredefined-anatomy-size-s-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-iconPredefined-anatomy-size-3xl-square: var(--sn-primitive-dimension-64, 64px);
+  --sn-iconPredefined-anatomy-size-3xl-squared-borderRadius: var(--sn-primitive-dimension-12, 12px);
+  --sn-iconPredefined-anatomy-size-3xl-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+}

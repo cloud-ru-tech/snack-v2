@@ -1,0 +1,56 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-breadcrumbs-text-separator: var(--sn-breadcrumbs-text-separator, #{st.$sn-brand-text-breadcrumbs-separator});
+$sn-breadcrumbs-anatomy-crumb-size-xs-container-textWrapper-gap: var(--sn-breadcrumbs-anatomy-crumb-size-xs-container-textWrapper-gap, #{st.$sn-density-spacing-control-container-horizontal-xs});
+$sn-breadcrumbs-anatomy-crumb-size-xs-container-minHeight: var(--sn-breadcrumbs-anatomy-crumb-size-xs-container-minHeight, #{st.$sn-density-size-xs});
+$sn-breadcrumbs-anatomy-crumb-size-xs-container-minWidth: var(--sn-breadcrumbs-anatomy-crumb-size-xs-container-minWidth, #{st.$sn-density-size-xs});
+$sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minHeight: var(--sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minHeight, #{st.$sn-density-size-xs});
+$sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minWidth: var(--sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minWidth, #{st.$sn-density-size-xs});
+$sn-breadcrumbs-anatomy-crumb-size-s-container-textWrapper-gap: var(--sn-breadcrumbs-anatomy-crumb-size-s-container-textWrapper-gap, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-breadcrumbs-anatomy-crumb-size-s-container-minHeight: var(--sn-breadcrumbs-anatomy-crumb-size-s-container-minHeight, #{st.$sn-density-size-s});
+$sn-breadcrumbs-anatomy-crumb-size-s-container-minWidth: var(--sn-breadcrumbs-anatomy-crumb-size-s-container-minWidth, #{st.$sn-density-size-s});
+$sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minWidth: var(--sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minWidth, #{st.$sn-density-size-s});
+$sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minHeight: var(--sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minHeight, #{st.$sn-density-size-s});
+
+$breadcrumbs: (
+  "text": (
+    "separator": $sn-breadcrumbs-text-separator
+  ),
+  "anatomy": (
+    "crumb": (
+      "size": (
+        "xs": (
+          "container": (
+            "textWrapper": (
+              "gap": $sn-breadcrumbs-anatomy-crumb-size-xs-container-textWrapper-gap
+            ),
+            "min-height": $sn-breadcrumbs-anatomy-crumb-size-xs-container-minHeight,
+            "min-width": $sn-breadcrumbs-anatomy-crumb-size-xs-container-minWidth,
+            "separator": (
+              "min-height": $sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minHeight,
+              "min-width": $sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minWidth
+            )
+          )
+        ),
+        "s": (
+          "container": (
+            "textWrapper": (
+              "gap": $sn-breadcrumbs-anatomy-crumb-size-s-container-textWrapper-gap
+            ),
+            "min-height": $sn-breadcrumbs-anatomy-crumb-size-s-container-minHeight,
+            "min-width": $sn-breadcrumbs-anatomy-crumb-size-s-container-minWidth,
+            "separator": (
+              "min-width": $sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minWidth,
+              "min-height": $sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minHeight
+            )
+          )
+        )
+      )
+    )
+  )
+);

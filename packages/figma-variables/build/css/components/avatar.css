@@ -1,0 +1,41 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-avatar {
+  --sn-avatar-anatomy-size-xs-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-avatar-anatomy-size-xs-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-xs-squared-borderRadius: var(--sn-primitive-dimension-2, 2px);
+  --sn-avatar-anatomy-size-xs-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-xs-badge-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-avatar-anatomy-size-s-square: var(--sn-primitive-dimension-24, 24px);
+  --sn-avatar-anatomy-size-s-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-s-squared-borderRadius: var(--sn-primitive-dimension-4, 4px);
+  --sn-avatar-anatomy-size-s-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-s-badge-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-avatar-anatomy-size-m-square: var(--sn-primitive-dimension-32, 32px);
+  --sn-avatar-anatomy-size-m-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-m-squared-borderRadius: var(--sn-primitive-dimension-6, 6px);
+  --sn-avatar-anatomy-size-m-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-m-badge-padding: var(--sn-primitive-dimension-6, 6px);
+  --sn-avatar-anatomy-size-l-square: var(--sn-primitive-dimension-40, 40px);
+  --sn-avatar-anatomy-size-l-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-l-squared-borderRadius: var(--sn-primitive-dimension-8, 8px);
+  --sn-avatar-anatomy-size-l-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-l-badge-padding: var(--sn-primitive-dimension-8, 8px);
+  --sn-avatar-anatomy-size-3xl-square: var(--sn-primitive-dimension-64, 64px);
+  --sn-avatar-anatomy-size-3xl-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-3xl-squared-borderRadius: var(--sn-primitive-dimension-12, 12px);
+  --sn-avatar-anatomy-size-3xl-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-3xl-badge-padding: var(--sn-primitive-dimension-12, 12px);
+  --sn-avatar-anatomy-size-6xl-square: var(--sn-primitive-dimension-88, 88px);
+  --sn-avatar-anatomy-size-6xl-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-6xl-squared-borderRadius: var(--sn-primitive-dimension-16, 16px);
+  --sn-avatar-anatomy-size-6xl-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-6xl-badge-padding: var(--sn-primitive-dimension-16, 16px);
+  --sn-avatar-anatomy-size-9xl-square: var(--sn-primitive-dimension-112, 112px);
+  --sn-avatar-anatomy-size-9xl-rounded-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-avatar-anatomy-size-9xl-squared-borderRadius: var(--sn-primitive-dimension-20, 20px);
+  --sn-avatar-anatomy-size-9xl-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-avatar-anatomy-size-9xl-badge-padding: var(--sn-primitive-dimension-20, 20px);
+}

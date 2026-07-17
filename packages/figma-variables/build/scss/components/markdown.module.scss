@@ -1,0 +1,141 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-markdown-anatomy-size-container-gap: var(--sn-markdown-anatomy-size-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-markdown-anatomy-size-container-headlineWrapper-headline-gap: var(--sn-markdown-anatomy-size-container-headlineWrapper-headline-gap, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-buttons-button-paddingRight: var(--sn-markdown-anatomy-size-buttons-button-paddingRight, #{st.$sn-primitive-dimension-4});
+$sn-markdown-anatomy-size-buttons-button-gap: var(--sn-markdown-anatomy-size-buttons-button-gap, #{st.$sn-primitive-dimension-2});
+$sn-markdown-anatomy-size-buttons-paddingHorizontal: var(--sn-markdown-anatomy-size-buttons-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-buttons-paddingTop: var(--sn-markdown-anatomy-size-buttons-paddingTop, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-buttons-paddingBottom: var(--sn-markdown-anatomy-size-buttons-paddingBottom, #{st.$sn-primitive-dimension-6});
+$sn-markdown-anatomy-size-buttons-gap: var(--sn-markdown-anatomy-size-buttons-gap, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal: var(--sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal, #{st.$sn-primitive-dimension-16});
+$sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical: var(--sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-syntax-table-tableCell-minHeight: var(--sn-markdown-anatomy-size-syntax-table-tableCell-minHeight, #{st.$sn-primitive-dimension-40});
+$sn-markdown-anatomy-size-syntax-table-paddingTop: 5px;
+$sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal: var(--sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-markdown-anatomy-size-syntax-inlineCode-borderRadius: var(--sn-markdown-anatomy-size-syntax-inlineCode-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-markdown-anatomy-size-syntax-inlineCode-minHeight: var(--sn-markdown-anatomy-size-syntax-inlineCode-minHeight, #{st.$sn-primitive-dimension-20});
+$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal: var(--sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical: var(--sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth: var(--sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-markdown-anatomy-size-syntax-quote-paddingTop: 5px;
+$sn-markdown-anatomy-size-syntax-headings-h1-paddingTop: var(--sn-markdown-anatomy-size-syntax-headings-h1-paddingTop, #{st.$sn-primitive-dimension-20});
+$sn-markdown-anatomy-size-syntax-headings-h2-paddingTop: 18px;
+$sn-markdown-anatomy-size-syntax-headings-h3-paddingTop: var(--sn-markdown-anatomy-size-syntax-headings-h3-paddingTop, #{st.$sn-primitive-dimension-16});
+$sn-markdown-anatomy-size-syntax-headings-h4-paddingTop: 14px;
+$sn-markdown-anatomy-size-syntax-headings-h5-paddingTop: var(--sn-markdown-anatomy-size-syntax-headings-h5-paddingTop, #{st.$sn-primitive-dimension-12});
+$sn-markdown-anatomy-size-syntax-paragraphs-paddingTop: 10px;
+$sn-markdown-anatomy-size-syntax-list-paddingTop: 5px;
+$sn-markdown-anatomy-size-syntax-codeEditor-paddingTop: 5px;
+$sn-markdown-anatomy-size-syntax-image-paddingTop: 5px;
+$sn-markdown-anatomy-size-syntax-divider-paddingTop: 10px;
+$sn-markdown-anatomy-size-tableSelect-container-item-size: var(--sn-markdown-anatomy-size-tableSelect-container-item-size, #{st.$sn-primitive-dimension-16});
+$sn-markdown-anatomy-size-tableSelect-container-item-borderWidth: var(--sn-markdown-anatomy-size-tableSelect-container-item-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-markdown-anatomy-size-tableSelect-container-item-borderRadius: var(--sn-markdown-anatomy-size-tableSelect-container-item-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal: var(--sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-markdown-anatomy-size-tableSelect-container-paddingBottom: var(--sn-markdown-anatomy-size-tableSelect-container-paddingBottom, #{st.$sn-primitive-dimension-4});
+$sn-markdown-anatomy-size-tableSelect-container-gap: var(--sn-markdown-anatomy-size-tableSelect-container-gap, #{st.$sn-primitive-dimension-4});
+
+$markdown: (
+  "anatomy": (
+    "size": (
+      "container": (
+        "gap": $sn-markdown-anatomy-size-container-gap,
+        "headlineWrapper": (
+          "headline": (
+            "gap": $sn-markdown-anatomy-size-container-headlineWrapper-headline-gap
+          )
+        )
+      ),
+      "buttons": (
+        "button": (
+          "padding-right": $sn-markdown-anatomy-size-buttons-button-paddingRight,
+          "gap": $sn-markdown-anatomy-size-buttons-button-gap
+        ),
+        "padding-left": $sn-markdown-anatomy-size-buttons-paddingHorizontal,
+        "padding-right": $sn-markdown-anatomy-size-buttons-paddingHorizontal,
+        "padding-top": $sn-markdown-anatomy-size-buttons-paddingTop,
+        "padding-bottom": $sn-markdown-anatomy-size-buttons-paddingBottom,
+        "gap": $sn-markdown-anatomy-size-buttons-gap
+      ),
+      "syntax": (
+        "table": (
+          "tableCell": (
+            "padding-left": $sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal,
+            "padding-right": $sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal,
+            "padding-top": $sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical,
+            "padding-bottom": $sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical,
+            "min-height": $sn-markdown-anatomy-size-syntax-table-tableCell-minHeight
+          ),
+          "padding-top": $sn-markdown-anatomy-size-syntax-table-paddingTop
+        ),
+        "inlineCode": (
+          "padding-left": $sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal,
+          "padding-right": $sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal,
+          "border-radius": $sn-markdown-anatomy-size-syntax-inlineCode-borderRadius,
+          "min-height": $sn-markdown-anatomy-size-syntax-inlineCode-minHeight
+        ),
+        "quote": (
+          "wrapper": (
+            "padding-left": $sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal,
+            "padding-right": $sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal,
+            "padding-top": $sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical,
+            "padding-bottom": $sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical,
+            "border-width": $sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth
+          ),
+          "padding-top": $sn-markdown-anatomy-size-syntax-quote-paddingTop
+        ),
+        "headings": (
+          "h1": (
+            "padding-top": $sn-markdown-anatomy-size-syntax-headings-h1-paddingTop
+          ),
+          "h2": (
+            "padding-top": $sn-markdown-anatomy-size-syntax-headings-h2-paddingTop
+          ),
+          "h3": (
+            "padding-top": $sn-markdown-anatomy-size-syntax-headings-h3-paddingTop
+          ),
+          "h4": (
+            "padding-top": $sn-markdown-anatomy-size-syntax-headings-h4-paddingTop
+          ),
+          "h5": (
+            "padding-top": $sn-markdown-anatomy-size-syntax-headings-h5-paddingTop
+          )
+        ),
+        "paragraphs": (
+          "padding-top": $sn-markdown-anatomy-size-syntax-paragraphs-paddingTop
+        ),
+        "list": (
+          "padding-top": $sn-markdown-anatomy-size-syntax-list-paddingTop
+        ),
+        "codeEditor": (
+          "padding-top": $sn-markdown-anatomy-size-syntax-codeEditor-paddingTop
+        ),
+        "image": (
+          "padding-top": $sn-markdown-anatomy-size-syntax-image-paddingTop
+        ),
+        "divider": (
+          "padding-top": $sn-markdown-anatomy-size-syntax-divider-paddingTop
+        )
+      ),
+      "tableSelect": (
+        "container": (
+          "item": (
+            "width": $sn-markdown-anatomy-size-tableSelect-container-item-size,
+            "border-width": $sn-markdown-anatomy-size-tableSelect-container-item-borderWidth,
+            "border-radius": $sn-markdown-anatomy-size-tableSelect-container-item-borderRadius
+          ),
+          "padding-left": $sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal,
+          "padding-right": $sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal,
+          "padding-bottom": $sn-markdown-anatomy-size-tableSelect-container-paddingBottom,
+          "gap": $sn-markdown-anatomy-size-tableSelect-container-gap
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,15 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-popover {
+  --sn-popover-anatomy-privatePopover-offset: var(--sn-primitive-dimension-4, 4px);
+  --sn-popover-anatomy-privatePopover-pointer-borderRadius: var(--sn-primitive-dimension-1, 1px);
+  --sn-popover-anatomy-privatePopover-pointer-height: var(--sn-primitive-dimension-6, 6px);
+  --sn-popover-anatomy-privatePopover-pointer-width: var(--sn-primitive-dimension-12, 12px);
+  --sn-popover-anatomy-container-padding: var(--sn-brand-anatomy-spacing-popover-padding, 24px);
+  --sn-popover-anatomy-container-borderRadius: var(--sn-brand-anatomy-radius-popover-xl, 4px);
+  --sn-popover-anatomy-privatePopover-pointer-paddingHorizontal: var(--sn-popover-anatomy-container-borderRadius, var(--sn-brand-anatomy-radius-popover-xl, 4px));
+  --sn-popover-anatomy-container-minWidth: var(--sn-primitive-dimension-32, 32px);
+  --sn-popover-anatomy-container-minHeight: var(--sn-primitive-dimension-32, 32px);
+}

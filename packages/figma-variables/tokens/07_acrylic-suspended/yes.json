@@ -1,0 +1,128 @@
+{
+  "sn": {
+    "acrylic": {
+      "colorEffect2Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "color",
+        "$value": "{sn.theme.effect.acrylic.color2Level}"
+      },
+      "colorEffect1Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "color",
+        "$value": "{sn.theme.effect.acrylic.color1Level}"
+      },
+      "colorEffect": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "color",
+        "$value": "{sn.theme.effect.acrylic.color}"
+      },
+      "effect": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "boolean",
+        "$value": "true"
+      },
+      "kitService": {
+        "modeName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "07_acrylic:"
+        },
+        "modificationName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "yes"
+        }
+      },
+      "blurBackground1Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.blur1Level}"
+      },
+      "opacityBackground": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "OPACITY"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.opacity}"
+      },
+      "blurBackground2Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.blur2Level}"
+      },
+      "blurBackground": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.blur}"
+      },
+      "opacityBackground1Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "OPACITY"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.opacity1Level}"
+      },
+      "opacityBackground2Level": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "OPACITY"
+          ],
+          "com.figma.hiddenFromPublishing": true
+        },
+        "$type": "number",
+        "$value": "{sn.theme.effect.acrylic.opacity2Level}"
+      }
+    }
+  }
+}

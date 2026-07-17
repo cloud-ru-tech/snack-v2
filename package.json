@@ -5,6 +5,7 @@
   "scripts": {
     "deps": "pnpm i",
     "postinstall": "ts-patch install",
+    "build:tokens": "pnpm --filter @ds/figma-variables run build:tokens",
     "add-package": "tsx scripts/add-package.mts",
     "gen:tsconfig-refs": "tsx scripts/sync-tsconfig-refs.mts",
     "gen:props": "tsx scripts/gen-props.mts",

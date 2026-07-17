@@ -1,0 +1,45 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-drawer {
+  --sn-drawer-anatomy-container-vertical-positionLeft-paddingBottom: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-paddingRight: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-paddingLeft: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-paddingTop: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-width-container-s-maxWidth: 464px;
+  --sn-drawer-anatomy-container-vertical-width-container-l-maxWidth: 1872px;
+  --sn-drawer-anatomy-container-vertical-width-container-m-maxWidth: 864px;
+  --sn-drawer-anatomy-container-vertical-positionRight-container-borderTopLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-vertical-positionRight-container-borderTopRightRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomRightRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionRight-container-borderBottomLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-vertical-positionRight-paddingLeft: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-vertical-positionRight-paddingBottom: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionRight-paddingRight: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-vertical-positionRight-paddingTop: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-paddingTop: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-paddingRight: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-paddingBottom: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-paddingLeft: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-container-borderTopRightRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-horizontal-positionTop-container-borderBottomLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-paddingTop: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-paddingRight: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-paddingBottom: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-paddingLeft: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius: var(--sn-primitive-dimension-0, 0px);
+  --sn-drawer-anatomy-container-safeArea-paddingTop: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-safeArea-paddingBottom: var(--sn-density-spacing-interval-s, 8px);
+  --sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-drawer-anatomy-container-bodyWrapper-paddingBottom: var(--sn-density-spacing-interval-m, 16px);
+}

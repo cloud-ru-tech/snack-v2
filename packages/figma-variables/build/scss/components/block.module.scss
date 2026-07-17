@@ -1,0 +1,36 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-block-anatomy-s-borderRadius: var(--sn-block-anatomy-s-borderRadius, #{st.$sn-brand-anatomy-radius-block-s});
+$sn-block-anatomy-s-padding: var(--sn-block-anatomy-s-padding, #{st.$sn-density-spacing-block-s-padding});
+$sn-block-anatomy-s-borderWidth: var(--sn-block-anatomy-s-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-block-anatomy-m-borderRadius: var(--sn-block-anatomy-m-borderRadius, #{st.$sn-brand-anatomy-radius-block-m});
+$sn-block-anatomy-m-padding: var(--sn-block-anatomy-m-padding, #{st.$sn-density-spacing-block-m-padding});
+$sn-block-anatomy-m-borderWidth: var(--sn-block-anatomy-m-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-block-anatomy-l-borderRadius: var(--sn-block-anatomy-l-borderRadius, #{st.$sn-brand-anatomy-radius-block-l});
+$sn-block-anatomy-l-padding: var(--sn-block-anatomy-l-padding, #{st.$sn-density-spacing-block-l-padding});
+$sn-block-anatomy-l-borderWidth: var(--sn-block-anatomy-l-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+
+$block: (
+  "anatomy": (
+    "s": (
+      "border-radius": $sn-block-anatomy-s-borderRadius,
+      "padding": $sn-block-anatomy-s-padding,
+      "border-width": $sn-block-anatomy-s-borderWidth
+    ),
+    "m": (
+      "border-radius": $sn-block-anatomy-m-borderRadius,
+      "padding": $sn-block-anatomy-m-padding,
+      "border-width": $sn-block-anatomy-m-borderWidth
+    ),
+    "l": (
+      "border-radius": $sn-block-anatomy-l-borderRadius,
+      "padding": $sn-block-anatomy-l-padding,
+      "border-width": $sn-block-anatomy-l-borderWidth
+    )
+  )
+);

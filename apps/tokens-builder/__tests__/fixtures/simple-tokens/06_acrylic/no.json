@@ -1,0 +1,18 @@
+{
+  "sn": {
+    "acrylic": {
+      "opacityBackground": {
+        "$type": "number",
+        "$value": 100
+      },
+      "opacityBackground1Level": {
+        "$type": "number",
+        "$value": 80
+      },
+      "effect": {
+        "$type": "boolean",
+        "$value": "false"
+      }
+    }
+  }
+}

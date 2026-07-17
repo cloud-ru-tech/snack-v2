@@ -1,0 +1,13 @@
+{
+  "sn": {
+    "block": {
+      "anatomy": {
+        "s": {
+          "borderRadius": { "$type": "number", "$value": "{sn.brand.anatomy.radius.block.s}" },
+          "padding": { "$type": "number", "$value": "{sn.adaptive.spacing.interval.s}" },
+          "borderWidth": { "$type": "number", "$value": "{sn.primitive.strokeWeight.strokeRegular}" }
+        }
+      }
+    }
+  }
+}

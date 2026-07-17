@@ -1,0 +1,17 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-breadcrumbs {
+  --sn-breadcrumbs-text-separator: var(--sn-brand-text-breadcrumbs-separator, /);
+  --sn-breadcrumbs-anatomy-crumb-size-xs-container-textWrapper-gap: var(--sn-density-spacing-control-container-horizontal-xs, 8px);
+  --sn-breadcrumbs-anatomy-crumb-size-xs-container-minHeight: var(--sn-density-size-xs, 40px);
+  --sn-breadcrumbs-anatomy-crumb-size-xs-container-minWidth: var(--sn-density-size-xs, 40px);
+  --sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minHeight: var(--sn-density-size-xs, 40px);
+  --sn-breadcrumbs-anatomy-crumb-size-xs-container-separator-minWidth: var(--sn-density-size-xs, 40px);
+  --sn-breadcrumbs-anatomy-crumb-size-s-container-textWrapper-gap: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-breadcrumbs-anatomy-crumb-size-s-container-minHeight: var(--sn-density-size-s, 48px);
+  --sn-breadcrumbs-anatomy-crumb-size-s-container-minWidth: var(--sn-density-size-s, 48px);
+  --sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minWidth: var(--sn-density-size-s, 48px);
+  --sn-breadcrumbs-anatomy-crumb-size-s-container-separator-minHeight: var(--sn-density-size-s, 48px);
+}

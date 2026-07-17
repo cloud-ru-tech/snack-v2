@@ -1,0 +1,18 @@
+{
+  "name": "@ds/tokens-builder",
+  "version": "0.5.0",
+  "private": true,
+  "description": "CLI tool for generating CSS, SCSS and TypeScript files from Figma tokens. Vendored, run via tsx by @ds/figma-variables build:tokens.",
+  "dependencies": {
+    "@tokens-studio/sd-transforms": "2.0.3",
+    "@tokens-studio/types": "0.5.2",
+    "change-case": "5.4.4",
+    "commander": "14.0.2",
+    "consola": "3.4.2",
+    "style-dictionary": "5.1.4"
+  },
+  "devDependencies": {
+    "chokidar": "5.0.0",
+    "sass": "1.96.0"
+  }
+}

@@ -1,0 +1,41 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-markdown {
+  --sn-markdown-anatomy-size-container-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-markdown-anatomy-size-container-headlineWrapper-headline-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-buttons-button-paddingRight: var(--sn-primitive-dimension-4, 4px);
+  --sn-markdown-anatomy-size-buttons-button-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-markdown-anatomy-size-buttons-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-buttons-paddingTop: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-buttons-paddingBottom: var(--sn-primitive-dimension-6, 6px);
+  --sn-markdown-anatomy-size-buttons-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal: var(--sn-primitive-dimension-16, 16px);
+  --sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-syntax-table-tableCell-minHeight: var(--sn-primitive-dimension-40, 40px);
+  --sn-markdown-anatomy-size-syntax-table-paddingTop: 5px;
+  --sn-markdown-anatomy-size-syntax-inlineCode-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-markdown-anatomy-size-syntax-inlineCode-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-markdown-anatomy-size-syntax-inlineCode-minHeight: var(--sn-primitive-dimension-20, 20px);
+  --sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
+  --sn-markdown-anatomy-size-syntax-quote-paddingTop: 5px;
+  --sn-markdown-anatomy-size-syntax-headings-h1-paddingTop: var(--sn-primitive-dimension-20, 20px);
+  --sn-markdown-anatomy-size-syntax-headings-h2-paddingTop: 18px;
+  --sn-markdown-anatomy-size-syntax-headings-h3-paddingTop: var(--sn-primitive-dimension-16, 16px);
+  --sn-markdown-anatomy-size-syntax-headings-h4-paddingTop: 14px;
+  --sn-markdown-anatomy-size-syntax-headings-h5-paddingTop: var(--sn-primitive-dimension-12, 12px);
+  --sn-markdown-anatomy-size-syntax-paragraphs-paddingTop: 10px;
+  --sn-markdown-anatomy-size-syntax-list-paddingTop: 5px;
+  --sn-markdown-anatomy-size-syntax-codeEditor-paddingTop: 5px;
+  --sn-markdown-anatomy-size-syntax-image-paddingTop: 5px;
+  --sn-markdown-anatomy-size-syntax-divider-paddingTop: 10px;
+  --sn-markdown-anatomy-size-tableSelect-container-item-size: var(--sn-primitive-dimension-16, 16px);
+  --sn-markdown-anatomy-size-tableSelect-container-item-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-markdown-anatomy-size-tableSelect-container-item-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-markdown-anatomy-size-tableSelect-container-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-markdown-anatomy-size-tableSelect-container-paddingBottom: var(--sn-primitive-dimension-4, 4px);
+  --sn-markdown-anatomy-size-tableSelect-container-gap: var(--sn-primitive-dimension-4, 4px);
+}

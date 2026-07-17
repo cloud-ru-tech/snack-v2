@@ -1,0 +1,37 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-skeleton {
+  --sn-skeleton-anatomy-size-text-lineHeight-display-s: var(--sn-density-typography-roleDisplay-lineHeightS, 48px);
+  --sn-skeleton-anatomy-size-text-lineHeight-display-m: var(--sn-density-typography-roleDisplay-lineHeightM, 60px);
+  --sn-skeleton-anatomy-size-text-lineHeight-display-l: var(--sn-density-typography-roleDisplay-lineHeightL, 72px);
+  --sn-skeleton-anatomy-size-text-lineHeight-headline-s: var(--sn-density-typography-roleHeadline-lineHeightS, 32px);
+  --sn-skeleton-anatomy-size-text-lineHeight-headline-m: var(--sn-density-typography-roleHeadline-lineHeightM, 40px);
+  --sn-skeleton-anatomy-size-text-lineHeight-headline-l: var(--sn-density-typography-roleHeadline-lineHeightL, 48px);
+  --sn-skeleton-anatomy-size-text-lineHeight-title-s: var(--sn-density-typography-roleTitle-lineHeightS, 20px);
+  --sn-skeleton-anatomy-size-text-lineHeight-title-m: var(--sn-density-typography-roleTitle-lineHeightM, 24px);
+  --sn-skeleton-anatomy-size-text-lineHeight-title-l: var(--sn-density-typography-roleTitle-lineHeightL, 28px);
+  --sn-skeleton-anatomy-size-text-lineHeight-label-s: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
+  --sn-skeleton-anatomy-size-text-lineHeight-label-m: var(--sn-density-typography-roleLabel-lineHeightM, 24px);
+  --sn-skeleton-anatomy-size-text-lineHeight-label-l: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-skeleton-anatomy-size-text-lineHeight-body-s: var(--sn-density-typography-roleBody-lineHeightS, 20px);
+  --sn-skeleton-anatomy-size-text-lineHeight-body-m: var(--sn-density-typography-roleBody-lineHeightM, 24px);
+  --sn-skeleton-anatomy-size-text-lineHeight-body-l: var(--sn-density-typography-roleBody-lineHeightL, 28px);
+  --sn-skeleton-anatomy-size-text-font-display-s: var(--sn-density-typography-roleDisplay-fontSizeS, 40px);
+  --sn-skeleton-anatomy-size-text-font-display-m: var(--sn-density-typography-roleDisplay-fontSizeM, 48px);
+  --sn-skeleton-anatomy-size-text-font-display-l: var(--sn-density-typography-roleDisplay-fontSizeL, 64px);
+  --sn-skeleton-anatomy-size-text-font-headline-s: var(--sn-density-typography-roleHeadline-fontSizeS, 24px);
+  --sn-skeleton-anatomy-size-text-font-headline-m: var(--sn-density-typography-roleHeadline-fontSizeM, 32px);
+  --sn-skeleton-anatomy-size-text-font-headline-l: var(--sn-density-typography-roleHeadline-fontSizeL, 36px);
+  --sn-skeleton-anatomy-size-text-font-title-s: var(--sn-density-typography-roleTitle-fontSizeS, 14px);
+  --sn-skeleton-anatomy-size-text-font-title-m: var(--sn-density-typography-roleTitle-fontSizeM, 16px);
+  --sn-skeleton-anatomy-size-text-font-title-l: var(--sn-density-typography-roleTitle-fontSizeL, 20px);
+  --sn-skeleton-anatomy-size-text-font-label-s: var(--sn-density-typography-roleLabel-fontSizeS, 14px);
+  --sn-skeleton-anatomy-size-text-font-label-m: var(--sn-density-typography-roleLabel-fontSizeM, 16px);
+  --sn-skeleton-anatomy-size-text-font-label-l: var(--sn-density-typography-roleLabel-fontSizeL, 20px);
+  --sn-skeleton-anatomy-size-text-font-body-s: var(--sn-density-typography-roleBody-fontSizeS, 14px);
+  --sn-skeleton-anatomy-size-text-font-body-m: var(--sn-density-typography-roleBody-fontSizeM, 16px);
+  --sn-skeleton-anatomy-size-text-font-body-l: var(--sn-density-typography-roleBody-fontSizeL, 20px);
+  --sn-skeleton-anatomy-size-text-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+}

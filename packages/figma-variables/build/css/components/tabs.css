@@ -1,0 +1,54 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-tabs {
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minWidth: var(--sn-density-size-l, 64px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-horizontalPadding: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-textWrapper-minHeight: var(--sn-density-size-m, 56px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-horizontalPadding: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-tabs-anatomy-size-l-tabsVertical-tabContainer-minHeight: var(--sn-density-size-l, 64px);
+  --sn-tabs-anatomy-size-l-tabsVertical-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-tabs-anatomy-size-l-tabsVertical-selected-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-tabs-anatomy-size-l-tabsVertical-selected-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-tabs-anatomy-size-l-tabsVertical-actionSlot-gap: var(--sn-primitive-dimension-16, 16px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minWidth: var(--sn-density-size-l, 64px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-minHeight: var(--sn-density-size-m, 56px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-textWrapper-horizontalPadding: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-minHeight: var(--sn-density-size-l, 64px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-tabContainer-horizontalPadding: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-selected-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-selected-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-tabs-anatomy-size-l-tabsHorizontal-actionSlot-gap: var(--sn-primitive-dimension-16, 16px);
+  --sn-tabs-anatomy-size-l-control-forward-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-tabs-anatomy-size-l-control-back-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-minHeight: var(--sn-density-size-m, 56px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-horizontalPadding: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minWidth: var(--sn-density-size-m, 56px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-textWrapper-minHeight: var(--sn-density-size-s, 48px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-tabContainer-horizontalPadding: var(--sn-primitive-dimension-0, 0px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-selected-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-selected-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-gap: var(--sn-density-spacing-interval-l, 24px);
+  --sn-tabs-anatomy-size-m-tabsHorizontal-actionSlot-gap: var(--sn-primitive-dimension-16, 16px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minWidth: var(--sn-primitive-dimension-0, 0px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-minHeight: var(--sn-density-size-s, 48px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-textWrapper-horizontalPadding: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-horizontalPadding: var(--sn-density-spacing-interval-m, 16px);
+  --sn-tabs-anatomy-size-m-tabsVertical-tabContainer-minHeight: var(--sn-density-size-m, 56px);
+  --sn-tabs-anatomy-size-m-tabsVertical-selected-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+  --sn-tabs-anatomy-size-m-tabsVertical-selected-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-tabs-anatomy-size-m-tabsVertical-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-tabs-anatomy-size-m-tabsVertical-actionSlot-gap: var(--sn-primitive-dimension-16, 16px);
+  --sn-tabs-anatomy-size-m-control-forward-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-tabs-anatomy-size-m-control-back-padding: var(--sn-primitive-dimension-2, 2px);
+}

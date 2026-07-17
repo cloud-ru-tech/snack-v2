@@ -1,0 +1,56 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-card-anatomy-radius-m-container-borderRadius: var(--sn-card-anatomy-radius-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-card-m});
+$sn-card-anatomy-radius-m-container-badge-paddingLeft: var(--sn-card-anatomy-radius-m-container-badge-paddingLeft, #{st.$sn-primitive-dimension-6});
+$sn-card-anatomy-radius-m-container-badge-paddingTop: var(--sn-card-anatomy-radius-m-container-badge-paddingTop, #{st.$sn-primitive-dimension-6});
+$sn-card-anatomy-radius-m-container-borderWidth: var(--sn-card-anatomy-radius-m-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-card-anatomy-radius-s-container-borderRadius: var(--sn-card-anatomy-radius-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-card-s});
+$sn-card-anatomy-radius-s-container-badge-paddingLeft: var(--sn-card-anatomy-radius-s-container-badge-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-card-anatomy-radius-s-container-badge-paddingTop: var(--sn-card-anatomy-radius-s-container-badge-paddingTop, #{st.$sn-primitive-dimension-4});
+$sn-card-anatomy-radius-s-container-borderWidth: var(--sn-card-anatomy-radius-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-card-anatomy-radius-l-container-borderRadius: var(--sn-card-anatomy-radius-l-container-borderRadius, #{st.$sn-brand-anatomy-radius-card-l});
+$sn-card-anatomy-radius-l-container-badge-paddingLeft: var(--sn-card-anatomy-radius-l-container-badge-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-card-anatomy-radius-l-container-badge-paddingTop: var(--sn-card-anatomy-radius-l-container-badge-paddingTop, #{st.$sn-primitive-dimension-8});
+$sn-card-anatomy-radius-l-container-borderWidth: var(--sn-card-anatomy-radius-l-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+
+$card: (
+  "anatomy": (
+    "radius": (
+      "m": (
+        "container": (
+          "border-radius": $sn-card-anatomy-radius-m-container-borderRadius,
+          "badge": (
+            "padding-left": $sn-card-anatomy-radius-m-container-badge-paddingLeft,
+            "padding-top": $sn-card-anatomy-radius-m-container-badge-paddingTop
+          ),
+          "border-width": $sn-card-anatomy-radius-m-container-borderWidth
+        )
+      ),
+      "s": (
+        "container": (
+          "border-radius": $sn-card-anatomy-radius-s-container-borderRadius,
+          "badge": (
+            "padding-left": $sn-card-anatomy-radius-s-container-badge-paddingLeft,
+            "padding-top": $sn-card-anatomy-radius-s-container-badge-paddingTop
+          ),
+          "border-width": $sn-card-anatomy-radius-s-container-borderWidth
+        )
+      ),
+      "l": (
+        "container": (
+          "border-radius": $sn-card-anatomy-radius-l-container-borderRadius,
+          "badge": (
+            "padding-left": $sn-card-anatomy-radius-l-container-badge-paddingLeft,
+            "padding-top": $sn-card-anatomy-radius-l-container-badge-paddingTop
+          ),
+          "border-width": $sn-card-anatomy-radius-l-container-borderWidth
+        )
+      )
+    )
+  )
+);

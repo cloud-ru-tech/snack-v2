@@ -1,0 +1,16 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-progressBar {
+  --sn-progressBar-anatomy-size-xs-line-container-height: var(--sn-primitive-dimension-2, 2px);
+  --sn-progressBar-anatomy-size-xs-line-container-borderRadius: var(--sn-density-radius-xs, 10px);
+  --sn-progressBar-anatomy-size-xs-circle-container-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-progressBar-anatomy-size-xs-circle-container-borderWidth: var(--sn-progressBar-anatomy-size-xs-line-container-height, var(--sn-primitive-dimension-2, 2px));
+  --sn-progressBar-anatomy-size-xs-circle-container-progress-square: var(--sn-primitive-dimension-12, 12px);
+  --sn-progressBar-anatomy-size-s-line-container-borderRadius: var(--sn-density-radius-s, 16px);
+  --sn-progressBar-anatomy-size-s-line-container-height: var(--sn-primitive-dimension-4, 4px);
+  --sn-progressBar-anatomy-size-s-circle-container-square: var(--sn-primitive-dimension-24, 24px);
+  --sn-progressBar-anatomy-size-s-circle-container-borderWidth: var(--sn-progressBar-anatomy-size-s-line-container-height, var(--sn-primitive-dimension-4, 4px));
+  --sn-progressBar-anatomy-size-s-circle-container-progress-square: var(--sn-primitive-dimension-16, 16px);
+}

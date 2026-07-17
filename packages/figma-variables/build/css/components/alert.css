@@ -1,0 +1,26 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-alert {
+  --sn-alert-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-alert-m, 4px);
+  --sn-alert-anatomy-size-m-container-content-text-paddingVertical: var(--sn-density-spacing-interval-2xs, 2px);
+  --sn-alert-anatomy-size-m-container-content-text-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-size-m-container-gap: var(--sn-density-spacing-interval-m, 16px);
+  --sn-alert-anatomy-size-m-container-actionWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-size-m-container-paddingVertical: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-size-m-container-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-alert-anatomy-size-m-container-centeredWrapper-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-alert-anatomy-size-m-container-actionWrapper-height: var(--sn-alert-anatomy-size-m-container-centeredWrapper-height, var(--sn-primitive-dimension-24, 24px));
+  --sn-alert-anatomy-size-m-container-paddingHorizontal: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-alert-s, 4px);
+  --sn-alert-anatomy-size-s-container-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-alert-anatomy-size-s-container-content-text-paddingVertical: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-alert-anatomy-size-s-container-content-text-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-alert-anatomy-size-s-container-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-alert-anatomy-size-s-container-actionWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-size-s-container-paddingVertical: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-size-s-container-centeredWrapper-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-alert-anatomy-size-s-container-actionWrapper-height: var(--sn-alert-anatomy-size-s-container-centeredWrapper-height, var(--sn-primitive-dimension-24, 24px));
+  --sn-alert-anatomy-size-s-container-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+}

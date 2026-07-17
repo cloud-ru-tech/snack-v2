@@ -1,0 +1,2263 @@
+{
+  "sn": {
+    "theme": {
+      "color": {
+        "primary": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.onAccentLight}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.transparent}",
+            "$description": "Формы"
+          }
+        },
+        "neutral": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#6669750f",
+            "$description": "Формы"
+          }
+        },
+        "red": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.red.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#d52e3317",
+            "$description": "Формы"
+          }
+        },
+        "orange": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.orange.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#f57e1f24",
+            "$description": "Формы"
+          }
+        },
+        "yellow": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.25}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.yellow.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#f3b9172e",
+            "$description": "Формы"
+          }
+        },
+        "green": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.green.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#41b95424",
+            "$description": "Формы"
+          }
+        },
+        "blue": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.blue.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#4387e221",
+            "$description": "Формы"
+          }
+        },
+        "violet": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.violet.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#b163cc21",
+            "$description": "Формы"
+          }
+        },
+        "pink": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.90}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.95}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.99}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.80}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.99}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.55}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.pink.45}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#dd5a8e21",
+            "$description": "Формы"
+          }
+        },
+        "invertNeutral": {
+          "background": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.5}",
+            "$description": "Дальний фон по оси Z"
+          },
+          "decor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.25}",
+            "$description": "Формы или линии"
+          },
+          "onAccent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.5}",
+            "$description": "Текст или иконка поверх Accent"
+          },
+          "accent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.65}",
+            "$description": "Формы, линии, текст или иконка"
+          },
+          "background1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.10}",
+            "$description": "Средний фон по оси Z"
+          },
+          "background2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.15}",
+            "$description": "Ближний фон по оси Z"
+          },
+          "text": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.65}",
+            "$description": "Цветной текст или иконка"
+          },
+          "decorTransparent": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#a9acbc0a",
+            "$description": "Формы"
+          }
+        },
+        "available": {
+          "complementary": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#000000",
+            "$description": "Технический цвет для каретки курсора ввода или фокусной рамки."
+          },
+          "onComplementary": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "TEXT_FILL",
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Технический цвет для каретки курсора ввода или фокусной рамки."
+          },
+          "version": {
+            "textMain": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.version.main}",
+              "$description": "Основной текст или иконка на основных поверхностях интерфейса."
+            },
+            "textSecondary": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.version.secondary}",
+              "$description": "Второстепенный текст или иконка на основных поверхностях интерфейса."
+            },
+            "textTertiary": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.version.tertiary}",
+              "$description": "Третьестепенный текст или иконка на основных поверхностях интерфейса."
+            },
+            "textDisabled": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.version.disabled}",
+              "$description": "Минимально читаемый (disabled) текст или иконка на основных поверхностях интерфейса."
+            }
+          },
+          "inversion": {
+            "textDisabled": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.inversion.disabled}",
+              "$description": "Минимально читаемый (disabled) текст или иконка на инвертированных по тону поверхностях (напр. invertNeutral, изображение), где version-текст нечитаем."
+            },
+            "textTertiary": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.inversion.tertiary}",
+              "$description": "Третьестепенный текст или иконка на инвертированных по тону поверхностях (напр. invertNeutral, изображение), где version-текст нечитаем."
+            },
+            "textSecondary": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.inversion.secondary}",
+              "$description": "Второстепенный текст или иконка на инвертированных по тону поверхностях (напр. invertNeutral, изображение), где version-текст нечитаем."
+            },
+            "textMain": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{sn.brand.color.text.inversion.main}",
+              "$description": "Основной текст или иконка на инвертированных по тону поверхностях (напр. invertNeutral, изображение), где version-текст нечитаем."
+            }
+          },
+          "borderColor": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.state.border.forLightMode.default.borderColor}",
+            "$description": "Используется для линий внутренней или внешней обводки объекта с одной или всех сторон."
+          }
+        },
+        "blackout": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "color",
+          "$value": "{sn.brand.color.overlay.forLightMode.blackout}",
+          "$description": "Цвет затемнения экрана для фокусировки внимания пользователя на основной операции, например при вызове модального окна."
+        },
+        "forGradient": {
+          "skeleton": {
+            "a": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#00000014",
+              "$description": "Опорный цвет градиента skeleton-загрузки (shimmer)."
+            },
+            "b": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#ffffff14",
+              "$description": "Опорный цвет градиента skeleton-загрузки (shimmer)."
+            }
+          },
+          "linear": {
+            "mask": {
+              "a": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "color",
+                "$value": "#00000000",
+                "$description": "Опорный цвет линейной градиент-маски прозрачности."
+              },
+              "b": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "color",
+                "$value": "#000000",
+                "$description": "Опорный цвет линейной градиент-маски прозрачности."
+              },
+              "c": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "color",
+                "$value": "#000000",
+                "$description": "Опорный цвет линейной градиент-маски прозрачности."
+              }
+            }
+          }
+        },
+        "material": {
+          "stateLayer": {
+            "regular": {
+              "default": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.filled.forLightMode.default.background}",
+                  "$description": "Материал stateLayer: слой состояния по умолчанию, заливка."
+                },
+                "borderColor": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.border.forLightMode.default.borderColor}",
+                  "$description": "Материал stateLayer: слой состояния по умолчанию, обводка."
+                }
+              },
+              "hovered": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.filled.forLightMode.hovered.background}",
+                  "$description": "Материал stateLayer: слой состояния hovered, заливка."
+                },
+                "borderColor": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.border.forLightMode.hovered.borderColor}",
+                  "$description": "Материал stateLayer: слой состояния hovered, обводка."
+                }
+              },
+              "pressed": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.filled.forLightMode.pressed.background}",
+                  "$description": "Материал stateLayer: слой состояния pressed, заливка."
+                },
+                "borderColor": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.border.forLightMode.pressed.borderColor}",
+                  "$description": "Материал stateLayer: слой состояния pressed, обводка."
+                }
+              }
+            },
+            "activated": {
+              "default": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.activated.default.background}",
+                  "$description": "Материал stateLayer: слой состояния по умолчанию (активированный компонент), заливка."
+                }
+              },
+              "hovered": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.activated.hovered.background}",
+                  "$description": "Материал stateLayer: слой состояния hovered (активированный компонент), заливка."
+                }
+              },
+              "pressed": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "{sn.brand.color.state.activated.pressed.background}",
+                  "$description": "Материал stateLayer: слой состояния pressed (активированный компонент), заливка."
+                }
+              }
+            },
+            "onColor": {
+              "default": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#0000000d",
+                  "$description": "Материал stateLayer: слой состояния по умолчанию поверх цветной поверхности, заливка."
+                }
+              },
+              "hovered": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#0000001a",
+                  "$description": "Материал stateLayer: слой состояния hovered поверх цветной поверхности, заливка."
+                }
+              },
+              "pressed": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#00000026",
+                  "$description": "Материал stateLayer: слой состояния pressed поверх цветной поверхности, заливка."
+                }
+              }
+            },
+            "onAccent": {
+              "default": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#ffffff1a",
+                  "$description": "Материал stateLayer: слой состояния по умолчанию поверх Accent, заливка."
+                }
+              },
+              "hovered": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#ffffff26",
+                  "$description": "Материал stateLayer: слой состояния hovered поверх Accent, заливка."
+                }
+              },
+              "pressed": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#ffffff33",
+                  "$description": "Материал stateLayer: слой состояния pressed поверх Accent, заливка."
+                }
+              }
+            },
+            "text": {
+              "default": {
+                "opacity": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": 100,
+                  "$description": "Прозрачность текстового слоя состояния по умолчанию."
+                }
+              },
+              "hovered": {
+                "opacity": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": 85,
+                  "$description": "Прозрачность текстового слоя состояния hovered."
+                }
+              },
+              "pressed": {
+                "opacity": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": 70,
+                  "$description": "Прозрачность текстового слоя состояния pressed."
+                }
+              }
+            }
+          }
+        }
+      },
+      "effect": {
+        "shadow": {
+          "layer1Color": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.effect.shadow.light.layer1Color}",
+            "$description": "Цвет слоя 1 составной тени (elevation)."
+          },
+          "layer2Color": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "EFFECT_COLOR"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.effect.shadow.light.layer2Color}",
+            "$description": "Цвет слоя 2 составной тени (elevation)."
+          },
+          "level1": {
+            "layer1": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer1.positionX}",
+                "$description": "Смещение по X слоя 1 тени уровня 1 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer1.positionY}",
+                "$description": "Смещение по Y слоя 1 тени уровня 1 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer1.blur}",
+                "$description": "Радиус размытия слоя 1 тени уровня 1 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer1.speed}",
+                "$description": "Разброс (spread) слоя 1 тени уровня 1 (elevation)."
+              }
+            },
+            "layer2": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer2.positionX}",
+                "$description": "Смещение по X слоя 2 тени уровня 1 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer2.positionY}",
+                "$description": "Смещение по Y слоя 2 тени уровня 1 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer2.blur}",
+                "$description": "Радиус размытия слоя 2 тени уровня 1 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer2.speed}",
+                "$description": "Разброс (spread) слоя 2 тени уровня 1 (elevation)."
+              }
+            }
+          },
+          "level2": {
+            "layer1": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer1.positionX}",
+                "$description": "Смещение по X слоя 1 тени уровня 2 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer1.positionY}",
+                "$description": "Смещение по Y слоя 1 тени уровня 2 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer1.blur}",
+                "$description": "Радиус размытия слоя 1 тени уровня 2 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer1.speed}",
+                "$description": "Разброс (spread) слоя 1 тени уровня 2 (elevation)."
+              }
+            },
+            "layer2": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer2.positionX}",
+                "$description": "Смещение по X слоя 2 тени уровня 2 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer2.positionY}",
+                "$description": "Смещение по Y слоя 2 тени уровня 2 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer2.blur}",
+                "$description": "Радиус размытия слоя 2 тени уровня 2 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer2.speed}",
+                "$description": "Разброс (spread) слоя 2 тени уровня 2 (elevation)."
+              }
+            }
+          },
+          "level3": {
+            "layer1": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer1.positionX}",
+                "$description": "Смещение по X слоя 1 тени уровня 3 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer1.positionY}",
+                "$description": "Смещение по Y слоя 1 тени уровня 3 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer1.blur}",
+                "$description": "Радиус размытия слоя 1 тени уровня 3 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer1.speed}",
+                "$description": "Разброс (spread) слоя 1 тени уровня 3 (elevation)."
+              }
+            },
+            "layer2": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer2.positionX}",
+                "$description": "Смещение по X слоя 2 тени уровня 3 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer2.positionY}",
+                "$description": "Смещение по Y слоя 2 тени уровня 3 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer2.blur}",
+                "$description": "Радиус размытия слоя 2 тени уровня 3 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer2.speed}",
+                "$description": "Разброс (spread) слоя 2 тени уровня 3 (elevation)."
+              }
+            }
+          },
+          "level4": {
+            "layer1": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer1.positionX}",
+                "$description": "Смещение по X слоя 1 тени уровня 4 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer1.positionY}",
+                "$description": "Смещение по Y слоя 1 тени уровня 4 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer1.blur}",
+                "$description": "Радиус размытия слоя 1 тени уровня 4 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer1.speed}",
+                "$description": "Разброс (spread) слоя 1 тени уровня 4 (elevation)."
+              }
+            },
+            "layer2": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer2.positionX}",
+                "$description": "Смещение по X слоя 2 тени уровня 4 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer2.positionY}",
+                "$description": "Смещение по Y слоя 2 тени уровня 4 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer2.blur}",
+                "$description": "Радиус размытия слоя 2 тени уровня 4 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer2.speed}",
+                "$description": "Разброс (spread) слоя 2 тени уровня 4 (elevation)."
+              }
+            }
+          },
+          "level5": {
+            "layer1": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer1.positionX}",
+                "$description": "Смещение по X слоя 1 тени уровня 5 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer1.positionY}",
+                "$description": "Смещение по Y слоя 1 тени уровня 5 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer1.blur}",
+                "$description": "Радиус размытия слоя 1 тени уровня 5 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer1.speed}",
+                "$description": "Разброс (spread) слоя 1 тени уровня 5 (elevation)."
+              }
+            },
+            "layer2": {
+              "positionX": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer2.positionX}",
+                "$description": "Смещение по X слоя 2 тени уровня 5 (elevation)."
+              },
+              "positionY": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer2.positionY}",
+                "$description": "Смещение по Y слоя 2 тени уровня 5 (elevation)."
+              },
+              "blur": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer2.blur}",
+                "$description": "Радиус размытия слоя 2 тени уровня 5 (elevation)."
+              },
+              "speed": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer2.speed}",
+                "$description": "Разброс (spread) слоя 2 тени уровня 5 (elevation)."
+              }
+            }
+          }
+        },
+        "acrylic": {
+          "color": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#1c1c1c",
+            "$description": "Тон материала acrylic (матовое стекло)."
+          },
+          "color2Level": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#333333",
+            "$description": "Тон материала acrylic, уровень 2 по оси Z."
+          },
+          "color1Level": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#929292",
+            "$description": "Тон материала acrylic, уровень 1 по оси Z."
+          },
+          "opacity": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "OPACITY"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 70,
+            "$description": "Прозрачность материала acrylic (матовое стекло)."
+          },
+          "blur": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "EFFECT_FLOAT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 50,
+            "$description": "Размытие материала acrylic (матовое стекло)."
+          },
+          "opacity2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "OPACITY"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 70,
+            "$description": "Прозрачность материала acrylic (матовое стекло), уровень 2 по оси Z."
+          },
+          "opacity1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "OPACITY"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 70,
+            "$description": "Прозрачность материала acrylic (матовое стекло), уровень 1 по оси Z."
+          },
+          "blur1Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "EFFECT_FLOAT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 50,
+            "$description": "Размытие материала acrylic (матовое стекло), уровень 1 по оси Z."
+          },
+          "blur2Level": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "EFFECT_FLOAT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": 50,
+            "$description": "Размытие материала acrylic (матовое стекло), уровень 2 по оси Z."
+          }
+        },
+        "backgroundBlur": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "EFFECT_FLOAT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.brand.effect.blur.overlay.backgroundBlur}",
+          "$description": "Радиус фонового размытия (backdrop blur)."
+        },
+        "opacity": {
+          "disabled": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "OPACITY"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": 40,
+            "$description": "Прозрачность неактивного (disabled) элемента."
+          }
+        }
+      },
+      "kitService": {
+        "modificationName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "light"
+        },
+        "modeName": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "05_theme:"
+        }
+      },
+      "typography": {
+        "fontWeight": {
+          "regular": {
+            "display": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.display.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.display.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.display.l}"
+              }
+            },
+            "headline": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.headline.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.headline.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.headline.l}"
+              }
+            },
+            "title": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.title.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.title.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.title.l}"
+              }
+            },
+            "label": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.label.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.label.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.label.l}"
+              }
+            },
+            "body": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.body.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.body.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.regular.body.l}"
+              }
+            }
+          },
+          "thin": {
+            "display": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.display.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.display.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.display.l}"
+              }
+            },
+            "headline": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.headline.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.headline.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.headline.l}"
+              }
+            },
+            "title": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.title.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.title.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.title.l}"
+              }
+            },
+            "label": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.label.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.label.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.label.l}"
+              }
+            },
+            "body": {
+              "s": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.body.s}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.body.m}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.font.fontWeight.light.thin.body.l}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

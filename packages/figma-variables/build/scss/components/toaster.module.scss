@@ -1,0 +1,180 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal: var(--sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-systemEvent-container-paddingVertical: var(--sn-toaster-anatomy-toast-systemEvent-container-paddingVertical, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-systemEvent-container-gap: var(--sn-toaster-anatomy-toast-systemEvent-container-gap, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-systemEvent-container-borderRadius: var(--sn-toaster-anatomy-toast-systemEvent-container-borderRadius, #{st.$sn-brand-anatomy-radius-toaster-m});
+$sn-toaster-anatomy-toast-systemEvent-container-content-gap: var(--sn-toaster-anatomy-toast-systemEvent-container-content-gap, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size: var(--sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size, #{st.$sn-density-size-icon-s});
+$sn-toaster-anatomy-toast-systemEvent-container-actions-gap: var(--sn-toaster-anatomy-toast-systemEvent-container-actions-gap, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-systemEvent-container-progress-height: var(--sn-toaster-anatomy-toast-systemEvent-container-progress-height, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight: var(--sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight, #{st.$sn-density-size-m});
+$sn-toaster-anatomy-toast-systemEvent-container-closeAll-borderRadius: var(--sn-toaster-anatomy-toast-systemEvent-container-closeAll-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-toaster-anatomy-toast-systemEvent-container-maxWidth: 304px;
+$sn-toaster-anatomy-toast-systemEvent-gap: var(--sn-toaster-anatomy-toast-systemEvent-gap, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-systemEvent-paddingVertical: var(--sn-toaster-anatomy-toast-systemEvent-paddingVertical, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-systemEvent-paddingHorizontal: var(--sn-toaster-anatomy-toast-systemEvent-paddingHorizontal, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-systemEvent-stack-level1-paddingHorizontal: var(--sn-toaster-anatomy-toast-systemEvent-stack-level1-paddingHorizontal, #{$sn-toaster-anatomy-toast-systemEvent-container-borderRadius});
+$sn-toaster-anatomy-toast-systemEvent-stack-level2-paddingHorizontal: var(--sn-toaster-anatomy-toast-systemEvent-stack-level2-paddingHorizontal, #{$sn-toaster-anatomy-toast-systemEvent-container-borderRadius});
+$sn-toaster-anatomy-toast-upload-container-titleLine-title-gap: var(--sn-toaster-anatomy-toast-upload-container-titleLine-title-gap, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-upload-container-titleLine-title-minHeight: var(--sn-toaster-anatomy-toast-upload-container-titleLine-title-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-titleLine-title-square: var(--sn-toaster-anatomy-toast-upload-container-titleLine-title-square, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-gap: var(--sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-gap, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-gap: var(--sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-gap, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-gap: var(--sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-gap, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-button-square: var(--sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-button-square, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical: var(--sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-upload-container-fileLine-headline-gap: var(--sn-toaster-anatomy-toast-upload-container-fileLine-headline-gap, #{st.$sn-primitive-dimension-16});
+$sn-toaster-anatomy-toast-upload-container-fileLine-headline-minHeight: var(--sn-toaster-anatomy-toast-upload-container-fileLine-headline-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-fileLine-headline-button-square: var(--sn-toaster-anatomy-toast-upload-container-fileLine-headline-button-square, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-gap: var(--sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-gap, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-gap: var(--sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-gap, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square: var(--sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap: var(--sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-upload-progress-height: var(--sn-toaster-anatomy-toast-upload-progress-height, #{st.$sn-primitive-dimension-2});
+$sn-toaster-anatomy-toast-upload-progress-borderRadius: var(--sn-toaster-anatomy-toast-upload-progress-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-toaster-anatomy-toast-userAction-container-paddingLeft: var(--sn-toaster-anatomy-toast-userAction-container-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-userAction-container-paddingRight: var(--sn-toaster-anatomy-toast-userAction-container-paddingRight, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-userAction-container-paddingVertical: var(--sn-toaster-anatomy-toast-userAction-container-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-toaster-anatomy-toast-userAction-container-borderRadius: var(--sn-toaster-anatomy-toast-userAction-container-borderRadius, #{st.$sn-brand-anatomy-radius-toaster-m});
+$sn-toaster-anatomy-toast-userAction-container-text-paddingLeft: var(--sn-toaster-anatomy-toast-userAction-container-text-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-userAction-container-text-paddingRight: var(--sn-toaster-anatomy-toast-userAction-container-text-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-toaster-anatomy-toast-userAction-container-text-paddingVertical: var(--sn-toaster-anatomy-toast-userAction-container-text-paddingVertical, #{st.$sn-primitive-dimension-6});
+$sn-toaster-anatomy-toast-userAction-container-timer-container: var(--sn-toaster-anatomy-toast-userAction-container-timer-container, #{st.$sn-primitive-dimension-24});
+$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth: var(--sn-toaster-anatomy-toast-userAction-container-timer-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-toaster-anatomy-toast-userAction-container-timer-circle-square: var(--sn-toaster-anatomy-toast-userAction-container-timer-circle-square, #{st.$sn-primitive-dimension-20});
+$sn-toaster-anatomy-toast-userAction-gap: var(--sn-toaster-anatomy-toast-userAction-gap, #{st.$sn-primitive-dimension-8});
+$sn-toaster-anatomy-toast-userAction-paddingBottom: var(--sn-toaster-anatomy-toast-userAction-paddingBottom, #{st.$sn-primitive-dimension-8});
+
+$toaster: (
+  "anatomy": (
+    "toast": (
+      "systemEvent": (
+        "container": (
+          "padding-left": $sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal,
+          "padding-right": $sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal,
+          "padding-top": $sn-toaster-anatomy-toast-systemEvent-container-paddingVertical,
+          "padding-bottom": $sn-toaster-anatomy-toast-systemEvent-container-paddingVertical,
+          "gap": $sn-toaster-anatomy-toast-systemEvent-container-gap,
+          "border-radius": $sn-toaster-anatomy-toast-systemEvent-container-borderRadius,
+          "content": (
+            "gap": $sn-toaster-anatomy-toast-systemEvent-container-content-gap,
+            "buttonClose": (
+              "width": $sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size
+            )
+          ),
+          "actions": (
+            "gap": $sn-toaster-anatomy-toast-systemEvent-container-actions-gap
+          ),
+          "progress": (
+            "height": $sn-toaster-anatomy-toast-systemEvent-container-progress-height
+          ),
+          "closeAll": (
+            "min-height": $sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight,
+            "border-radius": $sn-toaster-anatomy-toast-systemEvent-container-closeAll-borderRadius
+          ),
+          "max-width": $sn-toaster-anatomy-toast-systemEvent-container-maxWidth
+        ),
+        "gap": $sn-toaster-anatomy-toast-systemEvent-gap,
+        "padding-top": $sn-toaster-anatomy-toast-systemEvent-paddingVertical,
+        "padding-bottom": $sn-toaster-anatomy-toast-systemEvent-paddingVertical,
+        "padding-left": $sn-toaster-anatomy-toast-systemEvent-paddingHorizontal,
+        "padding-right": $sn-toaster-anatomy-toast-systemEvent-paddingHorizontal,
+        "stack": (
+          "level1": (
+            "padding-left": $sn-toaster-anatomy-toast-systemEvent-stack-level1-paddingHorizontal,
+            "padding-right": $sn-toaster-anatomy-toast-systemEvent-stack-level1-paddingHorizontal
+          ),
+          "level2": (
+            "padding-left": $sn-toaster-anatomy-toast-systemEvent-stack-level2-paddingHorizontal,
+            "padding-right": $sn-toaster-anatomy-toast-systemEvent-stack-level2-paddingHorizontal
+          )
+        )
+      ),
+      "upload": (
+        "container": (
+          "titleLine": (
+            "title": (
+              "gap": $sn-toaster-anatomy-toast-upload-container-titleLine-title-gap,
+              "min-height": $sn-toaster-anatomy-toast-upload-container-titleLine-title-minHeight,
+              "width": $sn-toaster-anatomy-toast-upload-container-titleLine-title-square,
+              "height": $sn-toaster-anatomy-toast-upload-container-titleLine-title-square
+            ),
+            "generalProgress": (
+              "gap": $sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-gap,
+              "statusLine": (
+                "gap": $sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-gap,
+                "statusWrapper": (
+                  "gap": $sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-gap,
+                  "button": (
+                    "width": $sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-button-square,
+                    "height": $sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-statusLine-statusWrapper-button-square
+                  )
+                )
+              )
+            )
+          ),
+          "fileLine": (
+            "padding-top": $sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical,
+            "padding-bottom": $sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical,
+            "headline": (
+              "gap": $sn-toaster-anatomy-toast-upload-container-fileLine-headline-gap,
+              "min-height": $sn-toaster-anatomy-toast-upload-container-fileLine-headline-minHeight,
+              "button": (
+                "width": $sn-toaster-anatomy-toast-upload-container-fileLine-headline-button-square,
+                "height": $sn-toaster-anatomy-toast-upload-container-fileLine-headline-button-square
+              )
+            ),
+            "statusLine": (
+              "gap": $sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-gap,
+              "statusWrapper": (
+                "gap": $sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-gap,
+                "button": (
+                  "width": $sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square,
+                  "height": $sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square
+                )
+              ),
+              "fileSize": (
+                "gap": $sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap
+              )
+            )
+          )
+        ),
+        "progress": (
+          "height": $sn-toaster-anatomy-toast-upload-progress-height,
+          "border-radius": $sn-toaster-anatomy-toast-upload-progress-borderRadius
+        )
+      ),
+      "userAction": (
+        "container": (
+          "padding-left": $sn-toaster-anatomy-toast-userAction-container-paddingLeft,
+          "padding-right": $sn-toaster-anatomy-toast-userAction-container-paddingRight,
+          "padding-top": $sn-toaster-anatomy-toast-userAction-container-paddingVertical,
+          "padding-bottom": $sn-toaster-anatomy-toast-userAction-container-paddingVertical,
+          "border-radius": $sn-toaster-anatomy-toast-userAction-container-borderRadius,
+          "text": (
+            "padding-left": $sn-toaster-anatomy-toast-userAction-container-text-paddingLeft,
+            "padding-right": $sn-toaster-anatomy-toast-userAction-container-text-paddingRight,
+            "padding-top": $sn-toaster-anatomy-toast-userAction-container-text-paddingVertical,
+            "padding-bottom": $sn-toaster-anatomy-toast-userAction-container-text-paddingVertical
+          ),
+          "timer": (
+            "container": $sn-toaster-anatomy-toast-userAction-container-timer-container,
+            "border-width": $sn-toaster-anatomy-toast-userAction-container-timer-borderWidth,
+            "circle": (
+              "width": $sn-toaster-anatomy-toast-userAction-container-timer-circle-square,
+              "height": $sn-toaster-anatomy-toast-userAction-container-timer-circle-square
+            )
+          )
+        ),
+        "gap": $sn-toaster-anatomy-toast-userAction-gap,
+        "padding-bottom": $sn-toaster-anatomy-toast-userAction-paddingBottom
+      )
+    )
+  )
+);

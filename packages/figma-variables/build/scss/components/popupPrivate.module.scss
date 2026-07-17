@@ -1,0 +1,147 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minWidth: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minHeight: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minHeight, #{st.$sn-primitive-dimension-32});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius, #{st.$sn-brand-anatomy-radius-window-buttonClosed-m});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingLeft: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingLeft, #{st.$sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingLeft});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingRight: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingRight, #{st.$sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingRight});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingTop: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingTop, #{st.$sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingTop});
+$sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingBottom: var(--sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingBottom, #{st.$sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingBottom});
+$sn-popupPrivate-anatomy-window-header-gap: var(--sn-popupPrivate-anatomy-window-header-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-popupPrivate-anatomy-window-header-paddingBottom: var(--sn-popupPrivate-anatomy-window-header-paddingBottom, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-header-headline-gap: var(--sn-popupPrivate-anatomy-window-header-headline-gap, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-window-header-headline-height: var(--sn-popupPrivate-anatomy-window-header-headline-height, #{st.$sn-density-size-m});
+$sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-gap: var(--sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-gap, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingLeft: var(--sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingLeft, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingRight: var(--sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingRight, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-header-headline-paddingHorizontal: var(--sn-popupPrivate-anatomy-window-header-headline-paddingHorizontal, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-window-header-subHeadlineWrapper-paddingHorizontal: var(--sn-popupPrivate-anatomy-window-header-subHeadlineWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-footer-paddingHorizontal: var(--sn-popupPrivate-anatomy-window-footer-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-footer-paddingBottom: var(--sn-popupPrivate-anatomy-window-footer-paddingBottom, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-window-media-image-minHeight: 184px;
+$sn-popupPrivate-anatomy-window-media-icon-paddingTop: var(--sn-popupPrivate-anatomy-window-media-icon-paddingTop, #{st.$sn-primitive-dimension-32});
+$sn-popupPrivate-anatomy-bottomSheet-header-gap: var(--sn-popupPrivate-anatomy-bottomSheet-header-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-popupPrivate-anatomy-bottomSheet-header-paddingBottom: var(--sn-popupPrivate-anatomy-bottomSheet-header-paddingBottom, #{st.$sn-density-spacing-interval-m});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-gap: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-gap, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical, #{st.$sn-primitive-dimension-10});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight, #{st.$sn-density-spacing-interval-s});
+$sn-popupPrivate-anatomy-bottomSheet-header-paddingTop: var(--sn-popupPrivate-anatomy-bottomSheet-header-paddingTop, #{st.$sn-density-spacing-interval-m});
+$sn-popupPrivate-anatomy-bottomSheet-header-subHeadlineWrapper-paddingHorizontal: var(--sn-popupPrivate-anatomy-bottomSheet-header-subHeadlineWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-header-secondWrapper-paddingHorizontal: var(--sn-popupPrivate-anatomy-bottomSheet-header-secondWrapper-paddingHorizontal, #{$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap});
+$sn-popupPrivate-anatomy-bottomSheet-footer-paddingHorizontal: var(--sn-popupPrivate-anatomy-bottomSheet-footer-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-footer-paddingTop: var(--sn-popupPrivate-anatomy-bottomSheet-footer-paddingTop, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-footer-paddingBottom: var(--sn-popupPrivate-anatomy-bottomSheet-footer-paddingBottom, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-dropdown-header-gap: var(--sn-popupPrivate-anatomy-dropdown-header-gap, #{st.$sn-primitive-dimension-4});
+$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap: var(--sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap, #{st.$sn-primitive-dimension-4});
+$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal: var(--sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal: var(--sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-popupPrivate-anatomy-dropdown-footer-paddingTop: var(--sn-popupPrivate-anatomy-dropdown-footer-paddingTop, #{st.$sn-primitive-dimension-8});
+$sn-popupPrivate-anatomy-dropdown-footer-paddingBottom: var(--sn-popupPrivate-anatomy-dropdown-footer-paddingBottom, #{st.$sn-primitive-dimension-4});
+
+$popupPrivate: (
+  "anatomy": (
+    "window": (
+      "badgeButtonClosed": (
+        "buttonClosed": (
+          "min-width": $sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minWidth,
+          "min-height": $sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minHeight,
+          "border-radius": $sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius
+        ),
+        "padding-left": $sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingLeft,
+        "padding-right": $sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingRight,
+        "padding-top": $sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingTop,
+        "padding-bottom": $sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingBottom
+      ),
+      "header": (
+        "gap": $sn-popupPrivate-anatomy-window-header-gap,
+        "padding-bottom": $sn-popupPrivate-anatomy-window-header-paddingBottom,
+        "headline": (
+          "gap": $sn-popupPrivate-anatomy-window-header-headline-gap,
+          "height": $sn-popupPrivate-anatomy-window-header-headline-height,
+          "headlineWrapper": (
+            "gap": $sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-gap,
+            "padding-left": $sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingLeft,
+            "padding-right": $sn-popupPrivate-anatomy-window-header-headline-headlineWrapper-paddingRight
+          ),
+          "padding-left": $sn-popupPrivate-anatomy-window-header-headline-paddingHorizontal,
+          "padding-right": $sn-popupPrivate-anatomy-window-header-headline-paddingHorizontal
+        ),
+        "subHeadlineWrapper": (
+          "padding-left": $sn-popupPrivate-anatomy-window-header-subHeadlineWrapper-paddingHorizontal,
+          "padding-right": $sn-popupPrivate-anatomy-window-header-subHeadlineWrapper-paddingHorizontal
+        )
+      ),
+      "footer": (
+        "padding-left": $sn-popupPrivate-anatomy-window-footer-paddingHorizontal,
+        "padding-right": $sn-popupPrivate-anatomy-window-footer-paddingHorizontal,
+        "padding-bottom": $sn-popupPrivate-anatomy-window-footer-paddingBottom
+      ),
+      "media": (
+        "image": (
+          "min-height": $sn-popupPrivate-anatomy-window-media-image-minHeight
+        ),
+        "icon": (
+          "padding-top": $sn-popupPrivate-anatomy-window-media-icon-paddingTop
+        )
+      )
+    ),
+    "bottomSheet": (
+      "header": (
+        "gap": $sn-popupPrivate-anatomy-bottomSheet-header-gap,
+        "padding-bottom": $sn-popupPrivate-anatomy-bottomSheet-header-paddingBottom,
+        "headline": (
+          "gap": $sn-popupPrivate-anatomy-bottomSheet-header-headline-gap,
+          "headlineWrapper": (
+            "gap": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap,
+            "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft,
+            "padding-top": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical,
+            "padding-bottom": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical,
+            "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight
+          ),
+          "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft,
+          "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight
+        ),
+        "padding-top": $sn-popupPrivate-anatomy-bottomSheet-header-paddingTop,
+        "subHeadlineWrapper": (
+          "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-subHeadlineWrapper-paddingHorizontal,
+          "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-subHeadlineWrapper-paddingHorizontal
+        ),
+        "secondWrapper": (
+          "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-secondWrapper-paddingHorizontal,
+          "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-secondWrapper-paddingHorizontal
+        )
+      ),
+      "footer": (
+        "padding-left": $sn-popupPrivate-anatomy-bottomSheet-footer-paddingHorizontal,
+        "padding-right": $sn-popupPrivate-anatomy-bottomSheet-footer-paddingHorizontal,
+        "padding-top": $sn-popupPrivate-anatomy-bottomSheet-footer-paddingTop,
+        "padding-bottom": $sn-popupPrivate-anatomy-bottomSheet-footer-paddingBottom
+      )
+    ),
+    "dropdown": (
+      "header": (
+        "gap": $sn-popupPrivate-anatomy-dropdown-header-gap,
+        "headlineWrapper": (
+          "gap": $sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap,
+          "padding-left": $sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal,
+          "padding-right": $sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal
+        )
+      ),
+      "footer": (
+        "padding-left": $sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal,
+        "padding-right": $sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal,
+        "padding-top": $sn-popupPrivate-anatomy-dropdown-footer-paddingTop,
+        "padding-bottom": $sn-popupPrivate-anatomy-dropdown-footer-paddingBottom
+      )
+    )
+  )
+);

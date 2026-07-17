@@ -1,0 +1,22 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-modal {
+  --sn-modal-anatomy-paddingLeft: var(--sn-density-spacing-interval-l, 24px);
+  --sn-modal-anatomy-paddingRight: var(--sn-density-spacing-interval-l, 24px);
+  --sn-modal-anatomy-paddingTop: var(--sn-density-spacing-interval-3xl, 48px);
+  --sn-modal-anatomy-paddingBottom: var(--sn-density-spacing-interval-3xl, 48px);
+  --sn-modal-anatomy-container-borderTopLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-modal-anatomy-container-borderTopRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-modal-anatomy-container-width-s-maxWidth: 464px;
+  --sn-modal-anatomy-container-width-m-maxWidth: 864px;
+  --sn-modal-anatomy-container-width-l-maxWidth: 1872px;
+  --sn-modal-anatomy-container-height-maxHeight: 900px;
+  --sn-modal-anatomy-container-borderBottomRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-modal-anatomy-container-borderBottomLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
+  --sn-modal-anatomy-container-safeArea-paddingBottom: var(--sn-density-spacing-interval-s, 8px);
+  --sn-modal-anatomy-container-safeArea-paddingTop: var(--sn-density-spacing-interval-l, 24px);
+  --sn-modal-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-density-spacing-interval-l, 24px);
+  --sn-modal-anatomy-container-bodyWrapper-paddingBottom: var(--sn-density-spacing-interval-m, 16px);
+}

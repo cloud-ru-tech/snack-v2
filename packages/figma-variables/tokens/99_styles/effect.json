@@ -1,0 +1,113 @@
+{
+  "sn": {
+    "boxShadow": {
+      "elevation": {
+        "level1": {
+          "$type": "boxShadow",
+          "$value": [
+            {
+              "x": "{sn.theme.effect.shadow.level1.layer1.positionX}",
+              "y": "{sn.theme.effect.shadow.level1.layer1.positionY}",
+              "blur": "{sn.theme.effect.shadow.level1.layer1.blur}",
+              "spread": "{sn.theme.effect.shadow.level1.layer1.speed}",
+              "color": "{sn.theme.effect.shadow.layer1Color}",
+              "type": "dropShadow"
+            },
+            {
+              "x": "{sn.theme.effect.shadow.level1.layer2.positionX}",
+              "y": "{sn.theme.effect.shadow.level1.layer2.positionY}",
+              "blur": "{sn.theme.effect.shadow.level1.layer2.blur}",
+              "spread": "{sn.theme.effect.shadow.level1.layer2.speed}",
+              "color": "{sn.theme.effect.shadow.layer2Color}",
+              "type": "dropShadow"
+            }
+          ]
+        },
+        "level2": {
+          "$type": "boxShadow",
+          "$value": [
+            {
+              "x": "{sn.theme.effect.shadow.level2.layer1.positionX}",
+              "y": "{sn.theme.effect.shadow.level2.layer1.positionY}",
+              "blur": "{sn.theme.effect.shadow.level2.layer1.blur}",
+              "spread": "{sn.theme.effect.shadow.level2.layer1.speed}",
+              "color": "{sn.theme.effect.shadow.layer1Color}",
+              "type": "dropShadow"
+            },
+            {
+              "x": "{sn.theme.effect.shadow.level2.layer2.positionX}",
+              "y": "{sn.theme.effect.shadow.level2.layer2.positionY}",
+              "blur": "{sn.theme.effect.shadow.level2.layer2.blur}",
+              "spread": "{sn.theme.effect.shadow.level2.layer2.speed}",
+              "color": "{sn.theme.effect.shadow.layer2Color}",
+              "type": "dropShadow"
+            }
+          ]
+        },
+        "level3": {
+          "$type": "boxShadow",
+          "$value": [
+            {
+              "x": "{sn.theme.effect.shadow.level3.layer1.positionX}",
+              "y": "{sn.theme.effect.shadow.level3.layer1.positionY}",
+              "blur": "{sn.theme.effect.shadow.level3.layer1.blur}",
+              "spread": "{sn.theme.effect.shadow.level3.layer1.speed}",
+              "color": "{sn.theme.effect.shadow.layer1Color}",
+              "type": "dropShadow"
+            },
+            {
+              "x": "{sn.theme.effect.shadow.level3.layer2.positionX}",
+              "y": "{sn.theme.effect.shadow.level3.layer2.positionY}",
+              "blur": "{sn.theme.effect.shadow.level3.layer2.blur}",
+              "spread": "{sn.theme.effect.shadow.level3.layer2.speed}",
+              "color": "{sn.theme.effect.shadow.layer2Color}",
+              "type": "dropShadow"
+            }
+          ]
+        },
+        "level4": {
+          "$type": "boxShadow",
+          "$value": [
+            {
+              "x": "{sn.theme.effect.shadow.level4.layer1.positionX}",
+              "y": "{sn.theme.effect.shadow.level4.layer1.positionY}",
+              "blur": "{sn.theme.effect.shadow.level4.layer1.blur}",
+              "spread": "{sn.theme.effect.shadow.level4.layer1.speed}",
+              "color": "{sn.theme.effect.shadow.layer1Color}",
+              "type": "dropShadow"
+            },
+            {
+              "x": "{sn.theme.effect.shadow.level4.layer2.positionX}",
+              "y": "{sn.theme.effect.shadow.level4.layer2.positionY}",
+              "blur": "{sn.theme.effect.shadow.level4.layer2.blur}",
+              "spread": "{sn.theme.effect.shadow.level4.layer2.speed}",
+              "color": "{sn.theme.effect.shadow.layer2Color}",
+              "type": "dropShadow"
+            }
+          ]
+        },
+        "level5": {
+          "$type": "boxShadow",
+          "$value": [
+            {
+              "x": "{sn.theme.effect.shadow.level5.layer1.positionX}",
+              "y": "{sn.theme.effect.shadow.level5.layer1.positionY}",
+              "blur": "{sn.theme.effect.shadow.level5.layer1.blur}",
+              "spread": "{sn.theme.effect.shadow.level5.layer1.speed}",
+              "color": "{sn.theme.effect.shadow.layer1Color}",
+              "type": "dropShadow"
+            },
+            {
+              "x": "{sn.theme.effect.shadow.level5.layer2.positionX}",
+              "y": "{sn.theme.effect.shadow.level5.layer2.positionY}",
+              "blur": "{sn.theme.effect.shadow.level5.layer2.blur}",
+              "spread": "{sn.theme.effect.shadow.level5.layer2.speed}",
+              "color": "{sn.theme.effect.shadow.layer2Color}",
+              "type": "dropShadow"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

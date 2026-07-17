@@ -1,0 +1,117 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-chevronWrapper-height: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-chevronWrapper-height, #{st.$sn-density-typography-roleTitle-lineHeightL});
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingTop: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingTop, #{st.$sn-density-spacing-block-l-padding});
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingHorizontal, #{st.$sn-density-spacing-block-l-padding});
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-gap: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-gap, #{st.$sn-density-spacing-interval-s});
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-titleWrapper-titleLine-gap, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingBottom: var(--sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingBottom, #{st.$sn-density-spacing-block-l-padding});
+$sn-accordion-anatomy-accordionPrimary-container-borderRadius: var(--sn-accordion-anatomy-accordionPrimary-container-borderRadius, #{st.$sn-brand-anatomy-radius-block-l});
+$sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingVertical: var(--sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingVertical, #{st.$sn-density-spacing-block-l-padding});
+$sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingHorizontal, #{st.$sn-density-spacing-block-l-padding});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-chevronWrapper-height: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-chevronWrapper-height, #{st.$sn-density-typography-roleTitle-lineHeightM});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingTop: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingTop, #{st.$sn-density-spacing-block-m-padding});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingHorizontal, #{st.$sn-density-spacing-block-m-padding});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-gap: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-gap, #{st.$sn-density-spacing-interval-s});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-titleWrapper-titleLine-gap, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingBottom: var(--sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingBottom, #{st.$sn-density-spacing-block-m-padding});
+$sn-accordion-anatomy-accordionSecondary-container-borderRadius: var(--sn-accordion-anatomy-accordionSecondary-container-borderRadius, #{st.$sn-brand-anatomy-radius-block-m});
+$sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingVertical: var(--sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingVertical, #{st.$sn-density-spacing-block-m-padding});
+$sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingHorizontal, #{st.$sn-density-spacing-block-m-padding});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-chevronWrapper-height: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-chevronWrapper-height, #{st.$sn-density-typography-roleTitle-lineHeightS});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-gap: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-gap, #{st.$sn-density-spacing-interval-s});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingTop: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingTop, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titleLine-gap, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingBottom: var(--sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingBottom, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionTertiary-container-borderRadius: var(--sn-accordion-anatomy-accordionTertiary-container-borderRadius, #{st.$sn-brand-anatomy-radius-block-s});
+$sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical: var(--sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+
+$accordion: (
+  "anatomy": (
+    "accordionPrimary": (
+      "container": (
+        "titleContent": (
+          "chevronWrapper": (
+            "height": $sn-accordion-anatomy-accordionPrimary-container-titleContent-chevronWrapper-height
+          ),
+          "padding-top": $sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingTop,
+          "padding-left": $sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingHorizontal,
+          "gap": $sn-accordion-anatomy-accordionPrimary-container-titleContent-gap,
+          "titleWrapper": (
+            "titleLine": (
+              "gap": $sn-accordion-anatomy-accordionPrimary-container-titleContent-titleWrapper-titleLine-gap
+            )
+          ),
+          "padding-bottom": $sn-accordion-anatomy-accordionPrimary-container-titleContent-paddingBottom
+        ),
+        "border-radius": $sn-accordion-anatomy-accordionPrimary-container-borderRadius,
+        "bodyContent": (
+          "padding-top": $sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingVertical,
+          "padding-bottom": $sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingVertical,
+          "padding-left": $sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionPrimary-container-bodyContent-paddingHorizontal
+        )
+      )
+    ),
+    "accordionSecondary": (
+      "container": (
+        "titleContent": (
+          "chevronWrapper": (
+            "height": $sn-accordion-anatomy-accordionSecondary-container-titleContent-chevronWrapper-height
+          ),
+          "padding-top": $sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingTop,
+          "padding-left": $sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingHorizontal,
+          "gap": $sn-accordion-anatomy-accordionSecondary-container-titleContent-gap,
+          "titleWrapper": (
+            "titleLine": (
+              "gap": $sn-accordion-anatomy-accordionSecondary-container-titleContent-titleWrapper-titleLine-gap
+            )
+          ),
+          "padding-bottom": $sn-accordion-anatomy-accordionSecondary-container-titleContent-paddingBottom
+        ),
+        "border-radius": $sn-accordion-anatomy-accordionSecondary-container-borderRadius,
+        "bodyContent": (
+          "padding-top": $sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingVertical,
+          "padding-bottom": $sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingVertical,
+          "padding-left": $sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionSecondary-container-bodyContent-paddingHorizontal
+        )
+      )
+    ),
+    "accordionTertiary": (
+      "container": (
+        "titleContent": (
+          "chevronWrapper": (
+            "height": $sn-accordion-anatomy-accordionTertiary-container-titleContent-chevronWrapper-height
+          ),
+          "gap": $sn-accordion-anatomy-accordionTertiary-container-titleContent-gap,
+          "padding-top": $sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingTop,
+          "padding-left": $sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal,
+          "titleWrapper": (
+            "titleLine": (
+              "gap": $sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titleLine-gap
+            )
+          ),
+          "padding-bottom": $sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingBottom
+        ),
+        "border-radius": $sn-accordion-anatomy-accordionTertiary-container-borderRadius,
+        "bodyContent": (
+          "padding-top": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical,
+          "padding-bottom": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical,
+          "padding-left": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal,
+          "padding-right": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal
+        )
+      )
+    )
+  )
+);

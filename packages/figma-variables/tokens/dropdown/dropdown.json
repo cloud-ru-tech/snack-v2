@@ -1,0 +1,54 @@
+{
+  "sn": {
+    "dropdown": {
+      "anatomy": {
+        "container": {
+          "paddingVertical": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.spacing.dropdown.paddingVertical}"
+          },
+          "borderRadius": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.brand.anatomy.radius.dropdown.s}"
+          },
+          "dropdownInfoBlock": {
+            "paddingVertical": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.24}"
+            }
+          },
+          "bodyWrapper": {
+            "padding": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

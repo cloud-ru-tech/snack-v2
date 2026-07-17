@@ -1,0 +1,58 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-attachment-anatomy-size-s-container-height: var(--sn-attachment-anatomy-size-s-container-height, #{st.$sn-density-size-5xl});
+$sn-attachment-anatomy-size-s-container-width: var(--sn-attachment-anatomy-size-s-container-width, #{st.$sn-density-size-5xl});
+$sn-attachment-anatomy-size-s-container-content-padding: var(--sn-attachment-anatomy-size-s-container-content-padding, #{st.$sn-primitive-dimension-8});
+$sn-attachment-anatomy-size-s-container-content-image-height: var(--sn-attachment-anatomy-size-s-container-content-image-height, #{st.$sn-density-size-m});
+$sn-attachment-anatomy-size-s-container-content-image-width: var(--sn-attachment-anatomy-size-s-container-content-image-width, #{st.$sn-density-size-m});
+$sn-attachment-anatomy-size-s-container-content-image-borderRadius: var(--sn-attachment-anatomy-size-s-container-content-image-borderRadius, #{st.$sn-density-radius-xs});
+$sn-attachment-anatomy-size-s-container-gap: var(--sn-attachment-anatomy-size-s-container-gap, #{st.$sn-primitive-dimension-8});
+$sn-attachment-anatomy-size-m-container-height: var(--sn-attachment-anatomy-size-m-container-height, #{st.$sn-density-size-8xl});
+$sn-attachment-anatomy-size-m-container-width: var(--sn-attachment-anatomy-size-m-container-width, #{st.$sn-density-size-8xl});
+$sn-attachment-anatomy-size-m-container-content-padding: var(--sn-attachment-anatomy-size-m-container-content-padding, #{st.$sn-primitive-dimension-16});
+$sn-attachment-anatomy-size-m-container-content-image-height: var(--sn-attachment-anatomy-size-m-container-content-image-height, #{st.$sn-density-size-l});
+$sn-attachment-anatomy-size-m-container-content-image-width: var(--sn-attachment-anatomy-size-m-container-content-image-width, #{st.$sn-density-size-l});
+$sn-attachment-anatomy-size-m-container-content-image-borderRadius: var(--sn-attachment-anatomy-size-m-container-content-image-borderRadius, #{st.$sn-density-radius-s});
+$sn-attachment-anatomy-size-m-container-gap: var(--sn-attachment-anatomy-size-m-container-gap, #{st.$sn-primitive-dimension-8});
+
+$attachment: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "container": (
+          "height": $sn-attachment-anatomy-size-s-container-height,
+          "width": $sn-attachment-anatomy-size-s-container-width,
+          "content": (
+            "padding": $sn-attachment-anatomy-size-s-container-content-padding,
+            "image": (
+              "height": $sn-attachment-anatomy-size-s-container-content-image-height,
+              "width": $sn-attachment-anatomy-size-s-container-content-image-width,
+              "border-radius": $sn-attachment-anatomy-size-s-container-content-image-borderRadius
+            )
+          ),
+          "gap": $sn-attachment-anatomy-size-s-container-gap
+        )
+      ),
+      "m": (
+        "container": (
+          "height": $sn-attachment-anatomy-size-m-container-height,
+          "width": $sn-attachment-anatomy-size-m-container-width,
+          "content": (
+            "padding": $sn-attachment-anatomy-size-m-container-content-padding,
+            "image": (
+              "height": $sn-attachment-anatomy-size-m-container-content-image-height,
+              "width": $sn-attachment-anatomy-size-m-container-content-image-width,
+              "border-radius": $sn-attachment-anatomy-size-m-container-content-image-borderRadius
+            )
+          ),
+          "gap": $sn-attachment-anatomy-size-m-container-gap
+        )
+      )
+    )
+  )
+);

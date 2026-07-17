@@ -1,0 +1,82 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-stepper-anatomy-size-m-stepStatus-height: var(--sn-stepper-anatomy-size-m-stepStatus-height, #{st.$sn-primitive-dimension-32});
+$sn-stepper-anatomy-size-m-stepStatus-width: var(--sn-stepper-anatomy-size-m-stepStatus-width, #{st.$sn-primitive-dimension-32});
+$sn-stepper-anatomy-size-m-stepStatus-borderRadius: var(--sn-stepper-anatomy-size-m-stepStatus-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-stepper-anatomy-size-m-stepStatus-borderWidth: var(--sn-stepper-anatomy-size-m-stepStatus-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-stepper-anatomy-size-m-progressWrapper-progressLine-height: var(--sn-stepper-anatomy-size-m-progressWrapper-progressLine-height, #{st.$sn-primitive-dimension-2});
+$sn-stepper-anatomy-size-m-progressWrapper-progressLine-borderRadius: var(--sn-stepper-anatomy-size-m-progressWrapper-progressLine-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-stepper-anatomy-size-m-progressWrapper-paddingHorizontal: var(--sn-stepper-anatomy-size-m-progressWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+$sn-stepper-anatomy-size-m-progressWrapper-height: var(--sn-stepper-anatomy-size-m-progressWrapper-height, #{$sn-stepper-anatomy-size-m-progressWrapper-progressLine-height});
+$sn-stepper-anatomy-size-s-stepStatus-height: var(--sn-stepper-anatomy-size-s-stepStatus-height, #{st.$sn-primitive-dimension-24});
+$sn-stepper-anatomy-size-s-stepStatus-width: var(--sn-stepper-anatomy-size-s-stepStatus-width, #{st.$sn-primitive-dimension-24});
+$sn-stepper-anatomy-size-s-stepStatus-borderRadius: var(--sn-stepper-anatomy-size-s-stepStatus-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-stepper-anatomy-size-s-stepStatus-borderWidth: var(--sn-stepper-anatomy-size-s-stepStatus-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-stepper-anatomy-size-s-progressWrapper-progressLine-height: var(--sn-stepper-anatomy-size-s-progressWrapper-progressLine-height, #{st.$sn-primitive-dimension-4});
+$sn-stepper-anatomy-size-s-progressWrapper-progressLine-borderRadius: var(--sn-stepper-anatomy-size-s-progressWrapper-progressLine-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal: var(--sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-stepper-anatomy-size-s-progressWrapper-height: var(--sn-stepper-anatomy-size-s-progressWrapper-height, #{$sn-stepper-anatomy-size-s-progressWrapper-progressLine-height});
+$sn-stepper-anatomy-step-gap: var(--sn-stepper-anatomy-step-gap, #{st.$sn-primitive-dimension-8});
+$sn-stepper-anatomy-step-paddingHorizontal: var(--sn-stepper-anatomy-step-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-stepper-anatomy-stepRow-gap: var(--sn-stepper-anatomy-stepRow-gap, #{st.$sn-primitive-dimension-4});
+$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal: var(--sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal, #{$sn-stepper-anatomy-step-paddingHorizontal});
+
+$stepper: (
+  "anatomy": (
+    "size": (
+      "m": (
+        "stepStatus": (
+          "height": $sn-stepper-anatomy-size-m-stepStatus-height,
+          "width": $sn-stepper-anatomy-size-m-stepStatus-width,
+          "border-radius": $sn-stepper-anatomy-size-m-stepStatus-borderRadius,
+          "border-width": $sn-stepper-anatomy-size-m-stepStatus-borderWidth
+        ),
+        "progressWrapper": (
+          "progressLine": (
+            "height": $sn-stepper-anatomy-size-m-progressWrapper-progressLine-height,
+            "border-radius": $sn-stepper-anatomy-size-m-progressWrapper-progressLine-borderRadius
+          ),
+          "padding-left": $sn-stepper-anatomy-size-m-progressWrapper-paddingHorizontal,
+          "padding-right": $sn-stepper-anatomy-size-m-progressWrapper-paddingHorizontal,
+          "height": $sn-stepper-anatomy-size-m-progressWrapper-height
+        )
+      ),
+      "s": (
+        "stepStatus": (
+          "height": $sn-stepper-anatomy-size-s-stepStatus-height,
+          "width": $sn-stepper-anatomy-size-s-stepStatus-width,
+          "border-radius": $sn-stepper-anatomy-size-s-stepStatus-borderRadius,
+          "border-width": $sn-stepper-anatomy-size-s-stepStatus-borderWidth
+        ),
+        "progressWrapper": (
+          "progressLine": (
+            "height": $sn-stepper-anatomy-size-s-progressWrapper-progressLine-height,
+            "border-radius": $sn-stepper-anatomy-size-s-progressWrapper-progressLine-borderRadius
+          ),
+          "padding-left": $sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal,
+          "padding-right": $sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal,
+          "height": $sn-stepper-anatomy-size-s-progressWrapper-height
+        )
+      )
+    ),
+    "step": (
+      "gap": $sn-stepper-anatomy-step-gap,
+      "padding-left": $sn-stepper-anatomy-step-paddingHorizontal,
+      "padding-right": $sn-stepper-anatomy-step-paddingHorizontal
+    ),
+    "stepRow": (
+      "gap": $sn-stepper-anatomy-stepRow-gap,
+      "contentWrapper": (
+        "stepText": (
+          "padding-left": $sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal,
+          "padding-right": $sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal
+        )
+      )
+    )
+  )
+);

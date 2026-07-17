@@ -1,0 +1,140 @@
+{
+  "sn": {
+    "breadcrumbs": {
+      "text": {
+        "separator": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "text",
+          "$value": "{sn.brand.text.breadcrumbs.separator}"
+        }
+      },
+      "anatomy": {
+        "crumb": {
+          "size": {
+            "xs": {
+              "container": {
+                "textWrapper": {
+                  "gap": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.spacing.control.container.horizontal.xs}"
+                  }
+                },
+                "minHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.xs}"
+                },
+                "minWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.xs}"
+                },
+                "separator": {
+                  "minHeight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.xs}"
+                  },
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.xs}"
+                  }
+                }
+              }
+            },
+            "s": {
+              "container": {
+                "textWrapper": {
+                  "gap": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.spacing.control.container.horizontal.s}"
+                  }
+                },
+                "minHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.s}"
+                },
+                "minWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.s}"
+                },
+                "separator": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.s}"
+                  },
+                  "minHeight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.size.s}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

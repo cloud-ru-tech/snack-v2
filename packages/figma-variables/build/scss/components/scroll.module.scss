@@ -1,0 +1,44 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-scroll-anatomy-slider-size-s-square: var(--sn-scroll-anatomy-slider-size-s-square, #{st.$sn-primitive-dimension-4});
+$sn-scroll-anatomy-slider-size-s-borderRadius: var(--sn-scroll-anatomy-slider-size-s-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-scroll-anatomy-slider-size-m-square: var(--sn-scroll-anatomy-slider-size-m-square, #{st.$sn-primitive-dimension-6});
+$sn-scroll-anatomy-slider-size-m-borderRadius: var(--sn-scroll-anatomy-slider-size-m-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-scroll-anatomy-container-size-s-square: var(--sn-scroll-anatomy-container-size-s-square, #{st.$sn-primitive-dimension-8});
+$sn-scroll-anatomy-container-size-m-square: var(--sn-scroll-anatomy-container-size-m-square, #{st.$sn-primitive-dimension-16});
+
+$scroll: (
+  "anatomy": (
+    "slider": (
+      "size": (
+        "s": (
+          "width": $sn-scroll-anatomy-slider-size-s-square,
+          "height": $sn-scroll-anatomy-slider-size-s-square,
+          "border-radius": $sn-scroll-anatomy-slider-size-s-borderRadius
+        ),
+        "m": (
+          "width": $sn-scroll-anatomy-slider-size-m-square,
+          "height": $sn-scroll-anatomy-slider-size-m-square,
+          "border-radius": $sn-scroll-anatomy-slider-size-m-borderRadius
+        )
+      )
+    ),
+    "container": (
+      "size": (
+        "s": (
+          "width": $sn-scroll-anatomy-container-size-s-square,
+          "height": $sn-scroll-anatomy-container-size-s-square
+        ),
+        "m": (
+          "width": $sn-scroll-anatomy-container-size-m-square,
+          "height": $sn-scroll-anatomy-container-size-m-square
+        )
+      )
+    )
+  )
+);

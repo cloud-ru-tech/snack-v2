@@ -1,0 +1,28 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-dropdown-anatomy-container-paddingVertical: var(--sn-dropdown-anatomy-container-paddingVertical, #{st.$sn-brand-anatomy-spacing-dropdown-paddingVertical});
+$sn-dropdown-anatomy-container-borderRadius: var(--sn-dropdown-anatomy-container-borderRadius, #{st.$sn-brand-anatomy-radius-dropdown-s});
+$sn-dropdown-anatomy-container-dropdownInfoBlock-paddingVertical: var(--sn-dropdown-anatomy-container-dropdownInfoBlock-paddingVertical, #{st.$sn-primitive-dimension-24});
+$sn-dropdown-anatomy-container-bodyWrapper-padding: var(--sn-dropdown-anatomy-container-bodyWrapper-padding, #{st.$sn-primitive-dimension-8});
+
+$dropdown: (
+  "anatomy": (
+    "container": (
+      "padding-top": $sn-dropdown-anatomy-container-paddingVertical,
+      "padding-bottom": $sn-dropdown-anatomy-container-paddingVertical,
+      "border-radius": $sn-dropdown-anatomy-container-borderRadius,
+      "dropdownInfoBlock": (
+        "padding-top": $sn-dropdown-anatomy-container-dropdownInfoBlock-paddingVertical,
+        "padding-bottom": $sn-dropdown-anatomy-container-dropdownInfoBlock-paddingVertical
+      ),
+      "bodyWrapper": (
+        "padding": $sn-dropdown-anatomy-container-bodyWrapper-padding
+      )
+    )
+  )
+);

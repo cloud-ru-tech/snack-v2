@@ -1,0 +1,61 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-modal-anatomy-paddingLeft: var(--sn-modal-anatomy-paddingLeft, #{st.$sn-density-spacing-interval-l});
+$sn-modal-anatomy-paddingRight: var(--sn-modal-anatomy-paddingRight, #{st.$sn-density-spacing-interval-l});
+$sn-modal-anatomy-paddingTop: var(--sn-modal-anatomy-paddingTop, #{st.$sn-density-spacing-interval-3xl});
+$sn-modal-anatomy-paddingBottom: var(--sn-modal-anatomy-paddingBottom, #{st.$sn-density-spacing-interval-3xl});
+$sn-modal-anatomy-container-borderTopLeftRadius: var(--sn-modal-anatomy-container-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-modal-anatomy-container-borderTopRightRadius: var(--sn-modal-anatomy-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-modal-anatomy-container-width-s-maxWidth: 464px;
+$sn-modal-anatomy-container-width-m-maxWidth: 864px;
+$sn-modal-anatomy-container-width-l-maxWidth: 1872px;
+$sn-modal-anatomy-container-height-maxHeight: 900px;
+$sn-modal-anatomy-container-borderBottomRightRadius: var(--sn-modal-anatomy-container-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-modal-anatomy-container-borderBottomLeftRadius: var(--sn-modal-anatomy-container-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
+$sn-modal-anatomy-container-safeArea-paddingBottom: var(--sn-modal-anatomy-container-safeArea-paddingBottom, #{st.$sn-density-spacing-interval-s});
+$sn-modal-anatomy-container-safeArea-paddingTop: var(--sn-modal-anatomy-container-safeArea-paddingTop, #{st.$sn-density-spacing-interval-l});
+$sn-modal-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-modal-anatomy-container-bodyWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
+$sn-modal-anatomy-container-bodyWrapper-paddingBottom: var(--sn-modal-anatomy-container-bodyWrapper-paddingBottom, #{st.$sn-density-spacing-interval-m});
+
+$modal: (
+  "anatomy": (
+    "padding-left": $sn-modal-anatomy-paddingLeft,
+    "padding-right": $sn-modal-anatomy-paddingRight,
+    "padding-top": $sn-modal-anatomy-paddingTop,
+    "padding-bottom": $sn-modal-anatomy-paddingBottom,
+    "container": (
+      "border-top-left-radius": $sn-modal-anatomy-container-borderTopLeftRadius,
+      "border-top-right-radius": $sn-modal-anatomy-container-borderTopRightRadius,
+      "width": (
+        "s": (
+          "max-width": $sn-modal-anatomy-container-width-s-maxWidth
+        ),
+        "m": (
+          "max-width": $sn-modal-anatomy-container-width-m-maxWidth
+        ),
+        "l": (
+          "max-width": $sn-modal-anatomy-container-width-l-maxWidth
+        )
+      ),
+      "height": (
+        "max-height": $sn-modal-anatomy-container-height-maxHeight
+      ),
+      "border-bottom-right-radius": $sn-modal-anatomy-container-borderBottomRightRadius,
+      "border-bottom-left-radius": $sn-modal-anatomy-container-borderBottomLeftRadius,
+      "safeArea": (
+        "padding-bottom": $sn-modal-anatomy-container-safeArea-paddingBottom,
+        "padding-top": $sn-modal-anatomy-container-safeArea-paddingTop
+      ),
+      "bodyWrapper": (
+        "padding-left": $sn-modal-anatomy-container-bodyWrapper-paddingHorizontal,
+        "padding-right": $sn-modal-anatomy-container-bodyWrapper-paddingHorizontal,
+        "padding-bottom": $sn-modal-anatomy-container-bodyWrapper-paddingBottom
+      )
+    )
+  )
+);

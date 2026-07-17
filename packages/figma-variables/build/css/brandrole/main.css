@@ -1,0 +1,62 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-main {
+  --sn-brandRole-color-brandA-5: var(--sn-primitive-color-brandA-5, #21372f);
+  --sn-brandRole-color-brandA-10: var(--sn-primitive-color-brandA-10, #243e35);
+  --sn-brandRole-color-brandA-15: var(--sn-primitive-color-brandA-15, #2b483c);
+  --sn-brandRole-color-brandA-25: var(--sn-primitive-color-brandA-25, #2c5e49);
+  --sn-brandRole-color-brandA-45: var(--sn-primitive-color-brandA-45, #22775b);
+  --sn-brandRole-color-brandA-55: var(--sn-primitive-color-brandA-55, #389f74);
+  --sn-brandRole-color-brandA-60: var(--sn-primitive-color-brandA-60, #5ebb91);
+  --sn-brandRole-color-brandA-65: var(--sn-primitive-color-brandA-65, #85ceaa);
+  --sn-brandRole-color-brandA-80: var(--sn-primitive-color-brandA-80, #caeadb);
+  --sn-brandRole-color-brandA-90: var(--sn-primitive-color-brandA-90, #edf7f1);
+  --sn-brandRole-color-brandA-95: var(--sn-primitive-color-brandA-95, #f5fdf8);
+  --sn-brandRole-color-brandA-99: var(--sn-primitive-color-brandA-99, #fbfffc);
+  --sn-brandRole-color-brandA-transparent: #389f741a;
+  --sn-brandRole-color-brandA-backgroundActivatedPressed: #389f744d;
+  --sn-brandRole-color-brandA-backgroundActivatedHovered: #389f7433;
+  --sn-brandRole-color-brandA-backgroundActivatedDefault: #389f741a;
+  --sn-brandRole-color-brandA-onAccentLight: var(--sn-primitive-color-brandA-99, #fbfffc);
+  --sn-brandRole-color-brandA-onAccentDark: var(--sn-primitive-color-brandA-5, #21372f);
+  --sn-brandRole-color-brandB-5: var(--sn-primitive-color-brandB-5, #2b2540);
+  --sn-brandRole-color-brandB-10: var(--sn-primitive-color-brandB-10, #302a4b);
+  --sn-brandRole-color-brandB-15: var(--sn-primitive-color-brandB-15, #362c5a);
+  --sn-brandRole-color-brandB-25: var(--sn-primitive-color-brandB-25, #4f3c8d);
+  --sn-brandRole-color-brandB-45: var(--sn-primitive-color-brandB-45, #6642bd);
+  --sn-brandRole-color-brandB-55: var(--sn-primitive-color-brandB-55, #794ed3);
+  --sn-brandRole-color-brandB-60: var(--sn-primitive-color-brandB-60, #a681ef);
+  --sn-brandRole-color-brandB-65: var(--sn-primitive-color-brandB-65, #c4aaf9);
+  --sn-brandRole-color-brandB-80: var(--sn-primitive-color-brandB-80, #e1ccfe);
+  --sn-brandRole-color-brandB-90: var(--sn-primitive-color-brandB-90, #f3e8ff);
+  --sn-brandRole-color-brandB-95: var(--sn-primitive-color-brandB-95, #f7f2fc);
+  --sn-brandRole-color-brandB-99: var(--sn-primitive-color-brandB-99, #fdfbff);
+  --sn-brandRole-color-brandB-transparent: #794ed321;
+  --sn-brandRole-color-brandB-backgroundActivatedPressed: #794ed3a3;
+  --sn-brandRole-color-brandB-backgroundActivatedHovered: #794ed366;
+  --sn-brandRole-color-brandB-backgroundActivatedDefault: #794ed326;
+  --sn-brandRole-color-brandB-onAccentLight: var(--sn-primitive-color-brandB-99, #fdfbff);
+  --sn-brandRole-color-brandB-onAccentDark: var(--sn-primitive-color-brandB-5, #2b2540);
+  --sn-brandRole-color-brandC-5: var(--sn-primitive-color-brandC-5, #01190f);
+  --sn-brandRole-color-brandC-10: var(--sn-primitive-color-brandC-10, #032016);
+  --sn-brandRole-color-brandC-15: var(--sn-primitive-color-brandC-15, #022519);
+  --sn-brandRole-color-brandC-25: var(--sn-primitive-color-brandC-25, #042f1f);
+  --sn-brandRole-color-brandC-45: var(--sn-primitive-color-brandC-45, #21bd70);
+  --sn-brandRole-color-brandC-55: var(--sn-primitive-color-brandC-55, #26d07c);
+  --sn-brandRole-color-brandC-60: var(--sn-primitive-color-brandC-60, #49d891);
+  --sn-brandRole-color-brandC-65: var(--sn-primitive-color-brandC-65, #6cdfa6);
+  --sn-brandRole-color-brandC-80: var(--sn-primitive-color-brandC-80, #b1eed0);
+  --sn-brandRole-color-brandC-90: var(--sn-primitive-color-brandC-90, #ebf8f0);
+  --sn-brandRole-color-brandC-95: var(--sn-primitive-color-brandC-95, #f3fbf6);
+  --sn-brandRole-color-brandC-99: var(--sn-primitive-color-brandC-99, #f9fdfa);
+  --sn-brandRole-color-brandC-transparent: #26d07c21;
+  --sn-brandRole-color-brandC-backgroundActivatedDefault: #26d07c26;
+  --sn-brandRole-color-brandC-backgroundActivatedHovered: #26d07c66;
+  --sn-brandRole-color-brandC-backgroundActivatedPressed: #26d07ca3;
+  --sn-brandRole-color-brandC-onAccentLight: var(--sn-primitive-color-brandC-99, #f9fdfa);
+  --sn-brandRole-color-brandC-onAccentDark: var(--sn-primitive-color-brandC-5, #01190f);
+  --sn-brandRole-kitService-text-modeName: "03_brandRole:";
+  --sn-brandRole-kitService-text-modificationName: "main";
+}

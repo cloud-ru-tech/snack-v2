@@ -1,0 +1,54 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-tree {
+  --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by16, 24px);
+  --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-l, 8px);
+  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-width: var(--sn-density-size-icon-s, 24px);
+  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight: var(--sn-primitive-dimension-12, 12px);
+  --sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-density-nestingLevel-l-level-paddingRight, 28px);
+  --sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-density-nestingLevel-l-level-paddingTop, 28px);
+  --sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-density-nestingLevel-l-paddingLeft, 12px);
+  --sn-tree-anatomy-size-l-treeItem-gap: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-tree-anatomy-size-l-treeItem-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
+  --sn-tree-anatomy-size-l-treeItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-tree-anatomy-size-l-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-tree-anatomy-size-s-treeItem-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
+  --sn-tree-anatomy-size-s-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
+  --sn-tree-anatomy-size-s-treeItem-gap: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by12, 16px);
+  --sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-s, 8px);
+  --sn-tree-anatomy-size-s-treeItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-density-nestingLevel-s-level-paddingRight, 20px);
+  --sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-density-nestingLevel-s-level-paddingTop, 20px);
+  --sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-density-nestingLevel-s-paddingLeft, 12px);
+  --sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
+  --sn-tree-anatomy-size-s-treeItem-centeredWrapper-width: var(--sn-density-size-icon-xs, 24px);
+  --sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-density-size-icon-xs, 24px);
+  --sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight: var(--sn-primitive-dimension-8, 8px);
+  --sn-tree-anatomy-size-m-treeItem-centeredWrapper-width: var(--sn-density-size-icon-s, 24px);
+  --sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 8px);
+  --sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight: var(--sn-primitive-dimension-12, 12px);
+  --sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-m, 8px);
+  --sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-primitive-font-lineHeight-by14, 20px);
+  --sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-primitive-dimension-0, 0px);
+  --sn-tree-anatomy-size-m-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 8px);
+  --sn-tree-anatomy-size-m-treeItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-tree-anatomy-size-m-treeItem-gap: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-density-nestingLevel-m-level-paddingRight, 24px);
+  --sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-density-nestingLevel-m-level-paddingTop, 24px);
+  --sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-density-nestingLevel-m-paddingLeft, 12px);
+  --sn-tree-anatomy-size-m-treeItem-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
+}

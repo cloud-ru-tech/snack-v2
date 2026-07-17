@@ -1,0 +1,21 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-promoTag {
+  --sn-promoTag-anatomy-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-promoTag-anatomy-size-s-container-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-promoTag-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-promoTag-s, 2px);
+  --sn-promoTag-anatomy-size-s-container-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-promoTag-anatomy-size-s-container-textWrapper-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-promoTag-anatomy-size-xs-container-textWrapper-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-promoTag-anatomy-size-xs-container-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-promoTag-anatomy-size-xs-container-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-promoTag-anatomy-size-xs-container-minWidth: var(--sn-primitive-dimension-16, 16px);
+  --sn-promoTag-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-promoTag-xs, 2px);
+  --sn-promoTag-anatomy-size-m-container-textWrapper-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-promoTag-anatomy-size-m-container-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-promoTag-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-promoTag-m, 2px);
+  --sn-promoTag-anatomy-size-m-container-minHeight: var(--sn-primitive-dimension-32, 32px);
+  --sn-promoTag-anatomy-size-m-container-minWidth: var(--sn-primitive-dimension-32, 32px);
+}

@@ -1,0 +1,15 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-slider {
+  --sn-slider-anatomy-size-handle-container-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-slider-anatomy-size-handle-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-slider-anatomy-size-handle-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-slider-anatomy-size-container-trackLine-maxHeight: var(--sn-primitive-dimension-2, 2px);
+  --sn-slider-anatomy-size-container-trackLine-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-slider-anatomy-size-container-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-slider-anatomy-size-scaleStep-maxHeight: var(--sn-primitive-dimension-4, 4px);
+  --sn-slider-anatomy-size-scaleStep-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-slider-anatomy-size-scaleStep-width: var(--sn-primitive-dimension-2, 2px);
+}

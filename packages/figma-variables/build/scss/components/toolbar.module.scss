@@ -1,0 +1,41 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-toolbar-anatomy-container-tool-borderWidth: var(--sn-toolbar-anatomy-container-tool-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-toolbar-anatomy-container-tool-borderRadius, #{st.$sn-brand-anatomy-radius-toolbar-xs});
+$sn-toolbar-anatomy-container-tool-bulkAction-gap: var(--sn-toolbar-anatomy-container-tool-bulkAction-gap, #{st.$sn-primitive-dimension-8});
+$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-toolbar-anatomy-container-tool-search-minHeight: var(--sn-toolbar-anatomy-container-tool-search-minHeight, #{st.$sn-density-size-m});
+$sn-toolbar-anatomy-container-tool-search-borderRadius: var(--sn-toolbar-anatomy-container-tool-search-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-toolbar-anatomy-container-tool-paddingHorizontal, #{st.$sn-density-spacing-interval-xs});
+$sn-toolbar-anatomy-container-tool-gap: var(--sn-toolbar-anatomy-container-tool-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-toolbar-anatomy-container-tool-minHeight: var(--sn-toolbar-anatomy-container-tool-minHeight, #{st.$sn-density-size-l});
+$sn-toolbar-anatomy-container-gap: var(--sn-toolbar-anatomy-container-gap, #{st.$sn-density-spacing-interval-xs});
+
+$toolbar: (
+  "anatomy": (
+    "container": (
+      "tool": (
+        "border-width": $sn-toolbar-anatomy-container-tool-borderWidth,
+        "border-radius": $sn-toolbar-anatomy-container-tool-borderRadius,
+        "bulkAction": (
+          "gap": $sn-toolbar-anatomy-container-tool-bulkAction-gap,
+          "padding-left": $sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft
+        ),
+        "search": (
+          "min-height": $sn-toolbar-anatomy-container-tool-search-minHeight,
+          "border-radius": $sn-toolbar-anatomy-container-tool-search-borderRadius
+        ),
+        "padding-left": $sn-toolbar-anatomy-container-tool-paddingHorizontal,
+        "padding-right": $sn-toolbar-anatomy-container-tool-paddingHorizontal,
+        "gap": $sn-toolbar-anatomy-container-tool-gap,
+        "min-height": $sn-toolbar-anatomy-container-tool-minHeight
+      ),
+      "gap": $sn-toolbar-anatomy-container-gap
+    )
+  )
+);

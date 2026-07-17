@@ -1,0 +1,80 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-dropzone-anatomy-size-s-borderRadius: var(--sn-dropzone-anatomy-size-s-borderRadius, #{st.$sn-brand-anatomy-radius-field-s});
+$sn-dropzone-anatomy-size-s-minHeight: var(--sn-dropzone-anatomy-size-s-minHeight, #{st.$sn-density-size-s});
+$sn-dropzone-anatomy-size-s-borderWidth: var(--sn-dropzone-anatomy-size-s-borderWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-dropzone-anatomy-size-s-paddingHorizontal: var(--sn-dropzone-anatomy-size-s-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-dropzone-anatomy-size-s-paddingVertical: var(--sn-dropzone-anatomy-size-s-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
+$sn-dropzone-anatomy-size-s-contentWrapper-paddingHorizontal: var(--sn-dropzone-anatomy-size-s-contentWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-dropzone-anatomy-size-s-contentWrapper-paddingVertical: var(--sn-dropzone-anatomy-size-s-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
+$sn-dropzone-anatomy-size-m-borderRadius: var(--sn-dropzone-anatomy-size-m-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
+$sn-dropzone-anatomy-size-m-paddingHorizontal: var(--sn-dropzone-anatomy-size-m-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-dropzone-anatomy-size-m-paddingVertical: var(--sn-dropzone-anatomy-size-m-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
+$sn-dropzone-anatomy-size-m-contentWrapper-paddingHorizontal: var(--sn-dropzone-anatomy-size-m-contentWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-dropzone-anatomy-size-m-contentWrapper-paddingVertical: var(--sn-dropzone-anatomy-size-m-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-m});
+$sn-dropzone-anatomy-size-m-minHeight: var(--sn-dropzone-anatomy-size-m-minHeight, #{st.$sn-density-size-m});
+$sn-dropzone-anatomy-size-m-borderWidth: var(--sn-dropzone-anatomy-size-m-borderWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+$sn-dropzone-anatomy-size-l-borderRadius: var(--sn-dropzone-anatomy-size-l-borderRadius, #{st.$sn-brand-anatomy-radius-field-l});
+$sn-dropzone-anatomy-size-l-paddingHorizontal: var(--sn-dropzone-anatomy-size-l-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-dropzone-anatomy-size-l-paddingVertical: var(--sn-dropzone-anatomy-size-l-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
+$sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal: var(--sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical: var(--sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-l});
+$sn-dropzone-anatomy-size-l-minHeight: var(--sn-dropzone-anatomy-size-l-minHeight, #{st.$sn-density-size-l});
+$sn-dropzone-anatomy-size-l-borderWidth: var(--sn-dropzone-anatomy-size-l-borderWidth, #{st.$sn-brand-anatomy-line-field-strokeWeight});
+
+$dropzone: (
+  "anatomy": (
+    "size": (
+      "s": (
+        "border-radius": $sn-dropzone-anatomy-size-s-borderRadius,
+        "min-height": $sn-dropzone-anatomy-size-s-minHeight,
+        "border-width": $sn-dropzone-anatomy-size-s-borderWidth,
+        "padding-left": $sn-dropzone-anatomy-size-s-paddingHorizontal,
+        "padding-right": $sn-dropzone-anatomy-size-s-paddingHorizontal,
+        "padding-top": $sn-dropzone-anatomy-size-s-paddingVertical,
+        "padding-bottom": $sn-dropzone-anatomy-size-s-paddingVertical,
+        "contentWrapper": (
+          "padding-left": $sn-dropzone-anatomy-size-s-contentWrapper-paddingHorizontal,
+          "padding-right": $sn-dropzone-anatomy-size-s-contentWrapper-paddingHorizontal,
+          "padding-top": $sn-dropzone-anatomy-size-s-contentWrapper-paddingVertical,
+          "padding-bottom": $sn-dropzone-anatomy-size-s-contentWrapper-paddingVertical
+        )
+      ),
+      "m": (
+        "border-radius": $sn-dropzone-anatomy-size-m-borderRadius,
+        "padding-left": $sn-dropzone-anatomy-size-m-paddingHorizontal,
+        "padding-right": $sn-dropzone-anatomy-size-m-paddingHorizontal,
+        "padding-top": $sn-dropzone-anatomy-size-m-paddingVertical,
+        "padding-bottom": $sn-dropzone-anatomy-size-m-paddingVertical,
+        "contentWrapper": (
+          "padding-left": $sn-dropzone-anatomy-size-m-contentWrapper-paddingHorizontal,
+          "padding-right": $sn-dropzone-anatomy-size-m-contentWrapper-paddingHorizontal,
+          "padding-top": $sn-dropzone-anatomy-size-m-contentWrapper-paddingVertical,
+          "padding-bottom": $sn-dropzone-anatomy-size-m-contentWrapper-paddingVertical
+        ),
+        "min-height": $sn-dropzone-anatomy-size-m-minHeight,
+        "border-width": $sn-dropzone-anatomy-size-m-borderWidth
+      ),
+      "l": (
+        "border-radius": $sn-dropzone-anatomy-size-l-borderRadius,
+        "padding-left": $sn-dropzone-anatomy-size-l-paddingHorizontal,
+        "padding-right": $sn-dropzone-anatomy-size-l-paddingHorizontal,
+        "padding-top": $sn-dropzone-anatomy-size-l-paddingVertical,
+        "padding-bottom": $sn-dropzone-anatomy-size-l-paddingVertical,
+        "contentWrapper": (
+          "padding-left": $sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal,
+          "padding-right": $sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal,
+          "padding-top": $sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical,
+          "padding-bottom": $sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical
+        ),
+        "min-height": $sn-dropzone-anatomy-size-l-minHeight,
+        "border-width": $sn-dropzone-anatomy-size-l-borderWidth
+      )
+    )
+  )
+);

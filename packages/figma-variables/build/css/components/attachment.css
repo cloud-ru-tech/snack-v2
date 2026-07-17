@@ -1,0 +1,20 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-attachment {
+  --sn-attachment-anatomy-size-s-container-height: var(--sn-density-size-5xl, 104px);
+  --sn-attachment-anatomy-size-s-container-width: var(--sn-density-size-5xl, 104px);
+  --sn-attachment-anatomy-size-s-container-content-padding: var(--sn-primitive-dimension-8, 8px);
+  --sn-attachment-anatomy-size-s-container-content-image-height: var(--sn-density-size-m, 56px);
+  --sn-attachment-anatomy-size-s-container-content-image-width: var(--sn-density-size-m, 56px);
+  --sn-attachment-anatomy-size-s-container-content-image-borderRadius: var(--sn-density-radius-xs, 10px);
+  --sn-attachment-anatomy-size-s-container-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-attachment-anatomy-size-m-container-height: var(--sn-density-size-8xl, 128px);
+  --sn-attachment-anatomy-size-m-container-width: var(--sn-density-size-8xl, 128px);
+  --sn-attachment-anatomy-size-m-container-content-padding: var(--sn-primitive-dimension-16, 16px);
+  --sn-attachment-anatomy-size-m-container-content-image-height: var(--sn-density-size-l, 64px);
+  --sn-attachment-anatomy-size-m-container-content-image-width: var(--sn-density-size-l, 64px);
+  --sn-attachment-anatomy-size-m-container-content-image-borderRadius: var(--sn-density-radius-s, 16px);
+  --sn-attachment-anatomy-size-m-container-gap: var(--sn-primitive-dimension-8, 8px);
+}

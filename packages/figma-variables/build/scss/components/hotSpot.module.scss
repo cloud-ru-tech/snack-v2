@@ -1,0 +1,34 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-hotSpot-anatomy-dot-square: var(--sn-hotSpot-anatomy-dot-square, #{st.$sn-primitive-dimension-8});
+$sn-hotSpot-anatomy-dot-borderRadius: var(--sn-hotSpot-anatomy-dot-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-hotSpot-anatomy-pulse-square: var(--sn-hotSpot-anatomy-pulse-square, #{st.$sn-primitive-dimension-16});
+$sn-hotSpot-anatomy-pulse-borderRadius: var(--sn-hotSpot-anatomy-pulse-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-hotSpot-effect-opacity-pulse-opacity: 0.24;
+
+$hotSpot: (
+  "anatomy": (
+    "dot": (
+      "width": $sn-hotSpot-anatomy-dot-square,
+      "height": $sn-hotSpot-anatomy-dot-square,
+      "border-radius": $sn-hotSpot-anatomy-dot-borderRadius
+    ),
+    "pulse": (
+      "width": $sn-hotSpot-anatomy-pulse-square,
+      "height": $sn-hotSpot-anatomy-pulse-square,
+      "border-radius": $sn-hotSpot-anatomy-pulse-borderRadius
+    )
+  ),
+  "effect": (
+    "opacity": (
+      "pulse": (
+        "opacity": $sn-hotSpot-effect-opacity-pulse-opacity
+      )
+    )
+  )
+);

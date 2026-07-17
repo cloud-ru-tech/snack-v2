@@ -1,0 +1,33 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-chip {
+  --sn-chip-anatomy-size-l-container-minHeight: var(--sn-density-size-l, 64px);
+  --sn-chip-anatomy-size-l-container-borderRadius: var(--sn-brand-anatomy-radius-chips-l, 10000px);
+  --sn-chip-anatomy-size-l-container-borderWidth: var(--sn-brand-anatomy-line-chips-strokeWeight, 1px);
+  --sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-chip-anatomy-size-l-container-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
+  --sn-chip-anatomy-size-l-container-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
+  --sn-chip-anatomy-size-l-container-minWidth: var(--sn-density-size-l, 64px);
+  --sn-chip-anatomy-size-l-centeredWrapper-maxWidth: var(--sn-density-size-icon-s, 24px);
+  --sn-chip-anatomy-size-l-centeredWrapper-maxHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-chip-anatomy-size-m-container-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-chip-anatomy-size-m-container-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-m, 16px);
+  --sn-chip-anatomy-size-m-container-borderWidth: var(--sn-brand-anatomy-line-chips-strokeWeight, 1px);
+  --sn-chip-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-chips-m, 10000px);
+  --sn-chip-anatomy-size-m-container-minHeight: var(--sn-density-size-m, 56px);
+  --sn-chip-anatomy-size-m-container-minWidth: var(--sn-density-size-m, 56px);
+  --sn-chip-anatomy-size-m-centeredWrapper-maxWidth: var(--sn-density-size-icon-s, 24px);
+  --sn-chip-anatomy-size-m-centeredWrapper-maxHeight: var(--sn-density-size-icon-s, 24px);
+  --sn-chip-anatomy-size-s-container-textWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-chip-anatomy-size-s-container-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-s, 12px);
+  --sn-chip-anatomy-size-s-container-borderWidth: var(--sn-brand-anatomy-line-chips-strokeWeight, 1px);
+  --sn-chip-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-chips-s, 10000px);
+  --sn-chip-anatomy-size-s-container-minHeight: var(--sn-density-size-s, 48px);
+  --sn-chip-anatomy-size-s-container-minWidth: var(--sn-density-size-s, 48px);
+  --sn-chip-anatomy-size-s-centeredWrapper-maxWidth: var(--sn-density-size-icon-xs, 24px);
+  --sn-chip-anatomy-size-s-centeredWrapper-maxHeight: var(--sn-density-size-icon-xs, 24px);
+}

@@ -1,0 +1,32 @@
+{
+  "sn": {
+    "color": {
+      "gradient": {
+        "skeleton": {
+          "$type": "color",
+          "$value": "linear-gradient(115deg, {sn.theme.color.forGradient.skeleton.a} 40%, {sn.theme.color.forGradient.skeleton.b} 50%, {sn.theme.color.forGradient.skeleton.a} 60%)"
+        },
+        "linear": {
+          "mask": {
+            "0deg": {
+              "$type": "color",
+              "$value": "linear-gradient(0deg, {sn.theme.color.forGradient.linear.mask.a} 0%, {sn.theme.color.forGradient.linear.mask.b} 50%, {sn.theme.color.forGradient.linear.mask.c} 100%)"
+            },
+            "90deg": {
+              "$type": "color",
+              "$value": "linear-gradient(90deg, {sn.theme.color.forGradient.linear.mask.a} 0%, {sn.theme.color.forGradient.linear.mask.b} 50%, {sn.theme.color.forGradient.linear.mask.c} 100%)"
+            },
+            "180deg": {
+              "$type": "color",
+              "$value": "linear-gradient(180deg, {sn.theme.color.forGradient.linear.mask.a} 0%, {sn.theme.color.forGradient.linear.mask.b} 50%, {sn.theme.color.forGradient.linear.mask.c} 100%)"
+            },
+            "270deg": {
+              "$type": "color",
+              "$value": "linear-gradient(270deg, {sn.theme.color.forGradient.linear.mask.a} 0%, {sn.theme.color.forGradient.linear.mask.b} 50%, {sn.theme.color.forGradient.linear.mask.c} 100%)"
+            }
+          }
+        }
+      }
+    }
+  }
+}

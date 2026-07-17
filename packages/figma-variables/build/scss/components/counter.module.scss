@@ -1,0 +1,50 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-counter-anatomy-size-xs-minHeight: var(--sn-counter-anatomy-size-xs-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-counter-anatomy-size-xs-minWidth: var(--sn-counter-anatomy-size-xs-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-counter-anatomy-size-xs-container-padding: var(--sn-counter-anatomy-size-xs-container-padding, #{st.$sn-primitive-dimension-2});
+$sn-counter-anatomy-size-xs-container-minHeight: var(--sn-counter-anatomy-size-xs-container-minHeight, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-counter-anatomy-size-xs-container-minWidth: var(--sn-counter-anatomy-size-xs-container-minWidth, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-counter-anatomy-size-xs-container-borderRadius: var(--sn-counter-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-counter-xs});
+$sn-counter-anatomy-size-xs-container-borderWidth: var(--sn-counter-anatomy-size-xs-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-counter-anatomy-size-s-minHeight: var(--sn-counter-anatomy-size-s-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-counter-anatomy-size-s-minWidth: var(--sn-counter-anatomy-size-s-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-counter-anatomy-size-s-container-padding: var(--sn-counter-anatomy-size-s-container-padding, #{st.$sn-primitive-dimension-4});
+$sn-counter-anatomy-size-s-container-minHeight: var(--sn-counter-anatomy-size-s-container-minHeight, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-counter-anatomy-size-s-container-minWidth: var(--sn-counter-anatomy-size-s-container-minWidth, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-counter-anatomy-size-s-container-borderRadius: var(--sn-counter-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-counter-s});
+$sn-counter-anatomy-size-s-container-borderWidth: var(--sn-counter-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeMedium});
+
+$counter: (
+  "anatomy": (
+    "size": (
+      "xs": (
+        "min-height": $sn-counter-anatomy-size-xs-minHeight,
+        "min-width": $sn-counter-anatomy-size-xs-minWidth,
+        "container": (
+          "padding": $sn-counter-anatomy-size-xs-container-padding,
+          "min-height": $sn-counter-anatomy-size-xs-container-minHeight,
+          "min-width": $sn-counter-anatomy-size-xs-container-minWidth,
+          "border-radius": $sn-counter-anatomy-size-xs-container-borderRadius,
+          "border-width": $sn-counter-anatomy-size-xs-container-borderWidth
+        )
+      ),
+      "s": (
+        "min-height": $sn-counter-anatomy-size-s-minHeight,
+        "min-width": $sn-counter-anatomy-size-s-minWidth,
+        "container": (
+          "padding": $sn-counter-anatomy-size-s-container-padding,
+          "min-height": $sn-counter-anatomy-size-s-container-minHeight,
+          "min-width": $sn-counter-anatomy-size-s-container-minWidth,
+          "border-radius": $sn-counter-anatomy-size-s-container-borderRadius,
+          "border-width": $sn-counter-anatomy-size-s-container-borderWidth
+        )
+      )
+    )
+  )
+);

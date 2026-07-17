@@ -1,0 +1,1537 @@
+{
+  "sn": {
+    "density": {
+      "property": {
+        "boolean": {
+          "showOnCompact": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "boolean",
+            "$value": "false",
+            "$description": "Флаг видимости: true только в режиме compact. Переключает показ элемента между режимами плотности."
+          },
+          "showOnComfort": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "boolean",
+            "$value": "true",
+            "$description": "Флаг видимости: true только в режиме comfort. Переключает показ элемента между режимами плотности."
+          },
+          "showOnSpacious": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "boolean",
+            "$value": "false",
+            "$description": "Флаг видимости: true только в режиме spacious. Переключает показ элемента между режимами плотности."
+          }
+        }
+      },
+      "kitService": {
+        "text": {
+          "modificationName": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "comfort"
+          },
+          "modeName": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "02_density:"
+          }
+        }
+      },
+      "typography": {
+        "roleDisplay": {
+          "fontSizeS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.32}"
+          },
+          "fontSizeM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.40}"
+          },
+          "fontSizeL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.48}"
+          },
+          "lineHeightS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by32}"
+          },
+          "lineHeightM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by40}"
+          },
+          "lineHeightL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by48}"
+          }
+        },
+        "roleHeadline": {
+          "fontSizeS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.20}"
+          },
+          "lineHeightS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by20}"
+          },
+          "fontSizeM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.24}"
+          },
+          "lineHeightM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by24}"
+          },
+          "fontSizeL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.28}"
+          },
+          "lineHeightL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by28}"
+          }
+        },
+        "roleTitle": {
+          "fontSizeS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.16}"
+          },
+          "lineHeightS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by16}"
+          },
+          "fontSizeM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.18}"
+          },
+          "lineHeightM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by18}"
+          },
+          "fontSizeL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.20}"
+          },
+          "lineHeightL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by20}"
+          }
+        },
+        "roleLabel": {
+          "fontSizeS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.12}"
+          },
+          "lineHeightS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by12}"
+          },
+          "fontSizeM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.14}"
+          },
+          "lineHeightM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by14}"
+          },
+          "fontSizeL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.16}"
+          },
+          "lineHeightL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by16}"
+          }
+        },
+        "roleBody": {
+          "fontSizeS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.14}"
+          },
+          "lineHeightS": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by14}"
+          },
+          "fontSizeM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.16}"
+          },
+          "lineHeightM": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by16}"
+          },
+          "fontSizeL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.fontSize.18}"
+          },
+          "lineHeightL": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "FONT_SIZE"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.font.lineHeight.by18}"
+          }
+        }
+      },
+      "size": {
+        "s": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.40}",
+          "$description": "Размер элемента, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "m": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.48}",
+          "$description": "Размер элемента, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "l": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.56}",
+          "$description": "Размер элемента, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "2xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.72}",
+          "$description": "Размер элемента, ступень 2xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "3xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.80}",
+          "$description": "Размер элемента, ступень 3xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.64}",
+          "$description": "Размер элемента, ступень xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "icon": {
+          "s": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.24}"
+          },
+          "m": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.32}"
+          },
+          "l": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.40}"
+          },
+          "2xs": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.16}"
+          },
+          "xs": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.24}"
+          },
+          "strokeWeight": {
+            "s": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": 1.5,
+              "$description": "Толщина линии иконки, размер s. Одинаково во всех режимах плотности."
+            },
+            "xs": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 1.5
+            },
+            "2xs": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 1
+            },
+            "m": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 2
+            },
+            "l": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 2.5
+            }
+          }
+        },
+        "xs": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.32}",
+          "$description": "Размер элемента, ступень xs. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "4xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.88}",
+          "$description": "Размер элемента, ступень 4xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "5xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.96}",
+          "$description": "Размер элемента, ступень 5xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "6xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.104}",
+          "$description": "Размер элемента, ступень 6xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "7xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.112}",
+          "$description": "Размер элемента, ступень 7xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "8xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.120}",
+          "$description": "Размер элемента, ступень 8xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "9xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.128}",
+          "$description": "Размер элемента, ступень 9xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "10xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT",
+              "FONT_VARIATIONS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.136}",
+          "$description": "Размер элемента, ступень 10xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "screen": {
+          "width": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": 360,
+            "$description": "Ширина эталонного экрана режима плотности. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "height": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": 640,
+            "$description": "Высота эталонного экрана режима плотности. Меняется с режимом плотности (compact/comfort/spacious)."
+          }
+        },
+        "page": {
+          "narrow": {
+            "maxWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.full}"
+            },
+            "minWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 320
+            }
+          },
+          "medium": {
+            "maxWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.full}"
+            },
+            "minWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 320
+            }
+          },
+          "full": {
+            "minWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 320
+            },
+            "maxWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.full}"
+            }
+          },
+          "wide": {
+            "minWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 320
+            },
+            "maxWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.full}"
+            }
+          }
+        },
+        "grid": {
+          "full": {
+            "count": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 4
+            },
+            "gutter": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "margin": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
+          },
+          "narrow": {
+            "count": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 4
+            },
+            "gutter": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "margin": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
+          },
+          "medium": {
+            "count": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 4
+            },
+            "gutter": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "margin": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
+          },
+          "wide": {
+            "count": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 4
+            },
+            "gutter": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.8}"
+            },
+            "margin": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "control": {
+          "container": {
+            "horizontal": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.16}"
+              },
+              "xs": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            },
+            "vertical": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              },
+              "xs": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            }
+          },
+          "wrapper": {
+            "horizontal": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              },
+              "xs": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
+            },
+            "vertical": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.6}"
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.8}"
+              },
+              "xs": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "GAP"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.2}"
+              }
+            }
+          }
+        },
+        "interval": {
+          "xs": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.2}",
+            "$description": "Интервал между элементами, ступень xs. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "s": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.4}",
+            "$description": "Интервал между элементами, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "m": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.8}",
+            "$description": "Интервал между элементами, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "l": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.16}",
+            "$description": "Интервал между элементами, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "xl": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.24}",
+            "$description": "Интервал между элементами, ступень xl. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "2xl": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.32}",
+            "$description": "Интервал между элементами, ступень 2xl. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "3xl": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.40}",
+            "$description": "Интервал между элементами, ступень 3xl. Меняется с режимом плотности (compact/comfort/spacious)."
+          },
+          "2xs": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP",
+                "FONT_VARIATIONS"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.0}",
+            "$description": "Интервал между элементами, ступень 2xs. Меняется с режимом плотности (compact/comfort/spacious)."
+          }
+        },
+        "block": {
+          "s": {
+            "padding": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.s}",
+              "$description": "Внутренний отступ блока, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
+            }
+          },
+          "m": {
+            "padding": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.m}",
+              "$description": "Внутренний отступ блока, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
+            }
+          },
+          "l": {
+            "padding": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.density.spacing.interval.l}",
+              "$description": "Внутренний отступ блока, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
+            }
+          }
+        }
+      },
+      "radius": {
+        "s": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.12}",
+          "$description": "Радиус скругления, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "l": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.20}",
+          "$description": "Радиус скругления, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "m": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.16}",
+          "$description": "Радиус скругления, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.24}",
+          "$description": "Радиус скругления, ступень xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "2xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.28}",
+          "$description": "Радиус скругления, ступень 2xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "3xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.32}",
+          "$description": "Радиус скругления, ступень 3xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "4xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.36}",
+          "$description": "Радиус скругления, ступень 4xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "5xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.40}",
+          "$description": "Радиус скругления, ступень 5xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "6xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.52}",
+          "$description": "Радиус скругления, ступень 6xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "xs": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.8}",
+          "$description": "Радиус скругления, ступень xs. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "2xs": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.4}",
+          "$description": "Радиус скругления, ступень 2xs. Одинаково во всех режимах плотности."
+        },
+        "3xs": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.2}",
+          "$description": "Радиус скругления, ступень 3xs. Одинаково во всех режимах плотности."
+        },
+        "7xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.56}",
+          "$description": "Радиус скругления, ступень 7xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        },
+        "8xl": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "CORNER_RADIUS"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.primitive.dimension.60}",
+          "$description": "Радиус скругления, ступень 8xl. Меняется с режимом плотности (compact/comfort/spacious)."
+        }
+      },
+      "nestingLevel": {
+        "s": {
+          "paddingLeft": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.12}"
+          },
+          "level": {
+            "paddingRight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            },
+            "paddingTop": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.20}"
+            }
+          }
+        },
+        "m": {
+          "paddingLeft": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.12}"
+          },
+          "level": {
+            "paddingRight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.24}"
+            },
+            "paddingTop": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.24}"
+            }
+          }
+        },
+        "l": {
+          "paddingLeft": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "WIDTH_HEIGHT",
+                "GAP"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.12}"
+          },
+          "level": {
+            "paddingRight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.28}"
+            },
+            "paddingTop": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT",
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.28}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

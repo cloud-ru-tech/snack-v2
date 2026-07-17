@@ -1,0 +1,19 @@
+{
+  "sn": {
+    "primitive": {
+      "color": {
+        "gray": { "45": { "$type": "color", "$value": "#5e606e" }, "80": { "$type": "color", "$value": "#dee1e8" } }
+      },
+      "dimension": {
+        "0": { "$type": "number", "$value": "0" },
+        "8": { "$type": "number", "$value": "8" },
+        "16": { "$type": "number", "$value": "16" }
+      },
+      "font": {
+        "fontSize": { "16": { "$type": "number", "$value": "16" } },
+        "fontWeightValue": { "400": { "$type": "number", "$value": "400" } }
+      },
+      "strokeWeight": { "strokeRegular": { "$type": "number", "$value": "1" } }
+    }
+  }
+}

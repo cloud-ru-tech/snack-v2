@@ -1,0 +1,191 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by16});
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-l});
+$sn-tree-anatomy-size-l-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
+$sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-nestingLevel-l-level-paddingRight});
+$sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-l-level-paddingTop});
+$sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-nestingLevel-l-paddingLeft});
+$sn-tree-anatomy-size-l-treeItem-gap: var(--sn-tree-anatomy-size-l-treeItem-gap, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-tree-anatomy-size-l-treeItem-borderRadius: var(--sn-tree-anatomy-size-l-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
+$sn-tree-anatomy-size-l-treeItem-paddingHorizontal: var(--sn-tree-anatomy-size-l-treeItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
+$sn-tree-anatomy-size-l-treeItem-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
+$sn-tree-anatomy-size-s-treeItem-borderRadius: var(--sn-tree-anatomy-size-s-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-tree-anatomy-size-s-treeItem-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
+$sn-tree-anatomy-size-s-treeItem-gap: var(--sn-tree-anatomy-size-s-treeItem-gap, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by12});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
+$sn-tree-anatomy-size-s-treeItem-paddingHorizontal: var(--sn-tree-anatomy-size-s-treeItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
+$sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-nestingLevel-s-level-paddingRight});
+$sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-s-level-paddingTop});
+$sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-nestingLevel-s-paddingLeft});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-xs});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-xs});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-8});
+$sn-tree-anatomy-size-m-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
+$sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-m});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by14});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
+$sn-tree-anatomy-size-m-treeItem-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
+$sn-tree-anatomy-size-m-treeItem-paddingHorizontal: var(--sn-tree-anatomy-size-m-treeItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-tree-anatomy-size-m-treeItem-gap: var(--sn-tree-anatomy-size-m-treeItem-gap, #{st.$sn-density-spacing-control-container-horizontal-m});
+$sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-nestingLevel-m-level-paddingRight});
+$sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-m-level-paddingTop});
+$sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-nestingLevel-m-paddingLeft});
+$sn-tree-anatomy-size-m-treeItem-borderRadius: var(--sn-tree-anatomy-size-m-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+
+$tree: (
+  "anatomy": (
+    "size": (
+      "l": (
+        "treeItem": (
+          "contentWrapper": (
+            "textWrapper": (
+              "textContent": (
+                "gap": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap,
+                "padding-left": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "padding-right": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "headline": (
+                  "min-height": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight,
+                  "gap": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap
+                )
+              ),
+              "padding-top": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical,
+              "padding-bottom": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical
+            )
+          ),
+          "centeredWrapper": (
+            "width": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-width,
+            "toggleWrapper": (
+              "min-height": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight
+            ),
+            "padding-top": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical,
+            "padding-bottom": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical,
+            "padding-right": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight
+          ),
+          "nestingLevel": (
+            "levelIndicator": (
+              "level": (
+                "padding-right": $sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight,
+                "padding-top": $sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingTop
+              ),
+              "padding-left": $sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-paddingLeft
+            )
+          ),
+          "gap": $sn-tree-anatomy-size-l-treeItem-gap,
+          "border-radius": $sn-tree-anatomy-size-l-treeItem-borderRadius,
+          "padding-left": $sn-tree-anatomy-size-l-treeItem-paddingHorizontal,
+          "padding-right": $sn-tree-anatomy-size-l-treeItem-paddingHorizontal,
+          "padding-top": $sn-tree-anatomy-size-l-treeItem-paddingVertical,
+          "padding-bottom": $sn-tree-anatomy-size-l-treeItem-paddingVertical
+        )
+      ),
+      "s": (
+        "treeItem": (
+          "border-radius": $sn-tree-anatomy-size-s-treeItem-borderRadius,
+          "padding-top": $sn-tree-anatomy-size-s-treeItem-paddingVertical,
+          "padding-bottom": $sn-tree-anatomy-size-s-treeItem-paddingVertical,
+          "gap": $sn-tree-anatomy-size-s-treeItem-gap,
+          "contentWrapper": (
+            "textWrapper": (
+              "textContent": (
+                "padding-left": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "padding-right": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "gap": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap,
+                "headline": (
+                  "gap": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap,
+                  "min-height": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight
+                )
+              ),
+              "padding-top": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical,
+              "padding-bottom": $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical
+            )
+          ),
+          "padding-left": $sn-tree-anatomy-size-s-treeItem-paddingHorizontal,
+          "padding-right": $sn-tree-anatomy-size-s-treeItem-paddingHorizontal,
+          "nestingLevel": (
+            "levelIndicator": (
+              "level": (
+                "padding-right": $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight,
+                "padding-top": $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop
+              ),
+              "padding-left": $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft
+            )
+          ),
+          "centeredWrapper": (
+            "padding-top": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical,
+            "padding-bottom": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical,
+            "width": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-width,
+            "toggleWrapper": (
+              "min-height": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight
+            ),
+            "padding-right": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight
+          )
+        )
+      ),
+      "m": (
+        "treeItem": (
+          "centeredWrapper": (
+            "width": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-width,
+            "padding-top": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical,
+            "padding-bottom": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical,
+            "toggleWrapper": (
+              "min-height": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight
+            ),
+            "padding-right": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight
+          ),
+          "contentWrapper": (
+            "textWrapper": (
+              "padding-top": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical,
+              "padding-bottom": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical,
+              "textContent": (
+                "padding-left": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "padding-right": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
+                "headline": (
+                  "min-height": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight,
+                  "gap": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap
+                ),
+                "gap": $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap
+              )
+            )
+          ),
+          "padding-top": $sn-tree-anatomy-size-m-treeItem-paddingVertical,
+          "padding-bottom": $sn-tree-anatomy-size-m-treeItem-paddingVertical,
+          "padding-left": $sn-tree-anatomy-size-m-treeItem-paddingHorizontal,
+          "padding-right": $sn-tree-anatomy-size-m-treeItem-paddingHorizontal,
+          "gap": $sn-tree-anatomy-size-m-treeItem-gap,
+          "nestingLevel": (
+            "levelIndicator": (
+              "level": (
+                "padding-right": $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingRight,
+                "padding-top": $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop
+              ),
+              "padding-left": $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft
+            )
+          ),
+          "border-radius": $sn-tree-anatomy-size-m-treeItem-borderRadius
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,45 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-colorPicker {
+  --sn-colorPicker-anatomy-size-s-colorPicker-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-colorPicker-anatomy-size-s-colorPicker-sliderTrack-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-s-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-s-colorPicker-gap, var(--sn-primitive-dimension-8, 8px));
+  --sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minHeight: 200px;
+  --sn-colorPicker-anatomy-size-s-colorPicker-colorArea-minWidth: 200px;
+  --sn-colorPicker-anatomy-size-s-colorPicker-colorArea-borderRadius: var(--sn-brand-anatomy-radius-field-m, 2px);
+  --sn-colorPicker-anatomy-size-s-handleColor-bg-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-s-handleColor-bg-borderWidth: var(--sn-primitive-dimension-4, 4px);
+  --sn-colorPicker-anatomy-size-s-handleColor-bg-width: var(--sn-density-size-s, 48px);
+  --sn-colorPicker-anatomy-size-s-handleColor-bg-height: var(--sn-density-size-s, 48px);
+  --sn-colorPicker-anatomy-size-s-previewColor-borderRadius: var(--sn-density-radius-2xs, 4px);
+  --sn-colorPicker-anatomy-size-s-previewColor-width: var(--sn-density-size-icon-xs, 24px);
+  --sn-colorPicker-anatomy-size-s-previewColor-height: var(--sn-density-size-icon-xs, 24px);
+  --sn-colorPicker-anatomy-size-m-colorPicker-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-colorPicker-anatomy-size-m-colorPicker-sliderTrack-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-m-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-m-colorPicker-gap, var(--sn-primitive-dimension-8, 8px));
+  --sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minWidth: 232px;
+  --sn-colorPicker-anatomy-size-m-colorPicker-colorArea-minHeight: 232px;
+  --sn-colorPicker-anatomy-size-m-colorPicker-colorArea-borderRadius: var(--sn-brand-anatomy-radius-field-m, 2px);
+  --sn-colorPicker-anatomy-size-m-handleColor-bg-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-m-handleColor-bg-borderWidth: var(--sn-primitive-dimension-6, 6px);
+  --sn-colorPicker-anatomy-size-m-handleColor-bg-width: var(--sn-density-size-m, 56px);
+  --sn-colorPicker-anatomy-size-m-handleColor-bg-height: var(--sn-density-size-m, 56px);
+  --sn-colorPicker-anatomy-size-m-previewColor-borderRadius: var(--sn-density-radius-s, 16px);
+  --sn-colorPicker-anatomy-size-m-previewColor-width: var(--sn-density-size-icon-s, 24px);
+  --sn-colorPicker-anatomy-size-m-previewColor-height: var(--sn-density-size-icon-s, 24px);
+  --sn-colorPicker-anatomy-size-l-colorPicker-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-colorPicker-anatomy-size-l-colorPicker-sliderTrack-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-l-colorPicker-parameter-gap: var(--sn-colorPicker-anatomy-size-l-colorPicker-gap, var(--sn-primitive-dimension-8, 8px));
+  --sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minWidth: 296px;
+  --sn-colorPicker-anatomy-size-l-colorPicker-colorArea-minHeight: 292px;
+  --sn-colorPicker-anatomy-size-l-colorPicker-colorArea-borderRadius: var(--sn-brand-anatomy-radius-field-l, 2px);
+  --sn-colorPicker-anatomy-size-l-handleColor-bg-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-colorPicker-anatomy-size-l-handleColor-bg-borderWidth: var(--sn-primitive-dimension-8, 8px);
+  --sn-colorPicker-anatomy-size-l-handleColor-bg-width: var(--sn-density-size-l, 64px);
+  --sn-colorPicker-anatomy-size-l-handleColor-bg-height: var(--sn-density-size-l, 64px);
+  --sn-colorPicker-anatomy-size-l-previewColor-borderRadius: var(--sn-density-radius-s, 16px);
+  --sn-colorPicker-anatomy-size-l-previewColor-width: var(--sn-density-size-icon-m, 32px);
+  --sn-colorPicker-anatomy-size-l-previewColor-height: var(--sn-density-size-icon-m, 32px);
+}

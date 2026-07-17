@@ -1,0 +1,62 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-progressBar-anatomy-size-xs-line-container-height: var(--sn-progressBar-anatomy-size-xs-line-container-height, #{st.$sn-primitive-dimension-2});
+$sn-progressBar-anatomy-size-xs-line-container-borderRadius: var(--sn-progressBar-anatomy-size-xs-line-container-borderRadius, #{st.$sn-density-radius-xs});
+$sn-progressBar-anatomy-size-xs-circle-container-square: var(--sn-progressBar-anatomy-size-xs-circle-container-square, #{st.$sn-primitive-dimension-16});
+$sn-progressBar-anatomy-size-xs-circle-container-borderWidth: var(--sn-progressBar-anatomy-size-xs-circle-container-borderWidth, #{$sn-progressBar-anatomy-size-xs-line-container-height});
+$sn-progressBar-anatomy-size-xs-circle-container-progress-square: var(--sn-progressBar-anatomy-size-xs-circle-container-progress-square, #{st.$sn-primitive-dimension-12});
+$sn-progressBar-anatomy-size-s-line-container-borderRadius: var(--sn-progressBar-anatomy-size-s-line-container-borderRadius, #{st.$sn-density-radius-s});
+$sn-progressBar-anatomy-size-s-line-container-height: var(--sn-progressBar-anatomy-size-s-line-container-height, #{st.$sn-primitive-dimension-4});
+$sn-progressBar-anatomy-size-s-circle-container-square: var(--sn-progressBar-anatomy-size-s-circle-container-square, #{st.$sn-primitive-dimension-24});
+$sn-progressBar-anatomy-size-s-circle-container-borderWidth: var(--sn-progressBar-anatomy-size-s-circle-container-borderWidth, #{$sn-progressBar-anatomy-size-s-line-container-height});
+$sn-progressBar-anatomy-size-s-circle-container-progress-square: var(--sn-progressBar-anatomy-size-s-circle-container-progress-square, #{st.$sn-primitive-dimension-16});
+
+$progressBar: (
+  "anatomy": (
+    "size": (
+      "xs": (
+        "line": (
+          "container": (
+            "height": $sn-progressBar-anatomy-size-xs-line-container-height,
+            "border-radius": $sn-progressBar-anatomy-size-xs-line-container-borderRadius
+          )
+        ),
+        "circle": (
+          "container": (
+            "width": $sn-progressBar-anatomy-size-xs-circle-container-square,
+            "height": $sn-progressBar-anatomy-size-xs-circle-container-square,
+            "border-width": $sn-progressBar-anatomy-size-xs-circle-container-borderWidth,
+            "progress": (
+              "width": $sn-progressBar-anatomy-size-xs-circle-container-progress-square,
+              "height": $sn-progressBar-anatomy-size-xs-circle-container-progress-square
+            )
+          )
+        )
+      ),
+      "s": (
+        "line": (
+          "container": (
+            "border-radius": $sn-progressBar-anatomy-size-s-line-container-borderRadius,
+            "height": $sn-progressBar-anatomy-size-s-line-container-height
+          )
+        ),
+        "circle": (
+          "container": (
+            "width": $sn-progressBar-anatomy-size-s-circle-container-square,
+            "height": $sn-progressBar-anatomy-size-s-circle-container-square,
+            "border-width": $sn-progressBar-anatomy-size-s-circle-container-borderWidth,
+            "progress": (
+              "width": $sn-progressBar-anatomy-size-s-circle-container-progress-square,
+              "height": $sn-progressBar-anatomy-size-s-circle-container-progress-square
+            )
+          )
+        )
+      )
+    )
+  )
+);

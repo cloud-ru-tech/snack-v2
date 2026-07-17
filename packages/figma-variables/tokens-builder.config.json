@@ -1,0 +1,20 @@
+{
+  "input": "./tokens",
+  "output": "./build",
+  "formats": [
+    "css",
+    "scss",
+    "ts"
+  ],
+  "excludeGroups": [
+    "06_language"
+  ],
+  "cssModules": false,
+  "scssModules": true,
+  "cssClassPrefix": "sn",
+  "includeFallbackValues": true,
+  "validate": "warn",
+  "watch": false,
+  "logLevel": "debug",
+  "logFile": "./logs/build.log"
+}

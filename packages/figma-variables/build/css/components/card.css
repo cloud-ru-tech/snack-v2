@@ -1,0 +1,18 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-card {
+  --sn-card-anatomy-radius-m-container-borderRadius: var(--sn-brand-anatomy-radius-card-m, 2px);
+  --sn-card-anatomy-radius-m-container-badge-paddingLeft: var(--sn-primitive-dimension-6, 6px);
+  --sn-card-anatomy-radius-m-container-badge-paddingTop: var(--sn-primitive-dimension-6, 6px);
+  --sn-card-anatomy-radius-m-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-card-anatomy-radius-s-container-borderRadius: var(--sn-brand-anatomy-radius-card-s, 2px);
+  --sn-card-anatomy-radius-s-container-badge-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-card-anatomy-radius-s-container-badge-paddingTop: var(--sn-primitive-dimension-4, 4px);
+  --sn-card-anatomy-radius-s-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-card-anatomy-radius-l-container-borderRadius: var(--sn-brand-anatomy-radius-card-l, 4px);
+  --sn-card-anatomy-radius-l-container-badge-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-card-anatomy-radius-l-container-badge-paddingTop: var(--sn-primitive-dimension-8, 8px);
+  --sn-card-anatomy-radius-l-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+}

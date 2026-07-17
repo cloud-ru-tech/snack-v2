@@ -1,0 +1,102 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-skeleton-anatomy-size-text-lineHeight-display-s: var(--sn-skeleton-anatomy-size-text-lineHeight-display-s, #{st.$sn-density-typography-roleDisplay-lineHeightS});
+$sn-skeleton-anatomy-size-text-lineHeight-display-m: var(--sn-skeleton-anatomy-size-text-lineHeight-display-m, #{st.$sn-density-typography-roleDisplay-lineHeightM});
+$sn-skeleton-anatomy-size-text-lineHeight-display-l: var(--sn-skeleton-anatomy-size-text-lineHeight-display-l, #{st.$sn-density-typography-roleDisplay-lineHeightL});
+$sn-skeleton-anatomy-size-text-lineHeight-headline-s: var(--sn-skeleton-anatomy-size-text-lineHeight-headline-s, #{st.$sn-density-typography-roleHeadline-lineHeightS});
+$sn-skeleton-anatomy-size-text-lineHeight-headline-m: var(--sn-skeleton-anatomy-size-text-lineHeight-headline-m, #{st.$sn-density-typography-roleHeadline-lineHeightM});
+$sn-skeleton-anatomy-size-text-lineHeight-headline-l: var(--sn-skeleton-anatomy-size-text-lineHeight-headline-l, #{st.$sn-density-typography-roleHeadline-lineHeightL});
+$sn-skeleton-anatomy-size-text-lineHeight-title-s: var(--sn-skeleton-anatomy-size-text-lineHeight-title-s, #{st.$sn-density-typography-roleTitle-lineHeightS});
+$sn-skeleton-anatomy-size-text-lineHeight-title-m: var(--sn-skeleton-anatomy-size-text-lineHeight-title-m, #{st.$sn-density-typography-roleTitle-lineHeightM});
+$sn-skeleton-anatomy-size-text-lineHeight-title-l: var(--sn-skeleton-anatomy-size-text-lineHeight-title-l, #{st.$sn-density-typography-roleTitle-lineHeightL});
+$sn-skeleton-anatomy-size-text-lineHeight-label-s: var(--sn-skeleton-anatomy-size-text-lineHeight-label-s, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-skeleton-anatomy-size-text-lineHeight-label-m: var(--sn-skeleton-anatomy-size-text-lineHeight-label-m, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-skeleton-anatomy-size-text-lineHeight-label-l: var(--sn-skeleton-anatomy-size-text-lineHeight-label-l, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-skeleton-anatomy-size-text-lineHeight-body-s: var(--sn-skeleton-anatomy-size-text-lineHeight-body-s, #{st.$sn-density-typography-roleBody-lineHeightS});
+$sn-skeleton-anatomy-size-text-lineHeight-body-m: var(--sn-skeleton-anatomy-size-text-lineHeight-body-m, #{st.$sn-density-typography-roleBody-lineHeightM});
+$sn-skeleton-anatomy-size-text-lineHeight-body-l: var(--sn-skeleton-anatomy-size-text-lineHeight-body-l, #{st.$sn-density-typography-roleBody-lineHeightL});
+$sn-skeleton-anatomy-size-text-font-display-s: var(--sn-skeleton-anatomy-size-text-font-display-s, #{st.$sn-density-typography-roleDisplay-fontSizeS});
+$sn-skeleton-anatomy-size-text-font-display-m: var(--sn-skeleton-anatomy-size-text-font-display-m, #{st.$sn-density-typography-roleDisplay-fontSizeM});
+$sn-skeleton-anatomy-size-text-font-display-l: var(--sn-skeleton-anatomy-size-text-font-display-l, #{st.$sn-density-typography-roleDisplay-fontSizeL});
+$sn-skeleton-anatomy-size-text-font-headline-s: var(--sn-skeleton-anatomy-size-text-font-headline-s, #{st.$sn-density-typography-roleHeadline-fontSizeS});
+$sn-skeleton-anatomy-size-text-font-headline-m: var(--sn-skeleton-anatomy-size-text-font-headline-m, #{st.$sn-density-typography-roleHeadline-fontSizeM});
+$sn-skeleton-anatomy-size-text-font-headline-l: var(--sn-skeleton-anatomy-size-text-font-headline-l, #{st.$sn-density-typography-roleHeadline-fontSizeL});
+$sn-skeleton-anatomy-size-text-font-title-s: var(--sn-skeleton-anatomy-size-text-font-title-s, #{st.$sn-density-typography-roleTitle-fontSizeS});
+$sn-skeleton-anatomy-size-text-font-title-m: var(--sn-skeleton-anatomy-size-text-font-title-m, #{st.$sn-density-typography-roleTitle-fontSizeM});
+$sn-skeleton-anatomy-size-text-font-title-l: var(--sn-skeleton-anatomy-size-text-font-title-l, #{st.$sn-density-typography-roleTitle-fontSizeL});
+$sn-skeleton-anatomy-size-text-font-label-s: var(--sn-skeleton-anatomy-size-text-font-label-s, #{st.$sn-density-typography-roleLabel-fontSizeS});
+$sn-skeleton-anatomy-size-text-font-label-m: var(--sn-skeleton-anatomy-size-text-font-label-m, #{st.$sn-density-typography-roleLabel-fontSizeM});
+$sn-skeleton-anatomy-size-text-font-label-l: var(--sn-skeleton-anatomy-size-text-font-label-l, #{st.$sn-density-typography-roleLabel-fontSizeL});
+$sn-skeleton-anatomy-size-text-font-body-s: var(--sn-skeleton-anatomy-size-text-font-body-s, #{st.$sn-density-typography-roleBody-fontSizeS});
+$sn-skeleton-anatomy-size-text-font-body-m: var(--sn-skeleton-anatomy-size-text-font-body-m, #{st.$sn-density-typography-roleBody-fontSizeM});
+$sn-skeleton-anatomy-size-text-font-body-l: var(--sn-skeleton-anatomy-size-text-font-body-l, #{st.$sn-density-typography-roleBody-fontSizeL});
+$sn-skeleton-anatomy-size-text-borderRadius: var(--sn-skeleton-anatomy-size-text-borderRadius, #{st.$sn-primitive-dimension-full});
+
+$skeleton: (
+  "anatomy": (
+    "size": (
+      "text": (
+        "lineHeight": (
+          "display": (
+            "s": $sn-skeleton-anatomy-size-text-lineHeight-display-s,
+            "m": $sn-skeleton-anatomy-size-text-lineHeight-display-m,
+            "l": $sn-skeleton-anatomy-size-text-lineHeight-display-l
+          ),
+          "headline": (
+            "s": $sn-skeleton-anatomy-size-text-lineHeight-headline-s,
+            "m": $sn-skeleton-anatomy-size-text-lineHeight-headline-m,
+            "l": $sn-skeleton-anatomy-size-text-lineHeight-headline-l
+          ),
+          "title": (
+            "s": $sn-skeleton-anatomy-size-text-lineHeight-title-s,
+            "m": $sn-skeleton-anatomy-size-text-lineHeight-title-m,
+            "l": $sn-skeleton-anatomy-size-text-lineHeight-title-l
+          ),
+          "label": (
+            "s": $sn-skeleton-anatomy-size-text-lineHeight-label-s,
+            "m": $sn-skeleton-anatomy-size-text-lineHeight-label-m,
+            "l": $sn-skeleton-anatomy-size-text-lineHeight-label-l
+          ),
+          "body": (
+            "s": $sn-skeleton-anatomy-size-text-lineHeight-body-s,
+            "m": $sn-skeleton-anatomy-size-text-lineHeight-body-m,
+            "l": $sn-skeleton-anatomy-size-text-lineHeight-body-l
+          )
+        ),
+        "font": (
+          "display": (
+            "s": $sn-skeleton-anatomy-size-text-font-display-s,
+            "m": $sn-skeleton-anatomy-size-text-font-display-m,
+            "l": $sn-skeleton-anatomy-size-text-font-display-l
+          ),
+          "headline": (
+            "s": $sn-skeleton-anatomy-size-text-font-headline-s,
+            "m": $sn-skeleton-anatomy-size-text-font-headline-m,
+            "l": $sn-skeleton-anatomy-size-text-font-headline-l
+          ),
+          "title": (
+            "s": $sn-skeleton-anatomy-size-text-font-title-s,
+            "m": $sn-skeleton-anatomy-size-text-font-title-m,
+            "l": $sn-skeleton-anatomy-size-text-font-title-l
+          ),
+          "label": (
+            "s": $sn-skeleton-anatomy-size-text-font-label-s,
+            "m": $sn-skeleton-anatomy-size-text-font-label-m,
+            "l": $sn-skeleton-anatomy-size-text-font-label-l
+          ),
+          "body": (
+            "s": $sn-skeleton-anatomy-size-text-font-body-s,
+            "m": $sn-skeleton-anatomy-size-text-font-body-m,
+            "l": $sn-skeleton-anatomy-size-text-font-body-l
+          )
+        ),
+        "border-radius": $sn-skeleton-anatomy-size-text-borderRadius
+      )
+    )
+  )
+);

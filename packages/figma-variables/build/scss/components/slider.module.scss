@@ -1,0 +1,43 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-slider-anatomy-size-handle-container-square: var(--sn-slider-anatomy-size-handle-container-square, #{st.$sn-primitive-dimension-16});
+$sn-slider-anatomy-size-handle-borderRadius: var(--sn-slider-anatomy-size-handle-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-slider-anatomy-size-handle-borderWidth: var(--sn-slider-anatomy-size-handle-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-slider-anatomy-size-container-trackLine-maxHeight: var(--sn-slider-anatomy-size-container-trackLine-maxHeight, #{st.$sn-primitive-dimension-2});
+$sn-slider-anatomy-size-container-trackLine-borderRadius: var(--sn-slider-anatomy-size-container-trackLine-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-slider-anatomy-size-container-gap: var(--sn-slider-anatomy-size-container-gap, #{st.$sn-density-spacing-interval-s});
+$sn-slider-anatomy-size-scaleStep-maxHeight: var(--sn-slider-anatomy-size-scaleStep-maxHeight, #{st.$sn-primitive-dimension-4});
+$sn-slider-anatomy-size-scaleStep-borderRadius: var(--sn-slider-anatomy-size-scaleStep-borderRadius, #{st.$sn-density-radius-2xs});
+$sn-slider-anatomy-size-scaleStep-width: var(--sn-slider-anatomy-size-scaleStep-width, #{st.$sn-primitive-dimension-2});
+
+$slider: (
+  "anatomy": (
+    "size": (
+      "handle": (
+        "container": (
+          "width": $sn-slider-anatomy-size-handle-container-square,
+          "height": $sn-slider-anatomy-size-handle-container-square
+        ),
+        "border-radius": $sn-slider-anatomy-size-handle-borderRadius,
+        "border-width": $sn-slider-anatomy-size-handle-borderWidth
+      ),
+      "container": (
+        "trackLine": (
+          "max-height": $sn-slider-anatomy-size-container-trackLine-maxHeight,
+          "border-radius": $sn-slider-anatomy-size-container-trackLine-borderRadius
+        ),
+        "gap": $sn-slider-anatomy-size-container-gap
+      ),
+      "scaleStep": (
+        "max-height": $sn-slider-anatomy-size-scaleStep-maxHeight,
+        "border-radius": $sn-slider-anatomy-size-scaleStep-borderRadius,
+        "width": $sn-slider-anatomy-size-scaleStep-width
+      )
+    )
+  )
+);

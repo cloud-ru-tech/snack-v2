@@ -1,0 +1,18 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-infoBlock {
+  --sn-infoBlock-anatomy-size-s-container-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-infoBlock-anatomy-size-s-container-content-gap: var(--sn-density-spacing-interval-m, 16px);
+  --sn-infoBlock-anatomy-size-s-container-content-text-gap: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-infoBlock-anatomy-size-s-container-maxWidth: 624px;
+  --sn-infoBlock-anatomy-size-m-container-gap: var(--sn-density-spacing-interval-m, 16px);
+  --sn-infoBlock-anatomy-size-m-container-content-gap: var(--sn-density-spacing-interval-l, 24px);
+  --sn-infoBlock-anatomy-size-m-container-content-text-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-infoBlock-anatomy-size-m-container-maxWidth: 624px;
+  --sn-infoBlock-anatomy-size-l-container-gap: var(--sn-density-spacing-interval-l, 24px);
+  --sn-infoBlock-anatomy-size-l-container-content-gap: var(--sn-density-spacing-interval-l, 24px);
+  --sn-infoBlock-anatomy-size-l-container-content-text-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-infoBlock-anatomy-size-l-container-maxWidth: 624px;
+}

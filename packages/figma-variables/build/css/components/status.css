@@ -1,0 +1,30 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-status {
+  --sn-status-anatomy-statusIndicator-size-4xs-height: var(--sn-primitive-dimension-4, 4px);
+  --sn-status-anatomy-statusIndicator-size-4xs-borderWidth: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
+  --sn-status-anatomy-statusIndicator-size-borderRadius: var(--sn-primitive-dimension-full, 10000px);
+  --sn-status-anatomy-statusIndicator-size-3xs-height: var(--sn-primitive-dimension-8, 8px);
+  --sn-status-anatomy-statusIndicator-size-3xs-borderWidth: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
+  --sn-status-anatomy-statusIndicator-size-2xs-height: var(--sn-primitive-dimension-12, 12px);
+  --sn-status-anatomy-statusIndicator-size-2xs-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
+  --sn-status-anatomy-statusIndicator-size-2xs-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-status-anatomy-statusIndicator-size-xs-height: var(--sn-primitive-dimension-16, 16px);
+  --sn-status-anatomy-statusIndicator-size-xs-borderWidth: var(--sn-primitive-strokeWeight-strokeBold, 3px);
+  --sn-status-anatomy-statusIndicator-size-s-height: var(--sn-primitive-dimension-24, 24px);
+  --sn-status-anatomy-statusIndicator-size-s-borderWidth: var(--sn-primitive-dimension-4, 4px);
+  --sn-status-anatomy-status-size-xs-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
+  --sn-status-anatomy-status-size-xs-textWrapper-gap: var(--sn-status-anatomy-status-size-xs-textWrapper-paddingHorizontal, var(--sn-primitive-dimension-2, 2px));
+  --sn-status-anatomy-status-size-xs-container-padding: var(--sn-primitive-dimension-2, 2px);
+  --sn-status-anatomy-status-size-xs-container-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-status-anatomy-status-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-status-xs, 2px);
+  --sn-status-anatomy-status-size-xs-container-centeredWrapper-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-status-anatomy-status-size-s-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
+  --sn-status-anatomy-status-size-s-textWrapper-gap: var(--sn-status-anatomy-status-size-s-textWrapper-paddingHorizontal, var(--sn-primitive-dimension-2, 2px));
+  --sn-status-anatomy-status-size-s-container-padding: var(--sn-primitive-dimension-4, 4px);
+  --sn-status-anatomy-status-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-status-anatomy-status-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-status-s, 2px);
+  --sn-status-anatomy-status-size-s-container-centeredWrapper-square: var(--sn-primitive-dimension-16, 16px);
+}
