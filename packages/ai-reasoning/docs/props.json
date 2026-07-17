@@ -18,15 +18,15 @@
         "required": false,
         "description": "Явно управляет нижним коннектором. Если не передан, совпадает с `stepperLine`."
       },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текстовый контент блока reasoning."
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "defaultValue": "ai-reasoning"
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Текстовый контент блока reasoning."
       },
       "stepperLine": {
         "type": "boolean",

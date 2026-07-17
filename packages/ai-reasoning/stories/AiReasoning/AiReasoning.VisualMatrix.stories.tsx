@@ -22,11 +22,11 @@ const stepperRows = [
 ] as const;
 
 const contentRows = [
-  { key: 'short', label: 'short text', description: 'reasoning in progress' },
+  { key: 'short', label: 'short text', content: 'reasoning in progress' },
   {
     key: 'long',
     label: 'long text',
-    description: 'reasoning is collecting intermediate details from tools and composing a final response for the user',
+    content: 'reasoning is collecting intermediate details from tools and composing a final response for the user',
   },
 ] as const;
 
@@ -56,10 +56,10 @@ export const VisualMatrix: Story = {
         columnHeaders={contentRows.map(row => row.label.toUpperCase())}
         rows={stepperRows.map(stepper => ({
           variantLabel: stepper.label,
-          cells: contentRows.map(content =>
+          cells: contentRows.map(col =>
             renderCell(
-              { stepperLine: stepper.stepperLine, description: content.description },
-              `${TEST_IDS.root}-${stepper.key}-${content.key}`,
+              { stepperLine: stepper.stepperLine, content: col.content },
+              `${TEST_IDS.root}-${stepper.key}-${col.key}`,
             ),
           ),
         }))}
@@ -73,7 +73,7 @@ export const VisualMatrix: Story = {
           variantLabel: row.label,
           cells: [
             renderCell(
-              { ...row.props, description: 'connector visibility sample' },
+              { ...row.props, content: 'connector visibility sample' },
               `${TEST_IDS.root}-connector-override-${row.key}`,
             ),
           ],

@@ -17,12 +17,12 @@ const meta: Meta<typeof AiReasoning> = {
     },
   },
   args: {
-    description: 'Tool is reasoning about the next action',
+    content: 'Tool is reasoning about the next action',
     stepperLine: true,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    description: { control: 'text', description: 'Текст reasoning-сообщения' },
+    content: { control: 'text', description: 'Текст reasoning-сообщения' },
     stepperLine: { control: 'boolean', description: 'Показывает вертикальное продолжение степпера' },
     connector: { control: 'boolean', description: 'Явно управляет нижним коннектором' },
   },

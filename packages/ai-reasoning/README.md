@@ -53,7 +53,7 @@ import { AiReasoning } from '@ds/ai-reasoning'
 import { AiReasoning } from '@ds/ai-reasoning';
 
 export function Default() {
-  return <AiReasoning description='Tool is reasoning about the next action' />;
+  return <AiReasoning content='Tool is reasoning about the next action' />;
 }
 ```
 
@@ -63,7 +63,7 @@ export function Default() {
 import { AiReasoning } from '@ds/ai-reasoning';
 
 export function Default() {
-  return <AiReasoning description='Tool is reasoning about the next action' />;
+  return <AiReasoning content='Tool is reasoning about the next action' />;
 }
 ```
 
@@ -74,6 +74,6 @@ export function Default() {
 | `children` | `ReactNode` | — | Дополнительный контент под описанием (например, карточка с деталями). |
 | `className` | `string` | — | Дополнительный CSS-класс корневого контейнера. |
 | `connector` | `boolean` | — | Явно управляет нижним коннектором. Если не передан, совпадает с `stepperLine`. |
+| `content` | `ReactNode` | — | Текстовый контент блока reasoning. |
 | `data-test-id` | `string` | `ai-reasoning` |  |
-| `description` | `ReactNode` | — | Текстовый контент блока reasoning. |
 | `stepperLine` | `boolean` | `true` | Показывает продолжение степпера вниз (для промежуточного шага). |

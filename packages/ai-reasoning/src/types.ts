@@ -3,7 +3,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 export type AiReasoningOwnProps = {
   /** Текстовый контент блока reasoning. */
-  description?: ReactNode;
+  content?: ReactNode;
   /** Дополнительный контент под описанием (например, карточка с деталями). */
   children?: ReactNode;
   /** Показывает продолжение степпера вниз (для промежуточного шага). */

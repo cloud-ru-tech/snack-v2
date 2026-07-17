@@ -6,5 +6,5 @@ export const TEST_IDS = {
   icon: COMPONENT_TEST_IDS.icon,
   divider: COMPONENT_TEST_IDS.divider,
   connector: COMPONENT_TEST_IDS.connector,
-  description: COMPONENT_TEST_IDS.description,
+  content: COMPONENT_TEST_IDS.content,
 } as const;

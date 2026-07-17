@@ -4,5 +4,5 @@ export const TEST_IDS = {
   icon: 'ai-reasoning__icon',
   divider: 'ai-reasoning__divider',
   connector: 'ai-reasoning__connector',
-  description: 'ai-reasoning__description',
+  content: 'ai-reasoning__content',
 } as const;

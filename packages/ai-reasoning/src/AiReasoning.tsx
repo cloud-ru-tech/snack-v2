@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 import { AiReasoningProps } from './types';
 
 export function AiReasoning({
-  description,
+  content,
   children,
   stepperLine = true,
   connector,
@@ -35,9 +35,9 @@ export function AiReasoning({
       </div>
 
       <div className={styles.container}>
-        {description && (
-          <p className={styles.description} data-test-id={TEST_IDS.description}>
-            {description}
+        {content && (
+          <p className={styles.description} data-test-id={TEST_IDS.content}>
+            {content}
           </p>
         )}
 

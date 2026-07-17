@@ -6,7 +6,7 @@ test.describe('AiReasoning — rendering', () => {
   test('renders root with default props', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
-    await expect(getByTestId(TEST_IDS.description)).toHaveText('Tool is reasoning about the next action');
+    await expect(getByTestId(TEST_IDS.content)).toHaveText('Tool is reasoning about the next action');
   });
 
   test('stepper line on renders divider and connector', async ({ gotoStory, getByTestId }) => {
