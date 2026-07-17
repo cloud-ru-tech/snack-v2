@@ -1,0 +1,33 @@
+---
+title: Extensions
+package: '@ds/icons'
+description: Иконки расширений файлов — PDF, DOCX, ZIP и т.д. для списков файлов и загрузчиков.
+order: 7
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Extensions
+
+Иконки типов файлов по расширению. Наследуют цвет через `currentColor`.
+
+## Когда использовать
+
+- В списках загруженных файлов, дропзонах, файловых менеджерах — обозначить тип файла по расширению.
+- Смотрите также [`@ds/uikit-product-upload-files`](/components/uikit-product-upload-files), где эти иконки уже подключены как дефолтный резолвер.
+
+## Установка
+
+```ts
+import { AacExtensionSVG } from '@ds/icons/extensions'
+```
+
+Каждый компонент сам рендерит `<use href="#...">` на символ спрайта (с инлайн-fallback, если спрайт не смонтирован) — см. страницу [Sprite](/components/icons/sprite). Спрайт группы — `SpriteExtensionsSVG` из `@ds/icons/sprite`.
+
+## Storybook
+<StorybookEmbed storyId='components-icons-extensions-visual-matrix--extensions-visual-matrix' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'extensions')} height={480} title='Extensions в Figma' />

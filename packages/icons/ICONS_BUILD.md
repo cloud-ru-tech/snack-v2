@@ -1,6 +1,11 @@
 # Сборка иконок @design-system/icons
 
-Документ описывает пайплайн сборки иконок: от исходных SVG до React-компонентов (standalone и sprite) и спрайтов. Предназначен для разработчиков и агентов, которые меняют или отлаживают этот процесс.
+Документ описывает пайплайн сборки иконок: от исходных SVG до React-компонентов и спрайтов. Предназначен для разработчиков и агентов, которые меняют или отлаживают этот процесс.
+
+Каждая группа генерируется **ровно в одном** варианте — какой именно, решает `GROUP_CONFIG.needsSprite` (`scripts/shared/groupConfig.ts`):
+
+- **`needsSprite: true`** (`system`, `product`, `web`) — только sprite-компонент. Экспортируется под обычным именем `XSVG` (без суффикса `Sprite`) — отдельного standalone-варианта для этих групп не существует.
+- **`needsSprite: false`** (`flags`, `logos`, `services`, `extensions`) — только standalone (полный инлайн-SVG), без спрайта.
 
 ---
 
@@ -8,14 +13,14 @@
 
 | Путь                                 | Назначение                                                                                                                                                  | В git                                    |
 | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| `svgs/`                              | Исходные SVG (ручное редактирование). Группы = подпапки верхнего уровня в `svgs/` (например snack-icons, product-icons, web-icons).                         | да                                       |
+| `svgs/`                              | Исходные SVG (ручное редактирование). Группы = подпапки верхнего уровня в `svgs/` (например system, product, web, flags, logos, services, extensions).                         | да                                       |
 | `svgs-fixed/`                        | Результат fixIcons: нормализованные SVG (currentColor, stroke-width через переменную). Вход для SVGR и createSprite. Временная папка для генерации/отладки. | нет (игнорируется корневым `.gitignore`) |
-| `src/components/<group>/sprite/`     | React-компоненты спрайт-иконок (`*SpriteSVG`), генерируются SVGR из svgs-fixed.                                                                             | нет                                      |
-| `src/components/<group>/standalone/` | React-компоненты инлайн-иконок (`*SVG`), генерируются SVGR из svgs-fixed.                                                                                   | нет                                      |
+| `src/components/<group>/sprite/`     | Только для групп с `needsSprite: true` — React-компоненты (`*SVG`, рендерят `<use>`), генерируются SVGR из svgs-fixed.                                     | нет                                      |
+| `src/components/<group>/standalone/` | Только для групп с `needsSprite: false` — React-компоненты инлайн-иконок (`*SVG`), генерируются SVGR из svgs-fixed.                                        | нет                                      |
 | `src/sprite/`                        | Компонент `Sprite.tsx` и сгенерированный barrel `index.ts` (экспорт Sprite + сырые SVG спрайтов по группам).                                                | да                                       |
 | `templates/`                         | Конфиги и шаблоны SVGR (sprite/standalone), generateDataTestId.                                                                                             | да                                       |
 
-Группы иконок определяются автоматически: каждая подпапка в `svgs/`, в которой есть хотя бы один `.svg`, считается группой (`iconGroups.ts`).
+Группы иконок определяются автоматически: каждая подпапка в `svgs/`, в которой есть хотя бы один `.svg`, считается группой (`iconGroups.ts`). Каждая новая группа обязана получить запись в `GROUP_CONFIG` — иначе сборка падает с явной ошибкой.
 
 ---
 
@@ -24,21 +29,23 @@
 Вызов: из папки `packages/icons` — `pnpm run build:icons` (или `npm run build:icons`). Из корня монорепо — `pnpm --filter @design-system/icons run build:icons`.
 
 1. **fixIcons**  
-   `rimraf svgs-fixed && ts-node scripts/fixIcons.ts`
-2. **SVGR: sprite-компоненты**  
-   Для каждой группы: `svgr -d src/components/<group>/sprite svgs-fixed/<group> --config-file templates/.svgrrc.sprite.js` (с `SYMBOL_PREFIX=snack-uikit-<groupId>-`).
+   `rimraf svgs-fixed && tsx scripts/pipeline/fixIcons.ts`
+2. **SVGR: sprite-компоненты** (только для групп с `needsSprite: true`)  
+   Для каждой такой группы: `svgr -d src/components/<group>/sprite svgs-fixed/<group> --config-file templates/.svgrrc.sprite.cjs` (с `SYMBOL_PREFIX=snack-uikit-<groupId>-`).
 3. **postProcessIconFallback**  
-   `ts-node scripts/postProcessIconFallback.ts`
-4. **SVGR: standalone-компоненты**  
-   Для каждой группы: `svgr -d src/components/<group>/standalone svgs-fixed/<group> --config-file templates/.svgrrc.standalone.js`.
+   `tsx scripts/pipeline/postProcessIconFallback.ts`
+4. **SVGR: standalone-компоненты** (только для групп с `needsSprite: false`)  
+   Для каждой такой группы: `svgr -d src/components/<group>/standalone svgs-fixed/<group> --config-file templates/.svgrrc.standalone.cjs`. Для групп с `needsSprite: true` этот шаг пропускается, а устаревший `standalone/` от предыдущей сборки удаляется (`rimraf`).
 5. **createSprite**  
-   `ts-node scripts/createSprite.ts`
+   `tsx scripts/pipeline/createSprite.ts`
 6. **syncGeneratedIcons**  
-   `ts-node scripts/syncGeneratedIcons.ts` — синхронизация сгенерированных файлов с `svgs/`:
+   `tsx scripts/pipeline/syncGeneratedIcons.ts` — синхронизация сгенерированных файлов с `svgs/`:
    - удаляет осиротевшие компоненты/группы (если исходники удалены);
    - удаляет осиротевшие sprite-файлы;
    - внутри вызывает `createExportIndexFile.ts` (индексы экспортов) и `fixTypesImport.ts` (относительные пути к `src/types` в сгенерированных компонентах).
-7. **Prettier**  
+7. **syncTypesVersions**  
+   Синхронизирует `typesVersions` в `package.json` с фактическими подпутями `exports`. Сами подпути (`@ds/icons/interface/<group>`, `@ds/icons/flags`, …) объявлены в `exports` и указывают прямо на `src/components/<group>/index.ts` — отдельного дерева барелей подпутей нет.
+8. **Prettier**  
    Из корня монорепозитория запускается `pnpm exec prettier --write` по сгенерированным путям (`packages/icons/src/components/**/*.{ts,tsx}`, `packages/icons/src/sprite/index.ts`, при наличии — `packages/icons/src/icon-font/*.{css,json}`), чтобы форматирование совпадало с правилами проекта и в git не появлялся лишний дифф после сборки.
 
 ---
@@ -65,9 +72,9 @@
 ## 4. SVGR: sprite и standalone
 
 - **Вход:** `svgs-fixed/<group>/` (те же SVG после fixIcons).
-- **Выход:**
-  - sprite: `src/components/<group>/sprite/.../*.tsx` (компоненты с суффиксом `SpriteSVG`).
-  - standalone: `src/components/<group>/standalone/.../*.tsx` (компоненты с суффиксом `SVG`).
+- **Выход** (по группе используется ровно один вариант, см. `GROUP_CONFIG.needsSprite`):
+  - sprite (`needsSprite: true`): `src/components/<group>/sprite/.../*.tsx` — компоненты называются `XSVG` (без суффикса `Sprite`), рендерят `<use>` + инлайн-fallback.
+  - standalone (`needsSprite: false`): `src/components/<group>/standalone/.../*.tsx` — компоненты `XSVG`, полный инлайн-SVG.
 
 Имена компонентов и `data-test-id` строятся из имени файла (PascalCase). В шаблоне спрайта `generateDataTestId(componentName)` использует ту же нормализацию, что и скрипты генерации: camel/PascalCase и пробелы/дефисы приводятся к одному kebab-виду с учётом чисел (например, `SvgAiAssistant` → `-ai-assistant`, `SvgSmile2` → `-smile2`). Это же значение участвует в **symbolId**: `snack-uikit-<groupId>-<kebab>`.
 
@@ -83,7 +90,7 @@
 Для каждого SVG:
 
 1. **filenameToSymbolIdPart(basename(filePath))**  
-   Имя файла без расширения нормализуется через общую утилиту `scripts/symbolId.ts`:
+   Имя файла без расширения нормализуется через общую утилиту `scripts/shared/symbolId.ts`:
    - добавляется разделитель между camelCase/PascalCase сегментами;
    - любые неалфанумерические символы (пробелы, дефисы и т.д.) приводятся к `-`;
    - лишние `-` схлопываются, результат в lowercase.  
@@ -100,13 +107,13 @@
 ## 6. postProcessIconFallback
 
 - **Запуск:** после генерации sprite-компонентов SVGR, до standalone и createSprite.
-- **Назначение:** для каждого sprite-компонента (`*SpriteSVG`) подставить fallback на случай, если символ с нужным id не найден в DOM (например, спрайт не подключён или id не совпадает).
+- **Назначение:** для каждого sprite-компонента (групп с `needsSprite: true`, публичное имя `XSVG`) подставить fallback на случай, если символ с нужным id не найден в DOM (например, спрайт не подключён или id не совпадает).
 
 Для каждого `.tsx` в `src/components/<group>/sprite/`:
 
 1. **Поиск соответствующего SVG в svgs-fixed**  
    Для группы строится индекс `symbolId -> svgPath` на основе всех файлов в `svgs-fixed/<group>`.  
-   Поиск идёт в первую очередь по фактическому `symbolId` из компонента (`const symbolId = ...`), затем по имени компонента через ту же нормализацию `scripts/symbolId.ts`.
+   Поиск идёт в первую очередь по фактическому `symbolId` из компонента (`const symbolId = ...`), затем по имени компонента через ту же нормализацию `scripts/shared/symbolId.ts`.
 2. **Чтение SVG**, извлечение внутреннего HTML (содержимое между `<svg>` и `</svg>`), удаление атрибутов `fill` и `fill-opacity` из этого HTML, экранирование для строки в JS.
 3. **Вставка в .tsx:**
    - константа `FALLBACK_SVG_INNER = "<path ...>"`;
@@ -121,8 +128,8 @@
 
 Чтобы спрайт и компонент работали вместе:
 
-- **createSprite** и **postProcessIconFallback** используют одну и ту же утилиту нормализации (`scripts/symbolId.ts`: `filenameToSymbolIdPart`, `componentNameToSymbolIdPart` / `normalizeToSymbolIdPart`) для получения id-части.
-- **SVGR-компоненты** формируют `symbolId` через шаблон с `generateDataTestId` (`templates/generateDataTestId.js`), логика которого согласована с `symbolId.ts`.
+- **createSprite** и **postProcessIconFallback** используют одну и ту же утилиту нормализации (`scripts/shared/symbolId.ts`: `filenameToSymbolIdPart`, `componentNameToSymbolIdPart` / `normalizeToSymbolIdPart`) для получения id-части.
+- **SVGR-компоненты** формируют `symbolId` через шаблон с `generateDataTestId` (`templates/generateDataTestId.cjs`), логика которого согласована с `symbolId.ts`.
 
 Ожидаемое поведение: для любого имени файла после нормализации должен получаться тот же kebab-id, что и в компоненте (`AiAssistant` → `ai-assistant`, `Zap Flash` → `zap-flash`, числа без дефиса: `Smile2` → `smile2`). При рассинхроне `<use href="#id">` не найдёт символ и включится fallback.
 
@@ -130,13 +137,13 @@
 
 ## 8. Использование в приложении / Storybook
 
-- **Standalone:** импорт компонента (например, `AcceptSVG`), рендер `<AcceptSVG size={24} />`. Цвет наследуется через `currentColor`.
-- **Sprite:**
-  1. В DOM должен быть разметан спрайт (содержимое `sprite.<group>.symbol.svg`), например через компонент `Sprite` с `content={SpriteProductIconsSVG}` и т.п.
-  2. Компоненты вида `AcceptSpriteSVG` рендерят `<svg><use href="#snack-uikit-product-icons-accept" /></svg>`.
-  3. Если символа с таким id нет, postProcessIconFallback (если он смог найти SVG) подставляет инлайн fallback.
+- **Standalone-группы** (`flags`/`logos`/`services`/`extensions`): импорт компонента (например, `RussiaSVG`), рендер `<RussiaSVG size={24} />`. Цвет наследуется через `currentColor` (кроме `flags`/`logos` — они сохраняют исходные цвета).
+- **Sprite-группы** (`system`/`product`/`web`):
+  1. В DOM должен быть разметан спрайт (содержимое `sprite.<group>.symbol.svg`), например через компонент `Sprite` с `content={SpriteSystemSVG}` и т.п.
+  2. Компоненты вида `AcceptSVG` рендерят `<svg><use href="#snack-uikit-product-accept" /></svg>`.
+  3. Если символа с таким id нет, postProcessIconFallback (если он смог найти SVG) подставляет инлайн fallback — незаметно для потребителя, но требует, чтобы это оставалось редким случаем, а не основным путём рендера.
 
-В Storybook для варианта «sprite» передаётся нужный спрайт по выбранной группе (SpriteProvider + Sprite с контентом из экспортов `src/sprite/index.ts`).
+В Storybook каталог интерфейсных иконок (`Icons.Playground.stories.tsx`) монтирует все три спрайта (`SpriteSystemSVG`/`SpriteProductSVG`/`SpriteWebSVG`) сразу через `Sprite` из `src/sprite`.
 
 ---
 
@@ -149,7 +156,8 @@
 - `post-process-icons` — только postProcessIconFallback.
 - `create-export-index-file` — только пересборка индексов экспортов.
 - `sync:icons` — синхронизация сгенерированных компонентов/спрайтов с исходниками (удаление осиротевших, вызов createExportIndexFile и fixTypesImport).
-- `validate:icons` — валидация иконок (`ts-node scripts/validateIcons.ts`).
+- `sync:types-versions` — пересборка `typesVersions` в package.json из фактических подпутей `exports` (нужно classic/`node` module-резолюшену CJS-сборки других пакетов монорепо, чтобы находить `.d.ts` подпутей `@ds/icons/*`).
+- `validate:icons` — валидация иконок (`tsx scripts/validate/validateIcons.ts`).
 - Полная пересборка: `build:icons` (в конце автоматически вызывается Prettier по сгенерированным файлам).
 
 `compile` для пакета иконок намеренно не используется: генерация и синхронизация выполняются вручную через команды выше.
@@ -158,7 +166,7 @@
 
 ## 10. Частые проблемы
 
-- **Иконка в режиме sprite пустая или fallback:** проверьте, что id символа в спрайте совпадает с symbolId в компоненте (логика `scripts/symbolId.ts` + `generateDataTestId`). Проверьте, что спрайт реально смонтирован в DOM (например, SpriteProvider в сторибуке).
+- **Иконка в режиме sprite пустая или fallback:** проверьте, что id символа в спрайте совпадает с symbolId в компоненте (логика `scripts/shared/symbolId.ts` + `generateDataTestId`). Проверьте, что спрайт реально смонтирован в DOM (например, SpriteProvider в сторибуке).
 - **У части иконок нет fallback:** postProcessIconFallback не смог сопоставить `symbolId` с файлом в `svgs-fixed`. Проверка: id в компоненте должен находиться среди id в `sprite.<group>.symbol.svg`.
 - **Цвет не наследуется / жёлтые иконки:** в svgs-fixed после fixIcons не должно оставаться жёстких цветов; всё заменяется на currentColor. Если правки вносятся вручную в svgs-fixed, их перезапишет следующий fixIcons — править нужно в `svgs/`.
 - **Толщина обводки не по дизайну:** в fixIcons все `stroke-width="1.5"` и `1.5px` заменяются на `var(--sn-density-size-icon-strokeWeight-s)`. Убедитесь, что эта переменная подключена в приложении (например, из @sbercloud/figma-variables).

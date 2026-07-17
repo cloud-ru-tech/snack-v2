@@ -6,16 +6,35 @@ order: 3
 ---
 
 import { IconsDemo } from '../demos/IconsDemo'
-import { PropsTable } from '#docs/components/PropsTable'
-import iconsDoc from './props.json'
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { Color } from '../demos/examples/Color'
+import ColorSrc from '../demos/examples/Color.tsx?raw'
+import { Flag } from '../demos/examples/Flag'
+import FlagSrc from '../demos/examples/Flag.tsx?raw'
+import { ThemedLogo } from '../demos/examples/ThemedLogo'
+import ThemedLogoSrc from '../demos/examples/ThemedLogo.tsx?raw'
+import { CustomThemedIcon } from '../demos/examples/CustomThemedIcon'
+import CustomThemedIconSrc from '../demos/examples/CustomThemedIcon.tsx?raw'
+import { Example } from '#docs/components/Example'
 import { FigmaEmbed } from '#docs/components/FigmaEmbed'
 import { figmaNode } from '#docs/lib/figma'
 
 # Icons
 
-Пакет экспортирует сгенерированные компоненты `*SVG` / `*SpriteSVG` и вспомогательный [`Sprite`](#sprite) для подключения спрайтов. Цвет наследуется через `currentColor`.
+Пакет экспортирует сгенерированные компоненты `*SVG`, сгруппированные по семи подпутям, вспомогательный [`Sprite`](#sprite) для подключения спрайтов интерфейсных групп и фабрику [`createThemedIcon`](#свои-тематические-иконки) для собственных иконок, переключающихся по теме.
 
 <IconsDemo client:visible />
+
+## Группы
+
+- [**System**](/components/icons/system) — системный интерфейсный набор: базовые действия, навигация, состояния. Наследует цвет через `currentColor`.
+- [**Product**](/components/icons/product) — продуктовые сущности и действия (файлы, таблицы, соцсети, MKP/LKP). Наследует цвет через `currentColor`.
+- [**Web**](/components/icons/web) — веб-тематика: облачная инфраструктура, HR-портал, AI, страницы решений. Наследует цвет через `currentColor`.
+- [**Flags**](/components/icons/flags) — флаги стран, цвет сохраняется как в исходном SVG.
+- [**Logos**](/components/icons/logos) — логотипы брендов и сервисов, переключаются между Light/Dark темой автоматически.
+- [**Services**](/components/icons/services) — иконки облачных сервисов. Наследует цвет через `currentColor`.
+- [**Extensions**](/components/icons/extensions) — иконки расширений файлов. Наследует цвет через `currentColor`.
 
 ## Установка
 
@@ -23,42 +42,78 @@ import { figmaNode } from '#docs/lib/figma'
 pnpm add @ds/icons
 ```
 
+Корневой `@ds/icons` не экспортирует ни одной иконки — только тип `ISvgIconProps` и фабрику `createThemedIcon`. Каждая иконка импортируется исключительно через свой подпуть; так символ достижим ровно из одного места, и IDE предлагает единственный, канонический вариант автоимпорта, а не выбор между корнем и подпутём.
+
 ```ts
-import { SearchSVG, Sprite, SpriteSnackIconsSVG } from '@ds/icons'
+import { ISvgIconProps, createThemedIcon } from '@ds/icons'
+import { SearchSVG } from '@ds/icons/interface/system'
+import { RussiaSVG } from '@ds/icons/flags'
+import { CloudLogo } from '@ds/icons/logos'
 ```
 
-Для режима **sprite** сначала отрендерьте скрытый блок со спрайтом, затем используйте иконки с `<use href="#id">` внутри.
+Подробности и полный каталог иконок по каждой группе — на её отдельной странице (см. «Группы» выше).
+
+## Примеры использования
+
+<Example
+  title='Размер'
+  description='Проп size задаёт сторону иконки в px; интерфейсные иконки квадратные.'
+  code={SizesSrc}
+>
+  <Sizes client:visible />
+</Example>
+
+<Example
+  title='Цвет'
+  description='Интерфейсные иконки наследуют color родителя через currentColor.'
+  code={ColorSrc}
+>
+  <Color client:visible />
+</Example>
+
+<Example
+  title='Флаг'
+  description='Флаги и другие многоцветные наборы сохраняют исходные цвета SVG.'
+  code={FlagSrc}
+>
+  <Flag client:visible />
+</Example>
+
+<Example
+  title='Логотип с переключением темы'
+  description='Логотипы из группы logos сами выбирают Light/Dark исполнение по активной теме.'
+  code={ThemedLogoSrc}
+>
+  <ThemedLogo client:visible />
+</Example>
+
+## Свои тематические иконки
+
+Если нужен свой логотип (например, бренд компании) в светлом и тёмном исполнении, собери его фабрикой `createThemedIcon` из корня пакета. Она принимает два готовых SVG и возвращает компонент, который сам переключает вариант по активной теме DS и ведёт себя как штатная иконка — проп `size`, сохранение соотношения сторон, `data-test-id`.
+
+| Поле | Тип | Назначение |
+|------|-----|------------|
+| `testId` | `string` | Суффикс `data-test-id` (итог — `icon${testId}-light` / `icon${testId}-dark`). |
+| `light` / `dark` | `{ nativeWidth, nativeHeight, children, rootFill? }` | Два исполнения. `children` — содержимое корневого `<svg>` (без обёртки `<svg>`), `nativeWidth`/`nativeHeight` — собственные размеры исходника, `rootFill` — `fill` корня (по умолчанию `none`). |
+| `defaultSize` | `number` | Дефолт пропа `size` (по умолчанию `24`). |
+
+<Example
+  title='createThemedIcon'
+  description='Свой логотип в двух исполнениях, переключается по теме.'
+  code={CustomThemedIconSrc}
+>
+  <CustomThemedIcon client:visible />
+</Example>
 
 ## Sprite
 
-Два режима использования иконок:
+Иконки `interface/system`, `interface/product`, `interface/web`, `services` и `extensions` рендерятся через SVG-спрайт: спрайт монтируется в документ один раз (в корне приложения), а каждая иконка ссылается на его символ через `<use href="#...">`. Пока символа в DOM нет — спрайт не смонтирован или не успел загрузиться, — иконка рендерит собственный инлайн-fallback и переключается на `<use>` автоматически; отсутствие спрайта — штатный режим без ошибок и предупреждений.
 
-- **Инлайн** — `import { SearchSVG } from '@ds/icons'` и рендерить `<SearchSVG />`. SVG попадает в DOM каждый раз. Удобно, если иконок на странице мало.
-- **Sprite** — спрайт подключается один раз в корне приложения, а компоненты `*SpriteSVG` ссылаются на `<symbol>` через `<use>`. Выгоднее на страницах с большим количеством повторяющихся иконок.
-
-```tsx
-import { Sprite, SpriteSnackIconsSVG, SearchSpriteSVG } from '@ds/icons'
-
-export function App() {
-  return (
-    <>
-      {/* Подключаем спрайт один раз в корне приложения */}
-      <Sprite content={SpriteSnackIconsSVG} />
-
-      {/* Дальше используем лёгкие *SpriteSVG — они рендерят <use href='#...'> */}
-      <SearchSpriteSVG size={24} />
-    </>
-  )
-}
-```
-
-Доступные спрайты: `SpriteSnackIconsSVG` (он же `SpriteSVG`), `SpriteWebIconsSVG`, `SpriteProductIconsSVG` — подключайте только те наборы, иконки из которых реально используются.
+Подключение (`Sprite` / `SpriteFromUrl` / `SpriteIcon`), модель fallback-first и сценарии для Next.js, root-приложения и микрофронтов — на отдельной странице [Sprite](/components/icons/sprite).
 
 ## Props
 
-<PropsTable data={iconsDoc.Sprite} />
-
-Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`.
+Отдельные иконки (`SearchSVG` и др.) используют тип `ISvgIconProps` (`className`, `size`, атрибуты SVG) — см. `packages/icons/src/types.ts`. Props компонентов `Sprite` / `SpriteIcon` / `SpriteFromUrl` — на странице [Sprite](/components/icons/sprite).
 
 ## Figma
 <FigmaEmbed node={figmaNode('icons')} height={480} title='Icons в Figma (Interfaces icons)' />

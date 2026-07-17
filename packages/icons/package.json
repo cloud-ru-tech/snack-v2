@@ -8,6 +8,7 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "bin": "./bin/cli.mjs",
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -15,25 +16,107 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./interface/product": {
+      "source": "./src/components/product/index.ts",
+      "types": "./dist/esm/components/product/index.d.ts",
+      "import": "./dist/esm/components/product/index.js",
+      "require": "./dist/cjs/components/product/index.js"
+    },
+    "./interface/web": {
+      "source": "./src/components/web/index.ts",
+      "types": "./dist/esm/components/web/index.d.ts",
+      "import": "./dist/esm/components/web/index.js",
+      "require": "./dist/cjs/components/web/index.js"
+    },
+    "./interface/system": {
+      "source": "./src/components/system/index.ts",
+      "types": "./dist/esm/components/system/index.d.ts",
+      "import": "./dist/esm/components/system/index.js",
+      "require": "./dist/cjs/components/system/index.js"
+    },
+    "./sprite": {
+      "source": "./src/sprite/index.ts",
+      "types": "./dist/esm/sprite/index.d.ts",
+      "import": "./dist/esm/sprite/index.js",
+      "require": "./dist/cjs/sprite/index.js"
+    },
+    "./flags": {
+      "source": "./src/components/flags/index.ts",
+      "types": "./dist/esm/components/flags/index.d.ts",
+      "import": "./dist/esm/components/flags/index.js",
+      "require": "./dist/cjs/components/flags/index.js"
+    },
+    "./logos": {
+      "source": "./src/components/logos/index.ts",
+      "types": "./dist/esm/components/logos/index.d.ts",
+      "import": "./dist/esm/components/logos/index.js",
+      "require": "./dist/cjs/components/logos/index.js"
+    },
+    "./services": {
+      "source": "./src/components/services/index.ts",
+      "types": "./dist/esm/components/services/index.d.ts",
+      "import": "./dist/esm/components/services/index.js",
+      "require": "./dist/cjs/components/services/index.js"
+    },
+    "./extensions": {
+      "source": "./src/components/extensions/index.ts",
+      "types": "./dist/esm/components/extensions/index.d.ts",
+      "import": "./dist/esm/components/extensions/index.js",
+      "require": "./dist/cjs/components/extensions/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
+    "bin",
     "dist",
     "src",
     "svgs"
   ],
   "sideEffects": false,
+  "dependencies": {
+    "@ds/theme": "workspace:^",
+    "@ds/utils": "workspace:^"
+  },
   "scripts": {
-    "create-sprite": "pnpm exec tsx scripts/createSprite.ts",
-    "validate:icons": "pnpm exec tsx scripts/validateIcons.ts",
-    "sync:icons": "pnpm exec tsx scripts/syncGeneratedIcons.ts",
-    "create-export-index-file": "pnpm exec tsx scripts/createExportIndexFile.ts",
-    "build:icons": "pnpm exec tsx scripts/buildIcons.ts",
-    "fix:icons": "pnpm exec tsx scripts/fixIcons.ts",
-    "post-process-icons": "pnpm exec tsx scripts/postProcessIconFallback.ts",
+    "create-sprite": "pnpm exec tsx scripts/pipeline/createSprite.ts",
+    "validate:icons": "pnpm exec tsx scripts/validate/validateIcons.ts",
+    "sync:icons": "pnpm exec tsx scripts/pipeline/syncGeneratedIcons.ts",
+    "create-export-index-file": "pnpm exec tsx scripts/pipeline/createExportIndexFile.ts",
+    "sync:types-versions": "pnpm exec tsx scripts/pipeline/syncTypesVersions.ts",
+    "build:icons": "pnpm exec tsx scripts/pipeline/buildIcons.ts",
+    "fix:icons": "pnpm exec tsx scripts/pipeline/fixIcons.ts",
+    "post-process-icons": "pnpm exec tsx scripts/pipeline/postProcessIconFallback.ts",
     "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "typesVersions": {
+    "*": {
+      "interface/product": [
+        "dist/esm/components/product/index.d.ts"
+      ],
+      "interface/web": [
+        "dist/esm/components/web/index.d.ts"
+      ],
+      "interface/system": [
+        "dist/esm/components/system/index.d.ts"
+      ],
+      "sprite": [
+        "dist/esm/sprite/index.d.ts"
+      ],
+      "flags": [
+        "dist/esm/components/flags/index.d.ts"
+      ],
+      "logos": [
+        "dist/esm/components/logos/index.d.ts"
+      ],
+      "services": [
+        "dist/esm/components/services/index.d.ts"
+      ],
+      "extensions": [
+        "dist/esm/components/extensions/index.d.ts"
+      ]
+    }
   }
 }

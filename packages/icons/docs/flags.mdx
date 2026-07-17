@@ -1,0 +1,31 @@
+---
+title: Flags
+package: '@ds/icons'
+description: Флаги стран — полноцветные SVG, цвет не заменяется на currentColor.
+order: 4
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Flags
+
+Флаги стран. В отличие от интерфейсных наборов (`system`/`product`/`web`), флаги сохраняют исходные цвета SVG — `currentColor` их бы визуально сломал. Sprite-вариант не генерируется: только standalone-компоненты.
+
+## Когда использовать
+
+- Для отображения страны в списках, селектах, профилях пользователей.
+- Не используйте флаги как единственный индикатор языка интерфейса — язык и страна не всегда совпадают.
+
+## Установка
+
+```ts
+import { RussiaSVG } from '@ds/icons/flags'
+```
+
+## Storybook
+<StorybookEmbed storyId='components-icons-flags-visual-matrix--flags-visual-matrix' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'flags')} height={480} title='Flags в Figma (National flags)' />

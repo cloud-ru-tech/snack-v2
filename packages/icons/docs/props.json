@@ -11,5 +11,48 @@
         "required": false
       }
     }
+  },
+  "SpriteIcon": {
+    "displayName": "SpriteIcon",
+    "props": {
+      "symbolId": {
+        "type": "string",
+        "required": true,
+        "description": "id символа спрайта, на который ссылается <use href=\"#...\">; каталог валидных id — SPRITE_SYMBOL_IDS / sprite.symbols.json"
+      },
+      "fallback": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Что рендерить внутри <svg>, пока символа нет в DOM (спрайт не смонтирован или id неизвестен)"
+      },
+      "testId": {
+        "type": "string",
+        "required": false,
+        "description": "Суффикс data-test-id (итоговый атрибут — icon${testId}); переопределяется явным data-test-id"
+      },
+      "size": {
+        "type": "number",
+        "required": false,
+        "description": "Размер иконки в px (по умолчанию 24)"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  "SpriteFromUrl": {
+    "displayName": "SpriteFromUrl",
+    "props": {
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "URL файла спрайта (обычно из manifest.json, созданного npx @ds/icons copy-sprites)"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    }
   }
 }

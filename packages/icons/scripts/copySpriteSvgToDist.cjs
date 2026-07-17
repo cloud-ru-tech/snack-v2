@@ -20,7 +20,7 @@ function copyTo(dir) {
     mkdirSync(dir, { recursive: true });
   }
   for (const name of readdirSync(SRC_SVG)) {
-    if (name.endsWith('.svg')) {
+    if (name.endsWith('.svg') || name.endsWith('.json')) {
       cpSync(join(SRC_SVG, name), join(dir, name), { force: true });
     }
   }

@@ -1,0 +1,11 @@
+export { default as CalculatorSVG } from './Calculator';
+export { default as CertificationSVG } from './Certification';
+export { default as ClientsSVG } from './Clients';
+export { default as ConnectedServicesSVG } from './ConnectedServices';
+export { default as MarketplaceSVG } from './Marketplace';
+export { default as MyCompanyProfileSVG } from './MyCompanyProfile';
+export { default as PartnerAccountSVG } from './PartnerAccount';
+export { default as PartnerMaterialsSVG } from './PartnerMaterials';
+export { default as ReferralLinksSVG } from './ReferralLinks';
+export { default as ReferralsSVG } from './Referrals';
+export { default as TransactionsSVG } from './Transactions';

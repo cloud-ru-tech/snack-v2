@@ -1,0 +1,17 @@
+export { default as AntiDdosFromQratorLabsSVG } from './AntiDdosFromQratorLabs';
+export { default as AntiDdosWafSVG } from './AntiDdosWaf';
+export { default as ApiGatewaySVG } from './ApiGateway';
+export { default as ApplicationSVG } from './Application';
+export { default as BareMetalSVG } from './BareMetal';
+export { default as ClientDataBusSVG } from './ClientDataBus';
+export { default as CloudAdvisorSVG } from './CloudAdvisor';
+export { default as CloudDnsSVG } from './CloudDns';
+export { default as CloudLoggingSVG } from './CloudLogging';
+export { default as DirectConnectSVG } from './DirectConnect';
+export { default as NotificationSVG } from './Notification';
+export { default as S3StorageSVG } from './S3Storage';
+export { default as TagsSVG } from './Tags';
+export { default as UserGateProfServiceSVG } from './UserGateProfService';
+export { default as UserGateVirtualNgfwSVG } from './UserGateVirtualNgfw';
+export { default as VirtualDesktopInfrastructureSVG } from './VirtualDesktopInfrastructure';
+export { default as VpnSVG } from './Vpn';

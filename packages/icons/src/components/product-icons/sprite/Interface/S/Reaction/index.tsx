@@ -1,9 +1,0 @@
-export { default as DislikeFilledSpriteSVG } from './DislikeFilled';
-export { default as DislikeOutlineSpriteSVG } from './DislikeOutline';
-export { default as LikeFilledSpriteSVG } from './LikeFilled';
-export { default as LikeOutlineSpriteSVG } from './LikeOutline';
-export { default as NetralSpriteSVG } from './Netral';
-export { default as Sad2SpriteSVG } from './Sad2';
-export { default as SadSpriteSVG } from './Sad';
-export { default as Smile2SpriteSVG } from './Smile2';
-export { default as SmileSpriteSVG } from './Smile';

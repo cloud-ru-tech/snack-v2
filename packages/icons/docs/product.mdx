@@ -1,0 +1,35 @@
+---
+title: Product
+package: '@ds/icons'
+description: Продуктовый набор интерфейсных иконок — сущности и действия конкретных продуктовых доменов (биллинг, файлы, соцсети и т.д.).
+order: 2
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Product
+
+Набор иконок для продуктовых сценариев: файлы, таблицы, реакции, соцсети, MKP/LKP-специфика. Используется там, где `system` не хватает — для доменных сущностей и продуктовых действий.
+
+## Когда использовать
+
+- Для продуктовых сущностей и действий, специфичных для конкретных разделов приложения (файлы, таблицы, соцсети, маркетплейс).
+- Если нужной иконки нет в `system` — сначала проверьте здесь, прежде чем заводить новую иконку в Figma.
+
+## Установка
+
+```ts
+import { CloudSVG, BoxSVG, DotSmallSVG } from '@ds/icons/interface/product'
+```
+
+Каждый компонент этой группы сам рендерит `<use href="#...">` на символ спрайта (с инлайн-fallback, если спрайт не смонтирован) — отдельного `*SpriteSVG`-экспорта нет, см. страницу [Sprite](/components/icons/sprite).
+
+## Storybook
+<StorybookEmbed storyId='components-icons-interfaces-visual-matrix--interfaces-visual-matrix' height={480} />
+
+Каталог показывает все три интерфейсные группы (`system`/`product`/`web`) сразу — отфильтруйте по названию иконки строкой поиска.
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'product')} height={480} title='Product в Figma (Interfaces icons)' />

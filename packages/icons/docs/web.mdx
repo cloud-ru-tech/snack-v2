@@ -1,0 +1,35 @@
+---
+title: Web
+package: '@ds/icons'
+description: Веб-набор интерфейсных иконок — облака, дата-центры, базы данных, HR-портал, AI и другие тематические разделы веб-продуктов.
+order: 3
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Web
+
+Тематический набор иконок для веб-продуктов: облачная инфраструктура (Data Center, Databases/Repos), браузер, файлы, HR-портал, AI, страницы решений, состояния. Более узкоспециализированный набор, чем `system`/`product`.
+
+## Когда использовать
+
+- Для иллюстрации облачной инфраструктуры, дата-центров, баз данных и связанных технических сущностей.
+- Для HR-портала, AI-сценариев и тематических посадочных страниц решений.
+
+## Установка
+
+```ts
+import { CloudArrowSVG, CloudChartSVG } from '@ds/icons/interface/web'
+```
+
+Каждый компонент этой группы сам рендерит `<use href="#...">` на символ спрайта (с инлайн-fallback, если спрайт не смонтирован) — отдельного `*SpriteSVG`-экспорта нет, см. страницу [Sprite](/components/icons/sprite).
+
+## Storybook
+<StorybookEmbed storyId='components-icons-interfaces-visual-matrix--interfaces-visual-matrix' height={480} />
+
+Каталог показывает все три интерфейсные группы (`system`/`product`/`web`) сразу — отфильтруйте по названию иконки строкой поиска.
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'web')} height={480} title='Web в Figma (Interfaces icons)' />

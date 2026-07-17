@@ -8,14 +8,13 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import componentPackage from '../../package.json';
 import readme from '../../README.md?raw';
-import { Sprite, SpriteProductIconsSVG, SpriteSnackIconsSVG, SpriteWebIconsSVG } from '../../src';
-import { ICON_VARIANTS } from './constants';
+import { Sprite, SpriteProductSVG, SpriteSystemSVG, SpriteWebSVG } from '../../src/sprite';
+import { IconGroup } from './constants';
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
 import { ALL_SECTION_KEYS_ORDER, getAllIcons, groupAllIconsBySection, toSearchToken } from './utils';
 
 type StoryProps = {
-  variant: (typeof ICON_VARIANTS)[number];
   size: number;
 };
 
@@ -23,11 +22,12 @@ type IconModalData = {
   name: string;
   baseName: string;
   Component: ComponentType<{ size?: number }>;
+  group: IconGroup;
 };
 
 function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void }): ReactElement {
-  const reactImport = `import { ${data.baseName}SVG } from '@ds/icons';`;
-  const reactSpriteImport = `import { ${data.baseName}SpriteSVG } from '@ds/icons';`;
+  const subpath = `interface/${data.group}`;
+  const reactImport = `import { ${data.baseName}SVG } from '@ds/icons/${subpath}';`;
 
   return (
     <>
@@ -41,18 +41,8 @@ function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void
                 <data.Component size={48} />
               </div>
               <div className={styles.modalCodeBlock}>
-                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
-                  Standalone
-                </Typography>
                 <code>{reactImport}</code>
               </div>
-              <div className={styles.modalCodeBlock}>
-                <Typography variant='body' size='s' weight='regular' className={styles.modalCodeLabel}>
-                  Sprite
-                </Typography>
-                <code>{reactSpriteImport}</code>
-              </div>
-              <div />
             </div>
           }
         />
@@ -61,11 +51,11 @@ function IconModal({ data, onClose }: { data: IconModalData; onClose: () => void
   );
 }
 
-function IconsCatalog({ variant, size }: StoryProps): ReactElement {
+function IconsCatalog({ size }: StoryProps): ReactElement {
   const [search, setSearch] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<IconModalData | null>(null);
-  const [isSpriteReady, setIsSpriteReady] = useState(variant !== 'sprite');
-  const icons = useMemo(() => getAllIcons(variant), [variant]);
+  const [isSpriteReady, setIsSpriteReady] = useState(false);
+  const icons = useMemo(() => getAllIcons(), []);
   const searchToken = toSearchToken(search);
 
   const filteredIcons = useMemo(
@@ -87,11 +77,17 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
     ),
   ];
 
-  const handleIconClick = (name: string, baseName: string, Component: ComponentType<{ size?: number }>): void => {
+  const handleIconClick = (
+    name: string,
+    baseName: string,
+    Component: ComponentType<{ size?: number }>,
+    group: IconGroup,
+  ): void => {
     setSelectedIcon({
       name,
       baseName,
       Component,
+      group,
     });
   };
 
@@ -100,11 +96,6 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
   };
 
   useEffect(() => {
-    if (variant !== 'sprite') {
-      setIsSpriteReady(true);
-      return;
-    }
-
     setIsSpriteReady(false);
     const timerId = window.setTimeout(() => {
       setIsSpriteReady(true);
@@ -113,11 +104,11 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
     return () => {
       window.clearTimeout(timerId);
     };
-  }, [variant]);
+  }, []);
 
   let content: ReactElement;
 
-  if (variant === 'sprite' && !isSpriteReady) {
+  if (!isSpriteReady) {
     content = (
       <section className={styles.emptyState}>
         <Typography variant='body' size='s' weight='regular' className={styles.mutedText}>
@@ -151,14 +142,14 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
             </div>
 
             <div className={styles.iconGridMinimal} data-test-id={TEST_IDS.row(sectionName)}>
-              {groupedIcons[sectionName].map(({ name, baseName, Component }) => (
+              {groupedIcons[sectionName].map(({ name, baseName, Component, group }) => (
                 // TODO: Заменить кнопку
                 <button
                   key={name}
                   type='button'
                   className={styles.iconButtonMinimal}
                   data-test-id={TEST_IDS.card(name)}
-                  onClick={() => handleIconClick(name, baseName, Component)}
+                  onClick={() => handleIconClick(name, baseName, Component, group)}
                   aria-label={baseName}
                   title={baseName}
                 >
@@ -174,13 +165,9 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
 
   return (
     <div className={styles.catalogMinimal} data-test-id={TEST_IDS.catalog}>
-      {variant === 'sprite' ? (
-        <>
-          <Sprite content={SpriteWebIconsSVG} />
-          <Sprite content={SpriteSnackIconsSVG} />
-          <Sprite content={SpriteProductIconsSVG} />
-        </>
-      ) : null}
+      <Sprite content={SpriteWebSVG} />
+      <Sprite content={SpriteSystemSVG} />
+      <Sprite content={SpriteProductSVG} />
 
       <section className={styles.minimalHeader}>
         <Typography variant='title' size='l' weight='regular'>
@@ -206,22 +193,16 @@ function IconsCatalog({ variant, size }: StoryProps): ReactElement {
 }
 
 const meta: Meta<StoryProps> = {
-  title: 'Icons/Interfaces Visual Matrix',
+  title: 'Components/Icons/Interfaces Visual Matrix',
   parameters: {
     layout: 'fullscreen',
     readme: { content: readme },
     packageName: componentPackage.name,
   },
   args: {
-    variant: 'sprite',
     size: 24,
   },
   argTypes: {
-    variant: {
-      control: 'radio',
-      options: ICON_VARIANTS,
-      description: 'Режим рендера иконок: sprite или standalone',
-    },
     size: {
       control: 'radio',
       options: [16, 24, 32, 40],
@@ -239,7 +220,7 @@ export const InterfacesVisualMatrix: Story = {
     <DemoPage>
       <DemoPanel width='wide'>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Каталог иконок интерфейса с поиском и режимами sprite или standalone.</DemoHint>
+        <DemoHint>Каталог иконок интерфейса с поиском. Каждая иконка — sprite-компонент с инлайн-fallback.</DemoHint>
         <DemoActions align='center'>
           <IconsCatalog {...args} />
         </DemoActions>

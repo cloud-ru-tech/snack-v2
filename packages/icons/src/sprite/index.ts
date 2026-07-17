@@ -1,6 +1,10 @@
-export * from './Sprite';
+export * from './components/Sprite';
+export * from './components/SpriteFromUrl';
+export * from './components/SpriteIcon';
 
-export { default as SpriteProductIconsSVG } from './svg/sprite.product-icons.symbol.svg?raw';
-export { default as SpriteSnackIconsSVG } from './svg/sprite.snack-icons.symbol.svg?raw';
-export { default as SpriteWebIconsSVG } from './svg/sprite.web-icons.symbol.svg?raw';
-export { default as SpriteSVG } from './svg/sprite.snack-icons.symbol.svg?raw';
+export { default as SpriteExtensionsSVG } from './svg/sprite.extensions.symbol.svg?raw';
+export { default as SpriteProductSVG } from './svg/sprite.product.symbol.svg?raw';
+export { default as SpriteServicesSVG } from './svg/sprite.services.symbol.svg?raw';
+export { default as SpriteSystemSVG } from './svg/sprite.system.symbol.svg?raw';
+export { default as SpriteWebSVG } from './svg/sprite.web.symbol.svg?raw';
+export { default as SpriteSVG } from './svg/sprite.system.symbol.svg?raw';

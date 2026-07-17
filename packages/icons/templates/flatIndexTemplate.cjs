@@ -1,8 +1,8 @@
 const path = require('path');
 
 /**
- * Index template for flat icon structure (one icon per file, no S/Xs variants).
- * Creates barrel exports for each icon in the directory.
+ * Шаблон индекса для плоской структуры иконок (одна иконка на файл, без S/Xs-вариантов).
+ * Создаёт баррель-экспорты для каждой иконки в директории.
  */
 function toExportName(basename) {
   const pascal = basename

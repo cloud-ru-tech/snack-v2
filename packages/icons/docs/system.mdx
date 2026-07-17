@@ -1,0 +1,35 @@
+---
+title: System
+package: '@ds/icons'
+description: Системный набор интерфейсных иконок — базовые действия, навигация, состояния. Наследует цвет через currentColor.
+order: 1
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# System
+
+Базовый набор интерфейсных иконок дизайн-системы: действия (копировать, удалить, поиск), навигация (стрелки, шевроны), состояния (успех, предупреждение, ошибка) и типографские иконки (заголовки, списки). Самый широко используемый набор пакета.
+
+## Когда использовать
+
+- Для универсальных действий и состояний интерфейса, не привязанных к конкретному продукту или домену.
+- Как источник иконок по умолчанию для новых компонентов — прежде чем искать иконку в `product` или `web`, проверьте `system`.
+
+## Установка
+
+```ts
+import { SearchSVG, ArrowDownSVG, CheckSVG } from '@ds/icons/interface/system'
+```
+
+Каждый компонент этой группы сам рендерит `<use href="#...">` на символ спрайта (с инлайн-fallback, если спрайт не смонтирован) — отдельного `*SpriteSVG`-экспорта нет, см. страницу [Sprite](/components/icons/sprite).
+
+## Storybook
+<StorybookEmbed storyId='components-icons-interfaces-visual-matrix--interfaces-visual-matrix' height={480} />
+
+Каталог показывает все три интерфейсные группы (`system`/`product`/`web`) сразу — отфильтруйте по названию иконки строкой поиска.
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'system')} height={480} title='System в Figma (Interfaces icons)' />

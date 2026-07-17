@@ -1,17 +1,9 @@
 import { ComponentType } from 'react';
 
-import * as AllIcons from '../../src';
-import { ProductIcons, WebIcons } from '../../src';
-import {
-  ICON_GROUPS,
-  IconEntry,
-  IconGroup,
-  IconSubgroupMap,
-  IconSubgroupOrder,
-  IconVariant,
-  normalizeIconName,
-  SKIP_KEYS,
-} from './constants';
+import * as Product from '../../src/components/product';
+import * as System from '../../src/components/system';
+import * as Web from '../../src/components/web';
+import { ICON_GROUPS, IconEntry, IconGroup, IconSubgroupMap, IconSubgroupOrder, normalizeIconName } from './constants';
 
 type ImportMetaWithGlob = ImportMeta & {
   glob: (pattern: string) => Record<string, () => Promise<unknown>>;
@@ -32,7 +24,7 @@ export function normalizeToSymbolIdPart(value: string): string {
 }
 
 export function parseSvgPath(path: string): { group: IconGroup; subgroup: string; fileName: string } | null {
-  const match = path.match(/svgs\/(snack-icons|product-icons|web-icons)\/Interface\/S(?:\/([^/]+))?\/([^/]+)\.svg$/);
+  const match = path.match(/svgs\/(system|product|web)\/Interface\/S(?:\/([^/]+))?\/([^/]+)\.svg$/);
   if (!match) return null;
 
   const [, group, subgroupRaw, fileName] = match;
@@ -47,15 +39,15 @@ export function parseSvgPath(path: string): { group: IconGroup; subgroup: string
 
 function createIconSubgroupData(): { map: IconSubgroupMap; order: IconSubgroupOrder } {
   const map: IconSubgroupMap = {
-    'snack-icons': {},
-    'product-icons': {},
-    'web-icons': {},
+    system: {},
+    product: {},
+    web: {},
   };
 
   const order: IconSubgroupOrder = {
-    'snack-icons': [],
-    'product-icons': [],
-    'web-icons': [],
+    system: [],
+    product: [],
+    web: [],
   };
 
   Object.keys(SVG_FILES)
@@ -90,10 +82,6 @@ export function isIconComponent(value: unknown): value is ComponentType<{ size?:
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-export function matchesVariant(name: string, variant: IconVariant): boolean {
-  return variant === 'sprite' ? name.endsWith('SpriteSVG') : name.endsWith('SVG') && !name.endsWith('SpriteSVG');
-}
-
 function toIconEntry(group: IconGroup): ([name, Component]: [string, unknown]) => IconEntry {
   return ([name, Component]) => ({
     name,
@@ -103,29 +91,29 @@ function toIconEntry(group: IconGroup): ([name, Component]: [string, unknown]) =
   });
 }
 
-export function getIconsByGroup(group: IconGroup, variant: IconVariant): IconEntry[] {
-  if (group === 'product-icons') {
-    return (Object.entries(ProductIcons) as Array<[string, unknown]>)
-      .filter(([name, comp]) => matchesVariant(name, variant) && isIconComponent(comp))
+export function getIconsByGroup(group: IconGroup): IconEntry[] {
+  if (group === 'product') {
+    return (Object.entries(Product) as Array<[string, unknown]>)
+      .filter(([, comp]) => isIconComponent(comp))
       .map(toIconEntry(group))
       .sort((a, b) => a.baseName.localeCompare(b.baseName));
   }
 
-  if (group === 'web-icons') {
-    return (Object.entries(WebIcons) as Array<[string, unknown]>)
-      .filter(([name, comp]) => matchesVariant(name, variant) && isIconComponent(comp))
+  if (group === 'web') {
+    return (Object.entries(Web) as Array<[string, unknown]>)
+      .filter(([, comp]) => isIconComponent(comp))
       .map(toIconEntry(group))
       .sort((a, b) => a.baseName.localeCompare(b.baseName));
   }
 
-  return (Object.entries(AllIcons) as Array<[string, unknown]>)
-    .filter(([key, value]) => !SKIP_KEYS.has(key) && isIconComponent(value) && matchesVariant(key, variant))
+  return (Object.entries(System) as Array<[string, unknown]>)
+    .filter(([, value]) => isIconComponent(value))
     .map(toIconEntry(group))
     .sort((a, b) => a.baseName.localeCompare(b.baseName));
 }
 
-export function getAllIcons(variant: IconVariant): IconEntry[] {
-  return ICON_GROUPS.flatMap(group => getIconsByGroup(group, variant));
+export function getAllIcons(): IconEntry[] {
+  return ICON_GROUPS.flatMap(group => getIconsByGroup(group));
 }
 
 export function getIconSubgroup(group: IconGroup, iconName: string): string {

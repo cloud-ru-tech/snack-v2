@@ -1,0 +1,33 @@
+---
+title: Services
+package: '@ds/icons'
+description: Иконки облачных сервисов — вычисления, сети, базы данных, Kubernetes и партнёрские интеграции.
+order: 6
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Services
+
+Иконки конкретных облачных сервисов и продуктов: вычисления, сети, хранилища, Kubernetes-объекты, ML Space, VMware, партнёрские интеграции. Наследуют цвет через `currentColor`.
+
+## Когда использовать
+
+- В каталоге сервисов, карточках продуктов, навигации по конкретному облачному сервису.
+- Не путайте с `product` — там общие продуктовые UI-действия, здесь — обозначения самих сервисов.
+
+## Установка
+
+```ts
+import { AirflowSVG } from '@ds/icons/services'
+```
+
+Каждый компонент сам рендерит `<use href="#...">` на символ спрайта (с инлайн-fallback, если спрайт не смонтирован) — см. страницу [Sprite](/components/icons/sprite). Спрайт группы — `SpriteServicesSVG` из `@ds/icons/sprite`.
+
+## Storybook
+<StorybookEmbed storyId='components-icons-services-visual-matrix--services-visual-matrix' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'services')} height={480} title='Services в Figma' />

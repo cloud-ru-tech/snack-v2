@@ -1,66 +1,36 @@
 const generateDataTestId = require('./generateDataTestId.cjs');
 
 /**
- * Sprite icon template: generates <use href="#..."> with fallback support.
- * Component name includes "Sprite" for identification.
+ * Шаблон sprite-иконки: тонкая обёртка над рантайм-фабрикой `createSpriteIcon` — файл несёт
+ * только данные (symbolId, testId, fallback), вся логика рендера живёт в одном экземпляре
+ * `src/factory/createSpriteIcon.tsx`. Публичное имя — обычное `XSVG`, без суффикса "Sprite":
+ * для групп, где этот шаблон применяется (needsSprite: true), это единственный вариант компонента.
+ *
+ * `fallback: ""` — плейсхолдер: содержимое инлайн-fallback подставляет postProcessIconFallback.ts
+ * (svgr на этом этапе не даёт доступа к исходному SVG-тексту). Глубину относительного импорта
+ * фабрики чинит fixTypesImport.ts (см. порядок шагов в buildIcons.ts).
  */
 const spriteIconComponentTemplate =
   ({ size, symbolPrefix = 'snack-uikit-' }) =>
-  ({ imports, interfaces, componentName, exports }, { tpl }) => {
+  ({ componentName }, { tpl }) => {
     const baseName = componentName.replace(/^Svg/, '');
-    const spriteComponentName = baseName + 'SpriteSVG';
+    const spriteComponentName = baseName + 'SVG';
     const testId = generateDataTestId(componentName);
-    const symbolIdPart = testId.replace(/^-/, '');
-
-    const componentProp = Boolean(size)
-      ? `{ size = ${size}, ...props }: ISvgIconProps`
-      : `{ size, ...props }: ISvgIconProps`;
+    const symbolId = symbolPrefix + testId.replace(/^-/, '');
+    // `size` из конфига не эмитится — он всегда равен дефолту фабрики (24); условная строка
+    // здесь невозможна: пустой placeholder в tpl ломает подстановку @babel/template.
+    void size;
 
     return tpl`
-    ${`
-    // DO NOT EDIT IT MANUALLY
+    // DO NOT EDIT MANUALLY
 
-    `}
-    // TODO(FF-8488): убрать \`type\`-keyword согласно .claude/rules/imports-exports.md
-    // на следующей перегенерации иконок (\`pnpm gen:icons\`). Сейчас оставлено, чтобы
-    // соответствовать фактическому состоянию закоммиченных файлов src/components/.
-    import { forwardRef } from 'react';
-    import type { Ref } from 'react';
-    import type { ISvgIconProps } from '../../../types';
-    ${interfaces}
-    ${`
-    
-    `}
+    import { createSpriteIcon } from '../../../factory/createSpriteIcon';
 
-    const ${spriteComponentName} = forwardRef((${componentProp}, ref: Ref<SVGSVGElement>) => {
-      props.width = undefined;
-      props.height = undefined;
-
-      const testId = "${testId}";
-      const symbolId = "${symbolPrefix}" + "${symbolIdPart}";
-      const isCustomSize = typeof size === "number";
-
-      if (isCustomSize) {
-        if (!props.style) props.style = {};
-        props.style.width = size + "px";
-        props.style.height = size + "px";
-      }
-
-      return (
-        <svg
-          ref={ref}
-          xmlns='http://www.w3.org/2000/svg'
-          width={24}
-          height={24}
-          fill='currentColor'
-          viewBox='0 0 24 24'
-          data-test-id={'icon' + testId}
-          {...props}
-        >
-          <use href={'#' + symbolId} />
-        </svg>
-      );
-    })
+    const ${spriteComponentName} = createSpriteIcon({
+      symbolId: "${symbolId}",
+      testId: "${testId}",
+      fallback: "",
+    });
 
     export default ${spriteComponentName};
     `;

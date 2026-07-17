@@ -1,0 +1,19 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.main {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.accent {
+  color: base.$sn-theme-color-primary-accent;
+}
+
+.critical {
+  color: base.$sn-theme-color-red-accent;
+}

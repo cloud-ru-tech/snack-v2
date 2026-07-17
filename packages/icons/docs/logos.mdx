@@ -1,0 +1,31 @@
+---
+title: Logos
+package: '@ds/icons'
+description: Логотипы брендов и сервисов — автоматически переключаются между Light/Dark вариантом по теме приложения.
+order: 5
+---
+
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Logos
+
+Логотипы облачных сервисов и сторонних брендов. Каждый логотип — единый компонент, который сам читает текущую тему через `useThemeAppearance()` из `@ds/theme` и переключается между Light- и Dark-исполнением; отдельно управлять вариантом не нужно. Цвет сохраняется как в исходном SVG, sprite-вариант не генерируется.
+
+## Когда использовать
+
+- Для отображения бренда стороннего сервиса или продукта Cloud.ru (карточки интеграций, страницы партнёров, маркетплейс).
+- Не используйте для собственных интерфейсных иконок — для этого `system`/`product`/`web`.
+
+## Установка
+
+```ts
+import { CloudLogo } from '@ds/icons/logos'
+```
+
+## Storybook
+<StorybookEmbed storyId='components-icons-logos-visual-matrix--logos-visual-matrix' height={480} />
+
+## Figma
+<FigmaEmbed node={figmaNode('icons', 'logos')} height={480} title='Logos в Figma' />

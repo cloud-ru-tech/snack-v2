@@ -1,3 +1,2 @@
-export * from './components';
-export * from './sprite';
-export type { ISvgIconProps } from './types';
+export * from './types';
+export * from './factory';

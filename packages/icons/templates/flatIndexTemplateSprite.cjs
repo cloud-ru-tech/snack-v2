@@ -1,14 +1,18 @@
 const path = require('path');
 
 /**
- * Index template for Sprite variant - export names include "Sprite".
+ * Шаблон индекса для sprite-варианта. Экспортируется под обычным именем `XSVG` — для групп
+ * с needsSprite: true это единственный вариант компонента (standalone для них не генерируется,
+ * см. buildIcons.ts), поэтому суффикс "Sprite" в публичном имени не нужен: потребитель не выбирает
+ * между `XSVG` (инлайн) и `XSpriteSVG` (символ) — есть только один компонент, который сам
+ * переключается на инлайн-fallback, если символ спрайта не смонтирован (postProcessIconFallback.ts).
  */
 function toExportName(basename) {
   const pascal = basename
     .replace(/^Svg/, '')
     .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''))
     .replace(/^(.)/, (_, c) => c.toUpperCase());
-  return pascal + 'SpriteSVG';
+  return pascal + 'SVG';
 }
 
 const flatIndexTemplateSprite = filePaths => {

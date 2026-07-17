@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-20;
+  // Без ширины flex-column сжимается по самому широкому ребёнку — при поиске сетка
+  // иконок исчезает и блок "сдувается" до узкого поля поиска. Фиксируем на 100%
+  // родителя (DemoPanel), чтобы ширина не прыгала между пустым и заполненным состоянием.
+  width: 100%;
 }
 
 .minimalHeader {
@@ -49,6 +53,33 @@
   border: none;
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
+  border-radius: base.$sn-primitive-dimension-8;
+  background: transparent;
+  color: base.$sn-theme-color-available-complementary;
+  cursor: pointer;
+
+  &:hover {
+    background: base.$sn-theme-color-neutral-background2Level;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-dimension-2 solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-1;
+  }
+}
+
+// Вариант для не-квадратных иконок (Logos: wordmark-логотипы вроде BootcampLabs, cloud.ru
+// шире своей высоты) — aspect-ratio: 1/1 у .iconButtonMinimal их либо обрежет, либо раздует
+// по высоте. Фиксируем высоту ряда, ширина авто по контенту, рамка-чип вместо квадрата —
+// так соседние логотипы не слипаются и выравниваются по единой линии независимо от ширины.
+.iconButtonAuto {
+  height: base.$sn-primitive-dimension-40;
+  padding: 0 base.$sn-primitive-dimension-8;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
   background: transparent;
   color: base.$sn-theme-color-available-complementary;
