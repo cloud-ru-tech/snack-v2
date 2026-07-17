@@ -171,7 +171,7 @@ type DroplistMobileSlots = {
   /** Только mobile (`BottomSheet`): action-кнопка справа в шапке. */
   actionButton?: ReactNode;
   /** Только mobile (`BottomSheet`): slot справа от заголовка. */
-  slotAfterHeadline?: ReactNode;
+  slotAfterTitle?: ReactNode;
   /** Только mobile (`BottomSheet`): callback back-кнопки. */
   onBackButtonClick?(): void;
 };

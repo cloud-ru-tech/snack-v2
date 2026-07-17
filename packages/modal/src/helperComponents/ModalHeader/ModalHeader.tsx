@@ -27,12 +27,12 @@ export function ModalHeader({
   subtitle,
   className,
   onBackButtonClick,
-  slotAfterHeadline,
+  slotAfterTitle,
   truncate,
   ...rest
 }: ModalHeaderProps) {
   const withBackButton = Boolean(onBackButtonClick);
-  const hasTitle = Boolean(title || slotAfterHeadline);
+  const hasTitle = Boolean(title || slotAfterTitle);
   const hasHeadline = Boolean(onBackButtonClick || hasTitle);
   const hasHeader = Boolean(hasHeadline || subtitle);
 
@@ -83,9 +83,9 @@ export function ModalHeader({
                 {titleContent}
               </Typography>
 
-              {slotAfterHeadline && (
-                <div className={styles.slotAfterHeadline} data-test-id={TEST_IDS.slotAfterHeadline}>
-                  {slotAfterHeadline}
+              {slotAfterTitle && (
+                <div className={styles.slotAfterTitle} data-test-id={TEST_IDS.slotAfterTitle}>
+                  {slotAfterTitle}
                 </div>
               )}
             </div>

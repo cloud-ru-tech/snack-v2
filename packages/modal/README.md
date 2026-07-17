@@ -211,7 +211,7 @@ export function Forced() {
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
-| `slotAfterHeadline` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
+| `slotAfterTitle` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
 | `subtitle` | `ReactNode` | — | Slot под title-строкой во весь блок subtitleWrapper — <br/> типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Подзаголовок под заголовком. |
 | `title` | `ReactNode` | — | Заголовок (Typography title-l). |
 | `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение `title`/`subtitle` (TruncateString). |
@@ -261,7 +261,7 @@ export function Forced() {
 | Пропы | desktop | mobile |
 |-------|---------|--------|
 | `mode`, `width`, `heightAuto`, `truncate` | используется | игнорируется |
-| `title`, `subtitle`, `slotAfterHeadline`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
+| `title`, `subtitle`, `slotAfterTitle`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
 | `loading`, `loadingState`, `open`, `onClose`, `container`, `closeOnPopstate`, `className`, `rootClassName` | используется | используется |
 
 Подробнее о модели адаптивности — **Adaptive**.

@@ -148,7 +148,7 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -254,7 +254,7 @@
         "required": false,
         "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -427,7 +427,7 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -816,7 +816,7 @@
             "required": false,
             "description": "Отображение темной подложки"
           },
-          "slotAfterHeadline": {
+          "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -1269,7 +1269,7 @@
         "required": false,
         "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -1333,7 +1333,7 @@
         "required": false,
         "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -1484,7 +1484,7 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."

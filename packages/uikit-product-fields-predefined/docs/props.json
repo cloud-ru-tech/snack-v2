@@ -2206,7 +2206,7 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): callback back-кнопки."
           },
-          "slotAfterHeadline": {
+          "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
@@ -3280,7 +3280,7 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): callback back-кнопки."
           },
-          "slotAfterHeadline": {
+          "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
@@ -4330,7 +4330,7 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): callback back-кнопки."
           },
-          "slotAfterHeadline": {
+          "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
@@ -6066,7 +6066,7 @@
             "required": false,
             "description": "CSS-класс корневого слоя портала"
           },
-          "slotAfterHeadline": {
+          "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."

@@ -53,7 +53,7 @@ function MobileDemo() {
   const [snapPreset, setSnapPreset] = useState<SnapPreset>('half-full');
   const [open, setOpen] = useState(false);
   const [withMedia, setWithMedia] = useState(false);
-  const [withSubHeadline, setWithSubHeadline] = useState(false);
+  const [withSubtitle, setWithSubtitle] = useState(false);
   const [withFooter, setWithFooter] = useState(true);
 
   return (
@@ -89,10 +89,10 @@ function MobileDemo() {
               onClick={() => setWithMedia(v => !v)}
             />
             <Button
-              view={withSubHeadline ? VIEW.Filled : VIEW.Outline}
+              view={withSubtitle ? VIEW.Filled : VIEW.Outline}
               appearance={APPEARANCE.Neutral}
-              label='SubHeadline'
-              onClick={() => setWithSubHeadline(v => !v)}
+              label='Subtitle'
+              onClick={() => setWithSubtitle(v => !v)}
             />
             <Button
               view={withFooter ? VIEW.Filled : VIEW.Outline}
@@ -139,7 +139,7 @@ function MobileDemo() {
             safeArea={false}
             title='Bottom-sheet'
             subtitle={
-              withSubHeadline ? <div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl</div> : undefined
+              withSubtitle ? <div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl</div> : undefined
             }
             media={
               withMedia

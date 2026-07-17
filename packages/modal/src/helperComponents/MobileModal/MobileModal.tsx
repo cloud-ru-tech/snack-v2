@@ -15,7 +15,7 @@ export function MobileModal({
   onClose,
   title,
   subtitle,
-  slotAfterHeadline,
+  slotAfterTitle,
   onBackButtonClick,
   content,
   media,
@@ -49,7 +49,7 @@ export function MobileModal({
       onClose={onClose}
       title={title}
       subtitle={subtitle}
-      slotAfterHeadline={slotAfterHeadline}
+      slotAfterTitle={slotAfterTitle}
       onBackButtonClick={onBackButtonClick}
       media={media}
       content={bodyContent}

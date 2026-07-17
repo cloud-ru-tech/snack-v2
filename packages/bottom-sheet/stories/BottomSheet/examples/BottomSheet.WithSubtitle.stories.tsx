@@ -8,21 +8,21 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from '../testIds';
 
-function WithSubHeadlineRender() {
+function WithSubtitleRender() {
   const [open, setOpen] = useState(false);
   const portalRoot = usePortalContext();
 
   return (
     <DemoPage>
       <DemoPanel>
-        <DemoTitle>WithSubHeadline</DemoTitle>
+        <DemoTitle>WithSubtitle</DemoTitle>
         <DemoHint>
           Sticky-зона под заголовком для поиска/фильтров. В продакшене сюда монтируется SearchBar или SegmentControl.
         </DemoHint>
         <DemoActions align='center'>
           <Button
             data-test-id={TEST_IDS.triggerOpen}
-            label='Открыть с subHeadline'
+            label='Открыть с subtitle'
             view={VIEW.Outline}
             appearance={APPEARANCE.Neutral}
             onClick={() => setOpen(true)}
@@ -36,7 +36,7 @@ function WithSubHeadlineRender() {
         container={portalRoot.current || undefined}
         title='Filters'
         subtitle={<div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl placeholder</div>}
-        content={<p>SubHeadline располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
+        content={<p>Subtitle располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />
     </DemoPage>
@@ -44,7 +44,7 @@ function WithSubHeadlineRender() {
 }
 
 const meta: Meta<typeof BottomSheet> = {
-  title: 'Components/BottomSheet/Examples/WithSubHeadline',
+  title: 'Components/BottomSheet/Examples/WithSubtitle',
   globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
@@ -54,7 +54,7 @@ export default meta;
 
 type Story = StoryObj<typeof BottomSheet>;
 
-export const WithSubHeadline: Story = {
+export const WithSubtitle: Story = {
   tags: ['dev', 'test'],
-  render: () => <WithSubHeadlineRender />,
+  render: () => <WithSubtitleRender />,
 };

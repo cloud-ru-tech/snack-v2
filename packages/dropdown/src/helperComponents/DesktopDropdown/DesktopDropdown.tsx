@@ -16,7 +16,7 @@ export function DesktopDropdown({
   children,
   content,
   title,
-  slotAfterHeadline,
+  slotAfterTitle,
   search,
   footer,
   headerDivider,
@@ -34,7 +34,7 @@ export function DesktopDropdown({
     return null;
   }
 
-  const hasTopBar = Boolean(title || slotAfterHeadline || search);
+  const hasTopBar = Boolean(title || slotAfterTitle || search);
 
   return (
     <PopoverPrivate
@@ -50,10 +50,10 @@ export function DesktopDropdown({
           <div className={styles.dropdownContent}>
             {hasTopBar && (
               <div className={styles.topBar}>
-                {(title || slotAfterHeadline) && (
+                {(title || slotAfterTitle) && (
                   <div className={styles.headlineWrapper}>
                     {title}
-                    {slotAfterHeadline}
+                    {slotAfterTitle}
                   </div>
                 )}
                 {search}

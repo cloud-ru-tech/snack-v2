@@ -53,7 +53,7 @@ function FiltersRender() {
         container={portalRoot.current || undefined}
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
-        slotAfterHeadline={<QuestionTooltip tip='Настройте параметры выборки' />}
+        slotAfterTitle={<QuestionTooltip tip='Настройте параметры выборки' />}
         subtitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (

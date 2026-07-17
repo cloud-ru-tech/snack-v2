@@ -20,7 +20,7 @@ export function DrawerHeader({
   subtitle,
   className,
   onBackButtonClick,
-  slotAfterHeadline,
+  slotAfterTitle,
   ...rest
 }: DrawerHeaderProps) {
   const withBackButton = Boolean(onBackButtonClick);
@@ -37,7 +37,7 @@ export function DrawerHeader({
             {title}
           </Typography>
 
-          {slotAfterHeadline}
+          {slotAfterTitle}
         </div>
       </div>
 

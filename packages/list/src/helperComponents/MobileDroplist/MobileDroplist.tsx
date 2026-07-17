@@ -27,7 +27,7 @@ export function MobileDroplist({
   search,
   label,
   actionButton,
-  slotAfterHeadline,
+  slotAfterTitle,
   onBackButtonClick,
   virtualized,
   closeDroplistOnItemClick,
@@ -217,7 +217,7 @@ export function MobileDroplist({
             title={title}
             onBackButtonClick={handleBack}
             actionButton={isRoot ? actionButton : undefined}
-            slotAfterHeadline={isRoot ? slotAfterHeadline : undefined}
+            slotAfterTitle={isRoot ? slotAfterTitle : undefined}
             content={content}
             footer={isRoot ? footer : undefined}
             snapPoints={expanded ? [1] : undefined}

@@ -48,11 +48,14 @@ export const NO_DRAG_ATTRIBUTE = 'data-bottom-sheet-no-drag';
  *   Figma `topBar`               → код `header` / `onBackButtonClick`
  *   Figma `bottomBar`            → код `footer`
  *   Figma `+ slotMedia`          → код `media`
- *   Figma `+ slotSubHeadline`    → код `subtitle`
- *   Figma `+ slotAfterHeadline`  → код `slotAfterHeadline`
+ *   Figma `+ slotSubtitle`       → код `subtitle`
  *   Figma `+ slotBottomBar`      → код `footer` (ReactNode)
  *   Figma `buttonBefore` (48×48) → код auto-back-button по `onBackButtonClick`
  *   Figma `buttonAfter`  (48×48) → код `actionButton` (ReactNode)
+ *
+ * Токены анатомии остались на `headlineWrapper` / `subHeadlineWrapper` — в шкале типографики
+ * `headline` это отдельная роль (рядом с `title`), поэтому переименование токенов идёт
+ * отдельной задачей в `@sbercloud/figma-variables`, а не вместе с осью пропсов.
  */
 export const TEST_IDS = {
   root: 'bottom-sheet',
@@ -60,8 +63,8 @@ export const TEST_IDS = {
   handle: 'bottom-sheet__handle',
   header: 'bottom-sheet__header',
   title: 'bottom-sheet__title',
-  slotAfterHeadline: 'bottom-sheet__slot-after-headline',
-  subHeadline: 'bottom-sheet__sub-headline',
+  slotAfterTitle: 'bottom-sheet__slot-after-title',
+  subtitle: 'bottom-sheet__subtitle',
   backButton: 'bottom-sheet__back-button',
   actionButton: 'bottom-sheet__action-button',
   media: 'bottom-sheet__media',

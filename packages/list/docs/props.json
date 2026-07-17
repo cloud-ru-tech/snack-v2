@@ -548,7 +548,7 @@
   "Droplist": {
     "displayName": "Droplist",
     "propsTypeName": "DroplistProps",
-    "description": "Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит\nсписок (size `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).\nСлоты `label` / `actionButton` / `slotAfterHeadline` / `onBackButtonClick` применяются только на mobile.\nЧтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный\n`<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.",
+    "description": "Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит\nсписок (size `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).\nСлоты `label` / `actionButton` / `slotAfterTitle` / `onBackButtonClick` применяются только на mobile.\nЧтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный\n`<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -830,7 +830,7 @@
           "Size"
         ]
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
@@ -2227,7 +2227,7 @@
         ],
         "description": "Размер списка"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
@@ -2771,7 +2771,7 @@
           "Size"
         ]
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Только mobile (`BottomSheet`): slot справа от заголовка."

@@ -22,7 +22,7 @@ type StoryProps = BottomSheetProps & {
   showMedia: boolean;
   showHeader: boolean;
   showAfterHeadline: boolean;
-  showSubHeadline: boolean;
+  showSubtitle: boolean;
   showBackButton: boolean;
   showActionButton: boolean;
   showFooter: boolean;
@@ -44,7 +44,7 @@ function PlaygroundRender(args: StoryProps) {
     showMedia,
     showHeader,
     showAfterHeadline,
-    showSubHeadline,
+    showSubtitle,
     showBackButton,
     showActionButton,
     showFooter,
@@ -90,14 +90,12 @@ function PlaygroundRender(args: StoryProps) {
         container={portalRoot.current || undefined}
         snapPoints={SNAP_POINT_PRESETS[snapPointsPreset]}
         title={showHeader ? title : undefined}
-        slotAfterHeadline={
-          showHeader && showAfterHeadline ? (
-            <span data-test-id={PUBLIC_TEST_IDS.slotAfterHeadline}>NEW</span>
-          ) : undefined
+        slotAfterTitle={
+          showHeader && showAfterHeadline ? <span data-test-id={PUBLIC_TEST_IDS.slotAfterTitle}>NEW</span> : undefined
         }
         subtitle={
-          showHeader && showSubHeadline ? (
-            <div data-test-id={PUBLIC_TEST_IDS.subHeadline}>SearchBar / SegmentControl …</div>
+          showHeader && showSubtitle ? (
+            <div data-test-id={PUBLIC_TEST_IDS.subtitle}>SearchBar / SegmentControl …</div>
           ) : undefined
         }
         onBackButtonClick={showHeader && showBackButton ? () => setOpen(false) : undefined}
@@ -148,7 +146,7 @@ export const Playground: Story = {
     showMedia: false,
     showHeader: true,
     showAfterHeadline: false,
-    showSubHeadline: false,
+    showSubtitle: false,
     showBackButton: false,
     showActionButton: false,
     showFooter: true,
@@ -163,7 +161,7 @@ export const Playground: Story = {
     media: { table: { disable: true } },
     content: { table: { disable: true } },
     actionButton: { table: { disable: true } },
-    slotAfterHeadline: { table: { disable: true } },
+    slotAfterTitle: { table: { disable: true } },
     subtitle: { table: { disable: true } },
     footer: { table: { disable: true } },
     onBackButtonClick: { table: { disable: true } },
@@ -193,7 +191,7 @@ export const Playground: Story = {
       control: 'boolean',
       if: { arg: 'showHeader', eq: true },
     },
-    showSubHeadline: { name: '[Stories]: showSubHeadline', control: 'boolean', if: { arg: 'showHeader', eq: true } },
+    showSubtitle: { name: '[Stories]: showSubtitle', control: 'boolean', if: { arg: 'showHeader', eq: true } },
     showBackButton: { name: '[Stories]: showBackButton', control: 'boolean', if: { arg: 'showHeader', eq: true } },
     showActionButton: { name: '[Stories]: showActionButton', control: 'boolean', if: { arg: 'showHeader', eq: true } },
     showFooter: { name: '[Stories]: showFooter', control: 'boolean' },

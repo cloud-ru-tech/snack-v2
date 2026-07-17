@@ -12,7 +12,7 @@ export function DesktopDrawer({
   content,
   media,
   title,
-  slotAfterHeadline,
+  slotAfterTitle,
   subtitle,
   onBackButtonClick,
   approveButton,
@@ -25,7 +25,7 @@ export function DesktopDrawer({
   className,
   ...rest
 }: DrawerProps) {
-  const showHeader = Boolean(title || subtitle || slotAfterHeadline);
+  const showHeader = Boolean(title || subtitle || slotAfterTitle);
   // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `buildFooterActions`.
   const footerContent =
     footer ??
@@ -59,7 +59,7 @@ export function DesktopDrawer({
       {showHeader && (
         <DrawerCustom.Header
           title={title}
-          slotAfterHeadline={slotAfterHeadline}
+          slotAfterTitle={slotAfterTitle}
           subtitle={subtitle}
           onBackButtonClick={onBackButtonClick}
           data-test-id={TEST_IDS.header}

@@ -149,7 +149,7 @@
         "defaultValue": "true",
         "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge."
@@ -616,7 +616,7 @@
   "BottomSheetCustom.Header": {
     "displayName": "BottomSheetCustom.Header",
     "propsTypeName": null,
-    "description": "Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle.",
+    "description": "Header bottom-sheet'а: back-button + title + slotAfterTitle + actionButton + subtitle.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -637,7 +637,7 @@
         "required": false,
         "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
@@ -835,7 +835,7 @@
   "SheetHeader": {
     "displayName": "SheetHeader",
     "propsTypeName": "SheetHeaderProps",
-    "description": "Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle.",
+    "description": "Header bottom-sheet'а: back-button + title + slotAfterTitle + actionButton + subtitle.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -856,7 +856,7 @@
         "required": false,
         "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."

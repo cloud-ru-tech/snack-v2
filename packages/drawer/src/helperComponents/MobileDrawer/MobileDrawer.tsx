@@ -13,7 +13,7 @@ export function MobileDrawer({
   content,
   media,
   title,
-  slotAfterHeadline,
+  slotAfterTitle,
   subtitle,
   onBackButtonClick,
   approveButton,
@@ -44,7 +44,7 @@ export function MobileDrawer({
       showBackdrop={showBlackout}
       title={title}
       subtitle={subtitle}
-      slotAfterHeadline={slotAfterHeadline}
+      slotAfterTitle={slotAfterTitle}
       onBackButtonClick={onBackButtonClick}
       media={media}
       content={content}

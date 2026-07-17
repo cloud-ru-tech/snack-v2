@@ -11,7 +11,7 @@ import { ModalCustomProps } from '../ModalCustom';
  * Только desktop: `mode`, `width`, `heightAuto`, `truncate` (на mobile игнорируются).
  */
 export type ModalProps = WithSupportProps<
-  Pick<DialogHeaderProps, 'onBackButtonClick' | 'title' | 'slotAfterHeadline' | 'subtitle' | 'truncate'> &
+  Pick<DialogHeaderProps, 'onBackButtonClick' | 'title' | 'slotAfterTitle' | 'subtitle' | 'truncate'> &
     Pick<DialogBodyProps, 'content'> &
     Pick<
       ModalCustomProps,

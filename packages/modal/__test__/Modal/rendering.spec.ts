@@ -27,7 +27,7 @@ test.describe('Modal — rendering', () => {
       await expect(getByTestId(M.title)).toHaveText(MOCK.title);
       await expect(getByTestId(M.subtitle)).toHaveText(MOCK.subtitle);
       await expect(getByTestId(M.backButton)).toBeVisible();
-      await expect(getByTestId(M.slotAfterHeadline)).toBeVisible();
+      await expect(getByTestId(M.slotAfterTitle)).toBeVisible();
       await expect(getByTestId(M.body)).toHaveText(MOCK.content);
       await expect(getByTestId(M.footer)).toBeVisible();
     });
@@ -44,7 +44,7 @@ test.describe('Modal — rendering', () => {
       await expect(getByTestId(M.title)).not.toBeVisible();
       await expect(getByTestId(M.subtitle)).not.toBeVisible();
       await expect(getByTestId(M.backButton)).not.toBeVisible();
-      await expect(getByTestId(M.slotAfterHeadline)).not.toBeVisible();
+      await expect(getByTestId(M.slotAfterTitle)).not.toBeVisible();
       await expect(getByTestId(M.body)).toBeVisible();
       await expect(getByTestId(M.footer)).not.toBeVisible();
     });

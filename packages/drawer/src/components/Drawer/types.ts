@@ -15,7 +15,7 @@ import { DrawerCustomProps } from '../DrawerCustom';
 export type DrawerProps = WithSupportProps<
   Omit<DrawerCustomProps, 'nestedDrawer' | 'push'> &
     Pick<BottomSheetProps, 'swipeEnabled' | 'snapPoints' | 'snapIndex' | 'onSnapIndexChange' | 'safeArea'> &
-    Pick<DialogHeaderProps, 'title' | 'slotAfterHeadline' | 'subtitle' | 'onBackButtonClick'> &
+    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'subtitle' | 'onBackButtonClick'> &
     Pick<DialogBodyProps, 'content'> & {
       /** CSS-класс */
       className?: string;

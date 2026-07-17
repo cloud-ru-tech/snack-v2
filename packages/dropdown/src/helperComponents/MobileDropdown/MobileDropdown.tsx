@@ -16,7 +16,7 @@ export function MobileDropdown({
   children,
   content,
   title,
-  slotAfterHeadline,
+  slotAfterTitle,
   search,
   footer,
   headerDivider,
@@ -67,7 +67,7 @@ export function MobileDropdown({
         open={open ?? false}
         onClose={handleClose}
         title={title}
-        slotAfterHeadline={slotAfterHeadline}
+        slotAfterTitle={slotAfterTitle}
         subtitle={search}
         withDividers={Boolean(headerDivider || footerDivider)}
         footer={footer}

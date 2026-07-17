@@ -11,8 +11,8 @@ import { Basic } from '../demos/examples/Basic'
 import BasicSrc from '../demos/examples/Basic.tsx?raw'
 import { WithMedia } from '../demos/examples/WithMedia'
 import WithMediaSrc from '../demos/examples/WithMedia.tsx?raw'
-import { WithSubHeadline } from '../demos/examples/WithSubHeadline'
-import WithSubHeadlineSrc from '../demos/examples/WithSubHeadline.tsx?raw'
+import { WithSubtitle } from '../demos/examples/WithSubtitle'
+import WithSubtitleSrc from '../demos/examples/WithSubtitle.tsx?raw'
 import { WithActionButton } from '../demos/examples/WithActionButton'
 import WithActionButtonSrc from '../demos/examples/WithActionButton.tsx?raw'
 import { Scrollable } from '../demos/examples/Scrollable'
@@ -73,7 +73,7 @@ Drag-индикатор 32×4px сверху — визуальная подск
 
 ### Header
 - `title` — заголовок.
-- `slotAfterHeadline` — slot справа от title (QuestionTooltip, badge).
+- `slotAfterTitle` — slot справа от title (QuestionTooltip, badge).
 - `onBackButtonClick` — авто-рендерит back-кнопку слева.
 - `actionButton` — кастомный slot справа.
 - `subtitle` — slot под title-строкой (SearchBar / SegmentControl).
@@ -179,8 +179,8 @@ import { BottomSheet, BottomSheetCustom, TEST_IDS } from '@ds/bottom-sheet'
   <WithMedia client:visible />
 </Example>
 
-<Example title='С subHeadline' description='SearchBar / SegmentControl под headline-строкой' code={WithSubHeadlineSrc}>
-  <WithSubHeadline client:visible />
+<Example title='С subtitle' description='SearchBar / SegmentControl под строкой заголовка' code={WithSubtitleSrc}>
+  <WithSubtitle client:visible />
 </Example>
 
 <Example title='С back- и action-кнопкой' description='onBackButtonClick авто-рендерит back-кнопку; actionButton — справа в шапке' code={WithActionButtonSrc}>

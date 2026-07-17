@@ -92,8 +92,8 @@ export function BulkActionsControls({
       {hiddenItems.length > 0 && (
         <Droplist
           label={isSheet ? t('multipleActions') : undefined}
-          // TODO: slotAfterHeadline должен расширяться на всю ширину, а section-label уходить вправо
-          slotAfterHeadline={
+          // TODO: slotAfterTitle должен расширяться на всю ширину, а section-label уходить вправо
+          slotAfterTitle={
             isSheet ? (
               <SelectionLabel
                 placement='headline'

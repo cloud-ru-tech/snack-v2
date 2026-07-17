@@ -58,7 +58,7 @@ export type BottomSheetHeaderProps = WithSupportProps<{
   /** `id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name). */
   titleId?: string;
   /** Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). */
-  slotAfterHeadline?: ReactNode;
+  slotAfterTitle?: ReactNode;
   /**
    * Slot под title-строкой во весь блок subtitleWrapper —
    * типично `SearchBar`, `SegmentControl` или `Filter`.
@@ -180,7 +180,7 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
   /** Заголовок в шапке. */
   title?: ReactNode;
   /** Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. */
-  slotAfterHeadline?: ReactNode;
+  slotAfterTitle?: ReactNode;
   /** Slot под title-строкой — типично `SearchBar`, `SegmentControl`. */
   subtitle?: ReactNode;
   /**

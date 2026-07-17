@@ -50,7 +50,7 @@ function FigmaMatchRender() {
         title='Headline text'
         withDividers
         onBackButtonClick={() => setOpen(false)}
-        slotAfterHeadline={<QuestionTooltip tip='Headline tooltip' size='s' />}
+        slotAfterTitle={<QuestionTooltip tip='Headline tooltip' size='s' />}
         actionButton={
           <Button
             view={VIEW.Function}

@@ -38,7 +38,7 @@ function CustomCompositionRender() {
         container={portalRoot.current || undefined}
         aria-label='Custom composition'
       >
-        <BottomSheetCustom.Header title='Custom composition' slotAfterHeadline={<span>NEW</span>} />
+        <BottomSheetCustom.Header title='Custom composition' slotAfterTitle={<span>NEW</span>} />
         <BottomSheetCustom.Body>
           <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
         </BottomSheetCustom.Body>

@@ -15,7 +15,7 @@ function isMediaProps(value: BottomSheetMediaProps | ReactNode): value is Bottom
 /** Обёртка `@ds/bottom-sheet` с готовой анатомией: media + header + body + footer + safeArea + dividers. */
 export function BottomSheet({
   title,
-  slotAfterHeadline,
+  slotAfterTitle,
   subtitle,
   onBackButtonClick,
   actionButton,
@@ -35,7 +35,7 @@ export function BottomSheet({
   className,
   ...rest
 }: BottomSheetProps) {
-  const hasHeader = Boolean(title || onBackButtonClick || actionButton || slotAfterHeadline || subtitle);
+  const hasHeader = Boolean(title || onBackButtonClick || actionButton || slotAfterTitle || subtitle);
   const hasMedia = media != null;
   const hasFullWidthMediaImage = hasMedia && isMediaProps(media) && (media.kind ?? 'image') === 'image';
 
@@ -88,7 +88,7 @@ export function BottomSheet({
             <BottomSheetCustom.Header
               title={title}
               titleId={titleId}
-              slotAfterHeadline={slotAfterHeadline}
+              slotAfterTitle={slotAfterTitle}
               subtitle={subtitle}
               onBackButtonClick={onBackButtonClick}
               actionButton={actionButton}

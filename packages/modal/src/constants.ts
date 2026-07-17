@@ -4,7 +4,7 @@ export const TEST_IDS = {
   title: 'modal__title',
   subtitle: 'modal__subtitle',
   backButton: 'modal__back-button',
-  slotAfterHeadline: 'modal__slot-after-headline',
+  slotAfterTitle: 'modal__slot-after-title',
   body: 'modal__body',
   footer: 'modal__footer',
   footerApprove: 'modal__footer-approve',

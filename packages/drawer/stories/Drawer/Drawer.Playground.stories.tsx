@@ -163,7 +163,7 @@ function PlaygroundRender(args: StoryProps) {
         onBackButtonClick={renderBackButton ? onBackButtonClick : undefined}
         title={renderHeadline ? title : undefined}
         subtitle={renderSubHeadline ? subtitle : undefined}
-        slotAfterHeadline={
+        slotAfterTitle={
           renderAfterHeadline ? (
             // Оборачиваем в span с stable data-test-id: QuestionTooltip пробрасывает
             // `data-test-id` на floating-portal (рендерится только на hover), а слот
@@ -330,7 +330,7 @@ export const Playground: Story = {
     media: { table: { disable: true } },
     nestedDrawer: { table: { disable: true } },
     onBackButtonClick: { table: { disable: true } },
-    slotAfterHeadline: { table: { disable: true } },
+    slotAfterTitle: { table: { disable: true } },
     container: { table: { disable: true } },
   },
   play: async ({ canvasElement }) => {

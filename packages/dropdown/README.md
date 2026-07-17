@@ -122,7 +122,7 @@ export function NotFound() {
 | `outsideClick` | `OutsideClickHandler` | — | Закрывать ли при клике вне поповера |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `search` | `ReactNode` | — | Слот поиска в шапке (topBar) |
-| `slotAfterHeadline` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
+| `slotAfterTitle` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
 | `state` | `ActionButtonProps` \| `BlockProps` \| `BlockPropsWithIcon` \| `DropdownState` | — | Состояние |
 | `stopPropagation` | `StopPropagationHandlers` | `{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }` | Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`). <br/> По умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите <br/> `onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`. |
 | `title` | `ReactNode` | — | Заголовок в шапке (topBar) |
@@ -194,7 +194,7 @@ export function NotFound() {
 | `placement`, `widthStrategy`, `offset`, `fallbackPlacements` | используется | игнорируется |
 | `hoverDelayOpen`, `hoverDelayClose`, `closeOnEscapeKey`, `triggerClickByKeys`, `outsideClick` | используется | игнорируется |
 | `disableSpanWrapper`, `triggerClassName`, `triggerRef`, `container` | используется | игнорируется |
-| `content`, `title`, `slotAfterHeadline`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
+| `content`, `title`, `slotAfterTitle`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
 | `state`, `open`, `onOpenChange`, `closeOnPopstate`, `className` | используется | используется |
 
 На mobile портал `BottomSheet` берётся из `@ds/portal-context`, поэтому `container` не действует.

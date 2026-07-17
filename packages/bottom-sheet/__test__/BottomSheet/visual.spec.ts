@@ -17,9 +17,9 @@ const OPEN_SCENARIOS: OpenScenario[] = [
   { ref: BOTTOM_SHEET_STORIES.playground, snapshot: 'open-default.png', title: 'open default' },
   { ref: BOTTOM_SHEET_STORIES.withMedia, snapshot: 'open-with-media.png', title: 'open with media' },
   {
-    ref: BOTTOM_SHEET_STORIES.withSubHeadline,
-    snapshot: 'open-with-sub-headline.png',
-    title: 'open with sub-headline',
+    ref: BOTTOM_SHEET_STORIES.withSubtitle,
+    snapshot: 'open-with-subtitle.png',
+    title: 'open with subtitle',
   },
   {
     ref: BOTTOM_SHEET_STORIES.withActionButton,

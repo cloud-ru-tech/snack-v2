@@ -26,7 +26,7 @@ export const BOTTOM_SHEET_STORIES = {
   controlledSnap: { name: 'bottomsheet-examples-controlledsnap', story: 'controlled-snap' },
   footerActions: { name: 'bottomsheet-examples-footeractions', story: 'footer-actions' },
   withMedia: { name: 'bottomsheet-examples-withmedia', story: 'with-media' },
-  withSubHeadline: { name: 'bottomsheet-examples-withsubheadline', story: 'with-sub-headline' },
+  withSubtitle: { name: 'bottomsheet-examples-withsubtitle', story: 'with-subtitle' },
   withActionButton: { name: 'bottomsheet-examples-withactionbutton', story: 'with-action-button' },
   scrollable: { name: 'bottomsheet-examples-scrollable', story: 'scrollable' },
   customComposition: { name: 'bottomsheet-examples-customcomposition', story: 'custom-composition' },

@@ -93,7 +93,7 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
         onClose={close}
         title={showHeader && showHeadline ? title : undefined}
         subtitle={showHeader && showSubHeadline ? subtitle : undefined}
-        slotAfterHeadline={
+        slotAfterTitle={
           showHeader && showAfterHeadline ? (
             <QuestionTooltip tip={customTooltipText} data-test-id={STORY_TEST_IDS.tooltip} size='s' />
           ) : undefined
@@ -267,7 +267,7 @@ const meta: Meta<PlaygroundStoryProps> = {
       name: '[Stories]: Custom tooltip text',
       if: { arg: 'showAfterHeadline', eq: true },
     },
-    slotAfterHeadline: { table: { disable: true } },
+    slotAfterTitle: { table: { disable: true } },
     truncate: { table: { disable: true } },
   },
   render: PlaygroundRender,

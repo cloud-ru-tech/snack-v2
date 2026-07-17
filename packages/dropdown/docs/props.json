@@ -121,7 +121,7 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
@@ -322,7 +322,7 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
@@ -736,7 +736,7 @@
         "required": false,
         "description": "Слот поиска в шапке (topBar)"
       },
-      "slotAfterHeadline": {
+      "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"

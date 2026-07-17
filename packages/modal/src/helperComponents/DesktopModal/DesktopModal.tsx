@@ -15,7 +15,7 @@ export function DesktopModal({
   mode = MODE.Regular,
   title,
   truncate,
-  slotAfterHeadline,
+  slotAfterTitle,
   subtitle,
   content,
   loading = false,
@@ -65,7 +65,7 @@ export function DesktopModal({
     titleId: hasTitle ? titleId : undefined,
     subtitle,
     truncate,
-    slotAfterHeadline,
+    slotAfterTitle,
     onBackButtonClick,
     'data-test-id': TEST_IDS.header,
   };

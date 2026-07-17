@@ -153,10 +153,10 @@ test.describe('BottomSheet — rendering & props propagation', () => {
     await expect(media).toHaveAttribute('data-media-kind', 'image');
   });
 
-  test('renders sub-headline slot (WithSubHeadline)', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions(undefined, BOTTOM_SHEET_STORIES.withSubHeadline));
+  test('renders subtitle slot (WithSubtitle)', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions(undefined, BOTTOM_SHEET_STORIES.withSubtitle));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
-    await expect(getByTestId(TEST_IDS.subHeadline)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.subtitle)).toBeVisible();
   });
 
   test('renders back-button and action-button in header (WithActionButton)', async ({ gotoStory, getByTestId }) => {

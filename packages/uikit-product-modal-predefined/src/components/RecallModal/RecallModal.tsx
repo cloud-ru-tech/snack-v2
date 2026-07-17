@@ -62,7 +62,7 @@ export function RecallModal({
       <ModalCustom.Header
         title={t('recallModal.title')}
         subtitle={subtitle}
-        slotAfterHeadline={titleTooltip ? <QuestionTooltip size='s' tip={titleTooltip} /> : undefined}
+        slotAfterTitle={titleTooltip ? <QuestionTooltip size='s' tip={titleTooltip} /> : undefined}
       />
       <ModalCustom.Body
         className={styles.body}

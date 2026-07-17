@@ -50,7 +50,7 @@ function TagPickerRender() {
         onClose={() => setOpen(false)}
         container={portalRoot.current || undefined}
         title='Теги'
-        slotAfterHeadline={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
+        slotAfterTitle={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
         subtitle={
           <Search data-test-id={TEST_IDS.tagPicker.search} value={query} onChange={setQuery} placeholder='Поиск тега' />
         }

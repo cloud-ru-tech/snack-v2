@@ -31,7 +31,7 @@ const SLOT_COMBOS: Combo[] = [
   {
     key: 'title-slot-after',
     label: '+title+slotAfter',
-    props: { title: 'Bottom-sheet headline', slotAfterHeadline: <span>NEW</span>, content: SIMPLE_CONTENT },
+    props: { title: 'Bottom-sheet headline', slotAfterTitle: <span>NEW</span>, content: SIMPLE_CONTENT },
   },
   {
     key: 'title-footer',
@@ -43,7 +43,7 @@ const SLOT_COMBOS: Combo[] = [
     label: '+all-headline-slots',
     props: {
       title: 'С back- и action-кнопками',
-      slotAfterHeadline: <span>NEW</span>,
+      slotAfterTitle: <span>NEW</span>,
       onBackButtonClick: () => undefined,
       actionButton: ACTION_BUTTON,
       content: SIMPLE_CONTENT,

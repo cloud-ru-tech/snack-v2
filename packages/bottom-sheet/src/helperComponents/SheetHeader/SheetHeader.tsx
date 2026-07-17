@@ -10,18 +10,18 @@ import styles from './styles.module.scss';
 
 export type SheetHeaderProps = BottomSheetHeaderProps;
 
-/** Header bottom-sheet'а: back-button + title + slotAfterHeadline + actionButton + subtitle. */
+/** Header bottom-sheet'а: back-button + title + slotAfterTitle + actionButton + subtitle. */
 export function SheetHeader({
   title,
   titleId,
-  slotAfterHeadline,
+  slotAfterTitle,
   subtitle,
   onBackButtonClick,
   actionButton,
   className,
   ...rest
 }: SheetHeaderProps) {
-  const hasHeadline = Boolean(title || onBackButtonClick || actionButton || slotAfterHeadline);
+  const hasHeadline = Boolean(title || onBackButtonClick || actionButton || slotAfterTitle);
 
   return (
     <div className={cn(styles.root, className)} {...extractSupportProps(rest)} data-test-id={TEST_IDS.header}>
@@ -49,9 +49,9 @@ export function SheetHeader({
                 {title}
               </Typography>
             )}
-            {slotAfterHeadline && (
-              <span className={styles.slotAfterHeadline} data-test-id={TEST_IDS.slotAfterHeadline}>
-                {slotAfterHeadline}
+            {slotAfterTitle && (
+              <span className={styles.slotAfterTitle} data-test-id={TEST_IDS.slotAfterTitle}>
+                {slotAfterTitle}
               </span>
             )}
           </div>
@@ -65,7 +65,7 @@ export function SheetHeader({
       )}
 
       {subtitle && (
-        <div className={styles.subHeadlineWrapper} data-test-id={TEST_IDS.subHeadline}>
+        <div className={styles.subHeadlineWrapper} data-test-id={TEST_IDS.subtitle}>
           {subtitle}
         </div>
       )}

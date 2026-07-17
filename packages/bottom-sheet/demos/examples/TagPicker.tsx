@@ -31,7 +31,7 @@ export function TagPicker() {
         open={open}
         onClose={() => setOpen(false)}
         title='Теги'
-        slotAfterHeadline={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
+        slotAfterTitle={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
         subtitle={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
         content={
           <div className={styles.tagGrid}>
