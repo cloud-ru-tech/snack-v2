@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-17)
+
+### BREAKING CHANGES
+
+- **FF-8774:** rework @ds/icons — subpath exports, sprite fallbacks, createThemedIcon, docs and visual tests ([a3688ac](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a3688ac25388f43b1e4201effa8692aa3b83cf57))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

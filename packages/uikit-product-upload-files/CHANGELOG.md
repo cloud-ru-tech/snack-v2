@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-07-17)
+
+### Bug Fixes
+
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+
 ## 1.0.4 (2026-07-13)
 
 **Note:** Version bump only for package @ds/uikit-product-upload-files
