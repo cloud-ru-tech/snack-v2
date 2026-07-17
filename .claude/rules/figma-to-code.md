@@ -9,7 +9,7 @@ DOM-структура компонента практически повтор�
 1. Парсинг URL: `node-id=A-B` → `"A:B"`, `fileKey` — между `/design/` и `/<name>`.
 2. `get_code_connect_map` (если есть готовый маппинг — использовать его).
 3. `get_metadata` — структура слоёв, имена variants и инстансов.
-4. `get_variable_defs` — имена токенов (маппить на `@sbercloud/figma-variables` через `base.simple-var` / `base.composite-var`).
+4. `get_variable_defs` — имена токенов (маппить на `@ds/figma-variables` через `base.simple-var` / `base.composite-var`).
 5. `get_design_context` — код-референс (React+Tailwind) **перепроектировать** на SCSS Modules + миксины `@design-system/materials`.
 6. `get_screenshot` — визуальная сверка.
 

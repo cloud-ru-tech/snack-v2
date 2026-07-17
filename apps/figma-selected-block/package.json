@@ -1,0 +1,14 @@
+{
+  "name": "@ds/figma-selected-block",
+  "version": "1.0.3",
+  "private": true,
+  "description": "Generate SCSS (composite-var mixins + filtered styles) for a Figma-selected node using @ds/figma-variables tokens. CLI for agent + Figma MCP workflows.",
+  "type": "module",
+  "scripts": {
+    "generate-maps": "tsx scripts/generate-token-maps.ts",
+    "selected-block": "tsx scripts/generate-selected-block.ts"
+  },
+  "devDependencies": {
+    "@ds/figma-variables": "workspace:^"
+  }
+}

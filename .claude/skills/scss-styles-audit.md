@@ -31,7 +31,7 @@
    | `1.5px` | `base.$sn-primitive-strokeWeight-strokeMedium` |
    | `2px` (border) | `base.$sn-primitive-strokeWeight-strokeSemiBold` |
    | `3px` | `base.$sn-primitive-strokeWeight-strokeBold` |
-   | hex/rgba | `base.$sn-theme-color-*` (через `get_variable_defs` Figma либо ручной поиск в `node_modules/@sbercloud/figma-variables/build/scss/styles/styles.module.scss`) |
+   | hex/rgba | `base.$sn-theme-color-*` (через `get_variable_defs` Figma либо ручной поиск в `node_modules/@ds/figma-variables/build/scss/styles/styles.module.scss`) |
    | `border-radius: <px>` | `base.simple-var(<component>.$<component>, 'anatomy', …, 'border-radius')` или `base.$sn-brand-anatomy-radius-*` |
    | `opacity: 0.4` (disabled) | `base.$sn-theme-effect-opacity-disabled` |
    | `<n>rem` / `<n>em` (size/padding/gap/radius/inset) | размерный токен `base.$sn-primitive-dimension-*` / `base.simple-var(...)` / `base.$sn-brand-anatomy-*` |
@@ -42,11 +42,11 @@
    - Сгруппировать селекторы вида `&[data-<axis>='<value>'] { … }` внутри одного блока.
    - Если 2+ селектора одной оси имеют **одинаковую форму** (одни и те же CSS-свойства, отличается только токен по значению оси) — кандидат на сворачивание в `@each`.
    - Для каждой такой группы:
-     - Сверить набор значений с `packages/<pkg>/src/constants.ts` (ось → `as const`-объект). Если карта в SCSS должна включать алиас (`xs → s`, `critical → red` и т.п.) — взять имена токенов из `node_modules/@sbercloud/figma-variables/build/scss/components/<component>.module.scss`.
+     - Сверить набор значений с `packages/<pkg>/src/constants.ts` (ось → `as const`-объект). Если карта в SCSS должна включать алиас (`xs → s`, `critical → red` и т.п.) — взять имена токенов из `node_modules/@ds/figma-variables/build/scss/components/<component>.module.scss`.
      - Решить форму карты:
        - список `$sizes: 's', 'm', 'l'` — если все значения совпадают с именами токенов;
        - map `$sizes: ('xs': 's', 's': 's', 'm': 'm', 'l': 'l')` — если есть алиасы.
-     - Развернуть свойства через `base.simple-var(...)` / `base.composite-var(...)`. Пути в `simple-var` сверять по `node_modules/@sbercloud/figma-variables/build/scss/components/<component>.module.scss`.
+     - Развернуть свойства через `base.simple-var(...)` / `base.composite-var(...)`. Пути в `simple-var` сверять по `node_modules/@ds/figma-variables/build/scss/components/<component>.module.scss`.
 
 4. **Решить, когда цикл не нужен** (см. [scss-styles-standard.md](../rules/scss-styles-standard.md) раздел «Когда копипаст оправдан»):
    - Ось имеет одно значение.

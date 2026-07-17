@@ -465,7 +465,7 @@ URL-args, передаваемые в play через `gotoStory(buildStoryOptio
 
 В stories **нельзя** использовать проп `style={{ ... }}` — ни на wrapper'ах, ни на компонентах, ни на demo-разметке. Причины:
 
-- Inline-стили обходят дизайн-токены (`@sbercloud/figma-variables`) и дают визуальный шум в visual regression.
+- Inline-стили обходят дизайн-токены (`@ds/figma-variables`) и дают визуальный шум в visual regression.
 - В PR-ревью теряется контроль над spacing/layout.
 - Любой лейаут stories должен быть выразим через `StoryTable` либо через класс из `styles.module.scss` рядом со story.
 

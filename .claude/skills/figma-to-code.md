@@ -15,7 +15,7 @@ DOM-структура компонента практически повтор�
 1. Парсинг URL: `node-id=A-B` → `"A:B"`; `fileKey` — сегмент между `/design/` и `/<fileName>`. Для `Snack-Ui-Kit-variables`: `fileKey = aNPU3MHwRJiEwbk5F82zux`.
 2. `get_code_connect_map` — если есть готовый маппинг, использовать его, не переписывая компонент.
 3. `get_metadata` — структура слоёв, имена variants и инстансов (декодируются по правилам ниже).
-4. `get_variable_defs` — имена токенов; маппить на `@sbercloud/figma-variables` через `base.simple-var(...)` / `base.composite-var(...)`.
+4. `get_variable_defs` — имена токенов; маппить на `@ds/figma-variables` через `base.simple-var(...)` / `base.composite-var(...)`.
 5. `get_design_context` — код-референс (React+Tailwind) **перепроектировать** на SCSS Modules + миксины `@design-system/materials`. Не копировать дословно.
 6. `get_screenshot` — визуальная сверка, особенно hover/pressed/disabled.
 

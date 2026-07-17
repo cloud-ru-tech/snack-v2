@@ -31,6 +31,9 @@ export default [
       'scripts/templates/**/*',
       // Generated design tokens — не линтим (байт-в-байт с build:tokens, eslint OOM на styles.js).
       'packages/figma-variables/build/**/*',
+      // Вендоренный Figma-CLI (Node): под React/SSR-eslint репы даёт ложь — правило
+      // ssr-safe-react/domApi флагает поле `nodeEntry.document` Figma REST API как браузерный глобал.
+      'apps/figma-selected-block/**/*',
     ],
   },
   {

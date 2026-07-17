@@ -69,13 +69,13 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 9. **Wire-точки** — чеклист: корневой `tsconfig.json::references`, `packages/tsconfig.esm.json` / `.cjs.json::references`, `apps/storybook/package.json::deps`. (Aliases `@ds/<pkg>` для Storybook и docs подхватываются автоматически — Storybook сканирует `packages/*/src/index.ts`, docs читает `package.json`.) Совет: `pnpm add-package <pkg>` делает большинство wire'ов автоматически.
 10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй API/логику и стили**:
     - _Scaffold_ — `pnpm add-package <pkg>` + базовый `src/<Name>.tsx` со всеми пропами из утверждённого API + JSDoc + dummy DOM.
-    - _Стили из Figma_ — для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `npx @sbercloud/figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена реально нет в `@sbercloud/figma-variables` — сопровождаются комментарием с обоснованием.
+    - _Стили из Figma_ — для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `pnpm gen:figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена реально нет в `@ds/figma-variables` — сопровождаются комментарием с обоснованием.
     - _State layers / material / focus_ — `stateLayer/...` → `m.has-state-layer-as-child(...)`, `material/acrylic/...` → `m.with-material('acrylic', ...)`, `focusedFrame/...` → `:focus-visible { outline: ... }`. Raw `:hover { color: ... }` — только если соответствующего слоя в Figma нет.
     - _Stories → Tests → Docs → Verification_ — стандартный хвост.
     Рекомендуемый порядок: Research → API draft → **(чекпойнт пользователя)** → Scaffold → Figma-truth styles → Stories → Tests → Docs → Verification.
 11. **Риски** — точки с неочевидными проблемами:
     - Гипотезы по поведению, которые остались без подтверждения (если такие есть — вернись на чекпойнт-2).
-    - Отсутствующие токены в `@sbercloud/figma-variables` (→ hardcode + комментарий).
+    - Отсутствующие токены в `@ds/figma-variables` (→ hardcode + комментарий).
     - Слои в Figma, которые не маппятся ни на один из паттернов `stateLayer/material/focusedFrame` — требуют ручного решения.
     - Опечатки в variant-именах Figma — в API используем корректное имя, в `constants.ts` приписываем комментарий `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
     - Visual regression flakiness, отсутствие `FIGMA_TOKEN` (→ CSS-in режим CLI вместо `--url`).
@@ -93,7 +93,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 ## Конвенции
 
 - Версии зависимостей — строгие (см. `.claude/rules/packages-deps.md`). Никаких `react`/`react-dom` в `packages/<pkg>/package.json`.
-- Figma-переменные — через `@sbercloud/figma-variables`. Значения берём через CLI `@sbercloud/figma-selected-block`, не на глаз.
+- Figma-переменные — через `@ds/figma-variables`. Значения берём через CLI `@ds/figma-selected-block`, не на глаз.
 - Material / state-layer / acrylic — через миксины `@ds/materials` (см. `packages/materials/docs/index.mdx`).
 - Naming: `SCREAMING_SNAKE_CASE` имя `as const` объекта, `PascalCase` ключи, `lowercase` значения (совпадают с DOM `data-*` и Figma variant values).
 - Не используй TypeScript `enum` и `React.*`-типы. См. `react-types.md`, `imports-exports.md`.

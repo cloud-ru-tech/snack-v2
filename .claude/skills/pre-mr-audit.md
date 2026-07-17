@@ -190,7 +190,7 @@ grep -rn "$OLD" packages/$PKG/{src,stories,demos,docs,__test__} apps/docs/src/li
 - [ ] Нет `rem`/`em` в размерах/отступах/радиусах/gap'ах → `base.$sn-primitive-dimension-*`/`simple-var`/`$sn-brand-anatomy-*`
 - [ ] Нет hex/rgba → `base.$sn-theme-color-*`; нет литеральных `border-radius`/`padding`/`gap` → `simple-var`/`$sn-brand-anatomy-*`; нет литерального `opacity` disabled → `base.$sn-theme-effect-opacity-disabled`
 - [ ] Нет 2+ одинаковых по форме `&[data-axis='…']` → свёрнуты в `@each` по карте; карта оси соответствует `constants.ts` (включая алиасы вроде `xs`→`s`)
-- [ ] `composite-var`/`simple-var` пути совпадают со структурой токенов в `@sbercloud/figma-variables`
+- [ ] `composite-var`/`simple-var` пути совпадают со структурой токенов в `@ds/figma-variables`
 
 ### Тело компонента / API — component-internals, component-api-surface
 Покрыто греп-блоками **A–E, I** выше (инлайн-обработчики, чистые функции, импорт из пира, `helpers.ts`, инлайн-union осей, дубли типов). Дополнительно глазами:

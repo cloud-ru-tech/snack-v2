@@ -65,7 +65,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 9. **Wire-точки** — чеклист (tsconfig references, storybook/docs aliases, package.json deps).
 10. **Фазы** — пронумерованные Phase 1…N. **Явно разделяй логику и стили**:
     - _Логика_ — порт из референса 1:1, меняются только импорты (`@snack-uikit/*` / `@cloud-ru/*` → `@ds/*`) и (если нужно) замена сторонних утилит на внутренние аналоги из «Маппинга зависимостей». Без «улучшений» и рефакторингов сверх паритета.
-    - _Стили_ — **не писать числа/hex вручную**. Для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `npx @sbercloud/figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена для значения реально нет в `@sbercloud/figma-variables` — и сопровождаются комментарием с обоснованием.
+    - _Стили_ — **не писать числа/hex вручную**. Для каждого структурного элемента берётся CSS из Figma (`get_design_context` или `get_variable_defs`) и прогоняется через `pnpm gen:figma-selected-block --css-file <path> --component <hint> --format scss` (см. `.claude/skills/figma-selected-block.md`). Output вставляется в `styles.module.scss`. Hardcoded `px`/`rem`/hex допустимы только если токена для значения реально нет в `@ds/figma-variables` — и сопровождаются комментарием с обоснованием.
     - Для `hover`/`pressed`/`focus`: если в Figma metadata есть слой `stateLayer/...` → использовать `@ds/materials::has-state-layer-as-child` (см. `packages/materials/docs/index.mdx`). Если `material/acrylic/...` → `with-material('acrylic', …)`. Если `focusedFrame/...` → `:focus-visible { outline: … }` (это **не** DOM-нода). Raw `:hover { color: … }` допустим только для состояний, которых нет в Figma как отдельный слой.
     - Рекомендуемый порядок: Research → Scaffold → Functional port (логика из референса, стили-заглушка) → Figma-truth styles (прогон CLI по каждому слою) → Stories → Tests → Docs → Verification.
 11. **Риски** — точки с неочевидными проблемами:
@@ -88,7 +88,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 - Версии зависимостей — строгие (см. `.claude/rules/packages-deps.md`).
 - Никаких `react`/`react-dom` в `packages/*/package.json`.
 - Маппинг зависимостей legacy → наши — **обязательная таблица** (`@snack-uikit/icons` → `@ds/icons`, `@snack-uikit/utils::ValueOf` → `@ds/utils::ValueOf`, и т.д.).
-- Figma-переменные — через `@sbercloud/figma-variables`, не `@snack-uikit/figma-tokens`. Значения берём через CLI `@sbercloud/figma-selected-block`, а не на глаз.
+- Figma-переменные — через `@ds/figma-variables`, не `@snack-uikit/figma-tokens`. Значения берём через CLI `@ds/figma-selected-block`, а не на глаз.
 - Material/state-layer/acrylic — через миксины `@ds/materials` (см. `packages/materials/docs/index.mdx`), а не через raw CSS.
 - Логика из референса, визуал из Figma. Это **не** взаимозаменяемые источники истины.
 - Если в Figma есть опечатки в variant-именах — зафиксируй их в «Рисках» и реши в плане (корректное имя в API + комментарий-сноска в `constants.ts`).
