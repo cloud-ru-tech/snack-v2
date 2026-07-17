@@ -24,7 +24,7 @@ export const InteractionTest: Story = {
         <DemoActions align='start'>
           <AiFieldBanner
             variant='information'
-            description='Description'
+            content='Description'
             actionLabel='Label text'
             icon={<PlaceholderSVG />}
             className={styles.bannerCell}
@@ -43,7 +43,7 @@ export const WithoutIcon: Story = {
       <DemoPanel>
         <DemoActions align='start'>
           <AiFieldBanner
-            description='Description'
+            content='Description'
             actionLabel='Label text'
             className={styles.bannerCell}
             data-test-id={TEST_IDS.root}
@@ -61,7 +61,7 @@ export const WithoutAction: Story = {
       <DemoPanel>
         <DemoActions align='start'>
           <AiFieldBanner
-            description='Description'
+            content='Description'
             icon={<PlaceholderSVG />}
             className={styles.bannerCell}
             data-test-id={TEST_IDS.root}

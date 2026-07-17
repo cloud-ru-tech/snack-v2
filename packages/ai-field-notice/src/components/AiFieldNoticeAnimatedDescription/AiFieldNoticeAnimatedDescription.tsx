@@ -23,7 +23,7 @@ export const AiFieldNoticeAnimatedDescription = forwardRef<
   );
 
   return (
-    <div className={cn(styles.root, className)} data-size={size} data-test-id={TEST_IDS.description}>
+    <div className={cn(styles.root, className)} data-size={size} data-test-id={TEST_IDS.content}>
       <div className={styles.track}>
         {totalTextItems.map((item, index) => (
           <AnimatedItem key={index} content={item.content} itemIndex={index} currentIndex={currentIndex} />

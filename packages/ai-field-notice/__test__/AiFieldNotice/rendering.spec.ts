@@ -15,7 +15,7 @@ test.describe('AiFieldNotice — rendering', () => {
         variant: VARIANT.Support,
       }),
     );
-    await expect(getByTestId(TEST_IDS.bannerDescription)).toContainText(VARIANT_MESSAGES.support);
+    await expect(getByTestId(TEST_IDS.bannerContent)).toContainText(VARIANT_MESSAGES.support);
   });
 
   test('renders action label', async ({ gotoStory, getByTestId }) => {
@@ -84,6 +84,6 @@ test.describe('AiFieldNotice — rendering', () => {
         vmIp: '93.7.94.11',
       }),
     );
-    await expect(getByTestId(TEST_IDS.bannerDescription)).toContainText(VARIANT_MESSAGES.vmAgentTitle);
+    await expect(getByTestId(TEST_IDS.bannerContent)).toContainText(VARIANT_MESSAGES.vmAgentTitle);
   });
 });

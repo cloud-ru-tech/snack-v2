@@ -42,7 +42,7 @@
 import { AiFieldBanner } from '@ds/ai-field-banner'
 import { PlaceholderSVG } from '@ds/icons'
 
-<AiFieldBanner icon={<PlaceholderSVG />} description='…' />
+<AiFieldBanner icon={<PlaceholderSVG />} content='…' />
 ```
 
 ### Action
@@ -77,7 +77,7 @@ export function Default() {
   return (
     <AiFieldBanner
       variant={TYPE.Information}
-      description='Description'
+      content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
       onActionClick={() => undefined}
@@ -103,7 +103,7 @@ export function Types() {
         <AiFieldBanner
           key={type}
           variant={type}
-          description='Description'
+          content='Description'
           actionLabel='Label text'
           icon={<PlaceholderSVG />}
         />
@@ -126,7 +126,7 @@ export function Mobile() {
     <AiFieldBanner
       size={SIZE.M}
       variant={TYPE.Agentic}
-      description='Description'
+      content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
     />
@@ -146,7 +146,7 @@ export function WithAdditionalSlot() {
   return (
     <AiFieldBanner
       variant={TYPE.Information}
-      description='Description'
+      content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
       onActionClick={() => undefined}
@@ -166,8 +166,8 @@ export function WithAdditionalSlot() {
 | `actionLabel` | `string` | — | Подпись кнопки действия справа. Кнопка не рендерится, если не задана. |
 | `children` | `ReactNode` | — | Дополнительный слот под основной строкой. Не рендерится, если не задан. |
 | `className` | `string` | — | Доп. класс корня. |
+| `content` | `ReactNode` | — | Текст или контент основной строки. Не рендерится, если не задан. |
 | `data-test-id` | `string` | `ai-field-banner` |  |
-| `description` | `ReactNode` | — | Текст или контент основной строки. Не рендерится, если не задан. |
 | `hasAdditional` | `boolean` | — | Принудительно добавляет высоту компонента на 12px, даже если `children` не задан. |
 | `icon` | `ReactNode` | — | Иконка слева от текста |
 | `onActionClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Обработчик клика по кнопке действия. |

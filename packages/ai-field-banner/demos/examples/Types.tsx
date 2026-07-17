@@ -10,7 +10,7 @@ export function Types() {
         <AiFieldBanner
           key={type}
           variant={type}
-          description='Description'
+          content='Description'
           actionLabel='Label text'
           icon={<PlaceholderSVG />}
         />

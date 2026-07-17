@@ -9,8 +9,8 @@ test.describe('AiFieldBanner — rendering', () => {
   });
 
   test('renders description text', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ description: 'Field hint' }));
-    await expect(getByTestId(TEST_IDS.description)).toHaveText('Field hint');
+    await gotoStory(buildStoryOptions({ content: 'Field hint' }));
+    await expect(getByTestId(TEST_IDS.content)).toHaveText('Field hint');
   });
 
   test('renders icon slot when icon is passed', async ({ gotoStory, getByTestId }) => {
@@ -29,7 +29,7 @@ test.describe('AiFieldBanner — rendering', () => {
   });
 
   test('renders action label', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ description: 'Description', actionLabel: 'Details' }));
+    await gotoStory(buildStoryOptions({ content: 'Description', actionLabel: 'Details' }));
     await expect(getByTestId(TEST_IDS.action)).toHaveText('Details');
   });
 
@@ -47,7 +47,7 @@ test.describe('AiFieldBanner — rendering', () => {
     await gotoStory(
       buildStoryOptions({
         children: 'Extra',
-        description: 'Description',
+        content: 'Description',
       }),
     );
     await expect(getByTestId(TEST_IDS.additional)).toHaveText('Extra');

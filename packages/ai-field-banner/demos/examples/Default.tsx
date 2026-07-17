@@ -5,7 +5,7 @@ export function Default() {
   return (
     <AiFieldBanner
       variant={TYPE.Information}
-      description='Description'
+      content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
       onActionClick={() => undefined}

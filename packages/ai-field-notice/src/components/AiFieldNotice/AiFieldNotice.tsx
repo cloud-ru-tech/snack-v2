@@ -76,7 +76,7 @@ export function AiFieldNotice(props: AiFieldNoticeProps): ReactElement {
         resolvedBanner && (
           <AiFieldBanner
             variant={resolvedBanner.bannerVariant}
-            description={resolvedDescription}
+            content={resolvedDescription}
             icon={resolvedBanner.icon}
             actionLabel={resolvedBanner.actionLabel}
             onActionClick={onActionClick}

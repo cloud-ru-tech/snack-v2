@@ -20,7 +20,7 @@ export function AnimatedItem({ content, itemIndex, currentIndex }: AnimatedItemP
   }
 
   return (
-    <div className={cn(styles.item, positionClassName)} data-test-id={`${TEST_IDS.descriptionMessage}-${itemIndex}`}>
+    <div className={cn(styles.item, positionClassName)} data-test-id={`${TEST_IDS.contentMessage}-${itemIndex}`}>
       {content}
     </div>
   );

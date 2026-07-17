@@ -54,7 +54,7 @@ export const Playground: Story = {
     if (args.variant === VARIANT.Queue) {
       await expect(canvas.getByTestId(TEST_IDS.queue)).toBeVisible();
     } else if (args.variant) {
-      await expect(canvas.getByTestId(TEST_IDS.bannerDescription)).toBeVisible();
+      await expect(canvas.getByTestId(TEST_IDS.bannerContent)).toBeVisible();
       await userEvent.click(canvas.getByTestId(TEST_IDS.bannerAction));
     }
   },

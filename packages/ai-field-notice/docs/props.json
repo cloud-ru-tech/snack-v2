@@ -76,14 +76,14 @@
             "required": false,
             "description": "Доп. класс корня."
           },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "description": {
+          "content": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Текст или контент основной строки. Не рендерится, если не задан."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
           "hasAdditional": {
             "type": "boolean | undefined",

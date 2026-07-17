@@ -52,8 +52,8 @@ export const ANIMATION_HOVER_DELAY = 200;
 
 export const TEST_IDS = {
   root: 'ai-field-notice',
-  description: 'ai-field-notice__description',
-  descriptionMessage: 'ai-field-notice__description-message',
+  content: 'ai-field-notice__content',
+  contentMessage: 'ai-field-notice__content-message',
   queue: 'ai-queue',
   banner: 'ai-field-notice__banner',
   vmInfo: 'ai-field-notice__vm-info',

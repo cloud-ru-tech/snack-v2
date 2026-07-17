@@ -12,7 +12,7 @@ export type AiFieldBannerOwnProps = {
   /** Размер: без `children` — `s` 400×48, `m` 400×60; с `children` — `s` 400×72, `m` 400×84. */
   size?: Size;
   /** Текст или контент основной строки. Не рендерится, если не задан. */
-  description?: ReactNode;
+  content?: ReactNode;
   /** Дополнительный слот под основной строкой. Не рендерится, если не задан. */
   children?: ReactNode;
   /** Принудительно добавляет высоту компонента на 12px, даже если `children` не задан. */

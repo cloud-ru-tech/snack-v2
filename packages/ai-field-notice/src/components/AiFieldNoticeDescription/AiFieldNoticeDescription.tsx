@@ -21,7 +21,7 @@ export function AiFieldNoticeDescription({
       className={cn(styles.root, className)}
       data-size={size}
       data-state={state}
-      data-test-id={TEST_IDS.description}
+      data-test-id={TEST_IDS.content}
       style={{ '--active-index': activeIndex } as CSSProperties}
     >
       <div className={styles.track}>
@@ -29,7 +29,7 @@ export function AiFieldNoticeDescription({
           <span
             key={`${index}-${message}`}
             className={styles.message}
-            data-test-id={`${TEST_IDS.descriptionMessage}-${index}`}
+            data-test-id={`${TEST_IDS.contentMessage}-${index}`}
           >
             {message}
           </span>

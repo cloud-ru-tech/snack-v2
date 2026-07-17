@@ -20,7 +20,7 @@ const meta: Meta<typeof AiFieldBanner> = {
   args: {
     variant: TYPE.Information,
     size: SIZE.S,
-    description: 'Description',
+    content: 'Description',
     actionLabel: 'Label text',
     icon: 'placeholder' as unknown as AiFieldBannerProps['icon'],
     'data-test-id': TEST_IDS.root,
@@ -36,7 +36,7 @@ const meta: Meta<typeof AiFieldBanner> = {
       options: Object.values(SIZE),
       description: 'Размер (Figma: Mobile Off → s, Mobile On → m)',
     },
-    description: { control: 'text', description: 'Текст основной строки.' },
+    content: { control: 'text', description: 'Текст основной строки.' },
     children: { control: 'text', description: 'Дополнительный слот.' },
     icon: {
       control: 'select',
@@ -68,7 +68,7 @@ export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByTestId(TEST_IDS.root)).toBeVisible();
-    await expect(canvas.getByTestId(TEST_IDS.description)).toHaveTextContent('Description');
+    await expect(canvas.getByTestId(TEST_IDS.content)).toHaveTextContent('Description');
     await userEvent.click(canvas.getByTestId(TEST_IDS.action));
   },
 };

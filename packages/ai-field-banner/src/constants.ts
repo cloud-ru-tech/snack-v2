@@ -26,7 +26,7 @@ export const TEST_IDS = {
   advice: 'ai-field-banner__advice',
   mainLine: 'ai-field-banner__main-line',
   icon: 'ai-field-banner__icon',
-  description: 'ai-field-banner__description',
+  content: 'ai-field-banner__content',
   action: 'ai-field-banner__action',
   additional: 'ai-field-banner__additional',
 } as const;

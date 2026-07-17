@@ -6,7 +6,7 @@ export function Mobile() {
     <AiFieldBanner
       size={SIZE.M}
       variant={TYPE.Agentic}
-      description='Description'
+      content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
     />

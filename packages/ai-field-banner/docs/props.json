@@ -18,15 +18,15 @@
         "required": false,
         "description": "Доп. класс корня."
       },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст или контент основной строки. Не рендерится, если не задан."
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "defaultValue": "ai-field-banner"
-      },
-      "description": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Текст или контент основной строки. Не рендерится, если не задан."
       },
       "hasAdditional": {
         "type": "boolean",

@@ -10,7 +10,7 @@ export function AiFieldBanner({
   className,
   variant = TYPE.Information,
   size = SIZE.S,
-  description,
+  content,
   children,
   hasAdditional: hasAdditionalProp,
   icon,
@@ -19,7 +19,7 @@ export function AiFieldBanner({
   'data-test-id': dataTestId = TEST_IDS.root,
   ...rest
 }: AiFieldBannerProps): ReactElement {
-  const showMainLine = Boolean(description) || Boolean(icon) || Boolean(actionLabel);
+  const showMainLine = Boolean(content) || Boolean(icon) || Boolean(actionLabel);
   const hasAdditional = hasAdditionalProp ?? Boolean(children);
 
   return (
@@ -34,7 +34,7 @@ export function AiFieldBanner({
       <div className={styles.advice} data-size={size} data-type={variant} data-test-id={TEST_IDS.advice} aria-hidden />
       {showMainLine && (
         <div className={styles.mainLine} data-test-id={TEST_IDS.mainLine}>
-          {(icon || description) && (
+          {(icon || content) && (
             <div className={styles.content}>
               {icon && (
                 <span className={styles.icon} data-size={size} data-test-id={TEST_IDS.icon}>
@@ -42,9 +42,9 @@ export function AiFieldBanner({
                 </span>
               )}
 
-              {description && (
-                <div className={styles.description} data-size={size} data-test-id={TEST_IDS.description}>
-                  {description}
+              {content && (
+                <div className={styles.description} data-size={size} data-test-id={TEST_IDS.content}>
+                  {content}
                 </div>
               )}
             </div>

@@ -18,7 +18,7 @@ export const TEST_IDS = {
   queue: 'ai-queue',
   description: 'ai-field-notice__description',
   banner: 'ai-field-notice__banner',
-  bannerDescription: 'ai-field-banner__description',
+  bannerContent: 'ai-field-banner__content',
   bannerAction: 'ai-field-banner__action',
   bannerIcon: 'ai-field-banner__icon',
   bannerAdditional: 'ai-field-banner__additional',

@@ -21,7 +21,7 @@ const types = TYPE_ORDER;
 const sizes = Object.values(SIZE);
 
 const defaultProps = {
-  description: 'Description',
+  content: 'Description',
   actionLabel: 'Label text',
   variant: TYPE.Information,
 } as const;
@@ -72,9 +72,7 @@ export const VisualMatrixSlots: Story = {
         },
         {
           variantLabel: 'description only',
-          cells: [
-            renderCell({ description: 'Description', actionLabel: undefined }, `${TEST_IDS.root}-slots-description`),
-          ],
+          cells: [renderCell({ content: 'Description', actionLabel: undefined }, `${TEST_IDS.root}-slots-description`)],
         },
         {
           variantLabel: 'with additional slot',
@@ -95,7 +93,7 @@ export const VisualMatrixSlots: Story = {
             renderCell(
               {
                 ...defaultProps,
-                description: longDescription,
+                content: longDescription,
                 icon: <PlaceholderSVG />,
               },
               `${TEST_IDS.root}-slots-long-description`,
@@ -119,7 +117,7 @@ export const VisualMatrixSlots: Story = {
           variantLabel: 'no icon',
           cells: [
             renderCell(
-              { description: defaultProps.description, actionLabel: defaultProps.actionLabel },
+              { content: defaultProps.content, actionLabel: defaultProps.actionLabel },
               `${TEST_IDS.root}-slots-no-icon`,
             ),
           ],
