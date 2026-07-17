@@ -4,8 +4,8 @@
  * Hover/pressed — @ds/materials state-layer (fill + border).
  * Focus — `:focus-visible` на скрытом input + соседний `.content`.
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/chip.module' as chip;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/chip.module' as chip;
 @use '@ds/materials' as m;
 
 .root {
@@ -70,7 +70,7 @@
     min-height: base.$sn-density-size-m;
     margin: 0;
     // Макет ждёт `adaptive/spacing/control/container/horizontal/l` (8), но коллекции `adaptive`
-    // нет в @sbercloud/figma-variables — наследуем chip size s (6), на 2px/сторону уже макета.
+    // нет в @ds/figma-variables — наследуем chip size s (6), на 2px/сторону уже макета.
     border: none;
     border-radius: base.$sn-density-radius-2xs;
 

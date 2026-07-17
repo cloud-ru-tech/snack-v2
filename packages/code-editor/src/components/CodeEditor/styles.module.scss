@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module.scss' as base;
-@use '@sbercloud/figma-variables/build/scss/components/codeEditor.module.scss' as codeEditor;
+@use '@ds/figma-variables/build/scss/styles/styles.module.scss' as base;
+@use '@ds/figma-variables/build/scss/components/codeEditor.module.scss' as codeEditor;
 
 .root {
   position: relative;

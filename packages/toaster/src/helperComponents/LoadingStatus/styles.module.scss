@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
 
 // Figma 7871:513510 — buttonWrapper 24×24, ToastButton 32×32 со смещением,
 // чтобы hit-area сохранялась 32, а layout-размер совпадал с строкой статуса.

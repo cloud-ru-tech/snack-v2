@@ -2,8 +2,8 @@
 /* stylelint-disable scss/operator-no-newline-after */
 
 @use '@ds/materials' as m;
-@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '../../../iconSizes' as icons;
 
 $sizes: 's', 'm', 'l';
@@ -99,7 +99,7 @@ $sizes: 's', 'm', 'l';
   border: none;
 
   // Token bridge: list/groupIndicator/cornerRadius (8) ещё не выгружен scss-композитом
-  // из @sbercloud/figma-variables — берём примитив dimension-8 напрямую.
+  // из @ds/figma-variables — берём примитив dimension-8 напрямую.
   border-radius: base.$sn-primitive-dimension-8;
 
   color: base.$sn-theme-color-available-version-textMain;

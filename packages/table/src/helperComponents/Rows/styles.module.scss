@@ -9,8 +9,8 @@
 // linear-gradient из полупрозрачного state-layer-токена поверх фона строки — точное
 // альфа-наложение как в Figma (color-mix без процентов смешивал бы 50/50 и вдвое
 // ослаблял слой: 15% → 7.5%).
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 // Базовый фон строки. Хранится в CSS-переменной, потому что selected/hover накладывают
 // поверх него state-layer, а accent-тон строки (data-row-bg-appearance) подмешивается color-mix'ом.

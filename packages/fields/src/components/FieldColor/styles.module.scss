@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/colorPicker.module' as colorPicker;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/colorPicker.module' as colorPicker;
 
 // FieldColor size → colorPicker previewColor size (Figma fieldSelectColor):
 // s → colorPicker s (16px / radius 4), m → colorPicker m (24px / radius 8),

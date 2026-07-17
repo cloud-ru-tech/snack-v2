@@ -141,10 +141,10 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 
 ## Как работают стили
 
-`styles.module.scss` + токены `@sbercloud/figma-variables`:
+`styles.module.scss` + токены `@ds/figma-variables`:
 
 ```scss
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .button {
   background: base.$sn-theme-color-primary-accent;
@@ -672,12 +672,12 @@ pnpm gen:props && pnpm gen:readme
 
 ## Дизайн-токены
 
-Визуальные константы-переменные — пакет `@sbercloud/figma-variables` (установлен в монорепо).
+Визуальные константы-переменные — пакет `@ds/figma-variables` (установлен в монорепо).
 
 **В SCSS компонентов:**
 
 ```scss
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .button {
   color: base.$sn-theme-color-primary-accent;
@@ -688,7 +688,7 @@ pnpm gen:props && pnpm gen:readme
 **В точке входа приложения** — CSS-переменные:
 
 ```css
-@import '@sbercloud/figma-variables/build/css/tokens.css';
+@import '@ds/figma-variables/build/css/tokens.css';
 ```
 
 ## Связанные ресурсы
@@ -699,7 +699,7 @@ pnpm gen:props && pnpm gen:readme
 | Стенд Storybook                                    | https://frontend.cp.sbercloud.tech/snack-v2/storybook/                                     |
 | Snack Ui Kit — Figma                               | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables                 |
 | Product UI Kit — Figma                             | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-             |
-| Репозиторий токенов (`@sbercloud/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook           |
+| Репозиторий токенов (`@ds/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook           |
 | Figma-плагин и CLI tokens-helper                   | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/figma-helper-plugin |
 | PR на ревью (тегать `@ff`, `@dd_design`)           | https://mm.sbercloud.tech/default/channels/front-review                                    |
 | Поддержка по ходу разработки                       | https://mm.sbercloud.tech/default/channels/ff-support                                      |

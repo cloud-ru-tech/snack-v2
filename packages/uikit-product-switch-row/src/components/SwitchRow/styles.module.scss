@@ -3,7 +3,7 @@
  * Слоистая раскладка: корень (relative) + stateLayer (absolute, inset:0) + headline/description (relative, поверх слоя).
  * State-layer реализован через @ds/materials::has-state-layer-as-child (токены material/stateLayer).
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/materials' as m;
 
 .stateLayer {

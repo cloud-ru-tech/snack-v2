@@ -1,10 +1,9 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4;
-
   width: 100%;
 
   &[data-single='true'] {

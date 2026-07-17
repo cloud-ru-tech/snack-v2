@@ -1,8 +1,8 @@
 // Ячейка статуса. В новом дизайне полосатого индикатора у края строки нет — легаси-хелпер
 // `getStatusColumnDef` рендерит компонент <Status> из '@ds/status' (точка-индикатор + подпись).
 // Здесь только раскладка ячейки: вертикальное центрирование и горизонтальные отступы.
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 .statusCell {
   display: flex;

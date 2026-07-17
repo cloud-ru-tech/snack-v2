@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 
 // `bottomBar` overlay'я. Раскладка и паддинги зависят от поверхности (`data-surface`):
 // `bottomSheet` — sheet-мастер (drag-зона, растяжение row-ButtonGroup), `window` — modal/drawer.

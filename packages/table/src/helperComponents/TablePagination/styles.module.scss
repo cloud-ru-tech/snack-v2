@@ -1,8 +1,8 @@
 // Футер таблицы: в table-view пагинация и chip выбора размера страницы прижаты
 // правым кластером (Figma table-view); в cards-view пагинация растягивается (flex: 1)
 // и числа уходят к левому краю. [data-view] ставится на grid-обёртку таблицы (.wrapper).
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 .footer {
   display: flex;

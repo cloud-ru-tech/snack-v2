@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Хвост анимируется за половину общей длительности — он успевает уйти, пока
 // реальные карточки стопки выезжают на его место.

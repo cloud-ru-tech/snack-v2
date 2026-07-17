@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .attachmentsScroll {
   // Flex-ребёнок колонки .fieldChat: без min-width:0 ряд превью распирает поле

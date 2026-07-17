@@ -1,7 +1,7 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Подсветка кода поверх highlight.js / lowlight.
-// `@sbercloud/figma-variables` не содержит syntax-токенов, поэтому маппим на семантические theme-цвета.
+// `@ds/figma-variables` не содержит syntax-токенов, поэтому маппим на семантические theme-цвета.
 // Светлая тема — по умолчанию. Тёмная — через :global([data-theme='dark']).
 
 .syntax {

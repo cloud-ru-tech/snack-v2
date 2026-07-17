@@ -20,7 +20,7 @@ export type StoryTableProps = {
 
 /**
  * Таблица для Visual Matrix stories: единые границы, типографика и отступы
- * на design tokens из `@sbercloud/figma-variables`.
+ * на design tokens из `@ds/figma-variables`.
  */
 export function StoryTable({
   sectionTitle,

@@ -4,7 +4,7 @@
 // кнопка вне потока — высота поля не прыгает при hover.
 // При hover max-width .content уменьшается на ширину кнопки + gap, чтобы кнопка
 // не выходила за границу ячейки таблицы; overflow: hidden — страховка от bleed.
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $copy-button-slot: calc(#{base.$sn-primitive-dimension-32} + #{base.$sn-primitive-dimension-4});
 

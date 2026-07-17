@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Общие оси и spacing-карты слотов CardCustom (Header / Image / Footer.*).
 // Один источник истины — раньше эти карты дублировались в 5 файлах слотов.

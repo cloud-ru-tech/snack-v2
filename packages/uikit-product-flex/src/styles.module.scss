@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Закрытые оси (Extract из CSSProperties) → data-* + SCSS, без инлайн-стилей.
 $directions: 'row', 'row-reverse', 'column', 'column-reverse';

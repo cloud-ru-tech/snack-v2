@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/accordion.module' as accordion;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/accordion.module' as accordion;
 @use '@ds/materials' as m;
 
 $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';

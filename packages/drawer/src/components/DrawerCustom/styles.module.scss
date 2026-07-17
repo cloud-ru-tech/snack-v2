@@ -1,8 +1,8 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/drawer.module' as drawer;
 // Отступ close-кнопки — общий токен «window»-поверхности из коллекции popupPrivate
 // (она несёт и padding ×4, и min-size/border-radius кнопки).
-@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
+@use '@ds/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 @use '@ds/materials' as m;
 
 $orientations: 'vertical', 'horizontal';

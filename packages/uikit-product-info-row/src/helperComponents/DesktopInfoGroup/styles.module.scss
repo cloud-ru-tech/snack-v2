@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Double layout max width ≈ legacy 900px via density tokens.
 $wrapper-max: calc(18 * #{base.$sn-primitive-dimension-48} + #{base.$sn-primitive-dimension-36});

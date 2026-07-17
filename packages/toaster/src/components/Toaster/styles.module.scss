@@ -1,7 +1,7 @@
 @use 'sass:list';
 @use 'sass:map';
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
 
 // ============================================================================
 // Контейнер тостов. Самодельная реализация без `react-toastify` — на уровне

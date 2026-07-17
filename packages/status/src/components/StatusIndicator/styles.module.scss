@@ -1,8 +1,8 @@
 /* Базовые функции и миксины из пакета */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 /* Структуры компонентов (локальные) */
-@use '@sbercloud/figma-variables/build/scss/components/status.module' as status;
+@use '@ds/figma-variables/build/scss/components/status.module' as status;
 
 $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 

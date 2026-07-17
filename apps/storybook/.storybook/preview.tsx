@@ -1,4 +1,4 @@
-import '@sbercloud/figma-variables/build/css/tokens.css';
+import '@ds/figma-variables/build/css/tokens.css';
 
 import './global.scss';
 

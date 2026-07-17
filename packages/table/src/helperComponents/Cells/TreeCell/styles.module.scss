@@ -1,7 +1,7 @@
 // Ячейка дерева: контейнер с направляющими линиями (TreeLine) по уровням вложенности,
 // chevron-кнопкой раскрытия, cellToggles (чек-бокс/радио) и cellTree (иконка + контент узла).
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 .treeCellContainer {
   @include base.composite-var(base.$sn-regular-body-m);

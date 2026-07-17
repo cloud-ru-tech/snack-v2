@@ -1,6 +1,6 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/toolbar.module' as toolbar;
-@use '@sbercloud/figma-variables/build/scss/components/toggles.module' as toggles;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/toolbar.module' as toolbar;
+@use '@ds/figma-variables/build/scss/components/toggles.module' as toggles;
 
 $action-focus-padding: calc(2 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
 

@@ -1,6 +1,6 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/tooltip.module' as tooltip;
-@use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/tooltip.module' as tooltip;
+@use '@ds/figma-variables/build/scss/components/popover.module' as popover;
 
 .triggerClassName {
   --offset: #{base.simple-var(popover.$popover, 'anatomy', 'privatePopover', 'offset')};

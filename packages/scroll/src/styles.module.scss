@@ -1,9 +1,9 @@
 /**
  * Стили Scroll (OverlayScrollbars) в соответствии с Figma.
- * Темизация через :global .osThemeSnack, токены из @sbercloud/figma-variables.
+ * Темизация через :global .osThemeSnack, токены из @ds/figma-variables.
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/scroll.module' as scroll;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/scroll.module' as scroll;
 @use '@ds/materials' as m;
 
 $orientations: 'vertical', 'horizontal';
@@ -28,7 +28,7 @@ $scrollbar-slider-active-zone: 12px;
 
 /**
  * Темизация OverlayScrollbars: селекторы из документации библиотеки.
- * Размеры и цвета — из @sbercloud/figma-variables (scroll anatomy + theme).
+ * Размеры и цвета — из @ds/figma-variables (scroll anatomy + theme).
  */
 /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 :global {

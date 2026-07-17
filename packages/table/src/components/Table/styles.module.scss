@@ -4,11 +4,11 @@
  * (`dist/esm/components/Table/styles.module.css`). Значения переведены со
  * старого namespace (`--sys-*` / `--dimension-*` / `--space-table-*` /
  * `--size-table-*` / `--border-width-*` / `--radius-*`) на токены
- * @sbercloud/figma-variables.
+ * @ds/figma-variables.
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
-@use '@sbercloud/figma-variables/build/scss/components/skeleton.module' as skeleton;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/components/skeleton.module' as skeleton;
 @use '@ds/materials' as m;
 
 $divider-width: base.simple-var(
@@ -456,7 +456,7 @@ $divider-width: base.simple-var(
 //   --table-card-columns   — желаемое число колонок (только при data-fixed-columns).
 .cardsGrid {
   // 320px — minWidth карточки из Figma (слот `+ slotTableCard`, card FILL, при ширине 900 → 2×446).
-  // В @sbercloud/figma-variables нет dimension-токена такого порядка, поэтому литерал с пометкой.
+  // В @ds/figma-variables нет dimension-токена такого порядка, поэтому литерал с пометкой.
   // stylelint-disable-next-line value-keyword-case
   --table-card-min-width: 320px; /* TODO[token]: нет dimension-токена 320px для ширины карточки */
 

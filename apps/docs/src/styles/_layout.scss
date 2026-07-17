@@ -1,7 +1,7 @@
-// Layout constants — docs chrome sizes that don't map to @sbercloud/figma-variables.
+// Layout constants — docs chrome sizes that don't map to @ds/figma-variables.
 // All in px. Any value representable by a package spacing/size token should use the token directly, not a constant here.
 
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Отступ контента, общий для крошек и тела статьи (горизонталь — в одном месте,
 // чтобы они были выровнены). Значения — ссылки на токены-примитивы.

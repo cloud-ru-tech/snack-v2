@@ -11,9 +11,9 @@
  *   l    | 24      | 16  | title/l     | body/l
  */
 @use 'sass:map';
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/card.module' as card;
-@use '@sbercloud/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/card.module' as card;
+@use '@ds/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
 
 $paddings: (
   's': base.$sn-density-spacing-interval-s,

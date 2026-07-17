@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/tabs.module' as tabs;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/tabs.module' as tabs;
 
 $orientations: 'vertical', 'horizontal';
 $sizes: 'l', 'm';

@@ -2,9 +2,9 @@
 // (centeredWrapper.width = 24px) и рисует тонкую линию по центру блока.
 // data-visible показывает линию, data-half-height укорачивает до 50% высоты
 // (последний потомок ветки), data-horizontal — горизонтальный отвод к узлу.
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
-@use '@sbercloud/figma-variables/build/scss/components/tree.module' as tree;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/components/tree.module' as tree;
 
 $level-width: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-width;
 $list-row-gap: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight;

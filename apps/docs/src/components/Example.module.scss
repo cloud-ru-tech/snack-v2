@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .root {
   // Не clip'аем preview: droplist'ы и popover'ы в демо должны быть видны целиком.

@@ -5,7 +5,7 @@
   "ignorePackagePatterns": [
     "react",
     "react-dom",
-    "@sbercloud/figma-variables",
+    "@ds/figma-variables",
     "vitest",
     "@playwright/test",
     "sass"

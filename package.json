@@ -87,7 +87,6 @@
     "@inquirer/prompts": "7.10.1",
     "@playwright/test": "1.59.1",
     "@sbercloud/figma-selected-block": "1.0.3",
-    "@sbercloud/figma-variables": "4.0.0",
     "@svgr/cli": "8.1.0",
     "@svgr/plugin-jsx": "8.1.0",
     "@types/dom-close-watcher": "1.0.0",

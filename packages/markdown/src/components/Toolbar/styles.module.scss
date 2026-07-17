@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
-@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
+@use '@ds/figma-variables/build/scss/components/markdown.module' as md;
+@use '@ds/figma-variables/build/scss/components/field.module' as field;
 
 // Wrapper: размещает `Buttons` + опциональный `More`-кнопку справа.
 // Gap и дивайдеры строки кнопок живут в helperComponents/Buttons.

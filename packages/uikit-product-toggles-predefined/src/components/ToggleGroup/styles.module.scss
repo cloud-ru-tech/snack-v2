@@ -4,7 +4,7 @@
  * Горизонтальная ориентация раскладывает карточки в авто-колонки с минимальной
  * шириной `--toggle-group-breakpoint` (px, из пропа `breakpoint`).
  */
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $gaps: (
   's': base.$sn-density-spacing-interval-s,

@@ -1,8 +1,8 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/toaster.module' as toaster;
-@use '@sbercloud/figma-variables/build/scss/components/scroll.module' as scroll;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
+@use '@ds/figma-variables/build/scss/components/scroll.module' as scroll;
 // Figma toastUpload/container/list: max-height фиксирован 240px (нет токена
-// в @sbercloud/figma-variables на 2026-05; design-source — frame 7871:513510).
+// в @ds/figma-variables на 2026-05; design-source — frame 7871:513510).
 // Локальная переменная, чтобы значение не «расползалось» по модулю.
 $list-max-height: 240px;
 

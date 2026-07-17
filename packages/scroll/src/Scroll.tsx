@@ -78,7 +78,7 @@ export const setNonce = OverlayScrollbars.nonce;
 
 /**
  * Scroll — контейнер с кастомными скроллбарами (OverlayScrollbars).
- * Стили из @sbercloud/figma-variables (anatomy container + slider + theme colors).
+ * Стили из @ds/figma-variables (anatomy container + slider + theme colors).
  */
 export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
   {

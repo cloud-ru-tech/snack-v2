@@ -1,5 +1,5 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/markdown.module' as md;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/markdown.module' as md;
 
 // Общие стили markdown-контента: типографика блоков и top-spacing'и.
 // Подключаются и во viewer (`Markdown`), и в editor (`MarkdownEditor` → .ProseMirror),

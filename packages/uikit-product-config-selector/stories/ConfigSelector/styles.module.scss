@@ -1,4 +1,4 @@
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Жёстко зафиксированная ширина .columnNarrow — story-level canvas-обёртка,
 // чтобы продемонстрировать truncation лейбла. Это не дизайн-параметр компонента

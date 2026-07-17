@@ -1,6 +1,6 @@
 // Контейнер empty-state таблицы: центрирует InfoBlock в области фиксированной высоты тела таблицы.
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 .tableEmptyStateWrapper {
   display: flex;

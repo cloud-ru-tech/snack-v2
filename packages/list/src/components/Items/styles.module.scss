@@ -1,6 +1,6 @@
 @use '@ds/materials' as m;
-@use '@sbercloud/figma-variables/build/scss/components/list.module' as list;
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $sizes: 's', 'm', 'l';
 

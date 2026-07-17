@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $sizes: 's', 'm';
 $types: 'information', 'security', 'critical', 'help', 'warning', 'agentic';
