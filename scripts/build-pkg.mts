@@ -32,16 +32,33 @@ if (!raw) {
   process.exit(2);
 }
 
-const requested = raw
+const requestedRaw = raw
   .split(',')
   .map((s) => s.trim().replace(/^@ds\//, ''))
   .filter(Boolean);
 
-for (const name of requested) {
-  if (!existsSync(resolve(PACKAGES_DIR, name, 'tsconfig.esm.json'))) {
+// A changed-packages set (CI `$SLUGS`) can legitimately include source-only /
+// prebuilt packages — `@ds/figma-variables` ships a committed `build/`, `@ds/fonts`
+// ships `src` + `fonts` — which have no `tsconfig.{esm,cjs}.json` and thus no tsc
+// step. Those are skipped (nothing to build), NOT treated as errors. A hard error
+// is reserved for a genuinely missing directory (a typo in the requested name).
+const requested: string[] = [];
+for (const name of requestedRaw) {
+  const pkgDir = resolve(PACKAGES_DIR, name);
+  if (!existsSync(pkgDir) || !statSync(pkgDir).isDirectory()) {
     console.error(`Package not found: packages/${name}`);
     process.exit(1);
   }
+  if (!existsSync(join(pkgDir, 'tsconfig.esm.json'))) {
+    console.info(`[build-pkg] skipping ${name}: source-only/prebuilt package (no tsconfig.esm.json)`);
+    continue;
+  }
+  requested.push(name);
+}
+
+if (requested.length === 0) {
+  console.info('[build-pkg] nothing to build — all requested packages are source-only/prebuilt.');
+  process.exit(0);
 }
 
 type PkgJson = {
