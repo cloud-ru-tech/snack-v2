@@ -137,32 +137,13 @@ export default defineConfig({
     // Node native ESM этого не любит, vite SSR должен пребандлить весь скоуп.
     // На astro build prerender ssr.noExternal не применяется (астра грузит модули через
     // Node native loader) — там компоненты с legacy-deps помечаются `client:only='react'`.
-    plugins: [
-      patchAstroReactCheck(),
-      // @cloud-ru/uikit-product-icons (транзитивно через @sbercloud/snack-v2-toolbar в @ds/table)
-      // ESM-экспортирует sprite-system.symbol.svg; у корневого <svg> спрайта нет width/height,
-      // и astro:assets падает на imageMetadata. Спрайт в доке не рендерится — заглушаем url-стабом.
-      {
-        name: 'stub-symbol-sprite-svg',
-        enforce: 'pre',
-        resolveId(source) {
-          if (source.endsWith('.symbol.svg')) return '\0stub-symbol-sprite-svg';
-        },
-        load(id) {
-          if (id === '\0stub-symbol-sprite-svg') return 'export default ""';
-        },
-      },
-    ],
+    plugins: [patchAstroReactCheck()],
     ssr: {
       noExternal: [
         // Workspace-пакеты резолвятся в src через alias — бандлим с тем же React, что и острова.
         /^@ds\//,
         // Toolbar persist → @cloud-ru/ft-request-payload-transform.
         /^@cloud-ru\/ft-/,
-        // Toolbar → @sbercloud/snack-v2-* (chips, bottom-sheet, …).
-        /^@sbercloud\/snack-v2-/,
-        // @ds/table → snack-v2-toolbar → @cloud-ru/uikit-product-* (тот же dir-import паттерн).
-        /^@cloud-ru\/uikit-product-/,
         'uncontrollable',
         // CJS (UMD main) with named exports (cancelable) — tree hooks; bundle for SSR interop.
         'cancelable-promise',
@@ -177,7 +158,6 @@ export default defineConfig({
           // RSC-safe субпуть @ds/theme — должен идти ДО общего '@ds/theme' из
           // dsWorkspaceSourceAliases(), иначе тот перехватит префикс.
           '@ds/theme/ssr': resolve(root, 'packages/theme/src/ssr.ts'),
-          '@sbercloud/snack-v2-locale': resolve(root, 'packages/locale/src/index.ts'),
           // Barrel dist/esm/index.js re-exports ./formatters/* without .js — SSR/prebundle fail.
           '@cloud-ru/ft-formatters': resolve(
             root,

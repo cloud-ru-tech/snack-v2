@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Table>;
 const COMPONENT_TEST_IDS = TEST_IDS.component;
 
 // Сегмент table-вида в переключателе dataView: id ставит
-// @sbercloud/snack-v2-segment-control (`segmentTestId(value)` → `section-<value>`),
+// @ds/segment-control (`segmentTestId(value)` → `section-<value>`),
 // значение сегмента — 'list' (DATA_VIEW_VALUE.List из @ds/toolbar).
 // Синхронизируй при обновлении этих пакетов.
 const TABLE_VIEW_SEGMENT_TEST_ID = 'section-list';
