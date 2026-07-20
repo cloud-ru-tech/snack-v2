@@ -1,5 +1,6 @@
 import merge from 'lodash.merge';
 
+import { CIMODE } from '../constants/lang';
 import { InterpolationObject, LangMessages, MessageTree, OverrideRegistry } from '../types/locale';
 import { interpolateTranslation } from './interpolateTranslation';
 
@@ -27,6 +28,11 @@ export function buildLangDict(
 
 /** Достаёт строку по dotted-ключу, интерполирует. Если не найдена — dev-warn + возврат ключа. */
 export function translate(dict: MessageTree, key: string, lang: string, interpolation?: InterpolationObject): string {
+  // cimode (i18next): вместо перевода отдаём сам ключ — для отладки строк и скриншотов ключей.
+  if (lang === CIMODE) {
+    return key;
+  }
+
   const node = key.split('.').reduce<string | MessageTree | undefined>((acc, part) => {
     if (acc == null || typeof acc === 'string') {
       return acc;
