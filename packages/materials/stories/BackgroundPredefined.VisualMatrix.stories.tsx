@@ -27,7 +27,7 @@ const FILLS_OTHER: BackgroundPredefinedFill[] = [
 ];
 
 const meta = {
-  title: 'Materials/Background Predefined Visual Matrix',
+  title: 'Components/Materials/Background Predefined Visual Matrix',
   component: BackgroundPredefinedDemo,
   parameters: {
     controls: { disable: true },

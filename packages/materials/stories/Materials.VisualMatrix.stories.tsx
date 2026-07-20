@@ -8,7 +8,7 @@ import { APPEARANCE, LEVEL } from './constants';
 import styles from './styles.module.scss';
 import { Appearance, Level } from './types';
 const meta: Meta = {
-  title: 'Materials/Materials Visual Matrix',
+  title: 'Components/Materials/Materials Visual Matrix',
   args: {},
   argTypes: {},
 };
