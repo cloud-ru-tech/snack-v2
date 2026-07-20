@@ -186,8 +186,6 @@ pnpm gen:props && pnpm gen:readme   # автоген артефактов
 Baseline PNG для visual regression нужно снимать в **Linux** — иначе CI падает из‑за разницы рендеринга шрифтов (macOS CoreText vs Linux FreeType). Локально на Mac:
 
 ```bash
-# ~/.npmrc с _authToken для pkg.sbercloud.tech — монтируется автоматически
-
 pnpm test:e2e:docker:visual                                   # прогон visual-тестов в Linux
 pnpm test:e2e:docker:visual:update packages/calendar          # переснять один пакет (все baseline'ы, =all)
 pnpm test:e2e:docker:visual:update:changed packages/calendar  # переснять только разошедшиеся (=changed)

@@ -119,7 +119,6 @@ pnpm test:e2e:update-snapshots    # регенерация visual baselines (chr
 На Mac baseline'ы для visual regression снимай в Docker — иначе PNG не совпадут с CI:
 
 ```bash
-# ~/.npmrc с доступом к pkg.sbercloud.tech монтируется автоматически
 pnpm test:e2e:docker                              # e2e chrome в Linux
 pnpm test:e2e:docker packages/calendar            # один пакет
 pnpm test:e2e:docker:update-snapshots             # переснять все baseline'ы

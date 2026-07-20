@@ -241,10 +241,9 @@ body {
     gap: base.$sn-primitive-dimension-4;
   }
 
-  // На mobile поиску нужна вся доступная ширина — Support и Gitlab
-  // доступны через страницу Contribution Guide и пункты сайдбара.
-  .header-end > .header-support,
-  .header-end > .header-gitlab {
+  // На mobile поиску нужна вся доступная ширина — ссылка на репозиторий
+  // доступна через страницу Contribution Guide и пункты сайдбара.
+  .header-end > .header-github {
     display: none;
   }
 

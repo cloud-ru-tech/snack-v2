@@ -58,7 +58,7 @@ pnpm dev                             # оба параллельно
 
 ## Анатомия пакета
 
-Реальная раскладка пакета — **nested по компоненту**, даже если компонент один. Подробности — в [`.claude/rules/package-src-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/package-src-structure.md) и [`.claude/rules/reference-package-anatomy.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/reference-package-anatomy.md).
+Реальная раскладка пакета — **nested по компоненту**, даже если компонент один. Подробности — в [`.claude/rules/package-src-structure.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/package-src-structure.md) и [`.claude/rules/reference-package-anatomy.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/reference-package-anatomy.md).
 
 ```
 packages/<pkg>/
@@ -105,7 +105,7 @@ packages/<pkg>/
 
 Папка `demos/` — это **источник живых примеров для документационного портала**, а не дубль stories.
 
-- `demos/<Name>Demo.tsx` — Canvas-плейграунд для секции `## Демо` в MDX (только для props-driven компонентов без центральных колбеков; см. [`.claude/rules/docs-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/docs-structure.md)).
+- `demos/<Name>Demo.tsx` — Canvas-плейграунд для секции `## Демо` в MDX (только для props-driven компонентов без центральных колбеков; см. [`.claude/rules/docs-structure.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/docs-structure.md)).
 - `demos/examples/<Example>.tsx` — самостоятельные React-компоненты для блоков `<Example>` в MDX. Каждый файл импортируется и как живой компонент (через `client:visible`), и как исходник через `?raw` — читатель видит работающий пример **и** код, который можно скопировать целиком, включая `import`-строки.
 
 Stories vs demos: stories живут в Storybook (визуальная регрессия + play-тесты), demos живут в docs-портале (объяснение API на живых сценариях, ориентированных на потребителя). Один и тот же компонент в обеих ролях не переиспользуется — у них разные требования к state и к отображению кода.
@@ -119,7 +119,7 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 - В пакете **нет** `react` / `react-dom` / `@types/react*` — ни в одном блоке. Корень workspace'а поставляет React для сборки и тестов.
 - Внутренние зависимости — `workspace:*`.
 
-Правило: [`.claude/rules/packages-deps.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/packages-deps.md).
+Правило: [`.claude/rules/packages-deps.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/packages-deps.md).
 
 ### package.json — exports
 
@@ -172,7 +172,7 @@ pnpm dev:storybook
 
 ### Структура stories — Playground + VisualMatrix
 
-Полные правила: [`.claude/rules/stories-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/stories-standard.md). Каждый компонент получает минимум **два** файла.
+Полные правила: [`.claude/rules/stories-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/stories-standard.md). Каждый компонент получает минимум **два** файла.
 
 ```tsx
 // packages/<pkg>/stories/<Name>/<Name>.Playground.stories.tsx
@@ -230,11 +230,11 @@ import { StoryTable } from '#storybook/components';
 - **`examples/<Name>.<Scenario>.stories.tsx`** — если фрагмент копируется потребителем в продакшн-код как самостоятельный, работающий снаружи теста (composition, slot-пресет, polymorphism с `as={Link}`, controlled-режим, реальный react state). Title — `Components/<…>/<Name>/Examples/<Scenario>`.
 - **`tests/<Name>.<Scenario>.stories.tsx`** — если фрагмент содержит `fn()`-моки, контролируемые stub-state, edge-state или последовательность действий, важную только для assertion'а; вне теста смысла не имеет. Title — `Components/<…>/<Name>/Tests/<Scenario>`. Один интеракционный сценарий — один экспорт `InteractionTest` (клик + клавиатура + фокус через `step()`).
 
-Каждая дополнительная story обязана проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md) (3 условия: проверяет что-то новое из публичной поверхности, не выражается через `args`/StoryTable/play, не дублирует другой слой). При переезде story между корнем и подпапкой обязательно обновить story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` — иначе e2e получит 404.
+Каждая дополнительная story обязана проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/complexity-tiers.md) (3 условия: проверяет что-то новое из публичной поверхности, не выражается через `args`/StoryTable/play, не дублирует другой слой). При переезде story между корнем и подпапкой обязательно обновить story IDs в `packages/<pkg>/__test__/<Name>/helpers.ts` — иначе e2e получит 404.
 
 ### Trigger-based компоненты
 
-Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / portal-компоненты следуют отдельному правилу [`.claude/rules/trigger-based-stories.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/trigger-based-stories.md): `open` не выводится в args (живёт в локальном `useState` render-компонента), триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}`, `parameters.layout: 'fullscreen'`, конфликты значений между осями разрешаются runtime + `<DemoWarning>`, а не через `if:`.
+Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / portal-компоненты следуют отдельному правилу [`.claude/rules/trigger-based-stories.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/trigger-based-stories.md): `open` не выводится в args (живёт в локальном `useState` render-компонента), триггер — `Button` из `@ds/button` с `data-test-id={TEST_IDS.triggerOpen}`, `parameters.layout: 'fullscreen'`, конфликты значений между осями разрешаются runtime + `<DemoWarning>`, а не через `if:`.
 
 ## Документационный портал
 
@@ -247,7 +247,7 @@ Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / p
 
 ### Доменная группировка пакетов
 
-Главная страница и сайдбар группируют пакеты по **префиксу имени**. Конфиг — [`apps/docs/src/config/domains.ts`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/apps/docs/src/config/domains.ts):
+Главная страница и сайдбар группируют пакеты по **префиксу имени**. Конфиг — [`apps/docs/src/config/domains.ts`](https://github.com/cloud-ru-tech/snack-v2/blob/master/apps/docs/src/config/domains.ts):
 
 | Префикс пакета    | Домен в портале и Storybook |
 | ----------------- | --------------------------- |
@@ -260,7 +260,7 @@ Modal, drawer, popover, dropdown, tooltip, toaster и любые dialog-like / p
 
 ### Категории внутри домена
 
-Внутри домена пакеты разбиты на категории — под-группы сайдбара доки и Storybook, секции главной и разделы `/llms.txt`: домен → категория → пакет. Категория задаётся вручную в [`apps/docs/src/config/categories.ts`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/apps/docs/src/config/categories.ts) (`CATEGORIES_BY_DOMAIN`); домен без записи рендерит пакеты плоско.
+Внутри домена пакеты разбиты на категории — под-группы сайдбара доки и Storybook, секции главной и разделы `/llms.txt`: домен → категория → пакет. Категория задаётся вручную в [`apps/docs/src/config/categories.ts`](https://github.com/cloud-ru-tech/snack-v2/blob/master/apps/docs/src/config/categories.ts) (`CATEGORIES_BY_DOMAIN`); домен без записи рендерит пакеты плоско.
 
 Добавляя пакет в домен с категориями (Snack, Uikit Product, AI), впишите его имя (без `@ds/`-скоупа) в `packages` подходящей категории. Если категории нет — заведите новую запись (`id` / `label` / `description` / `packages`). Не отнесённый к категории пакет попадает в «Other» (build-warn). Порядок категорий в массиве = порядок в сайдбаре и на главной.
 
@@ -282,7 +282,7 @@ import buttonDoc from './props.json';
 
 `Canvas` строит контролы из `props.json` (`componentDoc`). `FigmaEmbed` получает `FigmaNodeRef` через `figmaNode(pkg, sub?)` из `apps/docs/src/lib/figma.ts` — все узлы компонентов централизованы в `FIGMA_NODES` map'е по имени пакета.
 
-Полный шаблон MDX-страницы — [`.claude/rules/docs-structure.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/docs-structure.md).
+Полный шаблон MDX-страницы — [`.claude/rules/docs-structure.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/docs-structure.md).
 
 ## Как добавить новый компонент
 
@@ -312,7 +312,7 @@ pnpm dev:docs
 
 ## Тестирование
 
-Тесты живут в **трёх слоях** ([`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md)). Каждый слой решает свою задачу и не дублирует другие.
+Тесты живут в **трёх слоях** ([`.claude/rules/e2e-testing-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/e2e-testing-standard.md)). Каждый слой решает свою задачу и не дублирует другие.
 
 | Слой                                                                                                     | Что проверяет                                                                                      | Где живёт                                                                                                   |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -320,7 +320,7 @@ pnpm dev:docs
 | **2. Playwright `rendering.spec.ts`**                                                                    | Smoke render + props propagation в `data-*` для ключевых значений осей                             | `packages/<pkg>/__test__/<ParentComponent>/rendering.spec.ts`                                               |
 | **3. Playwright `interaction.spec.ts` / `keyboard.spec.ts` / `polymorphism.spec.ts` / `visual.spec.ts`** | Только то, что Storybook play не может: browser-specific API, focus-trap, скриншоты                | там же, отдельные spec-файлы                                                                                |
 
-Каждый дополнительный артефакт обязан проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md): (1) проверяет что-то новое из публичной поверхности, (2) не выражается через `args`/StoryTable/play, (3) не дублирует другой слой.
+Каждый дополнительный артефакт обязан проходить **«Критерий обоснованности артефакта»** из [`.claude/rules/complexity-tiers.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/complexity-tiers.md): (1) проверяет что-то новое из публичной поверхности, (2) не выражается через `args`/StoryTable/play, (3) не дублирует другой слой.
 
 ### 1. Play-функции в stories
 
@@ -333,7 +333,7 @@ Behavioral assertion'ы пишутся **только здесь** — в Playwr
 
 ### 2. Playwright E2E против Storybook iframe
 
-Полные правила: [`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md). Тесты **живут внутри пакета** — `packages/<pkg>/__test__/<Name>/*.spec.ts`. Fixtures импортируются из корневого `playwright/`.
+Полные правила: [`.claude/rules/e2e-testing-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/e2e-testing-standard.md). Тесты **живут внутри пакета** — `packages/<pkg>/__test__/<Name>/*.spec.ts`. Fixtures импортируются из корневого `playwright/`.
 
 ```ts
 // packages/button/__test__/Button/rendering.spec.ts
@@ -356,12 +356,12 @@ test('renders', async ({ gotoStory, getByTestId }) => {
 Набор spec-файлов на parent-компонент:
 
 - **`rendering.spec.ts`** — всегда. Smoke render + props propagation для ключевых значений осей (1–3 на ось, не цикл по всем enum-values).
-- **`interaction.spec.ts`** — **только** если применим хотя бы один пункт закрытого списка browser-specific сценариев (file upload, real DnD, viewport resize, body scroll lock, focus-trap, click outside portal, theme switching внутри портала, `rel=noopener` инжекция, native disabled vs `aria-disabled` и т.п. — полный список в [`.claude/rules/e2e-testing-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/e2e-testing-standard.md) §«interaction.spec.ts»).
+- **`interaction.spec.ts`** — **только** если применим хотя бы один пункт закрытого списка browser-specific сценариев (file upload, real DnD, viewport resize, body scroll lock, focus-trap, click outside portal, theme switching внутри портала, `rel=noopener` инжекция, native disabled vs `aria-disabled` и т.п. — полный список в [`.claude/rules/e2e-testing-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/e2e-testing-standard.md) §«interaction.spec.ts»).
 - **`keyboard.spec.ts`** — **только** если применим хотя бы один пункт закрытого списка kbd-сценариев (roving tabindex, focus-trap, Escape closes layered portals, multi-step focus management — там же §«keyboard.spec.ts»). Tab/Enter/Space на одном focusable — это play, а не keyboard.spec.
 - **`polymorphism.spec.ts`** — **только** если в API есть `as` prop.
-- **`visual.spec.ts`** — всегда. Покрытие — по [`.claude/rules/visual-regression-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/visual-regression-standard.md).
+- **`visual.spec.ts`** — всегда. Покрытие — по [`.claude/rules/visual-regression-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/visual-regression-standard.md).
 
-Behavioral assertion'ы (click, keyboard, focus, callback) **не** живут в Playwright — они в Storybook play (`stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play`) и валидируются командой `pnpm test:stories`. Дублировать их в `interaction.spec.ts`/`keyboard.spec.ts` запрещено. Ориентиры по числу тестов и tier-таблица — в [`.claude/rules/complexity-tiers.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/complexity-tiers.md).
+Behavioral assertion'ы (click, keyboard, focus, callback) **не** живут в Playwright — они в Storybook play (`stories/<Name>/tests/<Name>.InteractionTest.stories.tsx::play`) и валидируются командой `pnpm test:stories`. Дублировать их в `interaction.spec.ts`/`keyboard.spec.ts` запрещено. Ориентиры по числу тестов и tier-таблица — в [`.claude/rules/complexity-tiers.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/complexity-tiers.md).
 
 ```bash
 pnpm test:e2e                            # все проекты — финальная сверка перед PR
@@ -375,7 +375,7 @@ pnpm test:e2e:docs                       # отдельный suite для apps/
 
 ### 3. Визуальная регрессия
 
-Baseline'ы лежат **рядом со спеком** — `packages/<pkg>/__test__/<Name>/__snapshots__/<arg>-<projectName>.png`. Снимки только на `chrome`, имена без префикса пакета (`visual-matrix.png`, не `button-visual-matrix.png`). Правила — [`.claude/rules/visual-regression-standard.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/visual-regression-standard.md).
+Baseline'ы лежат **рядом со спеком** — `packages/<pkg>/__test__/<Name>/__snapshots__/<arg>-<projectName>.png`. Снимки только на `chrome`, имена без префикса пакета (`visual-matrix.png`, не `button-visual-matrix.png`). Правила — [`.claude/rules/visual-regression-standard.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/visual-regression-standard.md).
 
 ## Генерация артефактов
 
@@ -454,8 +454,8 @@ pnpm ds:unlink ~/path/to/app        # вернуть версии из реес�
 
 **PR и поддержка** — общие для всех сценариев:
 
-- PR на ревью — канал [front-review](https://mm.sbercloud.tech/default/channels/front-review), тегать `@ff` и `@dd_design`.
-- Вопросы по ходу разработки — канал [ff-support](https://mm.sbercloud.tech/default/channels/ff-support).
+- PR на ревью — открывайте Pull Request в репозитории на [GitHub](https://github.com/cloud-ru-tech/snack-v2).
+- Вопросы по ходу разработки — через Issues репозитория.
 
 ### Сценарий 1. Миграция из `@snack-uikit/*`
 
@@ -575,7 +575,7 @@ export const FIGMA_NODES = {
 - `get_variable_defs` — имена токенов.
 - `get_screenshot` — PNG узла.
 
-Правила работы с Figma — [`.claude/rules/figma-integration.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/figma-integration.md) и [`.claude/rules/figma-to-code.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/figma-to-code.md).
+Правила работы с Figma — [`.claude/rules/figma-integration.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/figma-integration.md) и [`.claude/rules/figma-to-code.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/figma-to-code.md).
 
 ## Claude Code инструментарий
 
@@ -684,7 +684,7 @@ pnpm test:e2e:chrome packages/<pkg>/__test__/<Component>/rendering.spec.ts # о�
 pnpm test:e2e:chrome -g "props propagation"                               # по grep'у имени теста
 ```
 
-Селективные команды для итераций (lint/build:pkg/typecheck/тесты по одному пакету) — см. [`.claude/rules/fast-build-commands.md`](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/-/blob/master/.claude/rules/fast-build-commands.md).
+Селективные команды для итераций (lint/build:pkg/typecheck/тесты по одному пакету) — см. [`.claude/rules/fast-build-commands.md`](https://github.com/cloud-ru-tech/snack-v2/blob/master/.claude/rules/fast-build-commands.md).
 
 ### Типовой workflow: новый компонент из Figma
 
@@ -735,13 +735,9 @@ pnpm gen:props && pnpm gen:readme
 
 ## Связанные ресурсы
 
-| Ресурс                                             | URL                                                                                        |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Стенд документации (snack-v2)                      | https://frontend.cp.sbercloud.tech/snack-v2/                                               |
-| Стенд Storybook                                    | https://frontend.cp.sbercloud.tech/snack-v2/storybook/                                     |
-| Snack Ui Kit — Figma                               | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables                 |
-| Product UI Kit — Figma                             | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables-             |
-| Репозиторий токенов (`@ds/figma-variables`) | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook           |
-| Figma-плагин и CLI tokens-helper                   | https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/figma-helper-plugin |
-| PR на ревью (тегать `@ff`, `@dd_design`)           | https://mm.sbercloud.tech/default/channels/front-review                                    |
-| Поддержка по ходу разработки                       | https://mm.sbercloud.tech/default/channels/ff-support                                      |
+| Ресурс                                | URL                                                                            |
+| ------------------------------------- | ------------------------------------------------------------------------------ |
+| Репозиторий (GitHub)                  | https://github.com/cloud-ru-tech/snack-v2                                      |
+| Snack Ui Kit — Figma                  | https://www.figma.com/design/aNPU3MHwRJiEwbk5F82zux/Snack-Ui-Kit-variables     |
+| Product UI Kit — Figma                | https://www.figma.com/design/VWNiBRIUmVXIWYlLzMxcs6/Product-UI-Kit--variables- |
+| Пакет токенов (`@ds/figma-variables`) | https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/figma-variables |

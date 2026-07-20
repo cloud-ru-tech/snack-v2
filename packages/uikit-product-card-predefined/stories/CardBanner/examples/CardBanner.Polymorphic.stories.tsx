@@ -18,7 +18,7 @@ export const Polymorphic: Story = {
   render: () => (
     <CardBanner
       as='a'
-      href='https://sbercloud.ru'
+      href='https://cloud.ru'
       target='_blank'
       title='Перейти на сайт'
       content='Откроется в новой вкладке'

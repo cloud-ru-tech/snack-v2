@@ -17,7 +17,7 @@ export const Polymorphic: Story = {
   render: () => (
     <CardSuggest
       as='a'
-      href='https://sbercloud.ru'
+      href='https://cloud.ru'
       title='Подсказка-ссылка'
       content='Это якорный элемент'
       data-test-id={TEST_IDS.cardSuggest}

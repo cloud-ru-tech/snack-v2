@@ -51,7 +51,7 @@ import { Toolbar } from '@ds/toolbar';
 
 ## Примеры использования
 
-{/* client:only — Droplist/BottomSheet из @cloud-ru/ds-* не резолвятся при SSR (ESM dir-import) */}
+{/* client:only — Droplist/BottomSheet из @ds/* не резолвятся при SSR (ESM dir-import) */}
 
 ### Базовый desktop
 

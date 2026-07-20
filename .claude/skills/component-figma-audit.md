@@ -119,8 +119,8 @@ grep -rn "z-index\|isolation" packages/<pkg>/src --include="*.scss"
 
 ### Рабочие грабли
 
-- **`build:packages` инкрементален по mtime → зелёный на устаревшем CSS,** если сменился только токен-пакет (`@sbercloud/figma-variables`). Карту реальных поломок Bucket B (missing-key `@error` из `simple-var`) даёт только **чистый** пересбор SCSS — не доверять зелёному инкрементальному билду после бампа токенов (память `ff-8772-impl-plan`).
-- **Пересъёмка эталонов и pre-commit хук ходят в `pkg.sbercloud.tech`** (`pnpm dlx http-server`, `ft-deps-validator`). При недоступности реестра падают оба — проверять `curl -m 15` с хоста, а не гадать.
+- **`build:packages` инкрементален по mtime → зелёный на устаревшем CSS,** если сменился только токен-пакет (`@ds/figma-variables`). Карту реальных поломок Bucket B (missing-key `@error` из `simple-var`) даёт только **чистый** пересбор SCSS — не доверять зелёному инкрементальному билду после бампа токенов (память `ff-8772-impl-plan`).
+- **Пересъёмка эталонов и pre-commit хук тянут пакеты из npm-реестра на лету** (`pnpm dlx http-server`, `pnpx @cloud-ru/ft-deps-validator`). При недоступности реестра падают оба — проверять `curl -m 15 https://registry.npmjs.org/` с хоста, а не гадать.
 - **Прерванный docker-прогон** оставляет `packages/*/node_modules` переименованными в `node_modules.macos-bak` → `typecheck` ловит чужие ошибки в чужих пакетах. Вернуть циклом `mv` и перепроверить.
 - **После figma-правок гнать `test:unit` + `test:stories` затронутых пакетов.** Reconcile shared-пакетов меняет поведение, невидимое в SCSS: закрытый портал теперь **размонтируется** (`queryByTestId`→`null`, `.not.toBeVisible()` кидает на null — использовать `.not.toBeInTheDocument()`); дубль-рендер слота на mobile ломает `getByTestId` (strict-mode multiple → `getAllByTestId(...)[0]`). Выделение под-компонента в свой пакет ломает старые импорты в unit-тестах.
 

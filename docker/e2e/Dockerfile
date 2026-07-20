@@ -2,7 +2,7 @@
 #
 # Образ для e2e / visual-регрессии в Linux — как на CI.
 # База — Debian bookworm (паритет по font-rendering с CI-образом
-# clp-docker.pkg.sbercloud.tech/.../bookworm-node-playwright; НЕ переводить на Ubuntu
+# bookworm-node-playwright (внутренний CI-образ); НЕ переводить на Ubuntu
 # jammy/noble — другой freetype/fontconfig → сабпиксельный рендер разойдётся, baseline'ы посыплются).
 #
 # Собирается один раз через scripts/docker-e2e.mts (`docker build`), дальше берётся из кэша слоёв

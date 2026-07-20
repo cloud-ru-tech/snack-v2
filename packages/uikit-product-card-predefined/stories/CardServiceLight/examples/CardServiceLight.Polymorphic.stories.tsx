@@ -18,7 +18,7 @@ export const Polymorphic: Story = {
   render: () => (
     <CardServiceLight
       as='a'
-      href='https://sbercloud.ru'
+      href='https://cloud.ru'
       title='Ссылка-сервис'
       icon={<PlaceholderSVG size={24} />}
       data-test-id={TEST_IDS.cardServiceLight}

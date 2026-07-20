@@ -16,9 +16,6 @@
  *   pnpm test:e2e:docker:visual packages/calendar     # visual одного пакета
  *   pnpm test:e2e:docker -- --no-install packages/foo # без pnpm install
  *
- * Перед первым запуском:
- *   ~/.npmrc с доступом к pkg.sbercloud.tech (монтируется в контейнер автоматически)
- *
  * Порядок внутри контейнера:
  *   pnpm install → build:storybook → http-server → тесты (chromium уже вшит в образ;
  *   build:packages по умолчанию НЕ запускается — форс через DOCKER_E2E_BUILD_PACKAGES=1)
@@ -28,7 +25,6 @@
  *   DOCKER_E2E_NO_BUILD_IMAGE=1       — не пересобирать локальный образ (взять уже собранный тег)
  *   DOCKER_E2E_PLATFORM               — default linux/amd64; пустая строка = без --platform
  *   DOCKER_E2E_INSTALL=0              — пропустить pnpm install (или флаг --no-install)
- *   DOCKER_E2E_NPMRC                  — путь к npmrc (default ~/.npmrc)
  *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать storybook static (reuse предыдущей сборки)
  *   DOCKER_E2E_STORYBOOK_HEAP=<MB>    — занизить V8 heap сборки storybook (--max-old-space-size),
  *                                       дефолт 8192; escape-hatch, когда 8 ГБ heap + эмуляция amd64
@@ -38,7 +34,6 @@
  */
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { homedir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -172,23 +167,6 @@ function assertDockerReady(): void {
   process.exit(info.status ?? 1);
 }
 
-function resolveNpmrcPath(install: string): string | undefined {
-  const npmrcPath = process.env.DOCKER_E2E_NPMRC ?? resolve(homedir(), '.npmrc');
-  if (existsSync(npmrcPath)) {
-    return npmrcPath;
-  }
-  if (install === '1') {
-    console.error(
-      [
-        `Не найден ${npmrcPath} — без него pnpm не скачает @sbercloud/* из Artifactory.`,
-        'Скопируйте npmrc с CI или задайте DOCKER_E2E_NPMRC=/path/to/.npmrc',
-      ].join('\n'),
-    );
-    process.exit(1);
-  }
-  return undefined;
-}
-
 /** Версия @playwright/test из package.json — прокидывается в Dockerfile, чтобы ревизия chromium совпадала. */
 function readPlaywrightVersion(): string {
   try {
@@ -249,7 +227,6 @@ function main(): void {
   const image = process.env.DOCKER_E2E_IMAGE ?? DEFAULT_IMAGE;
   const platform = process.env.DOCKER_E2E_PLATFORM ?? 'linux/amd64';
   const install = noInstall || process.env.DOCKER_E2E_INSTALL === '0' ? '0' : '1';
-  const npmrcPath = resolveNpmrcPath(install);
 
   // Собираем локальный образ (кэш слоёв → повторно мгновенно). Пропускаем, если задан свой образ
   // (DOCKER_E2E_IMAGE, напр. CI-приватный) или явный DOCKER_E2E_NO_BUILD_IMAGE=1.
@@ -273,9 +250,6 @@ function main(): void {
 
   appendDockerE2eEnv(dockerArgs);
 
-  if (npmrcPath) {
-    dockerArgs.push('-v', `${npmrcPath}:/root/.npmrc:ro`);
-  }
 
   for (const { host, container } of NODE_MODULES_VOLUMES) {
     dockerArgs.push('-v', `${host}:${container}`);

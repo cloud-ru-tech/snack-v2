@@ -2,8 +2,7 @@
 import Sidebar from '../components/Sidebar.astro'
 import { SettingsMenu } from '../components/layout/SettingsMenu'
 import { MobileNavToggle } from '../components/layout/MobileNavToggle'
-import { GitlabLink } from '../components/layout/GitlabLink'
-import { SupportLink } from '../components/layout/SupportLink'
+import { GithubLink } from '../components/layout/GithubLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { ThemeHtmlApplier } from '../components/layout/ThemeHtmlApplier'
@@ -65,8 +64,7 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
 
         <div class="header-end">
           <SettingsMenu client:load />
-          <span class="header-support"><SupportLink client:load /></span>
-          <span class="header-gitlab"><GitlabLink client:load /></span>
+          <span class="header-github"><GithubLink client:load /></span>
         </div>
       </div>
     </header>
