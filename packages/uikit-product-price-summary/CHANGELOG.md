@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### BREAKING CHANGES
 
-- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://github.com/cloud-ru-tech/snack-v2/commit/cc1daa942fa9866c75a27da578bbeee9488051c5))
 
 ## 2.0.6 (2026-08-10)
 
@@ -49,8 +49,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### BREAKING CHANGES
 
-- **FF-8680:** rename ItemContent option prop to label ([1b8c675](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1b8c675d5dfe78f6333a7cf01c6e30013fb5dc16))
-- **FF-8680:** rename text prop to label ([7c4e229](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7c4e22980bb40f64e0c3e3b6f2d4265bcbe08be3))
+- **FF-8680:** rename ItemContent option prop to label ([1b8c675](https://github.com/cloud-ru-tech/snack-v2/commit/1b8c675d5dfe78f6333a7cf01c6e30013fb5dc16))
+- **FF-8680:** rename text prop to label ([7c4e229](https://github.com/cloud-ru-tech/snack-v2/commit/7c4e22980bb40f64e0c3e3b6f2d4265bcbe08be3))
 
 ## 1.0.6 (2026-07-17)
 
@@ -60,7 +60,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://github.com/cloud-ru-tech/snack-v2/commit/7daca5451be1df57e1b358922252467e2e2954aa))
 
 ## 1.0.4 (2026-07-14)
 
@@ -78,21 +78,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Dependencies
 
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0e22e73db3ad840302bcf5096f9806b712851d8))
-- **FF-8678:** use carets for external packages ([519f699](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/519f699dd35cdfbb778d12942f82ec96cb938136))
+- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
+- **FF-8678:** use carets for external packages ([519f699](https://github.com/cloud-ru-tech/snack-v2/commit/519f699dd35cdfbb778d12942f82ec96cb938136))
 
 # 0.1.0 (2026-07-08)
 
 ### Dependencies
 
-- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22b77dc4a9a0c866290843956d5a8e9334be83ad))
+- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://github.com/cloud-ru-tech/snack-v2/commit/22b77dc4a9a0c866290843956d5a8e9334be83ad))
 
 ### Features
 
-- **FF-8566:** added uikit-product-price-summary uikit-product-button-predefined ([43986f2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/43986f265ef15cc177dd2d8e4a99d680fd4a1bf4))
-- **FF-8650:** added uikit-product-promo-tag-predefined ([5d3b607](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/5d3b6073538ecaf6d3e76ff739890351a5a72712))
-- **FF-8660:** adopt co-located @ds/locale across component packages ([e7528b0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e7528b033ee8a748d64911e8c9188f303dadcdbe))
-- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
-- **FF-8686:** drop PortalContextProvider wrappers from docs demos ([1a22ee6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a22ee6739367098fdf5a9a4754ef7280e45b6b0))
-- **PDS-3775:** allow free navigation at stepper ([8296b4d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8296b4dd6ce136f163e03636bd0e5a1d0ffb7db3))
-- **PDS-3876:** price summary add excluding vat ([ae31165](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ae31165fd882dfac1f030942d98c0f43b89973b7))
+- **FF-8566:** added uikit-product-price-summary uikit-product-button-predefined ([43986f2](https://github.com/cloud-ru-tech/snack-v2/commit/43986f265ef15cc177dd2d8e4a99d680fd4a1bf4))
+- **FF-8650:** added uikit-product-promo-tag-predefined ([5d3b607](https://github.com/cloud-ru-tech/snack-v2/commit/5d3b6073538ecaf6d3e76ff739890351a5a72712))
+- **FF-8660:** adopt co-located @ds/locale across component packages ([e7528b0](https://github.com/cloud-ru-tech/snack-v2/commit/e7528b033ee8a748d64911e8c9188f303dadcdbe))
+- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+- **FF-8686:** drop PortalContextProvider wrappers from docs demos ([1a22ee6](https://github.com/cloud-ru-tech/snack-v2/commit/1a22ee6739367098fdf5a9a4754ef7280e45b6b0))
+- **PDS-3775:** allow free navigation at stepper ([8296b4d](https://github.com/cloud-ru-tech/snack-v2/commit/8296b4dd6ce136f163e03636bd0e5a1d0ffb7db3))
+- **PDS-3876:** price summary add excluding vat ([ae31165](https://github.com/cloud-ru-tech/snack-v2/commit/ae31165fd882dfac1f030942d98c0f43b89973b7))

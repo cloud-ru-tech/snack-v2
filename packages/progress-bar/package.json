@@ -1,6 +1,13 @@
 {
   "name": "@ds/progress-bar",
   "version": "1.1.6",
+  "description": "Пакет индикаторов прогресса дизайн-системы — линейный ProgressBar, круговой ProgressBarCircle и верхний page-индикатор ProgressBarPage.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/progress-bar"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/progress-bar",
   "license": "Apache-2.0",
   "author": "Sergei Khlupin <svhlupin@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

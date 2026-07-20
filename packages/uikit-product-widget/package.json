@@ -1,6 +1,13 @@
 {
   "name": "@ds/uikit-product-widget",
   "version": "2.1.4",
+  "description": "Карточка продуктового виджета с кликабельным заголовком, SegmentControl, действиями и состояниями loading/error.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-widget"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-widget",
   "license": "Apache-2.0",
   "author": "vdizryadnov <vdizryadnov@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

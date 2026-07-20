@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-shimmer",
   "version": "1.0.5",
+  "description": "Анимированный shimmer-блок для AI-сценариев с типографикой как в `@ds/typography`.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-shimmer"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-shimmer",
   "license": "Apache-2.0",
   "author": "Артем Сауляк <avsaulyak@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

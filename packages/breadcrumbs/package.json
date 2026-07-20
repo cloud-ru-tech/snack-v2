@@ -1,6 +1,13 @@
 {
   "name": "@ds/breadcrumbs",
   "version": "2.1.6",
+  "description": "Хлебные крошки — навигационная цепочка пути до текущей страницы с адаптивным поведением при нехватке места.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/breadcrumbs"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/breadcrumbs",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

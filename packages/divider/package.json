@@ -1,6 +1,13 @@
 {
   "name": "@ds/divider",
   "version": "2.0.0",
+  "description": "Разделитель контента с горизонтальной и вертикальной ориентацией и вариантами толщины линии.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/divider"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/divider",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

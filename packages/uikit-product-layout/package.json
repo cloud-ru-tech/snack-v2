@@ -1,6 +1,13 @@
 {
   "name": "@ds/uikit-product-layout",
   "version": "2.1.3",
+  "description": "Блоки-состояния продуктового экрана — заглушка пустого состояния EmptyBlock и экран ограниченного доступа NoAccess.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-layout"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-layout",
   "license": "Apache-2.0",
   "author": "vvmurashov <vvmurashov@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

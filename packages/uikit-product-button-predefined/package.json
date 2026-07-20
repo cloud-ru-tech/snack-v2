@@ -1,6 +1,13 @@
 {
   "name": "@ds/uikit-product-button-predefined",
   "version": "3.0.3",
+  "description": "Function-кнопка с выпадающим списком (desktop) или modal (mobile).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-button-predefined"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-button-predefined",
   "license": "Apache-2.0",
   "author": "Артемий Зимин <aazimin@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

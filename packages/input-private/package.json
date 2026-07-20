@@ -1,6 +1,13 @@
 {
   "name": "@ds/input-private",
   "version": "1.0.12",
+  "description": "Базовая обёртка `<input>` с состояниями, иконками, кнопкой очистки и счётчиком — фундамент для публичных полей ввода (Search, FieldText и пр.).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/input-private"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/input-private",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

@@ -1,6 +1,13 @@
 {
   "name": "@ds/carousel",
   "version": "1.2.4",
+  "description": "Компонент горизонтальной прокрутки слайдов — стрелки, пагинация, свайп, автопрокрутка, infinite scroll и multi-item отображение.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/carousel"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/carousel",
   "license": "Apache-2.0",
   "author": "Sergei Khlupin <svhlupin@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

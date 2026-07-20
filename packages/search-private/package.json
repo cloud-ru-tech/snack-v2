@@ -1,6 +1,13 @@
 {
   "name": "@ds/search-private",
   "version": "1.2.2",
+  "description": "Базовый input для поиска без иконок и плейсхолдеров — фундамент для публичного `@ds/search` и доменных search-компонентов.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/search-private"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/search-private",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

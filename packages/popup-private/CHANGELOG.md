@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8772:** gate window header gap on back button and stretch header to window width ([e313207](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e313207055b4a368c220b7ec85244406d6146d46))
-- **FF-8772:** restore sheet header gap, body top padding and footer button size ([b15db1f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b15db1f462023193388e39cb13ac0358548247b1))
+- **FF-8772:** gate window header gap on back button and stretch header to window width ([e313207](https://github.com/cloud-ru-tech/snack-v2/commit/e313207055b4a368c220b7ec85244406d6146d46))
+- **FF-8772:** restore sheet header gap, body top padding and footer button size ([b15db1f](https://github.com/cloud-ru-tech/snack-v2/commit/b15db1f462023193388e39cb13ac0358548247b1))
 
 # 1.2.0 (2026-07-30)
 
 ### Features
 
-- **FF-8713:** add href props ([6ebcdde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6ebcddee1ae4b518d10d8e20319937d8861cac55))
+- **FF-8713:** add href props ([6ebcdde](https://github.com/cloud-ru-tech/snack-v2/commit/6ebcddee1ae4b518d10d8e20319937d8861cac55))
 
 ## 1.1.2 (2026-07-29)
 
@@ -32,8 +32,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8784:** apply popup header after-title slot styles ([e30a6c7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e30a6c7f9a6d379bf6ad4d90f95e355567d60140))
+- **FF-8784:** apply popup header after-title slot styles ([e30a6c7](https://github.com/cloud-ru-tech/snack-v2/commit/e30a6c7f9a6d379bf6ad4d90f95e355567d60140))
 
 ### Features
 
-- **FF-8784:** add @ds/popup-private with surface-aware popup slots ([8fff9d1](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8fff9d1e871694723f45b5a4b85746714a1be7b6))
+- **FF-8784:** add @ds/popup-private with surface-aware popup slots ([8fff9d1](https://github.com/cloud-ru-tech/snack-v2/commit/8fff9d1e871694723f45b5a4b85746714a1be7b6))

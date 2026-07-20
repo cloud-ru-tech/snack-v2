@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-chain-of-thoughts",
   "version": "1.1.4",
+  "description": "Цепочка рассуждений AI-агента (Chain of Thoughts) — сворачиваемый заголовок «Размышляю» с длительностью и список строк-инструментов.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-chain-of-thoughts"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-chain-of-thoughts",
   "license": "Apache-2.0",
   "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

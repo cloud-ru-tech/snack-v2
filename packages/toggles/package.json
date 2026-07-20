@@ -1,6 +1,13 @@
 {
   "name": "@ds/toggles",
   "version": "1.2.3",
+  "description": "Пакет компонентов выбора и переключения — Checkbox, Radio, Switch, Favourite и контейнер ToggleGroup с общими токенами размеров и состояний.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/toggles"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/toggles",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

@@ -1,6 +1,13 @@
 {
   "name": "@ds/modal",
   "version": "3.1.3",
+  "description": "Пакет модальных окон — компоненты Modal и ModalCustom с едиными токенами ширины и режимов закрытия.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/modal"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/modal",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

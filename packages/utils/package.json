@@ -1,6 +1,13 @@
 {
   "name": "@ds/utils",
   "version": "1.3.0",
+  "description": "Хуки и хелперы для React-компонентов — controlled/uncontrolled, дебаунс, свайпы, модалки, персист данных, пропы и SSR.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/utils"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/utils",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": false,
   "dependencies": {

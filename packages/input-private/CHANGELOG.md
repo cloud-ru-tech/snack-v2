@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8772:** use CrossSVG for input clear button ([86642ec](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/86642ec51f73aaa5542c6308edd1abd5e54c1886))
+- **FF-8772:** use CrossSVG for input clear button ([86642ec](https://github.com/cloud-ru-tech/snack-v2/commit/86642ec51f73aaa5542c6308edd1abd5e54c1886))
 
 ## 1.0.11 (2026-08-17)
 
@@ -17,7 +17,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8772:** stop double-dimming disabled input value ([95433c5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/95433c599ba0941c9da47bf46a5b81d2d27009fb))
+- **FF-8772:** stop double-dimming disabled input value ([95433c5](https://github.com/cloud-ru-tech/snack-v2/commit/95433c599ba0941c9da47bf46a5b81d2d27009fb))
 
 ## 1.0.9 (2026-07-30)
 
@@ -43,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://github.com/cloud-ru-tech/snack-v2/commit/7daca5451be1df57e1b358922252467e2e2954aa))
 
 ## 1.0.3 (2026-07-13)
 
@@ -57,26 +57,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Dependencies
 
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0e22e73db3ad840302bcf5096f9806b712851d8))
+- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
 
 # 0.1.0 (2026-07-08)
 
 ### Bug Fixes
 
-- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d3a6cdee67c93639280de71de623019203cc8d11))
-- **FF-8178:** input private disabled prop for useClearButton hook ([0989188](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0989188ceb79207ec76b357d7f5864774d29954b))
-- **FF-8456:** @ds/input-private button navigation no longer scrolls the page ([8697e6f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8697e6fef78a8801bab9b5b79ba87202282d461f))
+- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://github.com/cloud-ru-tech/snack-v2/commit/d3a6cdee67c93639280de71de623019203cc8d11))
+- **FF-8178:** input private disabled prop for useClearButton hook ([0989188](https://github.com/cloud-ru-tech/snack-v2/commit/0989188ceb79207ec76b357d7f5864774d29954b))
+- **FF-8456:** @ds/input-private button navigation no longer scrolls the page ([8697e6f](https://github.com/cloud-ru-tech/snack-v2/commit/8697e6fef78a8801bab9b5b79ba87202282d461f))
 
 ### Dependencies
 
-- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22b77dc4a9a0c866290843956d5a8e9334be83ad))
+- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://github.com/cloud-ru-tech/snack-v2/commit/22b77dc4a9a0c866290843956d5a8e9334be83ad))
 
 ### Features
 
-- **FF-0000:** self-contained README generation ([a40798a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a40798ac6f6626c39835dba33b370577eb5dd06d))
-- **FF-7950:** input-private package ([2772b9a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2772b9a8dd13e42ae5137d83e854a6f053ca5729))
-- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
-- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
-- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
-- **FF-8488:** input-private — adopt unified stories/e2e canon ([02b7cf2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/02b7cf223bc5466eada12e423edf86c81628648f))
-- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+- **FF-0000:** self-contained README generation ([a40798a](https://github.com/cloud-ru-tech/snack-v2/commit/a40798ac6f6626c39835dba33b370577eb5dd06d))
+- **FF-7950:** input-private package ([2772b9a](https://github.com/cloud-ru-tech/snack-v2/commit/2772b9a8dd13e42ae5137d83e854a6f053ca5729))
+- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://github.com/cloud-ru-tech/snack-v2/commit/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
+- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://github.com/cloud-ru-tech/snack-v2/commit/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
+- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://github.com/cloud-ru-tech/snack-v2/commit/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
+- **FF-8488:** input-private — adopt unified stories/e2e canon ([02b7cf2](https://github.com/cloud-ru-tech/snack-v2/commit/02b7cf223bc5466eada12e423edf86c81628648f))
+- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))

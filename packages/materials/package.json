@@ -1,6 +1,12 @@
 {
   "name": "@ds/materials",
   "version": "1.1.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/materials"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/materials",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -21,7 +27,9 @@
     "index.scss",
     "src",
     "dist",
-    "README.md"
+    "README.md",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "dependencies": {
     "@ds/utils": "workspace:^"

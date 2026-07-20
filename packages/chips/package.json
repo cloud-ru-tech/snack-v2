@@ -1,6 +1,13 @@
 {
   "name": "@ds/chips",
   "version": "2.1.7",
+  "description": "Пакет чипов дизайн-системы — ChipAssist, ChipToggle, семейство ChipChoice и ChipChoiceRow для действий, переключения и фильтрации.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/chips"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/chips",
   "license": "Apache-2.0",
   "author": "Aleksei Belov <anbelov@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

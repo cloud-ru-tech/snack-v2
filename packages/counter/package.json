@@ -1,6 +1,13 @@
 {
   "name": "@ds/counter",
   "version": "2.0.0",
+  "description": "Компактный счётчик для отображения числовых меток, бейджей и состояний.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/counter"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/counter",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

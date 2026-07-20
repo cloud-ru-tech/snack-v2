@@ -1,6 +1,13 @@
 {
   "name": "@ds/uikit-product-flex",
   "version": "1.1.0",
+  "description": "Контейнер для flex-раскладки: направление, выравнивание, перенос и отступы между детьми.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-flex"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-flex",
   "license": "Apache-2.0",
   "author": "vvmurashov <vvmurashov@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

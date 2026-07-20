@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-field-banner",
   "version": "1.0.13",
+  "description": "Инлайн-баннер для поля ввода с семантическим типом, иконкой, описанием и действием.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-field-banner"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-field-banner",
   "license": "Apache-2.0",
   "author": "Артем Сауляк <avsaulyak@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

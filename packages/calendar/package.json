@@ -1,6 +1,13 @@
 {
   "name": "@ds/calendar",
   "version": "2.1.6",
+  "description": "Пакет календаря и выбора времени — Calendar с режимами даты, диапазона и месяца/года, TimePicker и TimePickerDropdown для времени в составе полей ввода.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/calendar"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/calendar",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -25,8 +32,9 @@
     "dist",
     "src",
     "README.md",
-    "CHANGELOG.md",
-    "MIGRATION.md"
+    "MIGRATION.md",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

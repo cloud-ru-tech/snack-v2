@@ -1,6 +1,13 @@
 {
   "name": "@ds/locale",
   "version": "1.2.0",
+  "description": "Рантайм локализации — строки живут в самих пакетах (defineLocale/defineMessages), провайдер несёт только язык.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/locale"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/locale",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

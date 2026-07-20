@@ -1,6 +1,12 @@
 {
   "name": "@ds/ai-field-notice",
   "version": "1.0.13",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-field-notice"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-field-notice",
   "license": "Apache-2.0",
   "author": "Артем Сауляк <avsaulyak@cloud.ru>",
   "description": "Композиция AiFieldBanner и AiQueue для контекстных уведомлений над AI-полем.",
@@ -18,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

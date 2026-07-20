@@ -1,6 +1,13 @@
 {
   "name": "@ds/popover-private",
   "version": "1.3.0",
+  "description": "Низкоуровневый popover на @floating-ui — позиционирование, стрелка, триггеры. Используется как фундамент для Tooltip, Popover, Dropdown.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/popover-private"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/popover-private",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

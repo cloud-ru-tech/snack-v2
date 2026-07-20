@@ -1,6 +1,13 @@
 {
   "name": "@ds/dropdown",
   "version": "2.1.3",
+  "description": "Выпадающий блок с произвольным контентом и встроенными состояниями loading / not-found / no-data / data-error.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/dropdown"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/dropdown",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

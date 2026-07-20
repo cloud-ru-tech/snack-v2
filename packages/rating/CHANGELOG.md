@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8772:** keep rating star flush inside its box ([b726716](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b7267164c6cf849ecec7d2ab565bc9a8a90c81f4))
+- **FF-8772:** keep rating star flush inside its box ([b726716](https://github.com/cloud-ru-tech/snack-v2/commit/b7267164c6cf849ecec7d2ab565bc9a8a90c81f4))
 
 ## 1.1.1 (2026-07-30)
 
@@ -21,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **FF-8784:** replace external deps with local implementations ([1ae0a32](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1ae0a324c52e5ecc43397455851c9653f7828551))
+- **FF-8784:** replace external deps with local implementations ([1ae0a32](https://github.com/cloud-ru-tech/snack-v2/commit/1ae0a324c52e5ecc43397455851c9653f7828551))
 
 ## 1.0.6 (2026-07-28)
 
@@ -31,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8784:** cover all appearances in rating and align star colors to figma ([f0785a0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f0785a09d7eec7e11282b8d6976178653e331101))
+- **FF-8784:** cover all appearances in rating and align star colors to figma ([f0785a0](https://github.com/cloud-ru-tech/snack-v2/commit/f0785a09d7eec7e11282b8d6976178653e331101))
 
 ## 1.0.4 (2026-07-23)
 
@@ -41,37 +41,37 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://github.com/cloud-ru-tech/snack-v2/commit/7daca5451be1df57e1b358922252467e2e2954aa))
 
 ## 1.0.2 (2026-07-13)
 
 ### Bug Fixes
 
-- **FF-8770:** align focus rings with Figma ([999489f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/999489f36baf4a92706e1f570953181368d06dd8))
+- **FF-8770:** align focus rings with Figma ([999489f](https://github.com/cloud-ru-tech/snack-v2/commit/999489f36baf4a92706e1f570953181368d06dd8))
 
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies
 
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0e22e73db3ad840302bcf5096f9806b712851d8))
+- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
 
 # 0.1.0 (2026-07-08)
 
 ### Bug Fixes
 
-- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d3a6cdee67c93639280de71de623019203cc8d11))
+- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://github.com/cloud-ru-tech/snack-v2/commit/d3a6cdee67c93639280de71de623019203cc8d11))
 
 ### Dependencies
 
-- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22b77dc4a9a0c866290843956d5a8e9334be83ad))
+- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://github.com/cloud-ru-tech/snack-v2/commit/22b77dc4a9a0c866290843956d5a8e9334be83ad))
 
 ### Features
 
-- **FF-0000:** self-contained README generation ([a40798a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a40798ac6f6626c39835dba33b370577eb5dd06d))
-- **FF-7949:** rating component ([0bc19c7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0bc19c793582bb568e8357c5378f3747f5b4cae4))
-- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
-- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
-- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
-- **FF-8488:** rating — adopt unified stories/e2e canon ([4cee801](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/4cee801cef2b8d462edc3cdede0f5c505c40ab61))
-- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9115367c9093680604dfd29b1781a2c304644a0d))
-- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+- **FF-0000:** self-contained README generation ([a40798a](https://github.com/cloud-ru-tech/snack-v2/commit/a40798ac6f6626c39835dba33b370577eb5dd06d))
+- **FF-7949:** rating component ([0bc19c7](https://github.com/cloud-ru-tech/snack-v2/commit/0bc19c793582bb568e8357c5378f3747f5b4cae4))
+- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://github.com/cloud-ru-tech/snack-v2/commit/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
+- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://github.com/cloud-ru-tech/snack-v2/commit/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
+- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://github.com/cloud-ru-tech/snack-v2/commit/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
+- **FF-8488:** rating — adopt unified stories/e2e canon ([4cee801](https://github.com/cloud-ru-tech/snack-v2/commit/4cee801cef2b8d462edc3cdede0f5c505c40ab61))
+- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://github.com/cloud-ru-tech/snack-v2/commit/9115367c9093680604dfd29b1781a2c304644a0d))
+- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))

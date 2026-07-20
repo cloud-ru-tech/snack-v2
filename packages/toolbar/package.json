@@ -1,6 +1,13 @@
 {
   "name": "@ds/toolbar",
   "version": "2.1.7",
+  "description": "Панель инструментов списков и таблиц — поиск, фильтры, массовые действия, меню «Ещё».",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/toolbar"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/toolbar",
   "license": "Apache-2.0",
   "author": "Anna Kozlova <apkozlova@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

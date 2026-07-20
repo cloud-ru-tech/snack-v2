@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-card",
   "version": "1.0.6",
+  "description": "Selectable AI-карточка с независимым boolean toggle, single-line заголовком и опциональным контентом.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-card"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-card",
   "license": "Apache-2.0",
   "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

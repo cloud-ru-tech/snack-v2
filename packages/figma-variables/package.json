@@ -1,6 +1,12 @@
 {
   "name": "@ds/figma-variables",
   "version": "4.3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/figma-variables"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/figma-variables",
   "description": "Figma design tokens (CSS custom properties, SCSS modules, TS) для дизайн-системы",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "license": "Apache-2.0",
@@ -14,7 +20,9 @@
   "files": [
     "build/css",
     "build/scss",
-    "build/ts"
+    "build/ts",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "devDependencies": {
     "@tokens-studio/sd-transforms": "2.0.3",

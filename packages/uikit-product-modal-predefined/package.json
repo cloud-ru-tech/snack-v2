@@ -1,6 +1,13 @@
 {
   "name": "@ds/uikit-product-modal-predefined",
   "version": "3.0.3",
+  "description": "Product preset-компоненты для delete, recall и release notes сценариев на базе Modal и BottomSheet.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-modal-predefined"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-modal-predefined",
   "license": "Apache-2.0",
   "author": "Robert Kuzhin <rikuzhin@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

@@ -27,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8784:** note config-selector figma padding token gap ([3dfa73b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3dfa73b72e73632e78b153379fa6af18530b2182))
+- **FF-8784:** note config-selector figma padding token gap ([3dfa73b](https://github.com/cloud-ru-tech/snack-v2/commit/3dfa73b72e73632e78b153379fa6af18530b2182))
 
 ## 1.0.6 (2026-07-23)
 
@@ -53,11 +53,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Dependencies
 
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0e22e73db3ad840302bcf5096f9806b712851d8))
+- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
 
 # 0.1.0 (2026-07-08)
 
 ### Features
 
-- **FF-8437:** add config-selector component ([620b343](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/620b343ab42ea40faad89c72ed4554c470973d28))
-- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+- **FF-8437:** add config-selector component ([620b343](https://github.com/cloud-ru-tech/snack-v2/commit/620b343ab42ea40faad89c72ed4554c470973d28))
+- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))

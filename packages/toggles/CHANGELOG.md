@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8772:** align toggles state layers, spinner colors and disabled switch track ([759618b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/759618bb2c7e8328b937287eb9efddda024bd318))
+- **FF-8772:** align toggles state layers, spinner colors and disabled switch track ([759618b](https://github.com/cloud-ru-tech/snack-v2/commit/759618bb2c7e8328b937287eb9efddda024bd318))
 
 ## 1.2.1 (2026-07-30)
 
@@ -21,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **FF-8784:** replace external deps with local implementations ([1ae0a32](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1ae0a324c52e5ecc43397455851c9653f7828551))
+- **FF-8784:** replace external deps with local implementations ([1ae0a32](https://github.com/cloud-ru-tech/snack-v2/commit/1ae0a324c52e5ecc43397455851c9653f7828551))
 
 ## 1.1.4 (2026-07-28)
 
@@ -31,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8784:** align toggles unchecked border and knob color to figma ([adb4fde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/adb4fdee97404f25589f0ae2ed393b76cf55d807))
+- **FF-8784:** align toggles unchecked border and knob color to figma ([adb4fde](https://github.com/cloud-ru-tech/snack-v2/commit/adb4fdee97404f25589f0ae2ed393b76cf55d807))
 
 ## 1.1.2 (2026-07-23)
 
@@ -41,38 +41,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://github.com/cloud-ru-tech/snack-v2/commit/7daca5451be1df57e1b358922252467e2e2954aa))
 
 # 1.1.0 (2026-07-13)
 
 ### Features
 
-- **FF-8770:** unify default component sizes across the design system ([0d1a705](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0d1a705c8d77f7eb59f64eada86d3b1d9f730181))
+- **FF-8770:** unify default component sizes across the design system ([0d1a705](https://github.com/cloud-ru-tech/snack-v2/commit/0d1a705c8d77f7eb59f64eada86d3b1d9f730181))
 
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies
 
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c0e22e73db3ad840302bcf5096f9806b712851d8))
+- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
 
 # 0.1.0 (2026-07-08)
 
 ### Bug Fixes
 
-- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d3a6cdee67c93639280de71de623019203cc8d11))
-- **FF-8231:** rename token background -> filled ([ba6f601](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ba6f6012a731967c5f10991db81d059d2a4bd582))
+- **FF-0000:** pick up generic-wrapped props (PropsWithChildren, WithSupportProps) ([d3a6cde](https://github.com/cloud-ru-tech/snack-v2/commit/d3a6cdee67c93639280de71de623019203cc8d11))
+- **FF-8231:** rename token background -> filled ([ba6f601](https://github.com/cloud-ru-tech/snack-v2/commit/ba6f6012a731967c5f10991db81d059d2a4bd582))
 
 ### Dependencies
 
-- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22b77dc4a9a0c866290843956d5a8e9334be83ad))
+- **FF-8663:** pin react 18 and adopt workspace:^ deps ([22b77dc](https://github.com/cloud-ru-tech/snack-v2/commit/22b77dc4a9a0c866290843956d5a8e9334be83ad))
 
 ### Features
 
-- **FF-0000:** self-contained README generation ([a40798a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a40798ac6f6626c39835dba33b370577eb5dd06d))
-- **FF-7947:** toggles package ([10dea1d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/10dea1d996f720bdaf98de00ec62ea88564be69c))
-- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
-- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
-- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
-- **FF-8488:** toggles — adopt unified stories/e2e canon ([06210cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/06210cbb408b3512e826a10cf928cd3584e7ea48))
-- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9115367c9093680604dfd29b1781a2c304644a0d))
-- **FF-8678:** add licenses ([1a24aa6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+- **FF-0000:** self-contained README generation ([a40798a](https://github.com/cloud-ru-tech/snack-v2/commit/a40798ac6f6626c39835dba33b370577eb5dd06d))
+- **FF-7947:** toggles package ([10dea1d](https://github.com/cloud-ru-tech/snack-v2/commit/10dea1d996f720bdaf98de00ec62ea88564be69c))
+- **FF-8129:** add accordion, icons/materials stories, theme addon, search restyle ([e0a01e7](https://github.com/cloud-ru-tech/snack-v2/commit/e0a01e71dc668a9a78e90492e986901a8f4d45fd))
+- **FF-8129:** astro SPA transitions and docs site improvements ([3a5c981](https://github.com/cloud-ru-tech/snack-v2/commit/3a5c981b180380ac8494a5d45ae8b2c1da20fcf9))
+- **FF-8129:** bootstrap repo with modal, drawer, and materials ([574d7cb](https://github.com/cloud-ru-tech/snack-v2/commit/574d7cbb47e1d73b2270d9d432926c2c71c057eb))
+- **FF-8488:** toggles — adopt unified stories/e2e canon ([06210cb](https://github.com/cloud-ru-tech/snack-v2/commit/06210cbb408b3512e826a10cf928cd3584e7ea48))
+- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://github.com/cloud-ru-tech/snack-v2/commit/9115367c9093680604dfd29b1781a2c304644a0d))
+- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))

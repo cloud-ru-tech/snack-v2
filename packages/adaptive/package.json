@@ -1,6 +1,13 @@
 {
   "name": "@ds/adaptive",
   "version": "1.1.1",
+  "description": "React Context текущей раскладки (layoutType) — переключает компоненты дизайн-системы между mobile и desktop поверхностями.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/adaptive"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/adaptive",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
@@ -23,7 +30,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": false,
   "dependencies": {

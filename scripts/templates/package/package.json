@@ -1,6 +1,11 @@
 {
   "name": "@ds/{{PKG_NAME}}",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/{{PKG_NAME}}"
+  },
   "license": "Apache-2.0",
   "author": "{{AUTHOR}}",
   "type": "module",

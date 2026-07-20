@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-icon-giga",
   "version": "1.0.5",
+  "description": "Иконка-логотип GigaChat в монохроме и брендовых градиентах для тёмного и светлого фона.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-icon-giga"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-icon-giga",
   "license": "Apache-2.0",
   "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

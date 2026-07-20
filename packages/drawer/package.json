@@ -1,6 +1,13 @@
 {
   "name": "@ds/drawer",
   "version": "3.2.2",
+  "description": "Пакет выезжающих панелей — компоненты Drawer и DrawerCustom с едиными токенами позиции и ширины.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/drawer"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/drawer",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",

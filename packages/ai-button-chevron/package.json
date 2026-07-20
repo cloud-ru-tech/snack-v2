@@ -1,6 +1,13 @@
 {
   "name": "@ds/ai-button-chevron",
   "version": "1.0.8",
+  "description": "Кнопка-шеврон 16×16 для раскрытия и сворачивания в составных AI-компонентах стриминга.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-button-chevron"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-button-chevron",
   "license": "Apache-2.0",
   "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
@@ -17,7 +24,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
   ],
   "sideEffects": [
     "*.css",
