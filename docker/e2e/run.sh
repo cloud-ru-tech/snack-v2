@@ -104,8 +104,15 @@ fi
 
 if [[ "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
   echo '→ pnpm build:storybook'
-  # Heap-лимит V8 (8192) запинен в самом скрипте `storybook build`
-  # (apps/storybook/package.json) — дефолтные ~2 ГБ падают OOM на большом наборе сторей.
+  # Heap-лимит V8: дефолт 8192 в скрипте `storybook build` (apps/storybook/package.json),
+  # дефолтные ~2 ГБ падают OOM на большом наборе сторей. На Apple Silicon эмулируемый
+  # amd64-контейнер + 8 ГБ heap не влезают в маленькую VM Docker Desktop → SIGSEGV (139)
+  # в фазе Vite-transform. Escape-hatch: DOCKER_E2E_STORYBOOK_HEAP=<MB> занижает heap, чтобы
+  # сборка уместилась (ценой риска OOM самой сборки — подбирай под объём VM).
+  if [[ -n "${DOCKER_E2E_STORYBOOK_HEAP:-}" ]]; then
+    export STORYBOOK_HEAP_MB="${DOCKER_E2E_STORYBOOK_HEAP}"
+    echo "→ storybook build heap override: ${STORYBOOK_HEAP_MB} MB (--max-old-space-size)"
+  fi
   pnpm build:storybook
 else
   echo '→ skip build:storybook (DOCKER_E2E_SKIP_STORYBOOK_BUILD=1)'

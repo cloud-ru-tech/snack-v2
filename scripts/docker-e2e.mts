@@ -30,6 +30,9 @@
  *   DOCKER_E2E_INSTALL=0              — пропустить pnpm install (или флаг --no-install)
  *   DOCKER_E2E_NPMRC                  — путь к npmrc (default ~/.npmrc)
  *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать storybook static (reuse предыдущей сборки)
+ *   DOCKER_E2E_STORYBOOK_HEAP=<MB>    — занизить V8 heap сборки storybook (--max-old-space-size),
+ *                                       дефолт 8192; escape-hatch, когда 8 ГБ heap + эмуляция amd64
+ *                                       не влезают в VM Docker Desktop и build падает SIGSEGV (139)
  *   DOCKER_E2E_BUILD_PACKAGES=1       — форсить build:packages (по умолчанию НЕ собирается: storybook
  *                                       static резолвит @ds/* → packages/<pkg>/src через алиасы, dist не нужен)
  */

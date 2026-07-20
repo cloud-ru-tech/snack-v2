@@ -176,15 +176,21 @@ DOCKER_E2E_INSTALL=0 DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 \
 
 #### Частые ошибки
 
-- **`Segmentation fault` / `Exit status 139` в фазе `build:storybook` (`transforming...`).** Сборке Storybook нужен V8-heap 8192 МБ (запинен в `apps/storybook/package.json`; дефолтные ~2 ГБ падают OOM на большом наборе сторей). В эмулируемом amd64-контейнере heap + накладные расходы эмуляции не влезают в память VM Docker Desktop → процесс падает с SIGSEGV (139), а не с чистым OOM (137). Симптом «до этого работало, а теперь медленно и падает» обычно означает, что обновление Docker Desktop сбросило Resources к дефолту.
+- **`Segmentation fault` / `Exit status 139` в фазе `build:storybook` (`transforming...`).** Сборке Storybook нужен V8-heap 8192 МБ (запинен в `apps/storybook/package.json`; дефолтные ~2 ГБ падают OOM на большом наборе сторей). На Apple Silicon контейнер идёт как эмулируемый `linux/amd64`, и heap + накладные расходы эмуляции не влезают в память VM Docker Desktop → процесс падает с SIGSEGV (139), а не с чистым OOM (137). Симптом «до этого работало, а теперь медленно и падает» обычно означает, что обновление Docker Desktop сбросило Resources к дефолту. Два способа:
+  - **Поднять память Docker Desktop** (рекомендуется — сохраняет amd64-рендеринг = паритет с CI). Docker Desktop → **Settings** → **Resources** → **Memory** → **16 GB** (минимум 12 GB) → **Apply & restart**. Проверка:
 
-  Лечится памятью: Docker Desktop → **Settings** → **Resources** → **Memory** → **16 GB** (минимум 12 GB) → **Apply & restart**. Проверка:
+    ```bash
+    docker info --format '{{.MemTotal}}'   # ожидаем ~16000000000
+    ```
 
-  ```bash
-  docker info --format '{{.MemTotal}}'   # ожидаем ~16000000000
-  ```
+    Заодно там же в **Settings → General** проверь галку «Use Rosetta for x86_64/amd64 emulation» — без неё amd64 идёт через QEMU и всё становится ещё медленнее.
+  - **Занизить heap сборки** без изменения памяти VM — `DOCKER_E2E_STORYBOOK_HEAP=<МБ>`:
 
-  Заодно там же в **Settings → General** проверь галку «Use Rosetta for x86_64/amd64 emulation» — без неё amd64 идёт через QEMU и всё становится ещё медленнее.
+    ```bash
+    DOCKER_E2E_STORYBOOK_HEAP=6144 pnpm test:e2e:docker:visual:update:changed packages/<pkg>
+    ```
+
+    Это escape-hatch «уместить сборку под маленькую VM»: слишком низкое значение упрётся уже в чистый OOM (137) — тогда подними число (7168) либо всё же добавь памяти VM. Дефолт (без переменной) — 8192, поведение CI не меняется.
 - **`Cannot find module '@ds/...'` при build в Docker.** Конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
 
 Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
