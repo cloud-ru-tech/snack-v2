@@ -75,13 +75,9 @@ export default createConfig(
     test: {
       // *.test.ts — Vitest unit tests.
       // Playwright E2E/visual specs в packages/<pkg>/__test__/*.spec.ts — не трогаем.
-      // Vendored @ds/tokens-builder (apps/) несёт свой upstream-набор unit-тестов
-      // в `__tests__/` (double underscore — не путать с Playwright `__test__/`). Гоняем их тоже.
-      include: [
-        'packages/**/__tests__/**/*.test.ts',
-        'scripts/__tests__/**/*.test.ts',
-        'apps/tokens-builder/__tests__/**/*.test.ts',
-      ],
+      // `packages/**/__tests__/**/*.test.ts` покрывает и вендоренный tokens-builder
+      // (`packages/figma-variables/tools/__tests__/`), и обычные unit-тесты пакетов.
+      include: ['packages/**/__tests__/**/*.test.ts', 'scripts/__tests__/**/*.test.ts'],
       // Базовый конфиг добавляет `**/__tests__/**/*.spec.*` — в репо `.spec.ts`
       // зарезервирован под Playwright (`__test__/`), а `.claude/` — временный
       // скретч агента. Исключаем, чтобы не тянуть их в unit-прогон.

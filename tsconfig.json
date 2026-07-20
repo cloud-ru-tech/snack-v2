@@ -76,7 +76,7 @@
     "storybook/**/*.d.ts",
     "packages/*/docs/**/*.mdx",
     "packages/*/__tests__/**",
-    "apps/tokens-builder/**",
+    "packages/figma-variables/tools/**",
     "apps/figma-selected-block/**"
   ]
 }
