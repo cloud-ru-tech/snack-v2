@@ -29,6 +29,16 @@ export type RootThemeProviderProps = {
   rootRef?: RefObject<HTMLElement | null>;
   /** Дополнительный класс на wrapper-`<div>` (паддинги/фон). Только в wrapper-режиме (без `rootRef`). */
   className?: string;
+  /**
+   * Кастомный бренд-цвет потребителя (hex `#rrggbb`) для white-label. Генерирует бренд-палитру из
+   * seed-цвета и инжектит scoped `<style>` на бренд-классы этого поддерева. Правило на бренд-классе
+   * (а не inline на одном элементе) переживает переэмиты `sn-*` вложенными компонентами (Table и т.п.),
+   * поэтому кастомный цвет доходит до всей вложенности. Невалидный hex игнорируется. Глобальная
+   * (app-root) альтернатива для порталов — хук `useApplyCustomTheme`.
+   */
+  brandColor?: string;
+  /** CSP-`nonce` для инжектируемого `<style>` кастомного бренд-цвета. */
+  nonce?: string;
   children: ReactNode;
 };
 
@@ -42,7 +52,15 @@ export type RootThemeProviderProps = {
  * Этот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;
  * результат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).
  */
-export function RootThemeProvider({ value, store, rootRef, className, children }: RootThemeProviderProps) {
+export function RootThemeProvider({
+  value,
+  store,
+  rootRef,
+  className,
+  brandColor,
+  nonce,
+  children,
+}: RootThemeProviderProps) {
   const { colorScheme, brand, brandRole, density, acrylic } = value ?? {};
 
   // Мемо по значениям осей (не по идентичности объекта `value`): иначе литерал `value={{…}}` у
@@ -59,7 +77,7 @@ export function RootThemeProvider({ value, store, rootRef, className, children }
 
   return (
     <ThemeAppearanceStoreProvider store={store ?? staticThemeStore}>
-      <ThemeScope rootRef={rootRef} className={className}>
+      <ThemeScope rootRef={rootRef} className={className} brandColor={brandColor} nonce={nonce}>
         {children}
       </ThemeScope>
     </ThemeAppearanceStoreProvider>

@@ -1,0 +1,26 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+
+  padding: base.$sn-primitive-dimension-20;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-brand-anatomy-radius-card-l;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.caption {
+  opacity: 0.7;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}

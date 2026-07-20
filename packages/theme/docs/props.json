@@ -136,6 +136,11 @@
     "propsTypeName": "RootThemeProviderProps",
     "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
     "props": {
+      "brandColor": {
+        "type": "string",
+        "required": false,
+        "description": "Кастомный бренд-цвет потребителя (hex `#rrggbb`) для white-label. Генерирует бренд-палитру из\nseed-цвета и инжектит scoped `<style>` на бренд-классы этого поддерева. Правило на бренд-классе\n(а не inline на одном элементе) переживает переэмиты `sn-*` вложенными компонентами (Table и т.п.),\nпоэтому кастомный цвет доходит до всей вложенности. Невалидный hex игнорируется. Глобальная\n(app-root) альтернатива для порталов — хук `useApplyCustomTheme`."
+      },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": true
@@ -144,6 +149,11 @@
         "type": "string",
         "required": false,
         "description": "Дополнительный класс на wrapper-`<div>` (паддинги/фон). Только в wrapper-режиме (без `rootRef`)."
+      },
+      "nonce": {
+        "type": "string",
+        "required": false,
+        "description": "CSP-`nonce` для инжектируемого `<style>` кастомного бренд-цвета."
       },
       "rootRef": {
         "type": "RefObject<HTMLElement | null>",
@@ -331,10 +341,20 @@
     "propsTypeName": null,
     "description": "Внутренний помощник Root/Child-провайдеров: читает ближайшее оформление (= собственный стор\nпровайдера, под которым отрендерен) и эмитит полный набор `sn-*`. Реактивен — при смене темы\nпересобирает и переустанавливает классы.\n\n- `rootRef` задан → классы добавляются на внешний элемент через эффект (без лишнего DOM-узла);\n  при смене набора старые классы снимаются, новые ставятся.\n- `rootRef` не задан → классы навешиваются на wrapper `<div>` (+ `className` потребителя).",
     "props": {
+      "brandColor": {
+        "type": "string",
+        "required": false,
+        "description": "Кастомный бренд-цвет (hex). Инжектит scoped `<style>`, переопределяющий бренд-палитру на бренд-классах\nподдерева. В отличие от inline-переменных, правило на бренд-классе переживает переэмиты `sn-*` внутри\n(Table/Stepper и т.п.), поэтому кастомный цвет доходит до вложенных компонентов."
+      },
       "className": {
         "type": "string",
         "required": false,
         "description": "Дополнительный класс на wrapper-`<div>` (паддинги/фон вокруг темы). Действует только в wrapper-режиме;\nпри `rootRef` игнорируется (внешним элементом владеет потребитель)."
+      },
+      "nonce": {
+        "type": "string",
+        "required": false,
+        "description": "CSP-`nonce` для инжектируемого `<style>`."
       },
       "rootRef": {
         "type": "RefObject<HTMLElement | null>",

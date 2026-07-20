@@ -1,7 +1,7 @@
 export const TEST_IDS = {
-  rootReadout: 'theme-providers-root-readout',
-  childReadout: 'theme-providers-child-readout',
+  rootRegion: 'theme-providers-root-region',
+  childRegion: 'theme-providers-child-region',
   rootRefTarget: 'theme-providers-rootref-target',
-  storeReadout: 'theme-providers-store-readout',
+  storeRegion: 'theme-providers-store-region',
   storeToggle: 'theme-providers-store-toggle',
 } as const;

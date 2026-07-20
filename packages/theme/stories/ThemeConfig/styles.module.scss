@@ -1,14 +1,26 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-.themeWrapper {
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-16;
   width: 100%;
-  padding: base.$sn-primitive-dimension-16;
-  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-neutral-decor;
-  background-color: base.$sn-theme-color-neutral-background2Level;
 }
 
-.buttonWrapper {
+.scope {
   display: flex;
-  gap: base.$sn-primitive-dimension-16;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+
+  min-width: 0;
   padding: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-brand-anatomy-radius-card-l;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.toggle {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
 }

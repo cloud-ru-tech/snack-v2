@@ -11,13 +11,18 @@ import { ColorSchemeToggle } from '../demos/examples/ColorSchemeToggle'
 import ColorSchemeToggleSrc from '../demos/examples/ColorSchemeToggle.tsx?raw'
 import { LocalDensity } from '../demos/examples/LocalDensity'
 import LocalDensitySrc from '../demos/examples/LocalDensity.tsx?raw'
+import { CustomBrandColor } from '../demos/examples/CustomBrandColor'
+import CustomBrandColorSrc from '../demos/examples/CustomBrandColor.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
 import themeDoc from './props.json'
 
 # Theme
 
 `@ds/theme` управляет оформлением дизайн-системы. **Оси оформления живут в React-контексте, а полный набор CSS-классов `sn-*` эмитится на DOM-границу.** `RootThemeProvider` ставится один раз в корне и держит оси (`colorScheme`, `brand`, `brandRole`, `density`, `acrylic`), эмитя из них полный набор `sn-*` на `rootRef` (обычно `<html>`). Локальные переопределения в поддереве делает `ChildThemeProvider`, а компонент, фиксирующий ось у себя, — хук `useThemeClassnames`.
+
+Кроме предустановленных брендов `@ds/theme` умеет собрать бренд-палитру из **одного seed-цвета** (white-label): из него генерируется полная шкала тонов `--sn-brand-color-primary-*`, и весь семантический слой каскадит из неё — см. секцию «Кастомный бренд-цвет».
 
 Полное руководство по модели и подключению — в паттерне [Оформление — тема, бренд, плотность](/patterns/theme).
 
@@ -27,6 +32,7 @@ import themeDoc from './props.json'
 - Цветовая схема light/dark берётся из `useColorScheme` (`prefers-color-scheme` + опциональный персист-адаптер) и передаётся в `value.colorScheme`.
 - Часть дерева должна иметь другой бренд / плотность / схему — `ChildThemeProvider` сливает partial-переопределение с ближайшим контекстом.
 - Компонент локально фиксирует ось (мобильная обёртка с `density: 'comfort'`) — `useThemeClassnames({ density })` подмешивает текущие colorScheme/brand из контекста.
+- Нужен бренд-цвет вне предустановленного набора (white-label под клиента) — `RootThemeProvider brandColor='#RRGGBB'` (декларативно) либо хук `useApplyCustomTheme({ color })` (императивно).
 
 > Полный набор `sn-*` обязателен на каждой границе: классы токенов не переопределяются по одной оси через CSS-каскад. Никогда не ставьте одиночный `sn-comfort` руками — для этого есть провайдеры и хук. Старый `ThemeProvider` / `useThemeConfig` (произвольные темы по `themeMap`) — отдельный legacy-механизм, не путать с `RootThemeProvider`.
 
@@ -42,6 +48,7 @@ import {
   ChildThemeProvider,
   useThemeClassnames,
   useColorScheme,
+  useApplyCustomTheme,
   getGlobalThemeStore,
 } from '@ds/theme'
 ```
@@ -72,6 +79,38 @@ import {
   <LocalDensity client:visible />
 </Example>
 
+## Кастомный бренд-цвет
+
+Помимо предустановленных брендов (`brandA` / `brandB` / `brandC`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
+
+Палитра инжектится **CSS-правилом на бренд-классы** (`.sn-brandA/B/C`), а не inline-переменными на одном элементе. Это принципиально: компоненты, переэмитящие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
+
+- **Декларативно** — проп `brandColor` у `RootThemeProvider`. Инжектит scoped-правило на бренд-классы поддерева провайдера (доходит до вложенных переэмитов):
+
+  ```tsx
+  <RootThemeProvider value={{ colorScheme }} brandColor={brand.primaryColor}>
+    {app}
+  </RootThemeProvider>
+  ```
+
+- **Императивно** — хук `useApplyCustomTheme`. Без `scope` инжектит **глобальное** правило на все бренд-классы страницы (покрывает и порталы — дропдауны, тултипы); со `scope` ограничивает поддеревом. Удобно, когда бренд-цвет приходит асинхронно из бэкенда в bootstrap-компоненте:
+
+  ```tsx
+  useApplyCustomTheme({ color: brand.primaryColor, enabled: Boolean(brand), nonce })
+  ```
+
+  Порталы монтируются вне поддерева провайдера, поэтому для их перекраски используйте **глобальный** `useApplyCustomTheme` в корне приложения (без `scope`), а не scoped-`brandColor`.
+
+Схему (light/dark) кастомный бренд-цвет не задаёт — она остаётся из `colorScheme`, а палитра тонов от схемы не зависит. Для SSR без мигания палитру можно собрать строкой заранее: `generateBrandPalette(color)` / `buildBrandPaletteVars(color)` из `@ds/theme/ssr` (чистые, без React и DOM).
+
+<Example
+  title='Бренд-цвет из seed'
+  description='`brandColor` генерирует палитру `--sn-brand-color-primary-*` из одного цвета — акцент компонентов перекрашивается вслед за выбором.'
+  code={CustomBrandColorSrc}
+>
+  <CustomBrandColor client:visible />
+</Example>
+
 ## Props
 
 ### RootThemeProvider
@@ -81,6 +120,10 @@ import {
 ### ChildThemeProvider
 
 <PropsTable data={themeDoc.ChildThemeProvider} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-theme-custom-theme--playground' height={460} />
 
 ## Смотри также
 

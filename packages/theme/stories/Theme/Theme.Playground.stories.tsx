@@ -1,73 +1,29 @@
-import {
-  BRAND,
-  Brand,
-  BRAND_ROLE,
-  BrandRole,
-  ChildThemeProvider,
-  COLOR_SCHEME,
-  ColorScheme,
-  DENSITY,
-  Density,
-  useThemeClassnames,
-} from '@ds/theme';
+import { BRAND, Brand, BRAND_ROLE, BrandRole, ChildThemeProvider, DENSITY, Density } from '@ds/theme';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import styles from './styles.module.scss';
+import { ThemePreview } from '../shared/ThemePreview';
 import { TEST_IDS } from './testIds';
 
-/**
- * Консьюмер: берёт полный набор `sn-*` из ближайшего оформления через `useThemeClassnames()`
- * и навешивает его на свою DOM-границу. Так же ведут себя реальные компоненты, фиксирующие ось.
- */
-function ThemeSurface() {
-  const classNames = useThemeClassnames();
-
-  return (
-    <div className={`${classNames} ${styles.surface}`}>
-      <div className={styles.swatchGrid}>
-        <div className={`${styles.swatch} ${styles.swatchAccent}`}>
-          <span className={styles.swatchLabel}>Accent</span>
-          <span>Кнопка, ссылка</span>
-        </div>
-        <div className={`${styles.swatch} ${styles.swatchNeutral}`}>
-          <span className={styles.swatchLabel}>Neutral</span>
-          <span>Фон, текст</span>
-        </div>
-        <div className={`${styles.swatch} ${styles.swatchCritical}`}>
-          <span className={styles.swatchLabel}>Critical</span>
-          <span>Ошибка, удаление</span>
-        </div>
-      </div>
-      <pre className={styles.classnames}>{classNames}</pre>
-    </div>
-  );
-}
-
 type StoryProps = {
-  colorScheme: ColorScheme;
   brand: Brand;
   brandRole: BrandRole;
   density: Density;
   acrylic: boolean;
-  'data-test-id'?: string;
 };
 
 const meta: Meta<StoryProps> = {
-  title: 'Components/Theme',
+  title: 'Components/Theme/Overview',
   parameters: { layout: 'fullscreen', figma: { disable: true } },
   args: {
-    colorScheme: COLOR_SCHEME.Light,
     brand: BRAND.A,
     brandRole: BRAND_ROLE.Main,
-    density: DENSITY.Compact,
+    density: DENSITY.Comfort,
     acrylic: false,
-    'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    colorScheme: { control: 'radio', options: Object.values(COLOR_SCHEME) },
     brand: { control: 'radio', options: Object.values(BRAND) },
     brandRole: { control: 'select', options: Object.values(BRAND_ROLE) },
     density: { control: 'radio', options: Object.values(DENSITY) },
@@ -81,34 +37,28 @@ type Story = StoryObj<StoryProps>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => (
-    <div data-test-id={args['data-test-id'] ?? TEST_IDS.root}>
-      <DemoPage>
-        <DemoPanel width='wide'>
-          <DemoTitle>Theme</DemoTitle>
-          <DemoHint>
-            <code>ChildThemeProvider</code> переопределяет оси оформления в поддереве и эмитит полный набор{' '}
-            <code>sn-*</code> на границе. Меняйте контролы — <code>useThemeClassnames()</code> подмешивает оси из
-            контекста, и образцы цвета перекрашиваются. В приложении корень держит <code>RootThemeProvider</code>, а{' '}
-            <code>colorScheme</code> приходит из <code>useColorScheme</code>.
-          </DemoHint>
-          <DemoActions block>
-            <div className={styles.stack}>
-              <ChildThemeProvider
-                value={{
-                  colorScheme: args.colorScheme,
-                  brand: args.brand,
-                  brandRole: args.brandRole,
-                  density: args.density,
-                  acrylic: args.acrylic,
-                }}
-              >
-                <ThemeSurface />
-              </ChildThemeProvider>
-            </div>
-          </DemoActions>
-        </DemoPanel>
-      </DemoPage>
-    </div>
+    <DemoPage>
+      <DemoPanel width='wide'>
+        <DemoTitle>Оси оформления</DemoTitle>
+        <DemoHint>
+          Светлая/тёмная схема наследуется от аддона темы в тулбаре Storybook. Меняйте контролы <code>brand</code>,{' '}
+          <code>brandRole</code>, <code>density</code>, <code>acrylic</code> — <code>ChildThemeProvider</code>{' '}
+          переопределяет эти оси в поддереве (colorScheme наследуется), и реальные компоненты перекрашиваются.
+        </DemoHint>
+        <DemoActions block>
+          <ChildThemeProvider
+            value={{
+              brand: args.brand,
+              brandRole: args.brandRole,
+              density: args.density,
+              acrylic: args.acrylic,
+            }}
+          >
+            <ThemePreview testId={TEST_IDS.root} />
+          </ChildThemeProvider>
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
   ),
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();

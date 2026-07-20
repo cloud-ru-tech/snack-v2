@@ -1,0 +1,88 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-brand-anatomy-radius-card-l;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-32;
+}
+
+// Шапка/баннер/табы выходят к краям карточки (гасят горизонтальный padding контейнера).
+.headline {
+  margin: 0 calc(#{base.$sn-primitive-dimension-24} * -1);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: base.$sn-primitive-dimension-12 base.$sn-primitive-dimension-24;
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.headerSide {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbs {
+  min-width: 0;
+}
+
+.fieldBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.fieldRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  & > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.toggleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.toggleRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  justify-content: space-between;
+}

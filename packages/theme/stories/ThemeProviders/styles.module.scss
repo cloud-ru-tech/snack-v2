@@ -1,0 +1,8 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  width: 100%;
+}

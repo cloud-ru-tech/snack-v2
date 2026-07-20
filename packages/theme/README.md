@@ -4,6 +4,8 @@
 
 `@ds/theme` управляет оформлением дизайн-системы. **Оси оформления живут в React-контексте, а полный набор CSS-классов `sn-*` эмитится на DOM-границу.** `RootThemeProvider` ставится один раз в корне и держит оси (`colorScheme`, `brand`, `brandRole`, `density`, `acrylic`), эмитя из них полный набор `sn-*` на `rootRef` (обычно `<html>`). Локальные переопределения в поддереве делает `ChildThemeProvider`, а компонент, фиксирующий ось у себя, — хук `useThemeClassnames`.
 
+Кроме предустановленных брендов `@ds/theme` умеет собрать бренд-палитру из **одного seed-цвета** (white-label): из него генерируется полная шкала тонов `--sn-brand-color-primary-*`, и весь семантический слой каскадит из неё — см. секцию «Кастомный бренд-цвет».
+
 Полное руководство по модели и подключению — в паттерне [Оформление — тема, бренд, плотность](/patterns/theme).
 
 ## Когда использовать
@@ -12,6 +14,7 @@
 - Цветовая схема light/dark берётся из `useColorScheme` (`prefers-color-scheme` + опциональный персист-адаптер) и передаётся в `value.colorScheme`.
 - Часть дерева должна иметь другой бренд / плотность / схему — `ChildThemeProvider` сливает partial-переопределение с ближайшим контекстом.
 - Компонент локально фиксирует ось (мобильная обёртка с `density: 'comfort'`) — `useThemeClassnames({ density })` подмешивает текущие colorScheme/brand из контекста.
+- Нужен бренд-цвет вне предустановленного набора (white-label под клиента) — `RootThemeProvider brandColor='#RRGGBB'` (декларативно) либо хук `useApplyCustomTheme({ color })` (императивно).
 
 > Полный набор `sn-*` обязателен на каждой границе: классы токенов не переопределяются по одной оси через CSS-каскад. Никогда не ставьте одиночный `sn-comfort` руками — для этого есть провайдеры и хук. Старый `ThemeProvider` / `useThemeConfig` (произвольные темы по `themeMap`) — отдельный legacy-механизм, не путать с `RootThemeProvider`.
 
@@ -27,6 +30,7 @@ import {
   ChildThemeProvider,
   useThemeClassnames,
   useColorScheme,
+  useApplyCustomTheme,
   getGlobalThemeStore,
 } from '@ds/theme'
 ```
@@ -169,8 +173,10 @@ export function LocalDensity() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `brandColor` | `string` | — | Кастомный бренд-цвет потребителя (hex `#rrggbb`) для white-label. Генерирует бренд-палитру из <br/> seed-цвета и инжектит scoped `<style>` на бренд-классы этого поддерева. Правило на бренд-классе <br/> (а не inline на одном элементе) переживает переэмиты `sn-*` вложенными компонентами (Table и т.п.), <br/> поэтому кастомный цвет доходит до всей вложенности. Невалидный hex игнорируется. Глобальная <br/> (app-root) альтернатива для порталов — хук `useApplyCustomTheme`. |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс на wrapper-`<div>` (паддинги/фон). Только в wrapper-режиме (без `rootRef`). |
+| `nonce` | `string` | — | CSP-`nonce` для инжектируемого `<style>` кастомного бренд-цвета. |
 | `rootRef` | `RefObject<HTMLElement \| null>` | — | Внешний элемент для полного набора `sn-*` (обычно `<html>`/`<body>`). Если не задан — провайдер <br/> оборачивает children в `<div>` с этим набором. |
 | `store` | `ThemeAppearanceStore` | — | Внешний реактивный стор оформления (`getGlobalThemeStore().store`). Если задан — приоритетнее <br/> `value`; подписанные провайдеры обновляются при смене темы без перерендера провайдера. Так один <br/> глобальный стор охватывает все микрофронты. Сеттер для shell — `getGlobalThemeStore().setAppearance`. |
 | `value` | `ThemeAppearance` | — | Оформление приложения. Используется в static-режиме (один React-корень: SSR — одно значение на <br/> запрос, либо CSR с собственным state, напр. `colorScheme` из `useColorScheme`). Для multi-root <br/> (single-spa) — см. `store`. |
@@ -240,3 +246,70 @@ export function LocalDensity() {
 - **Adaptive** — раскладка `layoutType` (источник `density` в приложении).
 - **Locale** — рантайм локализации.
 - **PortalContext** — корневой DOM-узел для порталов.
+## Кастомный бренд-цвет
+
+Помимо предустановленных брендов (`brandA` / `brandB` / `brandC`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
+
+Палитра инжектится **CSS-правилом на бренд-классы** (`.sn-brandA/B/C`), а не inline-переменными на одном элементе. Это принципиально: компоненты, переэмитящие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
+
+- **Декларативно** — проп `brandColor` у `RootThemeProvider`. Инжектит scoped-правило на бренд-классы поддерева провайдера (доходит до вложенных переэмитов):
+
+  ```tsx
+  <RootThemeProvider value={{ colorScheme }} brandColor={brand.primaryColor}>
+    {app}
+  </RootThemeProvider>
+  ```
+
+- **Императивно** — хук `useApplyCustomTheme`. Без `scope` инжектит **глобальное** правило на все бренд-классы страницы (покрывает и порталы — дропдауны, тултипы); со `scope` ограничивает поддеревом. Удобно, когда бренд-цвет приходит асинхронно из бэкенда в bootstrap-компоненте:
+
+  ```tsx
+  useApplyCustomTheme({ color: brand.primaryColor, enabled: Boolean(brand), nonce })
+  ```
+
+  Порталы монтируются вне поддерева провайдера, поэтому для их перекраски используйте **глобальный** `useApplyCustomTheme` в корне приложения (без `scope`), а не scoped-`brandColor`.
+
+Схему (light/dark) кастомный бренд-цвет не задаёт — она остаётся из `colorScheme`, а палитра тонов от схемы не зависит. Для SSR без мигания палитру можно собрать строкой заранее: `generateBrandPalette(color)` / `buildBrandPaletteVars(color)` из `@ds/theme/ssr` (чистые, без React и DOM).
+
+### Бренд-цвет из seed
+
+`brandColor` генерирует палитру `--sn-brand-color-primary-*` из одного цвета — акцент компонентов перекрашивается вслед за выбором.
+
+```tsx
+import { Block } from '@ds/block';
+import { Button } from '@ds/button';
+import { Counter } from '@ds/counter';
+import { SegmentControl } from '@ds/segment-control';
+import { Tag } from '@ds/tag';
+import { RootThemeProvider } from '@ds/theme';
+import { Flex } from '@ds/uikit-product-flex';
+import { useState } from 'react';
+
+const COLOR_ITEMS = [
+  { value: '#ff7a00', label: 'Оранжевый' },
+  { value: '#8a2be2', label: 'Фиолетовый' },
+  { value: '#0077ff', label: 'Синий' },
+  { value: '#e5006e', label: 'Розовый' },
+];
+
+export function CustomBrandColor() {
+  const [color, setColor] = useState('#ff7a00');
+
+  return (
+    <Flex direction='column' gap='2m' align='flex-start'>
+      <SegmentControl items={COLOR_ITEMS} value={color} onChange={value => setColor(String(value))} />
+
+      {/* brandColor генерирует палитру `--sn-brand-color-primary-*` из одного seed-цвета — акцент
+          компонентов ниже перекрашивается вслед за выбором. */}
+      <RootThemeProvider value={{ colorScheme: 'light', brand: 'brandA', brandRole: 'main' }} brandColor={color}>
+        <Block>
+          <Flex gap='2m' align='center' wrap>
+            <Button appearance='primary' label='Действие' />
+            <Tag appearance='primary' label='Бренд' />
+            <Counter value={8} appearance='primary' />
+          </Flex>
+        </Block>
+      </RootThemeProvider>
+    </Flex>
+  );
+}
+```
