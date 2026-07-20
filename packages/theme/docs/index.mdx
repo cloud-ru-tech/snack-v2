@@ -13,6 +13,8 @@ import { LocalDensity } from '../demos/examples/LocalDensity'
 import LocalDensitySrc from '../demos/examples/LocalDensity.tsx?raw'
 import { CustomBrandColor } from '../demos/examples/CustomBrandColor'
 import CustomBrandColorSrc from '../demos/examples/CustomBrandColor.tsx?raw'
+import { CustomBrandColorHook } from '../demos/examples/CustomBrandColorHook'
+import CustomBrandColorHookSrc from '../demos/examples/CustomBrandColorHook.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -109,6 +111,14 @@ import {
   code={CustomBrandColorSrc}
 >
   <CustomBrandColor client:visible />
+</Example>
+
+<Example
+  title='Императивный хук со scope'
+  description='`useApplyCustomTheme({ color, scope })` инжектит правило, скоупленное на `#brand-hook-scope` — результат применяется ко всем компонентам внутри поддерева. Без `scope` правило глобальное (покрывает и порталы).'
+  code={CustomBrandColorHookSrc}
+>
+  <CustomBrandColorHook client:visible />
 </Example>
 
 ## Props

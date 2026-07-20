@@ -8,9 +8,11 @@ export function isCimode(lang: Lang): boolean {
 
 /**
  * Сводит произвольный BCP-47 тег к набору языков, которые DS отдаёт из коробки: по префиксу `en`
- * → `en-GB`, `ru`/`be` → `ru-RU`, `cimode` сохраняется, остальное → `DEFAULT_LANG`.
+ * → `en-GB`, `ru`/`be` → `ru-RU`, `cimode` сохраняется, нераспознанное → `fallback` (по умолчанию
+ * `DEFAULT_LANG`). `fallback` позволяет приложению задать свой язык-по-умолчанию снаружи, не завязываясь
+ * на встроенный `en-GB`.
  */
-export function normalizeToBuiltinLang(lang: Lang): Lang {
+export function normalizeToBuiltinLang(lang: Lang, fallback: Lang = DEFAULT_LANG): Lang {
   if (isCimode(lang)) {
     return CIMODE;
   }
@@ -25,7 +27,7 @@ export function normalizeToBuiltinLang(lang: Lang): Lang {
     return 'ru-RU';
   }
 
-  return DEFAULT_LANG;
+  return fallback;
 }
 
 /* eslint-disable @cloud-ru/ssr-safe-react/domApi -- guarded by isBrowser(); navigator читается только в браузере */
@@ -36,14 +38,15 @@ function isBrowser(): boolean {
 
 /**
  * Определяет язык из окружения браузера (`navigator.language`) и нормализует к встроенному набору.
- * Вне браузера (SSR) → `DEFAULT_LANG`.
+ * Нераспознанный язык и SSR (вне браузера) → `fallback` (по умолчанию `DEFAULT_LANG`). Приложение может
+ * передать собственный язык-по-умолчанию, если `en-GB` не подходит.
  */
-export function detectBrowserLang(): Lang {
+export function detectBrowserLang(fallback: Lang = DEFAULT_LANG): Lang {
   if (!isBrowser()) {
-    return DEFAULT_LANG;
+    return fallback;
   }
 
-  return normalizeToBuiltinLang(navigator.language || DEFAULT_LANG);
+  return normalizeToBuiltinLang(navigator.language || fallback, fallback);
 }
 
 /* eslint-enable @cloud-ru/ssr-safe-react/domApi */

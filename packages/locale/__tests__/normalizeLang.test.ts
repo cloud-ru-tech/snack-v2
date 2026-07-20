@@ -22,6 +22,12 @@ describe('normalizeToBuiltinLang', () => {
     expect(normalizeToBuiltinLang('fr-FR')).toBe(DEFAULT_LANG);
     expect(normalizeToBuiltinLang('de')).toBe(DEFAULT_LANG);
   });
+
+  it('нераспознанный язык → переданный fallback', () => {
+    expect(normalizeToBuiltinLang('fr-FR', 'ru-RU')).toBe('ru-RU');
+    // встроенные языки от fallback не зависят
+    expect(normalizeToBuiltinLang('en-US', 'ru-RU')).toBe('en-GB');
+  });
 });
 
 describe('isCimode', () => {
@@ -37,6 +43,13 @@ describe('detectBrowserLang', () => {
   });
 
   it('вне браузера → DEFAULT_LANG', () => {
+    expect(detectBrowserLang()).toBe(DEFAULT_LANG);
+  });
+
+  it('нераспознанный navigator.language → переданный fallback', () => {
+    vi.stubGlobal('window', { document: { createElement: () => ({}) } });
+    vi.stubGlobal('navigator', { language: 'fr-FR' });
+    expect(detectBrowserLang('ru-RU')).toBe('ru-RU');
     expect(detectBrowserLang()).toBe(DEFAULT_LANG);
   });
 

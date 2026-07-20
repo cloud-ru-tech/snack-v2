@@ -42,6 +42,7 @@ function Controls({
     <div className={styles.sidebar}>
       <div className={styles.field}>
         <FieldColor
+          label='Кастомный primary-цвет'
           value={color}
           onChange={onColor}
           showClearButton={false}
