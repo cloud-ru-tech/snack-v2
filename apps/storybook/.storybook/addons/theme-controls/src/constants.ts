@@ -6,6 +6,7 @@ export const GLOBAL_KEYS = {
   THEME: 'theme',
   BRAND: 'brand',
   BRAND_ROLE: 'brandRole',
+  BRAND_COLOR: 'brandColor',
   DENSITY: 'density',
   ACRYLIC: 'acrylic',
   LANGUAGE: 'language',
@@ -15,6 +16,9 @@ export const INITIAL_GLOBALS = {
   [GLOBAL_KEYS.THEME]: 'light',
   [GLOBAL_KEYS.BRAND]: 'brandA',
   [GLOBAL_KEYS.BRAND_ROLE]: 'main',
+  // Пусто = кастомного бренд-цвета нет, используется предустановленный бренд. Непустой hex →
+  // `brandColor` на корневом `RootThemeProvider` перекрашивает акцент во всех стори (white-label).
+  [GLOBAL_KEYS.BRAND_COLOR]: '',
   [GLOBAL_KEYS.DENSITY]: 'compact',
   [GLOBAL_KEYS.ACRYLIC]: 'disabled',
   [GLOBAL_KEYS.LANGUAGE]: 'en-GB',
@@ -53,6 +57,8 @@ export const ACRYLIC_OPTIONS = [
 export const LANGUAGE_OPTIONS = [
   { value: 'en-GB', label: 'English' },
   { value: 'ru-RU', label: 'Русский' },
+  // Псевдоязык i18next: `t()` возвращает ключи вместо перевода — для отладки строк и скриншотов ключей.
+  { value: 'cimode', label: 'CIMODE (ключи)' },
 ] as const;
 
 export type Theme = (typeof THEME_OPTIONS)[number]['value'];

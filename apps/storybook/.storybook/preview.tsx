@@ -55,6 +55,9 @@ const preview: Preview = {
       const density = (g[GLOBAL_KEYS.DENSITY] as Density) ?? INITIAL_GLOBALS[GLOBAL_KEYS.DENSITY];
       const language = (g[GLOBAL_KEYS.LANGUAGE] as Language) ?? INITIAL_GLOBALS[GLOBAL_KEYS.LANGUAGE];
       const acrylic = (g[GLOBAL_KEYS.ACRYLIC] as Acrylic) ?? INITIAL_GLOBALS[GLOBAL_KEYS.ACRYLIC];
+      // Кастомный бренд-цвет из тулбара (white-label): пустая строка → предустановленный бренд,
+      // непустой hex → `brandColor` перекрашивает акцент во всех стори.
+      const brandColor = (g[GLOBAL_KEYS.BRAND_COLOR] as string) || undefined;
       // Адаптивная раскладка из тулбара (см. globalTypes.layoutType выше). Один глобальный
       // AdaptiveProvider избавляет адаптивные стори от per-story обёртки + контрола `layoutType`;
       // VisualMatrix, рендерящие обе раскладки осью, ставят свои внутренние провайдеры (они
@@ -64,6 +67,7 @@ const preview: Preview = {
       return (
         <RootThemeProvider
           value={{ colorScheme: theme, brand, brandRole, density, acrylic: acrylic === 'enabled' }}
+          brandColor={brandColor}
           rootRef={storyWrapperRef}
         >
           <PortalContextProvider root={storyWrapperRef}>

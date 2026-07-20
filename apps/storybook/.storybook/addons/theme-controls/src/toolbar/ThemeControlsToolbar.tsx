@@ -1,5 +1,5 @@
-import { CSSProperties, ReactNode, useCallback, useEffect } from 'react';
-import { Select } from 'storybook/internal/components';
+import { CSSProperties, ReactNode, useCallback, useEffect, useRef } from 'react';
+import { Button, IconButton, Select } from 'storybook/internal/components';
 import { addons, useGlobals } from 'storybook/manager-api';
 
 import { BRAND_COLOR } from '../config/brandColors';
@@ -32,6 +32,9 @@ function SvgIcon({ d }: { d: string }) {
   );
 }
 
+// Подпись бренд-цвета в тулбарной кнопке: в одну строку рядом со свотчем, шрифт наследуется от тулбара.
+const brandColorLabelStyle: CSSProperties = { marginInlineStart: 6, whiteSpace: 'nowrap' };
+
 function BrandColorDot({ color }: { color: string }) {
   return (
     <span style={iconStyle} aria-hidden>
@@ -45,6 +48,7 @@ function BrandColorDot({ color }: { color: string }) {
 const LANGUAGE_TO_EMOJI_MAP: Record<Language, string> = {
   'en-GB': '🇬🇧',
   'ru-RU': '🇷🇺',
+  cimode: '🔑',
 };
 
 function ThemeIcon({ theme }: { theme: Theme }) {
@@ -79,6 +83,107 @@ function LanguageIcon({ language }: { language: Language }) {
   return <span aria-hidden>{LANGUAGE_TO_EMOJI_MAP[language]}</span>;
 }
 
+const brandColorControlStyle: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: '100%',
+};
+
+// Relative-бокс: якорь для скрытого color-input, растянутого на всю кнопку (см. hiddenColorInputStyle).
+const brandColorTriggerStyle: CSSProperties = {
+  position: 'relative',
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: '100%',
+};
+
+// Нативный color input прячем визуально, но растягиваем на весь trigger-бокс (inset:0), чтобы браузер
+// открывал color-picker ровно под кнопкой. Клик по кнопке программно дёргает input по ref; сам input
+// pointer-events:none, поэтому клики уходят кнопке.
+const hiddenColorInputStyle: CSSProperties = {
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  margin: 0,
+  padding: 0,
+  border: 'none',
+  opacity: 0,
+  pointerEvents: 'none',
+};
+
+function ResetGlyph() {
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      style={iconStyle}
+      aria-hidden
+    >
+      <path d='M6 6l12 12M18 6L6 18' strokeWidth={2} strokeLinecap='round' />
+    </svg>
+  );
+}
+
+/**
+ * Кастомный бренд-цвет (white-label): круглый swatch внутри тулбарной кнопки задаёт seed-цвет, который
+ * через глобал уходит в `brandColor` корневого `RootThemeProvider` и перекрашивает акцент во всех стори.
+ * Пока цвет не задан, swatch показывает цвет текущего бренда; активная кнопка + крестик рядом — сброс.
+ */
+function BrandColorControl({
+  value,
+  brand,
+  onChange,
+  onReset,
+}: {
+  value: string;
+  brand: Brand;
+  onChange(color: string): void;
+  onReset(): void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const swatch = value || BRAND_COLOR[brand];
+
+  return (
+    <span style={brandColorControlStyle}>
+      {/* Кнопка и скрытый input лежат в одном relative-боксе, input растянут на всю кнопку (inset:0).
+          Нативный color-picker якорится к боксу input'а, поэтому открывается ровно под кнопкой,
+          а не в левом-верхнем углу строки. */}
+      <span style={brandColorTriggerStyle}>
+        {/* Тот же `Button`, что под соседними `Select` (size/padding='small') — кнопка с иконкой и текстом,
+            а не голая точка с нативным title-тултипом. Клик открывает нативный color-input. */}
+        <Button
+          size='small'
+          padding='small'
+          active={Boolean(value)}
+          tooltip={value ? `Кастомный бренд-цвет: ${value}` : 'Задать кастомный бренд-цвет (white-label)'}
+          onClick={() => inputRef.current?.click()}
+        >
+          <BrandColorDot color={swatch} />
+          <span style={brandColorLabelStyle}>{value || 'Бренд-цвет'}</span>
+        </Button>
+        <input
+          ref={inputRef}
+          type='color'
+          aria-label='Кастомный бренд-цвет'
+          value={swatch}
+          onChange={event => onChange(event.target.value)}
+          style={hiddenColorInputStyle}
+          tabIndex={-1}
+        />
+      </span>
+      {value ? (
+        <IconButton size='small' title='Сбросить кастомный бренд-цвет' onClick={onReset}>
+          <ResetGlyph />
+        </IconButton>
+      ) : null}
+    </span>
+  );
+}
+
 const themeOptionsWithIcons: SelectOption[] = [
   { value: 'light', title: THEME_OPTIONS[0].label, icon: <SvgIcon d={DAY_PATH} /> },
   { value: 'dark', title: THEME_OPTIONS[1].label, icon: <SvgIcon d={NIGHT_PATH} /> },
@@ -104,10 +209,11 @@ const platformOptionsWithIcons: SelectOption[] = [
   { value: 'spacious', title: DENSITY_OPTIONS[2].label, icon: <SvgIcon d={DENSITY_TO_PATH.spacious} /> },
 ];
 
-const languageOptionsWithIcons: SelectOption[] = [
-  { value: 'en-GB', title: LANGUAGE_OPTIONS[0].label, icon: <LanguageIcon language={LANGUAGE_OPTIONS[0].value} /> },
-  { value: 'ru-RU', title: LANGUAGE_OPTIONS[1].label, icon: <LanguageIcon language={LANGUAGE_OPTIONS[1].value} /> },
-];
+const languageOptionsWithIcons: SelectOption[] = LANGUAGE_OPTIONS.map(option => ({
+  value: option.value,
+  title: option.label,
+  icon: <LanguageIcon language={option.value} />,
+}));
 
 const wrapperStyle: CSSProperties = {
   display: 'flex',
@@ -133,6 +239,7 @@ export function ThemeControlsToolbar() {
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
   const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
   const brandRole = (globals[GLOBAL_KEYS.BRAND_ROLE] as BrandRole) ?? 'main';
+  const brandColor = (globals[GLOBAL_KEYS.BRAND_COLOR] as string) ?? '';
   const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'compact';
   const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
@@ -142,6 +249,11 @@ export function ThemeControlsToolbar() {
     (value: BrandRole) => updateGlobals({ [GLOBAL_KEYS.BRAND_ROLE]: value }),
     [updateGlobals],
   );
+  const setBrandColor = useCallback(
+    (value: string) => updateGlobals({ [GLOBAL_KEYS.BRAND_COLOR]: value }),
+    [updateGlobals],
+  );
+  const resetBrandColor = useCallback(() => updateGlobals({ [GLOBAL_KEYS.BRAND_COLOR]: '' }), [updateGlobals]);
   const setDensity = useCallback((value: Density) => updateGlobals({ [GLOBAL_KEYS.DENSITY]: value }), [updateGlobals]);
   const setLanguage = useCallback(
     (language: Language) => updateGlobals({ [GLOBAL_KEYS.LANGUAGE]: language }),
@@ -185,6 +297,7 @@ export function ThemeControlsToolbar() {
         size='small'
         padding='small'
       />
+      <BrandColorControl value={brandColor} brand={brand} onChange={setBrandColor} onReset={resetBrandColor} />
       <Select
         key={`brandRole-${brandRole}`}
         ariaLabel='Brand role'
