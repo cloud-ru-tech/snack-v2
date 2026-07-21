@@ -11,8 +11,8 @@
  *   --skip-build   не вызывать `pnpm build:pkg` (dist уже свежий)
  *   --with-deps    пересобрать и разослать ещё и workspace-зависимости
  *   --keep-scope   работать под `@ds/*` без переименования
- *   --scope=@x     целевой скоуп (дефолт `@sbercloud`)
- *   --prefix=y-    префикс имени (дефолт `snack-v2-`)
+ *   --scope=@x     целевой скоуп (дефолт `@cloud-ru`)
+ *   --prefix=y-    префикс имени (дефолт `ds-`)
  */
 import { existsSync, statSync, watch } from 'node:fs';
 import { join } from 'node:path';

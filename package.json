@@ -73,7 +73,7 @@
     "test": "pnpm test:stories && pnpm test:e2e",
     "test:unit": "vitest run",
     "version:packages": "lerna version",
-    "transform:scope": "tsx scripts/transform-scope.mts @ds @sbercloud snack-v2-",
+    "transform:scope": "tsx scripts/transform-scope.mts @ds @cloud-ru ds-",
     "ds:link": "tsx scripts/ds-link/link.mts",
     "ds:unlink": "tsx scripts/ds-link/link.mts --remove",
     "ds:status": "tsx scripts/ds-link/link.mts --status",

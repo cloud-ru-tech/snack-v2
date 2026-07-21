@@ -66,11 +66,9 @@ const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const fromScope = normalizeScope(process.argv[2], '@ds');
 // Bare-invocation fallback only — the pipeline always passes scope args
-// explicitly (see the `transform:scope` script in package.json). The final
-// publish target is `@cloud-ru` + `ds-` (per PREPUBLISH.md); the `package.json`
-// arg + this default get flipped together in one atomic change right before the
-// publish / master merge, so until then the repo stays on the legacy scope.
-const toScope = normalizeScope(process.argv[3], '@sbercloud');
+// explicitly (see the `transform:scope` script in package.json). Defaults match
+// the public publish target `@cloud-ru` + `ds-` (`@ds/button` → `@cloud-ru/ds-button`).
+const toScope = normalizeScope(process.argv[3], '@cloud-ru');
 const namePrefix = process.argv[4] ?? '';
 
 if (fromScope === toScope && namePrefix === '') {

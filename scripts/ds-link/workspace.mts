@@ -4,7 +4,7 @@
  *
  * Зачем отдельный модуль: и `push.mts`, и `link.mts` должны одинаково
  * отвечать на вопрос «как называется пакет `packages/<slug>` у потребителя»
- * (`@ds/button` → `@sbercloud/snack-v2-button`) и «какие ещё пакеты доставляются
+ * (`@ds/button` → `@cloud-ru/ds-button`) и «какие ещё пакеты доставляются
  * вместе с ним». Рассинхрон между доставкой и подключением означал бы, что
  * overrides указывают не на те имена.
  */
@@ -23,10 +23,10 @@ export const STAGE_DIR = join(LINK_DIR, 'stage');
 /** Как называется папка с доставленными пакетами внутри потребителя. */
 export const CONSUMER_LINK_DIR = '.ds-link';
 
-/** Дефолты совпадают с `pnpm transform:scope @ds @sbercloud snack-v2-`. */
+/** Дефолты совпадают с `pnpm transform:scope @ds @cloud-ru ds-`. */
 export const DEFAULT_FROM_SCOPE = '@ds';
-export const DEFAULT_TO_SCOPE = '@sbercloud';
-export const DEFAULT_NAME_PREFIX = 'snack-v2-';
+export const DEFAULT_TO_SCOPE = '@cloud-ru';
+export const DEFAULT_NAME_PREFIX = 'ds-';
 
 export type DepField = 'dependencies' | 'peerDependencies' | 'optionalDependencies';
 
@@ -50,7 +50,7 @@ export type WorkspacePackage = {
   dir: string;
   /** Имя в репозитории: `@ds/button`. */
   name: string;
-  /** Имя у потребителя: `@sbercloud/snack-v2-button`. */
+  /** Имя у потребителя: `@cloud-ru/ds-button`. */
   publishedName: string;
   version: string;
   private: boolean;
@@ -140,7 +140,7 @@ export function mustGet(packages: Map<string, WorkspacePackage>, slug: string): 
   return pkg;
 }
 
-/** Принимает `button`, `@ds/button` и `@sbercloud/snack-v2-button`. */
+/** Принимает `button`, `@ds/button` и `@cloud-ru/ds-button`. */
 export function resolveSlug(
   input: string,
   packages: Map<string, WorkspacePackage>,
@@ -151,7 +151,7 @@ export function resolveSlug(
   for (const pkg of packages.values()) {
     if (pkg.name === raw || pkg.publishedName === raw) return pkg.slug;
   }
-  // Голый слаг с префиксом публикации: `snack-v2-button`.
+  // Голый слаг с префиксом публикации: `ds-button`.
   const stripped = raw.replace(new RegExp(`^${scope.namePrefix}`), '');
   return packages.has(stripped) ? stripped : undefined;
 }

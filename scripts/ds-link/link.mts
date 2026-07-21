@@ -7,8 +7,8 @@
  *   pnpm ds:unlink ~/path/to/app          # вернуть версии из реестра
  *   pnpm ds:status                                # что и куда подключено
  *
- * Привязка держится на `pnpm.overrides` (`@sbercloud/snack-v2-<pkg>` →
- * `file:.ds-link/@sbercloud/snack-v2-<pkg>`). Именно overrides, а не запись в
+ * Привязка держится на `pnpm.overrides` (`@cloud-ru/ds-<pkg>` →
+ * `file:.ds-link/@cloud-ru/ds-<pkg>`). Именно overrides, а не запись в
  * `dependencies`: иначе локальной станет только та копия, которую подключили
  * напрямую, а транзитивная ссылка (`modal` → `utils`) будет установлена из
  * реестра — в `node_modules` окажутся две копии пакета с разными

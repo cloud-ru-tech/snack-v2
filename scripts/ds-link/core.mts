@@ -59,7 +59,7 @@ export function buildPackages(slugs: string[]): boolean {
 
 // ------------------------------------------------- реестр подключений ---
 
-/** Что и куда подключено: `{ '<путь-до-приложения>': ['@sbercloud/snack-v2-button', …] }`. */
+/** Что и куда подключено: `{ '<путь-до-приложения>': ['@cloud-ru/ds-button', …] }`. */
 export type Registry = Record<string, string[]>;
 
 const REGISTRY_PATH = join(LINK_DIR, 'consumers.json');
@@ -214,7 +214,7 @@ export type DeliverResult = { delivered: boolean; depsChanged: boolean };
 /**
  * Каталог в виртуальном сторе pnpm, развёрнутый из нашей `.ds-link`-копии.
  * pnpm кодирует путь зависимости в имя каталога, заменяя разделители на `+`:
- * `.pnpm/@sbercloud+snack-v2-modal@file+.ds-link+@sbercloud+snack-v2-modal_react@18/…`.
+ * `.pnpm/@cloud-ru+ds-modal@file+.ds-link+@cloud-ru+ds-modal_react@18/…`.
  */
 function isLinkBackedDir(path: string): boolean {
   return path.includes(`@file+${CONSUMER_LINK_DIR}+`);
