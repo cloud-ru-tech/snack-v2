@@ -135,7 +135,7 @@
       "react-dom": "catalog:",
       "@types/react": "catalog:",
       "@types/react-dom": "catalog:",
-      "@ds/theme@0.1.0>@ds/context-kit": "workspace:^"
+      "js-yaml": "4.3.0"
     }
   }
 }
