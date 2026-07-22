@@ -3,10 +3,7 @@ import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
 import { expect, test } from '#playwright-tooling/fixtures';
 import { assertInteractionStatesSnapshot } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, CODE_EDITOR_STORIES, TEST_IDS } from './helpers';
-
-// monaco-editor токенизирует синтаксис асинхронно — небольшая пиксельная jitter неизбежна.
-const MONACO_SCREENSHOT_OPTS = { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: 0.001 } as const;
+import { buildStoryOptions, CODE_EDITOR_STORIES, TEST_IDS, waitForMonacoTokenization } from './helpers';
 
 test.describe('CodeEditor — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -20,7 +17,8 @@ test.describe('CodeEditor — visual regression', () => {
   test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, CODE_EDITOR_STORIES.visualMatrix));
     await waitForFonts();
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', MONACO_SCREENSHOT_OPTS);
+    await waitForMonacoTokenization(page);
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
   });
 
   test('interaction states (copy button) — default × hover × focus', async ({
@@ -31,6 +29,7 @@ test.describe('CodeEditor — visual regression', () => {
   }) => {
     await gotoStory(buildStoryOptions({ hasHeader: true, language: 'json' }));
     await waitForFonts();
+    await waitForMonacoTokenization(page);
 
     // Снимаем весь редактор (виден header + monaco-body) — state-изменения
     // целимся в copy-кнопку, и в кадре виден её контекст.

@@ -4,14 +4,11 @@ import { usePortalContext } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, placeholderImage } from '#storybook/components';
 
 import { TEST_IDS } from '../testIds';
 
-// Герметичная inline-картинка (без сети): этот story снимается как visual baseline `open-with-media.png`,
-// поэтому внешний placehold.co сделал бы бейзлайн флаки в CI без доступа в сеть.
-const MEDIA_SRC =
-  "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='360'%20height='184'%3E%3Crect%20width='360'%20height='184'%20fill='%23c3c8d5'/%3E%3Ctext%20x='180'%20y='100'%20font-family='sans-serif'%20font-size='22'%20fill='%235e606e'%20text-anchor='middle'%3EMedia%3C/text%3E%3C/svg%3E";
+const MEDIA_SRC = placeholderImage(360, 184, 'Media');
 
 function WithMediaRender() {
   const [open, setOpen] = useState(false);

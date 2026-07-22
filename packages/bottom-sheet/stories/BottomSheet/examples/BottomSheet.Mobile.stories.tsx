@@ -4,7 +4,15 @@ import { SegmentControl } from '@ds/segment-control';
 import { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoSectionLabel, DemoTitle } from '#storybook/components';
+import {
+  DemoActions,
+  DemoHint,
+  DemoPage,
+  DemoPanel,
+  DemoSectionLabel,
+  DemoTitle,
+  placeholderImage,
+} from '#storybook/components';
 
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
@@ -142,9 +150,7 @@ function MobileDemo() {
               withSubtitle ? <div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl</div> : undefined
             }
             media={
-              withMedia
-                ? { src: 'https://placehold.co/360x184?text=Media', alt: 'Media', kind: MEDIA_KIND.Image }
-                : undefined
+              withMedia ? { src: placeholderImage(360, 184, 'Media'), alt: 'Media', kind: MEDIA_KIND.Image } : undefined
             }
             content={SAMPLE_CONTENT}
             approveButton={withFooter ? { label: 'Подтвердить', onClick: () => setOpen(false) } : undefined}

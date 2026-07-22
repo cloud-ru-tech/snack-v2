@@ -55,7 +55,7 @@ const TABLE = `| Col A | Col B | Col C |
 
 const LINKS_IMAGE = `[Snack Ui Kit](https://example.com)
 
-![alt text](https://placehold.co/80x40/png)
+![alt text](/fixtures/placeholder-80x40.svg)
 
 ---
 

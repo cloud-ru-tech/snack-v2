@@ -83,7 +83,12 @@ STORYBOOK_PORT="${STORYBOOK_PORT:-6006}"
 STORYBOOK_URL="http://127.0.0.1:${STORYBOOK_PORT}/"
 STATIC_DIR="/work/apps/storybook/storybook-static"
 
-# Static собираем в Linux (не reuse macOS storybook-static с хоста — иначе снова mac↔linux diff).
+# По умолчанию static собираем здесь же, в Linux — чтобы одна команда работала «из коробки».
+# Но сборка платформо-нейтральна: storybook-static это JS/CSS/HTML-бандл, а пиксельный паритет с CI
+# даёт Chromium в linux/amd64, который остаётся в контейнере в любом случае. Поэтому статику МОЖНО
+# собрать на хосте (macOS/arm64 — нативно, без Rosetta, в разы быстрее) и переиспользовать через
+# DOCKER_E2E_SKIP_STORYBOOK_BUILD=1: /work приходит bind-mount'ом, контейнер увидит хостовую сборку.
+# Проверено прогоном всех visual-спеков на macOS-собранной статике — 342 снимка совпали с эталонами.
 # build:packages по умолчанию НЕ запускается: Storybook static собирается из исходников через
 # vite-алиасы @ds/* → packages/*/src (apps/storybook/.storybook/main.ts → collectDsAliases), а
 # спеки гоняются против поднятой статики и dist не импортируют. На CI пакеты перед e2e тоже не

@@ -1,3 +1,5 @@
+import { Page } from '@playwright/test';
+
 import {
   MATCH_SNAPSHOT_DEFAULT_OPTS,
   MOBILE_VIEWPORT,
@@ -9,6 +11,16 @@ import { composeScreenshots } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
 import { buildStoryOptions, RELEASE_NOTES_STORIES, VM_TRIGGER_TEST_ID } from './helpers';
+
+/**
+ * Ждёт декодирования всех картинок в кадре: `toBeVisible()` проходит на ещё
+ * не отрисованном `<img>`, и снимок фиксирует карточку без изображения.
+ */
+async function waitForImages(page: Page): Promise<void> {
+  await page.waitForFunction(() =>
+    Array.from(document.images).every(image => image.complete && image.naturalWidth > 0),
+  );
+}
 
 test.describe('ReleaseNotes — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -27,6 +39,7 @@ test.describe('ReleaseNotes — visual regression', () => {
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();
       await waitForFonts();
+      await waitForImages(page);
       cells.push({ label: state, png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS) });
     }
 
@@ -45,6 +58,7 @@ test.describe('ReleaseNotes — visual regression', () => {
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();
       await waitForFonts();
+      await waitForImages(page);
       cells.push({ label: state, png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS) });
     }
 

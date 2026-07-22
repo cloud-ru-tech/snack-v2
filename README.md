@@ -159,7 +159,33 @@ pnpm test:e2e:docker:visual:update                            # все visual.sp
 
 Первый прогон долгий (~10–15 мин): docker build образа + `build:storybook`. Повторный быстрее: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1` (reuse предыдущей статики). `build:packages` по умолчанию **не** запускается — storybook static резолвит `@ds/*` → `packages/*/src` через vite-алиасы, dist не нужен (на CI пакеты перед e2e тоже не собираются). Форс сборки dist для диагностики — `DOCKER_E2E_BUILD_PACKAGES=1`.
 
-Если build в Docker падает с `Cannot find module '@ds/...'` — это конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
+#### Быстрый цикл: собрать статику на маке
+
+Контейнер идёт как `linux/amd64`, а на Apple Silicon это Rosetta-эмуляция — именно `build:storybook` в ней и съедает основное время. Но сборка **платформо-нейтральна**: `storybook-static` — обычный JS/CSS/HTML-бандл, а пиксельный паритет с CI даёт Chromium внутри linux/amd64, который остаётся в контейнере. Значит статику можно собрать на хосте нативно и переиспользовать (`/work` приходит bind-mount'ом):
+
+```bash
+pnpm build:storybook                                         # нативно на arm64, ~1 мин вместо минут в эмуляции
+
+DOCKER_E2E_INSTALL=0 DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 \
+  pnpm test:e2e:docker:visual:update:changed packages/<pkg>  # ~30 сек на пакет
+```
+
+Проверено прогоном **всех** visual-спеков на macOS-собранной статике: 342 снимка совпали с эталонами. Пересобирать статику нужно только когда менялись стори или исходники компонентов.
+
+Не запускай несколько visual-контейнеров параллельно: под эмуляцией они делят CPU, и снимки с `hover` / тултипами / анимацией начинают флейкать. С `:update` флейковый кадр запишется в эталон как истина.
+
+#### Частые ошибки
+
+- **`Segmentation fault` / `Exit status 139` в фазе `build:storybook` (`transforming...`).** Сборке Storybook нужен V8-heap 8192 МБ (запинен в `apps/storybook/package.json`; дефолтные ~2 ГБ падают OOM на большом наборе сторей). В эмулируемом amd64-контейнере heap + накладные расходы эмуляции не влезают в память VM Docker Desktop → процесс падает с SIGSEGV (139), а не с чистым OOM (137). Симптом «до этого работало, а теперь медленно и падает» обычно означает, что обновление Docker Desktop сбросило Resources к дефолту.
+
+  Лечится памятью: Docker Desktop → **Settings** → **Resources** → **Memory** → **16 GB** (минимум 12 GB) → **Apply & restart**. Проверка:
+
+  ```bash
+  docker info --format '{{.MemTotal}}'   # ожидаем ~16000000000
+  ```
+
+  Заодно там же в **Settings → General** проверь галку «Use Rosetta for x86_64/amd64 emulation» — без неё amd64 идёт через QEMU и всё становится ещё медленнее.
+- **`Cannot find module '@ds/...'` при build в Docker.** Конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` временно прячет macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
 
 Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
 

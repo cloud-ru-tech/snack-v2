@@ -181,6 +181,11 @@ const MANAGER_REACT_POLYFILL = `
 const config: StorybookConfig = {
   stories: storiesGlobs(),
   managerHead: head => `${MANAGER_REACT_POLYFILL}${head ?? ''}`,
+  // Статика для фикстур, которым нужен настоящий URL, а не `data:`-URI:
+  // `react-markdown` санитайзит `src` через `defaultUrlTransform` и пропускает
+  // только http(s)/mailto/xmpp, поэтому картинка в markdown-фикстуре может быть
+  // только относительной ссылкой на локально отданный файл.
+  staticDirs: [join(__dirname, 'public')],
   addons: [
     join(__dirname, 'addons/theme-controls/preset.ts'),
     join(__dirname, 'addons/readme/preset.ts'),

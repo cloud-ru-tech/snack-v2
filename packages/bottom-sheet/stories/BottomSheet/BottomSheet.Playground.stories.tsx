@@ -5,7 +5,15 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, DemoWarning } from '#storybook/components';
+import {
+  DemoActions,
+  DemoHint,
+  DemoPage,
+  DemoPanel,
+  DemoTitle,
+  DemoWarning,
+  placeholderImage,
+} from '#storybook/components';
 
 import { TEST_IDS } from './testIds';
 
@@ -107,7 +115,7 @@ function PlaygroundRender(args: StoryProps) {
         media={
           showMedia
             ? {
-                src: 'https://placehold.co/360x184?text=Media',
+                src: placeholderImage(360, 184, 'Media'),
                 alt: 'Media',
                 kind: MEDIA_KIND.Image,
               }

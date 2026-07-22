@@ -3,7 +3,7 @@ import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { DemoHint, DemoPage, DemoPanel, DemoTitle, StoryTable } from '#storybook/components';
+import { DemoHint, DemoPage, DemoPanel, DemoTitle, placeholderImage, StoryTable } from '#storybook/components';
 
 import { TEST_IDS } from './testIds';
 
@@ -57,7 +57,7 @@ const AXIS_COMBOS: Combo[] = [
     key: 'media',
     label: '+ media (image)',
     props: {
-      media: { src: 'https://placehold.co/360x184?text=Media', alt: 'Media', kind: MEDIA_KIND.Image },
+      media: { src: placeholderImage(360, 184, 'Media'), alt: 'Media', kind: MEDIA_KIND.Image },
       title: 'With media',
       content: SIMPLE_CONTENT,
       footer: FOOTER_BUTTON,
@@ -69,7 +69,7 @@ const AXIS_COMBOS: Combo[] = [
     key: 'media-icon',
     label: '+ media (icon)',
     props: {
-      media: { src: 'https://placehold.co/96x96?text=Icon', alt: 'Icon', kind: MEDIA_KIND.Icon },
+      media: { src: placeholderImage(96, 96, 'Icon'), alt: 'Icon', kind: MEDIA_KIND.Icon },
       title: 'With icon media',
       content: SIMPLE_CONTENT,
       footer: FOOTER_BUTTON,
