@@ -47,7 +47,7 @@ export function Emblem({ loading, icon, imageData, title }: EmblemProps) {
     <IconPredefined
       size={ipSize}
       icon={icon ?? FileSVG}
-      decor
+      background
       appearance='neutral'
       shape='squared'
       data-test-id={TEST_IDS.icon}

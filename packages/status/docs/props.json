@@ -22,6 +22,12 @@
           "Appearance"
         ]
       },
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Наличие фона"
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -30,12 +36,6 @@
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "hasBackground": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Наличие фона"
       },
       "label": {
         "type": "string",

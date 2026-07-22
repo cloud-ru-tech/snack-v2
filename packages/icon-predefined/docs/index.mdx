@@ -41,8 +41,8 @@ import { figmaNode } from '#docs/lib/figma'
 ### Shape
 Форма контейнера: `rounded` — круглый (по умолчанию), `squared` — со скруглёнными углами для технических объектов.
 
-### Decor
-`decor={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
+### Background
+`background={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
 
 ## Установка
 
@@ -64,7 +64,7 @@ import { IconPredefined, APPEARANCE, SIZE } from '@ds/icon-predefined'
   <Sizes client:visible />
 </Example>
 
-<Example title='Форма и подложка' description='`rounded` / `squared`, отключение decor.' code={ShapesSrc}>
+<Example title='Форма и подложка' description='`rounded` / `squared`, отключение подложки (`background`).' code={ShapesSrc}>
   <Shapes client:visible />
 </Example>
 

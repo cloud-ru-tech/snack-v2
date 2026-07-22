@@ -15,7 +15,7 @@ export function NoBackground() {
       <CodeEditor
         language='javascript'
         value={value}
-        hasBackground={false}
+        background={false}
         height={220}
         onChange={v => setValue(v ?? '')}
       />

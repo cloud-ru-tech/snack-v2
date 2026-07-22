@@ -17,7 +17,7 @@ export type CodeEditorProps = WithSupportProps<{
   /** Используется как trigger в effect deps для перепересчёта theme tokens при смене темы. Уникальное значение на каждую тему. */
   themeName?: string;
   /** Включение/отключение псевдобекграунда. */
-  hasBackground?: boolean;
+  background?: boolean;
   /** Включение/отключение шапки. */
   hasHeader?: boolean;
   /** Включение/отключение колонки с номерами строк. */
@@ -45,7 +45,7 @@ function CodeEditorClient({
   theme,
   options,
   loading,
-  hasBackground = true,
+  background = true,
   onMount,
   language,
   onCopyClick,
@@ -204,7 +204,7 @@ function CodeEditorClient({
   return (
     <div
       className={cn(styles.root, className)}
-      data-has-background={hasBackground ? 'true' : undefined}
+      data-background={background ? 'true' : undefined}
       data-has-header={hasHeader ? 'true' : undefined}
       data-loading={isLoading ? 'true' : undefined}
       data-language={language || undefined}
@@ -275,11 +275,11 @@ export function CodeEditor(props: CodeEditorProps) {
   // чтобы layout не прыгал при гидрации); на клиенте делегируем в подкомпонент,
   // где живут все хуки monaco.
   if (!isBrowser()) {
-    const { className, hasBackground = true, hasHeader, language } = props;
+    const { className, background = true, hasHeader, language } = props;
     return (
       <div
         className={cn(styles.root, className)}
-        data-has-background={hasBackground ? 'true' : undefined}
+        data-background={background ? 'true' : undefined}
         data-has-header={hasHeader ? 'true' : undefined}
         data-language={language || undefined}
         data-test-id={TEST_IDS.root}

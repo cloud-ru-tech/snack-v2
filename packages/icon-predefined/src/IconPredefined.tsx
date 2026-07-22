@@ -12,7 +12,7 @@ export type IconPredefinedProps = WithSupportProps<{
   /** Внешний вид */
   appearance?: Appearance;
   /** Наличие цветной подложки */
-  decor?: boolean;
+  background?: boolean;
   /** JSX иконки */
   icon: JSXElementConstructor<{ size?: number; className?: string }>;
   /** Размер */
@@ -27,7 +27,7 @@ export type IconPredefinedProps = WithSupportProps<{
  */
 export function IconPredefined({
   className,
-  decor = true,
+  background = true,
   size = SIZE.M,
   icon: IconComponent,
   appearance = APPEARANCE.Primary,
@@ -39,7 +39,7 @@ export function IconPredefined({
       className={cn(styles.decor, className)}
       {...extractSupportProps(rest)}
       data-size={size}
-      data-decor={decor || undefined}
+      data-background={background || undefined}
       data-appearance={appearance}
       data-shape={shape}
     >

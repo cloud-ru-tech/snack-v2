@@ -20,7 +20,7 @@ const noop = () => {};
 
 const COMMON_TEXTS = {
   title: 'Информационный баннер',
-  description: 'Демонстрация оформления элементов интерфейса',
+  content: 'Демонстрация оформления элементов интерфейса',
 };
 
 function AlertTopDemo() {
@@ -116,7 +116,7 @@ const COLUMNS: ColumnDefinition<TableRow>[] = [
     id: 'col1',
     accessorKey: 'col1',
     header: 'Колонка 1',
-    cell: () => <Link text='Ячейка 1' appearance='primary' href='#' />,
+    cell: () => <Link label='Ячейка 1' appearance='primary' href='#' />,
   },
   { id: 'col2', accessorKey: 'col2', header: 'Колонка 2' },
   { id: 'col3', accessorKey: 'col3', header: 'Колонка 3' },
@@ -140,9 +140,9 @@ function TableDemo() {
 }
 
 const SELECT_ITEMS = [
-  { id: 'op1', content: { option: 'Опция 1' } },
-  { id: 'op2', content: { option: 'Опция 2' } },
-  { id: 'op3', content: { option: 'Опция 3' } },
+  { id: 'op1', content: { label: 'Опция 1' } },
+  { id: 'op2', content: { label: 'Опция 2' } },
+  { id: 'op3', content: { label: 'Опция 3' } },
 ];
 
 function FieldDemo() {

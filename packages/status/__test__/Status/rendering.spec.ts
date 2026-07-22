@@ -34,9 +34,9 @@ test.describe('Status — rendering', () => {
     });
   }
 
-  test('hasBackground propagates to data-has-background', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ hasBackground: true }));
-    await expect(getByTestId(TEST_IDS.status.root)).toHaveAttribute('data-has-background', 'true');
+  test('background propagates to data-background', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ background: true }));
+    await expect(getByTestId(TEST_IDS.status.root)).toHaveAttribute('data-background', 'true');
   });
 
   test('loading forces neutral appearance', async ({ gotoStory, getByTestId }) => {

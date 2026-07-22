@@ -42,7 +42,7 @@ export function InfoBlock({
         <IconPredefined
           icon={icon.icon}
           appearance={icon.appearance ?? 'primary'}
-          decor={icon.decor ?? true}
+          background={icon.background ?? true}
           size={iconSize}
           data-test-id={TEST_IDS.icon}
         />

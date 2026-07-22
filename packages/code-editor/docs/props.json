@@ -10,6 +10,11 @@
     "displayName": "CodeEditor",
     "propsTypeName": "CodeEditorProps",
     "props": {
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение псевдобекграунда."
+      },
       "beforeMount": {
         "type": "BeforeMount",
         "required": false,
@@ -38,11 +43,6 @@
         "type": "string",
         "required": false,
         "description": "Default value of the current model"
-      },
-      "hasBackground": {
-        "type": "boolean",
-        "required": false,
-        "description": "Включение/отключение псевдобекграунда."
       },
       "hasHeader": {
         "type": "boolean",
@@ -186,6 +186,11 @@
     "propsTypeName": "LazyCodeEditorProps",
     "description": "Готовый preset на базе `AsyncCodeEditor` + `Suspense`.",
     "props": {
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "description": "Включение/отключение псевдобекграунда."
+      },
       "beforeMount": {
         "type": "BeforeMount",
         "required": false,
@@ -214,11 +219,6 @@
         "type": "string",
         "required": false,
         "description": "Default value of the current model"
-      },
-      "hasBackground": {
-        "type": "boolean",
-        "required": false,
-        "description": "Включение/отключение псевдобекграунда."
       },
       "hasHeader": {
         "type": "boolean",

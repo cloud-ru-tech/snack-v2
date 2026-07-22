@@ -220,7 +220,7 @@ export function Controlled() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
-| `decor` | `boolean \| undefined` | — | Наличие цветной подложки |
+| `background` | `boolean \| undefined` | — | Наличие цветной подложки |
 | `icon` | `((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — | JSX иконки |
 | `shape` | `"rounded"` \| `"squared"` | — | Форма: круглая или квадратная |
 

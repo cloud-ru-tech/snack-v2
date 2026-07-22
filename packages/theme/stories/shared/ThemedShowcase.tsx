@@ -33,7 +33,7 @@ export function ThemedShowcase({ caption, testId }: ThemedShowcaseProps) {
       <div className={styles.row}>
         <Button appearance={APPEARANCE.Neutral} view={VIEW.Filled} size={SIZE.M} label='Нейтральная' />
         <Button appearance={APPEARANCE.Critical} view={VIEW.Filled} size={SIZE.M} label='Удалить' />
-        <Link appearance='primary' text='Ссылка с акцентом' href='#' />
+        <Link appearance='primary' label='Ссылка с акцентом' href='#' />
       </div>
     </div>
   );

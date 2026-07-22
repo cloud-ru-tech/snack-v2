@@ -23,7 +23,7 @@ const meta: Meta<PlaygroundArgs> = {
     appearance: APPEARANCE.Primary,
     size: SIZE.M,
     shape: 'rounded',
-    decor: true,
+    background: true,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
@@ -48,7 +48,7 @@ const meta: Meta<PlaygroundArgs> = {
       options: ['rounded', 'squared'],
       description: 'Форма: круглая или квадратная',
     },
-    decor: {
+    background: {
       control: 'boolean',
       description: 'Наличие цветной подложки',
     },

@@ -14,7 +14,7 @@ export function StatusDemo() {
         label: 'Active',
         size: 'xs',
         appearance: 'green',
-        hasBackground: false,
+        background: false,
         loading: false,
       }}
       controls={{
@@ -24,7 +24,7 @@ export function StatusDemo() {
           type: 'select',
           options: ['neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],
         },
-        hasBackground: { type: 'boolean' },
+        background: { type: 'boolean' },
         loading: { type: 'boolean' },
       }}
       excludeProps={['progress', 'className']}

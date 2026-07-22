@@ -37,7 +37,7 @@ export const VisualMatrix: Story = {
               appearance={appearance}
               size={size}
               shape={shape}
-              decor
+              background
             />
           )),
         ),

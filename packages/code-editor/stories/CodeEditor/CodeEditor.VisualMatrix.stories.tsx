@@ -32,19 +32,19 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='hasHeader × hasBackground (language=json)'
+        sectionTitle='hasHeader × background (language=json)'
         firstColumnHeader='hasHeader'
-        columnHeaders={backgroundStates.map(b => `hasBackground=${b}`)}
+        columnHeaders={backgroundStates.map(b => `background=${b}`)}
         rows={headerStates.map(hasHeader => ({
           variantLabel: String(hasHeader),
-          cells: backgroundStates.map(hasBackground => (
-            <div key={`${hasHeader}-${hasBackground}`} className={styles.frame}>
+          cells: backgroundStates.map(background => (
+            <div key={`${hasHeader}-${background}`} className={styles.frame}>
               <CodeEditor
                 language='json'
                 value={CODE_JSON}
                 hasHeader={hasHeader}
-                hasBackground={hasBackground}
-                data-test-id={matrixCellTestId('json', hasHeader, hasBackground)}
+                background={background}
+                data-test-id={matrixCellTestId('json', hasHeader, background)}
               />
             </div>
           )),

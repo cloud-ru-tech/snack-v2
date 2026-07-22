@@ -25,7 +25,7 @@ const meta: Meta<PlaygroundArgs> = {
     icon: {
       icon: PlaceholderSVG,
       appearance: 'primary',
-      decor: true,
+      background: true,
     },
   },
   argTypes: {

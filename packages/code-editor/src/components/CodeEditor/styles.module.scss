@@ -11,7 +11,7 @@
   min-width: 0;
   height: 100%;
 
-  &[data-has-background] {
+  &[data-background] {
     background-color: base.$sn-theme-color-neutral-background;
   }
 }

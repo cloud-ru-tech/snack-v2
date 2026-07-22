@@ -61,7 +61,7 @@
 
 **Сигнал по типу:** обязательный `ReactNode`-payload тяготеет к `content`; опциональный `string` под обязательным `title` — почти всегда `description`.
 
-> **Почему это выделено:** первый проход `description → content` (FF-8680) делили по доменной группировке инвентаря, и `content?: string` «описание под заголовком» у SwitchRow/ToggleCard/CardVacancy/ToastSystemEvent разошёлся с идентичными по роли attachment/avatar-detail. Развели обратно по критерию выше. Не повторяй ошибку — смотри роль, не домен.
+> **Решай по роли, а не по домену пакета.** Принадлежность компонента к группе инвентаря (карточки, тосты, настройки) ничего не говорит о том, `content` там или `description`: «описание под заголовком» у `SwitchRow` / `ToggleCard` / `CardVacancy` / `ToastSystemEvent` играет ту же роль, что у `attachment` / `avatar-detail`, и потому называется одинаково — `description`. Домен вводит в заблуждение; применяй тест «убери текст».
 
 ### Item / option shape
 
@@ -79,11 +79,19 @@
 | Режим выбора | **`selectionMode`** со значениями `single` / `multiple` | `multi` |
 | Форма (скругление) | **`shape`** со значениями `rounded` / `squared` | `square`, `round` |
 | Ось положения элемента | суффикс **`<x>Position`** (`chevronPosition`, `markerPosition`) | голое `chevron` |
+| Наличие фон/заливка-слоя | **`background`** | `hasBackground`, `showBackground`, `decor`, `withBackground` |
+| Наличие фон/заливка-слоя | **`background`** | `hasBackground`, `showBackground`, `decor`, `withBackground` |
 | Булев флаг | утвердительно: `disabled`, `loading`, `fullWidth` | `isDisabled`, `notActive` |
 
 Значения enum-осей — из общего словаря: `single`/`multiple`, `rounded`/`squared`, `before`/`after`, `start`/`center`/`end`. Не вводи синонимы (`multi`, `square`, `round`) — сверяйся с [component-api-surface.md](../rules/component-api-surface.md) §«Константы».
 
 > **Почему `squared`, а не `square`:** в `@sbercloud/figma-variables` ключ `square` зарезервирован билдером — токен `<c>.anatomy.size.<s>.square` разворачивается в `width` + `height` (размер квадратного бокса), а форму несёт `<c>.anatomy.size.<s>.squared.borderRadius`. Переименовать токен нельзя — будет коллизия. Канон `squared` даёт совпадение имён во всех трёх слоях (Figma-варианты, токены, код) и снимает мост `$shapeMap` в SCSS.
+
+> **Почему `background` (голое), а не `hasBackground`/`showBackground`/`decor`:** булев флаг «есть ли цветная подложка/заливка» — это тот же bare-flag канон, что `outline` / `loading` / `fullWidth` (без префиксов `has`/`show`/`with`). Имя одинаковое в коде и в свойстве Figma-компонента, DOM-атрибут следует за пропом: `data-background`. Токен theme-цвета `decor` и CSS-класс `.decor` — отдельная поверхность, канон имени пропа на них не распространяется.
+
+> **Расхождение с Figma по префиксу `show`: слот-нода vs булев флаг.** В Figma один и тот же смысл нередко разложен на **два** свойства — булев `showX` (видимость) + `X` (контент): `showTitle` + `title`, `showMedia` + `media`, `showFooter` + `footer`. В коде **слот, который либо пуст, либо несёт ноду**, — это **один** nullable-проп `X?: ReactNode`: сама передача ноды и есть «показать». Отдельный булев `showX` из Figma в API **не** заводим (`title` вместо `showTitle` + `title`; `media` вместо `showMedia` + `media`). Это и есть маппинг «2 свойства Figma → 1 проп кода».
+>
+> **К чисто-булевым флагам это не относится.** У `background` / `outline` / `loading` нет парного контент-пропа-ноды — «показать» = сам флаг, поэтому имя голое и в коде, и в Figma. Признак: если у свойства нет ноды-контента, `show`-обёртка избыточна с обеих сторон — это один bare-flag.
 
 ## 3. Легаси-алиасы — греп-проверки
 

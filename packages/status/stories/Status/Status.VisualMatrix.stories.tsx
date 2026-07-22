@@ -29,12 +29,12 @@ export const VisualMatrix: Story = {
         sectionTitle='Appearance × Size'
         firstColumnHeader='Appearance'
         columnHeaders={keySizesAndBackground.map(
-          ([size, hasBackground]) => `${size} ${hasBackground ? 'с фоном' : 'без фона'}`,
+          ([size, background]) => `${size} ${background ? 'с фоном' : 'без фона'}`,
         )}
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
-          cells: keySizesAndBackground.map(([size, hasBackground]) => (
-            <Status key={size} size={size} appearance={appearance} label='Label text' hasBackground={hasBackground} />
+          cells: keySizesAndBackground.map(([size, background]) => (
+            <Status key={size} size={size} appearance={appearance} label='Label text' background={background} />
           )),
         }))}
       />
@@ -43,19 +43,12 @@ export const VisualMatrix: Story = {
         sectionTitle='Loading × Size'
         firstColumnHeader=''
         columnHeaders={keySizesAndBackground.map(
-          ([size, hasBackground]) => `${size} ${hasBackground ? 'с фоном' : 'без фона'}`,
+          ([size, background]) => `${size} ${background ? 'с фоном' : 'без фона'}`,
         )}
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
-          cells: keySizesAndBackground.map(([size, hasBackground]) => (
-            <Status
-              key={size}
-              size={size}
-              appearance={appearance}
-              label='Label text'
-              hasBackground={hasBackground}
-              loading
-            />
+          cells: keySizesAndBackground.map(([size, background]) => (
+            <Status key={size} size={size} appearance={appearance} label='Label text' background={background} loading />
           )),
         }))}
       />
@@ -64,17 +57,17 @@ export const VisualMatrix: Story = {
         sectionTitle='Progress × Size'
         firstColumnHeader=''
         columnHeaders={keySizesAndBackground.map(
-          ([size, hasBackground]) => `${size} ${hasBackground ? 'с фоном' : 'без фона'}`,
+          ([size, background]) => `${size} ${background ? 'с фоном' : 'без фона'}`,
         )}
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
-          cells: keySizesAndBackground.map(([size, hasBackground]) => (
+          cells: keySizesAndBackground.map(([size, background]) => (
             <Status
               key={size}
               size={size}
               appearance={appearance}
               label='Label text'
-              hasBackground={hasBackground}
+              background={background}
               progress={60}
             />
           )),

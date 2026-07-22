@@ -70,7 +70,7 @@ export function ReleaseNotesContent({
           size='l'
           title={errorTitle}
           content={errorDescription}
-          icon={{ icon: CrossSVG, appearance: 'neutral', decor: true }}
+          icon={{ icon: CrossSVG, appearance: 'neutral', background: true }}
           data-test-id={TEST_IDS.releaseNotesError}
           footer={
             <Button

@@ -117,7 +117,7 @@
               "Appearance"
             ]
           },
-          "decor": {
+          "background": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Наличие цветной подложки"

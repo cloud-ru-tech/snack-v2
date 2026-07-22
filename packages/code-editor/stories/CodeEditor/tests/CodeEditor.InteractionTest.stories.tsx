@@ -16,7 +16,7 @@ const meta: Meta<typeof CodeEditor> = {
     language: 'json',
     value: CODE_JSON,
     hasHeader: true,
-    hasBackground: true,
+    background: true,
     onCopyClick: fn(),
     'data-test-id': TEST_IDS.root,
   },

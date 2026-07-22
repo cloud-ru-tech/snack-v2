@@ -16,7 +16,7 @@ export function QuotaError({ onRefresh }: QuotaErrorProps) {
       size='m'
       align='vertical'
       content={t('errorText')}
-      icon={{ icon: CrossSVG, appearance: 'neutral', decor: true }}
+      icon={{ icon: CrossSVG, appearance: 'neutral', background: true }}
       footer={
         <Button
           appearance='neutral'

@@ -19,7 +19,7 @@ $shapes: 'rounded', 'squared';
       color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
     }
 
-    &[data-decor][data-appearance='#{$appearance}'] {
+    &[data-background][data-appearance='#{$appearance}'] {
       background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
     }
   }

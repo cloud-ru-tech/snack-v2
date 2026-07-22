@@ -29,7 +29,7 @@ const meta: Meta<StoryType> = {
     label: 'Label text',
     size: STATUS_SIZE.S,
     appearance: APPEARANCE.Neutral,
-    hasBackground: false,
+    background: false,
     loading: false,
     showProgress: false,
     progress: 50,

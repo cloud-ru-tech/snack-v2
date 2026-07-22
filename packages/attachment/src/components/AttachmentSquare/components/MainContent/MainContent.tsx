@@ -32,7 +32,7 @@ export function MainContent({ title, description, icon, imageData, className }: 
         <IconPredefined
           size={EMBLEM_ICON_SIZE[size]}
           icon={icon ?? FileSVG}
-          decor
+          background
           appearance='neutral'
           shape='squared'
           data-test-id={TEST_IDS.icon}

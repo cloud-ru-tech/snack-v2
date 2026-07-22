@@ -23,8 +23,8 @@
 ### Shape
 Форма контейнера: `rounded` — круглый (по умолчанию), `squared` — со скруглёнными углами для технических объектов.
 
-### Decor
-`decor={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
+### Background
+`background={false}` отключает цветную подложку — иконка рисуется поверх прозрачного фона. Применяется, когда подложка уже есть у родительского контейнера.
 
 ## Установка
 
@@ -81,7 +81,7 @@ export function Sizes() {
 
 ### Форма и подложка
 
-`rounded` / `squared`, отключение decor.
+`rounded` / `squared`, отключение подложки (`background`).
 
 ```tsx
 import { IconPredefined } from '@ds/icon-predefined';
@@ -92,7 +92,7 @@ export function Shapes() {
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
       <IconPredefined icon={PlaceholderSVG} shape='rounded' />
       <IconPredefined icon={PlaceholderSVG} shape='squared' />
-      <IconPredefined icon={PlaceholderSVG} shape='rounded' decor={false} />
+      <IconPredefined icon={PlaceholderSVG} shape='rounded' background={false} />
     </div>
   );
 }
@@ -105,9 +105,9 @@ export function Shapes() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
+| `background` | `boolean` | `true` | Наличие цветной подложки |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `decor` | `boolean` | `true` | Наличие цветной подложки |
 | `icon` | `JSXElementConstructor<{ size?: number \| undefined; className?: string \| undefined; }>` | — | JSX иконки |
 | `shape` | `"rounded"` \| `"squared"` | `rounded` | Форма: круглая или квадратная |
 | `size` | `"5xl"` \| `"l"` \| `"m"` | `m` | Размер |

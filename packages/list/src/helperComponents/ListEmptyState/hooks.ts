@@ -17,7 +17,7 @@ export function useEmptyState({
 
   return useMemo(() => {
     const noDataState: EmptyStateProps = {
-      icon: { icon: SearchSVG, appearance: 'neutral', decor: true },
+      icon: { icon: SearchSVG, appearance: 'neutral', background: true },
       content: t('noData.description'),
       ...noDataStateProp,
     };
@@ -28,7 +28,7 @@ export function useEmptyState({
     };
 
     const errorDataState: EmptyStateProps = {
-      icon: { icon: CrossSVG, appearance: 'neutral', decor: true },
+      icon: { icon: CrossSVG, appearance: 'neutral', background: true },
       content: t('errorData.description'),
       ...errorDataStateProp,
     };

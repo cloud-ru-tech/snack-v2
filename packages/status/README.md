@@ -63,13 +63,13 @@ export function Loading() {
 
 #### С фоном
 
-hasBackground — визуально выделяет строку.
+background — визуально выделяет строку.
 
 ```tsx
 import { Status } from '@ds/status';
 
 export function WithBackground() {
-  return <Status label='Error' appearance='red' hasBackground />;
+  return <Status label='Error' appearance='red' background />;
 }
 ```
 
@@ -79,9 +79,9 @@ export function WithBackground() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цветовая схема) |
+| `background` | `boolean` | `false` | Наличие фона |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `hasBackground` | `boolean` | `false` | Наличие фона |
 | `label` | `string` | — | Подпись к индикатору (точка с текстом). Если не передано — только точка |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |

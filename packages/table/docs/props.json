@@ -2581,6 +2581,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -2589,11 +2594,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -4076,6 +4076,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -4084,11 +4089,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -5343,6 +5343,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -5351,11 +5356,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -6571,6 +6571,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -6579,11 +6584,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -7784,6 +7784,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -7792,11 +7797,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -9040,6 +9040,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -9048,11 +9053,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
@@ -10665,6 +10665,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -10673,11 +10678,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "decor": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
           },
           "icon": {
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",

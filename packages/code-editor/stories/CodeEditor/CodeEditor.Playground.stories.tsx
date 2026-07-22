@@ -16,7 +16,7 @@ const meta: Meta<typeof CodeEditor> = {
     value: CODE,
     language: 'typescript',
     hasHeader: true,
-    hasBackground: true,
+    background: true,
     showRowNumber: true,
     'data-test-id': TEST_IDS.root,
   },
@@ -28,7 +28,7 @@ const meta: Meta<typeof CodeEditor> = {
       description: 'Язык подсветки',
     },
     hasHeader: { control: 'boolean', description: 'Показывать шапку (language + copy)' },
-    hasBackground: { control: 'boolean', description: 'Псевдо-бекграунд для editor-области' },
+    background: { control: 'boolean', description: 'Псевдо-бекграунд для editor-области' },
     showRowNumber: { control: 'boolean', description: 'Показывать колонку с номерами строк' },
     loading: { control: 'boolean', description: 'Показать спиннер поверх редактора' },
     theme: {

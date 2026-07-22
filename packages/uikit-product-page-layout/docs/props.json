@@ -11910,6 +11910,11 @@
               "Appearance"
             ]
           },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие фона"
+          },
           "className": {
             "type": "string | undefined",
             "required": false,
@@ -11918,11 +11923,6 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
-          },
-          "hasBackground": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие фона"
           },
           "label": {
             "type": "string",

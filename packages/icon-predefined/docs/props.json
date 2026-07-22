@@ -24,6 +24,12 @@
           "Appearance"
         ]
       },
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Наличие цветной подложки"
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -32,12 +38,6 @@
       "data-test-id": {
         "type": "string",
         "required": false
-      },
-      "decor": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Наличие цветной подложки"
       },
       "icon": {
         "type": "JSXElementConstructor<{ size?: number | undefined; className?: string | undefined; }>",

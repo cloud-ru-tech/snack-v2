@@ -6,7 +6,7 @@ export function WithIcon() {
     <InfoBlock
       title='С иконкой'
       content='Иконка передаётся через проп icon как IconPredefinedProps.'
-      icon={{ icon: PlaceholderSVG, appearance: 'primary', decor: true }}
+      icon={{ icon: PlaceholderSVG, appearance: 'primary', background: true }}
     />
   );
 }

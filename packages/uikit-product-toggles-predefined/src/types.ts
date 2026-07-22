@@ -17,7 +17,7 @@ export type EmblemPicture = {
   alt: string;
 };
 
-export type EmblemIcon = Pick<IconPredefinedProps, 'icon' | 'appearance' | 'decor' | 'shape'>;
+export type EmblemIcon = Pick<IconPredefinedProps, 'icon' | 'appearance' | 'background' | 'shape'>;
 
 /** Эмблема карточки: параметры встроенного `IconPredefined` либо картинка (`src` / `alt`). */
 export type Emblem = EmblemPicture | EmblemIcon;

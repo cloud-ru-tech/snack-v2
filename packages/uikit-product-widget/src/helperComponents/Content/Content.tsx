@@ -42,7 +42,7 @@ function ContentComponent({ children, state, wide, loadingState, errorState }: C
           <InfoBlock
             size='m'
             className={styles.infoBlock}
-            icon={errorState?.errorIcon ?? { icon: CrossSVG, appearance: 'neutral', decor: true }}
+            icon={errorState?.errorIcon ?? { icon: CrossSVG, appearance: 'neutral', background: true }}
             title={errorState?.errorTitle || t('dataErrorTitle')}
             content={errorState?.errorDescription || t('dataErrorDescription')}
             footer={

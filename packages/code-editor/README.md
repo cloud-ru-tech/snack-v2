@@ -60,13 +60,13 @@ import { CodeEditor, LazyCodeEditor, AsyncCodeEditor } from '@ds/code-editor'
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `background` | `boolean` | — | Включение/отключение псевдобекграунда. |
 | `beforeMount` | `BeforeMount` | — | Signature: function(monaco: Monaco) => void <br/> An event is emitted before the editor is mounted <br/> It gets the monaco instance as a first argument <br/> Defaults to "noop" |
 | `className` | `string` | — | Class name for the editor container |
 | `data-test-id` | `string` | — |  |
 | `defaultLanguage` | `string` | — | Default language of the current model |
 | `defaultPath` | `string` | — | Default path of the current model <br/> Will be passed as the third argument to `.createModel` method <br/> `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
 | `defaultValue` | `string` | — | Default value of the current model |
-| `hasBackground` | `boolean` | — | Включение/отключение псевдобекграунда. |
 | `hasHeader` | `boolean` | — | Включение/отключение шапки. |
 | `height` | `string \| number` | `100%` | Height of the editor wrapper |
 | `jsonSchema` | `JsonSchema` | — | Конфигурация JSON-Schema, по которой monaco валидирует контент. |
@@ -254,7 +254,7 @@ export function WithHeader() {
 
 ### 4. Без фона
 
-hasBackground=false — для встраивания в карточки с собственным фоном
+background=false — для встраивания в карточки с собственным фоном
 
 ```tsx
 import { CodeEditor } from '@ds/code-editor';
@@ -274,7 +274,7 @@ export function NoBackground() {
       <CodeEditor
         language='javascript'
         value={value}
-        hasBackground={false}
+        background={false}
         height={220}
         onChange={v => setValue(v ?? '')}
       />
@@ -325,13 +325,13 @@ export function LazyLoaded() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `background` | `boolean` | — | Включение/отключение псевдобекграунда. |
 | `beforeMount` | `BeforeMount` | — | Signature: function(monaco: Monaco) => void <br/> An event is emitted before the editor is mounted <br/> It gets the monaco instance as a first argument <br/> Defaults to "noop" |
 | `className` | `string` | — | Class name for the editor container |
 | `data-test-id` | `string` | — |  |
 | `defaultLanguage` | `string` | — | Default language of the current model |
 | `defaultPath` | `string` | — | Default path of the current model <br/> Will be passed as the third argument to `.createModel` method <br/> `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
 | `defaultValue` | `string` | — | Default value of the current model |
-| `hasBackground` | `boolean` | — | Включение/отключение псевдобекграунда. |
 | `hasHeader` | `boolean` | — | Включение/отключение шапки. |
 | `height` | `string \| number` | `100%` | Height of the editor wrapper |
 | `jsonSchema` | `JsonSchema` | — | Конфигурация JSON-Schema, по которой monaco валидирует контент. |

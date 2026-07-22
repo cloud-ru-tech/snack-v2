@@ -24,7 +24,7 @@ export type StatusProps = WithSupportProps<{
   /** CSS-класс */
   className?: string;
   /** Наличие фона */
-  hasBackground?: boolean;
+  background?: boolean;
   /** Состояние загрузки */
   loading?: boolean;
   /** Прогресс загрузки (от 0 до 100) */
@@ -37,7 +37,7 @@ export function Status({
   appearance: appearanceProp = APPEARANCE.Neutral,
   className,
   loading = false,
-  hasBackground = false,
+  background = false,
   progress,
   ...rest
 }: StatusProps) {
@@ -62,7 +62,7 @@ export function Status({
       className={cn(styles.container, className)}
       data-size={size}
       data-appearance={appearance}
-      data-has-background={hasBackground || undefined}
+      data-background={background || undefined}
     >
       <div className={styles.centeredWrapper}>{marker}</div>
       <label className={styles.textWrapper} data-test-id={TEST_IDS.status.label}>

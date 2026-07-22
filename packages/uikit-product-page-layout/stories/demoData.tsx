@@ -191,7 +191,7 @@ export const SERVICE_ACTIONS: Action[] = [
 // ---------------------------------------------------------------------------
 
 /** Статус «Запущена» (зелёный, с фоном) для afterHeadline детальной страницы инстанса. */
-export const RUNNING_STATUS = <Status label='Запущена' appearance='green' hasBackground size='s' />;
+export const RUNNING_STATUS = <Status label='Запущена' appearance='green' background size='s' />;
 
 type DefRow = { term: string; value: string };
 
