@@ -8,13 +8,20 @@
  */
 
 import { sync as globSync } from 'glob';
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { withCustomConfig } from 'react-docgen-typescript';
 import * as ts from 'typescript';
 
-import { type ComponentDoc, formatPropsJson, isRicher, type PropDef, type RelatedType } from './gen-props-output.mts';
+import {
+  collectExternallyImportedNames,
+  type ComponentDoc,
+  formatPropsJson,
+  isRicher,
+  type PropDef,
+  type RelatedType,
+} from './gen-props-output.mts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -556,6 +563,20 @@ function propsTypeFromComponentType(checker: ts.TypeChecker, type: ts.Type): ts.
   return null;
 }
 
+// ─── Foreign-component filter ────────────────────────────────────────────────
+
+const externalImportsCache = new Map<string, Set<string>>();
+
+/** Компонент лишь упомянут в файле, а объявлен в другом пакете — документировать его здесь не нужно. */
+function isExternallyImported(displayName: string, filePath: string): boolean {
+  let names = externalImportsCache.get(filePath);
+  if (!names) {
+    names = collectExternallyImportedNames(readFileSync(filePath, 'utf8'), filePath);
+    externalImportsCache.set(filePath, names);
+  }
+  return names.has(displayName);
+}
+
 // ─── Main loop ───────────────────────────────────────────────────────────────
 
 for (const [pkgDir, files] of byPkg) {
@@ -582,6 +603,8 @@ for (const [pkgDir, files] of byPkg) {
   const output: Record<string, ComponentDoc> = {};
 
   for (const comp of components) {
+    if (isExternallyImported(comp.displayName, comp.filePath)) continue;
+
     const props: Record<string, PropDef> = {};
 
     for (const [name, prop] of Object.entries(comp.props)) {

@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { type ComponentDoc, formatPropsJson, isRicher, sortOutput } from '../gen-props-output.mts';
+import {
+  collectExternallyImportedNames,
+  type ComponentDoc,
+  formatPropsJson,
+  isRicher,
+  sortOutput,
+} from '../gen-props-output.mts';
 import counterContract from './fixtures/counter-props.contract.json';
 import unsortedFixture from './fixtures/gen-props-unsorted.json';
 
@@ -89,5 +95,54 @@ describe('gen-props output', () => {
     for (const expected of ['value', 'appearance', 'variant', 'size', 'plusLimit', 'color', 'className']) {
       expect(counter.props, `Counter.props.${expected}`).toHaveProperty(expected);
     }
+  });
+});
+
+describe('collectExternallyImportedNames', () => {
+  it('collects named, default and namespace imports from other packages', () => {
+    const names = collectExternallyImportedNames(`
+      import { AbkhaziaSVG, RussiaSVG } from '@ds/icons/flags';
+      import Button from '@ds/button';
+      import * as utils from '@ds/utils';
+    `);
+
+    expect([...names].sort()).toEqual(['AbkhaziaSVG', 'Button', 'RussiaSVG', 'utils']);
+  });
+
+  it('ignores relative imports — это код самого пакета', () => {
+    const names = collectExternallyImportedNames(`
+      import { FieldPhone } from './FieldPhone';
+      import { COUNTRIES } from '../constants';
+    `);
+
+    expect(names.size).toBe(0);
+  });
+
+  it('uses the local alias name, not the exported one', () => {
+    const names = collectExternallyImportedNames(`import { RussiaSVG as Flag } from '@ds/icons/flags';`);
+
+    expect(names.has('Flag')).toBe(true);
+    expect(names.has('RussiaSVG')).toBe(false);
+  });
+
+  it('ignores side-effect imports and export-from statements', () => {
+    const names = collectExternallyImportedNames(`
+      import '@ds/icons/flags';
+      export { RussiaSVG } from '@ds/icons/flags';
+    `);
+
+    expect(names.size).toBe(0);
+  });
+
+  it('skips components a package only references — regression guard for FieldPhone flags', () => {
+    // countries.tsx раскладывает флаги по экспортируемым константам, из-за чего docgen
+    // документировал 158 иконок как компоненты uikit-product-fields-predefined.
+    const names = collectExternallyImportedNames(`
+      import { RussiaSVG } from '@ds/icons/flags';
+
+      export const RUSSIA_COUNTRY_CODE = { icon: RussiaSVG, code: '+7' };
+    `);
+
+    expect(names.has('RussiaSVG')).toBe(true);
   });
 });
