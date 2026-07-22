@@ -19,7 +19,7 @@ export type QuotaWidgetPropsBase = {
   /** Флаг загрузки квот */
   loading: boolean;
   /** Флаг ошибки при загрузке квот */
-  isError: boolean;
+  error: boolean;
   /** Колбек на обновление списка квот при ошибке */
   onRefresh: () => void;
   /** Название проекта, по которому отображаются квоты */

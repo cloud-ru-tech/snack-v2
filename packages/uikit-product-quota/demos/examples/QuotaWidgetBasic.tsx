@@ -25,7 +25,7 @@ export function QuotaWidgetBasic() {
         quotasUrl='#'
         canEditQuota={false}
         loading={loading}
-        isError={false}
+        error={false}
         onRefresh={reload}
       />
     </div>

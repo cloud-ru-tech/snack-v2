@@ -75,6 +75,11 @@
         "required": false,
         "description": "Отключена"
       },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
       "fullWidth": {
         "type": "boolean",
         "required": false,
@@ -108,11 +113,6 @@
         "type": "((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | null",
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-      },
-      "isError": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг ошибки при загрузке квот"
       },
       "items": {
         "type": "Item[]",
@@ -2235,15 +2235,15 @@
         "required": false,
         "description": "Флаг отключения сортировки квот"
       },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
       "hideIncreaseQuotaButton": {
         "type": "boolean",
         "required": false,
         "description": "Флаг скрытия кнопки увеличения квоты"
-      },
-      "isError": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг ошибки при загрузке квот"
       },
       "loading": {
         "type": "boolean",
@@ -4774,15 +4774,15 @@
             "required": false,
             "description": "Флаг отключения сортировки квот"
           },
+          "error": {
+            "type": "boolean",
+            "required": true,
+            "description": "Флаг ошибки при загрузке квот"
+          },
           "hideIncreaseQuotaButton": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Флаг скрытия кнопки увеличения квоты"
-          },
-          "isError": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг ошибки при загрузке квот"
           },
           "loading": {
             "type": "boolean",
@@ -6411,15 +6411,15 @@
             "required": false,
             "description": "Флаг отключения сортировки квот"
           },
+          "error": {
+            "type": "boolean",
+            "required": true,
+            "description": "Флаг ошибки при загрузке квот"
+          },
           "hideIncreaseQuotaButton": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Флаг скрытия кнопки увеличения квоты"
-          },
-          "isError": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг ошибки при загрузке квот"
           },
           "loading": {
             "type": "boolean",
@@ -7652,15 +7652,15 @@
             "required": false,
             "description": "Флаг отключения сортировки квот"
           },
+          "error": {
+            "type": "boolean",
+            "required": true,
+            "description": "Флаг ошибки при загрузке квот"
+          },
           "hideIncreaseQuotaButton": {
             "type": "boolean | undefined",
             "required": false,
             "description": "Флаг скрытия кнопки увеличения квоты"
-          },
-          "isError": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг ошибки при загрузке квот"
           },
           "loading": {
             "type": "boolean",

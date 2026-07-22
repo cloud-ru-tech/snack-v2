@@ -7,14 +7,14 @@ const QUOTAS: QuotaItem[] = [
 ];
 
 export function QuotaWidgetError() {
-  const [isError, setIsError] = useState(true);
+  const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const handleRefresh = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setIsError(false);
+      setError(false);
     }, 800);
   };
 
@@ -27,7 +27,7 @@ export function QuotaWidgetError() {
         quotasUrl='#'
         canEditQuota={false}
         loading={loading}
-        isError={isError}
+        error={error}
         onRefresh={handleRefresh}
       />
     </div>

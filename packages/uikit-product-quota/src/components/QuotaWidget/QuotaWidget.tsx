@@ -27,7 +27,7 @@ export function QuotaWidget({
   quotas,
   disableSorting,
   loading,
-  isError,
+  error,
   onRefresh,
   projectName,
   quotasUrl,
@@ -67,7 +67,7 @@ export function QuotaWidget({
             projectName={projectName}
             quotasUrl={quotasUrl}
             canEditQuota={canEditQuota}
-            isError={isError}
+            error={error}
             onIncreaseQuotaClick={onIncreaseQuotaClick}
             hideIncreaseQuotaButton={hideIncreaseQuotaButton}
             onQuotasUrlClick={onQuotasUrlClick}
@@ -77,7 +77,7 @@ export function QuotaWidget({
             quotas={quotas}
             disableSorting={disableSorting}
             loading={loading}
-            isError={isError}
+            error={error}
             onRefresh={onRefresh}
           />
         </div>

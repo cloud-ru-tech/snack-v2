@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 
 type QuotaCardsGridProps = Pick<
   QuotaWidgetPropsBase,
-  'quotas' | 'disableSorting' | 'loading' | 'isError' | 'onRefresh'
+  'quotas' | 'disableSorting' | 'loading' | 'error' | 'onRefresh'
 > & {
   isAccordion?: boolean;
 };
@@ -15,7 +15,7 @@ type QuotaCardsGridProps = Pick<
 export function QuotaCardsGrid({
   quotas,
   loading,
-  isError,
+  error,
   onRefresh,
   disableSorting = false,
   isAccordion = false,
@@ -32,7 +32,7 @@ export function QuotaCardsGrid({
     isAccordion,
   };
 
-  if (isError) {
+  if (error) {
     return (
       <div {...wrapperAttributes}>
         <QuotaError onRefresh={onRefresh} />

@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 export type QuotaWidgetMiniProps = WithSupportProps<
   QuotaWidgetPropsBase & {
     /** Флаг раскрытия аккордиона по умолчанию */
-    isExpandedDefault?: boolean;
+    defaultExpanded?: boolean;
   }
 >;
 
@@ -24,11 +24,11 @@ export function QuotaWidgetMini({
   quotas,
   disableSorting,
   loading,
-  isError,
+  error,
   onRefresh,
   projectName,
   canEditQuota,
-  isExpandedDefault,
+  defaultExpanded,
   hideIncreaseQuotaButton,
   onIncreaseQuotaClick,
   onWidgetOpen,
@@ -49,7 +49,7 @@ export function QuotaWidgetMini({
     <div data-test-id={dataTestId ?? TEST_IDS.quotaWidgetMini.root}>
       <Accordion
         {...props}
-        expandedDefault={isExpandedDefault ? ACCORDION_ID : undefined}
+        expandedDefault={defaultExpanded ? ACCORDION_ID : undefined}
         onExpandedChange={handleExpandedChange}
       >
         <Accordion.CollapseBlockSecondary
@@ -58,7 +58,7 @@ export function QuotaWidgetMini({
           data-test-id={TEST_IDS.quotaWidgetMini.trigger}
           title={t('quotas')}
           afterTitle={
-            !isError && !loading && exhaustedCount > 0 ? (
+            !error && !loading && exhaustedCount > 0 ? (
               <Counter value={exhaustedCount} size='xs' appearance='red' />
             ) : undefined
           }
@@ -70,11 +70,11 @@ export function QuotaWidgetMini({
               quotas={quotas}
               disableSorting={disableSorting}
               loading={loading}
-              isError={isError}
+              error={error}
               onRefresh={onRefresh}
             />
 
-            {!isError && canEditQuota && !hideIncreaseQuotaButton && (
+            {!error && canEditQuota && !hideIncreaseQuotaButton && (
               <Button
                 className={styles.button}
                 fullWidth

@@ -29,17 +29,15 @@ export const VisualMatrix: Story = {
         },
         {
           variantLabel: 'true / data',
-          cells: [<QuotaWidgetMini key='expanded-data' {...BASE_QUOTA_WIDGET_MINI_PROPS} isExpandedDefault />],
+          cells: [<QuotaWidgetMini key='expanded-data' {...BASE_QUOTA_WIDGET_MINI_PROPS} defaultExpanded />],
         },
         {
           variantLabel: 'true / loading',
-          cells: [
-            <QuotaWidgetMini key='expanded-loading' {...BASE_QUOTA_WIDGET_MINI_PROPS} isExpandedDefault loading />,
-          ],
+          cells: [<QuotaWidgetMini key='expanded-loading' {...BASE_QUOTA_WIDGET_MINI_PROPS} defaultExpanded loading />],
         },
         {
           variantLabel: 'true / error',
-          cells: [<QuotaWidgetMini key='expanded-error' {...BASE_QUOTA_WIDGET_MINI_PROPS} isExpandedDefault isError />],
+          cells: [<QuotaWidgetMini key='expanded-error' {...BASE_QUOTA_WIDGET_MINI_PROPS} defaultExpanded error />],
         },
       ]}
     />

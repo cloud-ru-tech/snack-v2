@@ -36,15 +36,15 @@
         "required": true,
         "description": "Флаг наличия прав на редактирование квот"
       },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
       "hideIncreaseQuotaButton": {
         "type": "boolean",
         "required": false,
         "description": "Флаг скрытия кнопки увеличения квоты"
-      },
-      "isError": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг ошибки при загрузке квот"
       },
       "onIncreaseQuotaClick": {
         "type": "(() => void)",
@@ -77,15 +77,15 @@
         "defaultValue": "false",
         "description": "Флаг отключения сортировки квот"
       },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
       "isAccordion": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false"
-      },
-      "isError": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг ошибки при загрузке квот"
       },
       "loading": {
         "type": "boolean",
@@ -153,15 +153,15 @@
         "required": false,
         "description": "Флаг отключения сортировки квот"
       },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
       "hideIncreaseQuotaButton": {
         "type": "boolean",
         "required": false,
         "description": "Флаг скрытия кнопки увеличения квоты"
-      },
-      "isError": {
-        "type": "boolean",
-        "required": true,
-        "description": "Флаг ошибки при загрузке квот"
       },
       "loading": {
         "type": "boolean",
@@ -581,25 +581,25 @@
         "type": "string",
         "required": false
       },
+      "defaultExpanded": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг раскрытия аккордиона по умолчанию"
+      },
       "disableSorting": {
         "type": "boolean",
         "required": false,
         "description": "Флаг отключения сортировки квот"
       },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
-      },
-      "isError": {
+      "error": {
         "type": "boolean",
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "isExpandedDefault": {
+      "hideIncreaseQuotaButton": {
         "type": "boolean",
         "required": false,
-        "description": "Флаг раскрытия аккордиона по умолчанию"
+        "description": "Флаг скрытия кнопки увеличения квоты"
       },
       "loading": {
         "type": "boolean",

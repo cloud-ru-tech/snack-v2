@@ -32,8 +32,8 @@ import componentDoc from './props.json'
 - ✅ Оборачивайте страницу в `PortalContextProvider` — контент рендерится в портал `Dropdown`.
 - ❌ Рендерить виджет без portal-контекста — выпадающий список не появится.
 
-- ✅ Переключайте `isError` обратно после успешного `onRefresh` — кнопка повтора в состоянии ошибки.
-- ❌ Оставлять `isError` без рабочего `onRefresh` — пользователь не сможет восстановить список.
+- ✅ Переключайте `error` обратно после успешного `onRefresh` — кнопка повтора в состоянии ошибки.
+- ❌ Оставлять `error` без рабочего `onRefresh` — пользователь не сможет восстановить список.
 
 ## Анатомия
 
@@ -52,7 +52,7 @@ import componentDoc from './props.json'
 Сетка карточек `QuotaWidgetCard`. Исчерпанные квоты поднимаются в начало (отключается `disableSorting`). Состояния:
 
 - `loading` — skeleton-карточки.
-- `isError` — блок ошибки с кнопкой повтора (`onRefresh`).
+- `error` — блок ошибки с кнопкой повтора (`onRefresh`).
 
 ## Установка
 
@@ -76,7 +76,7 @@ import { QuotaWidget } from '@ds/uikit-product-quota'
 
 <Example
   title='Ошибка загрузки и повтор'
-  description='isError показывает блок ошибки; onRefresh переключает в loading и восстанавливает список'
+  description='error показывает блок ошибки; onRefresh переключает в loading и восстанавливает список'
   code={QuotaWidgetErrorSrc}
 >
   <QuotaWidgetError client:visible />

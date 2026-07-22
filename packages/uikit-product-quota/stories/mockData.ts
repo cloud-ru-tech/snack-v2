@@ -52,7 +52,7 @@ export const MOCK_QUOTA_OVERUSE: QuotaItem = {
 export const BASE_QUOTA_WIDGET_PROPS: Omit<QuotaWidgetProps, 'buttonProps'> = {
   quotas: MOCK_QUOTAS,
   loading: false,
-  isError: false,
+  error: false,
   onRefresh: () => undefined,
   projectName: 'Демо-проект',
   canEditQuota: true,

@@ -15,7 +15,7 @@ test.describe('QuotaWidget — rendering', () => {
   });
 
   test('error state renders without crash', async ({ gotoStory, page }) => {
-    await gotoStory(buildStoryOptions({ isError: true }, QUOTA_WIDGET_STORIES.playground));
+    await gotoStory(buildStoryOptions({ error: true }, QUOTA_WIDGET_STORIES.playground));
     await expect(page.getByTestId(TEST_IDS.quotaWidget.trigger)).toBeVisible();
   });
 });

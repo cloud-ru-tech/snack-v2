@@ -536,13 +536,13 @@ import {
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `disabled` | `boolean` | — | Отключена |
+| `error` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `fullWidth` | `boolean` | — | На всю ширину |
 | `hidden` | `boolean` | `false` |  |
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
 | `innerRef` | `((instance: HTMLButtonElement \| null) => void) \| RefObject<HTMLButtonElement> \| null` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `items` | `Item[]` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `list` | `Pick<DroplistProps, "className" \| "open" \| "onOpenChange" \| "items" \| "closeDroplistOnItemClick">` | — |  |
@@ -591,8 +591,8 @@ import {
 | `canEditQuota` | `boolean` | — | Флаг наличия прав на редактирование квот |
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
+| `error` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
-| `isError` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |

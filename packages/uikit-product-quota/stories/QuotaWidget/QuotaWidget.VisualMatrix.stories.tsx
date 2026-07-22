@@ -37,7 +37,7 @@ export const VisualMatrix: Story = {
                   data-test-id={cellTestId}
                   {...BASE_QUOTA_WIDGET_PROPS}
                   {...(state === 'loading' ? { loading: true } : {})}
-                  {...(state === 'error' ? { isError: true } : {})}
+                  {...(state === 'error' ? { error: true } : {})}
                 />,
               ),
             ],

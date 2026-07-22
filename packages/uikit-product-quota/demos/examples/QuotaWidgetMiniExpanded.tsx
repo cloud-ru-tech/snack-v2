@@ -20,9 +20,9 @@ export function QuotaWidgetMiniExpanded() {
       quotas={QUOTAS}
       projectName='ml-platform-production'
       canEditQuota={false}
-      isExpandedDefault
+      defaultExpanded
       loading={loading}
-      isError={false}
+      error={false}
       onRefresh={reload}
     />
   );
