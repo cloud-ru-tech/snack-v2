@@ -8,7 +8,7 @@ export function WithPromoTag() {
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
       promoTag={{
-        text: 'New',
+        label: 'New',
         appearance: APPEARANCE.Primary,
         role: ROLE_APPEARANCE.Accent,
         size: SIZE.Xs,

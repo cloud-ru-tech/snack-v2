@@ -64,7 +64,7 @@ export const FIGMA_SHOWCASE_ARGS = {
   loading: false,
   dataError: false,
   invoiceExpandedDefault: true,
-  promoBadge: { text: '−9%' },
+  promoBadge: { label: '−9%' },
   discount: FIGMA_SHOWCASE_DISCOUNT,
   hint: 'Дополнительная информация',
   invoice: FIGMA_SHOWCASE_INVOICE,

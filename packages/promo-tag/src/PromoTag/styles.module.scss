@@ -62,7 +62,7 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
   }
 }
 
-.textWrapper {
+.labelWrapper {
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       @include base.composite-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container', 'textWrapper');

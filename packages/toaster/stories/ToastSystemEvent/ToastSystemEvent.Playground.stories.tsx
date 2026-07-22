@@ -14,8 +14,8 @@ import styles from './styles.module.scss';
 
 const linkPresets = {
   none: undefined,
-  withHref: { text: 'Подробнее', href: '#' },
-  withOnClick: { text: 'Открыть', href: '#', onClick: fn() },
+  withHref: { label: 'Подробнее', href: '#' },
+  withOnClick: { label: 'Открыть', href: '#', onClick: fn() },
 };
 
 const actionPresets = {

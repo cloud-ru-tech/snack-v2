@@ -130,7 +130,7 @@ export const VisualMatrix: Story = {
                 <CardServiceSmall
                   {...baseProps}
                   promoBadge={{
-                    text: 'Promo Tag',
+                    label: 'Promo Tag',
                     appearance: APPEARANCE.Primary,
                     role: ROLE_APPEARANCE.Accent,
                     size: SIZE.Xs,

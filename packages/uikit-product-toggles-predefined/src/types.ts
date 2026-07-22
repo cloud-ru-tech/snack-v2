@@ -35,7 +35,7 @@ export type ToggleCardProps = WithSupportProps<{
    */
   emblem?: Emblem;
   /** Промо-бейдж в правом верхнем углу карточки */
-  promoBadge?: Pick<PromoTagProps, 'text' | 'appearance'> | string;
+  promoBadge?: Pick<PromoTagProps, 'label' | 'appearance'> | string;
   /** Размер карточки — масштабирует padding, gap, типографику и `radius` контейнера `@ds/card` */
   size?: Size;
   /**

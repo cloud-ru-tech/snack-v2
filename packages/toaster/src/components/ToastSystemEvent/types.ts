@@ -8,7 +8,7 @@ import { TOAST_SYSTEM_EVENT_APPEARANCE } from './constants';
 export type ToastSystemEventAppearance = ValueOf<typeof TOAST_SYSTEM_EVENT_APPEARANCE>;
 
 export type ToastSystemEventLink = {
-  text: string;
+  label: string;
   href: string;
   onClick?(e: MouseEvent<HTMLAnchorElement>): void;
 };

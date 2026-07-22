@@ -11,13 +11,13 @@ export function PromoTagDemo() {
       componentName='PromoTag'
       componentDoc={promoTagDoc.PromoTag}
       defaultProps={{
-        text: 'Promo tag',
+        label: 'Promo tag',
         appearance: 'primary',
         role: 'accent',
         size: 'xs',
       }}
       controls={{
-        text: { type: 'text' },
+        label: { type: 'text' },
         appearance: {
           type: 'select',
           options: ['neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],

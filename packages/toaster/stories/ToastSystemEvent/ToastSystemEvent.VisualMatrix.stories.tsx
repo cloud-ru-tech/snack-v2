@@ -29,7 +29,7 @@ const twoActions = [
 
 const slotVariants = [
   { key: 'plain', props: {} },
-  { key: 'withLink', props: { link: { text: 'Подробнее', href: '#' } } },
+  { key: 'withLink', props: { link: { label: 'Подробнее', href: '#' } } },
   { key: 'withAction', props: { action: twoActions } },
 ] as const;
 

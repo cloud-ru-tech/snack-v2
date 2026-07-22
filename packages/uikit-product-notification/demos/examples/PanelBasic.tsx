@@ -21,7 +21,7 @@ export function PanelBasic() {
             title='Кластер k8s-prod-1 деградирован'
             description='3 из 5 нод недоступны последние 6 минут.'
             date='03:14'
-            link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
+            link={{ label: 'Открыть инцидент', href: '/incidents/INC-4821' }}
             unread={!readIds.has('inc-4821')}
             onVisible={markRead}
           />

@@ -22,7 +22,7 @@ export function buildStoryOptions(
     group: ref.group,
     story: ref.story,
     props: {
-      text: 'Link',
+      label: 'Link',
       'data-test-id': TEST_IDS.root,
       ...props,
     },

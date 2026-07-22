@@ -19,7 +19,7 @@ const cards = [
     description={demoContent}
     primaryButton={{ label: 'Основное', onClick: fn() }}
     secondaryButton={{ label: 'Второстепенное', onClick: fn() }}
-    link={{ text: 'Подробнее об уведомлении', href: '#' }}
+    link={{ label: 'Подробнее об уведомлении', href: '#' }}
     date='18.06.2026 · 14:32'
     unread
   />,
@@ -32,7 +32,7 @@ const cards = [
     description={demoContent}
     primaryButton={{ label: 'Основное', onClick: fn() }}
     secondaryButton={{ label: 'Второстепенное', onClick: fn() }}
-    link={{ text: 'Подробнее об уведомлении', href: '#' }}
+    link={{ label: 'Подробнее об уведомлении', href: '#' }}
     date='17.06.2026 · 19:04'
     unread
   />,
@@ -45,7 +45,7 @@ const cards = [
     description={demoContent}
     primaryButton={{ label: 'Основное', onClick: fn() }}
     secondaryButton={{ label: 'Второстепенное', onClick: fn() }}
-    link={{ text: 'Подробнее об уведомлении', href: '#' }}
+    link={{ label: 'Подробнее об уведомлении', href: '#' }}
     date='17.06.2026 · 17:11'
   />,
 ];

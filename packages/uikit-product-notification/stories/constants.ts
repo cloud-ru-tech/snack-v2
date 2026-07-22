@@ -9,7 +9,7 @@ export const BASE_PROPS: Pick<NotificationCardProps, 'id' | 'title' | 'descripti
 
 For replacement, use Property: ◆ProdContent. Replace this element with your local component with the original content.`,
   link: {
-    text: 'Link to detailed information',
+    label: 'Link to detailed information',
     href: '#',
   },
   date: 'DD.MM.YYYY HH:MM',

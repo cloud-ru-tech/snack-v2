@@ -18,7 +18,7 @@ const meta: Meta<typeof NotificationCard> = {
     onClick: fn(),
     primaryButton: { label: 'Открыть', onClick: fn() },
     secondaryButton: { label: 'Скрыть', onClick: fn() },
-    link: { text: 'Подробнее', href: '#', onClick: fn() },
+    link: { label: 'Подробнее', href: '#', onClick: fn() },
     actions: [
       { content: { option: 'Прочитано' }, onClick: fn() },
       { content: { option: 'Удалить' }, onClick: fn() },

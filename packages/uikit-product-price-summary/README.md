@@ -150,7 +150,7 @@ export function WithInvoice() {
 | `docsLink` | `LinkProps` | — | Ссылка «Подробнее о расчёте». |
 | `hint` | `string` | — |  |
 | `hintAppearance` | `"default"` \| `"systemError"` \| `"userError"` \| `"warning"` | — |  |
-| `hintLink` | `{ href?: string; text: string; }` | — |  |
+| `hintLink` | `{ href?: string; label: string; }` | — |  |
 | `hintTooltipText` | `ReactNode` | — |  |
 | `invoice` | `InvoiceDetails` | — | Секции детализации заказа в аккордеоне. |
 | `invoiceExpandedDefault` | `boolean` | `true` | Начальное состояние раскрытия аккордеона invoice. |

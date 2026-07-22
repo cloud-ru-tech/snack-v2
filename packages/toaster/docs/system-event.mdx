@@ -129,7 +129,7 @@ const id = await toaster.systemEvent.error({
   containerId: 'main',
   title: 'Не удалось сохранить',
   description: 'Сервер вернул 500',
-  link: { text: 'Подробнее', href: '/logs/123' },
+  link: { label: 'Подробнее', href: '/logs/123' },
   autoClose: false,
   onCloseClick: (_e, close) => confirm('Закрыть?') && close?.(),
   onClose: id => log('closed', id),

@@ -32,7 +32,7 @@ const initialFiles: UploadItem[] = [
     progress: 100,
     formattedSize: '2.1 МБ',
     actions: {},
-    link: { text: 'Открыть', href: '#' },
+    link: { label: 'Открыть', href: '#' },
   },
 ];
 

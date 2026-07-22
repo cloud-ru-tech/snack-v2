@@ -27,7 +27,7 @@ export type PriceSummaryProps = WithSupportProps<
       /** Ссылка «Подробнее о расчёте». */
       docsLink?: {
         href?: LinkProps['href'];
-        text?: LinkProps['text'];
+        label?: LinkProps['label'];
       };
       /** Дополнительный класс корневого контейнера. */
       className?: string;
@@ -99,7 +99,7 @@ export function PriceSummary({
             <InvoiceBlock invoice={invoice} invoiceExpandedDefault={invoiceExpandedDefault} />
           )}
 
-          {docsLink?.href && <Link text={docsLink.text || t('docsLink')} href={docsLink.href} target='_blank' />}
+          {docsLink?.href && <Link label={docsLink.label || t('docsLink')} href={docsLink.href} target='_blank' />}
         </ContentBlock>
       </div>
     </div>

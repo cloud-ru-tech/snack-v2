@@ -11,7 +11,7 @@ export function LinkDemo() {
       componentName='Link'
       componentDoc={linkDoc.Link}
       defaultProps={{
-        text: 'Link text',
+        label: 'Link text',
         appearance: 'primary',
         role: 'regular',
         insideText: false,
@@ -19,7 +19,7 @@ export function LinkDemo() {
         href: 'https://example.com',
       }}
       controls={{
-        text: { type: 'text' },
+        label: { type: 'text' },
         appearance: {
           type: 'select',
           options: [

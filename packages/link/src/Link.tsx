@@ -11,7 +11,7 @@ import { LinkProps } from './types';
  * Link компонент
  */
 export function Link<T extends ElementType = 'a'>({
-  text = '',
+  label = '',
   className,
   role = ROLE.Regular,
   appearance = APPEARANCE.Primary,
@@ -54,7 +54,7 @@ export function Link<T extends ElementType = 'a'>({
     >
       <div className={styles.content}>
         <span className={styles.opacityLayer} data-text-opacity>
-          {insideText ? text : <TruncateString text={text} maxLines={1} variant={truncateVariant} />}
+          {insideText ? label : <TruncateString text={label} maxLines={1} variant={truncateVariant} />}
         </span>
       </div>
     </Component>

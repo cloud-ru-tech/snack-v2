@@ -39,7 +39,7 @@ import { PromoTag } from '@ds/promo-tag';
 
 export function Basic() {
   // eslint-disable-next-line jsx-a11y/aria-role -- `role` здесь — пропс компонента PromoTag, не ARIA-атрибут
-  return <PromoTag text='NEW' appearance='primary' role='accent' />;
+  return <PromoTag label='NEW' appearance='primary' role='accent' />;
 }
 ```
 
@@ -53,10 +53,10 @@ import { PromoTag } from '@ds/promo-tag';
 export function Colors() {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <PromoTag text='Primary' appearance='primary' />
-      <PromoTag text='Green' appearance='green' />
-      <PromoTag text='Red' appearance='red' />
-      <PromoTag text='Violet' appearance='violet' />
+      <PromoTag label='Primary' appearance='primary' />
+      <PromoTag label='Green' appearance='green' />
+      <PromoTag label='Red' appearance='red' />
+      <PromoTag label='Violet' appearance='violet' />
     </div>
   );
 }
@@ -86,14 +86,14 @@ export function Polymorphic() {
         as='a'
         href='https://example.com'
         target='_blank'
-        text='External promo'
+        label='External promo'
         appearance={APPEARANCE.Blue}
         role={ROLE_APPEARANCE.Decor}
       />
       <PromoTag
         as={MockLink}
         to='https://example.com'
-        text='Preview link'
+        label='Preview link'
         appearance={APPEARANCE.Primary}
         role={ROLE_APPEARANCE.Accent}
       />
@@ -114,10 +114,10 @@ export function Polymorphic() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
+| `label` | `string` | — | Текст компонента |
 | `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
 | `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
 | `size` | `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
-| `text` | `string` | — | Текст компонента |
 
 #### Related types
 

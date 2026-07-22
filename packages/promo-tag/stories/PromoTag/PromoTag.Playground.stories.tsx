@@ -31,7 +31,7 @@ const meta: Meta<typeof PromoTag> = {
     </DemoPage>
   ),
   args: {
-    text: 'Promo tag',
+    label: 'Promo tag',
     appearance: APPEARANCE.Primary,
     role: ROLE_APPEARANCE.Accent,
     size: SIZE.Xs,
@@ -40,7 +40,7 @@ const meta: Meta<typeof PromoTag> = {
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    text: { control: 'text', description: 'Текст компонента' },
+    label: { control: 'text', description: 'Текст компонента' },
     appearance: { control: 'select', options: Object.values(APPEARANCE) },
     role: { control: 'radio', options: Object.values(ROLE_APPEARANCE) },
     size: { control: 'radio', options: Object.values(SIZE) },

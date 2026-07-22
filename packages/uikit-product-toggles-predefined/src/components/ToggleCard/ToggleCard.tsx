@@ -67,7 +67,7 @@ export function ToggleCard({
       {promoBadge && (
         <div className={styles.promoBadge} data-size={size} data-test-id={TEST_IDS.promoBadge}>
           {/* eslint-disable-next-line jsx-a11y/aria-role */}
-          <PromoTag {...(typeof promoBadge === 'string' ? { text: promoBadge } : promoBadge)} role='decor' />
+          <PromoTag {...(typeof promoBadge === 'string' ? { label: promoBadge } : promoBadge)} role='decor' />
         </div>
       )}
 

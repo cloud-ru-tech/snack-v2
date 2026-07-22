@@ -11,7 +11,7 @@ test.describe('Link — rendering', () => {
     });
 
     test('renders text', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ text: 'Hello link' }));
+      await gotoStory(buildStoryOptions({ label: 'Hello link' }));
 
       await expect(getByTestId(TEST_IDS.root)).toContainText('Hello link');
     });

@@ -10,7 +10,7 @@ export type Role = ValueOf<typeof ROLE>;
 
 export type BaseProps = WithSupportProps<{
   /** Текст ссылки */
-  text?: string;
+  label?: string;
   /** Роль
    * @default 'regular'
    */

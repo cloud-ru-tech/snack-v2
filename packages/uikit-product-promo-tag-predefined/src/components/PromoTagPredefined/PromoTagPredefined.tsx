@@ -18,7 +18,7 @@ export type PromoTagPredefinedProps = WithSupportProps<{
   /** Настройки тултипа */
   tooltip?: Pick<TooltipProps, 'placement' | 'trigger' | 'open' | 'onOpenChange'>;
 }> &
-  Omit<PromoTagProps<ElementType>, 'text' | 'appearance' | 'role' | 'size'>;
+  Omit<PromoTagProps<ElementType>, 'label' | 'appearance' | 'role' | 'size'>;
 
 export function PromoTagPredefined({
   context = PREVIEW_CONTEXT.Service,
@@ -73,7 +73,7 @@ export function PromoTagPredefined({
       hoverDelayOpen={HOVER_DELAY_OPEN_MS}
     >
       <PromoTag
-        text={text}
+        label={text}
         appearance={appearance}
         role={ROLE_APPEARANCE.Decor}
         size={SIZE.Xs}

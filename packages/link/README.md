@@ -40,7 +40,7 @@ import { Link } from '@ds/link'
 import { Link } from '@ds/link';
 
 export function Basic() {
-  return <Link text='Документация API' href='https://example.com/docs' />;
+  return <Link label='Документация API' href='https://example.com/docs' />;
 }
 ```
 
@@ -54,8 +54,8 @@ import { Link } from '@ds/link';
 export function InsideText() {
   return (
     <p>
-      Подробнее читайте <Link insideText text='в документации' href='https://example.com' />, а также ознакомьтесь с{' '}
-      <Link insideText underlined text='условиями' href='https://example.com/terms' />.
+      Подробнее читайте <Link insideText label='в документации' href='https://example.com' />, а также ознакомьтесь с{' '}
+      <Link insideText underlined label='условиями' href='https://example.com/terms' />.
     </p>
   );
 }
@@ -69,7 +69,7 @@ as='button' — действие, семантически оформленно�
 import { Link } from '@ds/link';
 
 export function Polymorphic() {
-  return <Link as='button' type='button' text='Открыть диалог' onClick={() => alert('clicked')} />;
+  return <Link as='button' type='button' label='Открыть диалог' onClick={() => alert('clicked')} />;
 }
 ```
 
@@ -81,7 +81,7 @@ target='_blank' → rel='noopener noreferrer' автоматически
 import { Link } from '@ds/link';
 
 export function External() {
-  return <Link text='Открыть в новой вкладке' href='https://example.com' target='_blank' />;
+  return <Link label='Открыть в новой вкладке' href='https://example.com' target='_blank' />;
 }
 ```
 
@@ -95,9 +95,9 @@ export function External() {
 | `data-test-id` | `string` | — |  |
 | `href` | `string` | — |  |
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
+| `label` | `string` | `` | Текст ссылки |
 | `onClick` | `((e: MouseEvent<HTMLAnchorElement>) => void) \| undefined` | — |  |
 | `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |
 | `target` | `string \| undefined` | — |  |
-| `text` | `string` | `` | Текст ссылки |
 | `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
 | `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |

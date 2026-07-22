@@ -127,7 +127,7 @@ export function WithPromoBadge() {
         emblem={{ icon: PlaceholderSVG }}
         title='Enterprise'
         description='Для команд'
-        promoBadge={{ text: 'New', appearance: 'blue' }}
+        promoBadge={{ label: 'New', appearance: 'blue' }}
       />
     </ToggleGroup>
   );

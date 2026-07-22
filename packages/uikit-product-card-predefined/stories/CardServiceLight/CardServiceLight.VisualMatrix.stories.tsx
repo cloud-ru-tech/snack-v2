@@ -106,7 +106,7 @@ export const VisualMatrix: Story = {
                 key='with-promo'
                 {...lightProps}
                 promoTag={{
-                  text: 'New',
+                  label: 'New',
                   appearance: APPEARANCE.Primary,
                   role: ROLE_APPEARANCE.Accent,
                   size: SIZE.Xs,

@@ -18,7 +18,7 @@ export function CoveredByGrantLabel({ covered, className }: CoveredByGrantLabelP
       <PromoTag
         appearance={covered ? 'green' : 'neutral'}
         role={ROLE_APPEARANCE.Decor}
-        text={covered ? t('coveredByGrant') : t('notCoveredByGrant')}
+        label={covered ? t('coveredByGrant') : t('notCoveredByGrant')}
       />
       <QuestionTooltip
         tip={covered ? t('coveredByGrantTooltip') : t('notCoveredByGrantTooltip')}

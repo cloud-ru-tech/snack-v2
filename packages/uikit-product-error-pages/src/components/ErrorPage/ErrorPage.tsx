@@ -88,7 +88,7 @@ export function ErrorPage({
                   <Link
                     href={mainPageUrl}
                     target='_self'
-                    text={t('mainPageLink')}
+                    label={t('mainPageLink')}
                     data-test-id={TEST_IDS.mainPageLink}
                   />
                 )}
@@ -97,7 +97,7 @@ export function ErrorPage({
                   <Link
                     onClick={handleBackLinkClick}
                     target='_self'
-                    text={t('backLink')}
+                    label={t('backLink')}
                     data-test-id={TEST_IDS.backLink}
                   />
                 )}

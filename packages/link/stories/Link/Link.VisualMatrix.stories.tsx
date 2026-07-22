@@ -40,7 +40,7 @@ export const VisualMatrix: Story = {
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
           cells: underlinedStates.map(u => (
-            <Link key={String(u)} appearance={appearance} underlined={u} text='Link text' href='#' />
+            <Link key={String(u)} appearance={appearance} underlined={u} label='Link text' href='#' />
           )),
         }))}
       />
@@ -54,7 +54,7 @@ export const VisualMatrix: Story = {
           cells: [
             <p key={String(insideText)} className={styles.paragraph}>
               Подробнее о работе сервиса читайте{' '}
-              <Link insideText={insideText} text='в документации' href='https://example.com' />, а также ознакомьтесь с
+              <Link insideText={insideText} label='в документации' href='https://example.com' />, а также ознакомьтесь с
               условиями.
             </p>,
           ],
@@ -69,7 +69,7 @@ export const VisualMatrix: Story = {
           variantLabel: variant,
           cells: [
             <div key={variant} className={styles.narrow}>
-              <Link truncateVariant={variant} text='very-long-document-name-abc-2024.pdf' href='#' />
+              <Link truncateVariant={variant} label='very-long-document-name-abc-2024.pdf' href='#' />
             </div>,
           ],
         }))}
@@ -83,7 +83,7 @@ export const VisualMatrix: Story = {
           variantLabel: role,
           cells: keyAppearances.map(appearance => (
             <div key={appearance} className={role === ROLE.OnAccent ? styles.onAccent : undefined}>
-              <Link role={role} appearance={appearance} text='Link text' href='#' />
+              <Link role={role} appearance={appearance} label='Link text' href='#' />
             </div>
           )),
         }))}

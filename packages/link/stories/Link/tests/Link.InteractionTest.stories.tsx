@@ -11,7 +11,7 @@ const meta: Meta<typeof Link> = {
   component: Link,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
-    text: 'Click me',
+    label: 'Click me',
     href: 'https://example.com',
     onClick: fn(e => e.preventDefault()),
     'data-test-id': TEST_IDS.root,

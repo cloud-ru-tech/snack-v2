@@ -36,7 +36,7 @@ export const VisualMatrix: Story = {
           cells: keySizes.map(size => (
             <PromoTag
               key={`${appearance}-${size}`}
-              text='Promo'
+              label='Promo'
               appearance={appearance}
               size={size}
               role={ROLE_APPEARANCE.Accent}
@@ -53,7 +53,7 @@ export const VisualMatrix: Story = {
           cells: keySizes.map(size => (
             <PromoTag
               key={`${appearance}-${size}`}
-              text='Promo'
+              label='Promo'
               appearance={appearance}
               size={size}
               role={ROLE_APPEARANCE.Decor}
@@ -71,7 +71,7 @@ export const VisualMatrix: Story = {
             cells: keySizes.map(size => (
               <PromoTag
                 key={`before-${size}`}
-                text='Promo'
+                label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
                 beforeContent={<PlaceholderSVG size={iconSizes[size]} />}
@@ -83,7 +83,7 @@ export const VisualMatrix: Story = {
             cells: keySizes.map(size => (
               <PromoTag
                 key={`after-${size}`}
-                text='Promo'
+                label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
                 afterContent={<PlaceholderSVG size={iconSizes[size]} />}
@@ -95,7 +95,7 @@ export const VisualMatrix: Story = {
             cells: keySizes.map(size => (
               <PromoTag
                 key={`before-after-${size}`}
-                text='Promo'
+                label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
                 beforeContent={<PlaceholderSVG size={iconSizes[size]} />}

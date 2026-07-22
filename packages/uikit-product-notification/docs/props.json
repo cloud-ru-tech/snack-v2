@@ -93,7 +93,7 @@
         "description": "Лейбл перед заголовком"
       },
       "link": {
-        "type": "PickLinkProps<\"a\", \"text\" | \"insideText\" | \"truncateVariant\">",
+        "type": "PickLinkProps<\"a\", \"label\" | \"insideText\" | \"truncateVariant\">",
         "required": false,
         "description": "Ссылка (рендерится как `<a href>` через `@ds/link`)",
         "typeRefs": [
@@ -386,7 +386,7 @@
       },
       "PickLinkProps": {
         "kind": "alias",
-        "type": "Pick<LinkProps<T>, SelectedKeys> & Omit<ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>, \"data-test-id\" | keyof AriaAttributes | \"text\" | \"role\" | \"appearance\" | \"truncateVariant\" | \"insideText\" | \"underlined\">",
+        "type": "Pick<LinkProps<T>, SelectedKeys> & Omit<ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>, \"data-test-id\" | keyof AriaAttributes | \"label\" | \"role\" | \"appearance\" | \"truncateVariant\" | \"insideText\" | \"underlined\">",
         "own": false
       },
       "PolymorphicRef": {

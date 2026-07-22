@@ -20,7 +20,7 @@ export type TotalValueBlockProps = {
   hintTooltipText?: ReactNode;
   hintLink?: {
     href?: string;
-    text: string;
+    label: string;
   };
   showHintLink?: boolean;
 };
@@ -73,7 +73,7 @@ export function TotalValueBlock({
           role={ROLE.OnAccent}
           appearance='neutral'
           href={hintLink?.href}
-          text={hintLink?.text}
+          label={hintLink?.label}
           className={styles.link}
         />
       )}

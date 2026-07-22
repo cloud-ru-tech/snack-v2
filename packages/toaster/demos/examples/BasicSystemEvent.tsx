@@ -26,7 +26,7 @@ export function BasicSystemEvent() {
             toaster.systemEvent.error({
               title: 'Не удалось сохранить',
               description: 'Попробуйте ещё раз',
-              link: { text: 'Подробнее', href: '#' },
+              link: { label: 'Подробнее', href: '#' },
               containerId: CONTAINER_ID,
             })
           }

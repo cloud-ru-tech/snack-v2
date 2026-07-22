@@ -20,7 +20,7 @@ export type PriceSummarySmallProps = WithSupportProps<
     /** Function-ссылка внизу блока. */
     docsLink?: {
       href?: LinkProps['href'];
-      text?: LinkProps['text'];
+      label?: LinkProps['label'];
     };
     /** Контент подсказки для иконки рядом с итоговой суммой. */
     hintTooltipText?: ReactNode;
@@ -76,7 +76,7 @@ export function PriceSummarySmall({
               as='a'
               view='function'
               size='m'
-              label={docsLink.text || t('costLink')}
+              label={docsLink.label || t('costLink')}
               href={docsLink.href}
               target='_blank'
               className={styles.docLink}

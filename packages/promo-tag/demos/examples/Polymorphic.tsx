@@ -17,14 +17,14 @@ export function Polymorphic() {
         as='a'
         href='https://example.com'
         target='_blank'
-        text='External promo'
+        label='External promo'
         appearance={APPEARANCE.Blue}
         role={ROLE_APPEARANCE.Decor}
       />
       <PromoTag
         as={MockLink}
         to='https://example.com'
-        text='Preview link'
+        label='Preview link'
         appearance={APPEARANCE.Primary}
         role={ROLE_APPEARANCE.Accent}
       />

@@ -35,7 +35,7 @@
         ]
       },
       "promoBadge": {
-        "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
+        "type": "string | Pick<PromoTagProps, \"appearance\" | \"label\">",
         "required": false,
         "description": "Промо-бейдж в правом верхнем углу карточки",
         "typeRefs": [
@@ -197,6 +197,11 @@
             "required": false,
             "description": "CSS-класс"
           },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
           "onClick": {
             "type": "MouseEventHandler<HTMLElement> | undefined",
             "required": false,
@@ -226,11 +231,6 @@
             "typeRefs": [
               "Size"
             ]
-          },
-          "text": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
           }
         },
         "own": false
@@ -293,6 +293,11 @@
               "T"
             ]
           },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
           "onClick": {
             "type": "MouseEventHandler<HTMLElement> | undefined",
             "required": false,
@@ -322,11 +327,6 @@
             "typeRefs": [
               "Size"
             ]
-          },
-          "text": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
           }
         },
         "own": false

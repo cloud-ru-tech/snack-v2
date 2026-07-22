@@ -9,8 +9,8 @@ test.describe('PromoTag — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
-  test('renders text', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ text: 'Super promo tag' }));
+  test('renders label', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ label: 'Super promo tag' }));
 
     await expect(getByTestId(TEST_IDS.root)).toHaveText('Super promo tag');
   });

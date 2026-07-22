@@ -11,7 +11,7 @@ const meta: Meta<typeof Link> = {
   component: Link,
   parameters: { layout: 'fullscreen' },
   args: {
-    text: 'Link',
+    label: 'Link',
     appearance: APPEARANCE.Primary,
     role: ROLE.Regular,
     insideText: false,
@@ -21,7 +21,7 @@ const meta: Meta<typeof Link> = {
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    text: { control: 'text', description: 'Текст ссылки' },
+    label: { control: 'text', description: 'Текст ссылки' },
     appearance: {
       control: 'select',
       options: Object.values(APPEARANCE),

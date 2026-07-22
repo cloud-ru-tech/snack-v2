@@ -53,7 +53,7 @@ export function ToastUploadFileLine({ item: initItem }: ToastUploadFileLineProps
 
         {linkInfo && (
           <Link
-            text={linkInfo.text}
+            label={linkInfo.label}
             href={linkInfo.href}
             truncateVariant='end'
             onClick={linkInfo.onClick}

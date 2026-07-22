@@ -7,7 +7,7 @@ export function WithPromoTag() {
       title='Подсказка для пользователя'
       content='Краткое описание действия или функциональности'
       promoBadge={{
-        text: 'New',
+        label: 'New',
         appearance: APPEARANCE.Primary,
         role: ROLE_APPEARANCE.Accent,
         size: SIZE.Xs,

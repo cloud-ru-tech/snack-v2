@@ -18,7 +18,7 @@ export type WithStateSubscription<T> = {
   subscribeToState?: ToastUploadStateSubscription<Partial<T>>;
 } & T;
 
-export type ToastUploadItemLink = Pick<LinkProps, 'target' | 'href' | 'onClick' | 'text'>;
+export type ToastUploadItemLink = Pick<LinkProps, 'target' | 'href' | 'onClick' | 'label'>;
 
 export type UploadActions = {
   onCancel?: () => void;

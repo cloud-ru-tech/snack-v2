@@ -38,7 +38,7 @@ export const fileUploaded: UploadItem = {
   progress: 100,
   formattedSize: '320 КБ',
   actions: {},
-  link: { text: 'Открыть', href: '#' },
+  link: { label: 'Открыть', href: '#' },
 };
 
 export const sampleFiles: UploadItem[] = [fileLoading, filePause, fileError, fileUploaded];

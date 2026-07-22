@@ -61,6 +61,11 @@
           "T"
         ]
       },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Текст компонента"
+      },
       "onClick": {
         "type": "MouseEventHandler<HTMLElement>",
         "required": false,
@@ -92,11 +97,6 @@
         "typeRefs": [
           "Size"
         ]
-      },
-      "text": {
-        "type": "string",
-        "required": false,
-        "description": "Текст компонента"
       }
     },
     "relatedTypes": {

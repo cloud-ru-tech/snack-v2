@@ -78,7 +78,7 @@ export function ToastSystemEvent({
 
           {link && (
             <Link
-              text={link.text}
+              label={link.label}
               href={link.href}
               truncateVariant='end'
               onClick={link.onClick}

@@ -91,7 +91,7 @@ export function PanelFull() {
                   title='Кластер k8s-prod-1 деградирован'
                   description='3 из 5 нод недоступны последние 6 минут.'
                   date='03:14'
-                  link={{ text: 'Открыть инцидент', href: '/incidents/INC-4821' }}
+                  link={{ label: 'Открыть инцидент', href: '/incidents/INC-4821' }}
                   unread={isUnread('inc-4821')}
                   onVisible={markRead}
                 />
@@ -163,7 +163,7 @@ export function PanelFull() {
               title='А. Иванов упомянул вас в PR'
               description='Пересмотрите расчёт grace-period в BillingScheduler.tsx:142'
               date='вчера · 18:20'
-              link={{ text: 'Открыть PR', href: '/billing/pulls/1402' }}
+              link={{ label: 'Открыть PR', href: '/billing/pulls/1402' }}
               unread={isUnread('mention-1')}
               onVisible={markRead}
             />

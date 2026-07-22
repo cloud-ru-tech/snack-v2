@@ -12,7 +12,7 @@ export function PromoTag<T extends ElementType = 'button'>({
   size = SIZE.S,
   role = ROLE_APPEARANCE.Accent,
   className,
-  text,
+  label,
   beforeContent = null,
   afterContent = null,
   onClick,
@@ -39,9 +39,9 @@ export function PromoTag<T extends ElementType = 'button'>({
     >
       {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />}
       {beforeContent}
-      {Boolean(text) && (
-        <Typography className={styles.textWrapper} as='div' variant='label' size={MAP_SIZE_TO_TYPOGRAPHY_SIZE[size]}>
-          {text}
+      {Boolean(label) && (
+        <Typography className={styles.labelWrapper} as='div' variant='label' size={MAP_SIZE_TO_TYPOGRAPHY_SIZE[size]}>
+          {label}
         </Typography>
       )}
       {afterContent}

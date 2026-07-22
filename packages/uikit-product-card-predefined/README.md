@@ -225,7 +225,7 @@ export function WithPromoTag() {
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
       promoTag={{
-        text: 'New',
+        label: 'New',
         appearance: APPEARANCE.Primary,
         role: ROLE_APPEARANCE.Accent,
         size: SIZE.Xs,
@@ -430,7 +430,7 @@ export function WithPromoTag() {
       title='Название сервиса'
       emblem={{ icon: PlaceholderSVG }}
       promoBadge={{
-        text: 'Promo Tag',
+        label: 'Promo Tag',
         appearance: APPEARANCE.Primary,
         role: ROLE_APPEARANCE.Accent,
         size: SIZE.Xs,
@@ -693,7 +693,7 @@ export function WithPromoTag() {
       title='Подсказка для пользователя'
       content='Краткое описание действия или функциональности'
       promoBadge={{
-        text: 'New',
+        label: 'New',
         appearance: APPEARANCE.Primary,
         role: ROLE_APPEARANCE.Accent,
         size: SIZE.Xs,

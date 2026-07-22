@@ -31,7 +31,7 @@ export type NotificationCardProps = WithSupportProps<{
   /** Описание уведомления — вторичный текст под заголовком */
   description?: ReactNode;
   /** Ссылка (рендерится как `<a href>` через `@ds/link`) */
-  link?: PickLinkProps<'a', 'text' | 'insideText' | 'truncateVariant'>;
+  link?: PickLinkProps<'a', 'label' | 'insideText' | 'truncateVariant'>;
   /** Дата уведомления */
   date: string;
   /**

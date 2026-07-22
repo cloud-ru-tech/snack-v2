@@ -9,7 +9,7 @@ import { VatType } from './types';
 
 export type HeaderBlockProps = PeriodDropdownProps & {
   vatType?: VatType;
-  promoBadge?: Pick<PromoTagProps, 'text' | 'appearance'> | string;
+  promoBadge?: Pick<PromoTagProps, 'label' | 'appearance'> | string;
 };
 
 export function HeaderBlock({
@@ -25,7 +25,7 @@ export function HeaderBlock({
     <>
       {promoBadge && (
         <div className={styles.promoBadge}>
-          <PromoTag {...(typeof promoBadge === 'string' ? { text: promoBadge } : promoBadge)} />
+          <PromoTag {...(typeof promoBadge === 'string' ? { label: promoBadge } : promoBadge)} />
         </div>
       )}
 

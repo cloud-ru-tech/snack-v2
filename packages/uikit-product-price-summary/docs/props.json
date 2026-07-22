@@ -79,7 +79,7 @@
         "required": true
       },
       "promoBadge": {
-        "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
+        "type": "string | Pick<PromoTagProps, \"label\" | \"appearance\">",
         "required": false
       },
       "vatType": {
@@ -203,7 +203,7 @@
         ]
       },
       "docsLink": {
-        "type": "{ href?: string; text?: string; } | undefined",
+        "type": "{ href?: string; label?: string; } | undefined",
         "required": false,
         "description": "Ссылка «Подробнее о расчёте».",
         "typeRefs": [
@@ -228,7 +228,7 @@
         ]
       },
       "hintLink": {
-        "type": "{ href?: string; text: string; }",
+        "type": "{ href?: string; label: string; }",
         "required": false
       },
       "hintTooltipText": {
@@ -283,7 +283,7 @@
         ]
       },
       "promoBadge": {
-        "type": "string | Pick<PromoTagProps, \"text\" | \"appearance\">",
+        "type": "string | Pick<PromoTagProps, \"label\" | \"appearance\">",
         "required": false,
         "typeRefs": [
           "PromoTagOwnProps",
@@ -562,6 +562,11 @@
             "required": false,
             "description": "CSS-класс"
           },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
           "onClick": {
             "type": "MouseEventHandler<HTMLElement> | undefined",
             "required": false,
@@ -591,11 +596,6 @@
             "typeRefs": [
               "Size"
             ]
-          },
-          "text": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
           }
         },
         "own": false
@@ -658,6 +658,11 @@
               "T"
             ]
           },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
           "onClick": {
             "type": "MouseEventHandler<HTMLElement> | undefined",
             "required": false,
@@ -687,11 +692,6 @@
             "typeRefs": [
               "Size"
             ]
-          },
-          "text": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
           }
         },
         "own": false
@@ -748,7 +748,7 @@
         "required": false
       },
       "docsLink": {
-        "type": "{ href?: string; text?: string; } | undefined",
+        "type": "{ href?: string; label?: string; } | undefined",
         "required": false,
         "description": "Function-ссылка внизу блока.",
         "typeRefs": [
@@ -816,7 +816,7 @@
         "defaultValue": "default"
       },
       "hintLink": {
-        "type": "{ href?: string; text: string; }",
+        "type": "{ href?: string; label: string; }",
         "required": false
       },
       "hintTooltipText": {

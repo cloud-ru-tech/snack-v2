@@ -116,7 +116,7 @@ export const VisualMatrix: Story = {
                       showHintTooltip
                       hintTooltipText='Limited offer'
                       showHintLink
-                      hintLink={{ href: 'https://example.com', text: 'Details' }}
+                      hintLink={{ href: 'https://example.com', label: 'Details' }}
                       valueDelta={{ type: 'increased', value: 500 }}
                     />
                   </PriceSummaryFigmaSurface>

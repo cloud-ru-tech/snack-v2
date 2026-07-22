@@ -7,7 +7,7 @@ export type PolymorphicRef<T extends ElementType> = ComponentPropsWithRef<T>['re
 
 export type PromoTagOwnProps = {
   /** Текст компонента */
-  text?: string;
+  label?: string;
   /** Внешний вид */
   appearance?: Appearance;
   /** Роль промо-тега */

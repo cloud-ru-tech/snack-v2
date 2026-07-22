@@ -33,7 +33,7 @@ function makeFile(progress: number, status: UploadItem['status'], onCancel: () =
     progress,
     formattedSize: '48.6 МБ',
     actions: status === TOAST_UPLOAD_ITEM_STATUS.Loading ? { onCancel } : {},
-    ...(status === TOAST_UPLOAD_ITEM_STATUS.Uploaded ? { link: { text: 'Открыть', href: '#' } } : {}),
+    ...(status === TOAST_UPLOAD_ITEM_STATUS.Uploaded ? { link: { label: 'Открыть', href: '#' } } : {}),
   };
 }
 
