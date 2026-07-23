@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8680:** wrap DeleteModal and RecallModal titleTooltip in QuestionTooltip ([67274cb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/67274cbb427a836e36fecc661c56a52ea3677023))
+
+### BREAKING CHANGES
+
+- **FF-8680:** unify background presence flag to `background` ([91733bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91733bf762239e5ae8745fe7ebc262a84832bc12))
+- **FF-8680:** rename slotAfterHeadline to slotAfterTitle ([ea5de07](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ea5de0759ca89a1755594bdfbf3a5569222a2fff))
+- **FF-8680:** rename description prop to content ([1c146af](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1c146af624ddc045360e77d976458b4f25371b05))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined

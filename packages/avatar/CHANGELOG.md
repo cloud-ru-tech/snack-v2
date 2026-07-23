@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8718:** remove z-index ([83543c2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/83543c2bb6cf75fb92c44a3761b700240e775545))
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+
 # 1.1.0 (2026-07-13)
 
 ### Bug Fixes

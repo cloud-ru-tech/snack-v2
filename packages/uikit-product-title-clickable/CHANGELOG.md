@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8718:** align gap to Figma in TitleClickable ([2b51b3e](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2b51b3e4fef7925af8f845d7280e8cf22f178187))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/uikit-product-title-clickable

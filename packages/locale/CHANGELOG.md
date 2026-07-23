@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-23)
+
+### Features
+
+- **FF-8712:** add useLanguage, cimode and language normalization to @ds/locale ([f5eabd3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f5eabd3b0ef3814c53808106b051273605466c3a))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

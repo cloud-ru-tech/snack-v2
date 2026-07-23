@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-23)
+
+### Features
+
+- **FF-8718:** add stopEventPropagation util ([fe48ccb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fe48ccb0b6ecc4d8068ad2b2ba0b567189eb007a))
+- **FF-8718:** add useLocalStorage hook ([8326736](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/832673620ecf4f23ab401e59b8d072283505493b))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

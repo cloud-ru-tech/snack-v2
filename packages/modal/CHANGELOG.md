@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename slotAfterHeadline to slotAfterTitle ([ea5de07](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ea5de0759ca89a1755594bdfbf3a5569222a2fff))
+- **FF-8680:** rename BottomSheet subHeadline prop to subtitle ([2495fd3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2495fd36b443c366dc289d23a6c3f7c93099e52b))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/modal

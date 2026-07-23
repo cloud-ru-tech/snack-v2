@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename ItemContent option prop to label ([1b8c675](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1b8c675d5dfe78f6333a7cf01c6e30013fb5dc16))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/breadcrumbs

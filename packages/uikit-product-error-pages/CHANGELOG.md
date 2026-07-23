@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename ErrorPage custom text prop to description ([dd029d7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/dd029d733f6d5f90cd8b382093966aaee1f9fa0e))
+- **FF-8680:** rename text prop to label ([7c4e229](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7c4e22980bb40f64e0c3e3b6f2d4265bcbe08be3))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/uikit-product-error-pages

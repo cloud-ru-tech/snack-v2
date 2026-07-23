@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### Features
+
+- **FF-8712:** add custom brand-color theming to @ds/theme ([410a3e3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/410a3e310c4b76781457d0049123f55a3ecd616d))
+
+### BREAKING CHANGES
+
+- **FF-8680:** unify background presence flag to `background` ([91733bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91733bf762239e5ae8745fe7ebc262a84832bc12))
+
 ## 1.0.1 (2026-07-09)
 
 ### Dependencies

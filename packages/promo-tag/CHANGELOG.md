@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename text prop to label ([7c4e229](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7c4e22980bb40f64e0c3e3b6f2d4265bcbe08be3))
+
 ## 1.1.1 (2026-07-17)
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8774:** migrate icon imports to @ds/icons subpath exports across packages ([7daca54](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7daca5451be1df57e1b358922252467e2e2954aa))
+
+### BREAKING CHANGES
+
+- **FF-8680:** unify background presence flag to `background` ([91733bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91733bf762239e5ae8745fe7ebc262a84832bc12))
+- **FF-8680:** align shape values with canon rounded and squared ([6643455](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6643455181938657553705a6e1b31b9c2914fc8f))
+
 ## 1.0.2 (2026-07-13)
 
 ### Bug Fixes

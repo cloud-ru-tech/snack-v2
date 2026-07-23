@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8718:** reuse react-transition-state from catalog ([d9f4514](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d9f4514149dd6c4dd4406e3d4589dae90d79e5ce))
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename ItemContent option prop to label ([1b8c675](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1b8c675d5dfe78f6333a7cf01c6e30013fb5dc16))
+- **FF-8680:** align tree selectionMode value multi with canon multiple ([48d1662](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/48d166213943240ebd04a3a385da8a273c41a358))
+- **FF-8680:** rename isLoading prop to loading ([3541833](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/35418337f8f0a8e8cae540d34f774085dc7bed6f))
+
 ## 1.1.3 (2026-07-17)
 
 **Note:** Version bump only for package @ds/tree

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8718:** allow afterTitle to shrink ([50971c6](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/50971c6c6c7c0372761d009a5c8f88cc52864e44))
+
+### BREAKING CHANGES
+
+- **FF-8680:** rename CollapseBlock chevron prop to chevronPosition ([60b6ad8](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/60b6ad875296cd7c88c33ef6e145af2c2195f2dd))
+
 ## 1.1.2 (2026-07-17)
 
 **Note:** Version bump only for package @ds/accordion

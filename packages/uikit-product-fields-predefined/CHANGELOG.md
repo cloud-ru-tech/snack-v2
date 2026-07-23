@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** unify background presence flag to `background` ([91733bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91733bf762239e5ae8745fe7ebc262a84832bc12))
+- **FF-8680:** rename slotAfterHeadline to slotAfterTitle ([ea5de07](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ea5de0759ca89a1755594bdfbf3a5569222a2fff))
+- **FF-8680:** rename ItemContent option prop to label ([1b8c675](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1b8c675d5dfe78f6333a7cf01c6e30013fb5dc16))
+- **FF-8680:** rename BottomSheet subHeadline prop to subtitle ([2495fd3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2495fd36b443c366dc289d23a6c3f7c93099e52b))
+- **FF-8680:** align shape values with canon rounded and squared ([6643455](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6643455181938657553705a6e1b31b9c2914fc8f))
+
 # 1.2.0 (2026-07-17)
 
 ### Features

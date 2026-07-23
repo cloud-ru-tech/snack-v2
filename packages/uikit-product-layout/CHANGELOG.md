@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-23)
+
+### BREAKING CHANGES
+
+- **FF-8680:** unify background presence flag to `background` ([91733bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/91733bf762239e5ae8745fe7ebc262a84832bc12))
+- **FF-8680:** rename description prop to content ([1c146af](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1c146af624ddc045360e77d976458b4f25371b05))
+- **FF-8680:** align shape values with canon rounded and squared ([6643455](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6643455181938657553705a6e1b31b9c2914fc8f))
+
 ## 1.0.3 (2026-07-17)
 
 ### Bug Fixes

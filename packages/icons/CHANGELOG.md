@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-23)
+
+### Features
+
+- **FF-8718:** add CollapseVertical and ExpandVertical icons ([7f057af](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7f057af29e100dc4e7313f50fab431d3cccc4882))
+
 # 2.0.0 (2026-07-17)
 
 ### BREAKING CHANGES

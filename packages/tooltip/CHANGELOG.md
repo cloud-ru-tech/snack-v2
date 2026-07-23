@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2026-07-23)
+
+### Bug Fixes
+
+- **FF-8718:** pass triggerRef to real trigger element in QuestionTooltip ([7f1263a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/7f1263ab5803c77fc14a9f2549c8a3894fd56b3a))
+
 ## 1.0.5 (2026-07-17)
 
 **Note:** Version bump only for package @ds/tooltip
