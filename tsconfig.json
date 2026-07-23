@@ -3,7 +3,6 @@
   "compilerOptions": {
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
     "types": [
       "node",
       "vitest/globals",
@@ -11,16 +10,19 @@
     ],
     "paths": {
       "#storybook/components": [
-        "apps/storybook/.storybook/components"
+        "./apps/storybook/.storybook/components"
       ],
       "#storybook/components/*": [
-        "apps/storybook/.storybook/components/*"
+        "./apps/storybook/.storybook/components/*"
       ],
       "#storybook/hooks": [
-        "apps/storybook/.storybook/hooks"
+        "./apps/storybook/.storybook/hooks"
       ],
       "#storybook/hooks/*": [
-        "apps/storybook/.storybook/hooks/*"
+        "./apps/storybook/.storybook/hooks/*"
+      ],
+      "#docs/*": [
+        "./apps/docs/src/*"
       ],
       "@ds/*/locale": [
         "./packages/*/src/locale"
@@ -46,9 +48,6 @@
       "@ds/*": [
         "./packages/*/src"
       ],
-      "#docs/*": [
-        "apps/docs/src/*"
-      ],
       "@playwright-tooling": [
         "./playwright"
       ],
@@ -63,7 +62,6 @@
     "apps/docs/.astro/types.d.ts",
     "apps/docs/.astro/content.d.ts",
     "scripts",
-    "storybook",
     "types"
   ],
   "exclude": [
