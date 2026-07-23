@@ -9,14 +9,34 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../testIds';
 import styles from './styles.module.scss';
 
-function PlaygroundRender(args: DrawerCustomProps) {
-  const { open: initialOpen, ...rest } = args;
+type StoryProps = DrawerCustomProps & {
+  resizableEnable: boolean;
+  resizableMin: number;
+  resizableMax?: number;
+  resizableDefault?: number;
+  resizableDraggerTooltip?: string;
+};
+
+function PlaygroundRender(args: StoryProps) {
+  const {
+    open: initialOpen,
+    resizableEnable,
+    resizableMin,
+    resizableMax,
+    resizableDefault,
+    resizableDraggerTooltip,
+    ...rest
+  } = args;
   const [open, setOpen] = useState(initialOpen ?? false);
   useEffect(() => {
     if (initialOpen !== undefined) setOpen(initialOpen);
   }, [initialOpen]);
   const openDrawer = () => setOpen(true);
   const close = () => setOpen(false);
+
+  const resizableProp = resizableEnable
+    ? { min: resizableMin, max: resizableMax, default: resizableDefault, draggerTooltip: resizableDraggerTooltip }
+    : undefined;
 
   return (
     <DemoPage>
@@ -33,7 +53,7 @@ function PlaygroundRender(args: DrawerCustomProps) {
           />
         </DemoActions>
       </DemoPanel>
-      <DrawerCustom {...rest} open={open} onClose={close}>
+      <DrawerCustom {...rest} resizable={resizableProp} open={open} onClose={close}>
         <DrawerCustom.Header title='Custom composition' subtitle='Шапка, тело и футер собираются вручную.' />
         <DrawerCustom.Body
           content={
@@ -54,7 +74,7 @@ function PlaygroundRender(args: DrawerCustomProps) {
   );
 }
 
-const meta: Meta<typeof DrawerCustom> = {
+const meta: Meta<StoryProps> = {
   title: 'Components/Drawer/DrawerCustom',
   component: DrawerCustom,
   parameters: { layout: 'fullscreen' },
@@ -64,7 +84,10 @@ const meta: Meta<typeof DrawerCustom> = {
     heightAuto: false,
     showBlackout: true,
     closeOnPopstate: true,
+    resizableEnable: false,
     'data-test-id': TEST_IDS.drawerCustom.root,
+    resizableMin: 400,
+    resizableDraggerTooltip: 'Потяните, чтобы изменить ширину',
   },
   argTypes: {
     open: { control: 'boolean', table: { disable: true } },
@@ -86,12 +109,37 @@ const meta: Meta<typeof DrawerCustom> = {
     closeOnPopstate: { control: 'boolean', description: 'Закрывать при navigation/popstate' },
     className: { control: 'text', description: 'CSS-класс панели' },
     rootClassName: { control: 'text', description: 'CSS-класс корневого слоя портала' },
+    resizableEnable: { name: '[Stories] resizable', description: 'Разрешить изменение ширины', control: 'boolean' },
+    resizableMin: {
+      name: '[Stories] resizable min',
+      description: 'Минимальная ширина',
+      control: 'number',
+      if: { arg: 'resizableEnable', eq: true },
+    },
+    resizableMax: {
+      name: '[Stories] resizable max',
+      description: 'Максимальная ширина',
+      control: 'number',
+      if: { arg: 'resizableEnable', eq: true },
+    },
+    resizableDefault: {
+      name: '[Stories] resizable default',
+      description: 'Ширина по умолчанию',
+      control: 'number',
+      if: { arg: 'resizableEnable', eq: true },
+    },
+    resizableDraggerTooltip: {
+      control: 'text',
+      description: 'Tooltip для элемента dragger',
+      if: { arg: 'resizableEnable', eq: true },
+    },
     children: { table: { disable: true } },
     onClose: { table: { disable: true } },
     container: { table: { disable: true } },
     push: { table: { disable: true } },
     nestedDrawer: { table: { disable: true } },
     footer: { table: { disable: true } },
+    resizable: { table: { disable: true } },
   },
   render: PlaygroundRender,
 };

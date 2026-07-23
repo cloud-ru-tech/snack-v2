@@ -64,6 +64,12 @@
         "type": "string",
         "required": false
       },
+      "disableMotions": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить анимации"
+      },
       "disclaimer": {
         "type": "ReactNode",
         "required": false,
@@ -333,6 +339,12 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "disableMotions": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить анимации"
       },
       "disclaimer": {
         "type": "ReactNode",
@@ -727,6 +739,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "disableMotions": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключить анимации"
+          },
           "disclaimer": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
@@ -975,6 +992,12 @@
         "type": "string",
         "required": false
       },
+      "disableMotions": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить анимации"
+      },
       "footer": {
         "type": "ReactElement<any, string | JSXElementConstructor<any>>",
         "required": false,
@@ -987,7 +1010,7 @@
         "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
       "nestedDrawer": {
-        "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>>",
+        "type": "ReactElement<Omit<DrawerCustomProps, \"resizable\">, string | JSXElementConstructor<any>>",
         "required": false,
         "description": "Вложенный Drawer",
         "typeRefs": [
@@ -1022,6 +1045,12 @@
         "type": "boolean | PushConfig",
         "required": false,
         "description": "Смещение при открытии \"вложенного\" компонента"
+      },
+      "resizable": {
+        "type": "{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
       },
       "rootClassName": {
         "type": "string",
@@ -1091,6 +1120,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "disableMotions": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключить анимации"
+          },
           "footer": {
             "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
             "required": false,
@@ -1102,7 +1136,7 @@
             "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
           },
           "nestedDrawer": {
-            "type": "ReactElement<DrawerCustomProps, string | JSXElementConstructor<any>> | undefined",
+            "type": "ReactElement<Omit<DrawerCustomProps, \"resizable\">, string | JSXElementConstructor<any>> | undefined",
             "required": false,
             "description": "Вложенный Drawer",
             "typeRefs": [
@@ -1137,6 +1171,11 @@
             "type": "boolean | PushConfig | undefined",
             "required": false,
             "description": "Смещение при открытии \"вложенного\" компонента"
+          },
+          "resizable": {
+            "type": "{ min: number; max?: number; default?: number; onResize?: (width: number) => void; onResizeEnd?: (width: number) => void; draggerTooltip?: string; } | undefined",
+            "required": false,
+            "description": "Ширина (только при position: \"left\" | \"right\")"
           },
           "rootClassName": {
             "type": "string | undefined",
@@ -1400,6 +1439,12 @@
         "type": "string",
         "required": false
       },
+      "disableMotions": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить анимации"
+      },
       "disclaimer": {
         "type": "ReactNode",
         "required": false,
@@ -1517,6 +1562,30 @@
       },
       "width": {
         "type": "string | number",
+        "required": false,
+        "defaultValue": "'s'",
+        "description": "Ширина (только при position: \"left\" | \"right\")"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useDrawerResize": {
+    "displayName": "useDrawerResize",
+    "propsTypeName": null,
+    "props": {
+      "position": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "bottom",
+          "left",
+          "right",
+          "top"
+        ],
+        "description": "Расположение"
+      },
+      "resizable": {
+        "type": "{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
         "required": false,
         "defaultValue": "'s'",
         "description": "Ширина (только при position: \"left\" | \"right\")"

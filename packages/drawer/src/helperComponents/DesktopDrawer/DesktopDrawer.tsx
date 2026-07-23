@@ -49,6 +49,7 @@ export function DesktopDrawer({
   return (
     <DrawerCustom
       {...rest}
+      resizable={undefined}
       className={cn(styles.drawer, className)}
       push={Boolean(nestedDrawer) && { distance: NESTED_DRAWER_PUSH_DISTANCE }}
     >

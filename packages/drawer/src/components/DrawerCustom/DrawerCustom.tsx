@@ -1,11 +1,11 @@
-import 'rc-drawer/assets/index.css';
+import '@rc-component/drawer/assets/index.css';
 
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, useModalOpenState } from '@ds/utils';
+import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from '@rc-component/drawer';
 import cn from 'classnames';
-import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from 'rc-drawer';
 import { ComponentType, CSSProperties, useMemo } from 'react';
 
 import { WIDTH_AS_VALUES } from '../../constants';
@@ -21,6 +21,7 @@ import {
 import { interopDefault } from '../../utils/interopDefault';
 import { motionProps } from './constants';
 import { useDrawerFocusTrap } from './hooks';
+import { useDrawerResize } from './hooks/useDrawerResize';
 import styles from './styles.module.scss';
 import { DrawerCustomProps } from './types';
 
@@ -41,11 +42,24 @@ function DrawerFrame(props: DrawerCustomProps) {
     closeOnPopstate,
     position,
     heightAuto,
-    width,
+    width: widthProp,
+    resizable: resizableProp,
+    disableMotions = false,
     ...rest
   } = props;
-  const isPredefinedWidth = typeof props.width === 'string' && WIDTH_AS_VALUES.includes(props.width);
   const heightAutoVertical = Boolean(heightAuto && (position === 'top' || position === 'bottom'));
+  const resizable = heightAutoVertical ? undefined : resizableProp;
+  const {
+    tooltip,
+    checkElement,
+    width: userWidth,
+    resizable: drawerResizable,
+  } = useDrawerResize({
+    resizable,
+    position,
+  });
+  const width = resizable ? (userWidth ?? widthProp) : widthProp;
+  const isPredefinedWidth = typeof width === 'string' && WIDTH_AS_VALUES.includes(width);
 
   const { contentWrapperStyle, drawerPanelStyle } = useMemo(() => {
     if (!heightAutoVertical) {
@@ -88,9 +102,10 @@ function DrawerFrame(props: DrawerCustomProps) {
 
   return (
     <RcDrawer
+      resizable={drawerResizable}
+      panelRef={checkElement}
       mask={showBlackout}
       maskClosable={showBlackout}
-      maskClassName={styles.mask}
       keyboard={showBlackout}
       data-showblackout={showBlackout}
       open={open}
@@ -98,12 +113,18 @@ function DrawerFrame(props: DrawerCustomProps) {
       push={push}
       getContainer={resolvedContainer}
       placement={position}
-      destroyOnClose
-      className={cn(styles.drawer, className)}
+      destroyOnHidden
       rootClassName={cn(styles.drawerRoot, rootClassName)}
-      width={isPredefinedWidth ? 'null' : width}
-      contentWrapperStyle={contentWrapperStyle}
+      maskClassName={styles.mask}
       style={drawerPanelStyle}
+      styles={{
+        wrapper: contentWrapperStyle,
+      }}
+      classNames={{
+        section: cn(styles.drawer, className),
+        dragger: styles.dragger,
+      }}
+      size={isPredefinedWidth ? 'null' : width}
       {...extractSupportProps(rest)}
       data-content-wrapper
       data-position={position}
@@ -111,7 +132,7 @@ function DrawerFrame(props: DrawerCustomProps) {
       data-height-auto={heightAutoVertical ? true : undefined}
       data-acrylic-appearance='neutral'
       data-acrylic-level='1Level'
-      {...motionProps}
+      {...(disableMotions ? {} : motionProps)}
     >
       <div ref={focusTrapRef} className={styles.focusScope}>
         <div className={styles.badgeButtonClosedWrapper}>
@@ -121,6 +142,8 @@ function DrawerFrame(props: DrawerCustomProps) {
         <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Drawer} bodyHeightAuto={heightAutoVertical}>
           {children}
         </OverlaySurfaceProvider>
+
+        {tooltip}
 
         {nestedDrawer}
       </div>

@@ -1,6 +1,6 @@
-import './motion.css';
+import './motion.scss';
 
-import { DrawerProps } from 'rc-drawer';
+import { DrawerProps } from '@rc-component/drawer';
 
 export const maskMotion: DrawerProps['maskMotion'] = {
   motionAppear: true,
@@ -9,6 +9,7 @@ export const maskMotion: DrawerProps['maskMotion'] = {
 
 export const motion: DrawerProps['motion'] = placement => ({
   motionAppear: true,
+  motionDeadline: 300,
   motionName: `panelMotion-${placement}`,
 });
 

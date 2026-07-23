@@ -13,7 +13,7 @@ import { DrawerCustomProps } from '../DrawerCustom';
  * (на desktop-панели игнорируются — это анатомия `BottomSheet`).
  */
 export type DrawerProps = WithSupportProps<
-  Omit<DrawerCustomProps, 'nestedDrawer' | 'push'> &
+  Omit<DrawerCustomProps, 'nestedDrawer' | 'push' | 'resizable'> &
     Pick<BottomSheetProps, 'swipeEnabled' | 'snapPoints' | 'snapIndex' | 'onSnapIndexChange' | 'safeArea'> &
     Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'subtitle' | 'onBackButtonClick'> &
     Pick<DialogBodyProps, 'content'> & {

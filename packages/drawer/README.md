@@ -249,6 +249,7 @@ export function NestedDrawer() {
 | `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string` | — |  |
+| `disableMotions` | `boolean` | `false` | Отключить анимации |
 | `disclaimer` | `ReactNode` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<...> \| ReactPortal \| null))` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. |
@@ -286,6 +287,7 @@ export function NestedDrawer() {
 | `container` | `string \| HTMLElement \| undefined` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string \| undefined` | — |  |
+| `disableMotions` | `boolean \| undefined` | — | Отключить анимации |
 | `disclaimer` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null)) \| undefined` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | — | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. |
@@ -428,6 +430,7 @@ export function CustomComposition() {
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `data-test-id` | `string` | — |  |
+| `disableMotions` | `boolean` | `false` | Отключить анимации |
 | `footer` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Футер |
 | `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
 | `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
@@ -435,6 +438,7 @@ export function CustomComposition() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
 | `push` | `boolean \| PushConfig` | — | Смещение при открытии "вложенного" компонента |
+| `resizable` | `{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) \| undefined; onResizeEnd?: ((width: number) => void) \| undefined; draggerTooltip?: string \| undefined; } \| undefined` | `'s'` | Ширина (только при position: "left" \| "right") |
 | `rootClassName` | `string` | — | CSS-класс для корневого элемента |
 | `safeArea` | `boolean` | `true` | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
@@ -453,6 +457,7 @@ export function CustomComposition() {
 | `closeOnPopstate` | `boolean \| undefined` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string \| HTMLElement \| undefined` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `data-test-id` | `string \| undefined` | — |  |
+| `disableMotions` | `boolean \| undefined` | — | Отключить анимации |
 | `footer` | `ReactElement<any, string \| JSXElementConstructor<any>> \| undefined` | — | Футер |
 | `heightAuto` | `boolean \| undefined` | — | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
 | `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
@@ -460,6 +465,7 @@ export function CustomComposition() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
 | `push` | `boolean \| PushConfig \| undefined` | — | Смещение при открытии "вложенного" компонента |
+| `resizable` | `{ min: number; max?: number; default?: number; onResize?: (width: number) => void; onResizeEnd?: (width: number) => void; draggerTooltip?: string; } \| undefined` | — | Ширина (только при position: "left" \| "right") |
 | `rootClassName` | `string \| undefined` | — | CSS-класс для корневого элемента |
 | `safeArea` | `boolean \| undefined` | — | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
 | `showBlackout` | `boolean \| undefined` | — | Отображение темной подложки |

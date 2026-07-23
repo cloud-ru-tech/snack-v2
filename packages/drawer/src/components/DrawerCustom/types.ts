@@ -1,6 +1,6 @@
 import { BottomSheetCustomProps } from '@ds/bottom-sheet';
 import { WithSupportProps } from '@ds/utils';
-import { DrawerProps as RcDrawerProps } from 'rc-drawer';
+import { DrawerProps as RcDrawerProps } from '@rc-component/drawer';
 import { PropsWithChildren, ReactElement } from 'react';
 
 import { Position, Width } from '../../types';
@@ -39,11 +39,33 @@ export type DrawerCustomProps = WithSupportProps<
     /** Контейнер в котором будет рендерится Drawer. По-умолчанию - body */
     container?: string | HTMLElement;
     /** Вложенный Drawer */
-    nestedDrawer?: ReactElement<DrawerCustomProps>;
+    nestedDrawer?: ReactElement<Omit<DrawerCustomProps, 'resizable'>>;
     /** Закрывать дровер при перемещении по истории браузера */
     closeOnPopstate?: boolean;
     /** Футер */
     footer?: ReactElement;
+    /** Отключить анимации
+     * @default false
+     */
+    disableMotions?: boolean;
+    /**
+     * Ширина (только при position: "left" | "right")
+     * @default 's'
+     */
+    resizable?: {
+      /** Минимальная доступная ширина */
+      min: number;
+      /** Максимальная доступная ширина */
+      max?: number;
+      /** Ширина по умолчанию */
+      default?: number;
+      /** Колбэк на изменение размера */
+      onResize?: (width: number) => void;
+      /** Колбэк на окончание изменения размера */
+      onResizeEnd?: (width: number) => void;
+      /** Tooltip для элемента dragger */
+      draggerTooltip?: string;
+    };
   }>
 > &
   // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).

@@ -32,12 +32,13 @@
     "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/materials": "workspace:^",
+    "@ds/tooltip": "workspace:^",
     "@ds/portal-context": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
+    "@rc-component/drawer": "^1.4.2",
     "classnames": "catalog:",
-    "rc-drawer": "^6.4.1",
     "tabbable": "catalog:"
   }
 }

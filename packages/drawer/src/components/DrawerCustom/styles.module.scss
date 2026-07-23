@@ -4,6 +4,9 @@
 
 $orientations: 'vertical', 'horizontal';
 $widthSizes: 's', 'm', 'l';
+$draggerWidth: base.$sn-primitive-dimension-4;
+$draggerPosition: calc(drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight - $draggerWidth - base.$sn-primitive-dimension-6);
+$activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-dimension-24);
 
 /**
   * Structure:
@@ -15,8 +18,34 @@ $widthSizes: 's', 'm', 'l';
   *   </div>
   */
 
+:global {
+  .rc-drawer:has(.rc-drawer-resizable-dragger-dragging) {
+    cursor: ew-resize;
+
+    .rc-drawer-resizable-dragger {
+        height: $activeDraggerHeight;
+    }
+  }
+}
+
 .drawerRoot {
   z-index: initial !important; /* stylelint-disable-line declaration-no-important */
+
+  .mask {
+    position: absolute;
+    z-index: initial !important; /* stylelint-disable-line declaration-no-important */
+    inset: 0;
+
+    height: 100%;
+
+    opacity: 1;
+
+    // rc-drawer рендерит mask только при mask={showBlackout}, поэтому фон-затемнение
+    // ставим прямо на `.mask`: mask в DOM ⟺ blackout нужен. Раньше правило висело на
+    // `[data-content-wrapper][data-showblackout] .mask`, но mask — сосед content-wrapper'а,
+    // а не потомок, и селектор не срабатывал → оставался дефолт rc-drawer rgba(0,0,0,.5).
+    background-color: base.$sn-theme-color-blackout;
+  }
 }
 
 .focusScope {
@@ -24,22 +53,18 @@ $widthSizes: 's', 'm', 'l';
 }
 
 .drawer {
+  pointer-events: auto;
+
   position: relative;
+
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+
   box-sizing: border-box;
+  width: 100%;
 
   @include base.composite-var(drawer.$drawer, 'anatomy', 'container');
-}
-
-.mask {
-  z-index: initial !important; /* stylelint-disable-line declaration-no-important */
-
-  // rc-drawer рендерит mask только при mask={showBlackout}, поэтому фон-затемнение
-  // ставим прямо на `.mask`: mask в DOM ⟺ blackout нужен. Раньше правило висело на
-  // `[data-content-wrapper][data-showblackout] .mask`, но mask — сосед content-wrapper'а,
-  // а не потомок, и селектор не срабатывал → оставался дефолт rc-drawer rgba(0,0,0,.5).
-  background-color: base.$sn-theme-color-blackout;
 }
 
 .badgeButtonClosed {
@@ -61,6 +86,7 @@ $widthSizes: 's', 'm', 'l';
 }
 
 div[data-content-wrapper='true'] {
+  pointer-events: none;
   will-change: transform;
 
   z-index: initial;
@@ -70,7 +96,41 @@ div[data-content-wrapper='true'] {
   flex-direction: column;
   align-items: flex-start;
 
+  max-width: 100%;
+
+  background: none;
+  box-shadow: none !important; /* stylelint-disable-line declaration-no-important */
+
   @include m.with-material('acrylic', #{drawer});
+
+  .dragger {
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: $draggerWidth;
+    height: base.$sn-primitive-dimension-32;
+    border-radius: base.$sn-density-radius-2xs;
+
+    background-color: base.$sn-theme-color-neutral-decor!important;
+
+    transition: height ease-in-out 0.2s;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: calc(100% + base.$sn-primitive-dimension-12);
+      height: 100vh;
+    }
+
+    &:hover {
+      height: $activeDraggerHeight;
+    }
+  }
 
   &[data-position='top'] {
     @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop');
@@ -94,6 +154,10 @@ div[data-content-wrapper='true'] {
     .drawer {
       @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
     }
+
+    .dragger {
+      right: $draggerPosition;
+    }
   }
 
   &[data-position='right'] {
@@ -101,6 +165,10 @@ div[data-content-wrapper='true'] {
 
     .drawer {
       @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
+    }
+
+    .dragger {
+      left: $draggerPosition;
     }
   }
 
