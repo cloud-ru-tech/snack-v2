@@ -10,7 +10,7 @@ import { STATE } from './constants';
 import styles from './styles.module.scss';
 
 const meta: Meta<SampleBlockProps> = {
-  title: 'Components/Materials/Playground',
+  title: 'Components/Materials',
   component: SampleBlock,
   args: {},
   argTypes: {

@@ -14,6 +14,7 @@ pnpm add @ds/materials
 
 - `material/_acrylic.scss` — акриловый эффект (blur + полупрозрачный фон)
 - `stateLayer/index.scss` — state-layer для hover/pressed состояний
+- `focusFrame/index.scss` — рамка фокуса (`with-focus-frame`)
 - `utils/_mixins.scss` — вспомогательные миксины (`has-state-layer-as-child`, `has-content-with-text-opacity`)
 
 ## Использование
@@ -193,6 +194,36 @@ pnpm add @ds/materials
 | `has-content-with-text-opacity($contentLayerSelector)` | Имя класса обёртки (часто `#{contentLayer}`)                        | Корень + потомок с этим классом; у его потомков — `[data-text-opacity]` | При взаимодействии с корнем opacity меняется у `[data-text-opacity]` внутри `$contentLayerSelector` |
 
 Переменные цветов и состояний берутся из `@sbercloud/figma-variables` (stateLayer подключает этот пакет внутри себя).
+
+### Focus frame
+
+| миксин | параметры | описание |
+| --- | --- | --- |
+| `with-focus-frame($appearance, $position)` | `$appearance` — `regular` (по умолчанию), `primary`, `destructive`, `warning`, `success`, `regularInversion`. `$position` — `inside`, `outside` (по умолчанию), `outsideOffset` | Основной путь. Выводит правило `&:focus-visible` целиком — рамка появляется только на клавиатурном фокусе |
+| `focus-frame-styles($appearance, $position)` | те же | Те же свойства без селектора — когда рамка вешается не на сам фокусируемый элемент |
+
+Обычный случай — миксин ставит псевдокласс сам:
+
+```scss
+@use '@ds/materials' as m;
+
+.root {
+  @include m.with-focus-frame('regular', 'outside');
+}
+```
+
+Когда рамка не на самом фокусируемом элементе — на потомке, на соседе, на псевдоэлементе или по собственному флагу — берут `focus-frame-styles` и пишут селектор руками:
+
+```scss
+.root:focus-visible .container {
+  @include m.focus-frame-styles('primary', 'inside');
+}
+```
+
+- **Положение.** `inside` — штрих внутрь бокса, `outside` — наружу вплотную, `outsideOffset` — наружу с зазором в толщину штриха. Соответствуют мастерам `focusedFrame/…/inside|outside|outsideOffset`.
+- **Радиус** не задаётся: `outline` повторяет `border-radius` элемента, а мастер помечен «apply radius» — скругление приходит от потребителя.
+- **`outline-offset` выводится всегда**, включая нулевой. Без явного значения Chromium подставляет собственный отступ в 1px, которого в макете нет.
+- **`regularInversion`** — белый штрих для тёмных поверхностей.
 
 ## Accessibility
 

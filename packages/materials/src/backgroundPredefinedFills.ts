@@ -14,13 +14,17 @@ const APPEARANCE = {
   Transparent: 'transparent',
 } as const;
 
-const LEVEL = {
+/** Значения `data-acrylic-level`. */
+export const ACRYLIC_LEVEL = {
   Default: 'default',
   FirstLevel: '1Level',
 } as const;
 
+const LEVEL = ACRYLIC_LEVEL;
+
 type Appearance = ValueOf<typeof APPEARANCE>;
-type Level = ValueOf<typeof LEVEL>;
+export type AcrylicLevel = ValueOf<typeof ACRYLIC_LEVEL>;
+type Level = AcrylicLevel;
 
 const A = APPEARANCE;
 const L = LEVEL;

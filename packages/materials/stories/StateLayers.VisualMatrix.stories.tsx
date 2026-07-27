@@ -8,7 +8,7 @@ import { STATE } from './constants';
 import styles from './styles.module.scss';
 
 const meta: Meta = {
-  title: 'Components/Materials/State Layers Visual Matrix',
+  title: 'Components/Materials',
 };
 
 export default meta;

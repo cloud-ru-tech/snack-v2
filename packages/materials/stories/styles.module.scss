@@ -85,6 +85,21 @@
   }
 }
 
+// FocusFrame.VisualMatrix.stories.tsx
+.focusCell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Отступ вокруг ячейки, чтобы рамка с зазором наружу не срезалась соседями.
+  padding: base.$sn-primitive-dimension-16;
+
+  // regularInversion — белый штрих, на светлом фоне его не видно.
+  &[data-focus-appearance='regularInversion'] {
+    background-color: base.$sn-theme-color-available-complementary;
+  }
+}
+
 .squareWrapper {
   padding: base.$sn-primitive-dimension-40;
 

@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+/**
+  * Переменные ниже не используются в коде, только для референса:
+  * $focusAppearances – оформления рамки (мастера focusedFrame/<appearance>/… в Figma).
+  * $focusPositions – положение штриха относительно бокса (мастера focusedFrame/…/<position>).
+  */
+$focusAppearances: 'regular', 'primary', 'destructive', 'warning', 'success', 'regularInversion';
+$focusPositions: 'inside', 'outside', 'outsideOffset';
+
+$-colors: (
+  'regular': base.$sn-theme-color-available-complementary,
+  'primary': base.$sn-theme-color-primary-accent,
+  'destructive': base.$sn-theme-color-red-accent,
+  'warning': base.$sn-theme-color-yellow-accent,
+  'success': base.$sn-theme-color-green-accent,
+  'regularInversion': base.$sn-theme-color-available-onComplementary,
+);
+
+/**
+  * inside – штрих внутрь бокса (strokeAlign INSIDE в макете).
+  * outside – наружу вплотную к боксу, без зазора.
+  * outsideOffset – наружу с зазором в толщину штриха.
+  */
+$-offsets: (
+  'inside': calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold}),
+  'outside': 0,
+  'outsideOffset': base.$sn-primitive-strokeWeight-strokeSemiBold,
+);
+
+/**
+  * Свойства рамки фокуса без селектора. Нужен, когда рамка вешается не на сам
+  * фокусируемый элемент: на потомка (`&:focus-visible .container`), на соседа
+  * (`input:focus-visible + .content`), на псевдоэлемент (когда братья со своим z-index
+  * перекрывают outline корня) либо по собственному флагу (`[data-focusvisible='true']`).
+  * В обычном случае берут with-focus-frame — он ставит псевдокласс сам.
+  *
+  * Радиус не задаётся: outline повторяет border-radius элемента, а мастер в макете
+  * помечен «apply radius» — скругление приходит от потребителя.
+  *
+  * `outline-offset` выводится всегда, включая нулевой: без явного значения Chromium
+  * подставляет собственный отступ в 1px, которого в макете нет.
+  *
+  * $appearance – из $focusAppearances, $position – из $focusPositions.
+  */
+@mixin focus-frame-styles($appearance: 'regular', $position: 'outside') {
+  @if not map.has-key($-colors, $appearance) {
+    @error 'focus-frame-styles: неизвестное оформление «#{$appearance}». Доступные: #{$focusAppearances}.';
+  }
+
+  @if not map.has-key($-offsets, $position) {
+    @error 'focus-frame-styles: неизвестное положение «#{$position}». Доступные: #{$focusPositions}.';
+  }
+
+  outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid map.get($-colors, $appearance);
+  outline-offset: map.get($-offsets, $position);
+}
+
+/**
+  * Рамка фокуса по мастерам focusedFrame из Figma: штрих strokeSemiBold нужного оформления
+  * плюс положение относительно бокса. Основной путь.
+  *
+  * Выводит правило `&:focus-visible` целиком: рамка появляется только на клавиатурном
+  * фокусе, а привязка к псевдоклассу живёт в одном месте вместо повторения в каждом пакете.
+  * Применяется на классе самого фокусируемого элемента.
+  *
+  * $appearance – из $focusAppearances, $position – из $focusPositions.
+  * См. пример в stories/FocusFrame.VisualMatrix.stories.tsx и docs/index.mdx.
+  */
+@mixin with-focus-frame($appearance: 'regular', $position: 'outside') {
+  &:focus-visible {
+    @include focus-frame-styles($appearance, $position);
+  }
+}

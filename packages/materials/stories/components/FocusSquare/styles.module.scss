@@ -1,0 +1,30 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../../index' as m;
+
+.focusSquare {
+  $squareSide: base.$sn-primitive-dimension-48;
+
+  cursor: pointer;
+
+  width: $squareSide;
+  height: $squareSide;
+  padding: 0;
+  border: 0;
+  border-radius: base.$sn-density-radius-s;
+
+  background: base.$sn-theme-color-neutral-background;
+
+  @each $appearance in m.$focusAppearances {
+    @each $position in m.$focusPositions {
+      &[data-focus-appearance='#{$appearance}'][data-focus-position='#{$position}'] {
+        // Боевой путь: миксин сам ставит :focus-visible.
+        @include m.with-focus-frame($appearance, $position);
+
+        // data-static показывает ту же рамку в матрице без клавиатурного фокуса.
+        &[data-static] {
+          @include m.focus-frame-styles($appearance, $position);
+        }
+      }
+    }
+  }
+}

@@ -18,6 +18,21 @@ export const LEVEL = {
   SecondLevel: '2Level',
 } as const;
 
+export const FOCUS_APPEARANCE = {
+  Regular: 'regular',
+  Primary: 'primary',
+  Destructive: 'destructive',
+  Warning: 'warning',
+  Success: 'success',
+  RegularInversion: 'regularInversion',
+} as const;
+
+export const FOCUS_POSITION = {
+  Inside: 'inside',
+  Outside: 'outside',
+  OutsideOffset: 'outsideOffset',
+} as const;
+
 export const STATE = {
   RegularFilled: 'regularFilled',
   RegularBorder: 'regularBorder',
