@@ -59,6 +59,7 @@ export function ButtonCombo({
       tabIndex={tabIndex}
       data-view={view}
       data-size={size}
+      data-open={open || undefined}
       data-full-width={fullWidth || undefined}
     >
       <Button

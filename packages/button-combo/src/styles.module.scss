@@ -2,30 +2,14 @@
 @use '@sbercloud/figma-variables/build/scss/components/button.module' as btn;
 
 $sizes: 's', 'm', 'l';
-$appearance-to-theme: (
-  'primary': 'primary',
-  'neutral': 'neutral',
-  'critical': 'red',
-);
-// filled кладёт контент на onAccent, остальные заливки — на text. outline не в карте: у него своя рамка.
-$view-foreground: (
-  'filled': 'onAccent',
-  'tonal': 'text',
-  'simple': 'text',
-  'elevated': 'text',
-  'function': 'text',
-);
-$divider-opacity: 15%; // Figma buttonCombo outline/borderDefault
-// Прямые токены: динамическое имя переменной внутри @each SCSS не поддерживает.
-$fn-text-padding: (
-  's': btn.$sn-button-anatomy-size-s-container-textWrapper-paddingHorizontal,
-  'm': btn.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal,
-  'l': btn.$sn-button-anatomy-size-l-container-textWrapper-paddingHorizontal,
-);
 
 .buttonComboWrapper {
   display: inline-flex;
+
+  // Разграничение половин — зазор `itemSpacing`, а не отдельный слой-разделитель.
+  gap: base.$sn-primitive-dimension-1;
   align-items: center;
+  box-sizing: border-box;
 
   &[data-full-width] {
     flex: 1 1 auto;
@@ -35,30 +19,11 @@ $fn-text-padding: (
   .optionButton {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+  }
 
-    // Разделитель 2px (Figma dividerWrapper). У outline части разделены собственными рамками.
-    &:not([data-view='outline']) {
-      border-right: base.$sn-primitive-strokeWeight-strokeSemiBold solid transparent;
-    }
-
-    @each $view, $role in $view-foreground {
-      @each $appearance, $token in $appearance-to-theme {
-        &[data-view='#{$view}'][data-appearance='#{$appearance}'] {
-          border-right-color: color-mix(
-            in srgb,
-            base.simple-var(base.$sn-theme, 'color', $token, $role) $divider-opacity,
-            transparent
-          );
-        }
-      }
-    }
-
-    // function: @ds/button убирает textWrapper-паддинг, в Figma он остаётся — зазор до разделителя.
-    @each $size, $pad in $fn-text-padding {
-      &[data-view='function'][data-size='#{$size}'] {
-        padding-right: $pad;
-      }
-    }
+  // Пока список раскрыт, кнопка-шеврон держит слой нажатия.
+  &[data-open] .dropdownButton [data-state='regularFilled'] {
+    background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
   }
 
   .dropdownButton {
