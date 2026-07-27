@@ -16,10 +16,15 @@ export type TimerProps = {
   className?: string;
 };
 
+// Геометрия SVG задаётся числами: атрибут `r` не читает CSS-переменные. Значения повторяют
+// токены `userAction/container/timer`: `container` = 24 (внешний квадрат), `circle/square` = 20
+// (кольцо, вписанное с отступом 2), `borderWidth` = 2. Толщину дублирует CSS `stroke-width`
+// из того же токена — здесь она нужна только для расчёта радиуса.
 const SIZE = 24;
 const CENTER = SIZE / 2;
 const STROKE_WIDTH = 2;
-const RADIUS = (SIZE - STROKE_WIDTH) / 2;
+const CIRCLE_SIZE = 20;
+const RADIUS = (CIRCLE_SIZE - STROKE_WIDTH) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 // AUTO_CLOSE_TIME[UserAction] зафиксирован числом в constants.ts; cast здесь

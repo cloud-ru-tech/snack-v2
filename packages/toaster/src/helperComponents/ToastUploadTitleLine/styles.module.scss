@@ -75,7 +75,7 @@
 
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
 
-  color: base.$sn-theme-color-available-inversion-textSecondary;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
 }
 
 .totalCounter,
@@ -84,5 +84,5 @@
 
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
 
-  color: base.$sn-theme-color-available-inversion-textSecondary;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
 }

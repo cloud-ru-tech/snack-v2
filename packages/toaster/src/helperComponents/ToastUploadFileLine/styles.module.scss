@@ -21,7 +21,7 @@
   align-items: center;
   min-height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-headline-minHeight;
 
-  // Размер для Link (inherit). .fileTitle переопределяет на body/m.
+  // Размер для Link (inherit).
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 }
 
@@ -32,8 +32,8 @@
 .buttonWrapper {
   position: relative;
   flex-shrink: 0;
-  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
-  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square;
+  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square;
 
   > * {
     position: absolute;
@@ -47,7 +47,7 @@
   flex: 1;
   min-width: 0;
 
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 }
 
 .fileStatusLine {
@@ -69,9 +69,9 @@
   flex: 1;
   min-width: 0;
 
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 
-  color: base.$sn-theme-color-available-inversion-textSecondary;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
 }
 
 .fileSize {
@@ -79,13 +79,13 @@
   margin-left: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap;
   color: base.$sn-theme-color-available-inversion-textTertiary;
 
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 }
 
 .fileStatusPercentage {
   flex-shrink: 0;
 
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 
-  color: base.$sn-theme-color-available-inversion-textSecondary;
+  color: base.$sn-theme-color-available-inversion-textTertiary;
 }

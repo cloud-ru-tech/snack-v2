@@ -6,8 +6,8 @@
 .buttonWrapper {
   position: relative;
   flex-shrink: 0;
-  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
-  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-size;
+  width: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square;
+  height: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-statusWrapper-button-square;
 
   > * {
     position: absolute;

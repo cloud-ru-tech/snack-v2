@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   min-height: button.$sn-button-anatomy-size-m-container-minHeight;
   padding: 0;
   border: 0;
@@ -23,10 +24,9 @@
   background: transparent;
   outline: 0;
 
-  // labelOnly — текст с label-l typography, padding из button anatomy.
+  // labelOnly — текст с label-l typography. Figma (8174:17980) даёт 0 горизонтального
+  // padding: ширина кнопки = ширина текста, инсета нет (корень уже padding: 0).
   &[data-composition='labelOnly'] {
-    padding: 0 button.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
-
     @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'l');
   }
 
@@ -50,7 +50,9 @@
     color: base.$sn-theme-color-available-inversion-textSecondary;
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
       base.$sn-theme-color-available-onComplementary;
-    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+    // Обводка ложится вплотную к кнопке: в мастере focusedFrame — stroke OUTSIDE
+    // без зазора (габарит рамки = размер кнопки + толщина с каждой стороны).
+    outline-offset: 0;
   }
 
   &:active {
