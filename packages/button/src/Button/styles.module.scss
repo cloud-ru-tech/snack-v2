@@ -17,11 +17,10 @@ $appearance-to-theme: (
   'neutral': 'neutral',
   'critical': 'red',
 );
-// Маппинг size кнопки -> размер типографики label (Figma смещает на тир вверх):
-// s -> label-m (12), m -> label-l (14), l -> label-l (14).
+// Размер текст-стиля равен размеру кнопки: s -> label-s, m -> label-m, l -> label-l.
 $label-typo: (
-  's': 'm',
-  'm': 'l',
+  's': 's',
+  'm': 'm',
   'l': 'l',
 );
 
@@ -101,8 +100,23 @@ $label-typo: (
     &[data-size='#{$size}'] {
       @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
 
-      .label {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      // Горизонтальный padding переехал с textWrapper (.label) на уровень контейнера
+      // и различается по icon-позиции: сторона иконки уже, сторона текста шире.
+      // data-variant совпадает с ключами токена 1:1 (label-only → labelOnly и т.д.).
+      &[data-variant='label-only'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'labelOnly');
+      }
+
+      &[data-variant='icon-before'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconBefore');
+      }
+
+      &[data-variant='icon-after'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconAfter');
+      }
+
+      .content {
+        gap: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'gap');
       }
 
       [data-border-layer] {
@@ -111,6 +125,22 @@ $label-typo: (
 
       &[data-variant='icon-only'] {
         @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+      }
+
+      // Бейдж крепится к нулевому якорю в углу elementWrapper: auto-layout центрирует счётчик
+      // на точке, отстоящей от угла на половину badge-паддинга.
+      .counterSlot[data-absolute] {
+        transform: translate(
+          calc(50% - #{base.simple-var(btn.$button, 'anatomy', 'size', $size, 'badge', 'padding-right')} / 2),
+          calc(-50% + #{base.simple-var(btn.$button, 'anatomy', 'size', $size, 'badge', 'padding-top')} / 2)
+        );
+      }
+
+      // Отключение минимальной ширины (проп minWidth={false} — атрибут отсутствует).
+      // Идёт последним в блоке размера — перекрывает min-width из composite-var
+      // контейнера (в т.ч. icon-only) на равной специфичности.
+      &:not([data-min-width]) {
+        min-width: 0;
       }
     }
   }
@@ -160,6 +190,14 @@ $label-typo: (
   color: inherit;
 }
 
+// Обёртка иконки со счётчиком — слой elementWrapper из макета: бейдж крепится
+// к иконке, а не к контейнеру, поэтому обёртке нужен свой контекст позиционирования.
+.iconWithCounter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 // Counter инлайн: в потоке контента после label/иконки, когда нет иконки после текста (iconPosition=before или без icon)
 .counterSlot {
   display: inline-flex;
@@ -172,7 +210,6 @@ $label-typo: (
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(50%, -50%);
 
     justify-content: center;
   }
@@ -315,7 +352,7 @@ $label-typo: (
       }
 
       .content {
-        gap: btn.$sn-button-anatomy-size-m-container-textWrapper-paddingHorizontal;
+        gap: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'gap');
       }
 
       .label {

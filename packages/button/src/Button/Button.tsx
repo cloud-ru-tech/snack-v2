@@ -21,6 +21,7 @@ export function Button<T extends ElementType = 'button'>({
   disabled = false,
   loading = false,
   fullWidth = false,
+  minWidth = true,
   counter,
   as,
   innerRef,
@@ -57,7 +58,10 @@ export function Button<T extends ElementType = 'button'>({
   } else {
     spreadProps = rest as Record<string, unknown>;
   }
-  const showCounterAsBadge = counter && icon && iconPosition === ICON_POSITION.After;
+  // Бейджем счётчик становится там же, где в макете: у iconAfter и у iconOnly.
+  // У icon-only лейбла нет, поэтому iconPosition ни на что не влияет и требовать его нельзя.
+  const showCounterAsBadge =
+    Boolean(counter) && Boolean(icon) && (variant === 'icon-only' || iconPosition === ICON_POSITION.After);
 
   // appearance кнопки 'critical' соответствует appearance счётчика 'red'
   // (Counter переименовал critical → red); остальные значения совпадают.
@@ -83,6 +87,7 @@ export function Button<T extends ElementType = 'button'>({
       data-disabled={isDisabled || undefined}
       data-loading={loading || undefined}
       data-full-width={fullWidth || undefined}
+      data-min-width={minWidth || undefined}
       data-counter={counter != null || undefined}
       aria-disabled={Component === 'a' && isDisabled ? true : undefined}
       aria-busy={loading ?? undefined}
@@ -93,12 +98,12 @@ export function Button<T extends ElementType = 'button'>({
 
       <span className={styles.content}>
         {variant === 'icon-only' ? (
-          <>
-            <span className={styles.icon} aria-hidden data-text-opacity>
+          <span className={styles.iconWithCounter} aria-hidden>
+            <span className={styles.icon} data-text-opacity>
               {iconNode}
             </span>
             {counterNode}
-          </>
+          </span>
         ) : (
           <>
             {icon && iconPosition === ICON_POSITION.Before && (

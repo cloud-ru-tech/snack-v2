@@ -26,6 +26,11 @@ export type BaseButtonProps = WithSupportProps<{
   loading?: boolean;
   /** На всю ширину */
   fullWidth?: boolean;
+  /**
+   * Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.
+   * `false` — кнопка сжимается по контенту вместо фиксированного минимума.
+   */
+  minWidth?: boolean;
   /** Дополнительный класс */
   className?: string;
   /** Вариант кнопки (Figma: filled, outline, function, simple, elevated) */

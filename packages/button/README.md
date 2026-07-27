@@ -209,6 +209,7 @@ export function Loading() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string` | — | Текст кнопки |
 | `loading` | `boolean` | `false` | Состояние загрузки |
+| `minWidth` | `boolean` | `true` | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | `filled` | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
@@ -380,6 +381,7 @@ export function ButtonGroupBreak() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
+| `minWidth` | `boolean \| undefined` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 - `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`

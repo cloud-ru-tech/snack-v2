@@ -111,6 +111,16 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
+        sectionTitle='minWidth × Size (short label)'
+        firstColumnHeader='minWidth'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={[true, false].map(minWidth => ({
+          variantLabel: String(minWidth),
+          cells: keySizes.map(size => renderButton({ size, minWidth, label: 'A' })),
+        }))}
+      />
+
+      <StoryTable
         sectionTitle='State × Composition (view=filled, appearance=primary)'
         firstColumnHeader='State'
         columnHeaders={compositions.map(c => c.key)}
