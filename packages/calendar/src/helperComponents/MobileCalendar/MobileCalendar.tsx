@@ -459,7 +459,7 @@ export function MobileCalendar({
         data-test-id={testId}
         title={isPresetsScreen ? t('presets') : undefined}
         onBackButtonClick={isPresetsScreen ? handleBack : undefined}
-        subtitle={
+        slotSecondTitle={
           isPresetsScreen ? undefined : (
             <div className={styles.calendarHeader}>
               {calendarTitle}

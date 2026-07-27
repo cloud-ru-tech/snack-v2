@@ -1109,11 +1109,13 @@
   "Footer": {
     "displayName": "Footer",
     "propsTypeName": null,
+    "description": "Футер календарных дропдаунов (Apply / Current). Кнопки собираются общим\n`FooterActions` из `@ds/bottom-sheet` — единый источник правды с футерами\nmodal / drawer / bottom-sheet (Figma `popupDropdownFooter`). Читает состояние из\n`CalendarContext`, поэтому рендерится только внутри провайдера контекста.",
     "props": {
-      "flush": {
+      "inline": {
         "type": "boolean",
         "required": false,
-        "description": "Футер используется в контейнере без паддинга `bodyWrapper` (например, dropdown с `bodyPadding={false}`),\nпоэтому компенсирующие отрицательные margin'ы не нужны — футер и так на всю ширину."
+        "defaultValue": "false",
+        "description": "Inline-раскладка: футер рендерится внутри тела дропдауна (bottomSlot календаря),\nпоэтому сам рисует divider, паддинги и полную ширину. По умолчанию (`false`)\nвозвращает голые кнопки для `bottomBar`-слота дропдауна (`footer` + `footerDivider`),\nгде обвязку даёт сам Dropdown."
       },
       "onApply": {
         "type": "(() => void)",

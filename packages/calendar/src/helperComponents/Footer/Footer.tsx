@@ -1,4 +1,5 @@
-import { ButtonGroup } from '@ds/button';
+import { FooterActions } from '@ds/bottom-sheet';
+import { VIEW } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { getDefaultItemId } from '@ds/list';
 import { KeyboardEventHandler, RefObject } from 'react';
@@ -15,15 +16,22 @@ export type FooterProps = {
   /** Колбек по клику на Current */
   onCurrent?(): void;
   /**
-   * Футер используется в контейнере без паддинга `bodyWrapper` (например, dropdown с `bodyPadding={false}`),
-   * поэтому компенсирующие отрицательные margin'ы не нужны — футер и так на всю ширину.
+   * Inline-раскладка: футер рендерится внутри тела дропдауна (bottomSlot календаря),
+   * поэтому сам рисует divider, паддинги и полную ширину. По умолчанию (`false`)
+   * возвращает голые кнопки для `bottomBar`-слота дропдауна (`footer` + `footerDivider`),
+   * где обвязку даёт сам Dropdown.
    */
-  flush?: boolean;
+  inline?: boolean;
 };
 
-export function Footer({ onApply, onCurrent, flush }: FooterProps) {
+/**
+ * Футер календарных дропдаунов (Apply / Current). Кнопки собираются общим
+ * `FooterActions` из `@ds/bottom-sheet` — единый источник правды с футерами
+ * modal / drawer / bottom-sheet (Figma `popupDropdownFooter`). Читает состояние из
+ * `CalendarContext`, поэтому рендерится только внутри провайдера контекста.
+ */
+export function Footer({ onApply, onCurrent, inline = false }: FooterProps) {
   const {
-    size,
     viewMode,
     mode,
     today,
@@ -42,6 +50,7 @@ export function Footer({ onApply, onCurrent, flush }: FooterProps) {
     referenceDate,
     setViewShift,
     onFocusLeave,
+    size,
   } = useCalendarContext();
 
   const { t } = calendarLocale.useTranslations();
@@ -112,33 +121,43 @@ export function Footer({ onApply, onCurrent, flush }: FooterProps) {
     onApply?.();
   };
 
-  return (
-    <div className={styles.footer} data-size={size} data-flush={flush || undefined}>
-      <Divider className={styles.divider} />
+  const actions = (
+    <FooterActions
+      // Кнопки футера следуют размеру календаря: в мастере дропдаунов они 24 / 32 / 40 при s / m / l.
+      size={size}
+      approveButton={{
+        label: t('apply'),
+        disabled: isApplyButtonDisabled,
+        innerRef: applyButtonRef as RefObject<HTMLButtonElement>,
+        onClick: handleApplySelection,
+        onKeyDown: handleApplyKeyDown,
+      }}
+      additionalButton={{
+        label: t('current'),
+        // `popupDropdownFooter` держит третью кнопку на `function`, а не на дефолтном
+        // из `FooterActions` `simple`: у `simple` остаётся горизонтальный паддинг.
+        view: VIEW.Function,
+        innerRef: currentButtonRef as RefObject<HTMLButtonElement>,
+        onClick: handleCurrentClick,
+        onKeyDown: handleCurrentKeyDown,
+      }}
+      testIds={{
+        approve: getTestId('apply-button') ?? '',
+        additional: getTestId('current-button') ?? '',
+        cancel: '',
+      }}
+      actionsClassName={inline ? styles.actions : undefined}
+    />
+  );
 
-      <ButtonGroup
-        className={styles.buttonGroup}
-        size={size === 's' ? 's' : 'm'}
-        primaryAction={{
-          label: t('apply'),
-          appearance: 'primary',
-          view: 'filled',
-          disabled: isApplyButtonDisabled,
-          innerRef: applyButtonRef as RefObject<HTMLButtonElement>,
-          onClick: handleApplySelection,
-          onKeyDown: handleApplyKeyDown,
-          'data-test-id': getTestId('apply-button'),
-        }}
-        tertiaryAction={{
-          label: t('current'),
-          appearance: 'neutral',
-          view: 'simple',
-          onClick: handleCurrentClick,
-          innerRef: currentButtonRef as RefObject<HTMLButtonElement>,
-          onKeyDown: handleCurrentKeyDown,
-          'data-test-id': getTestId('current-button'),
-        }}
-      />
+  if (!inline) {
+    return actions;
+  }
+
+  return (
+    <div className={styles.inline}>
+      <Divider className={styles.divider} />
+      {actions}
     </div>
   );
 }

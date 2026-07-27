@@ -46,13 +46,16 @@ export function DesktopCalendarDropdown({
 
   const content = (
     <div className={cn(styles.calendarDropdownContent, className)} data-test-id={getTestId('content')}>
-      <Calendar {...calendarProps} bottomSlot={<Footer onApply={handleFooterApply} onCurrent={onCurrent} />} />
+      <Calendar {...calendarProps} bottomSlot={<Footer inline onApply={handleFooterApply} onCurrent={onCurrent} />} />
     </div>
   );
 
   return (
     <Dropdown
       className={styles.dropdown}
+      // Календарь сам управляет внутренними отступами (header/body/footer) — общий padding
+      // dropdown-контейнера в макете отсутствует.
+      bodyPadding={false}
       data-test-id={testId}
       triggerClassName={triggerClassName}
       trigger={trigger}

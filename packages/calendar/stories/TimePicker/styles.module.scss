@@ -29,17 +29,16 @@ $sizes: 's', 'm', 'l';
   display: none;
 }
 
+// Ширину диктует сам TimePicker (кол-во колонок зависит от showSeconds) — фиксируем только
+// высоту для демо вертикального скролла, иначе узкий width обрезал третью колонку (секунды).
 .scrollS {
-  width: base.$sn-primitive-dimension-124;
   height: 257px;
 }
 
 .scrollM {
-  width: 158px;
   height: 265px;
 }
 
 .scrollL {
-  width: 204px;
   height: 337px;
 }

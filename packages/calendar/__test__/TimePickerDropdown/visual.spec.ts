@@ -28,12 +28,14 @@ test.describe('TimePickerDropdown — visual regression', () => {
     await waitForFonts();
 
     const cells = [];
-    for (const { size, showSeconds, triggerTestId, contentTestId } of TIME_PICKER_DROPDOWN_MATRIX) {
+    for (const { size, showSeconds, triggerTestId, cellTestId, contentTestId } of TIME_PICKER_DROPDOWN_MATRIX) {
       const trigger = getByTestId(triggerTestId);
       await trigger.click();
       const content = getByTestId(contentTestId);
       await expect(content).toBeVisible();
-      const png = await screenshotRegion(page, [trigger, content], 16);
+      // Кадр по root дропдауна, а не по content: футер Current/Apply лежит в `bottomBar`
+      // сиблингом content'а и в его bbox не входит.
+      const png = await screenshotRegion(page, [trigger, getByTestId(cellTestId)], 16);
       cells.push({ label: `${size} / ${showSeconds ? 'sec' : 'no-sec'}`, png });
       await page.keyboard.press('Escape');
       await expect(content).toHaveCount(0);

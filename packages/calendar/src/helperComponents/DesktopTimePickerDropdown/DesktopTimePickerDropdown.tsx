@@ -166,9 +166,17 @@ export function DesktopTimePickerDropdown({
     >
       <CalendarContext.Provider value={calendarContextValue}>
         <TimePickerBase className={styles.timePickerBaseLimited} />
-        <Footer flush onApply={handleApply} onCurrent={onCurrent} />
       </CalendarContext.Provider>
     </div>
+  );
+
+  // Футер вынесен в `bottomBar` дропдауна (`footer` + `footerDivider`) — divider и
+  // паддинги даёт сам Dropdown. Провайдер контекста дублируется здесь, т.к. `footer` —
+  // отдельный от `content` регион.
+  const footer = (
+    <CalendarContext.Provider value={calendarContextValue}>
+      <Footer onApply={handleApply} onCurrent={onCurrent} />
+    </CalendarContext.Provider>
   );
 
   return (
@@ -190,6 +198,8 @@ export function DesktopTimePickerDropdown({
       open={open}
       onOpenChange={setOpen}
       content={content}
+      footer={footer}
+      footerDivider
       bodyPadding={false}
       widthStrategy='gte'
     >
