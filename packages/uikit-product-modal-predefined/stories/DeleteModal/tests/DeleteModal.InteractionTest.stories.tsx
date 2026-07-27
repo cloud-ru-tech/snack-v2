@@ -35,7 +35,7 @@ export const InteractionTest: Story = {
 
     await step('valid confirm calls onDelete', async () => {
       const inputRoot = body.getByTestId(TEST_IDS.confirmInput);
-      await userEvent.type(within(inputRoot).getByTestId(FIELDS_TEST_IDS.fieldTextInput), 'vm-production-01');
+      await userEvent.type(within(inputRoot).getByTestId(FIELDS_TEST_IDS.fieldComboInput), 'vm-production-01');
       await userEvent.click(body.getByTestId(TEST_IDS.approveButton));
       await waitFor(() => expect(onDelete).toHaveBeenCalled());
     });

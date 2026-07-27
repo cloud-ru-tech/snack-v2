@@ -1,4 +1,4 @@
-import { FieldText, FieldTextProps, VALIDATION_STATE } from '@ds/fields';
+import { FieldCombo, FieldComboProps, VALIDATION_STATE } from '@ds/fields';
 import { CopyButton } from '@ds/uikit-product-copy';
 import { WithSupportProps } from '@ds/utils';
 import { forwardRef } from 'react';
@@ -20,7 +20,7 @@ export type InputConfirmProps = WithSupportProps<{
   /** Label поля */
   label?: string;
   /** Размер поля */
-  size?: FieldTextProps['size'];
+  size?: FieldComboProps['size'];
   /** Выравнивание copy-line */
   copyLineAlign?: 'start' | 'space-between';
   /** Placeholder поля */
@@ -53,7 +53,7 @@ export const InputConfirm = forwardRef<HTMLInputElement, InputConfirmProps>(func
         {!hideConfirmCopyButton && <CopyButton valueToCopy={confirmText} data-test-id={TEST_IDS.confirmCopyButton} />}
       </div>
 
-      <FieldText
+      <FieldCombo
         {...rest}
         ref={ref}
         inputMode='text'

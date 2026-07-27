@@ -3,7 +3,6 @@
 .root {
   display: flex;
   flex-direction: column;
-  row-gap: base.$sn-primitive-dimension-8;
 }
 
 .confirmText {
@@ -11,6 +10,8 @@
   column-gap: base.$sn-primitive-dimension-8;
   align-items: center;
   justify-content: space-between;
+  // Figma: подпись + значение — плотная группа (зазор 0), зазор 8 только до поля ввода.
+  margin-bottom: base.$sn-primitive-dimension-8;
 }
 
 .confirmText[data-align='start'] {

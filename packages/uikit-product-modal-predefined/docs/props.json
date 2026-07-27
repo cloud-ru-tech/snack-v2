@@ -626,6 +626,11 @@
             "required": false,
             "description": "Состояние загрузки"
           },
+          "minWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
+          },
           "size": {
             "type": "Size | undefined",
             "required": false,
