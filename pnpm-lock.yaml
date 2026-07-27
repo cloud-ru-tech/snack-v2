@@ -115,8 +115,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       '@sbercloud/figma-variables':
-        specifier: 3.1.3-c8a85cd5.0
-        version: 3.1.3-c8a85cd5.0
+        specifier: 4.0.0
+        version: 4.0.0
       '@svgr/cli':
         specifier: 8.1.0
         version: 8.1.0(typescript@5.9.3)
@@ -5717,8 +5717,8 @@ packages:
     resolution: {integrity: sha512-xPHQE6FQG7fvI1jLmSciczl+cVVQssf3QwCznV0j1a8ufC/y5mGkGDbwzdpBfBxOezv9n7u8w18Q+tCRsUr2OQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-selected-block/-/@sbercloud/figma-selected-block-1.0.3.tgz}
     hasBin: true
 
-  '@sbercloud/figma-variables@3.1.3-c8a85cd5.0':
-    resolution: {integrity: sha512-nItp3IabIRd/Td3v3dybFIBGEKiF3ZvWvgHLGgiINk6vUdnq4GDwItn1RTeRVgxdbbIiUnmZR9TN+qyCoQ4DuA==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-3.1.3-c8a85cd5.0.tgz}
+  '@sbercloud/figma-variables@4.0.0':
+    resolution: {integrity: sha512-LMpxHZN0YC/m2UiYxFIqO/U9ZSWsobTaUc1O87SFjWE1zfhIt+e3cElw9+V0f6/Hg/bjrpSDlOt3ygaP5M1heQ==, tarball: https://pkg.sbercloud.tech/artifactory/api/npm/sc-uikit-npm/@sbercloud/figma-variables/-/@sbercloud/figma-variables-4.0.0.tgz}
 
   '@shikijs/core@3.23.0':
     resolution: {integrity: sha512-NSWQz0riNb67xthdm5br6lAkvpDJRTgB36fxlo37ZzM2yq0PQFFzbd8psqC2XMPgCzo1fW6cVi18+ArJ44wqgA==}
@@ -15043,7 +15043,7 @@ snapshots:
 
   '@sbercloud/figma-selected-block@1.0.3': {}
 
-  '@sbercloud/figma-variables@3.1.3-c8a85cd5.0': {}
+  '@sbercloud/figma-variables@4.0.0': {}
 
   '@shikijs/core@3.23.0':
     dependencies:
