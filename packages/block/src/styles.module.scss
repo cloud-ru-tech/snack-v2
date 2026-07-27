@@ -11,10 +11,11 @@ $sizes: 's', 'm', 'l';
   border-radius: inherit;
 }
 
+// Блок — подложка, а не layout-контейнер: раскладку содержимого задаёт потребитель на своём
+// контенте. Собственный flex с вертикальным центрированием ломал вёрстку внутри блока.
 .block {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: block;
   box-sizing: border-box;
 
   &[data-variant='outline'] {
@@ -63,6 +64,5 @@ $sizes: 's', 'm', 'l';
 
 .content {
   position: relative;
-  flex: 1 1 auto;
   min-width: 0;
 }
