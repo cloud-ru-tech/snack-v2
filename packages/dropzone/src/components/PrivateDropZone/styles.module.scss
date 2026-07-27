@@ -81,9 +81,12 @@ $sizes: 's', 'm', 'l';
     color: base.$sn-theme-color-available-version-textMain;
   }
 
+  // Макет: focusedFrame/primary/outside — рамка вплотную к боксу (bbox линии равен боксу
+  // компонента), толщина из focusLine/field, как у остальных полеподобных контролов.
+  // outline-offset выводится явно: без него Chromium подставляет свой отступ в 1px.
   &:focus-visible {
-    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
-    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
+    outline-offset: 0;
   }
 
   &[data-over] {
@@ -104,6 +107,9 @@ $sizes: 's', 'm', 'l';
 
   &[data-disabled] {
     cursor: not-allowed;
+
+    // В макете у disabled-варианта своя заливка контейнера, а не только приглушённый контент.
+    background-color: base.$sn-theme-color-neutral-background;
 
     .content {
       opacity: base.$sn-theme-effect-opacity-disabled;
