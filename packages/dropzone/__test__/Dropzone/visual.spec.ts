@@ -5,6 +5,11 @@ import { assertInteractionStatesSnapshot, assertVisualMatrixSnapshot } from '#pl
 import { buildStoryOptions, DROPZONE_STORIES, TEST_IDS } from './helpers';
 
 test.describe('Dropzone — visual regression', () => {
+  // `useDrag` гасит дребезг dragover/dragleave через `lodash.debounce`, а тот сверяется с
+  // `Date.now()`: при фиксированном времени отложенный `setIsOver` не наступает и drag-over
+  // состояние не включается.
+  test.use({ fixedClockEnabled: false });
+
   // eslint-disable-next-line no-empty-pattern
   test.beforeEach(({}, testInfo) => {
     test.skip(

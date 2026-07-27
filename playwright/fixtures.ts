@@ -51,6 +51,7 @@ type PlaywrightFixtures = {
   waitForNavigation(expectedPath: string, options?: { timeout?: number }): Promise<void>;
   dragTo(locator: Locator, options?: DragOptions): Promise<void>;
   collectCoverage: void;
+  fixedClockEnabled: boolean;
   fixedClock: void;
 };
 
@@ -114,9 +115,16 @@ export const test = base.extend<PlaywrightFixtures>({
     { auto: true },
   ],
   // `setFixedTime` подменяет только `Date`/`Date.now` — таймеры и анимации продолжают идти.
+  // Компоненты на debounce/throttle из lodash сверяются с `Date.now()`: при замороженном
+  // времени отложенный вызов никогда не «созревает» и состояние не наступает. Такие спеки
+  // отключают фиксацию через `test.use({ fixedClockEnabled: false })`.
+  fixedClockEnabled: [true, { option: true }],
   fixedClock: [
-    async ({ page }, customUse) => {
-      await page.clock.setFixedTime(FIXED_TEST_TIME);
+    async ({ page, fixedClockEnabled }, customUse) => {
+      if (fixedClockEnabled) {
+        await page.clock.setFixedTime(FIXED_TEST_TIME);
+      }
+
       await customUse();
     },
     { auto: true },
