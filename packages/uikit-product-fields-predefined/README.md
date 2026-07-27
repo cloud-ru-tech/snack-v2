@@ -158,7 +158,7 @@ export function FieldMaskControlled() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -330,7 +330,7 @@ export function FieldPhoneCountrySettings() {
 | `searchPlaceholder` | `string` | — | Плейсхолдер поля поиска в выпадающем списке стран |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -493,7 +493,7 @@ export function FieldNameRHFExample() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showLabel` | `boolean` | — | Показывать предустановленный лейбл «Имя» |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
@@ -639,7 +639,7 @@ export function FieldDescriptionRHFExample() {
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
@@ -1000,7 +1000,7 @@ export function FieldChatWithAttachments() {
 | `readonly` | `boolean` | — | Только для чтения |
 | `resizable` | `boolean` | `false` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
@@ -1248,7 +1248,7 @@ export function FieldDescriptionRHFExample() {
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
@@ -1329,7 +1329,7 @@ export function FieldNameRHFExample() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showLabel` | `boolean` | — | Показывать предустановленный лейбл «Имя» |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |

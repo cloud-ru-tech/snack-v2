@@ -263,7 +263,7 @@ export function HintStandalone() {
 | `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `readonly` | `boolean` | — | Только для чтения |
 | `required` | `boolean` | — | Показать знак обязательности `*` |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | `true` | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
 
@@ -316,7 +316,7 @@ export function HintStandalone() {
 | `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `maxLines` | `number` | — | Обрезать подсказку до N строк многоточием (через `TruncateString`, с тултипом <br/> полного текста на ховере). Без значения подсказка переносится без ограничения <br/> (дефолт поля). Нужно для карточек фиксированной высоты (`@ds/attachment`), где <br/> длинный текст ошибки иначе выходит за границы. |
 | `readonly` | `boolean` | — | Только для чтения |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | `true` | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
 

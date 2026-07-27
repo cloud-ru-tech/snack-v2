@@ -101,7 +101,7 @@ export function ColorBasic() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки (видна при value && !readonly && !disabled). |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (видна при readonly && value && !disabled). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -186,7 +186,7 @@ export function Affixes() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -306,7 +306,7 @@ export function DateBasic() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть значение и поле не disabled/readonly. |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showHolidays` | `boolean` | — | Раскрашивает субботу и воскресенье |
 | `showSeconds` | `boolean` | `true` | Показывать секунды в режиме `date-time` (в маске и в выпадающем календаре). |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
@@ -403,7 +403,7 @@ export function Secure() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (только при `readonly = true` и непустом `value`) |
 | `showHideButton` | `boolean` | `true` | Показывать кнопку «глаз» |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -504,7 +504,7 @@ export function Select() {
 | `selection` | `"multiple"` \| `"single"` | — | Режим выбора. По умолчанию `'single'`. <br/> Режим выбора |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть выбранное значение <br/> и поле не disabled/readonly. |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
@@ -573,7 +573,7 @@ export function SliderRange() {
 | `readonly` | `boolean` | — | Только для чтения |
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showScaleBar` | `boolean` | `true` | Показывать линейку с метками |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `step` | `number \| null` | — | Шаг приращения. `null` — снэп только к меткам. |
@@ -648,7 +648,7 @@ export function Stepper() {
 | `readonly` | `boolean` | — | Только для чтения |
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `step` | `number` | `1` | Шаг приращения |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
@@ -721,7 +721,7 @@ export function Basic() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -803,7 +803,7 @@ export function TextArea() {
 | `resizable` | `boolean` | `false` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
@@ -870,7 +870,7 @@ export function TimeBasic() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки (видна при value && !readonly && !disabled). |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (видна при readonly && value && !disabled). |
-| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showSeconds` | `boolean` | `true` | Показывать секунды в picker и в маске input. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |

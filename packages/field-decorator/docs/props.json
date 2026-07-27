@@ -81,7 +81,8 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "defaultValue": "true",
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -394,7 +395,8 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "defaultValue": "true",
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",

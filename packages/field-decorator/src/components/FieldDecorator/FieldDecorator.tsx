@@ -19,7 +19,7 @@ export function FieldDecorator({
   hint,
   error,
   validationState: validationStateProp = VALIDATION_STATE.Default,
-  showHintIcon,
+  showHintIcon = true,
   length,
   size = SIZE.M,
   disabled,

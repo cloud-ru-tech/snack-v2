@@ -46,7 +46,7 @@ export type HintProps = WithSupportProps<{
   error?: string;
   /** Состояние валидации */
   validationState?: ValidationState;
-  /** Отображение статус-иконки у подсказки */
+  /** Отображение статус-иконки у подсказки (по умолчанию `true`) */
   showHintIcon?: boolean;
   /** Счётчик длины `current/max` */
   length?: FieldLength;
@@ -88,7 +88,7 @@ export type FieldDecoratorProps = WithSupportProps<{
   error?: string;
   /** Состояние валидации */
   validationState?: ValidationState;
-  /** Отображение статус-иконки у подсказки */
+  /** Отображение статус-иконки у подсказки (по умолчанию `true`) */
   showHintIcon?: boolean;
   /** Счётчик длины `current/max` */
   length?: FieldLength;

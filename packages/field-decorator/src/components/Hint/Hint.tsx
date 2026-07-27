@@ -31,7 +31,7 @@ export function Hint({
   hint,
   error,
   validationState: validationStateProp = VALIDATION_STATE.Default,
-  showHintIcon,
+  showHintIcon = true,
   length,
   maxLines,
   size = SIZE.M,

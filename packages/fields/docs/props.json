@@ -252,7 +252,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -898,7 +898,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -1980,7 +1980,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "showHolidays": {
         "type": "boolean",
@@ -2751,7 +2751,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -3436,7 +3436,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -4121,7 +4121,7 @@
           "showHintIcon": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отображение статус-иконки у подсказки"
+            "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
           },
           "size": {
             "type": "Size | undefined",
@@ -4992,7 +4992,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "showScaleBar": {
         "type": "boolean",
@@ -5511,7 +5511,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -6164,7 +6164,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -6720,7 +6720,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "size": {
         "type": "enum",
@@ -7189,7 +7189,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение статус-иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
       },
       "showSeconds": {
         "type": "boolean",
