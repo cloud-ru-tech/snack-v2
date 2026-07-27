@@ -235,6 +235,7 @@ export function DeployFailureCard() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
+| `minWidth` | `boolean \| undefined` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
 
 ## NotificationPanelContent
 

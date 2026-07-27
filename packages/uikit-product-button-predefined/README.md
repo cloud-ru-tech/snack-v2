@@ -191,6 +191,7 @@ export function MobileLayout() {
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `loading` | `boolean` | — | Состояние загрузки |
+| `minWidth` | `boolean` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
 | `onOpenChange` | `((open: boolean) => void)` | — | Колбэк изменения раскрытия. |
 | `open` | `boolean` | — | Контролируемое состояние раскрытия. |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |

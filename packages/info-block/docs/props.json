@@ -141,9 +141,11 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
