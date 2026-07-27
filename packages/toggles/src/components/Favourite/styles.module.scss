@@ -53,6 +53,9 @@ $sizes: 'xs', 's';
 .icon {
   position: absolute;
 
+  // Невыбранный контур: без этого цвет наследуется от окружения потребителя.
+  color: base.$sn-theme-color-neutral-accent;
+
   &[data-checked='true'] {
     &[data-variant='star'] {
       color: base.$sn-theme-color-yellow-accent;

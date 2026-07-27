@@ -45,6 +45,10 @@ $sizes: 'xs', 's';
     }
 
     &[data-disabled="false"] {
+      &[data-checked="false"] {
+        border-color: base.$sn-theme-color-available-version-textTertiary;
+      }
+
       &[data-checked="true"] {
         border-color: base.$sn-theme-color-primary-accent;
       }

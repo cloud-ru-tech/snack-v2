@@ -79,6 +79,7 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
     &[data-disabled="false"][data-loading="false"] {
       background-color: base.$sn-theme-color-neutral-background1Level;
+      outline-color: base.$sn-theme-color-available-version-textTertiary;
     }
   }
 
@@ -133,7 +134,9 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
   &[data-checked="true"] {
     &[data-loading="false"] {
-      background-color: base.$sn-theme-color-neutral-onAccent;
+      // Кружок лежит на дорожке `primary/accent`, поэтому и цвет берётся из той же
+      // пары — `primary/onAccent` (#fbfffc), а не нейтральный белый.
+      background-color: base.$sn-theme-color-primary-onAccent;
 
       &[data-disabled="false"] {
         color: base.$sn-theme-color-primary-accent;
