@@ -1,5 +1,5 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
-import { FieldText, FieldTextProps } from '@ds/fields';
+import { FieldCombo, FieldComboProps } from '@ds/fields';
 import { Item, ItemId } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
@@ -15,7 +15,7 @@ import { CountrySettings, FieldPhoneOptionsProps, MaskOptions } from './types';
 import { detectCountryByPhone, handleAutoInsert } from './utils';
 
 export type FieldPhoneProps = Omit<
-  FieldTextProps,
+  FieldComboProps,
   | 'prefix'
   | 'prefixIcon'
   | 'postfix'
@@ -225,7 +225,7 @@ export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function
   const showClear = showClearButton && Boolean(unmaskedValue);
 
   return (
-    <FieldText
+    <FieldCombo
       {...rest}
       inputMode='tel'
       type='tel'

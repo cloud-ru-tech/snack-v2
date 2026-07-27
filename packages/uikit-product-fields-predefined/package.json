@@ -34,6 +34,7 @@
     "@ds/button": "workspace:^",
     "@ds/drawer": "workspace:^",
     "@ds/dropzone": "workspace:^",
+    "@ds/field-decorator": "workspace:^",
     "@ds/fields": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/input-private": "workspace:^",

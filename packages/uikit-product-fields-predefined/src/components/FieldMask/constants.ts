@@ -1,4 +1,4 @@
-import { FieldTextProps } from '@ds/fields';
+import { FieldComboProps } from '@ds/fields';
 
 import { Mask } from './types';
 
@@ -16,7 +16,7 @@ export const MASK_OPTIONS: Record<
   {
     placeholder: string;
     options: Record<string, unknown>;
-    inputMode?: FieldTextProps['inputMode'];
+    inputMode?: FieldComboProps['inputMode'];
   }
 > = {
   [MASK.Uuid]: {

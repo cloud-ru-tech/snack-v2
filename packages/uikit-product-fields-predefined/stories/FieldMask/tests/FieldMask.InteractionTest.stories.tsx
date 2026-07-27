@@ -32,7 +32,7 @@ export const InteractionTest: Story = {
   ),
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const input = canvas.getByTestId(FIELD_TEST_IDS.fieldTextInput);
+    const input = canvas.getByTestId(FIELD_TEST_IDS.fieldComboInput);
 
     await step('typing digits applies the mask separators', async () => {
       await userEvent.click(input);

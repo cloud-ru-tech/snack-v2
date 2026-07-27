@@ -1,5 +1,5 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
-import { FieldDecorator, FieldDecoratorProps } from '@ds/fields';
+import { FieldDecorator, FieldDecoratorProps } from '@ds/field-decorator';
 import cn from 'classnames';
 import { forwardRef, useImperativeHandle } from 'react';
 

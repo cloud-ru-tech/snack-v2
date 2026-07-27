@@ -1,4 +1,4 @@
-import { FieldTextProps } from '@ds/fields';
+import { FieldComboProps } from '@ds/fields';
 
 import { ZERO_WIDTH_SPACE } from './constants';
 
@@ -14,7 +14,7 @@ export const getCellValidationState = (
   value: string,
   showEmptyChars?: boolean,
   error?: boolean,
-): FieldTextProps['validationState'] => {
+): FieldComboProps['validationState'] => {
   if (showEmptyChars) {
     return isZeroWidthSpace(value) ? 'error' : 'default';
   }

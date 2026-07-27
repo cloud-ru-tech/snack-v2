@@ -1,4 +1,4 @@
-import { CrossCircleSVG } from '@ds/icons/interface/system';
+import { Hint } from '@ds/field-decorator';
 import cn from 'classnames';
 
 import { TEST_IDS } from '../../constants';
@@ -31,10 +31,7 @@ export function TextBlock({ title, description, error, className, align = 'left'
         data-size={size}
       />
       {error && (
-        <div className={styles.error} data-size={size}>
-          <CrossCircleSVG size={16} className={styles.errorIcon} />
-          <Text text={error} data-test-id={TEST_IDS.error} maxLines={truncate?.error} />
-        </div>
+        <Hint error={error} showHintIcon size={size} maxLines={truncate?.error} data-test-id={TEST_IDS.error} />
       )}
     </div>
   );

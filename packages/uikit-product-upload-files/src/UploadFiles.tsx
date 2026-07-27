@@ -1,5 +1,5 @@
 import { buildAcceptAttribute, Dropzone } from '@ds/dropzone';
-import { FieldDecorator, SIZE } from '@ds/fields';
+import { FieldDecorator, SIZE } from '@ds/field-decorator';
 import { extractSupportProps, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';

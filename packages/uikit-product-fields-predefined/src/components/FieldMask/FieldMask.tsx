@@ -1,4 +1,4 @@
-import { FieldText, FieldTextProps } from '@ds/fields';
+import { FieldCombo, FieldComboProps } from '@ds/fields';
 import { InputMask } from 'imask';
 import mergeRefs from 'merge-refs';
 import { forwardRef, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useIMask } from 'react-imask';
 import { BASE_MASK_OPTIONS, MASK_OPTIONS } from './constants';
 import { Mask } from './types';
 
-export type FieldMaskProps = Omit<FieldTextProps, 'value' | 'onChange' | 'inputMode'> & {
+export type FieldMaskProps = Omit<FieldComboProps, 'value' | 'onChange' | 'inputMode'> & {
   /** Значение поля (controlled-режим) */
   value?: string;
   /** Колбек смены значения; вторым аргументом — экземпляр маски imask */
@@ -42,8 +42,8 @@ export const FieldMask = forwardRef<HTMLInputElement, FieldMaskProps>(function F
   }, [valueProp]);
 
   return (
-    <FieldText
-      // @ts-expect-error тип maskedRef из react-imask не совпадает с ref-типом FieldText
+    <FieldCombo
+      // @ts-expect-error тип maskedRef из react-imask не совпадает с ref-типом FieldCombo
       ref={mergeRefs(ref, maskedRef)}
       value={value}
       onChange={setValue}

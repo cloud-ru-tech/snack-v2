@@ -1,9 +1,9 @@
-import { FieldTextProps } from '@ds/fields';
+import { FieldComboProps } from '@ds/fields';
 import { ControllerProps, FieldValues } from 'react-hook-form';
 import { StringSchema, ValidationError } from 'yup';
 
 export type BaseFieldNameProps = Omit<
-  FieldTextProps,
+  FieldComboProps,
   'placeholder' | 'label' | 'footer' | 'type' | 'inputMode' | 'caption' | 'hint'
 > & {
   /** Показывать предустановленный лейбл «Имя» */

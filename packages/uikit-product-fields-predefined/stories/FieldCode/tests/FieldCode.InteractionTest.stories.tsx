@@ -41,7 +41,7 @@ export const InteractionTest: Story = {
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     const cells = canvas.getAllByTestId(TEST_IDS.fieldCodeCell);
-    const inputs = cells.map(cell => within(cell).getByTestId(FIELD_TEST_IDS.fieldTextInput));
+    const inputs = cells.map(cell => within(cell).getByTestId(FIELD_TEST_IDS.fieldComboInput));
 
     await step('typing: цифры заполняют ячейки, фокус переходит к следующей', async () => {
       await userEvent.click(inputs[0]);

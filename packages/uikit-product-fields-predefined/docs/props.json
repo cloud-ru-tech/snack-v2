@@ -122,7 +122,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -146,7 +146,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -196,7 +196,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -210,9 +210,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "maxLength": {
         "type": "number",
@@ -264,7 +267,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "validationState": {
         "type": "enum",
@@ -422,6 +425,22 @@
         },
         "own": false
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "FileUploadProps": {
         "kind": "interface",
         "props": {
@@ -541,9 +560,11 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
@@ -805,7 +826,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "invalidCode": {
         "type": "string",
@@ -968,7 +989,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -998,7 +1019,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -1012,9 +1033,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "maxLength": {
         "type": "number",
@@ -1073,7 +1097,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "resizable": {
         "type": "boolean",
@@ -1096,7 +1120,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -1162,6 +1186,22 @@
           "tablet": {
             "type": "any",
             "required": false
+          }
+        },
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
           }
         },
         "own": false
@@ -1428,7 +1468,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -1458,7 +1498,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -1472,9 +1512,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "maxLength": {
         "type": "number",
@@ -1528,7 +1571,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "resizable": {
         "type": "boolean",
@@ -1551,7 +1594,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -1617,6 +1660,22 @@
           "tablet": {
             "type": "any",
             "required": false
+          }
+        },
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
           }
         },
         "own": false
@@ -1855,7 +1914,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -1898,7 +1957,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -1930,6 +1989,11 @@
         "required": false,
         "description": "Ref на корневой DOM-элемент"
       },
+      "innerTestIds": {
+        "type": "{ shell?: string; input?: string; } | undefined",
+        "required": false,
+        "description": "Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые\nрендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты,\nа не слоты `FieldCombo`."
+      },
       "label": {
         "type": "string",
         "required": false,
@@ -1943,7 +2007,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -1957,9 +2021,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "mask": {
         "type": "enum",
@@ -2082,7 +2149,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -2099,7 +2166,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -2551,17 +2618,21 @@
         },
         "own": false
       },
-      "Mask": {
-        "kind": "union",
-        "values": [
-          "code",
-          "ip-v4-address",
-          "ip-v4-address-with-mask",
-          "passport",
-          "snils",
-          "uuid"
-        ],
-        "own": true
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "Placement": {
         "kind": "union",
@@ -3010,7 +3081,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -3037,6 +3108,11 @@
         "required": false,
         "description": "Ref на корневой DOM-элемент"
       },
+      "innerTestIds": {
+        "type": "{ shell?: string; input?: string; } | undefined",
+        "required": false,
+        "description": "Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые\nрендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты,\nа не слоты `FieldCombo`."
+      },
       "labelFor": {
         "type": "string",
         "required": false,
@@ -3045,7 +3121,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -3059,9 +3135,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -3168,7 +3247,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -3185,7 +3264,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "showLabel": {
         "type": "boolean",
@@ -3621,6 +3700,22 @@
           "tablet": {
             "type": "any",
             "required": false
+          }
+        },
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
           }
         },
         "own": false
@@ -4065,7 +4160,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -4092,6 +4187,11 @@
         "required": false,
         "description": "Ref на корневой DOM-элемент"
       },
+      "innerTestIds": {
+        "type": "{ shell?: string; input?: string; } | undefined",
+        "required": false,
+        "description": "Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые\nрендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты,\nа не слоты `FieldCombo`."
+      },
       "labelFor": {
         "type": "string",
         "required": false,
@@ -4100,7 +4200,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -4114,9 +4214,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -4218,7 +4321,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -4235,7 +4338,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "showLabel": {
         "type": "boolean",
@@ -4675,6 +4778,22 @@
         },
         "own": false
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -5060,7 +5179,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -5085,7 +5204,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -5117,6 +5236,11 @@
         "required": false,
         "description": "Ref на корневой DOM-элемент"
       },
+      "innerTestIds": {
+        "type": "{ shell?: string; input?: string; } | undefined",
+        "required": false,
+        "description": "Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые\nрендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты,\nа не слоты `FieldCombo`."
+      },
       "label": {
         "type": "string",
         "required": false,
@@ -5130,7 +5254,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -5144,9 +5268,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -5245,7 +5372,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "scrollList": {
         "type": "boolean",
@@ -5272,7 +5399,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -5370,6 +5497,22 @@
           "tablet": {
             "type": "any",
             "required": false
+          }
+        },
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
           }
         },
         "own": false
@@ -5787,6 +5930,11 @@
             "required": false,
             "description": "Состояние загрузки"
           },
+          "minWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
+          },
           "view": {
             "type": "View | undefined",
             "required": false,
@@ -5827,13 +5975,29 @@
         },
         "own": true
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "FieldSelectDecoratorProps": {
         "kind": "interface",
         "props": {
           "caption": {
             "type": "string | undefined",
             "required": false,
-            "description": "Подпись"
+            "description": "Вторичная подпись справа"
           },
           "className": {
             "type": "string | undefined",
@@ -5852,7 +6016,7 @@
           "error": {
             "type": "string | undefined",
             "required": false,
-            "description": "Ошибка"
+            "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
           },
           "hint": {
             "type": "string | undefined",
@@ -5877,15 +6041,18 @@
           "labelTooltip": {
             "type": "QuestionTooltipProps | undefined",
             "required": false,
-            "description": "Подсказка для заголовка",
+            "description": "Подсказка (question-tooltip) у заголовка",
             "typeRefs": [
               "QuestionTooltipProps"
             ]
           },
           "length": {
-            "type": "{ current: number; max?: number; } | undefined",
+            "type": "FieldLength | undefined",
             "required": false,
-            "description": "Допустимая длина текста"
+            "description": "Счётчик длины `current/max`",
+            "typeRefs": [
+              "FieldLength"
+            ]
           },
           "readonly": {
             "type": "boolean | undefined",
@@ -5895,12 +6062,12 @@
           "required": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Обязательное поле"
+            "description": "Показать знак обязательности `*`"
           },
           "showHintIcon": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отображение иконки у подсказки"
+            "description": "Отображение статус-иконки у подсказки"
           }
         },
         "own": false
@@ -5991,15 +6158,10 @@
             "type": "string | undefined",
             "required": false
           },
-          "disclaimer": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-          },
           "footer": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+            "description": "Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`."
           },
           "footerActionsOrientation": {
             "type": "FooterActionsOrientation | undefined",
@@ -6074,17 +6236,17 @@
           "subtitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\n\n\nПодзаголовок под заголовком."
+            "description": "Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях."
           },
           "title": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Заголовок (Typography title-l)."
+            "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
           },
           "truncate": {
             "type": "{ title?: number; subtitle?: number; } | undefined",
             "required": false,
-            "description": "Усечение `title`/`subtitle` (TruncateString)."
+            "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
           },
           "width": {
             "type": "ModalWidth | undefined",

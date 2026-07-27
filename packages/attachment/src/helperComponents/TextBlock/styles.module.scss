@@ -1,5 +1,4 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/field.module' as field;
 
 $sizes: 's', 'm';
 $title-typo: (
@@ -52,33 +51,3 @@ $body-typo: (
   }
 }
 
-.error {
-  display: flex;
-  gap: field.$sn-field-anatomy-size-s-hintWrapper-hintContent-gap;
-  align-items: center;
-
-  width: 100%;
-  min-width: 0;
-
-  color: base.$sn-theme-color-red-text;
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      @include base.composite-var($body-typo, $size);
-    }
-  }
-
-  // Truncate срабатывает только если родитель flex:1 + min-width:0 + overflow:hidden.
-  // Без overflow:hidden текст выходит за границы flex-cell'а и TruncateString
-  // считает, что «всё поместилось» — ellipsis не появляется, текст просто клипится Card'ом.
-  > div:last-child {
-    overflow: hidden;
-    flex: 1;
-    min-width: 0;
-  }
-}
-
-.errorIcon {
-  flex-shrink: 0;
-  color: base.$sn-theme-color-red-accent;
-}

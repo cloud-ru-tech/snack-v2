@@ -33,7 +33,7 @@
     "@ds/attachment": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/dropzone": "workspace:^",
-    "@ds/fields": "workspace:^",
+    "@ds/field-decorator": "workspace:^",
     "@ds/icon-predefined": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/typography": "workspace:^",

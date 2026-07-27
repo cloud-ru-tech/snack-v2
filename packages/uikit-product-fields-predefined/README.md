@@ -114,25 +114,26 @@ export function FieldMaskControlled() {
 | `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
 | `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
 | `elementAfter` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот справа (кнопка / селект с опциональным выпадающим списком) |
 | `elementBefore` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот слева (кнопка / селект с опциональным выпадающим списком) |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
 | `hint` | `string` | — | Подсказка |
 | `iconAfter` | `ReactNode` | — | Иконка справа от строки ввода |
 | `iconBefore` | `ReactNode` | — | Иконка слева от строки ввода |
 | `id` | `string` | — | Значение html-атрибута id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `innerTestIds` | `{ shell?: string; input?: string; } \| undefined` | — | Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые <br/> рендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты, <br/> а не слоты `FieldCombo`. |
 | `label` | `string` | — | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `mask` | `"code"` \| `"ip-v4-address"` \| `"ip-v4-address-with-mask"` \| `"passport"` \| `"snils"` \| `"uuid"` | — | Предустановленная маска поля |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
@@ -154,10 +155,10 @@ export function FieldMaskControlled() {
 | `prefix` | `ReactNode` | — | Префикс (текст или нода) |
 | `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба. |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -165,10 +166,6 @@ export function FieldMaskControlled() {
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
-
-##### Related types
-
-- `Mask` = `"code"` \| `"ip-v4-address"` \| `"ip-v4-address-with-mask"` \| `"passport"` \| `"snils"` \| `"uuid"`
 
 ### Адаптивность
 
@@ -292,23 +289,24 @@ export function FieldPhoneCountrySettings() {
 | `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
 | `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
 | `hint` | `string` | — | Подсказка |
 | `iconAfter` | `ReactNode` | — | Иконка справа от строки ввода |
 | `iconBefore` | `ReactNode` | — | Иконка слева от строки ввода |
 | `id` | `string` | — | Значение html-атрибута id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `innerTestIds` | `{ shell?: string; input?: string; } \| undefined` | — | Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые <br/> рендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты, <br/> а не слоты `FieldCombo`. |
 | `label` | `string` | — | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
 | `min` | `number` | — | Минимальное значение поля |
@@ -327,12 +325,12 @@ export function FieldPhoneCountrySettings() {
 | `outline` | `boolean` | `true` | Разделитель между основным полем и слотами `elementBefore` / `elementAfter` |
 | `pattern` | `string` | — | Регулярное выражение валидного инпута |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `scrollList` | `boolean` | — | Скролл с ограничением высоты для списка стран. По умолчанию включён. |
 | `searchPlaceholder` | `string` | — | Плейсхолдер поля поиска в выпадающем списке стран |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -461,16 +459,17 @@ export function FieldNameRHFExample() {
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
 | `elementAfter` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот справа (кнопка / селект с опциональным выпадающим списком) |
 | `elementBefore` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот слева (кнопка / селект с опциональным выпадающим списком) |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
 | `iconAfter` | `ReactNode` | — | Иконка справа от строки ввода |
 | `iconBefore` | `ReactNode` | — | Иконка слева от строки ввода |
 | `id` | `string` | — | Значение html-атрибута id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `innerTestIds` | `{ shell?: string; input?: string; } \| undefined` | — | Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые <br/> рендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты, <br/> а не слоты `FieldCombo`. |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
 | `min` | `number` | — | Минимальное значение поля |
@@ -491,10 +490,10 @@ export function FieldNameRHFExample() {
 | `prefix` | `ReactNode` | — | Префикс (текст или нода) |
 | `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба. |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `showLabel` | `boolean` | — | Показывать предустановленный лейбл «Имя» |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
@@ -617,15 +616,15 @@ export function FieldDescriptionRHFExample() {
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `header` | `ReactNode` | — | Нода над textarea — ряд элементов до контента (Figma `elementWrapperBefore` / <br/> `slotBeforeContent`): тулбар с кнопками, чипами и т.п. |
 | `id` | `string` | — | HTML id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `maxLength` | `number` | `255` | Максимальное количество символов |
 | `maxRows` | `number` | `1000` | Максимальное количество строк (после — появляется скролл) |
 | `minRows` | `number` | `3` | Минимальное количество строк |
@@ -636,11 +635,11 @@ export function FieldDescriptionRHFExample() {
 | `onKeyDown` | `((event: KeyboardEvent<HTMLTextAreaElement>) => void)` | — | Колбек нажатия клавиши |
 | `onValidationError` | `((error: ValidationError \| null) => void)` | — | Колбэк, вызываемый при изменении ошибки валидации (только в standalone-режиме) |
 | `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | `false` | Обязательное поле |
+| `required` | `boolean` | `false` | Показать знак обязательности `*` |
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
@@ -976,12 +975,12 @@ export function FieldChatWithAttachments() {
 | `attachment` | `AttachmentSquareProps` \| `FileUploadProps` \| `NativeInputProps` | — | Прикрепление файлов |
 | `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `handleSubmit` | `(value: string) => void` | — | Колбек действия при отправке |
 | `header` | `ReactNode` | — | Нода над textarea — ряд элементов до контента (Figma `elementWrapperBefore` / <br/> `slotBeforeContent`): тулбар с кнопками, чипами и т.п. |
@@ -989,9 +988,9 @@ export function FieldChatWithAttachments() {
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
 | `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим виртуальной клавиатуры (`inputmode` нативного `<textarea>`) |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `maxLength` | `number` | — | Максимальное количество символов |
 | `name` | `string` | — | HTML name |
 | `onBlur` | `((event: FocusEvent<HTMLTextAreaElement, Element>) => void)` | — | Колбек блюра |
@@ -1001,7 +1000,7 @@ export function FieldChatWithAttachments() {
 | `readonly` | `boolean` | — | Только для чтения |
 | `resizable` | `boolean` | `false` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
@@ -1165,7 +1164,7 @@ export function FieldCodeResend() {
 | `codeLength` | `number` | — | Количество цифр в коде (целое ≥ 1) |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `invalidCode` | `string` | — | Сообщение при неверном коде, если не передан свой `error` |
 | `label` | `string` | — | Заголовок |
 | `onChange` | `((code: string) => void)` | — | Колбек изменения значения |
@@ -1227,15 +1226,15 @@ export function FieldDescriptionRHFExample() {
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `header` | `ReactNode` | — | Нода над textarea — ряд элементов до контента (Figma `elementWrapperBefore` / <br/> `slotBeforeContent`): тулбар с кнопками, чипами и т.п. |
 | `id` | `string` | — | HTML id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `maxLength` | `number` | `255` | Максимальное количество символов |
 | `maxRows` | `number` | `1000` | Максимальное количество строк (после — появляется скролл) |
 | `minRows` | `number` | `3` | Минимальное количество строк |
@@ -1245,11 +1244,11 @@ export function FieldDescriptionRHFExample() {
 | `onFocus` | `((event: FocusEvent<HTMLTextAreaElement, Element>) => void)` | — | Колбек фокуса |
 | `onKeyDown` | `((event: KeyboardEvent<HTMLTextAreaElement>) => void)` | — | Колбек нажатия клавиши |
 | `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | `false` | Обязательное поле |
+| `required` | `boolean` | `false` | Показать знак обязательности `*` |
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
@@ -1297,16 +1296,17 @@ export function FieldNameRHFExample() {
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
 | `elementAfter` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот справа (кнопка / селект с опциональным выпадающим списком) |
 | `elementBefore` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот слева (кнопка / селект с опциональным выпадающим списком) |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
 | `iconAfter` | `ReactNode` | — | Иконка справа от строки ввода |
 | `iconBefore` | `ReactNode` | — | Иконка слева от строки ввода |
 | `id` | `string` | — | Значение html-атрибута id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `innerTestIds` | `{ shell?: string; input?: string; } \| undefined` | — | Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые <br/> рендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты, <br/> а не слоты `FieldCombo`. |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
 | `min` | `number` | — | Минимальное значение поля |
@@ -1326,10 +1326,10 @@ export function FieldNameRHFExample() {
 | `prefix` | `ReactNode` | — | Префикс (текст или нода) |
 | `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба. |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `showLabel` | `boolean` | — | Показывать предустановленный лейбл «Имя» |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |

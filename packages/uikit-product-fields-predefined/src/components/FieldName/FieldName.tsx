@@ -1,4 +1,4 @@
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { runAfterRerender } from '@ds/input-private';
 import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, useMemo, useRef, useState } from 'react';
@@ -104,7 +104,7 @@ export const FieldName = forwardRef<HTMLInputElement, FieldNameProps>(function F
     (Boolean(currentError?.match(t('FieldName.maxSymbols', { max: maxLength }))) || Boolean(isRequiredError));
 
   return (
-    <FieldText
+    <FieldCombo
       {...inputProps}
       inputMode='text'
       onClearButtonClick={handleClear}

@@ -26,6 +26,7 @@
   "dependencies": {
     "@ds/button": "workspace:^",
     "@ds/card": "workspace:^",
+    "@ds/field-decorator": "workspace:^",
     "@ds/icon-predefined": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/loader": "workspace:^",

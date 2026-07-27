@@ -1,4 +1,4 @@
-import { FieldText, FieldTextProps } from '@ds/fields';
+import { FieldCombo, FieldComboProps } from '@ds/fields';
 import cn from 'classnames';
 import { forwardRef } from 'react';
 
@@ -12,7 +12,7 @@ type CellProps = {
   /** Растягивать ячейку на всю доступную ширину */
   stretchCells?: boolean;
 } & Pick<
-  FieldTextProps,
+  FieldComboProps,
   'size' | 'disabled' | 'value' | 'autoComplete' | 'onKeyDown' | 'onPaste' | 'onChange' | 'validationState'
 >;
 
@@ -20,7 +20,7 @@ export const Cell = forwardRef<HTMLInputElement, CellProps>(function Cell(props,
   const { className, size, stretchCells, value, ...fieldCellProps } = props;
 
   return (
-    <FieldText
+    <FieldCombo
       inputMode='numeric'
       ref={ref}
       className={cn(styles.cell, stretchCells && styles.stretch, className)}

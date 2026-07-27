@@ -19,7 +19,7 @@ $cell-widths: (
     }
   }
 
-  // Класс, а не data-атрибут: FieldText роутит произвольные data-* на внутренний input, а не на корень .cell.
+  // Класс, а не data-атрибут: FieldCombo роутит произвольные data-* на внутренний input, а не на корень .cell.
   &.stretch {
     flex: 1 1 0;
     min-width: 0;

@@ -1,4 +1,4 @@
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { runAfterRerender } from '@ds/input-private';
 import mergeRefs from 'merge-refs';
 import { FocusEventHandler, forwardRef, useMemo, useState } from 'react';
@@ -89,7 +89,7 @@ export const FieldNameRHF = forwardRef<HTMLInputElement, FieldNameRHFProps>(func
         };
 
         return (
-          <FieldText
+          <FieldCombo
             {...inputProps}
             inputMode='text'
             onClearButtonClick={handleClearButtonClick}
