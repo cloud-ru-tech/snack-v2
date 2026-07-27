@@ -69,6 +69,8 @@
     max-width: 100%;
     min-height: base.$sn-density-size-m;
     margin: 0;
+    // Макет ждёт `adaptive/spacing/control/container/horizontal/l` (8), но коллекции `adaptive`
+    // нет в @sbercloud/figma-variables — наследуем chip size s (6), на 2px/сторону уже макета.
     border: none;
     border-radius: base.$sn-density-radius-2xs;
 
