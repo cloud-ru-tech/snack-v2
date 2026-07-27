@@ -103,7 +103,7 @@ $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
 
       @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
 
-      opacity: hotspot.$sn-hotSpot-effect-opacity-pulse-background;
+      opacity: hotspot.$sn-hotSpot-effect-opacity-pulse-opacity;
 
       animation: pulse var(--duration, 2s) infinite;
     }

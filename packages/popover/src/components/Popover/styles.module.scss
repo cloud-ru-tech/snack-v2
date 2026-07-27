@@ -7,7 +7,7 @@
 
 .tooltipContainer {
   @include base.composite-var(popover.$popover, 'anatomy', 'container');
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 
   display: flex;
   flex-direction: column;

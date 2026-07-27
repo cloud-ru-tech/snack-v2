@@ -28,7 +28,9 @@ $line-width: var(--tree-line-width, #{base.$sn-density-size-icon-s});
       width: base.$sn-primitive-strokeWeight-strokeRegular;
       height: 100%;
 
-      background: base.$sn-theme-color-neutral-decor;
+      // Мастер levelLine/lineWrapper (7098:16549): #bcc3dc α0.35 = available-borderColor,
+      // как все линии-разделители DS; neutral-decor (#e3e5ed опак) — расхождение.
+      background: base.$sn-theme-color-available-borderColor;
     }
   }
 

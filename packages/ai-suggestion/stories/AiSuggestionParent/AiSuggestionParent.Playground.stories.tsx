@@ -97,7 +97,7 @@ export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const root = within(canvasElement).getAllByTestId(TEST_IDS.root)[0];
     await expect(root).toBeVisible();
-    await expect(within(root).getByTestId(TEST_IDS.trigger)).toBeVisible();
+    await expect(within(root).getAllByTestId(TEST_IDS.trigger)[0]).toBeVisible();
   },
 };
 

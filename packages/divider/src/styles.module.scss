@@ -29,7 +29,7 @@ $variants: 'regular', 'thin';
   pointer-events: none;
   position: absolute;
   margin: auto;
-  background-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  background-color: base.$sn-theme-color-available-borderColor;
 
   .root[data-appearance='onComplementary'] & {
     background-color: base.$sn-theme-color-available-onComplementary;

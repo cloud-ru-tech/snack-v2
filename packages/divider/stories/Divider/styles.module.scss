@@ -32,8 +32,20 @@
   min-width: base.$sn-primitive-dimension-1;
 }
 
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
 .matrixCellHorizontal {
   width: base.$sn-primitive-dimension-80;
+}
+
+// onComplementary — белая линия, на светлом фоне её не видно.
+.matrixCellInverted {
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-8;
+  background-color: base.$sn-theme-color-available-complementary;
 }
 
 .matrixCellVertical {

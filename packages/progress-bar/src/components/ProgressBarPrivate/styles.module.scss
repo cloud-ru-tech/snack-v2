@@ -11,7 +11,10 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  background-color: base.$sn-theme-color-neutral-decor;
+  // В макете дорожка полупрозрачная (`available/borderColor` — #bcc3dc при 35%), а не сплошная:
+  // она просвечивает подложку. На белом фоне разница с непрозрачным `neutral/decor` почти
+  // незаметна, но на цветной поверхности расходится.
+  background-color: base.$sn-theme-color-available-borderColor;
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

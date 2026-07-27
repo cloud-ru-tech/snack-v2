@@ -94,7 +94,7 @@ $chevron-transition-activated: transform $parent-transition-duration cubic-bezie
   padding: 0;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid
     base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
-  border-radius: base.$sn-density-radius-full;
+  border-radius: base.$sn-primitive-dimension-full;
 
   font-family: inherit;
   text-decoration: none;
