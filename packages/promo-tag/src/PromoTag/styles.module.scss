@@ -51,7 +51,7 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
 
       &[data-role='decor'] {
         color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
-        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decorTransparent');
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
       }
     }
   }
@@ -63,12 +63,13 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
 }
 
 .labelWrapper {
+  display: flex;
+  align-items: center;
+
   @each $size in $sizes {
     [data-size='#{$size}'] & {
-      @include base.composite-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container', 'textWrapper');
-
-      padding-top: 0;
-      padding-bottom: 0;
+      /* Только горизонтальный: высоту держит min-height контейнера. */
+      padding: 0 base.simple-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container', 'textWrapper', 'padding');
     }
   }
 }

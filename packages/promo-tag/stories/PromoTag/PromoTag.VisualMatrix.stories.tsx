@@ -20,7 +20,7 @@ export default meta;
 type Story = StoryObj<PromoTagProps>;
 
 const keySizes = Object.values(SIZE);
-const keyAppearances = [APPEARANCE.Primary, APPEARANCE.Neutral, APPEARANCE.Red, APPEARANCE.Green, APPEARANCE.Blue];
+const keyAppearances = Object.values(APPEARANCE);
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],

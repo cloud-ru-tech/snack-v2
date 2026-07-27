@@ -40,9 +40,11 @@ export function PromoTag<T extends ElementType = 'button'>({
       {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />}
       {beforeContent}
       {Boolean(label) && (
-        <Typography className={styles.labelWrapper} as='div' variant='label' size={MAP_SIZE_TO_TYPOGRAPHY_SIZE[size]}>
-          {label}
-        </Typography>
+        <span className={styles.labelWrapper}>
+          <Typography as='span' variant='label' size={MAP_SIZE_TO_TYPOGRAPHY_SIZE[size]}>
+            {label}
+          </Typography>
+        </span>
       )}
       {afterContent}
     </Component>
