@@ -4,9 +4,10 @@
 
 $sizes: 's', 'm', 'l';
 
+// Размер текст-стиля равен размеру компонента: в мастере подпись сегмента — label/s, label/m, label/l.
 $typography: (
-  's': base.$sn-regular-label-m,
-  'm': base.$sn-regular-label-l,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
   'l': base.$sn-regular-label-l,
 );
 
