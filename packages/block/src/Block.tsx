@@ -31,7 +31,7 @@ export type BlockProps = {
  *
  * Поддерживает:
  * - Акриловый фон с эффектом backdrop blur
- * - Различные варианты отображения: simple (обычный акрил), outline (с обводкой), shadow (с тенью), transparent (полупрозрачное матовое стекло)
+ * - Различные варианты отображения: simple (обычный акрил), outline (с обводкой), elevated (с тенью), transparent (полупрозрачное матовое стекло)
  * - Различные размеры: s (малый), m (средний), l (большой)
  * - Гибкое содержимое - принимает любые React children
  *
@@ -43,7 +43,7 @@ export type BlockProps = {
  * </Block>
  *
  * // С вариантом и размером
- * <Block variant={VARIANT.Shadow} size={SIZE.L}>
+ * <Block variant={VARIANT.Elevated} size={SIZE.L}>
  *   <h3>Card Title</h3>
  *   <p>Card content with shadow effect</p>
  * </Block>

@@ -14,7 +14,7 @@
 ## Анатомия
 
 ### Variant
-Способ визуального отделения поверхности: `simple` — сплошная заливка, `outline` — с контурной рамкой, `shadow` — с тенью для подъёма над фоном, `transparent` — только акриловый эффект без заливки.
+Способ визуального отделения поверхности: `simple` — сплошная заливка, `outline` — с контурной рамкой, `elevated` — с тенью для подъёма над фоном, `transparent` — только акриловый эффект без заливки.
 
 ### Size
 Плотность внутренних отступов и радиуса скругления: `s` — компактный (нестед-карточки, попсайды), `m` — дефолт, `l` — крупные карточки и модальные поверхности.
@@ -81,4 +81,4 @@ export function Transparent() {
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `variant` | `"outline"` \| `"shadow"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |
+| `variant` | `"elevated"` \| `"outline"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |

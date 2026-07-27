@@ -1,7 +1,7 @@
 export const VARIANT = {
   Simple: 'simple',
   Outline: 'outline',
-  Shadow: 'shadow',
+  Elevated: 'elevated',
   Transparent: 'transparent',
 } as const;
 

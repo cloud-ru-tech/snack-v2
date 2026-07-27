@@ -15,7 +15,7 @@ export function BlockDemo() {
         children: '# slot content',
       }}
       controls={{
-        variant: { type: 'select', options: ['simple', 'outline', 'shadow', 'transparent'] },
+        variant: { type: 'select', options: ['simple', 'outline', 'elevated', 'transparent'] },
         size: { type: 'select', options: ['s', 'm', 'l'] },
         children: { type: 'text' },
       }}

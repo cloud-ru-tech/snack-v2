@@ -2,9 +2,7 @@
 @use '@sbercloud/figma-variables/build/scss/components/block.module' as block;
 @use '@ds/materials' as m;
 
-$variants: 'simple', 'outline', 'shadow', 'transparent';
 $sizes: 's', 'm', 'l';
-$priorities: 'primary', 'secondary', 'tertiary';
 
 .acrylic {
   pointer-events: none;
@@ -17,17 +15,20 @@ $priorities: 'primary', 'secondary', 'tertiary';
   position: relative;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   &[data-variant='outline'] {
     .borderLayer {
       position: absolute;
       inset: 0;
-      border: block.$sn-block-anatomy-s-borderWidth solid base.$sn-theme-color-available-borderColor;
+
+      border-color: base.$sn-theme-color-available-borderColor;
+      border-style: solid;
       border-radius: inherit;
     }
   }
 
-  &[data-variant='shadow'] {
+  &[data-variant='elevated'] {
     &[data-size='l'] {
       box-shadow: base.$sn-boxShadow-elevation-level2;
     }
@@ -51,6 +52,11 @@ $priorities: 'primary', 'secondary', 'tertiary';
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(block.$block, 'anatomy', $size);
+
+      // Обводка outline берёт свой размер (в Figma borderWidth привязан per-size).
+      &[data-variant='outline'] .borderLayer {
+        border-width: base.simple-var(block.$block, 'anatomy', $size, 'border-width');
+      }
     }
   }
 }
