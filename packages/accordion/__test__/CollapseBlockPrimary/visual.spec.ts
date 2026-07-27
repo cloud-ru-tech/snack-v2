@@ -52,8 +52,8 @@ test.describe('CollapseBlockPrimary — visual regression', () => {
 
     await getByTestId(TEST_IDS.title).click();
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'true');
-    // Раскрытие двухфазное (grid-rows → затем padding-bottom). Ждём финального состояния,
-    // иначе waitForStableBbox стабилизируется в паузе между фазами и снимок обрезает нижний паддинг.
+    // Ждём флаг завершения раскрытия: он же снимает `overflow: hidden` с тела, поэтому снимок
+    // берётся уже в финальном состоянии.
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-completely-open', 'true');
     // Ждём стабилизации bbox: после animation finished Chromium может ещё один
     // frame округлять высоту к +1/-1px (subpixel-rounding на конце slide-open).

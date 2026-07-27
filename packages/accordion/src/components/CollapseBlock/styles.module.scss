@@ -1,4 +1,3 @@
-@use 'sass:map';
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/accordion.module' as accordion;
 @use '@ds/materials' as m;
@@ -20,6 +19,19 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   @each $component in $components {
     &[data-component='#{$component}'] {
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container');
+
+      // Нижний отступ карточки одинаков в закрытом и открытом состоянии (в Figma закрытому его
+      // даёт titleContent, открытому — bodyContent, и это один и тот же токен). Держим его на
+      // обёртке: если переключать между заголовком и телом, два padding'а анимируются навстречу
+      // друг другу и суммарная высота блока идёт не монотонно — на старте проседает, в конце прыгает.
+      padding-bottom: base.simple-var(
+        accordion.$accordion,
+        'anatomy',
+        $component,
+        'container',
+        'titleContent',
+        'padding-bottom'
+      );
     }
   }
 
@@ -76,21 +88,8 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
     [data-component='#{$component}'] & {
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'titleContent');
 
+      // Нижний отступ живёт на `.wrapper` — заголовок его не дублирует.
       padding-bottom: 0;
-
-      // accordionTertiary в Figma без нижнего отступа заголовка — токена нет, оставляем 0.
-      @if map.has-key(accordion.$accordion, 'anatomy', $component, 'container', 'titleContent', 'padding-bottom') {
-        &[data-completely-close] {
-          padding-bottom: base.simple-var(
-            accordion.$accordion,
-            'anatomy',
-            $component,
-            'container',
-            'titleContent',
-            'padding-bottom'
-          );
-        }
-      }
     }
   }
 
@@ -103,11 +102,6 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
   justify-content: space-between;
 
   box-sizing: border-box;
-
-  // Отступ заголовка (закрыт → token, открыт → 0) уезжает плавно синхронно с раскрытием тела,
-  // иначе скачок padding в момент старта анимации дёргает заголовок вверх (тот же transition,
-  // что у `.container` bodyContent).
-  transition: padding-bottom var(--sn-collapse-block-animation-duration, 300ms) ease-out;
 
   &[data-chevron-position='before'] {
     flex-direction: row-reverse;
@@ -178,20 +172,21 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 .container {
   @each $component in $components {
     [data-component='#{$component}'] & {
+      box-sizing: border-box;
+
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'bodyContent');
 
-      box-sizing: border-box;
-      padding-bottom: 0;
+      // Вертикальные отступы тела схлопываются вместе с ним: `grid-template-rows: 0fr` обнуляет
+      // только content-box, padding остаётся и держит лишнюю высоту до размонтирования контента —
+      // в конце закрытия блок проседал ступенькой.
+      &:not([data-expanded]) {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
 
-      &.containerCompletelyOpen[data-expanded] {
-        padding-bottom: base.simple-var(
-          accordion.$accordion,
-          'anatomy',
-          $component,
-          'container',
-          'bodyContent',
-          'padding-bottom'
-        );
+      // Нижний отступ карточки уже на `.wrapper` — тело его не дублирует.
+      &[data-expanded] {
+        padding-bottom: 0;
       }
     }
   }
@@ -202,7 +197,9 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 
   min-height: 0;
 
-  transition: padding-bottom var(--sn-collapse-block-animation-duration, 300ms) ease-out;
+  transition:
+    padding-top var(--sn-collapse-block-animation-duration, 300ms) ease-out,
+    padding-bottom var(--sn-collapse-block-animation-duration, 300ms) ease-out;
 
   &.containerCompletelyOpen {
     overflow: visible;
