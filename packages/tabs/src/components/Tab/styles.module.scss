@@ -88,6 +88,23 @@ $sizes: 'm', 'l';
     }
   }
 
+  // Мастер `tabVerticalL` держит горизонтальный паддинг на той же переменной, что и
+  // `tabVerticalM` (16). Выгрузка переменных завела для `l` отдельную запись со
+  // значением 8 — привязка на неё в макете не легла, рендер мастера даёт 16.
+  // TODO FF-8772: снять, когда бинд в макете и значение переменной сойдутся.
+  &[data-orientation='vertical'][data-size='l'] {
+    padding-right: base.simple-var(
+      tabs.$tabs,
+      'anatomy',
+      'size',
+      'm',
+      'tabsVertical',
+      'tabContainer',
+      'padding-right'
+    );
+    padding-left: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'tabContainer', 'padding-left');
+  }
+
   &[data-selected='true'],
   &:focus-visible,
   &:hover {
