@@ -212,9 +212,9 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
     background-color: base.$sn-theme-color-neutral-decor;
   }
 
-  .rc-slider-mark-text {
-    opacity: base.$sn-theme-effect-opacity-disabled;
-  }
+  // Подписи шкалы в выключенном состоянии не гасятся: в мастере у варианта
+  // `disabled=true` текст той же плотности, что и у активного. Выключенность
+  // читается по цвету дорожки и ручки.
 
   .rc-slider-mark-text,
   .rc-slider-dot,
