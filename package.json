@@ -20,7 +20,7 @@
     "check:locale-namespaces": "tsx scripts/check-locale-namespaces.mts",
     "build": "(pnpm run build:packages & pnpm run gen:props & wait) && pnpm run gen:readme && (pnpm run build:storybook & pnpm run build:docs & wait)",
     "build:all": "(pnpm run build:packages & pnpm run gen:props & wait) && pnpm run gen:readme && (pnpm run build:storybook & pnpm run build:docs & wait)",
-    "build:packages": "pnpm run build:ts && pnpm run copy:icons-sprite-svg && pnpm run build:cjs-package-meta && pnpm run build:css && pnpm run build:cjs-css-modules",
+    "build:packages": "pnpm run build:ts && pnpm run copy:icons-sprite-svg && pnpm run build:cjs-package-meta && pnpm run build:css",
     "build:packages:clean": "pnpm run clean:dist && pnpm run build:packages",
     "build:pkg": "tsx scripts/build-pkg.mts",
     "copy:icons-sprite-svg": "pnpm --filter @ds/icons run copy:sprite-svg",
@@ -29,7 +29,6 @@
     "build:packages:esm": "tspc -b ./packages/tsconfig.esm.json",
     "build:packages:cjs": "tspc -b ./packages/tsconfig.cjs.json",
     "build:css": "NODE_OPTIONS=--max-old-space-size=8192 tsx scripts/compileCSS.ts",
-    "build:cjs-css-modules": "NODE_OPTIONS=--max-old-space-size=8192 tsx scripts/compileJsCssModules.ts",
     "build:storybook": "pnpm --filter @ds/storybook build && rm -rf storybook-static && cp -R apps/storybook/storybook-static storybook-static",
     "build:docs": "pnpm --filter @ds/docs build && mkdir -p astro && rm -rf astro/dist && mv apps/docs/dist astro/dist",
     "build:docs:fast": "pnpm --filter @ds/docs build:fast",
@@ -82,7 +81,6 @@
     "ds:watch": "tsx scripts/ds-link/push.mts --watch"
   },
   "devDependencies": {
-    "@babel/core": "7.29.7",
     "@cloud-ru/eslint-config": "3.1.6",
     "@cloud-ru/eslint-plugin-ssr-safe-react": "0.6.1",
     "@cloud-ru/ft-config-husky": "1.3.0",
@@ -105,7 +103,6 @@
     "@types/svg-sprite": "0.0.39",
     "@vitest/browser-playwright": "catalog:",
     "autoprefixer": "10.5.0",
-    "babel-plugin-react-css-modules": "5.2.6",
     "classnames": "catalog:",
     "fast-xml-parser": "5.10.1",
     "glob": "13.0.6",

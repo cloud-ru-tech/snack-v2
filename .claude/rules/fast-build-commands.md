@@ -26,7 +26,7 @@
 
 Важное про lint/stylelint: скрипты `pnpm lint` / `pnpm stylelint` определены с глобами по всему репо. Если вызвать `pnpm lint packages/<pkg>` — pnpm **добавит** аргумент к существующим глобам, область не сузится. Чтобы реально прогнать линтер только по пакету, используй `pnpm exec eslint ...` / `pnpm exec stylelint ...` с явной целью.
 
-`pnpm build:pkg` — обёртка `scripts/build-pkg.mts`. Делает `tsc -b` (project references → транзитивные deps пересоберутся, если устарели), плюс CSS и cjs-css-modules только для указанного пакета. На порядки быстрее, чем `build:packages`.
+`pnpm build:pkg` — обёртка `scripts/build-pkg.mts`. Делает `tsc -b` (project references → транзитивные deps пересоберутся, если устарели), плюс компиляцию CSS только для указанного пакета. На порядки быстрее, чем `build:packages`.
 
 ## Typecheck
 

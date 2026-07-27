@@ -185,16 +185,14 @@ for (const slug of ordered) {
 }
 run('pnpm', tscArgs);
 
-// SCSS + css-module transforms — компилируются для requested-пакетов параллельно
-// (compileCSS и compileJsCssModules независимы между пакетами и друг от друга:
-// читают `src/`, пишут в свои `dist/`). Последовательный цикл занимал ~30s на
-// 25 пакетов; параллельный — ~3-5s. Bounded concurrency через `concurrency`,
-// чтобы не упереть CPU/diskIO в CI runner'е.
+// SCSS компилируется для requested-пакетов параллельно (пакеты независимы: читают
+// `src/`, пишут в свои `dist/`). Последовательный цикл занимал ~30s на 25 пакетов;
+// параллельный — ~3-5s. Bounded concurrency через `concurrency`, чтобы не упереть
+// CPU/diskIO в CI runner'е.
 const concurrency = Math.max(4, Math.min(requested.length, 8));
-const tasks: Array<{ slug: string; script: 'compileCSS' | 'compileJsCssModules' }> = [];
+const tasks: Array<{ slug: string; script: 'compileCSS' }> = [];
 for (const slug of requested) {
   tasks.push({ slug, script: 'compileCSS' });
-  tasks.push({ slug, script: 'compileJsCssModules' });
 }
 
 console.info(`\n[build-pkg] CSS transforms in parallel (concurrency=${concurrency}, tasks=${tasks.length})`);
