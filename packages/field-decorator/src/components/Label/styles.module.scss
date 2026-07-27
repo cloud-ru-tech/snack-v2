@@ -1,0 +1,98 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/labelDecorator.module' as labelDecorator;
+
+$sizes: 's', 'm', 'l';
+
+$labelTypography: (
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'l': base.$sn-regular-label-l,
+);
+
+$captionTypography: (
+  's': base.$sn-thin-label-s,
+  'm': base.$sn-thin-label-m,
+  'l': base.$sn-thin-label-l,
+);
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  width: 100%;
+  min-width: 0;
+
+  .labelContent {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  // Длинный заголовок усекается многоточием (паритет с легаси `TruncateString`),
+  // а не переносится/распирает строку с caption.
+  .label {
+    overflow: hidden;
+    color: base.$sn-theme-color-available-version-textSecondary;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .required {
+    color: base.$sn-theme-color-red-text;
+  }
+
+  .labelTooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .caption {
+    overflow: hidden;
+    flex: 1 0 0;
+
+    color: base.$sn-theme-color-available-version-textTertiary;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'labelWrapper', 'gap');
+
+      .labelContent {
+        gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'labelWrapper', 'labelContent', 'gap');
+      }
+
+      .labelTooltip {
+        max-height: base.simple-var(
+          labelDecorator.$labelDecorator,
+          'size',
+          $size,
+          'labelWrapper',
+          'questionTooltipWrapper',
+          'max-height'
+        );
+      }
+
+      .label,
+      .required {
+        @include base.composite-var($labelTypography, $size);
+      }
+
+      .caption {
+        @include base.composite-var($captionTypography, $size);
+      }
+    }
+  }
+
+  &[data-disabled='true'] {
+    .label,
+    .required,
+    .caption {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+  }
+}

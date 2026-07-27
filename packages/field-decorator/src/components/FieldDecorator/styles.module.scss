@@ -1,0 +1,24 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/labelDecorator.module' as labelDecorator;
+
+$sizes: 's', 'm', 'l';
+
+.fieldDecorator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'gap');
+    }
+  }
+}
+
+.content {
+  align-self: stretch;
+}

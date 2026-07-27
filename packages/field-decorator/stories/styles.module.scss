@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+// Ограниченная ширина ячейки — чтобы caption (flex: 1 0 0, text-align: right)
+// и counter показывали своё поведение усечения/выравнивания, а не растягивали строку.
+.cell {
+  width: 16rem;
+}
+
+// Демо-input тянется на всю ширину контейнера — как реальный children (FieldText full-width),
+// иначе нативный input узкий и выглядит будто content не растягивается.
+.input {
+  box-sizing: border-box;
+  width: 100%;
+}

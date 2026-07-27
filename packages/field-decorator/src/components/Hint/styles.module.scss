@@ -1,0 +1,147 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/labelDecorator.module' as labelDecorator;
+
+$sizes: 's', 'm', 'l';
+
+// `valid` — нейтральный baseline (подсказка в textTertiary, без иконки), паритет с Figma:
+// в Figma validation=valid не красит подсказку зелёным. Цветную обратную связь дают
+// только error/warning/success.
+$validationStates: warning, error, success;
+
+$validationStateColor: (
+  'warning': base.$sn-theme-color-yellow-text,
+  'error': base.$sn-theme-color-red-text,
+  'success': base.$sn-theme-color-green-text,
+);
+
+// Иконка валидации — в насыщенном accent-тоне (текст подсказки остаётся в text-тоне), как в Figma/легаси.
+$validationIconColor: (
+  'warning': base.$sn-theme-color-yellow-accent,
+  'error': base.$sn-theme-color-red-accent,
+  'success': base.$sn-theme-color-green-accent,
+);
+
+$hintTypography: (
+  's': base.$sn-thin-label-s,
+  'm': base.$sn-thin-label-m,
+  'l': base.$sn-thin-label-l,
+);
+
+.hintWrapper {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+
+  width: 100%;
+  min-width: 0;
+
+  .hintContent {
+    display: flex;
+    flex: 1 0 0;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  // Длинная подсказка с непереносимым токеном переносится внутри футера,
+  // а не выталкивает счётчик за край (паритет с легаси `word-break: break-word`).
+  .hintText {
+    overflow-wrap: anywhere;
+  }
+
+  // В режиме клэмпа (`maxLines`) подсказку рендерит TruncateString: ему нужен
+  // ограниченный по ширине контейнер, иначе в column-flex с центрированием
+  // (overlay квадратной карточки) он берёт натуральную ширину текста и не
+  // распознаёт переполнение — многоточие не появляется, текст просто клипится.
+  .hintText[data-clamp] {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hintIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hintIcon > svg {
+    max-width: base.$sn-primitive-dimension-16;
+    max-height: base.$sn-primitive-dimension-16;
+  }
+
+  .hintText,
+  .length {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'hintWrapper', 'gap');
+
+      .hintContent {
+        gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'hintWrapper', 'hintContent', 'gap');
+      }
+
+      .hintIcon {
+        width: base.simple-var(
+          labelDecorator.$labelDecorator,
+          'size',
+          $size,
+          'hintWrapper',
+          'hintContent',
+          'iconWrapper',
+          'height'
+        );
+        height: base.simple-var(
+          labelDecorator.$labelDecorator,
+          'size',
+          $size,
+          'hintWrapper',
+          'hintContent',
+          'iconWrapper',
+          'height'
+        );
+      }
+
+      .hintText,
+      .length {
+        @include base.composite-var($hintTypography, $size);
+      }
+    }
+
+    @each $validationState in $validationStates {
+      &[data-validation-state='#{$validationState}'] {
+        .hintText,
+        .length {
+          color: base.simple-var($validationStateColor, $validationState);
+        }
+
+        .hintIcon {
+          color: base.simple-var($validationIconColor, $validationState);
+        }
+      }
+    }
+  }
+
+  &[data-disabled='true'] {
+    .hintText,
+    .length,
+    .hintIcon {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+  }
+
+  // readonly: подсказка нейтральная (без цвета валидации), паритет с легаси.
+  // Идёт после [data-disabled] — выше специфичность (:not), no-descending-specificity.
+  &[data-readonly='true']:not([data-disabled='true']) {
+    .hintIcon,
+    .hintText,
+    .length {
+      color: base.$sn-theme-color-available-version-textTertiary;
+    }
+  }
+
+  // Превышение лимита длины — текущее значение счётчика акцентируется красным.
+  .length[data-limit-exceeded='true'] .lengthCurrent {
+    color: base.$sn-theme-color-red-text;
+  }
+}
