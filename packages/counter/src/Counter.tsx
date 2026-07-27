@@ -44,7 +44,10 @@ export function Counter({
       data-appearance={appearance}
       data-color={color}
     >
-      {formattedValue}
+      <span className={styles.container}>
+        <span className={styles.border} aria-hidden />
+        {formattedValue}
+      </span>
     </div>
   );
 }
