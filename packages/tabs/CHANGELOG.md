@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align Tab paddings to figma ([451ab5c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/451ab5cffdb5876cc0aacda771e517583e3e88d6))
+
+### BREAKING CHANGES
+
+- **FF-8784:** rename TabBar after slot to slotActionButton ([0cc5931](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0cc59313db48e78ac863783b5ad8498b1a7bab6d))
+
 ## 1.0.5 (2026-07-23)
 
 **Note:** Version bump only for package @ds/tabs

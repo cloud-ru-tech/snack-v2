@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align toggles unchecked border and knob color to figma ([adb4fde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/adb4fdee97404f25589f0ae2ed393b76cf55d807))
+
 ## 1.1.2 (2026-07-23)
 
 **Note:** Version bump only for package @ds/toggles

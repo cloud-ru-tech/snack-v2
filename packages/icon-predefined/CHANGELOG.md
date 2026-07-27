@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-27)
+
+### Features
+
+- **FF-8784:** add IconPredefined s and 3xl sizes, align glyph color to figma ([d4fac47](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d4fac47e49ec0075f6f32002d9b60232fb96201a))
+
 # 2.0.0 (2026-07-23)
 
 ### Bug Fixes

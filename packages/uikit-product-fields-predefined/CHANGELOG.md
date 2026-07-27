@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-27)
+
+### Features
+
+- **FF-8784:** show field hint icon by default ([2cf4647](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2cf4647681010d3a59db7dbcf21e65d400c298eb))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

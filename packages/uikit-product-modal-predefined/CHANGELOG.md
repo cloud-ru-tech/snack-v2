@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align modal-predefined InputConfirm and release-notes gaps to figma ([ca55e0e](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ca55e0e84eea380e4b1337ec527f79d055a9b8fb))
+
 # 2.0.0 (2026-07-23)
 
 ### Bug Fixes

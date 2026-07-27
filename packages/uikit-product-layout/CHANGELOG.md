@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align layout NoAccess service-name typography to figma ([2831c9b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2831c9b321341aa97cdf0930dc5c749e063f5321))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align breadcrumbs separator and its color to figma ([a8505ec](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a8505ec231602b11acaca8710d3379dbcd945aae))
+- **FF-8784:** repair modal header test ids, drawer escape handling and flaky e2e specs ([9e83694](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9e836945b375511ef03c5a9446fb9029443f8b83))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

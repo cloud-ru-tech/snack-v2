@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.5 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** default CopyButton size to s per figma ([e1bf505](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e1bf5051688957e9c5a0e345cfa5b5d19e87c7ee))
+
 ## 1.1.4 (2026-07-23)
 
 **Note:** Version bump only for package @ds/uikit-product-copy

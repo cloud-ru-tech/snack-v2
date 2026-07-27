@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** repair modal header test ids, drawer escape handling and flaky e2e specs ([9e83694](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9e836945b375511ef03c5a9446fb9029443f8b83))
+
+### BREAKING CHANGES
+
+- **FF-8784:** consolidate modal, drawer and bottom-sheet onto @ds/popup-private ([ceb3115](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ceb3115e6d3f6b5b48d64e65b2eea5f672736233))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

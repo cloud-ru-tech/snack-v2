@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-07-27)
+
+### Features
+
+- **FF-8784:** align Button to figma and add minWidth prop ([f15ae62](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f15ae629891f5ed3697ef6435e9945ec8ad25f64))
+
 ## 1.1.2 (2026-07-23)
 
 **Note:** Version bump only for package @ds/button

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align dropzone focus ring and disabled fill to figma ([b61abdc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b61abdc5f44db4d40fdba1c804a9001dca5426f1))
+- **FF-8784:** repair modal header test ids, drawer escape handling and flaky e2e specs ([9e83694](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9e836945b375511ef03c5a9446fb9029443f8b83))
+
 ## 1.0.4 (2026-07-23)
 
 **Note:** Version bump only for package @ds/dropzone

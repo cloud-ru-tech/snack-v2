@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align table layout, rows and pagination to figma ([9f7c086](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9f7c086aa9deaccc2b96a7eaf1ab8b2e4033660e))
+
+### BREAKING CHANGES
+
+- **FF-8784:** rename table empty-state locale keys to content ([327380c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/327380c89ab21218a082c07c1ae64109ae421edd))
+
 # 3.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

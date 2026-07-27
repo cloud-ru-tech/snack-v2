@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** take dropdown header and footer spacings from popupPrivate tokens ([3d9afa3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3d9afa30f37eb0a08df616bdf21b790c22ecc6b8))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

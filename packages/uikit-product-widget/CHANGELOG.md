@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align widget action-kebab gap to figma ([abc3e7a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/abc3e7ac671d9c94b0fe588b75529b20d0ab5256))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

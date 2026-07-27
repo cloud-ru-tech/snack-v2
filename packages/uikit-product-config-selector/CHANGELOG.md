@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** note config-selector figma padding token gap ([3dfa73b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3dfa73b72e73632e78b153379fa6af18530b2182))
+
 ## 1.0.6 (2026-07-23)
 
 **Note:** Version bump only for package @ds/uikit-product-config-selector

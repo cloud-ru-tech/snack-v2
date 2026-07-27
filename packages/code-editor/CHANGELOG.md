@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align code-editor language label color to figma ([64d2df4](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/64d2df4145ae116fcec6c099c8f474c460995a1d))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

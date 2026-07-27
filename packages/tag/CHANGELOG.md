@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.5 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align tag typography, fill and border to figma ([96e9d27](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/96e9d27ffd1092852a0257cd91ff74e5ec32f68b))
+
 ## 1.1.4 (2026-07-23)
 
 **Note:** Version bump only for package @ds/tag

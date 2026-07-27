@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align info-row desktop gaps and action row height to figma ([17249ee](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/17249ee9cefd414cb6d1c04c98c05cdd76e37963))
+
 ## 1.0.6 (2026-07-23)
 
 **Note:** Version bump only for package @ds/uikit-product-info-row

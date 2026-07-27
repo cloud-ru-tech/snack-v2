@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-27)
+
+### BREAKING CHANGES
+
+- **FF-8784:** drop Avatar primary appearance and rename size 10xl to 9xl ([125c4d2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/125c4d20e623dd0053e5f777cf40508bc207d36b))
+
 ## 1.1.1 (2026-07-23)
 
 ### Bug Fixes

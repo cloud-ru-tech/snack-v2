@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-07-27)
+
+### BREAKING CHANGES
+
+- **FF-8784:** drop QuestionTooltip mobile surface ([ca17f81](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ca17f81f4cb7dc86394e5a855cd00cfbd6d4b195))
+
 ## 1.0.6 (2026-07-23)
 
 ### Bug Fixes

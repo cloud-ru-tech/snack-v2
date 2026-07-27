@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align segment-control label typography to component size ([041720c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/041720c7bae2d7bb52817f42a35aa6da43b2951f))
+
 ## 1.0.6 (2026-07-23)
 
 **Note:** Version bump only for package @ds/segment-control

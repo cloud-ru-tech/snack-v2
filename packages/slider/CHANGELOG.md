@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** keep slider scale labels at full density when disabled ([138d3eb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/138d3eb81c53bccf79aff1c65d152668555099de))
+
 ## 1.0.6 (2026-07-23)
 
 **Note:** Version bump only for package @ds/slider

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** animate accordion title padding and guard tertiary token ([067fad5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/067fad591fe659e831346bb7c8defe4f53dcf185))
+- **FF-8784:** keep accordion body wrapper mounted for smooth expand ([560981d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/560981dbbec7b23181b7007abe3465969497ab73))
+- **FF-8784:** keep accordion bottom padding on wrapper for smooth collapse ([043c864](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/043c864dba708ec33af18e45331a51d3812c5d75))
+
 # 2.0.0 (2026-07-23)
 
 ### Bug Fixes

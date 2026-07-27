@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** drop flex layout from block container ([1b76c40](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1b76c402689c76aec05ef1abe3c29d846eaabe1f))
+
+### BREAKING CHANGES
+
+- **FF-8784:** rename Block variant shadow to elevated ([c90b3ed](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c90b3ed0383c1e50c6534a555ea9c92deb5b4cef))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

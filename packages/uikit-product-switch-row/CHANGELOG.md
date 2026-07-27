@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align switch-row line-mode label offset to figma ([04f141a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/04f141a0cfe92105bbfcc8b78399f603f583c43a))
+
 ## 1.0.6 (2026-07-23)
 
 **Note:** Version bump only for package @ds/uikit-product-switch-row

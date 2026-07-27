@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align attachment surface and error hint to figma ([f08e7ac](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f08e7acca31fadd228568a4bf8826e01cb14243a))
+- **FF-8784:** draw attachment square background with card material ([9dec0fc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9dec0fcbfea6536fb2411f13c821d1bb59e42e28))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

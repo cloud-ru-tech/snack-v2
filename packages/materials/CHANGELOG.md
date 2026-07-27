@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-07-27)
+
+### Features
+
+- **FF-8784:** add focus-frame mixin and ACRYLIC_LEVEL export to @ds/materials ([eb6ff61](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/eb6ff617815dd17376aee9700fe91225954f9495))
+
 ## 1.0.3 (2026-07-23)
 
 **Note:** Version bump only for package @ds/materials

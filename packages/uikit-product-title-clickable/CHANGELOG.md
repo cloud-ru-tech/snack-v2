@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** draw title-clickable focus ring outside per figma ([f8bf3d5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f8bf3d5d80bf3ea2463ed10d991e115e7b3004ea))
+
 ## 1.0.6 (2026-07-23)
 
 ### Bug Fixes

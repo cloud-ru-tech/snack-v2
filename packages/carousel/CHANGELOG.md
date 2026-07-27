@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.4 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** apply carousel content inset to slide viewport ([269f15e](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/269f15ebed5da19f8fba93a83d0b1f91a999be6c))
+
 ## 1.1.3 (2026-07-23)
 
 **Note:** Version bump only for package @ds/carousel

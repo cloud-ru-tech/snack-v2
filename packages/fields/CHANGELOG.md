@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-07-27)
+
+### Features
+
+- **FF-8784:** show field hint icon by default ([2cf4647](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2cf4647681010d3a59db7dbcf21e65d400c298eb))
+
+### BREAKING CHANGES
+
+- **FF-8784:** rebuild fields on @ds/field-decorator and FieldCombo ([d4958bf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d4958bf3eb324cf5e6e944a55e0642080ac8578c))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

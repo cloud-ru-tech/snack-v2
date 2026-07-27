@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align chips label typography to chip size ([1bf7409](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1bf7409fa6cd34a0fc6ae8e6c20fd3a2a5fe0e25))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

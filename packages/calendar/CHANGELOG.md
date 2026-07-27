@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align calendar footer and time-picker rows to figma ([3106b05](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3106b0555e4f5594768f2e2700bc4d002435acc8))
+- **FF-8784:** repair modal header test ids, drawer escape handling and flaky e2e specs ([9e83694](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/9e836945b375511ef03c5a9446fb9029443f8b83))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

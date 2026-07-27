@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** rebuild counter as pill with outside ring per figma ([428abbb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/428abbbcab7442ae6356f1f8926944f7d74e48e2))
+
 ## 1.1.1 (2026-07-23)
 
 **Note:** Version bump only for package @ds/counter

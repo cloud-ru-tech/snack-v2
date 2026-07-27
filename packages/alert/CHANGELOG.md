@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** align alert border and inner spacings to figma ([bfb5228](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/bfb52280fdc571e00eb5672d030819c58949f674))
+
 # 2.0.0 (2026-07-23)
 
 ### BREAKING CHANGES

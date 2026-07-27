@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-07-27)
+
+### Bug Fixes
+
+- **FF-8784:** cover all appearances in rating and align star colors to figma ([f0785a0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f0785a09d7eec7e11282b8d6976178653e331101))
+
 ## 1.0.4 (2026-07-23)
 
 **Note:** Version bump only for package @ds/rating
