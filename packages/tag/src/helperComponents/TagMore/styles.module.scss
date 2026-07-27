@@ -5,8 +5,8 @@ $sizes: 'xs', 's', 'm';
 
 $typography: (
   'xs': base.$sn-regular-label-s,
-  's': base.$sn-regular-label-m,
-  'm': base.$sn-regular-label-l,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
 );
 
 .button {
@@ -18,7 +18,7 @@ $typography: (
   box-sizing: border-box;
   border-color: base.$sn-theme-color-available-borderColor;
   border-style: solid;
-  border-width: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  border-width: base.$sn-primitive-strokeWeight-strokeRegular;
 
   color: base.$sn-theme-color-available-version-textSecondary;
   white-space: nowrap;
@@ -27,7 +27,7 @@ $typography: (
 
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 
   @each $size in $sizes {
@@ -35,6 +35,12 @@ $typography: (
       @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
 
       height: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'min-height');
+
+      // Слой `border` мастера `tagTruncate` рисует рамку в 1px на всех трёх
+      // размерах, тогда как одноимённый токен `container/borderWidth` выгружен
+      // со значением `strokeSemiBold` (2px) и приходит из `composite-var` выше.
+      // TODO FF-8772: снять, когда значение переменной сойдётся с мастером.
+      border-width: base.$sn-primitive-strokeWeight-strokeRegular;
 
       .textWrapper {
         @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container', 'textWrapper');

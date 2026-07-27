@@ -7,8 +7,8 @@ $appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 
 
 $typography: (
   'xs': base.$sn-regular-label-s,
-  's': base.$sn-regular-label-m,
-  'm': base.$sn-regular-label-l,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
 );
 
 // Кнопка удаления = иконка: xs/s — icon-xs (16), m — icon-s (24).
@@ -136,12 +136,12 @@ $removeButtonSize: (
 
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decorTransparent');
 
       &[data-tag-link]:focus-visible,
       &[data-tag-link]:hover,
       &[data-tag-link]:active {
-        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decorTransparent');
       }
     }
   }
