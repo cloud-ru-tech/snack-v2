@@ -44,9 +44,8 @@ export function Attachment({
       {...extractSupportProps(rest)}
       view='outline'
       radius={size === 's' ? 's' : 'm'}
-      // Transparent — собственный acrylic-слой Card иначе пропускает фон страницы в темах acrylic-suspended.
       backgroundPredefined={
-        hasError ? BACKGROUND_PREDEFINED_FILL.RedBackground : BACKGROUND_PREDEFINED_FILL.Transparent
+        hasError ? BACKGROUND_PREDEFINED_FILL.RedBackground : BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level
       }
       disabled={!loading && disabled}
       checked={!loading && checked}

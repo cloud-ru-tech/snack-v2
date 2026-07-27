@@ -3,16 +3,11 @@
 
 $sizes: 's', 'm';
 
-// Card получает Transparent, иначе acrylic-suspended темы проседают до 0.7 opacity.
 .root {
   isolation: isolate;
-
   display: inline-block;
-
   width: fit-content;
   max-width: 100%;
-
-  background: base.$sn-theme-color-neutral-background1Level;
 }
 
 .composition {
