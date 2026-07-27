@@ -14,6 +14,7 @@ $copy-button-slot: calc(#{base.$sn-primitive-dimension-32} + #{base.$sn-primitiv
   overflow: hidden;
   display: flex;
 
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
   max-width: 100%;

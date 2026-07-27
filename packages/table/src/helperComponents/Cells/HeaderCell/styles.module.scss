@@ -70,10 +70,10 @@
 
   box-sizing: border-box;
   width: 100%;
-  padding: base.simple-var(table.$table, 'content', 'tableHead', 'padding-top')
-    base.simple-var(table.$table, 'content', 'tableHead', 'padding-right')
-    base.simple-var(table.$table, 'content', 'tableHead', 'padding-bottom')
-    base.simple-var(table.$table, 'content', 'tableHead', 'padding-left');
+  padding: base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-top')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-right')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-bottom')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-left');
 
   background-color: transparent;
 
@@ -156,6 +156,7 @@
 .tableHeaderCellMain {
   overflow: auto;
   display: flex;
+  gap: base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'gap');
   align-items: center;
 
   box-sizing: border-box;

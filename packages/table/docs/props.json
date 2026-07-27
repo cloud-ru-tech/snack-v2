@@ -17,7 +17,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -1352,7 +1352,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -1766,7 +1766,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -2230,140 +2230,10 @@
         },
         "own": false
       },
-      "ChipChoiceDateWithSeconds": {
-        "kind": "interface",
-        "props": {
-          "mode": {
-            "type": "\"date-time\" | undefined",
-            "required": false,
-            "values": [
-              "date-time"
-            ],
-            "description": "Режим выбора даты и времени"
-          },
-          "showSeconds": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать секунды в выборе и отображении времени"
-          }
-        },
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
         "own": true
-      },
-      "DropdownBridgeProps": {
-        "kind": "interface",
-        "props": {
-          "closeOnEscapeKey": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли по нажатию на кнопку `Esc`"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "outsideClick": {
-            "type": "boolean | OutsideClickHandler | undefined",
-            "required": false,
-            "description": "Закрывать ли при клике вне поповера",
-            "typeRefs": [
-              "OutsideClickHandler"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerClickByKeys": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -2613,14 +2483,38 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
               "Size"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -2826,42 +2720,6 @@
         },
         "own": false
       },
-      "SelectionSingleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"single\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
       "SelectionState": {
         "kind": "interface",
         "props": {
@@ -2943,6 +2801,56 @@
         },
         "own": true
       },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "TableLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": true
+          },
+          "stickyControls": {
+            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "StickyControlsLayoutDefaults"
+            ]
+          }
+        },
+        "own": true
+      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -3017,6 +2925,11 @@
         "type": "string",
         "required": false
       },
+      "clickable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Строка интерактивна (есть onRowClick) — получает фокус с клавиатуры и активацию Enter/Space."
+      },
       "onClick": {
         "type": "((e: MouseEvent<HTMLDivElement, MouseEvent>) => void)",
         "required": false
@@ -3075,7 +2988,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -4108,9 +4021,11 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
@@ -4517,7 +4432,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -4992,140 +4907,10 @@
         },
         "own": false
       },
-      "ChipChoiceDateWithSeconds": {
-        "kind": "interface",
-        "props": {
-          "mode": {
-            "type": "\"date-time\" | undefined",
-            "required": false,
-            "values": [
-              "date-time"
-            ],
-            "description": "Режим выбора даты и времени"
-          },
-          "showSeconds": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать секунды в выборе и отображении времени"
-          }
-        },
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
         "own": true
-      },
-      "DropdownBridgeProps": {
-        "kind": "interface",
-        "props": {
-          "closeOnEscapeKey": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли по нажатию на кнопку `Esc`"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "outsideClick": {
-            "type": "boolean | OutsideClickHandler | undefined",
-            "required": false,
-            "description": "Закрывать ли при клике вне поповера",
-            "typeRefs": [
-              "OutsideClickHandler"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerClickByKeys": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -5375,14 +5160,38 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
               "Size"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -5588,42 +5397,6 @@
         },
         "own": false
       },
-      "SelectionSingleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"single\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
       "SelectionState": {
         "kind": "interface",
         "props": {
@@ -5705,6 +5478,56 @@
         },
         "own": true
       },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "TableLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": true
+          },
+          "stickyControls": {
+            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "StickyControlsLayoutDefaults"
+            ]
+          }
+        },
+        "own": true
+      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -5745,7 +5568,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -6234,126 +6057,10 @@
         },
         "own": false
       },
-      "ChipChoiceRowFilter": {
-        "kind": "alias",
-        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
         "own": true
-      },
-      "DropdownBridgeProps": {
-        "kind": "interface",
-        "props": {
-          "closeOnEscapeKey": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли по нажатию на кнопку `Esc`"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "outsideClick": {
-            "type": "boolean | OutsideClickHandler | undefined",
-            "required": false,
-            "description": "Закрывать ли при клике вне поповера",
-            "typeRefs": [
-              "OutsideClickHandler"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerClickByKeys": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -6603,14 +6310,38 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
               "Size"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -6840,6 +6571,56 @@
         },
         "own": false
       },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "TableLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": true
+          },
+          "stickyControls": {
+            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "StickyControlsLayoutDefaults"
+            ]
+          }
+        },
+        "own": true
+      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -6956,7 +6737,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -7433,140 +7214,10 @@
         },
         "own": false
       },
-      "ChipChoiceDateWithSeconds": {
-        "kind": "interface",
-        "props": {
-          "mode": {
-            "type": "\"date-time\" | undefined",
-            "required": false,
-            "values": [
-              "date-time"
-            ],
-            "description": "Режим выбора даты и времени"
-          },
-          "showSeconds": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать секунды в выборе и отображении времени"
-          }
-        },
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
         "own": true
-      },
-      "DropdownBridgeProps": {
-        "kind": "interface",
-        "props": {
-          "closeOnEscapeKey": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли по нажатию на кнопку `Esc`"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "outsideClick": {
-            "type": "boolean | OutsideClickHandler | undefined",
-            "required": false,
-            "description": "Закрывать ли при клике вне поповера",
-            "typeRefs": [
-              "OutsideClickHandler"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerClickByKeys": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -7816,14 +7467,38 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
               "Size"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -8029,42 +7704,6 @@
         },
         "own": false
       },
-      "SelectionSingleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"single\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
       "SelectionState": {
         "kind": "interface",
         "props": {
@@ -8146,6 +7785,56 @@
         },
         "own": true
       },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "TableLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": true
+          },
+          "stickyControls": {
+            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "StickyControlsLayoutDefaults"
+            ]
+          }
+        },
+        "own": true
+      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -8195,7 +7884,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -9072,9 +8761,11 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
@@ -9944,7 +9635,7 @@
       "cardMinWidth": {
         "type": "number",
         "required": false,
-        "defaultValue": "292",
+        "defaultValue": "320",
         "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
       },
       "className": {
@@ -10425,25 +10116,6 @@
         },
         "own": false
       },
-      "ChipChoiceDateWithSeconds": {
-        "kind": "interface",
-        "props": {
-          "mode": {
-            "type": "\"date-time\" | undefined",
-            "required": false,
-            "values": [
-              "date-time"
-            ],
-            "description": "Режим выбора даты и времени"
-          },
-          "showSeconds": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать секунды в выборе и отображении времени"
-          }
-        },
-        "own": false
-      },
       "ColumnDefinition": {
         "kind": "alias",
         "type": "NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>",
@@ -10697,14 +10369,38 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
               "Size"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -10874,78 +10570,6 @@
         },
         "own": false
       },
-      "SelectionMultipleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"multiple\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId[]> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
-      "SelectionSingleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"single\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
       "SelectionState": {
         "kind": "interface",
         "props": {
@@ -11023,6 +10647,56 @@
             "type": "number | undefined",
             "required": false,
             "description": "Ширина колонки, px"
+          }
+        },
+        "own": true
+      },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "TableLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "defaultView": {
+            "type": "\"table\" | \"cards\"",
+            "required": true,
+            "values": [
+              "cards",
+              "table"
+            ],
+            "description": "Начальный вид (uncontrolled).",
+            "typeRefs": [
+              "View"
+            ]
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": true
+          },
+          "stickyControls": {
+            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "required": true,
+            "typeRefs": [
+              "StickyControlsLayoutDefaults"
+            ]
           }
         },
         "own": true

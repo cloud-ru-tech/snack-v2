@@ -224,7 +224,7 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
   /**
    * Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого
    * колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже.
-   * @default 292
+   * @default 320
    */
   cardMinWidth?: number;
   /**

@@ -1,4 +1,4 @@
-import { Button, VIEW } from '@ds/button';
+import { Button, SIZE, VIEW } from '@ds/button';
 import { KebabSVG, MoreSVG } from '@ds/icons/interface/system';
 import { ComponentProps } from 'react';
 
@@ -10,12 +10,15 @@ type RowActionsButtonProps = {
   variant?: 'cell' | 'placeholder';
 } & Omit<ComponentProps<typeof Button>, 'appearance' | 'view' | 'icon'>;
 
-export function RowActionsButton({ variant = 'cell', ...rest }: RowActionsButtonProps) {
+export function RowActionsButton({ variant = 'cell', size, ...rest }: RowActionsButtonProps) {
   const { isCardsView } = useTableContext();
 
   return (
     <Button
       {...rest}
+      // В table-строке мастер (actionWrapper 16236:23147) — кнопка size=l (40×40). В карточке
+      // размещение действий макетом не задано, оставляем дефолт.
+      size={size ?? (isCardsView ? undefined : SIZE.L)}
       appearance='neutral'
       view={VIEW.Function}
       style={

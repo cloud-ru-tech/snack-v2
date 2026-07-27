@@ -13,6 +13,7 @@
 
 $divider-width: base.simple-var(
   table.$table,
+  'anatomy',
   'content',
   'tableLine',
   'background',
@@ -37,11 +38,11 @@ $divider-width: base.simple-var(
   min-height: 0;
   max-height: 100%;
 
-  @include base.composite-var(table.$table, 'view', 'line');
+  @include base.composite-var(table.$table, 'anatomy', 'view', 'line');
 }
 
 .wrapper[data-view='cards'] {
-  @include base.composite-var(table.$table, 'content', 'body', 'slot');
+  @include base.composite-var(table.$table, 'anatomy', 'content', 'body', 'slot');
 }
 
 .wrapper[data-with-toolbar]:not([data-sticky-controls]) {
@@ -89,11 +90,11 @@ $divider-width: base.simple-var(
 // margin-top на footer, т.к. при position: sticky flex-gap визуально схлопывается,
 // пока страница не проскроллена до конца.
 .wrapper[data-sticky-controls][data-layout-type='mobile'] .stickyFooter {
-  padding-top: table.$sn-table-view-line-gap;
+  padding-top: table.$sn-table-anatomy-view-line-gap;
 }
 
 .wrapper[data-sticky-controls][data-layout-type='mobile'][data-view='cards'] .stickyFooter {
-  padding-top: table.$sn-table-content-body-slot-gap;
+  padding-top: table.$sn-table-anatomy-content-body-slot-gap;
 }
 
 // ─── .tableView / .content — тело таблицы ────────────────────────────────────
@@ -106,7 +107,13 @@ $divider-width: base.simple-var(
   min-width: 0;
   min-height: 0;
 
-  @include base.composite-var(table.$table, 'view', 'line');
+  @include base.composite-var(table.$table, 'anatomy', 'view', 'line');
+}
+
+// В карточном виде мастер (tableView asCard=true) держит зазор content↔футер = body.slot.gap (8),
+// тогда как table-view (view.line) даёт 4. Без этого .tableView остаётся на view.line — как корень.
+.wrapper[data-view='cards'] .tableView {
+  gap: table.$sn-table-anatomy-content-body-slot-gap;
 }
 
 .content {
@@ -118,7 +125,7 @@ $divider-width: base.simple-var(
 
   min-height: 0;
 
-  @include base.composite-var(table.$table, 'content');
+  @include base.composite-var(table.$table, 'anatomy', 'content');
 }
 
 // sticky / mobile / cards: таблица растёт с контентом, а не ужимается под viewport родителя.
@@ -195,7 +202,7 @@ $divider-width: base.simple-var(
   box-sizing: border-box;
   width: 100%;
   height: auto;
-  border-radius: table.$sn-table-content-borderRadius;
+  border-radius: table.$sn-table-anatomy-content-borderRadius;
 }
 
 // stickyControls + table-view: header row вне @ds/scroll — липнет к viewport под тулбаром.
@@ -220,10 +227,10 @@ $divider-width: base.simple-var(
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  border-radius: table.$sn-table-content-borderRadius;
+  border-radius: table.$sn-table-anatomy-content-borderRadius;
 
   .stickyTableHeader {
-    border-radius: table.$sn-table-content-borderRadius table.$sn-table-content-borderRadius 0 0;
+    border-radius: table.$sn-table-anatomy-content-borderRadius table.$sn-table-anatomy-content-borderRadius 0 0;
   }
 
   .table {
@@ -403,7 +410,7 @@ $divider-width: base.simple-var(
 .topRowWrapper {
   position: sticky;
   z-index: 3;
-  top: table.$sn-table-content-tableCell-minHeight;
+  top: table.$sn-table-anatomy-content-tableCell-minHeight;
 
   // компенсация собственной нижней границы (--border-width-table)
   margin-bottom: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeRegular});
@@ -445,19 +452,19 @@ $divider-width: base.simple-var(
 // ─── Cards view: сетка / mobile list ──────────────────────────────────────────
 
 // Карточная сетка (view='cards'). Управляется CSS-vars из Table.tsx:
-//   --table-card-min-width — минимальная ширина карточки (порог схлопывания), дефолт 292px;
+//   --table-card-min-width — минимальная ширина карточки (порог схлопывания), дефолт 320px;
 //   --table-card-columns   — желаемое число колонок (только при data-fixed-columns).
 .cardsGrid {
-  // 292px — ширина карточки из Figma; в @sbercloud/figma-variables нет
-  // dimension-токена > 136px, поэтому литерал с пометкой.
+  // 320px — minWidth карточки из Figma (слот `+ slotTableCard`, card FILL, при ширине 900 → 2×446).
+  // В @sbercloud/figma-variables нет dimension-токена такого порядка, поэтому литерал с пометкой.
   // stylelint-disable-next-line value-keyword-case
-  --table-card-min-width: 292px; /* TODO[token]: нет dimension-токена 292px для ширины карточки */
+  --table-card-min-width: 320px; /* TODO[token]: нет dimension-токена 320px для ширины карточки */
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--table-card-min-width)), 1fr));
-  gap: table.$sn-table-view-card-gap;
-  // Резерв под focus-ring @ds/card (outline + outline-offset) у краёв scroll-viewport.
-  padding: calc(#{base.$sn-primitive-strokeWeight-strokeSemiBold} * 2);
+  gap: table.$sn-table-anatomy-view-card-gap;
+  // Мастер (слот `+ slotTableCard`) без внешнего padding: левый край карточки совпадает с краем
+  // тулбара. Focus-ring @ds/card не обрезается — scroll-host в cards-виде overflow: visible.
 
   &[data-fixed-columns] {
     grid-template-columns: repeat(
@@ -465,7 +472,7 @@ $divider-width: base.simple-var(
       minmax(
         max(
           var(--table-card-min-width),
-          calc((100% - (var(--table-card-columns) - 1) * #{table.$sn-table-view-card-gap}) / var(--table-card-columns))
+          calc((100% - (var(--table-card-columns) - 1) * #{table.$sn-table-anatomy-view-card-gap}) / var(--table-card-columns))
         ),
         1fr
       )
@@ -477,7 +484,7 @@ $divider-width: base.simple-var(
 .mobileCardsList {
   display: flex;
   flex-direction: column;
-  gap: table.$sn-table-content-body-slot-gap;
+  gap: table.$sn-table-anatomy-content-body-slot-gap;
 }
 
 // ─── Skeleton (loading state) ─────────────────────────────────────────────────
@@ -496,8 +503,8 @@ $divider-width: base.simple-var(
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding-right: base.simple-var(table.$table, 'content', 'tableCell', 'padding-right');
-  padding-left: base.simple-var(table.$table, 'content', 'tableCell', 'padding-left');
+  padding-right: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-right');
+  padding-left: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-left');
 }
 
 .skeletonTree {

@@ -24,13 +24,13 @@ $list-row-gap: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRigh
     left: 50%;
     transform: translateX(-50%);
 
-    width: base.$sn-primitive-strokeWeight-strokeThin;
+    width: base.$sn-primitive-strokeWeight-strokeRegular;
 
     background-color: transparent;
   }
 
   &[data-visible]::after {
-    background-color: base.$sn-theme-color-neutral-decor;
+    background-color: base.$sn-theme-color-available-borderColor;
   }
 
   &[data-half-height]::after {
@@ -40,7 +40,7 @@ $list-row-gap: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRigh
   &[data-horizontal] {
     align-self: center;
     width: calc($level-width / 2);
-    height: base.$sn-primitive-strokeWeight-strokeThin;
+    height: base.$sn-primitive-strokeWeight-strokeRegular;
     // Горизонтальный отвод от центра вертикальной линии к узлу.
     // Negative margin сдвигает влево на half-level так, что контейнер начинается
     // ровно в центре (12px) предыдущего вертикального блока и заканчивается
@@ -52,10 +52,10 @@ $list-row-gap: tree.$sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRigh
       bottom: 0;
       // Смещаем начало на ширину вертикальной линии, чтобы два полупрозрачных
       // ::after не накладывались в точке пересечения и не создавали тёмное пятно.
-      left: base.$sn-primitive-strokeWeight-strokeThin;
+      left: base.$sn-primitive-strokeWeight-strokeRegular;
       transform: none;
 
-      width: calc(100% - #{base.$sn-primitive-strokeWeight-strokeThin});
+      width: calc(100% - #{base.$sn-primitive-strokeWeight-strokeRegular});
     }
 
     // У листа без chevron отвод занимает слот chevron, но заканчивается

@@ -925,7 +925,7 @@ export function FullWidth() {
 | `autoResetPageIndex` | `boolean` | `false` | Автоматический сброс пагинации к первой странице при изменении данных/фильтров/сортировки |
 | `bulkActions` | `BulkAction` | — | Список действий для массовых операций |
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
-| `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
+| `cardMinWidth` | `number` | `320` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
 | `columnDefinitions` | `ColumnDefinition` \| `Except` \| `TData` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
@@ -1308,7 +1308,7 @@ export function ServerDriven() {
 | `autoResetPageIndex` | `boolean` | — | Автоматический сброс пагинации к первой странице при изменении данных/фильтров/сортировки |
 | `bulkActions` | `BulkAction` | — | Список действий для массовых операций |
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
-| `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
+| `cardMinWidth` | `number` | `320` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
 | `columnDefinitions` | `ColumnDefinition` \| `Except` \| `TData` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `FilterRow` \| `TFilters` | — | Фильтры |
@@ -1392,6 +1392,22 @@ export function ServerDriven() {
 - `Except` = `{ [KeyType in keyof ObjectType as Filter<KeyType, KeysType>]: ObjectType[KeyType]; }`
 
 - `RowClickHandler` = `(e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void`
+
+**StickyControlsLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `enabled` | `boolean \| undefined` | — | Включить sticky-хром при скролле страницы. |
+| `offsetBottom` | `number \| undefined` | — | Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar). <br/> Только при `enabled: true`. |
+| `offsetTop` | `number \| undefined` | — | Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs). <br/> Только при `enabled: true`. |
+
+**TableLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultView` | `"cards"` \| `"table"` | — | Начальный вид (uncontrolled). |
+| `fullWidth` | `boolean` | — |  |
+| `stickyControls` | `StickyControlsLayoutDefaults` | — |  |
 
 - `TreeColumnDefinitionProps` = `TreeColumnDef | TreeColumnDefWithDescription<TData>`
 
@@ -2385,7 +2401,7 @@ export function EntitiesTableWithFilters() {
 | `autoResetPageIndex` | `boolean` | — | Автоматический сброс пагинации к первой странице при изменении данных/фильтров/сортировки |
 | `bulkActions` | `BulkAction[]` | — | Список действий для массовых операций |
 | `cardColumns` | `number` | — | Желаемое число колонок карточного вида (`view='cards'`). <br/> На широком контейнере рисуется ровно столько колонок; при сужении сетка <br/> схлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число <br/> колонок определяется только шириной контейнера и `cardMinWidth` (auto-fill). |
-| `cardMinWidth` | `number` | `292` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
+| `cardMinWidth` | `number` | `320` | Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого <br/> колонки схлопываются. Карточка ужимается до ширины контейнера, если он уже. |
 | `className` | `string` | — | CSS-класс |
 | `columnDefinitions` | `ColumnDefinition<T>[]` | — | Определение внешнего вида и функционала колонок |
 | `columnFilters` | `(Omit<ChipChoiceRowProps<P>, "data-test-id" \| "size"> & { open?: boolean; initialOpen?: boolean; onOpenChange?(isOpen: boolean): void; } & { ...; }) \| undefined` | — | Фильтры |

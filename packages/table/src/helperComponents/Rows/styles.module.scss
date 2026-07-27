@@ -24,6 +24,7 @@ $row-background: base.$sn-theme-color-neutral-background1Level;
 // Толщина строковых бордеров.
 $border-top-bottom: base.simple-var(
   table.$table,
+  'anatomy',
   'content',
   'tableLine',
   'background',
@@ -32,6 +33,7 @@ $border-top-bottom: base.simple-var(
 ); // strokeRegular
 $divider-width: base.simple-var(
   table.$table,
+  'anatomy',
   'content',
   'tableLine',
   'background',
@@ -40,6 +42,7 @@ $divider-width: base.simple-var(
 ); // strokeThin (0.5px)
 $pinned-border: base.simple-var(
   table.$table,
+  'anatomy',
   'content',
   'tableLine',
   'background',
@@ -48,18 +51,19 @@ $pinned-border: base.simple-var(
 ); // strokeRegular
 
 // Высота строки.
-$row-height: base.simple-var(table.$table, 'content', 'tableCell', 'min-height'); // 40px
+$row-height: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'min-height'); // 40px
 
-// Карта accent-тонов фона строки (data-row-bg-appearance).
-$row-bg-appearances: (
-  'red': base.$sn-theme-color-red-accent,
-  'orange': base.$sn-theme-color-orange-accent,
-  'yellow': base.$sn-theme-color-yellow-accent,
-  'green': base.$sn-theme-color-green-accent,
-  'blue': base.$sn-theme-color-blue-accent,
-  'violet': base.$sn-theme-color-violet-accent,
-  'pink': base.$sn-theme-color-pink-accent,
-  'neutral': base.$sn-theme-color-neutral-accent,
+// Тоновые материалы строки (data-row-bg-appearance) — дискретный <hue>/background,
+// как в мастере (свойство appearance = swap material/<hue>Background, нода 24035:34655).
+// Значение непрозрачное (red #fee8e5, orange #ffedcf, …), не мягкая заливка.
+$row-bg-tones: (
+  'red': base.$sn-theme-color-red-background,
+  'orange': base.$sn-theme-color-orange-background,
+  'yellow': base.$sn-theme-color-yellow-background,
+  'green': base.$sn-theme-color-green-background,
+  'blue': base.$sn-theme-color-blue-background,
+  'violet': base.$sn-theme-color-violet-background,
+  'pink': base.$sn-theme-color-pink-background,
 );
 
 .tableRow[data-fit-content] {
@@ -151,15 +155,19 @@ $row-bg-appearances: (
   background-color: base.$sn-theme-color-available-borderColor;
 }
 
-// TODO[token]: нет opacity-токена 0.08 для accent-тона строки.
-$row-bg-accent-amount: 8%;
-
-// Accent-тон фона строки (мягкая заливка), тонируется поверх нейтрального фона.
-@each $appearance, $accent in $row-bg-appearances {
+// Тон фона строки: дискретный материал <hue>/background поверх нейтрального фона.
+@each $appearance, $bg in $row-bg-tones {
   .bodyRow[data-row-bg-appearance='#{$appearance}'],
   .tableHeader[data-row-bg-appearance='#{$appearance}'] {
-    --table-row-background: #{color-mix(in srgb, $accent $row-bg-accent-amount, #{$row-background})};
+    --table-row-background: #{$bg};
   }
+}
+
+// Neutral — расширение API @ds/table: в тоновом наборе мастера нейтрального нет
+// (там decorTransparent), значение дизайном не подтверждено — пока мягкая заливка 8%.
+.bodyRow[data-row-bg-appearance='neutral'],
+.tableHeader[data-row-bg-appearance='neutral'] {
+  --table-row-background: #{color-mix(in srgb, base.$sn-theme-color-neutral-accent 8%, #{$row-background})};
 }
 
 // Шапка в Figma тонирована decorTransparent поверх background1Level. Тонировка идёт
@@ -176,8 +184,8 @@ $row-bg-accent-amount: 8%;
   // колонки. Ячейки рисуют ::after только в пределах своей ширины — линия не доходила
   // до правого края таблицы. Pseudo-element на строке растянут на 100% и перекрывает
   // ::after ячеек визуально (одинаковые цвет/высота/позиция = одна полоска).
-  // Высота — strokeThin (0.5px): в Figma все разделители таблицы используют
-  // tableline/background/regular/borderbottomwidth = 0.5px.
+  // Высота — interaction/borderVerticalWidth (strokeRegular, 1px): в Figma нижняя граница
+  // шапки (content/divider 11994:277601) — 1px, а не 0.5px межстрочного разделителя.
   &::after {
     pointer-events: none;
     content: '';
@@ -271,9 +279,11 @@ $row-bg-accent-amount: 8%;
   cursor: pointer;
 }
 
+// focusedFrame/regular/inside строки (11929:18456): strokeAlign INSIDE — рамка внутрь габарита,
+// а не наружу; отрицательный offset укладывает 2px-штрих в границы строки.
 .bodyRow[data-clickable]:focus-visible {
   outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-  outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
 }
 
 .bodyRow:not([data-row-appearance='disabled']):hover::before {

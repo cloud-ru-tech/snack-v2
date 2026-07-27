@@ -60,7 +60,7 @@ export function TableScrollHost({
           </div>
         ) : null}
         <Scroll
-          size='s'
+          size='m'
           className={cn(styles.table, styles.tableBodyScrollHost)}
           ref={internalScrollRef as RefObject<HTMLElement>}
           onInitialized={handleScrollInitialized}
@@ -78,7 +78,7 @@ export function TableScrollHost({
 
   return (
     <Scroll
-      size='s'
+      size='m'
       className={styles.table}
       ref={internalScrollRef as RefObject<HTMLElement>}
       onInitialized={handleScrollInitialized}

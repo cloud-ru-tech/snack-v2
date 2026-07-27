@@ -11,6 +11,13 @@
   justify-content: flex-end;
 }
 
+// Мастер table-view (16097:44286): пагинация у левого края, чип объёма строк у правого
+// (primaryAxisAlignItems=MAX + распорка). margin-right:auto отталкивает пагинацию влево,
+// чип остаётся справа (flex-end) — корректно и когда в футере только один из двух.
+.pagination {
+  margin-right: auto;
+}
+
 [data-view='cards'] .pagination {
   flex: 1;
 }

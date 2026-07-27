@@ -93,13 +93,15 @@ export function useColumnsSettingsToolbarSlot({
   );
 
   // Общая обвязка дроплиста: различаются только модель айтемов и header с «показать/скрыть все».
+  // `label` (заголовок поверхности / шапка BottomSheet) — только у плоского дроплиста без Separator'а.
+  // У reorderable заголовок несёт Separator внутри списка (мастер columnSettingBottomSheet: showHeader=false),
+  // иначе на mobile-листе получается два одинаковых заголовка.
   const commonDroplistProps = {
     scroll: true,
     className: styles.columnsSettings,
     size: SIZE.M,
     selection,
     placement: 'bottom-end',
-    label: t('settingsHeaderLabel'),
     open,
     onOpenChange: setOpen,
     'data-test-id': TEST_IDS.columnSettings.droplist,
@@ -141,7 +143,7 @@ export function useColumnsSettingsToolbarSlot({
     }
 
     return (
-      <Droplist {...commonDroplistProps} items={columnsSettings.items}>
+      <Droplist {...commonDroplistProps} label={t('settingsHeaderLabel')} items={columnsSettings.items}>
         {trigger}
       </Droplist>
     );

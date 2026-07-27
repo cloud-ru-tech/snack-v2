@@ -460,7 +460,11 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
 
   const isEmptyBody = !isLoadingState && tableRows.length + filteredTopRows.length === 0;
 
-  const showTableHeader = showHeader && (isLoadingState || centerRows.length > 0 || filteredTopRows.length > 0);
+  // Мастер держит шапку колонок в пустом состоянии noData/noResult (колонки известны),
+  // но скрывает при dataError. Загрузка и непустое тело — шапка всегда.
+  const showTableHeader =
+    showHeader &&
+    (isLoadingState || centerRows.length > 0 || filteredTopRows.length > 0 || (isEmptyBody && !dataError));
 
   const tableHeaderElement = showTableHeader ? (
     <HeaderRow

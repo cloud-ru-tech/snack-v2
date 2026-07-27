@@ -1,8 +1,5 @@
-// Ячейка действий строки: вертикальный разделитель слева (::after) и кнопка-троеточие
-// (Droplist) по центру. Разделитель тянется на ±высоту горизонтального бордера строки,
-// чтобы стыковаться с границами соседних строк.
-@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/table.module' as table;
+// Ячейка действий строки: кнопка-троеточие (Droplist) по центру. Вертикальный разделитель
+// слева рисует sticky-обёртка закреплённого блока (.rowPinnedCells[data-position='right']::after).
 
 .rowActionsHeader {
   padding: 0 !important;
@@ -15,20 +12,6 @@
 
 .rowActionsCell {
   position: relative;
-
-  &::after {
-    pointer-events: none;
-    content: '';
-
-    position: absolute;
-    // Перекрываем горизонтальные бордеры строки сверху и снизу.
-    top: calc(0px - base.$sn-primitive-strokeWeight-strokeThin);
-    bottom: calc(0px - base.$sn-primitive-strokeWeight-strokeThin);
-    left: 0;
-
-    box-sizing: border-box;
-    width: 100%;
-  }
 }
 
 .rowActionsCellWrap {
@@ -43,13 +26,4 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  // padding-right: base.$sn-primitive-dimension-4;
-  // padding-left: base.$sn-primitive-dimension-4;
-}
-
-.rowActionsButton {
-  // position: absolute;
-  // top: 50%;
-  // right: 0;
-  // transform: translateY(-50%);
 }

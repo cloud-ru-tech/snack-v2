@@ -11,8 +11,8 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding-right: base.simple-var(table.$table, 'content', 'tableCell', 'padding-right');
-  padding-left: base.simple-var(table.$table, 'content', 'tableCell', 'padding-left');
+  padding-right: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-right');
+  padding-left: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-left');
 
   // Indicator-only вариант (без подписи): точка по центру ячейки, минимальные отступы.
   &[data-no-label] {

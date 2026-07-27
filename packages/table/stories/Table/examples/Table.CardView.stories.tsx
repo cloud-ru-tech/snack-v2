@@ -32,6 +32,7 @@ export const CardView: Story = {
       data={SAMPLE_USERS}
       columnDefinitions={columns}
       defaultView={VIEW.Cards}
+      showDataView
       headlineId='name'
       rowSelection={{ enable: true, multiRow: true }}
       sorting={{}}

@@ -12,6 +12,7 @@
   box-sizing: border-box;
   width: base.simple-var(
     table.$table,
+    'anatomy',
     'content',
     'tableLine',
     'pinnedWrapper',
@@ -22,6 +23,7 @@
   height: 100%;
   padding-left: base.simple-var(
     table.$table,
+    'anatomy',
     'content',
     'tableLine',
     'pinnedWrapper',

@@ -63,6 +63,7 @@ export function BodyRow<TData>({
     <RowContext.Provider value={{ dropListOpened, setDropListOpen, disabledRowAppearance }}>
       <Row
         onClick={handleRowClick}
+        clickable={Boolean(onRowClick) && !(disabled && disabledRowAppearance === RowAppearance.Disabled)}
         data-clickable={Boolean(onRowClick) || undefined}
         data-disabled={disabled || undefined}
         data-row-appearance={disabled ? disabledRowAppearance : undefined}
