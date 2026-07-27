@@ -42,12 +42,15 @@ $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrappe
   align-items: center;
 }
 
+// Подпись тогла крупнее подписи справа: в мастере это body/m, а не body/s шапки.
 .previewToggleLabel {
-  color: md.$sn-theme-color-available-version-textMain;
+  @include base.composite-var(base.$sn-regular, 'body', 'm');
+
+  color: base.$sn-theme-color-neutral-text;
 }
 
 .label {
-  color: md.$sn-theme-color-available-version-textSecondary;
+  color: md.$sn-theme-color-available-version-textTertiary;
 }
 
 // Слот тулбара в header-слоте оболочки: растягивается на всю ширину и даёт тулбару

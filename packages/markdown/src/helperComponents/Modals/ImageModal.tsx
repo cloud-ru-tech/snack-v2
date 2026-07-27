@@ -1,5 +1,5 @@
 import { ButtonGroup } from '@ds/button';
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { Modal } from '@ds/modal';
 import { usePortalContext } from '@ds/portal-context';
 import { useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ export function ImageModal({ open, onClose, onSubmit }: ImageModalProps) {
       data-test-id={TEST_IDS.imageModal}
       content={
         <div className={styles.fields} data-column={true}>
-          <FieldText
+          <FieldCombo
             size='m'
             label={t('image.url')}
             placeholder={t('image.placeholder')}
@@ -51,7 +51,7 @@ export function ImageModal({ open, onClose, onSubmit }: ImageModalProps) {
             autoFocus
             data-test-id={TEST_IDS.imageModalUrl}
           />
-          <FieldText
+          <FieldCombo
             size='m'
             label={t('image.alt')}
             value={alt}

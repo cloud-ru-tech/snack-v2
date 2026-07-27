@@ -1,5 +1,5 @@
 import { ButtonGroup } from '@ds/button';
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { Modal } from '@ds/modal';
 import { usePortalContext } from '@ds/portal-context';
 import { useEffect, useState } from 'react';
@@ -47,7 +47,7 @@ export function LinkModal({ open, initial, onClose, onSubmit }: LinkModalProps) 
       data-test-id={TEST_IDS.linkModal}
       content={
         <div className={styles.fields} data-column={true}>
-          <FieldText
+          <FieldCombo
             size='m'
             label={t('link.titleField.label')}
             placeholder={t('link.titleField.placeholder')}
@@ -57,7 +57,7 @@ export function LinkModal({ open, initial, onClose, onSubmit }: LinkModalProps) 
             data-test-id={TEST_IDS.linkModalTitle}
           />
 
-          <FieldText
+          <FieldCombo
             size='m'
             label={t('link.urlField.label')}
             placeholder={t('link.urlField.placeholder')}

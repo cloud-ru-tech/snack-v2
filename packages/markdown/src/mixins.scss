@@ -57,12 +57,12 @@ $block-top-spacings: (
   }
 
   blockquote {
-    min-height: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-minHeight;
     padding: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingVertical
       md.$sn-markdown-anatomy-size-syntax-quote-wrapper-paddingHorizontal;
     border-left: md.$sn-markdown-anatomy-size-syntax-quote-wrapper-borderWidth solid
       md.$sn-theme-color-available-borderColor;
-    color: md.$sn-theme-color-available-version-textSecondary;
+    color: md.$sn-theme-color-available-version-textMain;
+    background: base.$sn-theme-color-neutral-decorTransparent;
   }
 
   code {
@@ -90,13 +90,15 @@ $block-top-spacings: (
     min-height: md.$sn-markdown-anatomy-size-syntax-table-tableCell-minHeight;
     padding: md.$sn-markdown-anatomy-size-syntax-table-tableCell-paddingVertical
       md.$sn-markdown-anatomy-size-syntax-table-tableCell-paddingHorizontal;
-    border: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
+    // Ячейка несёт только нижнюю линейку: в мастере вертикальных границ нет, соседние
+    // ячейки стыкуются вплотную.
+    border-bottom: md.$sn-primitive-strokeWeight-strokeRegular solid md.$sn-theme-color-available-borderColor;
     text-align: left;
   }
 
   th {
     font-weight: 600;
-    background: md.$sn-theme-color-neutral-background2Level;
+    background: base.$sn-theme-color-neutral-decorTransparent;
   }
 }
 

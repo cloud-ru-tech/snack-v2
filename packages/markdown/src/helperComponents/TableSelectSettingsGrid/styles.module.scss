@@ -20,7 +20,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(8, md.$sn-markdown-anatomy-size-tableSelect-container-item-size);
-  gap: md.$sn-markdown-anatomy-size-tableSelect-container-grid-gap;
+  gap: md.$sn-markdown-anatomy-size-tableSelect-container-gap;
 }
 
 .label {
