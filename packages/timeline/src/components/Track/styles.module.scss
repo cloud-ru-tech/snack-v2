@@ -3,8 +3,10 @@
 
 $positions: 'center', 'end';
 
-$dash-gap: base.$sn-primitive-dimension-2;
-$dash-segment: calc(#{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-2});
+// Пунктир мастера — `strokeDashes: [4, 4]`: штрих 4, зазор 4, период 8.
+// Штрих идёт первым, как в макете, поэтому сдвиг фазы не нужен.
+$dash-length: base.$sn-primitive-dimension-4;
+$dash-period: base.$sn-primitive-dimension-8;
 
 .trackLine {
   width: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'trackLine', 'border-width');
@@ -14,8 +16,8 @@ $dash-segment: calc(#{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dim
   &[data-style='dashed'] {
     background: repeating-linear-gradient(
       to bottom,
-      transparent 0 $dash-gap,
-      base.$sn-theme-color-neutral-decor 0 $dash-segment
+      base.$sn-theme-color-neutral-decor 0 $dash-length,
+      transparent 0 $dash-period
     );
   }
 }
@@ -27,22 +29,6 @@ $dash-segment: calc(#{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dim
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  &[data-dot-variant='default'] {
-    .trackLine {
-      &[data-style='dashed'] {
-        background-position-y: calc(#{base.$sn-primitive-dimension-0} - #{base.$sn-primitive-dimension-4});
-      }
-    }
-  }
-
-  &[data-dot-variant='subEvent'] {
-    .trackLine {
-      &[data-style='dashed'] {
-        background-position-y: calc(#{base.$sn-primitive-dimension-0} - #{base.$sn-primitive-dimension-2});
-      }
-    }
-  }
 
   @each $position in $positions {
     &[data-position='#{$position}'] {
