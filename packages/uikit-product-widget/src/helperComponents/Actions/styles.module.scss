@@ -1,14 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-.desktopActionsWrapper {
-  display: flex;
-  flex-shrink: 0;
-  gap: base.$sn-primitive-dimension-8;
-  align-items: center;
-
-  height: 100%;
-}
-
 .mobileActionsWrapper {
   scrollbar-width: none;
 
@@ -42,7 +33,8 @@
 .actionsWrapper {
   display: flex;
   flex-shrink: 0;
-  gap: base.$sn-primitive-dimension-4;
+  // Figma: зазор между основной кнопкой и kebab = 8 (buttonAction 424 → buttonFunction 432).
+  gap: base.$sn-primitive-dimension-8;
   align-items: center;
 
   &[data-wide] {
