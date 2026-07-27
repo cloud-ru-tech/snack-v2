@@ -30,8 +30,6 @@
  *   DOCKER_E2E_INSTALL=0              — пропустить pnpm install (или флаг --no-install)
  *   DOCKER_E2E_NPMRC                  — путь к npmrc (default ~/.npmrc)
  *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать storybook static (reuse предыдущей сборки)
- *   SB_PACKAGES=<pkg>[,<pkg2>]        — собрать storybook static только по этим пакетам
- *                                       (пересъёмка baseline'а одного пакета: секунды вместо минут)
  *   DOCKER_E2E_BUILD_PACKAGES=1       — форсить build:packages (по умолчанию НЕ собирается: storybook
  *                                       static резолвит @ds/* → packages/<pkg>/src через алиасы, dist не нужен)
  */
@@ -81,21 +79,11 @@ function loadDotEnv(): void {
   }
 }
 
-/**
- * Не-`DOCKER_E2E_*` переменные, которые всё равно нужны внутри контейнера.
- * `SB_PACKAGES` сужает набор stories при сборке storybook static (см. `.storybook/main.ts`):
- * для пересъёмки baseline'ов одного пакета это разница между минутами и десятками секунд.
- */
-const PASSTHROUGH_ENV = ['SB_PACKAGES'];
-
 function appendDockerE2eEnv(dockerArgs: string[]): void {
   for (const [key, value] of Object.entries(process.env)) {
-    const managed = key.startsWith('DOCKER_E2E_') && !DOCKER_E2E_VARS_MANAGED.has(key);
-
-    if (value === undefined || !(managed || PASSTHROUGH_ENV.includes(key))) {
+    if (!key.startsWith('DOCKER_E2E_') || value === undefined || DOCKER_E2E_VARS_MANAGED.has(key)) {
       continue;
     }
-
     dockerArgs.push('-e', `${key}=${value}`);
   }
 }
