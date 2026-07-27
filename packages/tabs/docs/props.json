@@ -243,11 +243,6 @@
     "displayName": "TabBar",
     "propsTypeName": "TabBarProps",
     "props": {
-      "after": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Дополнительный слот для кастомного контента справа от табов"
-      },
       "children": {
         "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
         "required": true,
@@ -309,6 +304,11 @@
         "typeRefs": [
           "Size"
         ]
+      },
+      "slotActionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель под ним не продолжается."
       }
     },
     "relatedTypes": {
@@ -563,11 +563,6 @@
     "displayName": "Tabs.TabBar",
     "propsTypeName": null,
     "props": {
-      "after": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Дополнительный слот для кастомного контента справа от табов"
-      },
       "children": {
         "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
         "required": true,
@@ -613,6 +608,11 @@
           "m"
         ],
         "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента"
+      },
+      "slotActionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель под ним не продолжается."
       }
     },
     "relatedTypes": {}

@@ -2,7 +2,8 @@ import { Alert, AlertTop } from '@ds/alert';
 import { Avatar } from '@ds/avatar';
 import { Breadcrumbs, Item } from '@ds/breadcrumbs';
 import { Button } from '@ds/button';
-import { FieldDecorator, FieldSelect, FieldText } from '@ds/fields';
+import { FieldDecorator } from '@ds/field-decorator';
+import { FieldSelect, FieldText } from '@ds/fields';
 import { BellSVG, MainMenuSVG } from '@ds/icons/interface/product';
 import { PlusSVG } from '@ds/icons/interface/system';
 import { AiCloudLogo } from '@ds/icons/logos';
@@ -93,7 +94,7 @@ const TAB_ITEMS = [
 function TabsDemo() {
   return (
     <Tabs defaultValue='1'>
-      <Tabs.TabBar after={<Button view='filled' label='Кнопка' icon={<PlusSVG />} onClick={noop} />}>
+      <Tabs.TabBar slotActionButton={<Button view='filled' label='Кнопка' icon={<PlusSVG />} onClick={noop} />}>
         {TAB_ITEMS.map(item => (
           <Tabs.Tab key={item.value} value={item.value} label={item.label} />
         ))}

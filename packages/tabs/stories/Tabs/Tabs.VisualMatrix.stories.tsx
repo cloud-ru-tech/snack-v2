@@ -1,4 +1,5 @@
-import { ORIENTATION, SIZE, Tabs } from '@ds/tabs';
+import { APPEARANCE, Button } from '@ds/button';
+import { ORIENTATION, Orientation, SIZE, Tabs } from '@ds/tabs';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -48,6 +49,24 @@ function VerticalBar({ size }: { size: 'l' | 'm' }) {
   );
 }
 
+function BarWithAction({ size, orientation }: { size: 'l' | 'm'; orientation: Orientation }) {
+  return (
+    <div className={styles.wide}>
+      <Tabs defaultValue='a'>
+        <Tabs.TabBar
+          size={size}
+          orientation={orientation}
+          slotActionButton={<Button size={size} label='Создать' appearance={APPEARANCE.Primary} />}
+        >
+          {items.map(i => (
+            <Tabs.Tab key={i.value} {...i} />
+          ))}
+        </Tabs.TabBar>
+      </Tabs>
+    </div>
+  );
+}
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -60,6 +79,19 @@ export const VisualMatrix: Story = {
         rows={([SIZE.L, SIZE.M] as const).map(size => ({
           variantLabel: size,
           cells: [<HorizontalBar key={`h-${size}`} size={size} />, <VerticalBar key={`v-${size}`} size={size} />],
+        }))}
+      />
+
+      <StoryTable
+        sectionTitle='Action slot (slotActionButton) × Orientation'
+        firstColumnHeader='Size'
+        columnHeaders={['horizontal', 'vertical']}
+        rows={([SIZE.L, SIZE.M] as const).map(size => ({
+          variantLabel: size,
+          cells: [
+            <BarWithAction key={`ha-${size}`} size={size} orientation={ORIENTATION.Horizontal} />,
+            <BarWithAction key={`va-${size}`} size={size} orientation={ORIENTATION.Vertical} />,
+          ],
         }))}
       />
 
