@@ -71,7 +71,7 @@ export function HalfStars() {
 |------|------|---------|-------------|
 | `allowClear` | `boolean` | `false` | Разрещает сброс рейтинга при повторном нажатии на звезду |
 | `allowHalf` | `boolean` | `false` | Показывать или нет рейтинг в виде половины звезды |
-| `appearance` | `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `yellow` | Внешний вид (цветовая схема) |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `yellow` | Внешний вид (цветовая схема) |
 | `className` | `string` | — | CSS-класс |
 | `count` | `number` | `5` | Общее количество звезд |
 | `data-test-id` | `string` | — |  |
@@ -83,6 +83,6 @@ export function HalfStars() {
 
 #### Related types
 
-- `Appearance` = `"blue"` \| `"green"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
 - `Size` = `"s"` \| `"xs"`

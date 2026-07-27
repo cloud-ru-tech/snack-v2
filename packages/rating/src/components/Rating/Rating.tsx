@@ -1,4 +1,5 @@
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import cn from 'classnames';
 import { KeyboardEventHandler, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
@@ -6,6 +7,7 @@ import { APPEARANCE, DEFAULT_RATING_VALUE, DEFAULT_STAR_COUNT, SIZE, TEST_IDS } 
 import { RatingStar, Value } from '../../helperComponents';
 import { Appearance, Size } from '../../types';
 import { getRatingStarValue, getStarValue } from '../../utils';
+import styles from './styles.module.scss';
 
 export type RatingProps = WithSupportProps<{
   /** Размер */
@@ -84,7 +86,7 @@ export function Rating({
   };
 
   return (
-    <div className={className} {...extractSupportProps(rest)}>
+    <div className={cn(styles.rating, className)} {...extractSupportProps(rest)}>
       {[...Array(count)].map((_, index) => {
         const starIndex = index + 1;
         const value = getRatingStarValue(starIndex, hoverRating ?? rating, allowHalf);

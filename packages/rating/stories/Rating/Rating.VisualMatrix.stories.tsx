@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<RatingProps>;
 
 const keySizes = Object.values(SIZE);
-const keyAppearances = [APPEARANCE.Yellow, APPEARANCE.Primary, APPEARANCE.Red, APPEARANCE.Green, APPEARANCE.Blue];
+const keyAppearances = Object.values(APPEARANCE);
 const keyValues = [0, 1, 2.5, 4, 5] as const;
 
 export const VisualMatrix: Story = {
