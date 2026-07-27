@@ -110,10 +110,10 @@ export function Shapes() {
 | `data-test-id` | `string` | — |  |
 | `icon` | `JSXElementConstructor<{ size?: number \| undefined; className?: string \| undefined; }>` | — | JSX иконки |
 | `shape` | `"rounded"` \| `"squared"` | `rounded` | Форма: круглая или квадратная |
-| `size` | `"5xl"` \| `"l"` \| `"m"` | `m` | Размер |
+| `size` | `"3xl"` \| `"5xl"` \| `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 
 #### Related types
 
 - `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-- `Size` = `"5xl"` \| `"l"` \| `"m"`
+- `Size` = `"3xl"` \| `"5xl"` \| `"l"` \| `"m"` \| `"s"`

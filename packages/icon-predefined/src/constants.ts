@@ -11,8 +11,10 @@ export const APPEARANCE = {
 } as const;
 
 export const SIZE = {
+  S: 's',
   M: 'm',
   L: 'l',
+  '3XL': '3xl',
   '5XL': '5xl',
 } as const;
 

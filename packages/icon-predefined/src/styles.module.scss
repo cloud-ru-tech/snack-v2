@@ -1,9 +1,18 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/iconPredefined.module' as iconPredefined;
 
-$sizes: 'm', 'l', '5xl';
+$sizes: 's', 'm', 'l', '3xl', '5xl';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 $shapes: 'rounded', 'squared';
+
+// Размер глифа внутри контейнера — по макету: s→16, m/l→24, 3xl→32, 5xl→40.
+$glyphSizes: (
+  's': base.$sn-density-size-icon-xs,
+  'm': base.$sn-density-size-icon-s,
+  'l': base.$sn-density-size-icon-s,
+  '3xl': base.$sn-density-size-icon-m,
+  '5xl': base.$sn-density-size-icon-l,
+);
 
 .decor {
   overflow: hidden;
@@ -16,7 +25,8 @@ $shapes: 'rounded', 'squared';
 
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+      // Figma: глиф иконки красится цветом `text` (тёмный), не `accent`.
+      color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
     }
 
     &[data-background][data-appearance='#{$appearance}'] {
@@ -37,13 +47,11 @@ $shapes: 'rounded', 'squared';
   }
 }
 
-.decor[data-size='m'] svg.icon,
-.decor[data-size='l'] svg.icon {
-  width: base.$sn-density-size-icon-s !important;
-  height: base.$sn-density-size-icon-s !important;
-}
-
-.decor[data-size='5xl'] svg.icon {
-  width: base.$sn-density-size-icon-l !important;
-  height: base.$sn-density-size-icon-l !important;
+// !important — иконочные компоненты проставляют width/height инлайн-стилем,
+// перебить его из CSS-модуля иначе нельзя.
+@each $size in $sizes {
+  .decor[data-size='#{$size}'] svg.icon {
+    width: base.simple-var($glyphSizes, $size) !important;
+    height: base.simple-var($glyphSizes, $size) !important;
+  }
 }

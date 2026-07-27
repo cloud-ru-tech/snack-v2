@@ -58,9 +58,11 @@
         "type": "enum",
         "required": false,
         "values": [
+          "3xl",
           "5xl",
           "l",
-          "m"
+          "m",
+          "s"
         ],
         "defaultValue": "m",
         "description": "Размер",
@@ -88,9 +90,11 @@
       "Size": {
         "kind": "union",
         "values": [
+          "3xl",
           "5xl",
           "l",
-          "m"
+          "m",
+          "s"
         ],
         "own": true
       }
