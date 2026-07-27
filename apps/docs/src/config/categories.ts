@@ -26,6 +26,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       description:
         'Ввод и редактирование значений: поля, переключатели, чипы-фильтры, выбор значений (цвет, дата, рейтинг), сегментный контрол, загрузка файлов, редакторы кода и markdown.',
       packages: [
+        'field-decorator',
         'fields',
         'toggles',
         'search',
@@ -110,6 +111,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
         'input-private',
         'search-private',
         'popover-private',
+        'popup-private',
       ],
     },
   ],

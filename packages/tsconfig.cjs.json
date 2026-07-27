@@ -104,13 +104,7 @@
       "path": "./portal-context/tsconfig.cjs.json"
     },
     {
-      "path": "./bottom-sheet/tsconfig.cjs.json"
-    },
-    {
       "path": "./popover-private/tsconfig.cjs.json"
-    },
-    {
-      "path": "./dropdown/tsconfig.cjs.json"
     },
     {
       "path": "./popover/tsconfig.cjs.json"
@@ -132,9 +126,6 @@
     },
     {
       "path": "./ai-tool/tsconfig.cjs.json"
-    },
-    {
-      "path": "./drawer/tsconfig.cjs.json"
     },
     {
       "path": "./search-private/tsconfig.cjs.json"
@@ -159,12 +150,6 @@
     },
     {
       "path": "./tabs/tsconfig.cjs.json"
-    },
-    {
-      "path": "./tag/tsconfig.cjs.json"
-    },
-    {
-      "path": "./card/tsconfig.cjs.json"
     },
     {
       "path": "./timeline/tsconfig.cjs.json"
@@ -194,10 +179,22 @@
       "path": "./ai-field-notice/tsconfig.cjs.json"
     },
     {
-      "path": "./attachment/tsconfig.cjs.json"
+      "path": "./field-decorator/tsconfig.cjs.json"
     },
     {
       "path": "./link/tsconfig.cjs.json"
+    },
+    {
+      "path": "./popup-private/tsconfig.cjs.json"
+    },
+    {
+      "path": "./bottom-sheet/tsconfig.cjs.json"
+    },
+    {
+      "path": "./drawer/tsconfig.cjs.json"
+    },
+    {
+      "path": "./dropdown/tsconfig.cjs.json"
     },
     {
       "path": "./list/tsconfig.cjs.json"
@@ -222,6 +219,15 @@
     },
     {
       "path": "./color-picker/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tag/tsconfig.cjs.json"
+    },
+    {
+      "path": "./card/tsconfig.cjs.json"
+    },
+    {
+      "path": "./attachment/tsconfig.cjs.json"
     },
     {
       "path": "./fields/tsconfig.cjs.json"

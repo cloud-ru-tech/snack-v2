@@ -109,13 +109,7 @@
       "path": "./portal-context/tsconfig.esm.json"
     },
     {
-      "path": "./bottom-sheet/tsconfig.esm.json"
-    },
-    {
       "path": "./popover-private/tsconfig.esm.json"
-    },
-    {
-      "path": "./dropdown/tsconfig.esm.json"
     },
     {
       "path": "./popover/tsconfig.esm.json"
@@ -137,9 +131,6 @@
     },
     {
       "path": "./ai-tool/tsconfig.esm.json"
-    },
-    {
-      "path": "./drawer/tsconfig.esm.json"
     },
     {
       "path": "./search-private/tsconfig.esm.json"
@@ -164,12 +155,6 @@
     },
     {
       "path": "./tabs/tsconfig.esm.json"
-    },
-    {
-      "path": "./tag/tsconfig.esm.json"
-    },
-    {
-      "path": "./card/tsconfig.esm.json"
     },
     {
       "path": "./timeline/tsconfig.esm.json"
@@ -199,10 +184,22 @@
       "path": "./ai-field-notice/tsconfig.esm.json"
     },
     {
-      "path": "./attachment/tsconfig.esm.json"
+      "path": "./field-decorator/tsconfig.esm.json"
     },
     {
       "path": "./link/tsconfig.esm.json"
+    },
+    {
+      "path": "./popup-private/tsconfig.esm.json"
+    },
+    {
+      "path": "./bottom-sheet/tsconfig.esm.json"
+    },
+    {
+      "path": "./drawer/tsconfig.esm.json"
+    },
+    {
+      "path": "./dropdown/tsconfig.esm.json"
     },
     {
       "path": "./list/tsconfig.esm.json"
@@ -227,6 +224,15 @@
     },
     {
       "path": "./color-picker/tsconfig.esm.json"
+    },
+    {
+      "path": "./tag/tsconfig.esm.json"
+    },
+    {
+      "path": "./card/tsconfig.esm.json"
+    },
+    {
+      "path": "./attachment/tsconfig.esm.json"
     },
     {
       "path": "./fields/tsconfig.esm.json"
