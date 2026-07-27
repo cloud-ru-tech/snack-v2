@@ -31,7 +31,7 @@
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
-    "react-indiana-drag-scroll": "^2.2.0"
+    "react-indiana-drag-scroll": "^2.2.1"
   },
   "publishConfig": {
     "access": "public"

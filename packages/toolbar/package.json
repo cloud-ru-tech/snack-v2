@@ -30,7 +30,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@cloud-ru/ft-request-payload-transform": "^0.3.0",
+    "@cloud-ru/ft-request-payload-transform": "catalog:",
     "@ds/adaptive": "workspace:^",
     "@ds/bottom-sheet": "workspace:^",
     "@ds/button": "workspace:^",

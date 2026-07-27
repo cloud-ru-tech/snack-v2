@@ -15,9 +15,6 @@ module.exports = {
     {
       files: ['**/*.scss'],
       customSyntax: 'postcss-scss',
-      rules: {
-        'scss/at-import-partial-extension': null,
-      },
     },
     {
       files: ['apps/docs/src/styles/**/*.scss', 'apps/docs/src/components/**/*.scss'],
@@ -39,5 +36,8 @@ module.exports = {
     '**/storybook-static/**',
     '**/.astro/**',
     '**/packages/icons/**',
+    // Сгенерированные отчёты (istanbul HTML, junit): не наш код, в git не попадают.
+    'coverage/**',
+    'reports/**',
   ],
 };

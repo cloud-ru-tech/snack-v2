@@ -1,5 +1,5 @@
 import { Locator, Page, PageScreenshotOptions } from '@playwright/test';
-import sharp from 'sharp';
+import sharp, { OverlayOptions } from 'sharp';
 
 export type ScreenshotCell = {
   /** Подпись над cell. Пустая строка = без подписи (но `labelHeight` зарезервирует место). */
@@ -215,7 +215,7 @@ export async function composeScreenshots(cells: ScreenshotCell[], options: Compo
   const cellSizes = await measureCells(cells);
   const layout = computeLayout(cellSizes, cells, cfg);
 
-  const overlays: sharp.OverlayOptions[] = [];
+  const overlays: OverlayOptions[] = [];
   for (let i = 0; i < cells.length; i += 1) {
     const { left, top } = layout.positions[i];
     if (cfg.labelHeight > 0) {

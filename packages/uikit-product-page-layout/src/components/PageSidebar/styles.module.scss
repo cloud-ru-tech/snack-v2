@@ -69,6 +69,9 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
 
     background-color: base.$sn-theme-color-neutral-background;
 
+    // Правило сравнивает этот селектор с `.body:hover` выше, хотя это разные элементы
+    // (`.content` и `.body`) и каскад между ними невозможен.
+    // stylelint-disable-next-line no-descending-specificity
     &[data-collapsed] {
       margin: base.$sn-primitive-dimension-4;
       border-right: none;

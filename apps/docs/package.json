@@ -12,25 +12,24 @@
     "clean": "rm -rf dist .astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "7.0.3",
-    "remark-gfm": "^4.0.1",
-    "@astrojs/react": "6.0.1",
+    "@astrojs/mdx": "7.0.5",
+    "remark-gfm": "catalog:",
+    "@astrojs/react": "6.0.2",
     "@ds/portal-context": "workspace:*",
     "@ds/theme": "workspace:*",
     "@ds/utils": "workspace:*",
-    "astro": "7.1.4",
-    "mermaid": "11.15.0",
+    "astro": "7.1.5",
+    "mermaid": "11.16.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
-    "shiki": "3.23.0"
+    "shiki": "catalog:"
   },
   "devDependencies": {
     "@ds/fonts": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "astro-pagefind": "2.0.1",
-    "pagefind": "1.5.2",
     "typescript": "catalog:",
     "unist-util-visit": "5.1.0"
   }

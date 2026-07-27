@@ -194,7 +194,15 @@ function readPlaywrightVersion(): string {
   try {
     const pkg = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8'));
     const v = pkg.devDependencies?.['@playwright/test'] ?? pkg.dependencies?.['@playwright/test'];
-    return typeof v === 'string' ? v.replace(/^[\^~]/, '') : '';
+    if (typeof v !== 'string') return '';
+    // `catalog:` — pnpm-протокол, а не версия: Dockerfile ставит браузеры через npx,
+    // который его не понимает. Разворачиваем в реальную версию из каталога.
+    if (v.startsWith('catalog:')) {
+      const yaml = readFileSync(resolve(ROOT, 'pnpm-workspace.yaml'), 'utf8');
+      const fromCatalog = yaml.match(/^\s+'?@playwright\/test'?:\s*(\S+)/m)?.[1] ?? '';
+      return fromCatalog.replace(/^[\^~]/, '');
+    }
+    return v.replace(/^[\^~]/, '');
   } catch {
     return '';
   }

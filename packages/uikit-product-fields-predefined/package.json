@@ -44,7 +44,7 @@
     "@ds/scroll": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "awesome-phonenumber": "^7.5.0",
+    "awesome-phonenumber": "^7.8.0",
     "classnames": "catalog:",
     "imask": "^7.6.1",
     "merge-refs": "catalog:",
@@ -55,7 +55,7 @@
     "yup": "^1.7.1"
   },
   "devDependencies": {
-    "react-hook-form": "7.79.0",
+    "react-hook-form": "7.83.0",
     "yup": "1.7.1"
   },
   "publishConfig": {

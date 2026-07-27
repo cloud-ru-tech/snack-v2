@@ -21,10 +21,10 @@
     "@tokens-studio/types": "0.5.2",
     "change-case": "5.4.4",
     "chokidar": "5.0.0",
-    "commander": "14.0.2",
+    "commander": "15.0.0",
     "consola": "3.4.2",
     "sass": "catalog:",
-    "style-dictionary": "5.1.4"
+    "style-dictionary": "5.5.0"
   },
   "publishConfig": {
     "access": "public"

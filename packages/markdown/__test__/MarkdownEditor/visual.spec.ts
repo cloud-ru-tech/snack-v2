@@ -29,6 +29,14 @@ test.describe('MarkdownEditor — visual regression', () => {
     // preview=true — активный тулбар (в raw-режиме heading-кнопка disabled).
     await gotoStory(buildStoryOptions({ preview: true }));
     await waitForFonts();
+
+    // Каретку ставим явно, в начало документа (первый блок — заголовок): активный пункт
+    // дропдауна считается как `editor.isActive('heading')`, то есть по блоку под кареткой.
+    // Без этого снимок зависел бы от того, куда tiptap помещает selection при
+    // инициализации, — в 3.29 это поведение поменялось.
+    await getByTestId(TEST_IDS.editorContent).click();
+    await page.keyboard.press('ControlOrMeta+Home');
+
     const trigger = getByTestId(TEST_IDS.toolbarHeading);
     await trigger.click();
     const dropdown = getByTestId(TEST_IDS.headingDropdown);

@@ -110,23 +110,23 @@
     "@ds/uikit-product-page-layout": "workspace:*",
     "@ds/utils": "workspace:*",
     "classnames": "catalog:",
-    "marked": "14.1.4",
-    "shiki": "3.23.0"
+    "marked": "18.0.7",
+    "shiki": "catalog:"
   },
   "devDependencies": {
-    "@storybook/addon-vitest": "10.5.2",
-    "@storybook/react": "10.5.2",
-    "@storybook/react-vite": "10.5.2",
+    "@storybook/addon-vitest": "10.5.5",
+    "@storybook/react": "10.5.5",
+    "@storybook/react-vite": "10.5.5",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitest/browser": "catalog:",
     "@vitest/browser-playwright": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
-    "playwright": "1.59.1",
+    "playwright": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
-    "storybook": "10.5.2",
+    "storybook": "10.5.5",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

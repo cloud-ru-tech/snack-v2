@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "@ds/utils": "workspace:^",
-    "@tanem/react-nprogress": "^5.0.60",
+    "@tanem/react-nprogress": "^6.0.3",
     "classnames": "catalog:"
   },
   "publishConfig": {
