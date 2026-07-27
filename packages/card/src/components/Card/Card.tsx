@@ -1,5 +1,5 @@
-import { CheckSVG } from '@ds/icons/interface/system';
-import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
+import { ACRYLIC_LEVEL, BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
+import { Checkbox, SIZE as CHECKBOX_SIZE } from '@ds/toggles';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
@@ -29,6 +29,8 @@ export function Card<T extends ElementType = 'div'>({
   const supportProps = extractSupportProps(rest);
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
   const isAnchor = Component === 'a';
+  // Disabled по макету теряет уровень подложки — это уровень материала, а не фон поверх акрила.
+  const acrylicLevel = disabled ? ACRYLIC_LEVEL.Default : level;
 
   // `<a>` нативно не реагирует на `disabled` — на disabled-anchor вешаем preventDefault,
   // и санитизируем `rel` под `target='_blank'`. Остальные элементы пробрасывают `...rest` без обвязки.
@@ -63,7 +65,7 @@ export function Card<T extends ElementType = 'div'>({
         data-checked={checked || undefined}
         data-interactive={interactive || undefined}
         data-acrylic-appearance={appearance}
-        data-acrylic-level={level}
+        data-acrylic-level={acrylicLevel}
         tabIndex={interactive && !disabled ? 0 : -1}
         aria-disabled={isAnchor && disabled ? true : undefined}
         {...supportProps}
@@ -84,9 +86,7 @@ export function Card<T extends ElementType = 'div'>({
         {(view === VIEW.Outline || checked) && <span className={styles.outlineBorder} aria-hidden />}
         {checked && multiSelect && (
           <span className={styles.checkWrapper} aria-hidden>
-            <span className={styles.checkContainer} data-test-id={TEST_IDS.checkBadge}>
-              <CheckSVG size={16} />
-            </span>
+            <Checkbox checked size={CHECKBOX_SIZE.XS} tabIndex={-1} data-test-id={TEST_IDS.checkBadge} />
           </span>
         )}
       </Component>

@@ -24,9 +24,9 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/icons": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/tag": "workspace:^",
+    "@ds/toggles": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },
