@@ -23,20 +23,21 @@ export function useEmptyState({
     const noDataState: EmptyStateProps = {
       icon: { icon: SearchSVG, appearance: 'neutral', background: true },
       title: t('noData.title'),
+      content: t('noData.content'),
       ...noDataStateProp,
     };
 
     const noResultsState: EmptyStateProps = {
       icon: { icon: SearchSVG, appearance: 'neutral', background: true },
       title: t('noResults.title'),
-      content: t('noResults.description'),
+      content: t('noResults.content'),
       ...noResultsStateProp,
     };
 
     const errorDataState: EmptyStateProps = {
       icon: { icon: CrossSVG, appearance: 'neutral', background: true },
       title: t('errorData.title'),
-      content: t('errorData.description'),
+      content: t('errorData.content'),
       ...errorDataStateProp,
     };
 

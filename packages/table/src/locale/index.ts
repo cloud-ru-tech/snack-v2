@@ -15,14 +15,15 @@ const TABLE_MESSAGES = defineMessages({
     },
     noData: {
       title: 'No data',
+      content: 'Try refreshing the page',
     },
     noResults: {
       title: 'Nothing found',
-      description: 'Try changing your search query or filters',
+      content: 'Try changing your search query or filters',
     },
     errorData: {
       title: 'Failed to load data',
-      description: 'Try again later',
+      content: 'Try again later',
     },
   },
   'ru-RU': {
@@ -39,14 +40,15 @@ const TABLE_MESSAGES = defineMessages({
     },
     noData: {
       title: 'Нет данных',
+      content: 'Обновите страницу',
     },
     noResults: {
       title: 'Ничего не найдено',
-      description: 'Измените поисковый запрос или фильтры',
+      content: 'Измените поисковый запрос или фильтры',
     },
     errorData: {
       title: 'Не удалось загрузить данные',
-      description: 'Попробуйте позже',
+      content: 'Попробуйте позже',
     },
   },
 });

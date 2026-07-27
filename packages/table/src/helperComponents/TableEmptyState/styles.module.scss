@@ -11,6 +11,6 @@
 
   box-sizing: border-box;
   width: 100%;
-  min-height: base.simple-var(table.$table, 'content', 'body', 'min-height'); // 304px
+  min-height: base.simple-var(table.$table, 'anatomy', 'content', 'body', 'min-height'); // 304px
   padding: base.$sn-primitive-dimension-24;
 }
