@@ -1,9 +1,9 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/avatar.module' as avatar;
 
-$sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '10xl';
+$sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '9xl';
 $shapes: 'rounded', 'squared';
-$appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+$appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
 $typography: (
   'xs': base.$sn-regular-label-s,
@@ -12,7 +12,7 @@ $typography: (
   'l': base.$sn-regular-title-m,
   '3xl': base.$sn-regular-headline-m,
   '6xl': base.$sn-regular-display-s,
-  '10xl': base.$sn-regular-display-m,
+  '9xl': base.$sn-regular-display-m,
 );
 
 .avatar {
@@ -31,7 +31,6 @@ $typography: (
   box-sizing: border-box;
 
   line-height: 1;
-  color: base.$sn-theme-color-available-version-textSecondary;
   text-align: center;
 
   @each $size in $sizes {
@@ -65,8 +64,11 @@ $typography: (
     }
   }
 
+  // Инициалы окрашиваются в текстовый токен своего appearance (пара decor+text,
+  // как у counter/tag): фон `<appearance>/decor`, текст `<appearance>/text`.
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
+      color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
       background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
     }
   }

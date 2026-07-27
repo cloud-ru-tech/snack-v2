@@ -44,19 +44,19 @@ export const InteractionTest: Story = {
           <Avatar
             data-test-id={STORY_TEST_IDS.withStatus}
             name='John Doe'
-            size='10xl'
+            size='9xl'
             status={STATUS_APPEARANCE.Green}
           />
           <Avatar
             data-test-id={STORY_TEST_IDS.withBadge}
             name='John Doe'
-            size='10xl'
+            size='9xl'
             badge={<span data-test-id={STORY_TEST_IDS.customBadge}>★</span>}
           />
           <Avatar
             data-test-id={STORY_TEST_IDS.badgeOverridesStatus}
             name='John Doe'
-            size='10xl'
+            size='9xl'
             status={STATUS_APPEARANCE.Red}
             badge={<span data-test-id={STORY_TEST_IDS.customBadge}>!</span>}
           />
@@ -104,7 +104,7 @@ export const InteractionTest: Story = {
       const indicator = within(badge).getByTestId(TEST_IDS.statusIndicator);
       await expect(indicator).toBeVisible();
       await expect(indicator).toHaveAttribute('data-appearance', STATUS_APPEARANCE.Green);
-      // size=10xl → indicator size=s (см. AVATAR_TO_STATUS_INDICATOR_SIZE)
+      // size=9xl → indicator size=s (см. AVATAR_TO_STATUS_INDICATOR_SIZE)
       await expect(indicator).toHaveAttribute('data-size', 's');
     });
 

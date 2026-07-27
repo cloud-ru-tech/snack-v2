@@ -52,9 +52,9 @@ function resolveBadge(badge: ReactNode, status: StatusAppearance | undefined, si
  * Поддерживает:
  * - Отображение изображения аватара (с fallback на аббревиатуру)
  * - Генерацию аббревиатуры из имени пользователя (1 или 2 символа)
- * - Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl
+ * - Различные размеры: xs, s, m, l, 3xl, 6xl, 9xl
  * - Различные формы: круглая (rounded) или квадратная (squared)
- * - Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink
+ * - Различные цветовые схемы: neutral, red, orange, yellow, green, blue, violet, pink
  * - Слот `badge` (любой ReactNode) и шорткат `status` для дефолтного `StatusIndicator`
  */
 export function Avatar({

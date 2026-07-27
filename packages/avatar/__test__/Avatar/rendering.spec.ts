@@ -14,7 +14,7 @@ const KEY_COMBOS: ReadonlyArray<{
   appearance: (typeof APPEARANCE)[keyof typeof APPEARANCE];
 }> = [
   { size: SIZE.Xs, shape: SHAPE.Rounded, appearance: APPEARANCE.Neutral },
-  { size: SIZE.M, shape: SHAPE.Squared, appearance: APPEARANCE.Primary },
+  { size: SIZE.M, shape: SHAPE.Squared, appearance: APPEARANCE.Red },
   { size: SIZE.L, shape: SHAPE.Rounded, appearance: APPEARANCE.Red },
 ];
 

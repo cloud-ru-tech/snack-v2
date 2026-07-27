@@ -142,7 +142,7 @@ export function CustomBadge() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цвет) |
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид (цвет) |
 | `badge` | `ReactNode` | — | Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`. |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
@@ -150,16 +150,16 @@ export function CustomBadge() {
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
 | `shape` | `"rounded"` \| `"squared"` | `rounded` | Форма: круглая или квадратная |
 | `showTwoSymbols` | `boolean` | `false` | Отображение двух заглавных символов имени вместо одного |
-| `size` | `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `m` | Размер |
+| `size` | `"3xl"` \| `"6xl"` \| `"9xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `m` | Размер |
 | `src` | `string` | — | URL изображения аватара |
 | `status` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер <br/> индикатора подбирается из `size` аватара автоматически. Полностью <br/> настроить значок можно через слот `badge`, который перекрывает `status`. |
 
 #### Related types
 
-- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"`
 
 - `Shape` = `"rounded"` \| `"squared"`
 
-- `Size` = `"10xl"` \| `"3xl"` \| `"6xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"`
+- `Size` = `"3xl"` \| `"6xl"` \| `"9xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"`
 
 Принимает вспомогательные атрибуты `data-test-id` и ARIA через тип `WithSupportProps` из `@ds/utils`, а также стандартные атрибуты контейнера `HTMLDivElement`.

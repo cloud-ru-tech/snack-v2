@@ -18,7 +18,6 @@ type Story = StoryObj<typeof Avatar>;
 
 const allSizes = Object.values(SIZE);
 const keyAppearances = Object.values(APPEARANCE);
-const sampleAppearances = [APPEARANCE.Neutral, APPEARANCE.Primary, APPEARANCE.Red] as const;
 // `placeholder` импортируется loader'ом как opaque-объект (ImageMetadata);
 // в runtime — это url-строка. Двойной cast — единственный путь, тип loader'а с
 // `string` напрямую не совместим.
@@ -40,10 +39,10 @@ export const VisualMatrix: Story = {
         }))}
       />
       <StoryTable
-        sectionTitle='Shape — squared · sample appearances × sizes'
+        sectionTitle='Shape — squared · all appearances × sizes'
         firstColumnHeader='Appearance'
         columnHeaders={allSizes.map(size => size.toUpperCase())}
-        rows={sampleAppearances.map(appearance => ({
+        rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
           cells: allSizes.map(size => (
             <Avatar key={size} name='John Doe' size={size} shape={SHAPE.Squared} appearance={appearance} />

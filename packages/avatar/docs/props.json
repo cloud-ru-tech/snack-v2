@@ -2,7 +2,7 @@
   "Avatar": {
     "displayName": "Avatar",
     "propsTypeName": "AvatarProps",
-    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 10xl\n- Различные формы: круглая (rounded) или квадратная (squared)\n- Различные цветовые схемы: neutral, primary, red, orange, yellow, green, blue, violet, pink\n- Слот `badge` (любой ReactNode) и шорткат `status` для дефолтного `StatusIndicator`",
+    "description": "Компонент отображения аватара пользователя.\n\nПоддерживает:\n- Отображение изображения аватара (с fallback на аббревиатуру)\n- Генерацию аббревиатуры из имени пользователя (1 или 2 символа)\n- Различные размеры: xs, s, m, l, 3xl, 6xl, 9xl\n- Различные формы: круглая (rounded) или квадратная (squared)\n- Различные цветовые схемы: neutral, red, orange, yellow, green, blue, violet, pink\n- Слот `badge` (любой ReactNode) и шорткат `status` для дефолтного `StatusIndicator`",
     "props": {
       "appearance": {
         "type": "enum",
@@ -13,7 +13,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -70,9 +69,9 @@
         "type": "enum",
         "required": false,
         "values": [
-          "10xl",
           "3xl",
           "6xl",
+          "9xl",
           "l",
           "m",
           "s",
@@ -117,7 +116,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -135,9 +133,9 @@
       "Size": {
         "kind": "union",
         "values": [
-          "10xl",
           "3xl",
           "6xl",
+          "9xl",
           "l",
           "m",
           "s",

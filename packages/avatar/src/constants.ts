@@ -1,6 +1,5 @@
 export const APPEARANCE = {
   Neutral: 'neutral',
-  Primary: 'primary',
   Red: 'red',
   Orange: 'orange',
   Yellow: 'yellow',
@@ -17,7 +16,7 @@ export const SIZE = {
   L: 'l',
   '3Xl': '3xl',
   '6Xl': '6xl',
-  '10Xl': '10xl',
+  '9Xl': '9xl',
 } as const;
 
 export const SHAPE = {
