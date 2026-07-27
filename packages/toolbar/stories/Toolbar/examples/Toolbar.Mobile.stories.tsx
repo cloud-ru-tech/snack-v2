@@ -78,6 +78,11 @@ export const Mobile: Story = {
 
     await expect(canvas.getByTestId(TEST_IDS.mobile)).toBeVisible();
     await expect(canvas.getByTestId(TEST_IDS.mobileSelectionToggle)).toBeVisible();
-    await expect(canvas.getByTestId(TOOLBAR_TEST_IDS.checkbox)).toBeVisible();
+
+    // На mobile bulk-чекбокс рендерится и в строке тулбара, и в BottomSheet
+    // (обе точки — один слот select-all, общий data-test-id из @ds/toolbar).
+    const bulkCheckboxes = canvas.getAllByTestId(TOOLBAR_TEST_IDS.checkbox);
+    expect(bulkCheckboxes.length).toBeGreaterThan(0);
+    await expect(bulkCheckboxes[0]).toBeVisible();
   },
 };

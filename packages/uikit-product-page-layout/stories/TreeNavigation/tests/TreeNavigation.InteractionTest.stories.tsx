@@ -1,3 +1,4 @@
+import { TEST_IDS as TREE_TEST_IDS } from '@ds/tree';
 import { TREE_NAVIGATION_MODE, TreeNavigation } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -46,7 +47,10 @@ export const InteractionTest: Story = {
 
     await step('select leaf node triggers onSelect', async () => {
       const node = within(root).getByTestId(TREE_NODE_BILLING_TEST_ID);
-      await userEvent.click(node);
+      // Node-level data-test-id оседает на корневом wrapper'е (role=presentation),
+      // а onClick/onSelect — на внутреннем treeitem. Кликаем именно его.
+      const nodeItem = within(node).getByTestId(TREE_TEST_IDS.item);
+      await userEvent.click(nodeItem);
       await waitFor(() => expect(onSelect).toHaveBeenCalled());
     });
 

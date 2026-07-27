@@ -18,7 +18,6 @@ type Story = StoryObj<typeof AvatarDetail>;
 
 const keyAppearances = [
   APPEARANCE.Neutral,
-  APPEARANCE.Primary,
   APPEARANCE.Red,
   APPEARANCE.Green,
   APPEARANCE.Blue,

@@ -1,3 +1,4 @@
+import { TEST_IDS as ACCORDION_TEST_IDS } from '@ds/accordion';
 import { QuotaWidgetMini } from '@ds/uikit-product-quota';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from 'storybook/test';
@@ -26,7 +27,9 @@ export const InteractionTest: Story = {
     const trigger = canvas.getByTestId(TEST_IDS.quotaWidgetMini.trigger);
     const cardTestId = `${TEST_IDS.quotaWidgetCard.root}--${MOCK_QUOTA_EXHAUSTED.name}`;
 
-    await userEvent.click(trigger);
+    // onClick аккордиона висит на заголовке (titleContent), а не на корневом
+    // wrapper'е триггера — кликаем внутренний заголовок, чтобы раскрыть блок.
+    await userEvent.click(within(trigger).getByTestId(ACCORDION_TEST_IDS.title));
     await expect(canvas.getByTestId(TEST_IDS.quotaWidgetMini.content)).toBeVisible();
     await expect(canvas.getByTestId(cardTestId)).toHaveAttribute('data-exhausted', 'true');
   },

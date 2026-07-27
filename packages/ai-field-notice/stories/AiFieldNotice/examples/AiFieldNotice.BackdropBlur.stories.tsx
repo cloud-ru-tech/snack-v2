@@ -96,7 +96,8 @@ export const BackdropBlur: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByTestId(TEST_IDS.root)).toBeVisible();
-    await expect(canvas.getByTestId(BANNER_TEST_IDS.advice)).toBeVisible();
+    const root = canvas.getByTestId(TEST_IDS.root);
+    await expect(root).toBeVisible();
+    await expect(within(root).getByTestId(BANNER_TEST_IDS.advice)).toBeVisible();
   },
 };

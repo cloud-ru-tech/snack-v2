@@ -39,7 +39,9 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const card = canvas.getByTestId('card-service-light');
-    const favourite = canvas.getByTestId('card-service-light__favorite');
+    // Фокус уходит на нативный `<input>` внутри Favourite (favouriteRef → inputRef),
+    // а не на его корневой `<span>` — адресуем именно input.
+    const favourite = canvas.getByTestId('card-service-light__favorite-native-input');
 
     await step('keyboard: ArrowRight на карточке → фокус переходит на Favourite', async () => {
       card.focus();

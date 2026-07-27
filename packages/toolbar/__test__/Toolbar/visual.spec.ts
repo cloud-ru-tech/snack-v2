@@ -8,7 +8,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForStableBbox } from '#playwright-tooling/utils';
 
 import {
   buildStoryOptions,
@@ -67,6 +67,8 @@ test.describe('Toolbar — visual regression', () => {
     await getByTestId(TOOLBAR_COMPONENT_TEST_IDS.moreActionsButton).click();
     await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.refreshOption)).toBeVisible();
     await expect(getByTestId(`${TOOLBAR_COMPONENT_TEST_IDS.afterOption}__0`)).toBeVisible();
+    // toBeVisible срабатывает уже на старте slide-up sheet'а — ждём остановки его bbox.
+    await waitForStableBbox(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.refreshOption));
 
     // Mobile-выпадашка (Droplist → BottomSheet) — full-viewport overlay: снимаем viewport, а не
     // `#storybook-root` (он выше мобильного вьюпорта → под sheet'ом зияет фон DemoPage).
