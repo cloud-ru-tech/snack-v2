@@ -31,6 +31,11 @@ $typography: (
     }
   }
 
+  // Мин-высота из composite-var держится только с фоном.
+  &:not([data-background]) {
+    min-height: 0;
+  }
+
   &[data-background] {
     @each $appearance in $appearances {
       &[data-appearance='#{$appearance}'] {
