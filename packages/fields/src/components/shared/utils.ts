@@ -1,13 +1,8 @@
-// Импорт из leaf-файлов FieldDecorator (constants/types), а не из барреля '../FieldDecorator'
-// — баррель подключает FieldDecorator.tsx с иконками/CSS, что утяжеляет чистый util и ломает
-// vitest-импорт (icon sprite не резолвится в node). Рантайм идентичен.
+import { SIZE, Size, VALIDATION_STATE, ValidationState } from '@ds/field-decorator';
 import { BUTTON_SIZE_MAP, ButtonSize, Size as InputPrivateSize } from '@ds/input-private';
 import { isBrowser } from '@ds/utils';
 import copy from 'copy-to-clipboard';
 import { MouseEvent } from 'react';
-
-import { SIZE, VALIDATION_STATE } from '../FieldDecorator/constants';
-import { Size, ValidationState } from '../FieldDecorator/types';
 
 /**
  * Копирует текст в буфер обмена (через пакет `copy-to-clipboard`). Возвращает `true`
@@ -23,7 +18,7 @@ export function copyTextToClipboard(text: string): boolean {
 
 /**
  * Курсор в начале строки ввода (нет выделения, обе границы на позиции 0). Используется
- * полями (`FieldText`, `FieldSecure`) для перевода ArrowLeft в левый слот, когда дальше
+ * полями (`FieldCombo`, `FieldSecure`) для перевода ArrowLeft в левый слот, когда дальше
  * влево по тексту двигаться некуда.
  */
 export const isCursorAtStart = (el: HTMLInputElement | null): boolean =>

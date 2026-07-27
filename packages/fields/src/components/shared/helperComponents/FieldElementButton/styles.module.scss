@@ -32,8 +32,9 @@ $sizes: 's', 'm', 'l';
   visibility: initial;
 }
 
-// Фокус-рамка как у поля (Figma focusedFrame): толщина focusLine-field + opacity focusedFrame,
-// inset внутрь кнопки, чтобы не вылезать за границу поля/разделитель.
+// Фокус-рамка кнопки-сегмента (Figma focusedFrame/*/inside у buttonField): толщина
+// focusLine-control, inset внутрь кнопки, чтобы не вылезать за границу поля/разделитель.
+// У самого поля рамка другая — focusLine-field снаружи (см. shared/styles.module.scss).
 .focusLayer {
   pointer-events: none;
 
@@ -44,9 +45,10 @@ $sizes: 's', 'm', 'l';
 
   border-radius: inherit;
 
-  opacity: field.$sn-field-effect-focusedFrame-opacity;
-  outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
-  outline-offset: calc(0px - base.$sn-brand-anatomy-focusLine-field-strokeWeight);
+  // Непрозрачность не гасится: мягкое свечение (`focusedFrame-opacity`) в макете несёт только
+  // внешняя рамка поля, у внутренних кнопок рамка сплошная — как у кнопки очистки из @ds/button.
+  outline: base.$sn-brand-anatomy-focusLine-control-strokeWeight solid base.$sn-theme-color-primary-accent;
+  outline-offset: calc(0px - base.$sn-brand-anatomy-focusLine-control-strokeWeight);
 }
 
 .buttonContainer {

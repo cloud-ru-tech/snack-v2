@@ -1,4 +1,4 @@
-import { FieldText, SIZE } from '@ds/fields';
+import { FieldCombo, SIZE } from '@ds/fields';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -8,8 +8,8 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } 
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const ITEMS = [
-  { id: '1', content: { label: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-1` },
-  { id: '2', content: { label: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-2` },
+  { id: '1', content: { label: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldCombo.droplistItem}-1` },
+  { id: '2', content: { label: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldCombo.droplistItem}-2` },
 ];
 
 /**
@@ -28,8 +28,8 @@ function RovingScene() {
         <DemoHint>Очистка + слот-кнопка справа в одной сцене для проверки roving-навигации.</DemoHint>
         <DemoActions align='center'>
           <DemoResizable width='narrow'>
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.rovingSceneRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.rovingSceneRoot}
               size={SIZE.M}
               label='Label'
               value={value}
@@ -38,7 +38,7 @@ function RovingScene() {
               showCopyButton={false}
               elementAfter={{
                 action: <PlaceholderSVG />,
-                'data-test-id': STORY_TEST_IDS.fieldText.droplistAfterButton,
+                'data-test-id': STORY_TEST_IDS.fieldCombo.droplistAfterButton,
                 droplist: {
                   items: ITEMS,
                   closeDroplistOnItemClick: true,
@@ -57,15 +57,15 @@ function RovingScene() {
   );
 }
 
-const meta: Meta<typeof FieldText> = {
-  title: 'Components/Fields/FieldText/Tests/RovingNavScene',
-  component: FieldText,
+const meta: Meta<typeof FieldCombo> = {
+  title: 'Components/Fields/FieldCombo/Tests/RovingNavScene',
+  component: FieldCombo,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   render: () => <RovingScene />,
 };
 
 export default meta;
-type Story = StoryObj<typeof FieldText>;
+type Story = StoryObj<typeof FieldCombo>;
 
 export const RovingNavScene: Story = {
   tags: ['test', 'dev'],

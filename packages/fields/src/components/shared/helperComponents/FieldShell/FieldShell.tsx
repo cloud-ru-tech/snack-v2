@@ -1,8 +1,8 @@
+import { SIZE, Size, VALIDATION_STATE, ValidationState } from '@ds/field-decorator';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, ReactNode } from 'react';
 
-import { SIZE, Size, VALIDATION_STATE, ValidationState } from '../../../FieldDecorator';
 import fieldStyles from '../../styles.module.scss';
 import { getAcrylicProps } from '../../utils';
 import styles from './styles.module.scss';

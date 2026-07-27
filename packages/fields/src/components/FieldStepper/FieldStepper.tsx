@@ -1,7 +1,8 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { CheckSVG, CopySVG, MinusSVG, PlusSVG } from '@ds/icons/interface/system';
-import { InputPrivate, TYPE } from '@ds/input-private';
+import { BUTTON_SIZE_MAP, InputPrivate, TYPE } from '@ds/input-private';
 import { Tooltip, TooltipProps } from '@ds/tooltip';
 import { extractSupportProps, useValueControl } from '@ds/utils';
 import cn from 'classnames';
@@ -23,7 +24,6 @@ import {
 
 import { TEST_IDS } from '../../constants';
 import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, FieldElementButton, getAcrylicProps, VARIANT } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';
@@ -263,7 +263,7 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
   const inputWidthCh = Math.max(2, String(value).length);
 
   // Кнопки −/+ — buttonField-слоты по краям поля, отделённые от значения вертикальными
-  // разделителями (структура совпадает с elementBefore/elementAfter в FieldText, по Figma).
+  // разделителями (структура совпадает с elementBefore/elementAfter в FieldCombo, по Figma).
   const handleMouseEnter = useCallback(() => {
     if (!readOnly) {
       setHover(true);
@@ -412,7 +412,9 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
               type='button'
               view='function'
               appearance='neutral'
-              size={size}
+              // Inline copy/clear buttons cap at size m (32px) even when the field is l (40px) — Figma parity,
+              // same mapping the shared useCopyButton uses for all other fields.
+              size={BUTTON_SIZE_MAP[size]}
               icon={copied ? <CheckSVG /> : <CopySVG />}
               onClick={handleCopy}
               onKeyDown={handleCopyButtonKeyDown}

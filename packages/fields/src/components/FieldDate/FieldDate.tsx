@@ -1,4 +1,5 @@
 import { CalendarDropdown, CalendarDropdownProps } from '@ds/calendar';
+import { FieldDecorator, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { CalendarSVG } from '@ds/icons/interface/system';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import cn from 'classnames';
@@ -18,7 +19,6 @@ import {
 import { TEST_IDS } from '../../constants';
 import { useAdaptiveAutoFocus } from '../../hooks';
 import { buildSegments, SegmentsMode, useSegmentedMask } from '../../segments';
-import { FieldDecorator, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import {
   copyTextToClipboard,
   getAcrylicProps,
@@ -354,7 +354,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
 
   const valueToCopy = range ? [rangeInputValue[0], rangeInputValue[1]].filter(Boolean).join(' – ') : singleInputValue;
 
-  // Галочку «скопировано» рисует useCopyButton по `true`-результату (паритет с FieldText/FieldTime).
+  // Галочку «скопировано» рисует useCopyButton по `true`-результату (паритет с FieldCombo/FieldTime).
   const handleCopy = useCallback(() => {
     const copied = Boolean(valueToCopy) && copyTextToClipboard(valueToCopy);
     if (copied) {

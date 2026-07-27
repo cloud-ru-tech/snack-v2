@@ -24,3 +24,9 @@ export const CLEAR_BUTTON_TEST_ID = 'button-clear-value';
  * локально, потому что прямой импорт из @ds/calendar тянет CSS-modules и ломает playwright-compile.
  */
 export const TIME_PICKER_CONTENT_TEST_ID = 'content-field-time__picker';
+
+/**
+ * Root выпадающего time-picker'а (popover-контейнер). Включает футер Current/Apply, который
+ * лежит в `bottomBar` дропдауна сиблингом контента — по bbox контента он в кадр не попадает.
+ */
+export const TIME_PICKER_ROOT_TEST_ID = 'field-time__picker';

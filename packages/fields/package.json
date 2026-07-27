@@ -34,6 +34,7 @@
     "@ds/color-picker": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/dropdown": "workspace:^",
+    "@ds/field-decorator": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/input-private": "workspace:^",
     "@ds/list": "workspace:^",

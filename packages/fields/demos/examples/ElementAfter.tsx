@@ -1,4 +1,4 @@
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { useState } from 'react';
 
 const CURRENCIES = [
@@ -11,7 +11,7 @@ export function ElementAfter() {
   const [value, setValue] = useState('100');
   const [currency, setCurrency] = useState<string | number | undefined>('USD');
   return (
-    <FieldText
+    <FieldCombo
       label='Валюта'
       placeholder='Сумма'
       postfix={currency}

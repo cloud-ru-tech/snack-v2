@@ -1,4 +1,5 @@
 import { TimePickerDropdown, TimeValue } from '@ds/calendar';
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { WatchSVG } from '@ds/icons/interface/system';
 import { INPUT_MODE, InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { extractSupportProps } from '@ds/utils';
@@ -9,7 +10,6 @@ import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo,
 import { TEST_IDS } from '../../constants';
 import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
 import { buildSegments, useSegmentedMask } from '../../segments';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import { parseTimeMask, timeToMaskString } from './mask';

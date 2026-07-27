@@ -1,6 +1,8 @@
 export * from './FieldColor';
+export * from './FieldCombo';
 export * from './FieldDate';
-export * from './FieldDecorator';
+export { SIZE, VALIDATION_STATE } from '@ds/field-decorator';
+export type { Size, ValidationState } from '@ds/field-decorator';
 export * from './FieldSecure';
 export * from './FieldSelect';
 export * from './FieldSlider';

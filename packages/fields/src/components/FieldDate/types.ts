@@ -1,9 +1,9 @@
 import { CalendarDropdownProps } from '@ds/calendar';
+import { FieldDecoratorProps, Size, ValidationState } from '@ds/field-decorator';
 import { ValueOf, WithSupportProps } from '@ds/utils';
 import { FocusEvent, ReactNode } from 'react';
 
 import { FieldLayoutPresets } from '../../hooks';
-import { FieldDecoratorProps, Size, ValidationState } from '../FieldDecorator';
 import { DATE_MODE } from './constants';
 
 export type DateMode = ValueOf<typeof DATE_MODE>;

@@ -1,4 +1,4 @@
-import { FieldText, TEST_IDS } from '@ds/fields';
+import { FieldCombo, TEST_IDS } from '@ds/fields';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -19,8 +19,8 @@ function InteractionScenario() {
       <DemoPanel width='narrow'>
         <DemoActions align='center'>
           <DemoResizable width='narrow'>
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.editableRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.editableRoot}
               label='Label'
               value={value}
               onChange={next => {
@@ -31,15 +31,15 @@ function InteractionScenario() {
               showClearButton
               showCopyButton
             />
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.readonlyRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.readonlyRoot}
               label='Readonly'
               readonly
               defaultValue='copy me'
               showCopyButton
             />
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.prefixedReadonlyRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.prefixedReadonlyRoot}
               label='Readonly prefixed'
               readonly
               prefix='$'
@@ -47,15 +47,15 @@ function InteractionScenario() {
               defaultValue='100'
               showCopyButton
             />
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.disabledRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.disabledRoot}
               label='Disabled'
               disabled
               defaultValue='disabled value'
               showClearButton
             />
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.blurGuardRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.blurGuardRoot}
               label='Blur guard'
               value={blurGuardValue}
               onChange={setBlurGuardValue}
@@ -69,15 +69,15 @@ function InteractionScenario() {
   );
 }
 
-const meta: Meta<typeof FieldText> = {
-  title: 'Components/Fields/FieldText/Tests/Interaction',
-  component: FieldText,
+const meta: Meta<typeof FieldCombo> = {
+  title: 'Components/Fields/FieldCombo/Tests/Interaction',
+  component: FieldCombo,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   render: () => <InteractionScenario />,
 };
 
 export default meta;
-type Story = StoryObj<typeof FieldText>;
+type Story = StoryObj<typeof FieldCombo>;
 
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
@@ -86,8 +86,8 @@ export const InteractionTest: Story = {
     onClearButtonClick.mockClear();
     onBlur.mockClear();
     const canvas = within(canvasElement);
-    const root = canvas.getByTestId(STORY_TEST_IDS.fieldText.editableRoot);
-    const input = within(root).getByTestId(TEST_IDS.fieldTextInput);
+    const root = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.editableRoot);
+    const input = within(root).getByTestId(TEST_IDS.fieldComboInput);
 
     await step('renders root and native input', async () => {
       await expect(root).toBeVisible();
@@ -118,23 +118,23 @@ export const InteractionTest: Story = {
     });
 
     await step('disabled field hides the clear button despite a non-empty value', async () => {
-      const disabledRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.disabledRoot);
+      const disabledRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.disabledRoot);
       await expect(within(disabledRoot).queryByTestId(CLEAR_BUTTON_TEST_ID)).toBeNull();
     });
 
     await step('readonly fields (plain and prefix/postfix) expose a copy button', async () => {
       // onCopyButtonClick гейтится успешной записью в буфер; в jsdom execCommand('copy') = false,
       // колбэк не вызывается. Реальный copy-путь + точная композиция textToCopy='$100USD' проверяются
-      // read-back'ом в __test__/FieldText/interaction.spec.ts. Здесь — readonly-контракт: copy показан.
-      const readonlyRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.readonlyRoot);
-      const prefixedRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.prefixedReadonlyRoot);
+      // read-back'ом в __test__/FieldCombo/interaction.spec.ts. Здесь — readonly-контракт: copy показан.
+      const readonlyRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.readonlyRoot);
+      const prefixedRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.prefixedReadonlyRoot);
       await expect(within(readonlyRoot).getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
       await expect(within(prefixedRoot).getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
     });
 
     await step('onBlur: skipped when focus moves to the field’s own clear button', async () => {
-      const blurGuardRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.blurGuardRoot);
-      const guardInput = within(blurGuardRoot).getByTestId(TEST_IDS.fieldTextInput);
+      const blurGuardRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.blurGuardRoot);
+      const guardInput = within(blurGuardRoot).getByTestId(TEST_IDS.fieldComboInput);
       onBlur.mockClear();
       await userEvent.click(guardInput);
       await expect(guardInput).toHaveFocus();
@@ -144,8 +144,8 @@ export const InteractionTest: Story = {
     });
 
     await step('onBlur: fired when focus leaves to an unrelated element', async () => {
-      const blurGuardRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.blurGuardRoot);
-      const guardInput = within(blurGuardRoot).getByTestId(TEST_IDS.fieldTextInput);
+      const blurGuardRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.blurGuardRoot);
+      const guardInput = within(blurGuardRoot).getByTestId(TEST_IDS.fieldComboInput);
       onBlur.mockClear();
       await userEvent.type(guardInput, 'x');
       await expect(guardInput).toHaveFocus();

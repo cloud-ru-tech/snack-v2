@@ -13,7 +13,13 @@ import {
   screenshotRegion,
 } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, FIELD_TIME_STORIES, TEST_IDS, TIME_PICKER_CONTENT_TEST_ID } from './helpers';
+import {
+  buildStoryOptions,
+  FIELD_TIME_STORIES,
+  TEST_IDS,
+  TIME_PICKER_CONTENT_TEST_ID,
+  TIME_PICKER_ROOT_TEST_ID,
+} from './helpers';
 
 // Внутренние id мобильной поверхности @ds/calendar (BottomSheet + барабан). Дублируем строками:
 // прямой импорт из @ds/calendar тянет CSS-modules и ломает playwright-compile.
@@ -68,7 +74,14 @@ test.describe('FieldTime — visual regression', () => {
     await root.getByTestId(TEST_IDS.fieldTimeIcon).click();
     const content = getByTestId(TIME_PICKER_CONTENT_TEST_ID);
     await expect(content).toBeVisible();
-    const png = await screenshotRegion(page, [root, content], 16, SCREENSHOT_DEFAULT_OPTS);
+    // Кадр по root пикера, а не по content: футер Current/Apply лежит в `bottomBar` дропдауна
+    // сиблингом content'а и в его bbox не входит.
+    const png = await screenshotRegion(
+      page,
+      [root, getByTestId(TIME_PICKER_ROOT_TEST_ID)],
+      16,
+      SCREENSHOT_DEFAULT_OPTS,
+    );
     expect(png).toMatchSnapshot('open-picker.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 

@@ -21,9 +21,10 @@ import {
 // к этому значению и прижимается к последнему чипу (паритет с легаси BASE_MIN_WIDTH).
 const SEARCH_INPUT_PLUG_MIN_WIDTH = 4;
 
+import { FieldDecorator, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
+
 import { TEST_IDS } from '../../constants';
 import { useAdaptiveAutoFocus } from '../../hooks';
-import { FieldDecorator, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import {
   copyTextToClipboard,
   getAcrylicProps,
@@ -370,7 +371,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   }, [onCopyButtonClick, valueToCopy]);
 
   // Clear/Copy как roving-postfix: ArrowRight из input (курсор в конце или readonly) уводит на
-  // кнопку, ArrowLeft — обратно в поле. Паритет с FieldText. `inputElementRef` — реальный input,
+  // кнопку, ArrowLeft — обратно в поле. Паритет с FieldCombo. `inputElementRef` — реальный input,
   // т.к. `inputRef` клобберится popover'ом.
   const clearButtonSettings = useClearButton({
     clearButtonRef,

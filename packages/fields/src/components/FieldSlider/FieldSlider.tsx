@@ -1,4 +1,5 @@
 import { Button } from '@ds/button';
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { INPUT_MODE, InputPrivate, TYPE } from '@ds/input-private';
 import { Slider, SliderProps } from '@ds/slider';
@@ -21,7 +22,6 @@ import {
 
 import { TEST_IDS } from '../../constants';
 import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';

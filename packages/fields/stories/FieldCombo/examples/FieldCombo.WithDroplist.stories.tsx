@@ -1,4 +1,4 @@
-import { FieldText, SIZE, TEST_IDS } from '@ds/fields';
+import { FieldCombo, SIZE, TEST_IDS } from '@ds/fields';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -9,19 +9,19 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } 
 import { TEST_IDS as STORY_TEST_IDS } from '../testIds';
 
 const ITEMS = [
-  { id: '1', content: { label: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-1` },
-  { id: '2', content: { label: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-2` },
-  { id: '3', content: { label: 'Content text 3' }, 'data-test-id': `${STORY_TEST_IDS.fieldText.droplistItem}-3` },
+  { id: '1', content: { label: 'Content text 1' }, 'data-test-id': `${STORY_TEST_IDS.fieldCombo.droplistItem}-1` },
+  { id: '2', content: { label: 'Content text 2' }, 'data-test-id': `${STORY_TEST_IDS.fieldCombo.droplistItem}-2` },
+  { id: '3', content: { label: 'Content text 3' }, 'data-test-id': `${STORY_TEST_IDS.fieldCombo.droplistItem}-3` },
 ];
 
-const meta: Meta<typeof FieldText> = {
-  title: 'Components/Fields/FieldText/Examples/WithDroplist',
-  component: FieldText,
+const meta: Meta<typeof FieldCombo> = {
+  title: 'Components/Fields/FieldCombo/Examples/WithDroplist',
+  component: FieldCombo,
   parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
-type Story = StoryObj<typeof FieldText>;
+type Story = StoryObj<typeof FieldCombo>;
 
 function WithDroplistDemo() {
   const [beforeValue, setBeforeValue] = useState('');
@@ -38,8 +38,8 @@ function WithDroplistDemo() {
         <DemoHint>Встроенный выпадающий список в слоте-кнопке слева.</DemoHint>
         <DemoActions align='center'>
           <DemoResizable width='narrow'>
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.droplistBeforeRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.droplistBeforeRoot}
               size={SIZE.S}
               label='Label text'
               required
@@ -53,7 +53,7 @@ function WithDroplistDemo() {
               length={{ current: beforeValue.length, max: 20 }}
               elementBefore={{
                 action: <PlaceholderSVG />,
-                'data-test-id': STORY_TEST_IDS.fieldText.droplistBeforeButton,
+                'data-test-id': STORY_TEST_IDS.fieldCombo.droplistBeforeButton,
                 droplist: {
                   items: ITEMS,
                   closeDroplistOnItemClick: true,
@@ -77,8 +77,8 @@ function WithDroplistDemo() {
         <DemoHint>Встроенный выпадающий список в слоте-кнопке справа.</DemoHint>
         <DemoActions align='center'>
           <DemoResizable width='narrow'>
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.droplistAfterRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.droplistAfterRoot}
               size={SIZE.S}
               label='Label text'
               required
@@ -92,7 +92,7 @@ function WithDroplistDemo() {
               showCopyButton={false}
               elementAfter={{
                 action: <PlaceholderSVG />,
-                'data-test-id': STORY_TEST_IDS.fieldText.droplistAfterButton,
+                'data-test-id': STORY_TEST_IDS.fieldCombo.droplistAfterButton,
                 droplist: {
                   items: ITEMS,
                   placement: 'bottom-end',
@@ -117,8 +117,8 @@ function WithDroplistDemo() {
         <DemoHint>Слот с множественным выбором (`selection.mode = multiple`); список остаётся открытым.</DemoHint>
         <DemoActions align='center'>
           <DemoResizable width='narrow'>
-            <FieldText
-              data-test-id={STORY_TEST_IDS.fieldText.droplistMultipleRoot}
+            <FieldCombo
+              data-test-id={STORY_TEST_IDS.fieldCombo.droplistMultipleRoot}
               size={SIZE.S}
               label='Label text'
               caption='Caption'
@@ -129,7 +129,7 @@ function WithDroplistDemo() {
               showCopyButton={false}
               elementAfter={{
                 action: <PlaceholderSVG />,
-                'data-test-id': STORY_TEST_IDS.fieldText.droplistMultipleButton,
+                'data-test-id': STORY_TEST_IDS.fieldCombo.droplistMultipleButton,
                 droplist: {
                   items: ITEMS,
                   placement: 'bottom-end',
@@ -162,9 +162,9 @@ export const WithDroplist: Story = {
   render: () => <WithDroplistDemo />,
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const beforeRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.droplistBeforeRoot);
-    const afterRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.droplistAfterRoot);
-    const multipleRoot = canvas.getByTestId(STORY_TEST_IDS.fieldText.droplistMultipleRoot);
+    const beforeRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.droplistBeforeRoot);
+    const afterRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.droplistAfterRoot);
+    const multipleRoot = canvas.getByTestId(STORY_TEST_IDS.fieldCombo.droplistMultipleRoot);
 
     await step('renders all droplist-bearing fields', async () => {
       await expect(beforeRoot).toBeVisible();
@@ -173,15 +173,15 @@ export const WithDroplist: Story = {
     });
 
     await step('elementBefore: click trigger opens portal → click item fills input and refocuses', async () => {
-      await userEvent.click(canvas.getByTestId(STORY_TEST_IDS.fieldText.droplistBeforeButton));
-      const itemId = `${STORY_TEST_IDS.fieldText.droplistItem}-1`;
+      await userEvent.click(canvas.getByTestId(STORY_TEST_IDS.fieldCombo.droplistBeforeButton));
+      const itemId = `${STORY_TEST_IDS.fieldCombo.droplistItem}-1`;
       await waitFor(() => expect(queryDroplistItem(itemId)).not.toBeNull());
       const item = queryDroplistItem(itemId);
       if (item) {
         await userEvent.click(item);
       }
 
-      const input = within(beforeRoot).getByTestId(TEST_IDS.fieldTextInput) as HTMLInputElement;
+      const input = within(beforeRoot).getByTestId(TEST_IDS.fieldComboInput) as HTMLInputElement;
       await waitFor(() => expect(input.value).toBe('Content text 1'));
       // returnFocus возвращает фокус в input через setTimeout(0) — ждём явно.
       await waitFor(() => expect(input).toHaveFocus());
@@ -190,8 +190,8 @@ export const WithDroplist: Story = {
     await step('elementAfter multiple: select two items, value reflects 2 selected, list stays open', async () => {
       // closeDroplistOnItemClick: false + selection.mode = 'multiple' — упражняет ветку
       // wrapSelection(multiple) + returnFocus, список не закрывается между кликами.
-      await userEvent.click(canvas.getByTestId(STORY_TEST_IDS.fieldText.droplistMultipleButton));
-      const firstId = `${STORY_TEST_IDS.fieldText.droplistItem}-1`;
+      await userEvent.click(canvas.getByTestId(STORY_TEST_IDS.fieldCombo.droplistMultipleButton));
+      const firstId = `${STORY_TEST_IDS.fieldCombo.droplistItem}-1`;
       await waitFor(() => expect(queryDroplistItem(firstId)).not.toBeNull());
 
       const firstItem = queryDroplistItem(firstId);
@@ -199,14 +199,14 @@ export const WithDroplist: Story = {
         await userEvent.click(firstItem);
       }
       // Список остаётся открытым — второй пункт по-прежнему в DOM.
-      const secondId = `${STORY_TEST_IDS.fieldText.droplistItem}-2`;
+      const secondId = `${STORY_TEST_IDS.fieldCombo.droplistItem}-2`;
       await waitFor(() => expect(queryDroplistItem(secondId)).not.toBeNull());
       const secondItem = queryDroplistItem(secondId);
       if (secondItem) {
         await userEvent.click(secondItem);
       }
 
-      const input = within(multipleRoot).getByTestId(TEST_IDS.fieldTextInput) as HTMLInputElement;
+      const input = within(multipleRoot).getByTestId(TEST_IDS.fieldComboInput) as HTMLInputElement;
       await waitFor(() => expect(input.value).toBe('2 выбрано'));
       // closeDroplistOnItemClick: false → список не закрылся, оба пункта ещё в портале.
       await expect(queryDroplistItem(firstId)).not.toBeNull();

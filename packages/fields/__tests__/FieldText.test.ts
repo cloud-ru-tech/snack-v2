@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { VALIDATION_STATE } from '../src/components/FieldDecorator/constants';
+import { VALIDATION_STATE } from '@ds/field-decorator';
 import {
   copyTextToClipboard,
   getAcrylicAppearance,

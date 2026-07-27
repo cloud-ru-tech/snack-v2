@@ -1,12 +1,13 @@
-import { FieldText, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
+import { FieldCombo, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
+import { CalendarSVG, SearchSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-const meta: Meta<typeof FieldText> = {
-  title: 'Components/Fields/FieldText',
-  component: FieldText,
+const meta: Meta<typeof FieldCombo> = {
+  title: 'Components/Fields/FieldCombo',
+  component: FieldCombo,
   parameters: { layout: 'fullscreen' },
   args: {
     label: 'Label',
@@ -19,14 +20,19 @@ const meta: Meta<typeof FieldText> = {
     showHintIcon: true,
     required: false,
     background: true,
+    outline: true,
     disabled: false,
     readonly: false,
     showClearButton: true,
     showCopyButton: true,
+    prefix: '$',
+    postfix: 'USD',
     maxLength: 40,
     allowMoreThanMaxLength: false,
+    iconBefore: 'search',
+    iconAfter: 'none',
     defaultValue: '',
-    'data-test-id': TEST_IDS.fieldText,
+    'data-test-id': TEST_IDS.fieldCombo,
   },
   argTypes: {
     size: { control: 'radio', options: Object.values(SIZE) },
@@ -35,6 +41,16 @@ const meta: Meta<typeof FieldText> = {
     showClearButton: { if: { arg: 'readonly', neq: true } },
     // Кнопка копирования появляется только в readonly-поле с непустым значением.
     showCopyButton: { if: { arg: 'readonly', eq: true } },
+    iconBefore: {
+      control: 'select',
+      options: ['none', 'search', 'calendar'],
+      mapping: { none: undefined, search: <SearchSVG />, calendar: <CalendarSVG /> },
+    },
+    iconAfter: {
+      control: 'select',
+      options: ['none', 'search', 'calendar'],
+      mapping: { none: undefined, search: <SearchSVG />, calendar: <CalendarSVG /> },
+    },
     labelTooltip: {
       control: 'select',
       options: ['none', 'hint'],
@@ -48,10 +64,10 @@ const meta: Meta<typeof FieldText> = {
     <DemoPage>
       <DemoPanel width='narrow'>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Текстовое поле без слотов: заголовок, подсказка, значение и кнопки очистки и копирования.</DemoHint>
+        <DemoHint>Текстовое поле с настраиваемой валидацией, размером и слотами.</DemoHint>
         <DemoActions block>
           <DemoResizable width='narrow'>
-            <FieldText {...args} />
+            <FieldCombo {...args} />
           </DemoResizable>
         </DemoActions>
       </DemoPanel>
@@ -60,11 +76,11 @@ const meta: Meta<typeof FieldText> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof FieldText>;
+type Story = StoryObj<typeof FieldCombo>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByTestId(TEST_IDS.fieldText)).toBeVisible();
+    await expect(within(canvasElement).getByTestId(TEST_IDS.fieldCombo)).toBeVisible();
   },
 };

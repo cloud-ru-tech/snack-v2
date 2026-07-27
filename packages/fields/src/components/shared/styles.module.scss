@@ -114,10 +114,10 @@ $sizes: 's', 'm', 'l';
     opacity: 1;
   }
 
-  // На disabled-поле `.fieldWrapper` вешает opacity 0.4, а placeholder уже textDisabled (α 0.4) —
-  // вместе ~0.16, placeholder превращается в бледный «призрак». Прячем его целиком, как в @ds/search
-  // (единый паттерн disabled в DS), а не оставляем едва видимым.
-  // TODO: выяснить у дизайнера ожидаемое поведение placeholder в disabled (скрывать / приглушать).
+  // Figma-паритет: у disabled-вариантов полей слой placeholder отсутствует (disabled+empty
+  // не рендерит текст-подсказку). Прячем placeholder целиком, как в @ds/search — единый паттерн
+  // disabled в DS. Иначе на `.fieldWrapper` с opacity 0.4 поверх textDisabled (α 0.4) он остаётся
+  // бледным «призраком».
   &:disabled::placeholder {
     visibility: hidden;
   }
@@ -210,7 +210,11 @@ $sizes: 's', 'm', 'l';
       .lineWrapper {
         display: none;
         width: 0;
-        padding: 0;
+
+        // Разделитель между сегментом и полем не доходит до края контейнера на толщину рамки
+        // (Figma: lineWrapper paddingTop/Bottom = line/field/strokeWeight, линия 30 при поле 32).
+        padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'elementWrapper', 'lineWrapper', 'padding')
+          0;
       }
 
       .focusLayer {
@@ -329,22 +333,22 @@ $sizes: 's', 'm', 'l';
             display: initial;
           }
 
-          // Акцентная рамка по фокусу — только в нейтральном состоянии (default/valid);
-          // в error/warning/success рамка остаётся нейтральной, сигнал валидации — тонированный фон.
-          &:not([data-validation-state='error'], [data-validation-state='warning'], [data-validation-state='success']) {
-            & > .backgroundWrapper > .borderStateLayer[data-state='regularBorder'] {
-              border-color: base.$sn-theme-color-primary-accent;
-              border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
-            }
+          // Внутренний бордер поля по фокусу — accent (Figma: fieldWrapper stroke, 1px, full opacity).
+          // Дефолт/valid → primary-accent; error/warning/success → цвет accent'а валидации
+          // (перекрытия — сразу после size-цикла, на равной специфичности по порядку источника).
+          & > .backgroundWrapper > .borderStateLayer[data-state='regularBorder'] {
+            border-color: base.$sn-theme-color-primary-accent;
+            border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
           }
         }
       }
     }
   }
 
-  // Состояния валидации (error/warning/success) сигнализируются тонировкой acrylic-фона
-  // (см. getAcrylicProps) + цветом подсказки/иконки в FieldDecorator. Рамка остаётся нейтральной —
-  // паритет с Figma (border не перекрашивается на валидации).
+  // Состояния валидации сигнализируются тонировкой acrylic-фона (см. getAcrylicProps) + цветом
+  // подсказки/иконки в FieldDecorator. В ПОКОЕ бордер нейтральный (паритет с Figma). По ФОКУСУ
+  // внутренний бордер перекрашивается в accent валидации — правила ниже, после readonly-блока
+  // (порядок источника + no-descending-specificity).
 
   &[data-disabled='true'] {
     cursor: not-allowed;
@@ -371,6 +375,29 @@ $sizes: 's', 'm', 'l';
         }
       }
     }
+  }
+
+  // Внутренний бордер по фокусу в состояниях валидации — accent валидации (Figma: focused-вариант,
+  // fieldWrapper stroke = red/yellow/green-accent, 1px, full opacity). Идёт последним среди правил
+  // `.borderStateLayer[data-state='regularBorder']` — перекрывает primary-accent из size-цикла по
+  // порядку источника и не нарушает no-descending-specificity. `:not([data-disabled])` держит
+  // специфичность вровень с in-loop-правилом фокуса.
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='error']:not([data-disabled='true'])
+    > .backgroundWrapper
+    > .borderStateLayer[data-state='regularBorder'] {
+    border-color: base.$sn-theme-color-red-accent;
+  }
+
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='warning']:not([data-disabled='true'])
+    > .backgroundWrapper
+    > .borderStateLayer[data-state='regularBorder'] {
+    border-color: base.$sn-theme-color-yellow-accent;
+  }
+
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='success']:not([data-disabled='true'])
+    > .backgroundWrapper
+    > .borderStateLayer[data-state='regularBorder'] {
+    border-color: base.$sn-theme-color-green-accent;
   }
 }
 

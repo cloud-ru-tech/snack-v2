@@ -39,7 +39,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -66,7 +66,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -120,7 +120,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -134,9 +134,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -232,7 +235,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -249,7 +252,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -362,6 +365,22 @@
           }
         },
         "own": true
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "InputMode": {
         "kind": "union",
@@ -549,11 +568,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -589,6 +607,1126 @@
           "valid",
           "warning"
         ],
+        "own": false
+      }
+    }
+  },
+  "FieldCombo": {
+    "displayName": "FieldCombo",
+    "propsTypeName": "FieldComboProps",
+    "props": {
+      "allowMoreThanMaxLength": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Разрешить ввод свыше `maxLength` символов (счётчик продолжит расти)."
+      },
+      "autoComplete": {
+        "type": "string | boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли автокомплит для поля"
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Включен ли авто-фокус для поля"
+      },
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Фон поля (acrylic)"
+      },
+      "caption": {
+        "type": "string",
+        "required": false,
+        "description": "Вторичная подпись справа"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс\nCSS-класс корня `FieldDecorator`"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Начальное значение (uncontrolled-режим)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Поле выключено\nЯвляется ли поле деактивированным"
+      },
+      "elementAfter": {
+        "type": "FieldElementSlot",
+        "required": false,
+        "description": "Слот справа (кнопка / селект с опциональным выпадающим списком)",
+        "typeRefs": [
+          "FieldElementButtonProps",
+          "FieldElementSlot"
+        ]
+      },
+      "elementBefore": {
+        "type": "FieldElementSlot",
+        "required": false,
+        "description": "Слот слева (кнопка / селект с опциональным выпадающим списком)",
+        "typeRefs": [
+          "FieldElementButtonProps",
+          "FieldElementSlot"
+        ]
+      },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
+      },
+      "fieldClassName": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс оболочки поля ввода"
+      },
+      "hint": {
+        "type": "string",
+        "required": false,
+        "description": "Подсказка"
+      },
+      "iconAfter": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка справа от строки ввода"
+      },
+      "iconBefore": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка слева от строки ввода"
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута id"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент"
+      },
+      "innerTestIds": {
+        "type": "{ shell?: string; input?: string; } | undefined",
+        "required": false,
+        "description": "Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые\nрендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты,\nа не слоты `FieldCombo`."
+      },
+      "inputMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "description": "Режим работы экранной клавиатуры",
+        "typeRefs": [
+          "InputMode"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Заголовок"
+      },
+      "labelFor": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-атрибут `for` для `<label>`"
+      },
+      "labelTooltip": {
+        "type": "QuestionTooltipProps",
+        "required": false,
+        "description": "Подсказка (question-tooltip) у заголовка",
+        "typeRefs": [
+          "QuestionTooltipProps"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "required": false,
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "typeRefs": [
+          "FieldLayoutPresets"
+        ]
+      },
+      "length": {
+        "type": "FieldLength",
+        "required": false,
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
+      },
+      "max": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "maxLength": {
+        "type": "number",
+        "required": false,
+        "description": "Максимальная длина вводимого значения"
+      },
+      "min": {
+        "type": "number",
+        "required": false,
+        "description": "Минимальное значение поля"
+      },
+      "name": {
+        "type": "string",
+        "required": false,
+        "description": "Значение html-атрибута name"
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки потери фокуса"
+      },
+      "onChange": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбек смены значения"
+      },
+      "onClearButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек клика по кнопке очистки"
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onCopyButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек после копирования значения в буфер"
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки получения фокуса"
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки начала нажатия клавиши клавиатуры"
+      },
+      "onMouseDown": {
+        "type": "MouseEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "onPaste": {
+        "type": "ClipboardEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек обработки вставки значения"
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Разделитель между основным полем и слотами `elementBefore` / `elementAfter`"
+      },
+      "pattern": {
+        "type": "string",
+        "required": false,
+        "description": "Регулярное выражение валидного инпута"
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Значение плейсхолдера"
+      },
+      "postfix": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Постфикс (текст или нода)"
+      },
+      "prefix": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Префикс (текст или нода)"
+      },
+      "prefixIcon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Ведущая иконка.\n@deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба."
+      },
+      "readonly": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только для чтения\nЯвляется ли поле доступным только для чтения"
+      },
+      "required": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать знак обязательности `*`"
+      },
+      "showClearButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать кнопку очистки значения (как в Search)"
+      },
+      "showCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`)"
+      },
+      "showHintIcon": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображение статус-иконки у подсказки"
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "spellCheck": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Значение атрибута spellcheck (проверка орфографии)"
+      },
+      "step": {
+        "type": "string | number",
+        "required": false,
+        "description": "Максимальное значение поля"
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Значение атрибута tab-index"
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "email",
+          "number",
+          "password",
+          "tel",
+          "text",
+          "url"
+        ],
+        "description": "Тип инпута",
+        "typeRefs": [
+          "Type"
+        ]
+      },
+      "validationState": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "success",
+          "valid",
+          "warning"
+        ],
+        "defaultValue": "default",
+        "description": "Состояние валидации",
+        "typeRefs": [
+          "ValidationState"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Значение поля (controlled-режим)"
+      }
+    },
+    "relatedTypes": {
+      "ButtonSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "own": false
+      },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterTitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
+      "EmptyState": {
+        "kind": "interface",
+        "props": {
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+          },
+          "dataFiltered": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии данных",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии результатов поиска или фильтров",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FieldElementButtonProps": {
+        "kind": "interface",
+        "props": {
+          "action": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое (иконка и т.д.)"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер)"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "data-test-id кнопки-слота"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Деактивировано"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Обработчик клика"
+          },
+          "onKeyDown": {
+            "type": "((event: KeyboardEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Обработчик нажатия клавиш (передаётся обёрткой `Droplist` для ArrowDown/ArrowUp)"
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Контролируемое состояние раскрытия (используется обёрткой `FieldElementButtonList`).\nЕсли задано — шеврон отражает это значение; иначе кнопка управляет шевроном сама."
+          },
+          "size": {
+            "type": "ButtonSize | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер (совпадает с размером поля)",
+            "typeRefs": [
+              "ButtonSize"
+            ]
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле)"
+          },
+          "variant": {
+            "type": "\"before\" | \"after\"",
+            "required": true,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Положение относительно поля",
+            "typeRefs": [
+              "Variant"
+            ]
+          },
+          "withDropdownList": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать шеврон раскрытия"
+          }
+        },
+        "own": true
+      },
+      "FieldElementDroplistProps": {
+        "kind": "interface",
+        "props": {
+          "closeDroplistOnItemClick": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
+          },
+          "items": {
+            "type": "Item[]",
+            "required": true,
+            "description": "Основные элементы списка",
+            "typeRefs": [
+              "BaseItemWithoutNonGroup",
+              "CommonGroupItem",
+              "Item",
+              "ScrollProps"
+            ]
+          },
+          "onOpenChange": {
+            "type": "((open: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек смены состояния раскрытия"
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Контролируемое состояние раскрытия"
+          },
+          "pinBottom": {
+            "type": "Item[] | undefined",
+            "required": false,
+            "description": "Элементы списка, закрепленные снизу",
+            "typeRefs": [
+              "BaseItemWithoutNonGroup",
+              "CommonGroupItem",
+              "Item",
+              "ScrollProps"
+            ]
+          },
+          "pinTop": {
+            "type": "Item[] | undefined",
+            "required": false,
+            "description": "Элементы списка, закрепленные сверху",
+            "typeRefs": [
+              "BaseItemWithoutNonGroup",
+              "CommonGroupItem",
+              "Item",
+              "ScrollProps"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollToSelectedItem": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+          },
+          "search": {
+            "type": "SearchState | undefined",
+            "required": false,
+            "description": "Настройки поисковой строки",
+            "typeRefs": [
+              "SearchState"
+            ]
+          },
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
+          },
+          "widthStrategy": {
+            "type": "PopoverWidthStrategy | undefined",
+            "required": false,
+            "values": [
+              "auto",
+              "eq",
+              "gte"
+            ],
+            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
+            "typeRefs": [
+              "PopoverWidthStrategy"
+            ]
+          }
+        },
+        "own": true
+      },
+      "FieldElementSlot": {
+        "kind": "interface",
+        "props": {
+          "action": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое (иконка и т.д.)"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер)"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "data-test-id кнопки-слота"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Деактивировано"
+          },
+          "droplist": {
+            "type": "FieldElementDroplistProps | undefined",
+            "required": false,
+            "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
+            "typeRefs": [
+              "DroplistListProps",
+              "DroplistMobileSlots",
+              "EmptyState",
+              "FieldElementDroplistProps",
+              "PublicListContextType",
+              "ScrollProps",
+              "SelectionState"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Обработчик клика"
+          },
+          "size": {
+            "type": "ButtonSize | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер (совпадает с размером поля)",
+            "typeRefs": [
+              "ButtonSize"
+            ]
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле)"
+          },
+          "withDropdownList": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать шеврон раскрытия"
+          }
+        },
+        "own": true
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
+      "InputMode": {
+        "kind": "union",
+        "values": [
+          "decimal",
+          "email",
+          "none",
+          "numeric",
+          "search",
+          "tel",
+          "text",
+          "url"
+        ],
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "PublicListContextType": {
+        "kind": "interface",
+        "props": {
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onInitialized": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "SelectionState": {
+        "kind": "interface",
+        "props": {
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      },
+      "Type": {
+        "kind": "union",
+        "values": [
+          "agentic",
+          "critical",
+          "help",
+          "information",
+          "security",
+          "warning"
+        ],
+        "own": false
+      },
+      "ValidationState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error",
+          "success",
+          "valid",
+          "warning"
+        ],
+        "own": false
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
         "own": true
       }
     }
@@ -619,7 +1757,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -657,7 +1795,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -709,7 +1847,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -723,9 +1861,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "locale": {
         "type": "Intl.Locale",
@@ -822,7 +1963,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -839,7 +1980,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "showHolidays": {
         "type": "boolean",
@@ -950,6 +2091,22 @@
           }
         },
         "own": true
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "Placement": {
         "kind": "union",
@@ -1166,11 +2323,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -1194,329 +2350,7 @@
           "valid",
           "warning"
         ],
-        "own": true
-      }
-    }
-  },
-  "FieldDecorator": {
-    "displayName": "FieldDecorator",
-    "propsTypeName": "FieldDecoratorProps",
-    "props": {
-      "caption": {
-        "type": "string",
-        "required": false,
-        "description": "Подпись"
-      },
-      "children": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Содержимое"
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "disabled": {
-        "type": "boolean",
-        "required": false,
-        "description": "Поле выключено"
-      },
-      "error": {
-        "type": "string",
-        "required": false,
-        "description": "Ошибка"
-      },
-      "hint": {
-        "type": "string",
-        "required": false,
-        "description": "Подсказка"
-      },
-      "innerRef": {
-        "type": "Ref<HTMLDivElement>",
-        "required": false,
-        "description": "Ref на корневой DOM-элемент"
-      },
-      "label": {
-        "type": "string",
-        "required": false,
-        "description": "Заголовок"
-      },
-      "labelFor": {
-        "type": "string",
-        "required": false,
-        "description": "HTML-атрибут `for` для `<label>`"
-      },
-      "labelTooltip": {
-        "type": "QuestionTooltipProps",
-        "required": false,
-        "description": "Подсказка для заголовка",
-        "typeRefs": [
-          "QuestionTooltipProps"
-        ]
-      },
-      "length": {
-        "type": "{ current: number; max?: number; }",
-        "required": false,
-        "description": "Допустимая длина текста"
-      },
-      "readonly": {
-        "type": "boolean",
-        "required": false,
-        "description": "Только для чтения"
-      },
-      "required": {
-        "type": "boolean",
-        "required": false,
-        "description": "Обязательное поле"
-      },
-      "showHintIcon": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отображение иконки у подсказки"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "defaultValue": "m",
-        "description": "Размер",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "validationState": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "default",
-          "error",
-          "success",
-          "valid",
-          "warning"
-        ],
-        "defaultValue": "default",
-        "description": "Состояние валидации",
-        "typeRefs": [
-          "ValidationState"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "ChildrenFunction": {
-        "kind": "alias",
-        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "own": false
-      },
-      "QuestionTooltipProps": {
-        "kind": "interface",
-        "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "tabIndex": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Tab index для кнопки-триггера"
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "tooltipClassname": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс контейнера подсказки"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerLabel": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Доступное имя для иконки-триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "own": true
-      },
-      "Trigger": {
-        "kind": "union",
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
-        ],
-        "own": false
-      },
-      "ValidationState": {
-        "kind": "union",
-        "values": [
-          "default",
-          "error",
-          "success",
-          "valid",
-          "warning"
-        ],
-        "own": true
       }
     }
   },
@@ -1708,7 +2542,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -1739,7 +2573,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -1798,15 +2632,18 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -1897,7 +2734,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showCopyButton": {
         "type": "boolean",
@@ -1914,7 +2751,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -1973,6 +2810,22 @@
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
         "own": false
       },
       "InputMode": {
@@ -2161,11 +3014,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -2189,7 +3041,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -2223,7 +3075,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "chips": {
         "type": "boolean",
@@ -2290,7 +3142,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "errorDataState": {
         "type": "EmptyStateProps",
@@ -2365,7 +3217,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -2379,9 +3231,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "limitedScrollHeight": {
         "type": "boolean",
@@ -2528,7 +3383,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "resetSearchOnOptionSelection": {
         "type": "boolean",
@@ -2581,7 +3436,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -3191,12 +4046,12 @@
           "caption": {
             "type": "string | undefined",
             "required": false,
-            "description": "Подпись"
+            "description": "Вторичная подпись справа"
           },
           "children": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": true,
-            "description": "Содержимое"
+            "description": "Содержимое (декорируемое поле)"
           },
           "className": {
             "type": "string | undefined",
@@ -3215,7 +4070,7 @@
           "error": {
             "type": "string | undefined",
             "required": false,
-            "description": "Ошибка"
+            "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
           },
           "hint": {
             "type": "string | undefined",
@@ -3240,15 +4095,18 @@
           "labelTooltip": {
             "type": "QuestionTooltipProps | undefined",
             "required": false,
-            "description": "Подсказка для заголовка",
+            "description": "Подсказка (question-tooltip) у заголовка",
             "typeRefs": [
               "QuestionTooltipProps"
             ]
           },
           "length": {
-            "type": "{ current: number; max?: number; } | undefined",
+            "type": "FieldLength | undefined",
             "required": false,
-            "description": "Допустимая длина текста"
+            "description": "Счётчик длины `current/max`",
+            "typeRefs": [
+              "FieldLength"
+            ]
           },
           "readonly": {
             "type": "boolean | undefined",
@@ -3258,12 +4116,12 @@
           "required": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Обязательное поле"
+            "description": "Показать знак обязательности `*`"
           },
           "showHintIcon": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отображение иконки у подсказки"
+            "description": "Отображение статус-иконки у подсказки"
           },
           "size": {
             "type": "Size | undefined",
@@ -3294,7 +4152,23 @@
             ]
           }
         },
-        "own": true
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "IconPredefinedProps": {
         "kind": "interface",
@@ -3350,9 +4224,11 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
+              "3xl",
               "5xl",
               "l",
-              "m"
+              "m",
+              "s"
             ],
             "description": "Размер",
             "typeRefs": [
@@ -3390,11 +4266,6 @@
             "required": false
           }
         },
-        "own": false
-      },
-      "ItemProps": {
-        "kind": "alias",
-        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
         "own": false
       },
       "Placement": {
@@ -3776,11 +4647,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -3804,7 +4674,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -3913,11 +4783,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "ValidationState": {
         "kind": "union",
@@ -3928,7 +4797,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -3950,7 +4819,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -3977,7 +4846,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -4013,7 +4882,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -4027,9 +4896,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "marks": {
         "type": "Record<string | number, ReactNode | MarkObj>",
@@ -4109,7 +4981,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showCopyButton": {
         "type": "boolean",
@@ -4120,7 +4992,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "showScaleBar": {
         "type": "boolean",
@@ -4214,6 +5086,22 @@
         },
         "own": true
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -4386,11 +5274,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "SliderMarks": {
         "kind": "alias",
@@ -4429,7 +5316,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -4457,7 +5344,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "clampTooltipText": {
         "type": "{ min?: ((value: number) => string); max?: ((value: number) => string); } | undefined",
@@ -4487,7 +5374,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -4523,7 +5410,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -4537,9 +5424,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -4610,7 +5500,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showCopyButton": {
         "type": "boolean",
@@ -4621,7 +5511,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -4693,6 +5583,22 @@
         },
         "own": true
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -4865,11 +5771,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "TooltipProps": {
         "kind": "interface",
@@ -5017,13 +5922,14 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
   "FieldText": {
     "displayName": "FieldText",
     "propsTypeName": "FieldTextProps",
+    "description": "Текстовое поле: заголовок, подсказка, плейсхолдер, значение и кнопки очистки и копирования.\nСлоты вокруг строки ввода не поддерживает — для них есть `FieldCombo`.",
     "props": {
       "allowMoreThanMaxLength": {
         "type": "boolean",
@@ -5052,7 +5958,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -5066,7 +5972,6 @@
       "defaultValue": {
         "type": "string",
         "required": false,
-        "defaultValue": "",
         "description": "Начальное значение (uncontrolled-режим)"
       },
       "disabled": {
@@ -5075,28 +5980,10 @@
         "defaultValue": "false",
         "description": "Поле выключено\nЯвляется ли поле деактивированным"
       },
-      "elementAfter": {
-        "type": "FieldElementSlot",
-        "required": false,
-        "description": "Слот справа (кнопка / селект с опциональным выпадающим списком)",
-        "typeRefs": [
-          "FieldElementButtonProps",
-          "FieldElementSlot"
-        ]
-      },
-      "elementBefore": {
-        "type": "FieldElementSlot",
-        "required": false,
-        "description": "Слот слева (кнопка / селект с опциональным выпадающим списком)",
-        "typeRefs": [
-          "FieldElementButtonProps",
-          "FieldElementSlot"
-        ]
-      },
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -5107,16 +5994,6 @@
         "type": "string",
         "required": false,
         "description": "Подсказка"
-      },
-      "iconAfter": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Иконка справа от строки ввода"
-      },
-      "iconBefore": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Иконка слева от строки ввода"
       },
       "id": {
         "type": "string",
@@ -5149,7 +6026,6 @@
       "label": {
         "type": "string",
         "required": false,
-        "defaultValue": "",
         "description": "Заголовок"
       },
       "labelFor": {
@@ -5160,7 +6036,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -5174,9 +6050,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "max": {
         "type": "number",
@@ -5259,21 +6138,6 @@
         "required": false,
         "description": "Значение плейсхолдера"
       },
-      "postfix": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Постфикс (текст или нода)"
-      },
-      "prefix": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Префикс (текст или нода)"
-      },
-      "prefixIcon": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Ведущая иконка.\n@deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба."
-      },
       "readonly": {
         "type": "boolean",
         "required": false,
@@ -5283,7 +6147,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -5300,7 +6164,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -5310,7 +6174,6 @@
           "m",
           "s"
         ],
-        "defaultValue": "m",
         "description": "Размер",
         "typeRefs": [
           "Size"
@@ -5359,7 +6222,6 @@
           "valid",
           "warning"
         ],
-        "defaultValue": "default",
         "description": "Состояние валидации",
         "typeRefs": [
           "ValidationState"
@@ -5372,365 +6234,10 @@
       }
     },
     "relatedTypes": {
-      "ButtonSize": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "own": true
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
-      },
-      "DroplistListProps": {
-        "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
-        "own": false
-      },
-      "DroplistMobileSlots": {
-        "kind": "interface",
-        "props": {
-          "actionButton": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): заголовок шапки."
-          },
-          "onBackButtonClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
-          },
-          "slotAfterTitle": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
-          }
-        },
-        "own": false
-      },
-      "EmptyState": {
-        "kind": "interface",
-        "props": {
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          }
-        },
-        "own": false
-      },
-      "FieldElementButtonProps": {
-        "kind": "interface",
-        "props": {
-          "action": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое (иконка и т.д.)"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер)"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "data-test-id кнопки-слота"
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Деактивировано"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "onClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Обработчик клика"
-          },
-          "onKeyDown": {
-            "type": "((event: KeyboardEvent<HTMLButtonElement>) => void) | undefined",
-            "required": false,
-            "description": "Обработчик нажатия клавиш (передаётся обёрткой `Droplist` для ArrowDown/ArrowUp)"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Контролируемое состояние раскрытия (используется обёрткой `FieldElementButtonList`).\nЕсли задано — шеврон отражает это значение; иначе кнопка управляет шевроном сама."
-          },
-          "size": {
-            "type": "ButtonSize | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер (совпадает с размером поля)",
-            "typeRefs": [
-              "ButtonSize"
-            ]
-          },
-          "tabIndex": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле)"
-          },
-          "variant": {
-            "type": "\"before\" | \"after\"",
-            "required": true,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Положение относительно поля",
-            "typeRefs": [
-              "Variant"
-            ]
-          },
-          "withDropdownList": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показать шеврон раскрытия"
-          }
-        },
-        "own": true
-      },
-      "FieldElementDroplistProps": {
-        "kind": "interface",
-        "props": {
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "onOpenChange": {
-            "type": "((open: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены состояния раскрытия"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Контролируемое состояние раскрытия"
-          },
-          "pinBottom": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные снизу",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "pinTop": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные сверху",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollToSelectedItem": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
-          },
-          "search": {
-            "type": "SearchState | undefined",
-            "required": false,
-            "description": "Настройки поисковой строки",
-            "typeRefs": [
-              "SearchState"
-            ]
-          },
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
-          },
-          "widthStrategy": {
-            "type": "PopoverWidthStrategy | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "eq",
-              "gte"
-            ],
-            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-            "typeRefs": [
-              "PopoverWidthStrategy"
-            ]
-          }
-        },
-        "own": true
-      },
-      "FieldElementSlot": {
-        "kind": "interface",
-        "props": {
-          "action": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое (иконка и т.д.)"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс (передаётся обёрткой `Droplist` / `PopoverPrivate` на триггер)"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "data-test-id кнопки-слота"
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Деактивировано"
-          },
-          "droplist": {
-            "type": "FieldElementDroplistProps | undefined",
-            "required": false,
-            "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
-            "typeRefs": [
-              "DroplistListProps",
-              "DroplistMobileSlots",
-              "EmptyState",
-              "FieldElementDroplistProps",
-              "PublicListContextType",
-              "ScrollProps",
-              "SelectionState"
-            ]
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "onClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Обработчик клика"
-          },
-          "size": {
-            "type": "ButtonSize | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер (совпадает с размером поля)",
-            "typeRefs": [
-              "ButtonSize"
-            ]
-          },
-          "tabIndex": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле)"
-          },
-          "withDropdownList": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показать шеврон раскрытия"
-          }
-        },
-        "own": true
       },
       "FieldLayoutPresets": {
         "kind": "interface",
@@ -5753,6 +6260,22 @@
           }
         },
         "own": true
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "InputMode": {
         "kind": "union",
@@ -5784,39 +6307,6 @@
           "top-end",
           "top-start"
         ],
-        "own": false
-      },
-      "PublicListContextType": {
-        "kind": "interface",
-        "props": {
-          "contentRender": {
-            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер функция основного контента айтема"
-          },
-          "marker": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отображать ли маркер у выбранного элемента списка"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер списка",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false
-          }
-        },
         "own": false
       },
       "QuestionTooltipProps": {
@@ -5970,129 +6460,13 @@
         },
         "own": false
       },
-      "ScrollProps": {
-        "kind": "interface",
-        "props": {
-          "autoscrollTo": {
-            "type": "AutoscrollTo | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "right"
-            ],
-            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
-            "typeRefs": [
-              "AutoscrollTo"
-            ]
-          },
-          "barHideStrategy": {
-            "type": "BarHideStrategy | undefined",
-            "required": false,
-            "values": [
-              "leave",
-              "move",
-              "never",
-              "scroll"
-            ],
-            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
-            "typeRefs": [
-              "BarHideStrategy"
-            ]
-          },
-          "children": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "clickScrolling": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скролить ли по клику в скроллбар."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "onInitialized": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Коллбэк вызывающийся на инициализацию скролла"
-          },
-          "onScroll": {
-            "type": "((event?: Event) => void) | undefined",
-            "required": false,
-            "description": "Колбек события скрола."
-          },
-          "overflow": {
-            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
-            "required": false,
-            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
-          },
-          "paddingAbsolute": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Должны ли паддинги быть абсолютными"
-          },
-          "resize": {
-            "type": "Resize | undefined",
-            "required": false,
-            "values": [
-              "both",
-              "horizontal",
-              "none",
-              "vertical"
-            ],
-            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
-            "typeRefs": [
-              "Resize"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s"
-            ],
-            "description": "Размер скролбаров",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "untouchableScrollbars": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
-          }
-        },
-        "own": false
-      },
-      "SelectionState": {
-        "kind": "interface",
-        "props": {
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          }
-        },
-        "own": false
-      },
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -6128,15 +6502,7 @@
           "valid",
           "warning"
         ],
-        "own": true
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "after",
-          "before"
-        ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -6164,7 +6530,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -6189,7 +6555,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -6250,7 +6616,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -6264,9 +6630,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "maxLength": {
         "type": "number",
@@ -6328,7 +6697,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "resizable": {
         "type": "boolean",
@@ -6351,7 +6720,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "size": {
         "type": "enum",
@@ -6422,6 +6791,22 @@
         },
         "own": true
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -6594,11 +6979,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -6622,7 +7006,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },
@@ -6644,7 +7028,7 @@
       "caption": {
         "type": "string",
         "required": false,
-        "description": "Подпись"
+        "description": "Вторичная подпись справа"
       },
       "className": {
         "type": "string",
@@ -6678,7 +7062,7 @@
       "error": {
         "type": "string",
         "required": false,
-        "description": "Ошибка"
+        "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
       },
       "fieldClassName": {
         "type": "string",
@@ -6714,7 +7098,7 @@
       "labelTooltip": {
         "type": "QuestionTooltipProps",
         "required": false,
-        "description": "Подсказка для заголовка",
+        "description": "Подсказка (question-tooltip) у заголовка",
         "typeRefs": [
           "QuestionTooltipProps"
         ]
@@ -6728,9 +7112,12 @@
         ]
       },
       "length": {
-        "type": "{ current: number; max?: number; }",
+        "type": "FieldLength",
         "required": false,
-        "description": "Допустимая длина текста"
+        "description": "Счётчик длины `current/max`",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "name": {
         "type": "string",
@@ -6785,7 +7172,7 @@
       "required": {
         "type": "boolean",
         "required": false,
-        "description": "Обязательное поле"
+        "description": "Показать знак обязательности `*`"
       },
       "showClearButton": {
         "type": "boolean",
@@ -6802,7 +7189,7 @@
       "showHintIcon": {
         "type": "boolean",
         "required": false,
-        "description": "Отображение иконки у подсказки"
+        "description": "Отображение статус-иконки у подсказки"
       },
       "showSeconds": {
         "type": "boolean",
@@ -6877,6 +7264,22 @@
         },
         "own": true
       },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -7049,11 +7452,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m",
-          "s"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "TimeValue": {
         "kind": "interface",
@@ -7095,7 +7497,7 @@
           "valid",
           "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },

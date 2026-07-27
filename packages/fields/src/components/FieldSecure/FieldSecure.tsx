@@ -1,6 +1,7 @@
 // Имя совпадает с мастер-нодой Figma (`fieldSecure`). Легаси-проп `prefixIcon` ниже
 // сохраняет совместимость с `@snack-uikit/fields` (`FieldSecure.prefixIcon`).
 import { Divider } from '@ds/divider';
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { EyeClosedSVG, EyeSVG } from '@ds/icons/interface/system';
 import { InputPrivate, InputPrivateProps, TYPE, useButtonNavigation } from '@ds/input-private';
 import { Skeleton, WithSkeleton } from '@ds/skeleton';
@@ -10,7 +11,6 @@ import mergeRefs from 'merge-refs';
 import { FocusEvent, forwardRef, KeyboardEvent, ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, FieldElementButton, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 

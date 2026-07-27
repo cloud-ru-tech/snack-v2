@@ -1,9 +1,9 @@
+import { FieldDecoratorProps, ValidationState } from '@ds/field-decorator';
 import { DroplistProps, ItemId, ItemProps } from '@ds/list';
 import { ValueOf } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode } from 'react';
 
 import { FieldLayoutPresets } from '../../hooks';
-import { FieldDecoratorProps, ValidationState } from '../FieldDecorator';
 import { SELECTION_MODE } from './constants';
 
 /** Режим выбора FieldSelect: одно значение или несколько. */

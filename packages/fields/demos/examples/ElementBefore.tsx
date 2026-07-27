@@ -1,4 +1,4 @@
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { CalendarSVG } from '@ds/icons/interface/system';
 import { useState } from 'react';
 
@@ -9,7 +9,7 @@ function formatToday(): string {
 export function ElementBefore() {
   const [value, setValue] = useState('');
   return (
-    <FieldText
+    <FieldCombo
       label='Дата'
       placeholder='12.04.2026'
       elementBefore={{

@@ -81,13 +81,12 @@ export const VisualMatrix: Story = {
         sectionTitle='Mode & state (size=m)'
         firstColumnHeader='Variant'
         columnHeaders={['Render']}
+        cellAlign='start'
         rows={modes.map(({ key, extra }) => ({
           variantLabel: key,
-          cells: [
-            <div key={key} className={styles.narrow}>
-              <FieldDate size={SIZE.M} label='Label' {...(extra as FieldDateProps)} />
-            </div>,
-          ],
+          // Без .narrow: поле занимает всю ширину ячейки — показывает full-width-раскладку
+          // (`fieldWrapper` тянется на 100% контейнера формы).
+          cells: [<FieldDate key={key} size={SIZE.M} label='Label' {...(extra as FieldDateProps)} />],
         }))}
       />
     </div>

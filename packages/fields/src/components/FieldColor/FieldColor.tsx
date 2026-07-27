@@ -3,6 +3,7 @@ import { NO_DRAG_ATTRIBUTE } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { ColorPicker, colorPickerLocale, ColorPickerProps, RawColor } from '@ds/color-picker';
 import { Dropdown } from '@ds/dropdown';
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { InputPrivate, InputPrivateProps, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { useValueControl } from '@ds/utils';
@@ -22,7 +23,6 @@ import {
 
 import { TEST_IDS } from '../../constants';
 import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, getAcrylicProps, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';

@@ -1,7 +1,7 @@
+import { Size } from '@ds/field-decorator';
 import { ItemId, ItemProps } from '@ds/list';
 import { Appearance as TagAppearance, Size as TagSize } from '@ds/tag';
 
-import { Size } from '../FieldDecorator';
 import { SELECTION_MODE } from './constants';
 import { FieldSelectMultipleProps, FieldSelectProps } from './types';
 

@@ -74,12 +74,13 @@ export const VisualMatrix: Story = {
         sectionTitle='State (size=m)'
         firstColumnHeader='State'
         columnHeaders={['Render']}
+        cellAlign='start'
         rows={stateExtras.map(({ key, extra }) => ({
           variantLabel: key,
+          // Без .narrow: поле на всю ширину ячейки — показывает full-width-раскладку
+          // (`fieldWrapper` тянется на 100% контейнера формы).
           cells: [
-            <div key={key} className={styles.narrow}>
-              <FieldTime size={SIZE.M} validationState={VALIDATION_STATE.Default} label='Время' {...extra} />
-            </div>,
+            <FieldTime key={key} size={SIZE.M} validationState={VALIDATION_STATE.Default} label='Время' {...extra} />,
           ],
         }))}
       />

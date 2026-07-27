@@ -4,9 +4,13 @@ import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 import { TEST_IDS } from '../../src/constants';
 // Story-level id'ы (корни InteractionTest-сцены) + локально продублированный локатор контента
 // time-picker'а (@ds/calendar). testIds.ts — leaf-файл без CSS, импорт безопасен для playwright-compile.
-import { TEST_IDS as STORY_TEST_IDS, TIME_PICKER_CONTENT_TEST_ID } from '../../stories/FieldTime/testIds';
+import {
+  TEST_IDS as STORY_TEST_IDS,
+  TIME_PICKER_CONTENT_TEST_ID,
+  TIME_PICKER_ROOT_TEST_ID,
+} from '../../stories/FieldTime/testIds';
 
-export { STORY_TEST_IDS, TEST_IDS, TIME_PICKER_CONTENT_TEST_ID };
+export { STORY_TEST_IDS, TEST_IDS, TIME_PICKER_CONTENT_TEST_ID, TIME_PICKER_ROOT_TEST_ID };
 
 /** Title `Components/Fields/FieldTime[/Tests/<Scenario>]` → kebab-cased storybook id. */
 export const FIELD_TIME_STORIES = {

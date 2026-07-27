@@ -1,11 +1,11 @@
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { BankCardSVG } from '@ds/icons/interface/web';
 import { useState } from 'react';
 
 export function IconAndAffix() {
   const [value, setValue] = useState('1234');
   return (
-    <FieldText
+    <FieldCombo
       label='Сумма пополнения'
       iconBefore={<BankCardSVG />}
       prefix='₽'

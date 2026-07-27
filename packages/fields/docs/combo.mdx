@@ -1,0 +1,102 @@
+---
+title: FieldCombo
+package: '@ds/fields'
+description: Текстовое поле со слотами — префиксом и постфиксом, иконками и кнопками-сегментами по краям.
+order: 32
+---
+
+import { Affixes } from '../demos/examples/Affixes'
+import AffixesSrc from '../demos/examples/Affixes.tsx?raw'
+import { IconBefore } from '../demos/examples/IconBefore'
+import IconBeforeSrc from '../demos/examples/IconBefore.tsx?raw'
+import { IconAfter } from '../demos/examples/IconAfter'
+import IconAfterSrc from '../demos/examples/IconAfter.tsx?raw'
+import { IconAndAffix } from '../demos/examples/IconAndAffix'
+import IconAndAffixSrc from '../demos/examples/IconAndAffix.tsx?raw'
+import { ElementBefore } from '../demos/examples/ElementBefore'
+import ElementBeforeSrc from '../demos/examples/ElementBefore.tsx?raw'
+import { ElementAfter } from '../demos/examples/ElementAfter'
+import ElementAfterSrc from '../demos/examples/ElementAfter.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import fieldsDoc from './props.json'
+
+# FieldCombo
+
+Текстовое поле со слотами вокруг строки ввода: текстовые префикс и постфикс, иконки слева и справа,
+кнопки-сегменты по краям. Всё остальное — размеры, валидация, кнопки очистки и копирования — совпадает
+с [FieldText](./text); слоты и есть единственное отличие.
+
+## Когда использовать
+
+- К значению нужна единица измерения или символ валюты — префикс либо постфикс.
+- Полю нужен ведущий маркер контекста — иконка слева.
+- Рядом с вводом нужно действие или выбор — кнопка-сегмент со своим выпадающим списком.
+- Слотов нет:
+  - берите `FieldText` — у него та же раскладка без лишней поверхности API.
+
+## Анатомия
+
+Оси `size`, `validationState` и `background` работают так же, как у [FieldText](./text).
+
+### Outline (default `true`)
+
+Разделитель между основным полем и слотами `elementBefore` / `elementAfter`. `outline = false` убирает
+вертикальную линию — слот и поле визуально сливаются.
+
+### Слоты
+
+- `prefix` / `postfix` — текст по краям строки ввода, попадает в копируемое значение.
+- `iconBefore` / `iconAfter` — иконка внутри строки ввода, без своей зоны нажатия.
+- `elementBefore` / `elementAfter` — кнопка-сегмент со своей рамкой фокуса и опциональным `droplist`.
+
+## Установка
+
+```bash
+pnpm add @ds/fields
+```
+
+```ts
+import { FieldCombo } from '@ds/fields'
+```
+
+## Примеры использования
+
+<Example title='Префикс и постфикс' description='Текстовые префикс/постфикс по краям инпута.' code={AffixesSrc}>
+  <Affixes client:visible />
+</Example>
+
+<Example title='Иконка слева' description='iconBefore — визуальный маркер контекста (поиск, дата, валюта).' code={IconBeforeSrc}>
+  <IconBefore client:visible />
+</Example>
+
+<Example title='Иконка справа' description='iconAfter — обычно подсказка/help (тултип не входит в FieldCombo, оборачивайте отдельно).' code={IconAfterSrc}>
+  <IconAfter client:visible />
+</Example>
+
+<Example title='Иконка + префикс/постфикс' description='Слоты iconBefore + prefix + postfix комбинируются — иконка идёт первой, текст — между ней и инпутом.' code={IconAndAffixSrc}>
+  <IconAndAffix client:visible />
+</Example>
+
+<Example title='Кнопка-слот слева' description='elementBefore — split-кнопка слева (например, выбор даты, лупа поиска с действием).' code={ElementBeforeSrc}>
+  <ElementBefore client:visible />
+</Example>
+
+<Example title='Кнопка-слот справа' description='elementAfter — split-кнопка справа (выбор валюты, единицы измерения, dropdown).' code={ElementAfterSrc}>
+  <ElementAfter client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={fieldsDoc.FieldCombo} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-fields-fieldcombo--playground' height={420} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('fields', 'field-combo')} />

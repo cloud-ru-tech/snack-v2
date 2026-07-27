@@ -1,3 +1,4 @@
+import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { useButtonNavigation, useClearButton } from '@ds/input-private';
 import { BAR_HIDE_STRATEGY, RESIZE, Scroll, SIZE as SCROLL_SIZE } from '@ds/scroll';
 import { extractSupportProps, useValueControl } from '@ds/utils';
@@ -21,7 +22,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { TEST_IDS } from '../../constants';
 import { FieldLayoutPresets, useAdaptiveAutoFocus } from '../../hooks';
-import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '../FieldDecorator';
 import { copyTextToClipboard, FieldShell, toInputSize, useCopyButton } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';

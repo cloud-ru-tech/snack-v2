@@ -4,7 +4,6 @@
 
 Пакет `@ds/fields` объединяет поля ввода с общими осями `size` (`s`/`m`/`l`) и `validationState` (`default`/`error`/`warning`/`success`/`valid`) и единой обёрткой label/caption/hint/error.
 
-- **`FieldDecorator`** — структурная обёртка с label/caption/hint/error/length для нестандартных input'ов.
 - **`FieldText`** — однострочное текстовое поле.
 - **`FieldSecure`** — поле для паролей и токенов с переключателем видимости.
 - **`FieldTextArea`** — многострочное поле с опциональным resize.
@@ -15,6 +14,8 @@
 - **`FieldTime`** — поле выбора времени с пикером и маской.
 - **`FieldColor`** — поле выбора цвета с ColorPicker в дропдауне.
 
+Структурная обёртка `FieldDecorator` (label/caption/hint/error/length) вынесена в отдельный пакет **`@ds/field-decorator`**.
+
 ## Установка
 
 ```bash
@@ -23,7 +24,6 @@ pnpm add @ds/fields
 
 ```ts
 import {
-  FieldDecorator,
   FieldText,
   FieldSecure,
   FieldTextArea,
@@ -64,12 +64,12 @@ export function ColorBasic() {
 | `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
 | `availableModes` | `ColorMode` | `['hex', 'hsv', 'rgb']` | Какие цветовые модели доступны переключателю. |
 | `background` | `boolean` | `true` | Фон поля (acrylic). |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | `field-color` |  |
 | `defaultValue` | `string` | `` | Начальное значение (uncontrolled-режим). |
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `hint` | `string` | — | Подсказка |
 | `id` | `string` | — | Значение html-атрибута id |
@@ -77,9 +77,9 @@ export function ColorBasic() {
 | `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
 | `min` | `number` | — | Минимальное значение поля |
@@ -98,10 +98,10 @@ export function ColorBasic() {
 | `pattern` | `string` | — | Регулярное выражение валидного инпута |
 | `placeholder` | `string` | — | Значение плейсхолдера |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки (видна при value && !readonly && !disabled). |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (видна при readonly && value && !disabled). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -122,528 +122,19 @@ export function ColorBasic() {
 | `mobile` | `any` | — |  |
 | `tablet` | `any` | — |  |
 
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldDate
+## FieldCombo
 
 ```tsx
-import { FieldDate } from '@ds/fields';
-import { useState } from 'react';
-
-export function DateBasic() {
-  const [value, setValue] = useState<Date | undefined>(undefined);
-  return <FieldDate label='Дата' hint='Маска DD.MM.YYYY или выбор в календаре' value={value} onChange={setValue} />;
-}
-```
-
-### Props `FieldDateProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
-| `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `buildCellProps` | `BuildCellPropsFunction` | — | Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра: <br/> <br> `Date` - дата ячейки <br/> <br> `ViewMode`: <br/> <br> - `month` отображение месяца, каждая ячейка - 1 день <br/> <br> - `year` отображение года, каждая ячейка - 1 месяц <br/> <br> - `decade` отображение декады, каждая ячейка - 1 год <br/> <br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки. |
-| `caption` | `string` | — | Подпись |
-| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `closeOnApply` | `boolean` | — | Закрыть dropdown после нажатия Apply. |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
-| `data-test-id` | `string` | — |  |
-| `defaultValue` | `DateRangeValue` \| `DateValue` | — | Неуправляемое значение по умолчанию |
-| `disabled` | `boolean` | — | Поле выключено <br/> Деактивировано |
-| `error` | `string` | — | Ошибка |
-| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
-| `hint` | `string` | — | Подсказка |
-| `iconBefore` | `ReactNode` | — | Иконка перед текстом (если не задано — `CalendarSVG`) |
-| `id` | `string` | — | HTML-атрибут `id` для input (и `for` у label) |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `label` | `string` | — | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelFrom` | `string` | `'Начало периода'` | `aria-label` поля начала периода (режим `date-range`). |
-| `labelTo` | `string` | `'Конец периода'` | `aria-label` поля конца периода (режим `date-range`). |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `locale` | `Intl.Locale` | `Проставляется в соответствие с языком в настройках браузера` | Локаль, в соответствие с которой выставляется язык названий и первый день недели |
-| `mode` | `"date"` \| `"date-range"` \| `"date-time"` | — | Режим выбора даты. По умолчанию `'date'`. <br/> Режим выбора периода |
-| `name` | `string` | — | HTML-атрибут `name` для input |
-| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
-| `onChange` | `((value: DateValue) => void) \| ((value: DateRangeValue) => void)` | — | Колбек смены значения |
-| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
-| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса input |
-| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
-| `placeholder` | `string` | — | Placeholder в триггере, когда нет значения |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
-| `presets` | `PresetsOptions` | — | Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139) |
-| `readonly` | `boolean` | — | Только для чтения <br/> Read-only режим |
-| `required` | `boolean` | — | Обязательное поле |
-| `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть значение и поле не disabled/readonly. |
-| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `showHolidays` | `boolean` | — | Раскрашивает субботу и воскресенье |
-| `showSeconds` | `boolean` | `true` | Показывать секунды в режиме `date-time` (в маске и в выпадающем календаре). |
-| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
-| `today` | `number \| Date` | — | Дата сегодняшнего дня |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
-| `value` | `DateRangeValue` \| `DateValue` | — | Управляемое значение |
-
-#### Related types
-
-**DateRangeValue**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `0` | `any` | — |  |
-| `1` | `any` | — |  |
-| `length` | `any` | — |  |
-
-- `DateValue` = `Date | undefined`
-
-**FieldLayoutPresets**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `desktop` | `any` | — |  |
-| `desktopSmall` | `any` | — |  |
-| `mobile` | `any` | — |  |
-| `tablet` | `any` | — |  |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldDecorator
-
-```tsx
-import { FieldDecorator } from '@ds/fields';
-import { InputPrivate } from '@ds/input-private';
-import { useState } from 'react';
-
-export function DecoratorBasic() {
-  const [value, setValue] = useState('');
-  return (
-    <FieldDecorator label='Custom field' hint='FieldDecorator оборачивает любой input' showHintIcon>
-      <InputPrivate value={value} onChange={setValue} placeholder='Type here' />
-    </FieldDecorator>
-  );
-}
-```
-
-### Props `FieldDecoratorProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `caption` | `string` | — | Подпись |
-| `children` | `ReactNode` | — | Содержимое |
-| `className` | `string` | — | CSS-класс |
-| `data-test-id` | `string` | — |  |
-| `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
-| `hint` | `string` | — | Подсказка |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `label` | `string` | — | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
-
-#### Related types
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldSecure
-
-```tsx
-import { FieldSecure } from '@ds/fields';
-import { useState } from 'react';
-
-export function Secure() {
-  const [value, setValue] = useState('');
-  return (
-    <FieldSecure
-      label='Пароль'
-      required
-      placeholder='Минимум 8 символов'
-      hint='Не передавайте пароль третьим лицам'
-      showHintIcon
-      value={value}
-      onChange={setValue}
-    />
-  );
-}
-```
-
-### Props `FieldSecureProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `allowMoreThanMaxLength` | `boolean` | `false` | Разрешить ввод свыше `maxLength` символов. |
-| `asyncValueGetter` | `(() => Promise<string>)` | — | Async-загрузчик значения. Вызывается перед раскрытием/копированием значения, <br/> результат передаётся через `onChange`. Во время запроса показывается Skeleton. <br/> После успешного запроса значение считается полученным и больше не запрашивается. |
-| `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
-| `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
-| `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
-| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `data-test-id` | `string` | — |  |
-| `defaultHidden` | `boolean` | `true` | Начальное состояние маскирования (uncontrolled-режим). Кнопка «глаз» переключает <br/> маскирование сама; `hidden` для этого передавать не нужно. |
-| `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
-| `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
-| `error` | `string` | — | Ошибка |
-| `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
-| `hidden` | `boolean` | — | Скрыто ли значение (controlled). Для uncontrolled-режима используйте `defaultHidden`. |
-| `hint` | `string` | — | Подсказка |
-| `id` | `string` | — | Значение html-атрибута id |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
-| `label` | `string` | `` | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `max` | `number` | — | Максимальное значение поля |
-| `maxLength` | `number` | — | Максимальная длина вводимого значения |
-| `min` | `number` | — | Минимальное значение поля |
-| `name` | `string` | — | Значение html-атрибута name |
-| `onBlur` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки потери фокуса |
-| `onChange` | `((value: string) => void)` | — | Колбек смены значения |
-| `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки клика |
-| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
-| `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки получения фокуса |
-| `onHiddenChange` | `((hidden: boolean) => void)` | — | Колбек смены маскирования |
-| `onKeyDown` | `KeyboardEventHandler<HTMLInputElement>` | — | Колбек обработки начала нажатия клавиши клавиатуры |
-| `onMouseDown` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки нажатия кнопки мыши |
-| `onPaste` | `ClipboardEventHandler<HTMLInputElement>` | — | Колбек обработки вставки значения |
-| `pattern` | `string` | — | Регулярное выражение валидного инпута |
-| `placeholder` | `string` | — | Значение плейсхолдера |
-| `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore`. |
-| `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
-| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (только при `readonly = true` и непустом `value`) |
-| `showHideButton` | `boolean` | `true` | Показывать кнопку «глаз» |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
-| `step` | `string \| number` | — | Максимальное значение поля |
-| `tabIndex` | `number` | `0` | Значение атрибута tab-index |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
-| `value` | `string` | — | Значение (controlled-режим) |
-
-#### Related types
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldSelect
-
-```tsx
-import { FieldSelect } from '@ds/fields';
-import { ItemId, ItemProps } from '@ds/list';
-import { useState } from 'react';
-
-const options: ItemProps[] = [
-  { id: 's', content: { label: 'Small (1 vCPU, 2 GB)' } },
-  { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB)' } },
-  { id: 'l', content: { label: 'Large (4 vCPU, 8 GB)' } },
-  { id: 'xl', content: { label: 'X-Large (8 vCPU, 16 GB)' } },
-];
-
-export function Select() {
-  const [value, setValue] = useState<ItemId | undefined>('m');
-  return (
-    <FieldSelect
-      label='Размер инстанса'
-      placeholder='Выберите размер'
-      selection='single'
-      items={options}
-      value={value}
-      onChange={setValue}
-    />
-  );
-}
-```
-
-### Props `FieldSelectProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `addOptionByEnter` | `boolean` | `false` | Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»). |
-| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
-| `autocomplete` | `boolean` | `false` | Не фильтровать список на клиенте — фильтрацию обеспечивает потребитель (серверный поиск). <br/> Введённый текст уходит в `search.onChange`, список берётся из `items` как есть. |
-| `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
-| `chips` | `boolean` | `true` | Отображать выбранные значения как чипы (`@ds/tag`) внутри поля. Если `false`, <br/> показывает строку из `formatSelected` либо comma-joined. |
-| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `closeDroplistOnItemClick` | `boolean` | `true false` | Закрывать дроплист после клика на айтем. |
-| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
-| `data-test-id` | `string` | — | Тестовый id корня |
-| `dataError` | `DroplistProps` | — | Флаг «ошибка загрузки данных» — при `true` дроплист рендерит `errorDataState` <br/> вместо списка (для асинхронной подгрузки с провалившимся запросом). |
-| `dataFiltered` | `DroplistProps` | — | Флаг «список отфильтрован» — при `true` и пустом результате дроплист рендерит <br/> `noResultsState`. По умолчанию выводится из строки поиска (`searchable` + ввод). |
-| `defaultValue` | `ItemId` | — | Неуправляемое значение по умолчанию <br/> Неуправляемые значения по умолчанию |
-| `disabled` | `boolean` | — | Поле выключено <br/> Деактивировано |
-| `enableFuzzySearch` | `boolean` | `true` | Включить нечёткий поиск: символы запроса должны встречаться в лейбле в том же порядке <br/> (например, `lge` найдёт `Large`). Если `false` — простой substring-match. |
-| `error` | `string` | — | Ошибка |
-| `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
-| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
-| `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
-| `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
-| `formatSelected` | `((selected: { id: ItemId; label: string; }[]) => string)` | `— список лейблов через `, `` | Форматтер строки выбранных значений (используется, если `chips=false`). |
-| `hint` | `string` | — | Подсказка |
-| `iconBefore` | `ReactNode` | — | Иконка перед текстом |
-| `id` | `string` | — | HTML-атрибут `id` для input (и `for` у label) |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Список айтемов дроплиста (формат `@ds/list`) |
-| `label` | `string` | — | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
-| `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
-| `name` | `string` | — | HTML-атрибут `name` для input |
-| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
-| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
-| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
-| `onChange` | `((value: ItemId) => void) \| ((value: ItemId[]) => void)` | — | Колбек смены значения <br/> Колбек смены значений |
-| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
-| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса input |
-| `onKeyDown` | `((event: KeyboardEvent<HTMLInputElement>) => void)` | — | Колбек нажатия клавиши на input (вызывается после внутренней обработки навигации) |
-| `onOpenChange` | `DroplistProps` | — | Колбек смены открытия |
-| `open` | `DroplistProps` | — | Управляемое открытие дроплиста |
-| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы снизу (формат `@ds/list`) |
-| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы сверху (формат `@ds/list`) |
-| `placeholder` | `string` | — | Placeholder в триггере, когда нет выбранного значения |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Placement дроплиста |
-| `postfix` | `ReactNode` | — | Постфикс — текст или нода после значения (Figma `postfix`) |
-| `prefix` | `ReactNode` | — | Префикс — текст или нода перед значением (Figma `prefix`) |
-| `readonly` | `boolean` | — | Только для чтения <br/> Read-only режим |
-| `removeByBackspace` | `boolean` | `true` | Удалять последний чип по `Backspace`, когда строка ввода пустая. <br/> Работает только при `chips=true` и `searchable=true`. |
-| `required` | `boolean` | — | Обязательное поле |
-| `resetSearchOnOptionSelection` | `boolean` | `true` | Сбрасывать строку поиска к выбранному значению после выбора. `false` нужен при асинхронной <br/> подгрузке (оставить введённый запрос как значение, пока данные не пришли). |
-| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
-| `search` | `{ value?: string; defaultValue?: string; onChange?(value: string): void; } \| undefined` | — | Управляемое/неуправляемое состояние строки поиска (текста в поле). Позволяет потребителю <br/> читать и задавать запрос (например, для серверного поиска вместе с `autocomplete`). |
-| `searchable` | `boolean` | `true` | Включить поиск/ввод в поле — пользователь печатает, список фильтруется по подстроке лейбла. |
-| `selectedOptionFormatter` | `((selected: { id: ItemId; label: string; }) => string)` | — | Кастомный форматтер лейбла выбранного значения. Применяется к каждому выбранному <br/> элементу (single — значение в поле, multiple — лейбл чипа или элемент в comma-joined). |
-| `selection` | `"multiple"` \| `"single"` | — | Режим выбора. По умолчанию `'single'`. <br/> Режим выбора |
-| `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть выбранное значение <br/> и поле не disabled/readonly. |
-| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
-| `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
-| `value` | `ItemId` | — | Управляемое значение <br/> Управляемые значения |
-| `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
-| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `'eq' — равна ширине триггера` | Стратегия ширины дроплиста. |
-
-#### Related types
-
-**FieldDecoratorProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `caption` | `string \| undefined` | — | Подпись |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Содержимое |
-| `className` | `string \| undefined` | — | CSS-класс |
-| `data-test-id` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — | Поле выключено |
-| `error` | `string \| undefined` | — | Ошибка |
-| `hint` | `string \| undefined` | — | Подсказка |
-| `innerRef` | `Ref<HTMLDivElement> \| undefined` | — | Ref на корневой DOM-элемент |
-| `label` | `string \| undefined` | — | Заголовок |
-| `labelFor` | `string \| undefined` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `length` | `{ current: number; max?: number; } \| undefined` | — | Допустимая длина текста |
-| `readonly` | `boolean \| undefined` | — | Только для чтения |
-| `required` | `boolean \| undefined` | — | Обязательное поле |
-| `showHintIcon` | `boolean \| undefined` | — | Отображение иконки у подсказки |
-| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldSlider
-
-```tsx
-import { FieldSlider } from '@ds/fields';
-import { useState } from 'react';
-
-export function SliderRange() {
-  const [value, setValue] = useState<number[]>([20, 80]);
-  return (
-    <FieldSlider
-      label='Диапазон цены'
-      hint='₽/мес. Текстовое поле в range-режиме только для чтения'
-      range
-      min={0}
-      max={100}
-      step={1}
-      postfix='₽'
-      value={value}
-      onChange={v => setValue(v as number[])}
-    />
-  );
-}
-```
-
-### Props `FieldSliderProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
-| `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
-| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `data-test-id` | `string` | — |  |
-| `defaultValue` | `SliderValue` | — | Начальное значение (uncontrolled-режим). По умолчанию `min` (или `[min, max]` при `range`). |
-| `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
-| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
-| `hint` | `string` | — | Подсказка |
-| `id` | `string` | — | HTML id |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `label` | `string` | `` | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `marks` | `SliderMarks` | — | Метки на шкале |
-| `marksEqualSpacing` | `boolean` | `false` | Равномерно распределять метки по шкале при нелинейных значениях <br/> (например `1 2 4 8 16 32` — равные промежутки вместо логарифмических). |
-| `max` | `number` | — | Максимум |
-| `min` | `number` | — | Минимум |
-| `name` | `string` | — | HTML name |
-| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра |
-| `onChange` | `((value: SliderValue) => void)` | — | Колбек смены значения |
-| `onCopyButtonClick` | `(() => void)` | — | Колбек после успешного копирования значения. |
-| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса |
-| `postfix` | `ReactNode` | — | Произвольный постфикс |
-| `postfixIcon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка-постфикс справа от текстового поля |
-| `prefix` | `ReactNode` | — | Произвольный префикс |
-| `range` | `boolean` | `false` | Диапазон с двумя ручками. Текстовое поле в этом режиме `readonly` <br/> и показывает значение как `min – max`. |
-| `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
-| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `showScaleBar` | `boolean` | `true` | Показывать линейку с метками |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `step` | `number \| null` | — | Шаг приращения. `null` — снэп только к меткам. |
-| `textInputFormatter` | `TextInputFormatter` | — | Форматирование значения в текстовом поле |
-| `unbindInputFromMarks` | `boolean` | `false` | Если `true` — текстовое поле принимает любые числа в диапазоне `min..max`, <br/> не снэпя к меткам. |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
-| `value` | `SliderValue` | — | Значение (число или диапазон при `range`; controlled-режим) |
-
-#### Related types
-
-**FieldLayoutPresets**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `desktop` | `any` | — |  |
-| `desktopSmall` | `any` | — |  |
-| `mobile` | `any` | — |  |
-| `tablet` | `any` | — |  |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `SliderMarks` = `{ [x: string]: ReactNode | MarkObj; [x: number]: ReactNode | MarkObj; }`
-
-- `SliderValue` = `number | number[]`
-
-- `TextInputFormatter` = `(value: number) => string`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldStepper
-
-```tsx
-import { FieldStepper } from '@ds/fields';
-import { useState } from 'react';
-
-export function Stepper() {
-  const [value, setValue] = useState(1);
-  return <FieldStepper label='Количество' value={value} onChange={setValue} />;
-}
-```
-
-### Props `FieldStepperProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `allowMoreThanLimits` | `boolean` | `true` | Разрешить ввод значений вне `min`/`max`. Если `false`, на blur значение клампится. |
-| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
-| `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
-| `clampTooltipText` | `{ min?: ((value: number) => string); max?: ((value: number) => string); } \| undefined` | `{ min: 'Значение должно быть больше либо равно {value}', max: 'Значение должно быть меньше либо равно {value}' }` | Тексты тултипа клампа (показывается на 2с после blur с выходом за `min`/`max`). |
-| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `data-test-id` | `string` | — |  |
-| `defaultValue` | `number` | — | Начальное значение (uncontrolled-режим). По умолчанию выводится из `min`/`max`. |
-| `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
-| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
-| `hint` | `string` | — | Подсказка |
-| `id` | `string` | — | HTML id |
-| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `label` | `string` | `` | Заголовок |
-| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
-| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
-| `max` | `number` | — | Максимум |
-| `min` | `number` | — | Минимум |
-| `minusButtonTooltip` | `TooltipProps` | — | Тултип над кнопкой `−` |
-| `name` | `string` | — | HTML name |
-| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра |
-| `onChange` | `((value: number, event?: ChangeEvent<HTMLInputElement>) => void)` | — | Колбек смены значения. Второй аргумент — событие, если изменение пришло из ручного ввода. |
-| `onCopyButtonClick` | `(() => void)` | — | Колбек после успешного копирования значения. |
-| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса |
-| `plusButtonTooltip` | `TooltipProps` | — | Тултип над кнопкой `+` |
-| `postfix` | `ReactNode` | — | Постфикс — текст или иконка справа от значения (например, единица измерения) |
-| `prefix` | `ReactNode` | — | Префикс — текст или иконка слева от значения |
-| `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
-| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
-| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `step` | `number` | `1` | Шаг приращения |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
-| `value` | `number` | — | Значение (controlled-режим) |
-
-#### Related types
-
-**FieldLayoutPresets**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `desktop` | `any` | — |  |
-| `desktopSmall` | `any` | — |  |
-| `mobile` | `any` | — |  |
-| `tablet` | `any` | — |  |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
-
-## FieldText
-
-```tsx
-import { FieldText } from '@ds/fields';
+import { FieldCombo } from '@ds/fields';
 import { useState } from 'react';
 
 export function Affixes() {
   const [value, setValue] = useState('100');
-  return <FieldText label='Сумма' prefix='$' postfix='USD' value={value} onChange={setValue} />;
+  return <FieldCombo label='Сумма' prefix='$' postfix='USD' value={value} onChange={setValue} />;
 }
 ```
 
-### Props `FieldTextProps`
+### Props `FieldComboProps`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -651,26 +142,27 @@ export function Affixes() {
 | `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
 | `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | `` | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
 | `elementAfter` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот справа (кнопка / селект с опциональным выпадающим списком) |
 | `elementBefore` | `FieldElementButtonProps` \| `FieldElementSlot` | — | Слот слева (кнопка / селект с опциональным выпадающим списком) |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
 | `hint` | `string` | — | Подсказка |
 | `iconAfter` | `ReactNode` | — | Иконка справа от строки ввода |
 | `iconBefore` | `ReactNode` | — | Иконка слева от строки ввода |
 | `id` | `string` | — | Значение html-атрибута id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `innerTestIds` | `{ shell?: string; input?: string; } \| undefined` | — | Идентификаторы внутренних слотов — оболочки и строки ввода. Нужны компонентам, которые <br/> рендерят `FieldCombo` под собственным именем (`FieldText`): их e2e адресует свои слоты, <br/> а не слоты `FieldCombo`. |
 | `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `max` | `number` | — | Максимальное значение поля |
 | `maxLength` | `number` | — | Максимальная длина вводимого значения |
 | `min` | `number` | — | Минимальное значение поля |
@@ -691,10 +183,10 @@ export function Affixes() {
 | `prefix` | `ReactNode` | — | Префикс (текст или нода) |
 | `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore` — он приоритетнее, если заданы оба. |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
@@ -757,6 +249,83 @@ export function Affixes() {
 | `tabIndex` | `number \| undefined` | — | HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле) |
 | `withDropdownList` | `boolean \| undefined` | — | Показать шеврон раскрытия |
 
+- `Variant` = `"after"` \| `"before"`
+
+## FieldDate
+
+```tsx
+import { FieldDate } from '@ds/fields';
+import { useState } from 'react';
+
+export function DateBasic() {
+  const [value, setValue] = useState<Date | undefined>(undefined);
+  return <FieldDate label='Дата' hint='Маска DD.MM.YYYY или выбор в календаре' value={value} onChange={setValue} />;
+}
+```
+
+### Props `FieldDateProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `buildCellProps` | `BuildCellPropsFunction` | — | Колбек установки свойств ячеек календаря. Вызывается на построение каждой ячейки. Принимает два параметра: <br/> <br> `Date` - дата ячейки <br/> <br> `ViewMode`: <br/> <br> - `month` отображение месяца, каждая ячейка - 1 день <br/> <br> - `year` отображение года, каждая ячейка - 1 месяц <br/> <br> - `decade` отображение декады, каждая ячейка - 1 год <br/> <br><br> Колбек должен возвращать объект с полями, отвечающими за отключение и подкраску ячейки. |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `closeOnApply` | `boolean` | — | Закрыть dropdown после нажатия Apply. |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
+| `data-test-id` | `string` | — |  |
+| `defaultValue` | `DateRangeValue` \| `DateValue` | — | Неуправляемое значение по умолчанию |
+| `disabled` | `boolean` | — | Поле выключено <br/> Деактивировано |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
+| `hint` | `string` | — | Подсказка |
+| `iconBefore` | `ReactNode` | — | Иконка перед текстом (если не задано — `CalendarSVG`) |
+| `id` | `string` | — | HTML-атрибут `id` для input (и `for` у label) |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `label` | `string` | — | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelFrom` | `string` | `'Начало периода'` | `aria-label` поля начала периода (режим `date-range`). |
+| `labelTo` | `string` | `'Конец периода'` | `aria-label` поля конца периода (режим `date-range`). |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `locale` | `Intl.Locale` | `Проставляется в соответствие с языком в настройках браузера` | Локаль, в соответствие с которой выставляется язык названий и первый день недели |
+| `mode` | `"date"` \| `"date-range"` \| `"date-time"` | — | Режим выбора даты. По умолчанию `'date'`. <br/> Режим выбора периода |
+| `name` | `string` | — | HTML-атрибут `name` для input |
+| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
+| `onChange` | `((value: DateValue) => void) \| ((value: DateRangeValue) => void)` | — | Колбек смены значения |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
+| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса input |
+| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
+| `open` | `boolean` | — | Управляет состоянием показан/не показан. |
+| `placeholder` | `string` | — | Placeholder в триггере, когда нет значения |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
+| `presets` | `PresetsOptions` | — | Настройки секции с пресетами быстрого выбора периода. Доступны только при mode === 'date-range' и отсутствии buildCellProps (временно PDS-3139) |
+| `readonly` | `boolean` | — | Только для чтения <br/> Read-only режим |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть значение и поле не disabled/readonly. |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showHolidays` | `boolean` | — | Раскрашивает субботу и воскресенье |
+| `showSeconds` | `boolean` | `true` | Показывать секунды в режиме `date-time` (в маске и в выпадающем календаре). |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
+| `today` | `number \| Date` | — | Дата сегодняшнего дня |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `value` | `DateRangeValue` \| `DateValue` | — | Управляемое значение |
+
+#### Related types
+
+**DateRangeValue**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `0` | `any` | — |  |
+| `1` | `any` | — |  |
+| `length` | `any` | — |  |
+
+- `DateValue` = `Date | undefined`
+
 **FieldLayoutPresets**
 
 | Prop | Type | Default | Description |
@@ -766,11 +335,411 @@ export function Affixes() {
 | `mobile` | `any` | — |  |
 | `tablet` | `any` | — |  |
 
-- `Size` = `"l"` \| `"m"` \| `"s"`
+## FieldSecure
 
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
+```tsx
+import { FieldSecure } from '@ds/fields';
+import { useState } from 'react';
 
-- `Variant` = `"after"` \| `"before"`
+export function Secure() {
+  const [value, setValue] = useState('');
+  return (
+    <FieldSecure
+      label='Пароль'
+      required
+      placeholder='Минимум 8 символов'
+      hint='Не передавайте пароль третьим лицам'
+      showHintIcon
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+```
+
+### Props `FieldSecureProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `allowMoreThanMaxLength` | `boolean` | `false` | Разрешить ввод свыше `maxLength` символов. |
+| `asyncValueGetter` | `(() => Promise<string>)` | — | Async-загрузчик значения. Вызывается перед раскрытием/копированием значения, <br/> результат передаётся через `onChange`. Во время запроса показывается Skeleton. <br/> После успешного запроса значение считается полученным и больше не запрашивается. |
+| `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
+| `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `data-test-id` | `string` | — |  |
+| `defaultHidden` | `boolean` | `true` | Начальное состояние маскирования (uncontrolled-режим). Кнопка «глаз» переключает <br/> маскирование сама; `hidden` для этого передавать не нужно. |
+| `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
+| `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
+| `hidden` | `boolean` | — | Скрыто ли значение (controlled). Для uncontrolled-режима используйте `defaultHidden`. |
+| `hint` | `string` | — | Подсказка |
+| `id` | `string` | — | Значение html-атрибута id |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
+| `label` | `string` | `` | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `max` | `number` | — | Максимальное значение поля |
+| `maxLength` | `number` | — | Максимальная длина вводимого значения |
+| `min` | `number` | — | Минимальное значение поля |
+| `name` | `string` | — | Значение html-атрибута name |
+| `onBlur` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки потери фокуса |
+| `onChange` | `((value: string) => void)` | — | Колбек смены значения |
+| `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки клика |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
+| `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки получения фокуса |
+| `onHiddenChange` | `((hidden: boolean) => void)` | — | Колбек смены маскирования |
+| `onKeyDown` | `KeyboardEventHandler<HTMLInputElement>` | — | Колбек обработки начала нажатия клавиши клавиатуры |
+| `onMouseDown` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки нажатия кнопки мыши |
+| `onPaste` | `ClipboardEventHandler<HTMLInputElement>` | — | Колбек обработки вставки значения |
+| `pattern` | `string` | — | Регулярное выражение валидного инпута |
+| `placeholder` | `string` | — | Значение плейсхолдера |
+| `prefixIcon` | `ReactNode` | — | Ведущая иконка. <br/> @deprecated Используйте `iconBefore`. |
+| `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (только при `readonly = true` и непустом `value`) |
+| `showHideButton` | `boolean` | `true` | Показывать кнопку «глаз» |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
+| `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
+| `step` | `string \| number` | — | Максимальное значение поля |
+| `tabIndex` | `number` | `0` | Значение атрибута tab-index |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `value` | `string` | — | Значение (controlled-режим) |
+
+## FieldSelect
+
+```tsx
+import { FieldSelect } from '@ds/fields';
+import { ItemId, ItemProps } from '@ds/list';
+import { useState } from 'react';
+
+const options: ItemProps[] = [
+  { id: 's', content: { label: 'Small (1 vCPU, 2 GB)' } },
+  { id: 'm', content: { label: 'Medium (2 vCPU, 4 GB)' } },
+  { id: 'l', content: { label: 'Large (4 vCPU, 8 GB)' } },
+  { id: 'xl', content: { label: 'X-Large (8 vCPU, 16 GB)' } },
+];
+
+export function Select() {
+  const [value, setValue] = useState<ItemId | undefined>('m');
+  return (
+    <FieldSelect
+      label='Размер инстанса'
+      placeholder='Выберите размер'
+      selection='single'
+      items={options}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+```
+
+### Props `FieldSelectProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `addOptionByEnter` | `boolean` | `false` | Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»). |
+| `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
+| `autocomplete` | `boolean` | `false` | Не фильтровать список на клиенте — фильтрацию обеспечивает потребитель (серверный поиск). <br/> Введённый текст уходит в `search.onChange`, список берётся из `items` как есть. |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `chips` | `boolean` | `true` | Отображать выбранные значения как чипы (`@ds/tag`) внутри поля. Если `false`, <br/> показывает строку из `formatSelected` либо comma-joined. |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `closeDroplistOnItemClick` | `boolean` | `true false` | Закрывать дроплист после клика на айтем. |
+| `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
+| `data-test-id` | `string` | — | Тестовый id корня |
+| `dataError` | `DroplistProps` | — | Флаг «ошибка загрузки данных» — при `true` дроплист рендерит `errorDataState` <br/> вместо списка (для асинхронной подгрузки с провалившимся запросом). |
+| `dataFiltered` | `DroplistProps` | — | Флаг «список отфильтрован» — при `true` и пустом результате дроплист рендерит <br/> `noResultsState`. По умолчанию выводится из строки поиска (`searchable` + ввод). |
+| `defaultValue` | `ItemId` | — | Неуправляемое значение по умолчанию <br/> Неуправляемые значения по умолчанию |
+| `disabled` | `boolean` | — | Поле выключено <br/> Деактивировано |
+| `enableFuzzySearch` | `boolean` | `true` | Включить нечёткий поиск: символы запроса должны встречаться в лейбле в том же порядке <br/> (например, `lge` найдёт `Large`). Если `false` — простой substring-match. |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
+| `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
+| `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
+| `formatSelected` | `((selected: { id: ItemId; label: string; }[]) => string)` | `— список лейблов через `, `` | Форматтер строки выбранных значений (используется, если `chips=false`). |
+| `hint` | `string` | — | Подсказка |
+| `iconBefore` | `ReactNode` | — | Иконка перед текстом |
+| `id` | `string` | — | HTML-атрибут `id` для input (и `for` у label) |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Список айтемов дроплиста (формат `@ds/list`) |
+| `label` | `string` | — | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
+| `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
+| `name` | `string` | — | HTML-атрибут `name` для input |
+| `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
+| `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
+| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
+| `onChange` | `((value: ItemId) => void) \| ((value: ItemId[]) => void)` | — | Колбек смены значения <br/> Колбек смены значений |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
+| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса input |
+| `onKeyDown` | `((event: KeyboardEvent<HTMLInputElement>) => void)` | — | Колбек нажатия клавиши на input (вызывается после внутренней обработки навигации) |
+| `onOpenChange` | `DroplistProps` | — | Колбек смены открытия |
+| `open` | `DroplistProps` | — | Управляемое открытие дроплиста |
+| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы снизу (формат `@ds/list`) |
+| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы сверху (формат `@ds/list`) |
+| `placeholder` | `string` | — | Placeholder в триггере, когда нет выбранного значения |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Placement дроплиста |
+| `postfix` | `ReactNode` | — | Постфикс — текст или нода после значения (Figma `postfix`) |
+| `prefix` | `ReactNode` | — | Префикс — текст или нода перед значением (Figma `prefix`) |
+| `readonly` | `boolean` | — | Только для чтения <br/> Read-only режим |
+| `removeByBackspace` | `boolean` | `true` | Удалять последний чип по `Backspace`, когда строка ввода пустая. <br/> Работает только при `chips=true` и `searchable=true`. |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `resetSearchOnOptionSelection` | `boolean` | `true` | Сбрасывать строку поиска к выбранному значению после выбора. `false` нужен при асинхронной <br/> подгрузке (оставить введённый запрос как значение, пока данные не пришли). |
+| `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
+| `search` | `{ value?: string; defaultValue?: string; onChange?(value: string): void; } \| undefined` | — | Управляемое/неуправляемое состояние строки поиска (текста в поле). Позволяет потребителю <br/> читать и задавать запрос (например, для серверного поиска вместе с `autocomplete`). |
+| `searchable` | `boolean` | `true` | Включить поиск/ввод в поле — пользователь печатает, список фильтруется по подстроке лейбла. |
+| `selectedOptionFormatter` | `((selected: { id: ItemId; label: string; }) => string)` | — | Кастомный форматтер лейбла выбранного значения. Применяется к каждому выбранному <br/> элементу (single — значение в поле, multiple — лейбл чипа или элемент в comma-joined). |
+| `selection` | `"multiple"` \| `"single"` | — | Режим выбора. По умолчанию `'single'`. <br/> Режим выбора |
+| `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (✕). Активна, когда есть выбранное значение <br/> и поле не disabled/readonly. |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly` и непустом значении). |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
+| `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `value` | `ItemId` | — | Управляемое значение <br/> Управляемые значения |
+| `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
+| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `'eq' — равна ширине триггера` | Стратегия ширины дроплиста. |
+
+## FieldSlider
+
+```tsx
+import { FieldSlider } from '@ds/fields';
+import { useState } from 'react';
+
+export function SliderRange() {
+  const [value, setValue] = useState<number[]>([20, 80]);
+  return (
+    <FieldSlider
+      label='Диапазон цены'
+      hint='₽/мес. Текстовое поле в range-режиме только для чтения'
+      range
+      min={0}
+      max={100}
+      step={1}
+      postfix='₽'
+      value={value}
+      onChange={v => setValue(v as number[])}
+    />
+  );
+}
+```
+
+### Props `FieldSliderProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `data-test-id` | `string` | — |  |
+| `defaultValue` | `SliderValue` | — | Начальное значение (uncontrolled-режим). По умолчанию `min` (или `[min, max]` при `range`). |
+| `disabled` | `boolean` | — | Поле выключено |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
+| `hint` | `string` | — | Подсказка |
+| `id` | `string` | — | HTML id |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `label` | `string` | `` | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `marks` | `SliderMarks` | — | Метки на шкале |
+| `marksEqualSpacing` | `boolean` | `false` | Равномерно распределять метки по шкале при нелинейных значениях <br/> (например `1 2 4 8 16 32` — равные промежутки вместо логарифмических). |
+| `max` | `number` | — | Максимум |
+| `min` | `number` | — | Минимум |
+| `name` | `string` | — | HTML name |
+| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра |
+| `onChange` | `((value: SliderValue) => void)` | — | Колбек смены значения |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после успешного копирования значения. |
+| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса |
+| `postfix` | `ReactNode` | — | Произвольный постфикс |
+| `postfixIcon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка-постфикс справа от текстового поля |
+| `prefix` | `ReactNode` | — | Произвольный префикс |
+| `range` | `boolean` | `false` | Диапазон с двумя ручками. Текстовое поле в этом режиме `readonly` <br/> и показывает значение как `min – max`. |
+| `readonly` | `boolean` | — | Только для чтения |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `showScaleBar` | `boolean` | `true` | Показывать линейку с метками |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
+| `step` | `number \| null` | — | Шаг приращения. `null` — снэп только к меткам. |
+| `textInputFormatter` | `TextInputFormatter` | — | Форматирование значения в текстовом поле |
+| `unbindInputFromMarks` | `boolean` | `false` | Если `true` — текстовое поле принимает любые числа в диапазоне `min..max`, <br/> не снэпя к меткам. |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `value` | `SliderValue` | — | Значение (число или диапазон при `range`; controlled-режим) |
+
+#### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
+
+- `SliderMarks` = `{ [x: string]: ReactNode | MarkObj; [x: number]: ReactNode | MarkObj; }`
+
+- `SliderValue` = `number | number[]`
+
+- `TextInputFormatter` = `(value: number) => string`
+
+## FieldStepper
+
+```tsx
+import { FieldStepper } from '@ds/fields';
+import { useState } from 'react';
+
+export function Stepper() {
+  const [value, setValue] = useState(1);
+  return <FieldStepper label='Количество' value={value} onChange={setValue} />;
+}
+```
+
+### Props `FieldStepperProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `allowMoreThanLimits` | `boolean` | `true` | Разрешить ввод значений вне `min`/`max`. Если `false`, на blur значение клампится. |
+| `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `clampTooltipText` | `{ min?: ((value: number) => string); max?: ((value: number) => string); } \| undefined` | `{ min: 'Значение должно быть больше либо равно {value}', max: 'Значение должно быть меньше либо равно {value}' }` | Тексты тултипа клампа (показывается на 2с после blur с выходом за `min`/`max`). |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `data-test-id` | `string` | — |  |
+| `defaultValue` | `number` | — | Начальное значение (uncontrolled-режим). По умолчанию выводится из `min`/`max`. |
+| `disabled` | `boolean` | — | Поле выключено |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля |
+| `hint` | `string` | — | Подсказка |
+| `id` | `string` | — | HTML id |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `label` | `string` | `` | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `max` | `number` | — | Максимум |
+| `min` | `number` | — | Минимум |
+| `minusButtonTooltip` | `TooltipProps` | — | Тултип над кнопкой `−` |
+| `name` | `string` | — | HTML name |
+| `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра |
+| `onChange` | `((value: number, event?: ChangeEvent<HTMLInputElement>) => void)` | — | Колбек смены значения. Второй аргумент — событие, если изменение пришло из ручного ввода. |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после успешного копирования значения. |
+| `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса |
+| `plusButtonTooltip` | `TooltipProps` | — | Тултип над кнопкой `+` |
+| `postfix` | `ReactNode` | — | Постфикс — текст или иконка справа от значения (например, единица измерения) |
+| `prefix` | `ReactNode` | — | Префикс — текст или иконка слева от значения |
+| `readonly` | `boolean` | — | Только для чтения |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (видна в readonly, при `!disabled`). |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
+| `step` | `number` | `1` | Шаг приращения |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `value` | `number` | — | Значение (controlled-режим) |
+
+#### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
+
+## FieldText
+
+```tsx
+import { FieldText } from '@ds/fields';
+import { useState } from 'react';
+
+export function Basic() {
+  const [value, setValue] = useState('');
+  return <FieldText label='Имя' hint='Как к вам обращаться' placeholder='Иван' value={value} onChange={setValue} />;
+}
+```
+
+### Props `FieldTextProps`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `allowMoreThanMaxLength` | `boolean` | `false` | Разрешить ввод свыше `maxLength` символов (счётчик продолжит расти). |
+| `autoComplete` | `string \| boolean` | `false` | Включен ли автокомплит для поля |
+| `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
+| `background` | `boolean` | `true` | Фон поля (acrylic) |
+| `caption` | `string` | — | Вторичная подпись справа |
+| `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
+| `data-test-id` | `string` | — |  |
+| `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
+| `disabled` | `boolean` | `false` | Поле выключено <br/> Является ли поле деактивированным |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
+| `fieldClassName` | `string` | — | CSS-класс оболочки поля ввода |
+| `hint` | `string` | — | Подсказка |
+| `id` | `string` | — | Значение html-атрибута id |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
+| `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим работы экранной клавиатуры |
+| `label` | `string` | — | Заголовок |
+| `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
+| `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
+| `max` | `number` | — | Максимальное значение поля |
+| `maxLength` | `number` | — | Максимальная длина вводимого значения |
+| `min` | `number` | — | Минимальное значение поля |
+| `name` | `string` | — | Значение html-атрибута name |
+| `onBlur` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки потери фокуса |
+| `onChange` | `((value: string) => void)` | — | Колбек смены значения |
+| `onClearButtonClick` | `(() => void)` | — | Колбек клика по кнопке очистки |
+| `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки клика |
+| `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
+| `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек обработки получения фокуса |
+| `onKeyDown` | `KeyboardEventHandler<HTMLInputElement>` | — | Колбек обработки начала нажатия клавиши клавиатуры |
+| `onMouseDown` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки нажатия кнопки мыши |
+| `onPaste` | `ClipboardEventHandler<HTMLInputElement>` | — | Колбек обработки вставки значения |
+| `outline` | `boolean` | `true` | Разделитель между основным полем и слотами `elementBefore` / `elementAfter` |
+| `pattern` | `string` | — | Регулярное выражение валидного инпута |
+| `placeholder` | `string` | — | Значение плейсхолдера |
+| `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
+| `showClearButton` | `boolean` | `true` | Показывать кнопку очистки значения (как в Search) |
+| `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования значения (только при `readonly = true` и непустом `value`) |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
+| `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
+| `step` | `string \| number` | — | Максимальное значение поля |
+| `tabIndex` | `number` | `0` | Значение атрибута tab-index |
+| `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `value` | `string` | — | Значение поля (controlled-режим) |
+
+#### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 ## FieldTextArea
 
@@ -801,12 +770,12 @@ export function TextArea() {
 | `allowMoreThanMaxLength` | `boolean` | `true` | Разрешить ввод свыше `maxLength` символов (счётчик продолжит расти). |
 | `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | `` | Начальное значение (uncontrolled-режим) |
 | `disabled` | `boolean` | — | Поле выключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `footer` | `ReactNode` | — | Нода под textarea — ряд элементов после контента (Figma `elementWrapperAfter` / <br/> `slotAfterContent`): действия, счётчик-плагин и т.п. |
 | `header` | `ReactNode` | — | Нода над textarea — ряд элементов до контента (Figma `elementWrapperBefore` / <br/> `slotBeforeContent`): тулбар с кнопками, чипами и т.п. |
@@ -816,9 +785,9 @@ export function TextArea() {
 | `inputMode` | `"decimal"` \| `"email"` \| `"none"` \| `"numeric"` \| `"search"` \| `"tel"` \| `"text"` \| `"url"` | — | Режим виртуальной клавиатуры (`inputmode` нативного `<textarea>`) |
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `maxLength` | `number` | — | Максимальное количество символов |
 | `maxRows` | `number` | `1000` | Максимальное количество строк (после — появляется скролл) |
 | `minRows` | `number` | `3` | Минимальное количество строк |
@@ -830,11 +799,11 @@ export function TextArea() {
 | `onKeyDown` | `((event: KeyboardEvent<HTMLTextAreaElement>) => void)` | — | Колбек нажатия клавиши |
 | `placeholder` | `string` | — | Плейсхолдер |
 | `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `resizable` | `boolean` | `false` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
@@ -850,10 +819,6 @@ export function TextArea() {
 | `desktopSmall` | `any` | — |  |
 | `mobile` | `any` | — |  |
 | `tablet` | `any` | — |  |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
 
 ## FieldTime
 
@@ -876,22 +841,22 @@ export function TimeBasic() {
 |------|------|---------|-------------|
 | `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic). |
-| `caption` | `string` | — | Подпись |
+| `caption` | `string` | — | Вторичная подпись справа |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
 | `closeOnApply` | `boolean` | `true` | Закрыть picker после Apply. |
 | `data-test-id` | `string` | `field-time` |  |
 | `defaultValue` | `TimeValue` | — | Дефолтное значение для uncontrolled-режима |
 | `disabled` | `boolean` | — | Поле выключено <br/> Отключено |
-| `error` | `string` | — | Ошибка |
+| `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `hint` | `string` | — | Подсказка |
 | `id` | `string` | — | HTML id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
 | `label` | `string` | `` | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
-| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка для заголовка |
+| `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
 | `layoutPresets` | `FieldLayoutPresets` | — | Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен <br/> (открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`. |
-| `length` | `{ current: number; max?: number; }` | — | Допустимая длина текста |
+| `length` | `FieldLength` | — | Счётчик длины `current/max` |
 | `name` | `string` | — | HTML name |
 | `onBlur` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек блюра input |
 | `onChange` | `((value: TimeValue) => void)` | — | Колбек смены значения |
@@ -902,10 +867,10 @@ export function TimeBasic() {
 | `open` | `boolean` | — | Открыт ли picker (controlled) |
 | `placeholder` | `string` | — | Плейсхолдер маски; по умолчанию `чч:мм:сс` или `чч:мм` в зависимости от `showSeconds`. |
 | `readonly` | `boolean` | — | Только для чтения |
-| `required` | `boolean` | — | Обязательное поле |
+| `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showClearButton` | `boolean` | `true` | Показывать кнопку очистки (видна при value && !readonly && !disabled). |
 | `showCopyButton` | `boolean` | `true` | Показывать кнопку копирования (видна при readonly && value && !disabled). |
-| `showHintIcon` | `boolean` | — | Отображение иконки у подсказки |
+| `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки |
 | `showSeconds` | `boolean` | `true` | Показывать секунды в picker и в маске input. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
@@ -921,7 +886,3 @@ export function TimeBasic() {
 | `desktopSmall` | `any` | — |  |
 | `mobile` | `any` | — |  |
 | `tablet` | `any` | — |  |
-
-- `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
