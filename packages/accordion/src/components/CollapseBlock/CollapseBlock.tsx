@@ -153,19 +153,22 @@ export function CollapseBlock({
       </div>
 
       <div className={styles.collapse} data-expanded={isOpen || undefined} aria-hidden={!isOpen}>
-        {isMounted ? (
-          <div
-            className={cn(styles.container, isCompletelyOpen && styles.containerCompletelyOpen)}
-            data-completely-close={isCompletelyClose || undefined}
-            data-expanded={isOpen || undefined}
-          >
-            <div></div>
-            {/* gap here */}
+        {/* Контейнер живёт в DOM всегда: его вертикальные отступы анимируются вместе с
+            раскрытием, а у только что смонтированного узла transition не с чего стартовать —
+            отступ применился бы скачком. Размонтируется только контент. */}
+        <div
+          className={cn(styles.container, isCompletelyOpen && styles.containerCompletelyOpen)}
+          data-completely-close={isCompletelyClose || undefined}
+          data-expanded={isOpen || undefined}
+        >
+          <div></div>
+          {/* gap here */}
+          {isMounted ? (
             <div data-test-id={TEST_IDS.content} className={styles.content}>
               {children}
             </div>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </div>
     </div>
   );

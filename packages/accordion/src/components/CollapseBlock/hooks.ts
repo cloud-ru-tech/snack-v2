@@ -10,14 +10,18 @@ type UseCollapseStateProps = {
 
 export function useCollapseState({ id, keepMounted = false }: UseCollapseStateProps) {
   const { isChecked: isOpen, handleClick: toggleOpen } = useToggleGroup({ value: id });
-  const [isMounted, setIsMounted] = useState(isOpen || keepMounted);
+  // Контент доживает до конца закрывающей анимации, но при открытии появляется синхронно с
+  // `isOpen` — если монтировать его эффектом, первый кадр раскрытия считается по пустому телу
+  // и высота стартует рывком.
+  const [keepMountedWhileClosing, setKeepMountedWhileClosing] = useState(false);
+  const isMounted = isOpen || keepMounted || keepMountedWhileClosing;
   const [isCompletelyOpen, setIsCompletelyOpen] = useState(isOpen);
   const [isCompletelyClose, setIsCompletelyClose] = useState(!isOpen);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (isOpen) {
-      setIsMounted(true);
+      setKeepMountedWhileClosing(true);
       setIsCompletelyClose(false);
       timeoutRef.current = setTimeout(() => {
         setIsCompletelyOpen(true);
@@ -26,7 +30,7 @@ export function useCollapseState({ id, keepMounted = false }: UseCollapseStatePr
       setIsCompletelyOpen(false);
       timeoutRef.current = setTimeout(() => {
         setIsCompletelyClose(true);
-        !keepMounted && setIsMounted(false);
+        setKeepMountedWhileClosing(false);
       }, ANIMATION_DURATION);
     }
 
