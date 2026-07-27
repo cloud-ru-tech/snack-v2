@@ -79,13 +79,14 @@
     background-color: transparent;
 
     .headline {
+      // Зазор Switch↔заголовок в line-режиме (Figma: switch 0–36, title x40 → 4).
+      gap: base.$sn-primitive-dimension-4;
       justify-content: flex-start;
     }
 
     .description {
-      // Выравнивание описания под текст заголовка: ширина Switch (size=m)
-      // + gap до titleLayout. Токена под комбинацию нет.
-      padding-left: base.$sn-primitive-dimension-44;
+      // Выравнивание описания под заголовок: Switch size s (36) + зазор 4 = 40.
+      padding-left: base.$sn-primitive-dimension-40;
     }
   }
 
