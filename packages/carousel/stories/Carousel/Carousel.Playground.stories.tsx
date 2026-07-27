@@ -56,7 +56,7 @@ const meta: Meta<typeof Carousel> = {
           </div>
         </DemoActions>
       </DemoPanel>
-    </DemoPage>
+    </DemoPage >
   ),
 };
 
