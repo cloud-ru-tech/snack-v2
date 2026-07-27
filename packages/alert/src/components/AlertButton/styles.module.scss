@@ -95,8 +95,22 @@ $typography: (
     &[data-size='#{$size}'] {
       @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
 
-      .label {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'textWrapper');
+      // Горизонтальный padding переехал с textWrapper (.label) на уровень контейнера
+      // и различается по icon-позиции. data-variant совпадает с ключами токена 1:1.
+      &[data-variant='label-only'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'labelOnly');
+      }
+
+      &[data-variant='icon-before'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconBefore');
+      }
+
+      &[data-variant='icon-after'] {
+        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconAfter');
+      }
+
+      .content {
+        gap: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'gap');
       }
 
       [data-border-layer] {

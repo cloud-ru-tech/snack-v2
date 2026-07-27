@@ -34,20 +34,10 @@ $appearance-to-token: (
   }
 }
 
+// Рамка в макете одна для всех appearance — нейтральный волосок
+// `available/borderColor`, а не тонировка под цвет алерта.
 .root[data-outline] {
-  outline-style: solid;
-  outline-width: base.$sn-primitive-strokeWeight-strokeThin;
-
-  @each $color in $theme-colors {
-    &[data-color='#{$color}'] {
-      outline-color: base.simple-var(base.$sn-theme, 'color', $color, 'decor');
-
-      &:focus-within,
-      &:hover {
-        outline-color: base.simple-var(base.$sn-theme, 'color', $color, 'decor');
-      }
-    }
-  }
+  outline: base.$sn-theme-color-available-borderColor solid base.$sn-primitive-strokeWeight-strokeThin;
 }
 
 .root[data-variant='top'] {
@@ -77,17 +67,15 @@ $appearance-to-token: (
   }
 }
 
+// Горизонтальные зазоры внутри строки задаёт не gap, а собственные поля
+// текстового блока (`content/text/paddingHorizontal` = 8 у m, 4 у s) — так же,
+// как в макете, где у `content` межэлементного зазора нет. `container/gap`
+// отвечает за вертикальный зазор между строкой и блоком действий.
 .body {
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
   width: 100%;
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      gap: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'gap');
-    }
-  }
 }
 
 .bodyInteractive {
@@ -143,12 +131,6 @@ $appearance-to-token: (
 
   min-width: 0;
   height: stretch;
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      gap: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'content', 'gap');
-    }
-  }
 }
 
 .title {
@@ -245,9 +227,6 @@ $appearance-to-token: (
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'content', 'text');
-
-      padding-right: 0;
-      padding-left: 0;
     }
   }
 }
