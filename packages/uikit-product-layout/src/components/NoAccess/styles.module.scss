@@ -27,10 +27,11 @@
 }
 
 .serviceName {
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'headline', 'm');
+  // Figma: заголовок сервиса = thin/headline/s (24/32), зазор до блока 16.
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'headline', 's');
 
   display: block;
-  margin-bottom: base.$sn-primitive-dimension-24;
+  margin-bottom: base.$sn-primitive-dimension-16;
   color: base.$sn-theme-color-available-version-textMain;
 }
 
