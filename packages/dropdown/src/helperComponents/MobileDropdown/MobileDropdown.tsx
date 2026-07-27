@@ -68,7 +68,7 @@ export function MobileDropdown({
         onClose={handleClose}
         title={title}
         slotAfterTitle={slotAfterTitle}
-        subtitle={search}
+        slotSecondTitle={search}
         withDividers={Boolean(headerDivider || footerDivider)}
         footer={footer}
         className={className}

@@ -1,5 +1,6 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/dropdown.module' as dropdown;
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 @use '@sbercloud/figma-variables/build/scss/components/popover.module' as popover;
 @use '@ds/materials' as m;
 
@@ -64,7 +65,7 @@
 .topBar {
   display: flex;
   flex-direction: column;
-  gap: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'gap');
+  gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'gap');
 }
 
 // Горизонтальный паддинг — это паддинг headlineWrapper'а (по имени токена), а не всего topBar.
@@ -72,20 +73,20 @@
 // растягивается на всю ширину — как айтемы списка (Figma listItemSearch — full-bleed строка).
 .headlineWrapper {
   display: flex;
-  gap: base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'gap');
+  gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'headlineWrapper', 'gap');
   align-items: center;
 
   box-sizing: border-box;
   padding:
-    0 base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-right') 0
-    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'topBar', 'headlineWrapper', 'padding-left');
+    0 base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'headlineWrapper', 'padding-right') 0
+    base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'headlineWrapper', 'padding-left');
 }
 
 .bottomBar {
   box-sizing: border-box;
   padding:
-    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-top')
-    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-right')
-    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-bottom')
-    base.simple-var(dropdown.$dropdown, 'anatomy', 'container', 'bottomBar', 'padding-left');
+    base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'footer', 'padding-top')
+    base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'footer', 'padding-right')
+    base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'footer', 'padding-bottom')
+    base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'footer', 'padding-left');
 }
