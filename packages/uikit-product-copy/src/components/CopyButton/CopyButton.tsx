@@ -16,7 +16,7 @@ export type CopyButtonProps = WithSupportProps<{
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }>;
 
-export function CopyButton({ valueToCopy, size = 'm', label, className, onClick, ...rest }: CopyButtonProps) {
+export function CopyButton({ valueToCopy, size = 's', label, className, onClick, ...rest }: CopyButtonProps) {
   const { isChecked, copy } = useCopyToClipboard();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
