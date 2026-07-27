@@ -1,0 +1,659 @@
+{
+  "FooterActions": {
+    "displayName": "FooterActions",
+    "propsTypeName": "FooterActionsProps",
+    "description": "Группа кнопок футера (approve / cancel / additional) с раскладкой по поверхности и числу действий.\nЕдиный источник правды для `BottomSheet`, `Modal` и `Drawer` (adaptive-маппинг 1:1).\nВозвращает `null`, если ни одной кнопки не передано.",
+    "props": {
+      "actionsClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. CSS-класс на `ButtonGroup` (поверх встроенной раскладки по числу действий)."
+      },
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка (по умолчанию `view='simple'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка (по умолчанию `view='filled'`, `appearance='primary'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены (по умолчанию `view='outline'`, `appearance='neutral'`).",
+        "typeRefs": [
+          "BottomSheetActionButton"
+        ]
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация кнопок при ровно двух действиях.",
+        "typeRefs": [
+          "FooterActionsOrientation"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер кнопок футера. Задаётся на уровне группы (как в `ButtonGroup`), не по кнопке —\nв макетах все действия футера одного размера. Нужен потребителям с собственной осью\nразмера (календарные дропдауны: 24 / 32 / 40 при s / m / l); у modal, drawer и\nbottom-sheet такой оси нет, и размер остаётся дефолтным.",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "surface": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottomSheet",
+          "window"
+        ],
+        "defaultValue": "window",
+        "description": "Поверхность overlay'я — определяет раскладку кнопок:\n- `window` (desktop, дефолт): 1–2 кнопки компактно вправо, 3 — стопка (primary сверху).\n- `bottomSheet` (mobile): 1 → вправо, 2 → space-between, 3 → стопка с инверсией (primary внизу).",
+        "typeRefs": [
+          "SurfaceTokenSegment"
+        ]
+      },
+      "testIds": {
+        "type": "FooterActionsTestIds",
+        "required": true,
+        "description": "Идентификаторы слотов конкретного компонента (`bottom-sheet` / `modal` / `drawer`).",
+        "typeRefs": [
+          "FooterActionsTestIds"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "BottomSheetActionButton": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "critical",
+              "neutral",
+              "primary"
+            ],
+            "description": "Вариант оформления",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "\"button\" | undefined",
+            "required": false,
+            "values": [
+              "button"
+            ],
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
+            "typeRefs": [
+              "T"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "counter": {
+            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "required": false,
+            "description": "Пропсы для counter",
+            "typeRefs": [
+              "CounterProps"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключена"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно текста",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "innerRef": {
+            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef",
+              "T"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "minWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
+          },
+          "view": {
+            "type": "View | undefined",
+            "required": false,
+            "values": [
+              "elevated",
+              "filled",
+              "function",
+              "outline",
+              "simple",
+              "tonal"
+            ],
+            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
+            "typeRefs": [
+              "View"
+            ]
+          }
+        },
+        "own": true
+      },
+      "CounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "color": {
+            "type": "Color | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Color"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FooterActionsOrientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
+      "FooterActionsTestIds": {
+        "kind": "interface",
+        "props": {
+          "additional": {
+            "type": "string",
+            "required": true
+          },
+          "approve": {
+            "type": "string",
+            "required": true
+          },
+          "cancel": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "SurfaceTokenSegment": {
+        "kind": "union",
+        "values": [
+          "bottomSheet",
+          "window"
+        ],
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "filled",
+          "function",
+          "outline",
+          "simple",
+          "tonal"
+        ],
+        "own": false
+      }
+    }
+  },
+  "OVERLAY_SURFACE": {
+    "displayName": "OVERLAY_SURFACE",
+    "propsTypeName": null,
+    "description": "Поверхность overlay'я, в которой рендерятся общие слоты (`Header` / `Body` / `Footer` / `Media`).",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "OverlaySurfaceProvider": {
+    "displayName": "OverlaySurfaceProvider",
+    "propsTypeName": "OverlaySurfaceProviderProps",
+    "description": "Провайдер поверхности overlay'я. Frame (sheet / modal / drawer) оборачивает в него свои слоты.",
+    "props": {
+      "bodyHeightAuto": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только drawer: высота панели по контенту → `Body` (drawer-ветка) добавляет соответствующий класс."
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": true
+      },
+      "surface": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "drawer",
+          "modal",
+          "sheet"
+        ],
+        "description": "Поверхность, в которой рендерятся дочерние слоты.",
+        "typeRefs": [
+          "OverlaySurface"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "OverlaySurface": {
+        "kind": "union",
+        "values": [
+          "drawer",
+          "modal",
+          "sheet"
+        ],
+        "own": true
+      }
+    }
+  },
+  "PopupBody": {
+    "displayName": "PopupBody",
+    "propsTypeName": "PopupBodyProps",
+    "description": "Контейнер основного содержимого overlay'я. Принимает `content` или `children`.",
+    "props": {
+      "bodyPadding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
+      },
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера body."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое body (альтернатива `children`)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PopupCloseButton": {
+    "displayName": "PopupCloseButton",
+    "propsTypeName": "PopupCloseButtonProps",
+    "description": "Единая кнопка закрытия overlay'я (крестик в правом верхнем углу).",
+    "props": {
+      "aria-label": {
+        "type": "string | undefined",
+        "required": false,
+        "description": "Defines a string value that labels the current element.\n\n\nДоступное имя кнопки. По умолчанию `close popup`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true,
+        "description": "Действие при клике."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PopupFooter": {
+    "displayName": "PopupFooter",
+    "propsTypeName": "PopupFooterProps",
+    "description": "Нижняя action-зона overlay'я (рендерит `children` в `bottomBar`-секции). Раскладка по поверхности.",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера footer'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PopupHeader": {
+    "displayName": "PopupHeader",
+    "propsTypeName": "PopupHeaderProps",
+    "description": "Header overlay'я: back-button + title + slotAfterTitle + actionButton + subtitle + slotSecondTitle.",
+    "props": {
+      "actionButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс контейнера header'а."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBackButtonClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
+      },
+      "slotAfterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
+      },
+      "slotSecondTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.\nЕсть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности."
+      },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях."
+      },
+      "testIds": {
+        "type": "PopupHeaderTestIds",
+        "required": false,
+        "description": "Переопределение `data-test-id` слотов шапки. Каждый пропущенный ключ берётся из `TEST_IDS`.\nПотребитель-обёртка (drawer/modal) прокидывает сюда свои id, чтобы сохранить публичный контракт.",
+        "typeRefs": [
+          "PopupHeaderTestIds"
+        ]
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
+      }
+    },
+    "relatedTypes": {
+      "PopupHeaderTestIds": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "backButton": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "header": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "slotAfterTitle": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "slotSecondTitle": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "subtitle": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "title": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "PopupMedia": {
+    "displayName": "PopupMedia",
+    "propsTypeName": "MediaProps",
+    "description": "Media-блок над headline: `kind='image'` — во всю ширину, `kind='icon'` — иконка.",
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true,
+        "description": "Альтернативный текст (a11y)."
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "kind": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "icon",
+          "image"
+        ],
+        "defaultValue": "image",
+        "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`.",
+        "typeRefs": [
+          "MediaKind"
+        ]
+      },
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "URL изображения / иконки."
+      }
+    },
+    "relatedTypes": {
+      "MediaKind": {
+        "kind": "union",
+        "values": [
+          "icon",
+          "image"
+        ],
+        "own": true
+      }
+    }
+  },
+  "SURFACE_TOKEN_SEGMENT": {
+    "displayName": "SURFACE_TOKEN_SEGMENT",
+    "propsTypeName": null,
+    "description": "Сегмент коллекции `popupPrivate.anatomy.*`, из которого слоты берут токены раскладки.\nModal и Drawer(desktop) рисуются мастером `window`; Sheet — `bottomSheet`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useOverlayBodyHeightAuto": {
+    "displayName": "useOverlayBodyHeightAuto",
+    "propsTypeName": null,
+    "description": "Только drawer-ветка `Body`: высота панели по контенту (из `DrawerFrame`).",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useOverlaySurface": {
+    "displayName": "useOverlaySurface",
+    "propsTypeName": null,
+    "description": "Текущая поверхность overlay'я. Без провайдера возвращает `'sheet'`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "useSurfaceTokenSegment": {
+    "displayName": "useSurfaceTokenSegment",
+    "propsTypeName": null,
+    "description": "Токен-сегмент текущей поверхности (`window` / `bottomSheet`). Без провайдера — `bottomSheet`.",
+    "props": {},
+    "relatedTypes": {}
+  }
+}

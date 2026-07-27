@@ -1,0 +1,49 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
+
+// `bottomBar` overlay'я. Раскладка и паддинги зависят от поверхности (`data-surface`):
+// `bottomSheet` — sheet-мастер (drag-зона, растяжение row-ButtonGroup), `window` — modal/drawer.
+.root {
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  // bottomSheet: flex column, justify-center. `align-items: stretch` (не items-start) —
+  // чтобы row-ButtonGroup растягивался на всю ширину и `break`/space-between прижимал кнопки к краям.
+  &[data-surface='bottomSheet'] {
+    // Drag-зона (footer). Гасим нативные жесты; tap'ы по кнопкам внутри работают как обычно.
+    touch-action: none;
+
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+    padding: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'footer', 'padding-top')
+      base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'footer', 'padding-right')
+      base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'footer', 'padding-bottom')
+      base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'footer', 'padding-left');
+  }
+
+  // window: modal / drawer(desktop). Композит window.footer (paddingTop у мастера нет — 0).
+  &[data-surface='window'] {
+    align-items: center;
+    align-self: stretch;
+
+    @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'footer');
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+
+  [data-surface='bottomSheet'] & {
+    gap: base.$sn-density-spacing-interval-m;
+  }
+
+  [data-surface='window'] & {
+    flex: 1 0 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}

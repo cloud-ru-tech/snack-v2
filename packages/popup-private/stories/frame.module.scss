@@ -1,0 +1,93 @@
+@use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+
+.item {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.caption {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+// Реалистичная рамка overlay'я: слот рендерится как внутри настоящей модалки/шита —
+// фон, радиус и тень берём из тех же токенов, что и `@ds/modal` (neutral background1Level,
+// elevation level5, radius card).
+.frame {
+  overflow: hidden;
+
+  width: 420px;
+  max-width: 100%;
+  border-radius: base.$sn-brand-anatomy-radius-window-m;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+  box-shadow: base.$sn-boxShadow-elevation-level5;
+}
+
+// Узкая рамка для dropdown-подобных слотов.
+.frameNarrow {
+  width: 320px;
+}
+
+// Плейсхолдер тела overlay'я под header'ом — чтобы слот читался как часть окна, а не в вакууме.
+.bodyStub {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.bodyLine {
+  height: 0.625rem;
+  border-radius: base.$sn-brand-anatomy-radius-block-s;
+  background-color: base.$sn-theme-color-neutral-background2Level;
+}
+
+.bodyLine:last-child {
+  width: 60%;
+}
+
+// Затемнённая overlay-поверхность под onColor-крестик закрытия (тот же blackout, что даёт modal backdrop).
+// `min-height` показывает саму overlay-поверхность; крестик кладётся в `.closeButtonWrapper`
+// (реальная геометрия overlay — см. ниже), поэтому здесь только position-контекст для него.
+.blackout {
+  position: relative;
+
+  width: 420px;
+  max-width: 100%;
+  min-height: 7.5rem;
+  border-radius: base.$sn-brand-anatomy-radius-window-m;
+
+  background-color: base.$sn-theme-color-blackout;
+}
+
+// Высокая рамка для демонстрации скролла body: контент переполняет фикс-высоту.
+.frameTall {
+  display: flex;
+  flex-direction: column;
+  height: 320px; // demo-height: фиксируем, чтобы body переполнялся и появился вертикальный скролл
+}
+
+.mediaCloseFrame {
+  position: relative;
+}
+
+// Реальная геометрия крестика overlay: zero-size обёртка в правом верхнем углу,
+// сам крестик получает offset из своего `margin` (badge-токены). 1:1 с `ModalCustom.closeButtonWrapper`.
+.closeButtonWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 0;
+  height: 0;
+}

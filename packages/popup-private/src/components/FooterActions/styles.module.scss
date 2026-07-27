@@ -1,0 +1,32 @@
+// Раскладка группы кнопок футера. Поверхность и число действий выбирает `FooterActions`
+// (проп `surface`), здесь — только статические классы-модификаторы:
+// desktop:  1–2 → `.compact` (вправо);  3 → стопка, primary сверху (ButtonGroup default).
+// mobile:   1 → `.single`;  2 → break (space-between);  3 → `.stackInverted` (primary внизу).
+.actions {
+  width: 100%;
+
+  // Длинная подпись не влезает → переносится на 2-ю строку (у Button `white-space: normal`),
+  // а не растягивает кнопку за пределы окна.
+  > * {
+    max-width: 100%;
+  }
+}
+
+// mobile, 1 кнопка: не растянута, прижата вправо.
+.single {
+  justify-content: flex-end;
+}
+
+// desktop, 1–2 кнопки: компактно, прижаты в правый угол (без растяжения и space-between).
+.compact {
+  align-self: flex-end;
+  justify-content: flex-end;
+  width: auto;
+}
+
+// mobile, 3 кнопки: инверсия порядка — primary внизу (action-sheet конвенция).
+// Составной селектор `.actions.stackInverted` — специфичность = ButtonGroup `.root[data-vertical]`
+// (`column-reverse`), побеждает порядком (модуль потребителя подключается ниже).
+.actions.stackInverted {
+  flex-direction: column;
+}
