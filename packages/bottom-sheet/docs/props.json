@@ -70,15 +70,10 @@
         "defaultValue": "0",
         "description": "Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`."
       },
-      "disclaimer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-      },
       "footer": {
         "type": "ReactNode",
         "required": false,
-        "description": "Произвольный футер. Если задан — имеет приоритет над\n`approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+        "description": "Произвольный футер. Если задан — имеет приоритет над\n`approveButton` / `cancelButton` / `additionalButton`."
       },
       "footerActionsOrientation": {
         "type": "enum",
@@ -94,9 +89,9 @@
         ]
       },
       "footerTestIds": {
-        "type": "{ approve?: string; cancel?: string; additional?: string | undefined; disclaimer?: string | undefined; } | undefined",
+        "type": "{ approve?: string; cancel?: string; additional?: string | undefined; } | undefined",
         "required": false,
-        "description": "Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional/disclaimer).\nПо умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои\n`TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е."
+        "description": "Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional).\nПо умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои\n`TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е."
       },
       "lockScroll": {
         "type": "boolean",
@@ -105,11 +100,11 @@
         "description": "Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница\nпод sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с\nкоторым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`."
       },
       "media": {
-        "type": "ReactNode | BottomSheetMediaProps",
+        "type": "ReactNode | PopupMediaProps",
         "required": false,
         "description": "Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`.",
         "typeRefs": [
-          "BottomSheetMediaProps"
+          "PopupMediaProps"
         ]
       },
       "onBackButtonClick": {
@@ -154,6 +149,11 @@
         "required": false,
         "description": "Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge."
       },
+      "slotSecondTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под подзаголовком — типично `SearchBar`, `SegmentControl`, `Filter`."
+      },
       "snapIndex": {
         "type": "number",
         "required": false,
@@ -170,7 +170,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой — типично `SearchBar`, `SegmentControl`."
+        "description": "Текстовая строка-подзаголовок под title."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -291,6 +291,11 @@
             "required": false,
             "description": "Состояние загрузки"
           },
+          "minWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
+          },
           "view": {
             "type": "View | undefined",
             "required": false,
@@ -308,35 +313,7 @@
             ]
           }
         },
-        "own": true
-      },
-      "BottomSheetMediaProps": {
-        "kind": "interface",
-        "props": {
-          "alt": {
-            "type": "string",
-            "required": true,
-            "description": "Альтернативный текст (a11y)."
-          },
-          "kind": {
-            "type": "MediaKind | undefined",
-            "required": false,
-            "values": [
-              "icon",
-              "image"
-            ],
-            "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`.",
-            "typeRefs": [
-              "MediaKind"
-            ]
-          },
-          "src": {
-            "type": "string",
-            "required": true,
-            "description": "URL изображения / иконки."
-          }
-        },
-        "own": true
+        "own": false
       },
       "CounterProps": {
         "kind": "interface",
@@ -425,7 +402,7 @@
           "horizontal",
           "vertical"
         ],
-        "own": true
+        "own": false
       },
       "IconPosition": {
         "kind": "union",
@@ -441,11 +418,39 @@
           "icon",
           "image"
         ],
-        "own": true
+        "own": false
       },
       "PolymorphicRef": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PopupMediaProps": {
+        "kind": "interface",
+        "props": {
+          "alt": {
+            "type": "string",
+            "required": true,
+            "description": "Альтернативный текст (a11y)."
+          },
+          "kind": {
+            "type": "MediaKind | undefined",
+            "required": false,
+            "values": [
+              "icon",
+              "image"
+            ],
+            "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`.",
+            "typeRefs": [
+              "MediaKind"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "required": true,
+            "description": "URL изображения / иконки."
+          }
+        },
         "own": false
       },
       "SnapPoint": {
@@ -571,7 +576,7 @@
   "BottomSheetCustom.Body": {
     "displayName": "BottomSheetCustom.Body",
     "propsTypeName": null,
-    "description": "Контейнер основного содержимого bottom-sheet'а. Принимает `content` или `children`.",
+    "description": "Контейнер основного содержимого overlay'я. Принимает `content` или `children`.",
     "props": {
       "bodyPadding": {
         "type": "boolean",
@@ -599,7 +604,7 @@
   "BottomSheetCustom.Footer": {
     "displayName": "BottomSheetCustom.Footer",
     "propsTypeName": null,
-    "description": "Нижняя action-зона bottom-sheet'а (рендерит `children` в `bottomBar`-секции).",
+    "description": "Нижняя action-зона overlay'я (рендерит `children` в `bottomBar`-секции). Раскладка по поверхности.",
     "props": {
       "className": {
         "type": "string",
@@ -616,7 +621,7 @@
   "BottomSheetCustom.Header": {
     "displayName": "BottomSheetCustom.Header",
     "propsTypeName": null,
-    "description": "Header bottom-sheet'а: back-button + title + slotAfterTitle + actionButton + subtitle.",
+    "description": "Header overlay'я: back-button + title + slotAfterTitle + actionButton + subtitle + slotSecondTitle.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -642,20 +647,35 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
+      "slotSecondTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.\nЕсть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности."
+      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
+        "description": "Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях."
+      },
+      "testIds": {
+        "type": "PopupHeaderTestIds",
+        "required": false,
+        "description": "Переопределение `data-test-id` слотов шапки. Каждый пропущенный ключ берётся из `TEST_IDS`.\nПотребитель-обёртка (drawer/modal) прокидывает сюда свои id, чтобы сохранить публичный контракт."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "titleId": {
         "type": "string",
         "required": false,
         "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
       }
     },
     "relatedTypes": {}
@@ -696,534 +716,6 @@
     "displayName": "Handle",
     "propsTypeName": null,
     "description": "Drag-индикатор сверху bottom-sheet'а (32×4px). Декоративный — `aria-hidden`.",
-    "props": {},
-    "relatedTypes": {}
-  },
-  "Media": {
-    "displayName": "Media",
-    "propsTypeName": null,
-    "description": "Media-блок над headline: `kind='image'` — во всю ширину, `kind='icon'` — иконка.",
-    "props": {
-      "alt": {
-        "type": "string",
-        "required": true,
-        "description": "Альтернативный текст (a11y)."
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "kind": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "icon",
-          "image"
-        ],
-        "defaultValue": "image",
-        "description": "Режим:\n- `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается\n  верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body\n  используйте `bodyPadding={false}` отдельно.\n- `'icon'` — иконка с `padding-top: 24px`."
-      },
-      "src": {
-        "type": "string",
-        "required": true,
-        "description": "URL изображения / иконки."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "OVERLAY_SURFACE": {
-    "displayName": "OVERLAY_SURFACE",
-    "propsTypeName": null,
-    "description": "Поверхность overlay'я, в которой рендерятся общие слоты (`Header` / `Body` / `Footer` / `Media`).",
-    "props": {},
-    "relatedTypes": {}
-  },
-  "OverlaySurfaceProvider": {
-    "displayName": "OverlaySurfaceProvider",
-    "propsTypeName": "OverlaySurfaceProviderProps",
-    "description": "Провайдер поверхности overlay'я. Frame (sheet / modal / drawer) оборачивает в него свои слоты.",
-    "props": {
-      "bodyHeightAuto": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Только drawer: высота панели по контенту → `Body` (drawer-ветка) добавляет соответствующий класс."
-      },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": true
-      },
-      "surface": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "drawer",
-          "modal",
-          "sheet"
-        ],
-        "description": "Поверхность, в которой рендерятся дочерние слоты.",
-        "typeRefs": [
-          "OverlaySurface"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "OverlaySurface": {
-        "kind": "union",
-        "values": [
-          "drawer",
-          "modal",
-          "sheet"
-        ],
-        "own": true
-      }
-    }
-  },
-  "SheetBody": {
-    "displayName": "SheetBody",
-    "propsTypeName": "SheetBodyProps",
-    "description": "Контейнер основного содержимого bottom-sheet'а. Принимает `content` или `children`.",
-    "props": {
-      "bodyPadding": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "true",
-        "description": "Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —\nдля карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`."
-      },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера body."
-      },
-      "content": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Содержимое body (альтернатива `children`)."
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "SheetFooter": {
-    "displayName": "SheetFooter",
-    "propsTypeName": "SheetFooterProps",
-    "description": "Нижняя action-зона bottom-sheet'а (рендерит `children` в `bottomBar`-секции).",
-    "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера footer'а."
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "SheetHeader": {
-    "displayName": "SheetHeader",
-    "propsTypeName": "SheetHeaderProps",
-    "description": "Header bottom-sheet'а: back-button + title + slotAfterTitle + actionButton + subtitle.",
-    "props": {
-      "actionButton": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера header'а."
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onBackButtonClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
-      },
-      "slotAfterTitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`."
-      },
-      "title": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Заголовок (Typography title-l)."
-      },
-      "titleId": {
-        "type": "string",
-        "required": false,
-        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "buildFooterActions": {
-    "displayName": "buildFooterActions",
-    "propsTypeName": "FooterActionsOptions",
-    "description": "Собирает содержимое футера (`ButtonGroup` из approve/cancel/additional + disclaimer) или `null`.\nЕдиный источник правды для `BottomSheet`, `Modal` и `Drawer` (adaptive-маппинг 1:1).",
-    "props": {
-      "actionsClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс на `ButtonGroup` — для выравнивания (например, `align-self: flex-end` в modal/drawer)."
-      },
-      "additionalButton": {
-        "type": "BottomSheetActionButton",
-        "required": false,
-        "description": "Дополнительная (третья) кнопка (по умолчанию `view='simple'`, `appearance='neutral'`).",
-        "typeRefs": [
-          "BottomSheetActionButton"
-        ]
-      },
-      "align": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "end",
-          "spread"
-        ],
-        "defaultValue": "spread",
-        "description": "Раскладка горизонтальных кнопок: `'spread'` — ряд через space-between на всю ширину;\n`'end'` — compact-ряд, прижатый вправо."
-      },
-      "approveButton": {
-        "type": "BottomSheetActionButton",
-        "required": false,
-        "description": "Основная кнопка (по умолчанию `view='filled'`, `appearance='primary'`).",
-        "typeRefs": [
-          "BottomSheetActionButton"
-        ]
-      },
-      "cancelButton": {
-        "type": "BottomSheetActionButton",
-        "required": false,
-        "description": "Кнопка отмены (по умолчанию `view='outline'`, `appearance='neutral'`).",
-        "typeRefs": [
-          "BottomSheetActionButton"
-        ]
-      },
-      "disclaimer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Текст под кнопками."
-      },
-      "disclaimerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс обёртки дисклеймера — стилизуется в пакете-потребителе."
-      },
-      "footerActionsOrientation": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "defaultValue": "horizontal",
-        "description": "Ориентация кнопок при ровно двух действиях.",
-        "typeRefs": [
-          "FooterActionsOrientation"
-        ]
-      },
-      "testIds": {
-        "type": "FooterActionsTestIds",
-        "required": true,
-        "description": "Идентификаторы слотов конкретного компонента (`bottom-sheet` / `modal` / `drawer`).",
-        "typeRefs": [
-          "FooterActionsTestIds"
-        ]
-      }
-    },
-    "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": false
-      },
-      "BottomSheetActionButton": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "as": {
-            "type": "\"button\" | undefined",
-            "required": false,
-            "values": [
-              "button"
-            ],
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "innerRef": {
-            "type": "((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
-            "typeRefs": [
-              "PolymorphicRef",
-              "T"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": true
-      },
-      "CounterProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный CSS-класс"
-          },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "plusLimit": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Порог сокращения значения для варианта `count-plus`"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "value": {
-            "type": "number",
-            "required": true,
-            "description": "Значение"
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "count",
-              "count-k",
-              "count-plus"
-            ],
-            "description": "Вариант форматирования",
-            "typeRefs": [
-              "Variant"
-            ]
-          }
-        },
-        "own": false
-      },
-      "FooterActionsOrientation": {
-        "kind": "union",
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "own": true
-      },
-      "FooterActionsTestIds": {
-        "kind": "interface",
-        "props": {
-          "additional": {
-            "type": "string",
-            "required": true
-          },
-          "approve": {
-            "type": "string",
-            "required": true
-          },
-          "cancel": {
-            "type": "string",
-            "required": true
-          },
-          "disclaimer": {
-            "type": "string",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "IconPosition": {
-        "kind": "union",
-        "values": [
-          "after",
-          "before"
-        ],
-        "own": false
-      },
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": false
-      },
-      "View": {
-        "kind": "union",
-        "values": [
-          "elevated",
-          "filled",
-          "function",
-          "outline",
-          "simple",
-          "tonal"
-        ],
-        "own": false
-      }
-    }
-  },
-  "useOverlayBodyHeightAuto": {
-    "displayName": "useOverlayBodyHeightAuto",
-    "propsTypeName": null,
-    "description": "Только drawer-ветка `Body`: высота панели по контенту (из `DrawerFrame`).",
-    "props": {},
-    "relatedTypes": {}
-  },
-  "useOverlaySurface": {
-    "displayName": "useOverlaySurface",
-    "propsTypeName": null,
-    "description": "Текущая поверхность overlay'я. Без провайдера возвращает `'sheet'`.",
     "props": {},
     "relatedTypes": {}
   }

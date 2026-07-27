@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 
 // Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
 // (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
@@ -11,12 +11,6 @@
   flex-wrap: wrap;
   gap: base.$sn-primitive-dimension-12;
   align-items: center;
-}
-
-.footerGroup {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
 }
 
 .longContent > p + p {
@@ -37,5 +31,5 @@
 
   object-fit: cover;
 
-  @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'media', 'image');
+  @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'media', 'image');
 }

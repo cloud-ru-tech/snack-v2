@@ -1,11 +1,11 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Modal, ModalMode, ModalWidth, MODE, WIDTH } from '@ds/modal';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import { DemoHint, DemoPage, DemoPanel, DemoTitle, StoryTable } from '#storybook/components';
 
-import { VM_DISMISS_TEST_ID, VM_TRIGGER_TEST_ID } from '../testIds';
+import { VM_TRIGGER_TEST_ID } from '../testIds';
 
 type Combo = { key: string; mode: ModalMode; width: ModalWidth };
 
@@ -57,17 +57,7 @@ function VisualMatrixCanvas() {
           title={`${active.mode} · ${active.width}`}
           subtitle={`mode=${active.mode} width=${active.width}`}
           content='Содержимое модального окна.'
-          footer={
-            <ButtonGroup
-              primaryAction={{
-                label: 'Закрыть',
-                view: 'filled',
-                appearance: 'neutral',
-                'data-test-id': VM_DISMISS_TEST_ID,
-                onClick: close,
-              }}
-            />
-          }
+          approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: close }}
         />
       )}
     </DemoPage>

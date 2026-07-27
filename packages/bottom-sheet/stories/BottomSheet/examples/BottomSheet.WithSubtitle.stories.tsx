@@ -35,7 +35,7 @@ function WithSubtitleRender() {
         onClose={() => setOpen(false)}
         container={portalRoot.current || undefined}
         title='Filters'
-        subtitle={<div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl placeholder</div>}
+        slotSecondTitle={<div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl placeholder</div>}
         content={<p>Subtitle располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />

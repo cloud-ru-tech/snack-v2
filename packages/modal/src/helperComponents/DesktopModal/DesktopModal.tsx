@@ -1,4 +1,4 @@
-import { buildFooterActions } from '@ds/bottom-sheet';
+import { FooterActions } from '@ds/bottom-sheet';
 import { Spinner } from '@ds/loader';
 import { extractSupportProps } from '@ds/utils';
 import { useId, useMemo } from 'react';
@@ -25,7 +25,6 @@ export function DesktopModal({
   cancelButton,
   additionalButton,
   footerActionsOrientation,
-  disclaimer,
   footer,
   className,
   rootClassName,
@@ -37,25 +36,23 @@ export function DesktopModal({
   ...rest
 }: ModalProps) {
   const titleId = useId();
-  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `buildFooterActions`.
+  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `FooterActions`.
   const footerContent =
     footer ??
-    buildFooterActions({
-      approveButton,
-      cancelButton,
-      additionalButton,
-      footerActionsOrientation,
-      disclaimer,
-      testIds: {
-        approve: TEST_IDS.footerApprove,
-        cancel: TEST_IDS.footerCancel,
-        additional: TEST_IDS.footerAdditional,
-        disclaimer: TEST_IDS.footerDisclaimer,
-      },
-      disclaimerClassName: styles.disclaimer,
-      actionsClassName: styles.footerActions,
-      align: 'end',
-    });
+    (approveButton || cancelButton || additionalButton ? (
+      <FooterActions
+        surface='window'
+        approveButton={approveButton}
+        cancelButton={cancelButton}
+        additionalButton={additionalButton}
+        footerActionsOrientation={footerActionsOrientation}
+        testIds={{
+          approve: TEST_IDS.footerApprove,
+          cancel: TEST_IDS.footerCancel,
+          additional: TEST_IDS.footerAdditional,
+        }}
+      />
+    ) : null);
   const hasFooter = footerContent != null && !loading;
   const hasTitle = Boolean(title);
   const supportProps = extractSupportProps(rest);
@@ -67,7 +64,11 @@ export function DesktopModal({
     truncate,
     slotAfterTitle,
     onBackButtonClick,
-    'data-test-id': TEST_IDS.header,
+    testIds: {
+      header: TEST_IDS.header,
+      title: TEST_IDS.title,
+      subtitle: TEST_IDS.subtitle,
+    },
   };
 
   const bodyContent = useMemo(() => {

@@ -1,18 +1,18 @@
-import { ButtonProps } from '@ds/button';
-import { ValueOf, WithSupportProps } from '@ds/utils';
+import { BottomSheetActionButton, FooterActionsOrientation, PopupMediaProps } from '@ds/popup-private';
+import { WithSupportProps } from '@ds/utils';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND } from './constants';
-
-/**
- * Пропсы action-кнопки футера — объект пропсов `Button` из `@ds/button`. `view` / `appearance` имеют
- * дефолты по слоту (переопределяемы); `size` (m) и full-width задаёт `ButtonGroup`, поэтому исключены.
- * `data-test-id` слота фиксирует `TEST_IDS` (через `WithSupportProps` у `ButtonGroup`).
- *
- * Рендерится как `<button>` (как и `ButtonGroup`-action) — для CTA-ссылки (`as='a'` / `href`) в футере
- * используйте произвольный `footer: ReactNode`.
- */
-export type BottomSheetActionButton = Omit<ButtonProps, 'fullWidth' | 'size'>;
+// Общие chrome-типы вынесены в `@ds/popup-private`. Реэкспортируем под историческими именами
+// `@ds/bottom-sheet`, чтобы не ломать внешний контракт (isolatedModules → `export type`).
+export type {
+  BottomSheetActionButton,
+  FooterActionsOrientation,
+  MediaKind,
+  PopupBodyProps as BottomSheetBodyProps,
+  PopupFooterProps as BottomSheetFooterProps,
+  PopupHeaderProps as BottomSheetHeaderProps,
+  PopupMediaProps as BottomSheetMediaProps,
+} from '@ds/popup-private';
 
 /**
  * Фиксированная позиция bottom-sheet'а по высоте.
@@ -31,71 +31,6 @@ export type SnapPoint =
   | `${number}svh`
   | `${number}lvh`
   | 'fit-content';
-
-export type MediaKind = ValueOf<typeof MEDIA_KIND>;
-
-export type FooterActionsOrientation = ValueOf<typeof FOOTER_ACTIONS_ORIENTATION>;
-
-export type BottomSheetMediaProps = {
-  /** URL изображения / иконки. */
-  src: string;
-  /** Альтернативный текст (a11y). */
-  alt: string;
-  /**
-   * Режим:
-   * - `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается
-   *   верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body
-   *   используйте `bodyPadding={false}` отдельно.
-   * - `'icon'` — иконка с `padding-top: 24px`.
-   * @default 'image'
-   */
-  kind?: MediaKind;
-};
-
-export type BottomSheetHeaderProps = WithSupportProps<{
-  /** Заголовок (Typography title-l). */
-  title?: ReactNode;
-  /** `id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name). */
-  titleId?: string;
-  /** Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). */
-  slotAfterTitle?: ReactNode;
-  /**
-   * Slot под title-строкой во весь блок subtitleWrapper —
-   * типично `SearchBar`, `SegmentControl` или `Filter`.
-   */
-  subtitle?: ReactNode;
-  /**
-   * Callback клика на back-кнопку (слева в шапке).
-   * Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`.
-   */
-  onBackButtonClick?(): void;
-  /** Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой). */
-  actionButton?: ReactNode;
-  /** CSS-класс контейнера header'а. */
-  className?: string;
-}>;
-
-export type BottomSheetBodyProps = WithSupportProps<
-  PropsWithChildren<{
-    /** Содержимое body (альтернатива `children`). */
-    content?: ReactNode;
-    /**
-     * Горизонтальные паддинги body. При `false` контент идёт во всю ширину sheet'а (edge-to-edge) —
-     * для карт, изображений, списков без отступов. Соответствует Figma-оси `padding=false`.
-     * @default true
-     */
-    bodyPadding?: boolean;
-    /** CSS-класс контейнера body. */
-    className?: string;
-  }>
->;
-
-export type BottomSheetFooterProps = WithSupportProps<
-  PropsWithChildren<{
-    /** CSS-класс контейнера footer'а. */
-    className?: string;
-  }>
->;
 
 export type BottomSheetCustomProps = WithSupportProps<
   PropsWithChildren<{
@@ -181,8 +116,10 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
   title?: ReactNode;
   /** Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. */
   slotAfterTitle?: ReactNode;
-  /** Slot под title-строкой — типично `SearchBar`, `SegmentControl`. */
+  /** Текстовая строка-подзаголовок под title. */
   subtitle?: ReactNode;
+  /** Slot под подзаголовком — типично `SearchBar`, `SegmentControl`, `Filter`. */
+  slotSecondTitle?: ReactNode;
   /**
    * Callback клика на back-кнопку (слева в шапке).
    * Наличие callback'а рендерит ArrowLeft-кнопку.
@@ -191,7 +128,7 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
   /** Action-кнопка справа в шапке (любой ReactNode — обычно `Button view='function'`). */
   actionButton?: ReactNode;
   /** Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`. */
-  media?: BottomSheetMediaProps | ReactNode;
+  media?: PopupMediaProps | ReactNode;
   /** Основное содержимое (рендерится в `BottomSheetCustom.Body`). */
   content?: ReactNode;
   /**
@@ -235,17 +172,15 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
    * @default 'horizontal'
    */
   footerActionsOrientation?: FooterActionsOrientation;
-  /** Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). */
-  disclaimer?: ReactNode;
   /**
    * Произвольный футер. Если задан — имеет приоритет над
-   * `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`.
+   * `approveButton` / `cancelButton` / `additionalButton`.
    */
   footer?: ReactNode;
   /**
-   * Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional/disclaimer).
+   * Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional).
    * По умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои
    * `TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е.
    */
-  footerTestIds?: { approve?: string; cancel?: string; additional?: string; disclaimer?: string };
+  footerTestIds?: { approve?: string; cancel?: string; additional?: string };
 };

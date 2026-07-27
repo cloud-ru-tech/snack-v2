@@ -103,7 +103,7 @@ test.describe('Drawer — interaction', () => {
     const nestedRoot = getByTestId(TEST_IDS.nestedDrawer);
     await expect(nestedRoot).not.toBeAttached();
 
-    await getByTestId(TEST_IDS.drawer.nestedTrigger).click();
+    await getByTestId(TEST_IDS.footerAdditional).click();
     await expect(nestedRoot).toBeVisible();
     await expect(nestedRoot.locator(dataTestIdSelector(TEST_IDS.title))).toHaveText(NESTED_DRAWER_TITLE);
     await expect(nestedRoot.locator(dataTestIdSelector(TEST_IDS.body))).toContainText(NESTED_DRAWER_BODY);

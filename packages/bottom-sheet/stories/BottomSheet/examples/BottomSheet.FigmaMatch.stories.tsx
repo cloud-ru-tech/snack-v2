@@ -60,7 +60,7 @@ function FigmaMatchRender() {
             onClick={() => undefined}
           />
         }
-        subtitle={
+        slotSecondTitle={
           <Search
             value=''
             size='s'

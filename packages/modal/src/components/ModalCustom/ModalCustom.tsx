@@ -1,5 +1,6 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, BottomSheetCustomProps, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
+import { PopupCloseButton } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -9,7 +10,6 @@ import { RemoveScroll } from 'react-remove-scroll';
 
 import { MODE, TEST_IDS, WIDTH } from '../../constants';
 import {
-  ButtonClose,
   DialogBody,
   DialogBodyProps,
   DialogFooter,
@@ -174,7 +174,7 @@ function ModalFrame({
 
           {hasCloseButton && (
             <div className={styles.closeButtonWrapper}>
-              <ButtonClose onClick={close} />
+              <PopupCloseButton aria-label='close modal' data-test-id={TEST_IDS.closeButton} onClick={close} />
             </div>
           )}
         </div>

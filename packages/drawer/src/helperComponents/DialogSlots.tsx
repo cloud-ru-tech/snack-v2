@@ -1,22 +1,25 @@
-import { OVERLAY_SURFACE, SheetBody, SheetFooter, SheetHeader, useOverlaySurface } from '@ds/bottom-sheet';
+import {
+  OVERLAY_SURFACE,
+  SheetBody,
+  SheetFooter,
+  SheetFooterProps,
+  SheetHeader,
+  SheetHeaderProps,
+  useOverlaySurface,
+} from '@ds/bottom-sheet';
 
 import { DrawerBody, DrawerBodyProps } from './DrawerBody';
-import { DrawerFooter, DrawerFooterProps } from './DrawerFooter';
-import { DrawerHeader, DrawerHeaderProps } from './DrawerHeader';
 
-/** Surface-aware слоты дровера: sheet-рендер внутри `BottomSheet` (mobile), drawer-рендер в desktop-frame. */
-export type DialogHeaderProps = DrawerHeaderProps;
+// Header и Footer surface-aware реализует сам `PopupHeader`/`PopupFooter` (`SheetHeader`/`SheetFooter`):
+// он читает `OverlaySurfaceProvider` и рисует window-раскладку на drawer, bottomSheet — на sheet.
+// Свап остаётся только для Body (desktop-frame vs sheet).
+export type DialogHeaderProps = SheetHeaderProps;
 export type DialogBodyProps = DrawerBodyProps;
-export type DialogFooterProps = DrawerFooterProps;
+export type DialogFooterProps = SheetFooterProps;
 
-export function DialogHeader(props: DialogHeaderProps) {
-  return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetHeader {...props} /> : <DrawerHeader {...props} />;
-}
+export const DialogHeader = SheetHeader;
+export const DialogFooter = SheetFooter;
 
 export function DialogBody(props: DialogBodyProps) {
   return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetBody {...props} /> : <DrawerBody {...props} />;
-}
-
-export function DialogFooter(props: DialogFooterProps) {
-  return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetFooter {...props} /> : <DrawerFooter {...props} />;
 }

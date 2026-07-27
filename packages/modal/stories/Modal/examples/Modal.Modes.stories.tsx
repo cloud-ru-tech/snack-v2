@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Modal, ModalMode, MODE } from '@ds/modal';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -17,7 +17,6 @@ const MODE_SUBTITLE: Record<ModalMode, string> = {
 const MODES: ModalMode[] = [MODE.Regular, MODE.Aggressive, MODE.Forced];
 
 const triggerTestId = (mode: ModalMode) => `modal-trigger-${mode}`;
-const DISMISS_TEST_ID = 'modal-modes-dismiss';
 
 const meta: Meta<typeof Modal> = {
   title: 'Components/Modal/Modal/Examples/Modes',
@@ -68,17 +67,7 @@ function ModeDemo() {
           title={`Режим: ${activeMode}`}
           subtitle={MODE_SUBTITLE[activeMode]}
           content='Выберите один из трёх режимов закрытия, чтобы сравнить поведение.'
-          footer={
-            <ButtonGroup
-              primaryAction={{
-                label: 'Закрыть',
-                view: 'filled',
-                appearance: 'neutral',
-                'data-test-id': DISMISS_TEST_ID,
-                onClick: close,
-              }}
-            />
-          }
+          approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: close }}
         />
       )}
     </DemoPage>

@@ -7,10 +7,6 @@
   width: 100%;
 }
 
-.customBody {
-  padding: base.$sn-primitive-dimension-24;
-}
-
 .customBody > p + p {
   margin-top: base.$sn-primitive-dimension-12;
 }

@@ -29,16 +29,13 @@
 
   box-sizing: border-box;
   min-height: 0;
-  padding-top: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'content', 'padding-top');
+  // Верхний зазор контента: коллекция bottomSheet больше не несёт `content.padding-top`
+  // (chrome уехал в popupPrivate). Верхний отступ шапки теперь owns PopupHeader
+  // (popupPrivate `bottomSheet.header.padding-top`); здесь остаётся frame-паддинг `container.padding-top`.
+  padding-top: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'padding-top');
 }
 
 .contentBlockNoTopPadding {
   padding-top: 0;
 }
 
-.disclaimer {
-  @include base.composite-var(base.$sn-regular, 'label', 's');
-
-  color: base.$sn-theme-color-neutral-text;
-  text-align: center;
-}

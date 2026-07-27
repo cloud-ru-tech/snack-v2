@@ -1,25 +1,25 @@
-import { OVERLAY_SURFACE, SheetBody, SheetFooter, SheetHeader, useOverlaySurface } from '@ds/bottom-sheet';
+import {
+  OVERLAY_SURFACE,
+  SheetBody,
+  SheetFooter,
+  SheetFooterProps,
+  SheetHeader,
+  SheetHeaderProps,
+  useOverlaySurface,
+} from '@ds/bottom-sheet';
 
 import { ModalBody, ModalBodyProps } from './ModalBody';
-import { ModalFooter, ModalFooterProps } from './ModalFooter';
-import { ModalHeader, ModalHeaderProps } from './ModalHeader';
 
-/**
- * Surface-aware header-слот: sheet-рендер внутри `BottomSheet` (mobile), modal-рендер в desktop-frame.
- * Props — суперсет (modal-рендер добавляет `subtitle`/`truncate`; sheet-рендер их игнорирует).
- */
-export type DialogHeaderProps = ModalHeaderProps;
+// Header и Footer surface-aware реализует сам `PopupHeader`/`PopupFooter` (`SheetHeader`/`SheetFooter`):
+// он читает `OverlaySurfaceProvider` и рисует window-раскладку на modal, bottomSheet — на sheet.
+// Свап остаётся только для Body (desktop-frame vs sheet).
+export type DialogHeaderProps = SheetHeaderProps;
 export type DialogBodyProps = ModalBodyProps;
-export type DialogFooterProps = ModalFooterProps;
+export type DialogFooterProps = SheetFooterProps;
 
-export function DialogHeader(props: DialogHeaderProps) {
-  return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetHeader {...props} /> : <ModalHeader {...props} />;
-}
+export const DialogHeader = SheetHeader;
+export const DialogFooter = SheetFooter;
 
 export function DialogBody(props: DialogBodyProps) {
   return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetBody {...props} /> : <ModalBody {...props} />;
-}
-
-export function DialogFooter(props: DialogFooterProps) {
-  return useOverlaySurface() === OVERLAY_SURFACE.Sheet ? <SheetFooter {...props} /> : <ModalFooter {...props} />;
 }

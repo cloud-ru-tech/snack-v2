@@ -156,7 +156,7 @@ test.describe('BottomSheet — rendering & props propagation', () => {
   test('renders subtitle slot (WithSubtitle)', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, BOTTOM_SHEET_STORIES.withSubtitle));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
-    await expect(getByTestId(TEST_IDS.subtitle)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.slotSecondTitle)).toBeVisible();
   });
 
   test('renders back-button and action-button in header (WithActionButton)', async ({ gotoStory, getByTestId }) => {
@@ -176,16 +176,12 @@ test.describe('BottomSheet — rendering & props propagation', () => {
     await expect(getByTestId(TEST_IDS.dividerBottom)).toBeVisible();
   });
 
-  test('renders the full legacy footer (approve/cancel/additional + disclaimer)', async ({
-    gotoStory,
-    getByTestId,
-  }) => {
+  test('renders the full footer (approve/cancel/additional)', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, BOTTOM_SHEET_STORIES.footerActions));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
     await expect(getByTestId(TEST_IDS.footerApprove)).toBeVisible();
     await expect(getByTestId(TEST_IDS.footerCancel)).toBeVisible();
     await expect(getByTestId(TEST_IDS.footerAdditional)).toBeVisible();
-    await expect(getByTestId(TEST_IDS.footerDisclaimer)).toBeVisible();
   });
 
   test('low-level BottomSheetCustom composition renders (CustomComposition)', async ({ gotoStory, getByTestId }) => {

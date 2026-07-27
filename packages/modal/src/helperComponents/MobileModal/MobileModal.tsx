@@ -23,7 +23,6 @@ export function MobileModal({
   cancelButton,
   additionalButton,
   footerActionsOrientation,
-  disclaimer,
   footer,
   loading = false,
   loadingState,
@@ -57,14 +56,12 @@ export function MobileModal({
       cancelButton={loading ? undefined : cancelButton}
       additionalButton={loading ? undefined : additionalButton}
       footerActionsOrientation={footerActionsOrientation}
-      disclaimer={loading ? undefined : disclaimer}
       footer={loading ? undefined : footer}
       // Те же id футера, что у desktop-поверхности — стабильный селектор при свапе surface.
       footerTestIds={{
         approve: TEST_IDS.footerApprove,
         cancel: TEST_IDS.footerCancel,
         additional: TEST_IDS.footerAdditional,
-        disclaimer: TEST_IDS.footerDisclaimer,
       }}
       className={className}
       rootClassName={rootClassName}

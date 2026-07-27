@@ -9,9 +9,9 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../testIds';
 
 /**
- * Полный футер: `approveButton` + `cancelButton` + `additionalButton` + `disclaimer`.
+ * Полный футер: `approveButton` + `cancelButton` + `additionalButton`.
  * Три действия не помещаются в горизонтальный ряд на mobile-вьюпорте, поэтому собираются в
- * вертикальный full-width `ButtonGroup` (primary сверху), под ними — текст дисклеймера.
+ * вертикальный full-width `ButtonGroup` с инверсией (primary снизу).
  * Горизонтальный ряд (space-between) применяется к паре cancel/confirm — см. Playground.
  * Альтернатива — произвольный `footer: ReactNode` (см. Nested).
  */
@@ -24,8 +24,7 @@ function FooterActionsRender() {
       <DemoPanel>
         <DemoTitle>Footer actions</DemoTitle>
         <DemoHint>
-          Три кнопки футера (<code>approve</code> / <code>cancel</code> / <code>additional</code>) и{' '}
-          <code>disclaimer</code>.
+          Три кнопки футера (<code>approve</code> / <code>cancel</code> / <code>additional</code>).
         </DemoHint>
         <DemoActions align='center'>
           <Button
@@ -47,7 +46,6 @@ function FooterActionsRender() {
         approveButton={{ label: 'Удалить', appearance: APPEARANCE.Critical, onClick: () => setOpen(false) }}
         cancelButton={{ label: 'Отмена', onClick: () => setOpen(false) }}
         additionalButton={{ label: 'Подробнее', onClick: () => undefined }}
-        disclaimer='Удаление невозможно отменить.'
       />
     </DemoPage>
   );

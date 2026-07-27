@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer, POSITION, Position, WIDTH, Width } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -90,17 +90,7 @@ function VisualMatrixCanvas() {
           title={active.key}
           subtitle={`position=${active.position}${active.width ? ` width=${active.width}` : ''}`}
           content='Содержимое панели.'
-          footer={
-            <ButtonGroup
-              primaryAction={{
-                label: 'Закрыть',
-                view: 'filled',
-                appearance: 'neutral',
-                'data-test-id': TEST_IDS.drawerVm.dismiss,
-                onClick: close,
-              }}
-            />
-          }
+          approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: close }}
         />
       )}
     </DemoPage>

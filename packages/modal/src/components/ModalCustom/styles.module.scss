@@ -17,8 +17,8 @@ $widthSizes: 's', 'm', 'l';
   width: 100%;
   max-height: min(100%, base.simple-var(modal.$modal, 'anatomy', 'container', 'height', 'max-height'));
 
+  // Тени у окна нет — разграничение с контентом держат затемнение-подложка и фон окна.
   outline: none;
-  box-shadow: base.$sn-boxShadow-elevation-level5;
 
   @include base.composite-var(modal.$modal, 'anatomy', 'container');
 

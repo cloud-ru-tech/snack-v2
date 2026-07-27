@@ -15,7 +15,9 @@ export function skipOnDesktop() {
 }
 
 // Слот-id, которые ставит сам компонент (root / backdrop / handle / header / body / footer / …).
-export { TEST_IDS } from '../../src/constants';
+// Импорт из CSS-free leaf `@ds/popup-private`, а не через `../../src/constants` → entry `@ds/popup-private`:
+// entry тянет дерево компонентов со `styles.module.scss`, что ломает playwright-compile спека.
+export { TEST_IDS } from '../../../popup-private/src/constants';
 // Story-level id'ы (триггеры, контент-маркеры, nested-сценарий). Один источник со stories.
 export { TEST_IDS as STORY_TEST_IDS } from '../../stories/BottomSheet/testIds';
 

@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -40,9 +40,7 @@ function WithMediaScenario() {
         title='Добро пожаловать'
         subtitle='Кратко о том, что изменилось в этой версии.'
         content='Список ключевых улучшений и ссылки на подробности могут размещаться в теле.'
-        footer={
-          <ButtonGroup primaryAction={{ label: 'Готово', view: 'filled', appearance: 'primary', onClick: close }} />
-        }
+        approveButton={{ label: 'Готово', onClick: close }}
       />
     </DemoPage>
   );

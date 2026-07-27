@@ -2,15 +2,15 @@ import '@rc-component/drawer/assets/index.css';
 
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
+import { PopupCloseButton } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
 import { extractSupportProps, useModalOpenState } from '@ds/utils';
 import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from '@rc-component/drawer';
 import cn from 'classnames';
 import { ComponentType, CSSProperties, useMemo } from 'react';
 
-import { WIDTH_AS_VALUES } from '../../constants';
+import { TEST_IDS, WIDTH_AS_VALUES } from '../../constants';
 import {
-  ButtonClose,
   DialogBody,
   DialogBodyProps,
   DialogFooter,
@@ -136,7 +136,12 @@ function DrawerFrame(props: DrawerCustomProps) {
     >
       <div ref={focusTrapRef} className={styles.focusScope}>
         <div className={styles.badgeButtonClosedWrapper}>
-          <ButtonClose className={styles.badgeButtonClosed} onClick={onClose} />
+          <PopupCloseButton
+            className={styles.badgeButtonClosed}
+            aria-label='close drawer'
+            data-test-id={TEST_IDS.closeButton}
+            onClick={onClose}
+          />
         </div>
 
         <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Drawer} bodyHeightAuto={heightAutoVertical}>

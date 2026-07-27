@@ -101,9 +101,9 @@ function PlaygroundRender(args: StoryProps) {
         slotAfterTitle={
           showHeader && showAfterHeadline ? <span data-test-id={PUBLIC_TEST_IDS.slotAfterTitle}>NEW</span> : undefined
         }
-        subtitle={
+        slotSecondTitle={
           showHeader && showSubtitle ? (
-            <div data-test-id={PUBLIC_TEST_IDS.subtitle}>SearchBar / SegmentControl …</div>
+            <div data-test-id={PUBLIC_TEST_IDS.slotSecondTitle}>SearchBar / SegmentControl …</div>
           ) : undefined
         }
         onBackButtonClick={showHeader && showBackButton ? () => setOpen(false) : undefined}
@@ -170,18 +170,17 @@ export const Playground: Story = {
     content: { table: { disable: true } },
     actionButton: { table: { disable: true } },
     slotAfterTitle: { table: { disable: true } },
-    subtitle: { table: { disable: true } },
+    slotSecondTitle: { table: { disable: true } },
     footer: { table: { disable: true } },
     onBackButtonClick: { table: { disable: true } },
     // Пропсы, которыми управляет render (story-toggle / preset / portal context root),
     // а не панель Controls — иначе это «контролы, которые ничего не делают».
-    // snapPoints → [Stories]: snapPointsPreset; approve/cancel/additional/disclaimer → showFooter;
+    // snapPoints → [Stories]: snapPointsPreset; approve/cancel/additional → showFooter;
     // container → portal context root.
     snapPoints: { table: { disable: true } },
     approveButton: { table: { disable: true } },
     cancelButton: { table: { disable: true } },
     additionalButton: { table: { disable: true } },
-    disclaimer: { table: { disable: true } },
     container: { table: { disable: true } },
     snapPointsPreset: {
       name: '[Stories]: snapPointsPreset',

@@ -20,7 +20,6 @@ export function MobileDrawer({
   cancelButton,
   additionalButton,
   footerActionsOrientation,
-  disclaimer,
   footer,
   className,
   rootClassName,
@@ -52,14 +51,12 @@ export function MobileDrawer({
       cancelButton={cancelButton}
       additionalButton={additionalButton}
       footerActionsOrientation={footerActionsOrientation}
-      disclaimer={disclaimer}
       footer={footer}
       // Те же id футера, что у desktop-поверхности — стабильный селектор при свапе surface.
       footerTestIds={{
         approve: TEST_IDS.footerApprove,
         cancel: TEST_IDS.footerCancel,
         additional: TEST_IDS.footerAdditional,
-        disclaimer: TEST_IDS.footerDisclaimer,
       }}
       className={className}
       rootClassName={rootClassName}

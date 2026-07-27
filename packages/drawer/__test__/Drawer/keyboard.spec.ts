@@ -73,7 +73,7 @@ test.describe('Drawer — keyboard', () => {
     const nestedRoot = getByTestId(TEST_IDS.nestedDrawer);
     await expect(nestedRoot).not.toBeAttached();
 
-    await getByTestId(TEST_IDS.drawer.nestedTrigger).click();
+    await getByTestId(TEST_IDS.footerAdditional).click();
     await expect(nestedRoot).toBeVisible();
 
     await page.keyboard.press('Escape');

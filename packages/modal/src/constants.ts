@@ -10,7 +10,6 @@ export const TEST_IDS = {
   footerApprove: 'modal__footer-approve',
   footerCancel: 'modal__footer-cancel',
   footerAdditional: 'modal__footer-additional',
-  footerDisclaimer: 'modal__footer-disclaimer',
   loadingSpinner: 'modal__loading-spinner',
   overlay: 'modal__overlay',
 } as const;

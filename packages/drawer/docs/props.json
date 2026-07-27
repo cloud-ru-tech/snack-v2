@@ -1,25 +1,4 @@
 {
-  "ButtonClose": {
-    "displayName": "ButtonClose",
-    "propsTypeName": null,
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onClick": {
-        "type": "() => void",
-        "required": true,
-        "description": "Действие при клике"
-      }
-    },
-    "relatedTypes": {}
-  },
   "DesktopDrawer": {
     "displayName": "DesktopDrawer",
     "propsTypeName": null,
@@ -70,15 +49,10 @@
         "defaultValue": "false",
         "description": "Отключить анимации"
       },
-      "disclaimer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-      },
       "footer": {
         "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
         "required": false,
-        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`."
       },
       "footerActionsOrientation": {
         "type": "enum",
@@ -172,7 +146,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
+        "description": "Текстовая строка-подзаголовок под title."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -183,7 +157,7 @@
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "width": {
         "type": "string | number",
@@ -265,20 +239,35 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
+      "slotSecondTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.\nЕсть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности."
+      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
+        "description": "Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях."
+      },
+      "testIds": {
+        "type": "PopupHeaderTestIds",
+        "required": false,
+        "description": "Переопределение `data-test-id` слотов шапки. Каждый пропущенный ключ берётся из `TEST_IDS`.\nПотребитель-обёртка (drawer/modal) прокидывает сюда свои id, чтобы сохранить публичный контракт."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "titleId": {
         "type": "string",
         "required": false,
         "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
       }
     },
     "relatedTypes": {}
@@ -346,15 +335,10 @@
         "defaultValue": "false",
         "description": "Отключить анимации"
       },
-      "disclaimer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-      },
       "footer": {
         "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
         "required": false,
-        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`."
       },
       "footerActionsOrientation": {
         "type": "enum",
@@ -460,7 +444,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
+        "description": "Текстовая строка-подзаголовок под title."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -471,7 +455,7 @@
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "width": {
         "type": "string | number",
@@ -583,6 +567,11 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Состояние загрузки"
+          },
+          "minWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
           },
           "view": {
             "type": "View | undefined",
@@ -744,15 +733,10 @@
             "required": false,
             "description": "Отключить анимации"
           },
-          "disclaimer": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-          },
           "footer": {
             "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null)) | undefined",
             "required": false,
-            "description": "Футер\n\n\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+            "description": "Футер\n\n\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`."
           },
           "footerActionsOrientation": {
             "type": "FooterActionsOrientation | undefined",
@@ -854,7 +838,7 @@
           "subtitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\n\n\nПодзаголовок под заголовком."
+            "description": "Текстовая строка-подзаголовок под title."
           },
           "swipeEnabled": {
             "type": "boolean | undefined",
@@ -864,7 +848,7 @@
           "title": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Заголовок (Typography title-l)."
+            "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
           },
           "width": {
             "type": "string | number | undefined",
@@ -1313,84 +1297,35 @@
         "required": false,
         "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
       },
+      "slotSecondTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.\nЕсть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности."
+      },
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
+        "description": "Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях."
+      },
+      "testIds": {
+        "type": "PopupHeaderTestIds",
+        "required": false,
+        "description": "Переопределение `data-test-id` слотов шапки. Каждый пропущенный ключ берётся из `TEST_IDS`.\nПотребитель-обёртка (drawer/modal) прокидывает сюда свои id, чтобы сохранить публичный контракт."
       },
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "titleId": {
         "type": "string",
         "required": false,
         "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "DrawerFooter": {
-    "displayName": "DrawerFooter",
-    "propsTypeName": null,
-    "description": "Footer дровера (desktop).",
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера footer'а."
       },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
-  "DrawerHeader": {
-    "displayName": "DrawerHeader",
-    "propsTypeName": null,
-    "description": "Header дровера (desktop).",
-    "props": {
-      "actionButton": {
-        "type": "ReactNode",
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
         "required": false,
-        "description": "Slot справа от headline-строки (любой `ReactNode`, обычно `Button` с иконкой)."
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера header'а."
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "onBackButtonClick": {
-        "type": "(() => void)",
-        "required": false,
-        "description": "Callback клика на back-кнопку (слева в шапке).\nНаличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`."
-      },
-      "slotAfterTitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`)."
-      },
-      "subtitle": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
-      },
-      "title": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Заголовок (Typography title-l)."
-      },
-      "titleId": {
-        "type": "string",
-        "required": false,
-        "description": "`id` заголовка — для связи с `aria-labelledby` dialog'а (accessible name)."
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
       }
     },
     "relatedTypes": {}
@@ -1445,15 +1380,10 @@
         "defaultValue": "false",
         "description": "Отключить анимации"
       },
-      "disclaimer": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.)."
-      },
       "footer": {
         "type": "(ReactElement<any, string | JSXElementConstructor<any>> & (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<...> | ReactPortal | null))",
         "required": false,
-        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`."
+        "description": "Футер\nПроизвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`."
       },
       "footerActionsOrientation": {
         "type": "enum",
@@ -1547,7 +1477,7 @@
       "subtitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под title-строкой во весь блок subtitleWrapper —\nтипично `SearchBar`, `SegmentControl` или `Filter`.\nПодзаголовок под заголовком."
+        "description": "Текстовая строка-подзаголовок под title."
       },
       "swipeEnabled": {
         "type": "boolean",
@@ -1558,7 +1488,7 @@
       "title": {
         "type": "ReactNode",
         "required": false,
-        "description": "Заголовок (Typography title-l)."
+        "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
       "width": {
         "type": "string | number",

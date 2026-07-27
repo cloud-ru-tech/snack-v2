@@ -36,7 +36,7 @@ export function Filters() {
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
         slotAfterTitle={<QuestionTooltip tip='Настройте параметры выборки' />}
-        subtitle={
+        slotSecondTitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (
               <Tag

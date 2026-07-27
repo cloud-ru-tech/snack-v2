@@ -10,7 +10,6 @@ export const TEST_IDS = {
   footerApprove: 'drawer__footer-approve',
   footerCancel: 'drawer__footer-cancel',
   footerAdditional: 'drawer__footer-additional',
-  footerDisclaimer: 'drawer__footer-disclaimer',
   nestedDrawer: 'drawer__nested',
   overlay: 'drawer__overlay',
   contentWrapper: 'drawer__content-wrapper',

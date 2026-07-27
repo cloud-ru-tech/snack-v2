@@ -1,10 +1,9 @@
+import { FooterActions, PopupMedia } from '@ds/popup-private';
 import cn from 'classnames';
 import { isValidElement, ReactNode, useId } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { Media } from '../../helperComponents';
 import { BottomSheetMediaProps, BottomSheetProps } from '../../types';
-import { buildFooterActions } from '../../utils/buildFooterActions';
 import { BottomSheetCustom } from '../BottomSheetCustom';
 import styles from './styles.module.scss';
 
@@ -17,6 +16,7 @@ export function BottomSheet({
   title,
   slotAfterTitle,
   subtitle,
+  slotSecondTitle,
   onBackButtonClick,
   actionButton,
   media,
@@ -26,7 +26,6 @@ export function BottomSheet({
   cancelButton,
   additionalButton,
   footerActionsOrientation,
-  disclaimer,
   footer,
   footerTestIds,
   withDividers = false,
@@ -35,7 +34,9 @@ export function BottomSheet({
   className,
   ...rest
 }: BottomSheetProps) {
-  const hasHeader = Boolean(title || onBackButtonClick || actionButton || slotAfterTitle || subtitle);
+  const hasHeader = Boolean(
+    title || onBackButtonClick || actionButton || slotAfterTitle || subtitle || slotSecondTitle,
+  );
   const hasMedia = media != null;
   const hasFullWidthMediaImage = hasMedia && isMediaProps(media) && (media.kind ?? 'image') === 'image';
 
@@ -43,24 +44,23 @@ export function BottomSheet({
   const titleId = useId();
 
   // Footer: произвольный `footer`-ReactNode (приоритет) либо сборка из слотов кнопок через общий
-  // `buildFooterActions` (тот же, что у Modal/Drawer, для adaptive-маппинга 1:1).
+  // `FooterActions` (тот же, что у Modal/Drawer, для adaptive-маппинга 1:1).
   const footerContent =
     footer ??
-    buildFooterActions({
-      approveButton,
-      cancelButton,
-      additionalButton,
-      footerActionsOrientation,
-      disclaimer,
-      testIds: {
-        approve: footerTestIds?.approve ?? TEST_IDS.footerApprove,
-        cancel: footerTestIds?.cancel ?? TEST_IDS.footerCancel,
-        additional: footerTestIds?.additional ?? TEST_IDS.footerAdditional,
-        disclaimer: footerTestIds?.disclaimer ?? TEST_IDS.footerDisclaimer,
-      },
-      disclaimerClassName: styles.disclaimer,
-      align: 'spread',
-    });
+    (approveButton || cancelButton || additionalButton ? (
+      <FooterActions
+        surface='bottomSheet'
+        approveButton={approveButton}
+        cancelButton={cancelButton}
+        additionalButton={additionalButton}
+        footerActionsOrientation={footerActionsOrientation}
+        testIds={{
+          approve: footerTestIds?.approve ?? TEST_IDS.footerApprove,
+          cancel: footerTestIds?.cancel ?? TEST_IDS.footerCancel,
+          additional: footerTestIds?.additional ?? TEST_IDS.footerAdditional,
+        }}
+      />
+    ) : null);
   const hasFooter = footerContent != null;
 
   return (
@@ -75,7 +75,7 @@ export function BottomSheet({
       <div className={styles.root}>
         {hasMedia &&
           (isMediaProps(media) ? (
-            <Media {...media} />
+            <PopupMedia {...media} />
           ) : (
             // ReactNode-media: тот же data-media-kind-контракт со значением 'custom'.
             <div data-test-id={TEST_IDS.media} data-media-kind='custom'>
@@ -90,6 +90,7 @@ export function BottomSheet({
               titleId={titleId}
               slotAfterTitle={slotAfterTitle}
               subtitle={subtitle}
+              slotSecondTitle={slotSecondTitle}
               onBackButtonClick={onBackButtonClick}
               actionButton={actionButton}
             />

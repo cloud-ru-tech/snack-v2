@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Modal, ModalProps, MODE, WIDTH } from '@ds/modal';
 import { QuestionTooltip } from '@ds/tooltip';
 import { Meta, StoryObj } from '@storybook/react';
@@ -9,13 +9,10 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, usePreviewTheme 
 
 import { TEST_IDS } from '../testIds';
 import { SAMPLE_CONTENT } from './constants';
-import styles from './styles.module.scss';
 import { resolveModalStoryMediaSrc, ThemedModalMedia } from './ThemedModalMedia';
 
 const STORY_TEST_IDS = {
   triggerOpen: TEST_IDS.modal.triggerOpen,
-  firstButton: TEST_IDS.modal.firstButton,
-  secondButton: TEST_IDS.modal.secondButton,
   image: TEST_IDS.modal.image,
   tooltip: TEST_IDS.modal.tooltip,
 };
@@ -103,26 +100,8 @@ function PlaygroundRender(args: PlaygroundStoryProps) {
         loading={loading}
         loadingState={loadingState}
         media={showMedia ? <ThemedModalMedia src={storyMediaSrc} data-test-id={STORY_TEST_IDS.image} /> : undefined}
-        footer={
-          showFooter && !loading ? (
-            <ButtonGroup
-              className={styles.footerGroup}
-              primaryAction={{
-                label: 'Label text',
-                view: 'filled',
-                'data-test-id': STORY_TEST_IDS.firstButton,
-                onClick: close,
-              }}
-              secondaryAction={{
-                label: 'Label text',
-                view: 'outline',
-                appearance: 'neutral',
-                'data-test-id': STORY_TEST_IDS.secondButton,
-                onClick: close,
-              }}
-            />
-          ) : undefined
-        }
+        approveButton={showFooter && !loading ? { label: 'Label text', onClick: close } : undefined}
+        cancelButton={showFooter && !loading ? { label: 'Label text', onClick: close } : undefined}
       />
     </DemoPage>
   );

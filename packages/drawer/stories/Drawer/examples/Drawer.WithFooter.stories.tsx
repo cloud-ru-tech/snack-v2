@@ -17,9 +17,8 @@ function WithFooterScenario() {
       <DemoPanel>
         <DemoTitle>WithFooter</DemoTitle>
         <DemoHint>
-          Подтверждение деструктивного действия в Drawer. Футер — типизированные слоты `approveButton` / `cancelButton`
-          (+ `disclaimer`): на desktop ряд прижат вправо, на mobile (тулбар Layout) тот же футер уезжает в
-          `BottomSheet`.
+          Подтверждение деструктивного действия в Drawer. Футер — типизированные слоты `approveButton` / `cancelButton`:
+          на desktop ряд прижат вправо, на mobile (тулбар Layout) тот же футер уезжает в `BottomSheet`.
         </DemoHint>
         <DemoActions align='center'>
           <Button
@@ -41,7 +40,6 @@ function WithFooterScenario() {
         content='После подтверждения запись и все её ссылки исчезнут из списка.'
         approveButton={{ label: 'Удалить', appearance: APPEARANCE.Critical, onClick: close }}
         cancelButton={{ label: 'Отмена', onClick: close }}
-        disclaimer='Восстановить запись после удаления нельзя.'
       />
     </DemoPage>
   );

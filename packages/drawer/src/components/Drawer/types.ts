@@ -15,8 +15,10 @@ import { DrawerCustomProps } from '../DrawerCustom';
 export type DrawerProps = WithSupportProps<
   Omit<DrawerCustomProps, 'nestedDrawer' | 'push' | 'resizable'> &
     Pick<BottomSheetProps, 'swipeEnabled' | 'snapPoints' | 'snapIndex' | 'onSnapIndexChange' | 'safeArea'> &
-    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'subtitle' | 'onBackButtonClick'> &
+    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'onBackButtonClick'> &
     Pick<DialogBodyProps, 'content'> & {
+      /** Текстовая строка-подзаголовок под title. */
+      subtitle?: ReactNode;
       /** CSS-класс */
       className?: string;
       /** Медиа-контент */
@@ -32,9 +34,7 @@ export type DrawerProps = WithSupportProps<
        * @default 'horizontal'
        */
       footerActionsOrientation?: FooterActionsOrientation;
-      /** Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). */
-      disclaimer?: ReactNode;
-      /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. */
+      /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. */
       footer?: ReactNode;
       /** Вложенный Drawer */
       nestedDrawer?: ReactElement<DrawerProps>;

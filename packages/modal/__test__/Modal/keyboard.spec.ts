@@ -55,8 +55,8 @@ test.describe('Modal — keyboard', () => {
     );
 
     const toggle = getByTestId(MODAL_TRIGGER_TEST_ID);
-    const firstButton = getByTestId(M.firstButton);
-    const secondButton = getByTestId(M.secondButton);
+    const firstButton = getByTestId(M.footerApprove);
+    const secondButton = getByTestId(M.footerCancel);
     const closeBtn = getByTestId(M.closeButton);
     const dialog = getByTestId(M.root);
 

@@ -15,13 +15,12 @@ export function FooterActions() {
         onClose={() => setOpen(false)}
         title='Удалить ресурс?'
         content={<p>Действие необратимо. Все связанные данные будут удалены без возможности восстановления.</p>}
-        // Три действия + disclaimer: не помещаются в ряд на mobile-вьюпорте, поэтому собираются
+        // Три действия: не помещаются в ряд на mobile-вьюпорте, поэтому собираются
         // в вертикальный full-width ButtonGroup (primary сверху). Для пары cancel/confirm футер
         // по умолчанию горизонтальный (space-between) — управляется `footerActionsOrientation`.
         approveButton={{ label: 'Удалить', appearance: 'critical', onClick: () => setOpen(false) }}
         cancelButton={{ label: 'Отмена', onClick: () => setOpen(false) }}
         additionalButton={{ label: 'Подробнее', onClick: () => undefined }}
-        disclaimer='Удаление невозможно отменить.'
       />
     </MobilePreview>
   );

@@ -78,16 +78,7 @@ function NestedRender() {
             />
           </div>
         }
-        footer={
-          <Button
-            fullWidth
-            data-test-id={TEST_IDS.nestedCancel}
-            view={VIEW.Filled}
-            appearance={APPEARANCE.Neutral}
-            label='Отмена'
-            onClick={() => setActionsOpen(false)}
-          />
-        }
+        cancelButton={{ label: 'Отмена', onClick: () => setActionsOpen(false) }}
       />
     </DemoPage>
   );

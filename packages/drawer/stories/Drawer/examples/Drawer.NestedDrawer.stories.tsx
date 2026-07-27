@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer, POSITION, WIDTH } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -56,9 +56,7 @@ function NestedDrawerScenario() {
             onClick={() => setInnerOpen(true)}
           />
         }
-        footer={
-          <ButtonGroup primaryAction={{ label: 'Закрыть', view: 'filled', appearance: 'neutral', onClick: closeAll }} />
-        }
+        approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: closeAll }}
         nestedDrawer={
           <Drawer
             open={innerOpen}
@@ -70,16 +68,7 @@ function NestedDrawerScenario() {
             subtitle='Кнопка «назад» возвращает к родителю'
             onBackButtonClick={() => setInnerOpen(false)}
             content='Вложенный Drawer рендерится внутри родителя и управляется собственным состоянием.'
-            footer={
-              <ButtonGroup
-                primaryAction={{
-                  label: 'Закрыть вложенный',
-                  view: 'filled',
-                  appearance: 'neutral',
-                  onClick: () => setInnerOpen(false),
-                }}
-              />
-            }
+            approveButton={{ label: 'Закрыть вложенный', appearance: 'neutral', onClick: () => setInnerOpen(false) }}
           />
         }
       />

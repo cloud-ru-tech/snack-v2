@@ -27,7 +27,8 @@ Drag-индикатор 32×4px сверху — визуальная подск
 - `slotAfterTitle` — slot справа от title (QuestionTooltip, badge).
 - `onBackButtonClick` — авто-рендерит back-кнопку слева.
 - `actionButton` — кастомный slot справа.
-- `subtitle` — slot под title-строкой (SearchBar / SegmentControl).
+- `subtitle` — текстовая строка-подзаголовок под title.
+- `slotSecondTitle` — slot под подзаголовком (SearchBar / SegmentControl).
 
 ### Media
 - `kind='image'` — full-bleed image, min-height 184px; прижато к шапке (убирает верхний отступ контент-блока). Горизонтальные паддинги body не меняются — для edge-to-edge body передайте `bodyPadding={false}`.
@@ -155,13 +156,12 @@ export function FooterActions() {
         onClose={() => setOpen(false)}
         title='Удалить ресурс?'
         content={<p>Действие необратимо. Все связанные данные будут удалены без возможности восстановления.</p>}
-        // Три действия + disclaimer: не помещаются в ряд на mobile-вьюпорте, поэтому собираются
+        // Три действия: не помещаются в ряд на mobile-вьюпорте, поэтому собираются
         // в вертикальный full-width ButtonGroup (primary сверху). Для пары cancel/confirm футер
         // по умолчанию горизонтальный (space-between) — управляется `footerActionsOrientation`.
         approveButton={{ label: 'Удалить', appearance: 'critical', onClick: () => setOpen(false) }}
         cancelButton={{ label: 'Отмена', onClick: () => setOpen(false) }}
         additionalButton={{ label: 'Подробнее', onClick: () => undefined }}
-        disclaimer='Удаление невозможно отменить.'
       />
     </MobilePreview>
   );
@@ -224,7 +224,7 @@ export function WithSubtitle() {
         onClose={() => setOpen(false)}
         title='Filters'
         // В продакшене сюда — `@ds/search::SearchBar` или `@ds/segment-control::SegmentControl`.
-        subtitle={<div>SearchBar / SegmentControl placeholder</div>}
+        slotSecondTitle={<div>SearchBar / SegmentControl placeholder</div>}
         content={<p>Subtitle располагается под заголовком — sticky-зона для поиска/фильтров.</p>}
         approveButton={{ label: 'Применить', onClick: () => setOpen(false) }}
       />
@@ -431,7 +431,7 @@ export function Filters() {
         title='Фильтры'
         onBackButtonClick={() => setOpen(false)}
         slotAfterTitle={<QuestionTooltip tip='Настройте параметры выборки' />}
-        subtitle={
+        slotSecondTitle={
           <div className={styles.chipRow}>
             {chips.map(chip => (
               <Tag
@@ -581,7 +581,7 @@ export function TagPicker() {
         onClose={() => setOpen(false)}
         title='Теги'
         slotAfterTitle={<QuestionTooltip tip='Отметьте теги, по которым нужно отфильтровать' />}
-        subtitle={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
+        slotSecondTitle={<Search value={query} onChange={setQuery} placeholder='Поиск тега' />}
         content={
           <div className={styles.tagGrid}>
             {visible.map(tag => (
@@ -671,12 +671,11 @@ export function NonModal() {
 | `content` | `ReactNode` | — | Основное содержимое (рендерится в `BottomSheetCustom.Body`). |
 | `data-test-id` | `string` | — |  |
 | `defaultSnapIndex` | `number` | `0` | Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`. |
-| `disclaimer` | `ReactNode` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
-| `footer` | `ReactNode` | — | Произвольный футер. Если задан — имеет приоритет над <br/> `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
+| `footer` | `ReactNode` | — | Произвольный футер. Если задан — имеет приоритет над <br/> `approveButton` / `cancelButton` / `additionalButton`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера, собранных из `approveButton` / `cancelButton` / `additionalButton`. <br/> Применяется **только при ровно двух** кнопках (canonical cancel/confirm): <br/> - `'horizontal'` — кнопки в ряд через space-between: secondary слева, primary справа, <br/> ширина по контенту. Точное соответствие Figma `bottomBar.buttonGroup`. <br/> - `'vertical'` — кнопки в столбик, full-width (primary сверху). <br/> Одна кнопка всегда рендерится full-width (одиночный CTA); три кнопки не помещаются в ряд на <br/> mobile-вьюпорте и всегда идут в столбик — для них значение игнорируется. <br/> Игнорируется при заданном `footer` (произвольная разметка футера). |
-| `footerTestIds` | `{ approve?: string; cancel?: string; additional?: string \| undefined; disclaimer?: string \| undefined; } \| undefined` | — | Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional/disclaimer). <br/> По умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои <br/> `TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е. |
+| `footerTestIds` | `{ approve?: string; cancel?: string; additional?: string \| undefined; } \| undefined` | — | Переопределение `data-test-id` собранных слотов футера (approve/cancel/additional). <br/> По умолчанию — собственные id `BottomSheet`. Адаптивные `Modal`/`Drawer` передают сюда свои <br/> `TEST_IDS.footer*`, чтобы футер метился одинаково на desktop-поверхности и в mobile-sheet'е. |
 | `lockScroll` | `boolean` | `true` | Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница <br/> под sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с <br/> которым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`. |
-| `media` | `BottomSheetMediaProps` | — | Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`. |
+| `media` | `PopupMediaProps` | — | Media-блок над шапкой: изображение / иконка либо произвольный `ReactNode`. |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а рендерит ArrowLeft-кнопку. |
 | `onClose` | `() => void` | — | Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back). |
 | `onSnapIndexChange` | `((snapIndex: number) => void)` | — | Callback изменения активного snap'а (пересечение swipe-границы или click по UI). <br/> Не вызывается при программной смене controlled `snapIndex`. |
@@ -685,43 +684,15 @@ export function NonModal() {
 | `safeArea` | `boolean` | `true` | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
 | `showBackdrop` | `boolean` | `true` | Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside <br/> не закрывает sheet (нет backdrop-узла, по которому ловится клик). |
 | `slotAfterTitle` | `ReactNode` | — | Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. |
+| `slotSecondTitle` | `ReactNode` | — | Slot под подзаголовком — типично `SearchBar`, `SegmentControl`, `Filter`. |
 | `snapIndex` | `number` | — | Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е; <br/> swipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен <br/> передать новое значение. |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
-| `subtitle` | `ReactNode` | — | Slot под title-строкой — типично `SearchBar`, `SegmentControl`. |
+| `subtitle` | `ReactNode` | — | Текстовая строка-подзаголовок под title. |
 | `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `title` | `ReactNode` | — | Заголовок в шапке. |
 | `withDividers` | `boolean` | `false` | Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а, <br/> чтобы разграничить sticky-header / footer от плывущего контента. |
 
 #### Related types
-
-**BottomSheetActionButton**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
-| `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
-| `className` | `string \| undefined` | — | Дополнительный класс |
-| `counter` | `CounterProps` | — | Пропсы для counter |
-| `data-test-id` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — | Отключена |
-| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
-| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `label` | `string \| undefined` | — | Текст кнопки |
-| `loading` | `boolean \| undefined` | — | Состояние загрузки |
-| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
-
-**BottomSheetMediaProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `alt` | `string` | — | Альтернативный текст (a11y). |
-| `kind` | `"icon"` \| `"image"` | — | Режим: <br/> - `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается <br/> верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body <br/> используйте `bodyPadding={false}` отдельно. <br/> - `'icon'` — иконка с `padding-top: 24px`. |
-| `src` | `string` | — | URL изображения / иконки. |
-
-- `FooterActionsOrientation` = `"horizontal"` \| `"vertical"`
-
-- `MediaKind` = `"icon"` \| `"image"`
 
 - `SnapPoint` = `number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | "fit-content"`
 
@@ -772,7 +743,7 @@ export function NonModal() {
 ### Анатомия
 
 #### Header
-Слот `BottomSheetCustom.Header` — `title`, `slotAfterTitle`, `subtitle`, `onBackButtonClick`, `actionButton`.
+Слот `BottomSheetCustom.Header` — `title`, `slotAfterTitle`, `subtitle`, `slotSecondTitle`, `onBackButtonClick`, `actionButton`.
 
 > **Accessible name.** В отличие от высокоуровневого `BottomSheet`, низкоуровневый `BottomSheetCustom` не связывает `Header.title` с dialog'ом автоматически — задайте имя сами: `aria-label` (или `aria-labelledby` на узел заголовка) прямо на `BottomSheetCustom`. Без него screen reader озвучит просто «dialog».
 
@@ -986,46 +957,3 @@ export function CustomComposition() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-
-## Media
-
-```tsx
-import { BottomSheetCustom } from '@ds/bottom-sheet';
-import { Button } from '@ds/button';
-import { useState } from 'react';
-
-import { MobilePreview } from '../MobilePreview';
-
-/**
- * BottomSheetCustom — низкоуровневая обёртка. Backdrop, scroll-lock, focus-trap и slide-up-motion
- * даёт сам компонент; анатомию (header / media / body / footer и их порядок) потребитель
- * собирает из namespace-слотов `BottomSheetCustom.Handle / .Header / .Media / .Body / .Footer`.
- */
-export function CustomComposition() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <MobilePreview>
-      <Button label='Открыть Custom' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
-      <BottomSheetCustom open={open} onClose={() => setOpen(false)} aria-label='Custom composition'>
-        <BottomSheetCustom.Header title='Custom composition' slotAfterTitle={<span>NEW</span>} />
-        <BottomSheetCustom.Body>
-          <p>Свободный JSX внутри Body. Можно вставить любой контент между Header и Footer.</p>
-        </BottomSheetCustom.Body>
-        <BottomSheetCustom.Footer>
-          <Button fullWidth view='filled' appearance='primary' label='Готово' onClick={() => setOpen(false)} />
-        </BottomSheetCustom.Footer>
-      </BottomSheetCustom>
-    </MobilePreview>
-  );
-}
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `alt` | `string` | — | Альтернативный текст (a11y). |
-| `className` | `string` | — |  |
-| `kind` | `"icon"` \| `"image"` | `image` | Режим: <br/> - `'image'` — изображение во всю ширину (высота `184px`), прижато к шапке (убирается <br/> верхний отступ контент-блока). Горизонтальные паддинги body не затрагивает — для edge-to-edge body <br/> используйте `bodyPadding={false}` отдельно. <br/> - `'icon'` — иконка с `padding-top: 24px`. |
-| `src` | `string` | — | URL изображения / иконки. |

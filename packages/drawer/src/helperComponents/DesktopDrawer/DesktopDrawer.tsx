@@ -1,4 +1,4 @@
-import { buildFooterActions } from '@ds/bottom-sheet';
+import { FooterActions } from '@ds/bottom-sheet';
 import cn from 'classnames';
 
 import { NESTED_DRAWER_PUSH_DISTANCE } from '../../components/Drawer/constants';
@@ -19,32 +19,29 @@ export function DesktopDrawer({
   cancelButton,
   additionalButton,
   footerActionsOrientation,
-  disclaimer,
   footer,
   nestedDrawer,
   className,
   ...rest
 }: DrawerProps) {
   const showHeader = Boolean(title || subtitle || slotAfterTitle);
-  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `buildFooterActions`.
+  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `FooterActions`.
   const footerContent =
     footer ??
-    buildFooterActions({
-      approveButton,
-      cancelButton,
-      additionalButton,
-      footerActionsOrientation,
-      disclaimer,
-      testIds: {
-        approve: TEST_IDS.footerApprove,
-        cancel: TEST_IDS.footerCancel,
-        additional: TEST_IDS.footerAdditional,
-        disclaimer: TEST_IDS.footerDisclaimer,
-      },
-      disclaimerClassName: styles.disclaimer,
-      actionsClassName: styles.footerActions,
-      align: 'end',
-    });
+    (approveButton || cancelButton || additionalButton ? (
+      <FooterActions
+        surface='window'
+        approveButton={approveButton}
+        cancelButton={cancelButton}
+        additionalButton={additionalButton}
+        footerActionsOrientation={footerActionsOrientation}
+        testIds={{
+          approve: TEST_IDS.footerApprove,
+          cancel: TEST_IDS.footerCancel,
+          additional: TEST_IDS.footerAdditional,
+        }}
+      />
+    ) : null);
 
   return (
     <DrawerCustom
@@ -63,7 +60,13 @@ export function DesktopDrawer({
           slotAfterTitle={slotAfterTitle}
           subtitle={subtitle}
           onBackButtonClick={onBackButtonClick}
-          data-test-id={TEST_IDS.header}
+          // Сохраняем публичный контракт test-id'ов drawer'а поверх общего `PopupHeader`.
+          // slotAfterTitle НЕ переопределяем: id тултипа ставит сам потребитель на своём span.
+          testIds={{
+            header: TEST_IDS.header,
+            title: TEST_IDS.title,
+            subtitle: TEST_IDS.subtitle,
+          }}
         />
       )}
 

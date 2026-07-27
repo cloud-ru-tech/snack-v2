@@ -45,12 +45,12 @@ const OPEN_SCENARIOS: OpenScenario[] = [
     snapshot: 'open-custom-composition.png',
     title: 'open custom composition',
   },
-  // Вертикальный footer (3 действия approve/cancel/additional + disclaimer, auto-vertical).
+  // Вертикальный footer (3 действия approve/cancel/additional, auto-vertical).
   // Горизонтальная пара cancel/confirm покрыта `open-default.png` (Playground).
   {
     ref: BOTTOM_SHEET_STORIES.footerActions,
     snapshot: 'open-footer-actions.png',
-    title: 'open footer actions (vertical, 3 buttons + disclaimer)',
+    title: 'open footer actions (vertical, 3 buttons)',
   },
   // 2-кнопочный footer в ориентации vertical — единственная конфигурация, на которую влияет
   // footerActionsOrientation='vertical' (через URL-args Playground'а, где footer = пара approve+cancel).

@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Modal } from '@ds/modal';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -55,16 +55,12 @@ function BackButtonScenario() {
             : 'Проверьте введённые данные перед созданием.'
         }
         onBackButtonClick={step === 'confirm' ? () => setStep('details') : undefined}
-        footer={
-          <ButtonGroup
-            primaryAction={
-              step === 'details'
-                ? { label: 'Далее', view: 'filled', appearance: 'primary', onClick: () => setStep('confirm') }
-                : { label: 'Создать', view: 'filled', appearance: 'primary', onClick: close }
-            }
-            secondaryAction={{ label: 'Отмена', view: 'outline', appearance: 'neutral', onClick: close }}
-          />
+        approveButton={
+          step === 'details'
+            ? { label: 'Далее', onClick: () => setStep('confirm') }
+            : { label: 'Создать', onClick: close }
         }
+        cancelButton={{ label: 'Отмена', onClick: close }}
       />
     </DemoPage>
   );

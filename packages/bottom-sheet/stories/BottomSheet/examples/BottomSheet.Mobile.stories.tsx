@@ -146,7 +146,7 @@ function MobileDemo() {
             defaultSnapIndex={0}
             safeArea={false}
             title='Bottom-sheet'
-            subtitle={
+            slotSecondTitle={
               withSubtitle ? <div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl</div> : undefined
             }
             media={

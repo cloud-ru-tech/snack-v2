@@ -1,16 +1,10 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/modal.module' as modal;
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 
 // Жёстко зафиксированные размеры в этом файле — это story-level canvas-обёртки
 // (узкие/широкие демо-контейнеры, иллюстративные mock-up'ы). Они не являются
 // дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
 // маппится на dimension/strokeWeight/radius токены, уже переписано.
-
-.footerGroup {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
 
 /** Медиа-слот со стоковыми PNG (светлая/тёмная тема превью), как в master. */
 .themedStoryMedia {
@@ -26,7 +20,7 @@
 
   object-fit: cover;
 
-  @include base.composite-var(modal.$modal, 'anatomy', 'container', 'media');
+  @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'media', 'image');
 }
 
 .scenarioRoot {

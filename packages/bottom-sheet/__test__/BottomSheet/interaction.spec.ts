@@ -160,7 +160,7 @@ test.describe('BottomSheet — interaction (browser-specific)', () => {
     await expect(inner).toBeVisible();
     await waitForStableBbox(inner);
 
-    await getByTestId(STORY_TEST_IDS.nestedCancel).click();
+    await getByTestId(TEST_IDS.footerCancel).click();
 
     await expect(inner).not.toBeVisible();
     await expect(outer).toBeVisible();

@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer, DrawerProps } from '@ds/drawer';
 import { usePortalContext } from '@ds/portal-context';
 import { QuestionTooltip } from '@ds/tooltip';
@@ -26,7 +26,6 @@ import {
   NESTED_DRAWER_TITLE,
   SHORT_BODY_TEXT,
 } from './constants';
-import styles from './styles.module.scss';
 import { resolveDrawerStoryMediaSrc, ThemedDrawerMedia } from './ThemedDrawerMedia';
 
 const onBackButtonClick = () => {
@@ -174,21 +173,10 @@ function PlaygroundRender(args: StoryProps) {
           ) : undefined
         }
         media={showMedia ? <ThemedDrawerMedia src={storyMediaSrc} data-test-id={PUBLIC_TEST_IDS.image} /> : undefined}
-        footer={
-          showFooter ? (
-            <ButtonGroup
-              className={styles.footerGroup}
-              tertiaryAction={{
-                label: NESTED_DRAWER_OPEN_LABEL,
-                view: 'simple',
-                appearance: 'neutral',
-                onClick: () => setNestedOpen(true),
-                'data-test-id': TEST_IDS.drawer.nestedTrigger,
-              }}
-              primaryAction={{ label: 'Label text', view: 'filled' }}
-              secondaryAction={{ label: 'Label text', view: 'outline', appearance: 'neutral' }}
-            />
-          ) : undefined
+        approveButton={showFooter ? { label: 'Label text' } : undefined}
+        cancelButton={showFooter ? { label: 'Label text' } : undefined}
+        additionalButton={
+          showFooter ? { label: NESTED_DRAWER_OPEN_LABEL, onClick: () => setNestedOpen(true) } : undefined
         }
         nestedDrawer={
           showFooter ? (
@@ -203,16 +191,7 @@ function PlaygroundRender(args: StoryProps) {
               title={NESTED_DRAWER_TITLE}
               content={NESTED_DRAWER_BODY}
               data-test-id={PUBLIC_TEST_IDS.nestedDrawer}
-              footer={
-                <ButtonGroup
-                  className={styles.footerGroup}
-                  primaryAction={{
-                    label: NESTED_DRAWER_CLOSE_LABEL,
-                    view: 'filled',
-                    onClick: () => setNestedOpen(false),
-                  }}
-                />
-              }
+              approveButton={{ label: NESTED_DRAWER_CLOSE_LABEL, onClick: () => setNestedOpen(false) }}
             />
           ) : undefined
         }

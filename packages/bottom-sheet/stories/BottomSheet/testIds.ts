@@ -9,7 +9,6 @@ export const TEST_IDS = {
   // отдельный root-id для вложенного sheet'а (чтобы отличать от внешнего в локаторах) и его cancel.
   nestedOpen: 'bottom-sheet-nested-open',
   nestedRoot: 'bottom-sheet-nested',
-  nestedCancel: 'bottom-sheet-nested-cancel',
   // VisualMatrix: триггер на каждую композицию-ячейку + общий dismiss активного sheet'а.
   vm: {
     trigger: (key: string) => `bottom-sheet-vm-${key}`,

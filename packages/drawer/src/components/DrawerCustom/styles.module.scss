@@ -1,5 +1,8 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 @use '@sbercloud/figma-variables/build/scss/components/drawer.module' as drawer;
+// Отступ close-кнопки — общий токен «window»-поверхности из коллекции popupPrivate
+// (она несёт и padding ×4, и min-size/border-radius кнопки).
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 @use '@ds/materials' as m;
 
 $orientations: 'vertical', 'horizontal';
@@ -68,7 +71,7 @@ $activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-
 }
 
 .badgeButtonClosed {
-  margin: base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-top') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-right') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-bottom') base.simple-var(drawer.$drawer, 'anatomy', 'container', 'badgeButtonClosed', 'padding-left');
+  margin: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-top') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-right') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-bottom') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-left');
 }
 
 .badgeButtonClosedWrapper {

@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -45,9 +45,7 @@ function HeightAutoScenario() {
         title='Bottom sheet'
         subtitle='Высота панели рассчитывается по контенту.'
         content='Подходит для компактных подтверждений и коротких действий на мобильных устройствах.'
-        footer={
-          <ButtonGroup primaryAction={{ label: 'Закрыть', view: 'filled', appearance: 'neutral', onClick: close }} />
-        }
+        approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: close }}
       />
     </DemoPage>
   );

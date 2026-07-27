@@ -30,9 +30,7 @@ export type ModalProps = WithSupportProps<
        * @default 'horizontal'
        */
       footerActionsOrientation?: FooterActionsOrientation;
-      /** Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). */
-      disclaimer?: ReactNode;
-      /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. */
+      /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. */
       footer?: ReactNode;
       /** CSS-класс для окна */
       className?: string;

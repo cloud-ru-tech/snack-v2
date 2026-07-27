@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer } from '@ds/drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -52,9 +52,7 @@ function BackButtonScenario() {
             'Содержимое детального экрана.'
           )
         }
-        footer={
-          <ButtonGroup primaryAction={{ label: 'Закрыть', view: 'filled', appearance: 'neutral', onClick: close }} />
-        }
+        approveButton={{ label: 'Закрыть', appearance: 'neutral', onClick: close }}
       />
     </DemoPage>
   );

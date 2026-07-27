@@ -199,8 +199,7 @@ export function Forced() {
 | `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
 | `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string` | — |  |
-| `disclaimer` | `ReactNode` | — | Небольшой текст под кнопками футера (дисклеймер, ссылка и т.п.). |
-| `footer` | `ReactNode` | — | Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton` / `disclaimer`. |
+| `footer` | `ReactNode` | — | Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. |
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
 | `loading` | `boolean` | — | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
@@ -212,9 +211,9 @@ export function Forced() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
 | `slotAfterTitle` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
-| `subtitle` | `ReactNode` | — | Slot под title-строкой во весь блок subtitleWrapper — <br/> типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Подзаголовок под заголовком. |
-| `title` | `ReactNode` | — | Заголовок (Typography title-l). |
-| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение `title`/`subtitle` (TruncateString). |
+| `subtitle` | `ReactNode` | — | Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях. |
+| `title` | `ReactNode` | — | Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer). |
+| `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только <br/> когда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer), <br/> где длинный заголовок иначе переносится на несколько строк. |
 | `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |
 
 ##### Related types

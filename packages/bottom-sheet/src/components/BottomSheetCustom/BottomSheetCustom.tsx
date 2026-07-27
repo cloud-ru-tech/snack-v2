@@ -1,3 +1,11 @@
+import {
+  OVERLAY_SURFACE,
+  OverlaySurfaceProvider,
+  PopupBody,
+  PopupFooter,
+  PopupHeader,
+  PopupMedia,
+} from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
 import { useThemeClassnames } from '@ds/theme';
 import { extractSupportProps, isBrowser, useLayoutEffect, useModalOpenState } from '@ds/utils';
@@ -7,8 +15,7 @@ import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import { TEST_IDS } from '../../constants';
-import { OVERLAY_SURFACE, OverlaySurfaceProvider } from '../../context/overlaySurface';
-import { Handle, Media, SheetBody, SheetFooter, SheetHeader } from '../../helperComponents';
+import { Handle } from '../../helperComponents';
 import {
   BottomSheetBodyProps,
   BottomSheetCustomProps,
@@ -196,10 +203,10 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   );
 }
 
-BottomSheetCustom.Header = SheetHeader;
-BottomSheetCustom.Body = SheetBody;
-BottomSheetCustom.Footer = SheetFooter;
-BottomSheetCustom.Media = Media;
+BottomSheetCustom.Header = PopupHeader;
+BottomSheetCustom.Body = PopupBody;
+BottomSheetCustom.Footer = PopupFooter;
+BottomSheetCustom.Media = PopupMedia;
 
 export namespace BottomSheetCustom {
   export type HeaderProps = BottomSheetHeaderProps;
