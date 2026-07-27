@@ -8,14 +8,6 @@ $sizes: 's', 'm';
   display: inline-flex;
   flex-direction: column;
 
-  // Card получает Transparent, иначе acrylic-suspended темы проседают до 0.7 opacity.
-  background: base.$sn-theme-color-neutral-background1Level;
-
-  // Выключенная плитка по макету теряет уровень подложки: `background1Level` → `background`.
-  &[data-disabled] {
-    background: base.$sn-theme-color-neutral-background;
-  }
-
   @each $size in $sizes {
     &:has(> div > [data-size='#{$size}']) {
       width: base.simple-var(att.$attachment, 'anatomy', 'size', $size, 'container', 'width');

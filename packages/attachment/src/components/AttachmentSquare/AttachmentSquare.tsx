@@ -60,7 +60,7 @@ export function AttachmentSquare({
       view='outline'
       radius={size === 's' ? 's' : 'm'}
       backgroundPredefined={
-        hasError ? BACKGROUND_PREDEFINED_FILL.RedBackground : BACKGROUND_PREDEFINED_FILL.Transparent
+        hasError ? BACKGROUND_PREDEFINED_FILL.RedBackground : BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level
       }
       disabled={isDisabled}
       checked={isChecked}
