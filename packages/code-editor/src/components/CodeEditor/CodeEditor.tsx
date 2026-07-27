@@ -215,7 +215,7 @@ function CodeEditorClient({
       {hasHeader && (
         <div className={styles.header} data-test-id={TEST_IDS.header}>
           {language && (
-            <Typography variant='label' size='s' data-test-id={TEST_IDS.language}>
+            <Typography variant='label' size='s' className={styles.language} data-test-id={TEST_IDS.language}>
               {uppercaseFirstLetter(language)}
             </Typography>
           )}
