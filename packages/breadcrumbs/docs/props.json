@@ -36,7 +36,7 @@
       "separator": {
         "type": "string",
         "required": false,
-        "defaultValue": "›",
+        "defaultValue": "/",
         "description": "Разделитель между пунктами"
       },
       "size": {

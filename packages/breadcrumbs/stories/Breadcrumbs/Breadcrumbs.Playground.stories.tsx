@@ -36,7 +36,7 @@ const meta: Meta<StoryProps> = {
   args: {
     items: longTrailItems,
     size: SIZE.S,
-    separator: '›',
+    separator: '/',
     firstItemIconOnly: false,
     inactiveLastItem: false,
     storyUrl: false,

@@ -10,7 +10,8 @@ $sizes: 'xs', 's';
   align-items: center;
   justify-content: center;
 
-  color: base.$sn-theme-color-available-version-textTertiary;
+  // Разделитель бледнее крошек — на `textDisabled` (@0.35), не на `textTertiary` (@0.5).
+  color: base.$sn-theme-color-available-version-textDisabled;
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {

@@ -19,7 +19,7 @@ test.describe('Breadcrumbs — rendering', () => {
       await expect
         .poll(() => getTextView(page))
         .toEqual(
-          '[FULL: Литература]›[FULL: Стихи]›[FULL: Золотой век русской поэзии]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
+          '[FULL: Литература]/[FULL: Стихи]/[FULL: Золотой век русской поэзии]/[FULL: Михаил Лермонтов]/[FULL: Тема "Одиночество"]/[FULL: Парус]',
         );
     });
 
@@ -40,7 +40,7 @@ test.describe('Breadcrumbs — rendering', () => {
       await expect
         .poll(() => getTextView(page))
         .toEqual(
-          '[FULL: Литература]›[FULL: Стихи]›[SHORTLABEL: Золотой век]›[FULL: Михаил Лермонтов]›[FULL: Тема "Одиночество"]›[FULL: Парус]',
+          '[FULL: Литература]/[FULL: Стихи]/[SHORTLABEL: Золотой век]/[FULL: Михаил Лермонтов]/[FULL: Тема "Одиночество"]/[FULL: Парус]',
         );
     });
   });

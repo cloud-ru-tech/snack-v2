@@ -17,7 +17,7 @@ export type BreadcrumbsProps = WithSupportProps<{
   className?: string;
   /**
    * Разделитель между пунктами
-   * @default ›
+   * @default /
    */
   separator?: string;
   /**

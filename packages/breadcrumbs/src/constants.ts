@@ -1,4 +1,4 @@
-export const SEPARATOR = '›';
+export const SEPARATOR = '/';
 
 export const ITEM_RENDER_MODE = {
   Full: 'full',

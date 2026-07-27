@@ -99,7 +99,7 @@ export function CustomSeparator() {
 | `firstItemIconOnly` | `boolean` | `false` | Использовать иконку без лейбла в первом айтеме |
 | `inactiveLastItem` | `boolean` | `false` | Делает некликабельным последний элемент, даже если для него переданы `href` или `onClick` |
 | `items` | `Item` | — | Массив айтемов |
-| `separator` | `string` | `›` | Разделитель между пунктами |
+| `separator` | `string` | `/` | Разделитель между пунктами |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 
 #### Related types
