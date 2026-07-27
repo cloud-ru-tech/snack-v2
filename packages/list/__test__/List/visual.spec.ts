@@ -7,7 +7,7 @@ import {
   assertVisualMatrixSnapshot,
   composeScreenshots,
   screenshotWithPadding,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, itemTestId, LIST_INTERNAL_TEST_IDS, LIST_STORIES, TEST_IDS } from './helpers';
@@ -124,7 +124,7 @@ test.describe('List — visual regression', () => {
 
     // Увести курсор, чтобы hover-фон последнего кликнутого ряда не попал в кадр.
     await page.mouse.move(0, 0);
-    await waitForStableBbox(root);
+    await waitForSettledInViewport(root);
     const png = await screenshotWithPadding(page, root, 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('collapse-expanded.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });

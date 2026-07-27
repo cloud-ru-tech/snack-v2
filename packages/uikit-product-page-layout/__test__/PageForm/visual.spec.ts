@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot, waitForStableBbox } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, INTERNAL_TEST_IDS, PAGE_FORM_STORIES } from './helpers';
 
@@ -35,7 +35,7 @@ test.describe('PageForm — visual regression', () => {
     // data-test-id Dropdown'а на mobile оседает на корне BottomSheet'а.
     const sheet = getByTestId(INTERNAL_TEST_IDS.pageForm.priceSummarySheet);
     await expect(sheet).toBeVisible();
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

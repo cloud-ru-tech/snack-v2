@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForStableBbox } from '#playwright-tooling/utils';
+import { waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DRAWER_TRIGGER_TEST_ID, STORIES, TEST_IDS } from './helpers';
 
@@ -22,7 +22,7 @@ test.describe('NotificationPanel — visual regression', () => {
     await gotoStory(buildStoryOptions());
     await waitForFonts();
     await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
-    await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    await waitForSettledInViewport(page.getByTestId(TEST_IDS.panel.title));
     // Убираем курсор с overlay'я — иначе он оставляет stray-hover на карточке (серый state-layer + «...» actions).
     await page.mouse.move(0, 0);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
@@ -35,7 +35,7 @@ test.describe('NotificationPanel — visual regression', () => {
     await gotoStory(buildStoryOptions(undefined, STORIES.playground, { layoutType: 'mobile' }));
     await waitForFonts();
     await getByTestId(DRAWER_TRIGGER_TEST_ID).click();
-    await waitForStableBbox(page.getByTestId(TEST_IDS.panel.title));
+    await waitForSettledInViewport(page.getByTestId(TEST_IDS.panel.title));
     // На mobile bottom-sheet выезжает на весь экран, и точка клика оказывается над первой карточкой —
     // уводим курсор в угол, чтобы снять stray-hover.
     await page.mouse.move(0, 0);

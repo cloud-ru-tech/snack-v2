@@ -1,6 +1,6 @@
 import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForStableBbox } from '#playwright-tooling/utils';
+import { waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { BOTTOM_SHEET_STORIES, buildStoryOptions, STORY_TEST_IDS, TEST_IDS } from './helpers';
 
@@ -95,7 +95,7 @@ test.describe('BottomSheet — visual regression', () => {
       const root = getByTestId(TEST_IDS.root);
       await expect(root).toBeVisible();
       // JS-motion (slide-up + height): ждём стабилизацию bbox вместо document.getAnimations.
-      await waitForStableBbox(root);
+      await waitForSettledInViewport(root);
       await waitForFonts();
       expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(snapshot, MATCH_SNAPSHOT_DEFAULT_OPTS);
     });
@@ -107,7 +107,7 @@ test.describe('BottomSheet — visual regression', () => {
     await getByTestId(STORY_TEST_IDS.nestedOpen).click();
     const inner = getByTestId(STORY_TEST_IDS.nestedRoot);
     await expect(inner).toBeVisible();
-    await waitForStableBbox(inner);
+    await waitForSettledInViewport(inner);
     await waitForFonts();
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-nested.png',

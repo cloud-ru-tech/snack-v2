@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots, waitForStableBbox } from '#playwright-tooling/utils';
+import { composeScreenshots, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { POSITION, WIDTH } from '../../src/constants';
 import { buildStoryOptions, DRAWER_STORIES, TEST_IDS } from './helpers';
@@ -43,7 +43,7 @@ test.describe('Drawer — visual regression', () => {
       // Wait for rc-drawer slide-in: ждём стабилизации bbox header'а (после JS-motion
       // bbox перестаёт меняться). `getAnimations().finished` ненадёжен — rc-drawer
       // оставляет долгоживущие Web Animations, которые никогда не репортят 'idle'.
-      await waitForStableBbox(getByTestId(TEST_IDS.header));
+      await waitForSettledInViewport(getByTestId(TEST_IDS.header));
       cells.push({
         label: position,
         png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS),
@@ -80,7 +80,7 @@ test.describe('Drawer — visual regression', () => {
       await expect(getByTestId(TEST_IDS.header)).toBeVisible();
       await waitForFonts();
       // Wait for rc-drawer slide-in: ждём стабилизации bbox header'а.
-      await waitForStableBbox(getByTestId(TEST_IDS.header));
+      await waitForSettledInViewport(getByTestId(TEST_IDS.header));
       cells.push({
         label,
         png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS),
@@ -103,7 +103,7 @@ test.describe('Drawer — visual regression', () => {
     // mount, до конца анимации — без ожидания скриншот ловит случайный кадр
     // (родитель недосдвинут, backdrop недозатемнён). Ждём стабилизации bbox
     // вложенного Drawer'а: он слайдится последним, к его остановке сцена собрана.
-    await waitForStableBbox(getByTestId(TEST_IDS.nestedDrawer));
+    await waitForSettledInViewport(getByTestId(TEST_IDS.nestedDrawer));
 
     // Snapshot всей viewport, а не `#storybook-root` — drawer покрывает viewport
     // вертикально, а demo-обёртка (`DemoPage`/`DemoPanel`) даёт ниже drawer'а
@@ -156,7 +156,7 @@ test.describe('Drawer — visual regression', () => {
     await expect(sheet).toBeVisible();
     await waitForFonts();
     // rc-drawer/JS-motion (slide-up): ждём стабилизацию bbox вместо document.getAnimations.
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

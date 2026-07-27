@@ -5,7 +5,7 @@ import {
   assertInteractionStatesSnapshot,
   assertVisualMatrixSnapshot,
   screenshotWithPadding,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, COLLAPSE_BLOCK_SECONDARY_STORIES, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
@@ -47,7 +47,7 @@ test.describe('CollapseBlockSecondary — visual regression', () => {
     // Ждём флаг завершения раскрытия: он же снимает `overflow: hidden` с тела, поэтому снимок
     // берётся уже в финальном состоянии.
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-completely-open', 'true');
-    await waitForStableBbox(getByTestId(TEST_IDS.collapseBlock));
+    await waitForSettledInViewport(getByTestId(TEST_IDS.collapseBlock));
 
     const png = await screenshotWithPadding(page, getByTestId(TEST_IDS.collapseBlock), 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('expanded.png', MATCH_SNAPSHOT_DEFAULT_OPTS);

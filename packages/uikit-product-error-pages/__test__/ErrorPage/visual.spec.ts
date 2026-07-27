@@ -1,7 +1,7 @@
 import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot, waitForStableBbox } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, ERROR_PAGE_STORIES, ERROR_PAGE_TEST_ID, TEST_IDS } from './helpers';
 
@@ -38,7 +38,7 @@ test.describe('ErrorPage — visual regression', () => {
 
       // На mobile иллюстрация скрыта — стабилизируем по корню, иначе по её ужимающемуся bbox.
       const stabilizeTarget = name === 'mobile' ? ERROR_PAGE_TEST_ID : TEST_IDS.illustration;
-      await waitForStableBbox(getByTestId(stabilizeTarget));
+      await waitForSettledInViewport(getByTestId(stabilizeTarget));
 
       expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
         `responsive-${name}.png`,

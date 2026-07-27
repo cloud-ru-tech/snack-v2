@@ -3,6 +3,7 @@ export * from './dataTestIdSelector';
 export * from './interactionStates';
 export * from './getStorybookUrl';
 export * from './waitForFonts';
+export * from './waitForSettledInViewport';
 export * from './waitForStableBbox';
 export * from './getEnvironmentDependentConfigPart';
 export * from './getWorkers';

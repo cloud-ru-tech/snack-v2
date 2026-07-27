@@ -14,7 +14,7 @@ import {
   ScreenshotCell,
   screenshotRegion,
   screenshotWithPadding,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import {
@@ -103,7 +103,7 @@ test.describe('Table — visual regression', () => {
 
     const firstRow = getByTestId(COMPONENT.bodyRow).first();
     await expect(firstRow).toBeVisible();
-    await waitForStableBbox(firstRow);
+    await waitForSettledInViewport(firstRow);
 
     const cells: ScreenshotCell[] = [];
 
@@ -194,14 +194,14 @@ test.describe('Table — visual regression', () => {
 
     // В cards-view строка рендерится как <Card> (`COMPONENT.card`), а не `bodyRow`.
     const firstCard = getByTestId(COMPONENT.card).first();
-    await waitForStableBbox(firstCard);
+    await waitForSettledInViewport(firstCard);
     const closed = await screenshotWithPadding(page, firstCard, PORTAL_PADDING, SCREENSHOT_DEFAULT_OPTS);
 
     // Открытие sheet: тап по «⋮» первой карточки. Sheet — full-viewport overlay → снимаем page.
     await getByTestId(COMPONENT.rowActions.droplistTrigger).first().click();
     const droplist = getByTestId(COMPONENT.rowActions.droplist);
     await expect(droplist).toBeVisible();
-    await waitForStableBbox(droplist);
+    await waitForSettledInViewport(droplist);
     const open = await page.screenshot(SCREENSHOT_DEFAULT_OPTS);
 
     const composite = await composeScreenshots(
@@ -257,7 +257,7 @@ test.describe('Table — visual regression', () => {
 
     // filter-row (чипы columnFilters) рендерится внутри тулбара — кадр по нему
     const toolbar = getByTestId(COMPONENT.toolbar);
-    await waitForStableBbox(toolbar);
+    await waitForSettledInViewport(toolbar);
     const png = await screenshotWithPadding(page, toolbar, PORTAL_PADDING, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('filters-row.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
@@ -270,7 +270,7 @@ test.describe('Table — visual regression', () => {
     await waitForStoryPlayCompletion(page);
 
     const toolbar = getByTestId(COMPONENT.toolbar);
-    await waitForStableBbox(toolbar);
+    await waitForSettledInViewport(toolbar);
 
     const cells: ScreenshotCell[] = [
       {
@@ -310,7 +310,7 @@ test.describe('Table — visual regression', () => {
 
     const sheet = getByTestId(COMPONENT.columnSettings.droplist);
     await expect(sheet).toBeVisible();
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-column-settings.png',
@@ -331,7 +331,7 @@ test.describe('Table — visual regression', () => {
     await expect(rows.first()).toBeVisible();
     await expect(rows).toHaveCount(MOBILE_STICKY_CONTROLS_PAGE_SIZE);
     await expect(getByTestId(getPageNumberTestId(2))).toBeVisible();
-    await waitForStableBbox(root);
+    await waitForSettledInViewport(root);
 
     const cells: ScreenshotCell[] = [
       {
@@ -341,7 +341,7 @@ test.describe('Table — visual regression', () => {
     ];
 
     await rows.nth(MOBILE_STICKY_CONTROLS_PAGE_SIZE - 5).scrollIntoViewIfNeeded();
-    await waitForStableBbox(getByTestId(COMPONENT.toolbar));
+    await waitForSettledInViewport(getByTestId(COMPONENT.toolbar));
     cells.push({
       label: 'scrolled (sticky toolbar + pagination)',
       png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS),
@@ -361,8 +361,8 @@ test.describe('Table — visual regression', () => {
     await expect(fitRoot).toBeVisible();
     await expect(fullRoot).not.toHaveAttribute('data-fit-content');
     await expect(fitRoot).toHaveAttribute('data-fit-content', 'true');
-    await waitForStableBbox(fullRoot);
-    await waitForStableBbox(fitRoot);
+    await waitForSettledInViewport(fullRoot);
+    await waitForSettledInViewport(fitRoot);
 
     const composite = await composeScreenshots(
       [

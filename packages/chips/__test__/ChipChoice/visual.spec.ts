@@ -9,7 +9,7 @@ import {
   assertVisualMatrixSnapshot,
   composeScreenshots,
   ScreenshotCell,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { CHIP_CHOICE_TEST_IDS } from '../../src/constants';
@@ -56,7 +56,7 @@ test.describe('ChipChoice — visual regression', () => {
     // На mobile CalendarDropdown уезжает в BottomSheet; лист получает `data-test-id` дроплиста напрямую.
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeVisible();
     // toBeVisible срабатывает уже на старте slide-up sheet'а — ждём остановки его bbox.
-    await waitForStableBbox(getByTestId(CHIP_CHOICE_TEST_IDS.droplist));
+    await waitForSettledInViewport(getByTestId(CHIP_CHOICE_TEST_IDS.droplist));
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-date.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
@@ -102,7 +102,7 @@ test.describe('ChipChoice — visual regression', () => {
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeVisible();
     // Календарь после открытия автоскроллится к текущему месяцу (JS-скролл, не CSS — `animations:disabled`
     // его не замораживает). Ждём стабилизации bbox ячейки дня, иначе клики/снимок ловят кадр прокрутки.
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('2. open');
 
     // 3. Выбор начала диапазона (10 июля) — подсветка старта (Apply ещё неактивен, выбран один конец).

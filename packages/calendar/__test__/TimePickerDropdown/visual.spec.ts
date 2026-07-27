@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots, screenshotRegion, waitForStableBbox } from '#playwright-tooling/utils';
+import { composeScreenshots, screenshotRegion, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { TIME_PICKER_DROPDOWN_MATRIX } from '../../stories/testIds';
 import { buildTimePickerDropdownOptions, TEST_IDS, TIME_PICKER_DROPDOWN_STORIES } from './helpers';
@@ -55,7 +55,7 @@ test.describe('TimePickerDropdown — visual regression', () => {
     await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();
     const drum = getByTestId(TEST_IDS.timePickerDrum);
     await expect(drum).toBeVisible();
-    await waitForStableBbox(drum);
+    await waitForSettledInViewport(drum);
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',

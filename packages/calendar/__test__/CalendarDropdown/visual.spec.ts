@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots, screenshotRegion, waitForStableBbox } from '#playwright-tooling/utils';
+import { composeScreenshots, screenshotRegion, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { CALENDAR_DROPDOWN_MATRIX } from '../../stories/testIds';
 import { buildCalendarDropdownOptions, CALENDAR_DROPDOWN_STORIES, TEST_IDS } from './helpers';
@@ -59,7 +59,7 @@ test.describe('CalendarDropdown — visual regression', () => {
     await getByTestId(TEST_IDS.calendarDropdownTrigger).click();
     const sheet = getByTestId(TEST_IDS.calendarDropdown);
     await expect(sheet).toBeVisible();
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
@@ -79,7 +79,7 @@ test.describe('CalendarDropdown — visual regression', () => {
     await getByTestId(TEST_IDS.calendarMobileTimeButton).click();
     const drum = getByTestId(TEST_IDS.timePickerDrum);
     await expect(drum).toBeVisible();
-    await waitForStableBbox(drum);
+    await waitForSettledInViewport(drum);
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-time.png',

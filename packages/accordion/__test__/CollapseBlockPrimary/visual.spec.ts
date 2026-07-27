@@ -5,7 +5,7 @@ import {
   assertInteractionStatesSnapshot,
   assertVisualMatrixSnapshot,
   screenshotWithPadding,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, COLLAPSE_BLOCK_PRIMARY_STORIES, PLAYGROUND_DEFAULT_ARGS, TEST_IDS } from './helpers';
@@ -57,7 +57,7 @@ test.describe('CollapseBlockPrimary — visual regression', () => {
     await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-completely-open', 'true');
     // Ждём стабилизации bbox: после animation finished Chromium может ещё один
     // frame округлять высоту к +1/-1px (subpixel-rounding на конце slide-open).
-    await waitForStableBbox(getByTestId(TEST_IDS.collapseBlock));
+    await waitForSettledInViewport(getByTestId(TEST_IDS.collapseBlock));
 
     const png = await screenshotWithPadding(page, getByTestId(TEST_IDS.collapseBlock), 16, SCREENSHOT_DEFAULT_OPTS);
     expect(png).toMatchSnapshot('expanded.png', MATCH_SNAPSHOT_DEFAULT_OPTS);

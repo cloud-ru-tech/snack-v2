@@ -10,7 +10,7 @@ import {
   composeScreenshots,
   ScreenshotCell,
   screenshotRegion,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DROPLIST_STORIES, LIST_INTERNAL_TEST_IDS, TEST_IDS } from './helpers';
@@ -149,7 +149,7 @@ test.describe('Droplist — visual regression', () => {
     await getByTestId(TEST_IDS.droplist.triggerOpen).click();
     const items = page.locator(`[data-test-id^="${LIST_INTERNAL_TEST_IDS.baseItem}_"]`);
     await items.first().waitFor({ state: 'visible' });
-    await waitForStableBbox(getByTestId(LIST_INTERNAL_TEST_IDS.mobileDroplistRoot));
+    await waitForSettledInViewport(getByTestId(LIST_INTERNAL_TEST_IDS.mobileDroplistRoot));
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

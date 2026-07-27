@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots, waitForStableBbox } from '#playwright-tooling/utils';
+import { composeScreenshots, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { MODE, WIDTH } from '../../src/constants';
 import { buildStoryOptions, MAIN_TEST_ID, MODAL_STORIES, MODAL_TRIGGER_TEST_ID } from './helpers';
@@ -148,7 +148,7 @@ test.describe('Modal — visual regression', () => {
     await expect(sheet).toBeVisible();
     await waitForFonts();
     // JS-motion (slide-up): ждём стабилизацию bbox вместо document.getAnimations.
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

@@ -11,7 +11,7 @@ import {
   composeScreenshots,
   ScreenshotCell,
   screenshotRegion,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, CALENDAR_DROPDOWN_CONTENT_TEST_ID, FIELD_DATE_STORIES, TEST_IDS } from './helpers';
@@ -109,7 +109,7 @@ test.describe('FieldDate — visual regression', () => {
     await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeVisible();
     // Календарь автоскроллится к текущему месяцу (JS-скролл, `animations:disabled` его не замораживает).
     // Ждём стабилизации bbox ячейки дня, иначе клик/снимок ловят кадр прокрутки (флак под нагрузкой).
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('2. open calendar');
 
     // В mode=date выбор дня фиксирует его в черновике (подсветка ячейки) и активирует Apply; шит остаётся
@@ -118,7 +118,7 @@ test.describe('FieldDate — visual regression', () => {
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
     const dateApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
     await expect(dateApply).toBeEnabled();
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('3. date selected in calendar');
 
     // Apply — шит закрывается, поле показывает применённую дату.
@@ -147,7 +147,7 @@ test.describe('FieldDate — visual regression', () => {
     await getByTestId(TEST_IDS.fieldDate).getByTestId(TEST_IDS.fieldDateCalendar).click();
     await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeVisible();
     // Календарь автоскроллится к текущему месяцу (JS-скролл) — ждём стабилизации bbox ячейки дня.
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('2. open calendar');
 
     // Выбор дня в date-time не закрывает шит, а переводит на под-экран выбора времени (барабан).
@@ -158,7 +158,7 @@ test.describe('FieldDate — visual regression', () => {
     // же виден переход к времени (кнопка time). Ждём чекнутую ячейку и стабилизацию скролла.
     await getByTestId('bottom-sheet__back-button').click();
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('3. date selected in calendar');
 
     // Возвращаемся к выбору времени кнопкой time-переключателя.
@@ -183,7 +183,7 @@ test.describe('FieldDate — visual regression', () => {
     await timeApply.click();
     const calendarApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
     await expect(calendarApply).toBeEnabled();
-    await waitForStableBbox(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
     await frame('5. date & time selected');
 
     // Финальный Apply экрана календаря — коммит значения в поле (closeOnApply=true): шит закрывается,

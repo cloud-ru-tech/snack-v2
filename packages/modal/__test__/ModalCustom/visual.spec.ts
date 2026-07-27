@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForStableBbox } from '#playwright-tooling/utils';
+import { waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import {
   BOTTOM_SHEET_HANDLE_TEST_ID,
@@ -30,7 +30,7 @@ test.describe('ModalCustom — visual regression', () => {
     await getByTestId(MODAL_CUSTOM_TRIGGER_TEST_ID).click();
     const root = getByTestId(MODAL_CUSTOM_TEST_ID);
     await expect(root).toBeVisible();
-    await waitForStableBbox(root);
+    await waitForSettledInViewport(root);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
@@ -44,7 +44,7 @@ test.describe('ModalCustom — visual regression', () => {
     const root = getByTestId(MODAL_CUSTOM_TEST_ID);
     await expect(root).toBeVisible();
     await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toBeVisible();
-    await waitForStableBbox(root);
+    await waitForSettledInViewport(root);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

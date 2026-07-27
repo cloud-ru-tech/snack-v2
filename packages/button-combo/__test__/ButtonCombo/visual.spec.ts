@@ -8,7 +8,7 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import {
   assertInteractionStatesSnapshot,
   assertVisualMatrixSnapshot,
-  waitForStableBbox,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/testIds';
@@ -59,7 +59,7 @@ test.describe('ButtonCombo — visual regression', () => {
     await getByTestId(TEST_IDS.dropdownTrigger).click();
     const item = getByTestId(BUTTON_COMBO_ITEM_TEST_IDS.duplicate);
     await expect(item).toBeVisible();
-    await waitForStableBbox(item);
+    await waitForSettledInViewport(item);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

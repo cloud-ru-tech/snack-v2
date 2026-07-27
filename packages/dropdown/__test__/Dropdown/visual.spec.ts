@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { screenshotRegion, waitForStableBbox } from '#playwright-tooling/utils';
+import { screenshotRegion, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DROPDOWN_STORIES, TEST_IDS } from './helpers';
 
@@ -52,7 +52,7 @@ test.describe('Dropdown — visual regression', () => {
     const sheet = getByTestId(TEST_IDS.root);
     await expect(sheet).toBeVisible();
     // JS-motion (slide-up): ждём стабилизацию bbox вместо document.getAnimations.
-    await waitForStableBbox(sheet);
+    await waitForSettledInViewport(sheet);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
