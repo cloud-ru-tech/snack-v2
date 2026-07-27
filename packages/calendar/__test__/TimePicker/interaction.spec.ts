@@ -16,11 +16,11 @@ test.describe('TimePicker — interaction', () => {
     );
 
     const holder = page.getByTestId(TEST_IDS.timePickerValueHolder);
-    const before = await holder.textContent();
+    const before = (await holder.textContent()) ?? '';
 
     await page.getByTestId(TIME_PICKER_LIST_TEST_IDS.hours(7)).click();
 
-    const after = await holder.textContent();
-    await expect(after).not.toEqual(before);
+    // Значение приезжает после ре-рендера списка — ретраим ассершен, а не читаем текст одним снимком.
+    await expect(holder).not.toHaveText(before);
   });
 });

@@ -1,5 +1,6 @@
 export * from './composeScreenshots';
 export * from './dataTestIdSelector';
+export * from './freezeCssAnimations';
 export * from './interactionStates';
 export * from './getStorybookUrl';
 export * from './waitForFonts';

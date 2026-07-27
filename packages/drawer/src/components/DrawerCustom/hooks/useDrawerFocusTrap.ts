@@ -18,15 +18,10 @@ export function useDrawerFocusTrap(active: boolean) {
       return;
     }
 
+    // Панель rc-drawer монтируется отдельным коммитом, поэтому `containerRef` здесь ещё пуст —
+    // возврат фокуса от него не зависит и на его отсутствие завязываться нельзя.
+    // Начальный фокус ставит сам rc-drawer (autoFocus на panelRef).
     const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const container = containerRef.current;
-
-    if (!container) {
-      return;
-    }
-
-    // Initial focus is handled by rc-drawer's autoFocus on the panel (.drawer / panelRef).
-    // Здесь только запоминаем previous activeElement для возврата фокуса при закрытии.
 
     return () => {
       if (

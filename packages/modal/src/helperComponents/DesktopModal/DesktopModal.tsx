@@ -68,6 +68,8 @@ export function DesktopModal({
       header: TEST_IDS.header,
       title: TEST_IDS.title,
       subtitle: TEST_IDS.subtitle,
+      slotAfterTitle: TEST_IDS.slotAfterTitle,
+      backButton: TEST_IDS.backButton,
     },
   };
 

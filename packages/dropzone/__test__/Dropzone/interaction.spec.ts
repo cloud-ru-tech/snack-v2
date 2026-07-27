@@ -3,6 +3,11 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { buildStoryOptions, TEST_IDS } from './helpers';
 
 test.describe('Dropzone — interaction (browser-specific)', () => {
+  // `useDrag` гасит дребезг dragover/dragleave через `lodash.debounce`, а тот сверяется с
+  // `Date.now()`: при фиксированном времени отложенный `setIsOver` не наступает и drag-over
+  // состояние не включается.
+  test.use({ fixedClockEnabled: false });
+
   // Behavioral assertions (click + visibility) живут в Storybook play.
   // Здесь — реальный DataTransfer-drop и реальный native file input upload через
   // page.setInputFiles(...) — оба требуют браузерных API, недоступных в Storybook play.

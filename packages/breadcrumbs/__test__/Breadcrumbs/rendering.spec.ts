@@ -4,6 +4,11 @@ import { SIZE } from '../../src/constants';
 import { buildStoryOptions, getTextView, TEST_IDS } from './helpers';
 
 test.describe('Breadcrumbs — rendering', () => {
+  // Пересчёт раскладки идёт через ResizeObserver + `lodash.debounce`, а тот сверяется с
+  // `Date.now()`: при фиксированном времени отложенный пересчёт не наступает и ширина
+  // контейнера из args не доезжает до крошек.
+  test.use({ fixedClockEnabled: false });
+
   test.describe('render', () => {
     test('renders root', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());

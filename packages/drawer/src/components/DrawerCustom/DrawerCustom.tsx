@@ -90,7 +90,10 @@ function DrawerFrame(props: DrawerCustomProps) {
     };
   }, [heightAutoVertical, position]);
 
-  useModalOpenState(open, onClose, { closeOnPopstate });
+  // Esc обрабатывает rc-drawer (`keyboard={showBlackout}`) — он уважает стек порталов и закрывает
+  // только верхний дровер. `CloseWatcher` подключаем лишь там, где rc-drawer Esc не слушает
+  // (`showBlackout=false`): иначе два независимых обработчика закрывают и вложенный, и родительский.
+  useModalOpenState(open, onClose, { closeOnPopstate, closeByCloseWatcher: !showBlackout });
 
   const focusTrapRef = useDrawerFocusTrap(Boolean(open));
 
