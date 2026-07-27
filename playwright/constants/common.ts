@@ -36,6 +36,9 @@ export const STORY_TABLE_TEST_ID = 'story-table';
  */
 export const MOBILE_VIEWPORT = { width: 390, height: 844 } as const;
 
+/** Часы страницы во всех e2e: без фиксации снимки с «сегодня» протухают через сутки. */
+export const FIXED_TEST_TIME = new Date('2026-07-09T12:00:00Z');
+
 export const SCREENSHOT_DEFAULT_OPTS = {
   animations: 'disabled',
   caret: 'hide',
@@ -48,7 +51,12 @@ export const SCREENSHOT_DEFAULT_OPTS = {
   //
   // Точечный override остаётся доступным через
   // `expect(...).toHaveScreenshot(name, { ...SCREENSHOT_DEFAULT_OPTS, maxDiffPixelRatio: ... })`.
+  //
+  // `maxDiffPixels` — абсолютный потолок поверх ratio: на мелких снимках 1% от
+  // площади может не превысить порог, и точечные правки проходят незамеченными.
+  // Абсолютный кап ловит их независимо от размера кадра.
   maxDiffPixelRatio: 0.01,
+  maxDiffPixels: 100,
   threshold: 0.25,
 } as const;
 
@@ -61,5 +69,6 @@ export const SCREENSHOT_DEFAULT_OPTS = {
  */
 export const MATCH_SNAPSHOT_DEFAULT_OPTS = {
   maxDiffPixelRatio: 0.01,
+  maxDiffPixels: 100,
   threshold: 0.25,
 } as const;

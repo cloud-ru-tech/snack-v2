@@ -5,6 +5,7 @@ import v8toIstanbul from 'v8-to-istanbul';
 
 import { expect as playwrightExpect, Locator, test as base } from '@playwright/test';
 
+import { FIXED_TEST_TIME } from './constants/common';
 import { dataTestIdSelector, getStorybookUrl, getStorybookUrlById, StorybookUrlOptions, waitForFonts } from './utils';
 
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
@@ -50,6 +51,7 @@ type PlaywrightFixtures = {
   waitForNavigation(expectedPath: string, options?: { timeout?: number }): Promise<void>;
   dragTo(locator: Locator, options?: DragOptions): Promise<void>;
   collectCoverage: void;
+  fixedClock: void;
 };
 
 export const test = base.extend<PlaywrightFixtures>({
@@ -108,6 +110,14 @@ export const test = base.extend<PlaywrightFixtures>({
       if (Object.keys(merged).length > 0) {
         writeFileSync(resolve(COVERAGE_DIR, `${randomUUID()}.json`), JSON.stringify(merged));
       }
+    },
+    { auto: true },
+  ],
+  // `setFixedTime` подменяет только `Date`/`Date.now` — таймеры и анимации продолжают идти.
+  fixedClock: [
+    async ({ page }, customUse) => {
+      await page.clock.setFixedTime(FIXED_TEST_TIME);
+      await customUse();
     },
     { auto: true },
   ],
