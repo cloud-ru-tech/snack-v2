@@ -33,11 +33,7 @@ export function SelectionLabel({
   );
 
   if (placement === 'headline') {
-    return (
-      <div className={styles.headlinePlacement} data-headline-selection-label>
-        {label}
-      </div>
-    );
+    return <div className={styles.headlinePlacement}>{label}</div>;
   }
 
   return label;

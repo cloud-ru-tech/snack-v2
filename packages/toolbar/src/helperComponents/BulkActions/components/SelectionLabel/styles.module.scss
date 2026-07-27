@@ -36,10 +36,3 @@
   width: 100%;
   min-width: 0;
 }
-
-// TODO: slotAfterTitle должен расширяться на всю ширину, а section-label уходить вправо
-:global([data-test-id='bottom-sheet__slot-after-title']:has([data-headline-selection-label])) {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
-}

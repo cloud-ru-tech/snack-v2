@@ -92,7 +92,7 @@ export function PopupHeader({
               </Typography>
             )}
             {slotAfterTitle && (
-              <span className={styles.slotAfterHeadline} data-test-id={ids.slotAfterTitle}>
+              <span className={styles.slotAfterTitle} data-test-id={ids.slotAfterTitle}>
                 {slotAfterTitle}
               </span>
             )}

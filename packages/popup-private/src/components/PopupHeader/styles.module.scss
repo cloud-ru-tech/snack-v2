@@ -106,10 +106,13 @@
   color: base.$sn-theme-color-available-version-textMain;
 }
 
+// Слот занимает остаток строки заголовка: потребитель кладёт сюда и компактный тултип,
+// и полноширинный контент (счётчик выделения тулбара), который выравнивается по правому краю.
 .slotAfterTitle {
   display: inline-flex;
-  flex-shrink: 0;
+  flex: 1 1 auto;
   align-items: center;
+  min-width: 0;
 }
 
 .actionButton {
