@@ -1,13 +1,16 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-// Fixed row width ≈ legacy 200 + 16 + 496 (label + gap + content), via primitive dimensions.
+// Ширина строки по макету: label 200 + gap 24 + content 496 = 720 (Figma column1).
 $label-width: calc(2 * #{base.$sn-primitive-dimension-100});
-$column-gap: base.$sn-primitive-dimension-16;
+// Зазор метка↔значение внутри строки (Figma: infoLabel→infoContent = 24).
+$label-content-gap: base.$sn-primitive-dimension-24;
+// Зазор между парами в двухколоночной строке (Figma column=2: column1→column2 = 48).
+$pair-gap: base.$sn-primitive-dimension-48;
 $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive-dimension-48});
 
 .wrapper {
   box-sizing: border-box;
-  width: min(100%, calc(#{$label-width} + #{$column-gap} + #{$content-max}));
+  width: min(100%, calc(#{$label-width} + #{$label-content-gap} + #{$content-max}));
   min-height: base.$sn-primitive-dimension-40;
 
   &[data-width='full'] {
@@ -18,12 +21,12 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
   &[data-column='2'] {
     width: min(
       100%,
-      calc(2 * (#{$label-width} + #{$column-gap} + #{$content-max}) + #{$column-gap})
+      calc(2 * (#{$label-width} + #{$label-content-gap} + #{$content-max}) + #{$pair-gap})
     );
   }
 
   &[data-max-width='true'] {
-    width: min(100%, calc(#{$label-width} + #{$column-gap} + 2 * #{$content-max}));
+    width: min(100%, calc(#{$label-width} + #{$label-content-gap} + 2 * #{$content-max}));
   }
 
   &[data-column='2'][data-max-width='true'] {
@@ -34,12 +37,13 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
 
 .infoRow {
   display: flex;
-  column-gap: $column-gap;
+  column-gap: $label-content-gap;
   align-items: center;
 
   width: 100%;
-  min-height: base.$sn-primitive-dimension-32;
-  padding: calc(#{base.$sn-primitive-dimension-12} + #{base.$sn-primitive-dimension-6}) 0;
+  // Figma: область контента 32 (высота кнопки действия) + вертикальный отступ 12 = 56.
+  min-height: calc(#{base.$sn-primitive-dimension-32} + 2 * #{base.$sn-primitive-dimension-12});
+  padding: base.$sn-primitive-dimension-12 0;
 }
 
 .labelLayout {
@@ -83,7 +87,7 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
 .columnsPair {
   display: flex;
   flex: 1 1 0;
-  column-gap: $column-gap;
+  column-gap: $pair-gap;
   align-items: center;
 
   min-width: 0;
@@ -92,14 +96,14 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
 .pairItem {
   display: flex;
   flex: 1 1 0;
-  column-gap: $column-gap;
+  column-gap: $label-content-gap;
   align-items: center;
 
   min-width: 0;
 }
 
 .wrapper[data-width='fixed'] .columnsPair {
-  max-width: calc(2 * #{$content-max} + #{$column-gap});
+  max-width: calc(2 * #{$content-max} + #{$pair-gap});
 }
 
 .valueColumn {
