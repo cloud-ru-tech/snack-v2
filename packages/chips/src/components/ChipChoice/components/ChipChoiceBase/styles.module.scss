@@ -8,15 +8,16 @@ $sizes: (
   'l': 'l',
 );
 
+// Размер текст-стиля равен размеру чипа: label — тонкий, значение — обычный.
 $label-typography: (
-  's': base.$sn-thin-label-m,
-  'm': base.$sn-thin-label-l,
+  's': base.$sn-thin-label-s,
+  'm': base.$sn-thin-label-m,
   'l': base.$sn-thin-label-l,
 );
 
 $value-typography: (
-  's': base.$sn-regular-label-m,
-  'm': base.$sn-regular-label-l,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
   'l': base.$sn-regular-label-l,
 );
 

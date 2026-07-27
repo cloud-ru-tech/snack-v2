@@ -49,7 +49,7 @@ export const InteractionTest: Story = {
     await step('Escape: closes dropdown', async () => {
       await userEvent.keyboard('{Escape}');
       await waitFor(() => {
-        expect(canvas.queryByTestId(CHIP_CHOICE_TEST_IDS.droplist)).not.toBeVisible();
+        expect(canvas.queryByTestId(CHIP_CHOICE_TEST_IDS.droplist)).not.toBeInTheDocument();
       });
     });
   },

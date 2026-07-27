@@ -1,10 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
 
-$chips-gap: (
-  's': base.$sn-density-spacing-control-wrapper-horizontal-m,
-  'm': base.$sn-density-spacing-control-wrapper-horizontal-l,
-);
-
 .chipChoiceRow {
   display: flex;
   flex-wrap: wrap;

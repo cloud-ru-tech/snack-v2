@@ -33,11 +33,15 @@ test.describe('ChipChoice — visual regression', () => {
     );
   });
 
+  // Имя эталона — на вариант. С общим именем шесть тестов писали в один файл: в эталоне
+  // оставался последний отработавший вариант, остальные сравнивались с чужим рендером и
+  // проходили, потому что варианты отличаются только подписями внутри одинаковой сетки —
+  // разница не набирает порога `maxDiffPixelRatio`.
   for (const variant of VARIANTS) {
     test(`visual matrix: ${variant}`, async ({ page, gotoStory, waitForFonts }) => {
       await gotoStory(buildChipChoiceVariantStory(variant, undefined, CHIP_STORIES.visualMatrix));
       await waitForFonts();
-      await assertVisualMatrixSnapshot(page);
+      await assertVisualMatrixSnapshot(page, `visual-matrix-${variant}.png`);
     });
   }
 
@@ -51,6 +55,8 @@ test.describe('ChipChoice — visual regression', () => {
     await getByTestId(TEST_IDS.chipChoice.root).click();
     // На mobile CalendarDropdown уезжает в BottomSheet; лист получает `data-test-id` дроплиста напрямую.
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeVisible();
+    // toBeVisible срабатывает уже на старте slide-up sheet'а — ждём остановки его bbox.
+    await waitForStableBbox(getByTestId(CHIP_CHOICE_TEST_IDS.droplist));
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-date.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,

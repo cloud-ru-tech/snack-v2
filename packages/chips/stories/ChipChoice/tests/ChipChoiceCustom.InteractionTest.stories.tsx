@@ -75,7 +75,7 @@ export const InteractionTest: Story = {
       const option = canvas.getByTestId('custom-option-alpha');
       await userEvent.click(option);
       await waitFor(() => {
-        expect(canvas.queryByTestId(CHIP_CHOICE_TEST_IDS.droplist)).not.toBeVisible();
+        expect(canvas.queryByTestId(CHIP_CHOICE_TEST_IDS.droplist)).not.toBeInTheDocument();
       });
     });
   },

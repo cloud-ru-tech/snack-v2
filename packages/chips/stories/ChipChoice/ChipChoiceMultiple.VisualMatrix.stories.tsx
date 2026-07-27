@@ -50,7 +50,9 @@ export const VisualMatrix: Story = {
                 label='Filter'
                 size={size}
                 options={OPTIONS}
-                defaultValue={['opt1']}
+                // Две опции, а не одна: при одной значение выводится подписью опции и матрица
+                // повторяет Single. Форма `N/total` — то, чем Multiple отличается (в мастере `2/5`).
+                defaultValue={['opt1', 'opt2']}
                 icon={CHIP_CHOICE_ICON}
                 {...CLEAR_BUTTON_PROPS}
               />
