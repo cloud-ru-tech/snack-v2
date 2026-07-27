@@ -1,297 +1,8 @@
 {
-  "DesktopQuestionTooltip": {
-    "displayName": "DesktopQuestionTooltip",
-    "propsTypeName": null,
-    "description": "Desktop-поверхность QuestionTooltip: иконка «?» + тултип-popover (`Tooltip`).\nInternal — наружу не реэкспортится; рендерится адаптивным `QuestionTooltip` по контексту раскладки.",
-    "props": {
-      "children": {
-        "type": "ReactNode | ChildrenFunction",
-        "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)"
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрывать ли поповер при переходе по истории браузера"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "disableMaxWidth": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Отключение ограничения ширины тултипа"
-      },
-      "disableSpanWrapper": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-      },
-      "fallbackPlacements": {
-        "type": "Placement[]",
-        "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
-      },
-      "hoverDelayClose": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка закрытия по ховеру"
-      },
-      "hoverDelayOpen": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка открытия по ховеру"
-      },
-      "offset": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-      },
-      "onOpenChange": {
-        "type": "((isOpen: boolean) => void)",
-        "required": false,
-        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-      },
-      "open": {
-        "type": "boolean",
-        "required": false,
-        "description": "Управляет состоянием показан/не показан."
-      },
-      "placement": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "defaultValue": "top",
-        "description": "Положение поповера относительно своего триггера (children)."
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "xs"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер"
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Tab index для кнопки-триггера"
-      },
-      "tip": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Содержимое тултипа (текст или разметка)"
-      },
-      "tooltipClassname": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера подсказки"
-      },
-      "trigger": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
-        ],
-        "defaultValue": "hover",
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
-      },
-      "triggerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс триггера"
-      },
-      "triggerLabel": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "Подсказка",
-        "description": "Доступное имя для иконки-триггера"
-      },
-      "triggerRef": {
-        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
-        "required": false,
-        "description": "Ref ссылка на триггер"
-      }
-    },
-    "relatedTypes": {}
-  },
-  "MobileQuestionTooltip": {
-    "displayName": "MobileQuestionTooltip",
-    "propsTypeName": null,
-    "description": "Mobile-поверхность QuestionTooltip: иконка «?» открывает `tip` в `BottomSheet` из `@ds/bottom-sheet`\nпо клику (вместо hover-popover). Internal — наружу не реэкспортится; рендерится адаптивным\n`QuestionTooltip` по контексту. desktop-only popover-пропы уходят в `...rest` и не доезжают до BottomSheet.",
-    "props": {
-      "children": {
-        "type": "ReactNode | ChildrenFunction",
-        "required": false,
-        "description": "Триггер поповера (подробнее читайте ниже)"
-      },
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "closeOnPopstate": {
-        "type": "boolean",
-        "required": false,
-        "description": "Закрывать ли поповер при переходе по истории браузера"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false
-      },
-      "disableMaxWidth": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Отключение ограничения ширины тултипа"
-      },
-      "disableSpanWrapper": {
-        "type": "boolean",
-        "required": false,
-        "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
-      },
-      "fallbackPlacements": {
-        "type": "Placement[]",
-        "required": false,
-        "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает."
-      },
-      "hoverDelayClose": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка закрытия по ховеру"
-      },
-      "hoverDelayOpen": {
-        "type": "number",
-        "required": false,
-        "description": "Задержка открытия по ховеру"
-      },
-      "offset": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-      },
-      "onOpenChange": {
-        "type": "((isOpen: boolean) => void)",
-        "required": false,
-        "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-      },
-      "open": {
-        "type": "boolean",
-        "required": false,
-        "description": "Управляет состоянием показан/не показан."
-      },
-      "placement": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "defaultValue": "top",
-        "description": "Положение поповера относительно своего триггера (children)."
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "s",
-          "xs"
-        ],
-        "defaultValue": "xs",
-        "description": "Размер"
-      },
-      "tabIndex": {
-        "type": "number",
-        "required": false,
-        "defaultValue": "0",
-        "description": "Tab index для кнопки-триггера"
-      },
-      "tip": {
-        "type": "ReactNode",
-        "required": true,
-        "description": "Содержимое тултипа (текст или разметка)"
-      },
-      "tooltipClassname": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс контейнера подсказки"
-      },
-      "trigger": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
-        ],
-        "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible"
-      },
-      "triggerClassName": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс триггера"
-      },
-      "triggerLabel": {
-        "type": "string",
-        "required": false,
-        "defaultValue": "Подсказка",
-        "description": "Доступное имя для иконки-триггера"
-      },
-      "triggerRef": {
-        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
-        "required": false,
-        "description": "Ref ссылка на триггер"
-      }
-    },
-    "relatedTypes": {}
-  },
   "QuestionTooltip": {
     "displayName": "QuestionTooltip",
     "propsTypeName": "QuestionTooltipProps",
-    "description": "Адаптивный QuestionTooltip. Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` открывает\n`tip` в `BottomSheet` по клику, иначе — desktop-тултип по «?». Публичный API единый; форс платформы —\nчерез `<AdaptiveProvider layoutType=…>` / `withLayoutType` (см. `@ds/adaptive`), пропа `layoutType` нет.",
+    "description": "QuestionTooltip — иконка «?» с тултипом-popover для подсказок к полям форм.\nПоверхность одна на всех раскладках (по договорённости с дизайном mobile не свапается на BottomSheet).",
     "props": {
       "children": {
         "type": "ReactNode | ChildrenFunction",
@@ -398,6 +109,7 @@
       "tabIndex": {
         "type": "number",
         "required": false,
+        "defaultValue": "0",
         "description": "Tab index для кнопки-триггера"
       },
       "tip": {
@@ -422,6 +134,7 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
+        "defaultValue": "hover",
         "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
         "typeRefs": [
           "Trigger"
@@ -435,6 +148,7 @@
       "triggerLabel": {
         "type": "string",
         "required": false,
+        "defaultValue": "Подсказка",
         "description": "Доступное имя для иконки-триггера"
       },
       "triggerRef": {

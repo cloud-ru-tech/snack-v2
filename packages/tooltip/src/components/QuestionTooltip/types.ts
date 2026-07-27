@@ -2,11 +2,8 @@ import { Size } from '../../types';
 import { TooltipProps } from '../Tooltip';
 
 /**
- * Адаптивный QuestionTooltip: desktop — popover по иконке «?», `mobile` — `tip` в `BottomSheet` по клику.
- *
- * Только desktop: `placement`, `trigger`, `offset`, `hoverDelayOpen`, `hoverDelayClose`, `triggerRef`,
- * `disableSpanWrapper`, `fallbackPlacements`, `disableMaxWidth` (на mobile игнорируются).
- * `tooltipClassname` применяется на обеих поверхностях (на desktop — к popover, на mobile — к контенту `BottomSheet`).
+ * QuestionTooltip: иконка «?» с тултипом-popover. Поверхность одна на всех раскладках.
+ * `tooltipClassname` применяется к контейнеру подсказки.
  */
 export type QuestionTooltipProps = TooltipProps & {
   /** CSS-класс контейнера подсказки */

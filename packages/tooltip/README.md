@@ -155,12 +155,12 @@ export function Question() {
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `size` | `"s"` \| `"xs"` | `xs` | Размер |
-| `tabIndex` | `number` | — | Tab index для кнопки-триггера |
+| `tabIndex` | `number` | `0` | Tab index для кнопки-триггера |
 | `tip` | `ReactNode` | — | Содержимое тултипа (текст или разметка) |
 | `tooltipClassname` | `string` | — | CSS-класс контейнера подсказки |
-| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
+| `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | `hover` | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
-| `triggerLabel` | `string` | — | Доступное имя для иконки-триггера |
+| `triggerLabel` | `string` | `Подсказка` | Доступное имя для иконки-триггера |
 | `triggerRef` | `ForwardedRef<ReferenceType \| HTMLElement \| null>` | — | Ref ссылка на триггер |
 
 ##### Related types
@@ -168,43 +168,3 @@ export function Question() {
 - `Placement` = `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"`
 
 - `Size` = `"s"` \| `"xs"`
-
-### Адаптивность
-
-`QuestionTooltip` — адаптивный компонент с переключением поверхности (surface-swap). Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
-
-- **desktop** (по умолчанию) — тултип-popover, открывается по наведению на иконку «?».
-- **mobile** — `tip` открывается в `BottomSheet` из `@ds/bottom-sheet` (панель снизу) по нажатию на «?».
-
-Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
-
-#### Как форсировать платформу
-
-Форс — только контекстом, не пропом:
-
-- Поддерево — вложенный провайдер:
-  ```tsx
-  import { AdaptiveProvider } from '@ds/adaptive'
-
-  <AdaptiveProvider layoutType='mobile'>
-    <QuestionTooltip tip='Подсказка о поле формы' />
-  </AdaptiveProvider>
-  ```
-- Отдельный компонент — `withLayoutType` (module-scope, сахар над провайдером):
-  ```tsx
-  import { withLayoutType } from '@ds/adaptive'
-  import { QuestionTooltip } from '@ds/tooltip'
-
-  const MobileQuestionTooltip = withLayoutType(QuestionTooltip, 'mobile')
-  ```
-
-#### Платформенные пропы
-
-Часть пропов настраивает desktop-popover и на mobile молча игнорируется (у `BottomSheet` своя поверхность снизу). Таблица синхронизирована с type-level JSDoc у `QuestionTooltipProps`.
-
-| Пропы | desktop | mobile |
-|-------|---------|--------|
-| `placement`, `trigger`, `offset`, `hoverDelayOpen`, `hoverDelayClose`, `triggerRef`, `disableSpanWrapper`, `fallbackPlacements`, `disableMaxWidth`, `tooltipClassname` | используется | игнорируется |
-| `tip`, `open`, `onOpenChange`, `closeOnPopstate`, `triggerLabel`, `tabIndex`, `size`, `className` | используется | используется |
-
-Подробнее о модели адаптивности — **Adaptive**.

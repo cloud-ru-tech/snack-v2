@@ -13,10 +13,7 @@ function PlaygroundRender({ tip, ...rest }: StoryProps) {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>
-          QuestionTooltip — иконка-триггер «?» для подсказок к полям форм. На desktop наведите на «?»; на mobile
-          (layoutType) — нажмите, подсказка откроется в `BottomSheet` снизу.
-        </DemoHint>
+        <DemoHint>QuestionTooltip — иконка-триггер «?» для подсказок к полям форм. Наведите на «?».</DemoHint>
         <DemoActions align='center'>
           {/* tip оборачиваем в `<span data-test-id=...>` — гарантирует, что
               `data-test-id` оседает на видимом контенте подсказки. */}
@@ -43,14 +40,12 @@ const meta: Meta<StoryProps> = {
     placement: {
       control: 'select',
       options: Object.values(PLACEMENT),
-      description: 'Позиция popover (только desktop)',
-      if: { global: 'layoutType', neq: 'mobile' },
+      description: 'Позиция popover',
     },
     trigger: {
       control: 'select',
       options: Object.values(TRIGGER),
-      description: 'Способ открытия popover (только desktop)',
-      if: { global: 'layoutType', neq: 'mobile' },
+      description: 'Способ открытия popover',
     },
     size: { control: 'radio', options: Object.values(SIZE) },
     triggerLabel: { control: 'text', description: 'aria-label триггера-иконки' },

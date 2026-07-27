@@ -16,8 +16,6 @@ export const QUESTION_TOOLTIP_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: StoryRef = QUESTION_TOOLTIP_STORIES.playground,
-  // Адаптивная раскладка задаётся тулбар-глобалом `layoutType` (не args) — форсим её через URL-globals.
-  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     name: ref.name,
@@ -27,7 +25,6 @@ export function buildStoryOptions(
     // на кнопку-триггер (`TEST_IDS.questionTooltip.triggerOpen` через src), а
     // контент — на `<span data-test-id={questionTooltip.content}>` внутри tip.
     props,
-    globals,
   };
 }
 
