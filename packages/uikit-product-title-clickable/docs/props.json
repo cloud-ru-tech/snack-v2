@@ -102,7 +102,6 @@
               "neutral",
               "orange",
               "pink",
-              "primary",
               "red",
               "violet",
               "yellow"
@@ -152,9 +151,9 @@
             "type": "Size | undefined",
             "required": false,
             "values": [
-              "10xl",
               "3xl",
               "6xl",
+              "9xl",
               "l",
               "m",
               "s",
@@ -243,7 +242,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -297,9 +295,9 @@
         "type": "enum",
         "required": false,
         "values": [
-          "10xl",
           "3xl",
           "6xl",
+          "9xl",
           "l",
           "m",
           "s",

@@ -23,7 +23,7 @@
   &:focus-visible {
     border-radius: base.$sn-primitive-dimension-4;
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-    outline-offset: calc(#{base.$sn-primitive-strokeWeight-strokeSemiBold} * -1);
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 
   &:active {
