@@ -145,17 +145,18 @@ export const FIGMA_NODES = {
   dropzone: { ...SNACK, nodeId: '4971-205' }, // dropzone → dropzone
   fields: {
     _: { ...SNACK, nodeId: '3059-4284' }, // fields → fields (umbrella)
-    'field-text': { ...SNACK, nodeId: '3119-6096' }, // fields/field-text → fieldText
+    'field-combo': { ...SNACK, nodeId: '3119-6096' }, // fields/field-combo → fieldCombo
+    'field-text': { ...SNACK, nodeId: '37598-87220' }, // fields/field-text → fieldText
     'field-textarea': { ...SNACK, nodeId: '3299-13122' }, // fields/field-textarea → fieldTextArea
     'field-secure': { ...SNACK, nodeId: '3434-192001' }, // fields/field-secure → fieldSecure
     'field-stepper': { ...SNACK, nodeId: '3438-222637' }, // fields/field-stepper → fieldStepper
     'field-slider': { ...SNACK, nodeId: '3486-19477' }, // fields/field-slider → fieldSlider
     'field-select': { ...SNACK, nodeId: '5824-192430' }, // fields/field-select → fieldSelect
     'field-date': { ...SNACK, nodeId: '3755-87731' }, // fields/field-date → fieldDate
-    'field-decorator': { ...SNACK, nodeId: '28132-1626178' }, // fields/field-decorator → field - Matrix
     'field-color': { ...SNACK, nodeId: '5597-23777' }, // fields/field-color → fieldSelectColor
     'field-time': { ...SNACK, nodeId: '5597-32852' }, // fields/field-time → fieldTime
   },
+  'field-decorator': { ...SNACK, nodeId: '35054:143' }, // field-decorator → fieldDecorator
   'hot-spot': { ...SNACK, nodeId: '8965-552893' }, // hot-spot → hotSpot
   'icon-predefined': { ...SNACK, nodeId: '5237-157234' }, // icon-predefined → iconPredefined
   'info-block': { ...SNACK, nodeId: '5828-3470' }, // info-block → infoBlock
@@ -272,7 +273,7 @@ export const FIGMA_NODES = {
     'price-summary-small': { ...PRODUCT, nodeId: '2909-8947' },
   },
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
-  'uikit-product-widget': { ...PRODUCT, nodeId: '3024:759' }, // uikit-product-widget → widget
+  'uikit-product-widget': { ...PRODUCT, nodeId: '3024:760' }, // uikit-product-widget → widget
   'uikit-product-card-predefined': {
     _: { ...PRODUCT, nodeId: '2171-287' }, // canvas root
     'card-banner': { ...PRODUCT, nodeId: '2171-1507' },
