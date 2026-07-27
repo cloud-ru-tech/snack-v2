@@ -24,7 +24,7 @@ import mergeRefs from 'merge-refs';
 import { ForwardedRef, forwardRef, ReactNode, Ref, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { TEST_IDS } from '../../../constants';
+import { DEFAULT_SIZE, TEST_IDS } from '../../../constants';
 import { ListEmptyState, useEmptyState } from '../../../helperComponents';
 import { stopPropagation } from '../../../utils';
 import {
@@ -116,7 +116,7 @@ export const ListPrivate = forwardRef(
     }: ListPrivateProps,
     ref: ForwardedRef<HTMLElement>,
   ) => {
-    const { size = 'm', flattenItems, focusFlattenItems } = useNewListContext();
+    const { size = DEFAULT_SIZE, flattenItems, focusFlattenItems } = useNewListContext();
     const { value, isSelectionSingle } = useSelectionContext();
     // `onDragEnd`/`SortableContext` конфликтуют с виртуализатором: обе стороны применяют свой
     // `transform` к строке (см. JSDoc `ListPrivateProps.onDragEnd`) — запрещено уже на уровне

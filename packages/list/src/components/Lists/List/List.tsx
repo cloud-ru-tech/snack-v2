@@ -3,6 +3,7 @@ import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { ForwardedRef, forwardRef, KeyboardEvent, useCallback, useMemo, useRef } from 'react';
 
+import { DEFAULT_SIZE } from '../../../constants';
 import { HiddenTabButton } from '../../../helperComponents';
 import { CollapseContext, FocusListContext, NewListContextProvider, SelectionProvider } from '../contexts';
 import { useListItemsModel, useNewKeyboardNavigation } from '../hooks';
@@ -24,7 +25,7 @@ const ListImpl = forwardRef(
       collapse = {},
       selection,
       contentRender,
-      size = 'm',
+      size = DEFAULT_SIZE,
       marker = true,
       keyboardNavigationRef,
       hasListInFocusChain = true,

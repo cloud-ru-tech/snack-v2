@@ -1,5 +1,5 @@
 @use '@sbercloud/figma-variables/build/scss/styles/styles.module' as base;
-@use '@sbercloud/figma-variables/build/scss/components/dropdown.module' as dropdown;
+@use '@sbercloud/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 
 $sizes: 's', 'm', 'l';
 
@@ -44,34 +44,34 @@ $loader-height: (
   list-style-type: none;
 }
 
-// Figma `dropdown.anatomy.container.bottomBar` — padding-top=8, padding-bottom=4, padding-h=8.
+// Figma `popupPrivate.anatomy.dropdown.footer` — padding-top=8, padding-bottom=4, padding-h=8.
 // Divider над футером (Figma `dividerWrapper` между body и bottomBar) — opt-in через [data-divider].
 .footer {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingTop dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingHorizontal
-    dropdown.$sn-dropdown-anatomy-container-bottomBar-paddingBottom;
+  padding: popupPrivate.$sn-popupPrivate-anatomy-dropdown-footer-paddingTop popupPrivate.$sn-popupPrivate-anatomy-dropdown-footer-paddingHorizontal
+    popupPrivate.$sn-popupPrivate-anatomy-dropdown-footer-paddingBottom;
 
   &[data-divider] {
     border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
   }
 }
 
-// Figma `dropdown.anatomy.container.topBar` — padding-h (через headlineWrapper)=8, gap=4,
-// родительский topBar/gap=8 (между headlineWrapper и body).
+// Figma `popupPrivate.anatomy.dropdown.header` — padding-h (через headlineWrapper)=8, gap=4,
+// родительский header/gap=8 (между headlineWrapper и body).
 .header {
   display: flex;
   flex-direction: column;
-  gap: dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-gap;
+  gap: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap;
 
   box-sizing: border-box;
-  padding: 0 dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-paddingHorizontal
-    dropdown.$sn-dropdown-anatomy-container-topBar-gap;
+  padding: 0 popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal
+    popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-gap;
 
   &[data-divider] {
-    margin-bottom: dropdown.$sn-dropdown-anatomy-container-topBar-gap;
-    padding-bottom: dropdown.$sn-dropdown-anatomy-container-topBar-headlineWrapper-paddingHorizontal;
+    margin-bottom: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-gap;
+    padding-bottom: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal;
     border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
   }
 }

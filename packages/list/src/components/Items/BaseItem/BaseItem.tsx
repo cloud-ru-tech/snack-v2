@@ -3,7 +3,7 @@ import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { FocusEvent, KeyboardEvent, MouseEvent, ReactNode, RefObject } from 'react';
 
-import { TEST_IDS } from '../../../constants';
+import { DEFAULT_SIZE, TEST_IDS } from '../../../constants';
 import { ItemContent } from '../../../helperComponents';
 import {
   useCollapseLevelContext,
@@ -66,7 +66,7 @@ export function BaseItem({
 }: AllBaseItemProps) {
   const interactive = !inactive;
 
-  const { size = 'm', marker, contentRender, firstItemId, focusFlattenItems } = useNewListContext();
+  const { size = DEFAULT_SIZE, marker, contentRender, firstItemId, focusFlattenItems } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
   const { closeDroplist, closeDroplistOnItemClick } = useOpenListContext();
   const { value, onChange, mode, isSelectionSingle, isSelectionMultiple } = useSelectionContext();
@@ -214,7 +214,7 @@ export function BaseItem({
         {!switchProp && isSelectionMultiple && interactive && (
           <div className={styles.checkbox}>
             <Checkbox
-              size={TOGGLE_SIZE_MAP[size ?? 's']}
+              size={TOGGLE_SIZE_MAP[size]}
               disabled={disabled}
               tabIndex={-1}
               onChange={isParentNode ? handleCheckboxChange : undefined}
@@ -232,7 +232,7 @@ export function BaseItem({
 
         {switchProp && interactive && (
           <Switch
-            size={TOGGLE_SIZE_MAP[size ?? 's']}
+            size={TOGGLE_SIZE_MAP[size]}
             disabled={disabled}
             checked={isChecked}
             data-test-id={TEST_IDS.baseItemSwitch}

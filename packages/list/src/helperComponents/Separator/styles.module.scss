@@ -70,9 +70,6 @@ $level: var(--level, 0);
     &[data-size='#{$size}'] {
       $subtitle: base.simple-var($subtitle-typography-map, $size);
       $subtitleTertiary: base.simple-var($subtitle-tertiary-typography-map, $size);
-      // Figma `listItem.nestingLevel.levelWrapper.padding-left` (s=8, m/l=12).
-      $levelWrapperKey: 'levelWrapper';
-      $nestingLevelOffset: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'nestingLevel', $levelWrapperKey, 'padding-left');
       $itemPaddingLeft: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
       $itemGap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'gap');
 
@@ -80,13 +77,10 @@ $level: var(--level, 0);
       padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'subtitle', 'padding-top') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
 
       // nestingLevel — индентация заголовка группы, если она вложена внутрь другой группы.
-      // Идентичный механизм используется на BaseItem.droplistItem (см. BaseItem/styles.module.scss).
-      &[data-level-one] {
-        padding-left: calc($itemPaddingLeft + $itemGap);
-      }
-
+      // Шаг тот же, что у строки: слот иконки плюс зазор (см. BaseItem/styles.module.scss).
+      &[data-level-one],
       &[data-level-more-one] {
-        padding-left: calc($itemPaddingLeft + $itemGap + ($level - 1) * $nestingLevelOffset);
+        padding-left: calc($itemPaddingLeft + $level * calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap}));
       }
 
       .beforeContent {
@@ -126,10 +120,21 @@ $level: var(--level, 0);
   }
 }
 
+// Группа-разделитель в макете не голая линия: у неё те же поля, что у строки списка
+// (`listItem` padding — 2/4 у s и m, 4/8 у l), поэтому вариант занимает 5 / 5 / 9 по высоте.
 .separatorWithoutLabel {
   display: flex;
   align-items: flex-end;
   box-sizing: border-box;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-top')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+    }
+  }
 }
 
 .label {

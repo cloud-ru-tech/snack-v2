@@ -13,6 +13,8 @@ export const SIZE = {
   L: 'l',
 } as const;
 
+export const DEFAULT_SIZE = SIZE.M;
+
 export const MODE = {
   None: 'none',
   Single: 'single',

@@ -119,6 +119,12 @@ $sizes: 's', 'm', 'l';
     outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
     outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
   }
+
+  // В раскрытом состоянии мастер меняет скругление с 8 на 2 — кнопка становится
+  // «квадратнее» под подложкой нажатия (варианты `groupIndicatorS/Xs`, `open=true`).
+  &[data-open] {
+    border-radius: base.$sn-primitive-dimension-2;
+  }
 }
 
 .groupIndicatorState {
@@ -172,20 +178,6 @@ $level: var(--level, 0);
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      // Figma token bridge: для size=s ключ слоя — `levellWrapper` (опечатка в Figma:
-      // nestingLevel.levellWrapper.padding-left=8). Для m/l — корректный `levelWrapper` (12px).
-      // Перейдём на единое имя после фикса в @sbercloud/figma-variables.
-      $levelWrapperKey: 'levelWrapper';
-      $nestingLevelOffset: base.simple-var(
-        list.$list,
-        'anatomy',
-        'size',
-        $size,
-        'listItem',
-        'nestingLevel',
-        $levelWrapperKey,
-        'padding-left'
-      );
       $itemPaddingLeft: list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
       $itemGap: list.$sn-list-anatomy-size-s-listItem-gap;
 
@@ -199,17 +191,13 @@ $level: var(--level, 0);
         $itemGap: list.$sn-list-anatomy-size-l-listItem-gap;
       }
 
-      &[data-level-one] {
-        padding-left: calc($itemPaddingLeft + $itemGap);
-      }
+      // Шаг вложенности — слот иконки плюс зазор строки: обёртка `nestingLevel` занимает
+      // ровно иконочный слот, а между уровнями лежит тот же gap, что и между элементами строки.
+      $nestingLevelStep: calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap});
 
+      &[data-level-one],
       &[data-level-more-one] {
-        // Шаг отступа на уровень = $nestingLevelOffset (nestingLevel.levelWrapper.padding-left,
-        // 8/12/12 для s/m/l). Сверено по Figma design-context узла nestingLevel2:
-        // вложенный `level`-враппер сдвигает контент через padding-left, а НЕ через
-        // `level.padding-right` (12/16/20) — последний к горизонтальному отступу контента не
-        // применяется. Поэтому paddingRight-гипотеза отброшена, левый offset — корректный токен.
-        padding-left: calc($itemPaddingLeft + $itemGap + ($level - 1) * $nestingLevelOffset);
+        padding-left: calc($itemPaddingLeft + $level * #{$nestingLevelStep});
       }
 
       // Чекбокс: тот же centeredWrapper, что у иконки — контейнер = icon-сетке (16/24/24),
@@ -258,7 +246,9 @@ $level: var(--level, 0);
       .markerContainer {
         @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'markerWrapper');
 
-        width: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'max-width');
+        // Маркер шириной 4 на всех размерах — анатомический токен есть только у `s`,
+        // поэтому берём примитив.
+        width: base.$sn-primitive-dimension-4;
 
         &::before {
           border-radius: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-top-left-radius')
@@ -321,7 +311,9 @@ $level: var(--level, 0);
 
     &[data-disabled] {
       .markerContainer::before {
-        background-color: base.$sn-theme-color-available-version-textDisabled;
+        // В мастере выключенный маркер — сплошной `neutral/accent`, а не полупрозрачный
+        // текстовый токен: полоса остаётся читаемой на любом фоне.
+        background-color: base.$sn-theme-color-neutral-accent;
       }
     }
   }
