@@ -1,9 +1,8 @@
 import { Switch } from '@ds/toggles';
 import { Tooltip } from '@ds/tooltip';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { KeyboardEventHandler, ReactNode } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { SWITCH_ROW_TYPES, TEST_IDS } from '../../constants';
 import { SwitchRowType } from '../../types';

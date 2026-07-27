@@ -3,6 +3,7 @@ import { PromoTag, PromoTagProps } from '@ds/promo-tag';
 import { Favourite } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import {
@@ -15,7 +16,6 @@ import {
   useCallback,
   useRef,
 } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { TEST_IDS, VISIBILITY_STRATEGY } from '../../constants';
 import { FavoriteProps } from '../../types';

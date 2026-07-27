@@ -29,8 +29,7 @@
     "@ds/loader": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

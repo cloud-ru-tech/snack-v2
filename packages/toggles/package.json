@@ -29,8 +29,7 @@
     "@ds/materials": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",
-    "merge-refs": "catalog:",
-    "uncontrollable": "catalog:"
+    "merge-refs": "catalog:"
   },
   "publishConfig": {
     "access": "public"

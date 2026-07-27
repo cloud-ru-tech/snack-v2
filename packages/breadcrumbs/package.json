@@ -27,9 +27,7 @@
     "@ds/list": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
-    "@types/lodash.debounce": "catalog:",
-    "classnames": "catalog:",
-    "lodash.debounce": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

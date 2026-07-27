@@ -1,7 +1,6 @@
-import { extractDataTestProps, extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractDataTestProps, extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { WIDTH } from '../../constants';
 import { Segment } from '../../helperComponents';

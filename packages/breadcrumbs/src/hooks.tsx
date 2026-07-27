@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce';
+import { debounce } from '@ds/utils';
 import { RefObject, useEffect, useMemo, useState } from 'react';
 
 import { BreadcrumbsConfig, CurrentConfigState } from './types';

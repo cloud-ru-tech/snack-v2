@@ -362,8 +362,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const showCopy = Boolean(showCopyButton && hasValue && readOnly && !disabled);
   const valueToCopy = multiple ? selectedPairs.map(formatPair).join(', ') : selectedLabel;
 
-  const onCopy = useCallback(() => {
-    const copied = copyTextToClipboard(valueToCopy);
+  const onCopy = useCallback(async () => {
+    const copied = await copyTextToClipboard(valueToCopy);
     if (copied) {
       onCopyButtonClick?.();
     }

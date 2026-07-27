@@ -1,8 +1,7 @@
 import { PaginationSlider } from '@ds/pagination';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { CONTROLS_VISIBILITY, TEST_IDS } from './constants';
 import { Control, ItemProvider } from './helperComponents';

@@ -50,8 +50,7 @@
     "@ds/uikit-product-copy": "workspace:^",
     "@ds/uikit-product-quota": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

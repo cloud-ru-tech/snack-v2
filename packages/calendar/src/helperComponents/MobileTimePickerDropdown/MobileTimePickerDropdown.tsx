@@ -1,7 +1,6 @@
 import { BottomSheet } from '@ds/bottom-sheet';
-import { extractSupportProps, useLayoutEffect, useValueControl } from '@ds/utils';
+import { extractSupportProps, useLayoutEffect, useUncontrolledProp, useValueControl } from '@ds/utils';
 import { useCallback, useMemo, useRef } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { TimePickerDropdownProps } from '../../components/TimePickerDropdown/TimePickerDropdown';
 import { SIZE, TEST_IDS } from '../../constants';

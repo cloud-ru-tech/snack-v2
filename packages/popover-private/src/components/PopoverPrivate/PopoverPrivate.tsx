@@ -1,5 +1,11 @@
 import { usePortalContext } from '@ds/portal-context';
-import { extractSupportProps, isBrowser, usePopstateSubscription, WithSupportProps } from '@ds/utils';
+import {
+  extractSupportProps,
+  isBrowser,
+  usePopstateSubscription,
+  useUncontrolledProp,
+  WithSupportProps,
+} from '@ds/utils';
 import {
   arrow,
   autoUpdate,
@@ -24,7 +30,6 @@ import {
 } from '@floating-ui/react';
 import cn from 'classnames';
 import { ForwardedRef, ReactNode, RefObject, useCallback, useEffect, useRef } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import {
   DEFAULT_FALLBACK_PLACEMENTS,

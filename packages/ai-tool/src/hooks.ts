@@ -1,5 +1,5 @@
+import { useUncontrolledProp } from '@ds/utils';
 import { useId } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 export type ToolDisclosureParams = {
   /** Раскрытое состояние (controlled). */

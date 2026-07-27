@@ -48,8 +48,7 @@
     "@ds/toggles": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

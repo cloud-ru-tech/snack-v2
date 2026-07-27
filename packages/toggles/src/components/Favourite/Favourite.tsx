@@ -1,8 +1,8 @@
 import { HeartFilledSVG, HeartSVG, StarFilledSVG, StarSVG } from '@ds/icons/interface/system';
 import { LOADER_SIZE, Spinner } from '@ds/loader';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { KeyboardEventHandler, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { FAVOURITE_ICON, MODE, NATIVE_INPUT_SUFFIX, SIZE } from '../../constants';
 import { FavouriteIcon, ToggleProps } from '../../types';

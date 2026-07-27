@@ -115,7 +115,7 @@ Multi-component пакеты (`@ds/button`: `Button` + `ButtonGroup`) повто
 ### Зависимости пакета
 
 - Только **строгие версии** (`"classnames": "2.5.1"`, не `^2.5.1`).
-- Повторяющиеся внешние зависимости (`react`, `react-dom`, `@types/react*`, `classnames`, `sass`, `typescript`, `lodash.debounce`, `merge-refs`, `uncontrollable`) подключаются через **`catalog:`** — версия живёт в `pnpm-workspace.yaml::catalog`.
+- Повторяющиеся внешние зависимости (`react`, `react-dom`, `@types/react*`, `classnames`, `sass`, `typescript`, `merge-refs`, `tabbable`) подключаются через **`catalog:`** — версия живёт в `pnpm-workspace.yaml::catalog`.
 - В пакете **нет** `react` / `react-dom` / `@types/react*` — ни в одном блоке. Корень workspace'а поставляет React для сборки и тестов.
 - Внутренние зависимости — `workspace:*`.
 

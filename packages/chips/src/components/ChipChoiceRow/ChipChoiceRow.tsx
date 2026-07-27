@@ -3,10 +3,9 @@ import { Divider } from '@ds/divider';
 import { CrossCircleSVG, PlusSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_ROW_TEST_IDS, SIZE } from '../../constants';
 import { chipsLocale } from '../../locale';

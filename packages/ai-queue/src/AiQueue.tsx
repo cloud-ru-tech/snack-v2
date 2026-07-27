@@ -1,8 +1,8 @@
 import { AiButtonChevron } from '@ds/ai-button-chevron';
 import { Scroll } from '@ds/scroll';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { ReactElement, useMemo } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { AiQueueStepStatus } from './AiQueueStepStatus';
 import { DEFAULT_LABELS, TEST_IDS } from './constants';

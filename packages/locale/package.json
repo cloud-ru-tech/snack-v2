@@ -24,9 +24,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/context-kit": "workspace:^",
-    "@types/lodash.merge": "^4.6.9",
-    "lodash.merge": "^4.6.2"
+    "@ds/context-kit": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

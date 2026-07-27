@@ -2,9 +2,8 @@ import { BottomSheet } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
 import { ChevronDownSVG, FunctionSettingsSVG, WatchSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
-import { useLayoutEffect } from '@ds/utils';
+import { useLayoutEffect, useUncontrolledProp } from '@ds/utils';
 import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { CALENDAR_MODE, SIZE, TEST_IDS, VIEW_MODE } from '../../constants';
 import { useDateAndTime } from '../../hooks';

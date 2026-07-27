@@ -1,5 +1,3 @@
-import Queue from 'queue-fifo';
-
 import { TreeNodeProps } from '../types';
 
 type NodeWithDepthAndTarget<T extends TreeNodeProps> = {
@@ -12,6 +10,9 @@ type NodeWithDepthAndTarget<T extends TreeNodeProps> = {
  * Обходит дерево в ширину (BFS), передавая каждому узлу список,
  * в который должен быть добавлен его трансформированный результат.
  *
+ * Очередь — массив с курсором `head`: `shift()` на массиве переиндексирует весь хвост,
+ * а сдвиг курсора — O(1).
+ *
  * @param nodes Корневые узлы дерева.
  * @param rootTargetList Корневой список-приемник для преобразованных узлов.
  * @param callback Функция обработки узла. Возвращает список для детей
@@ -22,22 +23,18 @@ export const traverseWithTarget = <T extends TreeNodeProps>(
   rootTargetList: T[],
   callback: (node: T, depth: number, targetList: T[]) => T[] | undefined,
 ) => {
-  const queue = new Queue<NodeWithDepthAndTarget<T>>();
+  const queue: NodeWithDepthAndTarget<T>[] = nodes.map(node => ({ node, depth: 0, targetList: rootTargetList }));
+  let head = 0;
 
-  for (const node of nodes) {
-    queue.enqueue({ node, depth: 0, targetList: rootTargetList });
-  }
+  while (head < queue.length) {
+    const { node, depth, targetList } = queue[head];
+    head += 1;
 
-  while (!queue.isEmpty()) {
-    const item = queue.dequeue();
-    if (!item) continue;
-
-    const { node, depth, targetList } = item;
     const childTargetList = callback(node, depth, targetList);
 
     if (childTargetList !== undefined && node.nested?.length) {
       for (const child of node.nested) {
-        queue.enqueue({ node: child as T, depth: depth + 1, targetList: childTargetList });
+        queue.push({ node: child as T, depth: depth + 1, targetList: childTargetList });
       }
     }
   }

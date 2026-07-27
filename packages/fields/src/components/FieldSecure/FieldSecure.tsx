@@ -198,8 +198,8 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
 
   const onCopy = useCallback(
     () =>
-      ensureAsyncValue().then(success => {
-        const copied = success && copyTextToClipboard(stringValue);
+      ensureAsyncValue().then(async success => {
+        const copied = success && (await copyTextToClipboard(stringValue));
         if (copied) {
           onCopyButtonClick?.();
         }

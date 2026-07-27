@@ -194,8 +194,8 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
     localRef.current?.focus();
   }, [onChange, setValue]);
 
-  const onCopy = useCallback(() => {
-    const copied = copyTextToClipboard(stringValue);
+  const onCopy = useCallback(async () => {
+    const copied = await copyTextToClipboard(stringValue);
     if (copied) {
       onCopyButtonClick?.();
     }

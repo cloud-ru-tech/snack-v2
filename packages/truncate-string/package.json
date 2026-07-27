@@ -26,12 +26,9 @@
   "dependencies": {
     "@ds/tooltip": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "lodash.throttle": "^4.1.1"
+    "classnames": "catalog:"
   },
-  "devDependencies": {
-    "@types/lodash.throttle": "4.1.8"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

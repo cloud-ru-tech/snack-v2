@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce';
+import { debounce } from '@ds/utils';
 import { DragEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
 
 type UseDragResult = {

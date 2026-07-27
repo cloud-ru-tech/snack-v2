@@ -1,19 +1,18 @@
 import { SIZE, Size, VALIDATION_STATE, ValidationState } from '@ds/field-decorator';
 import { BUTTON_SIZE_MAP, ButtonSize, Size as InputPrivateSize } from '@ds/input-private';
-import { isBrowser } from '@ds/utils';
-import copy from 'copy-to-clipboard';
+import { copyToClipboard, isBrowser } from '@ds/utils';
 import { MouseEvent } from 'react';
 
 /**
- * Копирует текст в буфер обмена (через пакет `copy-to-clipboard`). Возвращает `true`
+ * Копирует текст в буфер обмена (через `copyToClipboard` из `@ds/utils`). Резолвится в `true`
  * при успехе — поля используют это, чтобы показать индикатор «скопировано».
  */
-export function copyTextToClipboard(text: string): boolean {
+export function copyTextToClipboard(text: string): Promise<boolean> {
   if (!isBrowser() || text.length === 0) {
-    return false;
+    return Promise.resolve(false);
   }
 
-  return copy(text, { format: 'text/plain' });
+  return copyToClipboard(text);
 }
 
 /**

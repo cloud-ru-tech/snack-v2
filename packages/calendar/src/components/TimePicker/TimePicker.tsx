@@ -1,9 +1,8 @@
 import { ListProps } from '@ds/list';
 import { useLang } from '@ds/locale';
-import { useEventHandler, WithSupportProps } from '@ds/utils';
+import { useEventHandler, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { SIZE } from '../../constants';
 import { CalendarContext, CalendarContextType, TimePickerBase } from '../../helperComponents';

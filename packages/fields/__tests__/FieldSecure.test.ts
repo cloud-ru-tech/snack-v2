@@ -1,7 +1,7 @@
-// Импорт напрямую из src, минуя entry @ds/fields: entry тянет CSS-модули, ломает test-окружение.
+import { VALIDATION_STATE } from '@ds/field-decorator';
 import { describe, expect, it } from 'vitest';
 
-import { VALIDATION_STATE } from '@ds/field-decorator';
+// Импорт напрямую из src, минуя entry @ds/fields: entry тянет CSS-модули, ломает test-окружение.
 import { getAcrylicAppearance, getAcrylicLevel, getAcrylicProps } from '../src/components/shared/utils';
 
 describe('FieldSecure / getAcrylicAppearance', () => {

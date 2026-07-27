@@ -21,7 +21,7 @@ describe('copyToClipboard', () => {
     const writeText = vi.fn();
     vi.stubGlobal('navigator', { clipboard: { writeText } });
 
-    await copyToClipboard('secret');
+    await expect(copyToClipboard('secret')).resolves.toBe(false);
 
     expect(writeText).not.toHaveBeenCalled();
   });
@@ -31,7 +31,7 @@ describe('copyToClipboard', () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal('navigator', { clipboard: { writeText } });
 
-    await copyToClipboard('payload');
+    await expect(copyToClipboard('payload')).resolves.toBe(true);
 
     expect(writeText).toHaveBeenCalledTimes(1);
     expect(writeText).toHaveBeenCalledWith('payload');
@@ -48,7 +48,7 @@ describe('copyToClipboard', () => {
       style: {} as Record<string, string>,
       select: vi.fn(),
     };
-    const execCommand = vi.fn();
+    const execCommand = vi.fn().mockReturnValue(true);
     vi.stubGlobal('document', {
       createElement: vi.fn(() => textarea),
       body: {
@@ -58,7 +58,7 @@ describe('copyToClipboard', () => {
       execCommand,
     } as unknown as Document);
 
-    await copyToClipboard('via-fallback');
+    await expect(copyToClipboard('via-fallback')).resolves.toBe(true);
 
     expect(writeText).toHaveBeenCalledWith('via-fallback');
     expect(textarea.value).toBe('via-fallback');

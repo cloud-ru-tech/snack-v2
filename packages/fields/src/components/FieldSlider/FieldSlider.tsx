@@ -324,15 +324,17 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
     (event: MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      if (!copyTextToClipboard(inputValue)) {
-        return;
-      }
-      onCopyButtonClick?.();
-      setCopied(true);
-      if (copiedTimerRef.current) {
-        clearTimeout(copiedTimerRef.current);
-      }
-      copiedTimerRef.current = setTimeout(() => setCopied(false), 2000);
+      copyTextToClipboard(inputValue).then(copied => {
+        if (!copied) {
+          return;
+        }
+        onCopyButtonClick?.();
+        setCopied(true);
+        if (copiedTimerRef.current) {
+          clearTimeout(copiedTimerRef.current);
+        }
+        copiedTimerRef.current = setTimeout(() => setCopied(false), 2000);
+      });
     },
     [inputValue, onCopyButtonClick],
   );

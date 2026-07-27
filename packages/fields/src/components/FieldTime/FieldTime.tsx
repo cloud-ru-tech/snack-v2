@@ -211,8 +211,8 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     }
   }, [emitChange, handleOpenChange, onClearButtonClick, required]);
 
-  const onCopy = useCallback(() => {
-    const copied = Boolean(inputValue) && copyTextToClipboard(inputValue);
+  const onCopy = useCallback(async () => {
+    const copied = Boolean(inputValue) && (await copyTextToClipboard(inputValue));
     if (copied) {
       onCopyButtonClick?.();
     }

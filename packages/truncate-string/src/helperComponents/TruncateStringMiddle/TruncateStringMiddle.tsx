@@ -1,7 +1,6 @@
 import { Tooltip, TooltipProps } from '@ds/tooltip';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, throttle, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import throttle from 'lodash.throttle';
 import { useEffect, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';

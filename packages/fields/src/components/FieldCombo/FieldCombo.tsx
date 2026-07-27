@@ -213,8 +213,8 @@ export const FieldCombo = forwardRef<HTMLInputElement, FieldComboProps>(function
     onClearButtonClick?.();
   }, [onChange, onClearButtonClick]);
 
-  const onCopy = useCallback(() => {
-    const copied = copyTextToClipboard(textToCopy);
+  const onCopy = useCallback(async () => {
+    const copied = await copyTextToClipboard(textToCopy);
     if (copied) {
       onCopyButtonClick?.();
     }

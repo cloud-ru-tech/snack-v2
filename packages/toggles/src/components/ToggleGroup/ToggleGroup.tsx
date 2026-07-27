@@ -1,5 +1,5 @@
+import { useUncontrolledProp } from '@ds/utils';
 import { PropsWithChildren, useCallback } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { SELECTION_MODE } from '../../constants';
 import { ToggleGroupContext } from '../../context';

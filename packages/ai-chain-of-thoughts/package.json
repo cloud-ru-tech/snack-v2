@@ -35,8 +35,7 @@
     "@ds/ai-shimmer": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

@@ -1,9 +1,9 @@
 import { Dropdown } from '@ds/dropdown';
 import { ListProps } from '@ds/list';
 import { useLang } from '@ds/locale';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { DEFAULT_LOCALE } from '../../components/TimePicker/constants';
 import styles from '../../components/TimePickerDropdown/styles.module.scss';

@@ -4,6 +4,7 @@ export * from './useEventHandler';
 export * from './useHierarchicalSelection';
 export * from './useIsomorphicLayoutEffect';
 export * from './useSwipeable';
+export * from './useUncontrolledProp';
 export * from './useValueControl';
 export * from './useDataPersist';
 export * from './usePopstateSubscription';

@@ -1,6 +1,6 @@
 import { FiltersState } from '@ds/chips';
+import { debounce } from '@ds/utils';
 import { PaginationState } from '@tanstack/react-table';
-import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { STATUS_APPEARANCE } from '../../helperComponents';

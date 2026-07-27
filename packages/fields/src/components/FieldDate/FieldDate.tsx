@@ -355,8 +355,8 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
   const valueToCopy = range ? [rangeInputValue[0], rangeInputValue[1]].filter(Boolean).join(' – ') : singleInputValue;
 
   // Галочку «скопировано» рисует useCopyButton по `true`-результату (паритет с FieldCombo/FieldTime).
-  const handleCopy = useCallback(() => {
-    const copied = Boolean(valueToCopy) && copyTextToClipboard(valueToCopy);
+  const handleCopy = useCallback(async () => {
+    const copied = Boolean(valueToCopy) && (await copyTextToClipboard(valueToCopy));
     if (copied) {
       onCopyButtonClick?.();
     }

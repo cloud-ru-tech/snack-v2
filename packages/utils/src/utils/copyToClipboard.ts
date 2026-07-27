@@ -1,12 +1,24 @@
 import { isBrowser } from './isBrowser';
 
-export async function copyToClipboard(value: string): Promise<void> {
-  if (!isBrowser()) return;
+/**
+ * Копирует текст в буфер обмена. Сначала пробует Async Clipboard API, при отказе
+ * (нет разрешения, insecure-context) падает на `execCommand('copy')` со скрытым textarea.
+ *
+ * Возвращает `true`, если запись удалась — по этому признаку поля и кнопки показывают
+ * индикатор «скопировано».
+ *
+ * Проверки `isBrowser()` продублированы внутри веток намеренно: правило
+ * `@cloud-ru/ssr-safe-react/domApi` требует, чтобы доступ к `navigator`/`document` стоял
+ * непосредственно внутри такого условия, а ранний выход оно не учитывает.
+ */
+export async function copyToClipboard(value: string): Promise<boolean> {
+  if (!isBrowser()) return false;
 
   if (isBrowser() && navigator.clipboard?.writeText) {
     try {
       await navigator.clipboard.writeText(value);
-      return;
+
+      return true;
     } catch {
       // fall through to execCommand fallback
     }
@@ -20,10 +32,15 @@ export async function copyToClipboard(value: string): Promise<void> {
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
     textarea.select();
+
     try {
-      document.execCommand('copy');
+      return document.execCommand('copy');
+    } catch {
+      return false;
     } finally {
       document.body.removeChild(textarea);
     }
   }
+
+  return false;
 }

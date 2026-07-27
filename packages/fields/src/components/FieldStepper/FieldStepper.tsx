@@ -282,15 +282,17 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
     (event: MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      if (!copyTextToClipboard(String(value))) {
-        return;
-      }
-      onCopyButtonClick?.();
-      setCopied(true);
-      if (copiedTimerRef.current) {
-        clearTimeout(copiedTimerRef.current);
-      }
-      copiedTimerRef.current = setTimeout(() => setCopied(false), 2000);
+      copyTextToClipboard(String(value)).then(copied => {
+        if (!copied) {
+          return;
+        }
+        onCopyButtonClick?.();
+        setCopied(true);
+        if (copiedTimerRef.current) {
+          clearTimeout(copiedTimerRef.current);
+        }
+        copiedTimerRef.current = setTimeout(() => setCopied(false), 2000);
+      });
     },
     [onCopyButtonClick, value],
   );

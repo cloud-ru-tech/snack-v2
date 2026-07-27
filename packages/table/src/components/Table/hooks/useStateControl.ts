@@ -1,5 +1,5 @@
+import { useUncontrolledProp } from '@ds/utils';
 import { OnChangeFn } from '@tanstack/react-table';
-import { useUncontrolledProp } from 'uncontrollable';
 
 type StateControl<TState> = {
   initialState?: TState;

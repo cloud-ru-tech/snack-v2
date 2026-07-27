@@ -1,7 +1,7 @@
 import { Dropdown } from '@ds/dropdown';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { Calendar } from '../../components/Calendar';
 import { CalendarDropdownProps } from '../../components/CalendarDropdown/CalendarDropdown';

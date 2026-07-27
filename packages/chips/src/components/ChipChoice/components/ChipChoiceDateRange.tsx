@@ -1,6 +1,6 @@
 import { CalendarDropdown, CalendarDropdownProps } from '@ds/calendar';
+import { useUncontrolledProp } from '@ds/utils';
 import { ReactNode, useCallback, useRef } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { CHIP_CHOICE_TEST_IDS, SIZE } from '../../../constants';
 import { chipsLocale } from '../../../locale';

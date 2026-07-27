@@ -1,6 +1,6 @@
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { ReactElement, useId } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { TEST_IDS } from '../../constants';
 import { AiChainOfThoughtsProps } from '../../types';

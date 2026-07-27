@@ -2,10 +2,9 @@ import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
 import { ChevronDownSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, ReactNode, RefObject, useCallback, useMemo, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { AUTOFOCUS, CALENDAR_MODE, SIZE, VIEW_MODE } from '../../constants';
 import { useDateAndTime } from '../../hooks';

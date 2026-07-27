@@ -171,8 +171,8 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
     }
   }, [onChange, onClearButtonClick, required]);
 
-  const onCopy = useCallback(() => {
-    const copied = copyTextToClipboard(value);
+  const onCopy = useCallback(async () => {
+    const copied = await copyTextToClipboard(value);
     if (copied) {
       onCopyButtonClick?.();
     }

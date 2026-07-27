@@ -43,8 +43,7 @@
     "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

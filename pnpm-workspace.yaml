@@ -8,11 +8,9 @@ catalog:
   '@dnd-kit/sortable': ^10.0.0
   '@dnd-kit/utilities': ^3.2.2
   '@tanstack/react-virtual': ^3.11.2
-  '@types/lodash.debounce': ^4.0.9
   '@types/react': 18.3.28
   '@types/react-dom': 18.3.7
   classnames: ^2.5.1
-  lodash.debounce: ^4.0.8
   merge-refs: ^2.0.0
   react: 18.3.1
   react-colorful: ^5.6.1
@@ -23,13 +21,6 @@ catalog:
   sass: 1.99.0
   tabbable: ^6.4.0
   typescript: 5.9.3
-  # 9.0.0 publishes a broken dual-package: `type:module` + `exports.require` pointing
-  # at `cjs/*.js` with no `cjs/package.json {"type":"commonjs"}` marker, so the CJS
-  # files load as ESM and trip strict bundlers (Turbopack/Next 16), forcing consumers
-  # to add the package to `transpilePackages`. 8.0.4 uses the plain main(cjs)+module(esm)
-  # convention that Node and every bundler resolve without conflict. API is identical
-  # (we only use `useUncontrolledProp`).
-  uncontrollable: ^8.0.4
   unified: ^11.0.5
   vitest: 4.1.10
   '@vitest/browser': 4.1.10

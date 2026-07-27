@@ -1,7 +1,6 @@
 import { Tooltip, TooltipProps } from '@ds/tooltip';
-import { extractSupportProps, useLayoutEffect, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, throttle, useLayoutEffect, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import throttle from 'lodash.throttle';
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 
 import { isEllipsisActive } from '../../helpers';

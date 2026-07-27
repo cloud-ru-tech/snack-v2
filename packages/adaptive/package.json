@@ -28,11 +28,7 @@
   "sideEffects": false,
   "dependencies": {
     "@ds/context-kit": "workspace:^",
-    "@ds/utils": "workspace:^",
-    "ua-parser-js": "^1.0.39"
-  },
-  "devDependencies": {
-    "@types/ua-parser-js": "0.7.39"
+    "@ds/utils": "workspace:^"
   },
   "publishConfig": {
     "access": "public"

@@ -1,10 +1,9 @@
 import { Button } from '@ds/button';
 import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
 import { Scroll } from '@ds/scroll';
+import { copyToClipboard } from '@ds/utils';
 import cn from 'classnames';
 import { Children, isValidElement, ReactNode, useRef, useState } from 'react';
-
-import { copyToClipboard } from '@cloud-ru/ft-copy-to-clipboard';
 
 import { TEST_IDS } from '../../constants';
 import { markdownLocale } from '../../locale';
@@ -54,7 +53,8 @@ export function CodeBlock({ children, onCopyClick }: CodeBlockProps) {
 
   const handleCopy = () => {
     onCopyClick?.(raw);
-    // copy-to-clipboard синхронен и работает в insecure-context (execCommand-фолбэк).
+    // `copyToClipboard` из @ds/utils сам падает на execCommand, если Clipboard API недоступен
+    // (insecure-context). Ждать результат не нужно: галочка показывается по факту клика.
     copyToClipboard(raw);
     markCopied();
   };

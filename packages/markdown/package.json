@@ -33,7 +33,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@cloud-ru/ft-copy-to-clipboard": "^0.1.0",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/fields": "workspace:^",

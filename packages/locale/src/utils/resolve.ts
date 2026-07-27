@@ -1,7 +1,6 @@
-import merge from 'lodash.merge';
-
 import { CIMODE } from '../constants/lang';
 import { InterpolationObject, LangMessages, MessageTree, OverrideRegistry } from '../types/locale';
+import { deepMerge } from './deepMerge';
 import { interpolateTranslation } from './interpolateTranslation';
 
 /**
@@ -23,7 +22,7 @@ export function buildLangDict(
   const base = messages[lang] ?? messages[fallbackLang] ?? Object.values(messages)[0] ?? {};
   const override = overrides?.[namespace]?.[lang];
 
-  return override ? (merge({}, base, override) as MessageTree) : base;
+  return override ? deepMerge<MessageTree>(base, override) : base;
 }
 
 /** Достаёт строку по dotted-ключу, интерполирует. Если не найдена — dev-warn + возврат ключа. */
@@ -54,7 +53,7 @@ export function translate(dict: MessageTree, key: string, lang: string, interpol
 
 /** Сливает два реестра оверрайдов (родительский ⊕ собственный) для каскада вложенных провайдеров. */
 export function mergeRegistries(parent: OverrideRegistry, own: OverrideRegistry): OverrideRegistry {
-  return merge({}, parent, own) as OverrideRegistry;
+  return deepMerge<OverrideRegistry>(parent, own);
 }
 
 /** Складывает плоский список `OverrideEntry` в реестр namespace → lang → дерево (deep-merge при дублях). */
@@ -69,7 +68,7 @@ export function buildOverrideRegistry(
 
   for (const { namespace, lang, messages } of entries) {
     registry[namespace] ??= {};
-    registry[namespace][lang] = merge({}, registry[namespace][lang] ?? {}, messages);
+    registry[namespace][lang] = deepMerge(registry[namespace][lang] ?? {}, messages);
   }
 
   return registry;

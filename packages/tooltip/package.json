@@ -27,8 +27,7 @@
     "@ds/icons": "workspace:^",
     "@ds/popover-private": "workspace:^",
     "@ds/utils": "workspace:^",
-    "classnames": "catalog:",
-    "uncontrollable": "catalog:"
+    "classnames": "catalog:"
   },
   "publishConfig": {
     "access": "public"

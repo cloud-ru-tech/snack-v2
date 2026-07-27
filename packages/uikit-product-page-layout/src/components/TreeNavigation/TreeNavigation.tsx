@@ -2,9 +2,9 @@ import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
 import { BurgerSVG, CloseSVG } from '@ds/icons/interface/product';
 import { Status } from '@ds/status';
 import { SIZE as TYPOGRAPHY_SIZE, Typography, VARIANT } from '@ds/typography';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { TREE_NAVIGATION_MODE } from '../../constants';
 import { pageLayoutLocale } from '../../locale';

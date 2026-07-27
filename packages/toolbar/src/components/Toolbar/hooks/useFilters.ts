@@ -1,8 +1,8 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { FiltersState, hasFilterBeenApplied } from '@ds/chips';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { useMemo } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { FilterButtonProps } from '../../../helperComponents';
 import styles from '../styles.module.scss';

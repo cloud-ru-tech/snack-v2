@@ -1,6 +1,6 @@
+import { VALIDATION_STATE } from '@ds/field-decorator';
 import { describe, expect, it } from 'vitest';
 
-import { VALIDATION_STATE } from '@ds/field-decorator';
 import {
   copyTextToClipboard,
   getAcrylicAppearance,
@@ -114,11 +114,11 @@ describe('FieldText shared utils — acrylic resolver', () => {
 });
 
 describe('FieldText shared utils — copyTextToClipboard', () => {
-  it('returns false for an empty string (nothing to copy)', () => {
-    expect(copyTextToClipboard('')).toBe(false);
+  it('resolves to false for an empty string (nothing to copy)', async () => {
+    await expect(copyTextToClipboard('')).resolves.toBe(false);
   });
 
-  it('returns false outside the browser environment (no window)', () => {
-    expect(copyTextToClipboard('payload')).toBe(false);
+  it('resolves to false outside the browser environment (no window)', async () => {
+    await expect(copyTextToClipboard('payload')).resolves.toBe(false);
   });
 });

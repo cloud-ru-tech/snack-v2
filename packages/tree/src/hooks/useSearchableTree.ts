@@ -1,4 +1,3 @@
-import { cancelable, CancelablePromise } from 'cancelable-promise';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { collectEmptyNestedNodesInExpanded, traverse, updateTreeNode } from '../helpers';
@@ -62,7 +61,8 @@ export function useSearchableTree<TRecordValue, TTreeNode extends TreeNodeProps>
   const debouncedSearch = useDebounceValue(search, 500);
 
   const [loading, setLoading] = useState(false);
-  const searchPromiseRef = useRef<CancelablePromise<SearchResult<TTreeNode>> | null>(null);
+  // Актуальный запрос поиска. Он же маркер «этот вызов ещё не вытеснен следующим»:
+  // после каждого await сверяемся по идентичности, а не по отдельному флагу отмены.
   const searchAbortControllerRef = useRef<AbortController | null>(null);
 
   const buildTreeItemsRecord = useCallback(
@@ -104,21 +104,19 @@ export function useSearchableTree<TRecordValue, TTreeNode extends TreeNodeProps>
 
   const handleSearch = useCallback(
     async (searchQuery: string) => {
-      searchPromiseRef.current?.cancel();
       searchAbortControllerRef.current?.abort();
 
       setLoading(true);
       const abortController = new AbortController();
       searchAbortControllerRef.current = abortController;
 
-      const searchPromise = cancelable(
-        onSearch({ search: searchQuery, expandedNodes: expandedNodes.current }, abortController.signal),
-      );
-      searchPromiseRef.current = searchPromise;
-
       try {
-        const { tree: searchedTree, needPreloadNodes } = await searchPromise;
-        if (!searchPromise.isCanceled()) {
+        const { tree: searchedTree, needPreloadNodes } = await onSearch(
+          { search: searchQuery, expandedNodes: expandedNodes.current },
+          abortController.signal,
+        );
+
+        if (!abortController.signal.aborted) {
           tree.current = searchedTree;
           treeItemsRecord.current = buildTreeItemsRecord(searchedTree);
 
@@ -134,7 +132,7 @@ export function useSearchableTree<TRecordValue, TTreeNode extends TreeNodeProps>
 
           const preloadedNodes = await onPreloadNodes(collectedNodesForPreload, abortController.signal);
 
-          if (searchPromiseRef.current !== searchPromise) {
+          if (searchAbortControllerRef.current !== abortController) {
             return;
           }
 
@@ -146,10 +144,14 @@ export function useSearchableTree<TRecordValue, TTreeNode extends TreeNodeProps>
           tree.current = tmpTree;
           treeItemsRecord.current = buildTreeItemsRecord(tmpTree);
         }
+      } catch (error) {
+        // Прерванный запрос — штатный путь: следующий ввод уже вытеснил этот вызов.
+        if (!abortController.signal.aborted) {
+          throw error;
+        }
       } finally {
-        if (searchPromiseRef.current === searchPromise) {
+        if (searchAbortControllerRef.current === abortController) {
           setLoading(false);
-          searchPromiseRef.current = null;
           searchAbortControllerRef.current = null;
         }
       }
@@ -168,7 +170,6 @@ export function useSearchableTree<TRecordValue, TTreeNode extends TreeNodeProps>
 
   useEffect(
     () => () => {
-      searchPromiseRef.current?.cancel();
       searchAbortControllerRef.current?.abort();
     },
     [],

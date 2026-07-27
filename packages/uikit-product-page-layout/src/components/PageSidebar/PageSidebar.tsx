@@ -1,10 +1,9 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { VerticalMenuCloseSVG, VerticalMenuOpenSVG } from '@ds/icons/interface/product';
 import { List, ListProps } from '@ds/list';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { TEST_IDS } from '../../constants';
 import { SearchContextProvider } from './contexts';

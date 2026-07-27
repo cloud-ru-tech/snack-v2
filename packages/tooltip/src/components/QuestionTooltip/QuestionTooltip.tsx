@@ -1,8 +1,8 @@
 import { QuestionSVG } from '@ds/icons/interface/system';
 import { TRIGGER } from '@ds/popover-private';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { RefObject } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { SIZE, TEST_IDS } from '../../constants';
 import { getIconSize } from '../../utils';

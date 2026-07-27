@@ -33,11 +33,8 @@
     "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
-    "cancelable-promise": "^4.3.1",
     "classnames": "catalog:",
-    "queue-fifo": "^0.2.6",
-    "react-transition-state": "catalog:",
-    "uncontrollable": "catalog:"
+    "react-transition-state": "catalog:"
   },
   "publishConfig": {
     "access": "public"

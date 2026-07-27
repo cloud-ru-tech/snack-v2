@@ -1,9 +1,9 @@
 import { CheckSVG, MinusSVG } from '@ds/icons/interface/system';
 import { LOADER_SIZE, Spinner } from '@ds/loader';
+import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { MODE, NATIVE_INPUT_SUFFIX, SIZE } from '../../constants';
 import { ToggleProps } from '../../types';

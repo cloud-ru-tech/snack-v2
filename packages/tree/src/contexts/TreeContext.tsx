@@ -1,6 +1,5 @@
-import { HierarchicalSelectionHandlers, useHierarchicalSelection } from '@ds/utils';
+import { HierarchicalSelectionHandlers, useHierarchicalSelection, useUncontrolledProp } from '@ds/utils';
 import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useContext, useMemo, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { SELECTION_MODE } from '../constants';
 import { findAllExpandedChildNodeIds, lookupTreeForSelectedNodes } from '../helpers';

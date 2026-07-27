@@ -1,5 +1,5 @@
+import { useUncontrolledProp } from '@ds/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 type UseAnimatedOpeningProps = {
   defaultOpen?: boolean;

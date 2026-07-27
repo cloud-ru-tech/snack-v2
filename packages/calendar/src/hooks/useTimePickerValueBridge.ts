@@ -1,6 +1,5 @@
-import { useEventHandler } from '@ds/utils';
+import { useEventHandler, useUncontrolledProp } from '@ds/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { Range, TimeValue } from '../types';
 import { isTimePortionComplete, timeValuesEqual } from '../utils';

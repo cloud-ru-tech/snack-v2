@@ -1,7 +1,6 @@
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, ReactNode, useCallback, useEffect, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
 
 import { AiSuggestionSimple } from '../AiSuggestionSimple';
 import { APPEARANCE, SIZE } from '../AiSuggestionSimple/constants';
