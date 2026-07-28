@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-title-clickable",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

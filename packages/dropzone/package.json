@@ -1,6 +1,6 @@
 {
   "name": "@ds/dropzone",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

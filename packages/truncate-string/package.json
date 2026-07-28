@@ -1,6 +1,6 @@
 {
   "name": "@ds/truncate-string",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "Apache-2.0",
   "author": "Sergei Khlupin <svhlupin@cloud.ru>",
   "type": "module",

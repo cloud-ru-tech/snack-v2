@@ -1,6 +1,6 @@
 {
   "name": "@ds/alert",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

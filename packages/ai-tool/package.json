@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-tool",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "Apache-2.0",
   "author": "Danil Panov <dapanov@cloud.ru>",
   "type": "module",
