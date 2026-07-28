@@ -79,6 +79,7 @@ export function Transparent() {
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `children` | `ReactNode` | — | Содержимое |
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
+| `contentClassName` | `string` | — | Класс на внутренний слот содержимого (`.content`). Block — подложка, а не layout-контейнер <br/> (`display: block`); раскладку контента задаёт потребитель. Этот проп даёт управлять слотом <br/> содержимого напрямую — напр. растянуть его по высоте блока (`flex`/`height`), когда корень <br/> блока сделан flex-контейнером через `className`. |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `variant` | `"elevated"` \| `"outline"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |

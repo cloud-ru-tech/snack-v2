@@ -24,6 +24,13 @@ export type BlockProps = {
   backgroundPredefined?: BackgroundPredefinedFill;
   /** Стабильный идентификатор для e2e/tests */
   'data-test-id'?: string;
+  /**
+   * Класс на внутренний слот содержимого (`.content`). Block — подложка, а не layout-контейнер
+   * (`display: block`); раскладку контента задаёт потребитель. Этот проп даёт управлять слотом
+   * содержимого напрямую — напр. растянуть его по высоте блока (`flex`/`height`), когда корень
+   * блока сделан flex-контейнером через `className`.
+   */
+  contentClassName?: string;
 } & Omit<HTMLProps<HTMLDivElement>, 'size'>;
 
 /**
@@ -66,6 +73,7 @@ export function Block({
   size = SIZE.M,
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
   className,
+  contentClassName,
   ...rest
 }: BlockProps) {
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
@@ -81,7 +89,7 @@ export function Block({
     >
       <div className={styles.acrylic} />
       {variant === VARIANT.Outline && <div className={styles.borderLayer} />}
-      <div className={styles.content}>{children}</div>
+      <div className={cn(styles.content, contentClassName)}>{children}</div>
     </div>
   );
 }

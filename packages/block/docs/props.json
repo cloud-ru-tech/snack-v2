@@ -33,6 +33,11 @@
         "required": false,
         "description": "Подзаголовок"
       },
+      "contentClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Класс на внутренний слот содержимого (`.content`). Block — подложка, а не layout-контейнер\n(`display: block`); раскладку контента задаёт потребитель. Этот проп даёт управлять слотом\nсодержимого напрямую — напр. растянуть его по высоте блока (`flex`/`height`), когда корень\nблока сделан flex-контейнером через `className`."
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
