@@ -2,13 +2,20 @@ import { Locator } from '@playwright/test';
 
 function readRenderSignature(locator: Locator): Promise<string> {
   return locator.evaluate(root => {
+    const round = (value: number) => Math.round(value * 10) / 10;
+
     const nodes = [root, ...Array.from(root.querySelectorAll('*'))];
-    const styles = nodes.map(node => {
+    const states = nodes.map(node => {
       const { opacity, transform, visibility } = getComputedStyle(node);
-      return `${opacity}|${transform}|${visibility}`;
+      const { x, y, width, height } = node.getBoundingClientRect();
+      // Инлайновый style ловит прогресс, прокинутый CSS-переменной (ProgressBar пишет
+      // `--snack-progress-bar-value`), — в computed-стилях узла его не видно.
+      const inlineStyle = node.getAttribute('style') ?? '';
+
+      return [opacity, transform, visibility, inlineStyle, round(x), round(y), round(width), round(height)].join('|');
     });
 
-    return `${root.textContent ?? ''}::${styles.join(';')}`;
+    return `${root.textContent ?? ''}::${states.join(';')}`;
   });
 }
 

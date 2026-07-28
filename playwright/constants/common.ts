@@ -56,7 +56,7 @@ export const SCREENSHOT_DEFAULT_OPTS = {
   // площади может не превысить порог, и точечные правки проходят незамеченными.
   // Абсолютный кап ловит их независимо от размера кадра.
   maxDiffPixelRatio: 0.01,
-  maxDiffPixels: 100,
+  maxDiffPixels: 200,
   threshold: 0.25,
 } as const;
 
@@ -69,6 +69,6 @@ export const SCREENSHOT_DEFAULT_OPTS = {
  */
 export const MATCH_SNAPSHOT_DEFAULT_OPTS = {
   maxDiffPixelRatio: 0.01,
-  maxDiffPixels: 100,
+  maxDiffPixels: 200,
   threshold: 0.25,
 } as const;

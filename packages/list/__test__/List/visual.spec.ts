@@ -1,6 +1,10 @@
 import { Page } from '@playwright/test';
 
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  SCREENSHOT_DEFAULT_OPTS,
+  STORYBOOK_ROOT_SELECTOR,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
 import {
@@ -8,11 +12,15 @@ import {
   composeScreenshots,
   screenshotWithPadding,
   waitForSettledInViewport,
+  waitForStableRender,
 } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, itemTestId, LIST_INTERNAL_TEST_IDS, LIST_STORIES, TEST_IDS } from './helpers';
 
 const INTERACTION_PADDING = 8;
+
+/** `transition: gap` collapse-блока — 300мс (`CollapseBlockPrivate/styles.module.scss`). */
+const COLLAPSE_SETTLE_MS = 400;
 
 type InteractionState = 'default' | 'hover' | 'focus' | 'pressed';
 const STATES: ReadonlyArray<InteractionState> = ['default', 'hover', 'focus', 'pressed'];
@@ -81,6 +89,9 @@ test.describe('List — visual regression', () => {
   test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, LIST_STORIES.visualMatrix));
     await waitForFonts();
+    // Collapse-блоки матрицы доигрывают `transition: gap 300ms` после монтирования —
+    // без ожидания покоя снимок ловит промежуточный кадр.
+    await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: COLLAPSE_SETTLE_MS });
     await assertVisualMatrixSnapshot(page);
   });
 

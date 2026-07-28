@@ -1,6 +1,11 @@
+import { STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForStableRender } from '#playwright-tooling/utils';
+
+/** Матрица собирается из нескольких таблиц с measure-based раскладкой; на нагруженном раннере
+ * финальный проход измерений приходит позже первого кадра и сдвигает ячейки на пиксель. */
+const TABLE_LAYOUT_SETTLE_MS = 400;
 
 import { buildStoryOptions, SERVER_TABLE_STORIES } from './helpers';
 
@@ -21,6 +26,7 @@ test.describe('ServerTable — visual regression', () => {
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, SERVER_TABLE_STORIES.visualMatrix));
     await waitForFonts();
+    await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: TABLE_LAYOUT_SETTLE_MS });
     await assertVisualMatrixSnapshot(page);
   });
 });

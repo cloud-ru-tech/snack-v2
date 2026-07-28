@@ -1,8 +1,40 @@
+import { Page } from '@playwright/test';
+
 import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
+import { waitForStableRender } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, TEST_IDS, TOASTER_STORIES } from './helpers';
+
+/** Въезд тоста плюс раскрытие стопки; после паузы по hover ничего меняться не должно. */
+const TOAST_SETTLE_MS = 500;
+
+/** Фаза, на которой замораживаем полосу авто-close. Середина — видно и заполнение, и остаток. */
+const FROZEN_PROGRESS_SCALE = 0.5;
+
+/**
+ * Замораживает полосы авто-close на фиксированной фазе.
+ *
+ * Полоса тикает в rAF через `transform: scaleX(...)`, а маска Playwright'а клипится по
+ * трансформированному bbox — прямоугольник маски меняет ширину вместе с полосой, и из-под
+ * него каждый раз вылезает разный кусок тоста. Пауза по hover останавливает тик, но на
+ * произвольном значении, поэтому фазу задаём явно: кадр становится детерминированным, а
+ * полоса остаётся в снимке вместо маски.
+ *
+ * Работает только после паузы: пока таймер идёт, React перерисовывает `style` каждый тик
+ * и затирает выставленный transform.
+ */
+async function freezeAutoCloseProgress(page: Page): Promise<void> {
+  await page.evaluate(
+    ({ testId, scale }) => {
+      document.querySelectorAll<HTMLElement>(`[data-test-id="${testId}"]`).forEach(el => {
+        el.style.transform = `scaleX(${scale})`;
+      });
+    },
+    { testId: TEST_IDS.systemEventProgressBar, scale: FROZEN_PROGRESS_SCALE },
+  );
+}
 
 // VisualMatrix-стори у Toaster нет — контейнер сам по себе пуст, всё
 // интересное возникает после действий. Снимаем только сценарные кадры:
@@ -38,12 +70,9 @@ test.describe('Toaster — visual regression', () => {
         el.dispatchEvent(new PointerEvent('pointerover', { bubbles: true, pointerType: 'mouse' }));
       });
     }, TEST_IDS.toasterContainer);
-    // Progress-bar тикает по реальному auto-close таймеру (rAF), маскируем,
-    // чтобы попиксельное сравнение не зависело от elapsed-time на момент снимка.
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('open-stacking.png', {
-      ...SCREENSHOT_DEFAULT_OPTS,
-      mask: [getByTestId(TEST_IDS.systemEventProgressBar)],
-    });
+    await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: TOAST_SETTLE_MS });
+    await freezeAutoCloseProgress(page);
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('open-stacking.png', SCREENSHOT_DEFAULT_OPTS);
   });
 
   test('open-mixed — SystemEvent success + UserAction success + Upload loading', async ({
@@ -74,14 +103,13 @@ test.describe('Toaster — visual regression', () => {
         el.dispatchEvent(new PointerEvent('pointerover', { bubbles: true, pointerType: 'mouse' }));
       });
     }, TEST_IDS.toasterContainer);
-    // Маскируем тикающие индикаторы авто-close у SystemEvent + UserAction —
-    // их scaleX/stroke-dashoffset тикает в rAF, а маски заменяют их пятном и
-    // выводят из попиксельного сравнения. maxDiffPixelRatio оставляет
-    // 0.5% запас на 1-px колебание границы маски progress-bar между запусками.
+    await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: TOAST_SETTLE_MS });
+    await freezeAutoCloseProgress(page);
+    // Таймер UserAction тикает `stroke-dashoffset`'ом внутри SVG фиксированного размера —
+    // его bbox не плывёт, поэтому маска здесь стабильна и остаётся.
     await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('open-mixed.png', {
       ...SCREENSHOT_DEFAULT_OPTS,
-      mask: [getByTestId(TEST_IDS.systemEventProgressBar), getByTestId(TEST_IDS.userActionTimer)],
-      maxDiffPixelRatio: 0.005,
+      mask: [getByTestId(TEST_IDS.userActionTimer)],
     });
   });
 });
