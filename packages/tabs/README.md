@@ -76,6 +76,7 @@ export function Uncontrolled() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string` | — | Дополнительный класс на корневой контейнер |
 | `defaultValue` | `T` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
 | `value` | `T` | — | Текущая вкладка |

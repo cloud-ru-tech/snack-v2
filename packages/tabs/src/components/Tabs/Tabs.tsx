@@ -18,6 +18,8 @@ export type TabsProps<T extends string = string> = {
   /** Колбек выбора вкладки */
   onChange?(id: T): void;
   children?: ReactNode;
+  /** Дополнительный класс на корневой контейнер */
+  className?: string;
 };
 
 function getOrientationFromChildren(children: ReactNode): Orientation {
@@ -30,7 +32,7 @@ function getOrientationFromChildren(children: ReactNode): Orientation {
   return tabBar?.props?.orientation === ORIENTATION.Vertical ? ORIENTATION.Vertical : ORIENTATION.Horizontal;
 }
 
-export function Tabs<T extends string = string>({ children, onChange, value, defaultValue }: TabsProps<T>) {
+export function Tabs<T extends string = string>({ children, onChange, value, defaultValue, className }: TabsProps<T>) {
   const [selectedTab, setSelectedTab] = useValueControl({
     value,
     defaultValue,
@@ -47,7 +49,7 @@ export function Tabs<T extends string = string>({ children, onChange, value, def
         setSelectedTab,
       }}
     >
-      <div className={cn(styles.root, isVertical && styles.rootVertical)}>{children}</div>
+      <div className={cn(styles.root, isVertical && styles.rootVertical, className)}>{children}</div>
     </TabsContext.Provider>
   );
 }

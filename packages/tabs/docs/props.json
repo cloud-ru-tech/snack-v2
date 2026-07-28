@@ -494,6 +494,11 @@
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": false
       },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс на корневой контейнер"
+      },
       "defaultValue": {
         "type": "string",
         "required": false,
