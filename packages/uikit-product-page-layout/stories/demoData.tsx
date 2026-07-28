@@ -28,6 +28,7 @@ import { Fragment, ReactNode } from 'react';
 import { fn } from 'storybook/test';
 
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 // ---------------------------------------------------------------------------
 // Sidebar
@@ -182,9 +183,20 @@ export const PAGE_ACTIONS: Action[] = [
 
 // Первым идёт основное действие («Выключить»): на desktop (row-reverse) оно встаёт справа,
 // на mobile остаётся видимым и растягивается, остальные уходят в kebab (Figma 3334:63034).
-/** Действия детальной страницы сервиса: выключить инстанс + документация. */
+/**
+ * Действия детальной страницы сервиса: выключить инстанс + документация.
+ * У основного действия есть `tooltip` — он покрывает ветку `ActionView` с `Tooltip`
+ * (на mobile такая кнопка обязана растягиваться так же, как без тултипа).
+ */
 export const SERVICE_ACTIONS: Action[] = [
-  { variant: 'filled', appearance: BUTTON_APPEARANCE.Primary, label: 'Выключить', onClick: fn() },
+  {
+    variant: 'filled',
+    appearance: BUTTON_APPEARANCE.Primary,
+    label: 'Выключить',
+    tooltip: { tip: 'Инстанс остановится, данные на дисках сохранятся' },
+    onClick: fn(),
+    'data-test-id': TEST_IDS.pageServices.primaryAction,
+  },
   { variant: 'outline', appearance: BUTTON_APPEARANCE.Neutral, label: 'Документация', onClick: fn() },
 ];
 

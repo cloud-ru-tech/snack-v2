@@ -130,7 +130,7 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
   }, []) satisfies DroplistProps['items'];
 
   return (
-    <div className={styles.mobileActionsWrapper} ref={containerRef}>
+    <div className={styles.mobileActionsWrapper} ref={containerRef} data-test-id={TEST_IDS.mobileActions.root}>
       {droplistItems.length > 0 && (
         <Droplist size='m' open={isOpen} onOpenChange={setIsOpen} items={droplistItems}>
           <Button

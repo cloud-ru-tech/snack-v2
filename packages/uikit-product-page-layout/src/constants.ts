@@ -42,7 +42,7 @@ export const SIDEBAR_HEADER_TYPE = {
 
 /** data-test-id mobile-триггеров, которые компонент ставит сам (публичны для stories и e2e). */
 export const TEST_IDS = {
-  mobileActions: { trigger: 'page-layout__mobile-actions-trigger' },
+  mobileActions: { root: 'page-layout__mobile-actions', trigger: 'page-layout__mobile-actions-trigger' },
   sidebarSelect: { trigger: 'page-layout__sidebar-select-trigger' },
   sidebarSearch: { trigger: 'page-layout__sidebar-search-trigger' },
   sidebarToggle: {

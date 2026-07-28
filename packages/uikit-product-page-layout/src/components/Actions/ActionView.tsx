@@ -27,7 +27,17 @@ export function ActionView({
     return null;
   }
 
-  const addTooltip = (component: ReactNode) => (tooltip ? <Tooltip {...tooltip}>{component}</Tooltip> : component);
+  // disableSpanWrapper — кнопка остаётся ПРЯМЫМ flex-потомком контейнера действий: без него Tooltip
+  // добавляет span-обёртку (`flex:0 1 auto`), и `fullWidth`-кнопка (`flex:1 1 0`) не растягивается на
+  // всю ширину (mobile: 2 действия должны делить строку). Как в MobilePageForm ButtonGroup.
+  const addTooltip = (component: ReactNode) =>
+    tooltip ? (
+      <Tooltip {...tooltip} disableSpanWrapper>
+        {component}
+      </Tooltip>
+    ) : (
+      component
+    );
 
   switch (variant) {
     case BUTTON_TYPE.Outline:
