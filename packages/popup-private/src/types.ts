@@ -9,10 +9,13 @@ import { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND } from './constants';
  * дефолты по слоту (переопределяемы); `size` (m) и full-width задаёт `ButtonGroup`, поэтому исключены.
  * `data-test-id` слота фиксирует `TEST_IDS` (через `WithSupportProps` у `ButtonGroup`).
  *
- * Рендерится как `<button>` (как и `ButtonGroup`-action) — для CTA-ссылки (`as='a'` / `href`) в футере
- * используйте произвольный `footer: ReactNode`.
+ * По умолчанию рендерится как `<button>`. Для CTA-ссылки передайте `as='a'` + `href` (`Button`
+ * полиморфен и отрендерит `<a>` — доступен middle-click / контекстное меню). Union `button | anchor`
+ * ниже раскрывает анкорные атрибуты. Для нестандартного футера остаётся `footer: ReactNode`.
  */
-export type BottomSheetActionButton = Omit<ButtonProps, 'fullWidth' | 'size'>;
+export type BottomSheetActionButton =
+  | Omit<ButtonProps<'button'>, 'fullWidth' | 'size'>
+  | Omit<ButtonProps<'a'>, 'fullWidth' | 'size'>;
 
 export type MediaKind = ValueOf<typeof MEDIA_KIND>;
 

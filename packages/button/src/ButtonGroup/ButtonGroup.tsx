@@ -16,8 +16,13 @@ export const BUTTON_GROUP_ACTION_SLOT = {
 
 export type ButtonGroupActionSlot = ValueOf<typeof BUTTON_GROUP_ACTION_SLOT>;
 
-/** Пропсы действия — все пропсы Button, кроме size (задаётся на уровне группы) + нативные button-атрибуты */
-type ActionProps = WithSupportProps<Omit<ButtonProps<'button'>, 'size'>>;
+/**
+ * Пропсы действия — все пропсы Button, кроме size (задаётся на уровне группы) + нативные атрибуты.
+ * Union `button | anchor`: `Button` полиморфен, при `as='a'` рендерит `<a href>` (CTA-ссылка в группе).
+ */
+type ButtonActionProps = WithSupportProps<Omit<ButtonProps<'button'>, 'size'>>;
+type AnchorActionProps = WithSupportProps<Omit<ButtonProps<'a'>, 'size'>>;
+type ActionProps = ButtonActionProps | AnchorActionProps;
 
 export type ButtonGroupProps = WithSupportProps<{
   /** Основное действие (filled) */
@@ -61,7 +66,9 @@ export function ButtonGroup({
   ...rest
 }: ButtonGroupProps) {
   function buildAction(props: ActionProps, slot: ButtonGroupActionSlot) {
-    const button = <Button {...props} size={size} />;
+    // Из спреда union-пропсов дженерик `T` у `Button` не выводится — сужаем тип к button-варианту
+    // (валидное narrowing-приведение). Рантайм `Button` сам разбирает `as='a'` / `'button'`.
+    const button = <Button {...(props as ButtonActionProps)} size={size} />;
 
     return renderAction ? renderAction(button, slot) : button;
   }

@@ -365,34 +365,9 @@ export function ButtonGroupBreak() {
 
 ##### Related types
 
-**ActionProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | — | Вариант оформления |
-| `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
-| `className` | `string \| undefined` | — | Дополнительный класс |
-| `counter` | `CounterProps` | — | Пропсы для counter |
-| `data-test-id` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — | Отключена |
-| `fullWidth` | `boolean \| undefined` | — | На всю ширину |
-| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
-| `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
-| `label` | `string \| undefined` | — | Текст кнопки |
-| `loading` | `boolean \| undefined` | — | Состояние загрузки |
-| `minWidth` | `boolean \| undefined` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
-| `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
-
-- `Appearance` = `"critical"` \| `"neutral"` \| `"primary"`
-
-- `IconPosition` = `"after"` \| `"before"`
-
-- `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
+- `ActionProps` = `ButtonActionProps | AnchorActionProps`
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `View` = `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"`
 
 ### Смотри также
 - **Button** — сам элемент действия.
