@@ -113,3 +113,6 @@ playwright/coverage/.stories.json
 # props-refactoring: регенерируемые снапшоты аудита пропсов (pnpm aggregate:props / analyze:props)
 # Якорь к корню: иначе паттерн матчит и tooling в scripts/props-refactoring/.
 /props-refactoring/
+
+# ds-link: staging-копии пакетов и реестр подключённых микрофронтов (pnpm ds:link)
+/.ds-link/
