@@ -15,18 +15,18 @@ const meta: Meta<typeof Headline> = {
   args: {
     title: 'Виртуальные машины',
     truncateTitle: false,
-    subHeader: 'Управление инстансами проекта',
-    afterHeadline: <Status label='Активно' appearance='green' />,
+    subtitle: 'Управление инстансами проекта',
+    slotAfterTitle: <Status label='Активно' appearance='green' />,
     actions: <Button label='Создать' />,
     'data-test-id': TEST_IDS.headline.root,
   },
   argTypes: {
     truncateTitle: { control: 'boolean' },
-    beforeHeadline: { table: { disable: true } },
-    afterHeadline: { table: { disable: true } },
+    slotBeforeTitle: { table: { disable: true } },
+    slotAfterTitle: { table: { disable: true } },
     actions: { table: { disable: true } },
     moreActions: { table: { disable: true } },
-    subHeader: { table: { disable: true } },
+    subtitle: { table: { disable: true } },
   },
 };
 

@@ -9,13 +9,13 @@ export function Headline({
   title,
   actions,
   moreActions,
-  beforeHeadline,
-  afterHeadline,
-  subHeader,
+  slotBeforeTitle,
+  slotAfterTitle,
+  subtitle,
   truncateTitle,
   ...rest
 }: HeadlineProps) {
-  const needsRender = Boolean(title || beforeHeadline || afterHeadline || subHeader || actions || moreActions);
+  const needsRender = Boolean(title || slotBeforeTitle || slotAfterTitle || subtitle || actions || moreActions);
 
   if (!needsRender) return null;
 
@@ -23,12 +23,12 @@ export function Headline({
     <div className={styles.headline} {...extractSupportProps(rest)}>
       <div className={styles.headlineLayout}>
         <div className={styles.titleLayout}>
-          {beforeHeadline && <div className={styles.prefixButtonWrapper}>{beforeHeadline}</div>}
+          {slotBeforeTitle && <div className={styles.prefixButtonWrapper}>{slotBeforeTitle}</div>}
           <Typography variant={VARIANT.headline} size={SIZE.s} as='h1' className={styles.title}>
             {truncateTitle ? <TruncateString variant='end' text={title} maxLines={1} /> : title}
           </Typography>
 
-          {afterHeadline && <div className={styles.statusWrapper}>{afterHeadline}</div>}
+          {slotAfterTitle && <div className={styles.statusWrapper}>{slotAfterTitle}</div>}
 
           {moreActions && <div className={styles.moreActions}>{moreActions}</div>}
         </div>
@@ -36,7 +36,7 @@ export function Headline({
         {Boolean(actions) && <div className={styles.actions}>{actions}</div>}
       </div>
 
-      {subHeader && <div className={styles.subHeader}>{subHeader}</div>}
+      {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
     </div>
   );
 }

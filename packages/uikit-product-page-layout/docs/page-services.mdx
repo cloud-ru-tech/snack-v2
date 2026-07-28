@@ -13,7 +13,7 @@ import pageLayoutDoc from './props.json'
 
 # PageServices
 
-Детальная страница инстанса: селект раздела (`sidebar`), заголовок (`title`) со статусом в `afterHeadline`, действия (`actions`) и контент (`children`). Раскладку берёт из `AdaptiveProvider`.
+Детальная страница инстанса: селект раздела (`sidebar`), заголовок (`title`) со статусом в `slotAfterTitle`, действия (`actions`) и контент (`children`). Раскладку берёт из `AdaptiveProvider`.
 
 ## Когда использовать
 
@@ -24,9 +24,9 @@ import pageLayoutDoc from './props.json'
 
 - `sidebar` — селект/сайдбар разделов (пропсы [`PageSidebar`](/components/uikit-product-page-layout/page-sidebar)).
 - `title` — заголовок страницы (строка [`Headline`](/components/uikit-product-page-layout/headline)).
-- `beforeHeadline` / `afterHeadline` — слоты до/после заголовка; статус инстанса обычно кладут в `afterHeadline`.
+- `slotBeforeTitle` / `slotAfterTitle` — слоты до/после заголовка; статус инстанса обычно кладут в `slotAfterTitle`.
 - `actions` — панель действий справа от заголовка.
-- `subHeader` — подзаголовок (например, [`DefaultSubHeader`](/components/uikit-product-page-layout/default-sub-header) с ID ресурса).
+- `subtitle` — подзаголовок (например, [`DefaultSubtitle`](/components/uikit-product-page-layout/default-subtitle) с ID ресурса).
 - `children` — контент страницы.
 - `autoHeight` — снять расчёт высоты по глобальному хост-контейнеру single-spa.
 - `limitContentMaxWidth` — ограничить максимальную ширину контента.

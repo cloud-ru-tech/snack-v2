@@ -1,6 +1,6 @@
 export * from './Headline';
 export * from './PageLoading';
-export * from './DefaultSubHeader';
+export * from './DefaultSubtitle';
 export * from './PageCatalog';
 export * from './PageSidebar';
 export * from './TreeNavigation';

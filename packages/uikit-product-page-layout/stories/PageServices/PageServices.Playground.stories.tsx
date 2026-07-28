@@ -16,7 +16,7 @@ import { TEST_IDS } from '../testIds';
 type StoryProps = PageServicesProps & {
   showActions: boolean;
   showSidebar: boolean;
-  showAfterHeadline: boolean;
+  showSlotAfterTitle: boolean;
 };
 
 const meta: Meta<StoryProps> = {
@@ -25,7 +25,7 @@ const meta: Meta<StoryProps> = {
   parameters: { layout: 'fullscreen' },
   args: {
     title: 'vm-0c7afd',
-    afterHeadline: RUNNING_STATUS,
+    slotAfterTitle: RUNNING_STATUS,
     autoHeight: true,
     limitContentMaxWidth: false,
     actions: SERVICE_ACTIONS,
@@ -40,7 +40,7 @@ const meta: Meta<StoryProps> = {
     'data-test-id': TEST_IDS.pageServices.root,
     showActions: true,
     showSidebar: true,
-    showAfterHeadline: true,
+    showSlotAfterTitle: true,
   },
   argTypes: {
     autoHeight: { control: 'boolean' },
@@ -48,11 +48,11 @@ const meta: Meta<StoryProps> = {
     actions: { table: { disable: true } },
     sidebar: { table: { disable: true } },
     children: { table: { disable: true } },
-    beforeHeadline: { table: { disable: true } },
-    afterHeadline: { table: { disable: true } },
+    slotBeforeTitle: { table: { disable: true } },
+    slotAfterTitle: { table: { disable: true } },
     showActions: { name: '[Stories]: showActions', control: 'boolean' },
     showSidebar: { name: '[Stories]: showSidebar', control: 'boolean' },
-    showAfterHeadline: { name: '[Stories]: showAfterHeadline', control: 'boolean' },
+    showSlotAfterTitle: { name: '[Stories]: showSlotAfterTitle', control: 'boolean' },
   },
 };
 
@@ -61,13 +61,13 @@ type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: ({ showActions, showSidebar, showAfterHeadline, ...args }) => (
+  render: ({ showActions, showSidebar, showSlotAfterTitle, ...args }) => (
     <div className={styles.fullPage}>
       <PageServices
         {...args}
         actions={showActions ? args.actions : undefined}
         sidebar={showSidebar ? args.sidebar : undefined}
-        afterHeadline={showAfterHeadline ? args.afterHeadline : undefined}
+        slotAfterTitle={showSlotAfterTitle ? args.slotAfterTitle : undefined}
       />
     </div>
   ),

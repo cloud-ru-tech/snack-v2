@@ -6,7 +6,7 @@ import { PageSidebarProps } from '../PageSidebar';
 
 export type DesktopPageServicesProps = WithSupportProps<
   PropsWithChildren<
-    Pick<HeadlineProps, 'title' | 'actions' | 'subHeader' | 'afterHeadline' | 'beforeHeadline' | 'truncateTitle'> & {
+    Pick<HeadlineProps, 'title' | 'actions' | 'subtitle' | 'slotAfterTitle' | 'slotBeforeTitle' | 'truncateTitle'> & {
       className?: string;
       sidebar?: PageSidebarProps;
       autoHeight?: boolean;

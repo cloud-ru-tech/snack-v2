@@ -9,7 +9,7 @@ import styles from './mobileStyles.module.scss';
 
 export type MobilePageServicesProps = WithSupportProps<
   PropsWithChildren<
-    Pick<HeadlineProps, 'title' | 'beforeHeadline' | 'subHeader' | 'afterHeadline'> & {
+    Pick<HeadlineProps, 'title' | 'slotBeforeTitle' | 'subtitle' | 'slotAfterTitle'> & {
       className?: string;
       sidebar?: SidebarSelectProps;
       actions?: ActionsProps['items'];
@@ -24,9 +24,9 @@ export function MobilePageServices({
   actions = [],
   className,
   sidebar,
-  afterHeadline,
-  subHeader,
-  beforeHeadline,
+  slotAfterTitle,
+  subtitle,
+  slotBeforeTitle,
   maxVisibleActionsItems,
   ...rest
 }: MobilePageServicesProps) {
@@ -36,7 +36,7 @@ export function MobilePageServices({
       {sidebar && <SidebarSelect {...sidebar} className={styles.sidebarSelect} />}
 
       <div className={styles.body}>
-        <Headline title={title} beforeHeadline={beforeHeadline} afterHeadline={afterHeadline} subHeader={subHeader} />
+        <Headline title={title} slotBeforeTitle={slotBeforeTitle} slotAfterTitle={slotAfterTitle} subtitle={subtitle} />
 
         {actions.length > 0 && <MobileActions items={actions} maxVisibleItems={maxVisibleActionsItems} />}
 

@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
-export type DefaultSubHeaderProps = WithSupportProps<{
+export type DefaultSubtitleProps = WithSupportProps<{
   /** Подпись слева */
   label: string;
   /** Копируемое значение (пропсы CopyLine) */
@@ -14,9 +14,9 @@ export type DefaultSubHeaderProps = WithSupportProps<{
   labelTooltip?: ReactNode;
 }>;
 
-export function DefaultSubHeader({ label, labelTooltip, value, ...rest }: DefaultSubHeaderProps) {
+export function DefaultSubtitle({ label, labelTooltip, value, ...rest }: DefaultSubtitleProps) {
   return (
-    <div className={styles.subheader} {...extractSupportProps(rest)}>
+    <div className={styles.subtitle} {...extractSupportProps(rest)}>
       <div className={styles.label}>
         {label}
         {labelTooltip && <QuestionTooltip tip={labelTooltip} />}

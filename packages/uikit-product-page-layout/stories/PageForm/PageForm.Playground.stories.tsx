@@ -57,7 +57,7 @@ const footer: PageFormProps['footer'] = {
 
 // Тогглы видимости слотов — только для Playground (не часть API компонента).
 type StoryProps = PageFormProps & {
-  showSubHeader: boolean;
+  showSubtitle: boolean;
   showStepper: boolean;
   showPriceSummary: boolean;
   showSideBlock: boolean;
@@ -70,14 +70,14 @@ const meta: Meta<StoryProps> = {
   parameters: { layout: 'fullscreen' },
   args: {
     title: 'Создание инстанса',
-    subHeader: 'Заполните параметры конфигурации',
+    subtitle: 'Заполните параметры конфигурации',
     stepper,
     priceSummary,
     sideBlock,
     footer,
     children: formContent,
     'data-test-id': TEST_IDS.pageForm.root,
-    showSubHeader: true,
+    showSubtitle: true,
     showStepper: true,
     showPriceSummary: true,
     showSideBlock: true,
@@ -89,7 +89,7 @@ const meta: Meta<StoryProps> = {
     footer: { table: { disable: true } },
     stepper: { table: { disable: true } },
     children: { table: { disable: true } },
-    showSubHeader: { name: '[Stories]: showSubHeader', control: 'boolean' },
+    showSubtitle: { name: '[Stories]: showSubtitle', control: 'boolean' },
     showStepper: { name: '[Stories]: showStepper', control: 'boolean' },
     showPriceSummary: { name: '[Stories]: showPriceSummary', control: 'boolean' },
     showSideBlock: { name: '[Stories]: showSideBlock', control: 'boolean' },
@@ -102,11 +102,11 @@ type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: ({ showSubHeader, showStepper, showPriceSummary, showSideBlock, showFooter, ...args }) => (
+  render: ({ showSubtitle, showStepper, showPriceSummary, showSideBlock, showFooter, ...args }) => (
     <div className={styles.fullPage}>
       <PageForm
         {...args}
-        subHeader={showSubHeader ? args.subHeader : undefined}
+        subtitle={showSubtitle ? args.subtitle : undefined}
         stepper={showStepper ? args.stepper : undefined}
         priceSummary={showPriceSummary ? args.priceSummary : undefined}
         sideBlock={showSideBlock ? args.sideBlock : undefined}

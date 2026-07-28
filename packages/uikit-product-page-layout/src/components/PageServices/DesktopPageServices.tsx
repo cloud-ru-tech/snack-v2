@@ -13,9 +13,9 @@ export function DesktopPageServices({
   actions,
   className,
   sidebar,
-  beforeHeadline,
-  subHeader,
-  afterHeadline,
+  slotBeforeTitle,
+  subtitle,
+  slotAfterTitle,
   truncateTitle,
   autoHeight,
   limitContentMaxWidth,
@@ -34,9 +34,9 @@ export function DesktopPageServices({
           <Headline
             title={title}
             actions={actions}
-            beforeHeadline={beforeHeadline}
-            afterHeadline={afterHeadline}
-            subHeader={subHeader}
+            slotBeforeTitle={slotBeforeTitle}
+            slotAfterTitle={slotAfterTitle}
+            subtitle={subtitle}
             truncateTitle={truncateTitle}
           />
 

@@ -12,7 +12,7 @@ export function DesktopPageForm({
   children,
   stepper,
   title,
-  subHeader,
+  subtitle,
   className,
   footer,
   sideBlock,
@@ -37,7 +37,7 @@ export function DesktopPageForm({
     <div className={cn(styles.container, className)} {...extractSupportProps(rest)}>
       <div className={styles.form}>
         <div className={styles.headline}>
-          <Headline title={title} subHeader={subHeader} />
+          <Headline title={title} subtitle={subtitle} />
         </div>
 
         {stepper}

@@ -49,7 +49,7 @@ export const VisualMatrix: Story = {
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
                   <PageForm
                     title='Создание инстанса'
-                    subHeader='Заполните параметры конфигурации'
+                    subtitle='Заполните параметры конфигурации'
                     stepper={stepper}
                     priceSummary={priceSummary}
                     sideBlock={[{ label: 'Справка', content: <FormHelp /> }]}
@@ -68,7 +68,7 @@ export const VisualMatrix: Story = {
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
                   <PageForm
                     title='Создание инстанса'
-                    subHeader='Заполните параметры конфигурации'
+                    subtitle='Заполните параметры конфигурации'
                     stepper={stepper}
                     footer={footer}
                   >

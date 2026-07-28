@@ -8,7 +8,7 @@ import { HeadlineProps } from '../Headline';
 
 export type DesktopPageFormProps = WithSupportProps<
   PropsWithChildren<
-    Pick<HeadlineProps, 'title' | 'subHeader'> & {
+    Pick<HeadlineProps, 'title' | 'subtitle'> & {
       className?: string;
 
       /** Закрепляет футер внизу формы при прокрутке контента. */

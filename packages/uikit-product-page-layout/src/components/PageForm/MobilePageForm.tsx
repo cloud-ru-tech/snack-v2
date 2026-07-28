@@ -32,7 +32,7 @@ function stripFooterButton<T extends object>(button: T): Omit<T, 'variant' | 'to
 function MobilePageFormBase({
   children,
   title,
-  subHeader,
+  subtitle,
   className,
   footer,
   stepper,
@@ -57,7 +57,7 @@ function MobilePageFormBase({
       <div className={styles.header}>
         <Headline
           title={title}
-          subHeader={subHeader}
+          subtitle={subtitle}
           moreActions={
             sideBlock ? (
               <Droplist

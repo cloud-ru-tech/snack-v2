@@ -45,7 +45,7 @@ export const VisualMatrix: Story = {
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
                   <PageServices
                     title='vm-0c7afd'
-                    afterHeadline={RUNNING_STATUS}
+                    slotAfterTitle={RUNNING_STATUS}
                     actions={SERVICE_ACTIONS}
                     sidebar={sidebar}
                     autoHeight
@@ -62,7 +62,7 @@ export const VisualMatrix: Story = {
             cells: [
               <div key='d' className={styles.deviceDesktop}>
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
-                  <PageServices title='vm-0c7afd' afterHeadline={RUNNING_STATUS} actions={SERVICE_ACTIONS} autoHeight>
+                  <PageServices title='vm-0c7afd' slotAfterTitle={RUNNING_STATUS} actions={SERVICE_ACTIONS} autoHeight>
                     <ServiceInfoContent />
                   </PageServices>
                 </AdaptiveProvider>
@@ -84,7 +84,7 @@ export const VisualMatrix: Story = {
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
                   <PageServices
                     title='vm-0c7afd'
-                    afterHeadline={RUNNING_STATUS}
+                    slotAfterTitle={RUNNING_STATUS}
                     actions={SERVICE_ACTIONS}
                     maxVisibleActionsItems={1}
                     sidebar={sidebar}
@@ -103,7 +103,7 @@ export const VisualMatrix: Story = {
                 <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
                   <PageServices
                     title='vm-0c7afd'
-                    afterHeadline={RUNNING_STATUS}
+                    slotAfterTitle={RUNNING_STATUS}
                     actions={SERVICE_ACTIONS}
                     maxVisibleActionsItems={1}
                     autoHeight

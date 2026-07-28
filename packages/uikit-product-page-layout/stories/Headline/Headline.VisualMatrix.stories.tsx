@@ -52,17 +52,17 @@ export const VisualMatrix: Story = {
               <div key='ba' className={styles.frame}>
                 <Headline
                   title='Виртуальные машины'
-                  beforeHeadline={<Button view={VIEW.Simple} icon={<CloseSVG />} />}
-                  afterHeadline={<Status label='Активно' appearance='green' />}
+                  slotBeforeTitle={<Button view={VIEW.Simple} icon={<CloseSVG />} />}
+                  slotAfterTitle={<Status label='Активно' appearance='green' />}
                 />
               </div>,
             ],
           },
           {
-            variantLabel: '+ subHeader',
+            variantLabel: '+ subtitle',
             cells: [
               <div key='s' className={styles.frame}>
-                <Headline title='Виртуальные машины' subHeader='Управление инстансами проекта' />
+                <Headline title='Виртуальные машины' subtitle='Управление инстансами проекта' />
               </div>,
             ],
           },

@@ -30,7 +30,7 @@ import {
   TreeNavigation,
   PageSidebar,
   Headline,
-  DefaultSubHeader,
+  DefaultSubtitle,
   PageLoading,
   TREE_NAVIGATION_MODE,
 } from '@ds/uikit-product-page-layout'
@@ -53,7 +53,7 @@ import {
 Общие слоты, переиспользуемые внутри раскладок:
 
 - ****Headline**** — строка заголовка: title, слоты до/после, действия, подзаголовок.
-- ****DefaultSubHeader**** — подзаголовок «подпись + копируемое значение».
+- ****DefaultSubtitle**** — подзаголовок «подпись + копируемое значение».
 - ****PageLoading**** — заглушка-спиннер на время загрузки страницы.
 
 ## Адаптивность
@@ -136,7 +136,7 @@ import {
 
 Детальная страница инстанса — селект раздела, заголовок со статусом, действия и контент. Адаптивная — на mobile селект выносится наверх full-bleed-строкой.
 
-Детальная страница инстанса: селект раздела (`sidebar`), заголовок (`title`) со статусом в `afterHeadline`, действия (`actions`) и контент (`children`). Раскладку берёт из `AdaptiveProvider`.
+Детальная страница инстанса: селект раздела (`sidebar`), заголовок (`title`) со статусом в `slotAfterTitle`, действия (`actions`) и контент (`children`). Раскладку берёт из `AdaptiveProvider`.
 
 ### Когда использовать
 
@@ -147,9 +147,9 @@ import {
 
 - `sidebar` — селект/сайдбар разделов (пропсы **`PageSidebar`**).
 - `title` — заголовок страницы (строка **`Headline`**).
-- `beforeHeadline` / `afterHeadline` — слоты до/после заголовка; статус инстанса обычно кладут в `afterHeadline`.
+- `slotBeforeTitle` / `slotAfterTitle` — слоты до/после заголовка; статус инстанса обычно кладут в `slotAfterTitle`.
 - `actions` — панель действий справа от заголовка.
-- `subHeader` — подзаголовок (например, **`DefaultSubHeader`** с ID ресурса).
+- `subtitle` — подзаголовок (например, **`DefaultSubtitle`** с ID ресурса).
 - `children` — контент страницы.
 - `autoHeight` — снять расчёт высоты по глобальному хост-контейнеру single-spa.
 - `limitContentMaxWidth` — ограничить максимальную ширину контента.
@@ -166,16 +166,16 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
-| `afterHeadline` | `ReactNode` | — | Слот после заголовка (например, статус) |
 | `autoHeight` | `boolean` | — |  |
-| `beforeHeadline` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `limitContentMaxWidth` | `boolean` | — |  |
 | `maxVisibleActionsItems` | `ActionsProps` | — |  |
 | `sidebar` | `PageSidebarProps` | — |  |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
+| `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 | `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
@@ -251,7 +251,7 @@ import {
 
 Слоты:
 
-- `title` / `subHeader` — заголовок формы и подзаголовок.
+- `title` / `subtitle` — заголовок формы и подзаголовок.
 - `stepper` — степпер шагов; на mobile становится sticky сверху.
 - `children` — контент текущего шага.
 - `sideBlock` — массив блоков `{ label, content }` в боковой колонке (подсказки, сводка конфигурации).
@@ -285,7 +285,7 @@ import {
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
 ##### Related types
@@ -441,11 +441,11 @@ import {
 ### Анатомия
 
 - `title` — заголовок страницы.
-- `beforeHeadline` — слот перед заголовком (например, кнопка «назад»).
-- `afterHeadline` — слот после заголовка (например, статус).
+- `slotBeforeTitle` — слот перед заголовком (например, кнопка «назад»).
+- `slotAfterTitle` — слот после заголовка (например, статус).
 - `actions` — действия справа от заголовка.
 - `moreActions` — слот действий внутри строки заголовка (mobile-рендереры кладут сюда kebab / «ещё»).
-- `subHeader` — подзаголовок под заголовком.
+- `subtitle` — подзаголовок под заголовком.
 - `truncateTitle` — обрезать заголовок в одну строку с многоточием.
 
 ### Props
@@ -455,19 +455,19 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actions` | `ReactNode` | — | Действия справа от заголовка |
-| `afterHeadline` | `ReactNode` | — | Слот после заголовка (например, статус) |
-| `beforeHeadline` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
 | `data-test-id` | `string` | — |  |
 | `moreActions` | `ReactNode` | — | Слот действий внутри строки заголовка (mobile-рендереры кладут сюда kebab/«ещё») |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
+| `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 | `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
-## DefaultSubHeader
+## DefaultSubtitle
 
 Подзаголовок страницы «подпись + копируемое значение» с опциональной тултип-подсказкой.
 
-Подзаголовок страницы из подписи (`label`) и копируемого значения (`value`, пропсы **`CopyLine`**). Типичный слот `subHeader` для строки с ID ресурса.
+Подзаголовок страницы из подписи (`label`) и копируемого значения (`value`, пропсы **`CopyLine`**). Типичный слот `subtitle` для строки с ID ресурса.
 
 ### Когда использовать
 
@@ -482,7 +482,7 @@ import {
 
 ### Props
 
-**DefaultSubHeaderProps**
+**DefaultSubtitleProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -648,7 +648,7 @@ import {
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
 #### Related types
@@ -664,15 +664,15 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actions` | `ReactNode` | — | Действия справа от заголовка |
-| `afterHeadline` | `ReactNode` | — | Слот после заголовка (например, статус) |
 | `autoHeight` | `boolean` | — |  |
-| `beforeHeadline` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `limitContentMaxWidth` | `boolean` | — |  |
 | `sidebar` | `PageSidebarProps` | — |  |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
+| `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 | `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
@@ -799,7 +799,7 @@ import {
 | `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
 #### Related types
@@ -815,14 +815,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
-| `afterHeadline` | `ReactNode` | — | Слот после заголовка (например, статус) |
-| `beforeHeadline` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `maxVisibleActionsItems` | `ActionsProps` | — |  |
 | `sidebar` | `SidebarSelectProps` | — |  |
-| `subHeader` | `ReactNode` | — | Подзаголовок под заголовком |
+| `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
+| `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
+| `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
 
 #### Related types

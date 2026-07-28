@@ -33,8 +33,7 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  // Высота строки заголовка, чтобы before-слот/статус центрировались по первой строке
-  // (titleLayout держит flex-start ради многострочного truncate).
+  // min-height = высота строки заголовка: before-слот/статус не короче строки title.
   min-height: base.$sn-regular-headline-s-lineHeight;
 }
 
@@ -42,6 +41,9 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  // Кап высоты до строки заголовка: kebab (`Button` 40px) центрируется и симметрично торчит ±4px,
+  // НЕ растягивая строку выше line-height title (Figma: slotTitle 32px, кнопка 40px offset -4,-4).
+  height: base.$sn-regular-headline-s-lineHeight;
   margin-left: auto;
 }
 
@@ -53,7 +55,7 @@
   justify-content: flex-end;
 }
 
-.subHeader {
+.subtitle {
   margin-top: base.$sn-primitive-dimension-4;
   color: base.$sn-theme-color-available-version-textMain;
 }

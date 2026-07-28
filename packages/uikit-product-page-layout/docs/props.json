@@ -2614,9 +2614,9 @@
     },
     "relatedTypes": {}
   },
-  "DefaultSubHeader": {
-    "displayName": "DefaultSubHeader",
-    "propsTypeName": "DefaultSubHeaderProps",
+  "DefaultSubtitle": {
+    "displayName": "DefaultSubtitle",
+    "propsTypeName": "DefaultSubtitleProps",
     "props": {
       "data-test-id": {
         "type": "string",
@@ -2779,7 +2779,7 @@
         "required": false,
         "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
-      "subHeader": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -3236,19 +3236,9 @@
         "required": false,
         "description": "Действия справа от заголовка"
       },
-      "afterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка (например, статус)"
-      },
       "autoHeight": {
         "type": "boolean",
         "required": false
-      },
-      "beforeHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот перед заголовком (например, кнопка «назад»)"
       },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -3273,7 +3263,17 @@
           "PageSidebarProps"
         ]
       },
-      "subHeader": {
+      "slotAfterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка (например, статус)"
+      },
+      "slotBeforeTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот перед заголовком (например, кнопка «назад»)"
+      },
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -3735,16 +3735,6 @@
         "required": false,
         "description": "Действия справа от заголовка"
       },
-      "afterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка (например, статус)"
-      },
-      "beforeHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот перед заголовком (например, кнопка «назад»)"
-      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -3754,7 +3744,17 @@
         "required": false,
         "description": "Слот действий внутри строки заголовка (mobile-рендереры кладут сюда kebab/«ещё»)"
       },
-      "subHeader": {
+      "slotAfterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка (например, статус)"
+      },
+      "slotBeforeTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот перед заголовком (например, кнопка «назад»)"
+      },
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -5011,7 +5011,7 @@
         "required": false,
         "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
-      "subHeader": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -5475,16 +5475,6 @@
           "QuotaWidgetPropsBase"
         ]
       },
-      "afterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка (например, статус)"
-      },
-      "beforeHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот перед заголовком (например, кнопка «назад»)"
-      },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
         "required": false
@@ -5511,7 +5501,17 @@
           "SidebarSelectProps"
         ]
       },
-      "subHeader": {
+      "slotAfterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка (например, статус)"
+      },
+      "slotBeforeTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот перед заголовком (например, кнопка «назад»)"
+      },
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -7904,7 +7904,7 @@
         "required": false,
         "description": "Закрепляет футер внизу формы при прокрутке контента."
       },
-      "subHeader": {
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
@@ -8384,19 +8384,9 @@
           "QuotaWidgetPropsBase"
         ]
       },
-      "afterHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот после заголовка (например, статус)"
-      },
       "autoHeight": {
         "type": "boolean",
         "required": false
-      },
-      "beforeHeadline": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот перед заголовком (например, кнопка «назад»)"
       },
       "children": {
         "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -8428,7 +8418,17 @@
           "PageSidebarProps"
         ]
       },
-      "subHeader": {
+      "slotAfterTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот после заголовка (например, статус)"
+      },
+      "slotBeforeTitle": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот перед заголовком (например, кнопка «назад»)"
+      },
+      "subtitle": {
         "type": "ReactNode",
         "required": false,
         "description": "Подзаголовок под заголовком"
