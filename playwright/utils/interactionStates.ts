@@ -135,6 +135,11 @@ export type InteractionStatesOptions = {
   snapshotName?: string;
   /** Раскладка cell'ов в composite. По умолчанию `'row'`. Для широких component'ов (Alert, Breadcrumbs) — `'col'`. */
   layout?: 'row' | 'col';
+  /** Дополнительное ожидание покоя перед снимком каждой ячейки. `waitForStableBbox` ловит
+   * только движение layout'а; компоненту, который меняет содержимое внутри неподвижного bbox
+   * (JS-таймер, transition на абсолютно спозиционированных слоях), нужен свой признак покоя —
+   * обычно `waitForStableRender` на соответствующем слоте. */
+  settle?: (page: Page) => Promise<void>;
   /** Дополнительные состояния сверх default/hover/focus/[pressed] в том же composite.
    * Каждое: `label` + `activate` (выставить состояние перед снимком). Перед каждым
    * — `resetState`; после снимка вызывается `deactivate` (если задан). Пример — drag-over
@@ -180,6 +185,7 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     padding = DEFAULT_PADDING,
     snapshotName = DEFAULT_SNAPSHOT_NAME,
     layout = 'row',
+    settle,
     extraStates = [],
   } = options;
 
@@ -193,6 +199,7 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     // composite ловит target в промежуточном состоянии — ширина прыгает на
     // десятки/сотни px между прогонами.
     await waitForStableBbox(target);
+    await settle?.(page);
     return frameLocators
       ? screenshotRegion(page, frameLocators, padding, SCREENSHOT_DEFAULT_OPTS)
       : screenshotWithPadding(page, target, padding, SCREENSHOT_DEFAULT_OPTS);

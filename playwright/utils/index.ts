@@ -6,5 +6,6 @@ export * from './getStorybookUrl';
 export * from './waitForFonts';
 export * from './waitForSettledInViewport';
 export * from './waitForStableBbox';
+export * from './waitForStableRender';
 export * from './getEnvironmentDependentConfigPart';
 export * from './getWorkers';
