@@ -1,4 +1,4 @@
-import { LayoutPresets, mergePresets, useLayoutDefaults } from '@ds/adaptive';
+import { isMobileLayout, LayoutPresets, mergePresets, useAdaptiveLayout, useLayoutDefaults } from '@ds/adaptive';
 import { Block, SIZE as BLOCK_SIZE } from '@ds/block';
 import { IconPredefinedProps } from '@ds/icon-predefined';
 import { ALIGN, Align, InfoBlock, SIZE as INFO_SIZE } from '@ds/info-block';
@@ -61,6 +61,9 @@ export function EmptyBlock({
     { align },
   );
 
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
+
   return (
     <Block size={BLOCK_SIZE.L} className={cn(styles.emptyBlock, className)} {...extractSupportProps(rest)}>
       <div className={styles.inner}>
@@ -69,7 +72,7 @@ export function EmptyBlock({
           title={title}
           content={content}
           icon={icon}
-          size={INFO_SIZE.L}
+          size={isMobile ? INFO_SIZE.M : INFO_SIZE.L}
           align={resolvedAlign}
           footer={footer}
         />
