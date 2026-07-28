@@ -96,10 +96,11 @@ export function DesktopPageForm({
 
       {moreItems.length > 0 && (
         <div className={styles.sideItems}>
+          {/* sideBlock/priceSummary приносят свою подложку сами (quota-виджет, price-summary).
+              Своя `.card`-обёртка давала двойную подложку и расходилась с mobile-PageForm
+              (там контент рендерится без карточки) и с легаси-PageForm. */}
           {moreItems.map((item, index) => (
-            <div key={index} className={styles.card}>
-              {item}
-            </div>
+            <div key={index}>{item}</div>
           ))}
         </div>
       )}

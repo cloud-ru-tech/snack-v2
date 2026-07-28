@@ -119,10 +119,3 @@
   // 304px — фиксированная ширина боковой колонки, токена нет.
   width: 304px;
 }
-
-.card {
-  box-sizing: border-box;
-  padding: block.$sn-block-anatomy-l-padding;
-  border-radius: block.$sn-block-anatomy-l-borderRadius;
-  background-color: base.$sn-theme-color-neutral-background1Level;
-}

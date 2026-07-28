@@ -1,4 +1,6 @@
 import { Accordion } from '@ds/accordion';
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { Block, SIZE as BLOCK_SIZE } from '@ds/block';
 import { APPEARANCE as BUTTON_APPEARANCE, Button, SIZE as BUTTON_SIZE, VIEW } from '@ds/button';
 import { Card } from '@ds/card';
 import {
@@ -366,6 +368,22 @@ export function FormFields() {
   );
 }
 
+/**
+ * Подложка бокового виджета PageForm. Сам PageForm её не рисует — контент
+ * `sideBlock`/`priceSummary` приносит фон сам (как quota-виджет или price-summary
+ * в продуктовом коде). На mobile этот же контент рендерится внутри шторки/модалки,
+ * где поверхность уже есть, поэтому карточка ставится только на desktop.
+ */
+function SideWidget({ children }: { children: ReactNode }) {
+  const { layoutType } = useAdaptiveLayout();
+
+  if (isMobileLayout(layoutType)) {
+    return <>{children}</>;
+  }
+
+  return <Block size={BLOCK_SIZE.L}>{children}</Block>;
+}
+
 /** Детализация стоимости для priceSummary.content. */
 export function PriceBreakdown() {
   const rows = [
@@ -375,30 +393,34 @@ export function PriceBreakdown() {
   ];
 
   return (
-    <div className={styles.summaryList}>
-      {rows.map(row => (
-        <div key={row.label} className={styles.summaryRow}>
-          <Typography variant={VARIANT.body} size='s'>
-            {row.label}
-          </Typography>
-          <Typography variant={VARIANT.body} size='s'>
-            {row.value}
-          </Typography>
-        </div>
-      ))}
-    </div>
+    <SideWidget>
+      <div className={styles.summaryList}>
+        {rows.map(row => (
+          <div key={row.label} className={styles.summaryRow}>
+            <Typography variant={VARIANT.body} size='s'>
+              {row.label}
+            </Typography>
+            <Typography variant={VARIANT.body} size='s'>
+              {row.value}
+            </Typography>
+          </div>
+        ))}
+      </div>
+    </SideWidget>
   );
 }
 
 /** Боковой блок справки для sideBlock. */
 export function FormHelp() {
   return (
-    <div className={styles.sideBlock}>
-      <Typography variant={VARIANT.body} size='s'>
-        Тип конфигурации определяет количество vCPU и объём памяти. Изменить его можно после остановки инстанса.
-      </Typography>
-      <Button view={VIEW.Simple} size={BUTTON_SIZE.S} label='Подробнее о тарифах' />
-    </div>
+    <SideWidget>
+      <div className={styles.sideBlock}>
+        <Typography variant={VARIANT.body} size='s'>
+          Тип конфигурации определяет количество vCPU и объём памяти. Изменить его можно после остановки инстанса.
+        </Typography>
+        <Button view={VIEW.Simple} size={BUTTON_SIZE.S} label='Подробнее о тарифах' />
+      </div>
+    </SideWidget>
   );
 }
 
