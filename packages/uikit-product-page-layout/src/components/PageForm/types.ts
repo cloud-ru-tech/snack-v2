@@ -1,4 +1,5 @@
 import { ButtonProps } from '@ds/button';
+import { ModalCustomProps } from '@ds/modal';
 import { TooltipProps } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 import { PropsWithChildren, ReactNode } from 'react';
@@ -24,6 +25,11 @@ export type DesktopPageFormProps = WithSupportProps<
       sideBlock?: {
         label: string;
         content: ReactNode;
+        /**
+         * Только mobile: высота листа sideBlock'а (snap-точки `BottomSheet`). `[1]` — на всю высоту.
+         * По умолчанию — по высоте контента (fit-content).
+         */
+        snapPoints?: ModalCustomProps['snapPoints'];
       }[];
 
       footer?: {

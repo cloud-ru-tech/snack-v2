@@ -2782,8 +2782,11 @@
         "required": false
       },
       "sideBlock": {
-        "type": "{ label: string; content: ReactNode; }[]",
-        "required": false
+        "type": "{ label: string; content: ReactNode; snapPoints?: SnapPoint[]; }[]",
+        "required": false,
+        "typeRefs": [
+          "ModalCustomProps"
+        ]
       },
       "stepper": {
         "type": "ReactNode",
@@ -3065,6 +3068,131 @@
         ],
         "own": false
       },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "ModalCustomProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое окна (композиция Header/Body/Footer)"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс окна"
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрытие при навигации по истории"
+          },
+          "container": {
+            "type": "ModalContainer | undefined",
+            "required": false,
+            "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`.",
+            "typeRefs": [
+              "ModalContainer"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "heightAuto": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Растягивать по высоте в пределах контейнера"
+          },
+          "mode": {
+            "type": "ModalMode | undefined",
+            "required": false,
+            "values": [
+              "aggressive",
+              "forced",
+              "regular"
+            ],
+            "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+            "typeRefs": [
+              "ModalMode"
+            ]
+          },
+          "onClose": {
+            "type": "() => void",
+            "required": true,
+            "description": "Колбэк закрытия"
+          },
+          "open": {
+            "type": "boolean",
+            "required": true,
+            "description": "Управление состоянием показан/не показан"
+          },
+          "rootClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс корневого слоя портала"
+          },
+          "safeArea": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+          },
+          "showBackdrop": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
+          "swipeEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+          },
+          "width": {
+            "type": "ModalWidth | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер окна",
+            "typeRefs": [
+              "ModalWidth"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": false
+      },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -3094,6 +3222,11 @@
           "s",
           "xs"
         ],
+        "own": false
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": false
       },
       "TooltipProps": {
@@ -5019,8 +5152,11 @@
         "required": false
       },
       "sideBlock": {
-        "type": "{ label: string; content: ReactNode; }[]",
-        "required": false
+        "type": "{ label: string; content: ReactNode; snapPoints?: SnapPoint[]; }[]",
+        "required": false,
+        "typeRefs": [
+          "ModalCustomProps"
+        ]
       },
       "stepper": {
         "type": "ReactNode",
@@ -5302,6 +5438,131 @@
         ],
         "own": false
       },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "ModalCustomProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое окна (композиция Header/Body/Footer)"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс окна"
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрытие при навигации по истории"
+          },
+          "container": {
+            "type": "ModalContainer | undefined",
+            "required": false,
+            "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`.",
+            "typeRefs": [
+              "ModalContainer"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "heightAuto": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Растягивать по высоте в пределах контейнера"
+          },
+          "mode": {
+            "type": "ModalMode | undefined",
+            "required": false,
+            "values": [
+              "aggressive",
+              "forced",
+              "regular"
+            ],
+            "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+            "typeRefs": [
+              "ModalMode"
+            ]
+          },
+          "onClose": {
+            "type": "() => void",
+            "required": true,
+            "description": "Колбэк закрытия"
+          },
+          "open": {
+            "type": "boolean",
+            "required": true,
+            "description": "Управление состоянием показан/не показан"
+          },
+          "rootClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс корневого слоя портала"
+          },
+          "safeArea": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+          },
+          "showBackdrop": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
+          "swipeEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+          },
+          "width": {
+            "type": "ModalWidth | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер окна",
+            "typeRefs": [
+              "ModalWidth"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": false
+      },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -5331,6 +5592,11 @@
           "s",
           "xs"
         ],
+        "own": false
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": false
       },
       "TooltipProps": {
@@ -7917,8 +8183,11 @@
         "required": false
       },
       "sideBlock": {
-        "type": "{ label: string; content: ReactNode; }[]",
-        "required": false
+        "type": "{ label: string; content: ReactNode; snapPoints?: SnapPoint[]; }[]",
+        "required": false,
+        "typeRefs": [
+          "ModalCustomProps"
+        ]
       },
       "stepper": {
         "type": "ReactNode",
@@ -8200,6 +8469,131 @@
         ],
         "own": false
       },
+      "ModalContainer": {
+        "kind": "alias",
+        "type": "string | HTMLElement",
+        "own": false
+      },
+      "ModalCustomProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое окна (композиция Header/Body/Footer)"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс окна"
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрытие при навигации по истории"
+          },
+          "container": {
+            "type": "ModalContainer | undefined",
+            "required": false,
+            "description": "Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`.",
+            "typeRefs": [
+              "ModalContainer"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "heightAuto": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Растягивать по высоте в пределах контейнера"
+          },
+          "mode": {
+            "type": "ModalMode | undefined",
+            "required": false,
+            "values": [
+              "aggressive",
+              "forced",
+              "regular"
+            ],
+            "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+            "typeRefs": [
+              "ModalMode"
+            ]
+          },
+          "onClose": {
+            "type": "() => void",
+            "required": true,
+            "description": "Колбэк закрытия"
+          },
+          "open": {
+            "type": "boolean",
+            "required": true,
+            "description": "Управление состоянием показан/не показан"
+          },
+          "rootClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс корневого слоя портала"
+          },
+          "safeArea": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом\nна `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)\ninset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.\nВерхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch)."
+          },
+          "showBackdrop": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside\nне закрывает sheet (нет backdrop-узла, по которому ловится клик)."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
+          "swipeEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+          },
+          "width": {
+            "type": "ModalWidth | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер окна",
+            "typeRefs": [
+              "ModalWidth"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ModalMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": false
+      },
+      "ModalWidth": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -8229,6 +8623,11 @@
           "s",
           "xs"
         ],
+        "own": false
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": false
       },
       "TooltipProps": {

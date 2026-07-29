@@ -85,7 +85,13 @@ function MobilePageFormBase({
       </div>
 
       {sideBlock && (
-        <ModalCustom open={openMoreContentIndex !== undefined} onClose={() => setOpenMoreContentIndex(undefined)}>
+        <ModalCustom
+          open={openMoreContentIndex !== undefined}
+          onClose={() => setOpenMoreContentIndex(undefined)}
+          // Высоту листа задаёт сам sideBlock-элемент (`snapPoints`); напр. `[1]` — на всю высоту.
+          // По умолчанию — по высоте контента.
+          snapPoints={sideBlock[openMoreContentIndex ?? 0].snapPoints}
+        >
           <ModalCustom.Body content={sideBlock[openMoreContentIndex ?? 0].content} />
         </ModalCustom>
       )}

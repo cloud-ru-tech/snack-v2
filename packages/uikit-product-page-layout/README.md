@@ -282,7 +282,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
+| `sideBlock` | `ModalCustomProps` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
@@ -645,7 +645,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
+| `sideBlock` | `ModalCustomProps` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
@@ -796,7 +796,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `{ label: string; content: ReactNode; }[]` | — |  |
+| `sideBlock` | `ModalCustomProps` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
