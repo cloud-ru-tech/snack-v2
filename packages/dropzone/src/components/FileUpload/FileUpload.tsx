@@ -63,6 +63,7 @@ export type FileUploadProps = WithSupportProps<
   } & NativeInputProps
 >;
 
+// eslint-disable-next-line ds/require-inner-ref-support -- innerRef ведёт на скрытый <input type="file">, а не на корень: маркер соврал бы поповеру.
 export function FileUpload({
   mode = UPLOAD_MODE.Multiple,
   onFilesUpload,

@@ -442,6 +442,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
           "name": {
             "type": "string",
             "required": true,
@@ -1098,7 +1103,7 @@
         "kind": "interface",
         "props": {
           "avatar": {
-            "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance; size?: Size; shape?: Shape; showTwoSymbols?: boolean; badge?: ReactNode; status?: Appearance; className?: string; } & HTMLAttributes<HTMLDivElement> & { subtitle: string; }) | undefined",
+            "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance; size?: Size; shape?: Shape; showTwoSymbols?: boolean; badge?: ReactNode; status?: Appearance; className?: string; innerRef?: Ref<HTMLDivElement>; } & HTMLAttributes<HTMLDivElement> & { subtitle: string; }) | undefined",
             "required": false,
             "typeRefs": [
               "AvatarProps"

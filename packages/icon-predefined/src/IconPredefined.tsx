@@ -1,6 +1,6 @@
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { JSXElementConstructor } from 'react';
+import { JSXElementConstructor, Ref } from 'react';
 
 import { APPEARANCE, SIZE } from './constants';
 import styles from './styles.module.scss';
@@ -19,6 +19,11 @@ export type IconPredefinedProps = WithSupportProps<{
   size?: Size;
   /** Форма: круглая или квадратная */
   shape?: 'rounded' | 'squared';
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLDivElement>;
 }>;
 
 /**
@@ -32,10 +37,12 @@ export function IconPredefined({
   icon: IconComponent,
   appearance = APPEARANCE.Primary,
   shape = 'rounded',
+  innerRef,
   ...rest
 }: IconPredefinedProps) {
   return (
     <div
+      ref={innerRef}
       className={cn(styles.decor, className)}
       {...extractSupportProps(rest)}
       data-size={size}
@@ -47,3 +54,5 @@ export function IconPredefined({
     </div>
   );
 }
+
+withInnerRefSupport(IconPredefined);

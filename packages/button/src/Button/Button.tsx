@@ -1,5 +1,6 @@
 import { Counter } from '@ds/counter';
 import { Sun } from '@ds/loader';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
@@ -134,3 +135,5 @@ export function Button<T extends ElementType = 'button'>({
     </Component>
   );
 }
+
+withInnerRefSupport(Button);

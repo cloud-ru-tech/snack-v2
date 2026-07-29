@@ -12,7 +12,7 @@
         ]
       },
       "avatar": {
-        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 4 more ...; className?: string | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
+        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 5 more ...; innerRef?: Ref<...> | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
         "required": false,
         "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`).",
         "typeRefs": [
@@ -124,6 +124,11 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
           },
           "name": {
             "type": "string",
@@ -269,6 +274,11 @@
         "type": "string",
         "required": false
       },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
       "name": {
         "type": "string",
         "required": true,
@@ -392,7 +402,7 @@
     "propsTypeName": null,
     "props": {
       "avatar": {
-        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 4 more ...; className?: string | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
+        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 5 more ...; innerRef?: Ref<...> | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
         "required": false,
         "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`)."
       },

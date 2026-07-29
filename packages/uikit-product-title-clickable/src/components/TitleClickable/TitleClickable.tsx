@@ -1,4 +1,5 @@
 import { ArrowLinksSVG, ChevronRightSVG } from '@ds/icons/interface/system';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType } from 'react';
 
@@ -64,3 +65,5 @@ export function TitleClickable<T extends ElementType = 'a'>({
     </Tag>
   );
 }
+
+withInnerRefSupport(TitleClickable);

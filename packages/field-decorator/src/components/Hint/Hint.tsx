@@ -4,7 +4,7 @@ import {
   NotifierWarningFilledSVG,
 } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
 import { SIZE, TEST_IDS, VALIDATION_STATE } from '../../constants';
@@ -76,3 +76,5 @@ export function Hint({
     </div>
   );
 }
+
+withInnerRefSupport(Hint);

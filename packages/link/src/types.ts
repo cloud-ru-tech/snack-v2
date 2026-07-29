@@ -1,5 +1,5 @@
 import { TruncateStringProps } from '@ds/truncate-string';
-import { ValueOf, WithSupportProps } from '@ds/utils';
+import { PolymorphicRef, ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 import { APPEARANCE, ROLE } from './constants';
@@ -52,6 +52,11 @@ export type LinkProps<T extends ElementType = 'a'> = BaseProps & {
    *
    * */
   as?: T;
+  /**
+   * Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: PolymorphicRef<T>;
 } & Omit<ComponentPropsWithoutRef<ElementType extends T ? 'a' : T>, keyof BaseProps>;
 
 export type PickLinkProps<T extends ElementType, SelectedKeys extends keyof LinkProps<T>> = Pick<

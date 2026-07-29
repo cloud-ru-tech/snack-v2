@@ -37,6 +37,11 @@
         "type": "string",
         "required": false
       },
+      "innerRef": {
+        "type": "Ref<HTMLSpanElement> | ((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.\nRef на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
       "label": {
         "type": "string",
         "required": true
@@ -118,6 +123,11 @@
         "type": "string",
         "required": false
       },
+      "innerRef": {
+        "type": "Ref<HTMLSpanElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
       "label": {
         "type": "string",
         "required": true
@@ -176,6 +186,11 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       },
       "label": {
         "type": "string",
@@ -406,6 +421,11 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLSpanElement> | ((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.\nRef на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       },
       "label": {
         "type": "string",

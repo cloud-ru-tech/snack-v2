@@ -109,6 +109,7 @@ export function Shapes() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `icon` | `JSXElementConstructor<{ size?: number \| undefined; className?: string \| undefined; }>` | — | JSX иконки |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `shape` | `"rounded"` \| `"squared"` | `rounded` | Форма: круглая или квадратная |
 | `size` | `"3xl"` \| `"5xl"` \| `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 

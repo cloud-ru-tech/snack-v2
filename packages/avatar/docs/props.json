@@ -41,6 +41,11 @@
         "type": "string",
         "required": false
       },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
       "name": {
         "type": "string",
         "required": true,

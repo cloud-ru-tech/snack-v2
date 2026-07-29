@@ -1,6 +1,6 @@
 import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { Tooltip, TooltipProps, TRIGGER } from '@ds/tooltip';
-import { WithSupportProps } from '@ds/utils';
+import { withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import { ElementType, useMemo } from 'react';
 
 import { HOVER_DELAY_OPEN_MS, PREVIEW_CONTEXT, TEST_IDS, VARIANTS } from '../../constants';
@@ -85,3 +85,5 @@ export function PromoTagPredefined({
     </Tooltip>
   );
 }
+
+withInnerRefSupport(PromoTagPredefined);

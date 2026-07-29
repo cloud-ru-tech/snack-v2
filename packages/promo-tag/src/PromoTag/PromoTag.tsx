@@ -1,4 +1,5 @@
 import { Typography } from '@ds/typography';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType, ReactElement } from 'react';
 
@@ -50,3 +51,5 @@ export function PromoTag<T extends ElementType = 'button'>({
     </Component>
   );
 }
+
+withInnerRefSupport(PromoTag);

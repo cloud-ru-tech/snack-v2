@@ -1,3 +1,4 @@
+import { supportsInnerRef } from '@ds/utils';
 import { Placement, ReferenceType, useInteractions } from '@floating-ui/react';
 import cn from 'classnames';
 import {
@@ -7,11 +8,12 @@ import {
   HTMLProps,
   isValidElement,
   MouseEvent,
+  ReactElement,
   ReactNode,
   RefObject,
   TouchEvent,
 } from 'react';
-import { isForwardRef, isValidElementType } from 'react-is';
+import { isForwardRef, isMemo, isValidElementType } from 'react-is';
 
 import { PopoverPrivateProps } from './components';
 import { TRIGGER } from './constants';
@@ -80,6 +82,60 @@ type GetPopoverContentProps = {
   disableSpanWrapper?: boolean;
 };
 
+type TriggerRefProp =
+  | { ref: (node: ReferenceType | null) => void }
+  | { innerRef: (node: ReferenceType | null) => void };
+
+/**
+ * Каким пропом отдать триггеру reference-ноду:
+ *
+ * - нативный элемент (`<button>`) и `forwardRef`-компонент принимают React `ref`;
+ * - обычная функция-компонент — только проп `innerRef`, и лишь если помечена `withInnerRefSupport`
+ *   (интроспекция пропсов функционального компонента в рантайме невозможна);
+ * - `memo` пропсы прокидывает как есть, поэтому маркер ищем на обёрнутом компоненте.
+ *
+ * `null` — канала нет: передавать `innerRef` вслепую нельзя, он утечёт в DOM-атрибут либо молча пропадёт.
+ */
+function resolveTriggerRefProp(
+  element: ReactElement,
+  setReference: (node: ReferenceType | null) => void,
+): TriggerRefProp | null {
+  // `unknown`-алиасы: type-guard'ы `react-is` сужают сам `element` до `never` в отрицательной ветке,
+  // после чего к его полям не обратиться.
+  const elementType: unknown = element.type;
+  const elementNode: unknown = element;
+
+  if (typeof elementType === 'string' || isForwardRef(element)) {
+    return { ref: setReference };
+  }
+
+  const componentType = isMemo(elementNode) ? (elementType as { type: unknown }).type : elementType;
+
+  if (supportsInnerRef(componentType)) {
+    return { innerRef: setReference };
+  }
+
+  return null;
+}
+
+const warnedTriggerTypes = new Set<unknown>();
+
+function warnMissingRefChannel(type: ReactElement['type']): void {
+  if (process.env.NODE_ENV === 'production' || warnedTriggerTypes.has(type)) {
+    return;
+  }
+
+  warnedTriggerTypes.add(type);
+
+  const name = (typeof type === 'function' && type.name) || 'Anonymous';
+
+  console.warn(
+    `@ds/popover: триггер <${name}> не принимает DOM-ноду ни через ref, ни через innerRef, поэтому он обёрнут ` +
+      'в <span> (disableSpanWrapper проигнорирован). Чтобы убрать лишний узел, добавьте компоненту проп ' +
+      'innerRef на корневой элемент и пометьте его withInnerRefSupport из @ds/utils.',
+  );
+}
+
 export const getPopoverTriggerJSX = ({
   children,
   getReferenceProps,
@@ -89,16 +145,29 @@ export const getPopoverTriggerJSX = ({
 }: GetPopoverContentProps): ReactNode => {
   if (isValidElement(children)) {
     if (isForwardRef(children) || isValidElementType(children) || disableSpanWrapper) {
-      return cloneElement(children, {
-        ...getReferenceProps({
-          ...(children.props as HTMLProps<HTMLElement>),
-          className: cn((children.props as HTMLProps<HTMLElement>).className, validElementWrapperClassName),
-        }),
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ref: setReference,
-        key: 'cloned-element',
-      });
+      // 🔴 Проброс reference-элемента во floating-ui по правильной конвенции. Обычные `@ds`-компоненты
+      // (напр. `Button`) — plain function-компоненты и берут DOM-ноду через проп `innerRef`, а НЕ React
+      // `ref` (их нельзя ref-ать: React-ворнинг «Function components cannot be given refs»). Если такому
+      // передать `ref` — он молча проигнорируется, floating-ui не получит якорь и тултип отрисуется в углу
+      // (0,0) / не покажется. Поэтому: plain-функции → `innerRef`, нативные элементы / forwardRef → `ref`.
+      const refProp = resolveTriggerRefProp(children, setReference);
+
+      // Триггер не принимает DOM-ноду ни одним из каналов — оборачиваем в `<span>` даже при
+      // `disableSpanWrapper`: лишний DOM-узел лучше, чем неспозиционированный поповер.
+      if (refProp) {
+        return cloneElement(children, {
+          ...getReferenceProps({
+            ...(children.props as HTMLProps<HTMLElement>),
+            className: cn((children.props as HTMLProps<HTMLElement>).className, validElementWrapperClassName),
+          }),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          ...refProp,
+          key: 'cloned-element',
+        });
+      }
+
+      warnMissingRefChannel(children.type);
     }
 
     return (

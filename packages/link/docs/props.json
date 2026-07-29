@@ -36,6 +36,11 @@
         "type": "string",
         "required": true
       },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+      },
       "insideText": {
         "type": "boolean",
         "required": false,

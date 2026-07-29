@@ -1,6 +1,7 @@
 import { Appearance, Size, View } from '@ds/button';
 import { BaseItemProps, ItemId } from '@ds/list';
 import { WithSupportProps } from '@ds/utils';
+import { Ref } from 'react';
 
 export type Item = Omit<BaseItemProps, 'onClick' | 'onMouseDown' | 'onKeyDown' | 'onFocus' | 'onBlur'> &
   Required<Pick<BaseItemProps, 'onClick'>> & {
@@ -45,4 +46,9 @@ export type ButtonComboProps = WithSupportProps<{
   open?: boolean;
   /** Обработчик изменения видимости выпадающего списка */
   onOpenChange?(open: boolean): void;
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLDivElement>;
 }>;

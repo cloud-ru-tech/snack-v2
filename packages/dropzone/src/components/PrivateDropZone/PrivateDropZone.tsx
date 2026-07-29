@@ -8,6 +8,7 @@ import { UPLOAD_MODE } from './constants';
 import styles from './styles.module.scss';
 import { PrivateDropZoneProps } from './types';
 
+// eslint-disable-next-line ds/require-inner-ref-support -- innerRef ведёт на скрытый <input type="file">, а не на корень: маркер соврал бы поповеру.
 export function PrivateDropZone({
   disabled = false,
   className,

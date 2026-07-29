@@ -1,12 +1,21 @@
 import monorepoEslintConfig from '@cloud-ru/eslint-config/monorepo';
 import ssrSafe from '@cloud-ru/eslint-plugin-ssr-safe-react';
 
+import { dsPlugin } from './eslint-rules/index.mjs';
+
 export default [
   ...monorepoEslintConfig,
   ssrSafe.recommended,
   {
     plugins: {
       '@cloud-ru/ssr-safe-react': ssrSafe,
+    },
+  },
+  {
+    files: ['packages/*/src/**/*.tsx'],
+    plugins: { ds: dsPlugin },
+    rules: {
+      'ds/require-inner-ref-support': 'error',
     },
   },
   {
@@ -79,6 +88,14 @@ export default [
       'no-use-before-define': 'off',
       '@typescript-eslint/no-use-before-define': 'off',
       'no-nested-ternary': 'off',
+    },
+  },
+  {
+    // Локальные eslint-правила — Node-код: `node.parent` AST-узла ssr-safe-react принимает за глобальный `parent`.
+    files: ['eslint-rules/**/*.mjs'],
+    rules: {
+      '@cloud-ru/ssr-safe-react/domApi': 'off',
+      'import/no-default-export': 'off',
     },
   },
   {

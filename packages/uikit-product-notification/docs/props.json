@@ -225,6 +225,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
           "plusLimit": {
             "type": "number | undefined",
             "required": false,
@@ -1153,6 +1158,11 @@
             "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
             "required": true,
             "description": "JSX иконки"
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
           },
           "shape": {
             "type": "\"rounded\" | \"squared\" | undefined",
@@ -2144,6 +2154,11 @@
           "data-test-id": {
             "type": "string | undefined",
             "required": false
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
           },
           "plusLimit": {
             "type": "number | undefined",

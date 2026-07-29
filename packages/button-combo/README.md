@@ -155,6 +155,7 @@ export function FullWidth() {
 | `dropdownClassName` | `string` | — | CSS-класс выпадающего списка |
 | `dropdownTriggerClassName` | `string` | — | CSS-класс кнопки-триггера выпадающего списка |
 | `fullWidth` | `boolean` | — | Растянуть на всю ширину родителя |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `items` | `Item` | — | Основные элементы списка (действия) |
 | `loading` | `boolean` | — | Состояние загрузки |
 | `onChange` | `((value: ItemId) => void)` | — | Controlled: обработчик смены выбранного элемента |

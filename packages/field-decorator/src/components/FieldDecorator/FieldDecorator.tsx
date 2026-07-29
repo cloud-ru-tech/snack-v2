@@ -1,4 +1,4 @@
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
 import { SIZE, VALIDATION_STATE } from '../../constants';
@@ -73,3 +73,5 @@ export function FieldDecorator({
     </div>
   );
 }
+
+withInnerRefSupport(FieldDecorator);

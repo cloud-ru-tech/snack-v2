@@ -1,8 +1,8 @@
 import { Spinner } from '@ds/loader';
 import { ProgressBarCircle } from '@ds/progress-bar';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { JSX } from 'react';
+import { JSX, Ref } from 'react';
 
 import { APPEARANCE, STATUS_SIZE, TEST_IDS } from '../../constants';
 import { Appearance, StatusSize } from '../../types';
@@ -29,6 +29,11 @@ export type StatusProps = WithSupportProps<{
   loading?: boolean;
   /** Прогресс загрузки (от 0 до 100) */
   progress?: number;
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLDivElement>;
 }>;
 
 export function Status({
@@ -39,6 +44,7 @@ export function Status({
   loading = false,
   background = false,
   progress,
+  innerRef,
   ...rest
 }: StatusProps) {
   let marker: JSX.Element;
@@ -57,6 +63,7 @@ export function Status({
 
   return (
     <div
+      ref={innerRef}
       role='status'
       {...extractSupportProps(rest)}
       className={cn(styles.container, className)}
@@ -73,3 +80,5 @@ export function Status({
     </div>
   );
 }
+
+withInnerRefSupport(Status);

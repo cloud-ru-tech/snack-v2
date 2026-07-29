@@ -1,4 +1,4 @@
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType, MouseEventHandler } from 'react';
 
@@ -15,11 +15,13 @@ export function TagLink<T extends ElementType = 'a'>({
   className,
   tabIndex,
   as,
+  innerRef,
   ...rest
 }: TagLinkProps<T>) {
   const Component: ElementType = as ?? 'a';
 
   const baseProps = {
+    ref: innerRef,
     ...extractSupportProps(rest),
     className: cn(styles.tag, className),
     'data-tag-link': true,
@@ -58,3 +60,5 @@ export function TagLink<T extends ElementType = 'a'>({
     </Component>
   );
 }
+
+withInnerRefSupport(TagLink);

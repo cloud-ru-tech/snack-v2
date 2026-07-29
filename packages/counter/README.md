@@ -94,6 +94,7 @@ export function Red() {
 | `className` | `string` | — | Дополнительный CSS-класс |
 | `color` | `"accent"` \| `"decor"` | `accent` | Семантический цвет |
 | `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `plusLimit` | `number` | `10` | Порог сокращения значения для варианта `count-plus` |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `value` | `number` | — | Значение |

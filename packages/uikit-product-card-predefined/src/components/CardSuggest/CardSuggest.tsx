@@ -2,6 +2,7 @@ import { Card, PolymorphicRef } from '@ds/card';
 import { PromoTag, PromoTagProps } from '@ds/promo-tag';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, ReactElement } from 'react';
 
@@ -97,3 +98,5 @@ export function CardSuggest<T extends ElementType = 'div'>({
     </Card>
   );
 }
+
+withInnerRefSupport(CardSuggest);

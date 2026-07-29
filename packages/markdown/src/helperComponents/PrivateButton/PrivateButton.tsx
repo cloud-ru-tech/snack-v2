@@ -42,6 +42,7 @@ export type PrivateButtonProps = WithSupportProps<
   }
 >;
 
+// eslint-disable-next-line ds/require-inner-ref-support -- innerRef проставляется условно (только без tip), поэтому статический маркер поддержки был бы неверен.
 export function PrivateButton({
   id,
   tip,

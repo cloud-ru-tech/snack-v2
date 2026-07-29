@@ -1,5 +1,6 @@
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
+import { Ref } from 'react';
 
 import { APPEARANCE, COLOR, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from './constants';
 import styles from './styles.module.scss';
@@ -21,6 +22,11 @@ export type CounterProps = WithSupportProps<{
   className?: string;
   /** Семантический цвет */
   color?: Color;
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLDivElement>;
 }>;
 
 export function Counter({
@@ -31,12 +37,14 @@ export function Counter({
   plusLimit = DEFAULT_PLUS_LIMIT,
   color = COLOR.Accent,
   className,
+  innerRef,
   ...rest
 }: CounterProps) {
   const formattedValue = formatValue({ value, variant, plusLimit });
 
   return (
     <div
+      ref={innerRef}
       className={cn(styles.counter, className)}
       {...extractSupportProps(rest)}
       data-size={size}
@@ -51,3 +59,5 @@ export function Counter({
     </div>
   );
 }
+
+withInnerRefSupport(Counter);

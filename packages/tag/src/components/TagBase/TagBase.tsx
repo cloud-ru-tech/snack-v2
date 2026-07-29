@@ -1,5 +1,5 @@
 import { CrossSVG } from '@ds/icons/interface/system';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
 import { APPEARANCE, SIZE, TEST_IDS } from '../../constants';
@@ -14,12 +14,14 @@ export function TagBase({
   onDelete,
   className,
   tabIndex,
+  innerRef,
   ...rest
 }: TagBaseProps) {
   const isRemovable = Boolean(onDelete);
 
   return (
     <span
+      ref={innerRef}
       {...extractSupportProps(rest)}
       className={cn(styles.tag, className)}
       data-size={size}
@@ -45,3 +47,5 @@ export function TagBase({
     </span>
   );
 }
+
+withInnerRefSupport(TagBase);

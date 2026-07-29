@@ -1,7 +1,7 @@
 import { Appearance as StatusAppearance, StatusIndicator } from '@ds/status';
-import { WithSupportProps } from '@ds/utils';
+import { withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { HTMLAttributes, ReactNode, useEffect, useState } from 'react';
+import { HTMLAttributes, ReactNode, Ref, useEffect, useState } from 'react';
 
 import { APPEARANCE, SHAPE, SIZE, TEST_IDS } from './constants';
 import styles from './styles.module.scss';
@@ -31,6 +31,11 @@ export type AvatarProps = WithSupportProps<{
   status?: StatusAppearance;
   /** CSS-класс */
   className?: string;
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLDivElement>;
 }> &
   HTMLAttributes<HTMLDivElement>;
 
@@ -67,6 +72,7 @@ export function Avatar({
   badge,
   status,
   className,
+  innerRef,
   ...rest
 }: AvatarProps) {
   const [imageError, setImageError] = useState(false);
@@ -81,6 +87,7 @@ export function Avatar({
 
   return (
     <div
+      ref={innerRef}
       className={cn(styles.avatar, className)}
       data-size={size}
       data-appearance={appearance}
@@ -110,3 +117,5 @@ export function Avatar({
     </div>
   );
 }
+
+withInnerRefSupport(Avatar);

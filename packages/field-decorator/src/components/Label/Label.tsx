@@ -1,5 +1,5 @@
 import { QuestionTooltip } from '@ds/tooltip';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
 import { SIZE, TEST_IDS } from '../../constants';
@@ -54,3 +54,5 @@ export function Label({
     </div>
   );
 }
+
+withInnerRefSupport(Label);

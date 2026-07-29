@@ -1,4 +1,4 @@
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
@@ -66,3 +66,5 @@ export function ToastButton<T extends ElementType = 'button'>({
     </Component>
   );
 }
+
+withInnerRefSupport(ToastButton);

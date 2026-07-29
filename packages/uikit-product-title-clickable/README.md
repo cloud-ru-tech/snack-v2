@@ -181,6 +181,7 @@ export function WithAvatar() {
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
 | `shape` | `"rounded"` \| `"squared"` | — | Форма: круглая или квадратная |
 | `showTwoSymbols` | `boolean` | — | Отображение двух заглавных символов имени вместо одного |

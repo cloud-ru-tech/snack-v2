@@ -198,6 +198,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
           "plusLimit": {
             "type": "number | undefined",
             "required": false,

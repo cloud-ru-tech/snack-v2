@@ -1,4 +1,5 @@
 import { Typography } from '@ds/typography';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType } from 'react';
 
@@ -57,3 +58,5 @@ export function CardVacancy<T extends ElementType = 'a'>({
     </Tag>
   );
 }
+
+withInnerRefSupport(CardVacancy);

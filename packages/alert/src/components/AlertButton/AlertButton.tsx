@@ -1,5 +1,6 @@
 import { Sun } from '@ds/loader';
 import { useThemeClassnames } from '@ds/theme';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
@@ -98,3 +99,5 @@ export function AlertButton<T extends ElementType = 'button'>({
     </Component>
   );
 }
+
+withInnerRefSupport(AlertButton);

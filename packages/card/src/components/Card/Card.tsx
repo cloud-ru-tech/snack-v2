@@ -1,6 +1,6 @@
 import { ACRYLIC_LEVEL, BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { Checkbox, SIZE as CHECKBOX_SIZE } from '@ds/toggles';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
@@ -95,3 +95,5 @@ export function Card<T extends ElementType = 'div'>({
 }
 
 Card.displayName = 'Card';
+
+withInnerRefSupport(Card);

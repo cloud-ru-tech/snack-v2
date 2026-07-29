@@ -1,5 +1,5 @@
-import { ValueOf, WithSupportProps } from '@ds/utils';
-import { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler } from 'react';
+import { PolymorphicRef, ValueOf, WithSupportProps } from '@ds/utils';
+import { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler, Ref } from 'react';
 
 import { APPEARANCE, SIZE } from './constants';
 
@@ -35,6 +35,11 @@ export type CommonTagProps = {
 
 export type TagBaseProps = WithSupportProps<{
   onDelete?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Ref на корневой DOM-элемент.
+   * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+   */
+  innerRef?: Ref<HTMLSpanElement>;
 }> &
   CommonTagProps;
 
@@ -46,7 +51,12 @@ export type TagLinkProps<T extends ElementType = 'a'> = WithSupportProps<
   Omit<CommonTagProps, 'onDelete'> & {
     /** Элемент или компонент для рендера: 'a' | ComponentType (например Link из react-router-dom) */
     as?: T;
-  } & Omit<ComponentPropsWithoutRef<T>, keyof CommonTagProps | 'as'>
+    /**
+     * Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.
+     * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
+     */
+    innerRef?: PolymorphicRef<T>;
+  } & Omit<ComponentPropsWithoutRef<T>, keyof CommonTagProps | 'as' | 'ref'>
 >;
 
 export type TagProps = TagBaseProps | TagLinkProps;

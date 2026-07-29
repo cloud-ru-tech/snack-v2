@@ -1,6 +1,7 @@
 export * from './componentPropsProcessors';
 export * from './debounce';
 export * from './hierarchicalSelection';
+export * from './innerRef';
 export * from './isBrowser';
 export * from './copyToClipboard';
 export * from './keyboard';

@@ -3,7 +3,7 @@ import { PromoTag, PromoTagProps } from '@ds/promo-tag';
 import { Favourite } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
-import { useUncontrolledProp } from '@ds/utils';
+import { useUncontrolledProp, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import {
@@ -156,3 +156,5 @@ export function CardServiceLight<T extends ElementType = 'button'>({
     </Card>
   );
 }
+
+withInnerRefSupport(CardServiceLight);

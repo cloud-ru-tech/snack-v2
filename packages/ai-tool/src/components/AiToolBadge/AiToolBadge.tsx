@@ -1,4 +1,4 @@
-import { WithSupportProps } from '@ds/utils';
+import { withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactElement, ReactNode } from 'react';
 
@@ -63,3 +63,5 @@ export function AiToolBadge<T extends ElementType = 'span'>({
     </Component>
   );
 }
+
+withInnerRefSupport(AiToolBadge);

@@ -1,5 +1,5 @@
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType } from 'react';
 
@@ -19,6 +19,7 @@ export function Link<T extends ElementType = 'a'>({
   underlined = false,
   truncateVariant,
   as,
+  innerRef,
   ...rest
 }: LinkProps<T>) {
   const Component = as || 'a';
@@ -45,6 +46,7 @@ export function Link<T extends ElementType = 'a'>({
 
   return (
     <Component
+      ref={innerRef}
       className={cn(styles.link, className)}
       {...fallbackProps}
       data-role={role}
@@ -60,3 +62,5 @@ export function Link<T extends ElementType = 'a'>({
     </Component>
   );
 }
+
+withInnerRefSupport(Link);

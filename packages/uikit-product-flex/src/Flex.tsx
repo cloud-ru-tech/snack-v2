@@ -1,3 +1,4 @@
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { CSSProperties, ElementType, useMemo } from 'react';
 
@@ -130,3 +131,5 @@ export function Flex<T extends ElementType = 'div'>({
     </Component>
   );
 }
+
+withInnerRefSupport(Flex);

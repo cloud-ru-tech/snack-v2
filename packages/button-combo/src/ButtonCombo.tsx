@@ -1,7 +1,7 @@
 import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Droplist, ItemId } from '@ds/list';
-import { extractSupportProps, useValueControl } from '@ds/utils';
+import { extractSupportProps, useValueControl, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo } from 'react';
 
@@ -29,6 +29,7 @@ export function ButtonCombo({
   open: openProp,
   onOpenChange,
   onChange,
+  innerRef,
   ...rest
 }: ButtonComboProps) {
   const [open, setOpen] = useValueControl<boolean>({ value: openProp, onChange: onOpenChange });
@@ -54,6 +55,7 @@ export function ButtonCombo({
 
   return (
     <div
+      ref={innerRef}
       {...extractSupportProps(rest)}
       className={cn(styles.buttonComboWrapper, className)}
       tabIndex={tabIndex}
@@ -101,3 +103,5 @@ export function ButtonCombo({
     </div>
   );
 }
+
+withInnerRefSupport(ButtonCombo);

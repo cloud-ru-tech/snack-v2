@@ -82,6 +82,7 @@ export function WithBackground() {
 | `background` | `boolean` | `false` | Наличие фона |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string` | — | Подпись к индикатору (точка с текстом). Если не передано — только точка |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |
@@ -133,6 +134,7 @@ export function BasicIndicator() {
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Внешний вид |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `size` | `"2xs"` \| `"3xs"` \| `"4xs"` \| `"s"` \| `"xs"` | `s` | Размер |
 
 ##### Related types
