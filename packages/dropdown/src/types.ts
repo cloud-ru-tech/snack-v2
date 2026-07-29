@@ -1,3 +1,4 @@
+import { SnapPoint } from '@ds/bottom-sheet';
 import { InfoBlockProps } from '@ds/info-block';
 import { PopoverPrivateProps } from '@ds/popover-private';
 import { WithSupportProps } from '@ds/utils';
@@ -58,6 +59,13 @@ export type DropdownProps = WithSupportProps<
      * @default true
      */
     bodyPadding?: boolean;
+    /**
+     * Только mobile: snap-точки `BottomSheet`'а (высота листа). На desktop игнорируется.
+     * @default ['fit-content']
+     */
+    snapPoints?: SnapPoint[];
+    /** Только mobile: индекс snap'а по умолчанию (см. `BottomSheet`). */
+    defaultSnapIndex?: number;
   }> &
     Pick<
       PopoverPrivateProps,

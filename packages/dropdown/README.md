@@ -109,6 +109,7 @@ export function NotFound() {
 | `container` | `RefObject<HTMLElement \| null>` | — | Контейнер портала (ref). Переопределяет `PortalContext` для этого инстанса — <br/> по аналогии с `container` у Modal/Drawer. По умолчанию берётся из `PortalContextProvider`. |
 | `content` | `ReactNode` | — | Содержимое внутри поповера (body) |
 | `data-test-id` | `string` | — |  |
+| `defaultSnapIndex` | `number` | — | Только mobile: индекс snap'а по умолчанию (см. `BottomSheet`). |
 | `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` <br/> Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты <br/> и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` — <br/> без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение. |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `footer` | `ReactNode` | — | Слот футера (bottomBar) |
@@ -123,6 +124,7 @@ export function NotFound() {
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | `top` | Положение поповера относительно своего триггера (children). |
 | `search` | `ReactNode` | — | Слот поиска в шапке (topBar) |
 | `slotAfterTitle` | `ReactNode` | — | Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`) |
+| `snapPoints` | `SnapPoint` | `['fit-content']` | Только mobile: snap-точки `BottomSheet`'а (высота листа). На desktop игнорируется. |
 | `state` | `ActionButtonProps` \| `BlockProps` \| `BlockPropsWithIcon` \| `DropdownState` | — | Состояние |
 | `stopPropagation` | `StopPropagationHandlers` | `{ onClick: true, onMouseDown: true, onMouseUp: true, onTouchStart: true, onTouchEnd: true, onTouchMove: true }` | Гасить всплытие pointer/touch-событий с floating-контейнера (`stopPropagation`). <br/> По умолчанию все хендлеры включены. Для drag&drop внутри поповера отключите <br/> `onMouseUp` / `onTouchEnd`, чтобы они дошли до `document`. |
 | `title` | `ReactNode` | — | Заголовок в шапке (topBar) |

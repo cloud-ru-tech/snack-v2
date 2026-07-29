@@ -25,6 +25,8 @@ export function MobileDropdown({
   bodyPadding,
   className,
   closeOnPopstate,
+  snapPoints,
+  defaultSnapIndex,
   open: openProp,
   onOpenChange,
   ...rest
@@ -74,6 +76,8 @@ export function MobileDropdown({
         className={className}
         closeOnPopstate={closeOnPopstate}
         bodyPadding={bodyPadding}
+        snapPoints={snapPoints}
+        defaultSnapIndex={defaultSnapIndex}
         content={
           // Body-инсет даёт BottomSheet — внутренний bodyWrapper его не дублирует.
           <DropdownBody state={state} bodyPadding={false}>

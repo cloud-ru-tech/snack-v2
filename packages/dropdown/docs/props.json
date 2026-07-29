@@ -40,6 +40,11 @@
         "type": "string",
         "required": false
       },
+      "defaultSnapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Только mobile: индекс snap'а по умолчанию (см. `BottomSheet`)."
+      },
       "disableSpanWrapper": {
         "type": "boolean",
         "required": false,
@@ -125,6 +130,12 @@
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "defaultValue": "['fit-content']",
+        "description": "Только mobile: snap-точки `BottomSheet`'а (высота листа). На desktop игнорируется."
       },
       "state": {
         "type": "DropdownState",
@@ -232,6 +243,11 @@
         "type": "string",
         "required": false
       },
+      "defaultSnapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Только mobile: индекс snap'а по умолчанию (см. `BottomSheet`)."
+      },
       "disableSpanWrapper": {
         "type": "boolean",
         "required": false,
@@ -326,6 +342,15 @@
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "defaultValue": "['fit-content']",
+        "description": "Только mobile: snap-точки `BottomSheet`'а (высота листа). На desktop игнорируется.",
+        "typeRefs": [
+          "SnapPoint"
+        ]
       },
       "state": {
         "type": "DropdownState",
@@ -557,6 +582,11 @@
         ],
         "own": false
       },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": false
+      },
       "StopPropagationHandlers": {
         "kind": "interface",
         "props": {
@@ -662,6 +692,11 @@
         "type": "string",
         "required": false
       },
+      "defaultSnapIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Только mobile: индекс snap'а по умолчанию (см. `BottomSheet`)."
+      },
       "disableSpanWrapper": {
         "type": "boolean",
         "required": false,
@@ -747,6 +782,12 @@
         "type": "ReactNode",
         "required": false,
         "description": "Подсказка-иконка рядом с заголовком (потребитель собирает, напр. `<QuestionTooltip />`)"
+      },
+      "snapPoints": {
+        "type": "SnapPoint[]",
+        "required": false,
+        "defaultValue": "['fit-content']",
+        "description": "Только mobile: snap-точки `BottomSheet`'а (высота листа). На desktop игнорируется."
       },
       "state": {
         "type": "DropdownState",
