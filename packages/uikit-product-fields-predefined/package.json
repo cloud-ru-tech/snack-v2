@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-fields-predefined",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",
   "main": "./dist/cjs/index.js",

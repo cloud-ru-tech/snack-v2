@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.3 (2026-07-29)
+
+### Bug Fixes
+
+- **FF-8784:** hide alert footer if nothing to render in it ([876847c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/876847cf5e77d00270e80e2ae4d235e97000280b))
+
 ## 2.0.2 (2026-07-28)
 
 **Note:** Version bump only for package @ds/alert

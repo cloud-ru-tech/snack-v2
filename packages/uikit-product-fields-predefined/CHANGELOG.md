@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-07-29)
+
+### Dependencies
+
+- **FF-8784:** update dependencies to latest available versions ([77ed5e1](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/77ed5e1049139f89fd6acfe286439917b6bbcca8))
+
 ## 2.1.1 (2026-07-28)
 
 **Note:** Version bump only for package @ds/uikit-product-fields-predefined

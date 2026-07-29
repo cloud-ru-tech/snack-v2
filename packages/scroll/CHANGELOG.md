@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2026-07-29)
+
+### Dependencies
+
+- **FF-8784:** update dependencies to latest available versions ([77ed5e1](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/77ed5e1049139f89fd6acfe286439917b6bbcca8))
+
 ## 1.0.5 (2026-07-28)
 
 **Note:** Version bump only for package @ds/scroll

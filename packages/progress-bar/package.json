@@ -1,6 +1,6 @@
 {
   "name": "@ds/progress-bar",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "license": "Apache-2.0",
   "author": "Sergei Khlupin <svhlupin@cloud.ru>",
   "type": "module",

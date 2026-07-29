@@ -1,6 +1,6 @@
 {
   "name": "@ds/figma-variables",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Figma design tokens (CSS custom properties, SCSS modules, TS) для дизайн-системы",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "license": "Apache-2.0",

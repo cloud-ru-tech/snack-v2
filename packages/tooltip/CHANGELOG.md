@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-29)
+
+### Features
+
+- **FF-8784:** replace external deps with local implementations ([1ae0a32](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1ae0a324c52e5ecc43397455851c9653f7828551))
+
 ## 2.0.1 (2026-07-28)
 
 **Note:** Version bump only for package @ds/tooltip
