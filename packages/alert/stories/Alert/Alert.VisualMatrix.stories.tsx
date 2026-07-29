@@ -80,7 +80,7 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='Slots — actions / closable / collapsible (appearance=info, size=m)'
+        sectionTitle='Slots — only content / actions / closable / collapsible (appearance=info, size=m)'
         firstColumnHeader='Slot'
         columnHeaders={['vertical', 'horizontal']}
         rows={[
@@ -129,6 +129,14 @@ export const VisualMatrix: Story = {
                   content='Краткое описание'
                   onClose={fn()}
                 />
+              </div>
+            )),
+          },
+          {
+            variantLabel: 'closable (onClose) + only content',
+            cells: [ALIGN.Vertical, ALIGN.Horizontal].map(align => (
+              <div key={align} className={styles.container}>
+                <Alert appearance={APPEARANCE.Info} size='m' align={align} content='Краткое описание' onClose={fn()} />
               </div>
             )),
           },

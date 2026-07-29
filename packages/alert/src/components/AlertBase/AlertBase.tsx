@@ -125,9 +125,10 @@ export function AlertBase(props: AlertBaseProps) {
 
   const { titleRef, descriptionRef, isExpanded, canExpand, toggleExpand } = collapse;
   const isHorizontal = align === ALIGN.Horizontal;
-  const showFooter = (Boolean(actions) || Boolean(onClose)) && (!collapsible || isExpanded) && !isHorizontal;
   const showCloseButton = Boolean(onClose && (!collapsible || !canExpand || isExpanded));
   const showExpandChevron = collapsible && canExpand && !isHorizontal;
+  const showFooterActions = Boolean(actions) && !isHorizontal && (!collapsible || isExpanded);
+  const showFooter = showFooterActions || (showExpandChevron && showCloseButton);
 
   const handleAlertClick = () => {
     if (collapsible && canExpand) {
