@@ -106,6 +106,24 @@ export type ButtonProps<T extends ElementType = 'button'> = BaseButtonProps & {
 - Ref идёт через `innerRef`, **не** через стандартный `ref` и **не** через `forwardRef`. Это позволяет сохранить полный дженерик без type-assertions.
 - `Omit` уравнивает intrinsic-props с base-props, чтобы `as="a"` дал только настоящие `<a>`-атрибуты плюс наши поля.
 
+Неполиморфные компоненты отдают корневую ноду тем же пропом, только тип проще: `innerRef?: Ref<HTMLDivElement>`. Имя слота — канон, см. [prop-naming](../skills/prop-naming.md) §2.
+
+### Маркер `withInnerRefSupport` — обязателен
+
+Компонент, принимающий `innerRef` на **корневой** узел, помечается `withInnerRefSupport` из `@ds/utils` — вызовом рядом с объявлением:
+
+```tsx
+export function Button<T extends ElementType = 'button'>({ innerRef, ...rest }: ButtonProps<T>) { … }
+
+withInnerRefSupport(Button);
+```
+
+Зачем: `Popover` / `Tooltip` / `Dropdown` получают триггер как `ReactElement` и должны выбрать канал для reference-ноды — `ref` для нативных элементов и `forwardRef`-компонентов, `innerRef` для обычных функций. Интроспекция пропсов функции в рантайме невозможна, поэтому поддержка объявляется маркером. Непомеченный триггер заворачивается в `<span>` (даже при `disableSpanWrapper`) и печатает предупреждение в dev.
+
+- Форма «объявление + вызов рядом», а не `export const X = withInnerRefSupport(function X(…))`: обёртку `react-docgen-typescript` разбирает без дефолтов пропсов, и `docs/props.json`, README-таблицы и Storybook Controls теряют колонку «по умолчанию».
+- Помечаем **только** корневой `innerRef`. Если проп ведёт на внутренний слот (скрытый `<input type="file">` у dropzone) или проставляется условно — маркер не ставим, а eslint глушим точечно с причиной.
+- Проверяется правилом `ds/require-inner-ref-support` (`eslint-rules/require-inner-ref-support.mjs`) на `packages/*/src/**/*.tsx`.
+
 ## Экспорты — `src/index.ts`
 
 Пакет экспортирует через `export *` по секциям:

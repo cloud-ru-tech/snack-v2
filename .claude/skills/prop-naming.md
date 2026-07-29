@@ -80,7 +80,8 @@
 | Форма (скругление) | **`shape`** со значениями `rounded` / `squared` | `square`, `round` |
 | Ось положения элемента | суффикс **`<x>Position`** (`chevronPosition`, `markerPosition`) | голое `chevron` |
 | Наличие фон/заливка-слоя | **`background`** | `hasBackground`, `showBackground`, `decor`, `withBackground` |
-| Наличие фон/заливка-слоя | **`background`** | `hasBackground`, `showBackground`, `decor`, `withBackground` |
+| Ref на **корневой** DOM-узел компонента | **`innerRef`** | `rootRef`, `elementRef`, `forwardedRef`, `nodeRef` |
+| Ref на **внутренний слот** | суффикс **`<slot>Ref`** (`scrollRef`, `inputRef`, `triggerRef`, `itemRef`) | `innerRef` для не-корневого узла |
 | Булев флаг | утвердительно: `disabled`, `loading`, `fullWidth` | `isDisabled`, `notActive` |
 
 Значения enum-осей — из общего словаря: `single`/`multiple`, `rounded`/`squared`, `before`/`after`, `start`/`center`/`end`. Не вводи синонимы (`multi`, `square`, `round`) — сверяйся с [component-api-surface.md](../rules/component-api-surface.md) §«Константы».
@@ -88,6 +89,12 @@
 > **Почему `squared`, а не `square`:** в `@sbercloud/figma-variables` ключ `square` зарезервирован билдером — токен `<c>.anatomy.size.<s>.square` разворачивается в `width` + `height` (размер квадратного бокса), а форму несёт `<c>.anatomy.size.<s>.squared.borderRadius`. Переименовать токен нельзя — будет коллизия. Канон `squared` даёт совпадение имён во всех трёх слоях (Figma-варианты, токены, код) и снимает мост `$shapeMap` в SCSS.
 
 > **Почему `background` (голое), а не `hasBackground`/`showBackground`/`decor`:** булев флаг «есть ли цветная подложка/заливка» — это тот же bare-flag канон, что `outline` / `loading` / `fullWidth` (без префиксов `has`/`show`/`with`). Имя одинаковое в коде и в свойстве Figma-компонента, DOM-атрибут следует за пропом: `data-background`. Токен theme-цвета `decor` и CSS-класс `.decor` — отдельная поверхность, канон имени пропа на них не распространяется.
+
+> **Почему `innerRef`, а не `ref`:** компоненты ДС — обычные функции без `forwardRef` (это сохраняет дженерик полиморфного `as` без type-assertions), а функции в React 18 не принимают `ref`. Поэтому DOM-нода корня отдаётся отдельным пропом. Имя одно и то же и у полиморфных (`innerRef?: PolymorphicRef<T>`), и у обычных (`innerRef?: Ref<HTMLDivElement>`) компонентов.
+>
+> **Ref на корень — не только имя, но и маркер.** Компонент, принимающий `innerRef`, обязан быть помечен `withInnerRefSupport` из `@ds/utils`: по этому маркеру `Popover` / `Tooltip` / `Dropdown` понимают, каким каналом отдать триггеру reference-ноду (интроспекция пропсов функции в рантайме невозможна). Непомеченный триггер молча заворачивается в `<span>`. Проверяется eslint-правилом `ds/require-inner-ref-support`; механика — в [component-api-surface.md](../rules/component-api-surface.md) §«Полиморфизм».
+>
+> **Слот-рефы `<slot>Ref` маркера не требуют** — они ведут не на корень (`inputRef` у `dropzone` — на скрытый `<input type="file">`). Отдельная роль и у `rootRef` в `@ds/theme`: это ссылка на **чужой** элемент, к которому применяется тема, а не форвардинг своего корня; под канон `innerRef` она не подпадает.
 
 > **Расхождение с Figma по префиксу `show`: слот-нода vs булев флаг.** В Figma один и тот же смысл нередко разложен на **два** свойства — булев `showX` (видимость) + `X` (контент): `showTitle` + `title`, `showMedia` + `media`, `showFooter` + `footer`. В коде **слот, который либо пуст, либо несёт ноду**, — это **один** nullable-проп `X?: ReactNode`: сама передача ноды и есть «показать». Отдельный булев `showX` из Figma в API **не** заводим (`title` вместо `showTitle` + `title`; `media` вместо `showMedia` + `media`). Это и есть маппинг «2 свойства Figma → 1 проп кода».
 >
@@ -113,6 +120,10 @@ grep -rn "'multi'" packages/$PKG/src
 grep -rnE "'(square|round)'" packages/$PKG/src
 # описание вторичного текста: убедиться, что description ≠ основной payload (иначе content)
 grep -rnE "^\s+description\??:" packages/$PKG/src
+# ref на корень под чужим именем → innerRef (слот-рефы `<slot>Ref` и `rootRef` у @ds/theme — не трогать)
+grep -rnE "^\s+(rootRef|elementRef|forwardedRef|nodeRef)\??:\s*(Ref|RefObject|ForwardedRef)" packages/$PKG/src
+# innerRef без маркера ловит eslint — прогнать точечно
+pnpm exec eslint "packages/$PKG/src/**/*.tsx"
 ```
 
 ## 4. Ловушки при переименовании (проверено на FF-8680)
