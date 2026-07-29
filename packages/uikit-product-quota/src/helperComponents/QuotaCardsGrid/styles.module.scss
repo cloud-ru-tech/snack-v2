@@ -6,4 +6,11 @@
   &[data-accordion='true'] {
     max-height: 400px;
   }
+
+  /* Mobile (full-height BottomSheet): без фикс-cap — карточки заполняют тело листа и скроллятся им. */
+  &[data-mobile='true'] {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
 }

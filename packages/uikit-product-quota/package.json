@@ -31,6 +31,7 @@
   ],
   "dependencies": {
     "@ds/accordion": "workspace:^",
+    "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/counter": "workspace:^",
     "@ds/divider": "workspace:^",

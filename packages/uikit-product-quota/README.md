@@ -10,6 +10,8 @@
 
 Карточки внутри `QuotaWidget` и `QuotaWidgetMini` — те же `QuotaWidgetCard`; исчерпанные квоты (`remains <= 0`) поднимаются в начало списка и подсчитываются в counter триггера.
 
+Отдельно доступен ****QuotaWidgetContent**** — содержимое `QuotaWidget` без кнопки-триггера и выпадающего списка, для случаев, когда раскрытие даёт контейнер снаружи.
+
 ## Установка
 
 ```bash
@@ -63,6 +65,17 @@ import { QuotaWidget, QuotaWidgetMini, QuotaWidgetCard } from '@ds/uikit-product
 
 - `loading` — skeleton-карточки.
 - `error` — блок ошибки с кнопкой повтора (`onRefresh`).
+
+#### Контент без триггера — `QuotaWidgetContent`
+
+Шапка проекта и сетка карточек без кнопки-триггера и без `Dropdown`. Нужен, когда раскрытие даёт контейнер снаружи — например `sideBlock` формы, который на mobile уже открывает `BottomSheet`. Принимает те же данные и состояния, что `QuotaWidget`.
+
+На mobile `QuotaWidget` выносит шапку и кнопку «Увеличить квоты» в pinned-слоты `title` и `footer` листа, чтобы они не скроллились вместе с карточками. За это отвечают два пропа:
+
+- `hideMobileHeader` — не рендерить мобильную шапку внутри контента.
+- `hideMobileIncreaseButton` — не рендерить мобильную кнопку расширения внутри контента.
+
+Оба влияют только на mobile-раскладку. Включайте их, когда сами кладёте заголовок и кнопку в слоты своего контейнера, иначе элементы отрисуются дважды.
 
 ### Примеры использования
 
@@ -150,6 +163,8 @@ export function QuotaWidgetError() {
 
 ### Props
 
+#### QuotaWidget
+
 **QuotaWidgetProps**
 
 | Prop | Type | Default | Description |
@@ -160,6 +175,40 @@ export function QuotaWidgetError() {
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
+| `loading` | `boolean` | — | Флаг загрузки квот |
+| `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
+| `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |
+| `onRefresh` | `() => void` | — | Колбек на обновление списка квот при ошибке |
+| `onWidgetOpen` | `(() => void)` | — | Колбек открытия виджета квот |
+| `projectName` | `string` | — | Название проекта, по которому отображаются квоты |
+| `quotas` | `QuotaItem` | — | Список квот для отображения |
+| `quotasUrl` | `string` | — | Ссылка на страницу квот по проекту |
+
+##### Related types
+
+**QuotaItem**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `limit` | `number` | — | Лимит квоты |
+| `name` | `string` | — | Название квоты |
+| `remains` | `number` | — | Остаток квоты |
+| `unitDisplayName` | `string` | — | Единица измерения квоты |
+| `usage` | `number` | — | Потребление квоты |
+
+#### QuotaWidgetContent
+
+**QuotaWidgetContentProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `canEditQuota` | `boolean` | — | Флаг наличия прав на редактирование квот |
+| `data-test-id` | `string` | — |  |
+| `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
+| `error` | `boolean` | — | Флаг ошибки при загрузке квот |
+| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
+| `hideMobileHeader` | `boolean` | `false` | Не рендерить мобильную шапку (её выносят в pinned-`title` контейнера, напр. BottomSheet). <br/> На desktop не влияет. |
+| `hideMobileIncreaseButton` | `boolean` | `false` | Не рендерить мобильную кнопку расширения (её выносят в pinned-`footer` контейнера). <br/> На desktop не влияет. |
 | `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |

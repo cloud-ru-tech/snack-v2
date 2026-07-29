@@ -54,6 +54,17 @@ import componentDoc from './props.json'
 - `loading` — skeleton-карточки.
 - `error` — блок ошибки с кнопкой повтора (`onRefresh`).
 
+### Контент без триггера — `QuotaWidgetContent`
+
+Шапка проекта и сетка карточек без кнопки-триггера и без `Dropdown`. Нужен, когда раскрытие даёт контейнер снаружи — например `sideBlock` формы, который на mobile уже открывает `BottomSheet`. Принимает те же данные и состояния, что `QuotaWidget`.
+
+На mobile `QuotaWidget` выносит шапку и кнопку «Увеличить квоты» в pinned-слоты `title` и `footer` листа, чтобы они не скроллились вместе с карточками. За это отвечают два пропа:
+
+- `hideMobileHeader` — не рендерить мобильную шапку внутри контента.
+- `hideMobileIncreaseButton` — не рендерить мобильную кнопку расширения внутри контента.
+
+Оба влияют только на mobile-раскладку. Включайте их, когда сами кладёте заголовок и кнопку в слоты своего контейнера, иначе элементы отрисуются дважды.
+
 ## Установка
 
 ```bash
@@ -84,7 +95,13 @@ import { QuotaWidget } from '@ds/uikit-product-quota'
 
 ## Props
 
+### QuotaWidget
+
 <PropsTable data={componentDoc.QuotaWidget} />
+
+### QuotaWidgetContent
+
+<PropsTable data={componentDoc.QuotaWidgetContent} />
 
 ## Storybook
 

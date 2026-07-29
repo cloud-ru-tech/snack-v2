@@ -1,21 +1,27 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/card.module' as card;
 
+/* Обёртка триггера тултипа — грид-элемент вместо самой карточки, поэтому она обязана
+   отдавать карточке всю ширину трека, а не сжиматься по контенту. */
 .tooltip {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   max-width: 100%;
 }
 
 /* figma-selected-block: quotaCard root (node 2921:16397) */
 .card {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   row-gap: base.$sn-primitive-dimension-4;
 
   box-sizing: border-box;
-  width: 288px;
-  min-width: 256px;
+
+  /* Ширину карточки задаёт трек грида: desktop 2 колонки, mobile 1 колонка — на всю ширину.
+     Своей ширины у карточки нет, только нижняя граница (в Figma-мастере карточка 288px).
+     `min()` снимает эту границу, когда контейнер уже неё, — узкий лист не переполняется. */
+  min-width: min(256px, 100%);
   max-width: 100%;
   padding: base.$sn-primitive-dimension-8;
   border-radius: card.$sn-card-anatomy-radius-s-container-borderRadius;

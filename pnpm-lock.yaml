@@ -2922,6 +2922,9 @@ importers:
       '@ds/accordion':
         specifier: workspace:^
         version: link:../accordion
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button

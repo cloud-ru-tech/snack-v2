@@ -24,7 +24,7 @@ type Story = StoryObj<typeof QuotaWidget>;
 export const Playground: Story = {
   args: {
     loading: false,
-    canEditQuota: false,
+    canEditQuota: true,
   },
   render: args => (
     <DemoPage>

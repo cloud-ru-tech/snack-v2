@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Scroll } from '@ds/scroll';
 
 import { QuotaWidgetPropsBase } from '../../types';
@@ -20,9 +21,14 @@ export function QuotaCardsGrid({
   disableSorting = false,
   isAccordion = false,
 }: QuotaCardsGridProps) {
+  // На мобилке bottom-sheet-виджет full-height: снимаем фикс-cap высоты (`max-height`), карточки
+  // скроллятся телом листа. Для аккордеона (`QuotaWidgetMini`) это НЕ применяем — у него свой cap.
+  const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
+
   const wrapperAttributes = {
     className: styles.wrapper,
     'data-accordion': isAccordion,
+    'data-mobile': isMobile && !isAccordion,
   };
 
   const gridProps = {

@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import { MOCK_QUOTA_EXHAUSTED, MOCK_QUOTA_GREEN, MOCK_QUOTA_ORANGE, MOCK_QUOTA_RED } from '../mockData';
+import styles from './QuotaWidgetCard.VisualMatrix.module.scss';
 
 const meta: Meta<typeof QuotaWidgetCard> = {
   title: 'Uikit Product/Quota/QuotaWidgetCard',
@@ -25,27 +26,51 @@ export const VisualMatrix: Story = {
       rows={[
         {
           variantLabel: '0-69%',
-          cells: [<QuotaWidgetCard key='green' quota={MOCK_QUOTA_GREEN} />],
+          cells: [
+            <div key='green' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_GREEN} />
+            </div>,
+          ],
         },
         {
           variantLabel: '70-89%',
-          cells: [<QuotaWidgetCard key='orange' quota={MOCK_QUOTA_ORANGE} />],
+          cells: [
+            <div key='orange' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_ORANGE} />
+            </div>,
+          ],
         },
         {
           variantLabel: '90-99%',
-          cells: [<QuotaWidgetCard key='red' quota={MOCK_QUOTA_RED} />],
+          cells: [
+            <div key='red' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_RED} />
+            </div>,
+          ],
         },
         {
           variantLabel: '100% / exhausted',
-          cells: [<QuotaWidgetCard key='exhausted' quota={MOCK_QUOTA_EXHAUSTED} />],
+          cells: [
+            <div key='exhausted' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_EXHAUSTED} />
+            </div>,
+          ],
         },
         {
           variantLabel: 'noData=true',
-          cells: [<QuotaWidgetCard key='no-data' quota={MOCK_QUOTA_GREEN} noData onRefresh={() => undefined} />],
+          cells: [
+            <div key='no-data' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_GREEN} noData onRefresh={() => undefined} />
+            </div>,
+          ],
         },
         {
           variantLabel: 'loading=true',
-          cells: [<QuotaWidgetCard key='loading' quota={MOCK_QUOTA_GREEN} loading />],
+          cells: [
+            <div key='loading' className={styles.cell}>
+              <QuotaWidgetCard quota={MOCK_QUOTA_GREEN} loading />
+            </div>,
+          ],
         },
       ]}
     />

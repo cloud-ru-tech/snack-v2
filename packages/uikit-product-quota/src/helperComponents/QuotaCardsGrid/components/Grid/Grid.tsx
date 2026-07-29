@@ -1,3 +1,5 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+
 import { QuotaWidgetCard } from '../../../../components/QuotaWidgetCard';
 import { TEST_IDS } from '../../../../constants';
 import { QuotaItem, QuotaWidgetPropsBase } from '../../../../types';
@@ -25,8 +27,12 @@ type GridProps = Pick<QuotaWidgetPropsBase, 'quotas' | 'loading' | 'disableSorti
 export function Grid({ quotas, loading, disableSorting = false, isAccordion = false }: GridProps) {
   const sortedQuotas = disableSorting ? quotas : sortQuotas(quotas);
 
+  // На мобилке — строго одна колонка на всю ширину (BottomSheet-раскладка узкая, 2 колонки не влезают).
+  const { layoutType } = useAdaptiveLayout();
+  const isSingleColumn = (quotas.length <= 1 && !loading) || isAccordion || isMobileLayout(layoutType);
+
   return (
-    <div className={styles.grid} data-single={(quotas.length <= 1 && !loading) || isAccordion}>
+    <div className={styles.grid} data-single={isSingleColumn}>
       <QuotaWidgetCardsSkeleton loading={loading}>
         {sortedQuotas.map(quota => (
           <QuotaWidgetCard

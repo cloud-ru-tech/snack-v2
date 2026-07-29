@@ -9,4 +9,44 @@
   width: 620px;
   min-width: 620px;
   padding: base.$sn-primitive-dimension-12 base.$sn-primitive-dimension-16;
+
+  /* Mobile: dropdown раскрывается в BottomSheet на всю ширину экрана — фиксированные 620px дают
+     горизонтальный overflow, поэтому тянемся по контейнеру. Padding убираем: body-инсет уже даёт
+     контейнер (BottomSheet / ModalCustom), собственный padding был бы двойным. */
+  &[data-mobile='true'] {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+  }
+}
+
+/* Кнопка «Увеличить квоту» внизу BottomSheet на мобилке — на всю ширину. */
+.increaseButton {
+  width: 100%;
+}
+
+/* Мобильная шапка (макет): заголовок + имя проекта, слева, без пиктограмм/ссылок. */
+.mobileHeader {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.mobileTitle {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 'l');
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.mobileSubtitle {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  width: 100%;
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
 }

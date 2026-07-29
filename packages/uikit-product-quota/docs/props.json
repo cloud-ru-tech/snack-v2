@@ -116,6 +116,30 @@
     },
     "relatedTypes": {}
   },
+  "QuotaIncreaseButton": {
+    "displayName": "QuotaIncreaseButton",
+    "propsTypeName": null,
+    "description": "Кнопка «Увеличить квоту» (outline, на всю ширину) — низ мобильного листа / footer-слот BottomSheet.",
+    "props": {
+      "onClick": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "QuotaMobileHeader": {
+    "displayName": "QuotaMobileHeader",
+    "propsTypeName": null,
+    "description": "Мобильная шапка квота-виджета (макет): заголовок «Квоты» + имя проекта, слева, без пиктограмм.",
+    "props": {
+      "projectName": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
   "QuotaTooltip": {
     "displayName": "QuotaTooltip",
     "propsTypeName": null,
@@ -132,7 +156,7 @@
     "propsTypeName": "QuotaWidgetProps",
     "props": {
       "buttonProps": {
-        "type": "Pick<ButtonProps, \"label\" | \"appearance\" | \"size\" | \"disabled\" | \"fullWidth\" | \"className\">",
+        "type": "Pick<ButtonProps, \"label\" | \"appearance\" | \"size\" | \"disabled\" | \"fullWidth\" | \"className\" | \"view\">",
         "required": false,
         "description": "Свойства кнопки открытия виджета",
         "typeRefs": [
@@ -390,6 +414,11 @@
             "type": "string | undefined",
             "required": false
           },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
           "plusLimit": {
             "type": "number | undefined",
             "required": false,
@@ -572,6 +601,125 @@
       }
     },
     "relatedTypes": {}
+  },
+  "QuotaWidgetContent": {
+    "displayName": "QuotaWidgetContent",
+    "propsTypeName": "QuotaWidgetContentProps",
+    "description": "Голый контент квота-виджета: шапка проекта + карточки + кнопка расширения — без триггера,\nдропдауна и аккордеона. Используется внутри `QuotaWidget` (в дропдауне/BottomSheet) и напрямую,\nкогда контейнер-раскрытие даёт кто-то снаружи (напр. `sideBlock` формы уже открывает BottomSheet).\n\nНа full-height BottomSheet шапка/кнопка уезжают в pinned-слоты `title`/`footer` (см. `QuotaWidget`),\nа сюда остаются только карточки — тогда `hideMobileHeader`/`hideMobileIncreaseButton` = true.",
+    "props": {
+      "canEditQuota": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг наличия прав на редактирование квот"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disableSorting": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отключения сортировки квот"
+      },
+      "error": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг ошибки при загрузке квот"
+      },
+      "hideIncreaseQuotaButton": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг скрытия кнопки увеличения квоты"
+      },
+      "hideMobileHeader": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Не рендерить мобильную шапку (её выносят в pinned-`title` контейнера, напр. BottomSheet).\nНа desktop не влияет."
+      },
+      "hideMobileIncreaseButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Не рендерить мобильную кнопку расширения (её выносят в pinned-`footer` контейнера).\nНа desktop не влияет."
+      },
+      "loading": {
+        "type": "boolean",
+        "required": true,
+        "description": "Флаг загрузки квот"
+      },
+      "onIncreaseQuotaClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек нажатия на кнопку увеличения квот"
+      },
+      "onQuotasUrlClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек клика по ссылке на страницу квот по проекту"
+      },
+      "onRefresh": {
+        "type": "() => void",
+        "required": true,
+        "description": "Колбек на обновление списка квот при ошибке"
+      },
+      "onWidgetOpen": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Колбек открытия виджета квот"
+      },
+      "projectName": {
+        "type": "string",
+        "required": true,
+        "description": "Название проекта, по которому отображаются квоты"
+      },
+      "quotas": {
+        "type": "QuotaItem[]",
+        "required": true,
+        "description": "Список квот для отображения",
+        "typeRefs": [
+          "QuotaItem"
+        ]
+      },
+      "quotasUrl": {
+        "type": "string",
+        "required": true,
+        "description": "Ссылка на страницу квот по проекту"
+      }
+    },
+    "relatedTypes": {
+      "QuotaItem": {
+        "kind": "interface",
+        "props": {
+          "limit": {
+            "type": "number",
+            "required": true,
+            "description": "Лимит квоты"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "Название квоты"
+          },
+          "remains": {
+            "type": "number",
+            "required": true,
+            "description": "Остаток квоты"
+          },
+          "unitDisplayName": {
+            "type": "string",
+            "required": true,
+            "description": "Единица измерения квоты"
+          },
+          "usage": {
+            "type": "number",
+            "required": true,
+            "description": "Потребление квоты"
+          }
+        },
+        "own": true
+      }
+    }
   },
   "QuotaWidgetMini": {
     "displayName": "QuotaWidgetMini",
