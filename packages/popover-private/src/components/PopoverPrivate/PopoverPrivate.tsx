@@ -145,6 +145,10 @@ export type PopoverPrivateProps = WithSupportProps<
      * Отключает для `isValidElement` внешнюю обертку триггера
      * <br/>
      * Пригодится для элементов с `position: absolute`
+     * <br/>
+     * Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты
+     * и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —
+     * без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение.
      */
     disableSpanWrapper?: boolean;
     /**

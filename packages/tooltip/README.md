@@ -81,7 +81,7 @@ export function ClickTrigger() {
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` <br/> Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты <br/> и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` — <br/> без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение. |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `hoverDelayClose` | `number` | `0` | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | `0` | Задержка открытия по ховеру |
@@ -146,7 +146,7 @@ export function Question() {
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `disableMaxWidth` | `boolean` | `false` | Отключение ограничения ширины тултипа |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` <br/> Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты <br/> и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` — <br/> без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение. |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
 | `hoverDelayOpen` | `number` | — | Задержка открытия по ховеру |

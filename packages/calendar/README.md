@@ -605,7 +605,7 @@ export function TimePickerDropdownPlacement() {
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `TimeValue` | — | Значение по-умолчанию для uncontrolled. |
-| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` <br/> Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты <br/> и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` — <br/> без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение. |
 | `fallbackPlacements` | `Placement` | — | Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает. |
 | `fitToContainer` | `boolean` | `true` | Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%). |
 | `hoverDelayClose` | `number` | — | Задержка закрытия по ховеру |
