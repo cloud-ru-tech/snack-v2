@@ -71,7 +71,8 @@ export function Button<T extends ElementType = 'button'>({
 
   const counterNode = counter && !loading && (
     <span className={styles.counterSlot} data-absolute={showCounterAsBadge || undefined} aria-hidden>
-      <Counter {...counter} size='xs' appearance={counterAppearance} />
+      {/* Явный counter.appearance имеет приоритет; иначе наследуется от appearance кнопки. */}
+      <Counter {...counter} size='xs' appearance={counter.appearance ?? counterAppearance} />
     </span>
   );
 

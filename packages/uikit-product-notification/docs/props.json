@@ -333,9 +333,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -648,9 +648,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -972,7 +972,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -1341,9 +1341,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -1663,7 +1663,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -2018,9 +2018,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]

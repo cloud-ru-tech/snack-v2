@@ -88,9 +88,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]

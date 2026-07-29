@@ -57,9 +57,9 @@
         "required": true
       },
       "counter": {
-        "type": "Omit<CounterProps, \"appearance\" | \"size\">",
+        "type": "Omit<CounterProps, \"size\">",
         "required": false,
-        "description": "Пропсы для counter"
+        "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки)."
       },
       "data-test-id": {
         "type": "string",
@@ -343,9 +343,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -1333,9 +1333,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -2360,9 +2360,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -2864,9 +2864,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -3128,7 +3128,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -3896,7 +3896,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Outline; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Tonal; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Function; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Simple; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Outline; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Tonal; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Function; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Simple; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "ActionsProps": {
@@ -4152,9 +4152,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -5101,9 +5101,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -5365,7 +5365,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -5780,9 +5780,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -6794,7 +6794,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Outline; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Tonal; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Function; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Simple; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Outline; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Tonal; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Function; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Simple; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: \"button\" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "ActionsProps": {
@@ -7050,9 +7050,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -7999,9 +7999,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -8263,7 +8263,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -8681,9 +8681,9 @@
             "description": "Дополнительный класс"
           },
           "counter": {
-            "type": "Omit<CounterProps, \"size\" | \"appearance\"> | undefined",
+            "type": "Omit<CounterProps, \"size\"> | undefined",
             "required": false,
-            "description": "Пропсы для counter",
+            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
             "typeRefs": [
               "CounterProps"
             ]
@@ -10739,7 +10739,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -11785,7 +11785,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",

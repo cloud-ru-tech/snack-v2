@@ -35,8 +35,8 @@ export type BaseButtonProps = WithSupportProps<{
   className?: string;
   /** Вариант кнопки (Figma: filled, outline, function, simple, elevated) */
   view?: View;
-  /** Пропсы для counter */
-  counter?: Omit<CounterProps, 'size' | 'appearance'>;
+  /** Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки). */
+  counter?: Omit<CounterProps, 'size'>;
 }>;
 
 export type PolymorphicRef<T extends ElementType> = ComponentPropsWithRef<T>['ref'];

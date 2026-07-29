@@ -200,7 +200,7 @@ export function Loading() {
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Вариант оформления |
 | `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — | Дополнительный класс |
-| `counter` | `CounterProps` | — | Пропсы для counter |
+| `counter` | `CounterProps` | — | Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки). |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Отключена |
 | `fullWidth` | `boolean` | `false` | На всю ширину |

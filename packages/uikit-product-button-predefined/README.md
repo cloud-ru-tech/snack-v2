@@ -183,7 +183,7 @@ export function MobileLayout() {
 | `className` | `string` | — | Дополнительный класс <br/> Класс триггерной кнопки. |
 | `closeDroplistOnItemClick` | `boolean` | `false` | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
-| `counter` | `CounterProps` | — | Пропсы для counter |
+| `counter` | `CounterProps` | — | Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки). |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — | Отключена |
 | `fullWidth` | `boolean` | — | На всю ширину |

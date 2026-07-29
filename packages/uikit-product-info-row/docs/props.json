@@ -435,7 +435,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -558,7 +558,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "RowActionButton"
@@ -809,7 +809,7 @@
           "disableSpanWrapper": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`"
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
           },
           "fallbackPlacements": {
             "type": "Placement[] | undefined",
@@ -945,7 +945,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\" | \"appearance\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "RowActionButton"

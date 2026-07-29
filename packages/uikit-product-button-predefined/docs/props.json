@@ -49,9 +49,9 @@
         "description": "Закрывать ли поповер при переходе по истории браузера"
       },
       "counter": {
-        "type": "Omit<CounterProps, \"appearance\" | \"size\">",
+        "type": "Omit<CounterProps, \"size\">",
         "required": false,
-        "description": "Пропсы для counter",
+        "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
         "typeRefs": [
           "CounterProps"
         ]

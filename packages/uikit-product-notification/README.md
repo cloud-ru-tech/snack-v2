@@ -227,7 +227,7 @@ export function DeployFailureCard() {
 |------|------|---------|-------------|
 | `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string \| undefined` | — | Дополнительный класс |
-| `counter` | `CounterProps` | — | Пропсы для counter |
+| `counter` | `CounterProps` | — | Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки). |
 | `disabled` | `boolean \| undefined` | — | Отключена |
 | `fullWidth` | `boolean \| undefined` | — | На всю ширину |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
