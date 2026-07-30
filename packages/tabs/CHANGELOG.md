@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-30)
+
+### Bug Fixes
+
+- **FF-8713:** extend tabs to full height ([5fd8a15](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/5fd8a1520943ed764a6bded95b90d084898bc5da))
+
+### Features
+
+- **FF-8713:** add className prop ([37abf29](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/37abf298bef11a129f069dab7c98c9571c2fc53c))
+- **FF-8713:** mark components accepting innerRef and enforce the marker via eslint ([1e66765](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1e66765550f2c2db8b1b44ccaef0fef106d63d55))
+
 ## 2.0.2 (2026-07-29)
 
 ### Dependencies

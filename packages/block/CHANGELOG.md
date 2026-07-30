@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-07-30)
+
+### Features
+
+- **FF-8713:** add contentClassName prop ([e5bcd69](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e5bcd69e12588f7b341604e0ec8dda33d3612049))
+
 ## 3.0.2 (2026-07-29)
 
 **Note:** Version bump only for package @ds/block

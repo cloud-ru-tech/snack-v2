@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-30)
+
+### Features
+
+- **FF-8713:** expose BottomSheet snap points on mobile Dropdown ([d455c72](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d455c72c3976cf53455c1b073cdfd73b47827d68))
+- **FF-8713:** mark components accepting innerRef and enforce the marker via eslint ([1e66765](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1e66765550f2c2db8b1b44ccaef0fef106d63d55))
+
 ## 2.0.3 (2026-07-29)
 
 **Note:** Version bump only for package @ds/dropdown

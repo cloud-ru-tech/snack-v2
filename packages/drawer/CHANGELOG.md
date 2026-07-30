@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-07-30)
+
+### Features
+
+- **FF-8713:** add href props ([6ebcdde](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6ebcddee1ae4b518d10d8e20319937d8861cac55))
+
 ## 3.0.2 (2026-07-29)
 
 **Note:** Version bump only for package @ds/drawer

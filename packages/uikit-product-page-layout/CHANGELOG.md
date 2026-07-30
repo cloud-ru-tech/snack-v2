@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-07-30)
+
+### Bug Fixes
+
+- **FF-8713:** fix button wrapping logic ([96a5131](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/96a5131ffe6fdf38eb9c98d55aed72a692545516))
+- **FF-8713:** remove extra background for PageForm ([fe5d8b5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fe5d8b57b2ab9d7b789aa5c51a24703b3fb1470b))
+
+### Features
+
+- **FF-8713:** allow explicit counter appearance in Button ([ac557aa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ac557aaff178bd073a8b1ef376f15960fd7e34b6))
+- **FF-8713:** let PageForm sideBlock set its mobile sheet height ([6b02571](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6b025717144d610e26250d69aec4e317bb73af11))
+- **FF-8713:** mark components accepting innerRef and enforce the marker via eslint ([1e66765](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1e66765550f2c2db8b1b44ccaef0fef106d63d55))
+
+### BREAKING CHANGES
+
+- **FF-8713:** rename Headline slots to canon prop names ([95350e0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/95350e0d31eb21c993ed074c2ba9fe81224f4a66))
+
 # 2.1.0 (2026-07-29)
 
 ### Dependencies

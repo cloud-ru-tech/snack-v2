@@ -1,6 +1,6 @@
 {
   "name": "@ds/block",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "license": "Apache-2.0",
   "author": "Ilya Belyavskiy <iabelyavskiy@cloud.ru>",
   "type": "module",

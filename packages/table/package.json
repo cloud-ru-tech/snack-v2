@@ -1,6 +1,6 @@
 {
   "name": "@ds/table",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

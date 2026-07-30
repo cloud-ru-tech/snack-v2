@@ -1,6 +1,6 @@
 {
   "name": "@ds/color-picker",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

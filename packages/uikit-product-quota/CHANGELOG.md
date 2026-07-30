@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-07-30)
+
+### Features
+
+- **FF-8713:** adapt quota widget to mobile and extract QuotaWidgetContent ([16588f4](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/16588f47cee1b09db4256e497347b928e9c5e8b8))
+- **FF-8713:** allow explicit counter appearance in Button ([ac557aa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ac557aaff178bd073a8b1ef376f15960fd7e34b6))
+
 ## 2.0.3 (2026-07-29)
 
 **Note:** Version bump only for package @ds/uikit-product-quota

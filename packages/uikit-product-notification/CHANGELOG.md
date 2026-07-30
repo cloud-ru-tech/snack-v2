@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-07-30)
+
+### Features
+
+- **FF-8713:** allow explicit counter appearance in Button ([ac557aa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ac557aaff178bd073a8b1ef376f15960fd7e34b6))
+- **FF-8713:** mark components accepting innerRef and enforce the marker via eslint ([1e66765](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1e66765550f2c2db8b1b44ccaef0fef106d63d55))
+
 # 2.1.0 (2026-07-29)
 
 ### Features
