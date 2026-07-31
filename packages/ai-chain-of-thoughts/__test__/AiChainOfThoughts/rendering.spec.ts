@@ -27,11 +27,11 @@ test.describe('AiChainOfThoughts — rendering', () => {
     await expect(getByTestId(TEST_IDS.headlineIcon)).toHaveCount(0);
   });
 
-  test('broken shows the message, hides duration, chevron and content', async ({ gotoStory, getByTestId }) => {
+  test('broken shows the message and duration, hides chevron and content', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ broken: true, defaultOpened: true }));
     await expect(getByTestId(TEST_IDS.headline)).toHaveAttribute('data-broken', 'true');
     await expect(getByTestId(TEST_IDS.headlineMessage)).toBeVisible();
-    await expect(getByTestId(TEST_IDS.headlineDuration)).toHaveCount(0);
+    await expect(getByTestId(TEST_IDS.headlineDuration)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineChevron)).toHaveCount(0);
     await expect(getByTestId(TEST_IDS.content)).toHaveCount(0);
   });

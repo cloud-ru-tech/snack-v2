@@ -25,7 +25,7 @@ function Svg({ children, ...props }: GlyphProps): ReactElement {
 function ReasoningGlyph(props: GlyphProps): ReactElement {
   return (
     <Svg {...props}>
-      <circle cx='8' cy='8' r='1.33333' fill='currentColor' />
+      <circle cx='8' cy='8' r='1.82' fill='currentColor' />
     </Svg>
   );
 }

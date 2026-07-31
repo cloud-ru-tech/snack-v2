@@ -33,13 +33,12 @@ export function AiChainOfThoughtsHeadline({
   ...rest
 }: AiChainOfThoughtsHeadlineProps): ReactElement {
   const { t } = aiChainOfThoughtsLocale.useTranslations();
-  const resolvedLabel = label ?? t(inProgress ? 'inProgress' : 'done');
+  const active = inProgress || broken;
+  const resolvedLabel = label ?? t(active ? 'inProgress' : 'done');
   const resolvedBrokenMessage = brokenMessage ?? t('broken');
-  const durationSegments = !broken && duration != null ? formatDuration(duration) : [];
-  const showChevron = collapsible && !broken && Boolean(onToggle);
-  // Блеск (shimmer) — только при активном рассуждении и строковом лейбле:
-  // прерванный (`broken`) и завершённый поток статичны.
-  const shimmerText = inProgress && !broken && typeof resolvedLabel === 'string' ? resolvedLabel : null;
+  const durationSegments = duration != null ? formatDuration(duration) : [];
+  const showChevron = collapsible && Boolean(onToggle);
+  const shimmerText = active && typeof resolvedLabel === 'string' ? resolvedLabel : null;
 
   return (
     <div
@@ -64,7 +63,7 @@ export function AiChainOfThoughtsHeadline({
           </span>
         ) : (
           <span className={styles.lead}>
-            {inProgress && <AiIconGiga className={styles.icon} size={16} data-test-id={TEST_IDS.headlineIcon} />}
+            {active && <AiIconGiga className={styles.icon} size={16} data-test-id={TEST_IDS.headlineIcon} />}
             <span className={styles.label} data-test-id={TEST_IDS.headlineLabel}>
               {resolvedLabel}
             </span>
