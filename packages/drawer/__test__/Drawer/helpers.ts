@@ -8,7 +8,7 @@ export { TEST_IDS } from '../../stories/testIds';
 // TEST_IDS.public.contentWrapper — публичные значения зарезервированы и
 // привяжутся к DOM, когда rc-drawer (или его замена) будет поддерживать
 // прокидывание атрибута на mask/wrapper.
-export const OVERLAY_SELECTOR = '.rc-drawer-mask';
+export const OVERLAY_SELECTOR = '.snack-rc-drawer-mask';
 export const CONTENT_WRAPPER_SELECTOR = '[data-content-wrapper]';
 
 export const DRAWER_STORIES = {

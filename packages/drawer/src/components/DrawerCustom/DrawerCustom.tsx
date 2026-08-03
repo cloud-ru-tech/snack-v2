@@ -1,5 +1,3 @@
-import '@rc-component/drawer/assets/index.css';
-
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { PopupCloseButton } from '@ds/popup-private';
@@ -61,34 +59,19 @@ function DrawerFrame(props: DrawerCustomProps) {
   const width = resizable ? (userWidth ?? widthProp) : widthProp;
   const isPredefinedWidth = typeof width === 'string' && WIDTH_AS_VALUES.includes(width);
 
-  const { contentWrapperStyle, drawerPanelStyle } = useMemo(() => {
+  // Wrapper height/inset задаёт CSS по `[data-height-auto]`; здесь только стили секции.
+  const drawerPanelStyle = useMemo((): CSSProperties | undefined => {
     if (!heightAutoVertical) {
-      return {
-        contentWrapperStyle: undefined as CSSProperties | undefined,
-        drawerPanelStyle: undefined as CSSProperties | undefined,
-      };
+      return undefined;
     }
 
-    const contentWrapperStyleBase: CSSProperties = {
+    return {
       height: 'auto',
       maxHeight: '100%',
+      minHeight: 0,
+      overflow: 'hidden',
     };
-
-    const inset: CSSProperties =
-      position === 'bottom'
-        ? { top: 'auto', right: 0, bottom: 0, left: 0 }
-        : { top: 0, right: 0, bottom: 'auto', left: 0 };
-
-    return {
-      contentWrapperStyle: { ...contentWrapperStyleBase, ...inset },
-      drawerPanelStyle: {
-        height: 'auto',
-        maxHeight: '100%',
-        minHeight: 0,
-        overflow: 'hidden',
-      } satisfies CSSProperties,
-    };
-  }, [heightAutoVertical, position]);
+  }, [heightAutoVertical]);
 
   // Esc обрабатывает rc-drawer (`keyboard={showBlackout}`) — он уважает стек порталов и закрывает
   // только верхний дровер. `CloseWatcher` подключаем лишь там, где rc-drawer Esc не слушает
@@ -118,14 +101,9 @@ function DrawerFrame(props: DrawerCustomProps) {
       placement={position}
       destroyOnHidden
       rootClassName={cn(styles.drawerRoot, rootClassName)}
-      maskClassName={styles.mask}
       style={drawerPanelStyle}
-      styles={{
-        wrapper: contentWrapperStyle,
-      }}
       classNames={{
         section: cn(styles.drawer, className),
-        dragger: styles.dragger,
       }}
       size={isPredefinedWidth ? 'null' : width}
       {...extractSupportProps(rest)}
@@ -135,6 +113,7 @@ function DrawerFrame(props: DrawerCustomProps) {
       data-height-auto={heightAutoVertical ? true : undefined}
       data-acrylic-appearance='neutral'
       data-acrylic-level='1Level'
+      prefixCls='snack-rc-drawer'
       {...(disableMotions ? {} : motionProps)}
     >
       <div ref={focusTrapRef} className={styles.focusScope}>

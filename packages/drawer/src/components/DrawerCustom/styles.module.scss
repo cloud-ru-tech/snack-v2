@@ -5,73 +5,307 @@
 @use '@ds/figma-variables/build/scss/components/popupPrivate.module' as popupPrivate;
 @use '@ds/materials' as m;
 
-$orientations: 'vertical', 'horizontal';
 $widthSizes: 's', 'm', 'l';
 $draggerWidth: base.$sn-primitive-dimension-4;
 $draggerPosition: calc(drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight - $draggerWidth - base.$sn-primitive-dimension-6);
 $activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-dimension-24);
 
-/**
-  * Structure:
-  * <div class="drawerRoot">
-  *   <div data-content-wrapper="true" class="rc-drawer-content-wrapper">
-  *     <div class="drawer rc-drawer-content">
-  *       ...
-  *     </div>
-  *   </div>
-  */
+// placement → offscreen transform для panelMotion-*
+$panelMotions: (
+  'left': translateX(-100%),
+  'right': translateX(100%),
+  'top': translateY(-100%),
+  'bottom': translateY(100%),
+);
 
-:global {
-  .rc-drawer:has(.rc-drawer-resizable-dragger-dragging) {
+.drawerRoot:global(.snack-rc-drawer) {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: initial;
+  inset: 0;
+
+  overflow: hidden;
+
+  transition: width 0s ease 0.3s, height 0s ease 0.3s, transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+
+  &:global(> *) {
+    transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86), opacity 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86), box-shadow 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  }
+
+  &:global(.snack-rc-drawer-open) {
+    transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  }
+
+  :global {
+    .snack-rc-drawer-mask {
+      pointer-events: auto;
+
+      position: absolute;
+      z-index: initial;
+      inset: 0;
+
+      opacity: 1;
+      background-color: base.$sn-theme-color-blackout;
+
+      transition: opacity 0.2s;
+
+      &.maskMotion-enter,
+      &.maskMotion-appear {
+        opacity: 0;
+      }
+
+      &.maskMotion-enter-active,
+      &.maskMotion-appear-active {
+        opacity: 1;
+      }
+
+      &.maskMotion-leave {
+        opacity: 1;
+        transition: opacity 0.1s;
+      }
+
+      &.maskMotion-leave-active {
+        opacity: 0;
+      }
+    }
+
+    .snack-rc-drawer-section {
+      pointer-events: auto;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .snack-rc-drawer-content-wrapper {
+      pointer-events: none;
+      will-change: transform;
+
+      position: absolute;
+      z-index: initial;
+
+      overflow: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      max-width: 100%;
+
+      background: none;
+      box-shadow: none;
+
+      transition: transform 0.2s ease-in-out;
+
+      &[data-position='top'] {
+        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop');
+
+        .snack-rc-drawer-section {
+          @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
+        }
+      }
+
+      &[data-position='bottom'] {
+        bottom: 0;
+
+        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom');
+
+        .snack-rc-drawer-section {
+          @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
+        }
+      }
+
+      &[data-position='left'] {
+        top: 0;
+        bottom: 0;
+        left: 0;
+
+        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft');
+
+        .snack-rc-drawer-section {
+          @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
+        }
+      }
+
+      &[data-position='right'] {
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight');
+
+        .snack-rc-drawer-section {
+          @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
+        }
+      }
+
+      &[data-position='left'],
+      &[data-position='right'] {
+        align-items: stretch;
+        height: 100%;
+
+        @each $width in $widthSizes {
+          &[data-width='#{$width}'] {
+            @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width);
+
+            width: min(100%, base.simple-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width, 'max-width'));
+          }
+        }
+      }
+
+      &[data-position='top'],
+      &[data-position='bottom'] {
+        width: 100%;
+        height: 100%;
+      }
+
+      &[data-position='top'][data-height-auto],
+      &[data-position='bottom'][data-height-auto] {
+        height: auto;
+        max-height: 100%;
+      }
+
+      &[data-position='top'][data-height-auto] {
+        inset: 0 0 auto;
+      }
+
+      &[data-position='bottom'][data-height-auto] {
+        inset: auto 0 0;
+      }
+
+      @each $placement, $offscreen in $panelMotions {
+        &.panelMotion-#{$placement}-enter,
+        &.panelMotion-#{$placement}-appear {
+          transform: $offscreen;
+        }
+
+        &.panelMotion-#{$placement}-enter-active,
+        &.panelMotion-#{$placement}-appear-active {
+          transform: translate(0);
+        }
+
+        &.panelMotion-#{$placement}-leave {
+          transform: translate(0);
+        }
+
+        &.panelMotion-#{$placement}-leave-active {
+          transform: $offscreen;
+          transition: transform 0.1s ease-out;
+        }
+      }
+    }
+
+    .snack-rc-drawer-content-wrapper-hidden {
+      display: none;
+    }
+
+    .snack-rc-drawer-resizable-dragger {
+      pointer-events: auto;
+      cursor: ew-resize;
+
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: $draggerWidth;
+      height: base.$sn-primitive-dimension-32;
+      border-radius: base.$sn-density-radius-2xs;
+
+      background-color: base.$sn-theme-color-neutral-decor;
+
+      transition: height ease-in-out 0.2s;
+
+      &::after {
+        content: '';
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: calc(100% + base.$sn-primitive-dimension-12);
+        height: 100vh;
+      }
+
+      &:hover {
+        height: $activeDraggerHeight;
+      }
+    }
+
+    .snack-rc-drawer-resizable-dragger-left {
+      right: $draggerPosition;
+    }
+
+    .snack-rc-drawer-resizable-dragger-right {
+      left: $draggerPosition;
+    }
+  }
+
+  &:global(.snack-rc-drawer-left),
+  &:global(.snack-rc-drawer-right) {
+    top: 0;
+    width: 0%;
+    height: 100%;
+  }
+
+  &:global(.snack-rc-drawer-left) {
+    left: 0;
+  }
+
+  &:global(.snack-rc-drawer-right) {
+    right: 0;
+  }
+
+  &:global(.snack-rc-drawer-top),
+  &:global(.snack-rc-drawer-bottom) {
+    left: 0;
+    width: 100%;
+    height: 0%;
+  }
+
+  &:global(.snack-rc-drawer-top) {
+    top: 0;
+  }
+
+  &:global(.snack-rc-drawer-bottom) {
+    bottom: 0;
+  }
+
+  &:has(:global(.snack-rc-drawer-resizable-dragger-dragging)) {
     cursor: ew-resize;
 
-    .rc-drawer-resizable-dragger {
-        height: $activeDraggerHeight;
+    :global(.snack-rc-drawer-resizable-dragger) {
+      height: $activeDraggerHeight;
     }
+  }
+
+  &:global(.snack-rc-drawer-section) {
+    box-shadow: base.$sn-boxShadow-elevation-level5;
+  }
+
+  &:global(.snack-rc-drawer-left.snack-rc-drawer-open),
+  &:global(.snack-rc-drawer-right.snack-rc-drawer-open) {
+    width: 100%;
+  }
+
+  &:global(.snack-rc-drawer-top.snack-rc-drawer-open),
+  &:global(.snack-rc-drawer-bottom.snack-rc-drawer-open) {
+    height: 100%;
   }
 }
 
-.drawerRoot {
-  z-index: initial !important; /* stylelint-disable-line declaration-no-important */
-
-  .mask {
-    position: absolute;
-    z-index: initial !important; /* stylelint-disable-line declaration-no-important */
-    inset: 0;
-
-    height: 100%;
-
-    opacity: 1;
-
-    // rc-drawer рендерит mask только при mask={showBlackout}, поэтому фон-затемнение
-    // ставим прямо на `.mask`: mask в DOM ⟺ blackout нужен. Раньше правило висело на
-    // `[data-content-wrapper][data-showblackout] .mask`, но mask — сосед content-wrapper'а,
-    // а не потомок, и селектор не срабатывал → оставался дефолт rc-drawer rgba(0,0,0,.5).
-    background-color: base.$sn-theme-color-blackout;
-  }
+.drawerRoot:global(.snack-rc-drawer .snack-rc-drawer-content-wrapper) {
+  @include m.with-material('acrylic', #{drawer});
 }
 
 .focusScope {
   display: contents;
-}
-
-.drawer {
-  pointer-events: auto;
-
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  box-sizing: border-box;
-  width: 100%;
-
-  // elevation-level5 — свойство контейнера по макету (Figma drawer container), не от showBlackout.
-  // Легаси soft (`showBlackout={false}`) сохраняет тень без затемнения фона.
-  box-shadow: base.$sn-boxShadow-elevation-level5;
-
-  @include base.composite-var(drawer.$drawer, 'anatomy', 'container');
 }
 
 .badgeButtonClosed {
@@ -90,126 +324,4 @@ $activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-
 
   width: 0;
   height: 0;
-}
-
-div[data-content-wrapper='true'] {
-  pointer-events: none;
-  will-change: transform;
-
-  z-index: initial;
-
-  overflow: unset;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  max-width: 100%;
-
-  background: none;
-  box-shadow: none !important; /* stylelint-disable-line declaration-no-important */
-
-  @include m.with-material('acrylic', #{drawer});
-
-  .dragger {
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: $draggerWidth;
-    height: base.$sn-primitive-dimension-32;
-    border-radius: base.$sn-density-radius-2xs;
-
-    background-color: base.$sn-theme-color-neutral-decor!important;
-
-    transition: height ease-in-out 0.2s;
-
-    &::after {
-      content: '';
-
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      width: calc(100% + base.$sn-primitive-dimension-12);
-      height: 100vh;
-    }
-
-    &:hover {
-      height: $activeDraggerHeight;
-    }
-  }
-
-  &[data-position='top'] {
-    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop');
-
-    .drawer {
-      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
-    }
-  }
-
-  &[data-position='bottom'] {
-    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom');
-
-    .drawer {
-      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
-    }
-  }
-
-  &[data-position='left'] {
-    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft');
-
-    .drawer {
-      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
-    }
-
-    .dragger {
-      right: $draggerPosition;
-    }
-  }
-
-  &[data-position='right'] {
-    @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight');
-
-    .drawer {
-      @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
-    }
-
-    .dragger {
-      left: $draggerPosition;
-    }
-  }
-
-  &[data-position='left'],
-  &[data-position='right'] {
-    align-items: stretch;
-    height: 100%;
-
-    @each $width in $widthSizes {
-      &[data-width='#{$width}'] {
-        @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width);
-
-        width: min(100%, base.simple-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'width', 'container', $width, 'max-width'));
-      }
-    }
-  }
-
-  &[data-position='top'],
-  &[data-position='bottom'] {
-    width: 100%;
-    height: 100%;
-  }
-
-  &[data-position='top'][data-height-auto],
-  &[data-position='bottom'][data-height-auto] {
-    height: auto;
-    max-height: 100%;
-  }
-
-  &[data-position='top'][data-height-auto] {
-    inset: 0 0 auto;
-  }
-
-  &[data-position='bottom'][data-height-auto] {
-    inset: auto 0 0;
-  }
 }

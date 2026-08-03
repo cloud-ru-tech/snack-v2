@@ -1,5 +1,3 @@
-import './motion.scss';
-
 import { DrawerProps } from '@rc-component/drawer';
 
 export const maskMotion: DrawerProps['maskMotion'] = {
