@@ -13,7 +13,7 @@ import {
 
 import { buildStoryOptions, CARD_STORIES, CARD_TEST_ID } from './helpers';
 
-const VIEWS = ['simple', 'outline', 'shadow'] as const;
+const VIEWS = ['simple', 'outline', 'elevated'] as const;
 const RADII = ['s', 'm', 'l'] as const;
 const ROW_STATES = [
   { key: 'default', disabled: false, checked: false, hover: false, focused: false },

@@ -90,8 +90,8 @@
         "type": "enum",
         "required": false,
         "values": [
+          "elevated",
           "outline",
-          "shadow",
           "simple"
         ],
         "defaultValue": "simple",
@@ -136,8 +136,8 @@
       "View": {
         "kind": "union",
         "values": [
+          "elevated",
           "outline",
-          "shadow",
           "simple"
         ],
         "own": true

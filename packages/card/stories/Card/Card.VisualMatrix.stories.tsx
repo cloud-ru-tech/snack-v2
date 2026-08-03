@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Card>;
 type CardPropsForMatrix = ComponentProps<typeof Card>;
 
 const keyRadii = [RADIUS.S, RADIUS.M, RADIUS.L] as const;
-const keyViews = [VIEW.Simple, VIEW.Outline, VIEW.Shadow] as const;
+const keyViews = [VIEW.Simple, VIEW.Outline, VIEW.Elevated] as const;
 
 const interactionStates: Array<{ key: string; extra: Partial<CardPropsForMatrix> }> = [
   { key: 'default', extra: {} },

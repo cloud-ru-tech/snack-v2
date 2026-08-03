@@ -9,8 +9,8 @@ export function ViewValues() {
       <Card view={VIEW.Outline}>
         <div style={{ padding: 8 }}>outline</div>
       </Card>
-      <Card view={VIEW.Shadow}>
-        <div style={{ padding: 8 }}>shadow</div>
+      <Card view={VIEW.Elevated}>
+        <div style={{ padding: 8 }}>elevated</div>
       </Card>
     </div>
   );

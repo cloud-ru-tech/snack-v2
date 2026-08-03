@@ -55,7 +55,7 @@ const meta: Meta<typeof Card> = {
     view: {
       control: 'radio',
       options: Object.values(VIEW),
-      description: 'Режим: simple / outline / shadow',
+      description: 'Режим: simple / outline / elevated',
     },
     backgroundPredefined: {
       control: 'select',

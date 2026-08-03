@@ -8,7 +8,7 @@ import { buildStoryOptions, CARD_TEST_ID, TEST_IDS } from './helpers';
 const KEY_COMBOS = [
   { radius: RADIUS.S, view: VIEW.Simple, fill: BACKGROUND_PREDEFINED_FILL.Transparent },
   { radius: RADIUS.M, view: VIEW.Outline, fill: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level },
-  { radius: RADIUS.L, view: VIEW.Shadow, fill: BACKGROUND_PREDEFINED_FILL.PrimaryBackground },
+  { radius: RADIUS.L, view: VIEW.Elevated, fill: BACKGROUND_PREDEFINED_FILL.PrimaryBackground },
 ] as const;
 
 test.describe('Card — rendering', () => {

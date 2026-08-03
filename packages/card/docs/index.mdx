@@ -24,7 +24,7 @@ import cardDoc from './props.json'
 
 # Card
 
-`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'shadow'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
+`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'elevated'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
 
 ## Когда использовать
 
@@ -59,13 +59,13 @@ import cardDoc from './props.json'
 
 - `simple` — плоская карточка без контура и тени; на hover поднимается через `elevation-level3`.
 - `outline` — контур по бордеру `regular/default/borderColor`; на hover темнеет до `regular/hovered/borderColor`, тень не добавляется.
-- `shadow` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
+- `elevated` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
 
 | Значение  | Токен        |
 | --------- | ------------ |
 | `simple`  | `VIEW.Simple`  |
 | `outline` | `VIEW.Outline` |
-| `shadow`  | `VIEW.Shadow`  |
+| `elevated` | `VIEW.Elevated` |
 
 ### Background predefined (default `neutralBackground1Level`)
 

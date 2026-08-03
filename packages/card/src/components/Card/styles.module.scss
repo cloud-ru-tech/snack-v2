@@ -114,7 +114,7 @@ $radius-to-badge-padding-top: (
     box-shadow: none;
   }
 
-  &[data-view='shadow'] {
+  &[data-view='elevated'] {
     box-shadow: base.$sn-boxShadow-elevation-level2;
   }
 
@@ -124,7 +124,7 @@ $radius-to-badge-padding-top: (
       box-shadow: none;
     }
 
-    &[data-view='shadow'] {
+    &[data-view='elevated'] {
       box-shadow: base.$sn-boxShadow-elevation-level2;
     }
   }
@@ -143,7 +143,7 @@ $radius-to-badge-padding-top: (
         border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
       }
 
-      &[data-view='shadow'] {
+      &[data-view='elevated'] {
         box-shadow: base.$sn-boxShadow-elevation-level3;
       }
     }

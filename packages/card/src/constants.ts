@@ -10,7 +10,7 @@ export const SIZE = RADIUS;
 export const VIEW = {
   Simple: 'simple',
   Outline: 'outline',
-  Shadow: 'shadow',
+  Elevated: 'elevated',
 } as const;
 
 export const TEST_IDS = {

@@ -2,7 +2,7 @@
 
 `@ds/card` — Корневая карточка с осями radius, view и слоем backgroundPredefined + acrylic.
 
-`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'shadow'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
+`Card` — контейнер с акриловой подложкой по токену `backgroundPredefined`, accent-state-layer для `checked` и контекстом `radius` для вложенного контента. По умолчанию интерактивный (`cursor: pointer`, focus-ring, hover-elevation для `view='simple'`/`'elevated'`, hovered-border для `view='outline'`); для презентационных карточек без отклика на курсор передайте `interactive={false}`. Внутренний padding не задаётся — отступы расставляет потребитель.
 
 ## Когда использовать
 
@@ -37,13 +37,13 @@
 
 - `simple` — плоская карточка без контура и тени; на hover поднимается через `elevation-level3`.
 - `outline` — контур по бордеру `regular/default/borderColor`; на hover темнеет до `regular/hovered/borderColor`, тень не добавляется.
-- `shadow` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
+- `elevated` — приподнятая тень `elevation-level2`; на hover повышается до `elevation-level3`.
 
 | Значение  | Токен        |
 | --------- | ------------ |
 | `simple`  | `VIEW.Simple`  |
 | `outline` | `VIEW.Outline` |
-| `shadow`  | `VIEW.Shadow`  |
+| `elevated` | `VIEW.Elevated` |
 
 ### Background predefined (default `neutralBackground1Level`)
 
@@ -114,8 +114,8 @@ export function ViewValues() {
       <Card view={VIEW.Outline}>
         <div style={{ padding: 8 }}>outline</div>
       </Card>
-      <Card view={VIEW.Shadow}>
-        <div style={{ padding: 8 }}>shadow</div>
+      <Card view={VIEW.Elevated}>
+        <div style={{ padding: 8 }}>elevated</div>
       </Card>
     </div>
   );
@@ -199,7 +199,7 @@ export function DisabledCard() {
 | `interactive` | `boolean` | `true` | Включает интерактивные эффекты (hover/press state layer, cursor: pointer, focus-ring). <br/> Установи `false` для презентационной карточки без отклика на курсор. |
 | `multiSelect` | `boolean` | `false` | Режим множественного выбора — добавляет чек-бэйдж в углу при `checked`. |
 | `radius` | `"l"` \| `"m"` \| `"s"` | `m` | Радиус контейнера. |
-| `view` | `"outline"` \| `"shadow"` \| `"simple"` | `simple` | Визуальный режим карточки. |
+| `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный режим карточки. |
 
 #### Related types
 
@@ -207,7 +207,7 @@ export function DisabledCard() {
 
 - `Radius` = `"l"` \| `"m"` \| `"s"`
 
-- `View` = `"outline"` \| `"shadow"` \| `"simple"`
+- `View` = `"elevated"` \| `"outline"` \| `"simple"`
 
 ## Смотри также
 
