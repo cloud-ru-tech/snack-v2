@@ -19,11 +19,11 @@ export function AvatarDemo() {
       controls={{
         name: { type: 'text' },
         src: { type: 'text' },
-        size: { type: 'select', options: ['xs', 's', 'm', 'l', '3xl', '6xl', '10xl'] },
+        size: { type: 'select', options: ['xs', 's', 'm', 'l', '3xl', '6xl', '9xl'] },
         shape: { type: 'select', options: ['rounded', 'squared'] },
         appearance: {
           type: 'select',
-          options: ['neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],
+          options: ['neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],
         },
         showTwoSymbols: { type: 'boolean' },
       }}
