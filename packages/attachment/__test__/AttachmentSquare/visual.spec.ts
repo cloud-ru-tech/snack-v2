@@ -44,6 +44,8 @@ const ROW_STATES: readonly RowState[] = [
 ] as const;
 
 const CELL_PADDING = 8;
+/** Отступ от угла карточки для точки hover — см. комментарий в цикле. */
+const HOVER_CORNER_INSET = 6;
 const ROW_GAP = 4;
 const SECTION_GAP = 24;
 const DISABLED_GAP = 16;
@@ -132,9 +134,16 @@ test.describe('AttachmentSquare — visual regression', () => {
 
           await page.mouse.move(0, 0);
           if (row.hover) {
-            await target.hover();
-            // TruncateString (@ds/truncate-string) измеряет родителя через ResizeObserver
-            // после видимости overlay — без паузы успеваем снять скриншот до пересчёта.
+            // Наводим в верхний-правый угол карточки, а не в её центр. `:hover` живёт на
+            // корне, поэтому overlay с actions раскрывается от любой точки внутри карточки,
+            // а в центре лежит усечённый текст: TruncateString (@ds/truncate-string) вешает
+            // на него tooltip, который по своему таймингу успевает всплыть и попасть в кадр.
+            // Угол свободен во всех строках матрицы (checkbox — слева сверху, actions — снизу).
+            const box = await target.boundingBox();
+            if (!box) throw new Error(`AttachmentSquare: нет boundingBox для ${size}/${col}/${row.key}`);
+            await page.mouse.move(box.x + box.width - HOVER_CORNER_INSET, box.y + HOVER_CORNER_INSET);
+            // TruncateString измеряет родителя через ResizeObserver после видимости overlay —
+            // без паузы успеваем снять скриншот до пересчёта.
             await page.waitForTimeout(120);
           }
 
