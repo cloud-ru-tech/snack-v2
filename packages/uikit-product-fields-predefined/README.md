@@ -164,7 +164,7 @@ export function FieldMaskControlled() {
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
 ### Адаптивность
@@ -336,7 +336,7 @@ export function FieldPhoneCountrySettings() {
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
 ##### Related types
@@ -499,7 +499,7 @@ export function FieldNameRHFExample() {
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
 ### Адаптивность
@@ -642,7 +642,7 @@ export function FieldDescriptionRHFExample() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
 ### Адаптивность
@@ -1001,7 +1001,7 @@ export function FieldChatWithAttachments() {
 | `resizable` | `boolean` | `false` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
 ### Адаптивность
@@ -1251,7 +1251,7 @@ export function FieldDescriptionRHFExample() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
 ## FieldNameRHF
@@ -1335,5 +1335,5 @@ export function FieldNameRHFExample() {
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |

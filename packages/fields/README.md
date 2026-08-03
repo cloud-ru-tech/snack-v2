@@ -2,7 +2,7 @@
 
 `@ds/fields` — Поля ввода с единой обёрткой label/caption/hint/error и общими осями size/validationState — текст, пароль, число, ползунок, дата, время, выбор, цвет.
 
-Пакет `@ds/fields` объединяет поля ввода с общими осями `size` (`s`/`m`/`l`) и `validationState` (`default`/`error`/`warning`/`success`/`valid`) и единой обёрткой label/caption/hint/error.
+Пакет `@ds/fields` объединяет поля ввода с общими осями `size` (`s`/`m`/`l`) и `validationState` (`default`/`error`/`warning`/`success`) и единой обёрткой label/caption/hint/error.
 
 - **`FieldText`** — однострочное текстовое поле.
 - **`FieldSecure`** — поле для паролей и токенов с переключателем видимости.
@@ -107,7 +107,7 @@ export function ColorBasic() {
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `string` | — | Текущее значение (hex/rgb/hsl-строка, controlled-режим). |
 | `withAlpha` | `boolean` | `true` | Управляет альфа-каналом палитры и наличием поля Alpha. |
 
@@ -192,7 +192,7 @@ export function Affixes() {
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
 #### Related types
@@ -311,7 +311,7 @@ export function DateBasic() {
 | `showSeconds` | `boolean` | `true` | Показывать секунды в режиме `date-time` (в маске и в выпадающем календаре). |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `today` | `number \| Date` | — | Дата сегодняшнего дня |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `DateRangeValue` \| `DateValue` | — | Управляемое значение |
 
 #### Related types
@@ -408,7 +408,7 @@ export function Secure() {
 | `spellCheck` | `boolean` | `true` | Значение атрибута spellcheck (проверка орфографии) |
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
 ## FieldSelect
@@ -507,7 +507,7 @@ export function Select() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `ItemId` | — | Управляемое значение <br/> Управляемые значения |
 | `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `'eq' — равна ширине триггера` | Стратегия ширины дроплиста. |
@@ -579,7 +579,7 @@ export function SliderRange() {
 | `step` | `number \| null` | — | Шаг приращения. `null` — снэп только к меткам. |
 | `textInputFormatter` | `TextInputFormatter` | — | Форматирование значения в текстовом поле |
 | `unbindInputFromMarks` | `boolean` | `false` | Если `true` — текстовое поле принимает любые числа в диапазоне `min..max`, <br/> не снэпя к меткам. |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `SliderValue` | — | Значение (число или диапазон при `range`; controlled-режим) |
 
 #### Related types
@@ -651,7 +651,7 @@ export function Stepper() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `step` | `number` | `1` | Шаг приращения |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `number` | — | Значение (controlled-режим) |
 
 #### Related types
@@ -727,7 +727,7 @@ export function Basic() {
 | `step` | `string \| number` | — | Максимальное значение поля |
 | `tabIndex` | `number` | `0` | Значение атрибута tab-index |
 | `type` | `"email"` \| `"number"` \| `"password"` \| `"tel"` \| `"text"` \| `"url"` | — | Тип инпута |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | — | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
 #### Related types
@@ -806,7 +806,7 @@ export function TextArea() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `string` | — | Значение (controlled-режим) |
 
 #### Related types
@@ -873,7 +873,7 @@ export function TimeBasic() {
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `showSeconds` | `boolean` | `true` | Показывать секунды в picker и в маске input. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 | `value` | `TimeValue` | — | Значение |
 
 #### Related types

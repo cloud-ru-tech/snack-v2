@@ -16,14 +16,12 @@ export default meta;
 type Story = StoryObj<typeof FieldTime>;
 
 const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
-// Все 5 публичных значений валидации (паритет с FieldDate). `valid` — отдельная колонка:
-// тонировка фона на decorator-уровне совпадает с default, но колонка обязательна для полноты оси.
+// Все 4 публичных значения валидации (паритет с FieldDate).
 const keyStates = [
   VALIDATION_STATE.Default,
   VALIDATION_STATE.Error,
   VALIDATION_STATE.Warning,
   VALIDATION_STATE.Success,
-  VALIDATION_STATE.Valid,
 ] as const;
 
 const sample: TimeValue = { hours: 14, minutes: 25, seconds: 36 };

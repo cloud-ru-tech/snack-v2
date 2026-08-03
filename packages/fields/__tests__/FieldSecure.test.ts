@@ -11,9 +11,8 @@ describe('FieldSecure / getAcrylicAppearance', () => {
     expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Success })).toBe('green');
   });
 
-  it('keeps neutral for default and valid (valid is NOT green)', () => {
+  it('keeps neutral for default (only error/warning/success tint)', () => {
     expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Default })).toBe('neutral');
-    expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Valid })).toBe('neutral');
     expect(getAcrylicAppearance({})).toBe('neutral');
   });
 
@@ -40,10 +39,9 @@ describe('FieldSecure / getAcrylicLevel', () => {
     expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Success })).toBe('default');
   });
 
-  it('returns 1Level at rest for a neutral field (default / valid)', () => {
+  it('returns 1Level at rest for a neutral field (default)', () => {
     expect(getAcrylicLevel({})).toBe('1Level');
     expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Default })).toBe('1Level');
-    expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Valid })).toBe('1Level');
   });
 
   it('prefers hover/focus over the colored-validation rest state', () => {

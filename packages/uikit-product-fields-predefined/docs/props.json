@@ -74,7 +74,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации"
@@ -276,7 +275,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -793,7 +791,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -1153,7 +1150,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -1407,7 +1403,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -1627,7 +1622,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -1881,7 +1875,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -2227,7 +2220,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -2995,7 +2987,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -3313,7 +3304,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -4069,7 +4059,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -4387,7 +4376,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -5143,7 +5131,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false
@@ -5459,7 +5446,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "description": "Состояние валидации",
@@ -5730,7 +5716,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": false

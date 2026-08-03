@@ -105,7 +105,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "defaultValue": "default",
@@ -334,7 +333,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": true
@@ -419,7 +417,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "defaultValue": "default",
@@ -461,7 +458,6 @@
           "default",
           "error",
           "success",
-          "valid",
           "warning"
         ],
         "own": true

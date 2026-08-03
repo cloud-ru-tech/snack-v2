@@ -10,7 +10,7 @@ export const HINT_STORIES = {
   visualMatrix: 'visual-matrix',
 } as const;
 
-export const HINT_VALIDATION_STATES = ['default', 'error', 'warning', 'success', 'valid'] as const;
+export const HINT_VALIDATION_STATES = ['default', 'error', 'warning', 'success'] as const;
 
 export function buildStoryOptions(
   props?: Record<string, unknown>,

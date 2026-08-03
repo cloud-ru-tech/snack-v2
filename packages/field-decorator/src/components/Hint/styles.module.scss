@@ -3,9 +3,8 @@
 
 $sizes: 's', 'm', 'l';
 
-// `valid` — нейтральный baseline (подсказка в textTertiary, без иконки), паритет с Figma:
-// в Figma validation=valid не красит подсказку зелёным. Цветную обратную связь дают
-// только error/warning/success.
+// `default` — нейтральный baseline (подсказка в textTertiary, без иконки), паритет с Figma.
+// Цветную обратную связь дают только error/warning/success.
 $validationStates: warning, error, success;
 
 $validationStateColor: (

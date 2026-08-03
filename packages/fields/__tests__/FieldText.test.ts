@@ -59,9 +59,8 @@ describe('FieldText shared utils — acrylic resolver', () => {
       expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Success })).toBe('green');
     });
 
-    it('stays neutral for default / valid (valid is not green)', () => {
+    it('stays neutral for default (only error/warning/success tint)', () => {
       expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Default })).toBe('neutral');
-      expect(getAcrylicAppearance({ validationState: VALIDATION_STATE.Valid })).toBe('neutral');
       expect(getAcrylicAppearance({})).toBe('neutral');
     });
 
@@ -88,9 +87,8 @@ describe('FieldText shared utils — acrylic resolver', () => {
       expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Success })).toBe('default');
     });
 
-    it('is 1Level at rest for neutral (default / valid) field', () => {
+    it('is 1Level at rest for neutral (default) field', () => {
       expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Default })).toBe('1Level');
-      expect(getAcrylicLevel({ validationState: VALIDATION_STATE.Valid })).toBe('1Level');
       expect(getAcrylicLevel({})).toBe('1Level');
     });
 
@@ -105,7 +103,7 @@ describe('FieldText shared utils — acrylic resolver', () => {
         'data-acrylic-appearance': 'red',
         'data-acrylic-level': '2Level',
       });
-      expect(getAcrylicProps({ validationState: VALIDATION_STATE.Valid })).toEqual({
+      expect(getAcrylicProps({ validationState: VALIDATION_STATE.Default })).toEqual({
         'data-acrylic-appearance': 'neutral',
         'data-acrylic-level': '1Level',
       });

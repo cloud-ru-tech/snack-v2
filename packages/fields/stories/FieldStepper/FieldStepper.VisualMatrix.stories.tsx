@@ -14,7 +14,6 @@ export default meta;
 type Story = StoryObj<typeof FieldStepper>;
 
 const keySizes = [SIZE.S, SIZE.M, SIZE.L] as const;
-// `valid` визуально идентичен `default` (нет иконки подсказки) — отдельной колонкой не выводится.
 const keyStates = [
   VALIDATION_STATE.Default,
   VALIDATION_STATE.Error,

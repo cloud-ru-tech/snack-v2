@@ -21,7 +21,6 @@ const keyStates = [
   VALIDATION_STATE.Error,
   VALIDATION_STATE.Warning,
   VALIDATION_STATE.Success,
-  VALIDATION_STATE.Valid,
 ] as const;
 
 export const VisualMatrix: Story = {
@@ -30,7 +29,7 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.matrix}>
       {/* Поле тонирует acrylic-фон по валидации (error→red, warning→yellow, success→green;
-          default/valid — нейтральный фон). Это field-специфика, а не chrome FieldDecorator. */}
+          default — нейтральный фон). Это field-специфика, а не chrome FieldDecorator. */}
       <StoryTable
         sectionTitle='Size × ValidationState'
         firstColumnHeader='Size'

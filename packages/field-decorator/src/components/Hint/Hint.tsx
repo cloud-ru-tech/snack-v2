@@ -19,7 +19,6 @@ function getHintIcon(validationState: ValidationState) {
       return <NotifierWarningFilledSVG />;
     case VALIDATION_STATE.Success:
       return <NotifierSuccessFilledSVG />;
-    case VALIDATION_STATE.Valid:
     default:
       return null;
   }

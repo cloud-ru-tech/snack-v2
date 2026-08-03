@@ -21,7 +21,6 @@ const keyStates = [
   VALIDATION_STATE.Error,
   VALIDATION_STATE.Warning,
   VALIDATION_STATE.Success,
-  VALIDATION_STATE.Valid,
 ] as const;
 
 // Метки вне сетки шага и с подписями ≠ ключам: визуально показывает off-grid-кейс снэпа.

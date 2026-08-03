@@ -9,7 +9,6 @@ export const VALIDATION_STATE = {
   Error: 'error',
   Warning: 'warning',
   Success: 'success',
-  Valid: 'valid',
 } as const;
 
 export const TEST_IDS = {

@@ -22,7 +22,6 @@ const keyStates = [
   VALIDATION_STATE.Error,
   VALIDATION_STATE.Warning,
   VALIDATION_STATE.Success,
-  VALIDATION_STATE.Valid,
 ] as const;
 
 const stateExtras = [

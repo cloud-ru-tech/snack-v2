@@ -334,7 +334,7 @@ $sizes: 's', 'm', 'l';
           }
 
           // Внутренний бордер поля по фокусу — accent (Figma: fieldWrapper stroke, 1px, full opacity).
-          // Дефолт/valid → primary-accent; error/warning/success → цвет accent'а валидации
+          // Дефолт → primary-accent; error/warning/success → цвет accent'а валидации
           // (перекрытия — сразу после size-цикла, на равной специфичности по порядку источника).
           & > .backgroundWrapper > .borderStateLayer[data-state='regularBorder'] {
             border-color: base.$sn-theme-color-primary-accent;

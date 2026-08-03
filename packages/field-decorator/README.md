@@ -34,8 +34,7 @@
 
 | Значение | Когда |
 |----------|-------|
-| `default` | Нет валидации |
-| `valid` | Нейтральный baseline: подсказка нейтрального цвета (`textTertiary`), без иконки и без зелёной заливки. Поле прошло валидацию, но не требует акцента. Зелёный — только `success` |
+| `default` | Нет валидации — нейтральный baseline: подсказка в `textTertiary`, без иконки и без заливки |
 | `error` | Не прошло валидацию |
 | `warning` | Предупреждение |
 | `success` | Подтверждение |
@@ -265,7 +264,7 @@ export function HintStandalone() {
 | `required` | `boolean` | — | Показать знак обязательности `*` |
 | `showHintIcon` | `boolean` | `true` | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 
 #### Related types
 
@@ -278,7 +277,7 @@ export function HintStandalone() {
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
+- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"warning"`
 
 ### Label
 
@@ -318,7 +317,7 @@ export function HintStandalone() {
 | `readonly` | `boolean` | — | Только для чтения |
 | `showHintIcon` | `boolean` | `true` | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"` | `default` | Состояние валидации |
+| `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | `default` | Состояние валидации |
 
 #### Related types
 
@@ -331,4 +330,4 @@ export function HintStandalone() {
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 
-- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"valid"` \| `"warning"`
+- `ValidationState` = `"default"` \| `"error"` \| `"success"` \| `"warning"`
