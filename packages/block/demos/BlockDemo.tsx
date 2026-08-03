@@ -10,12 +10,29 @@ export function BlockDemo() {
       component={Block}
       componentDoc={blockDoc.Block}
       defaultProps={{
-        variant: 'simple',
+        view: 'simple',
         size: 'l',
+        backgroundPredefined: 'neutralBackground1Level',
         children: '# slot content',
       }}
       controls={{
-        variant: { type: 'select', options: ['simple', 'outline', 'elevated', 'transparent'] },
+        view: { type: 'select', options: ['simple', 'outline', 'elevated'] },
+        backgroundPredefined: {
+          type: 'select',
+          options: [
+            'neutralBackground1Level',
+            'primaryBackground',
+            'redBackground',
+            'orangeBackground',
+            'yellowBackground',
+            'greenBackground',
+            'blueBackground',
+            'violetBackground',
+            'pinkBackground',
+            'decorTransparent',
+            'transparent',
+          ],
+        },
         size: { type: 'select', options: ['s', 'm', 'l'] },
         children: { type: 'text' },
       }}

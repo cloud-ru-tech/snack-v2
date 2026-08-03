@@ -1,6 +1,6 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { SIZE, VARIANT } from '../../src/constants';
+import { SIZE, VIEW } from '../../src/constants';
 import { TEST_IDS } from '../../stories/Block/testIds';
 
 export { TEST_IDS };
@@ -26,7 +26,7 @@ export function buildStoryOptions(
 }
 
 export const KEY_COMBOS = [
-  { size: SIZE.S, variant: VARIANT.Simple },
-  { size: SIZE.M, variant: VARIANT.Outline },
-  { size: SIZE.L, variant: VARIANT.Simple },
+  { size: SIZE.S, view: VIEW.Simple },
+  { size: SIZE.M, view: VIEW.Outline },
+  { size: SIZE.L, view: VIEW.Elevated },
 ] as const;

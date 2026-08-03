@@ -1,4 +1,4 @@
-import { Block, BlockProps, SIZE, VARIANT } from '@ds/block';
+import { Block, BlockProps, SIZE, VIEW } from '@ds/block';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -14,7 +14,7 @@ const meta: Meta<BlockProps> = {
   parameters: { layout: 'fullscreen' },
   args: {
     size: SIZE.L,
-    variant: VARIANT.Simple,
+    view: VIEW.Simple,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     'data-test-id': TEST_IDS.root,
   },
@@ -22,17 +22,14 @@ const meta: Meta<BlockProps> = {
     size: {
       control: 'radio',
       options: Object.values(SIZE),
-      description: 'Размер',
     },
-    variant: {
+    view: {
       control: 'radio',
-      options: Object.values(VARIANT),
-      description: 'Вариант',
+      options: Object.values(VIEW),
     },
     backgroundPredefined: {
       control: 'select',
       options: Object.values(BACKGROUND_PREDEFINED_FILL),
-      description: 'Слой backgroundPredefined + acrylic (`BACKGROUND_PREDEFINED_FILL`).',
     },
   },
 };
@@ -67,7 +64,7 @@ export const Playground: Story = {
   args: {
     showBackground: true,
     size: SIZE.L,
-    variant: VARIANT.Simple,
+    view: VIEW.Simple,
     customText: '# slot content',
   },
   argTypes: {

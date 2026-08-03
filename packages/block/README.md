@@ -13,8 +13,21 @@
 
 ## Анатомия
 
-### Variant
-Способ визуального отделения поверхности: `simple` — сплошная заливка, `outline` — с контурной рамкой, `elevated` — с тенью для подъёма над фоном, `transparent` — только акриловый эффект без заливки.
+### View (default `simple`)
+Способ визуального отделения поверхности:
+
+- `simple` — только акриловая подложка, без рамки и тени.
+- `outline` — с контурной рамкой.
+- `elevated` — с тенью для подъёма над фоном (`l` берёт `elevation-level2`, `m`/`s` — `level1`).
+
+### BackgroundPredefined (default `neutralBackground1Level`)
+Палитра подложки — тот же набор, что у слота `backgroundPredefined` в Figma (`BACKGROUND_PREDEFINED_FILL` из `@ds/materials`):
+
+- цветные заливки — `primaryBackground`, `neutralBackground1Level`, `redBackground`, `orangeBackground`, `yellowBackground`, `greenBackground`, `blueBackground`, `violetBackground`, `pinkBackground`;
+- `decorTransparent` — полупрозрачная декоративная подложка;
+- `transparent` — без заливки, остаётся только blur.
+
+Ось независима от `view`: рамка и тень комбинируются с любой подложкой.
 
 ### Size
 Плотность внутренних отступов и радиуса скругления: `s` — компактный (нестед-карточки, попсайды), `m` — дефолт, `l` — крупные карточки и модальные поверхности.
@@ -25,7 +38,7 @@ pnpm add @ds/block
 ```
 
 ```ts
-import { Block, SIZE, VARIANT } from '@ds/block'
+import { Block, SIZE, VIEW } from '@ds/block'
 ```
 
 ## Примеры использования
@@ -50,7 +63,7 @@ import { Block } from '@ds/block';
 
 export function OutlineLarge() {
   return (
-    <Block variant='outline' size='l'>
+    <Block view='outline' size='l'>
       <span>Outline size L</span>
     </Block>
   );
@@ -61,12 +74,42 @@ export function OutlineLarge() {
 
 ```tsx
 import { Block } from '@ds/block';
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 
 export function Transparent() {
   return (
-    <Block variant='transparent' size='m'>
+    <Block backgroundPredefined={BACKGROUND_PREDEFINED_FILL.DecorTransparent} size='m'>
       <span>Transparent</span>
     </Block>
+  );
+}
+```
+
+### Палитра подложек
+
+Цвет фона задаётся `backgroundPredefined`, не `view`.
+
+```tsx
+import { Block } from '@ds/block';
+import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
+
+const FILLS = [
+  BACKGROUND_PREDEFINED_FILL.PrimaryBackground,
+  BACKGROUND_PREDEFINED_FILL.GreenBackground,
+  BACKGROUND_PREDEFINED_FILL.YellowBackground,
+  BACKGROUND_PREDEFINED_FILL.RedBackground,
+  BACKGROUND_PREDEFINED_FILL.VioletBackground,
+] as const;
+
+export function BackgroundPalette() {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      {FILLS.map(fill => (
+        <Block key={fill} backgroundPredefined={fill} size='m'>
+          <span>{fill}</span>
+        </Block>
+      ))}
+    </div>
   );
 }
 ```
@@ -76,10 +119,10 @@ export function Transparent() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
+| `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> Задаёт палитру подложки: цвета, `transparent` и `decorTransparent`. <br/> По умолчанию `material/neutralBackground1Level`. |
 | `children` | `ReactNode` | — | Содержимое |
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок |
 | `contentClassName` | `string` | — | Класс на внутренний слот содержимого (`.content`). Block — подложка, а не layout-контейнер <br/> (`display: block`); раскладку контента задаёт потребитель. Этот проп даёт управлять слотом <br/> содержимого напрямую — напр. растянуть его по высоте блока (`flex`/`height`), когда корень <br/> блока сделан flex-контейнером через `className`. |
 | `data-test-id` | `string` | — | Стабильный идентификатор для e2e/tests |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `variant` | `"elevated"` \| `"outline"` \| `"simple"` \| `"transparent"` | `simple` | Вариант |
+| `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный режим поверхности |

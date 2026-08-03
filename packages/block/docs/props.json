@@ -2,7 +2,7 @@
   "Block": {
     "displayName": "Block",
     "propsTypeName": "BlockProps",
-    "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Различные варианты отображения: simple (обычный акрил), outline (с обводкой), elevated (с тенью), transparent (полупрозрачное матовое стекло)\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children",
+    "description": "Компонент-слот для отображения любого содержимого на подложке, имитирующей материал (матовое/полупрозрачное стекло).\n\nПоддерживает:\n- Акриловый фон с эффектом backdrop blur\n- Визуальные режимы: simple (обычный акрил), outline (с обводкой), elevated (с тенью)\n- Палитру подложек через `backgroundPredefined`: цвета, `transparent` и `decorTransparent`\n- Различные размеры: s (малый), m (средний), l (большой)\n- Гибкое содержимое - принимает любые React children",
     "props": {
       "backgroundPredefined": {
         "type": "enum",
@@ -21,7 +21,7 @@
           "yellowBackground"
         ],
         "defaultValue": "neutralBackground1Level",
-        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nПо умолчанию `material/neutralBackground1Level`."
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nЗадаёт палитру подложки: цвета, `transparent` и `decorTransparent`.\nПо умолчанию `material/neutralBackground1Level`."
       },
       "children": {
         "type": "ReactNode",
@@ -54,17 +54,16 @@
         "defaultValue": "m",
         "description": "Размер"
       },
-      "variant": {
+      "view": {
         "type": "enum",
         "required": false,
         "values": [
           "elevated",
           "outline",
-          "simple",
-          "transparent"
+          "simple"
         ],
         "defaultValue": "simple",
-        "description": "Вариант"
+        "description": "Визуальный режим поверхности"
       }
     },
     "relatedTypes": {}

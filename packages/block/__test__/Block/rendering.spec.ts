@@ -12,13 +12,13 @@ test.describe('Block — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const { size, variant } of KEY_COMBOS) {
-      test(`size=${size}, variant=${variant}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ size, variant }));
+    for (const { size, view } of KEY_COMBOS) {
+      test(`size=${size}, view=${view}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ size, view }));
 
         const root = getByTestId(TEST_IDS.root);
         await expect(root).toHaveAttribute('data-size', size);
-        await expect(root).toHaveAttribute('data-variant', variant);
+        await expect(root).toHaveAttribute('data-view', view);
       });
     }
   });

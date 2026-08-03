@@ -12,6 +12,8 @@ import { OutlineLarge } from '../demos/examples/OutlineLarge'
 import OutlineLargeSrc from '../demos/examples/OutlineLarge.tsx?raw'
 import { Transparent } from '../demos/examples/Transparent'
 import TransparentSrc from '../demos/examples/Transparent.tsx?raw'
+import { BackgroundPalette } from '../demos/examples/BackgroundPalette'
+import BackgroundPaletteSrc from '../demos/examples/BackgroundPalette.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -35,8 +37,21 @@ import { figmaNode } from '#docs/lib/figma'
 
 ## Анатомия
 
-### Variant
-Способ визуального отделения поверхности: `simple` — сплошная заливка, `outline` — с контурной рамкой, `elevated` — с тенью для подъёма над фоном, `transparent` — только акриловый эффект без заливки.
+### View (default `simple`)
+Способ визуального отделения поверхности:
+
+- `simple` — только акриловая подложка, без рамки и тени.
+- `outline` — с контурной рамкой.
+- `elevated` — с тенью для подъёма над фоном (`l` берёт `elevation-level2`, `m`/`s` — `level1`).
+
+### BackgroundPredefined (default `neutralBackground1Level`)
+Палитра подложки — тот же набор, что у слота `backgroundPredefined` в Figma (`BACKGROUND_PREDEFINED_FILL` из `@ds/materials`):
+
+- цветные заливки — `primaryBackground`, `neutralBackground1Level`, `redBackground`, `orangeBackground`, `yellowBackground`, `greenBackground`, `blueBackground`, `violetBackground`, `pinkBackground`;
+- `decorTransparent` — полупрозрачная декоративная подложка;
+- `transparent` — без заливки, остаётся только blur.
+
+Ось независима от `view`: рамка и тень комбинируются с любой подложкой.
 
 ### Size
 Плотность внутренних отступов и радиуса скругления: `s` — компактный (нестед-карточки, попсайды), `m` — дефолт, `l` — крупные карточки и модальные поверхности.
@@ -47,7 +62,7 @@ pnpm add @ds/block
 ```
 
 ```ts
-import { Block, SIZE, VARIANT } from '@ds/block'
+import { Block, SIZE, VIEW } from '@ds/block'
 ```
 
 ## Примеры использования
@@ -61,6 +76,10 @@ import { Block, SIZE, VARIANT } from '@ds/block'
 
 <Example title='Прозрачное матовое стекло' code={TransparentSrc}>
   <Transparent client:visible />
+</Example>
+
+<Example title='Палитра подложек' description='Цвет фона задаётся `backgroundPredefined`, не `view`.' code={BackgroundPaletteSrc}>
+  <BackgroundPalette client:visible />
 </Example>
 
 ## Props

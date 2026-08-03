@@ -1,6 +1,6 @@
 import { ValueOf } from '@ds/utils';
 
-import { SIZE, VARIANT } from './constants';
+import { SIZE, VIEW } from './constants';
 
 export type Size = ValueOf<typeof SIZE>;
-export type Variant = ValueOf<typeof VARIANT>;
+export type View = ValueOf<typeof VIEW>;

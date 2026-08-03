@@ -25,6 +25,11 @@
   }
 }
 
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-32;
+}
+
 .wrapper {
   display: flex;
   flex-direction: row;

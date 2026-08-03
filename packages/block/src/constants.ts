@@ -1,8 +1,7 @@
-export const VARIANT = {
+export const VIEW = {
   Simple: 'simple',
   Outline: 'outline',
   Elevated: 'elevated',
-  Transparent: 'transparent',
 } as const;
 
 export const SIZE = {
