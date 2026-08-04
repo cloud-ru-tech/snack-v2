@@ -83,6 +83,33 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
+        sectionTitle='ButtonField × Droplist'
+        firstColumnHeader='Slot'
+        columnHeaders={['showDroplistChevron=true', 'showDroplistChevron=false']}
+        rows={[
+          {
+            variantLabel: 'droplist',
+            cells: [
+              <Wrap key='no-bf-outline'>
+                <Search
+                  placeholder='Поиск'
+                  outline
+                  buttonField={{ ...buttonFieldSlot, droplist: { items: [] }, showDroplistChevron: true }}
+                />
+              </Wrap>,
+              <Wrap key='bf-outline'>
+                <Search
+                  placeholder='Поиск'
+                  outline
+                  buttonField={{ ...buttonFieldSlot, droplist: { items: [] }, showDroplistChevron: false }}
+                />
+              </Wrap>,
+            ],
+          },
+        ]}
+      />
+
+      <StoryTable
         sectionTitle='Background'
         firstColumnHeader='Вариант'
         columnHeaders={['Search']}

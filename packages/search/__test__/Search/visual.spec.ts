@@ -16,7 +16,7 @@ test.describe('Search — visual regression', () => {
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, SEARCH_STORIES.visualMatrix));
     await waitForFonts();
-    await assertVisualMatrixSnapshot(page);
+    await assertVisualMatrixSnapshot(page, undefined, undefined, { threshold: 0.2 });
   });
 
   test('interaction states (default × hover × focus)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {

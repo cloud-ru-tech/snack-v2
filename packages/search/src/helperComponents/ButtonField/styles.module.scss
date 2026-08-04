@@ -54,11 +54,38 @@ $variants: 'before', 'after';
     &[data-size='#{$size}'] {
       @include base.composite-var(field.$field, 'anatomy', 'size', $size, 'buttonField', 'container');
 
-      $borderTopLeftRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-top-left-radius');
-      $borderTopRightRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-top-right-radius');
-      $borderBottomRightRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-bottom-right-radius');
-      $borderBottomLeftRadius: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'border-bottom-left-radius');
-
+      $borderTopLeftRadius: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'border-top-left-radius'
+      );
+      $borderTopRightRadius: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'border-top-right-radius'
+      );
+      $borderBottomRightRadius: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'border-bottom-right-radius'
+      );
+      $borderBottomLeftRadius: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'border-bottom-left-radius'
+      );
 
       &[data-variant='before'] {
         border-radius: $borderTopLeftRadius 0 0 $borderBottomLeftRadius;
@@ -75,7 +102,7 @@ $variants: 'before', 'after';
   }
 
   // States management
-  &:not([data-loading="true"], [data-disabled="true"]) {
+  &:not([data-loading='true'], [data-disabled='true']) {
     @include m.has-state-layer-as-child(#{backgroundStateLayer});
   }
 
@@ -85,8 +112,8 @@ $variants: 'before', 'after';
     }
   }
 
-  &[data-loading="true"],
-  &[data-disabled="true"] {
+  &[data-loading='true'],
+  &[data-disabled='true'] {
     cursor: not-allowed;
 
     .backgroundStateLayer {
@@ -94,7 +121,7 @@ $variants: 'before', 'after';
     }
   }
 
-  &:not([data-disabled='true'])[data-loading="true"] {
+  &:not([data-disabled='true'])[data-loading='true'] {
     background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
   }
 
@@ -104,4 +131,9 @@ $variants: 'before', 'after';
     outline: $outlineWidth solid base.$sn-theme-color-primary-accent;
     outline-offset: calc(0px - $outlineWidth);
   }
+}
+
+.trigger {
+  display: flex;
+  height: 100%;
 }

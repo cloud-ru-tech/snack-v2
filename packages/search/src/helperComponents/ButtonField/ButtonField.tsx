@@ -1,12 +1,37 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
+import { Droplist, DroplistProps } from '@ds/list';
 import { Sun, SUN_SIZE } from '@ds/loader';
-import { extractSupportProps, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/utils';
 import { type KeyboardEvent, ReactNode, useCallback, useMemo, useState } from 'react';
 
 import { SIZE } from './constants';
 import styles from './styles.module.scss';
 import { Size, Variant } from './types';
 import { getIconSize } from './utils';
+
+/**
+ * Конфигурация встроенного выпадающего списка (действия / выбор) на `@ds/list` `Droplist`.
+ */
+export type ButtonFieldDroplistProps = Pick<
+  DroplistProps,
+  | 'items'
+  | 'pinTop'
+  | 'pinBottom'
+  | 'selection'
+  | 'search'
+  | 'scroll'
+  | 'scrollToSelectedItem'
+  | 'placement'
+  | 'widthStrategy'
+  | 'virtualized'
+  | 'closeDroplistOnItemClick'
+  | 'data-test-id'
+> & {
+  /** Контролируемое состояние раскрытия */
+  open?: boolean;
+  /** Колбек смены состояния раскрытия */
+  onOpenChange?(open: boolean): void;
+};
 
 export type ButtonFieldProps = WithSupportProps<{
   /** Вариант (положение) кнопки */
@@ -22,8 +47,13 @@ export type ButtonFieldProps = WithSupportProps<{
   disabled?: boolean;
   /** Слот для кнопки/иконки/аватара */
   action: ReactNode;
-  /** Отображение шеврона */
-  withDropdownList?: boolean;
+  /** Отображение шеврона. По умолчанию `true` если передан `droplist`" */
+  showDroplistChevron?: boolean;
+  /**
+   * Пропсы выпадающего списка (`Droplist`). Если переданы — кнопка открывает `Droplist`
+   * и показывает шеврон, иначе рендерится без выпадающего списка.
+   */
+  droplist?: ButtonFieldDroplistProps;
   /** Действие при клике */
   onClick(): void;
 }>;
@@ -39,19 +69,25 @@ export function ButtonField({
   loading = false,
   disabled = false,
   onClick,
-  withDropdownList,
+  droplist,
+  showDroplistChevron = Boolean(droplist),
   variant = 'after',
   action,
   ...rest
 }: ButtonFieldProps) {
-  const [isListOpen, setListOpen] = useState<boolean>(false);
   const [stateLayerPressed, setStateLayerPressed] = useState(false);
   const iconSize = useMemo(() => getIconSize(size), [size]);
 
+  const [open = false, setOpen] = useValueControl<boolean>({
+    value: droplist?.open,
+    defaultValue: false,
+    onChange: droplist?.onOpenChange,
+  });
+
   const handleListToggleClick = useCallback(() => {
-    setListOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen: boolean) => !prevOpen);
     onClick();
-  }, [onClick]);
+  }, [onClick, setOpen]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -75,7 +111,7 @@ export function ButtonField({
     setStateLayerPressed(false);
   }, []);
 
-  return (
+  const button = (
     <button
       className={styles.buttonContainer}
       onClick={loading || disabled ? undefined : handleListToggleClick}
@@ -87,18 +123,36 @@ export function ButtonField({
       data-variant={variant}
       data-loading={loading || undefined}
       data-disabled={disabled || undefined}
-      data-pressed={stateLayerPressed ? true : undefined}
+      data-pressed={stateLayerPressed || undefined}
       {...extractSupportProps(rest)}
     >
-      <div className={styles.backgroundStateLayer} data-state='regularFilled' />
-      <div className={styles.elementWrapper}>
+      <span className={styles.backgroundStateLayer} data-state='regularFilled' />
+      <span className={styles.elementWrapper}>
         {loading && !disabled ? <Sun size={SUN_SIZE_MAP[size]} /> : action}
-        {withDropdownList && (
-          <div className={styles.chevron}>
-            {isListOpen ? <ChevronUpSVG size={iconSize} /> : <ChevronDownSVG size={iconSize} />}
-          </div>
+
+        {droplist && showDroplistChevron && (
+          <span className={styles.chevron}>
+            {open ? <ChevronUpSVG size={iconSize} /> : <ChevronDownSVG size={iconSize} />}
+          </span>
         )}
-      </div>
+      </span>
     </button>
+  );
+
+  if (!droplist) {
+    return button;
+  }
+
+  return (
+    <Droplist
+      trigger='click'
+      {...droplist}
+      size={size}
+      open={open}
+      onOpenChange={setOpen}
+      triggerClassName={styles.trigger}
+    >
+      {button}
+    </Droplist>
   );
 }

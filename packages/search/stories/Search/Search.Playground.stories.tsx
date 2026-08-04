@@ -1,4 +1,5 @@
 import { PlaceholderSVG, SearchSVG } from '@ds/icons/interface/system';
+import { ItemProps as Item } from '@ds/list';
 import { Search, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -7,12 +8,18 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from './testIds';
 
+const DROPLIST_ITEMS: Item[] = [
+  { id: 'everywhere', content: { label: 'Везде' } },
+  { id: 'docs', content: { label: 'В документах' } },
+  { id: 'people', content: { label: 'В людях' } },
+];
+
 const BUTTON_FIELD_PRESETS = {
   none: undefined,
   search: { action: <SearchSVG />, onClick: () => {}, 'data-test-id': TEST_IDS.buttonField },
   'search+dropdown': {
     action: <SearchSVG />,
-    withDropdownList: true,
+    droplist: { items: DROPLIST_ITEMS },
     onClick: () => {},
     'data-test-id': TEST_IDS.buttonField,
   },

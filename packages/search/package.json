@@ -27,6 +27,7 @@
     "@ds/divider": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/loader": "workspace:^",
+    "@ds/list": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/search-private": "workspace:^",
     "@ds/utils": "workspace:^",

@@ -1,12 +1,19 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { ItemProps as Item, TEST_IDS as LIST_TEST_IDS } from '@ds/list';
 import { Search, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { expect, fn, userEvent, within } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { TEST_IDS } from '../testIds';
+
+const DROPLIST_ITEMS: Item[] = [
+  { id: 'everywhere', content: { label: 'Везде' } },
+  { id: 'docs', content: { label: 'В документах' } },
+  { id: 'people', content: { label: 'В людях' } },
+];
 
 const meta: Meta<typeof Search> = {
   title: 'Components/Search/Examples/WithButtonField',
@@ -35,7 +42,7 @@ export const WithButtonField: Story = {
       <DemoPage>
         <DemoPanel>
           <DemoTitle>WithButtonField</DemoTitle>
-          <DemoHint>Slot ButtonField справа — кнопка-поиск с шевроном dropdown.</DemoHint>
+          <DemoHint>Slot ButtonField справа — кнопка-поиск с шевроном и выпадающим списком.</DemoHint>
           <DemoActions block>
             <Search
               {...args}
@@ -43,7 +50,8 @@ export const WithButtonField: Story = {
               onChange={setValue}
               buttonField={{
                 action: <PlaceholderSVG />,
-                withDropdownList: true,
+                droplist: { items: DROPLIST_ITEMS },
+                showDroplistChevron: true,
                 onClick: () => args.onSubmit?.(value),
                 'data-test-id': TEST_IDS.buttonField,
               }}
@@ -63,10 +71,23 @@ export const WithButtonField: Story = {
       await userEvent.type(input, 'query');
     });
 
-    await step('click ButtonField: onClick fired with current value', async () => {
+    await step('click ButtonField: onClick fired with current value, droplist opens', async () => {
       await userEvent.click(buttonField);
       expect(args.onSubmit).toHaveBeenCalledTimes(1);
       expect(args.onSubmit).toHaveBeenLastCalledWith('query');
+      // Droplist рендерится в портале (document.body), вне canvasElement.
+      await waitFor(() =>
+        expect(document.querySelectorAll(`[data-test-id^="${LIST_TEST_IDS.baseItem}_"]`).length).toBe(
+          DROPLIST_ITEMS.length,
+        ),
+      );
+    });
+
+    await step('close droplist before checking keyboard/blur states', async () => {
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() =>
+        expect(document.querySelectorAll(`[data-test-id^="${LIST_TEST_IDS.baseItem}_"]`).length).toBe(0),
+      );
     });
 
     await step('keyboard Enter on ButtonField: pressed state via keyDown/keyUp', async () => {

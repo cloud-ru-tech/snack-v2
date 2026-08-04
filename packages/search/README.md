@@ -103,6 +103,25 @@ export function TransparentBackground() {
 
 #### Related types
 
+**ButtonFieldDroplistProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `closeDroplistOnItemClick` | `boolean \| undefined` | — | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
+| `data-test-id` | `string \| undefined` | — |  |
+| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
+| `onOpenChange` | `((open: boolean) => void) \| undefined` | — | Колбек смены состояния раскрытия |
+| `open` | `boolean \| undefined` | — | Контролируемое состояние раскрытия |
+| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные снизу |
+| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные сверху |
+| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Положение поповера относительно своего триггера (children). |
+| `scroll` | `boolean \| undefined` | — | Включить ли скролл для основной части списка |
+| `scrollToSelectedItem` | `boolean \| undefined` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
+| `search` | `SearchState` | — | Настройки поисковой строки |
+| `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
+| `virtualized` | `boolean \| undefined` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
+| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | — | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
+
 **ButtonFieldProps**
 
 | Prop | Type | Default | Description |
@@ -110,11 +129,12 @@ export function TransparentBackground() {
 | `action` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Слот для кнопки/иконки/аватара |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Деактивирован ли компонент |
+| `droplist` | `ButtonFieldDroplistProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Пропсы выпадающего списка (`Droplist`). Если переданы — кнопка открывает `Droplist` <br/> и показывает шеврон, иначе рендерится без выпадающего списка. |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `() => void` | — | Действие при клике |
+| `showDroplistChevron` | `boolean \| undefined` | — | Отображение шеврона |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер кнопки |
 | `variant` | `"after"` \| `"before"` | — | Вариант (положение) кнопки |
-| `withDropdownList` | `boolean \| undefined` | — | Отображение шеврона |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 

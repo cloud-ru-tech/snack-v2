@@ -16,6 +16,18 @@ const VM_PADDING = 8;
 const VM_SNAPSHOT_NAME = 'visual-matrix.png';
 
 /**
+ * Tolerance сравнения снимка с baseline'ом. Дефолт — `MATCH_SNAPSHOT_DEFAULT_OPTS`;
+ * точечный override нужен, когда общий коридор для конкретного снимка либо слишком узкий
+ * (снимок флейкует), либо слишком широкий (правка не пробивает порог, и
+ * `--update-snapshots=changed` не считает baseline устаревшим).
+ */
+export type SnapshotMatchOptions = {
+  maxDiffPixelRatio?: number;
+  maxDiffPixels?: number;
+  threshold?: number;
+};
+
+/**
  * Снимок VisualMatrix-стори с автоматическим кадрированием.
  *
  * - Если story использует shared `StoryTable` (#storybook/components) — кадр обрезается
@@ -27,6 +39,7 @@ export async function assertVisualMatrixSnapshot(
   page: Page,
   snapshotName = VM_SNAPSHOT_NAME,
   opts: Parameters<typeof page.screenshot>[0] = SCREENSHOT_DEFAULT_OPTS,
+  matchOpts: SnapshotMatchOptions = MATCH_SNAPSHOT_DEFAULT_OPTS,
 ): Promise<void> {
   const tables = page.getByTestId(STORY_TABLE_TEST_ID);
 
@@ -49,7 +62,7 @@ export async function assertVisualMatrixSnapshot(
   }
 
   if (stableCount === 0) {
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(snapshotName, opts);
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(snapshotName, { ...opts, ...matchOpts });
     return;
   }
 
@@ -66,7 +79,7 @@ export async function assertVisualMatrixSnapshot(
     all.map(async (loc, i) => ({ label: `section-${i}`, png: await loc.screenshot(opts) })),
   );
   const composite = await composeScreenshots(cells, { layout: 'col', labelHeight: 0, gap: 8, padding: VM_PADDING });
-  expect(composite).toMatchSnapshot(snapshotName, MATCH_SNAPSHOT_DEFAULT_OPTS);
+  expect(composite).toMatchSnapshot(snapshotName, matchOpts);
 }
 
 /**
@@ -133,6 +146,8 @@ export type InteractionStatesOptions = {
   padding?: number;
   /** Имя композитного snapshot-файла. По умолчанию `interaction-states.png`. */
   snapshotName?: string;
+  /** Tolerance сравнения с baseline'ом. По умолчанию `MATCH_SNAPSHOT_DEFAULT_OPTS`. */
+  matchOpts?: SnapshotMatchOptions;
   /** Раскладка cell'ов в composite. По умолчанию `'row'`. Для широких component'ов (Alert, Breadcrumbs) — `'col'`. */
   layout?: 'row' | 'col';
   /** Дополнительное ожидание покоя перед снимком каждой ячейки. `waitForStableBbox` ловит
@@ -184,6 +199,7 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     includePressed = false,
     padding = DEFAULT_PADDING,
     snapshotName = DEFAULT_SNAPSHOT_NAME,
+    matchOpts = MATCH_SNAPSHOT_DEFAULT_OPTS,
     layout = 'row',
     settle,
     extraStates = [],
@@ -244,5 +260,5 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
 
   const composeLayout: ComposeLayout = layout === 'col' ? { type: 'col' } : { type: 'row' };
   const composite = await composeScreenshots(cells, { layout: composeLayout });
-  expect(composite).toMatchSnapshot(snapshotName, MATCH_SNAPSHOT_DEFAULT_OPTS);
+  expect(composite).toMatchSnapshot(snapshotName, matchOpts);
 }

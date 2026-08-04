@@ -70,7 +70,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
         >
           <div className={styles.acrylic} />
         </div>
-        <div className={styles.borderStateLayer} data-state='regularBorder' />
+        {outline && <div className={styles.borderStateLayer} data-state='regularBorder' />}
         <div className={styles.focusLayer} />
       </div>
       <div className={styles.fieldContainer}>
