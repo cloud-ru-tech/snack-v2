@@ -110,6 +110,16 @@ export const ChipChoiceBase = forwardRef<HTMLDivElement, ChipChoiceBaseProps>(
       }
     };
 
+    // valueToRender — ReactNode (как в v1). TruncateString принимает только string:
+    // примитивы оборачиваем, элементы рендерим как есть (иначе String(el) → "[object Object]").
+    const content = (valueToRender ?? value ?? '') as ReactNode;
+    const valueNode =
+      typeof content === 'string' || typeof content === 'number' || typeof content === 'boolean' ? (
+        <TruncateString text={String(content)} variant={truncateVariant} />
+      ) : (
+        content
+      );
+
     return (
       <div
         {...extractSupportProps(rest)}
@@ -147,7 +157,7 @@ export const ChipChoiceBase = forwardRef<HTMLDivElement, ChipChoiceBaseProps>(
             </span>
           ) : (
             <span className={styles.value} data-test-id={CHIP_CHOICE_TEST_IDS.value}>
-              <TruncateString text={String(valueToRender ?? value ?? '')} variant={truncateVariant} />
+              {valueNode}
             </span>
           )}
         </span>
