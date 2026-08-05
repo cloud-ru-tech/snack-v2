@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.1 (2026-08-05)
+
+### Bug Fixes
+
+- **FF-8856:** always show shadow ([dd82657](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/dd82657386e34b91cac3664036688984d94d0cce))
+
 # 3.1.0 (2026-07-30)
 
 ### Features

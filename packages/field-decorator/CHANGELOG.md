@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-08-05)
+
+### BREAKING CHANGES
+
+- **FF-8828:** drop dead valid value from field validationState axis ([bd390bc](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/bd390bc2ce920b0d32075f2d246aece88ee8a832))
+
 # 1.2.0 (2026-07-30)
 
 ### Features

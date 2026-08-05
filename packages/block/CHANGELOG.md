@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2026-08-05)
+
+### BREAKING CHANGES
+
+- **FF-8828:** replace Block variant axis with view and move transparent to backgroundPredefined ([3eabb31](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3eabb31997094c899b7b45f0903ae1fe2b44d5f4))
+
 # 3.1.0 (2026-07-30)
 
 ### Features

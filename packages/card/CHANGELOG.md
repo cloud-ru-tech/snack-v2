@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-05)
+
+### BREAKING CHANGES
+
+- **FF-8828:** rename Card view shadow to elevated ([69e5e31](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/69e5e31540168bf62a722b7f567a77f270ea2754))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

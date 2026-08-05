@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-08-05)
+
+### Bug Fixes
+
+- **AIX-151:** align CoT connectors and reasoning dots, show duration in broken ([22bd468](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/22bd468a11122961713c8fc7b89b079f4a616b05))
+
 ## 1.1.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/ai-chain-of-thoughts

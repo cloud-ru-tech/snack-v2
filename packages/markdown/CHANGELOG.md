@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.1 (2026-08-05)
+
+**Note:** Version bump only for package @ds/markdown
+
 # 2.2.0 (2026-07-30)
 
 ### Features
