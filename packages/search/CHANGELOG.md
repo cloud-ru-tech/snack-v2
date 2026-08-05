@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.8 (2026-08-05)
+
+### Bug Fixes
+
+- **FF-8853:** hide outline if prop false, add droplist props to ButtonField ([c7e7bba](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c7e7bba9a02fe055011ba90cb7e6f2c87037f927))
+
 ## 1.1.7 (2026-07-30)
 
 **Note:** Version bump only for package @ds/search

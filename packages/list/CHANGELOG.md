@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-08-05)
+
+### Bug Fixes
+
+- **FF-8853:** align group title color to figma ([422924f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/422924feaa3742347ed7f52f5287b7b8922d6bf5))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

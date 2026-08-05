@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.1 (2026-08-05)
+
+### Bug Fixes
+
+- **FF-8853:** decouple catalog card text color from css chunk order ([fcd8618](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fcd8618f01de7b3c8fcbcc6ea4bcaa3337a5acd6))
+
 # 3.0.0 (2026-07-30)
 
 ### Bug Fixes
