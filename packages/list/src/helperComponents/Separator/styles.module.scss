@@ -6,17 +6,41 @@ $sizes: 's', 'm', 'l';
 
 // Typography map (legacy separator primary = sans-label/title, secondary = light-label/title)
 $subtitle-typography-map: (
-  's': ('weight': 'regular', 'role': 'label', 'size': 'm'),
-  'm': ('weight': 'regular', 'role': 'label', 'size': 'l'),
-  'l': ('weight': 'regular', 'role': 'title', 'size': 'm'),
+  's': (
+    'weight': 'regular',
+    'role': 'label',
+    'size': 'm',
+  ),
+  'm': (
+    'weight': 'regular',
+    'role': 'label',
+    'size': 'l',
+  ),
+  'l': (
+    'weight': 'regular',
+    'role': 'title',
+    'size': 'm',
+  ),
 );
 
 // 'light' weight в base-styles отсутствует — используем 'regular', subtitleTertiary
 // отличаем цветом (см. .label[data-group-variant='subtitleTertiary']).
 $subtitle-tertiary-typography-map: (
-  's': ('weight': 'regular', 'role': 'label', 'size': 'm'),
-  'm': ('weight': 'regular', 'role': 'label', 'size': 'l'),
-  'l': ('weight': 'regular', 'role': 'title', 'size': 'm'),
+  's': (
+    'weight': 'regular',
+    'role': 'label',
+    'size': 'm',
+  ),
+  'm': (
+    'weight': 'regular',
+    'role': 'label',
+    'size': 'l',
+  ),
+  'l': (
+    'weight': 'regular',
+    'role': 'title',
+    'size': 'm',
+  ),
 );
 
 $level: var(--level, 0);
@@ -74,27 +98,86 @@ $level: var(--level, 0);
       $itemGap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'gap');
 
       gap: $itemGap;
-      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'subtitle', 'padding-top') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom') base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
+      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'subtitle', 'padding-top')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom')
+        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
 
       // nestingLevel — индентация заголовка группы, если она вложена внутрь другой группы.
       // Шаг тот же, что у строки: слот иконки плюс зазор (см. BaseItem/styles.module.scss).
       &[data-level-one],
       &[data-level-more-one] {
-        padding-left: calc($itemPaddingLeft + $level * calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap}));
+        padding-left: calc(
+          $itemPaddingLeft + $level * calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap})
+        );
       }
 
       .beforeContent {
         width: base.simple-var(icons.$iconSizeMap, $size);
         height: base.simple-var(icons.$iconSizeMap, $size);
-        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
-        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+        padding-top: base.simple-var(
+          list.$list,
+          'anatomy',
+          'size',
+          $size,
+          'listItem',
+          'centeredWrapper',
+          'padding-top'
+        );
+        padding-bottom: base.simple-var(
+          list.$list,
+          'anatomy',
+          'size',
+          $size,
+          'listItem',
+          'centeredWrapper',
+          'padding-bottom'
+        );
       }
 
       .label {
-        padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top')
-          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-right')
-          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom')
-          base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-left');
+        padding: base.simple-var(
+            list.$list,
+            'anatomy',
+            'size',
+            $size,
+            'listItem',
+            'contentWrapper',
+            'textWrapper',
+            'padding-top'
+          )
+          base.simple-var(
+            list.$list,
+            'anatomy',
+            'size',
+            $size,
+            'listItem',
+            'contentWrapper',
+            'textWrapper',
+            'textContent',
+            'padding-right'
+          )
+          base.simple-var(
+            list.$list,
+            'anatomy',
+            'size',
+            $size,
+            'listItem',
+            'contentWrapper',
+            'textWrapper',
+            'padding-bottom'
+          )
+          base.simple-var(
+            list.$list,
+            'anatomy',
+            'size',
+            $size,
+            'listItem',
+            'contentWrapper',
+            'textWrapper',
+            'textContent',
+            'padding-left'
+          );
 
         &[data-group-variant='subtitle'] {
           @include base.composite-var(
@@ -146,7 +229,7 @@ $level: var(--level, 0);
   }
 
   &[data-group-variant='subtitleTertiary'] {
-    color: base.$sn-theme-color-available-version-textSecondary;
+    color: base.$sn-theme-color-available-version-textTertiary;
   }
 }
 
