@@ -182,7 +182,6 @@
 
   // Карточка кликабельна (Card as='a'), но текст внутри — обычная типографика,
   // а не синяя подчёркнутая ссылка: гасим anchor-оформление.
-  color: base.$sn-theme-color-available-version-textMain;
   text-decoration: none;
 
   // Белая карточка на сером neutral-background странице.
@@ -193,7 +192,15 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-12;
+
   padding: base.$sn-primitive-dimension-20;
+
+  // Цвет текста задаём здесь, а не на корне: корень `@ds/card` держит собственный
+  // `color: inherit` (сброс нативной ссылки) с той же специфичностью, что и класс
+  // потребителя на том же элементе. Их правила живут в разных CSS-чанках, поэтому
+  // победитель зависел от порядка загрузки чанков и менялся вместе с составом
+  // сборки Storybook (SB_PACKAGES) — заголовок карточки уезжал в наследуемый серый.
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 // Описание сервис-карточки — вторичный цвет.
