@@ -67,6 +67,10 @@ $activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-
   box-sizing: border-box;
   width: 100%;
 
+  // elevation-level5 — свойство контейнера по макету (Figma drawer container), не от showBlackout.
+  // Легаси soft (`showBlackout={false}`) сохраняет тень без затемнения фона.
+  box-shadow: base.$sn-boxShadow-elevation-level5;
+
   @include base.composite-var(drawer.$drawer, 'anatomy', 'container');
 }
 
@@ -207,11 +211,5 @@ div[data-content-wrapper='true'] {
 
   &[data-position='bottom'][data-height-auto] {
     inset: auto 0 0;
-  }
-
-  &[data-showblackout='true'] {
-    .drawer {
-      box-shadow: base.$sn-boxShadow-elevation-level5;
-    }
   }
 }
