@@ -75,6 +75,24 @@
   --sn-brandRole-color-brandD-backgroundActivatedPressed: #cff500a6;
   --sn-brandRole-color-brandD-onAccentLight: var(--sn-primitive-color-brandCAlter4-5, #131313);
   --sn-brandRole-color-brandD-onAccentDark: var(--sn-primitive-color-brandCAlter3-99, #fdfff7);
+  --sn-brandRole-color-brandE-5: var(--sn-primitive-color-brandE-5, #0e0e24);
+  --sn-brandRole-color-brandE-10: var(--sn-primitive-color-brandE-10, #11122d);
+  --sn-brandRole-color-brandE-15: var(--sn-primitive-color-brandE-15, #181838);
+  --sn-brandRole-color-brandE-25: var(--sn-primitive-color-brandE-25, #23244e);
+  --sn-brandRole-color-brandE-45: var(--sn-primitive-color-brandE-45, #5359b7);
+  --sn-brandRole-color-brandE-55: var(--sn-primitive-color-brandE-55, #5558fa);
+  --sn-brandRole-color-brandE-60: var(--sn-primitive-color-brandE-60, #7b84ed);
+  --sn-brandRole-color-brandE-65: var(--sn-primitive-color-brandE-65, #97a0ee);
+  --sn-brandRole-color-brandE-80: var(--sn-primitive-color-brandE-80, #dddefc);
+  --sn-brandRole-color-brandE-90: var(--sn-primitive-color-brandE-90, #f1f1fd);
+  --sn-brandRole-color-brandE-95: var(--sn-primitive-color-brandE-95, #f8f8fc);
+  --sn-brandRole-color-brandE-99: var(--sn-primitive-color-brandE-99, #fcfcfc);
+  --sn-brandRole-color-brandE-transparent: #5558fa24;
+  --sn-brandRole-color-brandE-backgroundActivatedPressed: #5558fa73;
+  --sn-brandRole-color-brandE-backgroundActivatedHovered: #5558fa59;
+  --sn-brandRole-color-brandE-backgroundActivatedDefault: #5558fa26;
+  --sn-brandRole-color-brandE-onAccentLight: var(--sn-primitive-color-brandE-99, #fcfcfc);
+  --sn-brandRole-color-brandE-onAccentDark: var(--sn-primitive-color-brandE-5, #0e0e24);
   --sn-brandRole-kitService-text-modeName: "03_brandRole:";
   --sn-brandRole-kitService-text-modificationName: "alter3";
 }

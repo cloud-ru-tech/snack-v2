@@ -8,12 +8,13 @@ export const DENSITY = {
   Spacious: 'spacious',
 } as const;
 
-/** Бренд. Класс `sn-brandA` / `sn-brandB` / `sn-brandC` / `sn-brandD`. */
+/** Бренд. Класс `sn-brandA` / `sn-brandB` / `sn-brandC` / `sn-brandD` / `sn-brandE`. */
 export const BRAND = {
   A: 'brandA',
   B: 'brandB',
   C: 'brandC',
   D: 'brandD',
+  E: 'brandE',
 } as const;
 
 /** Роль бренда (палитра). Класс `sn-main` / `sn-alter` … */

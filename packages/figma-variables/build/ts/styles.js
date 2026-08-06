@@ -243,6 +243,20 @@ export const themeVars = {
           '90': 'var(--sn-primitive-color-brandD-90, #ebf8f0)',
           '95': 'var(--sn-primitive-color-brandD-95, #f3fbf6)',
           '99': 'var(--sn-primitive-color-brandD-99, #f9fdfa)'
+        },
+        brandE: {
+          '5': 'var(--sn-primitive-color-brandE-5, #0e0e24)',
+          '10': 'var(--sn-primitive-color-brandE-10, #11122d)',
+          '15': 'var(--sn-primitive-color-brandE-15, #181838)',
+          '25': 'var(--sn-primitive-color-brandE-25, #23244e)',
+          '45': 'var(--sn-primitive-color-brandE-45, #5359b7)',
+          '55': 'var(--sn-primitive-color-brandE-55, #5558fa)',
+          '60': 'var(--sn-primitive-color-brandE-60, #7b84ed)',
+          '65': 'var(--sn-primitive-color-brandE-65, #97a0ee)',
+          '80': 'var(--sn-primitive-color-brandE-80, #dddefc)',
+          '90': 'var(--sn-primitive-color-brandE-90, #f1f1fd)',
+          '95': 'var(--sn-primitive-color-brandE-95, #f8f8fc)',
+          '99': 'var(--sn-primitive-color-brandE-99, #fcfcfc)'
         }
       },
       fontFamily: {
@@ -268,6 +282,10 @@ export const themeVars = {
         brandD: {
           sans: 'var(--sn-primitive-fontFamily-brandD-sans, \"SB Sans Text\")',
           mono: 'var(--sn-primitive-fontFamily-brandD-mono, \"SB Sans Text Mono\")'
+        },
+        brandE: {
+          mono: 'var(--sn-primitive-fontFamily-brandE-mono, \"SB Sans Text Mono\")',
+          sans: 'var(--sn-primitive-fontFamily-brandE-sans, \"SB Sans Interface\")'
         }
       },
       strokeWeight: {
@@ -698,6 +716,26 @@ export const themeVars = {
           backgroundActivatedPressed: 'var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6)',
           onAccentLight: 'var(--sn-brandRole-color-brandD-onAccentLight, #fdfcff)',
           onAccentDark: 'var(--sn-brandRole-color-brandD-onAccentDark, #241534)'
+        },
+        brandE: {
+          '5': 'var(--sn-brandRole-color-brandE-5, #0e0e24)',
+          '10': 'var(--sn-brandRole-color-brandE-10, #11122d)',
+          '15': 'var(--sn-brandRole-color-brandE-15, #181838)',
+          '25': 'var(--sn-brandRole-color-brandE-25, #23244e)',
+          '45': 'var(--sn-brandRole-color-brandE-45, #5359b7)',
+          '55': 'var(--sn-brandRole-color-brandE-55, #5558fa)',
+          '60': 'var(--sn-brandRole-color-brandE-60, #7b84ed)',
+          '65': 'var(--sn-brandRole-color-brandE-65, #97a0ee)',
+          '80': 'var(--sn-brandRole-color-brandE-80, #dddefc)',
+          '90': 'var(--sn-brandRole-color-brandE-90, #f1f1fd)',
+          '95': 'var(--sn-brandRole-color-brandE-95, #f8f8fc)',
+          '99': 'var(--sn-brandRole-color-brandE-99, #fcfcfc)',
+          transparent: 'var(--sn-brandRole-color-brandE-transparent, #5558fa24)',
+          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandE-backgroundActivatedPressed, #5558fa73)',
+          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandE-backgroundActivatedHovered, #5558fa59)',
+          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26)',
+          onAccentLight: 'var(--sn-brandRole-color-brandE-onAccentLight, #fcfcfc)',
+          onAccentDark: 'var(--sn-brandRole-color-brandE-onAccentDark, #0e0e24)'
         }
       },
       kitService: {

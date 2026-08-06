@@ -207,6 +207,18 @@
   --sn-primitive-color-brandD-90: #ebf8f0;
   --sn-primitive-color-brandD-95: #f3fbf6;
   --sn-primitive-color-brandD-99: #f9fdfa;
+  --sn-primitive-color-brandE-5: #0e0e24;
+  --sn-primitive-color-brandE-10: #11122d;
+  --sn-primitive-color-brandE-15: #181838;
+  --sn-primitive-color-brandE-25: #23244e;
+  --sn-primitive-color-brandE-45: #5359b7;
+  --sn-primitive-color-brandE-55: #5558fa;
+  --sn-primitive-color-brandE-60: #7b84ed;
+  --sn-primitive-color-brandE-65: #97a0ee;
+  --sn-primitive-color-brandE-80: #dddefc;
+  --sn-primitive-color-brandE-90: #f1f1fd;
+  --sn-primitive-color-brandE-95: #f8f8fc;
+  --sn-primitive-color-brandE-99: #fcfcfc;
   --sn-primitive-fontFamily-fontWeight-light: "Light";
   --sn-primitive-fontFamily-fontWeight-bold: "Bold";
   --sn-primitive-fontFamily-fontWeight-semiBold: "Semibold";
@@ -220,6 +232,8 @@
   --sn-primitive-fontFamily-brandC-mono: "SB Sans Text Mono";
   --sn-primitive-fontFamily-brandD-sans: "SB Sans Text";
   --sn-primitive-fontFamily-brandD-mono: "SB Sans Text Mono";
+  --sn-primitive-fontFamily-brandE-mono: "SB Sans Text Mono";
+  --sn-primitive-fontFamily-brandE-sans: "SB Sans Interface";
   --sn-primitive-strokeWeight-strokeThin: 0.5px;
   --sn-primitive-strokeWeight-strokeRegular: 1px;
   --sn-primitive-strokeWeight-strokeMedium: 1.5px;

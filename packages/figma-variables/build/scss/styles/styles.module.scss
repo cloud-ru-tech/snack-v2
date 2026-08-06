@@ -315,6 +315,20 @@ $base-styles: (
           "90": var(--sn-primitive-color-brandD-90, #ebf8f0),
           "95": var(--sn-primitive-color-brandD-95, #f3fbf6),
           "99": var(--sn-primitive-color-brandD-99, #f9fdfa)
+        ),
+        "brandE": (
+          "5": var(--sn-primitive-color-brandE-5, #0e0e24),
+          "10": var(--sn-primitive-color-brandE-10, #11122d),
+          "15": var(--sn-primitive-color-brandE-15, #181838),
+          "25": var(--sn-primitive-color-brandE-25, #23244e),
+          "45": var(--sn-primitive-color-brandE-45, #5359b7),
+          "55": var(--sn-primitive-color-brandE-55, #5558fa),
+          "60": var(--sn-primitive-color-brandE-60, #7b84ed),
+          "65": var(--sn-primitive-color-brandE-65, #97a0ee),
+          "80": var(--sn-primitive-color-brandE-80, #dddefc),
+          "90": var(--sn-primitive-color-brandE-90, #f1f1fd),
+          "95": var(--sn-primitive-color-brandE-95, #f8f8fc),
+          "99": var(--sn-primitive-color-brandE-99, #fcfcfc)
         )
       ),
       "fontFamily": (
@@ -340,6 +354,10 @@ $base-styles: (
         "brandD": (
           "sans": var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text"),
           "mono": var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono")
+        ),
+        "brandE": (
+          "mono": var(--sn-primitive-fontFamily-brandE-mono, "SB Sans Text Mono"),
+          "sans": var(--sn-primitive-fontFamily-brandE-sans, "SB Sans Interface")
         )
       ),
       "strokeWeight": (
@@ -770,6 +788,26 @@ $base-styles: (
           "backgroundActivatedPressed": var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6),
           "onAccentLight": var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
           "onAccentDark": var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
+        ),
+        "brandE": (
+          "5": var(--sn-brandRole-color-brandE-5, var(--sn-primitive-color-brandE-5, #0e0e24)),
+          "10": var(--sn-brandRole-color-brandE-10, var(--sn-primitive-color-brandE-10, #11122d)),
+          "15": var(--sn-brandRole-color-brandE-15, var(--sn-primitive-color-brandE-15, #181838)),
+          "25": var(--sn-brandRole-color-brandE-25, var(--sn-primitive-color-brandE-25, #23244e)),
+          "45": var(--sn-brandRole-color-brandE-45, var(--sn-primitive-color-brandE-45, #5359b7)),
+          "55": var(--sn-brandRole-color-brandE-55, var(--sn-primitive-color-brandE-55, #5558fa)),
+          "60": var(--sn-brandRole-color-brandE-60, var(--sn-primitive-color-brandE-60, #7b84ed)),
+          "65": var(--sn-brandRole-color-brandE-65, var(--sn-primitive-color-brandE-65, #97a0ee)),
+          "80": var(--sn-brandRole-color-brandE-80, var(--sn-primitive-color-brandE-80, #dddefc)),
+          "90": var(--sn-brandRole-color-brandE-90, var(--sn-primitive-color-brandE-90, #f1f1fd)),
+          "95": var(--sn-brandRole-color-brandE-95, var(--sn-primitive-color-brandE-95, #f8f8fc)),
+          "99": var(--sn-brandRole-color-brandE-99, var(--sn-primitive-color-brandE-99, #fcfcfc)),
+          "transparent": var(--sn-brandRole-color-brandE-transparent, #5558fa24),
+          "backgroundActivatedPressed": var(--sn-brandRole-color-brandE-backgroundActivatedPressed, #5558fa73),
+          "backgroundActivatedHovered": var(--sn-brandRole-color-brandE-backgroundActivatedHovered, #5558fa59),
+          "backgroundActivatedDefault": var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26),
+          "onAccentLight": var(--sn-brandRole-color-brandE-onAccentLight, var(--sn-primitive-color-brandE-99, #fcfcfc)),
+          "onAccentDark": var(--sn-brandRole-color-brandE-onAccentDark, var(--sn-primitive-color-brandE-5, #0e0e24))
         )
       ),
       "kitService": (
@@ -2453,6 +2491,20 @@ $sn-primitive: (
       "90": var(--sn-primitive-color-brandD-90, #ebf8f0),
       "95": var(--sn-primitive-color-brandD-95, #f3fbf6),
       "99": var(--sn-primitive-color-brandD-99, #f9fdfa)
+    ),
+    "brandE": (
+      "5": var(--sn-primitive-color-brandE-5, #0e0e24),
+      "10": var(--sn-primitive-color-brandE-10, #11122d),
+      "15": var(--sn-primitive-color-brandE-15, #181838),
+      "25": var(--sn-primitive-color-brandE-25, #23244e),
+      "45": var(--sn-primitive-color-brandE-45, #5359b7),
+      "55": var(--sn-primitive-color-brandE-55, #5558fa),
+      "60": var(--sn-primitive-color-brandE-60, #7b84ed),
+      "65": var(--sn-primitive-color-brandE-65, #97a0ee),
+      "80": var(--sn-primitive-color-brandE-80, #dddefc),
+      "90": var(--sn-primitive-color-brandE-90, #f1f1fd),
+      "95": var(--sn-primitive-color-brandE-95, #f8f8fc),
+      "99": var(--sn-primitive-color-brandE-99, #fcfcfc)
     )
   ),
   "fontFamily": (
@@ -2478,6 +2530,10 @@ $sn-primitive: (
     "brandD": (
       "sans": var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text"),
       "mono": var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono")
+    ),
+    "brandE": (
+      "mono": var(--sn-primitive-fontFamily-brandE-mono, "SB Sans Text Mono"),
+      "sans": var(--sn-primitive-fontFamily-brandE-sans, "SB Sans Interface")
     )
   ),
   "strokeWeight": (
@@ -2910,6 +2966,26 @@ $sn-brandRole: (
       "backgroundActivatedPressed": var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6),
       "onAccentLight": var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
       "onAccentDark": var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
+    ),
+    "brandE": (
+      "5": var(--sn-brandRole-color-brandE-5, var(--sn-primitive-color-brandE-5, #0e0e24)),
+      "10": var(--sn-brandRole-color-brandE-10, var(--sn-primitive-color-brandE-10, #11122d)),
+      "15": var(--sn-brandRole-color-brandE-15, var(--sn-primitive-color-brandE-15, #181838)),
+      "25": var(--sn-brandRole-color-brandE-25, var(--sn-primitive-color-brandE-25, #23244e)),
+      "45": var(--sn-brandRole-color-brandE-45, var(--sn-primitive-color-brandE-45, #5359b7)),
+      "55": var(--sn-brandRole-color-brandE-55, var(--sn-primitive-color-brandE-55, #5558fa)),
+      "60": var(--sn-brandRole-color-brandE-60, var(--sn-primitive-color-brandE-60, #7b84ed)),
+      "65": var(--sn-brandRole-color-brandE-65, var(--sn-primitive-color-brandE-65, #97a0ee)),
+      "80": var(--sn-brandRole-color-brandE-80, var(--sn-primitive-color-brandE-80, #dddefc)),
+      "90": var(--sn-brandRole-color-brandE-90, var(--sn-primitive-color-brandE-90, #f1f1fd)),
+      "95": var(--sn-brandRole-color-brandE-95, var(--sn-primitive-color-brandE-95, #f8f8fc)),
+      "99": var(--sn-brandRole-color-brandE-99, var(--sn-primitive-color-brandE-99, #fcfcfc)),
+      "transparent": var(--sn-brandRole-color-brandE-transparent, #5558fa24),
+      "backgroundActivatedPressed": var(--sn-brandRole-color-brandE-backgroundActivatedPressed, #5558fa73),
+      "backgroundActivatedHovered": var(--sn-brandRole-color-brandE-backgroundActivatedHovered, #5558fa59),
+      "backgroundActivatedDefault": var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26),
+      "onAccentLight": var(--sn-brandRole-color-brandE-onAccentLight, var(--sn-primitive-color-brandE-99, #fcfcfc)),
+      "onAccentDark": var(--sn-brandRole-color-brandE-onAccentDark, var(--sn-primitive-color-brandE-5, #0e0e24))
     )
   ),
   "kitService": (
@@ -4564,6 +4640,18 @@ $sn-primitive-color-brandD-80: var(--sn-primitive-color-brandD-80, #b1eed0);
 $sn-primitive-color-brandD-90: var(--sn-primitive-color-brandD-90, #ebf8f0);
 $sn-primitive-color-brandD-95: var(--sn-primitive-color-brandD-95, #f3fbf6);
 $sn-primitive-color-brandD-99: var(--sn-primitive-color-brandD-99, #f9fdfa);
+$sn-primitive-color-brandE-5: var(--sn-primitive-color-brandE-5, #0e0e24);
+$sn-primitive-color-brandE-10: var(--sn-primitive-color-brandE-10, #11122d);
+$sn-primitive-color-brandE-15: var(--sn-primitive-color-brandE-15, #181838);
+$sn-primitive-color-brandE-25: var(--sn-primitive-color-brandE-25, #23244e);
+$sn-primitive-color-brandE-45: var(--sn-primitive-color-brandE-45, #5359b7);
+$sn-primitive-color-brandE-55: var(--sn-primitive-color-brandE-55, #5558fa);
+$sn-primitive-color-brandE-60: var(--sn-primitive-color-brandE-60, #7b84ed);
+$sn-primitive-color-brandE-65: var(--sn-primitive-color-brandE-65, #97a0ee);
+$sn-primitive-color-brandE-80: var(--sn-primitive-color-brandE-80, #dddefc);
+$sn-primitive-color-brandE-90: var(--sn-primitive-color-brandE-90, #f1f1fd);
+$sn-primitive-color-brandE-95: var(--sn-primitive-color-brandE-95, #f8f8fc);
+$sn-primitive-color-brandE-99: var(--sn-primitive-color-brandE-99, #fcfcfc);
 $sn-primitive-fontFamily-fontWeight-light: var(--sn-primitive-fontFamily-fontWeight-light, "Light");
 $sn-primitive-fontFamily-fontWeight-bold: var(--sn-primitive-fontFamily-fontWeight-bold, "Bold");
 $sn-primitive-fontFamily-fontWeight-semiBold: var(--sn-primitive-fontFamily-fontWeight-semiBold, "Semibold");
@@ -4577,6 +4665,8 @@ $sn-primitive-fontFamily-brandC-sans: var(--sn-primitive-fontFamily-brandC-sans,
 $sn-primitive-fontFamily-brandC-mono: var(--sn-primitive-fontFamily-brandC-mono, "SB Sans Text Mono");
 $sn-primitive-fontFamily-brandD-sans: var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text");
 $sn-primitive-fontFamily-brandD-mono: var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono");
+$sn-primitive-fontFamily-brandE-mono: var(--sn-primitive-fontFamily-brandE-mono, "SB Sans Text Mono");
+$sn-primitive-fontFamily-brandE-sans: var(--sn-primitive-fontFamily-brandE-sans, "SB Sans Interface");
 $sn-primitive-strokeWeight-strokeThin: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
 $sn-primitive-strokeWeight-strokeRegular: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
 $sn-primitive-strokeWeight-strokeMedium: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
@@ -4887,6 +4977,24 @@ $sn-brandRole-color-brandD-backgroundActivatedHovered: var(--sn-brandRole-color-
 $sn-brandRole-color-brandD-backgroundActivatedPressed: var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6);
 $sn-brandRole-color-brandD-onAccentLight: var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff));
 $sn-brandRole-color-brandD-onAccentDark: var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534));
+$sn-brandRole-color-brandE-5: var(--sn-brandRole-color-brandE-5, var(--sn-primitive-color-brandE-5, #0e0e24));
+$sn-brandRole-color-brandE-10: var(--sn-brandRole-color-brandE-10, var(--sn-primitive-color-brandE-10, #11122d));
+$sn-brandRole-color-brandE-15: var(--sn-brandRole-color-brandE-15, var(--sn-primitive-color-brandE-15, #181838));
+$sn-brandRole-color-brandE-25: var(--sn-brandRole-color-brandE-25, var(--sn-primitive-color-brandE-25, #23244e));
+$sn-brandRole-color-brandE-45: var(--sn-brandRole-color-brandE-45, var(--sn-primitive-color-brandE-45, #5359b7));
+$sn-brandRole-color-brandE-55: var(--sn-brandRole-color-brandE-55, var(--sn-primitive-color-brandE-55, #5558fa));
+$sn-brandRole-color-brandE-60: var(--sn-brandRole-color-brandE-60, var(--sn-primitive-color-brandE-60, #7b84ed));
+$sn-brandRole-color-brandE-65: var(--sn-brandRole-color-brandE-65, var(--sn-primitive-color-brandE-65, #97a0ee));
+$sn-brandRole-color-brandE-80: var(--sn-brandRole-color-brandE-80, var(--sn-primitive-color-brandE-80, #dddefc));
+$sn-brandRole-color-brandE-90: var(--sn-brandRole-color-brandE-90, var(--sn-primitive-color-brandE-90, #f1f1fd));
+$sn-brandRole-color-brandE-95: var(--sn-brandRole-color-brandE-95, var(--sn-primitive-color-brandE-95, #f8f8fc));
+$sn-brandRole-color-brandE-99: var(--sn-brandRole-color-brandE-99, var(--sn-primitive-color-brandE-99, #fcfcfc));
+$sn-brandRole-color-brandE-transparent: var(--sn-brandRole-color-brandE-transparent, #5558fa24);
+$sn-brandRole-color-brandE-backgroundActivatedPressed: var(--sn-brandRole-color-brandE-backgroundActivatedPressed, #5558fa73);
+$sn-brandRole-color-brandE-backgroundActivatedHovered: var(--sn-brandRole-color-brandE-backgroundActivatedHovered, #5558fa59);
+$sn-brandRole-color-brandE-backgroundActivatedDefault: var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26);
+$sn-brandRole-color-brandE-onAccentLight: var(--sn-brandRole-color-brandE-onAccentLight, var(--sn-primitive-color-brandE-99, #fcfcfc));
+$sn-brandRole-color-brandE-onAccentDark: var(--sn-brandRole-color-brandE-onAccentDark, var(--sn-primitive-color-brandE-5, #0e0e24));
 $sn-brandRole-kitService-text-modeName: var(--sn-brandRole-kitService-text-modeName, "03_brandRole:");
 $sn-brandRole-kitService-text-modificationName: var(--sn-brandRole-kitService-text-modificationName, "alter");
 $sn-brand-color-primary-5: var(--sn-brand-color-primary-5, var(--sn-primitive-color-brandA-5, #21372f));

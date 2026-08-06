@@ -22,7 +22,7 @@ function nn<T>(value: T | null | undefined): T {
 }
 
 const sum = (channels: number[]): number => channels.reduce((acc, channel) => acc + channel, 0);
-const BRAND_LIST = '.sn-brandA,.sn-brandB,.sn-brandC,.sn-brandD';
+const BRAND_LIST = '.sn-brandA,.sn-brandB,.sn-brandC,.sn-brandD,.sn-brandE';
 
 describe('customTheme / hex', () => {
   it('парсит #rrggbb, #rgb, с alpha и без #', () => {

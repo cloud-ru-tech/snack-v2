@@ -34,7 +34,8 @@
           "brandA",
           "brandB",
           "brandC",
-          "brandD"
+          "brandD",
+          "brandE"
         ],
         "own": true
       },
@@ -81,7 +82,8 @@
               "brandA",
               "brandB",
               "brandC",
-              "brandD"
+              "brandD",
+              "brandE"
             ],
             "description": "Бренд — `sn-brandA` …",
             "typeRefs": [
@@ -186,7 +188,8 @@
           "brandA",
           "brandB",
           "brandC",
-          "brandD"
+          "brandD",
+          "brandE"
         ],
         "own": true
       },
@@ -233,7 +236,8 @@
               "brandA",
               "brandB",
               "brandC",
-              "brandD"
+              "brandD",
+              "brandE"
             ],
             "description": "Бренд — `sn-brandA` …",
             "typeRefs": [

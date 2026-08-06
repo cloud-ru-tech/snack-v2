@@ -2075,6 +2075,128 @@
             "$type": "color",
             "$value": "#f9fdfa"
           }
+        },
+        "brandE": {
+          "5": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#0e0e24"
+          },
+          "10": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#11122d"
+          },
+          "15": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#181838"
+          },
+          "25": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#23244e"
+          },
+          "45": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#5359b7"
+          },
+          "55": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#5558fa"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#7b84ed"
+          },
+          "65": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#97a0ee"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#dddefc"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#f1f1fd"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#f8f8fc"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#fcfcfc"
+          }
         }
       },
       "fontFamily": {
@@ -2180,6 +2302,22 @@
             },
             "$type": "text",
             "$value": "SB Sans Text Mono"
+          }
+        },
+        "brandE": {
+          "mono": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Text Mono"
+          },
+          "sans": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Interface"
           }
         }
       },

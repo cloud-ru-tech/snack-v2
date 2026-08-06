@@ -106,6 +106,7 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
           cls.toggle('sn-brandB', brand === 'brandB')
           cls.toggle('sn-brandC', brand === 'brandC')
           cls.toggle('sn-brandD', brand === 'brandD')
+          cls.toggle('sn-brandE', brand === 'brandE')
 
           const brandRole = localStorage.getItem('ds-brandRole') ?? 'main'
           cls.toggle('sn-main', brandRole === 'main')
