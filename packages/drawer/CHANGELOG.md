@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.2 (2026-08-06)
+
+### Bug Fixes
+
+- **FF-8765:** remove rc-drawer global styles ([6b34638](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6b3463860f55b473558ca4e0fe62f65f5b1fb445))
+
 ## 3.1.1 (2026-08-05)
 
 ### Bug Fixes
