@@ -379,7 +379,7 @@
             "description": "Разделитель над строкой"
           },
           "width": {
-            "type": "\"fixed\" | \"full\" | undefined",
+            "type": "\"full\" | \"fixed\" | undefined",
             "required": false,
             "values": [
               "fixed",
@@ -558,7 +558,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"appearance\" | \"loading\" | \"as\" | \"iconPosition\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "RowActionButton"
@@ -945,7 +945,7 @@
         "kind": "interface",
         "props": {
           "first": {
-            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"loading\" | \"as\" | \"iconPosition\" | \"appearance\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
+            "type": "{ tip?: Pick<TooltipProps, \"trigger\" | \"tip\" | \"placement\" | \"disableMaxWidth\" | \"open\" | \"onOpenChange\"> | string; } & Omit<{ 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, \"size\">; } & { as?: ElementType | undefined; innerRef?: any; } & Omit<Omit<any, \"ref\">, \"data-test-id\" | keyof AriaAttributes | \"className\" | \"view\" | \"label\" | \"ref\" | \"disabled\" | \"size\" | \"icon\" | \"appearance\" | \"loading\" | \"as\" | \"iconPosition\" | \"fullWidth\" | \"minWidth\" | \"counter\">, \"view\" | \"size\" | \"appearance\">",
             "required": true,
             "typeRefs": [
               "RowActionButton"

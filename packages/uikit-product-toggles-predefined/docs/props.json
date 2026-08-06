@@ -35,7 +35,7 @@
         ]
       },
       "promoBadge": {
-        "type": "string | Pick<PromoTagProps, \"appearance\" | \"label\">",
+        "type": "string | Pick<PromoTagProps, \"label\" | \"appearance\">",
         "required": false,
         "description": "Промо-бейдж в правом верхнем углу карточки",
         "typeRefs": [

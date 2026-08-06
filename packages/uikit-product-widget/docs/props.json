@@ -45,7 +45,7 @@
         "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "button": {
-        "type": "Omit<ButtonProps<\"button\">, \"icon\" | \"label\" | \"view\"> | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
+        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\"> | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
         "required": false
       },
       "className": {
@@ -207,7 +207,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"icon\" | \"view\" | \"iconPosition\" | \"appearance\"> & { ...; })",
+        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { ...; })",
         "required": true
       },
       "layoutType": {
@@ -230,7 +230,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "Omit<ButtonProps<\"button\">, \"icon\" | \"label\" | \"view\">",
+        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\">",
         "required": false
       },
       "layoutType": {
@@ -535,7 +535,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"iconPosition\" | \"appearance\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"

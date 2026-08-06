@@ -18,7 +18,7 @@
     "propsTypeName": "AlertProps",
     "props": {
       "actions": {
-        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "type": "{ primary: Omit<AlertButtonProps, \"variant\" | \"size\">; secondary?: Omit<AlertButtonProps, \"variant\" | \"size\">; }",
         "required": false,
         "description": "Кнопки в футере",
         "typeRefs": [
@@ -308,7 +308,7 @@
     "propsTypeName": null,
     "props": {
       "actions": {
-        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "type": "{ primary: Omit<AlertButtonProps, \"variant\" | \"size\">; secondary?: Omit<AlertButtonProps, \"variant\" | \"size\">; }",
         "required": false,
         "description": "Кнопки в футере"
       },
@@ -575,7 +575,7 @@
     "propsTypeName": "AlertTopProps",
     "props": {
       "actions": {
-        "type": "{ primary: Omit<AlertButtonProps, \"size\" | \"variant\">; secondary?: Omit<AlertButtonProps, \"size\" | \"variant\">; }",
+        "type": "{ primary: Omit<AlertButtonProps, \"variant\" | \"size\">; secondary?: Omit<AlertButtonProps, \"variant\" | \"size\">; }",
         "required": false,
         "description": "Кнопки в футере",
         "typeRefs": [

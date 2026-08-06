@@ -1167,7 +1167,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -2059,7 +2059,7 @@
         "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
       },
       "defaultValue": {
-        "type": "Date | Range | ItemId | ItemId[] | TimeValue",
+        "type": "ItemId | Date | TimeValue | Range | ItemId[]",
         "required": false,
         "description": "Начальное состояние\nЗначение компонента по-умолчанию\nЗначение по-умолчанию для uncontrolled.\nЗначение компонента по умолчанию"
       },

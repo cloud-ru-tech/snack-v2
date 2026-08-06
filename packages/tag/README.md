@@ -72,7 +72,7 @@ export function Removable() {
 | `as` | `"a"` | — | Элемент или компонент для рендера: 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `innerRef` | `Ref<HTMLSpanElement> \| ((instance: HTMLAnchorElement \| null) => void) \| RefObject<HTMLAnchorElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. <br/> Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `((instance: HTMLAnchorElement \| null) => void) \| RefObject<HTMLAnchorElement> \| Ref<HTMLSpanElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. <br/> Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string` | — |  |
 | `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `size` | `"m"` \| `"s"` \| `"xs"` | — |  |

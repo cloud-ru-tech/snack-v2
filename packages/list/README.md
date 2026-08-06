@@ -537,7 +537,7 @@ export function ListItemWrap() {
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
-| `selection` | `SelectionSingleState \| SelectionMultipleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
+| `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер списка |
 | `tabIndex` | `number` | `0` | `tabIndex` корневого элемента списка (для управления порядком фокуса) |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |
@@ -1407,7 +1407,7 @@ export function ListReorder() {
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `scrollToSelectedItem` | `boolean` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
 | `search` | `SearchState` | — | Настройки поисковой строки |
-| `selection` | `SelectionSingleState \| SelectionMultipleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
+| `selection` | `SelectionMultipleState \| SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер списка |
 | `tabIndex` | `number` | `0` | `tabIndex` корневого элемента списка (для управления порядком фокуса) |
 | `untouchableScrollbars` | `boolean` | — | Отключает возможность взаимодействовать со скролбарами мышью. |

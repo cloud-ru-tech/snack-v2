@@ -162,7 +162,7 @@ export function AutoscrollBottom() {
 | `data-test-id` | `string` | — |  |
 | `onInitialized` | `(() => void)` | — | Коллбэк вызывающийся на инициализацию скролла |
 | `onScroll` | `((event?: Event) => void)` | — | Колбек события скрола. |
-| `overflow` | `{ x?: "scroll" \| "hidden" \| "visible" \| "visible-hidden" \| "visible-scroll"; y?: "scroll" \| "hidden" \| "visible" \| "visible-hidden" \| "visible-scroll"; } \| undefined` | — | Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll` <br/> на обе оси; если контента по оси быть не должно — передавай `'hidden'`. |
+| `overflow` | `{ x?: "hidden" \| "scroll" \| "visible" \| "visible-hidden" \| "visible-scroll"; y?: "hidden" \| "scroll" \| "visible" \| "visible-hidden" \| "visible-scroll"; } \| undefined` | — | Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll` <br/> на обе оси; если контента по оси быть не должно — передавай `'hidden'`. |
 | `paddingAbsolute` | `boolean` | — | Должны ли паддинги быть абсолютными |
 | `resize` | `"both"` \| `"horizontal"` \| `"none"` \| `"vertical"` | `none` | Настройка возможности регулировать Scroll-контейнер: <br/> <br /> - `None` - нельзя изменять размер <br/> <br /> - `Horizontal` - можно изменять размер только по горизонтали <br/> <br /> - `Vertical` - можно изменять размер только по вертикали <br/> <br /> - `Both` - можно изменять размер в обеих координатах |
 | `size` | `"m"` \| `"s"` | `m` | Размер скролбаров |

@@ -152,7 +152,7 @@
         "description": "Доступное имя для иконки-триггера"
       },
       "triggerRef": {
-        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "type": "ForwardedRef<HTMLElement | ReferenceType | null>",
         "required": false,
         "description": "Ref ссылка на триггер"
       }
@@ -329,7 +329,7 @@
         "description": "CSS-класс триггера"
       },
       "triggerRef": {
-        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "type": "ForwardedRef<HTMLElement | ReferenceType | null>",
         "required": false,
         "description": "Ref ссылка на триггер"
       }

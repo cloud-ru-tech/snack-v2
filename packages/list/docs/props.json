@@ -474,7 +474,7 @@
         "description": "Настройки поисковой строки"
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
@@ -809,7 +809,7 @@
         ]
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
         "typeRefs": [
@@ -1465,7 +1465,7 @@
         "required": false
       },
       "truncate": {
-        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "type": "{ variant?: \"end\" | \"middle\"; }",
         "required": false,
         "description": "Настройки усечения длинного заголовка группы"
       }
@@ -1728,7 +1728,7 @@
         "description": "Настройки поисковой строки"
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
@@ -1983,7 +1983,7 @@
         "required": false
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
@@ -2220,7 +2220,7 @@
         "description": "Настройки поисковой строки"
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
@@ -2757,7 +2757,7 @@
         ]
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
         "typeRefs": [
@@ -3536,7 +3536,7 @@
         "description": "Настройки поисковой строки"
       },
       "selection": {
-        "type": "SelectionSingleState | SelectionMultipleState",
+        "type": "SelectionMultipleState | SelectionSingleState",
         "required": false,
         "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента."
       },
@@ -3645,9 +3645,9 @@
         "description": "Режим выбора"
       },
       "onChange": {
-        "type": "OnChangeHandler<ItemId> | OnChangeHandler<ItemId[]>",
+        "type": "OnChangeHandler<ItemId[]> | OnChangeHandler<ItemId>",
         "required": false,
-        "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`\nControlled обработчик изменения состояния — получает массив выбранных `ItemId[]`"
+        "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`\nControlled обработчик изменения состояния — получает выбранный `ItemId`"
       },
       "value": {
         "type": "ItemId | ItemId[]",
@@ -3688,7 +3688,7 @@
         "required": false
       },
       "truncate": {
-        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "type": "{ variant?: \"end\" | \"middle\"; }",
         "required": false,
         "typeRefs": [
           "TruncateStringProps"
@@ -3745,7 +3745,7 @@
         "description": "Id сортируемых строк группы для вложенного `SortableContext` (переупорядочивание строк внутри группы)."
       },
       "truncate": {
-        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "type": "{ variant?: \"end\" | \"middle\"; }",
         "required": false
       }
     },
@@ -3793,7 +3793,7 @@
         "description": "Размер списка — заголовок повторяет левую раскладку строки (`padding-left` + ручка + `gap`)."
       },
       "truncate": {
-        "type": "{ variant?: \"middle\" | \"end\"; }",
+        "type": "{ variant?: \"end\" | \"middle\"; }",
         "required": false
       }
     },

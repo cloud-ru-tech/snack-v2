@@ -643,7 +643,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -2237,7 +2237,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -2847,7 +2847,7 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"
@@ -3503,6 +3503,78 @@
         },
         "own": true
       },
+      "BaseChipProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключён"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст чипа"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Индекс в порядке фокусировки"
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Вариант обрезания строки",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ChipChoiceDateWithSeconds": {
+        "kind": "interface",
+        "props": {
+          "mode": {
+            "type": "\"date-time\" | undefined",
+            "required": false,
+            "values": [
+              "date-time"
+            ],
+            "description": "Режим выбора даты и времени"
+          },
+          "showSeconds": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать секунды в выборе и отображении времени"
+          }
+        },
+        "own": false
+      },
+      "ChipChoiceRowFilter": {
+        "kind": "alias",
+        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
+        "own": false
+      },
       "ClientTableProps": {
         "kind": "interface",
         "props": {
@@ -3938,6 +4010,188 @@
         },
         "own": true
       },
+      "DropdownBridgeProps": {
+        "kind": "interface",
+        "props": {
+          "closeOnEscapeKey": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли по нажатию на кнопку `Esc`"
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "outsideClick": {
+            "type": "boolean | OutsideClickHandler | undefined",
+            "required": false,
+            "description": "Закрывать ли при клике вне поповера",
+            "typeRefs": [
+              "OutsideClickHandler"
+            ]
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerClickByKeys": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
+        "own": false
+      },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterTitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
+      "EmptyState": {
+        "kind": "interface",
+        "props": {
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+          },
+          "dataFiltered": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии данных",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии результатов поиска или фильтров",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          }
+        },
+        "own": false
+      },
       "EmptyStateProps": {
         "kind": "interface",
         "props": {
@@ -3971,6 +4225,90 @@
           }
         },
         "own": true
+      },
+      "FilterRow": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "defaultValue": {
+            "type": "Partial<TState> | undefined",
+            "required": false,
+            "description": "Начальное состояние фильтров",
+            "typeRefs": [
+              "TState"
+            ]
+          },
+          "filters": {
+            "type": "ChipChoiceRowFilter[]",
+            "required": true,
+            "description": "Массив чипов",
+            "typeRefs": [
+              "BaseChipProps",
+              "ChipChoiceDateWithSeconds",
+              "ChipChoiceRowFilter",
+              "DropdownBridgeProps",
+              "DroplistListProps",
+              "DroplistMobileSlots",
+              "EmptyState",
+              "PublicListContextType",
+              "ScrollProps",
+              "SelectionMultipleState",
+              "SelectionSingleState",
+              "SelectionState"
+            ]
+          },
+          "initialOpen": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Начальное состояние filter-row (mobile)"
+          },
+          "onChange": {
+            "type": "((filters: TState) => void) | undefined",
+            "required": false,
+            "description": "Колбек изменения состояния фильтров"
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false
+          },
+          "onVisibleFiltersChange": {
+            "type": "((value: string[]) => void) | undefined",
+            "required": false,
+            "description": "Коллбек на изменение видимых фильтров"
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "showAddButton": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть/показать кнопку добавления фильров"
+          },
+          "showClearButton": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть/показать кнопку очиски фильтров"
+          },
+          "value": {
+            "type": "TState | undefined",
+            "required": false,
+            "description": "Состояние фильтров",
+            "typeRefs": [
+              "TState"
+            ]
+          },
+          "visibleFilters": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Состояние для видимых фильтров"
+          }
+        },
+        "own": false
       },
       "IconPredefinedProps": {
         "kind": "interface",
@@ -4067,108 +4405,225 @@
         },
         "own": false
       },
-      "PersistedFilterState": {
+      "PublicListContextType": {
         "kind": "interface",
         "props": {
-          "filter": {
-            "type": "T | undefined",
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
             "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
             "typeRefs": [
-              "T"
+              "Size"
             ]
           },
-          "ordering": {
-            "type": "FieldSort[] | undefined",
-            "required": false
-          },
-          "pagination": {
-            "type": "PaginationParams | undefined",
-            "required": false
-          },
-          "search": {
-            "type": "string | undefined",
+          "virtualized": {
+            "type": "boolean | undefined",
             "required": false
           }
         },
         "own": false
       },
-      "RenderCardContext": {
+      "ScrollProps": {
         "kind": "interface",
         "props": {
-          "defaultRender": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Готовый элемент дефолтной карточки — можно вернуть как есть или обернуть"
-          },
-          "row": {
-            "type": "Row<TData>",
-            "required": true,
-            "description": "Строка tanstack-таблицы (row.original — данные, getIsSelected/toggleSelected — выбор)",
-            "typeRefs": [
-              "TData"
-            ]
-          },
-          "table": {
-            "type": "Table<TData>",
-            "required": true,
-            "description": "Инстанс tanstack-таблицы",
-            "typeRefs": [
-              "TData"
-            ]
-          }
-        },
-        "own": true
-      },
-      "RowClickHandler": {
-        "kind": "alias",
-        "type": "(e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void",
-        "own": true
-      },
-      "RowVirtualizer": {
-        "kind": "alias",
-        "type": "Virtualizer<HTMLElement, Element> | null",
-        "own": true
-      },
-      "StickyControls": {
-        "kind": "interface",
-        "props": {
-          "backgroundPredefined": {
-            "type": "TableStickyControlsBackgroundPredefined | undefined",
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
             "required": false,
             "values": [
-              "blueBackground",
-              "greenBackground",
-              "neutralBackground",
-              "neutralBackground1Level",
-              "orangeBackground",
-              "pinkBackground",
-              "primaryBackground",
-              "redBackground",
-              "violetBackground",
-              "yellowBackground"
+              "bottom",
+              "right"
             ],
-            "description": "Подложка chrome-контролов (тулбар, header колонок, пагинация, плита table-view):\nслой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).",
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
             "typeRefs": [
-              "TableStickyControlsBackgroundPredefined"
+              "AutoscrollTo"
             ]
           },
-          "enabled": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "clickScrolling": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включить sticky-хром при скролле страницы."
+            "description": "Скролить ли по клику в скроллбар."
           },
-          "offsetBottom": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
-          "offsetTop": {
-            "type": "number | undefined",
+          "onInitialized": {
+            "type": "(() => void) | undefined",
             "required": false,
-            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
           }
         },
-        "own": true
+        "own": false
+      },
+      "SelectionMultipleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"multiple\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId[]> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionSingleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"single\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionState": {
+        "kind": "interface",
+        "props": {
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          }
+        },
+        "own": false
       },
       "StickyControlsLayoutDefaults": {
         "kind": "interface",
@@ -4211,199 +4666,13 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"
             ]
           }
         },
-        "own": true
-      },
-      "TableRowColor": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": true
-      },
-      "TableStickyControlsBackgroundPredefined": {
-        "kind": "union",
-        "values": [
-          "blueBackground",
-          "greenBackground",
-          "neutralBackground",
-          "neutralBackground1Level",
-          "orangeBackground",
-          "pinkBackground",
-          "primaryBackground",
-          "redBackground",
-          "violetBackground",
-          "yellowBackground"
-        ],
-        "own": true
-      },
-      "ToolbarApi": {
-        "kind": "interface",
-        "props": {
-          "focus": {
-            "type": "() => void",
-            "required": true
-          },
-          "getLinkHref": {
-            "type": "() => string | undefined",
-            "required": true
-          },
-          "getLinkTitle": {
-            "type": "() => string | undefined",
-            "required": true
-          },
-          "insertImage": {
-            "type": "(src: string, alt: string) => void",
-            "required": true
-          },
-          "insertTable": {
-            "type": "(rows: number, cols: number) => void",
-            "required": true
-          },
-          "isActive": {
-            "type": "(id: ToolbarItemId) => boolean",
-            "required": true,
-            "description": "Активна ли кнопка (checked-стейт). В raw-режиме — всегда false."
-          },
-          "isHeadingActive": {
-            "type": "(level: HeadingLevel) => boolean",
-            "required": true,
-            "description": "Активен ли заголовок уровня `level` на текущей строке. В raw-режиме — false."
-          },
-          "mode": {
-            "type": "\"wysiwyg\" | \"raw\"",
-            "required": true,
-            "values": [
-              "raw",
-              "wysiwyg"
-            ],
-            "description": "Режим бэкенда: `wysiwyg` (TipTap, preview) либо `raw` (markdown-исходник в textarea)."
-          },
-          "setLink": {
-            "type": "(props: LinkProps) => void",
-            "required": true
-          },
-          "setParagraph": {
-            "type": "() => void",
-            "required": true
-          },
-          "subscribe": {
-            "type": "(callback: () => void) => () => void",
-            "required": true,
-            "description": "Подписка на изменение selection/контента — для перерисовки checked-стейтов."
-          },
-          "toggle": {
-            "type": "(id: ToolbarItemId) => void",
-            "required": true,
-            "description": "Toggle инлайн/блочной кнопки (bold…block-code)."
-          },
-          "toggleHeading": {
-            "type": "(level: HeadingLevel) => void",
-            "required": true
-          }
-        },
-        "own": false
-      },
-      "ToolbarItemId": {
-        "kind": "union",
-        "values": [
-          "block-code",
-          "block-quote",
-          "bold",
-          "bullet-list",
-          "heading",
-          "image",
-          "inline-code",
-          "italic",
-          "link",
-          "ordered-list",
-          "strikethrough",
-          "table"
-        ],
-        "own": false
-      },
-      "ToolbarPersistConfig": {
-        "kind": "interface",
-        "props": {
-          "filterQueryKey": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Ключ для queryParams"
-          },
-          "id": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Уникальный id для текущего инстанса компонента"
-          },
-          "onLoad": {
-            "type": "((state: PersistedFilterState<T>) => void) | undefined",
-            "required": false,
-            "description": "Колбэк при первом рендере для получения сохраненных данных и установки их в стейт"
-          },
-          "parser": {
-            "type": "((value: string) => PersistedFilterState<T>) | undefined",
-            "required": false,
-            "description": "Custom-парсер queryParams для преобразования в данные состояния"
-          },
-          "serializer": {
-            "type": "((value: PersistedFilterState<T>) => string) | undefined",
-            "required": false,
-            "description": "Custom-сериализация состояния перед сохранением в queryParams"
-          },
-          "state": {
-            "type": "PersistedFilterState<T> | undefined",
-            "required": false,
-            "description": "Состояние для сохранения",
-            "typeRefs": [
-              "PersistedFilterState",
-              "T"
-            ]
-          },
-          "validateData": {
-            "type": "((value: unknown) => value is PersistedFilterState<T>) | undefined",
-            "required": false,
-            "description": "Валидатор сохраненных"
-          }
-        },
-        "own": false
-      },
-      "ToolbarProps": {
-        "kind": "interface",
-        "props": {
-          "api": {
-            "type": "{ mode: \"wysiwyg\" | \"raw\"; focus(): void; isActive(id: ToolbarItemId): boolean; isHeadingActive(level: HeadingLevel): boolean; toggle(id: ToolbarItemId): void; toggleHeading(level: HeadingLevel): void; setParagraph(): void; getLinkHref(): string | undefined; getLinkTitle(): string | undefined; setLink(props: LinkProps): void; insertImage(src: string, alt: string): void; insertTable(rows: number, cols: number): void; subscribe(callback: () => void): () => void; }",
-            "required": true,
-            "description": "Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме.",
-            "typeRefs": [
-              "ToolbarApi"
-            ]
-          },
-          "items": {
-            "type": "ToolbarItemId[]",
-            "required": true,
-            "typeRefs": [
-              "ToolbarItemId"
-            ]
-          }
-        },
-        "own": false
-      },
-      "TreeColumnDefinitionProps": {
-        "kind": "alias",
-        "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
         "own": true
       },
       "View": {
@@ -4924,7 +5193,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -5534,7 +5803,7 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"
@@ -6079,7 +6348,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -6632,7 +6901,7 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"
@@ -7241,7 +7510,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -7851,7 +8120,7 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"
@@ -8540,7 +8809,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -9438,7 +9707,7 @@
         "required": false
       },
       "scrollOverflow": {
-        "type": "{ x?: \"scroll\" | \"hidden\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"scroll\" | \"hidden\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+        "type": "{ x?: \"hidden\" | \"scroll\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"scroll\" | \"visible\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
         "required": false
       },
       "scrollPaddingAbsolute": {
@@ -10153,7 +10422,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -10727,7 +10996,7 @@
             "required": true
           },
           "stickyControls": {
-            "type": "{ offsetTop?: number | undefined; enabled?: boolean | undefined; offsetBottom?: number | undefined; }",
+            "type": "{ enabled?: boolean | undefined; offsetTop?: number | undefined; offsetBottom?: number | undefined; }",
             "required": true,
             "typeRefs": [
               "StickyControlsLayoutDefaults"

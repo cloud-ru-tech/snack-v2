@@ -586,7 +586,11 @@ for (const [pkgDir, files] of byPkg) {
 
   let components;
   try {
-    components = parser.parse(files);
+    // One shared program for every package: react-docgen-typescript would otherwise build
+    // its own program per parse() call (~90 programs per run — the bulk of gen:props runtime).
+    components = program
+      ? parser.parseWithProgramProvider(files, () => program)
+      : parser.parse(files);
   } catch (e) {
     console.warn(`⚠  ${pkgName}: parse error — ${e}`);
     continue;

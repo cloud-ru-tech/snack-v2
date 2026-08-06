@@ -38,7 +38,7 @@
         "required": false
       },
       "innerRef": {
-        "type": "Ref<HTMLSpanElement> | ((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement>",
+        "type": "((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement> | Ref<HTMLSpanElement>",
         "required": false,
         "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.\nRef на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       },
@@ -423,7 +423,7 @@
         "required": false
       },
       "innerRef": {
-        "type": "Ref<HTMLSpanElement> | ((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement>",
+        "type": "((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement> | Ref<HTMLSpanElement>",
         "required": false,
         "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.\nRef на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
       },

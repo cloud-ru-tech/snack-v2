@@ -1442,7 +1442,7 @@
         "description": "CSS-класс\nCSS-класс корня `FieldDecorator`"
       },
       "controllerProps": {
-        "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"render\" | \"rules\">",
+        "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"rules\" | \"render\">",
         "required": true,
         "description": "Режим контроллера с использованием react-hook-form"
       },
@@ -2249,7 +2249,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -3333,7 +3333,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -4109,7 +4109,7 @@
         "description": "CSS-класс\nCSS-класс корня `FieldDecorator`"
       },
       "controllerProps": {
-        "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"render\" | \"rules\">",
+        "type": "Omit<ControllerProps<FieldValues>, \"disabled\" | \"rules\" | \"render\">",
         "required": true,
         "description": "Режим контроллера с использованием react-hook-form"
       },
@@ -4405,7 +4405,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {
@@ -5738,7 +5738,7 @@
         "description": "CSS-класс корневой обёртки."
       },
       "createLayoutProps": {
-        "type": "Omit<ModalProps, ManagedLayoutKeys> | (Omit<DrawerProps, ManagedLayoutKeys | \"position\"> & { ...; })",
+        "type": "Omit<ModalProps, ManagedLayoutKeys> | (Omit<DrawerProps, \"position\" | ManagedLayoutKeys> & { ...; })",
         "required": true,
         "description": "Пропсы модалки создания (`content` — форма создания опции).\nПропсы дровера создания (`content` — форма создания опции); `position` по умолчанию `right`.",
         "typeRefs": [
@@ -5842,7 +5842,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "EntityName": {

@@ -983,7 +983,7 @@
       },
       "DroplistListProps": {
         "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"hasListInFocusChain\" | \"keyboardNavigationRef\">]: T[P]; }",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
       "DroplistMobileSlots": {

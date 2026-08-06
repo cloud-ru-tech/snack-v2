@@ -1221,7 +1221,7 @@ export function FieldDescriptionRHFExample() {
 | `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `controllerProps` | `Omit<ControllerProps<FieldValues>, "disabled" \| "render" \| "rules">` | — | Режим контроллера с использованием react-hook-form |
+| `controllerProps` | `Omit<ControllerProps<FieldValues>, "disabled" \| "rules" \| "render">` | — | Режим контроллера с использованием react-hook-form |
 | `customSchema` | `StringSchema<string, AnyObject, undefined, "">` | — | Дополнительная yup-схема, которая конкатенируется к встроенной |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |
@@ -1289,7 +1289,7 @@ export function FieldNameRHFExample() {
 | `autoFocus` | `boolean` | `false` | Включен ли авто-фокус для поля |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `className` | `string` | — | CSS-класс <br/> CSS-класс корня `FieldDecorator` |
-| `controllerProps` | `Omit<ControllerProps<FieldValues>, "disabled" \| "render" \| "rules">` | — | Режим контроллера с использованием react-hook-form |
+| `controllerProps` | `Omit<ControllerProps<FieldValues>, "disabled" \| "rules" \| "render">` | — | Режим контроллера с использованием react-hook-form |
 | `customSchema` | `StringSchema<string, AnyObject, undefined, "">` | — | Дополнительная yup-схема, конкатенируется к встроенной (обязательность, длина, допустимые символы). <br/> Через неё подключают data-зависимые проверки, которые компонент не может выполнить сам — например, <br/> проверку уникальности имени по данным потребителя. Текст ошибки можно взять из локали пакета: <br/> `fieldsPredefinedLocale.useTranslations().t('FieldName.errorDuplicate')`. |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `string` | — | Начальное значение (uncontrolled-режим) |

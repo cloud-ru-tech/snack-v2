@@ -163,7 +163,7 @@
         "description": "Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)"
       },
       "triggerRef": {
-        "type": "ForwardedRef<ReferenceType | HTMLElement | null>",
+        "type": "ForwardedRef<HTMLElement | ReferenceType | null>",
         "required": false,
         "description": "Ref ссылка на триггер"
       },

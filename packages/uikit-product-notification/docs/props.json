@@ -93,7 +93,7 @@
         "description": "Лейбл перед заголовком"
       },
       "link": {
-        "type": "PickLinkProps<\"a\", \"label\" | \"insideText\" | \"truncateVariant\">",
+        "type": "PickLinkProps<\"a\", \"label\" | \"truncateVariant\" | \"insideText\">",
         "required": false,
         "description": "Ссылка (рендерится как `<a href>` через `@ds/link`)",
         "typeRefs": [
@@ -1926,7 +1926,7 @@
         ]
       },
       "button": {
-        "type": "Omit<ButtonProps<ElementType>, \"data-test-id\" | \"label\" | \"view\" | \"size\">",
+        "type": "Omit<ButtonProps<ElementType>, \"data-test-id\" | \"view\" | \"label\" | \"size\">",
         "required": false,
         "description": "Кнопка дополнительного действия панели",
         "typeRefs": [
