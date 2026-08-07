@@ -23,6 +23,8 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
     }
   }
 
+  cursor: default;
+
   position: relative;
 
   overflow: hidden;
@@ -33,9 +35,9 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
   box-sizing: border-box;
   border-width: 0;
 
-  @include materials.has-state-layer-as-child(#{stateLayer});
-
   &[data-clickable] {
+    @include materials.has-state-layer-as-child(#{stateLayer});
+
     cursor: pointer;
     font: inherit;
     color: inherit;
