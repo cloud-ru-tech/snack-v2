@@ -132,7 +132,7 @@ export function TransparentBackground() {
 | `droplist` | `ButtonFieldDroplistProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Пропсы выпадающего списка (`Droplist`). Если переданы — кнопка открывает `Droplist` <br/> и показывает шеврон, иначе рендерится без выпадающего списка. |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `onClick` | `() => void` | — | Действие при клике |
-| `showDroplistChevron` | `boolean \| undefined` | — | Отображение шеврона |
+| `showDroplistChevron` | `boolean \| undefined` | — | Отображение шеврона. По умолчанию `true` если передан `droplist`" |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер кнопки |
 | `variant` | `"after"` \| `"before"` | — | Вариант (положение) кнопки |
 

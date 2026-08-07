@@ -38,7 +38,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "Boolean(droplist)",
-        "description": "Отображение шеврона. По умолчанию `true` если передан `droplist`"
+        "description": "Отображение шеврона. По умолчанию `true` если передан `droplist`\""
       },
       "size": {
         "type": "enum",
@@ -350,7 +350,7 @@
           "showDroplistChevron": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Отображение шеврона"
+            "description": "Отображение шеврона. По умолчанию `true` если передан `droplist`\""
           },
           "size": {
             "type": "Size | undefined",
