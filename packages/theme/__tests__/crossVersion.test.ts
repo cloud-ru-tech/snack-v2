@@ -1,5 +1,5 @@
 import { createSharedStoreContext, providerKey, staticStore } from '@ds/context-kit';
-import { createElement as h, FunctionComponent } from 'react';
+import { createElement as h, Fragment, FunctionComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
@@ -43,18 +43,24 @@ describe('cross-version провайдеры оформления', () => {
     const copyB = createSharedStoreContext(KEY_V1, appearanceStore({}));
 
     const html = renderToStaticMarkup(
-      h(
-        copyA.StoreProvider,
-        { store: appearanceStore({ colorScheme: 'light' }) },
-        h(makeProbe(copyA.useStoreValue, 'A-top')),
-        h(
-          copyB.StoreProvider,
-          { store: appearanceStore({ colorScheme: 'dark' }) },
-          // Consumer из copyA, но вложен под provider copyB:
-          h(makeProbe(copyA.useStoreValue, 'A-in-B')),
-          h(makeProbe(copyB.useStoreValue, 'B-in-B')),
+      h(copyA.StoreProvider, {
+        store: appearanceStore({ colorScheme: 'light' }),
+        children: h(
+          Fragment,
+          null,
+          h(makeProbe(copyA.useStoreValue, 'A-top')),
+          h(copyB.StoreProvider, {
+            store: appearanceStore({ colorScheme: 'dark' }),
+            children: h(
+              Fragment,
+              null,
+              // Consumer из copyA, но вложен под provider copyB:
+              h(makeProbe(copyA.useStoreValue, 'A-in-B')),
+              h(makeProbe(copyB.useStoreValue, 'B-in-B')),
+            ),
+          }),
         ),
-      ),
+      }),
     );
 
     expect(readAttr(html, 'A-top', 'data-color')).toBe('light');
@@ -72,11 +78,10 @@ describe('cross-version провайдеры оформления', () => {
     );
 
     const html = renderToStaticMarkup(
-      h(
-        copyV1.StoreProvider,
-        { store: appearanceStore({ colorScheme: 'light', density: 'compact' }) },
-        h(makeProbe(copyV2.useStoreValue, 'V2-in-V1')),
-      ),
+      h(copyV1.StoreProvider, {
+        store: appearanceStore({ colorScheme: 'light', density: 'compact' }),
+        children: h(makeProbe(copyV2.useStoreValue, 'V2-in-V1')),
+      }),
     );
 
     // V2-consumer НЕ видит V1-provider — читает свой дефолт. Безопасно, без падения.
@@ -89,16 +94,14 @@ describe('cross-version провайдеры оформления', () => {
     const otherVersionRoot = createSharedStoreContext(KEY_V1, appearanceStore({}));
 
     const html = renderToStaticMarkup(
-      h(
-        otherVersionRoot.StoreProvider,
-        { store: appearanceStore({ colorScheme: 'dark', brand: 'brandA', brandRole: 'main', density: 'compact' }) },
-        h(
-          ChildThemeProvider,
-          { value: { density: 'comfort', brand: 'brandC' } },
+      h(otherVersionRoot.StoreProvider, {
+        store: appearanceStore({ colorScheme: 'dark', brand: 'brandA', brandRole: 'main', density: 'compact' }),
+        children: h(ChildThemeProvider, {
+          value: { density: 'comfort', brand: 'brandC' },
           // useThemeAppearance — из реального @ds/theme; читает слитое значение.
-          h(makeProbe(useThemeAppearance, 'merged')),
-        ),
-      ),
+          children: h(makeProbe(useThemeAppearance, 'merged')),
+        }),
+      }),
     );
 
     expect(readAttr(html, 'merged', 'data-color')).toBe('dark'); // унаследовано от чужого root

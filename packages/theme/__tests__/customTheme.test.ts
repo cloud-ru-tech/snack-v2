@@ -120,9 +120,9 @@ describe('customTheme / buildBrandPaletteVars', () => {
   it('задаёт activated-тинты акцента (default/hovered/pressed)', () => {
     const vars = nn(buildBrandPaletteVars('#389f74'));
 
-    expect(vars['--sn-brand-color-activated-default-background']).toBe('#389f7426');
-    expect(vars['--sn-brand-color-activated-hovered-background']).toBe('#389f7459');
-    expect(vars['--sn-brand-color-activated-pressed-background']).toBe('#389f7473');
+    expect(vars['--sn-brand-color-state-activated-default-background']).toBe('#389f7426');
+    expect(vars['--sn-brand-color-state-activated-hovered-background']).toBe('#389f7459');
+    expect(vars['--sn-brand-color-state-activated-pressed-background']).toBe('#389f7473');
   });
 
   it('контрастный акцент: светлая схема — near-white, тёмная — near-dark', () => {
@@ -153,7 +153,7 @@ describe('customTheme / buildBrandPaletteCss', () => {
 
     expect(css.startsWith(`:is(${BRAND_LIST}){`)).toBe(true);
     expect(css).toContain('--sn-brand-color-primary-55:#ff7a00');
-    expect(css).toContain('--sn-brand-color-activated-default-background:#ff7a0026');
+    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a0026');
     expect(css).not.toContain('data-');
   });
 

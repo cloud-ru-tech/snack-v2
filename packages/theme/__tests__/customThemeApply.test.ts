@@ -51,11 +51,11 @@ afterEach(() => {
 describe('RootThemeProvider brandColor — scoped <style> на бренд-классах', () => {
   it('wrapper-режим: рендерит scoped-правило на бренд-классы + scope-атрибут (не inline)', () => {
     const container = mount(
-      h(
-        RootThemeProvider,
-        { value: { colorScheme: 'light', brand: 'brandA' }, brandColor: '#ff7a00' },
-        h('span', null, 'x'),
-      ),
+      h(RootThemeProvider, {
+        value: { colorScheme: 'light', brand: 'brandA' },
+        brandColor: '#ff7a00',
+        children: h('span', null, 'x'),
+      }),
     );
     const wrapper = nn(container.querySelector('div'));
     const scopeId = wrapper.getAttribute('data-ds-brand-scope');
@@ -68,14 +68,18 @@ describe('RootThemeProvider brandColor — scoped <style> на бренд-кла
     expect(css).toContain(`[data-ds-brand-scope="${scopeId}"]`);
     expect(css).toContain(`${BRAND_VAR}:#ff7a00`);
     expect(css).toContain('--sn-brand-color-primary-transparent:#ff7a0024');
-    expect(css).toContain('--sn-brand-color-activated-default-background:#ff7a0026');
+    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a0026');
     // Вариант A ушёл от inline-переменных.
     expect(wrapper.style.getPropertyValue(BRAND_VAR)).toBe('');
   });
 
   it('невалидный brandColor → без <style> и без scope-атрибута', () => {
     const container = mount(
-      h(RootThemeProvider, { value: { colorScheme: 'light' }, brandColor: 'nope' }, h('span', null, 'x')),
+      h(RootThemeProvider, {
+        value: { colorScheme: 'light' },
+        brandColor: 'nope',
+        children: h('span', null, 'x'),
+      }),
     );
     const wrapper = nn(container.querySelector('div'));
 
@@ -92,7 +96,12 @@ describe('RootThemeProvider brandColor — scoped <style> на бренд-кла
     const root = createRoot(container);
     act(() =>
       root.render(
-        h(RootThemeProvider, { value: { colorScheme: 'light' }, rootRef, brandColor: '#8a2be2' }, h('span', null, 'x')),
+        h(RootThemeProvider, {
+          value: { colorScheme: 'light' },
+          rootRef,
+          brandColor: '#8a2be2',
+          children: h('span', null, 'x'),
+        }),
       ),
     );
 

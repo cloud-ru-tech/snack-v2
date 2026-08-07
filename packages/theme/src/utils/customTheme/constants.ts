@@ -26,7 +26,7 @@ export const BASE_BRAND_PALETTE: Record<BrandPrimaryTone, string> = {
   '55': '#389f74',
   '60': '#5ebb91',
   '65': '#85ceaa',
-  '80': '#bdeed8',
+  '80': '#caeadb',
   '90': '#edf7f1',
   '95': '#f5fdf8',
   '99': '#fbfffc',
@@ -39,9 +39,9 @@ export const BRAND_PRIMARY_VAR_PREFIX = '--sn-brand-color-primary-';
 export const TRANSPARENT_ALPHA_SUFFIX = '24';
 
 /**
- * Тинты акцента для activated-состояний (`--sn-brand-color-activated-*-background`) — это акцентный
- * тон с alpha. Суффиксы совпадают с дефолтами brandA (`#389f7426/59/73`). Без них activated-заливки
- * (выбранная строка таблицы, active-состояния) не следуют за кастомным бренд-цветом.
+ * Тинты акцента для activated-состояний (`--sn-brand-color-state-activated-*-background`) — это
+ * акцентный тон с alpha. Суффиксы совпадают с дефолтами brandA (`#389f7426/59/73`). Без них
+ * activated-заливки (выбранная строка таблицы, active-состояния) не следуют за кастомным бренд-цветом.
  */
 export const ACTIVATED_ALPHA_SUFFIX = {
   default: '26',
@@ -51,7 +51,7 @@ export const ACTIVATED_ALPHA_SUFFIX = {
 
 /** Имена CSS-переменных activated-заливок. */
 export const BRAND_ACTIVATED_VAR = {
-  default: '--sn-brand-color-activated-default-background',
-  hovered: '--sn-brand-color-activated-hovered-background',
-  pressed: '--sn-brand-color-activated-pressed-background',
+  default: '--sn-brand-color-state-activated-default-background',
+  hovered: '--sn-brand-color-state-activated-hovered-background',
+  pressed: '--sn-brand-color-state-activated-pressed-background',
 } as const;
