@@ -19,11 +19,19 @@
  *        resolves both protocols natively. This script only renames the scope;
  *        it does NOT resolve any dependency protocol.
  *
- *   2. `packages/<pkg>/dist/**` (`.js`, `.mjs`, `.cjs`, `.d.ts`, `.d.mts`,
- *      `.d.cts`, `.map`): replaces every occurrence of `<from>/<x>` with
- *      `<to>/<prefix><x>`. We match `<from>/` followed by package-name chars,
- *      so the replacement is precise and not accidentally hitting unrelated
- *      strings.
+ *   2. `packages/<pkg>/**` (excluding `node_modules`), for files with ext
+ *      `.js`, `.mjs`, `.cjs`, `.d.ts`, `.d.mts`, `.d.cts`, `.map`, `.scss`,
+ *      `.css`: replaces every occurrence of `<from>/<x>` with `<to>/<prefix><x>`.
+ *      We match `<from>/` followed by package-name chars, so the replacement
+ *      is precise and not accidentally hitting unrelated strings.
+ *
+ *      Scanning the whole package dir (not just `dist/`) matters because
+ *      several packages publish raw `.scss` sources outside `dist` — e.g.
+ *      `@ds/materials` exposes `index.scss` + `src/**\/*.scss` via the `sass`
+ *      export condition, and `*.module.scss` files under `src/` are published
+ *      as-is (`files: [..., "src"]`) for the consumer's own bundler to
+ *      compile. Both contain literal `@use '@ds/<pkg>/...'` that must be
+ *      rewritten to the target scope, same as compiled `dist` output.
  *
  * Operates only on `packages/*`. `apps/*` and the repo root are not touched.
  * Idempotent: re-running with the same args is a no-op.
@@ -49,7 +57,7 @@ const PACKAGES_DIR = resolve(ROOT, 'packages');
 const APPS_DIR = resolve(ROOT, 'apps');
 const WORKSPACE_DIRS = [PACKAGES_DIR, APPS_DIR];
 
-const DIST_FILE_EXTS = new Set([
+const PATCHABLE_FILE_EXTS = new Set([
   '.js',
   '.mjs',
   '.cjs',
@@ -57,6 +65,8 @@ const DIST_FILE_EXTS = new Set([
   '.d.mts',
   '.d.cts',
   '.map',
+  '.scss',
+  '.css',
 ]);
 
 function normalizeScope(raw: string | undefined, fallback: string): string {
@@ -203,23 +213,22 @@ function walk(dir: string, files: string[]): void {
     return;
   }
   for (const entry of entries) {
+    if (entry === 'node_modules') continue;
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) {
       walk(full, files);
-    } else if (DIST_FILE_EXTS.has(getExt(entry))) {
+    } else if (PATCHABLE_FILE_EXTS.has(getExt(entry))) {
       files.push(full);
     }
   }
 }
 
-let distFilesPatched = 0;
-let distOccurrencesReplaced = 0;
+let filesPatched = 0;
+let occurrencesReplaced = 0;
 for (const pkg of allPackages) {
-  const distDir = join(pkg.dir, 'dist');
-  if (!isDir(distDir)) continue;
   const files: string[] = [];
-  walk(distDir, files);
+  walk(pkg.dir, files);
   for (const file of files) {
     const content = readFileSync(file, 'utf8');
     let count = 0;
@@ -229,8 +238,8 @@ for (const pkg of allPackages) {
     });
     if (count > 0) {
       writeFileSync(file, next, 'utf8');
-      distFilesPatched++;
-      distOccurrencesReplaced += count;
+      filesPatched++;
+      occurrencesReplaced += count;
     }
   }
 }
@@ -240,5 +249,5 @@ console.info(
   `[transform-scope] ${fromScope}/* → ${toLabel}: ` +
     `${renames.size} packages renamed; ` +
     `${pkgJsonUpdated} package.json files updated; ` +
-    `${distFilesPatched} dist files patched (${distOccurrencesReplaced} occurrences).`,
+    `${filesPatched} files patched (${occurrencesReplaced} occurrences).`,
 );
