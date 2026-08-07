@@ -2,12 +2,12 @@
 @use '@ds/figma-variables/build/scss/components/carousel.module' as carousel;
 
 .itemProvider {
-  // Инсет слайдов (Figma content). overflow клипит по padding-box, поэтому
-  // padding даёт запас под тени/focus-обводку слайдов у краёв. Расчёт itemWidth
-  // вычитает этот padding (см. recalculateItemsSize), свайп не сбивается.
-  @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'content');
-
   --gap: #{base.$sn-primitive-dimension-16};
+
+  // Vertical inset only (Figma content). Inline padding created a gutter where the
+  // next slide painted through when gap < padding — overflow clips at the padding edge.
+  // Slide outline/border is contained by .itemContainer padding instead.
+  @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'content');
 
   overflow-x: hidden;
   display: flex;
@@ -16,6 +16,8 @@
 
   box-sizing: border-box;
   width: 100%;
+  // Must come after composite-var, otherwise token paddings override this.
+  padding-inline: 0;
 
   &[data-swipe] {
     cursor: grab;
@@ -32,6 +34,9 @@
 .itemContainer {
   flex-shrink: 0;
   box-sizing: border-box;
+  // Reserve space inside the slide for outline/border so it is not clipped by
+  // overflow and does not paint into a shared gutter with the next slide.
+  padding: base.$sn-primitive-strokeWeight-strokeRegular;
 }
 
 .itemTracker {

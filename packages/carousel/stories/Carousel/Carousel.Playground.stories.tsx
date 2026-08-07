@@ -1,4 +1,4 @@
-import { Carousel, CONTROLS_VISIBILITY } from '@ds/carousel';
+import { Carousel, CarouselProps, CONTROLS_VISIBILITY } from '@ds/carousel';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -7,13 +7,25 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
 
-const meta: Meta<typeof Carousel> = {
+const SLIDE_COLORS = [
+  styles.slideIndigo,
+  styles.slideSky,
+  styles.slideEmerald,
+  styles.slideAmber,
+  styles.slidePink,
+] as const;
+
+type StoryProps = CarouselProps & {
+  itemsCount: number;
+};
+
+const meta: Meta<StoryProps> = {
   title: 'Components/Carousel',
   component: Carousel,
   parameters: { layout: 'fullscreen' },
   args: {
-    showItems: 1,
-    scrollBy: 1,
+    showItems: 3,
+    scrollBy: 3,
     transition: 0.4,
     swipe: true,
     arrows: true,
@@ -21,9 +33,10 @@ const meta: Meta<typeof Carousel> = {
     infiniteScroll: false,
     autoSwipe: 0,
     swipeActivateLength: 48,
-    gap: '0px',
+    gap: '',
     controlsVisibility: CONTROLS_VISIBILITY.hover,
     'data-test-id': TEST_IDS.root,
+    itemsCount: 11,
   },
   argTypes: {
     showItems: { control: { type: 'number', min: 1, max: 6 } },
@@ -40,8 +53,12 @@ const meta: Meta<typeof Carousel> = {
       control: 'radio',
       options: Object.values(CONTROLS_VISIBILITY),
     },
+    itemsCount: {
+      name: '[Stories]: itemsCount',
+      control: { type: 'number', min: 1, max: 20, step: 1 },
+    },
   },
-  render: args => (
+  render: ({ itemsCount, ...args }) => (
     <DemoPage>
       <DemoPanel width='wide'>
         <DemoTitle>Playground</DemoTitle>
@@ -49,20 +66,22 @@ const meta: Meta<typeof Carousel> = {
         <DemoActions align='center'>
           <div className={styles.container}>
             <Carousel {...args}>
-              <div className={`${styles.slide} ${styles.slideIndigo}`}>Slide 1</div>
-              <div className={`${styles.slide} ${styles.slideSky}`}>Slide 2</div>
-              <div className={`${styles.slide} ${styles.slideEmerald}`}>Slide 3</div>
+              {Array.from({ length: itemsCount }, (_, i) => (
+                <div key={i} className={`${styles.slide} ${SLIDE_COLORS[i % SLIDE_COLORS.length]}`}>
+                  Slide {i + 1}
+                </div>
+              ))}
             </Carousel>
           </div>
         </DemoActions>
       </DemoPanel>
-    </DemoPage >
+    </DemoPage>
   ),
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Carousel>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

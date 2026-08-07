@@ -1,4 +1,4 @@
-import { debounce, SwipeCallback, useSwipeable } from '@ds/utils';
+import { debounce, SwipeCallback, useLayoutEffect, useSwipeable } from '@ds/utils';
 import mergeRefs from 'merge-refs';
 import {
   Children,
@@ -24,6 +24,12 @@ export type ItemProviderProps = PropsWithChildren<{
   page: number;
   gap?: string;
 }>;
+
+function parseCssLength(value: string): number {
+  const parsed = Number.parseFloat(value);
+
+  return Number.isFinite(parsed) ? parsed : 0;
+}
 
 const hideNonVisibleItems = (trackerElement: HTMLDivElement) => {
   trackerElement?.querySelectorAll(`[data-test-id=${TEST_IDS.trackItem}]`).forEach(slide => {
@@ -60,6 +66,7 @@ export function ItemProvider({
   gap,
 }: ItemProviderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const itemsTrackerRef = useRef<HTMLDivElement>(null);
 
   const [computedValues, setComputedValues] = useState({
     itemWidth: 0,
@@ -68,27 +75,27 @@ export function ItemProvider({
 
   const recalculateItemsSize = useCallback(() => {
     const containerElement = containerRef.current;
+    const trackerElement = itemsTrackerRef.current;
 
-    if (!containerElement) {
+    if (!containerElement || !trackerElement) {
       return;
     }
 
-    const styles = getComputedStyle(containerElement);
+    const containerStyles = getComputedStyle(containerElement);
+    const trackerStyles = getComputedStyle(trackerElement);
 
-    const gap = Number.parseFloat(styles.getPropertyValue('--gap'));
-    const paddingLeft = Number.parseFloat(styles.getPropertyValue('padding-left'));
-    const paddingRight = Number.parseFloat(styles.getPropertyValue('padding-right'));
+    const gapValue = gap ? parseCssLength(gap) : parseCssLength(trackerStyles.columnGap || trackerStyles.gap);
+    const paddingLeft = parseCssLength(containerStyles.paddingLeft);
+    const paddingRight = parseCssLength(containerStyles.paddingRight);
 
-    const itemWidth =
-      (containerElement.getBoundingClientRect().width -
-        (Math.trunc(showItems) - 1) * gap -
-        paddingLeft -
-        paddingRight) /
-      showItems;
-    setComputedValues({ itemWidth, gap });
-  }, [showItems]);
+    const gapsCount = Math.max(Math.trunc(showItems) - 1, 0);
+    const contentWidth = containerElement.getBoundingClientRect().width - paddingLeft - paddingRight;
+    const itemWidth = (contentWidth - gapsCount * gapValue) / showItems;
 
-  useEffect(() => {
+    setComputedValues({ itemWidth, gap: gapValue });
+  }, [showItems, gap]);
+
+  useLayoutEffect(() => {
     const node = containerRef.current;
 
     if (!node) {
@@ -101,8 +108,6 @@ export function ItemProvider({
     observer.observe(node);
     return () => observer.disconnect();
   }, [recalculateItemsSize]);
-
-  const itemsTrackerRef = useRef<HTMLDivElement>(null);
 
   const transform = useMemo(
     () => Number(-(page * scrollBy * computedValues.itemWidth + computedValues.gap * page * scrollBy)),
