@@ -7,3 +7,7 @@
 .tooltip {
   max-width: tooltip.$sn-tooltip-anatomy-container-maxWidth;
 }
+
+.supportLink div {
+  color: tooltip.$sn-theme-color-available-inversion-textMain;
+}

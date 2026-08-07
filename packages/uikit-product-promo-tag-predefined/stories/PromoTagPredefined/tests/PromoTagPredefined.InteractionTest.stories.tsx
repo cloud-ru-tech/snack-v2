@@ -1,13 +1,16 @@
 import { TRIGGER } from '@ds/tooltip';
 import { PromoTagPredefined, TEST_IDS as COMPONENT_TEST_IDS, VARIANTS } from '@ds/uikit-product-promo-tag-predefined';
 import { Meta, StoryObj } from '@storybook/react';
+import { MouseEvent } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { TEST_IDS } from '../testIds';
 
-const onPromoTagClick = fn();
+const onSupportClick = fn((e: MouseEvent) => {
+  e.preventDefault();
+});
 
 const meta: Meta<typeof PromoTagPredefined> = {
   title: 'Uikit Product/PromoTagPredefined/Tests/Interaction',
@@ -24,11 +27,11 @@ export const InteractionTest: Story = {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>InteractionTest</DemoTitle>
-        <DemoHint>Tooltip по hover/click и onClick на PromoTag (три инстанса).</DemoHint>
+        <DemoHint>Tooltip по hover/click и клик по support-ссылке в connecting.</DemoHint>
         <DemoActions align='center'>
           <PromoTagPredefined
             variant={VARIANTS.Connecting}
-            tooltip={{ trigger: TRIGGER.Hover }}
+            tooltip={{ trigger: TRIGGER.Hover, onSupportClick }}
             data-test-id={TEST_IDS.promoTagHover}
           />
           <PromoTagPredefined
@@ -38,11 +41,8 @@ export const InteractionTest: Story = {
           />
           <PromoTagPredefined
             variant={VARIANTS.Connecting}
-            tooltip={{ trigger: TRIGGER.Click }}
-            onClick={() => {
-              onPromoTagClick();
-            }}
-            data-test-id={TEST_IDS.promoTagOnClick}
+            tooltip={{ trigger: TRIGGER.Click, onSupportClick }}
+            data-test-id={TEST_IDS.promoTagSupport}
           />
         </DemoActions>
       </DemoPanel>
@@ -52,9 +52,9 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
     const hoverTrigger = canvas.getByTestId(TEST_IDS.promoTagHover);
     const clickTrigger = canvas.getByTestId(TEST_IDS.promoTagClickTrigger);
-    const onClickTrigger = canvas.getByTestId(TEST_IDS.promoTagOnClick);
+    const supportTrigger = canvas.getByTestId(TEST_IDS.promoTagSupport);
 
-    await step('hover: opens tooltip', async () => {
+    await step('hover: opens tooltip with support link', async () => {
       await userEvent.hover(hoverTrigger);
       await waitFor(
         () => {
@@ -62,10 +62,25 @@ export const InteractionTest: Story = {
         },
         { timeout: 2000 },
       );
+      expect(within(document.body).getByTestId(COMPONENT_TEST_IDS.supportLink)).toBeVisible();
     });
 
     await step('unhover: closes tooltip', async () => {
       await userEvent.unhover(hoverTrigger);
+      await waitFor(() => {
+        expect(within(document.body).queryByTestId(COMPONENT_TEST_IDS.tooltipContent)).toBeNull();
+      });
+    });
+
+    await step('connecting: support link calls onSupportClick', async () => {
+      onSupportClick.mockClear();
+      await userEvent.click(supportTrigger);
+      await waitFor(() => {
+        expect(within(document.body).getByTestId(COMPONENT_TEST_IDS.supportLink)).toBeVisible();
+      });
+      await userEvent.click(within(document.body).getByTestId(COMPONENT_TEST_IDS.supportLink));
+      await expect(onSupportClick).toHaveBeenCalledOnce();
+      await userEvent.click(supportTrigger);
       await waitFor(() => {
         expect(within(document.body).queryByTestId(COMPONENT_TEST_IDS.tooltipContent)).toBeNull();
       });
@@ -76,13 +91,6 @@ export const InteractionTest: Story = {
       await waitFor(() => {
         expect(within(document.body).getByTestId(COMPONENT_TEST_IDS.tooltipContent)).toBeVisible();
       });
-    });
-
-    await step('click: calls onClick handler', async () => {
-      await userEvent.keyboard('{Escape}');
-      onPromoTagClick.mockClear();
-      await userEvent.click(onClickTrigger);
-      expect(onPromoTagClick.mock.calls.length).toBe(1);
     });
   },
 };

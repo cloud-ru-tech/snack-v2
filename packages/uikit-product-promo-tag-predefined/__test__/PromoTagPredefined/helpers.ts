@@ -6,11 +6,10 @@ export { TEST_IDS };
 
 export const PROMO_TAG_PREDEFINED_CATEGORY = 'uikit-product';
 
-/** Title `Uikit Product/PromoTagPredefined[/Examples/<Scenario>]` → kebab-cased storybook id. */
+/** Title `Uikit Product/PromoTagPredefined` → kebab-cased storybook id. */
 export const PROMO_TAG_PREDEFINED_STORIES = {
   playground: { name: 'promotagpredefined', story: 'playground' },
   visualMatrix: { name: 'promotagpredefined', story: 'visual-matrix' },
-  polymorphic: { name: 'promotagpredefined-examples-polymorphic', story: 'polymorphic' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

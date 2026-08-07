@@ -10,22 +10,18 @@
           "functional",
           "service"
         ],
-        "defaultValue": "service",
-        "description": "Контекст тега с вариантом \"preview\"",
-        "typeRefs": [
-          "PreviewContext"
-        ]
+        "description": "Контекст тега с вариантом \"preview\""
       },
       "data-test-id": {
         "type": "string",
         "required": false
       },
       "tooltip": {
-        "type": "Pick<TooltipProps, \"open\" | \"onOpenChange\" | \"trigger\" | \"placement\">",
+        "type": "TooltipSettings | (TooltipSettings & { onSupportClick(e: MouseEvent<Element, MouseEvent>): void; }) | (TooltipSettings & { ...; })",
         "required": false,
-        "description": "Настройки тултипа",
+        "description": "Настройки тултипа\nНастройки тултипа; если передан — `tip` обязателен. Без `tooltip` тултип не рендерится",
         "typeRefs": [
-          "TooltipProps"
+          "TooltipSettings"
         ]
       },
       "variant": {
@@ -33,21 +29,19 @@
         "required": true,
         "values": [
           "connecting",
+          "default",
+          "freeTier",
+          "latest",
           "partner",
-          "preview"
+          "preview",
+          "private",
+          "public",
+          "soon"
         ],
-        "description": "Вариант промо-тега",
-        "typeRefs": [
-          "Variant"
-        ]
+        "description": "Вариант промо-тега"
       }
     },
     "relatedTypes": {
-      "ChildrenFunction": {
-        "kind": "alias",
-        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
-        "own": false
-      },
       "Placement": {
         "kind": "union",
         "values": [
@@ -66,71 +60,9 @@
         ],
         "own": false
       },
-      "PreviewContext": {
-        "kind": "union",
-        "values": [
-          "functional",
-          "service"
-        ],
-        "own": true
-      },
-      "TooltipProps": {
+      "TooltipSettings": {
         "kind": "interface",
         "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
           "onOpenChange": {
             "type": "((isOpen: boolean) => void) | undefined",
             "required": false,
@@ -163,11 +95,6 @@
               "Placement"
             ]
           },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
           "trigger": {
             "type": "Trigger | undefined",
             "required": false,
@@ -184,19 +111,9 @@
             "typeRefs": [
               "Trigger"
             ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
           }
         },
-        "own": false
+        "own": true
       },
       "Trigger": {
         "kind": "union",
@@ -210,15 +127,6 @@
           "hoverAndFocusVisible"
         ],
         "own": false
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "connecting",
-          "partner",
-          "preview"
-        ],
-        "own": true
       }
     }
   }

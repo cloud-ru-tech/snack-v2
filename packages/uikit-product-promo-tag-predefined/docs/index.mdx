@@ -1,7 +1,7 @@
 ---
 title: PromoTagPredefined
 package: '@ds/uikit-product-promo-tag-predefined'
-description: Предопределённый промо-тег продукта с локализованным текстом и tooltip — preview, connecting, partner.
+description: Предопределённый промо-тег продукта с локализованным текстом и tooltip — пресеты product-статусов Cloud.ru.
 order: 100
 ---
 
@@ -14,8 +14,12 @@ import { Connecting } from '../demos/examples/Connecting'
 import ConnectingSrc from '../demos/examples/Connecting.tsx?raw'
 import { Partner } from '../demos/examples/Partner'
 import PartnerSrc from '../demos/examples/Partner.tsx?raw'
-import { Polymorphic } from '../demos/examples/Polymorphic'
-import PolymorphicSrc from '../demos/examples/Polymorphic.tsx?raw'
+import { FreeTier } from '../demos/examples/FreeTier'
+import FreeTierSrc from '../demos/examples/FreeTier.tsx?raw'
+import { Default } from '../demos/examples/Default'
+import DefaultSrc from '../demos/examples/Default.tsx?raw'
+import { CustomTip } from '../demos/examples/CustomTip'
+import CustomTipSrc from '../demos/examples/CustomTip.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -25,11 +29,15 @@ import promoTagPredefinedDoc from './props.json'
 
 # PromoTagPredefined
 
-Один компонент с преднастроенными пресетами промо-тега: [`PromoTag`](/components/promo-tag/promo-tag) + [`Tooltip`](/components/tooltip/tooltip). Текст и подсказка локализуются через `@ds/locale`.
+Один компонент с преднастроенными пресетами промо-тега: [`PromoTag`](/components/promo-tag/promo-tag) + [`Tooltip`](/components/tooltip/tooltip). Текст локализуется через `@ds/locale`; для части вариантов tooltip задаётся потребителем.
+
+## Демо
+
+<PromoTagPredefinedDemo client:visible />
 
 ## Когда использовать
 
-- Нужен стандартный product-тег Preview / Connecting / Partner без ручной сборки текста и tooltip.
+- Нужен стандартный product-тег (Preview, Connecting, Partner, Free tier и др.) без ручной сборки текста и внешнего вида.
 - В карточках сервисов, виджетах и списках продуктов Cloud.ru.
 
 Когда **не** нужен `PromoTagPredefined`:
@@ -41,8 +49,14 @@ import promoTagPredefinedDoc from './props.json'
 ### variant (обязательный)
 
 - `preview` — синий тег «Preview»; tooltip зависит от `context`.
-- `connecting` — neutral «Подключается».
+- `connecting` — neutral «Подключается»; обязательный `tooltip.onSupportClick`, фраза «обратитесь в поддержку» всегда ссылка.
 - `partner` — orange «Partner».
+- `freeTier` — синий «Free tier».
+- `soon` — violet «Скоро»; опциональный кастомный `tooltip.tip`.
+- `default` — primary «По умолчанию»; без tooltip.
+- `latest` — primary «Latest»; опциональный кастомный `tooltip.tip`.
+- `private` — green «Приватный»; опциональный кастомный `tooltip.tip`.
+- `public` — синий «Публичный»; опциональный кастомный `tooltip.tip`.
 
 ### context (default `service`, только для `variant='preview'`)
 
@@ -51,8 +65,10 @@ import promoTagPredefinedDoc from './props.json'
 
 ### tooltip
 
-- `placement` — позиция tooltip (default `top`).
-- `trigger` — `hover` (default) или `click` (ось Figma `tooltipTrigger`).
+- Для `partner` / `preview` / `freeTier` — опциональные `placement`, `trigger`, `open`, `onOpenChange`; текст tooltip встроенный.
+- Для `connecting` — `tooltip` обязателен; обязательный `onSupportClick` (фраза поддержки всегда `Link`).
+- Для `soon` / `latest` / `private` / `public` — `tooltip` опционален; если передан — `tip` обязателен. Без `tooltip` тултип не рендерится.
+- Для `default` — проп недоступен (tooltip не рендерится).
 
 ## Установка
 
@@ -66,8 +82,6 @@ import { PromoTagPredefined } from '@ds/uikit-product-promo-tag-predefined'
 
 ## Примеры использования
 
-<PromoTagPredefinedDemo client:visible />
-
 <Example title='Preview (service)' code={PreviewServiceSrc}>
   <PreviewService client:visible />
 </Example>
@@ -76,7 +90,11 @@ import { PromoTagPredefined } from '@ds/uikit-product-promo-tag-predefined'
   <PreviewFunctional client:visible />
 </Example>
 
-<Example title='Connecting' code={ConnectingSrc}>
+<Example
+  title='Connecting'
+  description='Для connecting обязателен `tooltip.onSupportClick`: фраза «обратитесь в поддержку» всегда ссылка.'
+  code={ConnectingSrc}
+>
   <Connecting client:visible />
 </Example>
 
@@ -84,12 +102,20 @@ import { PromoTagPredefined } from '@ds/uikit-product-promo-tag-predefined'
   <Partner client:visible />
 </Example>
 
+<Example title='Free tier' code={FreeTierSrc}>
+  <FreeTier client:visible />
+</Example>
+
+<Example title='Default (без tooltip)' code={DefaultSrc}>
+  <Default client:visible />
+</Example>
+
 <Example
-  title='Polymorphic'
-  description='PromoTagPredefined как ссылка: as={Link} и to для react-router-dom.'
-  code={PolymorphicSrc}
+  title='Кастомный tip'
+  description='Для soon, latest, private и public tooltip опционален: без tooltip.tip тег рендерится без подсказки.'
+  code={CustomTipSrc}
 >
-  <Polymorphic client:visible />
+  <CustomTip client:visible />
 </Example>
 
 ## Props

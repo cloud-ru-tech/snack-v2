@@ -30,6 +30,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/link": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/promo-tag": "workspace:^",
     "@ds/tooltip": "workspace:^",

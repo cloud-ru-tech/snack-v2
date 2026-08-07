@@ -1,5 +1,15 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
 .matrix {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.customTipText {
+  white-space: pre-line;
+}
+
+.supportLink div {
+  color: base.$sn-theme-color-available-inversion-textMain;
 }
