@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.2 (2026-08-07)
+
+### Bug Fixes
+
+- **PDS-3768:** carousel cards overflow from siblings pages fixed ([56a84ad](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/56a84ad36ee8a1b1af9c76c78ebe4b39e750e379))
+
 ## 1.2.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/carousel
