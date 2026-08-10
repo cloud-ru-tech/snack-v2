@@ -1,0 +1,48 @@
+{
+  "name": "@ds/drag-and-drop",
+  "version": "1.0.0",
+  "description": "Визуальные примитивы перетаскивания — поверхность копии, линия вставки и зона приёма.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/drag-and-drop"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/drag-and-drop",
+  "license": "Apache-2.0",
+  "author": "Anna Kozlova <apkozlova@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:"
+  },
+  "devDependencies": {
+    "@dnd-kit/core": "catalog:",
+    "@dnd-kit/sortable": "catalog:",
+    "@dnd-kit/utilities": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -94,6 +94,9 @@
       "path": "./button/tsconfig.esm.json"
     },
     {
+      "path": "./drag-and-drop/tsconfig.esm.json"
+    },
+    {
       "path": "./dropzone/tsconfig.esm.json"
     },
     {

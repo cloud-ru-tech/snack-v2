@@ -28,14 +28,15 @@ export const DEMO_ITEMS: ItemProps[] = Array.from({ length: 100 }, (_, i) => ({
   content: { label: `Item ${i + 1}` },
 }));
 
+// Верхний уровень — только группы: смешивать их со строками нельзя (см. docs/reorder.mdx).
 export const REORDERABLE_ITEMS: ReorderItem[] = [
-  { id: 'catalog', beforeContent: <HomeSVG />, content: { label: 'Каталог' } },
   {
     type: 'group',
     id: 'group-1',
     label: 'Группа 1',
     divider: true,
     items: [
+      { id: 'catalog', beforeContent: <HomeSVG />, content: { label: 'Каталог' } },
       { id: 'profile', beforeContent: <UserSVG />, content: { label: 'Профиль' } },
       { id: 'settings-2', beforeContent: <OrganizationSVG />, content: { label: 'Организация' } },
     ],

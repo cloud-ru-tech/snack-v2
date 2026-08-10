@@ -1,3 +1,6 @@
+import { DragPreview } from '@ds/drag-and-drop';
+
+import { TEST_IDS } from '../../../../../constants';
 import { BaseItem } from '../../../BaseItem';
 import { FlattenSimpleItem } from '../../../types';
 import styles from '../../styles.module.scss';
@@ -18,9 +21,13 @@ export type SimpleItemOverlayProps = FlattenSimpleItem & {
  * это неинтерактивный снимок: ручка и содержимое статичны, перетаскивание ведёт исходная строка.
  */
 export function SimpleItemOverlay({ bare, ...item }: SimpleItemOverlayProps) {
+  const row = <BaseItem {...item} dragHandle={<OverlayDragHandle />} />;
+
+  if (bare) return row;
+
   return (
-    <div className={styles.item} data-overlay={bare ? undefined : true}>
-      <BaseItem {...item} dragHandle={<OverlayDragHandle />} />
-    </div>
+    <DragPreview className={styles.dragPreview} data-test-id={TEST_IDS.dragOverlay}>
+      {row}
+    </DragPreview>
   );
 }

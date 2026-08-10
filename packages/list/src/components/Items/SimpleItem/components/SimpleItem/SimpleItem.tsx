@@ -1,13 +1,13 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { NO_DRAG_ATTRIBUTE } from '@ds/bottom-sheet';
+import { DRAG_MODE, DragGhost } from '@ds/drag-and-drop';
 import { CSSProperties, MouseEvent } from 'react';
 
 import { stopPropagation } from '../../../../../utils';
 import { BaseItem } from '../../../BaseItem';
 import { FlattenSimpleItem, ItemId } from '../../../types';
 import { REORDER_TOP_LEVEL } from '../../constants';
-import styles from '../../styles.module.scss';
 import { animateLayoutChanges } from '../../utils';
 import { DragHandle } from '../DragHandle';
 
@@ -28,8 +28,8 @@ export function SimpleItem({ id, disabled, groupId, ...option }: SimpleItemProps
     // `disabled` на строке отключает `Switch` и клик (`BaseItem`), но не переупорядочивание:
     // ручка всегда активна.
     // `container` читает кастомный `collisionDetection` в `ListPrivate`: drop разрешён только внутри
-    // одного контейнера. Строка без группы (`groupId` пуст) лежит в общем контейнере верхнего уровня
-    // вместе с группами (можно менять местами строку и группу); строка группы — в контейнере группы.
+    // одного контейнера. Строка без группы (`groupId` пуст) лежит в контейнере верхнего уровня,
+    // строка группы — в контейнере своей группы.
     data: { container: groupId ?? REORDER_TOP_LEVEL },
     animateLayoutChanges,
   });
@@ -48,8 +48,9 @@ export function SimpleItem({ id, disabled, groupId, ...option }: SimpleItemProps
     onMouseDown?.(e);
   };
 
+  // Динамический перенос: точку вставки показывает пустой слот, поэтому линии (`DropIndicator`) нет.
   return (
-    <div ref={setNodeRef} style={style} className={styles.item} data-dragging={isDragging || undefined}>
+    <DragGhost innerRef={setNodeRef} style={style} dragging={isDragging} mode={DRAG_MODE.Dynamic}>
       <BaseItem
         {...option}
         id={id}
@@ -60,11 +61,15 @@ export function SimpleItem({ id, disabled, groupId, ...option }: SimpleItemProps
             {...{ [NO_DRAG_ATTRIBUTE]: '' }}
             {...attributes}
             {...restListeners}
+            // `useSortable` ставит ручке tabIndex=0, но список ведёт свою roving-навигацию и
+            // перехватывает Tab (см. `useNewKeyboardNavigation`) — с ручки было некуда уйти.
+            // Убираем её из таб-порядка: строка остаётся доступной с клавиатуры, ручка — мышью.
+            tabIndex={-1}
             onMouseDown={handleMouseDown}
             onClick={stopPropagation}
           />
         }
       />
-    </div>
+    </DragGhost>
   );
 }

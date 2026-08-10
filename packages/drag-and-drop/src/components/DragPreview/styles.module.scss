@@ -1,0 +1,37 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.dragPreview {
+  // Копия — снимок под курсором: hover/active на её содержимом были бы ложным состоянием.
+  pointer-events: none;
+
+  // Контекст позиционирования для слоя материала; isolation держит его z-index внутри обёртки.
+  isolation: isolate;
+  position: relative;
+
+  box-sizing: border-box;
+
+  // Форму задаёт содержимое
+  border-radius: inherit;
+
+  box-shadow: base.$sn-boxShadow-elevation-level2;
+
+  @include m.with-material('acrylic', #{acrylic});
+}
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.content {
+  // Поверх слоя материала: непозиционированный контент оказался бы под ним.
+  position: relative;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border-radius: inherit;
+}

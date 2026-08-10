@@ -89,6 +89,9 @@
       "path": "./button/tsconfig.cjs.json"
     },
     {
+      "path": "./drag-and-drop/tsconfig.cjs.json"
+    },
+    {
       "path": "./dropzone/tsconfig.cjs.json"
     },
     {

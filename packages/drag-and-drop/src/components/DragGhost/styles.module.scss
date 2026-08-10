@@ -1,0 +1,26 @@
+.dragGhost {
+  // Контекст позиционирования для линии вставки (`DropIndicator` с `placement`).
+  position: relative;
+
+  // Курсор занят переносом: hover/active на исходной сущности и на её пустом слоте — шум.
+  &[data-dragging] {
+    pointer-events: none;
+  }
+
+  &[data-dragging][data-mode='static'] {
+    // Над соседями: их фон не должен просвечивать сквозь приглушённую сущность.
+    z-index: 1;
+
+    // Приглушение исходной сущности на время переноса. Токена под это значение нет —
+    // `opacity-disabled` здесь не подходит: это не disabled-состояние.
+    opacity: 0.48;
+  }
+
+  // `opacity`, а не `display: none`: слот сохраняет место в раскладке, иначе список схлопнется
+  // и цель уедет из-под курсора. И не `visibility: hidden` — её перебивают вложенные слои
+  // с собственной `visibility` (state-layer из `@ds/materials`), и в пустом слоте оставалась
+  // подсветка hover/pressed.
+  &[data-dragging][data-mode='dynamic'] {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,16 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.dropTarget {
+  box-sizing: border-box;
+  border-radius: base.$sn-density-radius-2xs;
+
+  &[data-active] {
+    background: base.$sn-theme-color-primary-decorTransparent;
+
+    // Мастер `focusedFrame/primary/inside` в макете здесь не про фокус, а про постоянную
+    // рамку зоны, поэтому берутся сами стили рамки, а не обёртка с `:focus-visible`.
+    // `inside` = штрих внутрь элемента: обводка не раздвигает соседей.
+    @include m.focus-frame-styles('primary', 'inside');
+  }
+}

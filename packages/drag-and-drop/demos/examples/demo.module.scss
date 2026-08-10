@@ -1,0 +1,44 @@
+.entity {
+  width: 256px;
+  border-radius: 8px;
+}
+
+.row {
+  padding: 8px 12px;
+}
+
+// Строка, за которую можно потянуть: сам перенос ведёт @dnd-kit.
+.grabbable {
+  cursor: grab;
+  border-radius: 8px;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+}
+
+// Высота зафиксирована, чтобы опустевшая зона не схлопывалась и оставалась целью для
+// сущности из соседней.
+.zone {
+  display: flex;
+  flex-direction: column;
+  width: 208px;
+  min-height: 136px;
+}
+
+.zones {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.zoneLabel {
+  padding: 8px 12px;
+  opacity: 0.64;
+}

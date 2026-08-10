@@ -1,0 +1,84 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$stroke: base.$sn-primitive-strokeWeight-strokeSemiBold;
+// Отступ линии у края зоны: толщина обводки зоны плюс видимый зазор между ней и линией.
+$edge-offset: calc(#{$stroke} + #{base.$sn-primitive-dimension-4});
+
+// Линия рисуется border'ом, а не фоном: штриховой стиль фоном не воспроизвести.
+.dropIndicator {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-color: base.$sn-theme-color-primary-accent;
+  border-style: dashed;
+
+  &[data-orientation='horizontal'] {
+    width: 100%;
+    height: $stroke;
+    border-width: $stroke 0 0;
+  }
+
+  &[data-orientation='vertical'] {
+    width: $stroke;
+    height: 100%;
+    border-width: 0 0 0 $stroke;
+  }
+
+  // С `placement` линия сама встаёт по краю элемента-цели: `z-index` поднимает её над фоном
+  // соседа, сдвиг на половину толщины центрирует её на границе между элементами.
+  &[data-placement] {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &[data-orientation='horizontal'][data-placement] {
+    right: 0;
+    left: 0;
+  }
+
+  &[data-orientation='vertical'][data-placement] {
+    top: 0;
+    bottom: 0;
+  }
+
+  &[data-orientation='horizontal'][data-placement='before'] {
+    top: 0;
+    transform: translateY(-50%);
+  }
+
+  &[data-orientation='horizontal'][data-placement='after'] {
+    bottom: 0;
+    transform: translateY(50%);
+  }
+
+  &[data-orientation='vertical'][data-placement='before'] {
+    left: 0;
+    transform: translateX(-50%);
+  }
+
+  &[data-orientation='vertical'][data-placement='after'] {
+    right: 0;
+    transform: translateX(50%);
+  }
+
+  // У края зоны приёма линия уходит внутрь элемента-цели: иначе её перекрывает обводка зоны
+  // (штрих в штрих, зелёное по зелёному) либо обрезает скролл контейнера.
+  &[data-at-edge] {
+    transform: none;
+  }
+
+  &[data-orientation='horizontal'][data-placement='before'][data-at-edge] {
+    top: $edge-offset;
+  }
+
+  &[data-orientation='horizontal'][data-placement='after'][data-at-edge] {
+    bottom: $edge-offset;
+  }
+
+  &[data-orientation='vertical'][data-placement='before'][data-at-edge] {
+    left: $edge-offset;
+  }
+
+  &[data-orientation='vertical'][data-placement='after'][data-at-edge] {
+    right: $edge-offset;
+  }
+}

@@ -30,6 +30,10 @@ const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
 } as const;
+const DND_MATERIAL = {
+  fileKey: 'igtc3K870pv7ao4Sa2h3lM',
+  fileName: 'FF-8802--DnD-material-',
+} as const;
 const LIST_STATES = {
   fileKey: 'BnDZww7tvszWBemlYQS1Pg',
   fileName: 'Sostoyaniya-dlya-list--tab--toggles--FF-8135-',
@@ -140,6 +144,12 @@ export const FIGMA_NODES = {
   'color-picker': { ...SNACK, nodeId: '5664-155346' }, // color-picker → colorPicker
   counter: { ...SNACK, nodeId: '2088-10548' }, // counter → counter
   divider: { ...SNACK, nodeId: '2932-6308' }, // divider → divider
+  'drag-and-drop': {
+    _: { ...DND_MATERIAL, nodeId: '42950-835' }, // drag-and-drop → drag&drop (секция материала)
+    'drag-preview': { ...DND_MATERIAL, nodeId: '42813-6265' }, // drag-and-drop/drag-preview → backgroundDragged
+    'drop-indicator': { ...DND_MATERIAL, nodeId: '42950-836' }, // drag-and-drop/drop-indicator → lineDragged
+    'drop-target': { ...DND_MATERIAL, nodeId: '42950-996' }, // drag-and-drop/drop-target → dragDropzone
+  },
   drawer: { ...SNACK, nodeId: '2438-94227' }, // drawer → drawer
   dropdown: { ...SNACK, nodeId: '2254-442' }, // dropdown → dropdown
   dropzone: { ...SNACK, nodeId: '4971-205' }, // dropzone → dropzone

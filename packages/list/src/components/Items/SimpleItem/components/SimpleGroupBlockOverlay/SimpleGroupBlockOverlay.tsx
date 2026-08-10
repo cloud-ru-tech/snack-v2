@@ -1,3 +1,6 @@
+import { DragPreview } from '@ds/drag-and-drop';
+
+import { TEST_IDS } from '../../../../../constants';
 import { Separator } from '../../../../../helperComponents';
 import { Size } from '../../../../../types';
 import { FlattenSimpleItem } from '../../../types';
@@ -20,14 +23,16 @@ export type SimpleGroupBlockOverlayProps = GroupHeaderContent & {
  */
 export function SimpleGroupBlockOverlay({ size, rows, ...separatorProps }: SimpleGroupBlockOverlayProps) {
   return (
-    <div className={styles.groupBlock} data-overlay>
-      <div className={styles.groupHeader} data-size={size}>
-        <OverlayDragHandle />
-        <Separator {...separatorProps} />
+    <DragPreview className={styles.dragPreview} data-test-id={TEST_IDS.dragOverlay}>
+      <div>
+        <div className={styles.groupHeader} data-size={size}>
+          <OverlayDragHandle />
+          <Separator {...separatorProps} />
+        </div>
+        {rows.map(row => (
+          <SimpleItemOverlay key={row.id} {...row} bare />
+        ))}
       </div>
-      {rows.map(row => (
-        <SimpleItemOverlay key={row.id} {...row} bare />
-      ))}
-    </div>
+    </DragPreview>
   );
 }

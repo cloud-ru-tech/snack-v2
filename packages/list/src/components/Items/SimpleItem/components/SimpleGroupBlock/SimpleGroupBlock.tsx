@@ -1,7 +1,7 @@
-import { useDndContext } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { NO_DRAG_ATTRIBUTE } from '@ds/bottom-sheet';
+import { DRAG_MODE, DragGhost } from '@ds/drag-and-drop';
 import { CSSProperties, MouseEvent, ReactNode } from 'react';
 
 import { Separator } from '../../../../../helperComponents';
@@ -40,13 +40,6 @@ export function SimpleGroupBlock({ id, rowIds, children, ...separatorProps }: Si
     animateLayoutChanges,
   });
 
-  // Идёт ли переупорядочивание строки этой группы (а не самой группы). Оно жёстко ограничено
-  // своим контейнером (`container === id` в `data` строки, см. `SimpleItem`), поэтому границы
-  // блока группы подсвечиваются — видно, что строка не выходит за пределы группы, а не «сломалась».
-  const { active } = useDndContext();
-  const activeContainer = (active?.data.current as { container?: ItemId } | undefined)?.container;
-  const isReorderingWithinGroup = active != null && active.id !== id && activeContainer === id;
-
   const style: CSSProperties = {
     transform: CSS.Translate.toString(transform),
     transition,
@@ -59,20 +52,19 @@ export function SimpleGroupBlock({ id, rowIds, children, ...separatorProps }: Si
     onMouseDown?.(e);
   };
 
+  // Динамический перенос — тот же, что у строк (`SimpleItem`).
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className={styles.groupBlock}
-      data-dragging={isDragging || undefined}
-      data-reorder-boundary={isReorderingWithinGroup || undefined}
-    >
+    <DragGhost innerRef={setNodeRef} style={style} dragging={isDragging} mode={DRAG_MODE.Dynamic}>
       <div className={styles.groupHeader} data-size={size}>
         <DragHandle
           // Pointer-жест не доходит до BottomSheet: иначе vertical drag одновременно закрывает sheet.
           {...{ [NO_DRAG_ATTRIBUTE]: '' }}
           {...attributes}
           {...restListeners}
+          // `useSortable` ставит ручке tabIndex=0, но список ведёт свою roving-навигацию и
+          // перехватывает Tab (см. `useNewKeyboardNavigation`) — с ручки было некуда уйти.
+          // Убираем её из таб-порядка: строка остаётся доступной с клавиатуры, ручка — мышью.
+          tabIndex={-1}
           onMouseDown={handleMouseDown}
           onClick={stopPropagation}
         />
@@ -82,6 +74,6 @@ export function SimpleGroupBlock({ id, rowIds, children, ...separatorProps }: Si
       <SortableContext items={rowIds} strategy={verticalListSortingStrategy}>
         {children}
       </SortableContext>
-    </div>
+    </DragGhost>
   );
 }

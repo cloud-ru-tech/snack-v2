@@ -8,6 +8,7 @@ const INITIAL_ITEMS: ReorderItem[] = [
     id: 'group-1',
     type: 'group',
     label: 'Избранное',
+    divider: true,
     items: [
       { id: 'catalog', content: { label: 'Каталог' } },
       { id: 'orders', content: { label: 'Заказы' } },
@@ -18,6 +19,7 @@ const INITIAL_ITEMS: ReorderItem[] = [
     id: 'group-2',
     type: 'group',
     label: 'Система',
+    divider: true,
     items: [
       { id: 'settings', content: { label: 'Настройки' } },
       { id: 'trash', content: { label: 'Корзина' } },

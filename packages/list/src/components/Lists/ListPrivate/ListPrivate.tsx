@@ -128,8 +128,8 @@ export const ListPrivate = forwardRef(
       useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
     );
     // Id перетаскиваемой строки — для рендера её копии в `DragOverlay`. Копия живёт в портале
-    // над страницей и не режется `overflow: hidden` контейнера `List` (исходная строка остаётся
-    // на месте «призраком»). `null`, когда перетаскивание не идёт.
+    // над страницей и не режется `overflow: hidden` контейнера `List` (сама строка на время
+    // переноса уступает место — её слот пустеет). `null`, когда перетаскивание не идёт.
     const [activeDragId, setActiveDragId] = useState<ItemId | null>(null);
     const handleDragStart = useCallback((event: DragStartEvent) => setActiveDragId(event.active.id), []);
     const handleDragEnd = useCallback(
@@ -416,6 +416,8 @@ export const ListPrivate = forwardRef(
           onDragEnd={handleDragEnd}
           onDragCancel={handleDragCancel}
         >
+          {/* Зону приёма (`DropTarget`) список не рисует: рамка означает перенос между зонами,
+              а здесь перестановка идёт строго внутри своей. */}
           <SortableContext items={sortableIds ?? []} strategy={verticalListSortingStrategy}>
             {itemsBody}
           </SortableContext>

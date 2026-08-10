@@ -101,6 +101,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
         'adaptive',
         'theme',
         'context-kit',
+        'drag-and-drop',
         'portal-context',
         'locale',
         'fonts',

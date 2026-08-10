@@ -48,6 +48,7 @@ export const TEST_IDS = {
   accordionItem: 'list__accordion-item',
   groupIndicator: 'list__group-indicator',
   dragHandle: 'list__drag-handle',
+  dragOverlay: 'list__drag-overlay',
   mobileDroplistRoot: 'list__mobile-droplist-root',
   mobileDroplistTrigger: 'list__mobile-droplist-trigger',
 } as const;

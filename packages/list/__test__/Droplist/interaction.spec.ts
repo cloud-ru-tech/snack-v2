@@ -22,20 +22,21 @@ test.describe('Droplist — interaction (real browser)', () => {
 
     await getByTestId(TEST_IDS.reorderableDroplist.triggerOpen).click();
 
+    // Перестановка идёт среди «братьев» одной группы: `catalog` и `settings-2` — строки group-1.
     const firstRow = getByTestId(itemTestId('catalog'));
-    const thirdRow = getByTestId(itemTestId('favorites'));
+    const thirdRow = getByTestId(itemTestId('settings-2'));
     await expect(firstRow).toBeVisible();
     await waitForStableBbox(firstRow);
 
     const handle = firstRow.getByTestId(LIST_INTERNAL_TEST_IDS.dragHandle);
     const orderBefore = await rowOrder(page);
-    expect(orderBefore.indexOf(itemTestId('catalog'))).toBeLessThan(orderBefore.indexOf(itemTestId('favorites')));
+    expect(orderBefore.indexOf(itemTestId('catalog'))).toBeLessThan(orderBefore.indexOf(itemTestId('settings-2')));
 
     await dragTo(handle, { target: thirdRow, steps: 12 });
 
     await expect(async () => {
       const orderAfter = await rowOrder(page);
-      expect(orderAfter.indexOf(itemTestId('catalog'))).toBeGreaterThan(orderAfter.indexOf(itemTestId('favorites')));
+      expect(orderAfter.indexOf(itemTestId('catalog'))).toBeGreaterThan(orderAfter.indexOf(itemTestId('settings-2')));
     }).toPass({ timeout: 3000 });
 
     // Перетаскивание не должно «залипать» — после отпускания кнопки ручка снова интерактивна.
@@ -68,10 +69,10 @@ test.describe('Droplist — interaction (real browser)', () => {
     // Popover позиционируется через `transform`; копия `DragOverlay` рендерится в портале
     // themed-корня портал-контекста (не в `document.body`) — токены темы сохраняются, строка
     // не раздувается до fallback-паддингов, и `position: fixed` остаётся относительно вьюпорта.
-    const overlayHeight = await page
-      .locator('[data-overlay="true"] li')
-      .first()
-      .evaluate(li => li.getBoundingClientRect().height);
+    // Строка копии несёт тот же id, что и исходная, поэтому её ищем внутри самой копии.
+    const overlayHeight = await getByTestId(LIST_INTERNAL_TEST_IDS.dragOverlay)
+      .getByTestId(itemTestId('catalog'))
+      .evaluate(row => row.getBoundingClientRect().height);
 
     await page.mouse.up();
 

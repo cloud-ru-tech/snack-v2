@@ -1,0 +1,215 @@
+---
+title: DragAndDrop
+package: '@ds/drag-and-drop'
+description: Визуальные примитивы перетаскивания — поверхность копии, линия вставки и зона приёма.
+order: 0
+---
+
+import { ActiveZone } from '../demos/examples/ActiveZone'
+import ActiveZoneSrc from '../demos/examples/ActiveZone.tsx?raw'
+import { DynamicGap } from '../demos/examples/DynamicGap'
+import DynamicGapSrc from '../demos/examples/DynamicGap.tsx?raw'
+import { InsertionLine } from '../demos/examples/InsertionLine'
+import InsertionLineSrc from '../demos/examples/InsertionLine.tsx?raw'
+import { PreviewSurface } from '../demos/examples/PreviewSurface'
+import PreviewSurfaceSrc from '../demos/examples/PreviewSurface.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import dragAndDropDoc from './props.json'
+
+# DragAndDrop
+
+Три презентационных примитива, из которых собирается визуальная часть для состояния перетаскивания. Логику переноса
+(сенсоры, коллизии, порядок) пакет на себя не берёт — её реализует DnD-библиотека потребителя
+(`@dnd-kit`, HTML5 DnD, собственные обработчики). Примитивы отвечают только за то, как перенос
+выглядит, и делают это одинаково во всех компонентах дизайн-системы.
+
+- `DragGhost` — исходная сущность на время переноса: приглушённая либо уступившая своё место.
+- `DragPreview` — поверхность копии, которая едет за курсором.
+- `DropIndicator` — линия будущей позиции.
+- `DropTarget` — рамка области, в которую переносят сущность из другой зоны.
+
+## Когда использовать
+
+- Перетаскивание собирается в своём компоненте, и нужен вид, совпадающий с остальной дизайн-системой.
+- Элемент переносится из одной зоны в другую, и нужно показать, какая зона его примет (`DropTarget`).
+- Порядок меняется вставкой, а не обменом местами — точку вставки показывает `DropIndicator` (статический
+  перенос) либо пустой слот (динамический).
+
+Когда **не** нужен:
+
+- Готовое переупорядочивание уже есть в компоненте:
+  - у `@ds/list` переупорядочивание строк включается пропом `onItemsReorder` — примитивы там уже встроены.
+- Нужна сама механика переноса (сенсоры, коллизии, автоскролл):
+  - нужна DnD-библиотека, эти примитивы — только визуальный слой.
+
+## Анатомия
+
+### Режимы переноса (default `static`)
+
+Перенос показывается одним из двух способов. Режим выбирается на весь компонент-потребитель, а не
+на отдельную сущность: смешивать оба в одном списке нельзя — пользователь читает их как разные
+интерфейсы.
+
+- `static` — соседи стоят на месте, исходная сущность приглушается (`DragGhost` с `dragging`),
+  будущую позицию отмечает линия (`DropIndicator`). Раскладка на время переноса не меняется, поэтому
+  режим уместен там, где сдвиг соседей дорог или сбивает: длинные списки, таблицы, сетки со скроллом.
+- `dynamic` — соседи расступаются сразу, а на месте попадания остаётся пустой слот (`DragGhost`
+  с `dragging` и `mode='dynamic'`). Линию в этом режиме не рисуют: точку вставки уже показывает
+  пустота, а вместе они дублируют друг друга.
+
+Режим не отменяет остальные примитивы: копия за курсором (`DragPreview`) и рамка зоны-приёмника
+(`DropTarget`) одинаковы в обоих.
+
+### DragGhost (default `dragging: false`, `mode: static`)
+
+Исходная сущность на время переноса. `dragging` включает вид переноса, `mode` выбирает какой:
+`static` — приглушение на своём месте, `dynamic` — сущность становится невидимой, сохраняя своё
+место в раскладке, поэтому на её месте получается пустой слот.
+
+Заменяет собой обёртку сущности, а не добавляет уровень вложенности: принимает `innerRef`,
+`className` и остальные атрибуты `<div>`. Создаёт контекст позиционирования, поэтому `DropIndicator`
+с `placement` можно рендерить прямо внутри.
+
+### DragPreview
+
+Обёртка перетаскиваемой сущности: непрозрачная поверхность с тенью, поэтому копия читается над
+любым фоном страницы — в том числе в портале, где своей подложки у сущности нет.
+
+Форму задаёт содержимое — обёртка наследует его скругление. Собственных размеров у неё нет,
+ширину и высоту тоже задаёт содержимое.
+
+### DropIndicator (default `horizontal`)
+
+Пунктирная линия будущей позиции — примитив статического переноса. В динамическом её место
+занимает пустой слот, и линия не рисуется.
+
+Ориентация:
+
+- `horizontal` — вставка между строками, линия занимает всю ширину родителя.
+- `vertical` — вставка между колонками, линия занимает всю высоту родителя.
+
+Вдоль своей оси линия размеров не имеет — их задаёт родитель.
+
+`placement` ставит линию по нужному краю элемента-цели: `before` — перед ним, `after` — после.
+С ним линия позиционируется абсолютно (появление не сдвигает раскладку) и центрируется на границе
+с соседом. Без `placement` линия остаётся в потоке, и её размещает потребитель.
+
+`atEdge` нужен для первой и последней позиции: у края зоны приёма линия иначе ложится на её обводку
+или обрезается скроллом, поэтому смещается внутрь элемента-цели.
+
+### DropTarget (default `active: false`)
+
+Область, принимающая сущность. `active` включает рамку и заливку зоны.
+
+Рамка — признак **переноса между зонами**: она появляется, когда сущность взяли в одной зоне,
+а отпускают в другой (перенос из списка в список, из колонки в колонку). Перестановка внутри своей
+зоны рамкой не сопровождается: там всё уже показывает линия вставки либо расступившиеся соседи,
+а лишняя подсветка только шумит.
+
+Обводка рисуется **внутри** зоны, поэтому рамка не двигает соседей и не меняет её размеры.
+
+## Установка
+
+```bash
+pnpm add @ds/drag-and-drop
+```
+
+```ts
+import {
+  DRAG_MODE,
+  DragGhost,
+  DragPreview,
+  DropIndicator,
+  DropTarget,
+  ORIENTATION,
+  PLACEMENT,
+} from '@ds/drag-and-drop'
+```
+
+## Примеры использования
+
+<Example
+  title='Поверхность копии'
+  description='DragPreview перенимает скругление сущности внутри'
+  code={PreviewSurfaceSrc}
+>
+  <PreviewSurface client:visible />
+</Example>
+
+Живой перенос в примерах ниже ведёт `@dnd-kit` — примитивы пакета отвечают только за вид. С другой
+DnD-библиотекой меняются источники `isDragging` / `over`, разметка остаётся той же.
+
+<Example
+  title='Статический перенос'
+  description='Потяните строку: соседи стоят на месте, исходная строка приглушена, будущую позицию отмечает линия'
+  code={InsertionLineSrc}
+>
+  <InsertionLine client:visible />
+</Example>
+
+<Example
+  title='Динамический перенос'
+  description='Потяните строку: соседи расступаются сразу, а её слот пустеет и сам показывает точку вставки — линия не нужна'
+  code={DynamicGapSrc}
+>
+  <DynamicGap client:visible />
+</Example>
+
+<Example
+  title='Перенос между зонами'
+  description='Перетащите строку в соседнюю зону: рамку получает только чужая зона — та, в которую переносят'
+  code={ActiveZoneSrc}
+>
+  <ActiveZone client:visible />
+</Example>
+
+## Props
+
+### DragGhost
+
+<PropsTable data={dragAndDropDoc.DragGhost} />
+
+### DragPreview
+
+<PropsTable data={dragAndDropDoc.DragPreview} />
+
+### DropIndicator
+
+<PropsTable data={dragAndDropDoc.DropIndicator} />
+
+### DropTarget
+
+<PropsTable data={dragAndDropDoc.DropTarget} />
+
+Все четыре компонента принимают атрибуты `<div>`, `data-test-id` и ARIA — через них передаются обработчики
+и `innerRef` для droppable-узла DnD-библиотеки.
+
+## Storybook
+
+### DragGhost
+
+<StorybookEmbed storyId='components-draganddrop-dragghost--playground' height={320} />
+
+### DragPreview
+
+<StorybookEmbed storyId='components-draganddrop-dragpreview--playground' height={320} />
+
+### DropIndicator
+
+<StorybookEmbed storyId='components-draganddrop-dropindicator--playground' height={320} />
+
+### DropTarget
+
+<StorybookEmbed storyId='components-draganddrop-droptarget--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('drag-and-drop')} height={480} title='DnD-материал в Figma' />
+
+## Смотри также
+
+- [List](/components/list) — переупорядочивание строк на этих примитивах.

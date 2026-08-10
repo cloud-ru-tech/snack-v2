@@ -1,0 +1,187 @@
+{
+  "DragGhost": {
+    "displayName": "DragGhost",
+    "propsTypeName": "DragGhostProps",
+    "description": "Исходная сущность на время переноса, пока за курсором едет её копия (`DragPreview`).\n\nВид на время переноса задаёт `mode`: в `static` сущность остаётся на месте приглушённой,\nв `dynamic` — становится невидимой, сохраняя своё место в раскладке, поэтому на месте\nпопадания получается пустой слот.\n\nЗаменяет собой обёртку сущности, а не добавляет уровень вложенности: принимает `innerRef`,\n`className` и остальные атрибуты `<div>`. Создаёт контекст позиционирования, поэтому линию\nвставки (`DropIndicator` с `placement`) можно рендерить прямо внутри.",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Сущность, остающаяся на своей позиции на время переноса."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "dragging": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Сущность переносится прямо сейчас. По умолчанию: false"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент — к нему привязывается sortable-узел DnD-библиотеки."
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "dynamic",
+          "static"
+        ],
+        "defaultValue": "static",
+        "description": "Режим переноса: `static` — соседи стоят на месте, сущность приглушается, точку вставки\nпоказывает `DropIndicator`; `dynamic` — соседи расступаются сразу, а слот сущности пустеет\nи сам показывает точку вставки (линия в этом режиме не нужна). По умолчанию: static",
+        "typeRefs": [
+          "DragMode"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "DragMode": {
+        "kind": "union",
+        "values": [
+          "dynamic",
+          "static"
+        ],
+        "own": true
+      }
+    }
+  },
+  "DragPreview": {
+    "displayName": "DragPreview",
+    "propsTypeName": "DragPreviewProps",
+    "description": "Поверхность перетаскиваемой копии: материал `neutralBackground1Level` + тень второго уровня.\n\nОборачивает сущность на время переноса — обычно внутри портала (`DragOverlay` у `@dnd-kit`),\nгде своей подложки у сущности нет и без материала она сливается с фоном страницы.\nСкругление наследуется от сущности (`border-radius: inherit`), поэтому обёртка повторяет\nформу того, что в неё положили.",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Перетаскиваемая сущность: строка списка, карточка, чип — то, что едет за курсором."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "DropIndicator": {
+    "displayName": "DropIndicator",
+    "propsTypeName": "DropIndicatorProps",
+    "description": "Пунктирная линия позиции вставки: показывает, куда встанет сущность, если отпустить её сейчас.\n\nНужна в статическом переносе (`DragGhost` с `mode='static'`), где соседи стоят на месте.\nВ динамическом соседи расступаются сами, точку вставки показывает пустой слот — линию там\nне рисуют.\n\nРастягивается по ширине (для `horizontal`) либо по высоте (для `vertical`) родителя; собственных\nразмеров вдоль своей оси не имеет. С `placement` сама встаёт по нужному краю элемента-цели.",
+    "props": {
+      "atEdge": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Линия стоит у края зоны приёма (первая или последняя позиция). Смещает её внутрь зоны, иначе\nлиния ложится на обводку зоны либо обрезается скроллом. Работает вместе с `placement`.\nПо умолчанию: false"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент"
+      },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация линии: horizontal — вставка между строками, vertical — между колонками. По умолчанию: horizontal",
+        "typeRefs": [
+          "Orientation"
+        ]
+      },
+      "placement": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Край элемента-цели, у которого стоит линия. Задан — линия позиционируется абсолютно по этому\nкраю и центрируется на границе с соседом; не задан — линия остаётся в потоке, и её размещает\nпотребитель. Требует `position` на элементе-цели.",
+        "typeRefs": [
+          "Placement"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Orientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      }
+    }
+  },
+  "DropTarget": {
+    "displayName": "DropTarget",
+    "propsTypeName": "DropTargetProps",
+    "description": "Зона приёма: рамка и заливка вокруг области, куда приедет перетаскиваемая сущность.\n\nРамка — признак **переноса между зонами**: она включается, когда сущность взяли в одной зоне,\nа отпускают в другой (перенос из списка в список, из колонки в колонку). Перестановка внутри\nсвоей зоны рамкой не сопровождается — там всё показывают линия вставки (`DropIndicator`)\nлибо расступившиеся соседи, а лишняя подсветка только шумит.\n\nРендерится постоянно и включается пропом `active` — например, когда `@dnd-kit` сообщает, что\nкурсор над этой зоной, а сущность взята в другой. Без `active` зона невидима и не влияет\nна раскладку: обводка рисуется внутрь элемента и соседей не двигает.",
+    "props": {
+      "active": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Зона принимает перетаскиваемую сущность прямо сейчас — включает рамку и заливку. По умолчанию: false"
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое зоны"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент — к нему привязывается droppable-узел DnD-библиотеки."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

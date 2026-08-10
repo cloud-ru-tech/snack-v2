@@ -3,7 +3,7 @@ import { Page } from '@playwright/test';
 import { expect, test } from '#playwright-tooling/fixtures';
 import { waitForStableBbox } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, itemTestId, LIST_INTERNAL_TEST_IDS, LIST_STORIES } from './helpers';
+import { buildStoryOptions, itemTestId, LIST_INTERNAL_TEST_IDS, LIST_STORIES, TEST_IDS } from './helpers';
 
 // Только browser-specific сценарий из закрытого списка e2e-testing-standard:
 // real drag&drop через dnd-kit MouseSensor (activationConstraint.distance=5, серия
@@ -17,32 +17,31 @@ async function rowOrder(page: Page): Promise<string[]> {
 }
 
 test.describe('List — interaction (real browser)', () => {
-  // Reorderable example (REORDERABLE_ITEMS): верхний уровень — `catalog` + группы `group-1`
-  // (profile, settings-2) и `group-2` (orders, favorites, settings[disabled], trash).
-  test('drag&drop: top-level item repositions among top-level siblings across groups', async ({
-    page,
-    gotoStory,
-    getByTestId,
-    dragTo,
-  }) => {
+  // Reorderable example (REORDERABLE_ITEMS): верхний уровень — только группы `group-1`
+  // (catalog, profile, settings-2) и `group-2` (orders, favorites, settings[disabled], trash).
+  // Смешивать группы и строки в одном уровне нельзя (см. docs/reorder.mdx).
+  test('drag&drop: group repositions among top-level siblings', async ({ page, gotoStory, getByTestId, dragTo }) => {
     await gotoStory(buildStoryOptions(undefined, LIST_STORIES.reorderable));
 
-    const catalog = getByTestId(itemTestId('catalog'));
+    const firstGroupRow = getByTestId(itemTestId('catalog')); // первая строка group-1
     const lastGroupRow = getByTestId(itemTestId('trash')); // последняя строка group-2
-    await expect(catalog).toBeVisible();
-    await waitForStableBbox(catalog);
+    await expect(firstGroupRow).toBeVisible();
+    await waitForStableBbox(firstGroupRow);
 
-    const handle = catalog.getByTestId(LIST_INTERNAL_TEST_IDS.dragHandle);
+    // Ручка заголовка group-1 — первая в списке: она идёт перед ручками строк своей группы.
+    const handle = getByTestId(LIST_INTERNAL_TEST_IDS.dragHandle).first();
     const orderBefore = await rowOrder(page);
     expect(orderBefore.indexOf(itemTestId('catalog'))).toBeLessThan(orderBefore.indexOf(itemTestId('trash')));
 
-    // Курсор над блоком group-2 → `catalog` встаёт после всей группы (коллизия по `pointerWithin`,
+    // Курсор над блоком group-2 → group-1 встаёт после неё целиком (коллизия по `pointerWithin`,
     // а не по центру высокого блока группы — иначе цель «перепрыгивала» под group-2).
     await dragTo(handle, { target: lastGroupRow, steps: 12 });
 
     await expect(async () => {
       const orderAfter = await rowOrder(page);
+      // Группа переехала вместе со своими строками.
       expect(orderAfter.indexOf(itemTestId('catalog'))).toBeGreaterThan(orderAfter.indexOf(itemTestId('trash')));
+      expect(orderAfter.indexOf(itemTestId('catalog'))).toBeLessThan(orderAfter.indexOf(itemTestId('profile')));
     }).toPass({ timeout: 3000 });
   });
 
@@ -69,7 +68,7 @@ test.describe('List — interaction (real browser)', () => {
       const orderAfter = await rowOrder(page);
       // Строка переставилась внутри group-2…
       expect(orderAfter.indexOf(itemTestId('orders'))).toBeGreaterThan(orderAfter.indexOf(itemTestId('trash')));
-      // …а верхний уровень (catalog) и порядок group-1 не тронуты.
+      // …а порядок group-1 не тронут.
       expect(orderAfter.indexOf(itemTestId('catalog'))).toBe(catalogIndexBefore);
       expect(orderAfter.indexOf(itemTestId('profile'))).toBeLessThan(orderAfter.indexOf(itemTestId('settings-2')));
     }).toPass({ timeout: 3000 });
@@ -136,48 +135,54 @@ test.describe('List — interaction (real browser)', () => {
 
     // Копия рендерится в портале themed-корня (`@ds/portal-context`), а не в `document.body`:
     // иначе `--sn-*` токены теряются и строка раздувается до fallback-паддингов («гигантский призрак»).
-    const overlayHeight = await page
-      .locator('[data-overlay="true"] li')
-      .first()
-      .evaluate(li => li.getBoundingClientRect().height);
+    // Строка копии несёт тот же id, что и исходная, поэтому её ищем внутри самой копии.
+    const overlayHeight = await getByTestId(LIST_INTERNAL_TEST_IDS.dragOverlay)
+      .getByTestId(itemTestId('catalog'))
+      .evaluate(row => row.getBoundingClientRect().height);
 
     await page.mouse.up();
 
     expect(Math.abs(overlayHeight - sourceHeight)).toBeLessThanOrEqual(4);
   });
 
-  test('drag&drop: group boundary indicator shows only while reordering within a group', async ({
+  test('drag&drop: neighbours shift and the dragged row leaves an empty slot', async ({
     page,
     gotoStory,
     getByTestId,
   }) => {
     await gotoStory(buildStoryOptions(undefined, LIST_STORIES.reorderable));
 
-    const boundary = page.locator('[data-reorder-boundary]');
-
-    const pressHandle = async (row: ReturnType<typeof getByTestId>) => {
-      const handleBox = await row.getByTestId(LIST_INTERNAL_TEST_IDS.dragHandle).boundingBox();
-      const x = (handleBox?.x ?? 0) + (handleBox?.width ?? 0) / 2;
-      const y = (handleBox?.y ?? 0) + (handleBox?.height ?? 0) / 2;
-      await page.mouse.move(x, y);
-      await page.mouse.down();
-      await page.mouse.move(x, y + 10, { steps: 3 });
-      await page.mouse.move(x + 5, y + 50, { steps: 6 });
-    };
-
-    // Строка внутри группы (`orders` в group-2): границы контейнера группы подсвечиваются.
-    const orders = getByTestId(itemTestId('orders'));
+    // Расступание соседей и пустой слот существуют только во время живого drag'а.
+    const list = getByTestId(TEST_IDS.list.root);
+    const orders = list.getByTestId(itemTestId('orders')); // первая строка group-2
+    const neighbour = list.getByTestId(itemTestId('favorites')); // следующая за ней
     await expect(orders).toBeVisible();
     await waitForStableBbox(orders);
-    await pressHandle(orders);
-    await expect(boundary).toHaveCount(1);
-    await page.mouse.up();
-    // После отпускания индикатор снимается.
-    await expect(boundary).toHaveCount(0);
 
-    // Верхнеуровневая строка (`catalog`) не принадлежит группе → индикатора нет.
-    await pressHandle(getByTestId(itemTestId('catalog')));
-    await expect(boundary).toHaveCount(0);
+    const neighbourTopBefore = (await neighbour.boundingBox())?.y ?? 0;
+
+    const handleBox = await orders.getByTestId(LIST_INTERNAL_TEST_IDS.dragHandle).boundingBox();
+    const x = (handleBox?.x ?? 0) + (handleBox?.width ?? 0) / 2;
+    const y = (handleBox?.y ?? 0) + (handleBox?.height ?? 0) / 2;
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x, y + 10, { steps: 3 });
+    await page.mouse.move(x + 5, y + 50, { steps: 10 });
+
+    // Слот строки пуст: место в раскладке сохранено, содержимое погашено `opacity`.
+    const ghost = list.locator('[data-dragging]');
+    await expect(ghost).toHaveCount(1);
+    await expect(ghost).toHaveCSS('opacity', '0');
+
+    await expect(async () => {
+      const neighbourTopDuring = (await neighbour.boundingBox())?.y ?? 0;
+      expect(neighbourTopDuring).toBeLessThan(neighbourTopBefore);
+    }).toPass({ timeout: 3000 });
+
     await page.mouse.up();
+
+    // После отпускания пустого слота не остаётся — строка снова видна на новом месте.
+    await expect(ghost).toHaveCount(0);
+    await expect(orders).toBeVisible();
   });
 });

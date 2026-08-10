@@ -1,5 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/materials' as m;
 @use '../../../iconSizes' as icons;
 
 $sizes: 's', 'm', 'l';
@@ -32,51 +33,9 @@ $listItemPaddingVertical: (
   'l': list.$sn-list-anatomy-size-l-listItem-paddingVertical,
 );
 
-.item {
-  // Исходная строка во время переноса — приглушённый «призрак» на месте будущей позиции.
-  // Саму перетаскиваемую копию рендерит `DragOverlay` (`SimpleItemOverlay`) в портале.
-  &[data-dragging] {
-    position: relative;
-    z-index: 1;
-    opacity: 0.5;
-  }
-
-  // Плавающая копия в `DragOverlay`: сплошная поверхность + elevation, чтобы строка читалась
-  // над фоном страницы (портал вне контейнера List, своего фона у строки нет).
-  &[data-overlay] {
-    cursor: grabbing;
-    opacity: 0.5;
-    background: base.$sn-theme-color-neutral-background2Level;
-    box-shadow: base.$sn-boxShadow-elevation-level2;
-  }
-}
-
-// Сортируемый блок группы (`SimpleGroupBlock`): заголовок + строки едут вместе (`useSortable` на
-// блоке). Во время перетаскивания блок целиком приглушён «призраком».
-.groupBlock {
-  &[data-dragging] {
-    position: relative;
-    z-index: 1;
-    opacity: 0.5;
-  }
-
-  // Плавающая копия блока в `DragOverlay` (перетаскивание группы): сплошная поверхность + elevation
-  // на весь блок (заголовок + строки), чтобы читалась над фоном страницы.
-  &[data-overlay] {
-    cursor: grabbing;
-    opacity: 0.5;
-    background: base.$sn-theme-color-neutral-background2Level;
-    box-shadow: base.$sn-boxShadow-elevation-level2;
-  }
-
-  // Подсветка границ группы при переупорядочивании строки внутри неё (`data-reorder-boundary`):
-  // даёт понять, что перестановка ограничена группой, иначе остановка у границы читается как баг.
-  &[data-reorder-boundary] {
-    background: base.$sn-theme-color-neutral-background1Level;
-    box-shadow:
-      inset 0 6px 12px -12px base.$sn-theme-color-blackout,
-      inset 0 -6px 12px -12px base.$sn-theme-color-blackout;
-  }
+// Поверхность и тень копии даёт `DragPreview`, здесь остаётся только курсор переноса.
+.dragPreview {
+  cursor: grabbing;
 }
 
 // Строка-заголовок внутри блока группы: ручка перетаскивания + `Separator`. Отступ слева и gap — как у
@@ -133,6 +92,10 @@ $listItemPaddingVertical: (
 
   appearance: none;
   background: transparent;
+  outline: none;
+
+  // Без своей рамки браузер рисует дефолтное синее кольцо — на Tab после переноса оно и вылезало.
+  @include m.with-focus-frame('regular', 'outsideOffset');
 
   svg {
     width: 100%;

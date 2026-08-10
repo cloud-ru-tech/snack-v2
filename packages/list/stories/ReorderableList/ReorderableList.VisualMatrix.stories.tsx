@@ -23,15 +23,25 @@ const flatItems: ReorderItem[] = [
   { id: 'trash', content: { label: 'Корзина', description: 'Удаляется через 30 дней' } },
 ];
 
+// Верхний уровень — только группы: смешивать их со строками нельзя (см. docs/reorder.mdx).
 const groupedItems: ReorderItem[] = [
-  { id: 'catalog', content: { label: 'Каталог' } },
   {
     type: 'group',
     id: 'group-1',
-    label: 'Группа',
+    label: 'Группа 1',
     divider: true,
     items: [
+      { id: 'catalog', content: { label: 'Каталог' } },
       { id: 'orders', content: { label: 'Заказы' } },
+    ],
+  },
+  {
+    type: 'group',
+    id: 'group-2',
+    label: 'Группа 2',
+    divider: true,
+    items: [
+      { id: 'favorites', content: { label: 'Избранное' } },
       { id: 'settings', content: { label: 'Настройки' }, disabled: true },
     ],
   },
