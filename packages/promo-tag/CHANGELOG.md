@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-08-10)
+
+### Bug Fixes
+
+- **PDS-3616:** updated interaction styles logic for PromoTag ([fe771a5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fe771a5d93416584e3425184dcea0a144bf22835))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

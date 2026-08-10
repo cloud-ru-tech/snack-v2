@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-08-10)
+
+### Features
+
+- **PDS-3616:** new variants for PromoTagPredefined ([0fbb2bb](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0fbb2bb519033d9e84c378df0f2a0227e03d19fc))
+
 # 2.1.0 (2026-07-30)
 
 ### Features
