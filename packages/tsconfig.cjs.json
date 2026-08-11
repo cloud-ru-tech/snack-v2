@@ -131,9 +131,6 @@
       "path": "./search-private/tsconfig.cjs.json"
     },
     {
-      "path": "./search/tsconfig.cjs.json"
-    },
-    {
       "path": "./site-card-vacancy/tsconfig.cjs.json"
     },
     {
@@ -213,6 +210,9 @@
     },
     {
       "path": "./modal/tsconfig.cjs.json"
+    },
+    {
+      "path": "./search/tsconfig.cjs.json"
     },
     {
       "path": "./segment-control/tsconfig.cjs.json"

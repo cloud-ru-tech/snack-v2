@@ -1,11 +1,9 @@
-import { Divider } from '@ds/divider';
 import { SearchPrivate, SearchPrivateProps } from '@ds/search-private';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { forwardRef, useState } from 'react';
 
 import { SIZE } from '../../constants';
-import { ButtonField, ButtonFieldProps } from '../../helperComponents/ButtonField';
 import styles from './styles.module.scss';
 
 export type SearchProps = Omit<SearchPrivateProps, 'onKeyDown'> & {
@@ -16,10 +14,8 @@ export type SearchProps = Omit<SearchPrivateProps, 'onKeyDown'> & {
    * @default true
    */
   background?: boolean;
-  /** Дополнительный слот справа от поля */
-  buttonField?: Omit<ButtonFieldProps, 'variant'>;
   /**
-   * Наличие разделителя между input и buttonField
+   * Наличие рамки состояния вокруг поля
    * @default true
    */
   outline?: boolean;
@@ -35,7 +31,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
     disabled,
     background = true,
     outline = true,
-    buttonField: buttonFieldProps,
+    afterContent,
     placeholder,
     onSubmit,
     className,
@@ -70,7 +66,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
         >
           <div className={styles.acrylic} />
         </div>
-        {outline && <div className={styles.borderStateLayer} data-state='regularBorder' />}
+        {outline && <div className={styles.borderStateLayer} data-state='borderOnBackground' />}
         <div className={styles.focusLayer} />
       </div>
       <div className={styles.fieldContainer}>
@@ -95,21 +91,10 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
           tabIndex={tabIndex}
           inputMode={inputMode}
           showClearButton={!disabled}
+          afterContent={afterContent}
           {...extractSupportProps(rest)}
         />
       </div>
-      {buttonFieldProps && (
-        <div className={styles.elementWrapperAfter}>
-          <div className={styles.lineWrapper} data-outline={outline}>
-            <Divider orientation='vertical' variant='regular' />
-          </div>
-          <ButtonField
-            {...buttonFieldProps}
-            disabled={loading || disabled || buttonFieldProps.disabled}
-            variant='after'
-          />
-        </div>
-      )}
     </div>
   );
 });

@@ -17,4 +17,15 @@ test.describe('Search — rendering', () => {
     await gotoStory(buildStoryOptions({ loading: true }));
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-loading', 'true');
   });
+
+  test('afterContent slot renders inside the field', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+    await expect(getByTestId(TEST_IDS.afterContentButton)).toBeVisible();
+  });
+
+  test('afterContent slot is empty when preset is none', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ afterContentPreset: 'none' }));
+    await expect(getByTestId(TEST_IDS.root)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.afterContentButton)).toHaveCount(0);
+  });
 });

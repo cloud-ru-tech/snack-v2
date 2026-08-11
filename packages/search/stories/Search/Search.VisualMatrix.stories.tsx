@@ -1,16 +1,12 @@
+import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { Search, SIZE } from '@ds/search';
+import { Search, SIZE, Size } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 
 import { StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
-
-const buttonFieldSlot = {
-  action: <PlaceholderSVG size={16} />,
-  onClick: () => {},
-} as const;
 
 const meta: Meta<typeof Search> = {
   title: 'Components/Search',
@@ -22,6 +18,20 @@ export default meta;
 type Story = StoryObj<typeof Search>;
 
 const sizes = [SIZE.S, SIZE.M, SIZE.L] as const;
+
+// Типовое наполнение слота: иконочная кнопка того же размера, что поле.
+function afterContentSlot(size: Size) {
+  return (
+    <Button
+      size={size}
+      view={VIEW.Function}
+      appearance={APPEARANCE.Neutral}
+      icon={<PlaceholderSVG />}
+      minWidth={false}
+      onClick={() => {}}
+    />
+  );
+}
 
 function Wrap({ children }: { children: ReactNode }) {
   return <div className={styles.item}>{children}</div>;
@@ -53,56 +63,47 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='ButtonField × Outline'
-        firstColumnHeader='Slot'
-        columnHeaders={['outline=true', 'outline=false']}
+        sectionTitle='AfterContent × Size'
+        firstColumnHeader='Слот'
+        columnHeaders={sizes.map(size => size.toUpperCase())}
         rows={[
           {
-            variantLabel: 'без buttonField',
-            cells: [
-              <Wrap key='no-bf-outline'>
-                <Search placeholder='Поиск' outline />
-              </Wrap>,
-              <Wrap key='no-bf-no-outline'>
-                <Search placeholder='Поиск' outline={false} />
-              </Wrap>,
-            ],
+            variantLabel: 'без afterContent',
+            cells: sizes.map(size => (
+              <Wrap key={`no-slot-${size}`}>
+                <Search size={size} placeholder='Поиск' />
+              </Wrap>
+            )),
           },
           {
-            variantLabel: 'с buttonField',
-            cells: [
-              <Wrap key='bf-outline'>
-                <Search placeholder='Поиск' outline buttonField={buttonFieldSlot} />
-              </Wrap>,
-              <Wrap key='bf-no-outline'>
-                <Search placeholder='Поиск' outline={false} buttonField={buttonFieldSlot} />
-              </Wrap>,
-            ],
+            variantLabel: 'с afterContent',
+            cells: sizes.map(size => (
+              <Wrap key={`slot-${size}`}>
+                <Search size={size} placeholder='Поиск' afterContent={afterContentSlot(size)} />
+              </Wrap>
+            )),
           },
         ]}
       />
 
       <StoryTable
-        sectionTitle='ButtonField × Droplist'
-        firstColumnHeader='Slot'
-        columnHeaders={['showDroplistChevron=true', 'showDroplistChevron=false']}
+        sectionTitle='Outline'
+        firstColumnHeader='Вариант'
+        columnHeaders={['Search']}
         rows={[
           {
-            variantLabel: 'droplist',
+            variantLabel: 'outline=true',
             cells: [
-              <Wrap key='no-bf-outline'>
-                <Search
-                  placeholder='Поиск'
-                  outline
-                  buttonField={{ ...buttonFieldSlot, droplist: { items: [] }, showDroplistChevron: true }}
-                />
+              <Wrap key='outline-on'>
+                <Search placeholder='Поиск' outline afterContent={afterContentSlot(SIZE.M)} />
               </Wrap>,
-              <Wrap key='bf-outline'>
-                <Search
-                  placeholder='Поиск'
-                  outline
-                  buttonField={{ ...buttonFieldSlot, droplist: { items: [] }, showDroplistChevron: false }}
-                />
+            ],
+          },
+          {
+            variantLabel: 'outline=false',
+            cells: [
+              <Wrap key='outline-off'>
+                <Search placeholder='Поиск' outline={false} afterContent={afterContentSlot(SIZE.M)} />
               </Wrap>,
             ],
           },

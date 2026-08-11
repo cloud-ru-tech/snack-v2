@@ -1,6 +1,6 @@
-import { PlaceholderSVG, SearchSVG } from '@ds/icons/interface/system';
-import { ItemProps as Item } from '@ds/list';
-import { Search, SIZE } from '@ds/search';
+import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { Search, SearchProps, SIZE } from '@ds/search';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -8,25 +8,56 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from './testIds';
 
-const DROPLIST_ITEMS: Item[] = [
-  { id: 'everywhere', content: { label: 'Везде' } },
-  { id: 'docs', content: { label: 'В документах' } },
-  { id: 'people', content: { label: 'В людях' } },
-];
-
-const BUTTON_FIELD_PRESETS = {
+const AFTER_CONTENT_ICONS = {
   none: undefined,
-  search: { action: <SearchSVG />, onClick: () => {}, 'data-test-id': TEST_IDS.buttonField },
-  'search+dropdown': {
-    action: <SearchSVG />,
-    droplist: { items: DROPLIST_ITEMS },
-    onClick: () => {},
-    'data-test-id': TEST_IDS.buttonField,
-  },
-  placeholder: { action: <PlaceholderSVG />, onClick: () => {}, 'data-test-id': TEST_IDS.buttonField },
+  placeholder: <PlaceholderSVG />,
 } as const;
 
-const meta: Meta<typeof Search> = {
+type AfterContentPreset = keyof typeof AFTER_CONTENT_ICONS;
+
+/**
+ * `afterContent` — ReactNode-слот, поэтому в Playground он собирается в render'е:
+ * размер кнопки должен совпадать с размером поля, а mapping-пресет статичен и
+ * про `args.size` ничего не знает.
+ */
+type PlaygroundStoryProps = SearchProps & {
+  afterContentPreset: AfterContentPreset;
+};
+
+function PlaygroundRender({ afterContentPreset, size = SIZE.S, ...args }: PlaygroundStoryProps) {
+  const icon = AFTER_CONTENT_ICONS[afterContentPreset];
+
+  return (
+    <DemoPage>
+      <DemoPanel>
+        <DemoTitle>Playground</DemoTitle>
+        <DemoHint>Поисковая строка с фоновой подложкой и слотом действия внутри поля.</DemoHint>
+        <DemoActions block>
+          <Search
+            {...args}
+            size={size}
+            afterContent={
+              icon && (
+                <Button
+                  data-test-id={TEST_IDS.afterContentButton}
+                  size={size}
+                  view={VIEW.Function}
+                  appearance={APPEARANCE.Neutral}
+                  icon={icon}
+                  minWidth={false}
+                  disabled={args.disabled || args.loading}
+                  onClick={() => {}}
+                />
+              )
+            }
+          />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  );
+}
+
+const meta: Meta<PlaygroundStoryProps> = {
   title: 'Components/Search',
   component: Search,
   parameters: { layout: 'fullscreen' },
@@ -37,39 +68,25 @@ const meta: Meta<typeof Search> = {
     disabled: false,
     loading: false,
     outline: true,
+    afterContentPreset: 'placeholder',
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    // buttonField — slot-объект, передаётся через mapping-пресеты.
-    buttonField: {
+    afterContentPreset: {
+      name: '[Stories]: afterContent',
       control: 'select',
-      options: Object.keys(BUTTON_FIELD_PRESETS),
-      mapping: BUTTON_FIELD_PRESETS,
-      description: 'Слот справа от поля: none / search / search+dropdown / placeholder',
+      options: Object.keys(AFTER_CONTENT_ICONS),
     },
-    // outline визуально проявляется только при наличии buttonField — прячем
-    // контрол, когда слот пустой.
-    outline: { if: { arg: 'buttonField', neq: 'none' } },
+    afterContent: { table: { disable: true } },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Search>;
+type Story = StoryObj<PlaygroundStoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  args: { buttonField: 'none' as unknown as undefined },
-  render: args => (
-    <DemoPage>
-      <DemoPanel>
-        <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Поисковая строка с фоновой подложкой и кнопкой поиска.</DemoHint>
-        <DemoActions block>
-          <Search {...args} />
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
-  ),
+  render: args => <PlaygroundRender {...args} />,
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.root)).toBeVisible();
   },

@@ -136,9 +136,6 @@
       "path": "./search-private/tsconfig.esm.json"
     },
     {
-      "path": "./search/tsconfig.esm.json"
-    },
-    {
       "path": "./site-card-vacancy/tsconfig.esm.json"
     },
     {
@@ -218,6 +215,9 @@
     },
     {
       "path": "./modal/tsconfig.esm.json"
+    },
+    {
+      "path": "./search/tsconfig.esm.json"
     },
     {
       "path": "./segment-control/tsconfig.esm.json"

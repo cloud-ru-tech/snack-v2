@@ -1,7 +1,7 @@
 ---
 title: Search
 package: '@ds/search'
-description: Компонент поискового поля — три размера, фон, разделитель, состояния loading и disabled, опциональный слот для действия.
+description: Компонент поискового поля — три размера, фон, рамка состояния, состояния loading и disabled, слот для действия внутри поля.
 order: 0
 ---
 
@@ -15,6 +15,8 @@ import { Disabled } from '../demos/examples/Disabled'
 import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
 import { TransparentBackground } from '../demos/examples/TransparentBackground'
 import TransparentBackgroundSrc from '../demos/examples/TransparentBackground.tsx?raw'
+import { WithAfterContent } from '../demos/examples/WithAfterContent'
+import WithAfterContentSrc from '../demos/examples/WithAfterContent.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -24,12 +26,12 @@ import { figmaNode } from '#docs/lib/figma'
 
 # Search
 
-Поисковое поле дизайн-системы: `<input type='search'>` с иконкой, опциональной кнопкой очистки, состоянием `loading` и слотом `buttonField` справа для дополнительной кнопки-действия («Найти», «Фильтр»).
+Поисковое поле дизайн-системы: `<input type='search'>` с иконкой, опциональной кнопкой очистки, состоянием `loading` и слотом `afterContent` внутри поля — под дополнительное действие («Найти», «Фильтр»).
 
 ## Когда использовать
 - Основной поиск по списку / каталогу / таблице.
 - Header-поиск с моментальной отдачей (live search).
-- Форма поиска с явной кнопкой «Найти» (`buttonField`).
+- Форма поиска с явной кнопкой «Найти» (`afterContent`).
 
 Когда **не** подходит: для выбора из фиксированного списка используйте `Combobox`, для фильтра с префиксом — `Input` + `Chip`.
 
@@ -63,6 +65,10 @@ import { Search } from '@ds/search'
   <TransparentBackground client:visible />
 </Example>
 
+<Example title='Действие в слоте afterContent' code={WithAfterContentSrc}>
+  <WithAfterContent client:visible />
+</Example>
+
 ## Props
 <PropsTable data={searchDoc.Search} />
 
@@ -71,8 +77,26 @@ import { Search } from '@ds/search'
 
 ## Анатомия
 
-### Size
-Высота поля: `s` — компактный (списки, тулбары), `m` — дефолт, `l` — для крупных форм и посадочных страниц.
+### Size (default `m`)
+Высота поля:
+
+- `s` — компактный (списки, тулбары).
+- `m` — дефолт.
+- `l` — для крупных форм и посадочных страниц.
+
+### AfterContent
+Слот внутри поля, справа от строки ввода и кнопки очистки. Пустой по умолчанию: слот появляется тогда, когда в него передана нода.
+
+Типовое наполнение — иконочная кнопка того же размера, что поле:
+
+```tsx
+<Search size='m' afterContent={<Button size='m' view='function' appearance='neutral' icon={<SearchSVG />} onClick={submit} />} />
+```
+
+Размер содержимого слот не навязывает — задавайте его тем же значением, что и `size` поля.
+
+### Outline (default `true`)
+Рамка состояния вокруг поля. `false` — поле без рамки (например, поиск внутри выпадающего списка, где рамку даёт контейнер).
 
 ## Figma
 <FigmaEmbed node={figmaNode('search')} height={480} title='Search в Figma (Snack UI Kit)' />

@@ -1,6 +1,8 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { TEST_IDS } from '../../src/constants';
+// Story-level id слота `afterContent` живёт в stories: наполнение слота задаёт
+// потребитель, поэтому в публичных TEST_IDS пакета его нет.
+import { TEST_IDS } from '../../stories/Search/testIds';
 
 export { TEST_IDS };
 

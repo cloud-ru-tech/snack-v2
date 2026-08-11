@@ -5,13 +5,6 @@
 // дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
 // маппится на dimension/strokeWeight/radius токены, уже переписано.
 
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-16;
-  width: 360px;
-}
-
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;

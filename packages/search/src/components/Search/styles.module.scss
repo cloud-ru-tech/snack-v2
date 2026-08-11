@@ -24,12 +24,6 @@ $sizes: 's', 'm', 'l';
   height: 100%;
 }
 
-.lineWrapper {
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-}
-
 .backgroundWrapper {
   position: absolute;
   display: none;
@@ -69,13 +63,6 @@ $sizes: 's', 'm', 'l';
   }
 }
 
-.elementWrapperAfter {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  align-self: stretch;
-}
-
 .root {
   position: relative;
   display: flex;
@@ -86,12 +73,6 @@ $sizes: 's', 'm', 'l';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      .lineWrapper {
-        display: none;
-        width: 0;
-        padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'elementWrapper', 'lineWrapper', 'padding');
-      }
-
       .focusLayer {
         @include borderRadius($size);
       }
@@ -116,12 +97,6 @@ $sizes: 's', 'm', 'l';
           @include borderRadius($size);
 
           display: initial;
-        }
-
-        .lineWrapper {
-          &[data-outline='true'] {
-            display: initial;
-          }
         }
       }
 
@@ -159,7 +134,7 @@ $sizes: 's', 'm', 'l';
 
   // TODO: fix state layers loading state, that varies from component to component in contrast with agreement
   &[data-loading='true'] {
-    .borderStateLayer[data-state="regularBorder"] {
+    .borderStateLayer[data-state="borderOnBackground"] {
       border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
     }
   }
