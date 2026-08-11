@@ -10,7 +10,7 @@ import { LOADER_SIZE, Sun } from '@ds/loader';
 import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
-import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useMemo, useRef } from 'react';
+import { FocusEvent, forwardRef, KeyboardEvent, ReactNode, useCallback, useMemo, useRef } from 'react';
 
 import { PRIVATE_SEARCH_TEST_IDS, SIZE } from './constants';
 import { searchPrivateLocale } from './locale';
@@ -35,6 +35,13 @@ export type SearchPrivateProps = WithSupportProps<
      * @default true
      */
     showClearButton?: boolean;
+    /**
+     * Слот справа от строки ввода — после кнопки очистки, внутри поля.
+     *
+     * Типовое наполнение — иконочная кнопка того же размера, что поле:
+     * `<Button size={size} view='function' appearance='neutral' icon={…} />`.
+     */
+    afterContent?: ReactNode;
     tabIndex?: number;
   } & Pick<
     Partial<InputPrivateProps>,
@@ -61,6 +68,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
     onFocus,
     onBlur,
     onSubmit,
+    afterContent,
     className,
     tabIndex,
     inputMode = 'search',
@@ -154,6 +162,8 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
       />
 
       <span className={styles.postfix}>{postfixButtons}</span>
+
+      {afterContent && <span className={styles.afterContent}>{afterContent}</span>}
     </div>
   );
 });

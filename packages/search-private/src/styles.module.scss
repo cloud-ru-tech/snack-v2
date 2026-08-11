@@ -10,6 +10,15 @@ $sizes: 's', 'm', 'l';
   justify-content: center;
 }
 
+// Слот `afterContent` — centeredWrapper из Figma: высота ограничена строкой
+// контента, содержимое (кнопка) центрируется по ней и может её перекрывать.
+.afterContent {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   display: flex;
   flex-grow: 1;
@@ -31,6 +40,10 @@ $sizes: 's', 'm', 'l';
 
         max-width: $squareSideLength;
         max-height: $squareSideLength;
+      }
+
+      .afterContent {
+        max-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'max-height');
       }
 
       &[data-disabled='true'] {

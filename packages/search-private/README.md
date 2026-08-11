@@ -51,6 +51,7 @@ export function Basic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `afterContent` | `ReactNode` | — | Слот справа от строки ввода — после кнопки очистки, внутри поля. <br/> Типовое наполнение — иконочная кнопка того же размера, что поле: <br/> `<Button size={size} view='function' appearance='neutral' icon={…} />`. |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — | Деактивирован ли компонент |

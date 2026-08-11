@@ -3,6 +3,11 @@
     "displayName": "SearchPrivate",
     "propsTypeName": "SearchPrivateProps",
     "props": {
+      "afterContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот справа от строки ввода — после кнопки очистки, внутри поля.\n\nТиповое наполнение — иконочная кнопка того же размера, что поле:\n`<Button size={size} view='function' appearance='neutral' icon={…} />`."
+      },
       "className": {
         "type": "string",
         "required": false,

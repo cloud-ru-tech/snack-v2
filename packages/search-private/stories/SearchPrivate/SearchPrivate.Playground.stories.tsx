@@ -24,6 +24,8 @@ const meta: Meta<typeof SearchPrivate> = {
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
     showClearButton: { control: 'boolean' },
+    // ReactNode-слот: object-контрол для него бесполезен, наполнение показано в VisualMatrix.
+    afterContent: { table: { disable: true } },
   },
 };
 
