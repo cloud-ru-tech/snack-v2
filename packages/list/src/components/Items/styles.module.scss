@@ -35,7 +35,7 @@ $sizes: 's', 'm', 'l';
     &[data-open],
     &[data-focused] {
       .stateLayer[data-state='regularFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
       }
 
       .stateLayer[data-state='activatedFilled'] {
@@ -45,7 +45,7 @@ $sizes: 's', 'm', 'l';
 
     &:active {
       .stateLayer[data-state='regularFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
       }
 
       .stateLayer[data-state='activatedFilled'] {
@@ -62,7 +62,7 @@ $sizes: 's', 'm', 'l';
     &:active {
       .stateLayer[data-state='regularFilled'],
       .stateLayer[data-state='activatedFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
       }
     }
   }

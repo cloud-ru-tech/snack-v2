@@ -34,7 +34,7 @@
   width: 100%;
   padding-block: base.$sn-primitive-dimension-20;
   padding-inline: base.$sn-primitive-dimension-20;
-  border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   border-style: solid;
   border-width: base.$sn-brand-anatomy-line-chips-strokeWeight;
   border-radius: base.$sn-density-radius-s;
@@ -69,7 +69,7 @@
 
   @media (hover: hover) {
     &:hover:not([data-disabled]) {
-      border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+      border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
       background: base.$sn-theme-color-neutral-background1Level;
 
       &[data-checked] {

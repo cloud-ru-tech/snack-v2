@@ -61,8 +61,8 @@ export const THEME_VARS = {
     secondary: '--sn-theme-color-available-version-textTertiary',
   },
   stateLayer: {
-    filled: '--sn-theme-color-material-stateLayer-onColor-default-filled',
-    border: '--sn-theme-color-material-stateLayer-regular-default-borderColor',
+    filled: '--sn-theme-color-material-stateLayer-versionOnColor-default-filled',
+    border: '--sn-theme-color-material-stateLayer-neutral-border-default-borderColor',
   },
   palette: {
     red: '--sn-theme-color-red-text',

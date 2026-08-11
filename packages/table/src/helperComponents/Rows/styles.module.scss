@@ -295,14 +295,14 @@ $row-bg-tones: (
 .bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] {
   border-color: base.$sn-theme-color-available-borderColor;
 
-  @include row-state-layer(base.$sn-theme-color-material-stateLayer-regular-hovered-filled);
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled);
 }
 
 .bodyRow:not([data-row-appearance='disabled'], [data-selected]):hover .rowPinnedCells,
 .bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] .rowPinnedCells {
   border-color: inherit;
 
-  @include row-state-layer(base.$sn-theme-color-material-stateLayer-regular-hovered-filled);
+  @include row-state-layer(base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled);
 }
 
 .bodyRow:not([data-row-appearance='disabled']):hover + .bodyRow::before {

@@ -139,18 +139,14 @@ $sizes: 's', 'm', 'l';
 }
 
 .groupIndicator:hover > .groupIndicatorState {
-  background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+  background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
 }
 
 .groupIndicator:active > .groupIndicatorState,
 .groupIndicator[data-open] > .groupIndicatorState {
-  background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+  background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
 }
 
-// Figma listItem marker:
-// markerWrapper: padding-horizontal=0, padding-vertical=8, ширина = marker.max-width (4px),
-// ::before — покрашенная полоса, заполняющая content-box wrapper'а (с учётом vertical padding),
-// border-radius = 0 / 2 / 2 / 0 (top-left / top-right / bottom-right / bottom-left).
 .markerContainer {
   pointer-events: none;
 
@@ -244,17 +240,15 @@ $level: var(--level, 0);
       }
 
       .markerContainer {
-        @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'markerWrapper');
+        @include base.composite-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'marker');
 
-        // Маркер шириной 4 на всех размерах — анатомический токен есть только у `s`,
-        // поэтому берём примитив.
-        width: base.$sn-primitive-dimension-4;
+        width: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'width');
 
         &::before {
-          border-radius: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-top-left-radius')
-            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-top-right-radius')
-            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-bottom-right-radius')
-            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'marker', 'border-bottom-left-radius');
+          border-radius: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'border-top-left-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'border-top-right-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'border-bottom-right-radius')
+            base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'markerWrapper', 'border-bottom-left-radius');
         }
       }
 

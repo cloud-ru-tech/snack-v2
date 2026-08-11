@@ -122,7 +122,7 @@ $variants: 'before', 'after';
   }
 
   &:not([data-disabled='true'])[data-loading='true'] {
-    background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+    background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
   }
 
   &:focus-visible {

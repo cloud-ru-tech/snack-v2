@@ -10,7 +10,7 @@ $sizes: 'xs', 's';
     border-radius: inherit;
 
     &[data-state='regularFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
     }
   }
 
@@ -18,7 +18,7 @@ $sizes: 'xs', 's';
     &:hover:not([data-disabled], [data-loading]) {
       & .dot > [data-state-layer] {
         &[data-state='regularFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+          background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
         }
       }
     }
@@ -29,7 +29,7 @@ $sizes: 'xs', 's';
   &:active:not([data-disabled], [data-loading]) {
     & .dot > [data-state-layer] {
       &[data-state='regularFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
       }
     }
   }

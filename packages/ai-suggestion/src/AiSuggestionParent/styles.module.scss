@@ -93,7 +93,7 @@ $chevron-transition-activated: transform $parent-transition-duration cubic-bezie
   margin: 0;
   padding: 0;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid
-    base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+    base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   border-radius: base.$sn-primitive-dimension-full;
 
   font-family: inherit;
@@ -143,7 +143,7 @@ $chevron-transition-activated: transform $parent-transition-duration cubic-bezie
   &:not([data-activated], :disabled) {
     @media (hover: hover) {
       &:hover {
-        border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
       }
     }
   }

@@ -40,7 +40,7 @@ $radius-to-badge-padding-top: (
   position: absolute;
   inset: 0;
 
-  border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   border-style: solid;
   border-radius: inherit;
 }
@@ -140,7 +140,7 @@ $radius-to-badge-padding-top: (
       }
 
       &[data-view='outline']:not([data-checked]) .outlineBorder {
-        border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
       }
 
       &[data-view='elevated'] {

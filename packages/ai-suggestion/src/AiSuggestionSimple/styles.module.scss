@@ -109,7 +109,7 @@ $chip-interaction-transition:
 
     &[data-appearance='#{$appearance}'] {
       @if $appearance == 'neutral' {
-        border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
 
         .icon,
         .label {
@@ -118,7 +118,7 @@ $chip-interaction-transition:
 
         @media (hover: hover) {
           &:hover:not(:disabled, [data-disabled]) {
-            border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+            border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
             background-color: base.$sn-theme-color-neutral-background1Level;
 
             .icon,

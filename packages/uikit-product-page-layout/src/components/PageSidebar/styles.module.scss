@@ -65,7 +65,7 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
     padding: base.$sn-primitive-dimension-4 0;
     // Правый разделитель = stateLayer/regular/border color.
     border-right: base.$sn-primitive-strokeWeight-strokeRegular solid
-      base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+      base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
 
     background-color: base.$sn-theme-color-neutral-background;
 

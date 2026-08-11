@@ -160,7 +160,7 @@ $sizes: 's', 'm', 'l';
   // TODO: fix state layers loading state, that varies from component to component in contrast with agreement
   &[data-loading='true'] {
     .borderStateLayer[data-state="regularBorder"] {
-      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+      border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
     }
   }
 }

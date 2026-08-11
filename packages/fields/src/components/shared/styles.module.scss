@@ -364,14 +364,14 @@ $sizes: 's', 'm', 'l';
 
     &:active {
       .borderStateLayer[data-state='regularBorder'] {
-        border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
       }
     }
 
     @media (hover: hover) {
       &:hover {
         .borderStateLayer[data-state='regularBorder'] {
-          border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+          border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
         }
       }
     }

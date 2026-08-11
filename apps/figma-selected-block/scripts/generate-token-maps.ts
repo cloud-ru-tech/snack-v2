@@ -7,6 +7,7 @@
  */
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
+import { format, resolveConfig } from 'prettier';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -281,8 +282,13 @@ export const CSS_VAR_TO_JS_PATH: Record<string, string> = ${JSON.stringify(cssVa
 export const CSS_VAR_TO_SCSS_MODULE: Record<string, string> = ${JSON.stringify(cssVarToScssModule, null, 2)};
 `;
 
+// Форматируем вывод конфигом репозитория: иначе prettier (руками или через lint-staged)
+// переписывает сгенерированный файл и каждая перегенерация даёт diff из кавычек и переносов.
+const prettierConfig = await resolveConfig(outFile);
+const formatted = await format(tsContent, { ...prettierConfig, filepath: outFile });
+
 mkdirSync(outDir, { recursive: true });
-writeFileSync(outFile, tsContent, 'utf8');
+writeFileSync(outFile, formatted, 'utf8');
 
 console.log('Generated', outFile);
 console.log('  COMPONENT_MAP:', Object.keys(componentMap).length, 'components');

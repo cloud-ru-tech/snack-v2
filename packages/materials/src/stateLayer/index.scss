@@ -8,7 +8,7 @@
   */
 $states:
   'regularFilled', 'regularBorder', 'activatedFilled', 'onColorFilled', 'onAccentFilled', 'textOpacity';
-$internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
+$internalStates: 'neutral', 'activated', 'versionOnColor', 'inversionOnColor', 'textOpacity';
 
 /**
   * State layer: default / hover / active для фона и бордера слоя.
@@ -29,11 +29,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
     }
 
     &[data-state='regularFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
     }
 
     &[data-state='regularBorder'] {
-      border-color: base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+      border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
     }
 
     &[data-state='activatedFilled'] {
@@ -41,11 +41,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
     }
 
     &[data-state='onColorFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-onColor-default-filled;
+      background: base.$sn-theme-color-material-stateLayer-versionOnColor-default-filled;
     }
 
     &[data-state='onAccentFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-onAccent-default-filled;
+      background: base.$sn-theme-color-material-stateLayer-inversionOnColor-default-filled;
     }
   }
 
@@ -53,11 +53,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
     &:hover:not([data-disabled], [data-loading]) {
       .#{$stateLayerSelector} {
         &[data-state='regularFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+          background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
         }
 
         &[data-state='regularBorder'] {
-          border-color: base.$sn-theme-color-material-stateLayer-regular-hovered-borderColor;
+          border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
         }
 
         &[data-state='activatedFilled'] {
@@ -65,11 +65,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
         }
 
         &[data-state='onColorFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-onColor-hovered-filled;
+          background: base.$sn-theme-color-material-stateLayer-versionOnColor-hovered-filled;
         }
 
         &[data-state='onAccentFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-onAccent-hovered-filled;
+          background: base.$sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled;
         }
       }
     }
@@ -81,11 +81,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
   &[data-pressed='true']:not([data-disabled], [data-loading]) {
     .#{$stateLayerSelector} {
       &[data-state='regularFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
       }
 
       &[data-state='regularBorder'] {
-        border-color: base.$sn-theme-color-material-stateLayer-regular-pressed-borderColor;
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor;
       }
 
       &[data-state='activatedFilled'] {
@@ -93,11 +93,11 @@ $internalStates: 'regular', 'activated', 'onColor', 'onAccent', 'textOpacity';
       }
 
       &[data-state='onColorFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-onColor-pressed-filled;
+        background: base.$sn-theme-color-material-stateLayer-versionOnColor-pressed-filled;
       }
 
       &[data-state='onAccentFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-onAccent-pressed-filled;
+        background: base.$sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled;
       }
     }
   }

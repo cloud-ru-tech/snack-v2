@@ -73,7 +73,7 @@
 
   border-radius: inherit;
 
-  background-color: base.$sn-theme-color-material-stateLayer-regular-default-filled;
+  background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
 
   transition: background-color 150ms ease;
 }
@@ -82,7 +82,7 @@
   .step:not(:disabled):hover {
     .track::after,
     .status::after {
-      background-color: base.$sn-theme-color-material-stateLayer-regular-hovered-filled;
+      background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
     }
   }
 }
@@ -90,7 +90,7 @@
 .step:not(:disabled):active {
   .track::after,
   .status::after {
-    background-color: base.$sn-theme-color-material-stateLayer-regular-pressed-filled;
+    background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
   }
 }
 

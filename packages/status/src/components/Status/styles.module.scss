@@ -25,9 +25,6 @@ $typography: (
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'container');
-
-      padding-top: 0;
-      padding-bottom: 0;
     }
   }
 
@@ -66,7 +63,6 @@ $typography: (
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       @include base.composite-var($typography, $size);
-      @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'textWrapper');
     }
   }
 
