@@ -11,14 +11,12 @@ $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline
 $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
 $sn-list-anatomy-size-s-listItem-paddingHorizontal: var(--sn-list-anatomy-size-s-listItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
-$sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingVertical, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-s-listItem-marker-maxWidth: var(--sn-list-anatomy-size-s-listItem-marker-maxWidth, #{st.$sn-primitive-dimension-4});
-$sn-list-anatomy-size-s-listItem-marker-borderTopLeftRadius: var(--sn-list-anatomy-size-s-listItem-marker-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-s-listItem-marker-maxHeight: var(--sn-list-anatomy-size-s-listItem-marker-maxHeight, #{st.$sn-primitive-dimension-full});
-$sn-list-anatomy-size-s-listItem-marker-borderTopRightRadius: var(--sn-list-anatomy-size-s-listItem-marker-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-s-listItem-marker-borderBottomRightRadius: var(--sn-list-anatomy-size-s-listItem-marker-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-s-listItem-marker-borderBottomLeftRadius: var(--sn-list-anatomy-size-s-listItem-marker-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-s-listItem-markerWrapper-width: var(--sn-list-anatomy-size-s-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-s-listItem-markerWrapper-borderTopLeftRadius: var(--sn-list-anatomy-size-s-listItem-markerWrapper-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-s-listItem-markerWrapper-borderTopRightRadius: var(--sn-list-anatomy-size-s-listItem-markerWrapper-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomRightRadius: var(--sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
 $sn-list-anatomy-size-s-listItem-gap: var(--sn-list-anatomy-size-s-listItem-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-list-anatomy-size-s-listItem-paddingVertical: var(--sn-list-anatomy-size-s-listItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
 $sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
@@ -36,12 +34,12 @@ $sn-list-anatomy-size-m-listItem-paddingVertical: var(--sn-list-anatomy-size-m-l
 $sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
 $sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight: var(--sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight, #{st.$sn-density-size-icon-s});
 $sn-list-anatomy-size-m-listItem-borderRadius: var(--sn-list-anatomy-size-m-listItem-borderRadius, #{st.$sn-brand-anatomy-radius-listItem-s});
-$sn-list-anatomy-size-m-listItem-marker-borderTopLeftRadius: var(--sn-list-anatomy-size-m-listItem-marker-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-m-listItem-marker-borderTopRightRadius: var(--sn-list-anatomy-size-m-listItem-marker-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-m-listItem-marker-borderBottomRightRadius: var(--sn-list-anatomy-size-m-listItem-marker-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-m-listItem-marker-borderBottomLeftRadius: var(--sn-list-anatomy-size-m-listItem-marker-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingVertical: var(--sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingVertical, #{st.$sn-primitive-dimension-4});
-$sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomRightRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-4});
+$sn-list-anatomy-size-m-listItem-markerWrapper-width: var(--sn-list-anatomy-size-m-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-2});
 $sn-list-anatomy-size-m-subtitle-paddingTop: var(--sn-list-anatomy-size-m-subtitle-paddingTop, #{st.$sn-primitive-dimension-10});
 $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-2});
@@ -54,12 +52,12 @@ $sn-list-anatomy-size-l-listItem-paddingVertical: var(--sn-list-anatomy-size-l-l
 $sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
 $sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight: var(--sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight, #{st.$sn-density-size-icon-s});
 $sn-list-anatomy-size-l-listItem-borderRadius: var(--sn-list-anatomy-size-l-listItem-borderRadius, #{st.$sn-brand-anatomy-radius-listItem-l});
-$sn-list-anatomy-size-l-listItem-marker-borderTopLeftRadius: var(--sn-list-anatomy-size-l-listItem-marker-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-l-listItem-marker-borderTopRightRadius: var(--sn-list-anatomy-size-l-listItem-marker-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-l-listItem-marker-borderBottomRightRadius: var(--sn-list-anatomy-size-l-listItem-marker-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-l-listItem-marker-borderBottomLeftRadius: var(--sn-list-anatomy-size-l-listItem-marker-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingVertical: var(--sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingVertical, #{st.$sn-primitive-dimension-6});
-$sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingHorizontal: var(--sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomRightRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomRightRadius, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
+$sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-6});
+$sn-list-anatomy-size-l-listItem-markerWrapper-width: var(--sn-list-anatomy-size-l-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-4});
 $sn-list-anatomy-size-l-subtitle-paddingTop: var(--sn-list-anatomy-size-l-subtitle-paddingTop, #{st.$sn-primitive-dimension-12});
 
 $list: (
@@ -84,19 +82,16 @@ $list: (
           ),
           "padding-left": $sn-list-anatomy-size-s-listItem-paddingHorizontal,
           "padding-right": $sn-list-anatomy-size-s-listItem-paddingHorizontal,
-          "marker": (
-            "markerWrapper": (
-              "padding-top": $sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingVertical,
-              "padding-left": $sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingHorizontal,
-              "padding-right": $sn-list-anatomy-size-s-listItem-marker-markerWrapper-paddingHorizontal
+          "markerWrapper": (
+            "marker": (
+              "padding-top": $sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical,
+              "padding-bottom": $sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical
             ),
-            "max-width": $sn-list-anatomy-size-s-listItem-marker-maxWidth,
-            "border-top-left-radius": $sn-list-anatomy-size-s-listItem-marker-borderTopLeftRadius,
-            "max-height": $sn-list-anatomy-size-s-listItem-marker-maxHeight,
-            "border-top-right-radius": $sn-list-anatomy-size-s-listItem-marker-borderTopRightRadius,
-            "border-bottom-right-radius": $sn-list-anatomy-size-s-listItem-marker-borderBottomRightRadius,
-            "border-bottom-left-radius": $sn-list-anatomy-size-s-listItem-marker-borderBottomLeftRadius
+            "width": $sn-list-anatomy-size-s-listItem-markerWrapper-width,
+            "border-top-left-radius": $sn-list-anatomy-size-s-listItem-markerWrapper-borderTopLeftRadius,
+            "border-top-right-radius": $sn-list-anatomy-size-s-listItem-markerWrapper-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomLeftRadius
           ),
           "gap": $sn-list-anatomy-size-s-listItem-gap,
           "padding-top": $sn-list-anatomy-size-s-listItem-paddingVertical,
@@ -140,17 +135,16 @@ $list: (
             "min-height": $sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight
           ),
           "border-radius": $sn-list-anatomy-size-m-listItem-borderRadius,
-          "marker": (
-            "border-top-left-radius": $sn-list-anatomy-size-m-listItem-marker-borderTopLeftRadius,
-            "border-top-right-radius": $sn-list-anatomy-size-m-listItem-marker-borderTopRightRadius,
-            "border-bottom-right-radius": $sn-list-anatomy-size-m-listItem-marker-borderBottomRightRadius,
-            "border-bottom-left-radius": $sn-list-anatomy-size-m-listItem-marker-borderBottomLeftRadius,
-            "markerWrapper": (
-              "padding-top": $sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingVertical,
-              "padding-left": $sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingHorizontal,
-              "padding-right": $sn-list-anatomy-size-m-listItem-marker-markerWrapper-paddingHorizontal
-            )
+          "markerWrapper": (
+            "border-top-left-radius": $sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius,
+            "border-top-right-radius": $sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomLeftRadius,
+            "marker": (
+              "padding-top": $sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical,
+              "padding-bottom": $sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical
+            ),
+            "width": $sn-list-anatomy-size-m-listItem-markerWrapper-width
           )
         ),
         "subtitle": (
@@ -185,17 +179,16 @@ $list: (
             "min-height": $sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight
           ),
           "border-radius": $sn-list-anatomy-size-l-listItem-borderRadius,
-          "marker": (
-            "border-top-left-radius": $sn-list-anatomy-size-l-listItem-marker-borderTopLeftRadius,
-            "border-top-right-radius": $sn-list-anatomy-size-l-listItem-marker-borderTopRightRadius,
-            "border-bottom-right-radius": $sn-list-anatomy-size-l-listItem-marker-borderBottomRightRadius,
-            "border-bottom-left-radius": $sn-list-anatomy-size-l-listItem-marker-borderBottomLeftRadius,
-            "markerWrapper": (
-              "padding-top": $sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingVertical,
-              "padding-left": $sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingHorizontal,
-              "padding-right": $sn-list-anatomy-size-l-listItem-marker-markerWrapper-paddingHorizontal
-            )
+          "markerWrapper": (
+            "border-top-left-radius": $sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius,
+            "border-top-right-radius": $sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius,
+            "border-bottom-right-radius": $sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomRightRadius,
+            "border-bottom-left-radius": $sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomLeftRadius,
+            "marker": (
+              "padding-top": $sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical,
+              "padding-bottom": $sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical
+            ),
+            "width": $sn-list-anatomy-size-l-listItem-markerWrapper-width
           )
         ),
         "subtitle": (

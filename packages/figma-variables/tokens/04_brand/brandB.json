@@ -223,7 +223,7 @@
               }
             }
           },
-          "border": {
+          "neutralBorder": {
             "forLightMode": {
               "default": {
                 "borderColor": {
@@ -283,7 +283,7 @@
               }
             }
           },
-          "filled": {
+          "neutral": {
             "forLightMode": {
               "default": {
                 "background": {
@@ -320,7 +320,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#00000000"
+                  "$value": "#ffffff00"
                 }
               },
               "hovered": {
@@ -329,7 +329,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#0000001a"
+                  "$value": "#ffffff1a"
                 }
               },
               "pressed": {
@@ -338,9 +338,127 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#00000033"
+                  "$value": "#ffffff33"
                 }
               }
+            }
+          }
+        },
+        "neutral": {
+          "5": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.5}"
+          },
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.10}"
+          },
+          "15": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.15}"
+          },
+          "25": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.25}"
+          },
+          "45": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.45}"
+          },
+          "55": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.55}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.60}"
+          },
+          "65": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.65}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.primitive.color.gray.99}"
+          },
+          "transparent": {
+            "forLightMode": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#7c83b614"
+            },
+            "forDarkMode": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#a7abbe14"
+            }
+          },
+          "transparentInverted": {
+            "forLightMode": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#a6aabf0f"
+            },
+            "forDarkMode": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "color",
+              "$value": "#8b8fa70f"
             }
           }
         }

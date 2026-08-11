@@ -139,30 +139,8 @@
         "status": {
           "size": {
             "xs": {
-              "textWrapper": {
-                "gap": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.status.anatomy.status.size.xs.textWrapper.paddingHorizontal}"
-                },
-                "paddingHorizontal": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
-                }
-              },
               "container": {
-                "padding": {
+                "paddingRight": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -170,7 +148,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.primitive.dimension.4}"
                 },
                 "minHeight": {
                   "$extensions": {
@@ -203,11 +181,17 @@
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.16}"
                   }
-                }
-              }
-            },
-            "s": {
-              "textWrapper": {
+                },
+                "paddingLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.0}"
+                },
                 "gap": {
                   "$extensions": {
                     "com.figma.scopes": [
@@ -216,21 +200,13 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.status.anatomy.status.size.s.textWrapper.paddingHorizontal}"
-                },
-                "paddingHorizontal": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.primitive.dimension.0}"
                 }
-              },
+              }
+            },
+            "s": {
               "container": {
-                "padding": {
+                "paddingRight": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -238,7 +214,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.primitive.dimension.6}"
                 },
                 "minHeight": {
                   "$extensions": {
@@ -271,6 +247,26 @@
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.16}"
                   }
+                },
+                "paddingLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.4}"
+                },
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
                 }
               }
             }

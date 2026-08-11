@@ -89,7 +89,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.strokeWeight.strokeThin}"
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
               },
               "centeredWrapper": {
                 "height": {
@@ -135,7 +135,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.strokeWeight.strokeThin}"
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
               },
               "content": {
                 "text": {

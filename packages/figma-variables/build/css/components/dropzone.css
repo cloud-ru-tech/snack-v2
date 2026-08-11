@@ -19,7 +19,7 @@
   --sn-dropzone-anatomy-size-m-borderWidth: var(--sn-brand-anatomy-line-field-strokeWeight, 1px);
   --sn-dropzone-anatomy-size-l-borderRadius: var(--sn-brand-anatomy-radius-field-l, 2px);
   --sn-dropzone-anatomy-size-l-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
-  --sn-dropzone-anatomy-size-l-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-dropzone-anatomy-size-l-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 10px);
   --sn-dropzone-anatomy-size-l-contentWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-l, 12px);
   --sn-dropzone-anatomy-size-l-contentWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-l, 8px);
   --sn-dropzone-anatomy-size-l-minHeight: var(--sn-density-size-l, 64px);

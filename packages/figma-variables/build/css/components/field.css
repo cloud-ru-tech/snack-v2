@@ -58,7 +58,7 @@
   --sn-field-anatomy-size-m-buttonField-elementWrapper-gap: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
   --sn-field-anatomy-size-l-fieldContainer-minHeight: var(--sn-density-size-l, 64px);
   --sn-field-anatomy-size-l-fieldContainer-multiLine-minHeight: var(--sn-primitive-dimension-88, 88px);
-  --sn-field-anatomy-size-l-fieldContainer-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-field-anatomy-size-l-fieldContainer-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 10px);
   --sn-field-anatomy-size-l-fieldContainer-borderTopLeftRadius: var(--sn-brand-anatomy-radius-field-l, 2px);
   --sn-field-anatomy-size-l-fieldContainer-borderTopRightRadius: var(--sn-brand-anatomy-radius-field-l, 2px);
   --sn-field-anatomy-size-l-fieldContainer-borderBottomRightRadius: var(--sn-brand-anatomy-radius-field-l, 2px);

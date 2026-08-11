@@ -1022,7 +1022,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.12}"
+                "$value": "{sn.primitive.dimension.10}"
               },
               "xs": {
                 "$extensions": {
@@ -1231,7 +1231,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.m}",
+              "$value": "{sn.primitive.dimension.16}",
               "$description": "Внутренний отступ блока, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           },
@@ -1244,7 +1244,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.l}",
+              "$value": "{sn.primitive.dimension.24}",
               "$description": "Внутренний отступ блока, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           },
@@ -1257,7 +1257,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.xl}",
+              "$value": "{sn.primitive.dimension.32}",
               "$description": "Внутренний отступ блока, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           }

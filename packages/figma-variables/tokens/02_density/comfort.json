@@ -1169,7 +1169,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "number",
-            "$value": "{sn.primitive.dimension.16}",
+            "$value": "{sn.primitive.dimension.12}",
             "$description": "Интервал между элементами, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
           },
           "xl": {
@@ -1181,7 +1181,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "number",
-            "$value": "{sn.primitive.dimension.24}",
+            "$value": "{sn.primitive.dimension.16}",
             "$description": "Интервал между элементами, ступень xl. Меняется с режимом плотности (compact/comfort/spacious)."
           },
           "2xl": {
@@ -1193,7 +1193,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "number",
-            "$value": "{sn.primitive.dimension.32}",
+            "$value": "{sn.primitive.dimension.20}",
             "$description": "Интервал между элементами, ступень 2xl. Меняется с режимом плотности (compact/comfort/spacious)."
           },
           "3xl": {
@@ -1205,7 +1205,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "number",
-            "$value": "{sn.primitive.dimension.40}",
+            "$value": "{sn.primitive.dimension.24}",
             "$description": "Интервал между элементами, ступень 3xl. Меняется с режимом плотности (compact/comfort/spacious)."
           },
           "2xs": {
@@ -1231,7 +1231,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.s}",
+              "$value": "{sn.primitive.dimension.4}",
               "$description": "Внутренний отступ блока, ступень s. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           },
@@ -1244,7 +1244,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.m}",
+              "$value": "{sn.primitive.dimension.6}",
               "$description": "Внутренний отступ блока, ступень m. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           },
@@ -1257,7 +1257,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.l}",
+              "$value": "{sn.primitive.dimension.12}",
               "$description": "Внутренний отступ блока, ступень l. Меняется с режимом плотности (compact/comfort/spacious)."
             }
           }

@@ -268,16 +268,6 @@
                     "$value": "{sn.primitive.dimension.4}"
                   }
                 }
-              },
-              "paddingBottom": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
               }
             },
             "borderRadius": {

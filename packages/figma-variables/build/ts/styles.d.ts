@@ -229,6 +229,20 @@ export declare const themeVars: {
                     '95': string;
                     '99': string;
                 };
+                brandD: {
+                    '5': string;
+                    '10': string;
+                    '15': string;
+                    '25': string;
+                    '45': string;
+                    '55': string;
+                    '60': string;
+                    '65': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                };
             };
             fontFamily: {
                 fontWeight: {
@@ -247,6 +261,10 @@ export declare const themeVars: {
                     sans: string;
                 };
                 brandC: {
+                    sans: string;
+                    mono: string;
+                };
+                brandD: {
                     sans: string;
                     mono: string;
                 };
@@ -660,6 +678,26 @@ export declare const themeVars: {
                     onAccentLight: string;
                     onAccentDark: string;
                 };
+                brandD: {
+                    '5': string;
+                    '10': string;
+                    '15': string;
+                    '25': string;
+                    '45': string;
+                    '55': string;
+                    '60': string;
+                    '65': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    transparent: string;
+                    backgroundActivatedDefault: string;
+                    backgroundActivatedHovered: string;
+                    backgroundActivatedPressed: string;
+                    onAccentLight: string;
+                    onAccentDark: string;
+                };
             };
             kitService: {
                 text: {
@@ -721,7 +759,7 @@ export declare const themeVars: {
                             background: string;
                         };
                     };
-                    border: {
+                    neutralBorder: {
                         forLightMode: {
                             default: {
                                 borderColor: string;
@@ -745,7 +783,7 @@ export declare const themeVars: {
                             };
                         };
                     };
-                    filled: {
+                    neutral: {
                         forLightMode: {
                             default: {
                                 background: string;
@@ -768,6 +806,28 @@ export declare const themeVars: {
                                 background: string;
                             };
                         };
+                    };
+                };
+                neutral: {
+                    '5': string;
+                    '10': string;
+                    '15': string;
+                    '25': string;
+                    '45': string;
+                    '55': string;
+                    '60': string;
+                    '65': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    transparent: {
+                        forLightMode: string;
+                        forDarkMode: string;
+                    };
+                    transparentInverted: {
+                        forLightMode: string;
+                        forDarkMode: string;
                     };
                 };
             };
@@ -1402,18 +1462,28 @@ export declare const themeVars: {
                 };
                 material: {
                     stateLayer: {
-                        regular: {
-                            default: {
-                                filled: string;
-                                borderColor: string;
+                        neutral: {
+                            onBackground: {
+                                defaultEmpty: {
+                                    filled: string;
+                                };
+                                hovered: {
+                                    filled: string;
+                                };
+                                pressed: {
+                                    filled: string;
+                                };
                             };
-                            hovered: {
-                                filled: string;
-                                borderColor: string;
-                            };
-                            pressed: {
-                                filled: string;
-                                borderColor: string;
+                            border: {
+                                default: {
+                                    borderColor: string;
+                                };
+                                hovered: {
+                                    borderColor: string;
+                                };
+                                pressed: {
+                                    borderColor: string;
+                                };
                             };
                         };
                         activated: {
@@ -1427,7 +1497,7 @@ export declare const themeVars: {
                                 filled: string;
                             };
                         };
-                        onColor: {
+                        versionOnColor: {
                             default: {
                                 filled: string;
                             };
@@ -1437,9 +1507,26 @@ export declare const themeVars: {
                             pressed: {
                                 filled: string;
                             };
+                            defaultEmpty: {
+                                filled: string;
+                            };
                         };
-                        onAccent: {
+                        inversionOnColor: {
                             default: {
+                                filled: string;
+                            };
+                            hovered: {
+                                filled: string;
+                            };
+                            pressed: {
+                                filled: string;
+                            };
+                            defaultEmpty: {
+                                filled: string;
+                            };
+                        };
+                        darkOnAccent: {
+                            defaultEmpty: {
                                 filled: string;
                             };
                             hovered: {

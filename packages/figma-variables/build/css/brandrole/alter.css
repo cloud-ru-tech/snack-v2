@@ -57,6 +57,24 @@
   --sn-brandRole-color-brandC-backgroundActivatedPressed: #a068ffa6;
   --sn-brandRole-color-brandC-onAccentLight: var(--sn-primitive-color-brandCAlter-99, #fdfcff);
   --sn-brandRole-color-brandC-onAccentDark: var(--sn-primitive-color-brandCAlter-5, #241534);
+  --sn-brandRole-color-brandD-5: var(--sn-primitive-color-brandCAlter-5, #241534);
+  --sn-brandRole-color-brandD-10: var(--sn-primitive-color-brandCAlter-10, #311d46);
+  --sn-brandRole-color-brandD-15: var(--sn-primitive-color-brandCAlter-15, #3d2658);
+  --sn-brandRole-color-brandD-25: var(--sn-primitive-color-brandCAlter-25, #55347a);
+  --sn-brandRole-color-brandD-45: var(--sn-primitive-color-brandCAlter-45, #8b5af3);
+  --sn-brandRole-color-brandD-55: var(--sn-primitive-color-brandCAlter-55, #a068ff);
+  --sn-brandRole-color-brandD-60: var(--sn-primitive-color-brandCAlter-60, #9f7be2);
+  --sn-brandRole-color-brandD-65: var(--sn-primitive-color-brandCAlter-65, #af8de9);
+  --sn-brandRole-color-brandD-80: var(--sn-primitive-color-brandCAlter-80, #e1d7f2);
+  --sn-brandRole-color-brandD-90: var(--sn-primitive-color-brandCAlter-90, #eee7fb);
+  --sn-brandRole-color-brandD-95: var(--sn-primitive-color-brandCAlter-95, #f6f2fe);
+  --sn-brandRole-color-brandD-99: var(--sn-primitive-color-brandCAlter-99, #fdfcff);
+  --sn-brandRole-color-brandD-transparent: #a068ff21;
+  --sn-brandRole-color-brandD-backgroundActivatedDefault: #a068ff26;
+  --sn-brandRole-color-brandD-backgroundActivatedHovered: #a068ff73;
+  --sn-brandRole-color-brandD-backgroundActivatedPressed: #a068ffa6;
+  --sn-brandRole-color-brandD-onAccentLight: var(--sn-primitive-color-brandCAlter-99, #fdfcff);
+  --sn-brandRole-color-brandD-onAccentDark: var(--sn-primitive-color-brandCAlter-5, #241534);
   --sn-brandRole-kitService-text-modeName: "03_brandRole:";
   --sn-brandRole-kitService-text-modificationName: "alter";
 }

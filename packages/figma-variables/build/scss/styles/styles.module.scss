@@ -139,10 +139,10 @@ $base-styles: (
           "10": var(--sn-primitive-color-gray-10, #2c2c3a),
           "15": var(--sn-primitive-color-gray-15, #333342),
           "25": var(--sn-primitive-color-gray-25, #4c4e5c),
-          "45": var(--sn-primitive-color-gray-45, #777a8d),
-          "55": var(--sn-primitive-color-gray-55, #7e8195),
-          "60": var(--sn-primitive-color-gray-60, #868ba0),
-          "65": var(--sn-primitive-color-gray-65, #a7abbe),
+          "45": var(--sn-primitive-color-gray-45, #81869c),
+          "55": var(--sn-primitive-color-gray-55, #8b8fa7),
+          "60": var(--sn-primitive-color-gray-60, #959bb1),
+          "65": var(--sn-primitive-color-gray-65, #a6aabf),
           "80": var(--sn-primitive-color-gray-80, #e3e5ed),
           "90": var(--sn-primitive-color-gray-90, #eeeff3),
           "95": var(--sn-primitive-color-gray-95, #fdfdfd),
@@ -293,14 +293,28 @@ $base-styles: (
           "10": var(--sn-primitive-color-brandCAlter4-10, #181818),
           "15": var(--sn-primitive-color-brandCAlter4-15, #1e1e1e),
           "25": var(--sn-primitive-color-brandCAlter4-25, #282828),
-          "45": var(--sn-primitive-color-brandCAlter4-45, #434343),
+          "45": var(--sn-primitive-color-brandCAlter4-45, #2e2e2e),
           "55": var(--sn-primitive-color-brandCAlter4-55, #222222),
-          "60": var(--sn-primitive-color-brandCAlter4-60, #434343),
-          "65": var(--sn-primitive-color-brandCAlter4-65, #a3a3a3),
-          "80": var(--sn-primitive-color-brandCAlter4-80, #ececec),
+          "60": var(--sn-primitive-color-brandCAlter4-60, #515357),
+          "65": var(--sn-primitive-color-brandCAlter4-65, #a5a7ac),
+          "80": var(--sn-primitive-color-brandCAlter4-80, #ebeced),
           "90": var(--sn-primitive-color-brandCAlter4-90, #f4f4f4),
           "95": var(--sn-primitive-color-brandCAlter4-95, #fcfcfc),
           "99": var(--sn-primitive-color-brandCAlter4-99, #ffffff)
+        ),
+        "brandD": (
+          "5": var(--sn-primitive-color-brandD-5, #01190f),
+          "10": var(--sn-primitive-color-brandD-10, #032016),
+          "15": var(--sn-primitive-color-brandD-15, #022519),
+          "25": var(--sn-primitive-color-brandD-25, #042f1f),
+          "45": var(--sn-primitive-color-brandD-45, #29a37b),
+          "55": var(--sn-primitive-color-brandD-55, #26d07c),
+          "60": var(--sn-primitive-color-brandD-60, #49d891),
+          "65": var(--sn-primitive-color-brandD-65, #6cdfa6),
+          "80": var(--sn-primitive-color-brandD-80, #b1eed0),
+          "90": var(--sn-primitive-color-brandD-90, #ebf8f0),
+          "95": var(--sn-primitive-color-brandD-95, #f3fbf6),
+          "99": var(--sn-primitive-color-brandD-99, #f9fdfa)
         )
       ),
       "fontFamily": (
@@ -322,6 +336,10 @@ $base-styles: (
         "brandC": (
           "sans": var(--sn-primitive-fontFamily-brandC-sans, "SB Sans Text"),
           "mono": var(--sn-primitive-fontFamily-brandC-mono, "SB Sans Text Mono")
+        ),
+        "brandD": (
+          "sans": var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text"),
+          "mono": var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono")
         )
       ),
       "strokeWeight": (
@@ -590,7 +608,7 @@ $base-styles: (
             "vertical": (
               "s": var(--sn-density-spacing-control-container-vertical-s, var(--sn-primitive-dimension-6, 6px)),
               "m": var(--sn-density-spacing-control-container-vertical-m, var(--sn-primitive-dimension-8, 8px)),
-              "l": var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-12, 12px)),
+              "l": var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-10, 10px)),
               "xs": var(--sn-density-spacing-control-container-vertical-xs, var(--sn-primitive-dimension-4, 4px))
             )
           ),
@@ -621,13 +639,13 @@ $base-styles: (
         ),
         "block": (
           "s": (
-            "padding": var(--sn-density-spacing-block-s-padding, var(--sn-density-spacing-interval-m, var(--sn-primitive-dimension-16, 16px)))
+            "padding": var(--sn-density-spacing-block-s-padding, var(--sn-primitive-dimension-16, 16px))
           ),
           "m": (
-            "padding": var(--sn-density-spacing-block-m-padding, var(--sn-density-spacing-interval-l, var(--sn-primitive-dimension-24, 24px)))
+            "padding": var(--sn-density-spacing-block-m-padding, var(--sn-primitive-dimension-24, 24px))
           ),
           "l": (
-            "padding": var(--sn-density-spacing-block-l-padding, var(--sn-density-spacing-interval-xl, var(--sn-primitive-dimension-32, 32px)))
+            "padding": var(--sn-density-spacing-block-l-padding, var(--sn-primitive-dimension-32, 32px))
           )
         )
       ),
@@ -732,6 +750,26 @@ $base-styles: (
           "backgroundActivatedPressed": var(--sn-brandRole-color-brandC-backgroundActivatedPressed, #a068ffa6),
           "onAccentLight": var(--sn-brandRole-color-brandC-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
           "onAccentDark": var(--sn-brandRole-color-brandC-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
+        ),
+        "brandD": (
+          "5": var(--sn-brandRole-color-brandD-5, var(--sn-primitive-color-brandCAlter-5, #241534)),
+          "10": var(--sn-brandRole-color-brandD-10, var(--sn-primitive-color-brandCAlter-10, #311d46)),
+          "15": var(--sn-brandRole-color-brandD-15, var(--sn-primitive-color-brandCAlter-15, #3d2658)),
+          "25": var(--sn-brandRole-color-brandD-25, var(--sn-primitive-color-brandCAlter-25, #55347a)),
+          "45": var(--sn-brandRole-color-brandD-45, var(--sn-primitive-color-brandCAlter-45, #8b5af3)),
+          "55": var(--sn-brandRole-color-brandD-55, var(--sn-primitive-color-brandCAlter-55, #a068ff)),
+          "60": var(--sn-brandRole-color-brandD-60, var(--sn-primitive-color-brandCAlter-60, #9f7be2)),
+          "65": var(--sn-brandRole-color-brandD-65, var(--sn-primitive-color-brandCAlter-65, #af8de9)),
+          "80": var(--sn-brandRole-color-brandD-80, var(--sn-primitive-color-brandCAlter-80, #e1d7f2)),
+          "90": var(--sn-brandRole-color-brandD-90, var(--sn-primitive-color-brandCAlter-90, #eee7fb)),
+          "95": var(--sn-brandRole-color-brandD-95, var(--sn-primitive-color-brandCAlter-95, #f6f2fe)),
+          "99": var(--sn-brandRole-color-brandD-99, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
+          "transparent": var(--sn-brandRole-color-brandD-transparent, #a068ff21),
+          "backgroundActivatedDefault": var(--sn-brandRole-color-brandD-backgroundActivatedDefault, #a068ff26),
+          "backgroundActivatedHovered": var(--sn-brandRole-color-brandD-backgroundActivatedHovered, #a068ff73),
+          "backgroundActivatedPressed": var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6),
+          "onAccentLight": var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
+          "onAccentDark": var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
         )
       ),
       "kitService": (
@@ -762,16 +800,16 @@ $base-styles: (
         ),
         "text": (
           "version": (
-            "disabled": var(--sn-brand-color-text-version-disabled, #26263159),
-            "tertiary": var(--sn-brand-color-text-version-tertiary, #26263180),
-            "secondary": var(--sn-brand-color-text-version-secondary, #262631a6),
-            "main": var(--sn-brand-color-text-version-main, #262631)
+            "disabled": var(--sn-brand-color-text-version-disabled, #41424e59),
+            "tertiary": var(--sn-brand-color-text-version-tertiary, #41424e8c),
+            "secondary": var(--sn-brand-color-text-version-secondary, #41424ecc),
+            "main": var(--sn-brand-color-text-version-main, #41424e)
           ),
           "inversion": (
             "main": var(--sn-brand-color-text-inversion-main, #e6e8ef),
-            "secondary": var(--sn-brand-color-text-inversion-secondary, #e6e8efd1),
-            "tertiary": var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99),
-            "disabled": var(--sn-brand-color-text-inversion-disabled, #e6e8ef66)
+            "secondary": var(--sn-brand-color-text-inversion-secondary, #eff0f5d1),
+            "tertiary": var(--sn-brand-color-text-inversion-tertiary, #f2f3f899),
+            "disabled": var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)
           )
         ),
         "overlay": (
@@ -794,53 +832,75 @@ $base-styles: (
               "background": var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473))
             )
           ),
-          "border": (
+          "neutralBorder": (
             "forLightMode": (
               "default": (
-                "borderColor": var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d)
               ),
               "pressed": (
-                "borderColor": var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc)
               ),
               "hovered": (
-                "borderColor": var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6)
               )
             ),
             "forDarkMode": (
               "default": (
-                "borderColor": var(--sn-brand-color-state-border-forDarkMode-default-borderColor, #bcc3dc1a)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #bcc3dc1a)
               ),
               "pressed": (
-                "borderColor": var(--sn-brand-color-state-border-forDarkMode-pressed-borderColor, #bcc3dc3d)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #bcc3dc3d)
               ),
               "hovered": (
-                "borderColor": var(--sn-brand-color-state-border-forDarkMode-hovered-borderColor, #bcc3dc2b)
+                "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #bcc3dc2b)
               )
             )
           ),
-          "filled": (
+          "neutral": (
             "forLightMode": (
               "default": (
-                "background": var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000)
+                "background": var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00)
               ),
               "hovered": (
-                "background": var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f)
+                "background": var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26)
               ),
               "pressed": (
-                "background": var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f)
+                "background": var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d)
               )
             ),
             "forDarkMode": (
               "default": (
-                "background": var(--sn-brand-color-state-filled-forDarkMode-default-background, #00000000)
+                "background": var(--sn-brand-color-state-neutral-forDarkMode-default-background, #ffffff00)
               ),
               "hovered": (
-                "background": var(--sn-brand-color-state-filled-forDarkMode-hovered-background, #0000001a)
+                "background": var(--sn-brand-color-state-neutral-forDarkMode-hovered-background, #ffffff1a)
               ),
               "pressed": (
-                "background": var(--sn-brand-color-state-filled-forDarkMode-pressed-background, #00000033)
+                "background": var(--sn-brand-color-state-neutral-forDarkMode-pressed-background, #ffffff33)
               )
             )
+          )
+        ),
+        "neutral": (
+          "5": var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631)),
+          "10": var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a)),
+          "15": var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342)),
+          "25": var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c)),
+          "45": var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c)),
+          "55": var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7)),
+          "60": var(--sn-brand-color-neutral-60, var(--sn-primitive-color-gray-60, #959bb1)),
+          "65": var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf)),
+          "80": var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed)),
+          "90": var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3)),
+          "95": var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd)),
+          "99": var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff)),
+          "transparent": (
+            "forLightMode": var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614),
+            "forDarkMode": var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14)
+          ),
+          "transparentInverted": (
+            "forLightMode": var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f),
+            "forDarkMode": var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #8b8fa70f)
           )
         )
       ),
@@ -1353,14 +1413,14 @@ $base-styles: (
           "decorTransparent": var(--sn-theme-color-primary-decorTransparent, var(--sn-brand-color-primary-transparent, var(--sn-brandRole-color-brandA-transparent, #389f7424)))
         ),
         "neutral": (
-          "background": var(--sn-theme-color-neutral-background, var(--sn-primitive-color-gray-90, #eeeff3)),
-          "background1Level": var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd)),
-          "background2Level": var(--sn-theme-color-neutral-background2Level, var(--sn-primitive-color-gray-99, #ffffff)),
-          "decor": var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #e3e5ed)),
-          "onAccent": var(--sn-theme-color-neutral-onAccent, var(--sn-primitive-color-gray-99, #ffffff)),
-          "accent": var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #7e8195)),
-          "text": var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #777a8d)),
-          "decorTransparent": var(--sn-theme-color-neutral-decorTransparent, #6669750f)
+          "background": var(--sn-theme-color-neutral-background, var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3))),
+          "background1Level": var(--sn-theme-color-neutral-background1Level, var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd))),
+          "background2Level": var(--sn-theme-color-neutral-background2Level, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff))),
+          "decor": var(--sn-theme-color-neutral-decor, var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed))),
+          "onAccent": var(--sn-theme-color-neutral-onAccent, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff))),
+          "accent": var(--sn-theme-color-neutral-accent, var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7))),
+          "text": var(--sn-theme-color-neutral-text, var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c))),
+          "decorTransparent": var(--sn-theme-color-neutral-decorTransparent, var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614))
         ),
         "red": (
           "background": var(--sn-theme-color-red-background, var(--sn-primitive-color-red-90, #fee8e5)),
@@ -1380,7 +1440,7 @@ $base-styles: (
           "onAccent": var(--sn-theme-color-orange-onAccent, var(--sn-primitive-color-orange-99, #fffcf4)),
           "accent": var(--sn-theme-color-orange-accent, var(--sn-primitive-color-orange-55, #f57e1f)),
           "text": var(--sn-theme-color-orange-text, var(--sn-primitive-color-orange-45, #c46917)),
-          "decorTransparent": var(--sn-theme-color-orange-decorTransparent, #f57e1f24)
+          "decorTransparent": var(--sn-theme-color-orange-decorTransparent, #f57e1f1f)
         ),
         "yellow": (
           "background": var(--sn-theme-color-yellow-background, var(--sn-primitive-color-yellow-90, #fdf4cc)),
@@ -1433,31 +1493,31 @@ $base-styles: (
           "decorTransparent": var(--sn-theme-color-pink-decorTransparent, #dd5a8e21)
         ),
         "invertNeutral": (
-          "background": var(--sn-theme-color-invertNeutral-background, var(--sn-primitive-color-gray-5, #262631)),
-          "decor": var(--sn-theme-color-invertNeutral-decor, var(--sn-primitive-color-gray-25, #4c4e5c)),
-          "onAccent": var(--sn-theme-color-invertNeutral-onAccent, var(--sn-primitive-color-gray-5, #262631)),
-          "accent": var(--sn-theme-color-invertNeutral-accent, var(--sn-primitive-color-gray-65, #a7abbe)),
-          "background1Level": var(--sn-theme-color-invertNeutral-background1Level, var(--sn-primitive-color-gray-10, #2c2c3a)),
-          "background2Level": var(--sn-theme-color-invertNeutral-background2Level, var(--sn-primitive-color-gray-15, #333342)),
-          "text": var(--sn-theme-color-invertNeutral-text, var(--sn-primitive-color-gray-65, #a7abbe)),
-          "decorTransparent": var(--sn-theme-color-invertNeutral-decorTransparent, #a9acbc0a)
+          "background": var(--sn-theme-color-invertNeutral-background, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631))),
+          "decor": var(--sn-theme-color-invertNeutral-decor, var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c))),
+          "onAccent": var(--sn-theme-color-invertNeutral-onAccent, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631))),
+          "accent": var(--sn-theme-color-invertNeutral-accent, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf))),
+          "background1Level": var(--sn-theme-color-invertNeutral-background1Level, var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a))),
+          "background2Level": var(--sn-theme-color-invertNeutral-background2Level, var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342))),
+          "text": var(--sn-theme-color-invertNeutral-text, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf))),
+          "decorTransparent": var(--sn-theme-color-invertNeutral-decorTransparent, var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f))
         ),
         "available": (
           "complementary": var(--sn-theme-color-available-complementary, #000000),
           "onComplementary": var(--sn-theme-color-available-onComplementary, #ffffff),
           "version": (
-            "textMain": var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #262631)),
-            "textSecondary": var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #262631a6)),
-            "textTertiary": var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #26263180)),
-            "textDisabled": var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #26263159))
+            "textMain": var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #41424e)),
+            "textSecondary": var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #41424ecc)),
+            "textTertiary": var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #41424e8c)),
+            "textDisabled": var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #41424e59))
           ),
           "inversion": (
-            "textDisabled": var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #e6e8ef66)),
-            "textTertiary": var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99)),
-            "textSecondary": var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #e6e8efd1)),
+            "textDisabled": var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)),
+            "textTertiary": var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #f2f3f899)),
+            "textSecondary": var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #eff0f5d1)),
             "textMain": var(--sn-theme-color-available-inversion-textMain, var(--sn-brand-color-text-inversion-main, #e6e8ef))
           ),
-          "borderColor": var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59))
+          "borderColor": var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d))
         ),
         "blackout": var(--sn-theme-color-blackout, var(--sn-brand-color-overlay-forLightMode-blackout, #00000052)),
         "forGradient": (
@@ -1475,18 +1535,28 @@ $base-styles: (
         ),
         "material": (
           "stateLayer": (
-            "regular": (
-              "default": (
-                "filled": var(--sn-theme-color-material-stateLayer-regular-default-filled, var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000)),
-                "borderColor": var(--sn-theme-color-material-stateLayer-regular-default-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59))
+            "neutral": (
+              "onBackground": (
+                "defaultEmpty": (
+                  "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled, var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00))
+                ),
+                "hovered": (
+                  "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled, var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26))
+                ),
+                "pressed": (
+                  "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled, var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d))
+                )
               ),
-              "hovered": (
-                "filled": var(--sn-theme-color-material-stateLayer-regular-hovered-filled, var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f)),
-                "borderColor": var(--sn-theme-color-material-stateLayer-regular-hovered-borderColor, var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6))
-              ),
-              "pressed": (
-                "filled": var(--sn-theme-color-material-stateLayer-regular-pressed-filled, var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f)),
-                "borderColor": var(--sn-theme-color-material-stateLayer-regular-pressed-borderColor, var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc))
+              "border": (
+                "default": (
+                  "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d))
+                ),
+                "hovered": (
+                  "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6))
+                ),
+                "pressed": (
+                  "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc))
+                )
               )
             ),
             "activated": (
@@ -1500,26 +1570,43 @@ $base-styles: (
                 "filled": var(--sn-theme-color-material-stateLayer-activated-pressed-filled, var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473)))
               )
             ),
-            "onColor": (
+            "versionOnColor": (
               "default": (
-                "filled": var(--sn-theme-color-material-stateLayer-onColor-default-filled, #0000000d)
+                "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-default-filled, #0000000d)
               ),
               "hovered": (
-                "filled": var(--sn-theme-color-material-stateLayer-onColor-hovered-filled, #0000001a)
+                "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-hovered-filled, #0000001a)
               ),
               "pressed": (
-                "filled": var(--sn-theme-color-material-stateLayer-onColor-pressed-filled, #00000026)
+                "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-pressed-filled, #00000026)
+              ),
+              "defaultEmpty": (
+                "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-defaultEmpty-filled, #00000000)
               )
             ),
-            "onAccent": (
+            "inversionOnColor": (
               "default": (
-                "filled": var(--sn-theme-color-material-stateLayer-onAccent-default-filled, #ffffff1a)
+                "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-default-filled, #ffffff1a)
               ),
               "hovered": (
-                "filled": var(--sn-theme-color-material-stateLayer-onAccent-hovered-filled, #ffffff26)
+                "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled, #ffffff26)
               ),
               "pressed": (
-                "filled": var(--sn-theme-color-material-stateLayer-onAccent-pressed-filled, #ffffff33)
+                "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled, #ffffff0d)
+              ),
+              "defaultEmpty": (
+                "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-defaultEmpty-filled, #ffffff00)
+              )
+            ),
+            "darkOnAccent": (
+              "defaultEmpty": (
+                "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled, #00000000)
+              ),
+              "hovered": (
+                "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled, #0000000f)
+              ),
+              "pressed": (
+                "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled, #0000001f)
               )
             ),
             "text": (
@@ -2190,10 +2277,10 @@ $sn-primitive: (
       "10": var(--sn-primitive-color-gray-10, #2c2c3a),
       "15": var(--sn-primitive-color-gray-15, #333342),
       "25": var(--sn-primitive-color-gray-25, #4c4e5c),
-      "45": var(--sn-primitive-color-gray-45, #777a8d),
-      "55": var(--sn-primitive-color-gray-55, #7e8195),
-      "60": var(--sn-primitive-color-gray-60, #868ba0),
-      "65": var(--sn-primitive-color-gray-65, #a7abbe),
+      "45": var(--sn-primitive-color-gray-45, #81869c),
+      "55": var(--sn-primitive-color-gray-55, #8b8fa7),
+      "60": var(--sn-primitive-color-gray-60, #959bb1),
+      "65": var(--sn-primitive-color-gray-65, #a6aabf),
       "80": var(--sn-primitive-color-gray-80, #e3e5ed),
       "90": var(--sn-primitive-color-gray-90, #eeeff3),
       "95": var(--sn-primitive-color-gray-95, #fdfdfd),
@@ -2344,14 +2431,28 @@ $sn-primitive: (
       "10": var(--sn-primitive-color-brandCAlter4-10, #181818),
       "15": var(--sn-primitive-color-brandCAlter4-15, #1e1e1e),
       "25": var(--sn-primitive-color-brandCAlter4-25, #282828),
-      "45": var(--sn-primitive-color-brandCAlter4-45, #434343),
+      "45": var(--sn-primitive-color-brandCAlter4-45, #2e2e2e),
       "55": var(--sn-primitive-color-brandCAlter4-55, #222222),
-      "60": var(--sn-primitive-color-brandCAlter4-60, #434343),
-      "65": var(--sn-primitive-color-brandCAlter4-65, #a3a3a3),
-      "80": var(--sn-primitive-color-brandCAlter4-80, #ececec),
+      "60": var(--sn-primitive-color-brandCAlter4-60, #515357),
+      "65": var(--sn-primitive-color-brandCAlter4-65, #a5a7ac),
+      "80": var(--sn-primitive-color-brandCAlter4-80, #ebeced),
       "90": var(--sn-primitive-color-brandCAlter4-90, #f4f4f4),
       "95": var(--sn-primitive-color-brandCAlter4-95, #fcfcfc),
       "99": var(--sn-primitive-color-brandCAlter4-99, #ffffff)
+    ),
+    "brandD": (
+      "5": var(--sn-primitive-color-brandD-5, #01190f),
+      "10": var(--sn-primitive-color-brandD-10, #032016),
+      "15": var(--sn-primitive-color-brandD-15, #022519),
+      "25": var(--sn-primitive-color-brandD-25, #042f1f),
+      "45": var(--sn-primitive-color-brandD-45, #29a37b),
+      "55": var(--sn-primitive-color-brandD-55, #26d07c),
+      "60": var(--sn-primitive-color-brandD-60, #49d891),
+      "65": var(--sn-primitive-color-brandD-65, #6cdfa6),
+      "80": var(--sn-primitive-color-brandD-80, #b1eed0),
+      "90": var(--sn-primitive-color-brandD-90, #ebf8f0),
+      "95": var(--sn-primitive-color-brandD-95, #f3fbf6),
+      "99": var(--sn-primitive-color-brandD-99, #f9fdfa)
     )
   ),
   "fontFamily": (
@@ -2373,6 +2474,10 @@ $sn-primitive: (
     "brandC": (
       "sans": var(--sn-primitive-fontFamily-brandC-sans, "SB Sans Text"),
       "mono": var(--sn-primitive-fontFamily-brandC-mono, "SB Sans Text Mono")
+    ),
+    "brandD": (
+      "sans": var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text"),
+      "mono": var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono")
     )
   ),
   "strokeWeight": (
@@ -2642,7 +2747,7 @@ $sn-density: (
         "vertical": (
           "s": var(--sn-density-spacing-control-container-vertical-s, var(--sn-primitive-dimension-6, 6px)),
           "m": var(--sn-density-spacing-control-container-vertical-m, var(--sn-primitive-dimension-8, 8px)),
-          "l": var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-12, 12px)),
+          "l": var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-10, 10px)),
           "xs": var(--sn-density-spacing-control-container-vertical-xs, var(--sn-primitive-dimension-4, 4px))
         )
       ),
@@ -2673,13 +2778,13 @@ $sn-density: (
     ),
     "block": (
       "s": (
-        "padding": var(--sn-density-spacing-block-s-padding, var(--sn-density-spacing-interval-m, var(--sn-primitive-dimension-16, 16px)))
+        "padding": var(--sn-density-spacing-block-s-padding, var(--sn-primitive-dimension-16, 16px))
       ),
       "m": (
-        "padding": var(--sn-density-spacing-block-m-padding, var(--sn-density-spacing-interval-l, var(--sn-primitive-dimension-24, 24px)))
+        "padding": var(--sn-density-spacing-block-m-padding, var(--sn-primitive-dimension-24, 24px))
       ),
       "l": (
-        "padding": var(--sn-density-spacing-block-l-padding, var(--sn-density-spacing-interval-xl, var(--sn-primitive-dimension-32, 32px)))
+        "padding": var(--sn-density-spacing-block-l-padding, var(--sn-primitive-dimension-32, 32px))
       )
     )
   ),
@@ -2785,6 +2890,26 @@ $sn-brandRole: (
       "backgroundActivatedPressed": var(--sn-brandRole-color-brandC-backgroundActivatedPressed, #a068ffa6),
       "onAccentLight": var(--sn-brandRole-color-brandC-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
       "onAccentDark": var(--sn-brandRole-color-brandC-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
+    ),
+    "brandD": (
+      "5": var(--sn-brandRole-color-brandD-5, var(--sn-primitive-color-brandCAlter-5, #241534)),
+      "10": var(--sn-brandRole-color-brandD-10, var(--sn-primitive-color-brandCAlter-10, #311d46)),
+      "15": var(--sn-brandRole-color-brandD-15, var(--sn-primitive-color-brandCAlter-15, #3d2658)),
+      "25": var(--sn-brandRole-color-brandD-25, var(--sn-primitive-color-brandCAlter-25, #55347a)),
+      "45": var(--sn-brandRole-color-brandD-45, var(--sn-primitive-color-brandCAlter-45, #8b5af3)),
+      "55": var(--sn-brandRole-color-brandD-55, var(--sn-primitive-color-brandCAlter-55, #a068ff)),
+      "60": var(--sn-brandRole-color-brandD-60, var(--sn-primitive-color-brandCAlter-60, #9f7be2)),
+      "65": var(--sn-brandRole-color-brandD-65, var(--sn-primitive-color-brandCAlter-65, #af8de9)),
+      "80": var(--sn-brandRole-color-brandD-80, var(--sn-primitive-color-brandCAlter-80, #e1d7f2)),
+      "90": var(--sn-brandRole-color-brandD-90, var(--sn-primitive-color-brandCAlter-90, #eee7fb)),
+      "95": var(--sn-brandRole-color-brandD-95, var(--sn-primitive-color-brandCAlter-95, #f6f2fe)),
+      "99": var(--sn-brandRole-color-brandD-99, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
+      "transparent": var(--sn-brandRole-color-brandD-transparent, #a068ff21),
+      "backgroundActivatedDefault": var(--sn-brandRole-color-brandD-backgroundActivatedDefault, #a068ff26),
+      "backgroundActivatedHovered": var(--sn-brandRole-color-brandD-backgroundActivatedHovered, #a068ff73),
+      "backgroundActivatedPressed": var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6),
+      "onAccentLight": var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff)),
+      "onAccentDark": var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534))
     )
   ),
   "kitService": (
@@ -2816,16 +2941,16 @@ $sn-brand: (
     ),
     "text": (
       "version": (
-        "disabled": var(--sn-brand-color-text-version-disabled, #26263159),
-        "tertiary": var(--sn-brand-color-text-version-tertiary, #26263180),
-        "secondary": var(--sn-brand-color-text-version-secondary, #262631a6),
-        "main": var(--sn-brand-color-text-version-main, #262631)
+        "disabled": var(--sn-brand-color-text-version-disabled, #41424e59),
+        "tertiary": var(--sn-brand-color-text-version-tertiary, #41424e8c),
+        "secondary": var(--sn-brand-color-text-version-secondary, #41424ecc),
+        "main": var(--sn-brand-color-text-version-main, #41424e)
       ),
       "inversion": (
         "main": var(--sn-brand-color-text-inversion-main, #e6e8ef),
-        "secondary": var(--sn-brand-color-text-inversion-secondary, #e6e8efd1),
-        "tertiary": var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99),
-        "disabled": var(--sn-brand-color-text-inversion-disabled, #e6e8ef66)
+        "secondary": var(--sn-brand-color-text-inversion-secondary, #eff0f5d1),
+        "tertiary": var(--sn-brand-color-text-inversion-tertiary, #f2f3f899),
+        "disabled": var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)
       )
     ),
     "overlay": (
@@ -2848,53 +2973,75 @@ $sn-brand: (
           "background": var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473))
         )
       ),
-      "border": (
+      "neutralBorder": (
         "forLightMode": (
           "default": (
-            "borderColor": var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d)
           ),
           "pressed": (
-            "borderColor": var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc)
           ),
           "hovered": (
-            "borderColor": var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6)
           )
         ),
         "forDarkMode": (
           "default": (
-            "borderColor": var(--sn-brand-color-state-border-forDarkMode-default-borderColor, #bcc3dc1a)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #bcc3dc1a)
           ),
           "pressed": (
-            "borderColor": var(--sn-brand-color-state-border-forDarkMode-pressed-borderColor, #bcc3dc3d)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #bcc3dc3d)
           ),
           "hovered": (
-            "borderColor": var(--sn-brand-color-state-border-forDarkMode-hovered-borderColor, #bcc3dc2b)
+            "borderColor": var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #bcc3dc2b)
           )
         )
       ),
-      "filled": (
+      "neutral": (
         "forLightMode": (
           "default": (
-            "background": var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000)
+            "background": var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00)
           ),
           "hovered": (
-            "background": var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f)
+            "background": var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26)
           ),
           "pressed": (
-            "background": var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f)
+            "background": var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d)
           )
         ),
         "forDarkMode": (
           "default": (
-            "background": var(--sn-brand-color-state-filled-forDarkMode-default-background, #00000000)
+            "background": var(--sn-brand-color-state-neutral-forDarkMode-default-background, #ffffff00)
           ),
           "hovered": (
-            "background": var(--sn-brand-color-state-filled-forDarkMode-hovered-background, #0000001a)
+            "background": var(--sn-brand-color-state-neutral-forDarkMode-hovered-background, #ffffff1a)
           ),
           "pressed": (
-            "background": var(--sn-brand-color-state-filled-forDarkMode-pressed-background, #00000033)
+            "background": var(--sn-brand-color-state-neutral-forDarkMode-pressed-background, #ffffff33)
           )
         )
+      )
+    ),
+    "neutral": (
+      "5": var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631)),
+      "10": var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a)),
+      "15": var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342)),
+      "25": var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c)),
+      "45": var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c)),
+      "55": var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7)),
+      "60": var(--sn-brand-color-neutral-60, var(--sn-primitive-color-gray-60, #959bb1)),
+      "65": var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf)),
+      "80": var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed)),
+      "90": var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3)),
+      "95": var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd)),
+      "99": var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff)),
+      "transparent": (
+        "forLightMode": var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614),
+        "forDarkMode": var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14)
+      ),
+      "transparentInverted": (
+        "forLightMode": var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f),
+        "forDarkMode": var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #8b8fa70f)
       )
     )
   ),
@@ -3408,14 +3555,14 @@ $sn-theme: (
       "decorTransparent": var(--sn-theme-color-primary-decorTransparent, var(--sn-brand-color-primary-transparent, var(--sn-brandRole-color-brandA-transparent, #389f7424)))
     ),
     "neutral": (
-      "background": var(--sn-theme-color-neutral-background, var(--sn-primitive-color-gray-90, #eeeff3)),
-      "background1Level": var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd)),
-      "background2Level": var(--sn-theme-color-neutral-background2Level, var(--sn-primitive-color-gray-99, #ffffff)),
-      "decor": var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #e3e5ed)),
-      "onAccent": var(--sn-theme-color-neutral-onAccent, var(--sn-primitive-color-gray-99, #ffffff)),
-      "accent": var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #7e8195)),
-      "text": var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #777a8d)),
-      "decorTransparent": var(--sn-theme-color-neutral-decorTransparent, #6669750f)
+      "background": var(--sn-theme-color-neutral-background, var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3))),
+      "background1Level": var(--sn-theme-color-neutral-background1Level, var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd))),
+      "background2Level": var(--sn-theme-color-neutral-background2Level, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff))),
+      "decor": var(--sn-theme-color-neutral-decor, var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed))),
+      "onAccent": var(--sn-theme-color-neutral-onAccent, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff))),
+      "accent": var(--sn-theme-color-neutral-accent, var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7))),
+      "text": var(--sn-theme-color-neutral-text, var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c))),
+      "decorTransparent": var(--sn-theme-color-neutral-decorTransparent, var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614))
     ),
     "red": (
       "background": var(--sn-theme-color-red-background, var(--sn-primitive-color-red-90, #fee8e5)),
@@ -3435,7 +3582,7 @@ $sn-theme: (
       "onAccent": var(--sn-theme-color-orange-onAccent, var(--sn-primitive-color-orange-99, #fffcf4)),
       "accent": var(--sn-theme-color-orange-accent, var(--sn-primitive-color-orange-55, #f57e1f)),
       "text": var(--sn-theme-color-orange-text, var(--sn-primitive-color-orange-45, #c46917)),
-      "decorTransparent": var(--sn-theme-color-orange-decorTransparent, #f57e1f24)
+      "decorTransparent": var(--sn-theme-color-orange-decorTransparent, #f57e1f1f)
     ),
     "yellow": (
       "background": var(--sn-theme-color-yellow-background, var(--sn-primitive-color-yellow-90, #fdf4cc)),
@@ -3488,31 +3635,31 @@ $sn-theme: (
       "decorTransparent": var(--sn-theme-color-pink-decorTransparent, #dd5a8e21)
     ),
     "invertNeutral": (
-      "background": var(--sn-theme-color-invertNeutral-background, var(--sn-primitive-color-gray-5, #262631)),
-      "decor": var(--sn-theme-color-invertNeutral-decor, var(--sn-primitive-color-gray-25, #4c4e5c)),
-      "onAccent": var(--sn-theme-color-invertNeutral-onAccent, var(--sn-primitive-color-gray-5, #262631)),
-      "accent": var(--sn-theme-color-invertNeutral-accent, var(--sn-primitive-color-gray-65, #a7abbe)),
-      "background1Level": var(--sn-theme-color-invertNeutral-background1Level, var(--sn-primitive-color-gray-10, #2c2c3a)),
-      "background2Level": var(--sn-theme-color-invertNeutral-background2Level, var(--sn-primitive-color-gray-15, #333342)),
-      "text": var(--sn-theme-color-invertNeutral-text, var(--sn-primitive-color-gray-65, #a7abbe)),
-      "decorTransparent": var(--sn-theme-color-invertNeutral-decorTransparent, #a9acbc0a)
+      "background": var(--sn-theme-color-invertNeutral-background, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631))),
+      "decor": var(--sn-theme-color-invertNeutral-decor, var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c))),
+      "onAccent": var(--sn-theme-color-invertNeutral-onAccent, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631))),
+      "accent": var(--sn-theme-color-invertNeutral-accent, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf))),
+      "background1Level": var(--sn-theme-color-invertNeutral-background1Level, var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a))),
+      "background2Level": var(--sn-theme-color-invertNeutral-background2Level, var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342))),
+      "text": var(--sn-theme-color-invertNeutral-text, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf))),
+      "decorTransparent": var(--sn-theme-color-invertNeutral-decorTransparent, var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f))
     ),
     "available": (
       "complementary": var(--sn-theme-color-available-complementary, #000000),
       "onComplementary": var(--sn-theme-color-available-onComplementary, #ffffff),
       "version": (
-        "textMain": var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #262631)),
-        "textSecondary": var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #262631a6)),
-        "textTertiary": var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #26263180)),
-        "textDisabled": var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #26263159))
+        "textMain": var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #41424e)),
+        "textSecondary": var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #41424ecc)),
+        "textTertiary": var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #41424e8c)),
+        "textDisabled": var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #41424e59))
       ),
       "inversion": (
-        "textDisabled": var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #e6e8ef66)),
-        "textTertiary": var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99)),
-        "textSecondary": var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #e6e8efd1)),
+        "textDisabled": var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)),
+        "textTertiary": var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #f2f3f899)),
+        "textSecondary": var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #eff0f5d1)),
         "textMain": var(--sn-theme-color-available-inversion-textMain, var(--sn-brand-color-text-inversion-main, #e6e8ef))
       ),
-      "borderColor": var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59))
+      "borderColor": var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d))
     ),
     "blackout": var(--sn-theme-color-blackout, var(--sn-brand-color-overlay-forLightMode-blackout, #00000052)),
     "forGradient": (
@@ -3530,18 +3677,28 @@ $sn-theme: (
     ),
     "material": (
       "stateLayer": (
-        "regular": (
-          "default": (
-            "filled": var(--sn-theme-color-material-stateLayer-regular-default-filled, var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000)),
-            "borderColor": var(--sn-theme-color-material-stateLayer-regular-default-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59))
+        "neutral": (
+          "onBackground": (
+            "defaultEmpty": (
+              "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled, var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00))
+            ),
+            "hovered": (
+              "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled, var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26))
+            ),
+            "pressed": (
+              "filled": var(--sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled, var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d))
+            )
           ),
-          "hovered": (
-            "filled": var(--sn-theme-color-material-stateLayer-regular-hovered-filled, var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f)),
-            "borderColor": var(--sn-theme-color-material-stateLayer-regular-hovered-borderColor, var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6))
-          ),
-          "pressed": (
-            "filled": var(--sn-theme-color-material-stateLayer-regular-pressed-filled, var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f)),
-            "borderColor": var(--sn-theme-color-material-stateLayer-regular-pressed-borderColor, var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc))
+          "border": (
+            "default": (
+              "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d))
+            ),
+            "hovered": (
+              "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6))
+            ),
+            "pressed": (
+              "borderColor": var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc))
+            )
           )
         ),
         "activated": (
@@ -3555,26 +3712,43 @@ $sn-theme: (
             "filled": var(--sn-theme-color-material-stateLayer-activated-pressed-filled, var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473)))
           )
         ),
-        "onColor": (
+        "versionOnColor": (
           "default": (
-            "filled": var(--sn-theme-color-material-stateLayer-onColor-default-filled, #0000000d)
+            "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-default-filled, #0000000d)
           ),
           "hovered": (
-            "filled": var(--sn-theme-color-material-stateLayer-onColor-hovered-filled, #0000001a)
+            "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-hovered-filled, #0000001a)
           ),
           "pressed": (
-            "filled": var(--sn-theme-color-material-stateLayer-onColor-pressed-filled, #00000026)
+            "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-pressed-filled, #00000026)
+          ),
+          "defaultEmpty": (
+            "filled": var(--sn-theme-color-material-stateLayer-versionOnColor-defaultEmpty-filled, #00000000)
           )
         ),
-        "onAccent": (
+        "inversionOnColor": (
           "default": (
-            "filled": var(--sn-theme-color-material-stateLayer-onAccent-default-filled, #ffffff1a)
+            "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-default-filled, #ffffff1a)
           ),
           "hovered": (
-            "filled": var(--sn-theme-color-material-stateLayer-onAccent-hovered-filled, #ffffff26)
+            "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled, #ffffff26)
           ),
           "pressed": (
-            "filled": var(--sn-theme-color-material-stateLayer-onAccent-pressed-filled, #ffffff33)
+            "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled, #ffffff0d)
+          ),
+          "defaultEmpty": (
+            "filled": var(--sn-theme-color-material-stateLayer-inversionOnColor-defaultEmpty-filled, #ffffff00)
+          )
+        ),
+        "darkOnAccent": (
+          "defaultEmpty": (
+            "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled, #00000000)
+          ),
+          "hovered": (
+            "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled, #0000000f)
+          ),
+          "pressed": (
+            "filled": var(--sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled, #0000001f)
           )
         ),
         "text": (
@@ -4238,10 +4412,10 @@ $sn-primitive-color-gray-5: var(--sn-primitive-color-gray-5, #262631);
 $sn-primitive-color-gray-10: var(--sn-primitive-color-gray-10, #2c2c3a);
 $sn-primitive-color-gray-15: var(--sn-primitive-color-gray-15, #333342);
 $sn-primitive-color-gray-25: var(--sn-primitive-color-gray-25, #4c4e5c);
-$sn-primitive-color-gray-45: var(--sn-primitive-color-gray-45, #777a8d);
-$sn-primitive-color-gray-55: var(--sn-primitive-color-gray-55, #7e8195);
-$sn-primitive-color-gray-60: var(--sn-primitive-color-gray-60, #868ba0);
-$sn-primitive-color-gray-65: var(--sn-primitive-color-gray-65, #a7abbe);
+$sn-primitive-color-gray-45: var(--sn-primitive-color-gray-45, #81869c);
+$sn-primitive-color-gray-55: var(--sn-primitive-color-gray-55, #8b8fa7);
+$sn-primitive-color-gray-60: var(--sn-primitive-color-gray-60, #959bb1);
+$sn-primitive-color-gray-65: var(--sn-primitive-color-gray-65, #a6aabf);
 $sn-primitive-color-gray-80: var(--sn-primitive-color-gray-80, #e3e5ed);
 $sn-primitive-color-gray-90: var(--sn-primitive-color-gray-90, #eeeff3);
 $sn-primitive-color-gray-95: var(--sn-primitive-color-gray-95, #fdfdfd);
@@ -4370,14 +4544,26 @@ $sn-primitive-color-brandCAlter4-5: var(--sn-primitive-color-brandCAlter4-5, #13
 $sn-primitive-color-brandCAlter4-10: var(--sn-primitive-color-brandCAlter4-10, #181818);
 $sn-primitive-color-brandCAlter4-15: var(--sn-primitive-color-brandCAlter4-15, #1e1e1e);
 $sn-primitive-color-brandCAlter4-25: var(--sn-primitive-color-brandCAlter4-25, #282828);
-$sn-primitive-color-brandCAlter4-45: var(--sn-primitive-color-brandCAlter4-45, #434343);
+$sn-primitive-color-brandCAlter4-45: var(--sn-primitive-color-brandCAlter4-45, #2e2e2e);
 $sn-primitive-color-brandCAlter4-55: var(--sn-primitive-color-brandCAlter4-55, #222222);
-$sn-primitive-color-brandCAlter4-60: var(--sn-primitive-color-brandCAlter4-60, #434343);
-$sn-primitive-color-brandCAlter4-65: var(--sn-primitive-color-brandCAlter4-65, #a3a3a3);
-$sn-primitive-color-brandCAlter4-80: var(--sn-primitive-color-brandCAlter4-80, #ececec);
+$sn-primitive-color-brandCAlter4-60: var(--sn-primitive-color-brandCAlter4-60, #515357);
+$sn-primitive-color-brandCAlter4-65: var(--sn-primitive-color-brandCAlter4-65, #a5a7ac);
+$sn-primitive-color-brandCAlter4-80: var(--sn-primitive-color-brandCAlter4-80, #ebeced);
 $sn-primitive-color-brandCAlter4-90: var(--sn-primitive-color-brandCAlter4-90, #f4f4f4);
 $sn-primitive-color-brandCAlter4-95: var(--sn-primitive-color-brandCAlter4-95, #fcfcfc);
 $sn-primitive-color-brandCAlter4-99: var(--sn-primitive-color-brandCAlter4-99, #ffffff);
+$sn-primitive-color-brandD-5: var(--sn-primitive-color-brandD-5, #01190f);
+$sn-primitive-color-brandD-10: var(--sn-primitive-color-brandD-10, #032016);
+$sn-primitive-color-brandD-15: var(--sn-primitive-color-brandD-15, #022519);
+$sn-primitive-color-brandD-25: var(--sn-primitive-color-brandD-25, #042f1f);
+$sn-primitive-color-brandD-45: var(--sn-primitive-color-brandD-45, #29a37b);
+$sn-primitive-color-brandD-55: var(--sn-primitive-color-brandD-55, #26d07c);
+$sn-primitive-color-brandD-60: var(--sn-primitive-color-brandD-60, #49d891);
+$sn-primitive-color-brandD-65: var(--sn-primitive-color-brandD-65, #6cdfa6);
+$sn-primitive-color-brandD-80: var(--sn-primitive-color-brandD-80, #b1eed0);
+$sn-primitive-color-brandD-90: var(--sn-primitive-color-brandD-90, #ebf8f0);
+$sn-primitive-color-brandD-95: var(--sn-primitive-color-brandD-95, #f3fbf6);
+$sn-primitive-color-brandD-99: var(--sn-primitive-color-brandD-99, #f9fdfa);
 $sn-primitive-fontFamily-fontWeight-light: var(--sn-primitive-fontFamily-fontWeight-light, "Light");
 $sn-primitive-fontFamily-fontWeight-bold: var(--sn-primitive-fontFamily-fontWeight-bold, "Bold");
 $sn-primitive-fontFamily-fontWeight-semiBold: var(--sn-primitive-fontFamily-fontWeight-semiBold, "Semibold");
@@ -4389,6 +4575,8 @@ $sn-primitive-fontFamily-brandA-mono: var(--sn-primitive-fontFamily-brandA-mono,
 $sn-primitive-fontFamily-brandA-sans: var(--sn-primitive-fontFamily-brandA-sans, "SB Sans Interface");
 $sn-primitive-fontFamily-brandC-sans: var(--sn-primitive-fontFamily-brandC-sans, "SB Sans Text");
 $sn-primitive-fontFamily-brandC-mono: var(--sn-primitive-fontFamily-brandC-mono, "SB Sans Text Mono");
+$sn-primitive-fontFamily-brandD-sans: var(--sn-primitive-fontFamily-brandD-sans, "SB Sans Text");
+$sn-primitive-fontFamily-brandD-mono: var(--sn-primitive-fontFamily-brandD-mono, "SB Sans Text Mono");
 $sn-primitive-strokeWeight-strokeThin: var(--sn-primitive-strokeWeight-strokeThin, 0.5px);
 $sn-primitive-strokeWeight-strokeRegular: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
 $sn-primitive-strokeWeight-strokeMedium: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
@@ -4583,7 +4771,7 @@ $sn-density-spacing-control-container-horizontal-l: var(--sn-density-spacing-con
 $sn-density-spacing-control-container-horizontal-xs: var(--sn-density-spacing-control-container-horizontal-xs, var(--sn-primitive-dimension-8, 8px));
 $sn-density-spacing-control-container-vertical-s: var(--sn-density-spacing-control-container-vertical-s, var(--sn-primitive-dimension-6, 6px));
 $sn-density-spacing-control-container-vertical-m: var(--sn-density-spacing-control-container-vertical-m, var(--sn-primitive-dimension-8, 8px));
-$sn-density-spacing-control-container-vertical-l: var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-12, 12px));
+$sn-density-spacing-control-container-vertical-l: var(--sn-density-spacing-control-container-vertical-l, var(--sn-primitive-dimension-10, 10px));
 $sn-density-spacing-control-container-vertical-xs: var(--sn-density-spacing-control-container-vertical-xs, var(--sn-primitive-dimension-4, 4px));
 $sn-density-spacing-control-wrapper-horizontal-s: var(--sn-density-spacing-control-wrapper-horizontal-s, var(--sn-primitive-dimension-8, 8px));
 $sn-density-spacing-control-wrapper-horizontal-m: var(--sn-density-spacing-control-wrapper-horizontal-m, var(--sn-primitive-dimension-8, 8px));
@@ -4601,9 +4789,9 @@ $sn-density-spacing-interval-xl: var(--sn-density-spacing-interval-xl, var(--sn-
 $sn-density-spacing-interval-2xl: var(--sn-density-spacing-interval-2xl, var(--sn-primitive-dimension-40, 40px));
 $sn-density-spacing-interval-3xl: var(--sn-density-spacing-interval-3xl, var(--sn-primitive-dimension-48, 48px));
 $sn-density-spacing-interval-2xs: var(--sn-density-spacing-interval-2xs, var(--sn-primitive-dimension-2, 2px));
-$sn-density-spacing-block-s-padding: var(--sn-density-spacing-block-s-padding, var(--sn-density-spacing-interval-m, var(--sn-primitive-dimension-16, 16px)));
-$sn-density-spacing-block-m-padding: var(--sn-density-spacing-block-m-padding, var(--sn-density-spacing-interval-l, var(--sn-primitive-dimension-24, 24px)));
-$sn-density-spacing-block-l-padding: var(--sn-density-spacing-block-l-padding, var(--sn-density-spacing-interval-xl, var(--sn-primitive-dimension-32, 32px)));
+$sn-density-spacing-block-s-padding: var(--sn-density-spacing-block-s-padding, var(--sn-primitive-dimension-16, 16px));
+$sn-density-spacing-block-m-padding: var(--sn-density-spacing-block-m-padding, var(--sn-primitive-dimension-24, 24px));
+$sn-density-spacing-block-l-padding: var(--sn-density-spacing-block-l-padding, var(--sn-primitive-dimension-32, 32px));
 $sn-density-radius-s: var(--sn-density-radius-s, var(--sn-primitive-dimension-16, 16px));
 $sn-density-radius-l: var(--sn-density-radius-l, var(--sn-primitive-dimension-24, 24px));
 $sn-density-radius-m: var(--sn-density-radius-m, var(--sn-primitive-dimension-20, 20px));
@@ -4681,6 +4869,24 @@ $sn-brandRole-color-brandC-backgroundActivatedHovered: var(--sn-brandRole-color-
 $sn-brandRole-color-brandC-backgroundActivatedPressed: var(--sn-brandRole-color-brandC-backgroundActivatedPressed, #a068ffa6);
 $sn-brandRole-color-brandC-onAccentLight: var(--sn-brandRole-color-brandC-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff));
 $sn-brandRole-color-brandC-onAccentDark: var(--sn-brandRole-color-brandC-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534));
+$sn-brandRole-color-brandD-5: var(--sn-brandRole-color-brandD-5, var(--sn-primitive-color-brandCAlter-5, #241534));
+$sn-brandRole-color-brandD-10: var(--sn-brandRole-color-brandD-10, var(--sn-primitive-color-brandCAlter-10, #311d46));
+$sn-brandRole-color-brandD-15: var(--sn-brandRole-color-brandD-15, var(--sn-primitive-color-brandCAlter-15, #3d2658));
+$sn-brandRole-color-brandD-25: var(--sn-brandRole-color-brandD-25, var(--sn-primitive-color-brandCAlter-25, #55347a));
+$sn-brandRole-color-brandD-45: var(--sn-brandRole-color-brandD-45, var(--sn-primitive-color-brandCAlter-45, #8b5af3));
+$sn-brandRole-color-brandD-55: var(--sn-brandRole-color-brandD-55, var(--sn-primitive-color-brandCAlter-55, #a068ff));
+$sn-brandRole-color-brandD-60: var(--sn-brandRole-color-brandD-60, var(--sn-primitive-color-brandCAlter-60, #9f7be2));
+$sn-brandRole-color-brandD-65: var(--sn-brandRole-color-brandD-65, var(--sn-primitive-color-brandCAlter-65, #af8de9));
+$sn-brandRole-color-brandD-80: var(--sn-brandRole-color-brandD-80, var(--sn-primitive-color-brandCAlter-80, #e1d7f2));
+$sn-brandRole-color-brandD-90: var(--sn-brandRole-color-brandD-90, var(--sn-primitive-color-brandCAlter-90, #eee7fb));
+$sn-brandRole-color-brandD-95: var(--sn-brandRole-color-brandD-95, var(--sn-primitive-color-brandCAlter-95, #f6f2fe));
+$sn-brandRole-color-brandD-99: var(--sn-brandRole-color-brandD-99, var(--sn-primitive-color-brandCAlter-99, #fdfcff));
+$sn-brandRole-color-brandD-transparent: var(--sn-brandRole-color-brandD-transparent, #a068ff21);
+$sn-brandRole-color-brandD-backgroundActivatedDefault: var(--sn-brandRole-color-brandD-backgroundActivatedDefault, #a068ff26);
+$sn-brandRole-color-brandD-backgroundActivatedHovered: var(--sn-brandRole-color-brandD-backgroundActivatedHovered, #a068ff73);
+$sn-brandRole-color-brandD-backgroundActivatedPressed: var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6);
+$sn-brandRole-color-brandD-onAccentLight: var(--sn-brandRole-color-brandD-onAccentLight, var(--sn-primitive-color-brandCAlter-99, #fdfcff));
+$sn-brandRole-color-brandD-onAccentDark: var(--sn-brandRole-color-brandD-onAccentDark, var(--sn-primitive-color-brandCAlter-5, #241534));
 $sn-brandRole-kitService-text-modeName: var(--sn-brandRole-kitService-text-modeName, "03_brandRole:");
 $sn-brandRole-kitService-text-modificationName: var(--sn-brandRole-kitService-text-modificationName, "alter");
 $sn-brand-color-primary-5: var(--sn-brand-color-primary-5, var(--sn-primitive-color-brandA-5, #21372f));
@@ -4698,31 +4904,47 @@ $sn-brand-color-primary-99: var(--sn-brand-color-primary-99, var(--sn-brandRole-
 $sn-brand-color-primary-transparent: var(--sn-brand-color-primary-transparent, var(--sn-brandRole-color-brandA-transparent, #389f7424));
 $sn-brand-color-primary-onAccentLight: var(--sn-brand-color-primary-onAccentLight, var(--sn-brandRole-color-brandA-onAccentLight, var(--sn-primitive-color-brandA-99, #fbfffc)));
 $sn-brand-color-primary-onAccentDark: var(--sn-brand-color-primary-onAccentDark, var(--sn-brandRole-color-brandA-onAccentDark, var(--sn-primitive-color-brandA-5, #21372f)));
-$sn-brand-color-text-version-disabled: var(--sn-brand-color-text-version-disabled, #26263159);
-$sn-brand-color-text-version-tertiary: var(--sn-brand-color-text-version-tertiary, #26263180);
-$sn-brand-color-text-version-secondary: var(--sn-brand-color-text-version-secondary, #262631a6);
-$sn-brand-color-text-version-main: var(--sn-brand-color-text-version-main, #262631);
+$sn-brand-color-text-version-disabled: var(--sn-brand-color-text-version-disabled, #41424e59);
+$sn-brand-color-text-version-tertiary: var(--sn-brand-color-text-version-tertiary, #41424e8c);
+$sn-brand-color-text-version-secondary: var(--sn-brand-color-text-version-secondary, #41424ecc);
+$sn-brand-color-text-version-main: var(--sn-brand-color-text-version-main, #41424e);
 $sn-brand-color-text-inversion-main: var(--sn-brand-color-text-inversion-main, #e6e8ef);
-$sn-brand-color-text-inversion-secondary: var(--sn-brand-color-text-inversion-secondary, #e6e8efd1);
-$sn-brand-color-text-inversion-tertiary: var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99);
-$sn-brand-color-text-inversion-disabled: var(--sn-brand-color-text-inversion-disabled, #e6e8ef66);
+$sn-brand-color-text-inversion-secondary: var(--sn-brand-color-text-inversion-secondary, #eff0f5d1);
+$sn-brand-color-text-inversion-tertiary: var(--sn-brand-color-text-inversion-tertiary, #f2f3f899);
+$sn-brand-color-text-inversion-disabled: var(--sn-brand-color-text-inversion-disabled, #f8f9fb66);
 $sn-brand-color-overlay-forLightMode-blackout: var(--sn-brand-color-overlay-forLightMode-blackout, #00000052);
 $sn-brand-color-overlay-forDarkMode-blackout: var(--sn-brand-color-overlay-forDarkMode-blackout, #00000052);
 $sn-brand-color-state-activated-default-background: var(--sn-brand-color-state-activated-default-background, var(--sn-brandRole-color-brandA-backgroundActivatedDefault, #389f7426));
 $sn-brand-color-state-activated-hovered-background: var(--sn-brand-color-state-activated-hovered-background, var(--sn-brandRole-color-brandA-backgroundActivatedHovered, #389f7459));
 $sn-brand-color-state-activated-pressed-background: var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473));
-$sn-brand-color-state-border-forLightMode-default-borderColor: var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59);
-$sn-brand-color-state-border-forLightMode-pressed-borderColor: var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc);
-$sn-brand-color-state-border-forLightMode-hovered-borderColor: var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6);
-$sn-brand-color-state-border-forDarkMode-default-borderColor: var(--sn-brand-color-state-border-forDarkMode-default-borderColor, #bcc3dc1a);
-$sn-brand-color-state-border-forDarkMode-pressed-borderColor: var(--sn-brand-color-state-border-forDarkMode-pressed-borderColor, #bcc3dc3d);
-$sn-brand-color-state-border-forDarkMode-hovered-borderColor: var(--sn-brand-color-state-border-forDarkMode-hovered-borderColor, #bcc3dc2b);
-$sn-brand-color-state-filled-forLightMode-default-background: var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000);
-$sn-brand-color-state-filled-forLightMode-hovered-background: var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f);
-$sn-brand-color-state-filled-forLightMode-pressed-background: var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f);
-$sn-brand-color-state-filled-forDarkMode-default-background: var(--sn-brand-color-state-filled-forDarkMode-default-background, #00000000);
-$sn-brand-color-state-filled-forDarkMode-hovered-background: var(--sn-brand-color-state-filled-forDarkMode-hovered-background, #0000001a);
-$sn-brand-color-state-filled-forDarkMode-pressed-background: var(--sn-brand-color-state-filled-forDarkMode-pressed-background, #00000033);
+$sn-brand-color-state-neutralBorder-forLightMode-default-borderColor: var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d);
+$sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor: var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc);
+$sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor: var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6);
+$sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor: var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #bcc3dc1a);
+$sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor: var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #bcc3dc3d);
+$sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor: var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #bcc3dc2b);
+$sn-brand-color-state-neutral-forLightMode-default-background: var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00);
+$sn-brand-color-state-neutral-forLightMode-hovered-background: var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26);
+$sn-brand-color-state-neutral-forLightMode-pressed-background: var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d);
+$sn-brand-color-state-neutral-forDarkMode-default-background: var(--sn-brand-color-state-neutral-forDarkMode-default-background, #ffffff00);
+$sn-brand-color-state-neutral-forDarkMode-hovered-background: var(--sn-brand-color-state-neutral-forDarkMode-hovered-background, #ffffff1a);
+$sn-brand-color-state-neutral-forDarkMode-pressed-background: var(--sn-brand-color-state-neutral-forDarkMode-pressed-background, #ffffff33);
+$sn-brand-color-neutral-5: var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631));
+$sn-brand-color-neutral-10: var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a));
+$sn-brand-color-neutral-15: var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342));
+$sn-brand-color-neutral-25: var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c));
+$sn-brand-color-neutral-45: var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c));
+$sn-brand-color-neutral-55: var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7));
+$sn-brand-color-neutral-60: var(--sn-brand-color-neutral-60, var(--sn-primitive-color-gray-60, #959bb1));
+$sn-brand-color-neutral-65: var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf));
+$sn-brand-color-neutral-80: var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed));
+$sn-brand-color-neutral-90: var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3));
+$sn-brand-color-neutral-95: var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd));
+$sn-brand-color-neutral-99: var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff));
+$sn-brand-color-neutral-transparent-forLightMode: var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614);
+$sn-brand-color-neutral-transparent-forDarkMode: var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14);
+$sn-brand-color-neutral-transparentInverted-forLightMode: var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f);
+$sn-brand-color-neutral-transparentInverted-forDarkMode: var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #8b8fa70f);
 $sn-brand-effect-shadow-light-layer1Color: var(--sn-brand-effect-shadow-light-layer1Color, #00000014);
 $sn-brand-effect-shadow-light-layer2Color: var(--sn-brand-effect-shadow-light-layer2Color, #00000014);
 $sn-brand-effect-shadow-light-level1-layer1-positionX: var(--sn-brand-effect-shadow-light-level1-layer1-positionX, var(--sn-primitive-dimension-0, 0px));
@@ -4966,14 +5188,14 @@ $sn-theme-color-primary-onAccent: var(--sn-theme-color-primary-onAccent, var(--s
 $sn-theme-color-primary-accent: var(--sn-theme-color-primary-accent, var(--sn-brand-color-primary-55, var(--sn-brandRole-color-brandA-55, var(--sn-primitive-color-brandA-55, #389f74))));
 $sn-theme-color-primary-text: var(--sn-theme-color-primary-text, var(--sn-brand-color-primary-45, var(--sn-brandRole-color-brandA-45, var(--sn-primitive-color-brandA-45, #22775b))));
 $sn-theme-color-primary-decorTransparent: var(--sn-theme-color-primary-decorTransparent, var(--sn-brand-color-primary-transparent, var(--sn-brandRole-color-brandA-transparent, #389f7424)));
-$sn-theme-color-neutral-background: var(--sn-theme-color-neutral-background, var(--sn-primitive-color-gray-90, #eeeff3));
-$sn-theme-color-neutral-background1Level: var(--sn-theme-color-neutral-background1Level, var(--sn-primitive-color-gray-95, #fdfdfd));
-$sn-theme-color-neutral-background2Level: var(--sn-theme-color-neutral-background2Level, var(--sn-primitive-color-gray-99, #ffffff));
-$sn-theme-color-neutral-decor: var(--sn-theme-color-neutral-decor, var(--sn-primitive-color-gray-80, #e3e5ed));
-$sn-theme-color-neutral-onAccent: var(--sn-theme-color-neutral-onAccent, var(--sn-primitive-color-gray-99, #ffffff));
-$sn-theme-color-neutral-accent: var(--sn-theme-color-neutral-accent, var(--sn-primitive-color-gray-55, #7e8195));
-$sn-theme-color-neutral-text: var(--sn-theme-color-neutral-text, var(--sn-primitive-color-gray-45, #777a8d));
-$sn-theme-color-neutral-decorTransparent: var(--sn-theme-color-neutral-decorTransparent, #6669750f);
+$sn-theme-color-neutral-background: var(--sn-theme-color-neutral-background, var(--sn-brand-color-neutral-90, var(--sn-primitive-color-gray-90, #eeeff3)));
+$sn-theme-color-neutral-background1Level: var(--sn-theme-color-neutral-background1Level, var(--sn-brand-color-neutral-95, var(--sn-primitive-color-gray-95, #fdfdfd)));
+$sn-theme-color-neutral-background2Level: var(--sn-theme-color-neutral-background2Level, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff)));
+$sn-theme-color-neutral-decor: var(--sn-theme-color-neutral-decor, var(--sn-brand-color-neutral-80, var(--sn-primitive-color-gray-80, #e3e5ed)));
+$sn-theme-color-neutral-onAccent: var(--sn-theme-color-neutral-onAccent, var(--sn-brand-color-neutral-99, var(--sn-primitive-color-gray-99, #ffffff)));
+$sn-theme-color-neutral-accent: var(--sn-theme-color-neutral-accent, var(--sn-brand-color-neutral-55, var(--sn-primitive-color-gray-55, #8b8fa7)));
+$sn-theme-color-neutral-text: var(--sn-theme-color-neutral-text, var(--sn-brand-color-neutral-45, var(--sn-primitive-color-gray-45, #81869c)));
+$sn-theme-color-neutral-decorTransparent: var(--sn-theme-color-neutral-decorTransparent, var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614));
 $sn-theme-color-red-background: var(--sn-theme-color-red-background, var(--sn-primitive-color-red-90, #fee8e5));
 $sn-theme-color-red-background1Level: var(--sn-theme-color-red-background1Level, var(--sn-primitive-color-red-95, #fef5f1));
 $sn-theme-color-red-background2Level: var(--sn-theme-color-red-background2Level, var(--sn-primitive-color-red-99, #fffaf7));
@@ -4989,7 +5211,7 @@ $sn-theme-color-orange-decor: var(--sn-theme-color-orange-decor, var(--sn-primit
 $sn-theme-color-orange-onAccent: var(--sn-theme-color-orange-onAccent, var(--sn-primitive-color-orange-99, #fffcf4));
 $sn-theme-color-orange-accent: var(--sn-theme-color-orange-accent, var(--sn-primitive-color-orange-55, #f57e1f));
 $sn-theme-color-orange-text: var(--sn-theme-color-orange-text, var(--sn-primitive-color-orange-45, #c46917));
-$sn-theme-color-orange-decorTransparent: var(--sn-theme-color-orange-decorTransparent, #f57e1f24);
+$sn-theme-color-orange-decorTransparent: var(--sn-theme-color-orange-decorTransparent, #f57e1f1f);
 $sn-theme-color-yellow-background: var(--sn-theme-color-yellow-background, var(--sn-primitive-color-yellow-90, #fdf4cc));
 $sn-theme-color-yellow-background1Level: var(--sn-theme-color-yellow-background1Level, var(--sn-primitive-color-yellow-95, #fffbe6));
 $sn-theme-color-yellow-background2Level: var(--sn-theme-color-yellow-background2Level, var(--sn-primitive-color-yellow-99, #fffef6));
@@ -5030,46 +5252,51 @@ $sn-theme-color-pink-onAccent: var(--sn-theme-color-pink-onAccent, var(--sn-prim
 $sn-theme-color-pink-accent: var(--sn-theme-color-pink-accent, var(--sn-primitive-color-pink-55, #dd5a8e));
 $sn-theme-color-pink-text: var(--sn-theme-color-pink-text, var(--sn-primitive-color-pink-45, #a85278));
 $sn-theme-color-pink-decorTransparent: var(--sn-theme-color-pink-decorTransparent, #dd5a8e21);
-$sn-theme-color-invertNeutral-background: var(--sn-theme-color-invertNeutral-background, var(--sn-primitive-color-gray-5, #262631));
-$sn-theme-color-invertNeutral-decor: var(--sn-theme-color-invertNeutral-decor, var(--sn-primitive-color-gray-25, #4c4e5c));
-$sn-theme-color-invertNeutral-onAccent: var(--sn-theme-color-invertNeutral-onAccent, var(--sn-primitive-color-gray-5, #262631));
-$sn-theme-color-invertNeutral-accent: var(--sn-theme-color-invertNeutral-accent, var(--sn-primitive-color-gray-65, #a7abbe));
-$sn-theme-color-invertNeutral-background1Level: var(--sn-theme-color-invertNeutral-background1Level, var(--sn-primitive-color-gray-10, #2c2c3a));
-$sn-theme-color-invertNeutral-background2Level: var(--sn-theme-color-invertNeutral-background2Level, var(--sn-primitive-color-gray-15, #333342));
-$sn-theme-color-invertNeutral-text: var(--sn-theme-color-invertNeutral-text, var(--sn-primitive-color-gray-65, #a7abbe));
-$sn-theme-color-invertNeutral-decorTransparent: var(--sn-theme-color-invertNeutral-decorTransparent, #a9acbc0a);
+$sn-theme-color-invertNeutral-background: var(--sn-theme-color-invertNeutral-background, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631)));
+$sn-theme-color-invertNeutral-decor: var(--sn-theme-color-invertNeutral-decor, var(--sn-brand-color-neutral-25, var(--sn-primitive-color-gray-25, #4c4e5c)));
+$sn-theme-color-invertNeutral-onAccent: var(--sn-theme-color-invertNeutral-onAccent, var(--sn-brand-color-neutral-5, var(--sn-primitive-color-gray-5, #262631)));
+$sn-theme-color-invertNeutral-accent: var(--sn-theme-color-invertNeutral-accent, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf)));
+$sn-theme-color-invertNeutral-background1Level: var(--sn-theme-color-invertNeutral-background1Level, var(--sn-brand-color-neutral-10, var(--sn-primitive-color-gray-10, #2c2c3a)));
+$sn-theme-color-invertNeutral-background2Level: var(--sn-theme-color-invertNeutral-background2Level, var(--sn-brand-color-neutral-15, var(--sn-primitive-color-gray-15, #333342)));
+$sn-theme-color-invertNeutral-text: var(--sn-theme-color-invertNeutral-text, var(--sn-brand-color-neutral-65, var(--sn-primitive-color-gray-65, #a6aabf)));
+$sn-theme-color-invertNeutral-decorTransparent: var(--sn-theme-color-invertNeutral-decorTransparent, var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f));
 $sn-theme-color-available-complementary: var(--sn-theme-color-available-complementary, #000000);
 $sn-theme-color-available-onComplementary: var(--sn-theme-color-available-onComplementary, #ffffff);
-$sn-theme-color-available-version-textMain: var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #262631));
-$sn-theme-color-available-version-textSecondary: var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #262631a6));
-$sn-theme-color-available-version-textTertiary: var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #26263180));
-$sn-theme-color-available-version-textDisabled: var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #26263159));
-$sn-theme-color-available-inversion-textDisabled: var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #e6e8ef66));
-$sn-theme-color-available-inversion-textTertiary: var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99));
-$sn-theme-color-available-inversion-textSecondary: var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #e6e8efd1));
+$sn-theme-color-available-version-textMain: var(--sn-theme-color-available-version-textMain, var(--sn-brand-color-text-version-main, #41424e));
+$sn-theme-color-available-version-textSecondary: var(--sn-theme-color-available-version-textSecondary, var(--sn-brand-color-text-version-secondary, #41424ecc));
+$sn-theme-color-available-version-textTertiary: var(--sn-theme-color-available-version-textTertiary, var(--sn-brand-color-text-version-tertiary, #41424e8c));
+$sn-theme-color-available-version-textDisabled: var(--sn-theme-color-available-version-textDisabled, var(--sn-brand-color-text-version-disabled, #41424e59));
+$sn-theme-color-available-inversion-textDisabled: var(--sn-theme-color-available-inversion-textDisabled, var(--sn-brand-color-text-inversion-disabled, #f8f9fb66));
+$sn-theme-color-available-inversion-textTertiary: var(--sn-theme-color-available-inversion-textTertiary, var(--sn-brand-color-text-inversion-tertiary, #f2f3f899));
+$sn-theme-color-available-inversion-textSecondary: var(--sn-theme-color-available-inversion-textSecondary, var(--sn-brand-color-text-inversion-secondary, #eff0f5d1));
 $sn-theme-color-available-inversion-textMain: var(--sn-theme-color-available-inversion-textMain, var(--sn-brand-color-text-inversion-main, #e6e8ef));
-$sn-theme-color-available-borderColor: var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59));
+$sn-theme-color-available-borderColor: var(--sn-theme-color-available-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d));
 $sn-theme-color-blackout: var(--sn-theme-color-blackout, var(--sn-brand-color-overlay-forLightMode-blackout, #00000052));
 $sn-theme-color-forGradient-skeleton-a: var(--sn-theme-color-forGradient-skeleton-a, #00000014);
 $sn-theme-color-forGradient-skeleton-b: var(--sn-theme-color-forGradient-skeleton-b, #ffffff14);
 $sn-theme-color-forGradient-linear-mask-a: var(--sn-theme-color-forGradient-linear-mask-a, #00000000);
 $sn-theme-color-forGradient-linear-mask-b: var(--sn-theme-color-forGradient-linear-mask-b, #000000);
 $sn-theme-color-forGradient-linear-mask-c: var(--sn-theme-color-forGradient-linear-mask-c, #000000);
-$sn-theme-color-material-stateLayer-regular-default-filled: var(--sn-theme-color-material-stateLayer-regular-default-filled, var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000));
-$sn-theme-color-material-stateLayer-regular-default-borderColor: var(--sn-theme-color-material-stateLayer-regular-default-borderColor, var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59));
-$sn-theme-color-material-stateLayer-regular-hovered-filled: var(--sn-theme-color-material-stateLayer-regular-hovered-filled, var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f));
-$sn-theme-color-material-stateLayer-regular-hovered-borderColor: var(--sn-theme-color-material-stateLayer-regular-hovered-borderColor, var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6));
-$sn-theme-color-material-stateLayer-regular-pressed-filled: var(--sn-theme-color-material-stateLayer-regular-pressed-filled, var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f));
-$sn-theme-color-material-stateLayer-regular-pressed-borderColor: var(--sn-theme-color-material-stateLayer-regular-pressed-borderColor, var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc));
+$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled: var(--sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled, var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00));
+$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled: var(--sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled, var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26));
+$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled: var(--sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled, var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d));
+$sn-theme-color-material-stateLayer-neutral-border-default-borderColor: var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d));
+$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor: var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6));
+$sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor: var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc));
 $sn-theme-color-material-stateLayer-activated-default-filled: var(--sn-theme-color-material-stateLayer-activated-default-filled, var(--sn-brand-color-state-activated-default-background, var(--sn-brandRole-color-brandA-backgroundActivatedDefault, #389f7426)));
 $sn-theme-color-material-stateLayer-activated-hovered-filled: var(--sn-theme-color-material-stateLayer-activated-hovered-filled, var(--sn-brand-color-state-activated-hovered-background, var(--sn-brandRole-color-brandA-backgroundActivatedHovered, #389f7459)));
 $sn-theme-color-material-stateLayer-activated-pressed-filled: var(--sn-theme-color-material-stateLayer-activated-pressed-filled, var(--sn-brand-color-state-activated-pressed-background, var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473)));
-$sn-theme-color-material-stateLayer-onColor-default-filled: var(--sn-theme-color-material-stateLayer-onColor-default-filled, #0000000d);
-$sn-theme-color-material-stateLayer-onColor-hovered-filled: var(--sn-theme-color-material-stateLayer-onColor-hovered-filled, #0000001a);
-$sn-theme-color-material-stateLayer-onColor-pressed-filled: var(--sn-theme-color-material-stateLayer-onColor-pressed-filled, #00000026);
-$sn-theme-color-material-stateLayer-onAccent-default-filled: var(--sn-theme-color-material-stateLayer-onAccent-default-filled, #ffffff1a);
-$sn-theme-color-material-stateLayer-onAccent-hovered-filled: var(--sn-theme-color-material-stateLayer-onAccent-hovered-filled, #ffffff26);
-$sn-theme-color-material-stateLayer-onAccent-pressed-filled: var(--sn-theme-color-material-stateLayer-onAccent-pressed-filled, #ffffff33);
+$sn-theme-color-material-stateLayer-versionOnColor-default-filled: var(--sn-theme-color-material-stateLayer-versionOnColor-default-filled, #0000000d);
+$sn-theme-color-material-stateLayer-versionOnColor-hovered-filled: var(--sn-theme-color-material-stateLayer-versionOnColor-hovered-filled, #0000001a);
+$sn-theme-color-material-stateLayer-versionOnColor-pressed-filled: var(--sn-theme-color-material-stateLayer-versionOnColor-pressed-filled, #00000026);
+$sn-theme-color-material-stateLayer-versionOnColor-defaultEmpty-filled: var(--sn-theme-color-material-stateLayer-versionOnColor-defaultEmpty-filled, #00000000);
+$sn-theme-color-material-stateLayer-inversionOnColor-default-filled: var(--sn-theme-color-material-stateLayer-inversionOnColor-default-filled, #ffffff1a);
+$sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled: var(--sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled, #ffffff26);
+$sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled: var(--sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled, #ffffff0d);
+$sn-theme-color-material-stateLayer-inversionOnColor-defaultEmpty-filled: var(--sn-theme-color-material-stateLayer-inversionOnColor-defaultEmpty-filled, #ffffff00);
+$sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled: var(--sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled, #00000000);
+$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled: var(--sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled, #0000000f);
+$sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled: var(--sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled, #0000001f);
 $sn-theme-color-material-stateLayer-text-default-opacity: var(--sn-theme-color-material-stateLayer-text-default-opacity, 1);
 $sn-theme-color-material-stateLayer-text-hovered-opacity: var(--sn-theme-color-material-stateLayer-text-hovered-opacity, 0.85);
 $sn-theme-color-material-stateLayer-text-pressed-opacity: var(--sn-theme-color-material-stateLayer-text-pressed-opacity, 0.7);

@@ -90,7 +90,7 @@
   --sn-density-spacing-control-container-horizontal-xs: var(--sn-primitive-dimension-8, 8px);
   --sn-density-spacing-control-container-vertical-s: var(--sn-primitive-dimension-6, 6px);
   --sn-density-spacing-control-container-vertical-m: var(--sn-primitive-dimension-8, 8px);
-  --sn-density-spacing-control-container-vertical-l: var(--sn-primitive-dimension-12, 12px);
+  --sn-density-spacing-control-container-vertical-l: var(--sn-primitive-dimension-10, 10px);
   --sn-density-spacing-control-container-vertical-xs: var(--sn-primitive-dimension-4, 4px);
   --sn-density-spacing-control-wrapper-horizontal-s: var(--sn-primitive-dimension-8, 8px);
   --sn-density-spacing-control-wrapper-horizontal-m: var(--sn-primitive-dimension-8, 8px);
@@ -108,9 +108,9 @@
   --sn-density-spacing-interval-2xl: var(--sn-primitive-dimension-40, 40px);
   --sn-density-spacing-interval-3xl: var(--sn-primitive-dimension-48, 48px);
   --sn-density-spacing-interval-2xs: var(--sn-primitive-dimension-2, 2px);
-  --sn-density-spacing-block-s-padding: var(--sn-density-spacing-interval-m, var(--sn-primitive-dimension-16, 16px));
-  --sn-density-spacing-block-m-padding: var(--sn-density-spacing-interval-l, var(--sn-primitive-dimension-24, 24px));
-  --sn-density-spacing-block-l-padding: var(--sn-density-spacing-interval-xl, var(--sn-primitive-dimension-32, 32px));
+  --sn-density-spacing-block-s-padding: var(--sn-primitive-dimension-16, 16px);
+  --sn-density-spacing-block-m-padding: var(--sn-primitive-dimension-24, 24px);
+  --sn-density-spacing-block-l-padding: var(--sn-primitive-dimension-32, 32px);
   --sn-density-radius-s: var(--sn-primitive-dimension-16, 16px);
   --sn-density-radius-l: var(--sn-primitive-dimension-24, 24px);
   --sn-density-radius-m: var(--sn-primitive-dimension-20, 20px);

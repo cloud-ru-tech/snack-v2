@@ -69,10 +69,10 @@ exports.themeVars = {
                     '10': 'var(--sn-primitive-color-gray-10, #2c2c3a)',
                     '15': 'var(--sn-primitive-color-gray-15, #333342)',
                     '25': 'var(--sn-primitive-color-gray-25, #4c4e5c)',
-                    '45': 'var(--sn-primitive-color-gray-45, #777a8d)',
-                    '55': 'var(--sn-primitive-color-gray-55, #7e8195)',
-                    '60': 'var(--sn-primitive-color-gray-60, #868ba0)',
-                    '65': 'var(--sn-primitive-color-gray-65, #a7abbe)',
+                    '45': 'var(--sn-primitive-color-gray-45, #81869c)',
+                    '55': 'var(--sn-primitive-color-gray-55, #8b8fa7)',
+                    '60': 'var(--sn-primitive-color-gray-60, #959bb1)',
+                    '65': 'var(--sn-primitive-color-gray-65, #a6aabf)',
                     '80': 'var(--sn-primitive-color-gray-80, #e3e5ed)',
                     '90': 'var(--sn-primitive-color-gray-90, #eeeff3)',
                     '95': 'var(--sn-primitive-color-gray-95, #fdfdfd)',
@@ -223,14 +223,28 @@ exports.themeVars = {
                     '10': 'var(--sn-primitive-color-brandCAlter4-10, #181818)',
                     '15': 'var(--sn-primitive-color-brandCAlter4-15, #1e1e1e)',
                     '25': 'var(--sn-primitive-color-brandCAlter4-25, #282828)',
-                    '45': 'var(--sn-primitive-color-brandCAlter4-45, #434343)',
+                    '45': 'var(--sn-primitive-color-brandCAlter4-45, #2e2e2e)',
                     '55': 'var(--sn-primitive-color-brandCAlter4-55, #222222)',
-                    '60': 'var(--sn-primitive-color-brandCAlter4-60, #434343)',
-                    '65': 'var(--sn-primitive-color-brandCAlter4-65, #a3a3a3)',
-                    '80': 'var(--sn-primitive-color-brandCAlter4-80, #ececec)',
+                    '60': 'var(--sn-primitive-color-brandCAlter4-60, #515357)',
+                    '65': 'var(--sn-primitive-color-brandCAlter4-65, #a5a7ac)',
+                    '80': 'var(--sn-primitive-color-brandCAlter4-80, #ebeced)',
                     '90': 'var(--sn-primitive-color-brandCAlter4-90, #f4f4f4)',
                     '95': 'var(--sn-primitive-color-brandCAlter4-95, #fcfcfc)',
                     '99': 'var(--sn-primitive-color-brandCAlter4-99, #ffffff)'
+                },
+                brandD: {
+                    '5': 'var(--sn-primitive-color-brandD-5, #01190f)',
+                    '10': 'var(--sn-primitive-color-brandD-10, #032016)',
+                    '15': 'var(--sn-primitive-color-brandD-15, #022519)',
+                    '25': 'var(--sn-primitive-color-brandD-25, #042f1f)',
+                    '45': 'var(--sn-primitive-color-brandD-45, #29a37b)',
+                    '55': 'var(--sn-primitive-color-brandD-55, #26d07c)',
+                    '60': 'var(--sn-primitive-color-brandD-60, #49d891)',
+                    '65': 'var(--sn-primitive-color-brandD-65, #6cdfa6)',
+                    '80': 'var(--sn-primitive-color-brandD-80, #b1eed0)',
+                    '90': 'var(--sn-primitive-color-brandD-90, #ebf8f0)',
+                    '95': 'var(--sn-primitive-color-brandD-95, #f3fbf6)',
+                    '99': 'var(--sn-primitive-color-brandD-99, #f9fdfa)'
                 }
             },
             fontFamily: {
@@ -252,6 +266,10 @@ exports.themeVars = {
                 brandC: {
                     sans: 'var(--sn-primitive-fontFamily-brandC-sans, \"SB Sans Text\")',
                     mono: 'var(--sn-primitive-fontFamily-brandC-mono, \"SB Sans Text Mono\")'
+                },
+                brandD: {
+                    sans: 'var(--sn-primitive-fontFamily-brandD-sans, \"SB Sans Text\")',
+                    mono: 'var(--sn-primitive-fontFamily-brandD-mono, \"SB Sans Text Mono\")'
                 }
             },
             strokeWeight: {
@@ -543,10 +561,10 @@ exports.themeVars = {
                     xs: 'var(--sn-density-spacing-interval-xs, 2px)',
                     s: 'var(--sn-density-spacing-interval-s, 4px)',
                     m: 'var(--sn-density-spacing-interval-m, 8px)',
-                    l: 'var(--sn-density-spacing-interval-l, 16px)',
-                    xl: 'var(--sn-density-spacing-interval-xl, 24px)',
-                    '2xl': 'var(--sn-density-spacing-interval-2xl, 32px)',
-                    '3xl': 'var(--sn-density-spacing-interval-3xl, 40px)',
+                    l: 'var(--sn-density-spacing-interval-l, 12px)',
+                    xl: 'var(--sn-density-spacing-interval-xl, 16px)',
+                    '2xl': 'var(--sn-density-spacing-interval-2xl, 20px)',
+                    '3xl': 'var(--sn-density-spacing-interval-3xl, 24px)',
                     '2xs': 'var(--sn-density-spacing-interval-2xs, 0)'
                 },
                 block: {
@@ -554,10 +572,10 @@ exports.themeVars = {
                         padding: 'var(--sn-density-spacing-block-s-padding, 4px)'
                     },
                     m: {
-                        padding: 'var(--sn-density-spacing-block-m-padding, 8px)'
+                        padding: 'var(--sn-density-spacing-block-m-padding, 6px)'
                     },
                     l: {
-                        padding: 'var(--sn-density-spacing-block-l-padding, 16px)'
+                        padding: 'var(--sn-density-spacing-block-l-padding, 12px)'
                     }
                 }
             },
@@ -662,6 +680,26 @@ exports.themeVars = {
                     backgroundActivatedPressed: 'var(--sn-brandRole-color-brandC-backgroundActivatedPressed, #a068ffa6)',
                     onAccentLight: 'var(--sn-brandRole-color-brandC-onAccentLight, #fdfcff)',
                     onAccentDark: 'var(--sn-brandRole-color-brandC-onAccentDark, #241534)'
+                },
+                brandD: {
+                    '5': 'var(--sn-brandRole-color-brandD-5, #241534)',
+                    '10': 'var(--sn-brandRole-color-brandD-10, #311d46)',
+                    '15': 'var(--sn-brandRole-color-brandD-15, #3d2658)',
+                    '25': 'var(--sn-brandRole-color-brandD-25, #55347a)',
+                    '45': 'var(--sn-brandRole-color-brandD-45, #8b5af3)',
+                    '55': 'var(--sn-brandRole-color-brandD-55, #a068ff)',
+                    '60': 'var(--sn-brandRole-color-brandD-60, #9f7be2)',
+                    '65': 'var(--sn-brandRole-color-brandD-65, #af8de9)',
+                    '80': 'var(--sn-brandRole-color-brandD-80, #e1d7f2)',
+                    '90': 'var(--sn-brandRole-color-brandD-90, #eee7fb)',
+                    '95': 'var(--sn-brandRole-color-brandD-95, #f6f2fe)',
+                    '99': 'var(--sn-brandRole-color-brandD-99, #fdfcff)',
+                    transparent: 'var(--sn-brandRole-color-brandD-transparent, #a068ff21)',
+                    backgroundActivatedDefault: 'var(--sn-brandRole-color-brandD-backgroundActivatedDefault, #a068ff26)',
+                    backgroundActivatedHovered: 'var(--sn-brandRole-color-brandD-backgroundActivatedHovered, #a068ff73)',
+                    backgroundActivatedPressed: 'var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6)',
+                    onAccentLight: 'var(--sn-brandRole-color-brandD-onAccentLight, #fdfcff)',
+                    onAccentDark: 'var(--sn-brandRole-color-brandD-onAccentDark, #241534)'
                 }
             },
             kitService: {
@@ -692,16 +730,16 @@ exports.themeVars = {
                 },
                 text: {
                     version: {
-                        disabled: 'var(--sn-brand-color-text-version-disabled, #26263159)',
-                        tertiary: 'var(--sn-brand-color-text-version-tertiary, #26263180)',
-                        secondary: 'var(--sn-brand-color-text-version-secondary, #262631a6)',
-                        main: 'var(--sn-brand-color-text-version-main, #262631)'
+                        disabled: 'var(--sn-brand-color-text-version-disabled, #41424e59)',
+                        tertiary: 'var(--sn-brand-color-text-version-tertiary, #41424e8c)',
+                        secondary: 'var(--sn-brand-color-text-version-secondary, #41424ecc)',
+                        main: 'var(--sn-brand-color-text-version-main, #41424e)'
                     },
                     inversion: {
                         main: 'var(--sn-brand-color-text-inversion-main, #e6e8ef)',
-                        secondary: 'var(--sn-brand-color-text-inversion-secondary, #e6e8efd1)',
-                        tertiary: 'var(--sn-brand-color-text-inversion-tertiary, #e6e8ef99)',
-                        disabled: 'var(--sn-brand-color-text-inversion-disabled, #e6e8ef66)'
+                        secondary: 'var(--sn-brand-color-text-inversion-secondary, #eff0f5d1)',
+                        tertiary: 'var(--sn-brand-color-text-inversion-tertiary, #f2f3f899)',
+                        disabled: 'var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)'
                     }
                 },
                 overlay: {
@@ -724,53 +762,75 @@ exports.themeVars = {
                             background: 'var(--sn-brand-color-state-activated-pressed-background, #389f7473)'
                         }
                     },
-                    border: {
+                    neutralBorder: {
                         forLightMode: {
                             default: {
-                                borderColor: 'var(--sn-brand-color-state-border-forLightMode-default-borderColor, #bcc3dc59)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d)'
                             },
                             pressed: {
-                                borderColor: 'var(--sn-brand-color-state-border-forLightMode-pressed-borderColor, #bcc3dccc)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc)'
                             },
                             hovered: {
-                                borderColor: 'var(--sn-brand-color-state-border-forLightMode-hovered-borderColor, #bcc3dca6)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6)'
                             }
                         },
                         forDarkMode: {
                             default: {
-                                borderColor: 'var(--sn-brand-color-state-border-forDarkMode-default-borderColor, #bcc3dc1a)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #bcc3dc1a)'
                             },
                             pressed: {
-                                borderColor: 'var(--sn-brand-color-state-border-forDarkMode-pressed-borderColor, #bcc3dc3d)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #bcc3dc3d)'
                             },
                             hovered: {
-                                borderColor: 'var(--sn-brand-color-state-border-forDarkMode-hovered-borderColor, #bcc3dc2b)'
+                                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #bcc3dc2b)'
                             }
                         }
                     },
-                    filled: {
+                    neutral: {
                         forLightMode: {
                             default: {
-                                background: 'var(--sn-brand-color-state-filled-forLightMode-default-background, #00000000)'
+                                background: 'var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00)'
                             },
                             hovered: {
-                                background: 'var(--sn-brand-color-state-filled-forLightMode-hovered-background, #0000000f)'
+                                background: 'var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26)'
                             },
                             pressed: {
-                                background: 'var(--sn-brand-color-state-filled-forLightMode-pressed-background, #0000001f)'
+                                background: 'var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d)'
                             }
                         },
                         forDarkMode: {
                             default: {
-                                background: 'var(--sn-brand-color-state-filled-forDarkMode-default-background, #00000000)'
+                                background: 'var(--sn-brand-color-state-neutral-forDarkMode-default-background, #ffffff00)'
                             },
                             hovered: {
-                                background: 'var(--sn-brand-color-state-filled-forDarkMode-hovered-background, #0000001a)'
+                                background: 'var(--sn-brand-color-state-neutral-forDarkMode-hovered-background, #ffffff1a)'
                             },
                             pressed: {
-                                background: 'var(--sn-brand-color-state-filled-forDarkMode-pressed-background, #00000033)'
+                                background: 'var(--sn-brand-color-state-neutral-forDarkMode-pressed-background, #ffffff33)'
                             }
                         }
+                    }
+                },
+                neutral: {
+                    '5': 'var(--sn-brand-color-neutral-5, #262631)',
+                    '10': 'var(--sn-brand-color-neutral-10, #2c2c3a)',
+                    '15': 'var(--sn-brand-color-neutral-15, #333342)',
+                    '25': 'var(--sn-brand-color-neutral-25, #4c4e5c)',
+                    '45': 'var(--sn-brand-color-neutral-45, #81869c)',
+                    '55': 'var(--sn-brand-color-neutral-55, #8b8fa7)',
+                    '60': 'var(--sn-brand-color-neutral-60, #959bb1)',
+                    '65': 'var(--sn-brand-color-neutral-65, #a6aabf)',
+                    '80': 'var(--sn-brand-color-neutral-80, #e3e5ed)',
+                    '90': 'var(--sn-brand-color-neutral-90, #eeeff3)',
+                    '95': 'var(--sn-brand-color-neutral-95, #fdfdfd)',
+                    '99': 'var(--sn-brand-color-neutral-99, #ffffff)',
+                    transparent: {
+                        forLightMode: 'var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614)',
+                        forDarkMode: 'var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14)'
+                    },
+                    transparentInverted: {
+                        forLightMode: 'var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f)',
+                        forDarkMode: 'var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #8b8fa70f)'
                     }
                 }
             },
@@ -1288,9 +1348,9 @@ exports.themeVars = {
                     background2Level: 'var(--sn-theme-color-neutral-background2Level, #333342)',
                     decor: 'var(--sn-theme-color-neutral-decor, #4c4e5c)',
                     onAccent: 'var(--sn-theme-color-neutral-onAccent, #262631)',
-                    accent: 'var(--sn-theme-color-neutral-accent, #a7abbe)',
-                    text: 'var(--sn-theme-color-neutral-text, #a7abbe)',
-                    decorTransparent: 'var(--sn-theme-color-neutral-decorTransparent, #c6c8d20a)'
+                    accent: 'var(--sn-theme-color-neutral-accent, #959bb1)',
+                    text: 'var(--sn-theme-color-neutral-text, #a6aabf)',
+                    decorTransparent: 'var(--sn-theme-color-neutral-decorTransparent, #a7abbe14)'
                 },
                 red: {
                     background: 'var(--sn-theme-color-red-background, #3b1a1c)',
@@ -1300,7 +1360,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-red-onAccent, #3b1a1c)',
                     accent: 'var(--sn-theme-color-red-accent, #f3605e)',
                     text: 'var(--sn-theme-color-red-text, #fb8074)',
-                    decorTransparent: 'var(--sn-theme-color-red-decorTransparent, #ea49461c)'
+                    decorTransparent: 'var(--sn-theme-color-red-decorTransparent, #ea494621)'
                 },
                 orange: {
                     background: 'var(--sn-theme-color-orange-background, #3e1908)',
@@ -1310,7 +1370,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-orange-onAccent, #3e1908)',
                     accent: 'var(--sn-theme-color-orange-accent, #f98d33)',
                     text: 'var(--sn-theme-color-orange-text, #fea65f)',
-                    decorTransparent: 'var(--sn-theme-color-orange-decorTransparent, #f98d3317)'
+                    decorTransparent: 'var(--sn-theme-color-orange-decorTransparent, #f98d3324)'
                 },
                 yellow: {
                     background: 'var(--sn-theme-color-yellow-background, #321f02)',
@@ -1320,7 +1380,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-yellow-onAccent, #4a2e04)',
                     accent: 'var(--sn-theme-color-yellow-accent, #f2c148)',
                     text: 'var(--sn-theme-color-yellow-text, #efc76b)',
-                    decorTransparent: 'var(--sn-theme-color-yellow-decorTransparent, #f2c14817)'
+                    decorTransparent: 'var(--sn-theme-color-yellow-decorTransparent, #f2c14814)'
                 },
                 green: {
                     background: 'var(--sn-theme-color-green-background, #25311b)',
@@ -1330,7 +1390,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-green-onAccent, #25311b)',
                     accent: 'var(--sn-theme-color-green-accent, #5bc266)',
                     text: 'var(--sn-theme-color-green-text, #89ca87)',
-                    decorTransparent: 'var(--sn-theme-color-green-decorTransparent, #5bc26614)'
+                    decorTransparent: 'var(--sn-theme-color-green-decorTransparent, #5bc2661c)'
                 },
                 blue: {
                     background: 'var(--sn-theme-color-blue-background, #20283d)',
@@ -1340,7 +1400,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-blue-onAccent, #20283d)',
                     accent: 'var(--sn-theme-color-blue-accent, #669eec)',
                     text: 'var(--sn-theme-color-blue-text, #8cb6f1)',
-                    decorTransparent: 'var(--sn-theme-color-blue-decorTransparent, #669eec21)'
+                    decorTransparent: 'var(--sn-theme-color-blue-decorTransparent, #669eec2b)'
                 },
                 violet: {
                     background: 'var(--sn-theme-color-violet-background, #292334)',
@@ -1350,7 +1410,7 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-violet-onAccent, #292334)',
                     accent: 'var(--sn-theme-color-violet-accent, #bb86e0)',
                     text: 'var(--sn-theme-color-violet-text, #c9a7e9)',
-                    decorTransparent: 'var(--sn-theme-color-violet-decorTransparent, #bb86e01f)'
+                    decorTransparent: 'var(--sn-theme-color-violet-decorTransparent, #bb86e026)'
                 },
                 pink: {
                     background: 'var(--sn-theme-color-pink-background, #3a1e2c)',
@@ -1360,32 +1420,32 @@ exports.themeVars = {
                     onAccent: 'var(--sn-theme-color-pink-onAccent, #3a1e2c)',
                     accent: 'var(--sn-theme-color-pink-accent, #e87ba2)',
                     text: 'var(--sn-theme-color-pink-text, #ec9cb6)',
-                    decorTransparent: 'var(--sn-theme-color-pink-decorTransparent, #e87ba21a)'
+                    decorTransparent: 'var(--sn-theme-color-pink-decorTransparent, #e87ba229)'
                 },
                 invertNeutral: {
                     background: 'var(--sn-theme-color-invertNeutral-background, #eeeff3)',
                     decor: 'var(--sn-theme-color-invertNeutral-decor, #e3e5ed)',
                     onAccent: 'var(--sn-theme-color-invertNeutral-onAccent, #ffffff)',
-                    accent: 'var(--sn-theme-color-invertNeutral-accent, #7e8195)',
+                    accent: 'var(--sn-theme-color-invertNeutral-accent, #8b8fa7)',
                     background1Level: 'var(--sn-theme-color-invertNeutral-background1Level, #fdfdfd)',
                     background2Level: 'var(--sn-theme-color-invertNeutral-background2Level, #ffffff)',
-                    text: 'var(--sn-theme-color-invertNeutral-text, #777a8d)',
-                    decorTransparent: 'var(--sn-theme-color-invertNeutral-decorTransparent, #6669750f)'
+                    text: 'var(--sn-theme-color-invertNeutral-text, #81869c)',
+                    decorTransparent: 'var(--sn-theme-color-invertNeutral-decorTransparent, #8b8fa70f)'
                 },
                 available: {
                     complementary: 'var(--sn-theme-color-available-complementary, #ffffff)',
                     onComplementary: 'var(--sn-theme-color-available-onComplementary, #000000)',
                     version: {
                         textMain: 'var(--sn-theme-color-available-version-textMain, #e6e8ef)',
-                        textSecondary: 'var(--sn-theme-color-available-version-textSecondary, #e6e8efd1)',
-                        textTertiary: 'var(--sn-theme-color-available-version-textTertiary, #e6e8ef99)',
-                        textDisabled: 'var(--sn-theme-color-available-version-textDisabled, #e6e8ef66)'
+                        textSecondary: 'var(--sn-theme-color-available-version-textSecondary, #eff0f5d1)',
+                        textTertiary: 'var(--sn-theme-color-available-version-textTertiary, #f2f3f899)',
+                        textDisabled: 'var(--sn-theme-color-available-version-textDisabled, #f8f9fb66)'
                     },
                     inversion: {
-                        textDisabled: 'var(--sn-theme-color-available-inversion-textDisabled, #26263159)',
-                        textTertiary: 'var(--sn-theme-color-available-inversion-textTertiary, #26263180)',
-                        textSecondary: 'var(--sn-theme-color-available-inversion-textSecondary, #262631a6)',
-                        textMain: 'var(--sn-theme-color-available-inversion-textMain, #262631)'
+                        textDisabled: 'var(--sn-theme-color-available-inversion-textDisabled, #41424e59)',
+                        textTertiary: 'var(--sn-theme-color-available-inversion-textTertiary, #41424e8c)',
+                        textSecondary: 'var(--sn-theme-color-available-inversion-textSecondary, #41424ecc)',
+                        textMain: 'var(--sn-theme-color-available-inversion-textMain, #41424e)'
                     },
                     borderColor: 'var(--sn-theme-color-available-borderColor, #bcc3dc1a)'
                 },
@@ -1405,18 +1465,28 @@ exports.themeVars = {
                 },
                 material: {
                     stateLayer: {
-                        regular: {
-                            default: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-regular-default-filled, #00000000)',
-                                borderColor: 'var(--sn-theme-color-material-stateLayer-regular-default-borderColor, #bcc3dc1a)'
+                        neutral: {
+                            onBackground: {
+                                defaultEmpty: {
+                                    filled: 'var(--sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled, #ffffff00)'
+                                },
+                                hovered: {
+                                    filled: 'var(--sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled, #ffffff1a)'
+                                },
+                                pressed: {
+                                    filled: 'var(--sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled, #ffffff33)'
+                                }
                             },
-                            hovered: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-regular-hovered-filled, #0000001a)',
-                                borderColor: 'var(--sn-theme-color-material-stateLayer-regular-hovered-borderColor, #bcc3dc2b)'
-                            },
-                            pressed: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-regular-pressed-filled, #00000033)',
-                                borderColor: 'var(--sn-theme-color-material-stateLayer-regular-pressed-borderColor, #bcc3dc3d)'
+                            border: {
+                                default: {
+                                    borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, #bcc3dc1a)'
+                                },
+                                hovered: {
+                                    borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, #bcc3dc2b)'
+                                },
+                                pressed: {
+                                    borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, #bcc3dc3d)'
+                                }
                             }
                         },
                         activated: {
@@ -1430,26 +1500,43 @@ exports.themeVars = {
                                 filled: 'var(--sn-theme-color-material-stateLayer-activated-pressed-filled, #389f7473)'
                             }
                         },
-                        onColor: {
+                        versionOnColor: {
                             default: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onColor-default-filled, #ffffff0d)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-versionOnColor-default-filled, #ffffff0f)'
                             },
                             hovered: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onColor-hovered-filled, #ffffff1a)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-versionOnColor-hovered-filled, #ffffff0a)'
                             },
                             pressed: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onColor-pressed-filled, #ffffff26)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-versionOnColor-pressed-filled, #ffffff05)'
+                            },
+                            defaultEmpty: {
+                                filled: 'var(--sn-theme-color-material-stateLayer-versionOnColor-defaultEmpty-filled, #ffffff00)'
                             }
                         },
-                        onAccent: {
+                        inversionOnColor: {
                             default: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onAccent-default-filled, #0000001a)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-inversionOnColor-default-filled, #0000001a)'
                             },
                             hovered: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onAccent-hovered-filled, #00000026)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled, #00000026)'
                             },
                             pressed: {
-                                filled: 'var(--sn-theme-color-material-stateLayer-onAccent-pressed-filled, #00000033)'
+                                filled: 'var(--sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled, #00000033)'
+                            },
+                            defaultEmpty: {
+                                filled: 'var(--sn-theme-color-material-stateLayer-inversionOnColor-defaultEmpty-filled, #00000000)'
+                            }
+                        },
+                        darkOnAccent: {
+                            defaultEmpty: {
+                                filled: 'var(--sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled, #00000000)'
+                            },
+                            hovered: {
+                                filled: 'var(--sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled, #0000001a)'
+                            },
+                            pressed: {
+                                filled: 'var(--sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled, #00000033)'
                             }
                         },
                         text: {

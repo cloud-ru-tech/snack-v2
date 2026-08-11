@@ -13,10 +13,10 @@ $sn-alert-anatomy-size-m-container-actionWrapper-gap: var(--sn-alert-anatomy-siz
 $sn-alert-anatomy-size-m-container-centeredWrapper-height: var(--sn-alert-anatomy-size-m-container-centeredWrapper-height, #{st.$sn-primitive-dimension-24});
 $sn-alert-anatomy-size-m-container-actionWrapper-height: var(--sn-alert-anatomy-size-m-container-actionWrapper-height, #{$sn-alert-anatomy-size-m-container-centeredWrapper-height});
 $sn-alert-anatomy-size-m-container-paddingVertical: var(--sn-alert-anatomy-size-m-container-paddingVertical, #{st.$sn-primitive-dimension-16});
-$sn-alert-anatomy-size-m-container-borderWidth: var(--sn-alert-anatomy-size-m-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-alert-anatomy-size-m-container-borderWidth: var(--sn-alert-anatomy-size-m-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-alert-anatomy-size-m-container-paddingHorizontal: var(--sn-alert-anatomy-size-m-container-paddingHorizontal, #{st.$sn-primitive-dimension-16});
 $sn-alert-anatomy-size-s-container-borderRadius: var(--sn-alert-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-alert-s});
-$sn-alert-anatomy-size-s-container-borderWidth: var(--sn-alert-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
+$sn-alert-anatomy-size-s-container-borderWidth: var(--sn-alert-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-alert-anatomy-size-s-container-content-text-paddingVertical: var(--sn-alert-anatomy-size-s-container-content-text-paddingVertical, #{st.$sn-density-spacing-interval-xs});
 $sn-alert-anatomy-size-s-container-content-text-paddingHorizontal: var(--sn-alert-anatomy-size-s-container-content-text-paddingHorizontal, #{st.$sn-primitive-dimension-4});
 $sn-alert-anatomy-size-s-container-gap: var(--sn-alert-anatomy-size-s-container-gap, #{st.$sn-density-spacing-interval-s});

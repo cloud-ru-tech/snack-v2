@@ -115,7 +115,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.90}",
+            "$value": "{sn.brand.color.neutral.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -127,7 +127,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.95}",
+            "$value": "{sn.brand.color.neutral.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -139,7 +139,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.99}",
+            "$value": "{sn.brand.color.neutral.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -152,7 +152,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.80}",
+            "$value": "{sn.brand.color.neutral.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -165,7 +165,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.99}",
+            "$value": "{sn.brand.color.neutral.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -178,7 +178,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.55}",
+            "$value": "{sn.brand.color.neutral.55}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -191,7 +191,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.45}",
+            "$value": "{sn.brand.color.neutral.45}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -204,7 +204,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "#6669750f",
+            "$value": "{sn.brand.color.neutral.transparent.forLightMode}",
             "$description": "Формы"
           }
         },
@@ -410,7 +410,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "#f57e1f24",
+            "$value": "#f57e1f1f",
             "$description": "Формы"
           }
         },
@@ -939,7 +939,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.5}",
+            "$value": "{sn.brand.color.neutral.5}",
             "$description": "Дальний фон по оси Z"
           },
           "decor": {
@@ -952,7 +952,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.25}",
+            "$value": "{sn.brand.color.neutral.25}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -965,7 +965,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.5}",
+            "$value": "{sn.brand.color.neutral.5}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -978,7 +978,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.65}",
+            "$value": "{sn.brand.color.neutral.65}",
             "$description": "Формы, линии, текст или иконка"
           },
           "background1Level": {
@@ -990,7 +990,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.10}",
+            "$value": "{sn.brand.color.neutral.10}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -1002,7 +1002,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.15}",
+            "$value": "{sn.brand.color.neutral.15}",
             "$description": "Ближний фон по оси Z"
           },
           "text": {
@@ -1015,7 +1015,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.65}",
+            "$value": "{sn.brand.color.neutral.65}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -1028,7 +1028,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "#a9acbc0a",
+            "$value": "{sn.brand.color.neutral.transparentInverted.forLightMode}",
             "$description": "Формы"
           }
         },
@@ -1169,7 +1169,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.state.border.forLightMode.default.borderColor}",
+            "$value": "{sn.brand.color.state.neutralBorder.forLightMode.default.borderColor}",
             "$description": "Используется для линий внутренней или внешней обводки объекта с одной или всех сторон."
           }
         },
@@ -1235,89 +1235,99 @@
         },
         "material": {
           "stateLayer": {
-            "regular": {
-              "default": {
-                "filled": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.filled.forLightMode.default.background}",
-                  "$description": "Материал stateLayer: слой состояния по умолчанию, заливка."
+            "neutral": {
+              "onBackground": {
+                "defaultEmpty": {
+                  "filled": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutral.forLightMode.default.background}",
+                    "$description": "Материал stateLayer/emptyNeutralOnBackground: состояние по умолчанию, заливка. Компонент на нейтральной background-подложке; в покое пустой. Зависит от мода бренда."
+                  }
                 },
-                "borderColor": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.border.forLightMode.default.borderColor}",
-                  "$description": "Материал stateLayer: слой состояния по умолчанию, обводка."
+                "hovered": {
+                  "filled": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutral.forLightMode.hovered.background}",
+                    "$description": "Материал stateLayer/emptyNeutralOnBackground: состояние hovered, заливка. Компонент на нейтральной background-подложке; в покое пустой. Зависит от мода бренда."
+                  }
+                },
+                "pressed": {
+                  "filled": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutral.forLightMode.pressed.background}",
+                    "$description": "Материал stateLayer/emptyNeutralOnBackground: состояние pressed, заливка. Компонент на нейтральной background-подложке; в покое пустой. Зависит от мода бренда."
+                  }
                 }
               },
-              "hovered": {
-                "filled": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.filled.forLightMode.hovered.background}",
-                  "$description": "Материал stateLayer: слой состояния hovered, заливка."
+              "border": {
+                "default": {
+                  "borderColor": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutralBorder.forLightMode.default.borderColor}",
+                    "$description": "Материал stateLayer/borderOnBackground: состояние по умолчанию, обводка. Интерактивная обводка компонента; в покое не пустая. Зависит от мода бренда."
+                  }
                 },
-                "borderColor": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.border.forLightMode.hovered.borderColor}",
-                  "$description": "Материал stateLayer: слой состояния hovered, обводка."
-                }
-              },
-              "pressed": {
-                "filled": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.filled.forLightMode.pressed.background}",
-                  "$description": "Материал stateLayer: слой состояния pressed, заливка."
+                "hovered": {
+                  "borderColor": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutralBorder.forLightMode.hovered.borderColor}",
+                    "$description": "Материал stateLayer/borderOnBackground: состояние hovered, обводка. Интерактивная обводка компонента; в покое не пустая. Зависит от мода бренда."
+                  }
                 },
-                "borderColor": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "FRAME_FILL",
-                      "SHAPE_FILL",
-                      "STROKE_COLOR"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "color",
-                  "$value": "{sn.brand.color.state.border.forLightMode.pressed.borderColor}",
-                  "$description": "Материал stateLayer: слой состояния pressed, обводка."
+                "pressed": {
+                  "borderColor": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "FRAME_FILL",
+                        "SHAPE_FILL",
+                        "STROKE_COLOR"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "color",
+                    "$value": "{sn.brand.color.state.neutralBorder.forLightMode.pressed.borderColor}",
+                    "$description": "Материал stateLayer/borderOnBackground: состояние pressed, обводка. Интерактивная обводка компонента; в покое не пустая. Зависит от мода бренда."
+                  }
                 }
               }
             },
@@ -1334,7 +1344,7 @@
                   },
                   "$type": "color",
                   "$value": "{sn.brand.color.state.activated.default.background}",
-                  "$description": "Материал stateLayer: слой состояния по умолчанию (активированный компонент), заливка."
+                  "$description": "Материал stateLayer/activatedOnBackground: состояние по умолчанию, заливка. Выбранное или активированное состояние компонента на background-подложке. Зависит от мода бренда."
                 }
               },
               "hovered": {
@@ -1349,7 +1359,7 @@
                   },
                   "$type": "color",
                   "$value": "{sn.brand.color.state.activated.hovered.background}",
-                  "$description": "Материал stateLayer: слой состояния hovered (активированный компонент), заливка."
+                  "$description": "Материал stateLayer/activatedOnBackground: состояние hovered, заливка. Выбранное или активированное состояние компонента на background-подложке. Зависит от мода бренда."
                 }
               },
               "pressed": {
@@ -1364,11 +1374,11 @@
                   },
                   "$type": "color",
                   "$value": "{sn.brand.color.state.activated.pressed.background}",
-                  "$description": "Материал stateLayer: слой состояния pressed (активированный компонент), заливка."
+                  "$description": "Материал stateLayer/activatedOnBackground: состояние pressed, заливка. Выбранное или активированное состояние компонента на background-подложке. Зависит от мода бренда."
                 }
               }
             },
-            "onColor": {
+            "versionOnColor": {
               "default": {
                 "filled": {
                   "$extensions": {
@@ -1381,7 +1391,7 @@
                   },
                   "$type": "color",
                   "$value": "#0000000d",
-                  "$description": "Материал stateLayer: слой состояния по умолчанию поверх цветной поверхности, заливка."
+                  "$description": "Материал stateLayer/versionOnColor: состояние по умолчанию, заливка. Элемент на цветной поверхности, тон следует теме; в покое тонирован. От мода бренда не зависит."
                 }
               },
               "hovered": {
@@ -1396,7 +1406,7 @@
                   },
                   "$type": "color",
                   "$value": "#0000001a",
-                  "$description": "Материал stateLayer: слой состояния hovered поверх цветной поверхности, заливка."
+                  "$description": "Материал stateLayer/versionOnColor и stateLayer/emptyVersionOnColor: состояние hovered, заливка. Элемент на цветной поверхности, тон следует теме. От мода бренда не зависит."
                 }
               },
               "pressed": {
@@ -1411,11 +1421,26 @@
                   },
                   "$type": "color",
                   "$value": "#00000026",
-                  "$description": "Материал stateLayer: слой состояния pressed поверх цветной поверхности, заливка."
+                  "$description": "Материал stateLayer/versionOnColor и stateLayer/emptyVersionOnColor: состояние pressed, заливка. Элемент на цветной поверхности, тон следует теме. От мода бренда не зависит."
+                }
+              },
+              "defaultEmpty": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#00000000",
+                  "$description": "Материал stateLayer/emptyVersionOnColor: состояние по умолчанию, заливка. Элемент на цветной поверхности, тон следует теме; в покое пустой. От мода бренда не зависит."
                 }
               }
             },
-            "onAccent": {
+            "inversionOnColor": {
               "default": {
                 "filled": {
                   "$extensions": {
@@ -1428,7 +1453,7 @@
                   },
                   "$type": "color",
                   "$value": "#ffffff1a",
-                  "$description": "Материал stateLayer: слой состояния по умолчанию поверх Accent, заливка."
+                  "$description": "Материал stateLayer/inversionOnColor: состояние по умолчанию, заливка. Элемент на цветной поверхности, тон идёт против темы; в покое тонирован. От мода бренда не зависит."
                 }
               },
               "hovered": {
@@ -1443,7 +1468,7 @@
                   },
                   "$type": "color",
                   "$value": "#ffffff26",
-                  "$description": "Материал stateLayer: слой состояния hovered поверх Accent, заливка."
+                  "$description": "Материал stateLayer/inversionOnColor и stateLayer/emptyInversionOnColor: состояние hovered, заливка. Элемент на цветной поверхности, тон идёт против темы. От мода бренда не зависит."
                 }
               },
               "pressed": {
@@ -1457,8 +1482,70 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff33",
-                  "$description": "Материал stateLayer: слой состояния pressed поверх Accent, заливка."
+                  "$value": "#ffffff0d",
+                  "$description": "Материал stateLayer/inversionOnColor и stateLayer/emptyInversionOnColor: состояние pressed, заливка. Элемент на цветной поверхности, тон идёт против темы. От мода бренда не зависит."
+                }
+              },
+              "defaultEmpty": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#ffffff00",
+                  "$description": "Материал stateLayer/emptyInversionOnColor: состояние по умолчанию, заливка. Элемент на цветной поверхности, тон идёт против темы; в покое пустой. От мода бренда не зависит."
+                }
+              }
+            },
+            "darkOnAccent": {
+              "defaultEmpty": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#00000000",
+                  "$description": "Материал stateLayer/emptyDarkOnAccent: состояние по умолчанию, заливка. Компонент с собственной цветной заливкой — акцентной или декорной; в покое пустой. От мода бренда не зависит."
+                }
+              },
+              "hovered": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#0000000f",
+                  "$description": "Материал stateLayer/emptyDarkOnAccent: состояние hovered, заливка. Компонент с собственной цветной заливкой — акцентной или декорной; в покое пустой. От мода бренда не зависит."
+                }
+              },
+              "pressed": {
+                "filled": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FRAME_FILL",
+                      "SHAPE_FILL",
+                      "STROKE_COLOR"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "color",
+                  "$value": "#0000001f",
+                  "$description": "Материал stateLayer/emptyDarkOnAccent: состояние pressed, заливка. Компонент с собственной цветной заливкой — акцентной или декорной; в покое пустой. От мода бренда не зависит."
                 }
               }
             },
@@ -1467,39 +1554,39 @@
                 "opacity": {
                   "$extensions": {
                     "com.figma.scopes": [
-                      "ALL_SCOPES"
+                      "OPACITY"
                     ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
                   "$value": 100,
-                  "$description": "Прозрачность текстового слоя состояния по умолчанию."
+                  "$description": "Материал stateLayer/textOpacity: состояние по умолчанию, непрозрачность контента. Маска для текста и иконки там, где состояние выражается прозрачностью самого контента."
                 }
               },
               "hovered": {
                 "opacity": {
                   "$extensions": {
                     "com.figma.scopes": [
-                      "ALL_SCOPES"
+                      "OPACITY"
                     ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
                   "$value": 85,
-                  "$description": "Прозрачность текстового слоя состояния hovered."
+                  "$description": "Материал stateLayer/textOpacity: состояние hovered, непрозрачность контента. Маска для текста и иконки там, где состояние выражается прозрачностью самого контента."
                 }
               },
               "pressed": {
                 "opacity": {
                   "$extensions": {
                     "com.figma.scopes": [
-                      "ALL_SCOPES"
+                      "OPACITY"
                     ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
                   "$value": 70,
-                  "$description": "Прозрачность текстового слоя состояния pressed."
+                  "$description": "Материал stateLayer/textOpacity: состояние pressed, непрозрачность контента. Маска для текста и иконки там, где состояние выражается прозрачностью самого контента."
                 }
               }
             }

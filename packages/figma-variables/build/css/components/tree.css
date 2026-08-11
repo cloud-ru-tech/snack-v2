@@ -10,7 +10,7 @@
   --sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-density-spacing-control-wrapper-vertical-l, 8px);
   --sn-tree-anatomy-size-l-treeItem-centeredWrapper-width: var(--sn-density-size-icon-s, 24px);
   --sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-density-size-icon-s, 24px);
-  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 10px);
   --sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight: var(--sn-primitive-dimension-12, 12px);
   --sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-density-nestingLevel-l-level-paddingRight, 28px);
   --sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-density-nestingLevel-l-level-paddingTop, 28px);
@@ -18,7 +18,7 @@
   --sn-tree-anatomy-size-l-treeItem-gap: var(--sn-density-spacing-control-container-horizontal-l, 20px);
   --sn-tree-anatomy-size-l-treeItem-borderRadius: var(--sn-brand-anatomy-radius-button-l, 2px);
   --sn-tree-anatomy-size-l-treeItem-paddingHorizontal: var(--sn-density-spacing-control-container-horizontal-l, 20px);
-  --sn-tree-anatomy-size-l-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 12px);
+  --sn-tree-anatomy-size-l-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 10px);
   --sn-tree-anatomy-size-s-treeItem-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
   --sn-tree-anatomy-size-s-treeItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 6px);
   --sn-tree-anatomy-size-s-treeItem-gap: var(--sn-density-spacing-control-container-horizontal-s, 12px);

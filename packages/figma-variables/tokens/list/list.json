@@ -73,8 +73,8 @@
                 "$type": "number",
                 "$value": "{sn.density.spacing.control.container.horizontal.s}"
               },
-              "marker": {
-                "markerWrapper": {
+              "markerWrapper": {
+                "marker": {
                   "paddingVertical": {
                     "$extensions": {
                       "com.figma.scopes": [
@@ -84,19 +84,9 @@
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.2}"
-                  },
-                  "paddingHorizontal": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.primitive.dimension.0}"
                   }
                 },
-                "maxWidth": {
+                "width": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -104,7 +94,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.primitive.dimension.2}"
                 },
                 "borderTopLeftRadius": {
                   "$extensions": {
@@ -115,16 +105,6 @@
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.0}"
-                },
-                "maxHeight": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.primitive.dimension.full}"
                 },
                 "borderTopRightRadius": {
                   "$extensions": {
@@ -345,7 +325,7 @@
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.listItem.s}"
               },
-              "marker": {
+              "markerWrapper": {
                 "borderTopLeftRadius": {
                   "$extensions": {
                     "com.figma.scopes": [
@@ -386,7 +366,7 @@
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.0}"
                 },
-                "markerWrapper": {
+                "marker": {
                   "paddingVertical": {
                     "$extensions": {
                       "com.figma.scopes": [
@@ -396,17 +376,17 @@
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.4}"
-                  },
-                  "paddingHorizontal": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.primitive.dimension.0}"
                   }
+                },
+                "width": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
                 }
               }
             },
@@ -545,7 +525,7 @@
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.listItem.l}"
               },
-              "marker": {
+              "markerWrapper": {
                 "borderTopLeftRadius": {
                   "$extensions": {
                     "com.figma.scopes": [
@@ -586,7 +566,7 @@
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.0}"
                 },
-                "markerWrapper": {
+                "marker": {
                   "paddingVertical": {
                     "$extensions": {
                       "com.figma.scopes": [
@@ -596,17 +576,17 @@
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.6}"
-                  },
-                  "paddingHorizontal": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.primitive.dimension.0}"
                   }
+                },
+                "width": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.4}"
                 }
               }
             },

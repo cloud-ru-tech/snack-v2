@@ -57,7 +57,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.8}"
+                        "$value": "{sn.primitive.dimension.12}"
                       },
                       "height": {
                         "$extensions": {
@@ -67,7 +67,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.8}"
+                        "$value": "{sn.primitive.dimension.12}"
                       },
                       "borderRadius": {
                         "$extensions": {
@@ -763,7 +763,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.10}"
+                        "$value": "{sn.primitive.dimension.16}"
                       },
                       "height": {
                         "$extensions": {
@@ -773,7 +773,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.10}"
+                        "$value": "{sn.primitive.dimension.16}"
                       },
                       "borderRadius": {
                         "$extensions": {

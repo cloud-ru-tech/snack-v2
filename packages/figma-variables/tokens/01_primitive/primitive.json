@@ -539,7 +539,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#777a8d"
+            "$value": "#81869c"
           },
           "55": {
             "$extensions": {
@@ -549,7 +549,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#7e8195"
+            "$value": "#8b8fa7"
           },
           "60": {
             "$extensions": {
@@ -559,7 +559,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#868ba0"
+            "$value": "#959bb1"
           },
           "65": {
             "$extensions": {
@@ -569,7 +569,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#a7abbe"
+            "$value": "#a6aabf"
           },
           "80": {
             "$extensions": {
@@ -1881,7 +1881,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#434343"
+            "$value": "#2e2e2e"
           },
           "55": {
             "$extensions": {
@@ -1901,7 +1901,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#434343"
+            "$value": "#515357"
           },
           "65": {
             "$extensions": {
@@ -1911,7 +1911,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#a3a3a3"
+            "$value": "#a5a7ac"
           },
           "80": {
             "$extensions": {
@@ -1921,7 +1921,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#ececec"
+            "$value": "#ebeced"
           },
           "90": {
             "$extensions": {
@@ -1952,6 +1952,128 @@
             },
             "$type": "color",
             "$value": "#ffffff"
+          }
+        },
+        "brandD": {
+          "5": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#01190f"
+          },
+          "10": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#032016"
+          },
+          "15": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#022519"
+          },
+          "25": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#042f1f"
+          },
+          "45": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#29a37b"
+          },
+          "55": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#26d07c"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#49d891"
+          },
+          "65": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#6cdfa6"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#b1eed0"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#ebf8f0"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#f3fbf6"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#f9fdfa"
           }
         }
       },
@@ -2029,6 +2151,22 @@
           }
         },
         "brandC": {
+          "sans": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Text"
+          },
+          "mono": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Text Mono"
+          }
+        },
+        "brandD": {
           "sans": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
