@@ -1,4 +1,4 @@
-// TODO: replace with @ds/list when ready
+import { MoreSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import cn from 'classnames';
 import { RefObject, useContext, useRef } from 'react';
@@ -7,7 +7,6 @@ import { ELEMENT_TYPE, ITEM_RENDER_MODE } from '../../constants';
 import { BreadcrumbsContext } from '../../context';
 import { BreadcrumbsConfigChain, InnerItem } from '../../types';
 import { getTestId } from '../../utils';
-import { CrumbsTypography } from '../CrumbsTypography';
 import styles from './styles.module.scss';
 
 export type CollapseProps = {
@@ -58,7 +57,7 @@ export function Collapse({ currentConfig, className }: CollapseProps) {
           items={collapsedItems}
         >
           <button type='button' ref={buttonRef} className={styles.collapse} tabIndex={hidden ? -1 : 0}>
-            <CrumbsTypography size={size}>...</CrumbsTypography>
+            <MoreSVG size={16} />
           </button>
         </Droplist>
       </BreadcrumbsContext.Provider>

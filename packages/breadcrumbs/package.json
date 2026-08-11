@@ -24,6 +24,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/icons": "workspace:^",
     "@ds/list": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",

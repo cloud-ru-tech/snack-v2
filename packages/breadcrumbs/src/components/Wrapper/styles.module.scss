@@ -5,8 +5,8 @@ $sizes: 'xs', 's';
 
 .wrapper {
   overflow: hidden;
-  padding-right: base.$sn-primitive-strokeWeight-strokeSemiBold;
-  padding-left: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  // Запас под фокус-рамку: она рисуется снаружи крошки, а `overflow: hidden` её срезает.
+  padding: base.$sn-primitive-strokeWeight-strokeSemiBold;
 
   &[data-hidden='true'] {
     pointer-events: none;
@@ -27,11 +27,5 @@ $sizes: 'xs', 's';
 
   &[data-hidden='true'] {
     display: inline-flex;
-  }
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'crumb', 'size', $size, 'container');
-    }
   }
 }

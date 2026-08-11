@@ -18,6 +18,14 @@ $sizes: 'xs', 's';
   display: flex;
   align-items: center;
 
+  // Габарит контейнера — на самой крошке: на `<ul>` он давал строке лишний `min-width`,
+  // а крошка оставалась ниже макета.
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(breadcrumbs.$breadcrumbs, 'anatomy', 'crumb', 'size', $size, 'container');
+    }
+  }
+
   width: 100%;
   margin: 0;
   padding: 0;
