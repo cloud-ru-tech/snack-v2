@@ -23,8 +23,7 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
     }
   }
 
-  // Паддинги и мин-высота из composite-var держатся только с фоном: в макете у варианта
-  // без подложки отступов нет, лейбл начинается от индикатора.
+  // Паддинги и мин-высота из composite-var — только с фоном, как в макете.
   &:not([data-background]) {
     min-height: 0;
     padding-right: 0;
@@ -54,7 +53,6 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   }
 }
 
-// Лейбл лежит прямо в контейнере — отдельной обёртки текста в анатомии больше нет.
 // Текст-стиль единый для обоих размеров: label/s (11px).
 .label {
   flex-grow: 0;

@@ -27,8 +27,7 @@ $masks: (
   
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      // Дорожка — тот же токен, что у линейного варианта: в макете обе привязаны к одной
-      // переменной, полупрозрачной, чтобы просвечивала подложка.
+      // Дорожка — тот же токен, что у линейного варианта (в макете одна переменная на оба).
       background: conic-gradient(base.simple-var(base.$sn-theme, 'color', $appearance, 'accent') var(--snack-progress-bar-circle-value), base.$sn-theme-color-available-borderColor 0);
     }
   }
