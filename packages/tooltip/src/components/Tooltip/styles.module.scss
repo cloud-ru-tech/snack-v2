@@ -25,7 +25,7 @@
   }
 }
 
-// Отступ указателя от угла держит кламп floating-ui (`ARROW_EDGE_PADDING`), паддингом его дублировать нельзя.
+// Отступ указателя от угла держит кламп floating-ui (`arrow({ padding })`), паддингом его дублировать нельзя.
 .pointerWrapper {
   position: absolute;
 
