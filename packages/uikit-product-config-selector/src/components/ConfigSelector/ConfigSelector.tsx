@@ -81,7 +81,7 @@ export function ConfigSelector({
           {!disabled && (
             <span
               className={styles.borderLayer}
-              data-state={checked || available ? undefined : 'regularBorder'}
+              data-state={checked || available ? undefined : 'borderOnBackground'}
               aria-hidden
             />
           )}
@@ -89,7 +89,7 @@ export function ConfigSelector({
           {!disabled && (
             <span
               className={styles.stateLayer}
-              data-state={checked ? 'activatedFilled' : 'regularFilled'}
+              data-state={checked ? 'activatedOnBackground' : 'emptyNeutralOnBackground'}
               aria-hidden
             />
           )}

@@ -252,7 +252,7 @@ $bodyTypography: (
 
   visibility: initial;
 
-  &[data-state='regularFilled'] {
+  &[data-state='emptyNeutralOnBackground'] {
     background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
   }
 }

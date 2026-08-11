@@ -94,8 +94,8 @@ export function PrivateDropZone({
       onDragOver={onDragOver}
     >
       <span className={styles.acrylic} aria-hidden />
-      <span className={styles.borderLayer} data-state-layer aria-hidden data-state='regularBorder' />
-      <span className={styles.overLayer} data-state-layer aria-hidden data-state='activatedFilled' />
+      <span className={styles.borderLayer} data-state-layer aria-hidden data-state='borderOnBackground' />
+      <span className={styles.overLayer} data-state-layer aria-hidden data-state='activatedOnBackground' />
 
       {children && <div className={styles.content}>{children}</div>}
 

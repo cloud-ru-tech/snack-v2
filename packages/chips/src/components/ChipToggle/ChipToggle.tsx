@@ -65,7 +65,7 @@ export function ChipToggle({
       <span
         className={styles.stateLayer}
         aria-hidden
-        data-state={checked && !disabled ? 'activatedFilled' : 'regularFilled'}
+        data-state={checked && !disabled ? 'activatedOnBackground' : 'emptyNeutralOnBackground'}
       />
 
       <span className={styles.toggleChipContent} data-size={size}>

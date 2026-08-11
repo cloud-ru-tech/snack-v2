@@ -55,7 +55,7 @@ export function ChipAssist({
       onClick={handleClick}
       className={cn(styles.assistChip, className)}
     >
-      <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />
+      <span className={styles.stateLayer} aria-hidden data-state='emptyNeutralOnBackground' />
 
       {icon && !loading && (
         <span className={styles.icon} data-test-id={CHIP_ASSIST_TEST_IDS.icon}>

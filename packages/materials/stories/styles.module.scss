@@ -103,21 +103,21 @@
 .squareWrapper {
   padding: base.$sn-primitive-dimension-40;
 
-  &[data-state='regularFilled'],
-  &[data-state='regularBorder'],
+  &[data-state='emptyNeutralOnBackground'],
+  &[data-state='borderOnBackground'],
   &[data-state='textOpacity'] {
     background-color: base.$sn-theme-color-neutral-background;
   }
 
-  &[data-state='activatedFilled'] {
+  &[data-state='activatedOnBackground'] {
     background-color: base.$sn-theme-color-neutral-background1Level;
   }
 
-  &[data-state='onColorFilled'] {
+  &[data-state='versionOnColor'] {
     background-color: base.$sn-theme-color-primary-background;
   }
 
-  &[data-state='onAccentFilled'] {
+  &[data-state='inversionOnColor'] {
     background-color: base.$sn-theme-color-primary-accent;
   }
 }

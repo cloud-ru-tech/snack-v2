@@ -141,7 +141,9 @@ export function Item({
         <div
           className={styles.stateLayer}
           data-state={
-            checked && (!another || rangePosition !== RANGE_POSITION.Out) ? 'activatedFilled' : 'regularFilled'
+            checked && (!another || rangePosition !== RANGE_POSITION.Out)
+              ? 'activatedOnBackground'
+              : 'emptyNeutralOnBackground'
           }
         />
         <div className={styles.labelWrapper}>

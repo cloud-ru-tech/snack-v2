@@ -15,7 +15,7 @@ export type ToastSystemEventCloseAllProps = ButtonHTMLAttributes<HTMLButtonEleme
 export function ToastSystemEventCloseAll({ children, type = 'button', ...rest }: ToastSystemEventCloseAllProps) {
   return (
     <button {...rest} type={type} className={styles.button}>
-      <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />
+      <span className={styles.stateLayer} aria-hidden data-state='emptyNeutralOnBackground' />
       {children}
     </button>
   );

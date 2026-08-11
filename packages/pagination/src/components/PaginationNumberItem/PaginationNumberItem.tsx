@@ -22,7 +22,7 @@ export function PaginationNumberItem({
 }: PaginationNumberItemProps) {
   const { size, variant } = usePaginationContext();
 
-  const stateLayer = activated ? 'activatedFilled' : 'regularFilled';
+  const stateLayer = activated ? 'activatedOnBackground' : 'emptyNeutralOnBackground';
 
   if (variant === 'link') {
     return (

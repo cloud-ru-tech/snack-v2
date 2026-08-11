@@ -1,75 +1,78 @@
+@use 'sass:list';
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '../utils/mixins' as m;
 
 /**
-  * Переменные ниже не используются в коде, только для референса:
-  * $states – то, какие виды состояний бывают с точки зрения пропа компонента.
-  * $internalStates – то, как называются группы переменных этих состояний в Figma Variables.
+  * Слои состояния. Ключ карты — значение атрибута `data-state`, оно же имя сета в Figma
+  * (`material/stateLayer/<имя>`). Значение — путь до группы токенов внутри
+  * `sn/theme/color/material/stateLayer`, последний сегмент которого — имя состояния
+  * по умолчанию: `defaultEmpty` у «пустых» слоёв (префикс `empty` в имени сета),
+  * `default` у слоёв с заливкой по умолчанию.
   */
-$states:
-  'regularFilled', 'regularBorder', 'activatedFilled', 'onColorFilled', 'onAccentFilled', 'textOpacity';
-$internalStates: 'neutral', 'activated', 'versionOnColor', 'inversionOnColor', 'textOpacity';
+$fill-layers: (
+  'emptyNeutralOnBackground': ('neutral' 'onBackground' 'defaultEmpty'),
+  'activatedOnBackground': ('activated' 'default'),
+  'versionOnColor': ('versionOnColor' 'default'),
+  'emptyVersionOnColor': ('versionOnColor' 'defaultEmpty'),
+  'inversionOnColor': ('inversionOnColor' 'default'),
+  'emptyInversionOnColor': ('inversionOnColor' 'defaultEmpty'),
+  'emptyDarkOnAccent': ('darkOnAccent' 'defaultEmpty'),
+);
+
+/** Бордер-слой стоит отдельно: у него `borderColor` вместо `filled`. */
+$border-layer: 'borderOnBackground';
+
+/**
+  * Токен заливки слоя $path для состояния $state.
+  * $state = null — состояние по умолчанию, оно уже зашито последним сегментом $path.
+  */
+@function fill-token($path, $state: null) {
+  $resolved: $path;
+
+  @if $state {
+    $resolved: list.set-nth($path, list.length($path), $state);
+  }
+
+  $keys: list.append(list.join(('color' 'material' 'stateLayer'), $resolved), 'filled');
+
+  @return base.simple-var(base.$sn-theme, $keys...);
+}
 
 /**
   * State layer: default / hover / active для фона и бордера слоя.
   *
   * Миксин необходимо применить в класе корневого элемента, при взаимодействии с которым
   * будут применяться стили к его ребёнку $stateLayerSelector.
-  * Итерация невозможна по причине ручного маппинга названий свойств пропа и структуры в Figma Variables.
   * См. пример в Playground.stories.tsx и stories/components/SampleBlock
   */
 @mixin has-state-layer-as-child($stateLayerSelector) {
   .#{$stateLayerSelector} {
     @include m.absolute-layer();
 
-    // определяем общие стили для бордера
-    &[data-state='regularBorder'] {
+    &[data-state='#{$border-layer}'] {
+      border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
       border-style: solid;
       border-width: base.$sn-primitive-strokeWeight-strokeRegular;
     }
 
-    &[data-state='regularFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
-    }
-
-    &[data-state='regularBorder'] {
-      border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
-    }
-
-    &[data-state='activatedFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-activated-default-filled;
-    }
-
-    &[data-state='onColorFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-versionOnColor-default-filled;
-    }
-
-    &[data-state='onAccentFilled'] {
-      background: base.$sn-theme-color-material-stateLayer-inversionOnColor-default-filled;
+    @each $state, $path in $fill-layers {
+      &[data-state='#{$state}'] {
+        background: fill-token($path);
+      }
     }
   }
 
   @media (hover: hover) {
     &:hover:not([data-disabled], [data-loading]) {
       .#{$stateLayerSelector} {
-        &[data-state='regularFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
-        }
-
-        &[data-state='regularBorder'] {
+        &[data-state='#{$border-layer}'] {
           border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
         }
 
-        &[data-state='activatedFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
-        }
-
-        &[data-state='onColorFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-versionOnColor-hovered-filled;
-        }
-
-        &[data-state='onAccentFilled'] {
-          background: base.$sn-theme-color-material-stateLayer-inversionOnColor-hovered-filled;
+        @each $state, $path in $fill-layers {
+          &[data-state='#{$state}'] {
+            background: fill-token($path, 'hovered');
+          }
         }
       }
     }
@@ -80,24 +83,14 @@ $internalStates: 'neutral', 'activated', 'versionOnColor', 'inversionOnColor', '
   &:active:not([data-disabled], [data-loading]),
   &[data-pressed='true']:not([data-disabled], [data-loading]) {
     .#{$stateLayerSelector} {
-      &[data-state='regularFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
-      }
-
-      &[data-state='regularBorder'] {
+      &[data-state='#{$border-layer}'] {
         border-color: base.$sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor;
       }
 
-      &[data-state='activatedFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
-      }
-
-      &[data-state='onColorFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-versionOnColor-pressed-filled;
-      }
-
-      &[data-state='onAccentFilled'] {
-        background: base.$sn-theme-color-material-stateLayer-inversionOnColor-pressed-filled;
+      @each $state, $path in $fill-layers {
+        &[data-state='#{$state}'] {
+          background: fill-token($path, 'pressed');
+        }
       }
     }
   }

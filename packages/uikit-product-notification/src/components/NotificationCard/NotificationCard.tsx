@@ -152,7 +152,7 @@ export function NotificationCard({
       data-droplist-open={isDroplistOpen || undefined}
       className={cn(styles.notificationCard, className)}
     >
-      <span className={styles.stateLayer} data-state='regularFilled' aria-hidden />
+      <span className={styles.stateLayer} data-state='emptyNeutralOnBackground' aria-hidden />
 
       {unread && <span className={styles.visuallyHidden}>Непрочитанное уведомление</span>}
 

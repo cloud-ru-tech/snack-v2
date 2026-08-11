@@ -75,7 +75,11 @@ export function PrivateButton({
         data-disabled={disabled || undefined}
         aria-pressed={checked}
       >
-        <span className={styles.stateLayer} data-state={checked ? 'activatedFilled' : 'regularFilled'} aria-hidden />
+        <span
+          className={styles.stateLayer}
+          data-state={checked ? 'activatedOnBackground' : 'emptyNeutralOnBackground'}
+          aria-hidden
+        />
         {icon}
         {withChevron && PrivateChevronIcon}
       </button>

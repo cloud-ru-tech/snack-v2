@@ -34,10 +34,10 @@ export const FOCUS_POSITION = {
 } as const;
 
 export const STATE = {
-  RegularFilled: 'regularFilled',
-  RegularBorder: 'regularBorder',
-  ActivatedFilled: 'activatedFilled',
-  OnColorFilled: 'onColorFilled',
-  OnAccentFilled: 'onAccentFilled',
+  RegularFilled: 'emptyNeutralOnBackground',
+  RegularBorder: 'borderOnBackground',
+  ActivatedFilled: 'activatedOnBackground',
+  OnColorFilled: 'versionOnColor',
+  OnAccentFilled: 'inversionOnColor',
   TextOpacity: 'textOpacity',
 } as const;

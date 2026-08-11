@@ -33,7 +33,11 @@ export function TableSelectItem({
       aria-label={ariaLabel}
       data-test-id={dataTestId}
     >
-      <span className={styles.stateLayer} data-state={checked ? 'activatedFilled' : 'regularFilled'} aria-hidden />
+      <span
+        className={styles.stateLayer}
+        data-state={checked ? 'activatedOnBackground' : 'emptyNeutralOnBackground'}
+        aria-hidden
+      />
     </button>
   );
 }

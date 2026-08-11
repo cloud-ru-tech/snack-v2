@@ -102,7 +102,7 @@ export function CollapseBlock({
       {component !== 'accordionTertiary' && (
         <>
           <div className={styles.acrylic} />
-          {view === VIEW.Outline && <div className={styles.stateLayer} data-state='regularBorder' />}
+          {view === VIEW.Outline && <div className={styles.stateLayer} data-state='borderOnBackground' />}
         </>
       )}
 

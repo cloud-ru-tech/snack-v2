@@ -79,11 +79,11 @@ $sizes: ('s', 'm', 'l');
   // чтобы было видно, какая строка управляется action-меню. Hover-стиль
   // state-layer-а задаёт миксин `has-state-layer-as-child` только под
   // `:hover`; здесь повторяем тот же фон под `[data-droplist-active]`.
-  &[data-droplist-active] .stateLayer[data-state='regularFilled'] {
+  &[data-droplist-active] .stateLayer[data-state='emptyNeutralOnBackground'] {
     background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
   }
 
-  &[data-droplist-active] .stateLayer[data-state='activatedFilled'] {
+  &[data-droplist-active] .stateLayer[data-state='activatedOnBackground'] {
     background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
   }
 

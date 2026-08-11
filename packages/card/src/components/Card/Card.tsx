@@ -74,14 +74,16 @@ export function Card<T extends ElementType = 'div'>({
         {/* Порядок дочерних узлов важен: среди позиционированных братьев с z-index:auto
             более поздний в DOM рисуется поверх. Сверху вниз painting:
             acrylic (фон) → stateLayer (checked-overlay) → content → outlineBorder → checkBadge.
-            Border-слой намеренно после content — Figma `stateLayer/regular/border` лежит
+            Border-слой намеренно после content — Figma `stateLayer/borderOnBackground` лежит
             поверх контента, чтобы рисовался по краю независимо от padding'а content'а. */}
         <span className={styles.acrylic} aria-hidden data-acrylic-background />
         {/* State-layer только для checked: Figma использует activated-filled overlay;
             в unchecked-состоянии stateLayer-слоя нет — hover там идёт через box-shadow. */}
-        {interactive && checked && <span className={styles.stateLayer} data-state='activatedFilled' aria-hidden />}
+        {interactive && checked && (
+          <span className={styles.stateLayer} data-state='activatedOnBackground' aria-hidden />
+        )}
         <div className={styles.content}>{children}</div>
-        {/* Border-слой (Figma: `stateLayer/regular/border`) — overlay inset:0 поверх content'а;
+        {/* Border-слой (Figma: `stateLayer/borderOnBackground`) — overlay inset:0 поверх content'а;
             цвет переключается по data-view/data-checked родителя (см. styles.module.scss). */}
         {(view === VIEW.Outline || checked) && <span className={styles.outlineBorder} aria-hidden />}
         {checked && multiSelect && (

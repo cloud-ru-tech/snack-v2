@@ -2,7 +2,7 @@
 // `.tableRow` — базовый layout строки (flex, фиксированная высота, фон, верх/низ бордеры);
 // `.bodyRow` / `.tableHeader` — className-надстройки над `.tableRow` (см. Row.tsx, HeaderRow.tsx).
 // `.rowPinnedCells` — sticky-блок закреплённых колонок с вертикальным разделителем.
-// Hover/selected тонировка строки в Figma — state-layer (`stateLayer/regular/filled`,
+// Hover/selected тонировка строки в Figma — state-layer (`stateLayer/emptyNeutralOnBackground`,
 // `stateLayer/activated/filled`). Применить `m.has-state-layer-as-child` напрямую нельзя:
 // Row рендерит плоский <div> без дочернего <span data-state-layer>, добавление узла —
 // вне зоны этого файла. Поэтому слой воспроизведён двухслойным background'ом:

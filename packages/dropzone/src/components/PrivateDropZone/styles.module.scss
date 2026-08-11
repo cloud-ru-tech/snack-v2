@@ -20,7 +20,7 @@ $sizes: 's', 'm', 'l';
 }
 
 .overLayer {
-  // Заливка drag-over (`data-state='activatedFilled'`) — absolute-оверлей поверх
+  // Заливка drag-over (`data-state='activatedOnBackground'`) — absolute-оверлей поверх
   // контейнера под контентом (`.content` z-index:1), показывается на `[data-over]`.
   // Фон и раньше отсутствовал (миксин state-layer применялся только к `.borderLayer`),
   // поэтому подсветка перетаскивания не работала. Absolute убирает overLayer из потока —

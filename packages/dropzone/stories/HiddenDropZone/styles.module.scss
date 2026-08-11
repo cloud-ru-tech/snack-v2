@@ -37,7 +37,7 @@
 
   width: 400px;
   height: 220px;
-  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border: base.$sn-primitive-dimension-1 solid base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   border-radius: base.$sn-brand-anatomy-radius-block-s;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
@@ -64,7 +64,7 @@
   width: 320px;
   min-height: 160px;
   padding: base.$sn-primitive-dimension-24;
-  border: base.$sn-primitive-dimension-1 dashed base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border: base.$sn-primitive-dimension-1 dashed base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   border-radius: base.$sn-brand-anatomy-radius-block-s;
 
   color: base.$sn-theme-color-available-version-textSecondary;
@@ -77,6 +77,6 @@
 
   margin-top: base.$sn-primitive-dimension-12;
   padding-top: base.$sn-primitive-dimension-12;
-  border-top: base.$sn-primitive-dimension-1 dashed base.$sn-theme-color-material-stateLayer-regular-default-borderColor;
+  border-top: base.$sn-primitive-dimension-1 dashed base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
   color: base.$sn-theme-color-available-version-textSecondary;
 }

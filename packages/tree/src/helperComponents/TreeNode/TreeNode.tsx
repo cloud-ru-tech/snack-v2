@@ -285,7 +285,11 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
                 data-test-id={TEST_IDS.chevron}
                 aria-label={isExpanded ? 'Collapse' : 'Expand'}
               >
-                <span className={styles.treeNodeExpandButtonStateLayer} aria-hidden data-state='regularFilled' />
+                <span
+                  className={styles.treeNodeExpandButtonStateLayer}
+                  aria-hidden
+                  data-state='emptyNeutralOnBackground'
+                />
                 {loading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
               </button>
               <TreeLine visible={isExpanded && showLines} />
@@ -318,7 +322,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
           <span
             className={styles.stateLayer}
             aria-hidden
-            data-state={isSelected && !isMultiSelect ? 'activatedFilled' : 'regularFilled'}
+            data-state={isSelected && !isMultiSelect ? 'activatedOnBackground' : 'emptyNeutralOnBackground'}
           />
           {(isMultiSelect || showToggle) && (
             <div className={styles.treeNodeCheckboxWrap}>

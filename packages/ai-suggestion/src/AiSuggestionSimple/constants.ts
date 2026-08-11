@@ -17,6 +17,6 @@ export const TEST_IDS = {
 } as const;
 
 export const LAYER_STATE = {
-  ActivatedFilled: 'activatedFilled',
-  RegularFilled: 'regularFilled',
+  ActivatedOnBackground: 'activatedOnBackground',
+  EmptyNeutralOnBackground: 'emptyNeutralOnBackground',
 } as const;

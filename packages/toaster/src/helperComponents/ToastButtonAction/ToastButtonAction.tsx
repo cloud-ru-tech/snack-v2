@@ -37,7 +37,7 @@ export function ToastButtonAction<As extends ElementType = 'button'>({
       data-test-id={dataTestId}
     >
       <span className={styles.buttonContainer}>
-        <span className={styles.stateLayer} aria-hidden data-state='onAccentFilled' />
+        <span className={styles.stateLayer} aria-hidden data-state='inversionOnColor' />
         <span className={styles.textWrapper}>{label}</span>
       </span>
     </Tag>

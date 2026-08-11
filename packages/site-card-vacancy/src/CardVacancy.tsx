@@ -34,7 +34,7 @@ export function CardVacancy<T extends ElementType = 'a'>({
       data-mobile={mobile || undefined}
     >
       <span className={styles.background} aria-hidden />
-      <span className={styles.stateLayer} data-state='regularFilled' aria-hidden />
+      <span className={styles.stateLayer} data-state='emptyNeutralOnBackground' aria-hidden />
       <span className={styles.content}>
         <Typography
           as='span'

@@ -30,7 +30,7 @@ export function PopupCloseButton({
       data-test-id={TEST_IDS.closeButton}
       {...extractSupportProps(rest)}
     >
-      <div className={styles.stateLayer} aria-hidden data-state='onColorFilled' />
+      <div className={styles.stateLayer} aria-hidden data-state='versionOnColor' />
       <CrossSVG />
     </button>
   );

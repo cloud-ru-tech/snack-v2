@@ -136,7 +136,7 @@ export const ChipChoiceBase = forwardRef<HTMLDivElement, ChipChoiceBaseProps>(
         onKeyDown={handleChipKeyDown}
         tabIndex={loading || disabled ? -1 : tabIndex}
       >
-        <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />
+        <span className={styles.stateLayer} aria-hidden data-state='emptyNeutralOnBackground' />
 
         {icon && (
           <span className={styles.icon} data-test-id={CHIP_CHOICE_TEST_IDS.icon}>

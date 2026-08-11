@@ -324,7 +324,7 @@ export const TimePickerDrumWheelColumn = forwardRef<TimePickerDrumWheelColumnHan
                     className={cn(styles.wheelRow, styles.itemCell, selected && styles.itemCellSelected)}
                     style={{ '--wheel-item': `${itemHeight}px` }}
                   >
-                    <span aria-hidden className={styles.stateLayer} data-state='regularFilled' />
+                    <span aria-hidden className={styles.stateLayer} data-state='emptyNeutralOnBackground' />
                     <span className={styles.itemLabel}>{formatLabel(cellValue)}</span>
                   </div>
                 );
