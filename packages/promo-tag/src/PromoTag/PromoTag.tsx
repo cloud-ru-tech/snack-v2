@@ -38,7 +38,7 @@ export function PromoTag<T extends ElementType = 'button'>({
       data-clickable={isInteractive || undefined}
       {...spreadProps}
     >
-      {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />}
+      {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='emptyDarkOnAccent' />}
       {beforeContent}
       {Boolean(label) && (
         <span className={styles.labelWrapper}>
