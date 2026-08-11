@@ -30,40 +30,28 @@ $dash-period: base.$sn-primitive-dimension-8;
   flex-direction: column;
   align-items: center;
 
-  @each $position in $positions {
-    &[data-position='#{$position}'] {
-      .trackLinePre {
-        @include base.composite-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine');
+  // Отрезок над точкой — обычный элемент потока, как в макете: он и держит те 4px,
+  // на которые точка опущена от верха трека.
+  &[data-position='center'],
+  &[data-position='end'] {
+    padding-top: 0;
 
-        position: absolute;
-        top: 0;
-        min-height: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine', 'height');
-      }
+    .trackLinePre {
+      @include base.composite-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine');
+
+      min-height: base.simple-var(tl.$timeline, 'anatomy', 'size', 'container', 'track', 'dot', 'topLine', 'height');
     }
+  }
 
-    &[data-position='end'] {
-      padding-top: 0;
+  &[data-position='center'] {
+    padding-bottom: 0;
+  }
 
-      .trackLinePre {
-        transform: translateY(-100%);
-      }
-    }
+  &[data-position='start'] {
+    padding-bottom: 0;
 
-    &[data-position='start'] {
-      padding-bottom: 0;
-
-      .trackLinePre {
-        display: none;
-      }
-    }
-
-    &[data-position='center'] {
-      padding-top: 0;
-      padding-bottom: 0;
-
-      .trackLinePre {
-        transform: translateY(-100%);
-      }
+    .trackLinePre {
+      display: none;
     }
   }
 }
