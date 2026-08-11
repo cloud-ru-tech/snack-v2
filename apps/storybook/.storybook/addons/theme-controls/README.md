@@ -14,7 +14,7 @@ theme-controls/
   src/
     constants.ts            # ADDON_ID, GLOBAL_KEYS, OPTIONS, CHANNEL_SYNC_EVENT, типы
     config/
-      brandColors.ts        # Цвета брендов (#389f74, #794ed3)
+      brandColors.ts        # Цвета брендов
       svgPaths.ts           # SVG path для иконок (day, night, laptop, mobile)
     toolbar/
       ThemeControlsToolbar.tsx   # UI тулбара (три Select с иконками)

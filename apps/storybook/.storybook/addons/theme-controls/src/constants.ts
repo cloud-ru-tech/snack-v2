@@ -33,6 +33,7 @@ export const BRAND_OPTIONS = [
   { value: 'brandA', label: 'Brand A' },
   { value: 'brandB', label: 'Brand B' },
   { value: 'brandC', label: 'Brand C' },
+  { value: 'brandD', label: 'Brand D' },
 ] as const;
 
 export const BRAND_ROLE_OPTIONS = [

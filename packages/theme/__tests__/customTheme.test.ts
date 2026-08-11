@@ -22,6 +22,7 @@ function nn<T>(value: T | null | undefined): T {
 }
 
 const sum = (channels: number[]): number => channels.reduce((acc, channel) => acc + channel, 0);
+const BRAND_LIST = '.sn-brandA,.sn-brandB,.sn-brandC,.sn-brandD';
 
 describe('customTheme / hex', () => {
   it('парсит #rrggbb, #rgb, с alpha и без #', () => {
@@ -150,7 +151,7 @@ describe('customTheme / buildBrandPaletteCss', () => {
   it('без scope — глобальное правило на бренд-классы', () => {
     const css = nn(buildBrandPaletteCss('#ff7a00'));
 
-    expect(css.startsWith(':is(.sn-brandA,.sn-brandB,.sn-brandC){')).toBe(true);
+    expect(css.startsWith(`:is(${BRAND_LIST}){`)).toBe(true);
     expect(css).toContain('--sn-brand-color-primary-55:#ff7a00');
     expect(css).toContain('--sn-brand-color-activated-default-background:#ff7a0026');
     expect(css).not.toContain('data-');
@@ -159,8 +160,8 @@ describe('customTheme / buildBrandPaletteCss', () => {
   it('со scope — правило ограничено (потомки + сам корень)', () => {
     const css = nn(buildBrandPaletteCss('#ff7a00', '#app'));
 
-    expect(css).toContain('#app :is(.sn-brandA,.sn-brandB,.sn-brandC)');
-    expect(css).toContain('#app:is(.sn-brandA,.sn-brandB,.sn-brandC)');
+    expect(css).toContain(`#app :is(${BRAND_LIST})`);
+    expect(css).toContain(`#app:is(${BRAND_LIST})`);
     expect(css).toContain('--sn-brand-color-primary-55:#ff7a00');
   });
 
