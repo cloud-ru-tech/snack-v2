@@ -572,7 +572,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         >
           <div className={fieldStyles.acrylicBg} aria-hidden />
         </div>
-        <div className={fieldStyles.borderStateLayer} data-state='regularBorder' />
+        <div className={fieldStyles.borderStateLayer} data-state='borderOnBackground' />
         <div className={fieldStyles.focusLayer} />
       </div>
       <div className={fieldStyles.fieldContainer}>

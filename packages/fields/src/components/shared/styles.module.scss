@@ -99,6 +99,11 @@ $sizes: 's', 'm', 'l';
   outline-color: base.$sn-theme-color-yellow-accent;
 }
 
+// Предупреждение подкрашивает и саму подложку поля (Figma: fieldWrapper fill = yellow/background).
+.fieldWrapper[data-validation-state='warning'] {
+  background-color: base.$sn-theme-color-yellow-background;
+}
+
 .fieldWrapper[data-validation-state='success'] .focusLayer {
   outline-color: base.$sn-theme-color-green-accent;
 }
@@ -336,7 +341,7 @@ $sizes: 's', 'm', 'l';
           // Внутренний бордер поля по фокусу — accent (Figma: fieldWrapper stroke, 1px, full opacity).
           // Дефолт → primary-accent; error/warning/success → цвет accent'а валидации
           // (перекрытия — сразу после size-цикла, на равной специфичности по порядку источника).
-          & > .backgroundWrapper > .borderStateLayer[data-state='regularBorder'] {
+          & > .backgroundWrapper > .borderStateLayer[data-state='borderOnBackground'] {
             border-color: base.$sn-theme-color-primary-accent;
             border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
           }
@@ -363,14 +368,14 @@ $sizes: 's', 'm', 'l';
     }
 
     &:active {
-      .borderStateLayer[data-state='regularBorder'] {
+      .borderStateLayer[data-state='borderOnBackground'] {
         border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
       }
     }
 
     @media (hover: hover) {
       &:hover {
-        .borderStateLayer[data-state='regularBorder'] {
+        .borderStateLayer[data-state='borderOnBackground'] {
           border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
         }
       }
@@ -379,24 +384,24 @@ $sizes: 's', 'm', 'l';
 
   // Внутренний бордер по фокусу в состояниях валидации — accent валидации (Figma: focused-вариант,
   // fieldWrapper stroke = red/yellow/green-accent, 1px, full opacity). Идёт последним среди правил
-  // `.borderStateLayer[data-state='regularBorder']` — перекрывает primary-accent из size-цикла по
+  // `.borderStateLayer[data-state='borderOnBackground']` — перекрывает primary-accent из size-цикла по
   // порядку источника и не нарушает no-descending-specificity. `:not([data-disabled])` держит
   // специфичность вровень с in-loop-правилом фокуса.
   &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='error']:not([data-disabled='true'])
     > .backgroundWrapper
-    > .borderStateLayer[data-state='regularBorder'] {
+    > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-red-accent;
   }
 
   &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='warning']:not([data-disabled='true'])
     > .backgroundWrapper
-    > .borderStateLayer[data-state='regularBorder'] {
+    > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-yellow-accent;
   }
 
   &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='success']:not([data-disabled='true'])
     > .backgroundWrapper
-    > .borderStateLayer[data-state='regularBorder'] {
+    > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-green-accent;
   }
 }

@@ -116,7 +116,7 @@ export const FieldElementButton = forwardRef<HTMLButtonElement, FieldElementButt
       data-pressed={stateLayerPressed ? true : undefined}
       data-test-id={dataTestId}
     >
-      <div className={styles.backgroundStateLayer} data-state='regularFilled' />
+      <div className={styles.backgroundStateLayer} data-state='emptyNeutralOnBackground' />
       <div className={styles.focusLayer} aria-hidden />
       <div className={styles.elementWrapper}>
         {loading && !disabled ? <Sun size={SUN_SIZE_MAP[size]} /> : action}
