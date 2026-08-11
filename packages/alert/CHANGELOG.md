@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-08-11)
+
+### Bug Fixes
+
+- **AICNTB-3378:** block height in contentLayout for AlertBase ([21b0224](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/21b02244d5edc9fad696ca346472569dabd9ea23))
+
 # 2.1.0 (2026-07-30)
 
 ### Features
