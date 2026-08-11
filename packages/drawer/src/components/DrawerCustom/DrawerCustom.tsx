@@ -161,6 +161,7 @@ export function DrawerCustom(props: DrawerCustomProps) {
       snapPoints,
       swipeEnabled,
       safeArea,
+      disableMotions,
       ...rest
     } = props;
     return (
@@ -175,6 +176,7 @@ export function DrawerCustom(props: DrawerCustomProps) {
         snapPoints={snapPoints}
         swipeEnabled={swipeEnabled}
         safeArea={safeArea}
+        disableMotions={disableMotions}
         {...extractSupportProps(rest)}
       >
         {children}
