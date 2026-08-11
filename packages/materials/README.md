@@ -113,7 +113,17 @@ pnpm add @ds/materials
 
 Миксин `has-state-layer-as-child($stateLayerSelector)` подключают в **классе корневого элемента**, с которым пользователь взаимодействует (hover, active и т.д.): в этот момент стили применяются к **потомку**, чей класс передан аргументом. В CSS Modules аргумент задают как `#{stateLayer}`, если в том же файле объявлен класс `.stateLayer`.
 
-На элементе слоя указывают `data-state`: `emptyNeutralOnBackground`, `borderOnBackground`, `activatedOnBackground`, `versionOnColor`, `inversionOnColor`. Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
+На элементе слоя указывают `data-state` — имя совпадает с именем сета в Figma (`material/stateLayer/<имя>`):
+
+- `emptyNeutralOnBackground` — нейтральный слой поверх фона страницы, по умолчанию прозрачный.
+- `borderOnBackground` — слой обводки вместо заливки.
+- `activatedOnBackground` — слой выбранного (активированного) элемента.
+- `versionOnColor` / `emptyVersionOnColor` — слой поверх цветной подложки; вариант с префиксом `empty` прозрачен по умолчанию.
+- `inversionOnColor` / `emptyInversionOnColor` — то же для инверсной подложки.
+- `emptyDarkOnAccent` — тёмный слой поверх акцентной подложки: filled/tonal-кнопки, теги, промотеги, ручка слайдера.
+- `textOpacity` — не заливка, а прозрачность текста и иконок (миксин `has-content-with-text-opacity`).
+
+Набор состояний из пропа нельзя сгенерировать автоматически — только ручной маппинг к структуре Figma Variables.
 
 Примеры: **Playground**, **SampleBlock**, **StateSquare** (`packages/materials/stories/…`).
 
