@@ -14,6 +14,9 @@ import { useEffect, useState } from 'react';
  *
  * На `open=false`: `isActive` сразу сбрасывается (CSS-transition в обратку), `isMounted`
  * остаётся `true` ещё `exitDurationMs` ms, после чего размонтируем.
+ *
+ * `exitDurationMs === 0` — мгновенный цикл (для `disableMotions`): `isActive` поднимается
+ * сразу при mount, `isMounted` сбрасывается сразу при close без таймера и без double-rAF.
  */
 export function useTransitionPhase(open: boolean, exitDurationMs: number) {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,6 +25,10 @@ export function useTransitionPhase(open: boolean, exitDurationMs: number) {
   useEffect(() => {
     if (open) {
       setIsMounted(true);
+      if (exitDurationMs === 0) {
+        setIsActive(true);
+        return;
+      }
       let raf2Id = 0;
       const raf1Id = requestAnimationFrame(() => {
         raf2Id = requestAnimationFrame(() => setIsActive(true));
@@ -33,6 +40,10 @@ export function useTransitionPhase(open: boolean, exitDurationMs: number) {
     }
 
     setIsActive(false);
+    if (exitDurationMs === 0) {
+      setIsMounted(false);
+      return;
+    }
     const timeoutId = window.setTimeout(() => setIsMounted(false), exitDurationMs);
     return () => window.clearTimeout(timeoutId);
   }, [open, exitDurationMs]);

@@ -282,6 +282,12 @@
         "defaultValue": "0",
         "description": "Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`."
       },
+      "disableMotions": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отключить анимации открытия / закрытия и перехода между snap-точками."
+      },
       "lockScroll": {
         "type": "boolean",
         "required": false,

@@ -11,6 +11,8 @@ import { CustomSnapPoints } from '../demos/examples/CustomSnapPoints'
 import CustomSnapPointsSrc from '../demos/examples/CustomSnapPoints.tsx?raw'
 import { CustomScrollable } from '../demos/examples/CustomScrollable'
 import CustomScrollableSrc from '../demos/examples/CustomScrollable.tsx?raw'
+import { CustomDisableMotions } from '../demos/examples/CustomDisableMotions'
+import CustomDisableMotionsSrc from '../demos/examples/CustomDisableMotions.tsx?raw'
 import { Alert } from '@ds/alert'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
@@ -81,6 +83,10 @@ import { BottomSheetCustom } from '@ds/bottom-sheet'
 
 <Example title='Scrollable body' description='Длинный список скроллится внутри Body, header / footer фиксированы' code={CustomScrollableSrc}>
   <CustomScrollable client:visible />
+</Example>
+
+<Example title='Без анимации' description='disableMotions — мгновенное открытие / закрытие без slide-up' code={CustomDisableMotionsSrc}>
+  <CustomDisableMotions client:visible />
 </Example>
 
 ## Props

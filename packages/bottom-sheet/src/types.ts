@@ -96,6 +96,11 @@ export type BottomSheetCustomProps = WithSupportProps<
      * @default true
      */
     safeArea?: boolean;
+    /**
+     * Отключить анимации открытия / закрытия и перехода между snap-точками.
+     * @default false
+     */
+    disableMotions?: boolean;
     /** Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`. */
     container?: string | HTMLElement;
     /** CSS-класс самого sheet-контейнера. */
@@ -105,7 +110,7 @@ export type BottomSheetCustomProps = WithSupportProps<
   }>
 >;
 
-export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
+export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children' | 'disableMotions'> & {
   /** Заголовок в шапке. */
   title?: ReactNode;
   /** Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. */

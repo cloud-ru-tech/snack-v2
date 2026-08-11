@@ -136,3 +136,11 @@
     transition-duration: 0.01ms;
   }
 }
+
+.root[data-disable-motions] {
+  .backdrop,
+  .contentWrapper,
+  .content {
+    transition: none;
+  }
+}

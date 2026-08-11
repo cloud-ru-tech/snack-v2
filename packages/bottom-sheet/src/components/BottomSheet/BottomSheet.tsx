@@ -72,6 +72,7 @@ export function BottomSheet({
       // aria-label/aria-labelledby из `...rest` для title-less sheet'а.
       {...(title ? { 'aria-labelledby': titleId } : {})}
       className={cn(className)}
+      disableMotions={false}
     >
       <div className={styles.root}>
         {hasMedia &&

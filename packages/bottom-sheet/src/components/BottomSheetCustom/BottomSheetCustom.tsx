@@ -58,6 +58,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     snapIndex,
     onSnapIndexChange,
     closeOnPopstate = true,
+    disableMotions = false,
     container,
     className,
     rootClassName,
@@ -93,7 +94,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     }
   }, [open]);
 
-  const { isMounted, isActive } = useTransitionPhase(open, CLOSING_TIMEOUT);
+  const { isMounted, isActive } = useTransitionPhase(open, disableMotions ? 0 : CLOSING_TIMEOUT);
 
   const portalContextRef = usePortalContext();
   // Фокус-trap только для модального sheet'а: в non-modal Tab уходит на фон.
@@ -165,7 +166,11 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     // RemoveScroll лочит фон-скролл (refcount для вложенных sheet'ов); `enabled={lockScroll}` —
     // для non-modal фон остаётся прокручиваемым.
     <RemoveScroll enabled={lockScroll}>
-      <div className={cn(styles.root, rootClassName)} data-active={isActive || undefined}>
+      <div
+        className={cn(styles.root, rootClassName)}
+        data-active={isActive || undefined}
+        data-disable-motions={disableMotions || undefined}
+      >
         {showBackdrop && (
           <div className={styles.backdrop} data-test-id={TEST_IDS.backdrop} onClick={handleBackdropClick} aria-hidden />
         )}

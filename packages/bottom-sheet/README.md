@@ -887,6 +887,42 @@ export function CustomScrollable() {
 }
 ```
 
+#### Без анимации
+
+disableMotions — мгновенное открытие / закрытие без slide-up
+
+```tsx
+import { BottomSheetCustom } from '@ds/bottom-sheet';
+import { Button } from '@ds/button';
+import { useState } from 'react';
+
+import { MobilePreview } from '../MobilePreview';
+
+/**
+ * `disableMotions` отключает slide-up / slide-down и анимации перехода между snap-точками:
+ * sheet появляется и исчезает мгновенно. Удобно для reduced-motion, тестов и сценариев,
+ * где анимация мешает.
+ */
+export function CustomDisableMotions() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <MobilePreview>
+      <Button label='Открыть без анимации' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
+      <BottomSheetCustom open={open} onClose={() => setOpen(false)} disableMotions aria-label='Sheet без анимации'>
+        <BottomSheetCustom.Header title='Без анимации' />
+        <BottomSheetCustom.Body>
+          <p>Открытие и закрытие мгновенные — slide-up / slide-down отключены через disableMotions.</p>
+        </BottomSheetCustom.Body>
+        <BottomSheetCustom.Footer>
+          <Button fullWidth view='filled' appearance='primary' label='Закрыть' onClick={() => setOpen(false)} />
+        </BottomSheetCustom.Footer>
+      </BottomSheetCustom>
+    </MobilePreview>
+  );
+}
+```
+
 ### Props
 
 **BottomSheetCustomProps**
@@ -899,6 +935,7 @@ export function CustomScrollable() {
 | `container` | `string \| HTMLElement` | — | Контейнер для портала. По дефолту — `body` либо контекст-провайдер `@ds/portal-context`. |
 | `data-test-id` | `string` | — |  |
 | `defaultSnapIndex` | `number` | `0` | Индекс snap'а, на котором sheet открывается по дефолту. Игнорируется при controlled `snapIndex`. |
+| `disableMotions` | `boolean` | `false` | Отключить анимации открытия / закрытия и перехода между snap-точками. |
 | `lockScroll` | `boolean` | `true` | Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница <br/> под sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с <br/> которым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`. |
 | `onClose` | `() => void` | — | Колбэк закрытия (вызывается при click outside, Esc, swipe-down, browser-back). |
 | `onSnapIndexChange` | `((snapIndex: number) => void)` | — | Callback изменения активного snap'а (пересечение swipe-границы или click по UI). <br/> Не вызывается при программной смене controlled `snapIndex`. |
