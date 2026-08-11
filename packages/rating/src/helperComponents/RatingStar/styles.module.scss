@@ -30,6 +30,12 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   display: inline-block;
   box-sizing: border-box;
 
+  // Инлайновый svg садится на базовую линию строки и оставляет под собой зазор:
+  // при `xs` контейнер выше глифа, и звезда съезжает вниз на 1px.
+  svg {
+    display: block;
+  }
+
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       $width: base.simple-var(rating.$rating, 'anatomy', 'size', $size, 'container', 'min-width');
