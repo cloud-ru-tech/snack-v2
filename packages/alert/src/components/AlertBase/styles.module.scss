@@ -127,10 +127,10 @@ $appearance-to-token: (
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-self: stretch;
   justify-content: center;
 
   min-width: 0;
-  height: stretch;
 }
 
 .title {
