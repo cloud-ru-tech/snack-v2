@@ -1,8 +1,19 @@
 import { ReactNode } from 'react';
 
-import { ICON_POSITION } from './constants';
+import { ICON_POSITION, VIEW } from './constants';
+import { View } from './types';
 
 type Variant = 'label-only' | 'icon-before' | 'icon-after' | 'icon-only';
+
+type StateLayer = 'emptyDarkOnAccent' | 'emptyNeutralOnBackground';
+
+/**
+ * View'ы с акцентной подложкой (filled, tonal) несут тёмный слой состояния
+ * (`material/stateLayer/emptyDarkOnAccent`), остальные — нейтральный поверх фона страницы.
+ */
+export function getStateLayer(view: View): StateLayer {
+  return view === VIEW.Filled || view === VIEW.Tonal ? 'emptyDarkOnAccent' : 'emptyNeutralOnBackground';
+}
 
 export function getVariant(props: {
   label?: string;

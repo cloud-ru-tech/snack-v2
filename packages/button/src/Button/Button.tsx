@@ -7,7 +7,7 @@ import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 
 import { ICON_POSITION } from './constants';
 import styles from './styles.module.scss';
 import { ButtonProps } from './types';
-import { getVariant } from './utils';
+import { getStateLayer, getVariant } from './utils';
 
 const TARGET_BLANK = '_blank';
 
@@ -96,7 +96,7 @@ export function Button<T extends ElementType = 'button'>({
       {...spreadProps}
     >
       {view === 'outline' && <span data-border-layer aria-hidden />}
-      {view !== 'function' && <span className={styles.stateLayer} aria-hidden data-state='regularFilled' />}
+      {view !== 'function' && <span className={styles.stateLayer} aria-hidden data-state={getStateLayer(view)} />}
 
       <span className={styles.content}>
         {variant === 'icon-only' ? (

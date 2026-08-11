@@ -17,6 +17,13 @@ $appearance-to-theme: (
   'neutral': 'neutral',
   'critical': 'red',
 );
+// Обводка view=outline: neutral берёт общий border-цвет доступного состояния
+// (Figma: buttonOutlineNeutral, buttonGroup/secondaryAction), цветные appearance — свой decor.
+$outline-border-colors: (
+  'primary': base.$sn-theme-color-primary-decor,
+  'neutral': base.$sn-theme-color-available-borderColor,
+  'critical': base.$sn-theme-color-red-decor,
+);
 // Размер текст-стиля равен размеру кнопки: s -> label-s, m -> label-m, l -> label-l.
 $label-typo: (
   's': 's',
@@ -44,7 +51,7 @@ $label-typo: (
 
     @include label-icon-color($label-color);
 
-    & > [data-state-layer][data-state='regularFilled'] {
+    & > [data-state-layer][data-state='emptyNeutralOnBackground'] {
       background-color: $bg-color;
     }
   }
@@ -322,7 +329,7 @@ $label-typo: (
       @include label-icon-color(base.simple-var(base.$sn-theme, 'color', $token, 'text'));
 
       [data-border-layer] {
-        border-color: base.simple-var(base.$sn-theme, 'color', $token, 'decor');
+        border-color: base.simple-var($outline-border-colors, $appearance);
       }
     }
 
