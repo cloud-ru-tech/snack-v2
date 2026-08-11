@@ -26,6 +26,7 @@
   "dependencies": {
     "@ds/dropdown": "workspace:^",
     "@ds/icons": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"

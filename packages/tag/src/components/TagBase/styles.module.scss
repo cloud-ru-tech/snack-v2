@@ -1,5 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/tag.module' as tag;
+@use '@ds/materials' as materials;
 
 $sizes: 'xs', 's', 'm';
 
@@ -17,6 +18,12 @@ $removeButtonSize: (
   's': base.$sn-density-size-icon-xs,
   'm': base.$sn-density-size-icon-s,
 );
+
+// Слой состояния лежит под контентом тега (`.textWrapper`, `.tagButton` подняты
+// в свой слой через `position: relative`) и не перехватывает клики по кнопке удаления.
+.stateLayer {
+  pointer-events: none;
+}
 
 .tagButton {
   cursor: pointer;
@@ -57,17 +64,28 @@ $removeButtonSize: (
 }
 
 .tag {
+  position: relative;
+
   display: inline-flex;
   align-items: center;
+
   box-sizing: border-box;
   max-width: 100%;
 
+  // Слой состояния есть только у кликабельного тега-ссылки: у обычного тега
+  // hover/pressed не бывает, и подсвечивать его контейнер нечем.
   &[data-tag-link] {
+    @include materials.has-state-layer-as-child(#{stateLayer});
+
     text-decoration: none;
 
     &:active {
       outline: none;
     }
+  }
+
+  .textWrapper {
+    position: relative;
   }
 
   .tagButton {

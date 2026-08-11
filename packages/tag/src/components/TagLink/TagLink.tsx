@@ -45,6 +45,7 @@ export function TagLink<T extends ElementType = 'a'>({
         rel={target === TARGET_BLANK ? 'noopener noreferrer' : undefined}
         onClick={onClick}
       >
+        <span className={styles.stateLayer} aria-hidden data-state='emptyDarkOnAccent' />
         <span className={styles.textWrapper}>
           <span className={styles.label}>{label}</span>
         </span>
@@ -54,6 +55,7 @@ export function TagLink<T extends ElementType = 'a'>({
 
   return (
     <Component {...baseProps} {...rest}>
+      <span className={styles.stateLayer} aria-hidden data-state='emptyDarkOnAccent' />
       <span className={styles.textWrapper}>
         <span className={styles.label}>{label}</span>
       </span>
