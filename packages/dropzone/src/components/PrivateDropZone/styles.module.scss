@@ -75,11 +75,8 @@ $sizes: 's', 'm', 'l';
 
   @include m.with-material('acrylic', #{acrylic});
 
-  .content {
-    @include base.composite-var(base.$sn-thin-label-s);
-
-    color: base.$sn-theme-color-available-version-textMain;
-  }
+  // Типографику и цвет контента компонент не задаёт: в Figma это слот целиком,
+  // содержимое наследует стили родителя.
 
   // Макет: focusedFrame/primary/outside — рамка вплотную к боксу (bbox линии равен боксу
   // компонента), толщина из focusLine/field, как у остальных полеподобных контролов.

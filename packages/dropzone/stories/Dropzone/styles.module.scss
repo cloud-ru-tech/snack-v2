@@ -30,3 +30,11 @@ $width: 200px;
 
   color: base.$sn-theme-color-available-version-textSecondary;
 }
+
+// Типографику контента компонент не задаёт (в Figma это слот целиком),
+// поэтому демо ставит её само.
+.slotContent {
+  @include base.composite-var(base.$sn-thin-label-s);
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
