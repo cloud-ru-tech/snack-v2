@@ -29,6 +29,13 @@ $typography: (
   border-radius: inherit;
 }
 
+// В макете слот иконки — 16 / 24 / 24 по размерам сегмента.
+$icon-size-by-size: (
+  's': base.$sn-density-size-icon-xs,
+  'm': base.$sn-density-size-icon-s,
+  'l': base.$sn-density-size-icon-s,
+);
+
 .icon {
   display: flex;
   flex-shrink: 0;
@@ -71,6 +78,17 @@ $typography: (
       &[data-layout='icon-only'] {
         min-width: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', $size, 'segment', 'container', 'iconOnly', 'min-width');
         padding: 0;
+      }
+
+      // `max-*` обязателен: иконки из @ds/icons приходят с инлайновым размером,
+      // и он перебивает `width`/`height` из таблицы стилей (приём из @ds/button).
+      .icon svg {
+        $icon-size: base.simple-var($icon-size-by-size, $size);
+
+        width: $icon-size;
+        max-width: $icon-size;
+        height: $icon-size;
+        max-height: $icon-size;
       }
 
       .textWrapper {
