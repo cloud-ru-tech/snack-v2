@@ -10,6 +10,7 @@ import {
   FocusEvent,
   forwardRef,
   KeyboardEvent,
+  MouseEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -336,7 +337,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   }, [multiple, props, selectedPairs, setInputValue, required, open, handleOpenChange]);
 
   const handleRemoveChip = useCallback(
-    (id: ItemId) => {
+    (id: ItemId) => (e: MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
       if (!multiple) {
         return;
       }
@@ -589,7 +591,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
                     label={formatPair(pair)}
                     size={TAG_SIZE_MAP[size]}
                     appearance={pair.appearance ?? 'neutral'}
-                    onDelete={disabled || readOnly || pair.disabled ? undefined : () => handleRemoveChip(pair.id)}
+                    onDelete={disabled || readOnly || pair.disabled ? undefined : handleRemoveChip(pair.id)}
                   />
                 ))}
                 {searchInput}
