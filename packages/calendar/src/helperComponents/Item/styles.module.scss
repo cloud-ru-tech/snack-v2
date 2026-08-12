@@ -22,7 +22,9 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
 
   width: 100%;
   height: 100%;
-  border: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-available-complementary;
+  // Ячейка календаря — не полеподобный контрол: в мастере stroke 2 INSIDE,
+  // `focusLine/field` (3px) сюда не относится.
+  border: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
   border-radius: 0;
 }
 
@@ -154,7 +156,7 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
   flex-shrink: 0;
 
   &[data-holiday] {
-    background-color: base.$sn-theme-color-red-text;
+    background-color: base.$sn-theme-color-red-accent;
   }
 
   &[data-checked] {
@@ -166,7 +168,7 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
       background-color: base.$sn-theme-color-primary-accent;
 
       &[data-holiday] {
-        background-color: base.$sn-theme-color-red-text;
+        background-color: base.$sn-theme-color-red-accent;
       }
     }
   }
@@ -175,7 +177,7 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
     background-color: base.$sn-theme-color-primary-accent;
 
     &[data-holiday] {
-      background-color: base.$sn-theme-color-red-text;
+      background-color: base.$sn-theme-color-red-accent;
     }
   }
 }

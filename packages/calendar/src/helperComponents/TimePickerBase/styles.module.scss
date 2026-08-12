@@ -6,10 +6,11 @@ $sizes: 's', 'm', 'l';
 // Видимых строк в колонке времени и в сетке дат мастера (неделя + шесть строк дат).
 $visibleRows: 7;
 
+// Мастер даёт 11/14 у `s` и 12/16 у `m`/`l` — карта была сдвинута на шаг вверх.
 $typography: (
-  's': base.$sn-regular-label-m,
-  'm': base.$sn-regular-label-l,
-  'l': base.$sn-regular-label-l,
+  's': base.$sn-regular-label-s,
+  'm': base.$sn-regular-label-m,
+  'l': base.$sn-regular-label-m,
 );
 
 .divider {
