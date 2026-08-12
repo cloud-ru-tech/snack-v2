@@ -56,6 +56,17 @@ $sizes: 's', 'm', 'l';
       border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'sliderTrack', 'border-radius');
     }
 
+    // Фокус ручки — `focusedFrame/regular/inside` из мастера: обводка внутрь,
+    // радиус ручки. `scale` от react-colorful гасим — в макете ручка не растёт.
+    &[data-size='#{$size}']
+      :global(.react-colorful__saturation)
+      :global(.react-colorful__interactive):focus-visible
+      :global(.react-colorful__pointer) {
+      transform: translate(-50%, -50%);
+      outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+      outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+    }
+
     // Все встроенные react-colorful слайдеры (hue/alpha) скрыты — мы рендерим
     // собственный ChannelSlider'ы под полями ввода, как в Figma-макете.
     &[data-size='#{$size}'] :global(.react-colorful__hue),
