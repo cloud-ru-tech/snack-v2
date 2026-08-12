@@ -13,6 +13,12 @@ $action-focus-padding: calc(2 * #{base.$sn-primitive-strokeWeight-strokeSemiBold
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
+
+  // В строке тулбара отступ ряда даёт `.bulkTool`, а в BottomSheet этой обёртки нет —
+  // здесь корнем ряда служит сама `.actionsArea`, поэтому отступ берём на себя.
+  &[data-variant='sheet'] {
+    padding-left: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft;
+  }
 }
 
 .bulkActions {

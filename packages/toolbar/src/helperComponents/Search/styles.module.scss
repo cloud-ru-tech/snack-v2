@@ -4,7 +4,7 @@
 .root {
   position: relative;
   width: 100%;
-  min-width: 96px;
+  min-width: base.$sn-primitive-dimension-96;
 }
 
 .focusFrame {
@@ -12,7 +12,9 @@
 
   position: absolute;
   z-index: 0;
-  inset: calc(-1 * #{base.$sn-brand-anatomy-focusLine-control-strokeWeight});
+  // В макете рамка рисуется внутрь поля (`focusedFrame/regular/inside`, stroke INSIDE),
+  // поэтому нулевой inset, а не отрицательный.
+  inset: 0;
 
   display: none;
 

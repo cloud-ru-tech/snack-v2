@@ -55,7 +55,7 @@ export function BulkActionsControls({
   const droplistActions = isSheet ? actions : hiddenItems;
 
   return (
-    <div className={styles.actionsArea} ref={actionsAreaRef} data-test-id={TEST_IDS.bulkActions}>
+    <div className={styles.actionsArea} ref={actionsAreaRef} data-variant={variant} data-test-id={TEST_IDS.bulkActions}>
       {showCheckbox && <BulkActionsCheckbox checked={checked} indeterminate={indeterminate} onCheck={onCheck} />}
 
       <div className={isSheet ? styles.sheetActions : styles.bulkActions}>
