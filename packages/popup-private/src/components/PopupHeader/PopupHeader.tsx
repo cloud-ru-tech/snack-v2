@@ -58,6 +58,7 @@ export function PopupHeader({
     <div
       className={cn(styles.root, className)}
       data-surface={surface}
+      data-with-before={Boolean(onBackButtonClick) || undefined}
       {...extractSupportProps(rest)}
       data-test-id={ids.header}
     >

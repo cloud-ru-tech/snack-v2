@@ -18,9 +18,18 @@
 
   &[data-surface='window'] {
     align-items: flex-start;
+    // В макете шапка окна тянется на всю ширину (`sizH=FILL`), а контейнер модалки
+    // выравнивает детей по левому краю — без этого шапка сжимается по контенту.
+    align-self: stretch;
     justify-content: center;
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header');
+
+    // Зазор шапки в макете есть только с кнопкой «назад»: 80 против 76 без неё.
+    // Через `:not(...)`, а не голым `gap: 0`: stylelint поднимает свойство выше миксина.
+    &:not([data-with-before]) {
+      gap: 0;
+    }
   }
 }
 
