@@ -76,7 +76,8 @@ export function Avatar({
   ...rest
 }: AvatarProps) {
   const [imageError, setImageError] = useState(false);
-  const numberOfSymbols = showTwoSymbols ? 2 : 1;
+  // На `xs` макет показывает один символ независимо от пропа: два не помещаются в круг 16.
+  const numberOfSymbols = showTwoSymbols && size !== SIZE.Xs ? 2 : 1;
 
   useEffect(() => {
     setImageError(false);
