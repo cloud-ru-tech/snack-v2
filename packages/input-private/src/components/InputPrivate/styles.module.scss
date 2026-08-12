@@ -19,9 +19,8 @@
     text-overflow: ellipsis;
   }
 
-  &[disabled] {
-    color: base.$sn-theme-color-available-version-textDisabled;
-  }
+  // Отключённое значение в макете красится тем же `textMain`, а гасит его `opacity: 0.4`
+  // обёртки-потребителя. Свой `textDisabled` здесь давал второе умножение: 0.35 × 0.4 = 0.14.
 
   &[type="number"] {
     appearance: textfield;
