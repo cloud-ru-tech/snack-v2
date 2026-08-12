@@ -1,0 +1,47 @@
+{
+  "name": "@ds/uikit-product-header-legacy",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css", "**/*.css"],
+  "publishConfig": { "access": "public" },
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/avatar": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/chips": "workspace:^",
+    "@ds/divider": "workspace:^",
+    "@ds/drawer": "workspace:^",
+    "@ds/icon-predefined": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/info-block": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/uikit-product-card-predefined": "workspace:^",
+    "@ds/search-private": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/uikit-product-title-clickable": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "fuse.js": "^7.1.0"
+  }
+}

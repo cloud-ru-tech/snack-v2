@@ -1,0 +1,160 @@
+---
+title: MainMenu
+package: '@ds/uikit-product-header-legacy'
+description: Legacy MainMenu — кнопка MainMenuSVG и адаптивный drawer навигации (desktop / mobile).
+order: 3
+---
+
+import { Basic } from '../demos/examples/main-menu/Basic'
+import BasicSrc from '../demos/examples/main-menu/Basic.tsx?raw'
+import { WithSearch } from '../demos/examples/main-menu/WithSearch'
+import WithSearchSrc from '../demos/examples/main-menu/WithSearch.tsx?raw'
+import { MobileSurface } from '../demos/examples/main-menu/MobileSurface'
+import MobileSurfaceSrc from '../demos/examples/main-menu/MobileSurface.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# MainMenu
+
+Legacy MainMenu (Figma `navigationOldDrawer` / `navigationOldDrawerMobile`). Кнопка с `MainMenuSVG` открывает drawer навигации.
+
+- **Desktop** — двухколоночный `@ds/drawer` (`DrawerCustom`): левая колонка 256px, divider, правая с поиском и категориями.
+- **Mobile** — левый одноколоночный drawer (не BottomSheet): заголовок «Навигация», scroll-body со sticky-поиском.
+
+Поверхность выбирается через `AdaptiveProvider` (`layoutType`); проп `isMobile` — legacy override.
+
+## Когда использовать
+
+- Нужно главное меню консоли с селектором платформ, административными пунктами и сеткой сервисов.
+- Состав колонок задаётся слотами и данными (`serviceGroups`, `settingItems`, `search`).
+
+Когда **не** нужен:
+
+- Только верхняя полоса без drawer:
+  - используйте [`HeaderLayout`](/components/uikit-product-header-legacy/header-layout).
+- Новая продуктовая навигация без legacy-контрактов:
+  - используйте актуальные layout/header-пакеты Product UI Kit.
+
+## Анатомия
+
+### Trigger и drawer
+
+- trigger — `@ds/button` neutral / simple / m с `MainMenuSVG`.
+- desktop drawer — `@ds/drawer` `DrawerCustom`, слева, ширина по умолчанию 1120px (`data-test-id='header__drawer-menu'`).
+- mobile drawer — левый full-height drawer (`navigationOldDrawerMobile`), не BottomSheet; `data-test-id='header__drawer-menu-mobile'`.
+
+### Левая колонка (desktop)
+
+- `leftTop` — обычно селектор платформ (`PlatformSelector`).
+- `settingItems` — административные пункты списка.
+- `sidebarBottomSlot` — слот внизу колонки (например, баннер новой навигации).
+
+### Правая колонка (desktop)
+
+- `rightTop` — баннеры (referral / marketplace).
+- `search` — поиск через `useSearch` или свой объект (`NavigationSearch`); закреплён структурно вне Scroll.
+- `serviceGroups` — секции категорий сервисов (`ServicesCategory` + `CardServiceLight`).
+
+### Mobile body
+
+Порядок в scroll-body:
+
+1. `leftTop` — в микрофронте и Figma: два `PlatformSelector` (платформа + проект с `avatarName`).
+2. `search` — свёрнутый `NavigationSearch`; при скролле остаётся sticky (`position: sticky`).
+3. `rightTop` — баннеры в колонку (`data-mobile` на контейнере).
+4. `serviceGroups` — те же категории; favorite на карточках всегда виден.
+5. `settingItems` — `@ds/list` с divider внизу.
+
+`sidebarBottomSlot` на mobile **не** рендерится (legacy-поведение).
+
+### open / setOpen
+
+Controlled-открытие drawer. Без `open` состояние держит сам компонент. В примерах drawer закрыт до клика по trigger.
+
+## Адаптивность
+
+Desktop-first: раскладку берёт `AdaptiveProvider` в корне приложения / Storybook. Переключение toolbar `layoutType=mobile` показывает mobile-поверхность без смены API.
+
+| Проп | Desktop | Mobile |
+|------|---------|--------|
+| `isMobile` | Явный override поверхности; без пропа — из контекста | То же |
+| `sidebarBottomSlot` | Нижний слот левой колонки | Не рендерится |
+| `settingItems` | Карточки в левой колонке | `@ds/list` внизу scroll-body |
+| `leftTop` | Один селектор платформы | Платформа + проект (два `PlatformSelector`) |
+| `search` | Вне Scroll, всегда развёрнут | Sticky в scroll-body, сначала свёрнут |
+| `rightTop` / `serviceGroups` | Правая колонка | Одноколоночный scroll-body |
+
+Форс конкретной раскладки в Storybook — toolbar-global `layoutType` или вложенный `AdaptiveProvider` / `withLayoutType`.
+
+Целевая композиция mobile (как в Figma) — story **Examples / WithSampleContent**.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header-legacy
+```
+
+```ts
+import { MainMenu, useSearch } from '@ds/uikit-product-header-legacy'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовый состав'
+  description='leftTop, баннеры, settingItems и serviceGroups. Drawer открывается по клику на MainMenuSVG.'
+  code={BasicSrc}
+>
+  <div style={{ maxWidth: 1099 }}>
+    <Basic client:visible />
+  </div>
+</Example>
+
+<Example
+  title='С поиском'
+  description='search из useSearch. Drawer открывается по клику на MainMenuSVG.'
+  code={WithSearchSrc}
+>
+  <div style={{ maxWidth: 1099 }}>
+    <WithSearch client:visible />
+  </div>
+</Example>
+
+<Example
+  title='Mobile-поверхность'
+  description='AdaptiveProvider layoutType=mobile: два селектора в leftTop (платформа + проект с avatarName), sticky-поиск, баннеры в колонку. sidebarBottomSlot не передаётся — на mobile не рендерится.'
+  code={MobileSurfaceSrc}
+>
+  <div style={{ maxWidth: 390 }}>
+    <MobileSurface client:visible />
+  </div>
+</Example>
+
+## Props
+
+<PropsTable data={doc.MainMenu} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-layout-header-legacy-main-menu--playground' height={480} />
+
+WithSampleContent (Figma mobile composition):
+
+<StorybookEmbed
+  storyId='uikit-product-layout-header-legacy-main-menu-examples-withsamplecontent--with-sample-content'
+  height={480}
+/>
+
+## Figma
+
+Desktop (`navigationOldDrawer`):
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy', 'main-menu')} />
+
+Mobile (`navigationOldDrawerMobile`):
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy', 'main-menu-mobile')} />

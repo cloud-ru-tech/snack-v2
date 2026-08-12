@@ -1,0 +1,21 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-density-radius-2xs;
+
+  color: base.$sn-theme-color-neutral-onAccent;
+
+  background: base.$sn-theme-color-neutral-accent;
+
+  // Figma listItem: platformSelectorIcons с padding 0 (24×24).
+  &[data-compact] {
+    padding: 0;
+  }
+}

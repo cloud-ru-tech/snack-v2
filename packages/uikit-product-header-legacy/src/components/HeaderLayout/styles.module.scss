@@ -1,0 +1,45 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.header {
+  box-sizing: border-box;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.top {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  height: base.$sn-primitive-dimension-48;
+  padding: 0 base.$sn-primitive-dimension-8;
+}
+
+.bottom {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-height: base.$sn-primitive-dimension-32;
+  padding: base.$sn-primitive-dimension-8;
+}
+
+.left {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-width: 0;
+  height: 100%;
+}
+
+.right {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  height: 100%;
+}

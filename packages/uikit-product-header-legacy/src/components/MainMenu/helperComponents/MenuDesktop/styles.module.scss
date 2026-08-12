@@ -1,0 +1,162 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+
+$left-column-width: 256px;
+
+.drawer {
+  height: 100%;
+}
+
+.menu {
+  display: flex;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  width: $left-column-width;
+  height: 100%;
+  min-height: 0;
+}
+
+.leftTop {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-8;
+}
+
+.leftMain {
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.leftMainScroll {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: base.$sn-primitive-dimension-16;
+  padding-left: base.$sn-primitive-dimension-16;
+
+  & > div {
+    gap: base.$sn-primitive-dimension-4;
+  }
+}
+
+.item {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.leftBottom {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.leftBottomDivider {
+  width: 100%;
+  padding: list.$sn-list-anatomy-size-s-listItem-paddingVertical list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
+}
+
+.leftBottomItems {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  padding: 0 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
+}
+
+.leftBottomCard {
+  width: 100%;
+}
+
+.divider {
+  flex-shrink: 0;
+  align-self: stretch;
+  height: auto;
+}
+
+.right {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+.searchWrap {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16 0 base.$sn-primitive-dimension-12;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.scroll {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-height: 0;
+  padding: 0 base.$sn-primitive-dimension-16 0 base.$sn-primitive-dimension-12;
+
+  // Без search сверху оставляем тот же верхний отступ, что был у колонки.
+  &:only-child {
+    padding-top: base.$sn-primitive-dimension-16;
+  }
+
+  // Empty-state Content: заполняет высоту viewport Scroll (os-content иначе схлопывается по контенту).
+  :global(.os-content) {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+}
+
+.rightContent {
+  container-type: inline-size;
+  overflow-x: clip;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 100%;
+  padding-bottom: base.$sn-primitive-dimension-16;
+}
+
+.bannersWrap {
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8;
+}

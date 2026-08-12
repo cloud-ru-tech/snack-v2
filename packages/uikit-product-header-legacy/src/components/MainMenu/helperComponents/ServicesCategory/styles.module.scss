@@ -1,0 +1,84 @@
+/**
+ * ServicesCategory — Figma `servicesCategory` (11860:40249).
+ * highlight=false | true; title/m + grid CardServiceLight.
+ *
+ * Раскладка колонок — как в `@ds/uikit-product-header` SortableGroup:
+ * container query от ширины родителя (`.rightContent` в MainMenu или самого `.root` в изоляции).
+ */
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+
+  // Self-container: в MainMenu ближайший контейнер — `.rightContent`,
+  // в изоляции (stories) — сам `.root`.
+  container-type: inline-size;
+  overflow-x: clip;
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &[data-highlight] {
+    // Figma highlight: accent border + gradient overlay over background1Level.
+    // Точной пары токенов под градиент нет — color-mix от theme tokens.
+    background-color: transparent;
+    background-image:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, base.$sn-theme-color-neutral-background1Level 20%, transparent) 2.29%,
+        color-mix(in srgb, base.$sn-theme-color-primary-decor 12%, transparent) 97.84%
+      ),
+      linear-gradient(
+        base.$sn-theme-color-neutral-background1Level,
+        base.$sn-theme-color-neutral-background1Level
+      );
+    box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-primary-accent;
+  }
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-title-m);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+}
+
+.services {
+  display: grid;
+  // minmax(0, 1fr): колонки сжимаются вместе с контейнером (иначе intrinsic min
+  // раздувает родителя и container query не срабатывает).
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: base.$sn-primitive-dimension-4;
+
+  width: 100%;
+  min-width: 0;
+
+  &:not([data-mobile]) {
+    // Порог как в новом header: правая колонка при drawer ≈1024px (left ≈256 + paddings).
+    // Отдельного токена нет.
+    @container (width <= 728px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  // Mobile MainMenu: всегда одна колонка (drawer width/s), без auto-fit → 2 колонки.
+  &[data-mobile] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  // Иначе grid-элементы не сжимаются ниже intrinsic width и текст карточек не обрезается.
+  > * {
+    min-width: 0;
+  }
+}

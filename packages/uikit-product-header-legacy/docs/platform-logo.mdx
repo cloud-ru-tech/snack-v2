@@ -1,0 +1,99 @@
+---
+title: PlatformLogo
+package: '@ds/uikit-product-header-legacy'
+description: Иконка платформы — SVG-бейдж или Avatar с аббревиатурой.
+order: 4
+---
+
+import { Variants } from '../demos/examples/platform-logo/Variants'
+import VariantsSrc from '../demos/examples/platform-logo/Variants.tsx?raw'
+import { Compact } from '../demos/examples/platform-logo/Compact'
+import CompactSrc from '../demos/examples/platform-logo/Compact.tsx?raw'
+import { AvatarVariants } from '../demos/examples/platform-logo/AvatarVariants'
+import AvatarVariantsSrc from '../demos/examples/platform-logo/AvatarVariants.tsx?raw'
+import { AvatarName } from '../demos/examples/platform-logo/AvatarName'
+import AvatarNameSrc from '../demos/examples/platform-logo/AvatarName.tsx?raw'
+import { PlatformLogoDemo } from '../demos/PlatformLogoDemo'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# PlatformLogo
+
+Иконка платформы (Figma `platformSelectorIcons`). Используется в `PlatformSelector` и пунктах Droplist. При `avatarName` рендерится Avatar с инициалами вместо SVG-варианта — для mobile project selector.
+
+## Демо
+
+<PlatformLogoDemo client:visible />
+
+## Когда использовать
+
+- Нужна иконка платформы в селекторе или списке.
+- Для пунктов Droplist — `compact` (24×24 без padding).
+
+## Анатомия
+
+### Variant (default `evolution`)
+
+- `evolution` / `advanced` / `vmware` — SVG на accent-бейдже.
+- `partner` / `marketplace` — `@ds/avatar` squared («ПК» / «МА»).
+
+### Compact (default `false`)
+
+- `false` — бейдж 32×32 для trigger.
+- `true` — 24×24 для listItem (padding 0, Avatar size `s`).
+
+### AvatarName
+
+Опциональная строка для Avatar в trigger. При наличии перекрывает `variant`-иконку: рендерится squared Avatar с двумя символами из имени (например «Название проекта 1» → «НА»).
+
+Используется вместе с `PlatformSelector.avatarName` в mobile `leftTop` MainMenu (селектор проекта).
+
+Локализованные имена для `partner` / `marketplace` без `avatarName` берутся из `headerLegacyLocale` (`platformLogo.avatarName.*`).
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header-legacy
+```
+
+```ts
+import { PlatformLogo, VARIANT } from '@ds/uikit-product-header-legacy'
+```
+
+## Примеры использования
+
+<Example title='Варианты' description='Все значения VARIANT.' code={VariantsSrc}>
+  <Variants client:visible />
+</Example>
+
+<Example title='Compact' description='Размер для пунктов Droplist.' code={CompactSrc}>
+  <Compact client:visible />
+</Example>
+
+<Example title='Avatar-варианты' description='partner и marketplace.' code={AvatarVariantsSrc}>
+  <AvatarVariants client:visible />
+</Example>
+
+<Example
+  title='avatarName'
+  description='Произвольное имя для Avatar — как в mobile project selector.'
+  code={AvatarNameSrc}
+>
+  <AvatarName client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.PlatformLogo} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-layout-header-legacy-platform-logo--playground' height={320} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy', 'platform-logo')} />

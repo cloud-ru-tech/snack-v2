@@ -1,0 +1,31 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.scene {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  min-height: 720px;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.sceneCompact {
+  overflow: hidden;
+
+  width: 1099px;
+  height: 480px;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+.bannersRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  width: 100%;
+}
+
+.bannerItem {
+  flex: 1 1 0;
+  min-width: 0;
+}

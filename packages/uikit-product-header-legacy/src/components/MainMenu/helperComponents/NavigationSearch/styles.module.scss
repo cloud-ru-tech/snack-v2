@@ -1,0 +1,88 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/field.module' as field;
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+
+  width: 100%;
+  padding: base.$sn-primitive-dimension-4;
+}
+
+// Figma `fieldContainer` — оболочка места вызова. Не часть SearchPrivate: padding/min-height
+// зависят от контекста, поэтому остаются здесь, а не внутри `@ds/search-private`.
+.fieldContainer {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+
+  min-height: field.$sn-field-anatomy-size-m-fieldContainer-minHeight;
+  padding: field.$sn-field-anatomy-size-m-fieldContainer-paddingVertical field.$sn-field-anatomy-size-m-fieldContainer-paddingRight field.$sn-field-anatomy-size-m-fieldContainer-paddingVertical field.$sn-field-anatomy-size-m-fieldContainer-paddingLeft;
+}
+
+// Figma `contentWrapper` = корневой `styles.contentWrapper` в SearchPrivate.
+// При сверке с макетом идти от этого слоя наружу и проверять padding каждого родителя.
+.search {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  input::placeholder {
+    color: inherit;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &[data-size="m"] {
+    padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding 0;
+  }
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &[data-mobile] {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+
+    &[data-open-search] {
+      background-color: base.$sn-theme-color-neutral-background1Level;
+    }
+
+    & .searchWrapper {
+      padding: 0;
+    }
+  }
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.settingsSectionDivider {
+  width: 100%;
+}
+
+.settings {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+  align-self: stretch;
+
+  padding: base.$sn-primitive-dimension-4;
+}
+
+.mobileSearchButton[data-size="m"] {
+  border-radius: base.$sn-density-radius-2xs;
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}

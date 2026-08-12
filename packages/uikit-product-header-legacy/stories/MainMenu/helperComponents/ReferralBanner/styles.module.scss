@@ -1,0 +1,98 @@
+/**
+ * ReferralBanner — Figma `refferalBanner` (11755:234868) / `referalBannerMobile` (11755:234870).
+ * Card radius L + acrylic NeutralBackground1Level.
+ * Desktop: title/s + body/m; PromoTag xs absolute.
+ * Mobile: horizontal title + PromoTag (min-height 48); description hidden.
+ * Close: elevated button — hover/focus on desktop, always on mobile.
+ */
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.closeButton {
+  position: absolute;
+  z-index: 1;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+
+  @media (hover: hover) {
+    .root:not([data-mobile]) & {
+      visibility: hidden;
+    }
+  }
+}
+
+.composition {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: base.$sn-primitive-dimension-12;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-title-s);
+
+  width: 100%;
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+}
+
+.description {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  width: 100%;
+  min-height: base.$sn-primitive-dimension-40;
+  margin: 0;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+}
+
+.promoTag {
+  position: absolute;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+}
+
+.root {
+  position: relative;
+  width: 100%;
+
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    .closeButton {
+      visibility: visible;
+    }
+  }
+
+  &[data-mobile] {
+    .closeButton {
+      visibility: visible;
+    }
+
+    .composition {
+      flex-direction: row;
+      gap: base.$sn-primitive-dimension-4;
+      align-items: center;
+
+      min-height: base.$sn-primitive-dimension-48;
+      padding: 0 base.$sn-primitive-dimension-12;
+    }
+
+    .title {
+      width: auto;
+      white-space: nowrap;
+    }
+
+    .promoTag {
+      position: static;
+      flex-shrink: 0;
+    }
+  }
+}

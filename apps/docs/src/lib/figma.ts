@@ -13,6 +13,11 @@ const PRODUCT = {
   fileKey: 'VWNiBRIUmVXIWYlLzMxcs6',
   fileName: 'Product-UI-Kit--variables-',
 } as const;
+/** Legacy Header / navigation (FF-8692). */
+const PRODUCT_HEADER_LEGACY = {
+  fileKey: 'te3bVXwakjuUc3QTOfu9Mm',
+  fileName: 'FF-8692--navigation-',
+} as const;
 const INTERFACES_ICONS = {
   fileKey: 'WGeuaJKutP2gAFPThLAexW',
   fileName: 'Interfaces-icons--variables-',
@@ -276,6 +281,20 @@ export const FIGMA_NODES = {
     'field-chat': { ...PRODUCT, nodeId: '3033:16662' },
     'field-select-create': { ...PRODUCT, nodeId: '3033:16497' },
     // FieldMask Figma-ноды в 3033:1708 нет — стили из существующих токенов sn/field/*
+  },
+  'uikit-product-header-legacy': {
+    _: { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-156778' }, // privateElements
+    'header-layout': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-132133' }, // headerOld
+    'platform-logo': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-234475' }, // platformSelectorIcons
+    'platform-selector': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-138272' }, // navigationOldPlatformSelector
+    logo: { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-131753' }, // buttonSimpleNeutral + CloudLogo
+    'referral-banner': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-234868' }, // refferalBanner (desktop)
+    'marketplace-banner': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-234869' }, // marketplaceBanner (desktop)
+    'services-category': { ...PRODUCT_HEADER_LEGACY, nodeId: '11860-40249' }, // servicesCategory
+    'navigation-search': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-133944' }, // navigationOldSearch
+    'main-menu': { ...PRODUCT_HEADER_LEGACY, nodeId: '11755-155845' }, // navigationOldDrawer
+    'main-menu-mobile': { ...PRODUCT_HEADER_LEGACY, nodeId: '11778-41494' }, // navigationOldDrawerMobile
+    'new-navigation-banner': { ...PRODUCT_HEADER_LEGACY, nodeId: '11932-39781' }, // newNavigation
   },
   'uikit-product-price-summary': {
     _: { ...PRODUCT, nodeId: '2909-6589' },

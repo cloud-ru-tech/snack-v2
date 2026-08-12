@@ -1,0 +1,63 @@
+---
+title: Header Legacy
+package: '@ds/uikit-product-header-legacy'
+description: Legacy-шапка консоли на Snack V2 — HeaderLayout, Logo, MainMenu (desktop/mobile) и PlatformLogo.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+
+# Header Legacy
+
+`@ds/uikit-product-header-legacy` — поэтапная миграция legacy-шапки консоли на компоненты Snack V2: контейнер шапки, логотип, главное меню-drawer и иконка платформы.
+
+## Когда использовать
+
+- Нужна обратимо совместимая шапка и меню навигации старого кабинета на стеке `@ds/*`.
+- Собирается MainMenu с селектором платформ и категориями сервисов: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer.
+
+Когда **не** нужен пакет:
+
+- Новая продуктовая шапка без legacy-контрактов:
+  - используйте актуальные layout/header-пакеты Product UI Kit.
+- Отдельная карточка сервиса вне меню:
+  - используйте [`@ds/uikit-product-card-predefined`](/components/uikit-product-card-predefined).
+
+## Компоненты
+
+| Компонент | Назначение |
+| --- | --- |
+| [`HeaderLayout`](/components/uikit-product-header-legacy/header-layout) | Контейнер шапки: `menu`, `logo`, `select`, `breadcrumbs`, `toolbar` |
+| [`Logo`](/components/uikit-product-header-legacy/logo) | Брендовый логотип (Button + CloudLogo) |
+| [`MainMenu`](/components/uikit-product-header-legacy/main-menu) | Кнопка + адаптивный drawer (desktop две колонки / mobile одна) |
+| [`PlatformLogo`](/components/uikit-product-header-legacy/platform-logo) | Иконка платформы (SVG или Avatar по `avatarName`) |
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header-legacy
+```
+
+```ts
+import {
+  HeaderLayout,
+  Logo,
+  MainMenu,
+  PlatformLogo,
+  useSearch,
+  VARIANT,
+  HEADER_LOGO_MODE,
+} from '@ds/uikit-product-header-legacy'
+```
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy')} height={480} />
+
+## Смотри также
+
+- [`MainMenu`](/components/uikit-product-header-legacy/main-menu) — desktop/mobile drawer и слоты `leftTop` / `search`.
+- [`@ds/uikit-product-card-predefined`](/components/uikit-product-card-predefined) — `CardServiceLight` в сетке категорий.
+- [`@ds/drawer`](/components/drawer) — drawer, на котором собран MainMenu.
+- [`@ds/adaptive`](/components/adaptive) — `AdaptiveProvider` / `layoutType` для поверхности MainMenu.

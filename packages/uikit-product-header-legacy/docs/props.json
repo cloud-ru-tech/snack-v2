@@ -1,0 +1,653 @@
+{
+  "Content": {
+    "displayName": "Content",
+    "propsTypeName": null,
+    "props": {
+      "banners": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "favorite": {
+        "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
+        "required": false
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onLinkChange": {
+        "type": "((value: string) => void)",
+        "required": false
+      },
+      "searchValue": {
+        "type": "string",
+        "required": false
+      },
+      "serviceGroups": {
+        "type": "LinksGroup[]",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "HeaderLayout": {
+    "displayName": "HeaderLayout",
+    "propsTypeName": "HeaderLayoutProps",
+    "props": {
+      "breadcrumbs": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Хлебные крошки."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Переносит хлебные крошки под основную строку и скрывает селектор."
+      },
+      "logo": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Логотип платформы."
+      },
+      "menu": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Главное меню."
+      },
+      "select": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Селектор проекта."
+      },
+      "toolbar": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Панель действий в правой части."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Logo": {
+    "displayName": "Logo",
+    "propsTypeName": "LogoProps",
+    "description": "Логотип legacy Header (Figma: `buttonSimpleNeutral` + CloudLogo).\n\nВизуальная оболочка — `@ds/button` (neutral / simple / m, icon-only).\n`path` / `mode` / `loading` — функциональный слой из migration/header.\ndata-mode используется в e2e тестах",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневой кнопки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "href": {
+        "type": "string",
+        "required": true,
+        "description": "Ссылка логотипа."
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Состояние загрузки (spinner Button)."
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "develop",
+          "hybrid",
+          "prod",
+          "stage"
+        ],
+        "description": "Окружение: влияет на вариант брендового логотипа (legacy-extension).",
+        "typeRefs": [
+          "HeaderLogoMode"
+        ]
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLAnchorElement>",
+        "required": false,
+        "description": "Обработчик клика."
+      },
+      "path": {
+        "type": "string",
+        "required": false,
+        "description": "URL кастомной картинки логотипа. При ошибке загрузки — fallback на mode/prod."
+      }
+    },
+    "relatedTypes": {
+      "HeaderLogoMode": {
+        "kind": "union",
+        "values": [
+          "develop",
+          "hybrid",
+          "prod",
+          "stage"
+        ],
+        "own": true
+      }
+    }
+  },
+  "MainMenu": {
+    "displayName": "MainMenu",
+    "propsTypeName": "WithSupportProps",
+    "description": "Legacy MainMenu: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer.",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "favorite": {
+        "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
+        "required": false
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "leftTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "onLinkChange": {
+        "type": "((value: string) => void)",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "platformGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок — **после** `serviceGroups`,\n**перед** `settingItems`. Обычно `favoritesEnabled: false`."
+      },
+      "rightTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "search": {
+        "type": "SearchProps",
+        "required": false
+      },
+      "serviceGroups": {
+        "type": "LinksGroup[]",
+        "required": true,
+        "description": "Основные группы облачных сервисов (инфраструктура, сеть, хранилище и т.п.).\n\nВсегда видны в сетке карточек при пустом поиске; участвуют в избранном и боковой навигации.\nПри поиске фильтруются вместе с остальными группами и показываются **первыми** в выдаче."
+      },
+      "setOpen": {
+        "type": "((open: boolean) => void)",
+        "required": false
+      },
+      "settingItems": {
+        "type": "LinksGroup",
+        "required": false,
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+      },
+      "sidebarBottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Нижний слот левой колонки sidebar (Figma `bottom > items`)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MenuDesktop": {
+    "displayName": "MenuDesktop",
+    "propsTypeName": null,
+    "props": {
+      "favorite": {
+        "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
+        "required": false
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "leftTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "onLinkChange": {
+        "type": "((value: string) => void)",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "platformGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок — **после** `serviceGroups`,\n**перед** `settingItems`. Обычно `favoritesEnabled: false`."
+      },
+      "rightTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "search": {
+        "type": "SearchProps",
+        "required": false
+      },
+      "serviceGroups": {
+        "type": "LinksGroup[]",
+        "required": true,
+        "description": "Основные группы облачных сервисов (инфраструктура, сеть, хранилище и т.п.).\n\nВсегда видны в сетке карточек при пустом поиске; участвуют в избранном и боковой навигации.\nПри поиске фильтруются вместе с остальными группами и показываются **первыми** в выдаче."
+      },
+      "setOpen": {
+        "type": "((open: boolean) => void)",
+        "required": false
+      },
+      "settingItems": {
+        "type": "LinksGroup",
+        "required": false,
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+      },
+      "sidebarBottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Нижний слот левой колонки sidebar (Figma `bottom > items`)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MenuMobile": {
+    "displayName": "MenuMobile",
+    "propsTypeName": null,
+    "props": {
+      "favorite": {
+        "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
+        "required": false
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "leftTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "onLinkChange": {
+        "type": "((value: string) => void)",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "platformGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок — **после** `serviceGroups`,\n**перед** `settingItems`. Обычно `favoritesEnabled: false`."
+      },
+      "rightTop": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "search": {
+        "type": "SearchProps",
+        "required": false
+      },
+      "serviceGroups": {
+        "type": "LinksGroup[]",
+        "required": true,
+        "description": "Основные группы облачных сервисов (инфраструктура, сеть, хранилище и т.п.).\n\nВсегда видны в сетке карточек при пустом поиске; участвуют в избранном и боковой навигации.\nПри поиске фильтруются вместе с остальными группами и показываются **первыми** в выдаче."
+      },
+      "setOpen": {
+        "type": "((open: boolean) => void)",
+        "required": false
+      },
+      "settingItems": {
+        "type": "LinksGroup",
+        "required": false,
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+      },
+      "sidebarBottomSlot": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Нижний слот левой колонки sidebar (Figma `bottom > items`)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NavigationSearch": {
+    "displayName": "NavigationSearch",
+    "propsTypeName": null,
+    "description": "Поиск MainMenu (Figma: `navigationOldSearch` / `navigationOldSearchMobile`).\n\n- Desktop: https://www.figma.com/design/te3bVXwakjuUc3QTOfu9Mm/FF-8692--navigation-?node-id=11755-133944\n- Mobile: https://www.figma.com/design/te3bVXwakjuUc3QTOfu9Mm/FF-8692--navigation-?node-id=11778-40950\n\nПоле — `@ds/search-private`; фон — на корневом слое компонента, не на SearchPrivate.\nНа desktop кнопка настроек раскрывает чипы режима поиска (`ChipToggle`, size s).\nНа mobile поиск сначала свёрнут в кнопку, а настройки открываются в `BottomSheet`\nчерез адаптивный `Droplist`.\n\n## Граница SearchPrivate и слоёв Figma\n\nВ макете экземпляр поля выглядит как слой `search`, и из‑за отсутствия отдельных\nмакетов SearchPrivate его легко принять за корень примитива. По факту SearchPrivate\nначинается со слоя `contentWrapper`: родительский `fieldContainer` задаёт padding и\nmin-height, специфичные для места вызова, поэтому его нельзя включать внутрь\nSearchPrivate — он остаётся здесь (`styles.fieldContainer`).\n\nКорневой класс SearchPrivate совпадает с Figma: `styles.contentWrapper`\n(`packages/search-private/src/SearchPrivate.tsx`).\n\nПри добавлении или сверке SearchPrivate с макетом идти от `contentWrapper` наружу\nпо дереву слоёв и проверять padding и свойства каждого уровня у вызывающего кода.",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого контейнера."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onBlur": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек потери фокуса полем поиска."
+      },
+      "onChange": {
+        "type": "(value: string) => void",
+        "required": true,
+        "description": "Колбек изменения значения."
+      },
+      "onFocus": {
+        "type": "FocusEventHandler<HTMLInputElement>",
+        "required": false,
+        "description": "Колбек фокуса полем поиска."
+      },
+      "onOpenSearchChange": {
+        "type": "((open: boolean) => void)",
+        "required": false,
+        "description": "Только mobile: колбек смены раскрытого состояния поля поиска."
+      },
+      "onSelectedOptionChange": {
+        "type": "(id: string) => void",
+        "required": true,
+        "description": "Колбек смены режима поиска."
+      },
+      "onShowSettingsChange": {
+        "type": "((show: boolean) => void)",
+        "required": false,
+        "description": "Колбек смены видимости панели настроек."
+      },
+      "openSearch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Только mobile: раскрыто ли поле поиска (controlled). Без пропа — uncontrolled."
+      },
+      "options": {
+        "type": "NavigationSearchOption[]",
+        "required": true,
+        "description": "Опции режима поиска — чипы в раскрываемой панели настроек."
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Плейсхолдер поля поиска."
+      },
+      "selectedOption": {
+        "type": "string",
+        "required": true,
+        "description": "Выбранная опция (id из `options`)."
+      },
+      "showSettings": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать панель настроек (Figma `showSettings`, controlled). Без пропа — uncontrolled."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Только mobile: заголовок рядом с кнопкой открытия поиска."
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение строки поиска."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PlatformLogo": {
+    "displayName": "PlatformLogo",
+    "propsTypeName": "PlatformLogoProps",
+    "description": "Иконка платформы для legacy PlatformSelector (Figma: `platformSelectorIcons`).\n\nSVG-варианты (`evolution` / `advanced` / `vmware`) — accent-бейдж.\n`partner` / `marketplace` — `@ds/avatar` squared с аббревиатурами «ПК» / «МА».",
+    "props": {
+      "avatarName": {
+        "type": "string",
+        "required": false,
+        "description": "Имя для Avatar в trigger (Figma mobile project selector).\nПри наличии рендерится Avatar вместо SVG-иконки платформы."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "compact": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Компактный размер для пунктов Droplist (Figma listItem icon без padding, 24×24)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "variant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "advanced",
+          "evolution",
+          "marketplace",
+          "partner",
+          "vmware"
+        ],
+        "defaultValue": "evolution",
+        "description": "Вариант платформы (Figma `platformSelectorIcons` / variant).",
+        "typeRefs": [
+          "Variant"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "advanced",
+          "evolution",
+          "marketplace",
+          "partner",
+          "vmware"
+        ],
+        "own": true
+      }
+    }
+  },
+  "ServicesCategory": {
+    "displayName": "ServicesCategory",
+    "propsTypeName": null,
+    "description": "Категория сервисов MainMenu (Figma: `servicesCategory`).\n\nСетка карточек: desktop — 3 колонки → 2 при сжатии родителя (container query ≤728px);\nmobile — всегда 1 колонка.",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Карточки сервисов — обычно `@ds/uikit-product-card-predefined` `CardServiceLight`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого контейнера."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "description": "Занимает ли всю ширину"
+      },
+      "highlight": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Визуальное выделение категории (Figma `highlight`)."
+      },
+      "href": {
+        "type": "string",
+        "required": false,
+        "description": "URL заголовка. При наличии рендерится `TitleClickable` (`showArrow={false}`).\nБез `href`/`onTitleClick` — статичный title."
+      },
+      "onTitleClick": {
+        "type": "MouseEventHandler<HTMLElement>",
+        "required": false,
+        "description": "Клик по заголовку (legacy `label.onClick`)."
+      },
+      "showArrow": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать иконку-стрелку справа. Иконка автоматически меняется на `external link` при `target='_blank'`."
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок категории (Figma title/m)."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "getLinkEmblem": {
+    "displayName": "getLinkEmblem",
+    "propsTypeName": null,
+    "props": {
+      "aliases": {
+        "type": "string[]",
+        "required": true,
+        "description": "Синонимы для режима поиска «С синонимами» (fuzzy).\n\nВ режиме «Точный» (precise) не учитываются."
+      },
+      "badge": {
+        "type": "CardPromoTagProps",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false
+      },
+      "href": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка карточки.\n\nЕсли не задана, вместо иконки рендерится `Avatar` с двухбуквенным текстом по `label`\n(см. `getAvatarNameFromLabel`)."
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске)."
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки."
+      },
+      "onClick": {
+        "type": "(e?: MouseEvent<HTMLElement, MouseEvent> | undefined) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "renderLinkBeforeContent": {
+    "displayName": "renderLinkBeforeContent",
+    "propsTypeName": null,
+    "props": {
+      "aliases": {
+        "type": "string[]",
+        "required": true,
+        "description": "Синонимы для режима поиска «С синонимами» (fuzzy).\n\nВ режиме «Точный» (precise) не учитываются."
+      },
+      "badge": {
+        "type": "CardPromoTagProps",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "hidden": {
+        "type": "boolean",
+        "required": false
+      },
+      "href": {
+        "type": "string",
+        "required": false
+      },
+      "icon": {
+        "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+        "required": false,
+        "description": "Иконка карточки.\n\nЕсли не задана, вместо иконки рендерится `Avatar` с двухбуквенным текстом по `label`\n(см. `getAvatarNameFromLabel`)."
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске)."
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки."
+      },
+      "onClick": {
+        "type": "(e?: MouseEvent<HTMLElement, MouseEvent> | undefined) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "useMenuItems": {
+    "displayName": "useMenuItems",
+    "propsTypeName": null,
+    "props": {
+      "favorite": {
+        "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
+        "required": false
+      },
+      "platformGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок — **после** `serviceGroups`,\n**перед** `settingItems`. Обычно `favoritesEnabled: false`."
+      },
+      "search": {
+        "type": "SearchProps",
+        "required": false
+      },
+      "serviceGroups": {
+        "type": "LinksGroup[]",
+        "required": true,
+        "description": "Основные группы облачных сервисов (инфраструктура, сеть, хранилище и т.п.).\n\nВсегда видны в сетке карточек при пустом поиске; участвуют в избранном и боковой навигации.\nПри поиске фильтруются вместе с остальными группами и показываются **первыми** в выдаче."
+      },
+      "settingItems": {
+        "type": "LinksGroup",
+        "required": false,
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

@@ -324,6 +324,9 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-header-legacy/tsconfig.cjs.json"
     }
   ]
 }

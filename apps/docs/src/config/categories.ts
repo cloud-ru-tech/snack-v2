@@ -168,7 +168,13 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'layout',
       label: 'Layout',
       description: 'Раскладка продуктовых интерфейсов.',
-      packages: ['uikit-product-flex', 'uikit-product-layout', 'uikit-product-page-layout', 'uikit-product-header'],
+      packages: [
+        'uikit-product-flex',
+        'uikit-product-layout',
+        'uikit-product-page-layout',
+        'uikit-product-header',
+        'uikit-product-header-legacy',
+      ],
     },
   ],
   ai: [

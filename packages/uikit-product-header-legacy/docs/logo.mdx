@@ -1,0 +1,83 @@
+---
+title: Logo
+package: '@ds/uikit-product-header-legacy'
+description: Брендовый логотип шапки — Button neutral/simple с CloudLogo по режиму окружения.
+order: 2
+---
+
+import { Modes } from '../demos/examples/logo/Modes'
+import ModesSrc from '../demos/examples/logo/Modes.tsx?raw'
+import { Loading } from '../demos/examples/logo/Loading'
+import LoadingSrc from '../demos/examples/logo/Loading.tsx?raw'
+import { CustomHref } from '../demos/examples/logo/CustomHref'
+import CustomHrefSrc from '../demos/examples/logo/CustomHref.tsx?raw'
+import { LogoDemo } from '../demos/LogoDemo'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# Logo
+
+Логотип шапки (Figma `buttonSimpleNeutral` + CloudLogo). Оболочка — `@ds/button` (neutral / simple / m).
+
+## Демо
+
+<LogoDemo client:visible />
+
+## Когда использовать
+
+- Слот `logo` в [`HeaderLayout`](/components/uikit-product-header-legacy/header-layout).
+- Нужен брендовый знак с учётом окружения (`mode`) или кастомной картинки (`path`).
+
+## Анатомия
+
+### Mode (default `prod`)
+
+- `prod` — `CloudLogo`.
+- `develop` — `CloudLogoDev`.
+- `stage` — `CloudLogoStage`.
+- `hybrid` — `CloudLogoHybrid`.
+
+### Path и loading
+
+- `path` — кастомное изображение; при ошибке загрузки — fallback на `mode`.
+- `loading` — spinner Button.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header-legacy
+```
+
+```ts
+import { Logo, HEADER_LOGO_MODE } from '@ds/uikit-product-header-legacy'
+```
+
+## Примеры использования
+
+<Example title='Режимы окружения' description='Все значения HEADER_LOGO_MODE.' code={ModesSrc}>
+  <Modes client:visible />
+</Example>
+
+<Example title='Loading' description='loading показывает spinner.' code={LoadingSrc}>
+  <Loading client:visible />
+</Example>
+
+<Example title='Ссылка' description='Обязательный href на корневой Button-as-link.' code={CustomHrefSrc}>
+  <CustomHref client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.Logo} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-layout-header-legacy-logo--playground' height={320} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy', 'logo')} />

@@ -1,0 +1,125 @@
+/**
+ * PlatformSelector — Figma `navigationOldPlatformSelector` (12456:47883)
+ * и mobile `navigationOldPlatformSelectorMobile` (11755:234419).
+ * Trigger: PlatformLogo + description/label + chevron; open = focusedFrame + chevron вверх.
+ * Mobile: min-height 56 (desktop 48); список опций — адаптивный Droplist → BottomSheet.
+ */
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+// Обертка триггера Droplist/Dropdown — растягиваем на ширину слота (Figma 224 / 100% колонки).
+.triggerWrap {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex: 1 1 auto;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+.description {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  overflow: hidden;
+
+  width: 100%;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  @include base.composite-var(base.$sn-regular-title-s);
+
+  overflow: hidden;
+
+  width: 100%;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  transition: transform 0.15s ease-in-out;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+  z-index: 0;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-48;
+  margin: 0;
+  padding: 0 base.$sn-primitive-dimension-8;
+  border: none;
+  border-radius: base.$sn-density-radius-2xs;
+
+  text-align: left;
+  text-decoration: none;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+  outline: 0;
+  outline-offset: 0;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+  @include m.with-focus-frame('regular', 'inside');
+
+  // Figma mobile: navigationOldPlatformSelectorMobile — min-height 56.
+  &[data-mobile] {
+    min-height: base.$sn-primitive-dimension-56;
+  }
+
+  // Figma open: focusedFrame/regular/inside + chevron вверх.
+  &[data-open] {
+    @include m.focus-frame-styles('regular', 'inside');
+
+    .chevron {
+      transform: scaleY(-1);
+    }
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}

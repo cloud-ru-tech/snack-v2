@@ -1,0 +1,57 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}
+
+.banners {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: stretch;
+
+  width: 100%;
+
+  & > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  &[data-mobile] {
+    flex-direction: column;
+
+    & > * {
+      flex: none;
+      width: 100%;
+    }
+  }
+}
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.card {
+  min-width: 0;
+}
+
+.noData {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}

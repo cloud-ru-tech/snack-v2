@@ -1,0 +1,84 @@
+---
+title: HeaderLayout
+package: '@ds/uikit-product-header-legacy'
+description: Контейнер legacy-шапки со слотами menu, logo, select, breadcrumbs и toolbar.
+order: 1
+---
+
+import { Desktop } from '../demos/examples/header-layout/Desktop'
+import DesktopSrc from '../demos/examples/header-layout/Desktop.tsx?raw'
+import { Mobile } from '../demos/examples/header-layout/Mobile'
+import MobileSrc from '../demos/examples/header-layout/Mobile.tsx?raw'
+import { Minimal } from '../demos/examples/header-layout/Minimal'
+import MinimalSrc from '../demos/examples/header-layout/Minimal.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# HeaderLayout
+
+Контейнер legacy-шапки с обратимо совместимыми слотами `menu`, `logo`, `select`, `breadcrumbs` и `toolbar`. При `isMobile` селектор скрывается, хлебные крошки переносятся под основную строку.
+
+## Когда использовать
+
+- Нужна единая раскладка верхней полосы консоли с разделителями между слотами.
+- Desktop и mobile отличаются только положением breadcrumbs и видимостью `select`.
+
+Когда **не** нужен:
+
+- Полноценное боковое меню навигации:
+  - используйте [`MainMenu`](/components/uikit-product-header-legacy/main-menu).
+
+## Анатомия
+
+### Слоты
+
+- `menu` — триггер главного меню.
+- `logo` — брендовый логотип.
+- `select` — селектор проекта (скрывается при `isMobile`).
+- `breadcrumbs` — хлебные крошки (на mobile — под основной строкой).
+- `toolbar` — действия справа.
+
+### isMobile (default `false`)
+
+- `false` — одна строка: menu + logo + select + breadcrumbs | toolbar.
+- `true` — select скрыт, breadcrumbs во второй строке.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header-legacy
+```
+
+```ts
+import { HeaderLayout } from '@ds/uikit-product-header-legacy'
+```
+
+## Примеры использования
+
+<Example title='Desktop' description='Все слоты в одной строке.' code={DesktopSrc}>
+  <Desktop client:visible />
+</Example>
+
+<Example title='Mobile' description='isMobile скрывает select и переносит breadcrumbs.' code={MobileSrc}>
+  <Mobile client:visible />
+</Example>
+
+<Example title='Минимальный набор' description='Только menu, logo и toolbar.' code={MinimalSrc}>
+  <Minimal client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.HeaderLayout} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-layout-header-legacy-headerlayout--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header-legacy', 'header-layout')} />

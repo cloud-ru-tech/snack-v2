@@ -1,0 +1,19 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.plug {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-density-radius-xs;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-primary-decor;
+}

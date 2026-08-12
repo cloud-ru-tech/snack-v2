@@ -1,0 +1,98 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+
+.drawerMobile {
+  height: 100%;
+  min-height: 0;
+  /* stylelint-disable-next-line declaration-no-important */
+  background-color: base.$sn-theme-color-neutral-background !important;
+}
+
+.scrollBody {
+  height: 100%;
+  min-height: 0;
+}
+
+.scrollMobile {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
+}
+
+.header {
+  padding-top: base.$sn-primitive-dimension-12;
+}
+
+.leftTop {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.content {
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.searchItem {
+  position: sticky;
+  z-index: 1;
+  top: -0.5px;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  padding-bottom: base.$sn-primitive-dimension-4;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.bannersWrap {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  margin-top: base.$sn-primitive-dimension-4;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+// Figma `bottom` (navigationOldDrawerMobile): Divider + CardServiceLight (как MenuDesktop leftBottom).
+.bottom {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.bottomDivider {
+  width: 100%;
+  padding: list.$sn-list-anatomy-size-s-listItem-paddingVertical list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
+}
+
+.bottomItems {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
+.bottomCard {
+  width: 100%;
+}
