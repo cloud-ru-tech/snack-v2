@@ -165,17 +165,20 @@ $typography: (
     }
 
     &[data-disabled] {
+      // В макете гасится весь фрейм целиком, а не только контент: фон корня
+      // оставался в полную силу и не совпадал с китом.
+      opacity: base.$sn-theme-effect-opacity-disabled;
       background-color: base.$sn-theme-color-neutral-background;
 
       .toggleChipContent {
         color: base.$sn-theme-color-available-version-textMain;
-        opacity: base.$sn-theme-effect-opacity-disabled;
       }
     }
   }
 
-  // focus-visible через скрытый input
-  .toggleChipInput:focus-visible + .toggleChipContent {
+  // focus-visible через скрытый input. Комбинатор `~`, а не `+`: между input и контентом
+  // в разметке стоит `stateLayer`, и соседний селектор промахивался — рамки не было вовсе.
+  .toggleChipInput:focus-visible ~ .toggleChipContent {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
