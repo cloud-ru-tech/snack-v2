@@ -108,8 +108,9 @@ mobile-вьюпорте и всегда идут в столбик.
 Для произвольной разметки — `footer: ReactNode` (имеет приоритет над `approveButton` / `cancelButton`
 / `additionalButton` / `disclaimer`).
 
-### Dividers (default `withDividers=false`)
-Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а.
+### Dividers (default `withDividers=true`)
+Тонкие линии между topBar↔body и body↔footer. Разграничивают закреплённые шапку и подвал от
+прокручиваемого под ними содержимого. Передайте `withDividers={false}`, чтобы убрать обе линии.
 
 ### SafeArea (default `safeArea=true`)
 Блоки сверху/снизу, резервирующие место под iOS notch / home-indicator и Android nav-bar через

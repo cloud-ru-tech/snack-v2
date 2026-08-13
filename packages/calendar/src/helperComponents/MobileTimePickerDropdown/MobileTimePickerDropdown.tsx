@@ -98,6 +98,7 @@ export function MobileTimePickerDropdown({
     <>
       {trigger}
       <BottomSheet
+        withDividers={false}
         open={open ?? false}
         onClose={handleClose}
         onBackButtonClick={handleClose}

@@ -186,8 +186,8 @@
       "withDividers": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а,\nчтобы разграничить sticky-header / footer от плывущего контента."
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {

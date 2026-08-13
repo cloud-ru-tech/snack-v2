@@ -497,6 +497,7 @@ export function MobileCalendar({
           НЕ коммитит). Оверлей/свайп/Esc/стрелка назад (`handleBack`) — откат: время возвращается к снапшоту
           входа, шаг назад на календарь без применения (время применяется только кнопкой Apply, FF-8654 #4). */}
       <BottomSheet
+        withDividers={false}
         open={open && isTimeScreen}
         onClose={handleBack}
         closeOnPopstate={closeOnPopstate}

@@ -24,13 +24,7 @@ export type {
  * - `'fit-content'`   — высота по контенту (auto).
  */
 export type SnapPoint =
-  | number
-  | `${number}px`
-  | `${number}%`
-  | `${number}dvh`
-  | `${number}svh`
-  | `${number}lvh`
-  | 'fit-content';
+  number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | 'fit-content';
 
 export type BottomSheetCustomProps = WithSupportProps<
   PropsWithChildren<{
@@ -138,9 +132,9 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children'> & {
    */
   bodyPadding?: boolean;
   /**
-   * Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а,
-   * чтобы разграничить sticky-header / footer от плывущего контента.
-   * @default false
+   * Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал
+   * от прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии.
+   * @default true
    */
   withDividers?: boolean;
   /**

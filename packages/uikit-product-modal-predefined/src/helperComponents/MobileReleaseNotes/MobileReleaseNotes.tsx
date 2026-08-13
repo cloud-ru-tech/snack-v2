@@ -42,6 +42,8 @@ export function MobileReleaseNotes({
 
   return (
     <BottomSheet
+      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
+      withDividers={false}
       open={open}
       onClose={handleClose}
       closeOnPopstate={closeOnPopstate}

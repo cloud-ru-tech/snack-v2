@@ -38,6 +38,8 @@ export function MobileDrawer({
   // Футер собирает сам `BottomSheet`.
   return (
     <BottomSheet
+      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
+      withDividers={false}
       open={open}
       onClose={onClose}
       showBackdrop={showBlackout}

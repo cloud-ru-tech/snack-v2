@@ -146,7 +146,7 @@ export const Playground: Story = {
   args: {
     title: 'Bottom-sheet headline',
     showBackdrop: true,
-    withDividers: false,
+    withDividers: true,
     safeArea: true,
     swipeEnabled: true,
     closeOnPopstate: true,

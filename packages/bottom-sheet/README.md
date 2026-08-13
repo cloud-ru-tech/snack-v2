@@ -59,8 +59,9 @@ mobile-вьюпорте и всегда идут в столбик.
 Для произвольной разметки — `footer: ReactNode` (имеет приоритет над `approveButton` / `cancelButton`
 / `additionalButton` / `disclaimer`).
 
-### Dividers (default `withDividers=false`)
-Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а.
+### Dividers (default `withDividers=true`)
+Тонкие линии между topBar↔body и body↔footer. Разграничивают закреплённые шапку и подвал от
+прокручиваемого под ними содержимого. Передайте `withDividers={false}`, чтобы убрать обе линии.
 
 ### SafeArea (default `safeArea=true`)
 Блоки сверху/снизу, резервирующие место под iOS notch / home-indicator и Android nav-bar через
@@ -690,7 +691,7 @@ export function NonModal() {
 | `subtitle` | `ReactNode` | — | Текстовая строка-подзаголовок под title. |
 | `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `title` | `ReactNode` | — | Заголовок в шапке. |
-| `withDividers` | `boolean` | `false` | Тонкие линии между topBar↔body и body↔footer. Включайте для длинного scrollable content'а, <br/> чтобы разграничить sticky-header / footer от плывущего контента. |
+| `withDividers` | `boolean` | `true` | Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал <br/> от прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии. |
 
 #### Related types
 

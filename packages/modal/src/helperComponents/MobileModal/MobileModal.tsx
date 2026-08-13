@@ -44,6 +44,8 @@ export function MobileModal({
   // Футер собирает сам `BottomSheet`; при `loading` его скрываем (как на desktop).
   return (
     <BottomSheet
+      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
+      withDividers={false}
       open={open}
       onClose={onClose}
       title={title}
