@@ -163,6 +163,27 @@ test.describe('Table — visual regression', () => {
     expect(composite).toMatchSnapshot('sorted-before-after.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
+  // Колонка действий на строках без действий (status='invited'): ширина колонки держится
+  // невидимым якорем, правый pinned-разделитель остаётся прямым.
+  test('row actions column with rows without actions', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions));
+    await waitForFonts();
+
+    const headerRow = getByTestId(COMPONENT.headerRow);
+    const rows = getByTestId(COMPONENT.bodyRow);
+    await expect(rows.first()).toBeVisible();
+    await waitForSettledInViewport(rows.first());
+    await page.mouse.move(0, 0);
+
+    // Кадр — шапка + первые 5 строк: 4-я (u-4, invited) без действий, соседние с действиями.
+    const png = await screenshotRegion(
+      page,
+      [headerRow, rows.nth(0), rows.nth(1), rows.nth(2), rows.nth(3), rows.nth(4)],
+      INTERACTION_PADDING,
+    );
+    expect(png).toMatchSnapshot('row-actions-column.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
   test('open row actions droplist', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions));
     await waitForFonts();

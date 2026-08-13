@@ -77,15 +77,18 @@
   padding-top: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-top');
   padding-bottom: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-bottom');
 
-  color: base.$sn-theme-color-available-version-textTertiary;
+  // Подпись узла в Figma идёт основным цветом, как и текст соседних ячеек;
+  // приглушена там только шапка (см. `.treeHeaderContent`).
+  color: base.$sn-theme-color-available-version-textMain;
 
   &[data-multiselect] {
     cursor: default;
   }
 
+  // Цвет здесь не трогаем: в макете отключённая строка гасится прозрачностью
+  // на всех ячейках сразу (см. Rows/styles.module.scss), а не цветом одной колонки.
   &[data-disabled] {
     cursor: not-allowed;
-    color: base.$sn-theme-color-available-version-textDisabled;
   }
 }
 
@@ -110,9 +113,14 @@
     'width'
   );
 
+  // `max-*` обязателен: иконки из @ds/icons приходят с инлайновым размером,
+  // и он перебивает `width`/`height` из таблицы стилей (приём из @ds/button).
   svg {
     width: base.$sn-density-size-icon-s;
+    max-width: base.$sn-density-size-icon-s;
     height: base.$sn-density-size-icon-s;
+    max-height: base.$sn-density-size-icon-s;
+
     transition: transform 0.2s ease;
   }
 

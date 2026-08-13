@@ -3,7 +3,12 @@
 
 .tableBodyCell {
   gap: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'contentWrapper', 'slot', 'gap');
-  padding: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-top') base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-right') base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-bottom') base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-left');
+  // Отдельного узла `contentWrapper` в разметке нет, поэтому его вертикальный паддинг
+  // складываем с паддингом ячейки — в Figma высота набирается из обоих.
+  padding: calc(#{base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-top')} + #{base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'contentWrapper', 'padding-top')})
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-right')
+    calc(#{base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-bottom')} + #{base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'contentWrapper', 'padding-bottom')})
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-left');
   color: base.$sn-theme-color-available-version-textMain;
 
   &[data-align='right'] {

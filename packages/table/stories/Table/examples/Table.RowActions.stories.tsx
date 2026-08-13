@@ -22,12 +22,16 @@ function TableWithRowActions() {
       ...buildUserColumns({ withStatusColumn: true }),
       getRowActionsColumnDef<User>({
         pinned: true,
-        actionsGenerator: cell => [
-          {
-            content: { label: 'Удалить' },
-            onClick: () => setUsers(prev => prev.filter(user => user.id !== cell.row.original.id)),
-          },
-        ],
+        // Приглашённого пользователя удалять нечего — у таких строк действий нет.
+        actionsGenerator: cell =>
+          cell.row.original.status === 'invited'
+            ? []
+            : [
+                {
+                  content: { label: 'Удалить' },
+                  onClick: () => setUsers(prev => prev.filter(user => user.id !== cell.row.original.id)),
+                },
+              ],
       }),
     ],
     [],

@@ -4,10 +4,10 @@ import { dataTestIdSelector, StorybookUrlOptions, StoryRef } from '#playwright-t
 
 import { getPageNumberTestId } from '../../../pagination/src/constants';
 import { TEST_IDS as SKELETON_TEST_IDS } from '../../../skeleton/src/constants';
-import { DEFAULT_PAGE_SIZE } from '../../src/constants';
+import { DEFAULT_PAGE_SIZE, DefaultColumns } from '../../src/constants';
 import { TEST_IDS } from '../../stories/testIds';
 
-export { DEFAULT_PAGE_SIZE, getPageNumberTestId, TEST_IDS };
+export { DEFAULT_PAGE_SIZE, DefaultColumns, getPageNumberTestId, TEST_IDS };
 
 export const SKELETON_TEXT_LINE_TEST_ID = SKELETON_TEST_IDS.skeletonText.line;
 
@@ -35,6 +35,13 @@ export function headerCellById(page: Page, columnId: string): Locator {
   return page
     .locator(dataTestIdSelector(TEST_IDS.component.headerCell))
     .and(page.locator(`[data-header-id="${columnId}"]`));
+}
+
+/** Body-cell'ы колонки по всем строкам страницы — по `data-column-id` (аналог `headerCellById`). */
+export function bodyCellsByColumnId(page: Page, columnId: string): Locator {
+  return page
+    .locator(dataTestIdSelector(TEST_IDS.component.bodyCell))
+    .and(page.locator(`[data-column-id="${columnId}"]`));
 }
 
 /**

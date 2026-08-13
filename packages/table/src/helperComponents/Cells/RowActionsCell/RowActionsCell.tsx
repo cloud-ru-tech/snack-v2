@@ -5,7 +5,7 @@ import { MouseEvent, useCallback, useMemo } from 'react';
 
 import { RowAppearance } from '../../../components/types';
 import { COLUMN_PIN_POSITION, DefaultColumns, TEST_IDS } from '../../../constants';
-import { useRowContext } from '../../../contexts';
+import { useRowContext, useTableContext } from '../../../contexts';
 import { ColumnDefinition } from '../../../types';
 import { RowActionsButton } from './components';
 import styles from './styles.module.scss';
@@ -28,6 +28,7 @@ type RowActionsCellProps<TData> = {
 
 function RowActionsCell<TData>({ row, actions }: RowActionsCellProps<TData>) {
   const { dropListOpened, setDropListOpen, disabledRowAppearance } = useRowContext();
+  const { isCardsView } = useTableContext();
   const { layoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(layoutType);
 
@@ -49,9 +50,8 @@ function RowActionsCell<TData>({ row, actions }: RowActionsCellProps<TData>) {
   }, []);
 
   const canSelect = row.getCanSelect();
-  const shouldShowActions = isMobile
-    ? canSelect && Boolean(actions.length)
-    : canSelect || disabledRowAppearance !== RowAppearance.Disabled;
+  const shouldShowActions =
+    Boolean(actions.length) && (isMobile ? canSelect : canSelect || disabledRowAppearance !== RowAppearance.Disabled);
 
   const stopPropagationClick = (e: MouseEvent) => {
     e.stopPropagation();
@@ -70,7 +70,7 @@ function RowActionsCell<TData>({ row, actions }: RowActionsCellProps<TData>) {
       data-row-actions-wrap
       data-open={dropListOpened || undefined}
     >
-      {shouldShowActions && Boolean(actions.length) && (
+      {shouldShowActions ? (
         <Droplist
           trigger='click'
           open={dropListOpened}
@@ -82,6 +82,9 @@ function RowActionsCell<TData>({ row, actions }: RowActionsCellProps<TData>) {
         >
           <RowActionsButton />
         </Droplist>
+      ) : (
+        // Без якоря ячейка схлопывается по контенту и колонка сужается на строках без действий.
+        !isCardsView && <RowActionsButton variant='placeholder' />
       )}
     </div>
   );

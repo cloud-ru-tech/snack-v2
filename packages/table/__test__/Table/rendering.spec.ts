@@ -1,9 +1,11 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
 import {
+  bodyCellsByColumnId,
   buildStoryOptions,
   COMFORT_DENSITY_GLOBALS,
   DEFAULT_PAGE_SIZE,
+  DefaultColumns,
   getPageNumberTestId,
   TABLE_KEY_COMBOS,
   TABLE_STORIES,
@@ -17,6 +19,9 @@ import {
 
 // Playground args: data = SAMPLE_USERS (15 строк), pageSize = 10.
 const PLAYGROUND_PAGE_SIZE = 10;
+
+// RowActions story: у строк со status='invited' действий нет — 2 из 10 на первой странице.
+const ROW_ACTIONS_TRIGGER_COUNT = 8;
 
 const COMPONENT = TEST_IDS.component;
 
@@ -116,9 +121,24 @@ test.describe('Table — rendering', () => {
       await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(5);
     });
 
-    test('row actions: per-row droplist trigger renders', async ({ gotoStory, getByTestId }) => {
+    test('row actions: droplist trigger renders on rows that have actions', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions));
-      await expect(getByTestId(COMPONENT.rowActions.droplistTrigger)).toHaveCount(PLAYGROUND_PAGE_SIZE);
+      await expect(getByTestId(COMPONENT.rowActions.droplistTrigger)).toHaveCount(ROW_ACTIONS_TRIGGER_COUNT);
+    });
+
+    test('row actions: column keeps its width on rows without actions', async ({ page, gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions));
+      await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(PLAYGROUND_PAGE_SIZE);
+
+      const actionCells = bodyCellsByColumnId(page, DefaultColumns.RowActions);
+      await expect(actionCells).toHaveCount(PLAYGROUND_PAGE_SIZE);
+
+      const widths = await actionCells.evaluateAll(cells =>
+        cells.map(cell => Math.round(cell.getBoundingClientRect().width)),
+      );
+
+      expect(new Set(widths).size).toBe(1);
+      expect(widths[0]).toBeGreaterThan(0);
     });
 
     test('layoutType=mobile with defaultView=cards renders card list', async ({ gotoStory, getByTestId }) => {

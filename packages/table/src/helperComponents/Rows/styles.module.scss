@@ -252,6 +252,13 @@ $row-bg-tones: (
   background-color: base.$sn-theme-color-neutral-background;
 }
 
+// В макете гасится весь контент отключённой строки (slotScrollCell, cellTree, кнопка
+// действий, рамка чекбокса), а не одну колонку. Гасим ячейки, а не саму строку:
+// подложка живёт на строке и на закреплённой обёртке, её гасить нельзя.
+.bodyRow[data-row-appearance='disabled'] [role='cell'] {
+  opacity: base.$sn-theme-effect-opacity-disabled;
+}
+
 // Selected: activated state-layer (primary) поверх фона строки.
 // Вертикальный pinned-divider (border-color на .rowPinnedCells) не перекрашивается —
 // остаётся available-borderColor из базового правила.

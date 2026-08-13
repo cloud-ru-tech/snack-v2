@@ -51,7 +51,7 @@ export function getSelectionCellColumnDef<TData>(
     id: DefaultColumns.Selection,
     pinned: COLUMN_PIN_POSITION.Left,
     noBodyCellPadding: true,
-    noHeaderCellPadding: true,
+    noHeaderCellPadding: false,
     size: SELECTION_COLUMN_WIDTH,
     headerClassName: styles.selectionCellHeader,
     enableResizing: false,
