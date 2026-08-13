@@ -18,23 +18,22 @@
   color: base.$sn-theme-color-available-inversion-textMain;
   overflow-wrap: break-word;
 
-  background: base.$sn-theme-color-invertNeutral-background;
+  background: base.$sn-theme-color-invertNeutral-background2Level;
 
   &[data-disable-max-width='true'] {
     max-width: calc(100vw - #{base.$sn-primitive-dimension-16});
   }
 }
 
+// Отступ указателя от угла держит кламп floating-ui (`ARROW_EDGE_PADDING`), паддингом его дублировать нельзя.
 .pointerWrapper {
-  @include base.composite-var(tooltip.$tooltip, 'anatomy', 'pointer');
-
   position: absolute;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: base.$sn-theme-color-invertNeutral-background;
+  color: base.$sn-theme-color-invertNeutral-background2Level;
 }
 
 .pointerShape {
