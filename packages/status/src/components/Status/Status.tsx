@@ -72,7 +72,7 @@ export function Status({
       data-background={background || undefined}
     >
       <div className={styles.centeredWrapper}>{marker}</div>
-      <label className={styles.textWrapper} data-test-id={TEST_IDS.status.label}>
+      <label className={styles.label} data-test-id={TEST_IDS.status.label}>
         {/* TODO: <TruncateString> - компонент в работе */}
         {label}
         {/* </TruncateString> */}

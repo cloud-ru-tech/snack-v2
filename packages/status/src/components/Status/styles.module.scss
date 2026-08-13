@@ -7,11 +7,6 @@
 $sizes: 'xs', 's';
 $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
-$typography: (
-  'xs': base.$sn-regular-label-s,
-  's': base.$sn-regular-label-m,
-);
-
 
 .container {
   overflow: hidden;
@@ -28,9 +23,12 @@ $typography: (
     }
   }
 
-  // Мин-высота из composite-var держится только с фоном.
+  // Паддинги и мин-высота из composite-var держатся только с фоном: в макете у варианта
+  // без подложки отступов нет, лейбл начинается от индикатора.
   &:not([data-background]) {
     min-height: 0;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   &[data-background] {
@@ -56,15 +54,13 @@ $typography: (
   }
 }
 
-.textWrapper {
+// Лейбл лежит прямо в контейнере — отдельной обёртки текста в анатомии больше нет.
+// Текст-стиль единый для обоих размеров: label/s (11px).
+.label {
   flex-grow: 0;
   flex-shrink: 0;
 
-  @each $size in $sizes {
-    [data-size='#{$size}'] & {
-      @include base.composite-var($typography, $size);
-    }
-  }
+  @include base.composite-var(base.$sn-regular-label-s);
 
   @each $appearance in $appearances {
     [data-appearance='#{$appearance}'] & {
