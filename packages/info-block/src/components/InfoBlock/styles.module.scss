@@ -37,10 +37,11 @@ $sizes: 's', 'm', 'l';
     }
   }
 
+  // Центрирования по горизонтали в Figma нет: корень там фрейм фиксированной ширины,
+  // а место блока в потоке определяет родитель.
   &[data-align='vertical'] {
     flex-direction: column;
     align-items: center;
-    margin-inline: auto;
 
     .contentLayout {
       align-items: center;
