@@ -1,7 +1,7 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
 import { APPEARANCE, PLACEMENT } from '../../src/components/constants';
-import { TEST_IDS } from '../../src/components/testIds';
+import { TEST_IDS } from '../../stories/HotSpot/testIds';
 
 export { TEST_IDS };
 

@@ -89,7 +89,9 @@ export function HotSpot({
     >
       {children}
       <span className={styles.dotPlacementContainer} data-placement={placement} data-test-id={TEST_IDS.dotContainer}>
-        <span className={styles.hotSpotDotContainer}>{dotRender ? dotRender(dotJSX) : dotJSX}</span>
+        <span className={cn(styles.hotSpotDotContainer, dotRender && styles.hotSpotDotContainerInteractive)}>
+          {dotRender ? dotRender(dotJSX) : dotJSX}
+        </span>
       </span>
     </div>
   );

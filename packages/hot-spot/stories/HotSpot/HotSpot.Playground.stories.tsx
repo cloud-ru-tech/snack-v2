@@ -75,6 +75,7 @@ export const Playground: Story = {
   args: {
     children: (
       <Button
+        data-test-id={TEST_IDS.anchor}
         label='Уведомления'
         view='function'
         appearance='neutral'

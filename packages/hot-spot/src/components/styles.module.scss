@@ -22,6 +22,8 @@ $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
 }
 
 .dotPlacementContainer {
+  // Оверлей с точкой лежит поверх якоря — клики уходят в него, а не в индикатор.
+  pointer-events: none;
   position: absolute;
 
   &[data-placement='left'],
@@ -126,6 +128,11 @@ $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+}
+
+// Слот `dotRender` может нести интерактив (tooltip, кнопка) — ему события возвращаем.
+.hotSpotDotContainerInteractive {
+  pointer-events: auto;
 }
 
 @keyframes pulse {
