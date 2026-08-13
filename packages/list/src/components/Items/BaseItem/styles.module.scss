@@ -33,11 +33,15 @@ $sizes: 's', 'm', 'l';
 
   box-sizing: content-box;
 
-  color: base.$sn-theme-color-available-version-textSecondary;
+  color: base.$sn-theme-color-available-version-textTertiary;
 
+  // Слот зажимает иконку потребителя: инлайновый размер из `@ds/icons` перебивает `width: 100%`,
+  // и строка растёт. Приём тот же, что в `@ds/button`.
   svg {
     width: 100%;
+    max-width: 100%;
     height: 100%;
+    max-height: 100%;
   }
 }
 
@@ -73,7 +77,7 @@ $sizes: 's', 'm', 'l';
 }
 
 .afterContent {
-  color: base.$sn-theme-color-available-version-textTertiary;
+  color: base.$sn-theme-color-available-version-textSecondary;
 }
 
 .expandableIcon {
@@ -102,7 +106,8 @@ $sizes: 's', 'm', 'l';
   // из @ds/figma-variables — берём примитив dimension-8 напрямую.
   border-radius: base.$sn-primitive-dimension-8;
 
-  color: base.$sn-theme-color-available-version-textMain;
+  // Закрытым шеврон в макете приглушён (@0.80), сплошной `textMain` — только раскрытым.
+  color: base.$sn-theme-color-available-version-textSecondary;
 
   appearance: none;
   background: transparent;
@@ -124,6 +129,7 @@ $sizes: 's', 'm', 'l';
   // «квадратнее» под подложкой нажатия (варианты `groupIndicatorS/Xs`, `open=true`).
   &[data-open] {
     border-radius: base.$sn-primitive-dimension-2;
+    color: base.$sn-theme-color-available-version-textMain;
   }
 }
 
@@ -142,9 +148,14 @@ $sizes: 's', 'm', 'l';
   background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
 }
 
-.groupIndicator:active > .groupIndicatorState,
-.groupIndicator[data-open] > .groupIndicatorState {
+.groupIndicator:active > .groupIndicatorState {
   background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
+}
+
+// Раскрытая группа держит постоянную подложку `neutral/decorTransparent`,
+// а не pressed-слой состояния.
+.groupIndicator[data-open] > .groupIndicatorState {
+  background: base.$sn-theme-color-neutral-decorTransparent;
 }
 
 .markerContainer {
@@ -297,10 +308,10 @@ $level: var(--level, 0);
       background-color: base.$sn-theme-color-primary-accent;
     }
 
+    // В макете фокус выбранной строки красится в `primary/accent` в обоих режимах выбора,
+    // а не только в одиночном.
     .droplistItem:focus-visible {
-      &[data-variant='single'] {
-        outline-color: base.$sn-theme-color-primary-accent;
-      }
+      outline-color: base.$sn-theme-color-primary-accent;
     }
 
     &[data-disabled] {

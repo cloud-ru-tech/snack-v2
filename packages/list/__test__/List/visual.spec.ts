@@ -26,8 +26,8 @@ type InteractionState = 'default' | 'hover' | 'focus' | 'pressed';
 const STATES: ReadonlyArray<InteractionState> = ['default', 'hover', 'focus', 'pressed'];
 
 // Строки матрицы variant × state (`data-variant` item'а: single | multiple).
-// single checked — state-layer `activatedFilled` (зелёная тонировка + маркер),
-// multiple unchecked — `regularFilled` (серый hover/pressed) + чекбокс в кадре.
+// single checked — state-layer `activatedOnBackground` (зелёная тонировка + маркер),
+// multiple unchecked — `emptyNeutralOnBackground` (серый hover/pressed) + чекбокс в кадре.
 // `tabs` — сколько Tab нужно до корня соответствующего списка фикстуры: item'ы
 // вне tab-order (roving tabindex, Tab пропускает их через HiddenTabButton),
 // на item фокус спускает ArrowDown с корня списка.

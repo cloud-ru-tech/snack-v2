@@ -21,7 +21,7 @@ $sizes: 's', 'm', 'l';
   padding: 0;
 
   // Hover/pressed/focus через @ds/materials state-layer (регулярный фон + активированный для selected single).
-  // data-state переключается в BaseItem.tsx: regularFilled ↔ activatedFilled.
+  // data-state переключается в BaseItem.tsx: emptyNeutralOnBackground ↔ activatedOnBackground.
   @include m.has-state-layer-as-child(#{stateLayer});
 
   &[data-disabled],
@@ -34,21 +34,21 @@ $sizes: 's', 'm', 'l';
   &:not([data-inactive], [data-disabled]) {
     &[data-open],
     &[data-focused] {
-      .stateLayer[data-state='regularFilled'] {
+      .stateLayer[data-state='emptyNeutralOnBackground'] {
         background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
       }
 
-      .stateLayer[data-state='activatedFilled'] {
+      .stateLayer[data-state='activatedOnBackground'] {
         background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
       }
     }
 
     &:active {
-      .stateLayer[data-state='regularFilled'] {
+      .stateLayer[data-state='emptyNeutralOnBackground'] {
         background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
       }
 
-      .stateLayer[data-state='activatedFilled'] {
+      .stateLayer[data-state='activatedOnBackground'] {
         background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
       }
     }
@@ -60,8 +60,8 @@ $sizes: 's', 'm', 'l';
   &[data-inactive] {
     &:hover,
     &:active {
-      .stateLayer[data-state='regularFilled'],
-      .stateLayer[data-state='activatedFilled'] {
+      .stateLayer[data-state='emptyNeutralOnBackground'],
+      .stateLayer[data-state='activatedOnBackground'] {
         background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
       }
     }

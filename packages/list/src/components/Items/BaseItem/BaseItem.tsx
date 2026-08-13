@@ -174,7 +174,9 @@ export function BaseItem({
   }
 
   const stateLayerState =
-    isSelectionSingle && isChecked && !switchProp && !isParentNode ? 'activatedFilled' : 'regularFilled';
+    isSelectionSingle && isChecked && !switchProp && !isParentNode
+      ? 'activatedOnBackground'
+      : 'emptyNeutralOnBackground';
 
   const itemJSX = (
     <div

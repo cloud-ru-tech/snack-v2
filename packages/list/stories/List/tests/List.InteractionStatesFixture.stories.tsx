@@ -9,8 +9,8 @@ import styles from '../stories.module.scss';
 // Визуальная фикстура для composite `variant-state-matrix.png` (visual.spec.ts).
 // Псевдоклассовые состояния (:hover / :focus-visible / :active) нельзя выразить
 // в статичной VisualMatrix, поэтому обе строки матрицы рендерятся здесь детерминированно:
-// single checked (state-layer `activatedFilled`) и multiple unchecked
-// (state-layer `regularFilled` + чекбокс в кадре), а spec снимает
+// single checked (state-layer `activatedOnBackground`) и multiple unchecked
+// (state-layer `emptyNeutralOnBackground` + чекбокс в кадре), а spec снимает
 // default × hover × focus × pressed для каждой строки.
 const items: Item[] = [
   {
@@ -19,7 +19,7 @@ const items: Item[] = [
   },
 ];
 
-// Unchecked: hover/pressed в multiple-режиме меняют фон ряда (regularFilled),
+// Unchecked: hover/pressed в multiple-режиме меняют фон ряда (emptyNeutralOnBackground),
 // checked-чекбокс статикой уже покрыт в VM (секция «Selection mode × State»).
 const multipleItems: Item[] = [
   {
@@ -44,8 +44,8 @@ export const InteractionStatesFixture: Story = {
       <DemoPanel width='narrow'>
         <DemoTitle>InteractionStates fixture</DemoTitle>
         <DemoHint>
-          Две строки variant-state-matrix.png: single checked (activatedFilled) и multiple (regularFilled, чекбокс в
-          кадре).
+          Две строки variant-state-matrix.png: single checked (activatedOnBackground) и multiple
+          (emptyNeutralOnBackground, чекбокс в кадре).
         </DemoHint>
         <DemoActions align='center'>
           <div className={styles.listFrame}>
