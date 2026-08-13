@@ -46,7 +46,12 @@
   flex-direction: column;
 
   // Верхний зазор для не-full snap'ов: видна подложка (tap-to-dismiss) + уважение notch (min 32px).
-  max-height: calc(100% - max(#{base.$sn-primitive-dimension-32}, env(safe-area-inset-top)));
+  max-height: calc(
+    100% - max(
+        #{base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'safeArea', 'padding-top')},
+        env(safe-area-inset-top)
+      )
+  );
 
   transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
 
