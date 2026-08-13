@@ -11,7 +11,7 @@ $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  // В макете дорожка полупрозрачная (`available/borderColor` — #bcc3dc при 35%), а не сплошная:
+  // В макете дорожка полупрозрачная (`available/borderColor` — #9fa6c6 при 30%), а не сплошная:
   // она просвечивает подложку. На белом фоне разница с непрозрачным `neutral/decor` почти
   // незаметна, но на цветной поверхности расходится.
   background-color: base.$sn-theme-color-available-borderColor;

@@ -7,8 +7,8 @@
 $sizes: 'xs', 's';
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 $masks: (
-  /* <svg width="16" height="16"><rect x="1" y="1" width="14" height="14" rx="7" fill="white" /><circle cx="8" cy="8" r="5" fill="black" /></svg> */
-  'xs': url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0id2hpdGUiIC8+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjUiIGZpbGw9ImJsYWNrIiAvPjwvc3ZnPg=="),
+  /* <svg width="16" height="16"><rect x="2" y="2" width="12" height="12" rx="6" fill="white" /><circle cx="8" cy="8" r="4" fill="black" /></svg> */
+  'xs': url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiByeD0iNiIgZmlsbD0id2hpdGUiIC8+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjQiIGZpbGw9ImJsYWNrIiAvPjwvc3ZnPg=="),
   /* <svg width="24" height="24"><rect x="2" y="2" width="20" height="20" rx="10" fill="white" /><circle cx="12" cy="12" r="6" fill="black" /></svg> */
   's': url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMTAiIGZpbGw9IndoaXRlIiAvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjYiIGZpbGw9ImJsYWNrIiAvPjwvc3ZnPg=="),
 );
@@ -27,7 +27,9 @@ $masks: (
   
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      background: conic-gradient(base.simple-var(base.$sn-theme, 'color', $appearance, 'accent') var(--snack-progress-bar-circle-value), base.$sn-theme-color-neutral-decor 0);
+      // Дорожка — тот же токен, что у линейного варианта: в макете обе привязаны к одной
+      // переменной, полупрозрачной, чтобы просвечивала подложка.
+      background: conic-gradient(base.simple-var(base.$sn-theme, 'color', $appearance, 'accent') var(--snack-progress-bar-circle-value), base.$sn-theme-color-available-borderColor 0);
     }
   }
 }
