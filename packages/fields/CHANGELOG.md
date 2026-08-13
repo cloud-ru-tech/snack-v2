@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.2 (2026-08-13)
+
+### Bug Fixes
+
+- **LK-8204:** fix FieldSelect dropdown toggle on option deletion ([001c5ae](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/001c5aee612053ce2fe838612c460e9fa2aa46b6))
+
 ## 4.0.1 (2026-08-05)
 
 **Note:** Version bump only for package @ds/fields
