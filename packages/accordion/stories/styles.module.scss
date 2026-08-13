@@ -33,3 +33,11 @@
 
   margin: 0;
 }
+
+// Типографику содержимого компонент не задаёт (в Figma это слот целиком),
+// поэтому демо ставит её само: `regular/body/m` цветом `textMain`, как в макете.
+.content {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
