@@ -36,6 +36,9 @@ export function InfoBlock({
 }: InfoBlockProps) {
   const iconSize = SIZE_TO_ICON_SIZE[size];
 
+  // Пустые обёртки не рендерим: иначе их зазоры набегают там, где содержимого нет.
+  const hasText = Boolean(title || content);
+
   return (
     <div className={cn(styles.infoBlock, className)} data-size={size} data-align={align} {...extractSupportProps(rest)}>
       {icon && (
@@ -48,27 +51,31 @@ export function InfoBlock({
         />
       )}
 
-      <div className={styles.contentLayout}>
-        <div className={styles.textWrap}>
-          {title && (
-            <div className={styles.title} data-test-id={TEST_IDS.title}>
-              {title}
+      {(hasText || footer) && (
+        <div className={styles.contentLayout}>
+          {hasText && (
+            <div className={styles.textWrap}>
+              {title && (
+                <div className={styles.title} data-test-id={TEST_IDS.title}>
+                  {title}
+                </div>
+              )}
+
+              {content && (
+                <div className={styles.description} data-test-id={TEST_IDS.content}>
+                  {content}
+                </div>
+              )}
             </div>
           )}
 
-          {content && (
-            <div className={styles.description} data-test-id={TEST_IDS.content}>
-              {content}
+          {footer && (
+            <div className={styles.footer} data-test-id={TEST_IDS.footer}>
+              {footer}
             </div>
           )}
         </div>
-
-        {footer && (
-          <div className={styles.footer} data-test-id={TEST_IDS.footer}>
-            {footer}
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
