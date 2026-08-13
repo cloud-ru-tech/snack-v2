@@ -42,6 +42,7 @@ export function DesktopModal({
     (approveButton || cancelButton || additionalButton ? (
       <FooterActions
         surface='window'
+        size='l'
         approveButton={approveButton}
         cancelButton={cancelButton}
         additionalButton={additionalButton}

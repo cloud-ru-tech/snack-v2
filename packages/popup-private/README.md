@@ -13,7 +13,7 @@
 | `approveButton` | `BottomSheetActionButton` | — | Основная кнопка (по умолчанию `view='filled'`, `appearance='primary'`). |
 | `cancelButton` | `BottomSheetActionButton` | — | Кнопка отмены (по умолчанию `view='outline'`, `appearance='neutral'`). |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация кнопок при ровно двух действиях. |
-| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер кнопок футера. Задаётся на уровне группы (как в `ButtonGroup`), не по кнопке — <br/> в макетах все действия футера одного размера. Нужен потребителям с собственной осью <br/> размера (календарные дропдауны: 24 / 32 / 40 при s / m / l); у modal, drawer и <br/> bottom-sheet такой оси нет, и размер остаётся дефолтным. |
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер кнопок футера. Задаётся на уровне группы (как в `ButtonGroup`), не по кнопке — <br/> в макетах все действия футера одного размера. Нужен потребителям с собственной осью <br/> размера (календарные дропдауны: 24 / 32 / 40 при s / m / l). У modal, drawer и <br/> bottom-sheet своей оси нет, но кит рисует их футеры на `l` — эти поверхности <br/> передают `size='l'` явно. |
 | `surface` | `"bottomSheet"` \| `"window"` | `window` | Поверхность overlay'я — определяет раскладку кнопок: <br/> - `window` (desktop, дефолт): 1–2 кнопки компактно вправо, 3 — стопка (primary сверху). <br/> - `bottomSheet` (mobile): 1 → вправо, 2 → space-between, 3 → стопка с инверсией (primary внизу). |
 | `testIds` | `FooterActionsTestIds` | — | Идентификаторы слотов конкретного компонента (`bottom-sheet` / `modal` / `drawer`). |
 

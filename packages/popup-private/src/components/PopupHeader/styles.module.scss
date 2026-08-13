@@ -12,6 +12,9 @@
   box-sizing: border-box;
 
   &[data-surface='bottomSheet'] {
+    // В Figma слоты шапки BottomSheet разведены зазором (`itemSpacing = 2`); без него
+    // при трёх слотах шапка недобирала 4px.
+    gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'gap');
     padding-top: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'padding-top');
     padding-bottom: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'padding-bottom');
   }
