@@ -29,6 +29,23 @@ test.describe('Tree — visual regression', () => {
     await assertInteractionStatesSnapshot(page, { target: firstNode });
   });
 
+  // У выбранного узла своя палитра фокуса, поэтому снимок отдельный от default-узла.
+  test('interaction states (selected node)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await gotoStory(buildStoryOptions(TREE_STORIES.playground, { selected: 'apple' }));
+    await waitForFonts();
+
+    const selectedNode = getByTestId(TEST_IDS.tree.nodes.apple).getByTestId(TEST_IDS.treeNode.item).first();
+    await assertInteractionStatesSnapshot(page, {
+      target: selectedNode,
+      // Roving tabindex держит нулевой узел, поэтому до выбранного доходим стрелкой.
+      focusAction: async page => {
+        await page.keyboard.press('Tab');
+        await page.keyboard.press('ArrowDown');
+      },
+      snapshotName: 'interaction-states-selected.png',
+    });
+  });
+
   test('figma compare', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(TREE_STORIES.figmaCompare));
     await waitForFonts();
