@@ -3,38 +3,6 @@
 
 $sizes: 'xs', 's';
 
-@mixin internal-has-state-layer-as-child() {
-  & .dot > [data-state-layer] {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-
-    &[data-state='emptyNeutralOnBackground'] {
-      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
-    }
-  }
-
-  @media (hover: hover) {
-    &:hover:not([data-disabled], [data-loading]) {
-      & .dot > [data-state-layer] {
-        &[data-state='emptyNeutralOnBackground'] {
-          background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
-        }
-      }
-    }
-  }
-
-  /* stylelint-disable-next-line order/order */
-  &[data-loading],
-  &:active:not([data-disabled], [data-loading]) {
-    & .dot > [data-state-layer] {
-      &[data-state='emptyNeutralOnBackground'] {
-        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
-      }
-    }
-  }
-}
-
 .root {
   cursor: pointer;
 
@@ -62,6 +30,17 @@ $sizes: 'xs', 's';
         $size,
         'paginationSlider',
         'itemPaginationSlider'
+      );
+
+      // Фиксированная ширина: в макете растёт только точка внутри, сам элемент — нет.
+      width: base.simple-var(
+        pagination.$pagination,
+        'anatomy',
+        'size',
+        $size,
+        'paginationSlider',
+        'itemPaginationSlider',
+        'min-width'
       );
 
       &:not(&[data-activated]) {
@@ -139,12 +118,13 @@ $sizes: 'xs', 's';
       }
     }
   }
-
-  @include internal-has-state-layer-as-child();
 }
 
 .dot {
   position: relative;
+
+  // На hover точка шире контентной области элемента и в макете выходит за паддинг.
+  flex-shrink: 0;
 
   box-sizing: border-box;
   margin: 0;
