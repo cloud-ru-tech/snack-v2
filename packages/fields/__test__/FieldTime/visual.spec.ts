@@ -11,6 +11,7 @@ import {
   composeScreenshots,
   ScreenshotCell,
   screenshotRegion,
+  waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
 import {
@@ -23,7 +24,7 @@ import {
 
 // Внутренние id мобильной поверхности @ds/calendar (BottomSheet + барабан). Дублируем строками:
 // прямой импорт из @ds/calendar тянет CSS-modules и ломает playwright-compile.
-// FieldTime передаёт пикеру `data-test-id={`${root}__picker`}` → на mobile это id самого шита.
+// FieldTime передаёт пикеру `data-test-id={`${root}__picker`}` → на mobile это id самого BottomSheet.
 const MOBILE_PICKER_TEST_ID = 'field-time__picker';
 const DRUM_HOURS_TEST_ID = 'time-picker-drum__hours';
 const MOBILE_APPLY_TEST_ID = 'time-picker-mobile-apply';
@@ -100,9 +101,11 @@ test.describe('FieldTime — visual regression', () => {
     await frame('1. field closed');
 
     // 2. Тап по полю — BottomSheet с барабаном часов/минут/секунд.
+    //    `toBeVisible` проходит ещё до выезда BottomSheet — иначе снимок попадёт на пустой экран.
     await getByTestId(TEST_IDS.fieldTimeInput).click();
     await expect(getByTestId(MOBILE_PICKER_TEST_ID)).toBeVisible();
     await expect(getByTestId(DRUM_HOURS_TEST_ID)).toBeVisible();
+    await waitForSettledInViewport(getByTestId(MOBILE_PICKER_TEST_ID));
     await frame('2. open drum');
 
     // 3. Прокрутка барабана часов — значение времени меняется.
@@ -117,7 +120,7 @@ test.describe('FieldTime — visual regression', () => {
     await expect(drumTime).not.toHaveText(initialTime ?? '');
     await frame('3. time picked');
 
-    // 4. Apply — шит закрывается, поле показывает выбранное время.
+    // 4. Apply — BottomSheet закрывается, поле показывает выбранное время.
     await getByTestId(MOBILE_APPLY_TEST_ID).click();
     await expect(getByTestId(MOBILE_PICKER_TEST_ID)).toBeHidden();
     await frame('4. field applied');
