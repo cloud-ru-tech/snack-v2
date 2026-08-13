@@ -1,11 +1,10 @@
 import { ValueOf } from '@ds/utils';
 import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
-import { ICON_POSITION, SIZE, VARIANT } from './constants';
+import { ButtonSize, ButtonVariant } from '../../types';
+import { ICON_POSITION } from './constants';
 
-export type Variant = ValueOf<typeof VARIANT>;
 export type IconPosition = ValueOf<typeof ICON_POSITION>;
-export type Size = ValueOf<typeof SIZE>;
 
 export type BaseButtonProps = {
   /** Текст кнопки */
@@ -15,7 +14,7 @@ export type BaseButtonProps = {
   /** Позиция иконки относительно текста */
   iconPosition?: IconPosition;
   /** Размер */
-  size?: Size;
+  size?: ButtonSize;
   /** Отключена */
   disabled?: boolean;
   /** Состояние загрузки */
@@ -23,7 +22,7 @@ export type BaseButtonProps = {
   /** Дополнительный класс */
   className?: string;
   /** Вариант оформления */
-  variant?: Variant;
+  variant?: ButtonVariant;
   /** Инвертировать цвет фокусного контура */
   invertFocusOutlineColor?: boolean;
 };

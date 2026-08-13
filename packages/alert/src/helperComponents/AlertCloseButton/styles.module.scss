@@ -1,0 +1,80 @@
+/**
+ * Слоистая структура повторяет Figma-мастер `buttonClosedAlert*`:
+ * - Контейнер (relative)
+ * - Слой состояния (absolute, inset: 0) — `empty*`-вариант, прозрачный по умолчанию
+ * - Иконка (relative, поверх слоя)
+ */
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+@use '@ds/materials' as m;
+
+$sizes: 's', 'm';
+
+// Размер глифа внутри кнопки: s → icon-xs (16), m → icon-s (24).
+$glyphSizes: (
+  's': base.$sn-density-size-icon-xs,
+  'm': base.$sn-density-size-icon-s,
+);
+
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  background: none;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
+  &[data-invert-focus-outline-color]:focus-visible {
+    outline-color: base.$sn-theme-color-available-onComplementary;
+  }
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+
+      min-height: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'min-height');
+      border-radius: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
+
+      .icon > svg {
+        max-width: base.simple-var($glyphSizes, $size);
+        max-height: base.simple-var($glyphSizes, $size);
+      }
+    }
+  }
+}
+
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Иконка на обычном алерте — вторичный текст, на акцентной подложке alertTop — `neutral/onAccent`.
+.root[data-view='onColor'] .icon {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.root[data-view='onAccent'] .icon {
+  color: base.$sn-theme-color-neutral-onAccent;
+}

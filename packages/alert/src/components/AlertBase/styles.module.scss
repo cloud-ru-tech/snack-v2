@@ -37,7 +37,14 @@ $appearance-to-token: (
 // Рамка в макете одна для всех appearance — нейтральный волосок
 // `available/borderColor`, а не тонировка под цвет алерта.
 .root[data-outline] {
-  outline: base.$sn-theme-color-available-borderColor solid base.$sn-primitive-strokeWeight-strokeThin;
+  outline-color: base.$sn-theme-color-available-borderColor;
+  outline-style: solid;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      outline-width: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'border-width');
+    }
+  }
 }
 
 .root[data-variant='top'] {
@@ -265,5 +272,12 @@ $appearance-to-token: (
 .root[data-align='horizontal'] {
   .body {
     align-items: center;
+  }
+
+  // Зазор между текстом и блоком действий: в макете это `container/gap` корня.
+  @each $size in $sizes {
+    &[data-size='#{$size}'] .bodyActions {
+      margin-left: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'gap');
+    }
   }
 }

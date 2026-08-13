@@ -156,13 +156,15 @@ export function Collapsible() {
 
 - `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
 
+- `ButtonSize` = `"m"` \| `"s"`
+
+- `ButtonVariant` = `"onAccent"` \| `"onColor"`
+
 - `IconPosition` = `"after"` \| `"before"`
 
 - `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `Size` = `"m"` \| `"s"`
-
-- `Variant` = `"onAccent"` \| `"onColor"`
 
 ### Адаптивность
 
@@ -330,13 +332,15 @@ export function SystemNotice() {
 
 - `Appearance` = `"error"` \| `"info"` \| `"neutral"` \| `"primary"` \| `"success"` \| `"warning"`
 
+- `ButtonSize` = `"m"` \| `"s"`
+
+- `ButtonVariant` = `"onAccent"` \| `"onColor"`
+
 - `IconPosition` = `"after"` \| `"before"`
 
 - `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `Size` = `"m"` \| `"s"`
-
-- `Variant` = `"onAccent"` \| `"onColor"`
 
 ### Адаптивность
 

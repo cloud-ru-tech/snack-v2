@@ -1,14 +1,13 @@
-import { ChevronDownSVG, ChevronUpSVG, CrossSVG } from '@ds/icons/interface/system';
+import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, ReactElement, ReactNode, RefObject } from 'react';
 
-import { ALIGN, APPEARANCE, APPEARANCE_TO_THEME_COLOR, TEST_IDS } from '../../constants';
-import { Align, Appearance, Size } from '../../types';
+import { ALIGN, APPEARANCE, APPEARANCE_TO_THEME_COLOR, BUTTON_VARIANT, TEST_IDS } from '../../constants';
+import { AlertCloseButton } from '../../helperComponents/AlertCloseButton';
+import { Align, Appearance, ButtonVariant, Size } from '../../types';
 import { AlertButton, AlertButtonProps } from '../AlertButton';
-import { VARIANT } from '../AlertButton/constants';
-import { Variant } from '../AlertButton/types';
 import { useAlertCollapse } from './hooks';
 import styles from './styles.module.scss';
 import { getAlertAppearanceIcon } from './utils';
@@ -53,13 +52,12 @@ export type AlertSharedFieldProps = {
 type AlertBaseCommonProps = WithSupportProps<AlertSharedFieldProps>;
 
 type AlertBaseProps =
-  | (AlertBaseCommonProps & { variant: 'inline'; outline?: boolean })
-  | (AlertBaseCommonProps & { variant: 'top' });
+  (AlertBaseCommonProps & { variant: 'inline'; outline?: boolean }) | (AlertBaseCommonProps & { variant: 'top' });
 
 type RenderFooterActionButtonsProps = {
   actions: NonNullable<AlertSharedFieldProps['actions']>;
   size: Size;
-  buttonVariant: Variant;
+  buttonVariant: ButtonVariant;
   invertFocusOutlineColor: boolean;
 };
 
@@ -110,9 +108,10 @@ export function AlertBase(props: AlertBaseProps) {
   const isTop = variant === 'top';
   const themeColor = APPEARANCE_TO_THEME_COLOR[appearance];
   const testIds = isTop ? TEST_IDS.alertTop : TEST_IDS.alert;
-  const buttonVariant = isTop ? VARIANT.OnAccent : VARIANT.OnColor;
+  const buttonVariant = isTop ? BUTTON_VARIANT.OnAccent : BUTTON_VARIANT.OnColor;
   const inlineColorProps = !isTop ? { 'data-color': themeColor } : {};
-  const invertFocusOutlineColor = isTop && appearance === APPEARANCE.Neutral;
+  // В макете `focusedFrame/regularInversion` стоит у всех шести сетов alertTop, не только у neutral.
+  const invertFocusOutlineColor = isTop;
 
   const hasFooterActions = Boolean(actions?.primary || actions?.secondary);
 
@@ -185,9 +184,8 @@ export function AlertBase(props: AlertBaseProps) {
   );
 
   const closeButton = onClose && showCloseButton && (
-    <AlertButton
+    <AlertCloseButton
       data-test-id={testIds.closeButton}
-      icon={<CrossSVG />}
       onClick={handleOnClose}
       size={size}
       variant={buttonVariant}

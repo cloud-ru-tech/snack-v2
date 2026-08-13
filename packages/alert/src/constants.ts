@@ -19,6 +19,16 @@ export const SIZE = {
   M: 'm',
 } as const;
 
+export const BUTTON_SIZE = {
+  S: 's',
+  M: 'm',
+} as const;
+
+export const BUTTON_VARIANT = {
+  OnColor: 'onColor',
+  OnAccent: 'onAccent',
+} as const;
+
 /** Ключ темы для фона/иконки inline Alert (data-color) */
 export const TEST_IDS = {
   alert: {

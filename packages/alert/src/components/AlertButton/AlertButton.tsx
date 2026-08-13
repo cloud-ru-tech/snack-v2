@@ -4,7 +4,8 @@ import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactElement } from 'react';
 
-import { ICON_POSITION, VARIANT } from './constants';
+import { BUTTON_SIZE, BUTTON_VARIANT } from '../../constants';
+import { ICON_POSITION } from './constants';
 import styles from './styles.module.scss';
 import { AlertButtonProps } from './types';
 import { getVariant } from './utils';
@@ -16,8 +17,8 @@ export function AlertButton<T extends ElementType = 'button'>({
   label,
   icon,
   iconPosition = ICON_POSITION.Before,
-  variant: variantProp = VARIANT.OnColor,
-  size = 'm',
+  variant: variantProp = BUTTON_VARIANT.OnColor,
+  size = BUTTON_SIZE.M,
   disabled = false,
   loading = false,
   as,
@@ -78,7 +79,7 @@ export function AlertButton<T extends ElementType = 'button'>({
       <span
         className={styles.stateLayer}
         aria-hidden
-        data-state={variantProp === 'onColor' ? 'onColorFilled' : 'onAccentFilled'}
+        data-state={variantProp === 'onColor' ? 'versionOnColor' : 'inversionOnColor'}
       />
 
       <span className={styles.content}>
