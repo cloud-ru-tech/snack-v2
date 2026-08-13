@@ -92,7 +92,6 @@ const preview: Preview = {
       // JSDoc на каждом пропе подтягивается через react-docgen-typescript.
       expanded: true,
       matchers: {
-        color: /(background|color)$/i,
         date: /date$/i,
       },
     },
