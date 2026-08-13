@@ -336,9 +336,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     }
   }, [multiple, props, selectedPairs, setInputValue, required, open, handleOpenChange]);
 
-  const handleRemoveChip = useCallback(
-    (id: ItemId) => (e: MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
+  const removeChip = useCallback(
+    (id: ItemId) => {
       if (!multiple) {
         return;
       }
@@ -357,6 +356,14 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       props.onChange?.(next);
     },
     [multiple, multipleValue, props, selectedPairs],
+  );
+
+  const handleRemoveChip = useCallback(
+    (id: ItemId) => (e: MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      removeChip(id);
+    },
+    [removeChip],
   );
 
   const hasValue = multiple ? multipleValue.length > 0 : singleValue !== undefined;
@@ -445,7 +452,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     if (event.key === 'Backspace' && removeByBackspace && multiple && inputValue === '' && multipleValue.length > 0) {
       event.preventDefault();
       const last = multipleValue[multipleValue.length - 1];
-      handleRemoveChip(last);
+      removeChip(last);
     }
   };
 
