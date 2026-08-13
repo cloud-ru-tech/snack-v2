@@ -39,23 +39,27 @@ export const VisualMatrix: Story = {
         }))}
       />
 
+      {/* Одна строка: `loading` принудительно переводит маркер в `neutral`,
+          поэтому строки по appearance были бы неотличимы друг от друга. */}
       <StoryTable
         sectionTitle='Loading × Size'
-        firstColumnHeader=''
+        firstColumnHeader='State'
         columnHeaders={keySizesAndBackground.map(
           ([size, background]) => `${size} ${background ? 'с фоном' : 'без фона'}`,
         )}
-        rows={keyAppearances.map(appearance => ({
-          variantLabel: appearance,
-          cells: keySizesAndBackground.map(([size, background]) => (
-            <Status key={size} size={size} appearance={appearance} label='Label text' background={background} loading />
-          )),
-        }))}
+        rows={[
+          {
+            variantLabel: 'loading',
+            cells: keySizesAndBackground.map(([size, background]) => (
+              <Status key={size} size={size} label='Label text' background={background} loading />
+            )),
+          },
+        ]}
       />
 
       <StoryTable
         sectionTitle='Progress × Size'
-        firstColumnHeader=''
+        firstColumnHeader='Appearance'
         columnHeaders={keySizesAndBackground.map(
           ([size, background]) => `${size} ${background ? 'с фоном' : 'без фона'}`,
         )}
