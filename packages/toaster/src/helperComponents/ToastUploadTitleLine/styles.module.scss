@@ -1,10 +1,11 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
 
+// Строка заголовка в Figma идёт встык: зазор 4 принадлежит блоку общего прогресса
+// (`.generalProgress` ниже), а не самой строке.
 .titleLine {
   display: flex;
   flex-direction: column;
-  gap: toaster.$sn-toaster-anatomy-toast-upload-container-titleLine-generalProgress-gap;
 }
 
 .titleLineBody {

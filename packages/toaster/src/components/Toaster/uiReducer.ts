@@ -102,7 +102,7 @@ export function uiReducer(state: UiState, action: UiAction): UiState {
       };
 
     case 'toasts:emptied':
-      return state.touchPaused ? { ...state, touchPaused: false } : state;
+      return state.hovered || state.touchPaused ? { ...state, hovered: false, touchPaused: false } : state;
 
     default:
       return state;

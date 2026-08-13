@@ -46,7 +46,12 @@ export function useTimerSync({
   frontId,
   visibleIdsKey,
 }: SyncOptions): void {
-  const hiddenIdsKey = hiddenByLimit.map(t => t.id).join(',');
+  // Статус в ключе обязателен. `open()` заводит close-таймер сам, когда тост
+  // переходит entering→visible, — в том числе тосту, который контейнер прячет
+  // за `limit`. Без статуса этот переход не менял ключ, эффект не перезапускался
+  // и скрытый тост дожигал своё время невидимым: до зрителя он доезжал с
+  // остатком (3, 2, 1) вместо полного отсчёта.
+  const hiddenIdsKey = hiddenByLimit.map(t => `${t.id}:${t.status}`).join(',');
   useEffect(() => {
     const pause = (id: ManagedToast['id']) => toasterManager.pauseToast(id, containerId);
     const play = (id: ManagedToast['id']) => toasterManager.playToast(id, containerId);

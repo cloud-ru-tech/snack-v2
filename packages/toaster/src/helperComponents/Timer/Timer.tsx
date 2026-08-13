@@ -72,7 +72,6 @@ export function Timer({ duration = DEFAULT_DURATION, className }: TimerProps) {
         aria-hidden='true'
         focusable='false'
       >
-        <circle className={styles.track} cx={CENTER} cy={CENTER} r={RADIUS} fill='none' strokeWidth={STROKE_WIDTH} />
         <circle
           className={styles.indicator}
           cx={CENTER}

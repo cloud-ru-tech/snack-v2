@@ -1,10 +1,10 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
 
+// В Figma у строки файла только вертикальные паддинги, зазора между её частями нет.
 .fileLine {
   display: flex;
   flex-direction: column;
-  gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
 
   padding-top: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
   padding-bottom: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-paddingVertical;
@@ -74,9 +74,10 @@
   color: base.$sn-theme-color-available-inversion-textTertiary;
 }
 
+// `fileSize-gap` в Figma — зазор внутри самой подписи размера, а не отступ до неё:
+// расстояние до предыдущего элемента даёт `statusLine-gap` родителя.
 .fileSize {
   flex-shrink: 0;
-  margin-left: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-fileSize-gap;
   color: base.$sn-theme-color-available-inversion-textTertiary;
 
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');

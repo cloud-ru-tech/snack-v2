@@ -138,10 +138,10 @@ export function ToasterContainer(rawProps: ToasterProps) {
     visibleIdsKey,
   });
 
-  // Когда тосты кончились — снимаем sticky-pause, иначе следующий тост
+  // Когда тосты кончились — снимаем паузу (hover и sticky), иначе следующий тост
   // прилетит уже на паузе и будет висеть бесконечно. Зависим от ссылки
   // на массив (а не от `.length`), чтобы exhaustive-deps был честным;
-  // reducer no-op'ит, если touchPaused уже false, так что лишний dispatch
+  // reducer no-op'ит, если пауз уже нет, так что лишний dispatch
   // на каждый rerender безопасен.
   useEffect(() => {
     if (visibleToasts.length === 0) dispatch({ type: 'toasts:emptied' });

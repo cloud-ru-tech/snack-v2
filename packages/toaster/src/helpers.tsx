@@ -105,10 +105,6 @@ function getToasterRoot({
   };
 }
 
-function hasOwnAutoClose(o: object): o is { autoClose?: number | false } {
-  return Object.prototype.hasOwnProperty.call(o, 'autoClose');
-}
-
 function resolveAutoClose<T extends keyof ToasterPropsMap>({
   type,
   toasterProps,
@@ -122,17 +118,17 @@ function resolveAutoClose<T extends keyof ToasterPropsMap>({
 }): number | false {
   if (toasterProps && 'loading' in toasterProps && toasterProps.loading) return false;
   // Каскад: per-toast options → container-level default → AUTO_CLOSE_TIME[type].
-  if (toastOptions && hasOwnAutoClose(toastOptions)) {
-    return toastOptions.autoClose ?? false;
+  if (toastOptions?.autoClose !== undefined) {
+    return toastOptions.autoClose;
   }
   // Upload закрывается только пользователем (per-toast autoClose уже выше).
   if (type === TOASTER_TYPE.Upload) {
     return false;
   }
   if (containerId) {
-    const containerDefaults = toasterManager.getContainerDefaults(containerId);
-    if (hasOwnAutoClose(containerDefaults)) {
-      return containerDefaults.autoClose ?? false;
+    const { autoClose } = toasterManager.getContainerDefaults(containerId);
+    if (autoClose !== undefined) {
+      return autoClose;
     }
   }
   return AUTO_CLOSE_TIME[type];

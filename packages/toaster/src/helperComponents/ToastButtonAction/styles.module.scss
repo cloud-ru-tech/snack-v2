@@ -33,9 +33,9 @@
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
       base.$sn-theme-color-available-onComplementary;
-    // Обводка ложится вплотную к кнопке: в мастере focusedFrame — stroke OUTSIDE
-    // без зазора (габарит рамки = размер кнопки + толщина с каждой стороны).
-    outline-offset: 0;
+    // В Figma у кнопок `focusedFrame*/outsideOffset`: рамка снаружи с зазором
+    // в толщину штриха.
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 }
 

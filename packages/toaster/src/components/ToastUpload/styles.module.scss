@@ -9,7 +9,7 @@ $list-max-height: 240px;
 .container {
   display: flex;
   flex-direction: column;
-  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-actions-gap;
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-gap;
 
   box-sizing: border-box;
   width: 100%;

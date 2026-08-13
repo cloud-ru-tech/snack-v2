@@ -43,6 +43,10 @@ export const TEST_IDS = {
     upload: 'update-flow-upload',
     triggerReset: 'toaster-update-flow-dismiss-all',
   },
+  // TimerPhase — демонстрация промежуточной фазы кольца отсчёта.
+  timerPhase: {
+    triggerOpen: 'toaster-timer-phase-spawn',
+  },
   // Composition (бывш. Mobile).
   composition: {
     size: 'toaster-mobile-size',

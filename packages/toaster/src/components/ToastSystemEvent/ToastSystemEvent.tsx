@@ -83,8 +83,10 @@ export function ToastSystemEvent({
               truncateVariant='end'
               onClick={link.onClick}
               appearance={APPEARANCE_TO_LINK_APPEARANCE[appearance]}
-              role={appearance === 'errorCritical' ? 'onAccent' : 'regular'}
-              underlined
+              // `role` здесь — проп @ds/link (regular | onAccent), а не ARIA-роль,
+              // поэтому правило jsx-a11y к нему неприменимо.
+              // eslint-disable-next-line jsx-a11y/aria-role
+              role='onAccent'
               className={styles.link}
               data-test-id={TEST_IDS.systemEventLink}
             />

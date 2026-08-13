@@ -6,7 +6,7 @@ $bar-backgrounds: (
   'error': base.$sn-theme-color-red-accent,
   'warning': base.$sn-theme-color-yellow-accent,
   'success': base.$sn-theme-color-green-accent,
-  'errorCritical': base.$sn-theme-color-red-onAccent,
+  'errorCritical': base.$sn-theme-color-red-decor,
 );
 
 // scaleX полоски задаётся inline из React (`useToastProgress`).

@@ -1,8 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/toaster.module' as toaster;
 
-$gap-title-description: base.$sn-primitive-dimension-4;
-
 $icon-colors: (
   'neutral': base.$sn-theme-color-invertNeutral-accent,
   'error': base.$sn-theme-color-red-accent,
@@ -30,6 +28,8 @@ $icon-colors: (
 
   background: base.$sn-theme-color-invertNeutral-background2Level;
 
+  // На красной подложке весь текст идёт `red/onAccent`: в Figma заголовок,
+  // описание и подписи кнопок — #fffaf7 (`290:507`).
   &[data-appearance='errorCritical'] {
     color: base.$sn-theme-color-red-onAccent;
     background: base.$sn-theme-color-red-accent;
@@ -68,15 +68,15 @@ $icon-colors: (
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-content-gap;
 
+  // В Figma ссылка лежит в том же нулевом столбце, что заголовок и описание.
   min-width: 0;
 }
 
+// Заголовок и описание в Figma идут встык, без зазора.
 .text {
   display: flex;
   flex-direction: column;
-  gap: $gap-title-description;
 }
 
 .title {

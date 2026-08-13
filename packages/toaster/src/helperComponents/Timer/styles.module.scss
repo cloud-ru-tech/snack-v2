@@ -31,29 +31,15 @@
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 's');
 }
 
-.track {
-  opacity: 0.2;
-  stroke: currentcolor;
-  stroke-width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth;
-}
+// Подложки под дугой нет: в Figma таймер — одно кольцо (`7111:245`), и истёкшая
+// часть остаётся пустой. Сплошная дорожка закрывала эту пустоту, из-за чего
+// отсчёт читался как целый круг.
 
-// stroke-dashoffset управляется из React (`useToastProgress`). CSS только
-// сглаживает дискретный шаг rAF — `transition` маскирует «прыжки» между
-// тиками, не сбивая фактический прогресс. Пауза/hover на менеджере дают
-// `live.running === false`, обновления state прекращаются и offset остаётся
-// замороженным — без отдельного CSS-правила play-state.
+// Без transition на stroke-dashoffset: React обновляет offset каждый кадр, а
+// транзишен перебивал бы атрибут своим значением и на нагруженной странице
+// залипал на стартовом `0` — кольцо оставалось полным при живой цифре.
 .indicator {
   stroke: currentcolor;
   stroke-linecap: round;
   stroke-width: toaster.$sn-toaster-anatomy-toast-userAction-container-timer-borderWidth;
-  transition: stroke-dashoffset 80ms linear;
-}
-
-// Reduced motion: убираем сглаживание stroke-dashoffset. Сам offset
-// обновляется из React, поэтому отсчёт остаётся живым — пропадает только
-// межкадровая интерполяция.
-@media (prefers-reduced-motion: reduce) {
-  .indicator {
-    transition: none;
-  }
 }

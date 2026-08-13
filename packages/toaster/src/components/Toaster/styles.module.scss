@@ -398,7 +398,8 @@ $anchor-positions: (
   pointer-events: auto;
 
   display: flex;
-  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-actions-gap;
+  // В Figma блок кнопок стека разделён зазором контейнера (8), не зазором действий (4).
+  gap: toaster.$sn-toaster-anatomy-toast-systemEvent-container-gap;
   justify-content: space-between;
 
   width: toaster.$sn-toaster-anatomy-toast-systemEvent-container-maxWidth;

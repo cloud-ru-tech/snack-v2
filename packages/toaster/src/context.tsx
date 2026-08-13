@@ -49,6 +49,7 @@ export function useToastProgress(): ToastProgressState {
       if (!snap) {
         // Тост удалён — финальное обновление и выходим.
         if (stateRef.current !== INITIAL) setState(INITIAL);
+        raf = requestAnimationFrame(tick);
         return;
       }
       let next: ToastProgressState;
