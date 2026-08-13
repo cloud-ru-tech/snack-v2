@@ -30,12 +30,7 @@ export function DesktopStepper({
   const stepper = (
     <div className={cn(styles.stepper, className)} data-test-id={testId}>
       {stepsView.map((step, index) => (
-        <DesktopStep
-          key={step.title + index}
-          step={step}
-          data-test-id={testId}
-          hideTailLine={index === steps.length - 1}
-        />
+        <DesktopStep key={step.title + index} step={step} data-test-id={testId} />
       ))}
     </div>
   );

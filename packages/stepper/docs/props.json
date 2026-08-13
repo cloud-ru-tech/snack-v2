@@ -16,7 +16,7 @@
       "hideTailLine": {
         "type": "boolean",
         "required": false,
-        "description": "Скрыть хвост (соединительную линию) — для последнего шага"
+        "description": "Скрыть хвост-линию: нужно сторям, которые показывают шаг в отрыве от ряда"
       },
       "step": {
         "type": "StepViewData",

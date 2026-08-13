@@ -78,6 +78,14 @@
   transition: background-color 150ms ease;
 }
 
+// У пройденного шага слой состояния в макете лежит на акценте, а не на фоне.
+.step[data-state='completed'] {
+  .track::after,
+  .status::after {
+    background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-defaultEmpty-filled;
+  }
+}
+
 @media (hover: hover) {
   .step:not(:disabled):hover {
     .track::after,
@@ -91,6 +99,22 @@
   .track::after,
   .status::after {
     background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
+  }
+}
+
+@media (hover: hover) {
+  .step[data-state='completed']:not(:disabled):hover {
+    .track::after,
+    .status::after {
+      background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
+    }
+  }
+}
+
+.step[data-state='completed']:not(:disabled):active {
+  .track::after,
+  .status::after {
+    background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled;
   }
 }
 

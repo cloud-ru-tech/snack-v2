@@ -8,12 +8,12 @@ import { StepIcon } from '../StepIcon';
 import styles from './styles.module.scss';
 
 export type DesktopStepProps = {
-  /** Скрыть хвост (соединительную линию) — для последнего шага */
-  hideTailLine?: boolean;
   /** Данные шага для отображения */
   step: StepViewData;
   /** CSS-класс */
   className?: string;
+  /** Скрыть хвост-линию: нужно сторям, которые показывают шаг в отрыве от ряда */
+  hideTailLine?: boolean;
   /** data-test-id */
   'data-test-id'?: string;
 };
@@ -28,6 +28,8 @@ export function DesktopStep({ step, className, 'data-test-id': testId, hideTailL
   // Focus-ring — у всех (это outline на кнопке, не зависит от state-layer).
   const hasStateLayer =
     step.state !== STEP_STATE.Current && step.state !== STEP_STATE.Rejected && step.state !== STEP_STATE.Loading;
+  // В макете слой разный: у пройденного шага он лежит на акценте, у будущего — на фоне.
+  const stateLayer = step.state === STEP_STATE.Completed ? 'emptyDarkOnAccent' : 'emptyNeutralOnBackground';
 
   return (
     <div className={cn(styles.step, className)} data-state={step.state}>
@@ -40,7 +42,7 @@ export function DesktopStep({ step, className, 'data-test-id': testId, hideTailL
           data-test-id={getStepTestId(testId)}
           data-state={step.state}
         >
-          <span className={styles.stateLayer} data-state={hasStateLayer ? 'regularFilled' : undefined} aria-hidden />
+          <span className={styles.stateLayer} data-state={hasStateLayer ? stateLayer : undefined} aria-hidden />
           <StepIcon state={step.state} number={step.number} className={styles.icon} />
         </button>
 

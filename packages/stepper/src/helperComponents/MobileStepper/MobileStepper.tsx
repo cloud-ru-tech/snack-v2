@@ -1,4 +1,3 @@
-import { useThemeClassnames } from '@ds/theme';
 import { Typography } from '@ds/typography';
 import cn from 'classnames';
 
@@ -31,11 +30,8 @@ export function MobileStepper({
 
   const currentStep = stepsView[currentStepIndex];
 
-  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
-  const themeClassName = useThemeClassnames({ density: 'comfort' });
-
   const stepper = (
-    <div className={cn(themeClassName, styles.stepper, className)} data-test-id={testId}>
+    <div className={cn(styles.stepper, className)} data-test-id={testId}>
       <div className={styles.steps} style={{ gridTemplateColumns: `repeat(${stepsView.length}, 1fr)` }}>
         {stepsView.map((step, index) => (
           <MobileStep key={step.title + index} step={step} data-test-id={testId} />

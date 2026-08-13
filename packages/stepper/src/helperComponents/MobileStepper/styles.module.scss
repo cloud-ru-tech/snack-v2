@@ -1,22 +1,22 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/stepper.module' as stepper;
 
 .stepper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: stepper.$sn-stepper-anatomy-stepRow-gap;
   width: 100%;
 }
 
 .steps {
   display: grid;
-  gap: 4px;
+  gap: stepper.$sn-stepper-anatomy-step-gap;
   width: 100%;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .title {
