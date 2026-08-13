@@ -11,29 +11,30 @@ $sizes: 's', 'm', 'l';
   align-items: center;
   box-sizing: border-box;
 
-  &[data-full-width] {
-    flex: 1 1 auto;
-    width: 100%;
-  }
-
   .optionButton {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
 
-  // Пока список раскрыт, кнопка-шеврон держит слой нажатия.
-  &[data-open] .dropdownButton [data-state='regularFilled'] {
-    background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
+  &[data-full-width] {
+    flex: 1 1 auto;
+    width: 100%;
+
+    // Кнопка-шеврон фиксированной ширины, основная ужимается — иначе сумма
+    // «ширина основной + зазор + шеврон» выходит за контейнер.
+    .optionButton {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
   }
+
+  // Пока список раскрыт, кнопка-шеврон держит слой нажатия: `data-pressed` разбирает
+  // сам миксин `@ds/materials` — он же покрывает третье семейство (`textOpacity` у function)
+  // и не проигрывает hover'у по специфичности, в отличие от ручного правила.
 
   .dropdownButton {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-
-    // function: chevron по ширине иконки (Figma без min-width); у остальных view — квадрат.
-    &[data-view='function'][data-variant='icon-only'] {
-      min-width: initial;
-    }
   }
 
   // Обёртка-триггер Droplist (display:block) из-за strut'а line-box'а на 1px выше кнопки —

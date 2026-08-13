@@ -97,6 +97,7 @@ export function ButtonCombo({
           disabled={disabled}
           loading={loading}
           icon={open ? <ChevronUpSVG /> : <ChevronDownSVG />}
+          data-pressed={open || undefined}
           data-test-id={TEST_IDS.dropdownTrigger}
         />
       </Droplist>
