@@ -98,7 +98,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
 
   &:hover {
     &::before {
-      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
+      background: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
     }
   }
 
@@ -115,17 +115,15 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
     cursor: grabbing;
 
     &::before {
-      background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
+      background: base.$sn-theme-color-material-stateLayer-darkOnAccent-pressed-filled;
     }
   }
 }
 
 .#{$theme-class}.rc-slider .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  // Тройной класс — чтобы перебить собственные стили rc-slider у перетаскиваемой ручки.
+  // Цвет и фокус-рамку не трогаем: в макете pressed — это акцент + слой состояния, рамки нет.
   border-color: base.$sn-theme-color-neutral-background1Level;
-
-  background-color: base.$sn-theme-color-primary-text;
-  outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
-  outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   box-shadow: none;
 }
 
