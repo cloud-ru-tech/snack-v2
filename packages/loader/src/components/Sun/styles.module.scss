@@ -20,21 +20,50 @@ $sizes:  'xs', 's', 'm', 'l';
     animation-iteration-count: infinite;
 
     @for $i from 1 through 8 {
+      // Первый луч — верхний: у него нулевая задержка, поэтому в покое яркая
+      // голова стоит на нём, как в Figma. Порядок задержек не меняем, иначе
+      // перевернётся направление вращения.
       &:nth-child(#{$i}) {
         animation-duration: 1000ms;
-        animation-delay: #{-$i * 125}ms;
+        animation-delay: #{-($i - 1) * 125}ms;
       }
     }
   }
 }
 
+// Прозрачности восьми лучей из Figma: яркая голова и резкий обрыв, а не пологий
+// спад. Каждый шаг — 12.5% цикла, то есть один луч.
 @keyframes loading-wheel {
   0% {
     opacity: 1;
   }
 
-  90% {
-    opacity: 0.125;
+  12.5% {
+    opacity: 0.48;
+  }
+
+  25% {
+    opacity: 0.4;
+  }
+
+  37.5% {
+    opacity: 0.32;
+  }
+
+  50% {
+    opacity: 0.24;
+  }
+
+  62.5% {
+    opacity: 0.16;
+  }
+
+  75% {
+    opacity: 0.08;
+  }
+
+  87.5% {
+    opacity: 0.04;
   }
 
   100% {

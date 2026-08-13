@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 import { LOADER_SIZE } from '../constants';
 import { SunSize } from '../types';
+import { SUN_STROKE_WIDTH } from './constants';
 import styles from './styles.module.scss';
 
 export type SunProps = WithSupportProps<{
@@ -14,6 +15,8 @@ export type SunProps = WithSupportProps<{
 
 /** Компонент спиннер */
 export function Sun({ size = LOADER_SIZE.S, className, ...rest }: SunProps) {
+  const strokeWidth = SUN_STROKE_WIDTH[size];
+
   return (
     <svg
       viewBox='0 0 24 24'
@@ -24,14 +27,34 @@ export function Sun({ size = LOADER_SIZE.S, className, ...rest }: SunProps) {
       {...extractSupportProps(rest)}
       data-size={size}
     >
-      <path d='M12 4V7' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M6.34302 6.34314L8.46434 8.46446' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M4 12L7 12' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M6.34302 17.6569L8.46434 15.5355' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M12 17V20' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M15.5354 15.5355L17.6567 17.6568' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M17 12L20 12' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      <path d='M15.5354 8.46448L17.6567 6.34316' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
+      <path d='M12 4V7' strokeWidth={strokeWidth} strokeLinecap='round' strokeLinejoin='round' />
+      <path
+        d='M6.34302 6.34314L8.46434 8.46446'
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path d='M4 12L7 12' strokeWidth={strokeWidth} strokeLinecap='round' strokeLinejoin='round' />
+      <path
+        d='M6.34302 17.6569L8.46434 15.5355'
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path d='M12 17V20' strokeWidth={strokeWidth} strokeLinecap='round' strokeLinejoin='round' />
+      <path
+        d='M15.5354 15.5355L17.6567 17.6568'
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path d='M17 12L20 12' strokeWidth={strokeWidth} strokeLinecap='round' strokeLinejoin='round' />
+      <path
+        d='M15.5354 8.46448L17.6567 6.34316'
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
     </svg>
   );
 }

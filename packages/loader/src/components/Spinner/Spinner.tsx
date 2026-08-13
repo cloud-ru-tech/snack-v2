@@ -3,7 +3,9 @@ import cn from 'classnames';
 
 import { LOADER_SIZE } from '../constants';
 import { LoaderSize } from '../types';
+import { SPINNER_GEOMETRY, SPINNER_TRACK_OPACITY } from './constants';
 import styles from './styles.module.scss';
+import { buildQuarterArcPath } from './utils';
 
 export type SpinnerProps = WithSupportProps<{
   /** Размер */
@@ -14,51 +16,26 @@ export type SpinnerProps = WithSupportProps<{
 
 /** Компонент спиннер */
 export function Spinner({ size = LOADER_SIZE.S, className, ...rest }: SpinnerProps) {
-  if (size === LOADER_SIZE['2XS']) {
-    return (
-      <svg
-        viewBox='0 0 8 8'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-        className={cn(styles.spinner, className)}
-        {...extractSupportProps(rest)}
-        data-size={size}
-      >
-        <circle opacity='0.24' cx='4' cy='4' r='3' strokeWidth='1.5' />
-        <path d='M1 4C1 2.34315 2.34315 1 4 1' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      </svg>
-    );
-  }
-
-  if (size === LOADER_SIZE.XS) {
-    return (
-      <svg
-        width='16'
-        height='16'
-        viewBox='0 0 16 16'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-        className={cn(styles.spinner, className)}
-        {...extractSupportProps(rest)}
-        data-size={size}
-      >
-        <circle opacity='0.24' cx='8' cy='8' r='6' strokeWidth='1.5' />
-        <path d='M2 8C2 4.68629 4.68629 2 8 2' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-      </svg>
-    );
-  }
+  const { frame, ring, strokeWidth } = SPINNER_GEOMETRY[size];
+  const center = frame / 2;
+  const radius = ring / 2;
 
   return (
     <svg
-      viewBox='0 0 24 24'
+      viewBox={`0 0 ${frame} ${frame}`}
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       className={cn(styles.spinner, className)}
       {...extractSupportProps(rest)}
       data-size={size}
     >
-      <circle opacity='0.24' cx='12' cy='12' r='9' strokeWidth='1.5' />
-      <path d='M3 12C3 7.02944 7.02944 3 12 3' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
+      <circle opacity={SPINNER_TRACK_OPACITY} cx={center} cy={center} r={radius} strokeWidth={strokeWidth} />
+      <path
+        d={buildQuarterArcPath(center, radius)}
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
     </svg>
   );
 }
