@@ -18,7 +18,7 @@ const SPINNER_SIZE_MAP = {
 
 function Icon({ size, loading }: Required<Pick<SwitchProps, 'loading' | 'size'>>) {
   if (loading) {
-    return <Spinner size={SPINNER_SIZE_MAP[size]} />;
+    return <Spinner size={SPINNER_SIZE_MAP[size]} className={styles.spinner} />;
   }
 
   const iconSize = getIconSize(size);
@@ -60,7 +60,7 @@ export function Switch({
     >
       <div className={styles.container}>
         <div className={styles.framing} {...stateDataAttributes}>
-          <div className={styles.backgroundStateLayer} data-state='regularFilled' />
+          <div className={styles.backgroundStateLayer} data-state='emptyDarkOnAccent' />
           <div className={styles.flag}>
             <div className={styles.surface} {...stateDataAttributes}>
               <Icon size={size} loading={Boolean(loading)} />

@@ -118,6 +118,11 @@ $sizes: 'xs', 's';
     }
   }
 
+  // Спиннер в макете красится `neutral/accent`; без явного цвета он наследует текст потребителя.
+  &[data-loading='true'] .flag {
+    color: base.$sn-theme-color-neutral-accent;
+  }
+
   &[data-disabled='true'] {
     .framing {
       opacity: base.$sn-theme-effect-opacity-disabled;

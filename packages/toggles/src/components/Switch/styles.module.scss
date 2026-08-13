@@ -6,6 +6,12 @@ $sizes: 'xs', 's';
 $switchAnimationDuration: 0.1s;
 $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
+.spinner {
+  // По макету спиннер шире ползунка (24 на surface 16) и выходит за его границы,
+  // поэтому flex-контейнер не должен его ужимать.
+  flex-shrink: 0;
+}
+
 .icon {
   pointer-events: none;
 
@@ -75,12 +81,8 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
     outline-color $switchAnimationDuration linear;
 
   &[data-checked="false"] {
+    background-color: base.$sn-theme-color-neutral-accent;
     outline-color: base.$sn-theme-color-neutral-accent;
-
-    &[data-disabled="false"][data-loading="false"] {
-      background-color: base.$sn-theme-color-neutral-background1Level;
-      outline-color: base.$sn-theme-color-available-version-textTertiary;
-    }
   }
 
   &[data-checked="true"] {
@@ -124,11 +126,13 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
   &[data-checked="false"] {
     &[data-loading="false"] {
-      background-color: base.$sn-theme-color-neutral-accent;
+      // Ползунок лежит на дорожке `neutral/accent`, поэтому берёт парный `neutral/onAccent`.
+      background-color: base.$sn-theme-color-neutral-onAccent;
     }
 
     &[data-disabled="false"][data-loading="true"] {
-      color: base.$sn-theme-color-neutral-accent;
+      // Спиннер лежит прямо на дорожке `neutral/accent` — берёт парный `neutral/onAccent`.
+      color: base.$sn-theme-color-neutral-onAccent;
     }
   }
 
@@ -148,7 +152,7 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
     }
 
     &[data-loading="true"] {
-      color: base.$sn-theme-color-neutral-onAccent;
+      color: base.$sn-theme-color-primary-onAccent;
     }
   }
 }

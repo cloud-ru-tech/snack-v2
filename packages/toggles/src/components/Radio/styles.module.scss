@@ -46,7 +46,7 @@ $sizes: 'xs', 's';
 
     &[data-disabled="false"] {
       &[data-checked="false"] {
-        border-color: base.$sn-theme-color-available-version-textTertiary;
+        border-color: base.$sn-theme-color-neutral-accent;
       }
 
       &[data-checked="true"] {
@@ -112,10 +112,11 @@ $sizes: 'xs', 's';
       }
 
       .framing {
-        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing');
-
         width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'min-width');
         height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'min-height');
+
+
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing');
       }
 
       .flag {
@@ -130,19 +131,23 @@ $sizes: 'xs', 's';
 
   // States management
   &[data-loading="false"][data-disabled="false"] {
-    // Default state
-    &[data-checked="false"] {
-      .container {
-        @include m.has-state-layer-as-child(#{backgroundStateLayer});
-      }
+    .container {
+      @include m.has-state-layer-as-child(#{backgroundStateLayer});
     }
 
-    // Checked state
-    &[data-checked="true"] {
-      .container {
-        @include m.has-content-with-text-opacity(#{flag});
+    // Слой тонирует и рамку: `inset: 0` из миксина накрыл бы только padding-box.
+    @each $size in $sizes {
+      &[data-size='#{$size}'] .backgroundStateLayer {
+        inset: calc(
+          -1 * #{base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'radio', 'framing', 'border-width')}
+        );
       }
     }
+  }
+
+  // Спиннер в макете красится `neutral/accent`; без явного цвета он наследует текст потребителя.
+  &[data-loading="true"] .flag {
+    color: base.$sn-theme-color-neutral-accent;
   }
 
   &[data-loading="true"],

@@ -43,15 +43,22 @@ $sizes: 'xs', 's';
 
     &[data-disabled="true"] {
       opacity: base.$sn-theme-effect-opacity-disabled;
+
+      // Акцентная заливка отмеченного состояния лежит на внешнем слое framing,
+      // а не на внутреннем flag/surface.
+      &[data-checked="true"] {
+        background-color: base.$sn-theme-color-neutral-accent;
+      }
     }
 
     &[data-disabled="false"] {
       &[data-checked="false"] {
-        border-color: base.$sn-theme-color-available-version-textTertiary;
+        border-color: base.$sn-theme-color-neutral-accent;
       }
 
       &[data-checked="true"] {
         border-color: base.$sn-theme-color-primary-accent;
+        background-color: base.$sn-theme-color-primary-accent;
       }
 
       &[data-focusvisible="true"] {
@@ -75,16 +82,6 @@ $sizes: 'xs', 's';
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &[data-loading="false"][data-checked="true"] {
-    &[data-disabled="false"] {
-      background: base.$sn-theme-color-primary-accent;
-    }
-
-    &[data-disabled="true"] {
-      background: base.$sn-theme-color-neutral-accent;
-    }
-  }
 }
 
 .icon {
@@ -118,10 +115,11 @@ $sizes: 'xs', 's';
       }
 
       .framing {
-        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing');
-
         width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
         height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-height');
+
+
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing');
       }
 
       .flag {
@@ -136,19 +134,23 @@ $sizes: 'xs', 's';
 
   // States management
   &[data-loading="false"][data-disabled="false"] {
-    // Default state
-    &[data-checked="false"] {
-      .container {
-        @include m.has-state-layer-as-child(#{backgroundStateLayer});
-      }
+    .container {
+      @include m.has-state-layer-as-child(#{backgroundStateLayer});
     }
 
-    // Checked state
-    &[data-checked="true"] {
-      .container {
-        @include m.has-content-with-text-opacity(#{flag});
+    // Слой тонирует и рамку: `inset: 0` из миксина накрыл бы только padding-box.
+    @each $size in $sizes {
+      &[data-size='#{$size}'] .backgroundStateLayer {
+        inset: calc(
+          -1 * #{base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'border-width')}
+        );
       }
     }
+  }
+
+  // Спиннер в макете красится `neutral/accent`; без явного цвета он наследует текст потребителя.
+  &[data-loading="true"] .flag {
+    color: base.$sn-theme-color-neutral-accent;
   }
 
   &[data-loading="true"],
