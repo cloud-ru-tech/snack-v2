@@ -128,6 +128,12 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
+      "showButtonClosed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки закрытия в шапке дровера"
+      },
       "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
@@ -423,6 +429,12 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
+      "showButtonClosed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки закрытия в шапке дровера"
+      },
       "slotAfterTitle": {
         "type": "ReactNode",
         "required": false,
@@ -616,6 +628,11 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Отображение темной подложки"
+          },
+          "showButtonClosed": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение кнопки закрытия в шапке дровера"
           },
           "slotAfterTitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -828,6 +845,12 @@
         "defaultValue": "true",
         "description": "Отображение темной подложки"
       },
+      "showButtonClosed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки закрытия в шапке дровера"
+      },
       "snapPoints": {
         "type": "SnapPoint[]",
         "required": false,
@@ -950,6 +973,11 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Отображение темной подложки"
+          },
+          "showButtonClosed": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение кнопки закрытия в шапке дровера"
           },
           "snapPoints": {
             "type": "SnapPoint[] | undefined",
@@ -1233,6 +1261,12 @@
         "required": false,
         "defaultValue": "true",
         "description": "Отображение темной подложки"
+      },
+      "showButtonClosed": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображение кнопки закрытия в шапке дровера"
       },
       "slotAfterTitle": {
         "type": "ReactNode",

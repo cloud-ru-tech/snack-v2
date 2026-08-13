@@ -17,6 +17,11 @@ export type DrawerCustomProps = WithSupportProps<
      */
     showBlackout?: boolean;
     /**
+     * Отображение кнопки закрытия в шапке дровера
+     * @default true
+     */
+    showButtonClosed?: boolean;
+    /**
      * Расположение
      */
     position: Position;

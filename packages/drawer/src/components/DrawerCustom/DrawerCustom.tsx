@@ -29,6 +29,7 @@ const RcDrawer = interopDefault<ComponentType<RcDrawerBaseProps>>(RcDrawerImport
 function DrawerFrame(props: DrawerCustomProps) {
   const {
     showBlackout = true,
+    showButtonClosed = true,
     open,
     onClose,
     rootClassName,
@@ -117,14 +118,16 @@ function DrawerFrame(props: DrawerCustomProps) {
       {...(disableMotions ? {} : motionProps)}
     >
       <div ref={focusTrapRef} className={styles.focusScope}>
-        <div className={styles.badgeButtonClosedWrapper}>
-          <PopupCloseButton
-            className={styles.badgeButtonClosed}
-            aria-label='close drawer'
-            data-test-id={TEST_IDS.closeButton}
-            onClick={onClose}
-          />
-        </div>
+        {showButtonClosed && (
+          <div className={styles.showButtonClosedWrapper}>
+            <PopupCloseButton
+              className={styles.showButtonClosed}
+              aria-label='close drawer'
+              data-test-id={TEST_IDS.closeButton}
+              onClick={onClose}
+            />
+          </div>
+        )}
 
         <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Drawer} bodyHeightAuto={heightAutoVertical}>
           {children}

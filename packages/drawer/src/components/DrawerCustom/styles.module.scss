@@ -81,6 +81,9 @@ $panelMotions: (
 
       box-sizing: border-box;
       width: 100%;
+      // Тень панели из макета (`elevation-level5`). Раньше правило висело на `&:global(...)`,
+      // то есть требовало оба класса на одном узле, и не срабатывало никогда.
+      box-shadow: base.$sn-boxShadow-elevation-level5;
     }
 
     .snack-rc-drawer-content-wrapper {
@@ -147,6 +150,9 @@ $panelMotions: (
       &[data-position='left'],
       &[data-position='right'] {
         align-items: stretch;
+        // Ширина в макете — это ширина самой панели; горизонтальный паддинг обёртки
+        // (зона перетаскивания) лежит снаружи и не должен её сужать.
+        box-sizing: content-box;
         height: 100%;
 
         @each $width in $widthSizes {
@@ -285,9 +291,6 @@ $panelMotions: (
     }
   }
 
-  &:global(.snack-rc-drawer-section) {
-    box-shadow: base.$sn-boxShadow-elevation-level5;
-  }
 
   &:global(.snack-rc-drawer-left.snack-rc-drawer-open),
   &:global(.snack-rc-drawer-right.snack-rc-drawer-open) {
@@ -308,11 +311,11 @@ $panelMotions: (
   display: contents;
 }
 
-.badgeButtonClosed {
+.showButtonClosed {
   margin: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-top') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-right') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-bottom') base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'badgeButtonClosed', 'padding-left');
 }
 
-.badgeButtonClosedWrapper {
+.showButtonClosedWrapper {
   position: absolute;
   top: 0;
   right: 0;
