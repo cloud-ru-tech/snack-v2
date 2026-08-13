@@ -2,7 +2,7 @@ import { Typography } from '@ds/typography';
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function WithOnClick() {
   const [clicks, setClicks] = useState(0);
@@ -13,7 +13,7 @@ export function WithOnClick() {
         title='Заголовок карточки'
         content='Клик по карточке обрабатывается через onClick'
         actionLabel='Подробнее'
-        image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+        image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
         onClick={() => setClicks(c => c + 1)}
       />
 

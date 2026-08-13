@@ -3,8 +3,8 @@ import { ComponentPropsWithoutRef } from 'react';
 
 import { Theme } from '#storybook/components';
 
-import darkMedia from './dark.png';
-import lightMedia from './light.png';
+import darkMedia from './dark.png?url';
+import lightMedia from './light.png?url';
 import styles from './styles.module.scss';
 
 export type ThemedDrawerMediaProps = Omit<ComponentPropsWithoutRef<'div'>, 'src'> & {
@@ -12,14 +12,8 @@ export type ThemedDrawerMediaProps = Omit<ComponentPropsWithoutRef<'div'>, 'src'
   src: string;
 };
 
-// PNG-импорт в storybook (vite) даёт строку, в astro-окружении — ImageMetadata
-// с полем `src`. Нормализуем к строке.
-function toUrl(asset: string | { src: string }): string {
-  return typeof asset === 'string' ? asset : asset.src;
-}
-
 export function resolveDrawerStoryMediaSrc(theme: Theme): string {
-  return toUrl(theme === 'dark' ? darkMedia : lightMedia);
+  return theme === 'dark' ? darkMedia : lightMedia;
 }
 
 /** Иллюстрация для слота `media` Drawer; URL картинки передаётся через `src` (см. `resolveDrawerStoryMediaSrc` + `usePreviewTheme`). */

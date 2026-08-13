@@ -1,6 +1,6 @@
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function Basic() {
   return (
@@ -8,7 +8,7 @@ export function Basic() {
       title='Заголовок карточки'
       content='Краткое описание сервиса или предложения для пользователя'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
     />
   );
 }

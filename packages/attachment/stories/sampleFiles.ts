@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import picture from '../demos/examples/picture.jpg';
-
-// Astro globals типизируют `*.jpg` как `ImageMetadata`, но в Storybook (vite) импорт
-// возвращает строку с URL. Берём `.src` если рантайм пришёл из Astro, иначе сам импорт.
-const pictureUrl: string = typeof picture === 'string' ? picture : picture.src;
+import pictureUrl from '../demos/examples/picture.jpg?url';
 
 export const SAMPLE_TEXT_FILE = new File(['hello world'], 'document.pdf', { type: 'application/pdf' });
 

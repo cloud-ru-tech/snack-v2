@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { getScenarioProps, mockUpload, STORY_DEFAULTS, VALIDATION_SCENARIOS } from './helpers';
+import { getScenarioProps, mockUpload, STORY_DEFAULTS, useSampleImageFile, VALIDATION_SCENARIOS } from './helpers';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof UploadFiles> = {
@@ -23,9 +23,10 @@ const meta: Meta<typeof UploadFiles> = {
 export default meta;
 type Story = StoryObj<typeof UploadFiles>;
 
-export const VisualMatrix: Story = {
-  tags: ['test', 'dev'],
-  render: () => (
+function MatrixView() {
+  const imageFile = useSampleImageFile();
+
+  return (
     <StoryTable
       sectionTitle='Validation'
       firstColumnHeader='Validation'
@@ -34,10 +35,15 @@ export const VisualMatrix: Story = {
         variantLabel: label,
         cells: [
           <div key={key} className={styles.uploadFilesStory}>
-            <UploadFiles {...STORY_DEFAULTS} upload={mockUpload} {...getScenarioProps(key)} />
+            <UploadFiles {...STORY_DEFAULTS} upload={mockUpload} {...getScenarioProps(key, imageFile)} />
           </div>,
         ],
       }))}
     />
-  ),
+  );
+}
+
+export const VisualMatrix: Story = {
+  tags: ['test', 'dev'],
+  render: () => <MatrixView />,
 };

@@ -36,7 +36,7 @@ import { CardBanner, CardService, CardServiceLight, CardSuggest } from '@ds/uiki
 ```tsx
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function Basic() {
   return (
@@ -44,7 +44,7 @@ export function Basic() {
       title='Заголовок карточки'
       content='Краткое описание сервиса или предложения для пользователя'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
     />
   );
 }
@@ -59,7 +59,7 @@ import { Typography } from '@ds/typography';
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function WithOnClick() {
   const [clicks, setClicks] = useState(0);
@@ -70,7 +70,7 @@ export function WithOnClick() {
         title='Заголовок карточки'
         content='Клик по карточке обрабатывается через onClick'
         actionLabel='Подробнее'
-        image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+        image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
         onClick={() => setClicks(c => c + 1)}
       />
 
@@ -91,7 +91,7 @@ import { Typography } from '@ds/typography';
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function WithClose() {
   const [visible, setVisible] = useState(true);
@@ -109,7 +109,7 @@ export function WithClose() {
       title='Заголовок карточки'
       content='Кнопка закрытия появляется при передаче onClose'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
       onClose={() => setVisible(false)}
     />
   );
@@ -123,7 +123,7 @@ export function WithClose() {
 ```tsx
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function PolymorphicLink() {
   return (
@@ -134,7 +134,7 @@ export function PolymorphicLink() {
       title='Перейти на сайт'
       content='Откроется в новой вкладке'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
     />
   );
 }

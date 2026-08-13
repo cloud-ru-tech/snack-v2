@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import placeholder from './assets/placeholder.png';
+import placeholderSrc from './assets/placeholder.png?url';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof Avatar> = {
@@ -18,11 +18,6 @@ type Story = StoryObj<typeof Avatar>;
 
 const allSizes = Object.values(SIZE);
 const keyAppearances = Object.values(APPEARANCE);
-// `placeholder` импортируется loader'ом как opaque-объект (ImageMetadata);
-// в runtime — это url-строка. Двойной cast — единственный путь, тип loader'а с
-// `string` напрямую не совместим.
-const placeholderSrc = placeholder as unknown as string;
-
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   render: () => (

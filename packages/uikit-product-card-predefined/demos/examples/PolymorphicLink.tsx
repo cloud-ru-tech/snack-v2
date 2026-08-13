@@ -1,6 +1,6 @@
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function PolymorphicLink() {
   return (
@@ -11,7 +11,7 @@ export function PolymorphicLink() {
       title='Перейти на сайт'
       content='Откроется в новой вкладке'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
     />
   );
 }

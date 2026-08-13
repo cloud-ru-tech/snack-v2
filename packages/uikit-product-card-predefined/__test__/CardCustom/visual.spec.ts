@@ -1,6 +1,7 @@
 import { SCREENSHOT_DEFAULT_OPTS, STORYBOOK_ROOT_SELECTOR } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
+import { waitForImages } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, CARD_CUSTOM_STORIES } from './helpers';
 
@@ -16,6 +17,7 @@ test.describe('CardCustom — visual regression', () => {
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, CARD_CUSTOM_STORIES.visualMatrix));
     await waitForFonts();
+    await waitForImages(page);
 
     await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot('visual-matrix.png', SCREENSHOT_DEFAULT_OPTS);
   });

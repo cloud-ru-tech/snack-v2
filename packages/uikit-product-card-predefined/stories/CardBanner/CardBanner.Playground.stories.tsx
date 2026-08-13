@@ -4,11 +4,7 @@ import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
-import illustration from './assets/card-banner-illustration.jpg';
-
-// Astro globals типизируют `*.jpg` как `ImageMetadata`, но в Storybook (vite) импорт
-// возвращает строку с URL. Берём `.src` если рантайм пришёл из Astro, иначе сам импорт.
-const illustrationSrc: string = typeof illustration === 'string' ? illustration : illustration.src;
+import illustrationSrc from './assets/card-banner-illustration.jpg?url';
 
 const meta: Meta<typeof CardBanner> = {
   title: 'Uikit Product/CardPredefined/CardBanner',

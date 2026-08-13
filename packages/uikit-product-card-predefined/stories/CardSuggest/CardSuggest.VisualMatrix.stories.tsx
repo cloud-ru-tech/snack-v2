@@ -26,7 +26,7 @@ const longDescription =
   'Очень длинное описание подсказки, которое не помещается в три строки и обрезается через TruncateString. Дополнительный текст для демонстрации обрезки.';
 
 const promoBadge = {
-  text: 'New',
+  label: 'Новинка',
   appearance: APPEARANCE.Primary,
   role: ROLE_APPEARANCE.Accent,
   size: SIZE.Xs,

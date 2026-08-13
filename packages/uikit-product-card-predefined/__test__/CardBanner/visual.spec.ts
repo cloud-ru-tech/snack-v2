@@ -1,6 +1,6 @@
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForImages } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, CARD_BANNER_STORIES } from './helpers';
 
@@ -16,6 +16,7 @@ test.describe('CardBanner — visual regression', () => {
   test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, CARD_BANNER_STORIES.visualMatrix));
     await waitForFonts();
+    await waitForImages(page);
     await assertVisualMatrixSnapshot(page);
   });
 });

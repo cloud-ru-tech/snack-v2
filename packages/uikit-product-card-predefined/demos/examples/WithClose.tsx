@@ -2,7 +2,7 @@ import { Typography } from '@ds/typography';
 import { CardBanner } from '@ds/uikit-product-card-predefined';
 import { useState } from 'react';
 
-import illustration from '../assets/card-banner-illustration.jpg';
+import illustrationSrc from '../assets/card-banner-illustration.jpg?url';
 
 export function WithClose() {
   const [visible, setVisible] = useState(true);
@@ -20,7 +20,7 @@ export function WithClose() {
       title='Заголовок карточки'
       content='Кнопка закрытия появляется при передаче onClose'
       actionLabel='Подробнее'
-      image={{ src: illustration.src, alt: 'Иллюстрация сервиса' }}
+      image={{ src: illustrationSrc, alt: 'Иллюстрация сервиса' }}
       onClose={() => setVisible(false)}
     />
   );

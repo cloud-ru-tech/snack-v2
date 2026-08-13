@@ -4,6 +4,7 @@ export * from './freezeCssAnimations';
 export * from './interactionStates';
 export * from './getStorybookUrl';
 export * from './waitForFonts';
+export * from './waitForImages';
 export * from './waitForSettledInViewport';
 export * from './waitForStableBbox';
 export * from './waitForStableRender';
