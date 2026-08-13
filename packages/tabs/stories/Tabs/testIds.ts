@@ -15,6 +15,7 @@ export const TEST_IDS = {
     settings: `${SRC_TEST_IDS.tab.root}-settings`,
     billing: `${SRC_TEST_IDS.tab.root}-billing`,
   },
+  actionButton: 'tabs-action-button',
   tabContent: {
     root: SRC_TEST_IDS.tabContent.root,
     overview: `${SRC_TEST_IDS.tabContent.root}-overview`,

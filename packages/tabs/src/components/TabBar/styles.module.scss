@@ -11,7 +11,8 @@ $sizes: 'l', 'm';
 
   &[data-orientation='vertical'] {
     flex-direction: column;
-    align-items: flex-start;
+    // В Figma список и слот действия одной ширины — обоих тянем по ширине панели.
+    align-items: stretch;
     height: 100%;
     min-height: 0;
   }
@@ -155,7 +156,8 @@ $sizes: 'l', 'm';
 
   &[data-orientation='vertical'] {
     flex-direction: column;
-    width: fit-content;
+    // Ряд тянется на ширину списка: строки табов занимают её целиком, как в макете.
+    width: auto;
     min-height: min-content;
   }
 

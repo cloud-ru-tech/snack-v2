@@ -7,12 +7,17 @@
   align-items: center;
   justify-content: center;
 
-  &[data-size='l'] {
-    padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'control', 'forward', 'padding');
-  }
+  // Паддинг только с той стороны, которой кнопка смотрит наружу, — как в макете.
+  @each $size in ('m', 'l') {
+    $padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', $size, 'control', 'forward', 'padding');
 
-  &[data-size='m'] {
-    padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'control', 'forward', 'padding');
+    &[data-size='#{$size}'] {
+      @each $direction, $side in ('left': 'left', 'right': 'right', 'top': 'top', 'bottom': 'bottom') {
+        &[data-direction='#{$direction}'] {
+          padding-#{$side}: $padding;
+        }
+      }
+    }
   }
 
   &[data-direction='left'] {

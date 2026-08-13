@@ -111,9 +111,10 @@ $sizes: 'm', 'l';
     color: base.$sn-theme-color-available-version-textMain;
   }
 
+  // В макете отключённый таб гасится целиком, а не только цветом текста: иначе счётчик остаётся ярким.
   &[data-disabled] {
     cursor: not-allowed;
-    color: base.$sn-theme-color-available-version-textDisabled;
+    opacity: base.$sn-theme-effect-opacity-disabled;
   }
 
   @include internal-has-state-layer-as-child();
