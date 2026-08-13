@@ -92,18 +92,22 @@ $sizes: ('s', 'm', 'l');
     outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
   }
 
+  // У выбранной строки макет даёт `focusedFrame/primary/inside` на фоне самой строки
+  // (у невыбранной — чёрный `regular/inside`). Режим выбора роли не играет.
+  &[aria-selected='true']:focus-visible {
+    outline-color: base.$sn-theme-color-primary-accent;
+  }
+
   &[data-multiselect] {
     cursor: default;
   }
 
+  // Гасит только `opacity` строки: цвет остаётся тем же, что в покое. `textDisabled`
+  // сам несёт альфу, и вместе с этой прозрачностью давал двойное гашение — 0.14
+  // вместо 0.40 у подписи (та же ошибка, что чинили в @ds/input-private).
   &[aria-disabled='true'] {
     cursor: not-allowed;
     opacity: base.$sn-theme-effect-opacity-disabled;
-
-    .treeNodeTitle,
-    .treeNodeIcon {
-      color: base.$sn-theme-color-available-version-textDisabled;
-    }
   }
 }
 
@@ -212,6 +216,24 @@ $icon-size-by-size: (
 @each $size in $sizes {
   .treeNode[data-size='#{$size}'] {
     $centered-width: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'centeredWrapper', 'width');
+    $centered-padding-top: base.simple-var(
+      tree.$tree,
+      'anatomy',
+      'size',
+      $size,
+      'treeItem',
+      'centeredWrapper',
+      'padding-top'
+    );
+    $centered-padding-bottom: base.simple-var(
+      tree.$tree,
+      'anatomy',
+      'size',
+      $size,
+      'treeItem',
+      'centeredWrapper',
+      'padding-bottom'
+    );
     $icon-size: base.simple-var($icon-size-by-size, $size);
 
     --tree-chevron-size: #{$centered-width};
@@ -226,15 +248,27 @@ $icon-size-by-size: (
       width: $centered-width;
     }
 
+    // Слоты иконки и переключателя — один и тот же `centeredWrapper` кита: он несёт
+    // вертикальный паддинг, из которого и складывается высота строки.
+    .treeNodeIcon,
+    .treeNodeCheckboxWrap {
+      padding-top: $centered-padding-top;
+      padding-bottom: $centered-padding-bottom;
+    }
+
     .treeNodeExpandButton {
       width: $centered-width;
       height: $centered-width;
 
       // Размер иконки шеврона/спиннера задаём через CSS, чтобы не прокидывать
       // size в JSX каждой иконки (см. паттерн в @ds/button).
+      // `max-*` обязателен: иконки из @ds/icons приходят с инлайновым размером,
+      // и он перебивает `width`/`height` из таблицы стилей (приём из @ds/button).
       > svg {
         width: $icon-size;
+        max-width: $icon-size;
         height: $icon-size;
+        max-height: $icon-size;
       }
     }
 
@@ -245,7 +279,9 @@ $icon-size-by-size: (
 
     .treeNodeIcon svg {
       width: $icon-size;
+      max-width: $icon-size;
       height: $icon-size;
+      max-height: $icon-size;
     }
 
     // Row-actions: гасим padding контейнера отрицательными margin'ами, чтобы
