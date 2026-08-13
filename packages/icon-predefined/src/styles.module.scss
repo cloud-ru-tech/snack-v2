@@ -25,7 +25,6 @@ $glyphSizes: (
 
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      // Figma: глиф иконки красится цветом `text` (тёмный), не `accent`.
       color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
     }
 

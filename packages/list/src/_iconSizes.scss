@@ -1,9 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-// Figma listItem before/after icon sizing:
-//   s → sn-density-size-icon-xs (16px)
-//   m → sn-density-size-icon-s  (24px)
-//   l → sn-density-size-icon-s  (24px)
 $iconSizeMap: (
   's': base.$sn-density-size-icon-xs,
   'm': base.$sn-density-size-icon-s,

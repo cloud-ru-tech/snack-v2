@@ -21,7 +21,6 @@ $sizes: 's', 'm', 'l';
   align-items: center;
   min-width: 0;
 
-  // gap = inputLine.gap per-size (Figma `fieldContainer.contentWrapper.inputLine.gap`: 2/4/6)
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputLine', 'gap');

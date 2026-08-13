@@ -74,10 +74,6 @@ $appearance-to-token: (
   }
 }
 
-// Горизонтальные зазоры внутри строки задаёт не gap, а собственные поля
-// текстового блока (`content/text/paddingHorizontal` = 8 у m, 4 у s) — так же,
-// как в макете, где у `content` межэлементного зазора нет. `container/gap`
-// отвечает за вертикальный зазор между строкой и блоком действий.
 .body {
   display: flex;
   align-items: flex-start;

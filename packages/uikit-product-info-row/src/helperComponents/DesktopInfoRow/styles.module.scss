@@ -1,10 +1,7 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-// Ширина строки по макету: label 200 + gap 24 + content 496 = 720 (Figma column1).
 $label-width: calc(2 * #{base.$sn-primitive-dimension-100});
-// Зазор метка↔значение внутри строки (Figma: infoLabel→infoContent = 24).
 $label-content-gap: base.$sn-primitive-dimension-24;
-// Зазор между парами в двухколоночной строке (Figma column=2: column1→column2 = 48).
 $pair-gap: base.$sn-primitive-dimension-48;
 $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive-dimension-48});
 
@@ -41,7 +38,6 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
   align-items: center;
 
   width: 100%;
-  // Figma: область контента 32 (высота кнопки действия) + вертикальный отступ 12 = 56.
   min-height: calc(#{base.$sn-primitive-dimension-32} + 2 * #{base.$sn-primitive-dimension-12});
   padding: base.$sn-primitive-dimension-12 0;
 }

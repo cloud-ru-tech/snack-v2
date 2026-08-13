@@ -17,11 +17,7 @@
   color: base.$sn-theme-color-neutral-text;
 }
 
-// Figma-ось `padding=false`: горизонтальные паддинги убираются, контент во всю ширину
-// (slotContent растягивается на 360px вместо 328) — для карт / изображений / edge-to-edge списков.
 .root[data-no-padding] {
-  // В Figma у `padding=false` обнуляется и верхний отступ: контент начинается
-  // сразу под шапкой.
   padding-top: 0;
   padding-right: 0;
   padding-left: 0;

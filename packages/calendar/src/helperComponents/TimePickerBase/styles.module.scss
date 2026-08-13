@@ -34,8 +34,6 @@ $typography: (
       // растягиваться под ширину дропдауна/футера (иначе фикс-ширина зажимала бы список уже футера).
       min-width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-width');
       height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-height');
-      // Figma listTimeDesktop: горизонтальный padding из gridDate — колонки/ячейки инсетятся от краёв
-      // панели, а разделитель под шапкой остаётся на всю ширину.
       padding-right: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-right');
       padding-left: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-left');
     }
@@ -64,7 +62,6 @@ $typography: (
         min-height: calc(
           #{base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-height')} / #{$visibleRows}
         );
-        // Figma itemCalendar: скруглённые ячейки (по умолчанию @ds/list-item квадратный).
         border-radius: base.simple-var(
           calendar.$calendar,
           'anatomy',

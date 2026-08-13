@@ -4,7 +4,6 @@ $breakpoint-mobile: 767px;
 $breakpoint-tablet: 1023px;
 $gear-wheel-rotation-period: 10s;
 
-// Внешний слой (Figma: errorPage) — рамка 16px и нейтральный фон вокруг карточки.
 .page {
   display: flex;
 
@@ -15,7 +14,6 @@ $gear-wheel-rotation-period: 10s;
   background-color: base.$sn-theme-color-neutral-background;
 }
 
-// Карточка (Figma: blockPrimary) — белый фон, радиус, стэк-контент.
 .wrapper {
   // CSS-переменные покраски декоративной иллюстрации (см. Illustration.tsx).
   --svg-exclamation-mark: #{base.$sn-theme-color-primary-accent};
@@ -74,14 +72,12 @@ $gear-wheel-rotation-period: 10s;
   }
 }
 
-// Текст + ссылки (Figma: description) — gap 4.
 .actions {
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
 }
 
-// Ссылки (Figma: links) — типографика body/m (Link наследует размер от контейнера).
 .actionsLink {
   @include base.composite-var(base.$sn-regular-body-m);
 
@@ -179,7 +175,6 @@ $gear-wheel-rotation-period: 10s;
   }
 }
 
-// Текст описания (Figma: description text) — body/m, цвет textMain.
 .actionsTitle {
   @include base.composite-var(base.$sn-regular-body-m);
 

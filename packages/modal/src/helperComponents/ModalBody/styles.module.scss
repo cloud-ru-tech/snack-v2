@@ -20,7 +20,6 @@
   @include base.composite-var(modal.$modal, 'anatomy', 'container', 'bodyWrapper');
 }
 
-// Figma-ось `padding=false`: убираем горизонтальные паддинги body.
 .bodyWrapper[data-no-padding] {
   padding-right: 0;
   padding-left: 0;

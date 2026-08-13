@@ -11,7 +11,6 @@ $sizes: 'l', 'm';
 
   &[data-orientation='vertical'] {
     flex-direction: column;
-    // В Figma список и слот действия одной ширины — обоих тянем по ширине панели.
     align-items: stretch;
     height: 100%;
     min-height: 0;

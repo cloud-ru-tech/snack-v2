@@ -44,8 +44,6 @@
   background-color: base.$sn-theme-color-neutral-background;
 }
 
-// Мастер header/language (27061:48779): текст привязан к version/textSecondary (#262631 α0.65);
-// Typography цвет не задаёт (наследует), без класса ярлык брал neutral/text (#777a8d).
 .language {
   color: base.$sn-theme-color-available-version-textSecondary;
 }

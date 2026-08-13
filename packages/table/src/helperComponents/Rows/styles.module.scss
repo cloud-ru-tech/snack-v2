@@ -53,9 +53,6 @@ $pinned-border: base.simple-var(
 // Высота строки.
 $row-height: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'min-height'); // 40px
 
-// Тоновые материалы строки (data-row-bg-appearance) — дискретный <hue>/background,
-// как в мастере (свойство appearance = swap material/<hue>Background, нода 24035:34655).
-// Значение непрозрачное (red #fee8e5, orange #ffedcf, …), не мягкая заливка.
 $row-bg-tones: (
   'red': base.$sn-theme-color-red-background,
   'orange': base.$sn-theme-color-orange-background,

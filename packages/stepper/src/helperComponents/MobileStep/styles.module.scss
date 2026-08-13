@@ -78,7 +78,6 @@
   transition: background-color 150ms ease;
 }
 
-// У пройденного шага слой состояния в макете лежит на акценте, а не на фоне.
 .step[data-state='completed'] {
   .track::after,
   .status::after {

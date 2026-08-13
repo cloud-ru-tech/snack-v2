@@ -1,4 +1,3 @@
-// Figma-мастер: AI-COMPONENTS → Suggestion / Simple (node 6450-3666)
 export const SIZE = {
   S: 's',
   M: 'm',

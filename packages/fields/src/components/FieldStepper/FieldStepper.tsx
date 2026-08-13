@@ -262,8 +262,6 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
   // без px-хардкода и подгонки под ширину глифа.
   const inputWidthCh = Math.max(2, String(value).length);
 
-  // Кнопки −/+ — buttonField-слоты по краям поля, отделённые от значения вертикальными
-  // разделителями (структура совпадает с elementBefore/elementAfter в FieldCombo, по Figma).
   const handleMouseEnter = useCallback(() => {
     if (!readOnly) {
       setHover(true);
@@ -274,8 +272,6 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
     setHover(false);
   }, []);
 
-  // Кнопка копирования — видна только в readonly при !disabled (паритет с Figma readonly-вариантами
-  // fieldStepper, где значение сопровождается copy-кнопкой между value и `+`).
   const showCopyUi = Boolean(showCopyButton && readOnly && !disabled);
 
   const handleCopy = useCallback(
@@ -414,8 +410,6 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
               type='button'
               view='function'
               appearance='neutral'
-              // Inline copy/clear buttons cap at size m (32px) even when the field is l (40px) — Figma parity,
-              // same mapping the shared useCopyButton uses for all other fields.
               size={BUTTON_SIZE_MAP[size]}
               icon={copied ? <CheckSVG /> : <CopySVG />}
               onClick={handleCopy}

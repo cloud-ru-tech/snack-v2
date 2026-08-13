@@ -37,7 +37,6 @@ $inputLineGapSizes: (
   color: base.$sn-theme-color-available-version-textMain;
   text-align: center;
 
-  // gap = fieldContainer.contentWrapper.inputLine.gap per Figma (s=2 / m=2 / l=6)
   @each $size, $tokenSize in $inputLineGapSizes {
     [data-size='#{$size}'] & {
       gap: base.simple-var(

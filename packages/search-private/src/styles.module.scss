@@ -10,8 +10,6 @@ $sizes: 's', 'm', 'l';
   justify-content: center;
 }
 
-// Слот `afterContent` — centeredWrapper из Figma: высота ограничена строкой
-// контента, содержимое (кнопка) центрируется по ней и может её перекрывать.
 .afterContent {
   display: inline-flex;
   flex-shrink: 0;

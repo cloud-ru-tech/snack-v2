@@ -83,14 +83,10 @@ $sizes: 's', 'm', 'l';
   height: 100%;
 
   opacity: field.$sn-field-effect-focusedFrame-opacity;
-  // Рамка-свечение рисуется снаружи поля (паритет с Figma focusedFrame). outline-offset: 0 —
-  // обводка ложится по внешнему краю, а не затягивается внутрь.
   outline: base.$sn-brand-anatomy-focusLine-field-strokeWeight solid base.$sn-theme-color-primary-accent;
   outline-offset: 0;
 }
 
-// Цвет рамки-свечения тонируется accent'ом валидации (паритет с Figma: focusedFrame
-// референсит red/yellow/green/primary accent).
 .fieldWrapper[data-validation-state='error'] .focusLayer {
   outline-color: base.$sn-theme-color-red-accent;
 }
@@ -99,7 +95,6 @@ $sizes: 's', 'm', 'l';
   outline-color: base.$sn-theme-color-yellow-accent;
 }
 
-// Предупреждение подкрашивает и саму подложку поля (Figma: fieldWrapper fill = yellow/background).
 .fieldWrapper[data-validation-state='warning'] {
   background-color: base.$sn-theme-color-yellow-background;
 }
@@ -215,9 +210,6 @@ $sizes: 's', 'm', 'l';
       .lineWrapper {
         display: none;
         width: 0;
-
-        // Разделитель между сегментом и полем не доходит до края контейнера на толщину рамки
-        // (Figma: lineWrapper paddingTop/Bottom = line/field/strokeWeight, линия 30 при поле 32).
         padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'elementWrapper', 'lineWrapper', 'padding')
           0;
       }
@@ -331,8 +323,6 @@ $sizes: 's', 'm', 'l';
           @include borderRadius($size);
         }
 
-        // Фокус: рамка-свечение (focusedFrame) показывается во всех состояниях валидации —
-        // паритет с Figma, где focused-вариант есть и на error/warning/success.
         &:not([data-disabled='true'])[data-focusvisible='true'] {
           .focusLayer {
             display: initial;

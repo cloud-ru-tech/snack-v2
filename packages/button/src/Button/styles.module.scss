@@ -17,8 +17,6 @@ $appearance-to-theme: (
   'neutral': 'neutral',
   'critical': 'red',
 );
-// Обводка view=outline: neutral берёт общий border-цвет доступного состояния
-// (Figma: buttonOutlineNeutral, buttonGroup/secondaryAction), цветные appearance — свой decor.
 $outline-border-colors: (
   'primary': base.$sn-theme-color-primary-decor,
   'neutral': base.$sn-theme-color-available-borderColor,
@@ -107,9 +105,6 @@ $label-typo: (
     &[data-size='#{$size}'] {
       @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
 
-      // Горизонтальный padding переехал с textWrapper (.label) на уровень контейнера
-      // и различается по icon-позиции: сторона иконки уже, сторона текста шире.
-      // data-variant совпадает с ключами токена 1:1 (label-only → labelOnly и т.д.).
       &[data-variant='label-only'] {
         @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'labelOnly');
       }
@@ -210,7 +205,6 @@ $label-typo: (
   display: inline-flex;
   align-items: center;
 
-  // Counter как бейдж: абсолютно относительно иконки (внутри .iconWithCounter — elementWrapper в Figma)
   &[data-absolute] {
     pointer-events: none;
 

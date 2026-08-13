@@ -77,8 +77,6 @@
   padding-top: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-top');
   padding-bottom: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'padding-bottom');
 
-  // Подпись узла в Figma идёт основным цветом, как и текст соседних ячеек;
-  // приглушена там только шапка (см. `.treeHeaderContent`).
   color: base.$sn-theme-color-available-version-textMain;
 
   &[data-multiselect] {
@@ -100,7 +98,6 @@
 .cellExpandButton {
   flex-shrink: 0;
   box-sizing: border-box;
-  // treeControl.centeredWrapper: 24px — слот chevron совпадает с Figma
   width: base.simple-var(
     table.$table,
     'anatomy',

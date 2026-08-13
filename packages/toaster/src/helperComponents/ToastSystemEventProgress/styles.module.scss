@@ -26,7 +26,6 @@ $bar-backgrounds: (
 
   transition: transform 80ms linear;
 
-  // Per-appearance цвета прогресс-бара (Figma 7871:512739..7871:512758).
   @each $appearance, $color in $bar-backgrounds {
     &[data-appearance='#{$appearance}'] {
       background: $color;

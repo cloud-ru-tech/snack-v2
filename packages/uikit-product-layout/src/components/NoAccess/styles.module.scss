@@ -27,7 +27,6 @@
 }
 
 .serviceName {
-  // Figma: заголовок сервиса = thin/headline/s (24/32), зазор до блока 16.
   @include base.composite-var(base.$base-styles, 'sn', 'thin', 'headline', 's');
 
   display: block;

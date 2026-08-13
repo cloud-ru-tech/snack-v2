@@ -50,7 +50,7 @@
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
   justify-content: space-between;
-  // Минимальная высота строки price-summary 40px — layout-размер из Figma-мастера.
+
   min-height: base.$sn-primitive-dimension-40;
 }
 
@@ -64,7 +64,6 @@
   align-items: center;
 }
 
-// Заголовок + степпер — единый sticky-блок шапки с нижним разделителем (Figma node 9164:10542).
 .header {
   position: sticky;
   /* stylelint-disable-next-line declaration-property-value-allowed-list */

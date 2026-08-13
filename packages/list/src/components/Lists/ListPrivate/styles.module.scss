@@ -44,8 +44,6 @@ $loader-height: (
   list-style-type: none;
 }
 
-// Figma `popupPrivate.anatomy.dropdown.footer` — padding-top=8, padding-bottom=4, padding-h=8.
-// Divider над футером (Figma `dividerWrapper` между body и bottomBar) — opt-in через [data-divider].
 .footer {
   display: flex;
   flex-direction: column;
@@ -58,8 +56,6 @@ $loader-height: (
   }
 }
 
-// Figma `popupPrivate.anatomy.dropdown.header` — padding-h (через headlineWrapper)=8, gap=4,
-// родительский header/gap=8 (между headlineWrapper и body).
 .header {
   display: flex;
   flex-direction: column;

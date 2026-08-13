@@ -45,7 +45,6 @@
 }
 
 .root[data-surface='modal'] .content {
-  // Figma releaseNotes (desktop): зазор title→описание→ссылка = 16.
   row-gap: base.$sn-primitive-dimension-16;
   order: 1;
 }

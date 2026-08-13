@@ -8,10 +8,8 @@
   display: flex;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
-  // Высота строки-триггера 48px (Figma: button size m iconOnly mobile minHeight=48 / primitive-dimension-48).
-  height: base.$sn-primitive-dimension-48;
 
-  // Горизонтальный отступ 12px = primitive-dimension-12 (list listItem paddingHorizontal=12, Figma node 3334:63034).
+  height: base.$sn-primitive-dimension-48;
   padding: 0 base.$sn-primitive-dimension-12;
 
   color: base.$sn-theme-color-available-version-textSecondary;

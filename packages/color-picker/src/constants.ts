@@ -10,7 +10,6 @@ export const COLOR_MODE_LABEL: Record<string, string> = {
   [COLOR_MODE.Hsv]: 'HSV',
 };
 
-// Порядок сегментов переключателя моделей — как в Figma colorPicker: HEX · HSV · RGB.
 export const DEFAULT_AVAILABLE_MODES = [COLOR_MODE.Hex, COLOR_MODE.Hsv, COLOR_MODE.Rgb] as const;
 
 export const DEFAULT_COLOR = '#000000';

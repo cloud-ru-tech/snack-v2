@@ -44,7 +44,6 @@
     }
   }
 
-  // Figma focusedFrame/regular/outside: рамка снаружи вплотную (offset 0), strokeSemiBold.
   &:focus-visible {
     outline: md.$sn-primitive-strokeWeight-strokeSemiBold solid md.$sn-theme-color-available-complementary;
     outline-offset: 0;

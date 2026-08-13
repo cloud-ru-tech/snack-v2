@@ -5,7 +5,6 @@ import { Appearance as TagAppearance, Size as TagSize } from '@ds/tag';
 import { SELECTION_MODE } from './constants';
 import { FieldSelectMultipleProps, FieldSelectProps } from './types';
 
-// Figma fieldSelectMultiple chips: field s→tag xs, m→tag xs, l→tag s.
 export const TAG_SIZE_MAP: Record<Size, TagSize> = { s: 'xs', m: 'xs', l: 's' };
 
 export type WithIdContent = { id?: ItemId; content?: unknown; disabled?: boolean; appearance?: unknown };

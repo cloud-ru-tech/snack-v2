@@ -5,9 +5,6 @@ import { ComponentPropsWithoutRef, ElementType, MouseEvent } from 'react';
 import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
-// Figma toastButtonAction (7072:173):
-// .toastButtonAction → .buttonContainer (state-layer overlay) → .textWrapper (label).
-// Polymorphic: `as='a'` рендерит ссылочный вариант для UserAction.action.
 export type ToastButtonActionProps<As extends ElementType = 'button'> = WithSupportProps<
   {
     label: string;

@@ -7,7 +7,6 @@
   box-sizing: border-box;
   width: 100%;
 
-  // Block.content — растягиваем слот body (Figma: + slotBody), чтобы composition центрировал InfoBlock.
   > :last-child {
     display: flex;
     flex: 1 1 auto;

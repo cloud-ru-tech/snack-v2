@@ -18,7 +18,6 @@
   @include base.composite-var(base.$sn-regular-body-m);
 }
 
-// Figma-ось `padding=false`: убираем горизонтальные паддинги body.
 .body[data-no-padding] {
   padding-right: 0;
   padding-left: 0;

@@ -42,8 +42,6 @@ type AcrylicParams = {
   focusVisible?: boolean;
 };
 
-// Состояние валидации → тонировка acrylic-фона (паритет с Figma:
-// error=red background, warning=yellow, success=green; valid/default — нейтральный фон).
 const VALIDATION_ACRYLIC_APPEARANCE: Partial<Record<ValidationState, AcrylicAppearance>> = {
   [VALIDATION_STATE.Error]: 'red',
   [VALIDATION_STATE.Warning]: 'yellow',

@@ -3,8 +3,6 @@
 
 $sizes: 's', 'm', 'l';
 
-// `default` — нейтральный baseline (подсказка в textTertiary, без иконки), паритет с Figma.
-// Цветную обратную связь дают только error/warning/success.
 $validationStates: warning, error, success;
 
 $validationStateColor: (
@@ -13,7 +11,6 @@ $validationStateColor: (
   'success': base.$sn-theme-color-green-text,
 );
 
-// Иконка валидации — в насыщенном accent-тоне (текст подсказки остаётся в text-тоне), как в Figma/легаси.
 $validationIconColor: (
   'warning': base.$sn-theme-color-yellow-accent,
   'error': base.$sn-theme-color-red-accent,

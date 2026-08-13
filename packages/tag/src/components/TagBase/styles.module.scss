@@ -143,8 +143,6 @@ $removeButtonSize: (
     }
   }
 
-  // Цвет текста единый для всех appearance (Figma: available/version/textSecondary),
-  // не тонируется под цвет тега.
   .label {
     overflow: hidden;
     color: base.$sn-theme-color-available-version-textSecondary;

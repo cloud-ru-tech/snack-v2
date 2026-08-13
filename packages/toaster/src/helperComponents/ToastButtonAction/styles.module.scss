@@ -33,8 +33,6 @@
   &:focus-visible {
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid
       base.$sn-theme-color-available-onComplementary;
-    // В Figma у кнопок `focusedFrame*/outsideOffset`: рамка снаружи с зазором
-    // в толщину штриха.
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
 }

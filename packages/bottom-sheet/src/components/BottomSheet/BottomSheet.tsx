@@ -50,7 +50,6 @@ export function BottomSheet({
     (approveButton || cancelButton || additionalButton ? (
       <FooterActions
         surface='bottomSheet'
-        // В Figma кнопки BottomSheet — размера `l` (56 против 48 у `m`), футер 80.
         size='l'
         approveButton={approveButton}
         cancelButton={cancelButton}

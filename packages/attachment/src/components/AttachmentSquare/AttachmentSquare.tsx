@@ -42,7 +42,6 @@ export function AttachmentSquare({
   const interactive = !isLoading && !disabled && Boolean(onClick);
   const hasError = Boolean(error);
   const hasActions = Boolean(onDownload || onDelete || onRetry);
-  // Error-вариант в Figma не показывает selected/checkbox — error и checked взаимно исключают друг друга.
   const isChecked = !loading && !error && checked;
   const isDisabled = !loading && disabled;
 

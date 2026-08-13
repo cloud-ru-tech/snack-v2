@@ -24,8 +24,6 @@
 .button {
   white-space: nowrap;
 
-  // Видимое action-кнопка на mobile растягивается на доступную ширину; kebab (icon-only)
-  // держит фикс. ширину справа (Figma 3334:63034: primaryAction 272 + gap 8 + kebab 48 = 328).
   &[data-full-width]:not([data-variant='icon-only']) {
     flex: 1 1 0;
   }

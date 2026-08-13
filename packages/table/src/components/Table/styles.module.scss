@@ -142,7 +142,6 @@ $divider-width: base.simple-var(
   }
 }
 
-// Figma content (7672:498088): material/neutralBackground1Level — только table-view.
 .wrapper:not([data-view='cards']) .content {
   isolation: isolate;
   background-color: transparent;
@@ -305,8 +304,6 @@ $divider-width: base.simple-var(
   height: auto;
 }
 
-// layoutType=mobile + view=cards: plain-контейнер списка (скролл страницы).
-// Figma (25274:102914): обводка на каждой card, не на общем wrapper.
 .mobileTable {
   position: relative;
   z-index: 0;
@@ -480,7 +477,6 @@ $divider-width: base.simple-var(
   }
 }
 
-// Figma (25274:102914, 27813:45688): tableView — column, gap = body.slot.gap (8px).
 .mobileCardsList {
   display: flex;
   flex-direction: column;

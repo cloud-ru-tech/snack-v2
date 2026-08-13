@@ -12,8 +12,6 @@
   box-sizing: border-box;
 
   &[data-surface='bottomSheet'] {
-    // В Figma слоты шапки BottomSheet разведены зазором (`itemSpacing = 2`); без него
-    // при трёх слотах шапка недобирала 4px.
     gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'gap');
     padding-top: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'padding-top');
     padding-bottom: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'padding-bottom');
@@ -21,8 +19,6 @@
 
   &[data-surface='window'] {
     align-items: flex-start;
-    // В макете шапка окна тянется на всю ширину (`sizH=FILL`), а контейнер модалки
-    // выравнивает детей по левому краю — без этого шапка сжимается по контенту.
     align-self: stretch;
     justify-content: center;
 
@@ -42,7 +38,6 @@
   // линии с back/action-кнопкой.
   align-items: center;
 
-  // bottomSheet: Figma topBar с before/after-кнопками (48×48). Drag-зона (touch-action).
   [data-surface='bottomSheet'] & {
     // `touch-action: none` гасит нативные жесты; tap'ы по кнопкам внутри продолжают работать.
     touch-action: none;
@@ -98,7 +93,6 @@
   }
 }
 
-// bottomSheet: горизонтальный inset заголовка на стороне БЕЗ кнопки (Figma headline padding = interval-l).
 [data-surface='bottomSheet'] .headlineWrapper:not([data-with-before]) .headline {
   padding-left: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'padding-left');
 }
@@ -133,7 +127,6 @@
   align-items: center;
 }
 
-// slotSubtitle — текстовая строка под title (Figma `subtitleWrapper`).
 .subtitleWrapper {
   display: flex;
   flex-direction: column;
@@ -156,7 +149,6 @@
   color: base.$sn-theme-color-available-version-textSecondary;
 }
 
-// slotSecondTitle — search/segment, только bottomSheet (Figma `secondWrapper`).
 .secondWrapper {
   box-sizing: border-box;
 

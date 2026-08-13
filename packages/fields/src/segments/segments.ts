@@ -25,7 +25,6 @@ type SegmentDef = {
   separator: string;
 };
 
-// RU-плейсхолдеры сегментов — паритет с легаси @snack-uikit/fields и Figma: ДД.ММ.ГГГГ, чч:мм:сс.
 const DATE_DEFS: SegmentDef[] = [
   { key: 'day', len: 2, min: 1, max: 31, placeholder: 'ДД', separator: '' },
   { key: 'month', len: 2, min: 1, max: 12, placeholder: 'ММ', separator: '.' },

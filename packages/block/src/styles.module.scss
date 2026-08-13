@@ -46,7 +46,6 @@ $sizes: 's', 'm', 'l';
     &[data-size='#{$size}'] {
       @include base.composite-var(block.$block, 'anatomy', $size);
 
-      // Обводка outline берёт свой размер (в Figma borderWidth привязан per-size).
       &[data-view='outline'] .borderLayer {
         border-width: base.simple-var(block.$block, 'anatomy', $size, 'border-width');
       }

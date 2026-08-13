@@ -89,9 +89,6 @@ $typography: (
     object-position: center;
   }
 
-  // Центр значка — в `badge/padding / 2` от нижне-правого угла (по Figma): `right`
-  // и `bottom` = padding/2 (блок @each выше), `translate(50%, 50%)` центрирует слот
-  // на этой точке, а не прижимает краем.
   .badge {
     pointer-events: none;
 
