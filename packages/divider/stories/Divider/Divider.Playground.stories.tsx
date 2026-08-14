@@ -12,7 +12,7 @@ const meta: Meta<typeof Divider> = {
   component: Divider,
   parameters: { layout: 'fullscreen' },
   args: {
-    appearance: APPEARANCE.Default,
+    appearance: APPEARANCE.Neutral,
     variant: VARIANT.Regular,
     orientation: ORIENTATION.Horizontal,
     className: '',
@@ -22,7 +22,7 @@ const meta: Meta<typeof Divider> = {
     appearance: {
       control: 'radio',
       options: Object.values(APPEARANCE),
-      description: 'Цвет линии: default — на обычном фоне, onComplementary — на инвертированном',
+      description: 'Цвет линии: neutral — на обычном фоне, invertNeutral — на инвертированном',
     },
     variant: {
       control: 'radio',

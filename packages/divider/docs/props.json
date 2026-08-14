@@ -2,17 +2,17 @@
   "Divider": {
     "displayName": "Divider",
     "propsTypeName": "DividerProps",
-    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Два варианта цвета: default (обычный фон) и onComplementary (инвертированный фон)\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation",
+    "description": "Divider — разделитель контента.\n\nПоддерживает:\n- Два варианта цвета: neutral (обычный фон) и invertNeutral (инвертированный фон)\n- Две ориентации: горизонтальная (по умолчанию) и вертикальная\n- Два варианта толщины: regular (1px) и thin (0.5px)\n- Семантику ARIA: role=\"separator\" + aria-orientation",
     "props": {
       "appearance": {
         "type": "enum",
         "required": false,
         "values": [
-          "default",
-          "onComplementary"
+          "invertNeutral",
+          "neutral"
         ],
-        "defaultValue": "default",
-        "description": "Цвет линии: default — на обычном фоне, onComplementary — на инвертированном. По умолчанию: default",
+        "defaultValue": "neutral",
+        "description": "Цвет линии: neutral — на обычном фоне, invertNeutral — на инвертированном. По умолчанию: neutral",
         "typeRefs": [
           "DividerAppearance"
         ]
@@ -57,8 +57,8 @@
       "DividerAppearance": {
         "kind": "union",
         "values": [
-          "default",
-          "onComplementary"
+          "invertNeutral",
+          "neutral"
         ],
         "own": true
       },

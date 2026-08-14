@@ -31,8 +31,8 @@ $variants: 'regular', 'thin';
   margin: auto;
   background-color: base.$sn-theme-color-available-borderColor;
 
-  .root[data-appearance='onComplementary'] & {
-    background-color: base.$sn-theme-color-available-onComplementary;
+  .root[data-appearance='invertNeutral'] & {
+    background-color: base.$sn-theme-color-invertNeutral-decor;
   }
 
   @each $variant in $variants {

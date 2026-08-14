@@ -37,7 +37,7 @@ export function QuotaTooltip({ quota }: QuotaTooltipProps) {
 
       {checkIsExceeded(quota) && (
         <>
-          <Divider appearance={APPEARANCE.OnComplementary} />
+          <Divider appearance={APPEARANCE.InvertNeutral} />
           <Typography variant='body' size='m'>
             {exhaustedHint}
           </Typography>

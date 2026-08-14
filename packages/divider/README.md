@@ -81,7 +81,7 @@ export function VerticalInRow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `appearance` | `"default"` \| `"onComplementary"` | `default` | Цвет линии: default — на обычном фоне, onComplementary — на инвертированном. По умолчанию: default |
+| `appearance` | `"invertNeutral"` \| `"neutral"` | `neutral` | Цвет линии: neutral — на обычном фоне, invertNeutral — на инвертированном. По умолчанию: neutral |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация: горизонтальная или вертикальная. По умолчанию: horizontal |
@@ -89,7 +89,7 @@ export function VerticalInRow() {
 
 #### Related types
 
-- `DividerAppearance` = `"default"` \| `"onComplementary"`
+- `DividerAppearance` = `"invertNeutral"` \| `"neutral"`
 
 - `DividerOrientation` = `"horizontal"` \| `"vertical"`
 

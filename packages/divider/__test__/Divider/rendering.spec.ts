@@ -41,10 +41,10 @@ test.describe('Divider — rendering', () => {
       });
     }
 
-    test('appearance=onComplementary', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ appearance: APPEARANCE.OnComplementary }));
+    test('appearance=invertNeutral', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ appearance: APPEARANCE.InvertNeutral }));
 
-      await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-appearance', APPEARANCE.OnComplementary);
+      await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-appearance', APPEARANCE.InvertNeutral);
     });
   });
 });

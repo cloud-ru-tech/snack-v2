@@ -1,6 +1,6 @@
 export const APPEARANCE = {
-  Default: 'default',
-  OnComplementary: 'onComplementary',
+  Neutral: 'neutral',
+  InvertNeutral: 'invertNeutral',
 } as const;
 
 export const VARIANT = {

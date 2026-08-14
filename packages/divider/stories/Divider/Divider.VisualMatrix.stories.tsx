@@ -51,7 +51,7 @@ export const VisualMatrix: Story = {
             <div
               key={variant}
               className={cn(styles.matrixCellHorizontal, {
-                [styles.matrixCellInverted]: appearance === APPEARANCE.OnComplementary,
+                [styles.matrixCellInverted]: appearance === APPEARANCE.InvertNeutral,
               })}
             >
               <Divider appearance={appearance} variant={variant} />

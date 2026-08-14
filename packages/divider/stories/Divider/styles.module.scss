@@ -41,11 +41,11 @@
   width: base.$sn-primitive-dimension-80;
 }
 
-// onComplementary — белая линия, на светлом фоне её не видно.
+// invertNeutral — линия для инвертированной поверхности, на обычном фоне не читается.
 .matrixCellInverted {
   box-sizing: border-box;
   padding: base.$sn-primitive-dimension-8;
-  background-color: base.$sn-theme-color-available-complementary;
+  background-color: base.$sn-theme-color-invertNeutral-background;
 }
 
 .matrixCellVertical {

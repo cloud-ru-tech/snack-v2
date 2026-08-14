@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import { DividerAppearance, DividerOrientation, DividerVariant } from './types';
 
 export type DividerProps = WithSupportProps<{
-  /** Цвет линии: default — на обычном фоне, onComplementary — на инвертированном. По умолчанию: default */
+  /** Цвет линии: neutral — на обычном фоне, invertNeutral — на инвертированном. По умолчанию: neutral */
   appearance?: DividerAppearance;
   /** Вариант толщины линии (regular: 1px, thin: 0.5px). По умолчанию: regular */
   variant?: DividerVariant;
@@ -20,13 +20,13 @@ export type DividerProps = WithSupportProps<{
  * Divider — разделитель контента.
  *
  * Поддерживает:
- * - Два варианта цвета: default (обычный фон) и onComplementary (инвертированный фон)
+ * - Два варианта цвета: neutral (обычный фон) и invertNeutral (инвертированный фон)
  * - Две ориентации: горизонтальная (по умолчанию) и вертикальная
  * - Два варианта толщины: regular (1px) и thin (0.5px)
  * - Семантику ARIA: role="separator" + aria-orientation
  */
 export function Divider({
-  appearance = APPEARANCE.Default,
+  appearance = APPEARANCE.Neutral,
   variant = VARIANT.Regular,
   orientation = ORIENTATION.Horizontal,
   className,
