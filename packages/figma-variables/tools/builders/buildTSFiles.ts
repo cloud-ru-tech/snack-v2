@@ -1,3 +1,5 @@
+import fs from 'fs/promises';
+
 import type { TokenAdapter } from '../adapters/types.js';
 import type { BaseConfig } from '../types.js';
 import { compileTs, deleteFiles } from '../utils/index.js';
@@ -41,6 +43,12 @@ export async function buildTSFiles(
     const file = `${buildPath}ts/styles.ts`;
     try {
       await compileTs(file);
+      // Генератор пишет чистый ESM без TS-синтаксиса, поэтому .js — это тот же
+      // исходник. Копируем его сами, а не полагаемся на эмит tsc: так формат
+      // модуля задаём мы, а не дефолты компилятора.
+      const jsFile = file.replace(/\.ts$/, '.js');
+      await fs.copyFile(file, jsFile);
+      logger.info(`  ✓ ${jsFile}`);
       await deleteFiles(file);
       logger.success('TypeScript compilation completed');
     } catch (error) {

@@ -2,6 +2,7 @@ import type { TokenAdapter } from '../adapters/types.js';
 import type { BaseConfig } from '../types.js';
 import { getBaseLayers, getDirectoryName, getNonBaseLayers } from '../utils/groupUtils.js';
 import { logger } from '../utils/logger.js';
+import { getSystemLayerGroups } from '../utils/tokenSets.js';
 import { createCombinedCSSFile } from './pipeline/createCombinedCSSFile.js';
 import {
   generateFiles,
@@ -31,7 +32,7 @@ export async function buildCSSFiles(
   }
 
   if (!collectResults) {
-    const systemLayerGroups = tokenData.systemLayers.map(l => l.group);
+    const systemLayerGroups = getSystemLayerGroups(tokenData.systemLayers);
     const hasBase = getBaseLayers(systemLayerGroups).length > 0;
     const nonBaseGroups = hasBase ? getNonBaseLayers(systemLayerGroups) : systemLayerGroups;
     const segmentOrder = (hasBase ? ['base'] : []).concat(nonBaseGroups.map(getDirectoryName), 'styles', 'components');

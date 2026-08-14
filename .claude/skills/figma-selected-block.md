@@ -20,7 +20,7 @@ CLI-пакет `@ds/figma-selected-block` по CSS выделенного сло
 | **REST-in** (`--url`) | `FIGMA_TOKEN` env (лежит в `.env` репо) | Сам ходит в Figma REST, синтезирует CSS из paddings/gap/radius/border + ДЕТЕЙ. **Схлопывает anatomy в `composite-var` автоматически** (обходит все leaf'ы). Для `fills` / theme-цветов эвристика молчит — добирать через MCP. |
 
 Порядок выбора:
-1. Токен из `.env` есть → **REST-in первым** (`set -a && source .env && set +a && pnpm gen:figma-selected-block --url ... --component <name> --variant size=<...>`). Получишь composite-var-мистеры одним вызовом.
+1. Токен из `.env` есть → **REST-in первым** (`set -a && source .env && set +a && pnpm figma:selected-block --url ... --component <name> --variant size=<...>`). Получишь composite-var-мистеры одним вызовом.
 2. Нужны конкретные цвета/state-layer/типографика выделенного слоя → дополнить через **CSS-in** на узкой ноде.
 
 ## Алгоритм (CSS-in)
@@ -32,11 +32,11 @@ CLI-пакет `@ds/figma-selected-block` по CSS выделенного сло
 3. **Собрать CSS** для каждого интересующего слоя в `.css`-файл **как есть из Figma** — camelCase сохраняется, значения fallback (`, #FBFFFC`, `, 12px`) CLI игнорирует. Единственное преобразование — заменить разделитель пути со `/` на `-` (`sn/button/anatomy/...` из `get_variable_defs` → `--sn-button-anatomy-...`). Регистр leaf'ов не трогать: `paddingHorizontal`, `fontSizeM`, `onAccent` должны остаться в своём виде. **Не** переписывай CSS «под себя» — бери сырой output из Figma Inspect / MCP.
 4. **Запустить CLI**:
    ```bash
-   pnpm gen:figma-selected-block --css-file /tmp/node.css --component <hint> --format scss
+   pnpm figma:selected-block --css-file /tmp/node.css --component <hint> --format scss
    ```
    - `--component` — хинт (`button`, `alert`, `counter`, `tag`, …). Если не задать, CLI попробует вывести из имён переменных.
    - `--format json` добавит счётчики `mixinsCount` / `stylesCount` и массив `warnings`.
-   - Stdin-режим: `echo '{"css":"…","componentHint":"alert"}' | pnpm gen:figma-selected-block --format json`.
+   - Stdin-режим: `echo '{"css":"…","componentHint":"alert"}' | pnpm figma:selected-block --format json`.
 5. **Разложить результат по SCSS-модулям пакета** (см. `.claude/rules/figma-to-code.md`). CLI выдаёт только тело блока стилей — обёртку и `@use 'base'` добавляет агент.
 
 ## Что именно делает CLI (проверено)

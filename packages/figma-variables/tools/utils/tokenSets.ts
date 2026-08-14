@@ -99,6 +99,17 @@ export function sortSystemLayers(tokenSets: TokenSet[]): TokenSet[] {
   return [...tokenSets].sort((a, b) => compareSystemLayers(a.group, b.group));
 }
 
+/**
+ * Уникальные группы системных слоёв в порядке номера (01_… → 99_…).
+ *
+ * `systemLayers` — это наборы токенов, а не слои: у слоя с несколькими модификациями
+ * (02_density → compact/comfort/spacious) группа повторяется. Слайсы по BASE_LAYERS_CONFIG
+ * должны считаться по слоям, поэтому дубликаты снимаем.
+ */
+export function getSystemLayerGroups(systemLayers: TokenSet[]): string[] {
+  return Array.from(new Set(systemLayers.map(layer => layer.group)));
+}
+
 export function buildFallbackIncludePaths(tokenSets: TokenSet[]): string[] {
   const systemLayers = sortSystemLayers(getSystemLayers(tokenSets));
   const fallback: TokenSet[] = [];

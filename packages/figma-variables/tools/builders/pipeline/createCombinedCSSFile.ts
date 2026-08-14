@@ -105,15 +105,6 @@ export async function createCombinedCSSFile(
 
       const relativeFromBuild = filePath.replace(/^[./]*/, '');
 
-      // Файлы из styles/ (effect, gradient, typography) не добавляем — их переменные уже в .sn-figmaStyles (styles.css)
-      if (filePath.includes('/css/styles/')) {
-        const stylesBasename = path.basename(filePath);
-        const isMainFigmaStyles = stylesBasename === 'styles.css' || stylesBasename === 'styles.module.css';
-        if (!isMainFigmaStyles) {
-          continue;
-        }
-      }
-
       // Если это файл компонента, извлекаем переменные для .sn-components и пропускаем добавление в combinedContent
       if (filePath.includes('/css/components/')) {
         // Извлекаем все CSS переменные из класса компонента

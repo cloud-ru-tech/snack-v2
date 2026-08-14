@@ -24,11 +24,15 @@ export const compileTs = async (path: string): Promise<void> => {
     // Use npx tsc if local tsc is not found, or use the found path
     const tscCommand = existsSync(tscPath) ? `"${tscPath}"` : 'npx tsc';
 
-    execSync(`${tscCommand} "${path}" --declaration --skipLibCheck`, {
+    // Только .d.ts: JS-выхлоп tsc здесь не нужен и вреден. При явной передаче файла
+    // tsc игнорирует tsconfig.json и берёт дефолты (target ES5 → module CommonJS),
+    // а пакет объявлен как "type": "module" — CJS ломал потребителей
+    // (`exports is not defined`). Сам styles.js пишется из сгенерированного
+    // исходника в buildTSFiles: он уже валидный ESM.
+    execSync(`${tscCommand} "${path}" --declaration --emitDeclarationOnly --skipLibCheck`, {
       stdio: 'inherit',
     });
     logger.info(`  ✓ ${path.replace(/\.ts$/, '.d.ts')}`);
-    logger.info(`  ✓ ${path.replace(/\.ts$/, '.js')}`);
   } catch (error) {
     logger.error('Failed to compile TypeScript:', error);
     throw error;

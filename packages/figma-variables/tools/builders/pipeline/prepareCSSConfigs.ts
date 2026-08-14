@@ -3,11 +3,12 @@ import type { Config } from 'style-dictionary';
 
 import { getCSSBaseStylesConfig, getCSSComponentConfig, getCSSFigmaStylesConfig } from '../../configs/index.js';
 import type { BaseConfig, TokenSet } from '../../types.js';
-import { getBaseLayers, getDirectoryName, getNonBaseLayers } from '../../utils/groupUtils.js';
+import { getBaseLayers, getDirectoryName, getNonBaseLayers, isStylesGroup } from '../../utils/groupUtils.js';
 import {
   dedupeTokenSets,
   getComponentsTokenSets,
   getStyleTokenSets,
+  getSystemLayerGroups,
   getTokenSetsByGroup,
 } from '../../utils/tokenSets.js';
 
@@ -26,7 +27,7 @@ export async function prepareCSSConfigs(
 ): Promise<Config[]> {
   const { tokenSets, themes, systemLayers, fallbackIncludePaths } = data;
   const excludeGroups = config.excludeGroups ?? [];
-  const systemLayerGroups = systemLayers.map(layer => layer.group);
+  const systemLayerGroups = getSystemLayerGroups(systemLayers);
   const baseLayerGroups = getBaseLayers(systemLayerGroups);
   const hasBaseGroup = baseLayerGroups.length > 0;
   const cssBuildPath = `${buildPath}css/`;
@@ -50,7 +51,12 @@ export async function prepareCSSConfigs(
   }
 
   const layersToProcess = hasBaseGroup ? getNonBaseLayers(systemLayerGroups) : systemLayerGroups;
-  const systemLayersToProcess = systemLayers.filter(layer => layersToProcess.includes(layer.group));
+  // Группа Figma-стилей (99_styles) матчит и `^\d+_`, и /styles/i, поэтому попадала бы сюда вторым проходом
+  // и давала бы по классу на набор (.sn-effect / .sn-gradient / .sn-typography). Её собирает styles-ветка ниже
+  // в единый .sn-figmaStyles — здесь пропускаем.
+  const systemLayersToProcess = systemLayers.filter(
+    layer => layersToProcess.includes(layer.group) && !isStylesGroup(layer.group),
+  );
 
   for (const layer of systemLayersToProcess) {
     const layerTokenSets = getTokenSetsByGroup(tokenSets, layer.group);

@@ -6,7 +6,7 @@ export const GROUP_PATTERNS = {
 } as const;
 
 export const BASE_LAYERS_CONFIG = {
-  COUNT: 2,
+  COUNT: 1,
   START_INDEX: 0,
-  END_INDEX: 2,
+  END_INDEX: 1,
 } as const;

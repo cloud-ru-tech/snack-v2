@@ -2,7 +2,14 @@ import type { Config } from 'style-dictionary';
 
 import { getTSConfig } from '../../configs/index.js';
 import type { BaseConfig, TokenSet } from '../../types.js';
-import { dedupeTokenSets, getFirstTokenSetByGroup, getStyleTokenSets } from '../../utils/tokenSets.js';
+import { getBaseLayers, getNonBaseLayers } from '../../utils/groupUtils.js';
+import {
+  dedupeTokenSets,
+  getFirstTokenSetByGroup,
+  getStyleTokenSets,
+  getSystemLayerGroups,
+  getTokenSetsByGroup,
+} from '../../utils/tokenSets.js';
 
 type PreparedTokenData = {
   tokenSets: TokenSet[];
@@ -15,8 +22,8 @@ type PreparedTokenData = {
  * Создает конфигурацию Style Dictionary для генерации TS файлов.
  *
  * Что происходит:
- * 1. Подготавливаем базовые слои (первые 2 системных слоя)
- * 2. Собираем все источники токенов (базовые слои + первый токен из каждого системного слоя + стили)
+ * 1. Подготавливаем базовые слои (BASE_LAYERS_CONFIG — те же, что идут в base.css)
+ * 2. Собираем все источники токенов (базовые слои целиком + первый набор из каждого остального слоя + стили)
  * 3. Создаем конфиг для TypeScript (ts/styles.ts)
  *
  * Результат: массив конфигураций Style Dictionary для генерации TS файлов
@@ -25,13 +32,14 @@ export function prepareTSConfigs(data: PreparedTokenData, config: BaseConfig, bu
   const { tokenSets, systemLayers } = data;
   const excludeGroups = config.excludeGroups ?? [];
 
-  // Шаг 2.1: Подготавливаем базовые слои (первые 2 системных слоя)
-  const baseLayers = systemLayers.slice(0, 2);
+  // Шаг 2.1: Подготавливаем базовые слои — тот же слайс по BASE_LAYERS_CONFIG, что и в CSS-ветке
+  const systemLayerGroups = getSystemLayerGroups(systemLayers);
+  const baseLayerGroups = getBaseLayers(systemLayerGroups);
 
   // Шаг 2.2: Собираем все источники токенов
   const sources = dedupeTokenSets([
-    ...baseLayers,
-    ...systemLayers.slice(2).flatMap(layer => getFirstTokenSetByGroup(tokenSets, layer.group)),
+    ...baseLayerGroups.flatMap(group => getTokenSetsByGroup(tokenSets, group)),
+    ...getNonBaseLayers(systemLayerGroups).flatMap(group => getFirstTokenSetByGroup(tokenSets, group)),
     ...getStyleTokenSets(tokenSets),
   ]);
 

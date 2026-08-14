@@ -90,26 +90,26 @@ describe('groupUtils', () => {
     it('should return true when group is in base layers range', () => {
       const allSystemLayers = ['01_primitive', '02_adaptive', '03_brand', '04_theme'];
       expect(isBaseLayer('01_primitive', allSystemLayers)).toBe(true);
-      expect(isBaseLayer('02_adaptive', allSystemLayers)).toBe(true);
     });
 
     it('should return false when group is not in base layers range', () => {
       const allSystemLayers = ['01_primitive', '02_adaptive', '03_brand', '04_theme'];
+      expect(isBaseLayer('02_adaptive', allSystemLayers)).toBe(false);
       expect(isBaseLayer('03_brand', allSystemLayers)).toBe(false);
     });
   });
 
   describe('getBaseLayers', () => {
-    it('should return first two system layers', () => {
+    it('should return the first system layer', () => {
       const systemLayers = ['01_primitive', '02_adaptive', '03_brand'];
-      expect(getBaseLayers(systemLayers)).toEqual(['01_primitive', '02_adaptive']);
+      expect(getBaseLayers(systemLayers)).toEqual(['01_primitive']);
     });
   });
 
   describe('getNonBaseLayers', () => {
     it('should return system layers after base range', () => {
       const systemLayers = ['01_primitive', '02_adaptive', '03_brand', '04_theme'];
-      expect(getNonBaseLayers(systemLayers)).toEqual(['03_brand', '04_theme']);
+      expect(getNonBaseLayers(systemLayers)).toEqual(['02_adaptive', '03_brand', '04_theme']);
     });
   });
 

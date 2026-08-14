@@ -6,9 +6,7 @@ describe('getThemeClassnames', () => {
   it('всегда эмитит базовые слои + sn-no по умолчанию', () => {
     const classes = getThemeClassnames().split(' ');
 
-    expect(classes).toEqual(
-      expect.arrayContaining(['sn-primitive', 'sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no']),
-    );
+    expect(classes).toEqual(expect.arrayContaining(['sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no']));
     expect(classes).not.toContain('sn-yes');
     expect(classes.some(c => c === 'sn-light' || c === 'sn-dark')).toBe(false);
   });

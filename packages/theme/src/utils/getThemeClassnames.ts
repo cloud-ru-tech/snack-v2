@@ -4,7 +4,7 @@ import { ThemeAppearance } from '../types/appearance';
  * Чистая функция: собирает **полный** набор `sn-*` классов из осей оформления списком токенов.
  * Полный набор обязателен на каждой DOM-границе — токены `@cloud-ru/figma-variables` не
  * переопределяются по одной оси через CSS-каскад (см. providers-standard.md). Базовые слои
- * (`sn-primitive`, `sn-base-styles`, `sn-figmaStyles`, `sn-components`) и материал (`sn-yes`/`sn-no`)
+ * (`sn-base-styles`, `sn-figmaStyles`, `sn-components`) и материал (`sn-yes`/`sn-no`)
  * — всегда; `density`/`colorScheme`/`brand`/`brandRole` — если заданы.
  *
  * Списочная форма — источник истины для `getThemeClassnames` (строка через `join`) и для
@@ -13,7 +13,7 @@ import { ThemeAppearance } from '../types/appearance';
 export function getThemeClassnameList(appearance: ThemeAppearance = {}): string[] {
   const { density, colorScheme, brand, brandRole, acrylic } = appearance;
 
-  const classes = ['sn-primitive', 'sn-base-styles', 'sn-figmaStyles', 'sn-components', acrylic ? 'sn-yes' : 'sn-no'];
+  const classes = ['sn-base-styles', 'sn-figmaStyles', 'sn-components', acrylic ? 'sn-yes' : 'sn-no'];
 
   if (density) {
     classes.push(`sn-${density}`);
