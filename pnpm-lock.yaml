@@ -2790,6 +2790,9 @@ importers:
       '@ds/adaptive':
         specifier: workspace:^
         version: link:../adaptive
+      '@ds/block':
+        specifier: workspace:^
+        version: link:../block
       '@ds/button':
         specifier: workspace:^
         version: link:../button

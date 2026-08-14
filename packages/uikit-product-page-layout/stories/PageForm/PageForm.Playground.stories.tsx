@@ -101,7 +101,12 @@ export default meta;
 type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
+  args: {
+    stickyFooter: false,
+  },
+
   tags: ['dev', 'test'],
+
   render: ({ showSubtitle, showStepper, showPriceSummary, showSideBlock, showFooter, ...args }) => (
     <div className={styles.fullPage}>
       <PageForm
@@ -114,6 +119,7 @@ export const Playground: Story = {
       />
     </div>
   ),
+
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.pageForm.root)).toBeVisible();
   },

@@ -37,10 +37,10 @@
   gap: base.$sn-primitive-dimension-8;
 
   box-sizing: border-box;
-  margin: calc(0px - base.$sn-primitive-dimension-8) calc(0px - base.$sn-primitive-dimension-16)
-    calc(0px - base.$sn-primitive-dimension-16);
+  // Бока и низ подтягиваем к кромкам контейнера; сверху margin'а нет — зазор до рамки задаёт gap.
+  margin: 0 calc(0px - base.$sn-primitive-dimension-16) calc(0px - base.$sn-primitive-dimension-16);
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
-  border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
@@ -78,7 +78,7 @@
   // Верх/бока подтягиваем к кромкам контейнера, чтобы разделитель шёл во всю ширину.
   margin: calc(0px - base.$sn-primitive-dimension-16) calc(0px - base.$sn-primitive-dimension-16) 0;
   padding: base.$sn-primitive-dimension-16;
-  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 }

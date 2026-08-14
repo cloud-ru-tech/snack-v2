@@ -1,6 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/block.module' as block;
 
+// Мастер задаёт паддинг карточки примитивом, а не block-анатомией (Figma node 9165:19616).
+$card-padding: base.$sn-primitive-dimension-56;
+// Паддинг карточки для прилипшего футера слишком велик: сверху он всегда поджат до этого значения,
+// а в прилипшем состоянии — со всех сторон (как в старом ките).
+$footer-compact-padding: block.$sn-block-anatomy-l-padding;
+
 .container {
   display: flex;
   gap: base.$sn-primitive-dimension-24;
@@ -12,22 +18,25 @@
   padding: base.$sn-density-spacing-interval-l;
 }
 
+// Подложку, радиус и box-sizing несёт сам Block; здесь только габариты карточки.
 .form {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-  gap: base.$sn-primitive-dimension-32;
-
-  box-sizing: border-box;
   // 800px — фиксированная ширина карточки формы, токена нет.
   width: 800px;
   min-height: 100%;
-  padding: block.$sn-block-anatomy-l-padding;
-  border-radius: block.$sn-block-anatomy-l-borderRadius;
+}
 
-  background-color: base.$sn-theme-color-neutral-background1Level;
+// Перебиваем размерное правило Block'а по той же оси `data-size`.
+.container > .form[data-size='l'] {
+  padding: $card-padding;
+}
+
+// Block — подложка, а не layout-контейнер: раскладку контента задаёт потребитель
+.formContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-32;
 }
 
 .headline {
@@ -54,15 +63,16 @@
 
   box-sizing: border-box;
   // Отрицательные margin'ы компенсируют padding карточки, растягивая футер до её кромок.
-  margin: calc(0px - block.$sn-block-anatomy-l-padding) calc(0px - block.$sn-block-anatomy-l-padding)
-    calc(0px - block.$sn-block-anatomy-l-padding);
-  padding: block.$sn-block-anatomy-l-padding;
+  margin: calc(0px - $footer-compact-padding) calc(0px - $card-padding) calc(0px - $card-padding);
+  padding: $footer-compact-padding $card-padding $card-padding;
   border-radius: 0 0 block.$sn-block-anatomy-l-borderRadius block.$sn-block-anatomy-l-borderRadius;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 
   /* stylelint-disable-next-line declaration-property-value-allowed-list */
-  transition: border-radius 0.15s ease;
+  transition:
+    border-radius 0.15s ease,
+    padding 0.15s ease;
 
   // clip-path обрезает тень до верхней кромки — остаётся только тень сверху.
   &::before {
@@ -83,6 +93,8 @@
 }
 
 .footerStuck {
+  padding: $footer-compact-padding;
+
   &::before {
     opacity: 1;
   }
@@ -93,7 +105,8 @@
   pointer-events: none;
 
   position: absolute;
-  bottom: 0;
+  // Отсчёт идёт от слота содержимого Block'а — опускаем sentinel на нижнюю кромку карточки.
+  bottom: calc(0px - $card-padding);
   left: 50%;
   transform: translateX(-50%);
 

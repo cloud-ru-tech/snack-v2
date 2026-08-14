@@ -62,6 +62,25 @@ export const VisualMatrix: Story = {
             ],
           },
           {
+            variantLabel: 'sticky footer',
+            cells: [
+              // Фрейм со своим скроллом: только в нём футер прилипает и показывает разделитель.
+              <div key='sticky' className={styles.deviceFormScroll}>
+                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                  <PageForm
+                    title='Создание инстанса'
+                    subtitle='Заполните параметры конфигурации'
+                    stepper={stepper}
+                    footer={footer}
+                    stickyFooter
+                  >
+                    <FormSections />
+                  </PageForm>
+                </AdaptiveProvider>
+              </div>,
+            ],
+          },
+          {
             variantLabel: 'plain form',
             cells: [
               <div key='reg' className={styles.deviceForm}>

@@ -78,6 +78,22 @@
   background-color: base.$sn-theme-color-neutral-background;
 }
 
+// Тот же desktop-фрейм, но с фикс. высотой и своим скроллом: без него прилипший футер
+// не прилипает и разделитель над ним не показывается.
+.deviceFormScroll {
+  position: relative;
+
+  overflow: auto;
+
+  box-sizing: border-box;
+  width: 1280px;
+  height: 480px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
 .matrix {
   display: grid;
   gap: base.$sn-primitive-dimension-24;

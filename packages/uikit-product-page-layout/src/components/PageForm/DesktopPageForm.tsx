@@ -1,3 +1,4 @@
+import { Block, SIZE as BLOCK_SIZE } from '@ds/block';
 import { APPEARANCE, SIZE, VIEW } from '@ds/button';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -35,7 +36,7 @@ export function DesktopPageForm({
 
   return (
     <div className={cn(styles.container, className)} {...extractSupportProps(rest)}>
-      <div className={styles.form}>
+      <Block size={BLOCK_SIZE.L} className={styles.form} contentClassName={styles.formContent}>
         <div className={styles.headline}>
           <Headline title={title} subtitle={subtitle} />
         </div>
@@ -92,7 +93,7 @@ export function DesktopPageForm({
             )}
           </>
         )}
-      </div>
+      </Block>
 
       {moreItems.length > 0 && (
         <div className={styles.sideItems}>
