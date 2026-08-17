@@ -32,9 +32,9 @@
   "dependencies": {
     "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
-    "@ds/dropdown": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/info-block": "workspace:^",
+    "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/segment-control": "workspace:^",

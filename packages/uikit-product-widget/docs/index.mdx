@@ -74,7 +74,9 @@ import widgetDoc from './props.json'
 
 - `filled` / `outline` / `tonal` / `function` / `simple` — пропсы `@ds/button` + опциональный `tooltip`.
 - `kebab` — `ButtonKebab` + `list.items` (группы и пункты меню).
-- `droplist` — кнопка-триггер + выпадающий `ActionList`.
+- `droplist` — кнопка-триггер + выпадающий список.
+
+Меню обоих вариантов рендерит `Droplist` из `@ds/list`: на mobile список открывается в `BottomSheet`, на desktop — анкорным popover'ом. Раскладка берётся из `AdaptiveProvider`.
 
 Общие поля: `hidden`, `tooltip`. Для списков: `closeDroplistOnItemClick`, controlled `open` / `onOpenChange`.
 

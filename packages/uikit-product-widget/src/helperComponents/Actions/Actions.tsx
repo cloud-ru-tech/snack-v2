@@ -2,7 +2,7 @@ import { Skeleton } from '@ds/skeleton';
 import { memo, MouseEvent, ReactNode, useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { WidgetAction, WidgetLayoutType, WidgetState } from '../../types';
+import { WidgetAction, WidgetState } from '../../types';
 import { ButtonKebab } from '../ButtonKebab';
 import { ActionView } from './ActionView';
 import { actionToListItem, buildKebabItems, getPrimaryAction, hasVisibleActions } from './helpers';
@@ -13,7 +13,6 @@ type ActionsProps = {
   actionsChildren?: ReactNode;
   wide?: boolean;
   state?: WidgetState;
-  layoutType?: WidgetLayoutType;
   fullWidthPrimaryAction?: boolean;
   showOverflowActions?: boolean;
 };
@@ -40,7 +39,7 @@ function ActionsSkeleton({ wide }: Pick<ActionsProps, 'wide'>) {
   );
 }
 
-function ActionsComponent({ actions = [], actionsChildren, wide, state, layoutType = 'desktop' }: ActionsProps) {
+function ActionsComponent({ actions = [], actionsChildren, wide, state }: ActionsProps) {
   const { action: primaryAction, index: primaryActionIndex } = useMemo(() => getPrimaryAction(actions), [actions]);
 
   const kebabItems = useMemo(() => {
@@ -69,12 +68,9 @@ function ActionsComponent({ actions = [], actionsChildren, wide, state, layoutTy
   return (
     <div className={styles.actionsWrapper} data-test-id={TEST_IDS.actions}>
       {actionsChildren}
-      {primaryAction && wide && (
-        <ActionView {...primaryAction} layoutType={layoutType} commonProps={{ size: 'm', fullWidth: true }} />
-      )}
+      {primaryAction && wide && <ActionView {...primaryAction} commonProps={{ size: 'm', fullWidth: true }} />}
       {Boolean(kebabItems.length) && (
         <ButtonKebab
-          layoutType={layoutType}
           list={{
             items: kebabItems,
             closeDroplistOnItemClick: true,

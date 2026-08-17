@@ -1,27 +1,4 @@
 {
-  "ActionList": {
-    "displayName": "ActionList",
-    "propsTypeName": null,
-    "props": {
-      "className": {
-        "type": "string",
-        "required": false
-      },
-      "closeOnItemClick": {
-        "type": "boolean",
-        "required": false
-      },
-      "items": {
-        "type": "WidgetActionListEntry[]",
-        "required": true
-      },
-      "onItemClick": {
-        "type": "(() => void)",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
   "ActionView": {
     "displayName": "ActionView",
     "propsTypeName": null,
@@ -105,14 +82,6 @@
         "required": false,
         "description": "Текст кнопки"
       },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      },
       "list": {
         "type": "WidgetActionListProps",
         "required": true
@@ -174,14 +143,6 @@
         "type": "boolean",
         "required": false
       },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      },
       "showOverflowActions": {
         "type": "boolean",
         "required": false
@@ -210,14 +171,6 @@
         "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { ...; })",
         "required": true
       },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
-      },
       "list": {
         "type": "WidgetActionListProps",
         "required": true
@@ -232,14 +185,6 @@
       "button": {
         "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\">",
         "required": false
-      },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
       },
       "list": {
         "type": "WidgetActionListProps",
@@ -287,14 +232,6 @@
       "actionsChildren": {
         "type": "ReactNode",
         "required": false
-      },
-      "layoutType": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "desktop",
-          "mobile"
-        ]
       },
       "segmentControl": {
         "type": "SegmentControlProps",

@@ -33,7 +33,6 @@
 .actionsWrapper {
   display: flex;
   flex-shrink: 0;
-  // Figma: зазор между основной кнопкой и kebab = 8 (buttonAction 424 → buttonFunction 432).
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
 

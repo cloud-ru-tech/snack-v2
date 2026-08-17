@@ -3,12 +3,11 @@ import { Tooltip } from '@ds/tooltip';
 import { memo, ReactNode } from 'react';
 
 import { BUTTON_TYPE } from '../../constants';
-import { WidgetAction, WidgetLayoutType } from '../../types';
+import { WidgetAction } from '../../types';
 import { ButtonDroplist } from '../ButtonDroplist';
 import { ButtonKebab } from '../ButtonKebab';
 
 type ActionViewProps = WidgetAction & {
-  layoutType?: WidgetLayoutType;
   commonProps?: {
     className?: string;
     size?: 's' | 'm' | 'l';
@@ -24,7 +23,6 @@ function ActionViewComponent({
   variant = BUTTON_TYPE.Filled,
   tooltip,
   hidden = false,
-  layoutType,
   commonProps,
   ...rest
 }: ActionViewProps) {
@@ -43,10 +41,7 @@ function ActionViewComponent({
       return withTooltip(<Button {...rest} {...commonProps} view={VIEW.Simple} />, tooltip);
     case BUTTON_TYPE.Kebab: {
       const { button, list } = rest as Extract<WidgetAction, { variant: typeof BUTTON_TYPE.Kebab }>;
-      return withTooltip(
-        <ButtonKebab button={{ ...button, ...commonProps }} list={list} layoutType={layoutType} />,
-        tooltip,
-      );
+      return withTooltip(<ButtonKebab button={{ ...button, ...commonProps }} list={list} />, tooltip);
     }
     case BUTTON_TYPE.Droplist: {
       const { button, list } = rest as Extract<WidgetAction, { variant: typeof BUTTON_TYPE.Droplist }>;

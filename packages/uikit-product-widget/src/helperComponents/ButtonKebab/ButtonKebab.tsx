@@ -1,40 +1,24 @@
 import { Button, VIEW } from '@ds/button';
-import { Dropdown } from '@ds/dropdown';
 import { KebabSVG } from '@ds/icons/interface/system';
-import { useValueControl } from '@ds/utils';
+import { Droplist } from '@ds/list';
 import { memo } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { ButtonKebabProps, WidgetLayoutType } from '../../types';
-import { ActionList } from '../ButtonDroplist/ActionList';
+import { ButtonKebabProps } from '../../types';
 import styles from './styles.module.scss';
 
-type Props = ButtonKebabProps & {
-  layoutType?: WidgetLayoutType;
-};
+function ButtonKebabComponent({ button, list }: ButtonKebabProps) {
+  const { items, className, closeDroplistOnItemClick = true, open, onOpenChange } = list;
 
-function ButtonKebabComponent({ button, list }: Props) {
-  const [open, setOpen] = useValueControl<boolean>({
-    value: list.open,
-    defaultValue: false,
-    onChange: list.onOpenChange,
-  });
-
-  //Todo переделать на AdaptiveDropDown
   return (
-    <Dropdown
+    <Droplist
+      items={items}
+      className={className}
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={onOpenChange}
+      closeDroplistOnItemClick={closeDroplistOnItemClick}
       placement='bottom-end'
       triggerClassName={styles.trigger}
-      content={
-        <ActionList
-          items={list.items}
-          className={list.className}
-          closeOnItemClick={list.closeDroplistOnItemClick}
-          onItemClick={() => setOpen(false)}
-        />
-      }
       data-test-id={TEST_IDS.kebabDroplist}
     >
       <Button
@@ -45,8 +29,8 @@ function ButtonKebabComponent({ button, list }: Props) {
         view={VIEW.Outline}
         data-test-id={TEST_IDS.kebabButton}
       />
-    </Dropdown>
+    </Droplist>
   );
 }
 
-export const ButtonKebab = memo<Props>(ButtonKebabComponent);
+export const ButtonKebab = memo<ButtonKebabProps>(ButtonKebabComponent);

@@ -34,7 +34,7 @@ export const ActionVariants: Story = {
       <DemoPage>
         <DemoPanel>
           <DemoTitle>Action variants</DemoTitle>
-          <DemoHint>ActionView branches, ButtonDroplist, helpers и ActionList groups.</DemoHint>
+          <DemoHint>ActionView branches, ButtonDroplist, helpers и группы пунктов в Droplist.</DemoHint>
           <DemoActions block>
             <div className={styles.variantList}>
               <VariantWidget

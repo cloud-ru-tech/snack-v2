@@ -3,7 +3,7 @@ import { Skeleton } from '@ds/skeleton';
 import { memo, ReactNode } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { WidgetAction, WidgetLayoutType, WidgetState } from '../../types';
+import { WidgetAction, WidgetState } from '../../types';
 import { Actions } from '../Actions';
 import styles from './styles.module.scss';
 
@@ -13,17 +13,9 @@ type ControlBlockProps = {
   segmentControl?: SegmentControlProps;
   wide?: boolean;
   state?: WidgetState;
-  layoutType?: WidgetLayoutType;
 };
 
-function ControlBlockComponent({
-  actions,
-  actionsChildren,
-  segmentControl,
-  wide,
-  state,
-  layoutType,
-}: ControlBlockProps) {
+function ControlBlockComponent({ actions, actionsChildren, segmentControl, wide, state }: ControlBlockProps) {
   const shouldShowControl = segmentControl || state === 'loading';
 
   if (!shouldShowControl && !wide) {
@@ -40,15 +32,7 @@ function ControlBlockComponent({
   return (
     <div className={styles.controlWrapper} data-mobile={!wide || undefined} data-test-id={TEST_IDS.control}>
       {shouldShowControl && content}
-      {wide && (
-        <Actions
-          actions={actions}
-          actionsChildren={actionsChildren}
-          wide={wide}
-          state={state}
-          layoutType={layoutType}
-        />
-      )}
+      {wide && <Actions actions={actions} actionsChildren={actionsChildren} wide={wide} state={state} />}
     </div>
   );
 }

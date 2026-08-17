@@ -1,25 +1,19 @@
 import { Button, ICON_POSITION, VIEW } from '@ds/button';
-import { Dropdown } from '@ds/dropdown';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
-import { useValueControl } from '@ds/utils';
+import { Droplist } from '@ds/list';
+import { useUncontrolledProp } from '@ds/utils';
 import { memo, useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { ButtonDroplistProps, WidgetLayoutType } from '../../types';
-import { ActionList } from './ActionList';
+import { ButtonDroplistProps } from '../../types';
 import styles from './styles.module.scss';
 
-type Props = ButtonDroplistProps & {
-  layoutType?: WidgetLayoutType;
-};
-
-function ButtonDroplistComponent({ button, list }: Props) {
+function ButtonDroplistComponent({ button, list }: ButtonDroplistProps) {
   const { buttonType: buttonTypeProp, ...buttonRest } = button;
-  const [open, setOpen] = useValueControl<boolean>({
-    value: list.open,
-    defaultValue: false,
-    onChange: list.onOpenChange,
-  });
+  const { items, className, closeDroplistOnItemClick = true, open: openProp, onOpenChange } = list;
+  // Стрелка триггера смотрит вверх на открытом списке, поэтому состояние нужно и здесь,
+  // а не только внутри Droplist.
+  const [open, setOpen] = useUncontrolledProp(openProp, false, onOpenChange);
 
   const Icon = open ? ChevronUpSVG : ChevronDownSVG;
   const buttonType = buttonTypeProp ?? 'function';
@@ -37,26 +31,20 @@ function ButtonDroplistComponent({ button, list }: Props) {
     [Icon, buttonRest, buttonType],
   );
 
-  //Todo переделать на AdaptiveDropDown
   return (
-    <Dropdown
+    <Droplist
+      items={items}
+      className={className}
       open={open}
       onOpenChange={setOpen}
+      closeDroplistOnItemClick={closeDroplistOnItemClick}
       placement='bottom-end'
       triggerClassName={styles.trigger}
-      content={
-        <ActionList
-          items={list.items}
-          className={list.className}
-          closeOnItemClick={list.closeDroplistOnItemClick}
-          onItemClick={() => setOpen(false)}
-        />
-      }
       data-test-id={TEST_IDS.dropdown}
     >
       <Button {...buttonProps} />
-    </Dropdown>
+    </Droplist>
   );
 }
 
-export const ButtonDroplist = memo<Props>(ButtonDroplistComponent);
+export const ButtonDroplist = memo<ButtonDroplistProps>(ButtonDroplistComponent);

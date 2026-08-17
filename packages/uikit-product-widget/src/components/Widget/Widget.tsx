@@ -7,7 +7,7 @@ import { memo, useMemo, useRef } from 'react';
 
 import { BUTTON_TYPE, TEST_IDS, WIDGET_STATE } from '../../constants';
 import { Actions, ActionView, Content, ControlBlock, isVisibleAction } from '../../helperComponents';
-import { WidgetLayoutType, WidgetProps } from '../../types';
+import { WidgetProps } from '../../types';
 import styles from './styles.module.scss';
 
 function WidgetComponent({
@@ -25,7 +25,6 @@ function WidgetComponent({
 }: WidgetProps) {
   const { layoutType: contextLayoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(contextLayoutType);
-  const layoutType: WidgetLayoutType = isMobile ? 'mobile' : 'desktop';
   const wide = wideProp && !isMobile;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +71,6 @@ function WidgetComponent({
               actionsChildren={actionsChildren}
               wide={wide}
               state={state}
-              layoutType={layoutType}
             />
           )}
         </div>
@@ -83,7 +81,6 @@ function WidgetComponent({
           segmentControl={segmentControl}
           wide={wide}
           state={state}
-          layoutType={layoutType}
         />
       </div>
 
@@ -101,7 +98,6 @@ function WidgetComponent({
             <ActionView
               {...action}
               key={index}
-              layoutType='mobile'
               commonProps={{
                 className: styles.button,
                 size: 'm',

@@ -3084,15 +3084,15 @@ importers:
       '@ds/button':
         specifier: workspace:^
         version: link:../button
-      '@ds/dropdown':
-        specifier: workspace:^
-        version: link:../dropdown
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
       '@ds/info-block':
         specifier: workspace:^
         version: link:../info-block
+      '@ds/list':
+        specifier: workspace:^
+        version: link:../list
       '@ds/locale':
         specifier: workspace:^
         version: link:../locale
