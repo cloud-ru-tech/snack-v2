@@ -3,7 +3,7 @@ import { AI_TOOL_ICON_TYPE, AI_TOOL_STATUS_STATE, AiTool, AiToolSimple } from '@
 
 export function Default() {
   return (
-    <AiChainOfThoughts inProgress duration={31568949} defaultOpened>
+    <AiChainOfThoughts inProgress duration={31568949} defaultOpen>
       <AiToolSimple name='status_for_users' icon={AI_TOOL_ICON_TYPE.Search} connector />
       <AiTool
         name='status_for_users'

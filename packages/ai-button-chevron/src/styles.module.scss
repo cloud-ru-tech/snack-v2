@@ -39,6 +39,6 @@
   transition: transform 0.15s ease-in-out;
 }
 
-.root[data-opened] .icon {
+.root[data-open] .icon {
   transform: rotate(180deg);
 }

@@ -14,7 +14,7 @@ const meta: Meta<typeof AiButtonChevron> = {
   component: AiButtonChevron,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
-    opened: false,
+    open: false,
     onClick: fn(),
     'data-test-id': TEST_IDS.root,
   },
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof AiButtonChevron>;
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   render: function Render(args: AiButtonChevronProps) {
-    const [opened, setOpened] = useState(args.opened ?? false);
+    const [open, setOpen] = useState(args.open ?? false);
     return (
       <DemoPage>
         <DemoPanel>
@@ -35,9 +35,9 @@ export const InteractionTest: Story = {
           <DemoActions align='center'>
             <AiButtonChevron
               {...args}
-              opened={opened}
+              open={open}
               onClick={event => {
-                setOpened(prev => !prev);
+                setOpen(prev => !prev);
                 args.onClick?.(event);
               }}
               data-test-id={TEST_IDS.root}
@@ -54,14 +54,14 @@ export const InteractionTest: Story = {
     const root = canvas.getByTestId(TEST_IDS.root);
     const disabledButton = canvas.getByTestId(TEST_IDS.disabled);
 
-    await step('click: toggles opened → true', async () => {
+    await step('click: toggles open → true', async () => {
       await userEvent.click(root);
       expect(args.onClick).toHaveBeenCalledTimes(1);
-      await expect(root).toHaveAttribute('data-opened', 'true');
+      await expect(root).toHaveAttribute('data-open', 'true');
       await expect(root).toHaveAttribute('aria-expanded', 'true');
     });
 
-    await step('click: toggles opened → false', async () => {
+    await step('click: toggles open → false', async () => {
       await userEvent.click(root);
       expect(args.onClick).toHaveBeenCalledTimes(2);
       await expect(root).toHaveAttribute('aria-expanded', 'false');
@@ -75,7 +75,7 @@ export const InteractionTest: Story = {
     await step('keyboard: Enter triggers toggle', async () => {
       await userEvent.keyboard('{Enter}');
       expect(args.onClick).toHaveBeenCalledTimes(3);
-      await expect(root).toHaveAttribute('data-opened', 'true');
+      await expect(root).toHaveAttribute('data-open', 'true');
     });
 
     await step('disabled: native disabled attribute is set', async () => {

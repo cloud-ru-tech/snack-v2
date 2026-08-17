@@ -12,7 +12,7 @@ const meta: Meta<typeof AiButtonChevron> = {
   component: AiButtonChevron,
   parameters: { layout: 'fullscreen' },
   args: {
-    opened: false,
+    open: false,
     disabled: false,
     'data-test-id': TEST_IDS.root,
   },
@@ -20,14 +20,14 @@ const meta: Meta<typeof AiButtonChevron> = {
     onClick: { table: { disable: true } },
   },
   render: function Render(args: AiButtonChevronProps) {
-    const [{ opened }, updateArgs] = useArgs<AiButtonChevronProps>();
+    const [{ open }, updateArgs] = useArgs<AiButtonChevronProps>();
     return (
       <DemoPage>
         <DemoPanel>
           <DemoTitle>Playground</DemoTitle>
           <DemoHint>Кнопка-шеврон для раскрытия / сворачивания — клик переключает направление.</DemoHint>
           <DemoActions align='center'>
-            <AiButtonChevron {...args} opened={opened} onClick={() => updateArgs({ opened: !opened })} />
+            <AiButtonChevron {...args} open={open} onClick={() => updateArgs({ open: !open })} />
           </DemoActions>
         </DemoPanel>
       </DemoPage>

@@ -35,7 +35,7 @@ export type AiQueueOwnProps = {
   /** Начальное состояние раскрытия в uncontrolled-режиме. */
   defaultOpen?: boolean;
   /** Коллбек изменения раскрытия. */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?(open: boolean): void;
   /** Тексты счётчика в заголовке. */
   labels?: Partial<AiQueueLabels>;
   /** Дополнительный CSS-класс корня. */

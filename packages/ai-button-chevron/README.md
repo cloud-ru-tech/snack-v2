@@ -2,9 +2,9 @@
 
 `@ds/ai-button-chevron` — Кнопка-шеврон 16×16 для раскрытия и сворачивания в составных AI-компонентах стриминга.
 
-`AiButtonChevron` — кнопка-шеврон 16×16 из набора AI Components. Презентационный toggle: видимое направление задаётся пропом `opened`, переключение — на стороне родителя через `onClick`. Используется как управляющий элемент раскрытия / сворачивания в составных компонентах стриминга.
+`AiButtonChevron` — кнопка-шеврон 16×16 из набора AI Components. Презентационный toggle: видимое направление задаётся пропом `open`, переключение — на стороне родителя через `onClick`. Используется как управляющий элемент раскрытия / сворачивания в составных компонентах стриминга.
 
-Компонент рендерится как `<button>`. Шеврон смотрит вниз при `opened={false}` и поворачивается вверх при `opened={true}`.
+Компонент рендерится как `<button>`. Шеврон смотрит вниз при `open={false}` и поворачивается вверх при `open={true}`.
 
 ## Когда использовать
 
@@ -20,9 +20,9 @@
 
 ## Анатомия
 
-### Opened (default `false`)
+### Open (default `false`)
 
-Единственная визуальная ось. `opened={false}` — шеврон вниз (свёрнуто), `opened={true}` — шеврон вверх (раскрыто). Поворот анимируется через `transform`.
+Единственная визуальная ось. `open={false}` — шеврон вниз (свёрнуто), `open={true}` — шеврон вверх (раскрыто). Поворот анимируется через `transform`.
 
 ### Disabled (default `false`)
 
@@ -51,8 +51,8 @@ import { AiButtonChevron } from '@ds/ai-button-chevron';
 import { useState } from 'react';
 
 export function Default() {
-  const [opened, setOpened] = useState(false);
-  return <AiButtonChevron opened={opened} onClick={() => setOpened(prev => !prev)} />;
+  const [open, setOpen] = useState(false);
+  return <AiButtonChevron open={open} onClick={() => setOpen(prev => !prev)} />;
 }
 ```
 
@@ -65,11 +65,11 @@ import { AiButtonChevron } from '@ds/ai-button-chevron';
 import { useState } from 'react';
 
 export function Expandable() {
-  const [opened, setOpened] = useState(true);
+  const [open, setOpen] = useState(true);
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <AiButtonChevron opened={opened} onClick={() => setOpened(prev => !prev)} />
-      {opened && <span>Раскрытый контент</span>}
+      <AiButtonChevron open={open} onClick={() => setOpen(prev => !prev)} />
+      {open && <span>Раскрытый контент</span>}
     </div>
   );
 }
@@ -98,4 +98,4 @@ export function Disabled() {
 | `disabled` | `boolean` | `false` | Disabled-состояние: opacity, нативная блокировка кликов и клавиатуры. |
 | `interactive` | `boolean` | `true` | Интерактивный режим: `true` — рендерится как `button`, `false` — как декоративный `span`. |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Нативный обработчик клика. Не вызывается для disabled-кнопки. |
-| `opened` | `boolean` | `false` | Раскрытое состояние: `true` — шеврон смотрит вверх, `false` — вниз. По умолчанию `false`. |
+| `open` | `boolean` | `false` | Раскрытое состояние: `true` — шеврон смотрит вверх, `false` — вниз. По умолчанию `false`. |

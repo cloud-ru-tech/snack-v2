@@ -39,7 +39,7 @@ export const VisualMatrix: Story = {
                 inProgress={inProgress}
                 duration={CHAIN_DURATION}
                 collapsible={collapsible}
-                onToggle={noop}
+                onOpenChange={noop}
               />
             </div>
           )),

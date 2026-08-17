@@ -29,7 +29,7 @@
         "required": false,
         "defaultValue": "ai-chain-of-thoughts"
       },
-      "defaultOpened": {
+      "defaultOpen": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -51,15 +51,15 @@
         "required": false,
         "description": "Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Переключение раскрытия. Получает новое значение `opened`."
+        "description": "Переключение раскрытия. Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
-        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`."
       }
     },
     "relatedTypes": {}
@@ -111,12 +111,12 @@
         "required": false,
         "description": "Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Клик по chevron'у. Получает новое значение `opened`."
+        "description": "Клик по chevron'у. Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",

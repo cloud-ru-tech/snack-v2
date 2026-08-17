@@ -4,7 +4,7 @@
 
 `AiChainOfThoughts` — цепочка рассуждений AI-агента (Chain of Thoughts) для Гига-помощника: сворачиваемый заголовок «Размышляю» / «Размышлял» с длительностью и список строк-инструментов под ним.
 
-Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`). Контент цепочки передаётся слотом `children` (строки `@ds/ai-tool`), сам компонент его не запоминает.
+Раскрытие — controlled (`open` + `onOpenChange`) либо uncontrolled (`defaultOpen`). Контент цепочки передаётся слотом `children` (строки `@ds/ai-tool`), сам компонент его не запоминает.
 
 ## Когда использовать
 
@@ -29,7 +29,7 @@
 
 Поток рассуждения прерван: вместо длительности и chevron'а заголовок показывает сообщение `brokenMessage`, контент-цепочка не раскрывается.
 
-### Opened (default `false`)
+### Open (default `false`)
 
 Раскрытие контент-цепочки. Chevron в заголовке появляется только при наличии `children` и вне состояния `broken`.
 
@@ -55,7 +55,7 @@ import { AI_TOOL_ICON_TYPE, AI_TOOL_STATUS_STATE, AiTool, AiToolSimple } from '@
 
 export function Default() {
   return (
-    <AiChainOfThoughts inProgress duration={31568949} defaultOpened>
+    <AiChainOfThoughts inProgress duration={31568949} defaultOpen>
       <AiToolSimple name='status_for_users' icon={AI_TOOL_ICON_TYPE.Search} connector />
       <AiTool
         name='status_for_users'
@@ -111,12 +111,12 @@ export function HeadlineStates() {
 | `children` | `ReactNode` | — | Контент-цепочка рассуждения — строки `AiTool` / `AiToolSimple`. Рендерится <br/> под заголовком в раскрытом состоянии. |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-chain-of-thoughts` |  |
-| `defaultOpened` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). По умолчанию `false`. |
+| `defaultOpen` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). По умолчанию `false`. |
 | `duration` | `number` | — | Длительность рассуждения в секундах. Форматируется в д/ч/м/с. Скрыта в <br/> состоянии `broken`. |
 | `inProgress` | `boolean` | `true` | Идёт ли рассуждение прямо сейчас. `true` — иконка GigaChat и подпись <br/> «Размышляю»; `false` — без иконки и «Размышлял». По умолчанию `true`. |
 | `label` | `ReactNode` | — | Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`. |
-| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
-| `opened` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
+| `open` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. |
 
 ### AiChainOfThoughtsHeadline
 
@@ -132,5 +132,5 @@ export function HeadlineStates() {
 | `duration` | `number` | — | Длительность рассуждения в секундах. Форматируется в д/ч/м/с (ведущие <br/> нулевые единицы опускаются, секунды показываются всегда). Скрыта в <br/> состоянии `broken`. |
 | `inProgress` | `boolean` | `true` | Идёт ли рассуждение прямо сейчас. `true` — слева иконка GigaChat и подпись <br/> «Размышляю» (настоящее время); `false` — без иконки и «Размышлял» <br/> (прошедшее время). По умолчанию `true`. |
 | `label` | `ReactNode` | — | Подпись заголовка. По умолчанию «Размышляю» / «Размышлял» — по `inProgress`. |
-| `onToggle` | `((opened: boolean) => void)` | — | Клик по chevron'у. Получает новое значение `opened`. |
-| `opened` | `boolean` | `false` | Раскрытое состояние — задаёт направление chevron'а. По умолчанию `false`. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Клик по chevron'у. Получает новое значение `open`. |
+| `open` | `boolean` | `false` | Раскрытое состояние — задаёт направление chevron'а. По умолчанию `false`. |

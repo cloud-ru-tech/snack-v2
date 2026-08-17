@@ -26,14 +26,14 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.grid}>
       <StoryTable
-        sectionTitle='InProgress × Opened'
+        sectionTitle='InProgress × Open'
         firstColumnHeader='Progress'
-        columnHeaders={['CLOSED', 'OPENED']}
+        columnHeaders={['CLOSED', 'OPEN']}
         rows={progressCases.map(({ label, inProgress }) => ({
           variantLabel: label,
-          cells: [false, true].map(opened => (
-            <div key={String(opened)} className={styles.cell}>
-              <AiChainOfThoughts inProgress={inProgress} duration={CHAIN_DURATION} defaultOpened={opened}>
+          cells: [false, true].map(open => (
+            <div key={String(open)} className={styles.cell}>
+              <AiChainOfThoughts inProgress={inProgress} duration={CHAIN_DURATION} defaultOpen={open}>
                 {chainContentPreset}
               </AiChainOfThoughts>
             </div>

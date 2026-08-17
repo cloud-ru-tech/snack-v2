@@ -15,13 +15,13 @@ const meta: Meta<typeof AiChainOfThoughts> = {
     inProgress: true,
     broken: false,
     duration: CHAIN_DURATION,
-    defaultOpened: true,
+    defaultOpen: true,
     children: 'content',
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
-    opened: { table: { disable: true } },
-    onToggle: { table: { disable: true } },
+    open: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
     label: { control: 'text' },
     brokenMessage: { control: 'text' },
     children: {

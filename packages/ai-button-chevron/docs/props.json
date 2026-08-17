@@ -29,7 +29,7 @@
         "required": false,
         "description": "Нативный обработчик клика. Не вызывается для disabled-кнопки."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",

@@ -21,12 +21,12 @@ export type AiChainOfThoughtsOwnProps = {
   label?: ReactNode;
   /** Текст сообщения о прерванном потоке (показывается при `broken`). */
   brokenMessage?: ReactNode;
-  /** Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. */
-  opened?: boolean;
+  /** Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. */
+  open?: boolean;
   /** Начальное раскрытое состояние (uncontrolled). По умолчанию `false`. */
-  defaultOpened?: boolean;
-  /** Переключение раскрытия. Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  defaultOpen?: boolean;
+  /** Переключение раскрытия. Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /**
    * Контент-цепочка рассуждения — строки `AiTool` / `AiToolSimple`. Рендерится
    * под заголовком в раскрытом состоянии.
@@ -41,8 +41,8 @@ export type AiChainOfThoughtsOwnProps = {
  *
  * Цепочка рассуждений (Chain of Thoughts) AI-агента: сворачиваемый заголовок
  * («Размышляю» / «Размышлял», длительность, статус прерывания) и контент со
- * строками инструментов. Раскрытие — controlled (`opened` + `onToggle`) либо
- * uncontrolled (`defaultOpened`); chevron появляется только при наличии
+ * строками инструментов. Раскрытие — controlled (`open` + `onOpenChange`) либо
+ * uncontrolled (`defaultOpen`); chevron появляется только при наличии
  * контента и вне состояния `broken`.
  */
 export type AiChainOfThoughtsProps = WithSupportProps<
@@ -78,9 +78,9 @@ export type AiChainOfThoughtsHeadlineOwnProps = {
    */
   collapsible?: boolean;
   /** Раскрытое состояние — задаёт направление chevron'а. По умолчанию `false`. */
-  opened?: boolean;
-  /** Клик по chevron'у. Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  open?: boolean;
+  /** Клик по chevron'у. Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /** Доп. класс корня. */
   className?: string;
 };
@@ -91,7 +91,7 @@ export type AiChainOfThoughtsHeadlineOwnProps = {
  * Заголовок цепочки рассуждений (Chain of Thoughts): иконка GigaChat, подпись
  * «Размышляю» / «Размышлял», длительность и chevron раскрытия. В состоянии
  * `broken` показывает сообщение о прерванном потоке вместо длительности.
- * Презентационный: раскрытие управляется родителем через `opened` + `onToggle`.
+ * Презентационный: раскрытие управляется родителем через `open` + `onOpenChange`.
  * Собственный контент (`children`) не рендерит.
  */
 export type AiChainOfThoughtsHeadlineProps = WithSupportProps<

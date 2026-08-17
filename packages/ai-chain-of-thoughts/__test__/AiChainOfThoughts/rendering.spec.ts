@@ -4,7 +4,7 @@ import { buildStoryOptions, TEST_IDS } from './helpers';
 
 test.describe('AiChainOfThoughts — rendering', () => {
   test('renders headline with shimmer label, duration and chevron', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ defaultOpened: false }));
+    await gotoStory(buildStoryOptions({ defaultOpen: false }));
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headline)).toBeVisible();
     // В активном рассуждении иконка giga живёт внутри shimmer-подписи (без отдельного test-id).
@@ -14,9 +14,9 @@ test.describe('AiChainOfThoughts — rendering', () => {
     await expect(getByTestId(TEST_IDS.content)).toHaveCount(0);
   });
 
-  test('opened reveals content and marks the root', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ defaultOpened: true }));
-    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-opened', 'true');
+  test('open reveals content and marks the root', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ defaultOpen: true }));
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-open', 'true');
     await expect(getByTestId(TEST_IDS.content)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineChevron)).toHaveAttribute('aria-expanded', 'true');
   });
@@ -28,7 +28,7 @@ test.describe('AiChainOfThoughts — rendering', () => {
   });
 
   test('broken shows the message and duration, hides chevron and content', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ broken: true, defaultOpened: true }));
+    await gotoStory(buildStoryOptions({ broken: true, defaultOpen: true }));
     await expect(getByTestId(TEST_IDS.headline)).toHaveAttribute('data-broken', 'true');
     await expect(getByTestId(TEST_IDS.headlineMessage)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineDuration)).toBeVisible();
@@ -37,7 +37,7 @@ test.describe('AiChainOfThoughts — rendering', () => {
   });
 
   test('children=none renders no chevron and no content', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ defaultOpened: true, children: 'none' }));
+    await gotoStory(buildStoryOptions({ defaultOpen: true, children: 'none' }));
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineChevron)).toHaveCount(0);
     await expect(getByTestId(TEST_IDS.content)).toHaveCount(0);

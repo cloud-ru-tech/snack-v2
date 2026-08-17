@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 export type AiButtonChevronOwnProps = {
   /** Раскрытое состояние: `true` — шеврон смотрит вверх, `false` — вниз. По умолчанию `false`. */
-  opened?: boolean;
+  open?: boolean;
   /** Интерактивный режим: `true` — рендерится как `button`, `false` — как декоративный `span`. */
   interactive?: boolean;
   /** Disabled-состояние: opacity, нативная блокировка кликов и клавиатуры. */
@@ -16,7 +16,7 @@ export type AiButtonChevronOwnProps = {
   /** Доп. класс корня. */
   className?: string;
   /** Нативный обработчик клика. Не вызывается для disabled-кнопки. */
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?(event: MouseEvent<HTMLButtonElement>): void;
 };
 
 /**
@@ -24,10 +24,10 @@ export type AiButtonChevronOwnProps = {
  *
  * Кнопка-шеврон 16×16 для раскрытия / сворачивания (toggle) в составных
  * AI-компонентах стриминга. Презентационная: видимое состояние задаётся
- * пропом `opened`, переключение — на стороне родителя через `onClick`.
+ * пропом `open`, переключение — на стороне родителя через `onClick`.
  *
  * Доступное имя: по умолчанию `aria-label` = `'Expand'` / `'Collapse'`
- * (зависит от `opened`); `aria-expanded` = `opened`. Оба переопределяются
+ * (зависит от `open`); `aria-expanded` = `open`. Оба переопределяются
  * через одноимённые пропсы.
  */
 export type AiButtonChevronProps = WithSupportProps<
@@ -37,7 +37,7 @@ export type AiButtonChevronProps = WithSupportProps<
 
 export function AiButtonChevron({
   className,
-  opened = false,
+  open = false,
   interactive = true,
   disabled = false,
   onClick,
@@ -52,7 +52,7 @@ export function AiButtonChevron({
     return (
       <span
         className={cn(styles.root, className)}
-        data-opened={opened || undefined}
+        data-open={open || undefined}
         data-disabled={disabled || undefined}
         data-test-id={resolvedDataTestId}
         aria-hidden
@@ -68,11 +68,11 @@ export function AiButtonChevron({
       type='button'
       className={cn(styles.root, className)}
       disabled={disabled}
-      data-opened={opened || undefined}
+      data-open={open || undefined}
       data-disabled={disabled || undefined}
       data-test-id={resolvedDataTestId}
-      aria-label={ariaLabel ?? (opened ? 'Collapse' : 'Expand')}
-      aria-expanded={ariaExpanded ?? opened}
+      aria-label={ariaLabel ?? (open ? 'Collapse' : 'Expand')}
+      aria-expanded={ariaExpanded ?? open}
       onClick={onClick}
     >
       <ChevronDownSVG className={styles.icon} size={16} />

@@ -14,24 +14,24 @@ export function AiChainOfThoughts({
   duration,
   label,
   brokenMessage,
-  opened: openedProp,
-  defaultOpened = false,
-  onToggle,
+  open: openProp,
+  defaultOpen = false,
+  onOpenChange,
   children,
   className,
   'data-test-id': dataTestId = TEST_IDS.root,
   ...rest
 }: AiChainOfThoughtsProps): ReactElement {
   const hasContent = isSlotFilled(children) && !broken;
-  const [opened, setOpened] = useUncontrolledProp(openedProp, defaultOpened, onToggle);
+  const [open, setOpen] = useUncontrolledProp(openProp, defaultOpen, onOpenChange);
   const contentId = useId();
-  const showContent = Boolean(opened) && hasContent;
+  const showContent = Boolean(open) && hasContent;
 
   return (
     <div
       {...rest}
       className={cn(styles.root, className)}
-      data-opened={showContent || undefined}
+      data-open={showContent || undefined}
       data-test-id={dataTestId}
     >
       <AiChainOfThoughtsHeadline
@@ -41,8 +41,8 @@ export function AiChainOfThoughts({
         label={label}
         brokenMessage={brokenMessage}
         collapsible={hasContent}
-        opened={Boolean(opened)}
-        onToggle={setOpened}
+        open={Boolean(open)}
+        onOpenChange={setOpen}
         aria-controls={showContent ? contentId : undefined}
         data-test-id={TEST_IDS.headline}
       />

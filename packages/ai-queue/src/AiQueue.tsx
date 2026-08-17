@@ -53,7 +53,7 @@ export function AiQueue({
           <span>{mergedLabels.done}</span>
           <span>)</span>
         </span>
-        <AiButtonChevron opened={open} interactive={false} className={styles.chevron} />
+        <AiButtonChevron open={open} interactive={false} className={styles.chevron} />
       </button>
 
       {open && steps.length > 0 && (

@@ -15,7 +15,7 @@ const meta: Meta<typeof AiButtonChevron> = {
 export default meta;
 type Story = StoryObj<typeof AiButtonChevron>;
 
-const openedStates = [false, true] as const;
+const openStates = [false, true] as const;
 const stateRows = [
   { key: 'default', extra: {} as const },
   { key: 'disabled', extra: { disabled: true } as const },
@@ -30,13 +30,13 @@ export const VisualMatrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
-      sectionTitle='State × Opened'
+      sectionTitle='State × Open'
       firstColumnHeader='State'
-      columnHeaders={openedStates.map(o => (o ? 'OPENED' : 'CLOSED'))}
+      columnHeaders={openStates.map(o => (o ? 'OPEN' : 'CLOSED'))}
       rows={stateRows.map(({ key, extra }) => ({
         variantLabel: key,
-        cells: openedStates.map(opened =>
-          renderCell({ ...extra, opened }, `${TEST_IDS.root}-${key}-${opened ? 'opened' : 'closed'}`),
+        cells: openStates.map(open =>
+          renderCell({ ...extra, open }, `${TEST_IDS.root}-${key}-${open ? 'open' : 'closed'}`),
         ),
       }))}
     />

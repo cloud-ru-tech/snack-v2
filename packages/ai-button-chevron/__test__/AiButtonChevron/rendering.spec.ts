@@ -8,17 +8,17 @@ test.describe('AiButtonChevron — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
-  test('closed by default → no data-opened, aria-expanded false', async ({ gotoStory, getByTestId }) => {
+  test('closed by default → no data-open, aria-expanded false', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
     const button = getByTestId(TEST_IDS.root);
-    await expect(button).not.toHaveAttribute('data-opened');
+    await expect(button).not.toHaveAttribute('data-open');
     await expect(button).toHaveAttribute('aria-expanded', 'false');
   });
 
-  test('opened → data-opened + aria-expanded true', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true }));
+  test('open → data-open + aria-expanded true', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ open: true }));
     const button = getByTestId(TEST_IDS.root);
-    await expect(button).toHaveAttribute('data-opened', 'true');
+    await expect(button).toHaveAttribute('data-open', 'true');
     await expect(button).toHaveAttribute('aria-expanded', 'true');
   });
 

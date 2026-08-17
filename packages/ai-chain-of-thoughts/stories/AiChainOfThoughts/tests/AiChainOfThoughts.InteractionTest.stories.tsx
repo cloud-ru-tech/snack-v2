@@ -14,8 +14,8 @@ const meta: Meta<typeof AiChainOfThoughts> = {
   args: {
     inProgress: true,
     duration: CHAIN_DURATION,
-    defaultOpened: false,
-    onToggle: fn(),
+    defaultOpen: false,
+    onOpenChange: fn(),
     'data-test-id': TEST_IDS.root,
   },
 };
@@ -44,19 +44,19 @@ export const InteractionTest: Story = {
       expect(canvas.queryByTestId(TEST_IDS.content)).toBeNull();
     });
 
-    await step('click chevron: content appears, onToggle(true)', async () => {
+    await step('click chevron: content appears, onOpenChange(true)', async () => {
       await userEvent.click(chevron);
       await expect(canvas.getByTestId(TEST_IDS.content)).toBeVisible();
-      expect(args.onToggle).toHaveBeenCalledTimes(1);
-      expect(args.onToggle).toHaveBeenLastCalledWith(true);
+      expect(args.onOpenChange).toHaveBeenCalledTimes(1);
+      expect(args.onOpenChange).toHaveBeenLastCalledWith(true);
     });
 
     await step('keyboard: Enter on focused chevron collapses content', async () => {
       chevron.focus();
       await userEvent.keyboard('{Enter}');
       expect(canvas.queryByTestId(TEST_IDS.content)).toBeNull();
-      expect(args.onToggle).toHaveBeenCalledTimes(2);
-      expect(args.onToggle).toHaveBeenLastCalledWith(false);
+      expect(args.onOpenChange).toHaveBeenCalledTimes(2);
+      expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
     });
   },
 };

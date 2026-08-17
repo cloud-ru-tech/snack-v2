@@ -24,7 +24,7 @@ import aiChainOfThoughtsDoc from './props.json'
 
 `AiChainOfThoughts` — цепочка рассуждений AI-агента (Chain of Thoughts) для Гига-помощника: сворачиваемый заголовок «Размышляю» / «Размышлял» с длительностью и список строк-инструментов под ним.
 
-Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`). Контент цепочки передаётся слотом `children` (строки `@ds/ai-tool`), сам компонент его не запоминает.
+Раскрытие — controlled (`open` + `onOpenChange`) либо uncontrolled (`defaultOpen`). Контент цепочки передаётся слотом `children` (строки `@ds/ai-tool`), сам компонент его не запоминает.
 
 ## Когда использовать
 
@@ -49,7 +49,7 @@ import aiChainOfThoughtsDoc from './props.json'
 
 Поток рассуждения прерван: вместо длительности и chevron'а заголовок показывает сообщение `brokenMessage`, контент-цепочка не раскрывается.
 
-### Opened (default `false`)
+### Open (default `false`)
 
 Раскрытие контент-цепочки. Chevron в заголовке появляется только при наличии `children` и вне состояния `broken`.
 

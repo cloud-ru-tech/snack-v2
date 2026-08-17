@@ -25,8 +25,8 @@ export function AiChainOfThoughtsHeadline({
   label,
   brokenMessage,
   collapsible = false,
-  opened = false,
-  onToggle,
+  open = false,
+  onOpenChange,
   className,
   'aria-controls': ariaControls,
   'data-test-id': dataTestId = TEST_IDS.headline,
@@ -37,7 +37,7 @@ export function AiChainOfThoughtsHeadline({
   const resolvedLabel = label ?? t(active ? 'inProgress' : 'done');
   const resolvedBrokenMessage = brokenMessage ?? t('broken');
   const durationSegments = duration != null ? formatDuration(duration) : [];
-  const showChevron = collapsible && Boolean(onToggle);
+  const showChevron = collapsible && Boolean(onOpenChange);
   const shimmerText = active && typeof resolvedLabel === 'string' ? resolvedLabel : null;
 
   return (
@@ -82,9 +82,9 @@ export function AiChainOfThoughtsHeadline({
         {showChevron && (
           <AiButtonChevron
             className={styles.chevron}
-            opened={opened}
+            open={open}
             aria-controls={ariaControls}
-            onClick={() => onToggle?.(!opened)}
+            onClick={() => onOpenChange?.(!open)}
             data-test-id={TEST_IDS.headlineChevron}
           />
         )}
