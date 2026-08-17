@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.3.0 (2026-08-17)
+
+### Features
+
+- **FF-8679:** add brandE for gitverse ([6664862](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/66648629c25f640d768eb0be21965407e33b0d6f))
+
 # 4.2.0 (2026-08-17)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-config-selector",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "Apache-2.0",
   "author": "Fedor Rodin <fmrodin@cloud.ru>",
   "type": "module",
