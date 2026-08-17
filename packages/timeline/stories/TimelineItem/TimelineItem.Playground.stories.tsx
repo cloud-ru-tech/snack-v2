@@ -1,4 +1,4 @@
-import { APPEARANCE, POSITION, ROLE, STYLE, TrackItem, TrackItemProps, VARIANT } from '@ds/timeline';
+import { APPEARANCE, CONTENT_POSITION, POSITION, STYLE, TrackItem, TrackItemProps, VARIANT } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -20,7 +20,7 @@ const meta: Meta<StoryProps> = {
   parameters: { layout: 'fullscreen' },
   args: {
     contentPosition: 'right',
-    role: 'start',
+    position: 'start',
     lineStyle: 'solid',
     dotVariant: 'default',
     dotAppearance: 'primary',
@@ -45,11 +45,11 @@ const meta: Meta<StoryProps> = {
     },
     contentPosition: {
       control: 'radio',
-      options: Object.values(POSITION),
+      options: Object.values(CONTENT_POSITION),
     },
-    role: {
+    position: {
       control: 'radio',
-      options: Object.values(ROLE),
+      options: Object.values(POSITION),
     },
     lineStyle: {
       control: 'radio',

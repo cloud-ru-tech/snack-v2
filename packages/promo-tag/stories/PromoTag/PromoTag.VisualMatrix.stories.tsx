@@ -28,7 +28,7 @@ export const VisualMatrix: Story = {
   render: () => (
     <>
       <StoryTable
-        sectionTitle='Appearance × Size with role=accent'
+        sectionTitle='Appearance × Size with roleAppearance=accent'
         firstColumnHeader='Appearance'
         columnHeaders={keySizes.map(s => s.toUpperCase())}
         rows={keyAppearances.map(appearance => ({
@@ -39,13 +39,13 @@ export const VisualMatrix: Story = {
               label='Promo'
               appearance={appearance}
               size={size}
-              role={ROLE_APPEARANCE.Accent}
+              roleAppearance={ROLE_APPEARANCE.Accent}
             />
           )),
         }))}
       />
       <StoryTable
-        sectionTitle='Appearance × Size with role=decor'
+        sectionTitle='Appearance × Size with roleAppearance=decor'
         firstColumnHeader='Appearance'
         columnHeaders={keySizes.map(s => s.toUpperCase())}
         rows={keyAppearances.map(appearance => ({
@@ -56,7 +56,7 @@ export const VisualMatrix: Story = {
               label='Promo'
               appearance={appearance}
               size={size}
-              role={ROLE_APPEARANCE.Decor}
+              roleAppearance={ROLE_APPEARANCE.Decor}
             />
           )),
         }))}

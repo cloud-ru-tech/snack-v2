@@ -1,4 +1,4 @@
-import { APPEARANCE, Link, ROLE } from '@ds/link';
+import { APPEARANCE, Link, ROLE_APPEARANCE } from '@ds/link';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof Link> = {
   args: {
     label: 'Link',
     appearance: APPEARANCE.Primary,
-    role: ROLE.Regular,
+    roleAppearance: ROLE_APPEARANCE.Regular,
     insideText: false,
     underlined: false,
     href: 'https://example.com',
@@ -27,10 +27,10 @@ const meta: Meta<typeof Link> = {
       options: Object.values(APPEARANCE),
       description: 'Цветовая схема',
     },
-    role: {
+    roleAppearance: {
       control: 'radio',
-      options: Object.values(ROLE),
-      description: 'Роль: regular / onAccent',
+      options: Object.values(ROLE_APPEARANCE),
+      description: 'Роль применения appearance: regular / onAccent',
     },
     insideText: { control: 'boolean', description: 'Ссылка внутри текста' },
     underlined: { control: 'boolean', description: 'Подчёркивание' },
@@ -51,7 +51,7 @@ export const Playground: Story = {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Ссылка с appearance, ролью и поведением внутри текста.</DemoHint>
+        <DemoHint>Ссылка с appearance, ролью его применения и поведением внутри текста.</DemoHint>
         <DemoActions align='center'>
           <Link {...args} />
         </DemoActions>

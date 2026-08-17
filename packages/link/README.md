@@ -16,8 +16,11 @@
 ### Appearance
 Семантика цвета: `neutral` — основной текстовый линк, `invertNeutral` — на тёмных фонах, `primary` — брендовый акцент; `red` для деструктивных, `orange`/`yellow` — предупреждения, `green` — успех; `blue`, `violet`, `pink` — декоративные категории.
 
-### Role
-`regular` — линк на обычной поверхности; `onAccent` — линк поверх цветных акцентных подложек (кнопка-бэйдж, баннер).
+### Role appearance (default `regular`)
+Роль, в которой применяется выбранный `appearance`:
+
+- `regular` — линк на обычной поверхности, цвет берётся из `text`-токена темы.
+- `onAccent` — линк поверх цветных акцентных подложек (кнопка-бэйдж, баннер), цвет берётся из `onAccent`-токена.
 
 ### Target
 HTML-атрибут `target`: `_self` (дефолт, в той же вкладке), `_blank` (новая вкладка), `_parent`, `_top` — для iframe-сценариев.
@@ -90,7 +93,7 @@ export function External() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Стилизует ссылку для размещения на цветном фоне |
+| `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Семантический цвет |
 | `as` | `ComponentType \| ElementType` | `'a'` | Полиморфный компонент. <br/> Оформить переданный компонент или html элемент в стиль ссылки. <br/> Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
 | `data-test-id` | `string` | — |  |
 | `href` | `string` | — |  |
@@ -98,7 +101,7 @@ export function External() {
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | `label` | `string` | `` | Текст ссылки |
 | `onClick` | `((e: MouseEvent<HTMLAnchorElement>) => void) \| undefined` | — |  |
-| `role` | `"onAccent"` \| `"regular"` | `regular` | Роль |
+| `roleAppearance` | `"onAccent"` \| `"regular"` | `regular` | Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке |
 | `target` | `string \| undefined` | — |  |
 | `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
 | `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |

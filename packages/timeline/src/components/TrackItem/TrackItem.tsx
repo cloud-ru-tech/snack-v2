@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 
 import { notReachable } from '../../helpers';
 import { Track, TrackProps } from '../Track';
-import { POSITION } from './constants';
+import { CONTENT_POSITION } from './constants';
 import styles from './styles.module.scss';
-import { Position } from './types';
+import { ContentPosition } from './types';
 
 export type TrackItemProps = {
   /** Уникальный ключ */
@@ -12,9 +12,9 @@ export type TrackItemProps = {
   /** Контент */
   content: ReactNode;
   /** Положение контента */
-  contentPosition?: Position;
-  /** Роль */
-  role: TrackProps['role'];
+  contentPosition?: ContentPosition;
+  /** Положение элемента в ленте: первый, промежуточный или последний */
+  position: TrackProps['position'];
   /** Контент в противоположной колонке */
   opposite?: ReactNode;
   /** Стиль нижней линии */
@@ -33,8 +33,8 @@ export type TrackItemProps = {
 
 export function TrackItem({
   content,
-  role,
-  contentPosition = POSITION.Right,
+  position,
+  contentPosition = CONTENT_POSITION.Right,
   opposite,
   lineStyle,
   dotVariant,
@@ -45,7 +45,7 @@ export function TrackItem({
   const showOppositeBlock = Boolean(opposite || alternateMode);
 
   switch (contentPosition) {
-    case POSITION.Right:
+    case CONTENT_POSITION.Right:
       return (
         <div className={styles.trackItem} data-test-id={'timeline-track-item'}>
           {showOppositeBlock && (
@@ -54,7 +54,7 @@ export function TrackItem({
             </div>
           )}
           <Track
-            role={role}
+            position={position}
             lineStyle={lineStyle}
             dotVariant={dotVariant}
             dotAppearance={dotAppearance}
@@ -64,12 +64,12 @@ export function TrackItem({
         </div>
       );
 
-    case POSITION.Left:
+    case CONTENT_POSITION.Left:
       return (
         <div className={styles.trackItem} data-test-id={'timeline-track-item'}>
           <div className={styles.content}>{content}</div>
           <Track
-            role={role}
+            position={position}
             lineStyle={lineStyle}
             dotVariant={dotVariant}
             dotAppearance={dotAppearance}

@@ -1,4 +1,4 @@
-import { ROLE, STYLE, TrackItem, TrackItemProps } from '@ds/timeline';
+import { POSITION, STYLE, TrackItem, TrackItemProps } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 
@@ -15,7 +15,7 @@ export default meta;
 
 type Story = StoryObj;
 
-type Role = TrackItemProps['role'];
+type Position = TrackItemProps['position'];
 type LineStyle = NonNullable<TrackItemProps['lineStyle']>;
 
 function MatrixWrap({ children }: { children: ReactNode }) {
@@ -24,14 +24,14 @@ function MatrixWrap({ children }: { children: ReactNode }) {
 
 function itemProps(partial: Partial<TrackItemProps>): TrackItemProps {
   return {
-    role: 'start',
+    position: 'start',
     content: <DemoComponent title='Content title' description='Description' />,
     showLines: true,
     ...partial,
   };
 }
 
-const roles = Object.values(ROLE) as Role[];
+const positions = Object.values(POSITION) as Position[];
 const lineStyles = Object.values(STYLE) as LineStyle[];
 
 const appearanceSamples: Array<NonNullable<TrackItemProps['dotAppearance']>> = [
@@ -48,18 +48,18 @@ export const VisualMatrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <>
-      <section className={styles.matrixSection} aria-labelledby='track-item-matrix-role-line'>
+      <section className={styles.matrixSection} aria-labelledby='track-item-matrix-position-line'>
         <StoryTable
-          sectionTitle='Роль × стиль линии'
-          firstColumnHeader='Роль'
+          sectionTitle='Положение × стиль линии'
+          firstColumnHeader='Положение'
           columnHeaders={lineStyles.map(s => (s === 'solid' ? 'Solid' : 'Dashed'))}
-          rows={roles.map(role => ({
-            variantLabel: role,
+          rows={positions.map(position => ({
+            variantLabel: position,
             cells: lineStyles.map(lineStyle => (
-              <MatrixWrap key={`${role}-${lineStyle}`}>
+              <MatrixWrap key={`${position}-${lineStyle}`}>
                 <TrackItem
                   {...itemProps({
-                    role,
+                    position,
                     lineStyle,
                     dotVariant: 'default',
                     dotAppearance: 'primary',
@@ -83,7 +83,7 @@ export const VisualMatrix: Story = {
                 <TrackItem
                   {...itemProps({
                     contentPosition: 'right',
-                    role: ROLE.Center,
+                    position: POSITION.Center,
                     lineStyle: 'dashed',
                     dotVariant: 'default',
                     dotAppearance: appearance,
@@ -94,7 +94,7 @@ export const VisualMatrix: Story = {
                 <TrackItem
                   {...itemProps({
                     contentPosition: 'left',
-                    role: ROLE.Center,
+                    position: POSITION.Center,
                     lineStyle: 'dashed',
                     dotVariant: 'default',
                     dotAppearance: appearance,
@@ -119,7 +119,7 @@ export const VisualMatrix: Story = {
                 <MatrixWrap key='def'>
                   <TrackItem
                     {...itemProps({
-                      role: 'start',
+                      position: 'start',
                       dotVariant: 'default',
                       dotAppearance: 'primary',
                     })}
@@ -128,7 +128,7 @@ export const VisualMatrix: Story = {
                 <MatrixWrap key='sub'>
                   <TrackItem
                     {...itemProps({
-                      role: 'start',
+                      position: 'start',
                       dotVariant: 'subEvent',
                       dotAppearance: 'primary',
                     })}
@@ -142,7 +142,7 @@ export const VisualMatrix: Story = {
                 <MatrixWrap key='def-r'>
                   <TrackItem
                     {...itemProps({
-                      role: 'start',
+                      position: 'start',
                       dotVariant: 'default',
                       dotAppearance: 'red',
                     })}
@@ -151,7 +151,7 @@ export const VisualMatrix: Story = {
                 <MatrixWrap key='sub-r'>
                   <TrackItem
                     {...itemProps({
-                      role: 'start',
+                      position: 'start',
                       dotVariant: 'subEvent',
                       dotAppearance: 'red',
                     })}

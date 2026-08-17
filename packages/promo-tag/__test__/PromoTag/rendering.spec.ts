@@ -37,14 +37,14 @@ test.describe('PromoTag — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const { appearance, size, role } of PROMO_TAG_KEY_COMBOS) {
-      test(`${appearance} + ${size} + ${role}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ appearance, size, role }));
+    for (const { appearance, size, roleAppearance } of PROMO_TAG_KEY_COMBOS) {
+      test(`${appearance} + ${size} + ${roleAppearance}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ appearance, size, roleAppearance }));
 
         const root = getByTestId(TEST_IDS.root);
         await expect(root).toHaveAttribute('data-appearance', appearance);
         await expect(root).toHaveAttribute('data-size', size);
-        await expect(root).toHaveAttribute('data-role', role);
+        await expect(root).toHaveAttribute('data-role-appearance', roleAppearance);
       });
     }
   });

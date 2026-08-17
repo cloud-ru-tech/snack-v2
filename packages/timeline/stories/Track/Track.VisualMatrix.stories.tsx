@@ -1,4 +1,4 @@
-import { ROLE, STYLE, Track, TrackProps, VARIANT } from '@ds/timeline';
+import { POSITION, STYLE, Track, TrackProps, VARIANT } from '@ds/timeline';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -13,13 +13,13 @@ export default meta;
 
 type Story = StoryObj;
 
-type Role = TrackProps['role'];
+type Position = TrackProps['position'];
 type LineStyle = NonNullable<TrackProps['lineStyle']>;
 type DotVariant = NonNullable<TrackProps['dotVariant']>;
 
 function trackProps(partial: Partial<TrackProps>): TrackProps {
   return {
-    role: 'start',
+    position: 'start',
     lineStyle: 'solid',
     dotVariant: 'default',
     dotAppearance: 'primary',
@@ -44,7 +44,7 @@ function MatrixCellTrack(partial: Partial<TrackProps>) {
   );
 }
 
-const roles = Object.values(ROLE) as Role[];
+const positions = Object.values(POSITION) as Position[];
 const lineStyles = Object.values(STYLE) as LineStyle[];
 const dotVariants = Object.values(VARIANT) as DotVariant[];
 
@@ -64,17 +64,17 @@ export const VisualMatrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <>
-      <section className={styles.matrixSection} aria-labelledby='track-matrix-role-line-default'>
+      <section className={styles.matrixSection} aria-labelledby='track-matrix-position-line-default'>
         <StoryTable
-          sectionTitle='Роль × стиль линии (точка default)'
-          firstColumnHeader='Роль'
+          sectionTitle='Положение × стиль линии (точка default)'
+          firstColumnHeader='Положение'
           columnHeaders={lineColumnLabels}
-          rows={roles.map(role => ({
-            variantLabel: role,
+          rows={positions.map(position => ({
+            variantLabel: position,
             cells: lineStyles.map(lineStyle => (
               <MatrixCellTrack
-                key={`${role}-${lineStyle}-def`}
-                role={role}
+                key={`${position}-${lineStyle}-def`}
+                position={position}
                 lineStyle={lineStyle}
                 dotVariant='default'
                 dotAppearance='primary'
@@ -84,17 +84,17 @@ export const VisualMatrix: Story = {
         />
       </section>
 
-      <section className={styles.matrixSection} aria-labelledby='track-matrix-role-line-sub'>
+      <section className={styles.matrixSection} aria-labelledby='track-matrix-position-line-sub'>
         <StoryTable
-          sectionTitle='Роль × стиль линии (точка subEvent)'
-          firstColumnHeader='Роль'
+          sectionTitle='Положение × стиль линии (точка subEvent)'
+          firstColumnHeader='Положение'
           columnHeaders={lineColumnLabels}
-          rows={roles.map(role => ({
-            variantLabel: role,
+          rows={positions.map(position => ({
+            variantLabel: position,
             cells: lineStyles.map(lineStyle => (
               <MatrixCellTrack
-                key={`${role}-${lineStyle}-sub`}
-                role={role}
+                key={`${position}-${lineStyle}-sub`}
+                position={position}
                 lineStyle={lineStyle}
                 dotVariant='subEvent'
                 dotAppearance='primary'
@@ -114,7 +114,7 @@ export const VisualMatrix: Story = {
             cells: lineStyles.map(lineStyle => (
               <MatrixCellTrack
                 key={`${appearance}-${lineStyle}`}
-                role={ROLE.Center}
+                position={POSITION.Center}
                 lineStyle={lineStyle}
                 dotVariant='default'
                 dotAppearance={appearance}
@@ -134,7 +134,7 @@ export const VisualMatrix: Story = {
             cells: dotVariants.map(dotVariant => (
               <MatrixCellTrack
                 key={`${appearance}-${dotVariant}`}
-                role={ROLE.Center}
+                position={POSITION.Center}
                 lineStyle='dashed'
                 dotVariant={dotVariant}
                 dotAppearance={appearance}

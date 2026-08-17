@@ -1,22 +1,22 @@
 import { notReachable } from '../../helpers';
-import { ROLE } from '../Track/constants';
-import { Position, TrackItemProps } from '../TrackItem';
-import { POSITION } from '../TrackItem/constants';
+import { POSITION } from '../Track/constants';
+import { ContentPosition, TrackItemProps } from '../TrackItem';
+import { CONTENT_POSITION } from '../TrackItem/constants';
 
-export const getRole = (index: number, total: number): TrackItemProps['role'] => {
+export const getPosition = (index: number, total: number): TrackItemProps['position'] => {
   if (index < 1) {
-    return ROLE.Start;
+    return POSITION.Start;
   }
 
   if (index < total - 1) {
-    return ROLE.Center;
+    return POSITION.Center;
   }
 
-  return ROLE.End;
+  return POSITION.End;
 };
 
 export const getContentPosition = (
-  contentPosition: Position,
+  contentPosition: ContentPosition,
   index: number,
   itemPosition?: TrackItemProps['contentPosition'],
   alternate?: boolean,
@@ -30,10 +30,10 @@ export const getContentPosition = (
   }
 
   switch (contentPosition) {
-    case POSITION.Right:
-      return index % 2 ? POSITION.Left : POSITION.Right;
-    case POSITION.Left:
-      return index % 2 ? POSITION.Right : POSITION.Left;
+    case CONTENT_POSITION.Right:
+      return index % 2 ? CONTENT_POSITION.Left : CONTENT_POSITION.Right;
+    case CONTENT_POSITION.Left:
+      return index % 2 ? CONTENT_POSITION.Right : CONTENT_POSITION.Left;
 
     default:
       return notReachable(contentPosition);

@@ -45,7 +45,7 @@ export const Polymorphic: Story = {
             target='_blank'
             label='External promo'
             appearance={APPEARANCE.Blue}
-            role={ROLE_APPEARANCE.Decor}
+            roleAppearance={ROLE_APPEARANCE.Decor}
             data-test-id={TEST_IDS.polymorphicAnchor}
           />
           <PromoTag
@@ -53,7 +53,7 @@ export const Polymorphic: Story = {
             href='https://example.com'
             label='Clickable anchor'
             appearance={APPEARANCE.Green}
-            role={ROLE_APPEARANCE.Decor}
+            roleAppearance={ROLE_APPEARANCE.Decor}
             onClick={onAnchorClick}
             data-test-id={TEST_IDS.polymorphicAnchorClick}
           />
@@ -62,7 +62,7 @@ export const Polymorphic: Story = {
             to='https://example.com'
             label='Preview link'
             appearance={APPEARANCE.Primary}
-            role={ROLE_APPEARANCE.Accent}
+            roleAppearance={ROLE_APPEARANCE.Accent}
             data-test-id={TEST_IDS.polymorphicLink}
           />
         </DemoActions>

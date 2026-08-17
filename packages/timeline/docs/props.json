@@ -45,7 +45,7 @@
       }
     },
     "relatedTypes": {
-      "Position": {
+      "ContentPosition": {
         "kind": "union",
         "values": [
           "left",
@@ -67,7 +67,7 @@
             "description": "Контент"
           },
           "contentPosition": {
-            "type": "Position | undefined",
+            "type": "ContentPosition | undefined",
             "required": false,
             "values": [
               "left",
@@ -75,7 +75,7 @@
             ],
             "description": "Положение контента",
             "typeRefs": [
-              "Position"
+              "ContentPosition"
             ]
           },
           "data-test-id": {
@@ -158,7 +158,7 @@
             "description": "Контент"
           },
           "contentPosition": {
-            "type": "Position | undefined",
+            "type": "ContentPosition | undefined",
             "required": false,
             "values": [
               "left",
@@ -166,7 +166,7 @@
             ],
             "description": "Положение контента",
             "typeRefs": [
-              "Position"
+              "ContentPosition"
             ]
           },
           "data-test-id": {
@@ -227,7 +227,7 @@
             "required": false,
             "description": "Контент в противоположной колонке"
           },
-          "role": {
+          "position": {
             "type": "\"center\" | \"end\" | \"start\"",
             "required": true,
             "values": [
@@ -235,7 +235,7 @@
               "end",
               "start"
             ],
-            "description": "Роль",
+            "description": "Положение элемента в ленте: первый, промежуточный или последний",
             "typeRefs": [
               "TrackProps"
             ]
@@ -294,7 +294,7 @@
               "TrackLineProps"
             ]
           },
-          "role": {
+          "position": {
             "type": "\"center\" | \"end\" | \"start\"",
             "required": true,
             "values": [
@@ -302,9 +302,9 @@
               "end",
               "start"
             ],
-            "description": "Роль",
+            "description": "Положение элемента в ленте: первый, промежуточный или последний",
             "typeRefs": [
-              "Role"
+              "Position"
             ]
           },
           "showLines": {
@@ -365,7 +365,7 @@
           "TrackLineProps"
         ]
       },
-      "role": {
+      "position": {
         "type": "enum",
         "required": true,
         "values": [
@@ -373,9 +373,9 @@
           "end",
           "start"
         ],
-        "description": "Роль",
+        "description": "Положение элемента в ленте: первый, промежуточный или последний",
         "typeRefs": [
-          "Role"
+          "Position"
         ]
       },
       "showLines": {
@@ -401,7 +401,7 @@
         ],
         "own": true
       },
-      "Role": {
+      "Position": {
         "kind": "union",
         "values": [
           "center",
@@ -540,7 +540,7 @@
         "defaultValue": "right",
         "description": "Положение контента",
         "typeRefs": [
-          "Position"
+          "ContentPosition"
         ]
       },
       "data-test-id": {
@@ -601,7 +601,7 @@
         "required": false,
         "description": "Контент в противоположной колонке"
       },
-      "role": {
+      "position": {
         "type": "enum",
         "required": true,
         "values": [
@@ -609,7 +609,7 @@
           "end",
           "start"
         ],
-        "description": "Роль",
+        "description": "Положение элемента в ленте: первый, промежуточный или последний",
         "typeRefs": [
           "TrackProps"
         ]
@@ -621,7 +621,7 @@
       }
     },
     "relatedTypes": {
-      "Position": {
+      "ContentPosition": {
         "kind": "union",
         "values": [
           "left",
@@ -629,7 +629,7 @@
         ],
         "own": true
       },
-      "Role": {
+      "Position": {
         "kind": "union",
         "values": [
           "center",
@@ -738,7 +738,7 @@
               "TrackLineProps"
             ]
           },
-          "role": {
+          "position": {
             "type": "\"center\" | \"end\" | \"start\"",
             "required": true,
             "values": [
@@ -746,9 +746,9 @@
               "end",
               "start"
             ],
-            "description": "Роль",
+            "description": "Положение элемента в ленте: первый, промежуточный или последний",
             "typeRefs": [
-              "Role"
+              "Position"
             ]
           },
           "showLines": {

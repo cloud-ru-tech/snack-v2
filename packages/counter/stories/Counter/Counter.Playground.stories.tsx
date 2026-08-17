@@ -1,4 +1,4 @@
-import { APPEARANCE, COLOR, Counter, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@ds/counter';
+import { APPEARANCE, Counter, DEFAULT_PLUS_LIMIT, ROLE_APPEARANCE, SIZE, VARIANT } from '@ds/counter';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -27,7 +27,7 @@ const meta: Meta<typeof Counter> = {
     size: SIZE.S,
     variant: VARIANT.Count,
     plusLimit: DEFAULT_PLUS_LIMIT,
-    color: COLOR.Accent,
+    roleAppearance: ROLE_APPEARANCE.Accent,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
@@ -44,9 +44,9 @@ const meta: Meta<typeof Counter> = {
       description: 'Вариант форматирования',
     },
     plusLimit: { control: 'number', description: 'Порог для варианта `count-plus`' },
-    color: {
+    roleAppearance: {
       control: 'radio',
-      options: Object.values(COLOR),
+      options: Object.values(ROLE_APPEARANCE),
       description: 'Семантический цвет',
     },
   },

@@ -1,7 +1,11 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/materials' as m;
 
-$roles: 'regular', 'onAccent';
+// roleAppearance (API) → сегмент токена цвета темы
+$roleAppearances: (
+  'regular': 'text',
+  'onAccent': 'onAccent',
+);
 $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'violet', 'pink', 'yellow', 'green';
 
 .content {
@@ -46,18 +50,12 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
     outline-offset: 0;
   }
 
-  &[data-role='regular'] {
-    @each $appearance in $appearances {
-      &[data-appearance='#{$appearance}'] {
-        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
-      }
-    }
-  }
-
-  &[data-role='onAccent'] {
-    @each $appearance in $appearances {
-      &[data-appearance='#{$appearance}'] {
-        color: base.simple-var(base.$sn-theme, 'color', $appearance, 'onAccent');
+  @each $roleAppearance, $tokenSegment in $roleAppearances {
+    &[data-role-appearance='#{$roleAppearance}'] {
+      @each $appearance in $appearances {
+        &[data-appearance='#{$appearance}'] {
+          color: base.simple-var(base.$sn-theme, 'color', $appearance, $tokenSegment);
+        }
       }
     }
   }

@@ -11,7 +11,7 @@ export const APPEARANCE = {
   Pink: 'pink',
 } as const;
 
-export const ROLE = {
+export const ROLE_APPEARANCE = {
   Regular: 'regular',
   OnAccent: 'onAccent',
 } as const;

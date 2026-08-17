@@ -1,5 +1,5 @@
 import { ValueOf } from '@ds/utils';
 
-import { ROLE } from './constants';
+import { POSITION } from './constants';
 
-export type Role = ValueOf<typeof ROLE>;
+export type Position = ValueOf<typeof POSITION>;

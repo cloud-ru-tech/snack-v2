@@ -79,6 +79,8 @@
 | Режим выбора | **`selectionMode`** со значениями `single` / `multiple` | `multi` |
 | Форма (скругление) | **`shape`** со значениями `rounded` / `squared` | `square`, `round` |
 | Ось положения элемента | суффикс **`<x>Position`** (`chevronPosition`, `markerPosition`) | голое `chevron` |
+| Положение элемента в последовательности (первый / промежуточный / последний) | **`position`** со значениями `start` / `center` / `end` | `role` |
+| Роль, в которой применяется `appearance` (акцентная заливка vs декоративная; обычный текст vs текст на акцентной подложке) | **`roleAppearance`** | `role`, `color` |
 | Наличие фон/заливка-слоя | **`background`** | `hasBackground`, `showBackground`, `decor`, `withBackground` |
 | Ref на **корневой** DOM-узел компонента | **`innerRef`** | `rootRef`, `elementRef`, `forwardedRef`, `nodeRef` |
 | Ref на **внутренний слот** | суффикс **`<slot>Ref`** (`scrollRef`, `inputRef`, `triggerRef`, `itemRef`) | `innerRef` для не-корневого узла |
@@ -87,6 +89,10 @@
 Значения enum-осей — из общего словаря: `single`/`multiple`, `rounded`/`squared`, `before`/`after`, `start`/`center`/`end`. Не вводи синонимы (`multi`, `square`, `round`) — сверяйся с [component-api-surface.md](../rules/component-api-surface.md) §«Константы».
 
 > **Почему `squared`, а не `square`:** в `@sbercloud/figma-variables` ключ `square` зарезервирован билдером — токен `<c>.anatomy.size.<s>.square` разворачивается в `width` + `height` (размер квадратного бокса), а форму несёт `<c>.anatomy.size.<s>.squared.borderRadius`. Переименовать токен нельзя — будет коллизия. Канон `squared` даёт совпадение имён во всех трёх слоях (Figma-варианты, токены, код) и снимает мост `$shapeMap` в SCSS.
+
+> **Почему `roleAppearance`, а не `role`/`color`:** `role` — ключевое слово HTML/ARIA, поэтому `jsx-a11y/aria-role` срабатывает на каждое использование пропа и потребитель обвешивает вызовы `eslint-disable`. `color` (историческое имя в `@ds/counter`) конфликтует по смыслу с соседним `appearance`, который и несёт цвет: пара `appearance='red' color='accent'` читается как «цвет = accent», хотя цвет — red. `roleAppearance` говорит ровно то, что происходит: в какой роли применяется выбранный `appearance` — акцентная заливка или декоративная (`counter`, `promo-tag`), обычный текст или текст на акцентной подложке (`link`). Имя совпадает со свойством Figma-мастера, DOM-атрибут следует за пропом: `data-role-appearance`.
+>
+> **Значения оси у каждого компонента свои** — `accent`/`decor` у `counter` и `promo-tag`, `regular`/`onAccent` у `link`. Общее у них имя оси, не словарь значений: каждый набор берётся из своего сегмента токена темы (`theme.color.<appearance>.<segment>`).
 
 > **Почему `background` (голое), а не `hasBackground`/`showBackground`/`decor`:** булев флаг «есть ли цветная подложка/заливка» — это тот же bare-flag канон, что `outline` / `loading` / `fullWidth` (без префиксов `has`/`show`/`with`). Имя одинаковое в коде и в свойстве Figma-компонента, DOM-атрибут следует за пропом: `data-background`. Токен theme-цвета `decor` и CSS-класс `.decor` — отдельная поверхность, канон имени пропа на них не распространяется.
 
@@ -120,6 +126,11 @@ grep -rn "'multi'" packages/$PKG/src
 grep -rnE "'(square|round)'" packages/$PKG/src
 # описание вторичного текста: убедиться, что description ≠ основной payload (иначе content)
 grep -rnE "^\s+description\??:" packages/$PKG/src
+# role как ось API (не ARIA-роль) → roleAppearance либо position (см. §2)
+grep -rnE "^\s+role\??:" packages/$PKG/src
+grep -rn "data-role=" packages/$PKG/src
+# color как «акцентная заливка vs декоративная» → roleAppearance (НЕ трогать CSS-свойства и токены)
+grep -rnE "^\s+color\??:" packages/$PKG/src --include="*.ts" --include="*.tsx"
 # ref на корень под чужим именем → innerRef (слот-рефы `<slot>Ref` и `rootRef` у @ds/theme — не трогать)
 grep -rnE "^\s+(rootRef|elementRef|forwardedRef|nodeRef)\??:\s*(Ref|RefObject|ForwardedRef)" packages/$PKG/src
 # innerRef без маркера ловит eslint — прогнать точечно

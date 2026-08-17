@@ -11,7 +11,7 @@ import { getSpreadProps } from './utils';
 export function PromoTag<T extends ElementType = 'button'>({
   appearance = APPEARANCE.Primary,
   size = SIZE.S,
-  role = ROLE_APPEARANCE.Accent,
+  roleAppearance = ROLE_APPEARANCE.Accent,
   className,
   label,
   beforeContent = null,
@@ -33,7 +33,7 @@ export function PromoTag<T extends ElementType = 'button'>({
       ref={innerRef}
       className={cn(styles.container, className)}
       data-appearance={appearance}
-      data-role={role}
+      data-role-appearance={roleAppearance}
       data-size={size}
       data-clickable={isInteractive || undefined}
       {...spreadProps}

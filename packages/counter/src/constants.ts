@@ -21,7 +21,7 @@ export const SIZE = {
   S: 's',
 } as const;
 
-export const COLOR = {
+export const ROLE_APPEARANCE = {
   Accent: 'accent',
   Decor: 'decor',
 } as const;

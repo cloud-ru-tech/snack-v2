@@ -20,7 +20,7 @@
           "yellow"
         ],
         "defaultValue": "primary",
-        "description": "Стилизует ссылку для размещения на цветном фоне"
+        "description": "Семантический цвет"
       },
       "as": {
         "type": "ComponentType | ElementType",
@@ -57,7 +57,7 @@
         "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
         "required": false
       },
-      "role": {
+      "roleAppearance": {
         "type": "enum",
         "required": false,
         "values": [
@@ -65,7 +65,7 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Роль"
+        "description": "Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке"
       },
       "target": {
         "type": "string | undefined",

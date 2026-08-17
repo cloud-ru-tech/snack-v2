@@ -109,7 +109,7 @@ function GroupLabel({ label, count, desc }: GroupLabelProps) {
         </span>
       )}
       <span className={styles.groupCount}>
-        <Counter value={count} appearance='neutral' size='xs' color='decor' />
+        <Counter value={count} appearance='neutral' size='xs' roleAppearance='decor' />
       </span>
     </span>
   );

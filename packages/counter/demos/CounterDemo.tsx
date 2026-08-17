@@ -14,7 +14,7 @@ export function CounterDemo() {
         appearance: 'primary',
         variant: 'count',
         size: 'xs',
-        color: 'accent',
+        roleAppearance: 'accent',
       }}
       controls={{
         value: { type: 'number' },
@@ -24,7 +24,7 @@ export function CounterDemo() {
         },
         variant: { type: 'select', options: ['count', 'count-plus', 'count-k'] },
         size: { type: 'select', options: ['xs', 's'] },
-        color: { type: 'select', options: ['accent', 'decor'] },
+        roleAppearance: { type: 'select', options: ['accent', 'decor'] },
         plusLimit: { type: 'number' },
       }}
       excludeProps={['className']}

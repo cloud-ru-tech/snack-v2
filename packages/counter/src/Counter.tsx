@@ -2,9 +2,9 @@ import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/
 import cn from 'classnames';
 import { Ref } from 'react';
 
-import { APPEARANCE, COLOR, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from './constants';
+import { APPEARANCE, DEFAULT_PLUS_LIMIT, ROLE_APPEARANCE, SIZE, VARIANT } from './constants';
 import styles from './styles.module.scss';
-import { Appearance, Color, Size, Variant } from './types';
+import { Appearance, RoleAppearance, Size, Variant } from './types';
 import { formatValue } from './utils';
 
 export type CounterProps = WithSupportProps<{
@@ -20,8 +20,8 @@ export type CounterProps = WithSupportProps<{
   plusLimit?: number;
   /** Дополнительный CSS-класс */
   className?: string;
-  /** Семантический цвет */
-  color?: Color;
+  /** Роль, в которой применяется `appearance`: акцентная заливка или декоративная */
+  roleAppearance?: RoleAppearance;
   /**
    * Ref на корневой DOM-элемент.
    * Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.
@@ -35,7 +35,7 @@ export function Counter({
   variant = VARIANT.Count,
   size = SIZE.S,
   plusLimit = DEFAULT_PLUS_LIMIT,
-  color = COLOR.Accent,
+  roleAppearance = ROLE_APPEARANCE.Accent,
   className,
   innerRef,
   ...rest
@@ -50,7 +50,7 @@ export function Counter({
       data-size={size}
       data-variant={variant}
       data-appearance={appearance}
-      data-color={color}
+      data-role-appearance={roleAppearance}
     >
       <span className={styles.container}>
         <span className={styles.border} aria-hidden />

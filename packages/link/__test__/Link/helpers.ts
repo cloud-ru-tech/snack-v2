@@ -1,6 +1,6 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { APPEARANCE, ROLE } from '../../src/constants';
+import { APPEARANCE, ROLE_APPEARANCE } from '../../src/constants';
 import { TEST_IDS } from '../../stories/Link/testIds';
 
 export { TEST_IDS };
@@ -32,7 +32,7 @@ export function buildStoryOptions(
 // Ключевая выборка комбинаций осей — по одному представителю на значение каждой
 // оси, без декартова произведения. Полный sweep — задача VisualMatrix snapshot.
 export const LINK_KEY_COMBOS = [
-  { appearance: APPEARANCE.Primary, role: ROLE.Regular },
-  { appearance: APPEARANCE.Red, role: ROLE.Regular },
-  { appearance: APPEARANCE.Neutral, role: ROLE.OnAccent },
+  { appearance: APPEARANCE.Primary, roleAppearance: ROLE_APPEARANCE.Regular },
+  { appearance: APPEARANCE.Red, roleAppearance: ROLE_APPEARANCE.Regular },
+  { appearance: APPEARANCE.Neutral, roleAppearance: ROLE_APPEARANCE.OnAccent },
 ] as const;

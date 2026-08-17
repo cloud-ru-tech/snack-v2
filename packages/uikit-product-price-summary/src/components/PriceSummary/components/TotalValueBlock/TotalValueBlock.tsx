@@ -1,4 +1,4 @@
-import { Link, ROLE } from '@ds/link';
+import { Link, ROLE_APPEARANCE } from '@ds/link';
 import { Tooltip } from '@ds/tooltip';
 import { SIZE, Typography, VARIANT, WEIGHT } from '@ds/typography';
 import { ReactNode } from 'react';
@@ -70,7 +70,7 @@ export function TotalValueBlock({
       </Tooltip>
       {showHintLink && (
         <Link
-          role={ROLE.OnAccent}
+          roleAppearance={ROLE_APPEARANCE.OnAccent}
           appearance='neutral'
           href={hintLink?.href}
           label={hintLink?.label}

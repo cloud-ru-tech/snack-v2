@@ -2,20 +2,20 @@ import { TruncateStringProps } from '@ds/truncate-string';
 import { PolymorphicRef, ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 
-import { APPEARANCE, ROLE } from './constants';
+import { APPEARANCE, ROLE_APPEARANCE } from './constants';
 
 export type Appearance = ValueOf<typeof APPEARANCE>;
 
-export type Role = ValueOf<typeof ROLE>;
+export type RoleAppearance = ValueOf<typeof ROLE_APPEARANCE>;
 
 export type BaseProps = WithSupportProps<{
   /** Текст ссылки */
   label?: string;
-  /** Роль
+  /** Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке
    * @default 'regular'
    */
-  role?: Role;
-  /** Стилизует ссылку для размещения на цветном фоне
+  roleAppearance?: RoleAppearance;
+  /** Семантический цвет
    * @default 'primary'
    */
   appearance?: Appearance;

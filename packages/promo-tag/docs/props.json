@@ -71,7 +71,7 @@
         "required": false,
         "description": "Колбэк для обработки клика на тег"
       },
-      "role": {
+      "roleAppearance": {
         "type": "enum",
         "required": false,
         "values": [
@@ -79,7 +79,7 @@
           "decor"
         ],
         "defaultValue": "accent",
-        "description": "Роль промо-тега",
+        "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
         "typeRefs": [
           "RoleAppearance"
         ]

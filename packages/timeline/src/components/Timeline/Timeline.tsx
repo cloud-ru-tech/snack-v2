@@ -2,11 +2,11 @@ import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
 import { TrackItem, TrackItemProps } from '../TrackItem';
-import { POSITION } from '../TrackItem/constants';
-import { getContentPosition, getRole } from './helpers';
+import { CONTENT_POSITION } from '../TrackItem/constants';
+import { getContentPosition, getPosition } from './helpers';
 import styles from './styles.module.scss';
 
-export type TimelineItem = Omit<TrackItemProps, 'fullWidth' | 'role'>;
+export type TimelineItem = Omit<TrackItemProps, 'fullWidth' | 'position'>;
 
 export type TimelineProps = WithSupportProps<{
   /** Пункты таймлайна */
@@ -24,7 +24,7 @@ export type TimelineProps = WithSupportProps<{
 export function Timeline({
   items,
   fullWidth,
-  contentPosition = POSITION.Right,
+  contentPosition = CONTENT_POSITION.Right,
   alternate,
   className,
   ...rest
@@ -40,7 +40,7 @@ export function Timeline({
           <TrackItem
             key={itemProps.key || String(index)}
             contentPosition={getContentPosition(contentPosition, index, itemContentPosition, alternate)}
-            role={getRole(index, items.length)}
+            position={getPosition(index, items.length)}
             alternateMode={alternate}
             showLines={items.length > 1}
             {...itemProps}

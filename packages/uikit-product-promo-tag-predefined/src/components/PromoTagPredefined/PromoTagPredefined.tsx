@@ -102,7 +102,7 @@ export function PromoTagPredefined(props: PromoTagPredefinedProps) {
     <PromoTag
       label={text}
       appearance={appearance}
-      role={ROLE_APPEARANCE.Decor}
+      roleAppearance={ROLE_APPEARANCE.Decor}
       size={SIZE.Xs}
       innerRef={innerRef}
       {...rest}

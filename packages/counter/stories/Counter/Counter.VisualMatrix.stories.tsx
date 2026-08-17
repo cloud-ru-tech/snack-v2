@@ -1,4 +1,12 @@
-import { APPEARANCE, COLOR, Counter, DEFAULT_KEY_LIMIT, DEFAULT_PLUS_LIMIT, SIZE, VARIANT } from '@ds/counter';
+import {
+  APPEARANCE,
+  Counter,
+  DEFAULT_KEY_LIMIT,
+  DEFAULT_PLUS_LIMIT,
+  ROLE_APPEARANCE,
+  SIZE,
+  VARIANT,
+} from '@ds/counter';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -68,12 +76,12 @@ export const VisualMatrix: Story = {
         }))}
       />
       <StoryTable
-        sectionTitle='Color'
-        firstColumnHeader='Color'
+        sectionTitle='Role appearance'
+        firstColumnHeader='Role appearance'
         columnHeaders={keySizes.map(size => size.toUpperCase())}
-        rows={Object.values(COLOR).map(color => ({
-          variantLabel: color,
-          cells: keySizes.map(size => <Counter key={size} value={7} color={color} size={size} />),
+        rows={Object.values(ROLE_APPEARANCE).map(roleAppearance => ({
+          variantLabel: roleAppearance,
+          cells: keySizes.map(size => <Counter key={size} value={7} roleAppearance={roleAppearance} size={size} />),
         }))}
       />
     </div>

@@ -28,19 +28,6 @@
         "required": false,
         "description": "Дополнительный CSS-класс"
       },
-      "color": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "accent",
-          "decor"
-        ],
-        "defaultValue": "accent",
-        "description": "Семантический цвет",
-        "typeRefs": [
-          "Color"
-        ]
-      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -55,6 +42,19 @@
         "required": false,
         "defaultValue": "10",
         "description": "Порог сокращения значения для варианта `count-plus`"
+      },
+      "roleAppearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "defaultValue": "accent",
+        "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+        "typeRefs": [
+          "RoleAppearance"
+        ]
       },
       "size": {
         "type": "enum",
@@ -105,7 +105,7 @@
         ],
         "own": true
       },
-      "Color": {
+      "RoleAppearance": {
         "kind": "union",
         "values": [
           "accent",

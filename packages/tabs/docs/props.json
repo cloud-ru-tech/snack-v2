@@ -82,7 +82,7 @@
         "description": "CSS-класс"
       },
       "counter": {
-        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
+        "type": "{ label: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
         "required": false,
         "description": "Счетчик, отображающийся внутри кнопки переключения",
         "typeRefs": [
@@ -131,14 +131,6 @@
         ],
         "own": false
       },
-      "Color": {
-        "kind": "union",
-        "values": [
-          "accent",
-          "decor"
-        ],
-        "own": false
-      },
       "CounterProps": {
         "kind": "interface",
         "props": {
@@ -166,18 +158,6 @@
             "required": false,
             "description": "Дополнительный CSS-класс"
           },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
@@ -191,6 +171,18 @@
             "type": "number | undefined",
             "required": false,
             "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
           },
           "size": {
             "type": "Size | undefined",
@@ -223,6 +215,14 @@
             ]
           }
         },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
         "own": false
       },
       "Size": {
@@ -344,18 +344,6 @@
             "required": false,
             "description": "Дополнительный CSS-класс"
           },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
@@ -369,6 +357,18 @@
             "type": "number | undefined",
             "required": false,
             "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
           },
           "size": {
             "type": "Size | undefined",
@@ -436,7 +436,7 @@
             "description": "CSS-класс"
           },
           "counter": {
-            "type": "{ label: number; appearance?: CounterProps[\"appearance\"]; color?: CounterProps[\"color\"]; } | undefined",
+            "type": "{ label: number; appearance?: CounterProps[\"appearance\"]; roleAppearance?: CounterProps[\"roleAppearance\"]; } | undefined",
             "required": false,
             "description": "Счетчик, отображающийся внутри кнопки переключения",
             "typeRefs": [
@@ -543,7 +543,7 @@
         "description": "CSS-класс"
       },
       "counter": {
-        "type": "{ label: number; appearance?: Appearance; color?: Color; } | undefined",
+        "type": "{ label: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
         "required": false,
         "description": "Счетчик, отображающийся внутри кнопки переключения"
       },

@@ -13,7 +13,7 @@ export function PromoTagDemo() {
       defaultProps={{
         label: 'Promo tag',
         appearance: 'primary',
-        role: 'accent',
+        roleAppearance: 'accent',
         size: 'xs',
       }}
       controls={{
@@ -22,7 +22,7 @@ export function PromoTagDemo() {
           type: 'select',
           options: ['neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink'],
         },
-        role: { type: 'radio', options: ['accent', 'decor'] },
+        roleAppearance: { type: 'radio', options: ['accent', 'decor'] },
         size: { type: 'select', options: ['xs', 's', 'm'] },
       }}
       excludeProps={['beforeContent', 'afterContent', 'onClick', 'className']}

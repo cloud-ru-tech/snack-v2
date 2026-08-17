@@ -10,8 +10,8 @@ export type PromoTagOwnProps = {
   label?: string;
   /** Внешний вид */
   appearance?: Appearance;
-  /** Роль промо-тега */
-  role?: RoleAppearance;
+  /** Роль, в которой применяется `appearance`: акцентная заливка или декоративная */
+  roleAppearance?: RoleAppearance;
   /** CSS-класс */
   className?: string;
   /** Колбэк для обработки клика на тег */

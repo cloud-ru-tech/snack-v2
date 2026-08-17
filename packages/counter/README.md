@@ -32,8 +32,11 @@
 ### Size
 Размер бейджа: `xs` — на иконках/мелких элементах, `s` — дефолт в табах и пунктах меню.
 
-### Color
-Цветовая роль: `accent` — основной токен appearance, `decor` — декоративный вариант для визуально более мягкого бейджа.
+### Role appearance (default `accent`)
+Роль, в которой применяется выбранный `appearance`:
+
+- `accent` — насыщенная заливка, основной токен appearance.
+- `decor` — декоративная подложка, визуально более мягкий бейдж.
 
 ## Установка
 ```bash
@@ -92,10 +95,10 @@ export function Red() {
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
 | `className` | `string` | — | Дополнительный CSS-класс |
-| `color` | `"accent"` \| `"decor"` | `accent` | Семантический цвет |
 | `data-test-id` | `string` | — |  |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `plusLimit` | `number` | `10` | Порог сокращения значения для варианта `count-plus` |
+| `roleAppearance` | `"accent"` \| `"decor"` | `accent` | Роль, в которой применяется `appearance`: акцентная заливка или декоративная |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `value` | `number` | — | Значение |
 | `variant` | `"count"` \| `"count-k"` \| `"count-plus"` | `count` | Вариант форматирования |
@@ -104,7 +107,7 @@ export function Red() {
 
 - `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
-- `Color` = `"accent"` \| `"decor"`
+- `RoleAppearance` = `"accent"` \| `"decor"`
 
 - `Size` = `"s"` \| `"xs"`
 

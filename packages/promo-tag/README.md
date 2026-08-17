@@ -19,8 +19,11 @@
 ### Size
 `xs` — плотные ленты/карточки; `s` — дефолт; `m` — для крупных промо-блоков.
 
-### Role appearance
-`accent` — насыщенная заливка (главные метки: новинка, sale); `decor` — мягкая декоративная подложка для категоризации и тегов.
+### Role appearance (default `accent`)
+Роль, в которой применяется выбранный `appearance`:
+
+- `accent` — насыщенная заливка, для главных меток (новинка, sale).
+- `decor` — мягкая декоративная подложка, для категоризации и тегов.
 
 ## Установка
 ```bash
@@ -38,8 +41,7 @@ import { PromoTag } from '@ds/promo-tag'
 import { PromoTag } from '@ds/promo-tag';
 
 export function Basic() {
-  // eslint-disable-next-line jsx-a11y/aria-role -- `role` здесь — пропс компонента PromoTag, не ARIA-атрибут
-  return <PromoTag label='NEW' appearance='primary' role='accent' />;
+  return <PromoTag label='NEW' appearance='primary' roleAppearance='accent' />;
 }
 ```
 
@@ -88,14 +90,14 @@ export function Polymorphic() {
         target='_blank'
         label='External promo'
         appearance={APPEARANCE.Blue}
-        role={ROLE_APPEARANCE.Decor}
+        roleAppearance={ROLE_APPEARANCE.Decor}
       />
       <PromoTag
         as={MockLink}
         to='https://example.com'
         label='Preview link'
         appearance={APPEARANCE.Primary}
-        role={ROLE_APPEARANCE.Accent}
+        roleAppearance={ROLE_APPEARANCE.Accent}
       />
     </div>
   );
@@ -116,7 +118,7 @@ export function Polymorphic() {
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
 | `label` | `string` | — | Текст компонента |
 | `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
-| `role` | `"accent"` \| `"decor"` | `accent` | Роль промо-тега |
+| `roleAppearance` | `"accent"` \| `"decor"` | `accent` | Роль, в которой применяется `appearance`: акцентная заливка или декоративная |
 | `size` | `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
 
 #### Related types

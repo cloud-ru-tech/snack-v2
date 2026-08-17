@@ -1,5 +1,5 @@
 import { ValueOf } from '@ds/utils';
 
-import { POSITION } from './constants';
+import { CONTENT_POSITION } from './constants';
 
-export type Position = ValueOf<typeof POSITION>;
+export type ContentPosition = ValueOf<typeof CONTENT_POSITION>;

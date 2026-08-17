@@ -19,14 +19,14 @@ export function Polymorphic() {
         target='_blank'
         label='External promo'
         appearance={APPEARANCE.Blue}
-        role={ROLE_APPEARANCE.Decor}
+        roleAppearance={ROLE_APPEARANCE.Decor}
       />
       <PromoTag
         as={MockLink}
         to='https://example.com'
         label='Preview link'
         appearance={APPEARANCE.Primary}
-        role={ROLE_APPEARANCE.Accent}
+        roleAppearance={ROLE_APPEARANCE.Accent}
       />
     </div>
   );

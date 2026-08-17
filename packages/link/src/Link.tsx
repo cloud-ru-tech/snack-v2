@@ -3,7 +3,7 @@ import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType } from 'react';
 
-import { APPEARANCE, ROLE, TARGET } from './constants';
+import { APPEARANCE, ROLE_APPEARANCE, TARGET } from './constants';
 import styles from './styles.module.scss';
 import { LinkProps } from './types';
 
@@ -13,7 +13,7 @@ import { LinkProps } from './types';
 export function Link<T extends ElementType = 'a'>({
   label = '',
   className,
-  role = ROLE.Regular,
+  roleAppearance = ROLE_APPEARANCE.Regular,
   appearance = APPEARANCE.Primary,
   insideText = false,
   underlined = false,
@@ -49,7 +49,7 @@ export function Link<T extends ElementType = 'a'>({
       ref={innerRef}
       className={cn(styles.link, className)}
       {...fallbackProps}
-      data-role={role}
+      data-role-appearance={roleAppearance}
       data-appearance={appearance}
       data-inside-text={insideText || undefined}
       data-underlined={underlined || undefined}

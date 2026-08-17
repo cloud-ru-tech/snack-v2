@@ -11,7 +11,7 @@
 
 Вертикальная лента событий. Принимает массив items и сама расставляет роли маркеров (start / center / end), линии и opposite-контент.
 
-Высокоуровневая обёртка над `TrackItem`. Принимает массив `items`, автоматически проставляет роль первому/последнему (start / end) и промежуточным (center), рендерит соединительные линии и опциональный `opposite`-контент.
+Высокоуровневая обёртка над `TrackItem`. Принимает массив `items`, автоматически проставляет положение первому/последнему (start / end) и промежуточным (center), рендерит соединительные линии и опциональный `opposite`-контент.
 
 ### Когда использовать
 - История заявки / запроса: события + timestamp.
@@ -95,7 +95,7 @@ export function Alternate() {
 
 ##### Related types
 
-- `Position` = `"left"` \| `"right"`
+- `ContentPosition` = `"left"` \| `"right"`
 
 **TimelineItem**
 
@@ -125,7 +125,7 @@ export function Alternate() {
 | `key` | `string \| undefined` | — | Уникальный ключ |
 | `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
 | `opposite` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент в противоположной колонке |
-| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
 | `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
 
 **TrackProps**
@@ -135,7 +135,7 @@ export function Alternate() {
 | `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
 | `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
 | `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
-| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
 | `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
 
 ## TrackItem
@@ -152,7 +152,21 @@ export function Alternate() {
 ### Анатомия
 
 #### Position
-Сторона, с которой рендерится контент относительно трека: `left` — слева, `right` — справа. Используется в двухколоночных таймлайнах.
+Положение элемента в ленте — от него зависит, какие соединительные линии рисуются:
+
+- `start` — первый элемент, линия только снизу.
+- `center` — промежуточный, линии сверху и снизу.
+- `end` — последний, линия только сверху.
+
+`Timeline` проставляет его сам; задавать вручную нужно только при ручной сборке из `TrackItem`.
+
+#### Content position (default `right`)
+Сторона, с которой рендерится контент относительно трека:
+
+- `left` — слева.
+- `right` — справа.
+
+Используется в двухколоночных таймлайнах.
 
 ### Примеры использования
 
@@ -173,14 +187,14 @@ export function Alternate() {
 | `key` | `string` | — | Уникальный ключ |
 | `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
 | `opposite` | `ReactNode` | — | Контент в противоположной колонке |
-| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
 | `showLines` | `boolean` | — | Показывать вертикальные сегменты |
 
 ##### Related types
 
-- `Position` = `"left"` \| `"right"`
+- `ContentPosition` = `"left"` \| `"right"`
 
-- `Role` = `"center"` \| `"end"` \| `"start"`
+- `Position` = `"center"` \| `"end"` \| `"start"`
 
 **TrackDotProps**
 
@@ -202,5 +216,5 @@ export function Alternate() {
 | `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
 | `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
 | `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
-| `role` | `"center"` \| `"end"` \| `"start"` | — | Роль |
+| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
 | `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |

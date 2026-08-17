@@ -209,18 +209,6 @@
             "required": false,
             "description": "Дополнительный CSS-класс"
           },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
@@ -234,6 +222,18 @@
             "type": "number | undefined",
             "required": false,
             "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
           },
           "size": {
             "type": "Size | undefined",
@@ -396,7 +396,7 @@
       },
       "PickLinkProps": {
         "kind": "alias",
-        "type": "Pick<LinkProps<T>, SelectedKeys> & Omit<ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>, \"data-test-id\" | keyof AriaAttributes | \"label\" | \"role\" | \"appearance\" | \"truncateVariant\" | \"insideText\" | \"underlined\">",
+        "type": "Pick<LinkProps<T>, SelectedKeys> & Omit<ComponentPropsWithoutRef<ElementType extends T ? \"a\" : T>, \"data-test-id\" | keyof AriaAttributes | \"label\" | \"appearance\" | \"truncateVariant\" | \"roleAppearance\" | \"insideText\" | \"underlined\">",
         "own": false
       },
       "PolymorphicRef": {
@@ -2139,18 +2139,6 @@
             "required": false,
             "description": "Дополнительный CSS-класс"
           },
-          "color": {
-            "type": "Color | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Семантический цвет",
-            "typeRefs": [
-              "Color"
-            ]
-          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
@@ -2164,6 +2152,18 @@
             "type": "number | undefined",
             "required": false,
             "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
           },
           "size": {
             "type": "Size | undefined",

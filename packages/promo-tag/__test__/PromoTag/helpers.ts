@@ -26,7 +26,7 @@ export function buildStoryOptions(
 }
 
 export const PROMO_TAG_KEY_COMBOS = [
-  { appearance: APPEARANCE.Primary, size: SIZE.Xs, role: ROLE_APPEARANCE.Accent },
-  { appearance: APPEARANCE.Neutral, size: SIZE.S, role: ROLE_APPEARANCE.Decor },
-  { appearance: APPEARANCE.Red, size: SIZE.M, role: ROLE_APPEARANCE.Accent },
+  { appearance: APPEARANCE.Primary, size: SIZE.Xs, roleAppearance: ROLE_APPEARANCE.Accent },
+  { appearance: APPEARANCE.Neutral, size: SIZE.S, roleAppearance: ROLE_APPEARANCE.Decor },
+  { appearance: APPEARANCE.Red, size: SIZE.M, roleAppearance: ROLE_APPEARANCE.Accent },
 ] as const;

@@ -4,7 +4,7 @@
 $sizes: 'xs', 's';
 // appearance (API) === имя темы токенов figma-variables (1:1)
 $appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
-$roleColors: 'accent', 'decor';
+$roleAppearances: 'accent', 'decor';
 
 $textColor: (
   'accent': 'onAccent',
@@ -67,16 +67,16 @@ $typography: (
     }
   }
 
-  @each $roleColor in $roleColors {
+  @each $roleAppearance in $roleAppearances {
     @each $appearance in $appearances {
-      &[data-color='#{$roleColor}'][data-appearance='#{$appearance}'] .container {
+      &[data-role-appearance='#{$roleAppearance}'][data-appearance='#{$appearance}'] .container {
         color: base.simple-var(
           base.$sn-theme,
           'color',
           $appearance,
-          base.simple-var($textColor, $roleColor)
+          base.simple-var($textColor, $roleAppearance)
         );
-        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleColor);
+        background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $roleAppearance);
       }
     }
   }

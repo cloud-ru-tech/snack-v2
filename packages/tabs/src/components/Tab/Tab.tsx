@@ -25,8 +25,8 @@ export type TabProps = WithSupportProps<{
     label: number;
     /** Внешний вид */
     appearance?: CounterProps['appearance'];
-    /** Семантический цвет */
-    color?: CounterProps['color'];
+    /** Роль, в которой применяется `appearance` счётчика */
+    roleAppearance?: CounterProps['roleAppearance'];
   };
   /** Колбек клика по кнопке переключения */
   onClick?(event: MouseEvent<HTMLButtonElement>): void;
@@ -138,7 +138,7 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
         {counter && (
           <Counter
             appearance={counter.appearance}
-            color={counter.color}
+            roleAppearance={counter.roleAppearance}
             value={counter.label}
             data-testid={`tabs__tab-counter-${value}`}
             {...counterProps}

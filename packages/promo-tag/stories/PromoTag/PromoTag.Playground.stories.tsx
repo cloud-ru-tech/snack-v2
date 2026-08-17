@@ -23,7 +23,7 @@ const meta: Meta<typeof PromoTag> = {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Промо-тег с иконкой до или после текста и набором appearance/role.</DemoHint>
+        <DemoHint>Промо-тег с иконкой до или после текста и набором appearance/roleAppearance.</DemoHint>
         <DemoActions align='center'>
           <PromoTag {...args} />
         </DemoActions>
@@ -33,7 +33,7 @@ const meta: Meta<typeof PromoTag> = {
   args: {
     label: 'Promo tag',
     appearance: APPEARANCE.Primary,
-    role: ROLE_APPEARANCE.Accent,
+    roleAppearance: ROLE_APPEARANCE.Accent,
     size: SIZE.Xs,
     beforeContent: undefined,
     afterContent: undefined,
@@ -42,7 +42,7 @@ const meta: Meta<typeof PromoTag> = {
   argTypes: {
     label: { control: 'text', description: 'Текст компонента' },
     appearance: { control: 'select', options: Object.values(APPEARANCE) },
-    role: { control: 'radio', options: Object.values(ROLE_APPEARANCE) },
+    roleAppearance: { control: 'radio', options: Object.values(ROLE_APPEARANCE) },
     size: { control: 'radio', options: Object.values(SIZE) },
     beforeContent: {
       control: 'select',

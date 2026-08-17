@@ -13,7 +13,7 @@ export function LinkDemo() {
       defaultProps={{
         label: 'Link text',
         appearance: 'primary',
-        role: 'regular',
+        roleAppearance: 'regular',
         insideText: false,
         underlined: false,
         href: 'https://example.com',
@@ -35,7 +35,7 @@ export function LinkDemo() {
             'pink',
           ],
         },
-        role: { type: 'select', options: ['regular', 'onAccent'] },
+        roleAppearance: { type: 'select', options: ['regular', 'onAccent'] },
         insideText: { type: 'boolean' },
         underlined: { type: 'boolean' },
       }}

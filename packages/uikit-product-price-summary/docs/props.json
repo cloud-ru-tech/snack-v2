@@ -572,14 +572,14 @@
             "required": false,
             "description": "Колбэк для обработки клика на тег"
           },
-          "role": {
+          "roleAppearance": {
             "type": "RoleAppearance | undefined",
             "required": false,
             "values": [
               "accent",
               "decor"
             ],
-            "description": "Роль промо-тега",
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
             "typeRefs": [
               "RoleAppearance"
             ]
@@ -668,14 +668,14 @@
             "required": false,
             "description": "Колбэк для обработки клика на тег"
           },
-          "role": {
+          "roleAppearance": {
             "type": "RoleAppearance | undefined",
             "required": false,
             "values": [
               "accent",
               "decor"
             ],
-            "description": "Роль промо-тега",
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
             "typeRefs": [
               "RoleAppearance"
             ]

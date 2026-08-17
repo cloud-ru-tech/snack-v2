@@ -2,13 +2,13 @@ import { notReachable } from '../../helpers';
 import { TrackDot, TrackDotProps } from '../TrackDot';
 import { VARIANT } from '../TrackDot/constants';
 import { TrackLine, TrackLineProps } from '../TrackLine';
-import { ROLE } from './constants';
+import { POSITION } from './constants';
 import styles from './styles.module.scss';
-import { Role } from './types';
+import { Position } from './types';
 
 export type TrackProps = {
-  /** Роль */
-  role: Role;
+  /** Положение элемента в ленте: первый, промежуточный или последний */
+  position: Position;
   /** Стиль нижней линии */
   lineStyle?: TrackLineProps['style'];
   /** Вид маркера */
@@ -19,13 +19,19 @@ export type TrackProps = {
   showLines?: boolean;
 };
 
-export function Track({ role, lineStyle, dotVariant = VARIANT.Default, dotAppearance, showLines = true }: TrackProps) {
-  switch (role) {
-    case ROLE.Start:
+export function Track({
+  position,
+  lineStyle,
+  dotVariant = VARIANT.Default,
+  dotAppearance,
+  showLines = true,
+}: TrackProps) {
+  switch (position) {
+    case POSITION.Start:
       return (
         <div
           className={styles.track}
-          data-position={role}
+          data-position={position}
           data-dot-variant={dotVariant}
           data-test-id={'timeline-track'}
         >
@@ -34,11 +40,11 @@ export function Track({ role, lineStyle, dotVariant = VARIANT.Default, dotAppear
         </div>
       );
 
-    case ROLE.Center:
+    case POSITION.Center:
       return (
         <div
           className={styles.track}
-          data-position={role}
+          data-position={position}
           data-dot-variant={dotVariant}
           data-test-id={'timeline-track'}
         >
@@ -52,11 +58,11 @@ export function Track({ role, lineStyle, dotVariant = VARIANT.Default, dotAppear
         </div>
       );
 
-    case ROLE.End:
+    case POSITION.End:
       return (
         <div
           className={styles.track}
-          data-position={role}
+          data-position={position}
           data-dot-variant={dotVariant}
           data-test-id={'timeline-track'}
         >
@@ -70,6 +76,6 @@ export function Track({ role, lineStyle, dotVariant = VARIANT.Default, dotAppear
       );
 
     default:
-      return notReachable(role);
+      return notReachable(position);
   }
 }

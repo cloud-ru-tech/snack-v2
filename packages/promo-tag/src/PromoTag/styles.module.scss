@@ -46,12 +46,12 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
 
   @each $appearance in $appearances {
     &[data-appearance='#{$appearance}'] {
-      &[data-role='accent'] {
+      &[data-role-appearance='accent'] {
         color: base.simple-var(base.$sn-theme, 'color', $appearance, 'onAccent');
         background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
       }
 
-      &[data-role='decor'] {
+      &[data-role-appearance='decor'] {
         color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
         background-color: base.simple-var(base.$sn-theme, 'color', $appearance, 'decor');
       }

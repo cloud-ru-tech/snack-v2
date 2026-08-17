@@ -17,7 +17,7 @@ export function CoveredByGrantLabel({ covered, className }: CoveredByGrantLabelP
     <div className={cn(styles.coveredByGrant, className)}>
       <PromoTag
         appearance={covered ? 'green' : 'neutral'}
-        role={ROLE_APPEARANCE.Decor}
+        roleAppearance={ROLE_APPEARANCE.Decor}
         label={covered ? t('coveredByGrant') : t('notCoveredByGrant')}
       />
       <QuestionTooltip

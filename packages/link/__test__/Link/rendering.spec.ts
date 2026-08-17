@@ -24,13 +24,13 @@ test.describe('Link — rendering', () => {
   });
 
   test.describe('props propagation', () => {
-    for (const { appearance, role } of LINK_KEY_COMBOS) {
-      test(`${appearance} + ${role}`, async ({ gotoStory, getByTestId }) => {
-        await gotoStory(buildStoryOptions({ appearance, role }));
+    for (const { appearance, roleAppearance } of LINK_KEY_COMBOS) {
+      test(`${appearance} + ${roleAppearance}`, async ({ gotoStory, getByTestId }) => {
+        await gotoStory(buildStoryOptions({ appearance, roleAppearance }));
 
         const link = getByTestId(TEST_IDS.root);
         await expect(link).toHaveAttribute('data-appearance', appearance);
-        await expect(link).toHaveAttribute('data-role', role);
+        await expect(link).toHaveAttribute('data-role-appearance', roleAppearance);
       });
     }
 
