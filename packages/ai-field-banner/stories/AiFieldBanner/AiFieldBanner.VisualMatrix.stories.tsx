@@ -1,4 +1,4 @@
-import { AiFieldBanner, SIZE, TYPE, TYPE_ORDER } from '@ds/ai-field-banner';
+import { AiFieldBanner, SIZE, VARIANT, VARIANT_ORDER } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement } from 'react';
@@ -17,39 +17,39 @@ const meta: Meta<typeof AiFieldBanner> = {
 export default meta;
 type Story = StoryObj<typeof AiFieldBanner>;
 
-const types = TYPE_ORDER;
+const variants = VARIANT_ORDER;
 const sizes = Object.values(SIZE);
 
 const defaultProps = {
   content: 'Description',
   actionLabel: 'Label text',
-  variant: TYPE.Information,
+  variant: VARIANT.Information,
 } as const;
 
 const longDescription =
   'This is a longer field hint that wraps across several lines within the banner width to show how multiline description text behaves alongside the icon and action.';
 
-const longAdditionalContent =
-  'This is longer additional content in the children slot that wraps across several lines within the banner width to show how multiline slot content behaves alongside the description and action.';
+const longBottomContent =
+  'This is longer additional content in the bottomContent slot that wraps across several lines within the banner width to show how multiline slot content behaves alongside the description and action.';
 
 function renderCell(props: Parameters<typeof AiFieldBanner>[0], testId: string): ReactElement {
   return <AiFieldBanner {...props} className={styles.bannerCell} data-test-id={testId} />;
 }
 
-export const VisualMatrixTypeSize: Story = {
+export const VisualMatrixVariantSize: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <StoryTable
-      sectionTitle='Type × Size (desktop/mobile)'
-      firstColumnHeader='Type'
+      sectionTitle='Variant × Size (desktop/mobile)'
+      firstColumnHeader='Variant'
       columnHeaders={sizes.map(s => s.toUpperCase())}
-      rows={types.map(type => ({
-        variantLabel: type,
+      rows={variants.map(variant => ({
+        variantLabel: variant,
         cells: sizes.map(size =>
           renderCell(
-            { ...defaultProps, variant: type, size, icon: <PlaceholderSVG /> },
-            `${TEST_IDS.root}-type-${type}-size-${size}`,
+            { ...defaultProps, variant, size, icon: <PlaceholderSVG /> },
+            `${TEST_IDS.root}-variant-${variant}-size-${size}`,
           ),
         ),
       }))}
@@ -75,15 +75,15 @@ export const VisualMatrixSlots: Story = {
           cells: [renderCell({ content: 'Description', actionLabel: undefined }, `${TEST_IDS.root}-slots-description`)],
         },
         {
-          variantLabel: 'with additional slot',
+          variantLabel: 'with bottom content',
           cells: [
             renderCell(
               {
                 ...defaultProps,
                 icon: <PlaceholderSVG />,
-                children: <span>Additional content</span>,
+                bottomContent: <span>Additional content</span>,
               },
-              `${TEST_IDS.root}-slots-additional`,
+              `${TEST_IDS.root}-slots-bottom-content`,
             ),
           ],
         },
@@ -101,15 +101,15 @@ export const VisualMatrixSlots: Story = {
           ],
         },
         {
-          variantLabel: 'description + children (long) + action',
+          variantLabel: 'content + bottomContent (long) + action',
           cells: [
             renderCell(
               {
                 ...defaultProps,
                 icon: <PlaceholderSVG />,
-                children: <span>{longAdditionalContent}</span>,
+                bottomContent: <span>{longBottomContent}</span>,
               },
-              `${TEST_IDS.root}-slots-long-children`,
+              `${TEST_IDS.root}-slots-long-bottom-content`,
             ),
           ],
         },

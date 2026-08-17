@@ -2,9 +2,9 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $sizes: 's', 'm';
-$types: 'information', 'security', 'critical', 'help', 'warning', 'agentic';
+$variants: 'information', 'security', 'critical', 'help', 'warning', 'agentic';
 
-$type-background-token: (
+$variant-background-token: (
   'information': 'decorTransparent',
   'security': 'decorTransparent',
   'critical': 'decor',
@@ -13,7 +13,7 @@ $type-background-token: (
   'agentic': 'decorTransparent',
 );
 
-$type-theme-color: (
+$variant-theme-color: (
   'information': 'neutral',
   'security': 'blue',
   'critical': 'red',
@@ -44,10 +44,10 @@ $size-top-border-radius: (
     }
   }
 
-  @each $type in $types {
-    &[data-type='#{$type}'] {
-      $token: map.get($type-background-token, $type);
-      $color: map.get($type-theme-color, $type);
+  @each $variant in $variants {
+    &[data-variant='#{$variant}'] {
+      $token: map.get($variant-background-token, $variant);
+      $color: map.get($variant-theme-color, $variant);
 
       background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
     }
@@ -79,18 +79,18 @@ $size-top-border-radius: (
     border-radius: map.get($size-top-border-radius, 'm') map.get($size-top-border-radius, 'm') 0 0;
   }
 
-  &[data-size='s'][data-has-additional='true'] {
+  &[data-size='s'][data-bottom-content] {
     min-height: base.$sn-primitive-dimension-72;
   }
 
-  &[data-size='m'][data-has-additional='true'] {
+  &[data-size='m'][data-bottom-content] {
     min-height: base.$sn-primitive-dimension-84;
   }
 
-  @each $type in $types {
-    &[data-type='#{$type}'] {
-      $token: map.get($type-background-token, $type);
-      $color: map.get($type-theme-color, $type);
+  @each $variant in $variants {
+    &[data-variant='#{$variant}'] {
+      $token: map.get($variant-background-token, $variant);
+      $color: map.get($variant-theme-color, $variant);
 
       background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
     }
@@ -150,14 +150,14 @@ $size-top-border-radius: (
   }
 }
 
-.additional {
+.bottomContent {
   position: relative;
   z-index: 1;
   width: 100%;
   padding-bottom: base.$sn-primitive-dimension-4;
 }
 
-.root[data-content-only='true'] .additional {
+.root[data-content-only='true'] .bottomContent {
   padding-bottom: 0;
 }
 

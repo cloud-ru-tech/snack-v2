@@ -12,6 +12,6 @@ export {
 } from './constants';
 export * from './types';
 export { SIZE } from '@ds/ai-field-banner';
-export type { AiFieldBannerProps, AiFieldBannerOwnProps, Type as BannerType } from '@ds/ai-field-banner';
+export type { AiFieldBannerProps, AiFieldBannerOwnProps, Variant as BannerVariant } from '@ds/ai-field-banner';
 export type { AiQueueLabels, AiQueueProps, AiQueueStep, AiQueueSummary } from '@ds/ai-queue';
 export { AI_QUEUE_STEP_STATE } from '@ds/ai-queue';

@@ -2972,12 +2972,12 @@
       "Type": {
         "kind": "union",
         "values": [
-          "agentic",
-          "critical",
-          "help",
-          "information",
-          "security",
-          "warning"
+          "email",
+          "number",
+          "password",
+          "tel",
+          "text",
+          "url"
         ],
         "own": false
       },
@@ -5701,12 +5701,12 @@
       "Type": {
         "kind": "union",
         "values": [
-          "agentic",
-          "critical",
-          "help",
-          "information",
-          "security",
-          "warning"
+          "email",
+          "number",
+          "password",
+          "tel",
+          "text",
+          "url"
         ],
         "own": false
       },

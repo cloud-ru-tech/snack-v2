@@ -1,7 +1,7 @@
 ---
 title: AiFieldBanner
 package: '@ds/ai-field-banner'
-description: Инлайн-баннер для поля ввода с семантическим типом, иконкой, описанием и действием.
+description: Инлайн-баннер для поля ввода с семантическим вариантом, иконкой, контентом и действием.
 order: 0
 ---
 
@@ -14,12 +14,12 @@ import aiFieldBannerDoc from './props.json'
 
 import { Default } from '../demos/examples/Default'
 import DefaultSrc from '../demos/examples/Default.tsx?raw'
-import { Types } from '../demos/examples/Types'
-import TypesSrc from '../demos/examples/Types.tsx?raw'
+import { Variants } from '../demos/examples/Variants'
+import VariantsSrc from '../demos/examples/Variants.tsx?raw'
 import { Mobile } from '../demos/examples/Mobile'
 import MobileSrc from '../demos/examples/Mobile.tsx?raw'
-import { WithAdditionalSlot } from '../demos/examples/WithAdditionalSlot'
-import WithAdditionalSlotSrc from '../demos/examples/WithAdditionalSlot.tsx?raw'
+import { WithBottomContent } from '../demos/examples/WithBottomContent'
+import WithBottomContentSrc from '../demos/examples/WithBottomContent.tsx?raw'
 
 # AiFieldBanner
 
@@ -31,7 +31,7 @@ import WithAdditionalSlotSrc from '../demos/examples/WithAdditionalSlot.tsx?raw'
 
 - Подсказки и валидация у AI-полей (`information`, `help`, `warning`, `critical`).
 - Контекст безопасности или агентного сценария (`security`, `agentic`).
-- Дополнительный контент под основной строкой — ссылка, чип, короткий список (`children`).
+- Дополнительный контент под основной строкой — ссылка, чип, короткий список (`bottomContent`).
 
 ### Когда не нужен
 
@@ -40,9 +40,9 @@ import WithAdditionalSlotSrc from '../demos/examples/WithAdditionalSlot.tsx?raw'
 
 ## Анатомия
 
-### Type
+### Variant
 
-Семантика фона: `information`, `security`, `help`, `agentic`, `warning`, `critical`. Иконка не подставляется автоматически — передайте `icon` явно.
+Семантика фона (проп `variant`): `information`, `security`, `help`, `agentic`, `warning`, `critical`. Иконка не подставляется автоматически — передайте `icon` явно.
 
 ### Size
 
@@ -51,13 +51,13 @@ import WithAdditionalSlotSrc from '../demos/examples/WithAdditionalSlot.tsx?raw'
 - `s` — 400×72, компактная типографика и иконка.
 - `m` — 400×84, увеличенные иконка, текст и кнопка действия.
 
-### Description
+### Content
 
 Основной текст основной строки. Поддерживает перенос на несколько строк (`overflow-wrap`). Слот скрыт, если не задан.
 
 ### Icon
 
-Опциональный `ReactNode` слева от описания. Без `icon` иконка не рендерится.
+Опциональный `ReactNode` слева от контента. Без `icon` иконка не рендерится.
 
 ```ts
 import { AiFieldBanner } from '@ds/ai-field-banner'
@@ -70,9 +70,9 @@ import { PlaceholderSVG } from '@ds/icons'
 
 Текстовая кнопка справа рендерится через `AlertButton` из `@ds/alert` и использует его state layer (`:hover`, `:focus-visible`, `:active`). Рендерится только при `actionLabel`. `onActionClick` — обработчик клика.
 
-### Additional slot
+### Bottom content
 
-`children` под основной строкой — произвольный контент. Слот скрыт, если не задан.
+`bottomContent` под основной строкой — произвольный контент. Слот скрыт, если не задан.
 
 ## Установка
 
@@ -81,7 +81,7 @@ pnpm add @ds/ai-field-banner
 ```
 
 ```ts
-import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner'
+import { AiFieldBanner, SIZE, VARIANT } from '@ds/ai-field-banner'
 ```
 
 ## Примеры использования
@@ -90,16 +90,16 @@ import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner'
   <Default client:visible />
 </Example>
 
-<Example title='Types' description='Все семантические типы' code={TypesSrc}>
-  <Types client:visible />
+<Example title='Variants' description='Все семантические варианты' code={VariantsSrc}>
+  <Variants client:visible />
 </Example>
 
 <Example title='Mobile' description='Размер `m` (400×84)' code={MobileSrc}>
   <Mobile client:visible />
 </Example>
 
-<Example title='Additional slot' description='Дополнительный контент под основной строкой' code={WithAdditionalSlotSrc}>
-  <WithAdditionalSlot client:visible />
+<Example title='Bottom content' description='Дополнительный контент под основной строкой' code={WithBottomContentSrc}>
+  <WithBottomContent client:visible />
 </Example>
 
 ## Props

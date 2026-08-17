@@ -1,4 +1,4 @@
-export const TYPE = {
+export const VARIANT = {
   Information: 'information',
   Security: 'security',
   Critical: 'critical',
@@ -7,13 +7,13 @@ export const TYPE = {
   Agentic: 'agentic',
 } as const;
 
-export const TYPE_ORDER = [
-  TYPE.Information,
-  TYPE.Security,
-  TYPE.Help,
-  TYPE.Agentic,
-  TYPE.Warning,
-  TYPE.Critical,
+export const VARIANT_ORDER = [
+  VARIANT.Information,
+  VARIANT.Security,
+  VARIANT.Help,
+  VARIANT.Agentic,
+  VARIANT.Warning,
+  VARIANT.Critical,
 ] as const;
 
 export const SIZE = {
@@ -28,5 +28,5 @@ export const TEST_IDS = {
   icon: 'ai-field-banner__icon',
   content: 'ai-field-banner__content',
   action: 'ai-field-banner__action',
-  additional: 'ai-field-banner__additional',
+  bottomContent: 'ai-field-banner__bottom-content',
 } as const;

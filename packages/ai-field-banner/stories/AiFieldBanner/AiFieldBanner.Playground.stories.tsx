@@ -1,4 +1,4 @@
-import { AiFieldBanner, AiFieldBannerProps, SIZE, TYPE, TYPE_ORDER } from '@ds/ai-field-banner';
+import { AiFieldBanner, AiFieldBannerProps, SIZE, VARIANT, VARIANT_ORDER } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
@@ -18,7 +18,7 @@ const meta: Meta<typeof AiFieldBanner> = {
   component: AiFieldBanner,
   parameters: { layout: 'fullscreen' },
   args: {
-    variant: TYPE.Information,
+    variant: VARIANT.Information,
     size: SIZE.S,
     content: 'Description',
     actionLabel: 'Label text',
@@ -28,8 +28,8 @@ const meta: Meta<typeof AiFieldBanner> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: TYPE_ORDER,
-      description: 'Семантический тип баннера.',
+      options: VARIANT_ORDER,
+      description: 'Семантический вариант баннера.',
     },
     size: {
       control: 'inline-radio',
@@ -37,7 +37,7 @@ const meta: Meta<typeof AiFieldBanner> = {
       description: 'Размер (Figma: Mobile Off → s, Mobile On → m)',
     },
     content: { control: 'text', description: 'Текст основной строки.' },
-    children: { control: 'text', description: 'Дополнительный слот.' },
+    bottomContent: { control: 'text', description: 'Дополнительный слот.' },
     icon: {
       control: 'select',
       options: Object.keys(ICON_OPTIONS),

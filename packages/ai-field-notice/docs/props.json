@@ -66,7 +66,7 @@
             "required": false,
             "description": "Подпись кнопки действия справа. Кнопка не рендерится, если не задана."
           },
-          "children": {
+          "bottomContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Дополнительный слот под основной строкой. Не рендерится, если не задан."
@@ -85,11 +85,6 @@
             "type": "string | undefined",
             "required": false
           },
-          "hasAdditional": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Принудительно добавляет высоту компонента на 12px, даже если `children` не задан."
-          },
           "icon": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
@@ -107,13 +102,13 @@
               "m",
               "s"
             ],
-            "description": "Размер: без `children` — `s` 400×48, `m` 400×60; с `children` — `s` 400×72, `m` 400×84.",
+            "description": "Размер: без `bottomContent` — `s` 400×48, `m` 400×60; с ним — `s` 400×72, `m` 400×84.",
             "typeRefs": [
               "Size"
             ]
           },
           "variant": {
-            "type": "Type | undefined",
+            "type": "Variant | undefined",
             "required": false,
             "values": [
               "agentic",
@@ -123,9 +118,9 @@
               "security",
               "warning"
             ],
-            "description": "Семантический вариант баннера (ось `Type` в Figma). По умолчанию `information`.",
+            "description": "Семантический вариант баннера (ось `Variant` в Figma). По умолчанию `information`.",
             "typeRefs": [
-              "Type"
+              "Variant"
             ]
           }
         },
@@ -139,17 +134,16 @@
         ],
         "own": false
       },
-      "Type": {
+      "Variant": {
         "kind": "union",
         "values": [
-          "agentic",
-          "critical",
-          "help",
-          "information",
-          "security",
-          "warning"
+          "password",
+          "queue",
+          "ssh",
+          "support",
+          "vmAgent"
         ],
-        "own": false
+        "own": true
       }
     }
   },

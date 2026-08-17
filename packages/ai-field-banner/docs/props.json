@@ -8,7 +8,7 @@
         "required": false,
         "description": "Подпись кнопки действия справа. Кнопка не рендерится, если не задана."
       },
-      "children": {
+      "bottomContent": {
         "type": "ReactNode",
         "required": false,
         "description": "Дополнительный слот под основной строкой. Не рендерится, если не задан."
@@ -28,11 +28,6 @@
         "required": false,
         "defaultValue": "ai-field-banner"
       },
-      "hasAdditional": {
-        "type": "boolean",
-        "required": false,
-        "description": "Принудительно добавляет высоту компонента на 12px, даже если `children` не задан."
-      },
       "icon": {
         "type": "ReactNode",
         "required": false,
@@ -51,7 +46,7 @@
           "s"
         ],
         "defaultValue": "s",
-        "description": "Размер: без `children` — `s` 400×48, `m` 400×60; с `children` — `s` 400×72, `m` 400×84.",
+        "description": "Размер: без `bottomContent` — `s` 400×48, `m` 400×60; с ним — `s` 400×72, `m` 400×84.",
         "typeRefs": [
           "Size"
         ]
@@ -68,9 +63,9 @@
           "warning"
         ],
         "defaultValue": "information",
-        "description": "Семантический вариант баннера (ось `Type` в Figma). По умолчанию `information`.",
+        "description": "Семантический вариант баннера (ось `Variant` в Figma). По умолчанию `information`.",
         "typeRefs": [
-          "Type"
+          "Variant"
         ]
       }
     },
@@ -83,7 +78,7 @@
         ],
         "own": true
       },
-      "Type": {
+      "Variant": {
         "kind": "union",
         "values": [
           "agentic",

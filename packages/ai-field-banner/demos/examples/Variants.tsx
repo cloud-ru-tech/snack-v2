@@ -1,15 +1,15 @@
-import { AiFieldBanner, TYPE_ORDER } from '@ds/ai-field-banner';
+import { AiFieldBanner, VARIANT_ORDER } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
-const types = TYPE_ORDER;
+const variants = VARIANT_ORDER;
 
-export function Types() {
+export function Variants() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 400 }}>
-      {types.map(type => (
+      {variants.map(variant => (
         <AiFieldBanner
-          key={type}
-          variant={type}
+          key={variant}
+          variant={variant}
           content='Description'
           actionLabel='Label text'
           icon={<PlaceholderSVG />}

@@ -1,4 +1,4 @@
-import { Size, TYPE as BANNER_TYPE, Type as BannerType } from '@ds/ai-field-banner';
+import { Size, VARIANT as BANNER_VARIANT, Variant as BannerVariant } from '@ds/ai-field-banner';
 import { HeadphonesSVG, PasswordLockSVG } from '@ds/icons/interface/product';
 import { ReactElement, ReactNode } from 'react';
 
@@ -7,7 +7,7 @@ import { VARIANT, VARIANT_ACTION_LABELS, VARIANT_MESSAGES } from './constants';
 import { AiFieldNoticeDescriptionContent, AiFieldNoticeDescriptionListItem, Variant } from './types';
 
 type ResolvedVariantBanner = {
-  bannerVariant: BannerType;
+  bannerVariant: BannerVariant;
   description: AiFieldNoticeDescriptionContent;
   icon?: ReactNode;
   actionLabel: string;
@@ -26,21 +26,21 @@ export function resolveVariantBanner(
   switch (variant) {
     case VARIANT.Password:
       return {
-        bannerVariant: BANNER_TYPE.Security,
+        bannerVariant: BANNER_VARIANT.Security,
         icon: <PasswordLockSVG />,
         description: buildSecureDescription(VARIANT_MESSAGES.passwordPrompt),
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Password],
       };
     case VARIANT.Ssh:
       return {
-        bannerVariant: BANNER_TYPE.Security,
+        bannerVariant: BANNER_VARIANT.Security,
         icon: <PasswordLockSVG />,
         description: buildSecureDescription(VARIANT_MESSAGES.sshPrompt),
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Ssh],
       };
     case VARIANT.Support:
       return {
-        bannerVariant: BANNER_TYPE.Help,
+        bannerVariant: BANNER_VARIANT.Help,
         icon: <HeadphonesSVG />,
         description: VARIANT_MESSAGES.support,
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.Support],
@@ -49,7 +49,7 @@ export function resolveVariantBanner(
       const vmInfo = (<AiFieldNoticeVmInfo vmName={vmName ?? ''} vmIp={vmIp ?? ''} size={size} />) as ReactElement;
 
       return {
-        bannerVariant: BANNER_TYPE.Agentic,
+        bannerVariant: BANNER_VARIANT.Agentic,
         description: [VARIANT_MESSAGES.vmAgentTitle, vmInfo],
         actionLabel: VARIANT_ACTION_LABELS[VARIANT.VmAgent],
       };

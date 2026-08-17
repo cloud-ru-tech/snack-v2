@@ -8,7 +8,7 @@ test.describe('AiFieldBanner — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
-  test('renders description text', async ({ gotoStory, getByTestId }) => {
+  test('renders content text', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ content: 'Field hint' }));
     await expect(getByTestId(TEST_IDS.content)).toHaveText('Field hint');
   });
@@ -33,9 +33,9 @@ test.describe('AiFieldBanner — rendering', () => {
     await expect(getByTestId(TEST_IDS.action)).toHaveText('Details');
   });
 
-  test('type propagates to data-type', async ({ gotoStory, getByTestId }) => {
+  test('variant propagates to data-variant', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ variant: 'critical' }));
-    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-type', 'critical');
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-variant', 'critical');
   });
 
   test('size propagates to data-size', async ({ gotoStory, getByTestId }) => {
@@ -43,13 +43,13 @@ test.describe('AiFieldBanner — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-size', 'm');
   });
 
-  test('renders additional slot', async ({ gotoStory, getByTestId }) => {
+  test('renders bottom content', async ({ gotoStory, getByTestId }) => {
     await gotoStory(
       buildStoryOptions({
-        children: 'Extra',
+        bottomContent: 'Extra',
         content: 'Description',
       }),
     );
-    await expect(getByTestId(TEST_IDS.additional)).toHaveText('Extra');
+    await expect(getByTestId(TEST_IDS.bottomContent)).toHaveText('Extra');
   });
 });

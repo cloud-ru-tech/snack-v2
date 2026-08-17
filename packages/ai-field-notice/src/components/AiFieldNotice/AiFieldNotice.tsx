@@ -1,4 +1,4 @@
-import { AiFieldBanner, SIZE, TYPE as BANNER_TYPE } from '@ds/ai-field-banner';
+import { AiFieldBanner, SIZE, VARIANT as BANNER_VARIANT } from '@ds/ai-field-banner';
 import { AiQueue } from '@ds/ai-queue';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -64,14 +64,15 @@ export function AiFieldNotice(props: AiFieldNoticeProps): ReactElement {
     >
       {isQueueVariant && queueProps ? (
         <AiFieldBanner
-          variant={BANNER_TYPE.Information}
+          variant={BANNER_VARIANT.Information}
           size={size}
           className={styles.queueBanner}
+          bottomContent={
+            <AiQueue {...queueRest} className={cn(styles.queue, queueClassName)} data-test-id={queueTestId} />
+          }
           data-content-only
           data-test-id={TEST_IDS.banner}
-        >
-          <AiQueue {...queueRest} className={cn(styles.queue, queueClassName)} data-test-id={queueTestId} />
-        </AiFieldBanner>
+        />
       ) : (
         resolvedBanner && (
           <AiFieldBanner

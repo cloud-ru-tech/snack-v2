@@ -7,12 +7,12 @@ export const TEST_IDS = {
   icon: COMPONENT_TEST_IDS.icon,
   content: COMPONENT_TEST_IDS.content,
   action: COMPONENT_TEST_IDS.action,
-  additional: COMPONENT_TEST_IDS.additional,
+  bottomContent: COMPONENT_TEST_IDS.bottomContent,
 } as const;
 
 export const AI_FIELD_BANNER_STORIES = {
   playground: { name: 'aifieldbanner', story: 'playground' },
-  visualMatrixTypeSize: { name: 'aifieldbanner', story: 'visual-matrix-type-size' },
+  visualMatrixVariantSize: { name: 'aifieldbanner', story: 'visual-matrix-variant-size' },
   visualMatrixSlots: { name: 'aifieldbanner', story: 'visual-matrix-slots' },
   interactionTest: { name: 'aifieldbanner-tests-interaction', story: 'interaction-test' },
   withoutIcon: { name: 'aifieldbanner-tests-interaction', story: 'without-icon' },

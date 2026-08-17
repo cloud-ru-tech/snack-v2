@@ -1,6 +1,6 @@
 # AiFieldBanner
 
-`@ds/ai-field-banner` — Инлайн-баннер для поля ввода с семантическим типом, иконкой, описанием и действием.
+`@ds/ai-field-banner` — Инлайн-баннер для поля ввода с семантическим вариантом, иконкой, контентом и действием.
 
 `AiFieldBanner` — компактный баннер под полем ввода из набора AI Components. Показывает подсказку, предупреждение или контекст действия с опциональной иконкой, кнопкой справа и дополнительным слотом снизу.
 
@@ -10,7 +10,7 @@
 
 - Подсказки и валидация у AI-полей (`information`, `help`, `warning`, `critical`).
 - Контекст безопасности или агентного сценария (`security`, `agentic`).
-- Дополнительный контент под основной строкой — ссылка, чип, короткий список (`children`).
+- Дополнительный контент под основной строкой — ссылка, чип, короткий список (`bottomContent`).
 
 ### Когда не нужен
 
@@ -19,9 +19,9 @@
 
 ## Анатомия
 
-### Type
+### Variant
 
-Семантика фона: `information`, `security`, `help`, `agentic`, `warning`, `critical`. Иконка не подставляется автоматически — передайте `icon` явно.
+Семантика фона (проп `variant`): `information`, `security`, `help`, `agentic`, `warning`, `critical`. Иконка не подставляется автоматически — передайте `icon` явно.
 
 ### Size
 
@@ -30,13 +30,13 @@
 - `s` — 400×72, компактная типографика и иконка.
 - `m` — 400×84, увеличенные иконка, текст и кнопка действия.
 
-### Description
+### Content
 
 Основной текст основной строки. Поддерживает перенос на несколько строк (`overflow-wrap`). Слот скрыт, если не задан.
 
 ### Icon
 
-Опциональный `ReactNode` слева от описания. Без `icon` иконка не рендерится.
+Опциональный `ReactNode` слева от контента. Без `icon` иконка не рендерится.
 
 ```ts
 import { AiFieldBanner } from '@ds/ai-field-banner'
@@ -49,9 +49,9 @@ import { PlaceholderSVG } from '@ds/icons'
 
 Текстовая кнопка справа рендерится через `AlertButton` из `@ds/alert` и использует его state layer (`:hover`, `:focus-visible`, `:active`). Рендерится только при `actionLabel`. `onActionClick` — обработчик клика.
 
-### Additional slot
+### Bottom content
 
-`children` под основной строкой — произвольный контент. Слот скрыт, если не задан.
+`bottomContent` под основной строкой — произвольный контент. Слот скрыт, если не задан.
 
 ## Установка
 
@@ -60,7 +60,7 @@ pnpm add @ds/ai-field-banner
 ```
 
 ```ts
-import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner'
+import { AiFieldBanner, SIZE, VARIANT } from '@ds/ai-field-banner'
 ```
 
 ## Примеры использования
@@ -70,13 +70,13 @@ import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner'
 Information с иконкой, описанием и действием
 
 ```tsx
-import { AiFieldBanner, TYPE } from '@ds/ai-field-banner';
+import { AiFieldBanner, VARIANT } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Default() {
   return (
     <AiFieldBanner
-      variant={TYPE.Information}
+      variant={VARIANT.Information}
       content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
@@ -86,23 +86,23 @@ export function Default() {
 }
 ```
 
-### Types
+### Variants
 
-Все семантические типы
+Все семантические варианты
 
 ```tsx
-import { AiFieldBanner, TYPE_ORDER } from '@ds/ai-field-banner';
+import { AiFieldBanner, VARIANT_ORDER } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
-const types = TYPE_ORDER;
+const variants = VARIANT_ORDER;
 
-export function Types() {
+export function Variants() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 400 }}>
-      {types.map(type => (
+      {variants.map(variant => (
         <AiFieldBanner
-          key={type}
-          variant={type}
+          key={variant}
+          variant={variant}
           content='Description'
           actionLabel='Label text'
           icon={<PlaceholderSVG />}
@@ -118,14 +118,14 @@ export function Types() {
 Размер `m` (400×84)
 
 ```tsx
-import { AiFieldBanner, SIZE, TYPE } from '@ds/ai-field-banner';
+import { AiFieldBanner, SIZE, VARIANT } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
 export function Mobile() {
   return (
     <AiFieldBanner
       size={SIZE.M}
-      variant={TYPE.Agentic}
+      variant={VARIANT.Agentic}
       content='Description'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
@@ -134,25 +134,24 @@ export function Mobile() {
 }
 ```
 
-### Additional slot
+### Bottom content
 
 Дополнительный контент под основной строкой
 
 ```tsx
-import { AiFieldBanner, TYPE } from '@ds/ai-field-banner';
+import { AiFieldBanner, VARIANT } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
-export function WithAdditionalSlot() {
+export function WithBottomContent() {
   return (
     <AiFieldBanner
-      variant={TYPE.Information}
+      variant={VARIANT.Information}
       content='Description'
+      bottomContent='Additional content'
       actionLabel='Label text'
       icon={<PlaceholderSVG />}
       onActionClick={() => undefined}
-    >
-      Additional content
-    </AiFieldBanner>
+    />
   );
 }
 ```
@@ -164,18 +163,17 @@ export function WithAdditionalSlot() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionLabel` | `string` | — | Подпись кнопки действия справа. Кнопка не рендерится, если не задана. |
-| `children` | `ReactNode` | — | Дополнительный слот под основной строкой. Не рендерится, если не задан. |
+| `bottomContent` | `ReactNode` | — | Дополнительный слот под основной строкой. Не рендерится, если не задан. |
 | `className` | `string` | — | Доп. класс корня. |
 | `content` | `ReactNode` | — | Текст или контент основной строки. Не рендерится, если не задан. |
 | `data-test-id` | `string` | `ai-field-banner` |  |
-| `hasAdditional` | `boolean` | — | Принудительно добавляет высоту компонента на 12px, даже если `children` не задан. |
 | `icon` | `ReactNode` | — | Иконка слева от текста |
 | `onActionClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Обработчик клика по кнопке действия. |
-| `size` | `"m"` \| `"s"` | `s` | Размер: без `children` — `s` 400×48, `m` 400×60; с `children` — `s` 400×72, `m` 400×84. |
-| `variant` | `"agentic"` \| `"critical"` \| `"help"` \| `"information"` \| `"security"` \| `"warning"` | `information` | Семантический вариант баннера (ось `Type` в Figma). По умолчанию `information`. |
+| `size` | `"m"` \| `"s"` | `s` | Размер: без `bottomContent` — `s` 400×48, `m` 400×60; с ним — `s` 400×72, `m` 400×84. |
+| `variant` | `"agentic"` \| `"critical"` \| `"help"` \| `"information"` \| `"security"` \| `"warning"` | `information` | Семантический вариант баннера (ось `Variant` в Figma). По умолчанию `information`. |
 
 #### Related types
 
 - `Size` = `"m"` \| `"s"`
 
-- `Type` = `"agentic"` \| `"critical"` \| `"help"` \| `"information"` \| `"security"` \| `"warning"`
+- `Variant` = `"agentic"` \| `"critical"` \| `"help"` \| `"information"` \| `"security"` \| `"warning"`

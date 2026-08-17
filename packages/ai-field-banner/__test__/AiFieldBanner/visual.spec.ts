@@ -13,10 +13,10 @@ test.describe('AiFieldBanner — visual regression', () => {
     );
   });
 
-  test('visual matrix — type × size', async ({ page, gotoStory, waitForFonts }) => {
-    await gotoStory(buildStoryOptions(undefined, AI_FIELD_BANNER_STORIES.visualMatrixTypeSize));
+  test('visual matrix — variant × size', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(undefined, AI_FIELD_BANNER_STORIES.visualMatrixVariantSize));
     await waitForFonts();
-    await assertVisualMatrixSnapshot(page, 'visual-matrix-type-size.png');
+    await assertVisualMatrixSnapshot(page, 'visual-matrix-variant-size.png');
   });
 
   test('visual matrix — slots', async ({ page, gotoStory, waitForFonts }) => {

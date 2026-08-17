@@ -2,17 +2,16 @@ import { AlertButton } from '@ds/alert';
 import cn from 'classnames';
 import { ReactElement } from 'react';
 
-import { SIZE, TEST_IDS, TYPE } from './constants';
+import { SIZE, TEST_IDS, VARIANT } from './constants';
 import styles from './styles.module.scss';
 import { AiFieldBannerProps } from './types';
 
 export function AiFieldBanner({
   className,
-  variant = TYPE.Information,
+  variant = VARIANT.Information,
   size = SIZE.S,
   content,
-  children,
-  hasAdditional: hasAdditionalProp,
+  bottomContent,
   icon,
   actionLabel,
   onActionClick,
@@ -20,18 +19,24 @@ export function AiFieldBanner({
   ...rest
 }: AiFieldBannerProps): ReactElement {
   const showMainLine = Boolean(content) || Boolean(icon) || Boolean(actionLabel);
-  const hasAdditional = hasAdditionalProp ?? Boolean(children);
+  const hasBottomContent = Boolean(bottomContent);
 
   return (
     <div
       {...rest}
       className={cn(styles.root, className)}
-      data-type={variant}
+      data-variant={variant}
       data-size={size}
-      data-has-additional={hasAdditional ? 'true' : 'false'}
+      data-bottom-content={hasBottomContent || undefined}
       data-test-id={dataTestId}
     >
-      <div className={styles.advice} data-size={size} data-type={variant} data-test-id={TEST_IDS.advice} aria-hidden />
+      <div
+        className={styles.advice}
+        data-size={size}
+        data-variant={variant}
+        data-test-id={TEST_IDS.advice}
+        aria-hidden
+      />
       {showMainLine && (
         <div className={styles.mainLine} data-test-id={TEST_IDS.mainLine}>
           {(icon || content) && (
@@ -63,9 +68,9 @@ export function AiFieldBanner({
         </div>
       )}
 
-      {hasAdditional && (
-        <div className={styles.additional} data-test-id={TEST_IDS.additional}>
-          {children}
+      {hasBottomContent && (
+        <div className={styles.bottomContent} data-test-id={TEST_IDS.bottomContent}>
+          {bottomContent}
         </div>
       )}
     </div>

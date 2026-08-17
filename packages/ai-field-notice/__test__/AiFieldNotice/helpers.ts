@@ -21,7 +21,7 @@ export const TEST_IDS = {
   bannerContent: 'ai-field-banner__content',
   bannerAction: 'ai-field-banner__action',
   bannerIcon: 'ai-field-banner__icon',
-  bannerAdditional: 'ai-field-banner__additional',
+  bannerBottomContent: 'ai-field-banner__bottom-content',
 } as const;
 
 export const AI_FIELD_NOTICE_STORIES = {
