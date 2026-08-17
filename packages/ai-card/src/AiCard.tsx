@@ -13,7 +13,7 @@ export type AiCardOwnProps = {
   /** Selected-состояние карточки. Controlled — источник истины в родителе. По умолчанию `false`. */
   checked?: boolean;
   /** Срабатывает при toggle (клик / Enter / Space). Получает новое значение `checked`. */
-  onChange?: (checked: boolean) => void;
+  onChange?(checked: boolean): void;
   /** Disabled-состояние: opacity 0.4, нативная блокировка кликов и клавиатуры. */
   disabled?: boolean;
   /** Доп. класс корня. */
@@ -22,7 +22,7 @@ export type AiCardOwnProps = {
    * Нативный обработчик клика. Срабатывает после `onChange` (toggle первичен).
    * Не вызывается для disabled-карточки — браузер сам не дёргает onClick на disabled button.
    */
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?(event: MouseEvent<HTMLButtonElement>): void;
 };
 
 /**

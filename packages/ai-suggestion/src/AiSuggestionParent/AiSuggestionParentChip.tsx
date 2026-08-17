@@ -18,7 +18,7 @@ export type AiSuggestionParentChipProps = {
   chevron?: ReactNode;
   className?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & {
-    onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClick?(event: MouseEvent<HTMLButtonElement>): void;
   };
 
 export const AiSuggestionParentChip = forwardRef<HTMLButtonElement, AiSuggestionParentChipProps>(
