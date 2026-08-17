@@ -9,24 +9,11 @@ type BaseTitleClickableProps = {
   title?: string;
   /** Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) */
   titleTag?: ElementType;
-  /**
-   * Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты
-   * `<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`.
-   * Соответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`).
-   */
-  before?: ReactNode;
-  /** Кастомное содержимое вместо title/before */
+  /** Произвольная нода после заголовка. Имеет приоритет над `avatar`. */
   children?: ReactNode;
-
-  /**
-   * @deprecated Используй `before={<TitleClickableIcon icon={...} />}`.
-   * Иконка слева от заголовка.
-   */
+  /** Иконка слева от заголовка. */
   icon?: ReactNode;
-  /**
-   * @deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.
-   * Аватар с subtitle (Figma `userTitle`).
-   */
+  /** Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан. */
   avatar?: AvatarProps & { subtitle: string };
 
   /** Занимает ли всю ширину */

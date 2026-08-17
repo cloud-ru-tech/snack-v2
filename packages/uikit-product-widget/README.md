@@ -270,11 +270,11 @@ export function ErrorState() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `avatar` | `AvatarProps` | — |  |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Кастомное содержимое вместо title/before |
+| `avatar` | `AvatarProps` | — | Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан. |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Произвольная нода после заголовка. Имеет приоритет над `avatar`. |
 | `className` | `string \| undefined` | — | CSS-класс |
 | `fullWidth` | `boolean \| undefined` | — | Занимает ли всю ширину |
-| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка слева от заголовка. |
 | `title` | `string \| undefined` | — | Заголовок |
 | `titleTag` | `ElementType \| undefined` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
 

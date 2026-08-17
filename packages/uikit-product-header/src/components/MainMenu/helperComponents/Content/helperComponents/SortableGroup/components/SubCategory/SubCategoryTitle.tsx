@@ -65,7 +65,7 @@ export function SubCategoryTitle({
             onClick={handleServiceClick}
             innerRef={titleRef}
             title={service.label}
-            before={getLinkEmblem(service)}
+            icon={getLinkEmblem(service)}
             className={styles.subcategoryTitleClickable}
             data-test-id={titleTestId}
           />

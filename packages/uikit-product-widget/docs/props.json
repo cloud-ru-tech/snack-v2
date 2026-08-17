@@ -1016,6 +1016,7 @@
           "avatar": {
             "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance; size?: Size; shape?: Shape; showTwoSymbols?: boolean; badge?: ReactNode; status?: Appearance; className?: string; innerRef?: Ref<HTMLDivElement>; } & HTMLAttributes<HTMLDivElement> & { subtitle: string; }) | undefined",
             "required": false,
+            "description": "Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан.",
             "typeRefs": [
               "AvatarProps"
             ]
@@ -1023,7 +1024,7 @@
           "children": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Кастомное содержимое вместо title/before"
+            "description": "Произвольная нода после заголовка. Имеет приоритет над `avatar`."
           },
           "className": {
             "type": "string | undefined",
@@ -1037,7 +1038,8 @@
           },
           "icon": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false
+            "required": false,
+            "description": "Иконка слева от заголовка (24×24)."
           },
           "title": {
             "type": "string | undefined",

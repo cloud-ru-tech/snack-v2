@@ -1,5 +1,5 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { TitleClickable, TitleClickableAvatar, TitleClickableIcon } from '@ds/uikit-product-title-clickable';
+import { TitleClickable, TitleClickableProps } from '@ds/uikit-product-title-clickable';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -7,14 +7,20 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 
 import { TEST_IDS } from './testIds';
 
-const beforePresets = {
-  none: undefined,
-  icon: <TitleClickableIcon icon={<PlaceholderSVG />} />,
-  avatar: <TitleClickableAvatar name='John Doe' subtitle='jdoe@example.com' />,
-  node: <span>Custom node</span>,
+const avatar = {
+  name: 'John Doe',
+  subtitle: 'jdoe@example.com',
 };
 
-const meta: Meta<typeof TitleClickable> = {
+const customChildren = <span>Custom node</span>;
+
+type StoryProps = TitleClickableProps & {
+  showIcon: boolean;
+  showChildren: boolean;
+  showAvatar: boolean;
+};
+
+const meta: Meta<StoryProps> = {
   title: 'Uikit Product/TitleClickable',
   component: TitleClickable,
   parameters: { layout: 'fullscreen' },
@@ -24,7 +30,9 @@ const meta: Meta<typeof TitleClickable> = {
     title: 'Title',
     fullWidth: true,
     showArrow: true,
-    before: beforePresets.none,
+    showIcon: false,
+    showChildren: false,
+    showAvatar: false,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
@@ -36,11 +44,17 @@ const meta: Meta<typeof TitleClickable> = {
     title: { control: 'text' },
     fullWidth: { control: 'boolean' },
     showArrow: { control: 'boolean' },
-    before: {
-      control: 'select',
-      options: Object.keys(beforePresets),
-      mapping: beforePresets,
-      description: 'Слот слева: иконка / аватар / произвольная нода',
+    showIcon: {
+      name: '[Story]: Show icon',
+      type: 'boolean',
+    },
+    showChildren: {
+      name: '[Story]: Show children',
+      type: 'boolean',
+    },
+    showAvatar: {
+      name: '[Story]: Show avatar',
+      type: 'boolean',
     },
     icon: { table: { disable: true } },
     avatar: { table: { disable: true } },
@@ -51,17 +65,25 @@ const meta: Meta<typeof TitleClickable> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof TitleClickable>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => (
+  render: ({ showIcon, showChildren, showAvatar, ...args }) => (
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Кликабельный заголовок-ссылка с опциональным слотом слева и стрелкой справа.</DemoHint>
+        <DemoHint>
+          Кликабельный заголовок-ссылка: иконка слева, children или avatar после заголовка, стрелка справа.
+        </DemoHint>
         <DemoActions align='center'>
-          <TitleClickable {...args} />
+          <TitleClickable
+            {...args}
+            icon={showIcon ? <PlaceholderSVG /> : undefined}
+            avatar={showAvatar ? avatar : undefined}
+          >
+            {showChildren ? customChildren : undefined}
+          </TitleClickable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>

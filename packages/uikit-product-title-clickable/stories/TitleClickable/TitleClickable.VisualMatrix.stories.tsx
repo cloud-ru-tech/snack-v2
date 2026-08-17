@@ -1,5 +1,5 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { TitleClickable, TitleClickableAvatar, TitleClickableIcon } from '@ds/uikit-product-title-clickable';
+import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -66,41 +66,42 @@ export const VisualMatrix: Story = {
 
       <StoryTable
         cellAlign='start'
-        sectionTitle='`before` slot — presets'
-        firstColumnHeader='preset'
+        sectionTitle='icon and children after title'
+        firstColumnHeader='variant'
         columnHeaders={['rendered']}
         rows={[
           {
-            variantLabel: 'TitleClickableIcon',
-            cells: [
-              <TitleClickable
-                key='icon'
-                href='#'
-                title='With icon preset'
-                before={<TitleClickableIcon icon={<PlaceholderSVG />} />}
-              />,
-            ],
+            variantLabel: 'icon before title',
+            cells: [<TitleClickable key='icon' href='#' title='With icon' icon={<PlaceholderSVG />} />],
           },
           {
-            variantLabel: 'TitleClickableAvatar',
+            variantLabel: 'custom children',
+            cells: [
+              <TitleClickable key='custom' href='#' title='With custom children'>
+                <span data-test-id={STORY_TEST_IDS.customChildren}>Custom children</span>
+              </TitleClickable>,
+            ],
+          },
+        ]}
+      />
+
+      <StoryTable
+        cellAlign='start'
+        sectionTitle='avatar after title'
+        firstColumnHeader='variant'
+        columnHeaders={['rendered']}
+        rows={[
+          {
+            variantLabel: 'title + avatar',
             cells: [
               <div key='avatar' className={styles.fullWidthCell}>
                 <TitleClickable
                   href='#'
+                  title='With avatar'
                   fullWidth
-                  before={<TitleClickableAvatar name='John Doe' subtitle='jdoe@example.com' />}
+                  avatar={{ name: 'John Doe', subtitle: 'jdoe@example.com' }}
                 />
               </div>,
-            ],
-          },
-          {
-            variantLabel: 'custom node',
-            cells: [
-              <TitleClickable
-                key='custom'
-                href='#'
-                before={<span data-test-id={STORY_TEST_IDS.customBefore}> Custom before </span>}
-              />,
             ],
           },
         ]}

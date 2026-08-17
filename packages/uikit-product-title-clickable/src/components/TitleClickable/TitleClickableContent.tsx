@@ -9,26 +9,22 @@ import styles from './styles.module.scss';
 
 type TitleClickableContentProps = Pick<
   TitleClickableProps,
-  'title' | 'before' | 'icon' | 'children' | 'titleTag' | 'avatar' | 'fullWidth'
+  'title' | 'icon' | 'children' | 'titleTag' | 'avatar' | 'fullWidth'
 >;
 
 export function TitleClickableContent({
   title,
-  before,
   icon,
   children,
   titleTag,
   avatar,
   fullWidth,
 }: TitleClickableContentProps) {
-  const beforeNode =
-    before ??
-    (icon ? <TitleClickableIcon icon={icon} /> : null) ??
-    (avatar ? <TitleClickableAvatar {...avatar} /> : null);
+  const afterTitleNode = children ?? (avatar ? <TitleClickableAvatar {...avatar} /> : null);
 
   return (
     <div data-test-id={TEST_IDS.content} className={styles.contentWrapper} data-full-width={fullWidth || undefined}>
-      {beforeNode}
+      {icon ? <TitleClickableIcon icon={icon} /> : null}
 
       {title && (
         <Typography variant='title' size='m' as={titleTag} data-test-id={TEST_IDS.title} className={styles.title}>
@@ -36,7 +32,7 @@ export function TitleClickableContent({
         </Typography>
       )}
 
-      {children}
+      {afterTitleNode}
     </div>
   );
 }

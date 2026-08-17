@@ -18,8 +18,8 @@ import { HiddenArrow } from '../demos/examples/HiddenArrow'
 import HiddenArrowSrc from '../demos/examples/HiddenArrow.tsx?raw'
 import { WithAvatar } from '../demos/examples/WithAvatar'
 import WithAvatarSrc from '../demos/examples/WithAvatar.tsx?raw'
-import { WithCustomBefore } from '../demos/examples/WithCustomBefore'
-import WithCustomBeforeSrc from '../demos/examples/WithCustomBefore.tsx?raw'
+import { WithCustomNode } from '../demos/examples/WithCustomNode'
+import WithCustomNodeSrc from '../demos/examples/WithCustomNode.tsx?raw'
 import { Example } from '#docs/components/Example'
 import { PropsTable } from '#docs/components/PropsTable'
 import { StorybookEmbed } from '#docs/components/StorybookEmbed'
@@ -49,25 +49,17 @@ import titleClickableDoc from './props.json'
 
 ### Slots
 
-- `before` — `ReactNode` слева от заголовка (Figma `+ slotTitle`). Принимает произвольную ноду либо один из готовых пресетов:
-  - `<TitleClickableIcon icon={...} />` — иконка 24×24 (Figma `simpleTitle`).
-  - `<TitleClickableAvatar name=... subtitle=... />` — `Avatar` + двухстрочный label/subtitle (Figma `userTitle`).
+- `icon` — иконка 24×24 слева от заголовка (Figma `simpleTitle`).
 - `title` — строка заголовка. Рендерится через `Typography variant='title' size='m'` с однострочным усечением.
 - `titleTag` — семантический тег заголовка (`'h2'`, `'h3'`, `'span'` и т.п.) для корректной структуры документа.
-- `children` — кастомное содержимое вместо стандартной пары `before + title`.
+- `children` — произвольная нода после заголовка. Имеет приоритет над `avatar`.
+- `avatar` — `Avatar` + двухстрочный label/subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан.
 - `showArrow` — управляет видимостью шеврона справа. Иконка справа автоматически меняется на `external link` при `target='_blank'`.
 
 #### Иконка справа (auto)
 
 - `chevron` (default) — внутренний переход.
 - `external link` — выставляется автоматически, когда `target='_blank'`.
-
-#### Deprecated
-
-- `icon?: ReactNode` — заменён на `before={<TitleClickableIcon icon={...} />}`. Сохранён для совместимости.
-- `avatar?: AvatarProps & { subtitle }` — заменён на `before={<TitleClickableAvatar {...} />}`. Сохранён для совместимости.
-
-Если `before` передан — `icon`/`avatar` игнорируются.
 
 ### Width (default `auto`)
 
@@ -103,18 +95,18 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 
 <Example
   title='С иконкой'
-  description='Пресет `<TitleClickableIcon>` в слоте `before` — обёртка 24×24 для иконки из @ds/icons'
+  description='Иконка слева от заголовка через проп `icon`'
   code={WithIconSrc}
 >
   <WithIcon client:visible />
 </Example>
 
 <Example
-  title='Произвольный контент в `before`'
-  description='Слот `before` принимает любую React-ноду — версия, бейдж, статус и т.п.'
-  code={WithCustomBeforeSrc}
+  title='Произвольный контент в `children`'
+  description='Слот `children` принимает любую React-ноду после заголовка — версия, бейдж, статус и т.п.'
+  code={WithCustomNodeSrc}
 >
-  <WithCustomBefore client:visible />
+  <WithCustomNode client:visible />
 </Example>
 
 <Example
@@ -143,7 +135,7 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 
 <Example
   title='С аватаром'
-  description='Пресет `<TitleClickableAvatar>` в слоте `before` — Figma `userTitle`'
+  description='Проп `avatar` — Figma `userTitle`. Блок рендерится после заголовка'
   code={WithAvatarSrc}
 >
   <WithAvatar client:visible />

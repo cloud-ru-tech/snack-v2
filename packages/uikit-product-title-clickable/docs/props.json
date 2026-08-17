@@ -11,20 +11,15 @@
       "avatar": {
         "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 5 more ...; innerRef?: Ref<...> | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
         "required": false,
-        "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`).",
+        "description": "Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан.",
         "typeRefs": [
           "AvatarProps"
         ]
       },
-      "before": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты\n`<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`.\nСоответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`)."
-      },
       "children": {
         "type": "ReactNode",
         "required": false,
-        "description": "Кастомное содержимое вместо title/before"
+        "description": "Произвольная нода после заголовка. Имеет приоритет над `avatar`."
       },
       "className": {
         "type": "string",
@@ -43,7 +38,7 @@
       "icon": {
         "type": "ReactNode",
         "required": false,
-        "description": "@deprecated Используй `before={<TitleClickableIcon icon={...} />}`.\nИконка слева от заголовка."
+        "description": "Иконка слева от заголовка."
       },
       "innerRef": {
         "type": "any",
@@ -400,17 +395,12 @@
       "avatar": {
         "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 5 more ...; innerRef?: Ref<...> | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
         "required": false,
-        "description": "@deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`.\nАватар с subtitle (Figma `userTitle`)."
-      },
-      "before": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты\n`<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`.\nСоответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`)."
+        "description": "Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан."
       },
       "children": {
         "type": "ReactNode",
         "required": false,
-        "description": "Кастомное содержимое вместо title/before"
+        "description": "Произвольная нода после заголовка. Имеет приоритет над `avatar`."
       },
       "fullWidth": {
         "type": "boolean",
@@ -420,7 +410,7 @@
       "icon": {
         "type": "ReactNode",
         "required": false,
-        "description": "@deprecated Используй `before={<TitleClickableIcon icon={...} />}`.\nИконка слева от заголовка."
+        "description": "Иконка слева от заголовка."
       },
       "title": {
         "type": "string",

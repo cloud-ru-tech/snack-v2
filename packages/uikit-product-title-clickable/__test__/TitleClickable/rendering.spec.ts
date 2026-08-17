@@ -65,27 +65,65 @@ test.describe('TitleClickable — rendering', () => {
     });
   });
 
-  test.describe('before slot — presets in VisualMatrix', () => {
-    test('TitleClickableIcon preset renders into TEST_IDS.icon', async ({ gotoStory, page }) => {
+  test.describe('icon and children slots in VisualMatrix', () => {
+    test('icon renders into TEST_IDS.icon', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
 
-      await expect(page.locator(`[data-test-id="${TEST_IDS.icon}"]`).first()).toBeVisible();
+      await expect(page.getByTestId(TEST_IDS.icon).first()).toBeVisible();
     });
 
-    test('TitleClickableAvatar preset renders avatar + label + subtitle', async ({ gotoStory, page }) => {
+    test('custom children node is rendered as-is', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
 
-      await expect(page.locator(`[data-test-id="${TEST_IDS.avatar}"]`).first()).toBeVisible();
-      await expect(page.locator(`[data-test-id="${TEST_IDS.avatarLabel}"]`).first()).toContainText('John Doe');
-      await expect(page.locator(`[data-test-id="${TEST_IDS.avatarSubtitle}"]`).first()).toContainText(
-        'jdoe@example.com',
+      await expect(getByTestId(STORY_TEST_IDS.customChildren).first()).toContainText('Custom children');
+    });
+
+    test('custom children is rendered after title', async ({ gotoStory, page }) => {
+      await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
+
+      const customChildren = page.getByTestId(STORY_TEST_IDS.customChildren).first();
+      const content = page.getByTestId(TEST_IDS.content).filter({ has: customChildren });
+      const title = content.getByTestId(TEST_IDS.title);
+
+      await expect(title).toBeVisible();
+      await expect(customChildren).toBeVisible();
+
+      const isAfter = await title.evaluate(
+        (titleEl, childrenEl) =>
+          Boolean(childrenEl && titleEl.compareDocumentPosition(childrenEl) & Node.DOCUMENT_POSITION_FOLLOWING),
+        await customChildren.elementHandle(),
       );
-    });
 
-    test('custom node in `before` is rendered as-is', async ({ gotoStory, getByTestId }) => {
+      expect(isAfter).toBe(true);
+    });
+  });
+
+  test.describe('avatar slot in VisualMatrix', () => {
+    test('renders avatar + label + subtitle', async ({ gotoStory, page }) => {
       await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
 
-      await expect(getByTestId(STORY_TEST_IDS.customBefore).first()).toContainText('Custom before');
+      await expect(page.getByTestId(TEST_IDS.avatar).first()).toBeVisible();
+      await expect(page.getByTestId(TEST_IDS.avatarLabel).first()).toContainText('John Doe');
+      await expect(page.getByTestId(TEST_IDS.avatarSubtitle).first()).toContainText('jdoe@example.com');
+    });
+
+    test('avatar is rendered after title', async ({ gotoStory, page }) => {
+      await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
+
+      const avatar = page.getByTestId(TEST_IDS.avatar).first();
+      const content = page.getByTestId(TEST_IDS.content).filter({ has: avatar });
+      const title = content.getByTestId(TEST_IDS.title);
+
+      await expect(title).toBeVisible();
+      await expect(avatar).toBeVisible();
+
+      const isAfter = await title.evaluate(
+        (titleEl, avatarEl) =>
+          Boolean(avatarEl && titleEl.compareDocumentPosition(avatarEl) & Node.DOCUMENT_POSITION_FOLLOWING),
+        await avatar.elementHandle(),
+      );
+
+      expect(isAfter).toBe(true);
     });
   });
 });

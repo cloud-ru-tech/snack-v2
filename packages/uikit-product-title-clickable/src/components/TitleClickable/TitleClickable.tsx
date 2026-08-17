@@ -15,7 +15,6 @@ export function TitleClickable<T extends ElementType = 'a'>({
   fullWidth,
   showArrow = true,
   title,
-  before,
   icon,
   children,
   titleTag,
@@ -38,14 +37,7 @@ export function TitleClickable<T extends ElementType = 'a'>({
       data-test-id={(restProps['data-test-id'] as string | undefined) ?? TEST_IDS.root}
       data-full-width={fullWidth || undefined}
     >
-      <TitleClickableContent
-        title={title}
-        before={before}
-        icon={icon}
-        avatar={avatar}
-        titleTag={titleTag}
-        fullWidth={fullWidth}
-      >
+      <TitleClickableContent title={title} icon={icon} avatar={avatar} titleTag={titleTag} fullWidth={fullWidth}>
         {children}
       </TitleClickableContent>
 
