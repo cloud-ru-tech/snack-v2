@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** align spinner ring geometry and pin sun stroke width and opacity steps ([61b8490](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/61b8490758eeafa3352ba0380751d1805e0089be))
+
 ## 1.0.5 (2026-07-30)
 
 **Note:** Version bump only for package @ds/loader

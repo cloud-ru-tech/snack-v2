@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.2.0 (2026-08-17)
+
+### Features
+
+- **FF-8772:** multiple changes to the theme and components ([0db9254](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0db9254abe9e56d627d2c037a1b69c05985d43cb))
+
 ## 4.1.1 (2026-07-29)
 
 ### Dependencies

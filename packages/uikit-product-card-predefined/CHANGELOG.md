@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** resolve demo images through url imports and wait for them in snapshots ([17504c0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/17504c00271f9b64331bd7381fb25cff24d6be82))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 ## 2.2.3 (2026-08-10)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

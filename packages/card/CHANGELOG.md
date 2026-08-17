@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+
 # 3.0.0 (2026-08-05)
 
 ### BREAKING CHANGES

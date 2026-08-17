@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** cover both state layers in the open combo and drive pressed through the materials hook ([19e1d1b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/19e1d1b94bdb1e689e00f92cb2df739bb9045aa6))
+
 ## 2.1.1 (2026-08-05)
 
 **Note:** Version bump only for package @ds/button-combo

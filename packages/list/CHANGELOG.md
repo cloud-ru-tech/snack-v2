@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** clamp list icons, unify selected focus and pin mobile droplist rows to size l ([d30115c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d30115cba2b189cae5d603c47a7ddf416afd55d9))
+
 ## 2.1.1 (2026-08-05)
 
 ### Bug Fixes

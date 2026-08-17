@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-08-17)
+
+### Features
+
+- **FF-8772:** add after-content slot to search field ([fbdfd3a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fbdfd3a7e603a5efd2a84ba1ae63c356b07f0057))
+
 ## 1.1.7 (2026-07-30)
 
 **Note:** Version bump only for package @ds/search-private

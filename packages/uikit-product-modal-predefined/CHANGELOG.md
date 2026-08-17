@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** show bottom sheet dividers by default ([2505797](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2505797f604bd70ff13e98b70395408892233c2a))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 ## 2.1.4 (2026-08-13)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined

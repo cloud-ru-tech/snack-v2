@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** skip empty info block wrappers ([e242d20](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e242d208e2dbc1073a26881131ee05852ac352e1))
+- **FF-8772:** stop centering the vertical info block and document dropdown width and height ([cb32fe8](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cb32fe8e2ee3d1894d03fc9622a23fd0a4b55c5a))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

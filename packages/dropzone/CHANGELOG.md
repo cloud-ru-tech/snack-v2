@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** let dropzone content inherit typography from its parent ([8782b8d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8782b8dcc892534df31b14893b4f29513ef30eee))
+
 # 1.2.0 (2026-07-30)
 
 ### Features

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.3 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** show bottom sheet dividers by default ([2505797](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2505797f604bd70ff13e98b70395408892233c2a))
+- **FF-8772:** use 2px cell focus ring, accent holiday marker and kit time typography ([1e1c329](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1e1c329efaab8f37f20bd48b07de5cbef41f6d8d))
+
 ## 2.1.2 (2026-08-05)
 
 **Note:** Version bump only for package @ds/calendar

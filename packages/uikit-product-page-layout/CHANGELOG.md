@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** align page form styles ([a445cb3](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a445cb3d6e71d6598c5c780646254c5662d7ee6e))
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 ## 3.0.1 (2026-08-05)
 
 ### Bug Fixes

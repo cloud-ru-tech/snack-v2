@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-08-17)
+
+### Features
+
+- **FF-8772:** add state layer to tag link ([5e0fc31](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/5e0fc3141bec639156a6f4011babc004934b7ae5))
+
 # 1.2.0 (2026-07-30)
 
 ### Features

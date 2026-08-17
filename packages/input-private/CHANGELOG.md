@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.10 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** stop double-dimming disabled input value ([95433c5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/95433c599ba0941c9da47bf46a5b81d2d27009fb))
+
 ## 1.0.9 (2026-07-30)
 
 **Note:** Version bump only for package @ds/input-private

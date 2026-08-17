@@ -1,6 +1,6 @@
 {
   "name": "@ds/fields",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

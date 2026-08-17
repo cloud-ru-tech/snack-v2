@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** keep single initial on xs avatar and correct tabs vertical gap comment ([70e5cc5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/70e5cc54d23a314e1e7d56cc7532e97ea90228f2))
+- **FF-8772:** resolve demo images through url imports and wait for them in snapshots ([17504c0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/17504c00271f9b64331bd7381fb25cff24d6be82))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** move toolbar search focus ring inside and restore bulk row inset in the sheet ([be87e11](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/be87e1176c86eb262cb0cfe70ba45d2be9494866))
+
 ## 2.1.3 (2026-08-05)
 
 **Note:** Version bump only for package @ds/toolbar

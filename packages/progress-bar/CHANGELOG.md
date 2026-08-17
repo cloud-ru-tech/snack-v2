@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.6 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** shrink the circular ring in xs and take its track color from the figma token ([8349803](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/8349803ce7b741671630835b33b36e844f7f178e))
+
 ## 1.1.5 (2026-07-30)
 
 **Note:** Version bump only for package @ds/progress-bar

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** give chip toggle a focus ring and dim the whole disabled chip ([1f79fd7](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/1f79fd7e6ab75db713075cd386c456129c98d23d))
+
 ## 2.1.3 (2026-08-05)
 
 **Note:** Version bump only for package @ds/chips

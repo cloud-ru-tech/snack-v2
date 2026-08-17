@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.11 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** switch handle state layer to emptyDarkOnAccent and keep it on accent while dragging ([b47ca15](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b47ca152c13b5c393d968243de992e20e164d2fc))
+
 ## 1.0.10 (2026-07-30)
 
 **Note:** Version bump only for package @ds/slider

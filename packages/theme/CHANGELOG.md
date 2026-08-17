@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8679:** fix token names ([a468883](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/a4688833b6b4165196c3a4bae2582437fbc17837))
+
+### Features
+
+- **FF-8772:** add brandD option to theme, docs and storybook ([ce1a474](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/ce1a4740f26f6b8a711ddf5e56c77783a410b79d))
+
+### BREAKING CHANGES
+
+- **FF-8784:** rename TabBar after slot to slotActionButton ([0cc5931](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/0cc59313db48e78ac863783b5ad8498b1a7bab6d))
+
 # 2.0.0 (2026-07-23)
 
 ### Features

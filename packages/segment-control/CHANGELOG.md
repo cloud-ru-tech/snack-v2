@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** clamp segment control icons to 16/24/24 ([fd0ff2c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fd0ff2c5478dc81c51e5d278196cd82001e7a9c7))
+
 ## 1.1.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/segment-control

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** give alert its own close button and align focus ring, border and horizontal gap ([4c71c04](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/4c71c0409450b2af74b5d98d97ed912882c72cda))
+
 ## 2.1.1 (2026-08-11)
 
 ### Bug Fixes

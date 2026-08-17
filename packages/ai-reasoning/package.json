@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-reasoning",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "Apache-2.0",
   "author": "Артем Сауляк <avsaulyak@cloud.ru>",
   "type": "module",

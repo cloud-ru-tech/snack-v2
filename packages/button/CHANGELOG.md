@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** dark state layer for filled/tonal, neutral outline border ([064ccd0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/064ccd070584d331f56454933217c839deb0e912))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 # 1.3.0 (2026-07-30)
 
 ### Features

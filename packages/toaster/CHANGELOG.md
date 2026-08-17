@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** align toaster spacing, tokens, focus rings, critical text and timer ring ([38b78b1](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/38b78b19ad2e836172d4cff48e60bfaa98b9ef6e))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 # 2.1.0 (2026-07-30)
 
 ### Features

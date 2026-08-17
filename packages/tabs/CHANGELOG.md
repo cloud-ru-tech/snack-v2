@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+- **FF-8772:** keep single initial on xs avatar and correct tabs vertical gap comment ([70e5cc5](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/70e5cc54d23a314e1e7d56cc7532e97ea90228f2))
+- **FF-8772:** pad the scroll button, dim the disabled tab, stretch and type the action slot ([5582904](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/5582904f8ec85d0acd831ed9d9f85b0f13279a9c))
+
+### BREAKING CHANGES
+
+- **FF-8772:** rename role axis to roleAppearance and timeline position ([cc1daa9](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cc1daa942fa9866c75a27da578bbeee9488051c5))
+
 # 2.1.0 (2026-07-30)
 
 ### Bug Fixes

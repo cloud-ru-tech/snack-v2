@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** gate window header gap on back button and stretch header to window width ([e313207](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/e313207055b4a368c220b7ec85244406d6146d46))
+- **FF-8772:** restore sheet header gap, body top padding and footer button size ([b15db1f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b15db1f462023193388e39cb13ac0358548247b1))
+
 # 1.2.0 (2026-07-30)
 
 ### Features

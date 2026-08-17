@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.1 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** restore sheet header gap, body top padding and footer button size ([b15db1f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b15db1f462023193388e39cb13ac0358548247b1))
+- **FF-8772:** show bottom sheet dividers by default ([2505797](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2505797f604bd70ff13e98b70395408892233c2a))
+- **FF-8772:** use the safe area token as the minimum inset ([6f3253b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/6f3253bebbaf724db920013d3d6168fd720e1b06))
+
 # 3.1.0 (2026-07-30)
 
 ### Features

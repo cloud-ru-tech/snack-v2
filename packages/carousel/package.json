@@ -1,6 +1,6 @@
 {
   "name": "@ds/carousel",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "Apache-2.0",
   "author": "Sergei Khlupin <svhlupin@cloud.ru>",
   "type": "module",

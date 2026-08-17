@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** keep rating star flush inside its box ([b726716](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b7267164c6cf849ecec7d2ab565bc9a8a90c81f4))
+
 ## 1.1.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/rating

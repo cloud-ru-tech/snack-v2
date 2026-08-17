@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** pin popover arrow edge padding to figma token ([c1f7b58](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/c1f7b58a964047b546b1311b160ae4a1b28b211f))
+- **FF-8772:** use invertNeutral background, stop double-padding the arrow, make pressed reachable ([da6b5aa](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/da6b5aac5e1effb266c40107a5666bb1de02b4f2))
+
 ## 2.1.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/tooltip

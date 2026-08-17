@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.8 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** align number typography and keep slider item size fixed ([abecb29](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/abecb29dcde8061a4135e701478c6fae1e21f1a9))
+- **FF-8772:** changes after token update ([31cec09](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/31cec09b038aa147f15cceea054a9dd4e738d61e))
+
 ## 1.1.7 (2026-07-30)
 
 **Note:** Version bump only for package @ds/pagination

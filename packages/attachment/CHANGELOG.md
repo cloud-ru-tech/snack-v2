@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** resolve demo images through url imports and wait for them in snapshots ([17504c0](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/17504c00271f9b64331bd7381fb25cff24d6be82))
+
 ## 2.1.1 (2026-08-05)
 
 **Note:** Version bump only for package @ds/attachment

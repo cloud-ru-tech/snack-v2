@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.2 (2026-08-17)
+
+### Bug Fixes
+
+- **FF-8772:** align toggles state layers, spinner colors and disabled switch track ([759618b](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/759618bb2c7e8328b937287eb9efddda024bd318))
+
 ## 1.2.1 (2026-07-30)
 
 **Note:** Version bump only for package @ds/toggles
