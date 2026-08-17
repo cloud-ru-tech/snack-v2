@@ -15,7 +15,7 @@ export const itemTestId = (id: string) => `${LIST_INTERNAL_TEST_IDS.baseItem}_${
 export const DROPLIST_STORIES = {
   playground: { name: 'list-droplist', story: 'playground' },
   visualMatrix: { name: 'list-droplist', story: 'visual-matrix' },
-  interactionTest: { name: 'list-droplist-tests-interaction', story: 'interaction-test' },
+  // `tests/Interaction` не заводится: её сценарий целиком покрыт play-функцией стори.
   submenu: { name: 'list-droplist-examples-submenu', story: 'submenu' },
   search: { name: 'list-droplist-examples-search', story: 'search' },
   withHeader: { name: 'list-droplist-examples-withheader', story: 'with-header' },

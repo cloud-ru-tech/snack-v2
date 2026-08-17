@@ -71,19 +71,8 @@ test.describe('Droplist — keyboard / focus flow', () => {
     await expect(trigger).not.toBeFocused();
   });
 
-  // closeDroplistOnItemClick: клик по item'у закрывает дроплист (single-режим). Возврат фокуса
-  // на триггер по item-click нестабилен (в отличие от Escape) — не ассертим, проверяем закрытие.
-  test('closeDroplistOnItemClick closes the droplist on item click', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions(undefined, DROPLIST_STORIES.interactionTest));
-    const trigger = getByTestId(TEST_IDS.droplist.triggerCloseOnClick);
-    await trigger.click();
-
-    const item = getByTestId(itemTestId('a'));
-    await expect(item).toBeVisible();
-
-    await item.click();
-    await expect(item).toHaveCount(0);
-  });
+  // closeDroplistOnItemClick проверяется в `tests/Droplist.InteractionTest.stories.tsx::play`
+  // (гоняется через `pnpm test:stories`) — дубль здесь не нужен.
 
   // renderFnTrigger: children как render-функция `({ onKeyDown }) => ReactNode`. Потребитель
   // прокидывает onKeyDown в свой триггер, и клавиатурное открытие (ArrowDown с фокуса) работает.

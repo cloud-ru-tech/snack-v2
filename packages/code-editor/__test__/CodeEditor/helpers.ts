@@ -14,20 +14,27 @@ export { TEST_IDS };
  * это выглядит как «часть ячеек цветные, часть нет» — и такой кадр легко уезжает
  * в эталон.
  *
- * Признак готовности: внутри `.view-lines` встречается больше одного класса
- * `mtk<N>`. До токенизации весь текст лежит в одном классе (`mtk1`).
+ * Признак готовности — два условия сразу: внутри `.view-lines` больше одного класса
+ * `mtk<N>` (до токенизации весь текст лежит в `mtk1`) и разметка не изменилась с
+ * предыдущей проверки. Без второго условия ожидание завершается на «раскраска
+ * началась», monaco продолжает докрашивать, и два подряд снимка расходятся.
  */
 export async function waitForMonacoTokenization(page: Page): Promise<void> {
+  // Иначе повторный вызов без навигации сравнится с прошлой сигнатурой.
+  await page.evaluate(() => {
+    delete (window as unknown as { __dsMonacoSignature?: string }).__dsMonacoSignature;
+  });
+
   await page.waitForFunction(() => {
     const editors = Array.from(document.querySelectorAll('.monaco-editor'));
     if (editors.length === 0) return false;
 
-    return editors.every(editor => {
-      const lines = editor.querySelector('.view-lines');
-      if (!lines?.textContent?.trim()) return false;
+    const lineNodes = editors.map(editor => editor.querySelector('.view-lines'));
+    if (lineNodes.some(lines => !lines?.textContent?.trim())) return false;
 
+    const colorized = lineNodes.every(lines => {
       const tokenClasses = new Set<string>();
-      lines.querySelectorAll('span').forEach(span => {
+      lines?.querySelectorAll('span').forEach(span => {
         span.classList.forEach(className => {
           if (/^mtk\d+$/.test(className)) tokenClasses.add(className);
         });
@@ -35,6 +42,15 @@ export async function waitForMonacoTokenization(page: Page): Promise<void> {
 
       return tokenClasses.size > 1;
     });
+    if (!colorized) return false;
+
+    // innerHTML несёт inline-стили строк — ловит и перекраску, и смену layout.
+    const signature = lineNodes.map(lines => lines?.innerHTML ?? '').join(' ');
+    const store = window as unknown as { __dsMonacoSignature?: string };
+    const settled = store.__dsMonacoSignature === signature;
+    store.__dsMonacoSignature = signature;
+
+    return settled;
   });
 }
 

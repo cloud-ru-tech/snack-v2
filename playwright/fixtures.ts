@@ -190,6 +190,22 @@ export const test = base.extend<PlaywrightFixtures>({
         // Give Storybook a tick to re-render with updated args.
         await page.waitForLoadState('networkidle').catch(() => {});
       }
+
+      // Play-функция стори стартует автоматически при рендере: без этого ожидания спек
+      // конкурирует с ней за DOM и фокус. Набор терминальных фаз — как в `checkIfAborted`
+      // (preview-api); `finished` выставляется уже после play.
+      await page
+        .waitForFunction(
+          () => {
+            const preview = (window as unknown as { __STORYBOOK_PREVIEW__?: { currentRender?: { phase?: string } } })
+              .__STORYBOOK_PREVIEW__;
+            if (!preview) return true;
+
+            return ['finished', 'aborted', 'errored'].includes(preview.currentRender?.phase ?? '');
+          },
+          { timeout: 30000 },
+        )
+        .catch(() => {});
     }) as GotoStoryFn;
     await customUse(navigate);
   },
