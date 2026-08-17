@@ -79,7 +79,7 @@ export const VisualMatrix: Story = {
         }))}
       />
       <StoryTable
-        sectionTitle='Slots (opened)'
+        sectionTitle='Slots (open)'
         firstColumnHeader='Slots'
         columnHeaders={['—']}
         rows={slotCases.map(({ label, suffix, state, call, result }) => ({
@@ -90,7 +90,7 @@ export const VisualMatrix: Story = {
                 name='create_instance'
                 icon={AI_TOOL_ICON_TYPE.Act}
                 state={state}
-                opened
+                open
                 call={call}
                 result={result}
                 data-test-id={`${TEST_IDS.tool}-slots-${suffix}`}

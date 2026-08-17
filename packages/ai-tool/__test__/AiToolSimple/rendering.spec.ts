@@ -25,16 +25,16 @@ test.describe('AiToolSimple — rendering', () => {
     await expect(getByTestId(TEST_IDS.icon)).toHaveCount(0);
   });
 
-  test('opened=true reveals description and content', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true }));
-    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-opened', 'true');
+  test('open=true reveals description and content', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ open: true }));
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-open', 'true');
     await expect(getByTestId(TEST_IDS.description)).toBeVisible();
     await expect(getByTestId(TEST_IDS.content)).toBeVisible();
     await expect(getByTestId(TEST_IDS.chevron)).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('falsy description and children=none render no blocks', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true, description: '', children: 'none' }));
+    await gotoStory(buildStoryOptions({ open: true, description: '', children: 'none' }));
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.description)).toHaveCount(0);
     await expect(getByTestId(TEST_IDS.content)).toHaveCount(0);

@@ -23,19 +23,19 @@ const cases: { label: string; node: ReactNode }[] = [
       <AiToolObject
         name='Key[ObjectName]'
         variant={AI_TOOL_OBJECT_TYPE.Complex}
-        opened={false}
+        open={false}
         data-test-id={`${TEST_IDS.object}-complex-closed`}
       />
     ),
   },
   {
-    label: 'complex-opened',
+    label: 'complex-open',
     node: (
       <AiToolObject
         name='Key[ObjectName]'
         variant={AI_TOOL_OBJECT_TYPE.Complex}
-        opened
-        data-test-id={`${TEST_IDS.object}-complex-opened`}
+        open
+        data-test-id={`${TEST_IDS.object}-complex-open`}
       >
         <AiToolKeyValue label='region' value='ru-central1' />
         <AiToolKeyValue label='status' value='ok' />
@@ -64,7 +64,7 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.grid}>
       <StoryTable
-        sectionTitle='Variant × Opened'
+        sectionTitle='Variant × Open'
         firstColumnHeader='—'
         columnHeaders={cases.map(c => c.label.toUpperCase())}
         rows={[

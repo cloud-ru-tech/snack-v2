@@ -16,7 +16,7 @@ import aiToolDoc from './props.json'
 
 # AiToolObject
 
-Узел дерева аргументов или результата инструмента. Раскрытие controlled: `opened` + `onToggle`.
+Узел дерева аргументов или результата инструмента. Раскрытие controlled: `open` + `onOpenChange`.
 
 ## Когда использовать
 
@@ -27,7 +27,7 @@ import aiToolDoc from './props.json'
 
 ### Variant (default `complex`)
 
-- `complex` — сворачиваемый узел с chevron'ом и вложенными детьми (`opened` + `onToggle`). Принимает любой вложенный контент: `AiToolText`, `AiToolKeyValue`, вложенные `AiToolObject` и `AiToolArray`.
+- `complex` — сворачиваемый узел с chevron'ом и вложенными детьми (`open` + `onOpenChange`). Принимает любой вложенный контент: `AiToolText`, `AiToolKeyValue`, вложенные `AiToolObject` и `AiToolArray`.
 - `string` — инлайн пара имя-значение.
 
 ### Mono / Error

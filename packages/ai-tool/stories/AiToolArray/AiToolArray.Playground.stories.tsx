@@ -15,15 +15,15 @@ const meta: Meta<typeof AiToolArray> = {
     name: 'Key[ArrayName]',
     count: 2,
     unit: 'шт.',
-    opened: true,
+    open: true,
     'data-test-id': TEST_IDS.array,
   },
   argTypes: {
-    onToggle: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
     children: { table: { disable: true } },
   },
   render: function Render(args: AiToolArrayProps) {
-    const [{ opened }, updateArgs] = useArgs<AiToolArrayProps>();
+    const [{ open }, updateArgs] = useArgs<AiToolArrayProps>();
     return (
       <DemoPage>
         <DemoPanel width='narrow'>
@@ -33,12 +33,12 @@ const meta: Meta<typeof AiToolArray> = {
             вкладывать любой контент — здесь массив сложных объектов с парами «ключ — значение».
           </DemoHint>
           <DemoActions block>
-            <AiToolArray {...args} opened={opened} onToggle={next => updateArgs({ opened: next })}>
-              <AiToolObject name='Key[0]' opened>
+            <AiToolArray {...args} open={open} onOpenChange={next => updateArgs({ open: next })}>
+              <AiToolObject name='Key[0]' open>
                 <AiToolKeyValue label='region' value='ru-central1' />
                 <AiToolKeyValue label='status' value='ok' />
               </AiToolObject>
-              <AiToolObject name='Key[1]' opened>
+              <AiToolObject name='Key[1]' open>
                 <AiToolKeyValue label='region' value='ru-central1-a' />
                 <AiToolKeyValue label='status' value='pending' />
               </AiToolObject>

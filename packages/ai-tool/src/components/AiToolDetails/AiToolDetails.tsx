@@ -19,11 +19,11 @@ export type AiToolDetailsOwnProps = {
   /** Ограничить высоту контента и включить вертикальный скролл. По умолчанию `true`. */
   scroll?: boolean;
   /** Показать кнопку-«глаз» в заголовке для раскрытия секрета. */
-  showSecret?: boolean;
+  showEyeButton?: boolean;
   /** Секрет раскрыт. Источник истины — родитель. */
   secretRevealed?: boolean;
   /** Клик по кнопке-«глаз» заголовка. */
-  onToggleSecret?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onToggleSecret?(event: MouseEvent<HTMLButtonElement>): void;
   /** Доп. класс корня. */
   className?: string;
 };
@@ -44,7 +44,7 @@ export function AiToolDetails({
   label,
   state = AI_TOOL_DETAILS_STATE.Default,
   scroll = true,
-  showSecret = false,
+  showEyeButton = false,
   secretRevealed = false,
   onToggleSecret,
   className,
@@ -57,7 +57,7 @@ export function AiToolDetails({
         className={styles.header}
         label={label}
         state={state}
-        showSecret={showSecret}
+        showEyeButton={showEyeButton}
         secretRevealed={secretRevealed}
         onToggleSecret={onToggleSecret}
       />

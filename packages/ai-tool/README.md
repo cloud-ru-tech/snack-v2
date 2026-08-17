@@ -55,7 +55,7 @@ import { AiToolIcon, AiToolObject, AiToolStatus } from '@ds/ai-tool'
 
 Полный инструмент AI-стриминга (VibeOps) — статус-точка, иконка типа, имя, длительность и раскрываемые блоки запроса и ответа.
 
-Составной инструмент AI-стриминга (VibeOps): заголовок (статус-точка, иконка типа, имя, длительность, chevron) и раскрываемые блоки запроса и ответа. Собран из элементов пакета. Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+Составной инструмент AI-стриминга (VibeOps): заголовок (статус-точка, иконка типа, имя, длительность, chevron) и раскрываемые блоки запроса и ответа. Собран из элементов пакета. Раскрытие — controlled (`open` + `onOpenChange`) либо uncontrolled (`defaultOpen`).
 
 ### Когда использовать
 
@@ -113,7 +113,7 @@ export function ToolTimeline() {
         icon={AI_TOOL_ICON_TYPE.Act}
         state={AI_TOOL_STATUS_STATE.Loading}
         duration={9}
-        defaultOpened
+        defaultOpen
         call={<AiToolText mono>{'{ "user_id": 42 }'}</AiToolText>}
       />
     </div>
@@ -134,10 +134,10 @@ export function ToolCallTree() {
   const [openZones, setOpenZones] = useState(true);
 
   return (
-    <AiToolObject variant='complex' name='result' opened={openRoot} onToggle={setOpenRoot}>
+    <AiToolObject variant='complex' name='result' open={openRoot} onOpenChange={setOpenRoot}>
       <AiToolKeyValue label='region' value='ru-central1' />
       <AiToolKeyValue label='status' value='running' />
-      <AiToolArray name='zones' count={2} unit='шт.' opened={openZones} onToggle={setOpenZones}>
+      <AiToolArray name='zones' count={2} unit='шт.' open={openZones} onOpenChange={setOpenZones}>
         <AiToolObject variant='string' name='[0]' value='ru-central1-a' />
         <AiToolObject variant='string' name='[1]' value='ru-central1-b' />
       </AiToolArray>
@@ -158,12 +158,12 @@ export function ToolCallTree() {
 | `className` | `string` | — | Доп. класс корня. |
 | `connector` | `boolean` | `false` | Линия-коннектор к следующему инструменту в таймлайне. Линия выходит <br/> на 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`. |
 | `data-test-id` | `string` | `ai-tool` |  |
-| `defaultOpened` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
+| `defaultOpen` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
 | `duration` | `number` | — | Длительность выполнения в секундах. Форматируется компонентом в д/ч/м/с <br/> (ведущие нулевые единицы опускаются, секунды показываются всегда). |
 | `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` в заголовке. |
 | `name` | `ReactNode` | — | Имя инструмента — моноширинная строка заголовка, обрезается ellipsis. |
-| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
-| `opened` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
+| `open` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. |
 | `result` | `ReactNode` | — | Содержимое блока ответа. Блок рендерится только при переданном значении. |
 | `resultLabel` | `ReactNode` | `Ответ` | Заголовок блока ответа. |
 | `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | `pending` | Состояние выполнения инструмента: `loading` — выполняется (синяя <br/> пульсирующая точка, заголовок основным цветом текста вместо <br/> приглушённого), `success` — завершён, `error` — завершён с ошибкой <br/> (блок ответа подсвечивается красным), `pending` — в очереди. |
@@ -200,7 +200,7 @@ export function ToolCallTree() {
 
 #### State (default `pending`)
 
-В состоянии `loading` тип инструмента ещё неизвестен, поэтому слева вместо иконки показывается пульсирующая точка `AiToolStatus`, а заголовок подсвечивается основным цветом текста. В остальных состояниях (`pending` / `success` / `error`) слева — иконка типа (`icon`). Раскрытие — controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+В состоянии `loading` тип инструмента ещё неизвестен, поэтому слева вместо иконки показывается пульсирующая точка `AiToolStatus`, а заголовок подсвечивается основным цветом текста. В остальных состояниях (`pending` / `success` / `error`) слева — иконка типа (`icon`). Раскрытие — controlled (`open` + `onOpenChange`) либо uncontrolled (`defaultOpen`).
 
 ### Примеры использования
 
@@ -227,7 +227,7 @@ export function ToolSimpleBadges() {
         name='status_for_users'
         icon={AI_TOOL_ICON_TYPE.Act}
         state={AI_TOOL_STATUS_STATE.Loading}
-        defaultOpened
+        defaultOpen
         description='Запрашивает статусы пользователей и агрегирует результат.'
       >
         <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.CloudRu} label='users-service' />
@@ -248,12 +248,12 @@ export function ToolSimpleBadges() {
 | `className` | `string` | — | Доп. класс корня. |
 | `connector` | `boolean` | `false` | Линия-коннектор к следующему инструменту в таймлайне. Линия выходит <br/> на 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`. |
 | `data-test-id` | `string` | `ai-tool-simple` |  |
-| `defaultOpened` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
+| `defaultOpen` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
 | `description` | `ReactNode` | — | Текстовое описание под заголовком в раскрытом состоянии. |
 | `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` слева от заголовка. |
 | `name` | `ReactNode` | — | Имя инструмента — строка заголовка; в свёрнутом состоянии обрезается ellipsis. |
-| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
-| `opened` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
+| `open` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. |
 | `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | `pending` | Состояние выполнения. В `loading` тип инструмента ещё неизвестен, <br/> поэтому вместо иконки показывается пульсирующая точка `AiToolStatus`, <br/> а заголовок подсвечивается основным цветом текста. В остальных <br/> состояниях слева рендерится иконка типа (`icon`). |
 
 ##### Related types
@@ -493,7 +493,7 @@ export function KeyValuePair() {
 
 Узел дерева аргументов — complex (сворачиваемый, с вложенными детьми) или string (инлайн пара имя-значение).
 
-Узел дерева аргументов или результата инструмента. Раскрытие controlled: `opened` + `onToggle`.
+Узел дерева аргументов или результата инструмента. Раскрытие controlled: `open` + `onOpenChange`.
 
 ### Когда использовать
 
@@ -504,7 +504,7 @@ export function KeyValuePair() {
 
 #### Variant (default `complex`)
 
-- `complex` — сворачиваемый узел с chevron'ом и вложенными детьми (`opened` + `onToggle`). Принимает любой вложенный контент: `AiToolText`, `AiToolKeyValue`, вложенные `AiToolObject` и `AiToolArray`.
+- `complex` — сворачиваемый узел с chevron'ом и вложенными детьми (`open` + `onOpenChange`). Принимает любой вложенный контент: `AiToolText`, `AiToolKeyValue`, вложенные `AiToolObject` и `AiToolArray`.
 - `string` — инлайн пара имя-значение.
 
 #### Mono / Error
@@ -526,10 +526,10 @@ export function ToolCallTree() {
   const [openZones, setOpenZones] = useState(true);
 
   return (
-    <AiToolObject variant='complex' name='result' opened={openRoot} onToggle={setOpenRoot}>
+    <AiToolObject variant='complex' name='result' open={openRoot} onOpenChange={setOpenRoot}>
       <AiToolKeyValue label='region' value='ru-central1' />
       <AiToolKeyValue label='status' value='running' />
-      <AiToolArray name='zones' count={2} unit='шт.' opened={openZones} onToggle={setOpenZones}>
+      <AiToolArray name='zones' count={2} unit='шт.' open={openZones} onOpenChange={setOpenZones}>
         <AiToolObject variant='string' name='[0]' value='ru-central1-a' />
         <AiToolObject variant='string' name='[1]' value='ru-central1-b' />
       </AiToolArray>
@@ -550,8 +550,8 @@ export function ToolCallTree() {
 | `error` | `boolean` | — | Состояние ошибки: имя и значение красные. По умолчанию наследуется от `AiToolDetails`. |
 | `mono` | `boolean` | — | Моноширинный режим имени и значения. По умолчанию наследуется от `AiToolDetails`. |
 | `name` | `ReactNode` | — | Имя узла (`Key[ObjectName]`). |
-| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия (только для `complex`). Получает новое значение `opened`. |
-| `opened` | `boolean` | `false` | Раскрытое состояние (только для `complex`). Источник истины — родитель. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия (только для `complex`). Получает новое значение `open`. |
+| `open` | `boolean` | `false` | Раскрытое состояние (только для `complex`). Источник истины — родитель. |
 | `value` | `ReactNode` | — | Значение для типа `string` (инлайн рядом с именем). |
 | `variant` | `"complex"` \| `"string"` | `complex` | Тип узла: `complex` — сворачиваемое дерево, `string` — инлайн ключ-значение. |
 
@@ -563,7 +563,7 @@ export function ToolCallTree() {
 
 Сворачиваемый список со счётчиком элементов; принимает любые вложенные узлы, включая массив объектов.
 
-Сворачиваемый список однотипных элементов: имя, счётчик (`count` + `unit`) и chevron. Раскрытие controlled: `opened` + `onToggle`.
+Сворачиваемый список однотипных элементов: имя, счётчик (`count` + `unit`) и chevron. Раскрытие controlled: `open` + `onOpenChange`.
 
 ### Когда использовать
 
@@ -595,16 +595,16 @@ import { AiToolArray, AiToolObject } from '@ds/ai-tool';
 import { useState } from 'react';
 
 export function ArrayList() {
-  const [opened, setOpened] = useState(true);
+  const [open, setOpen] = useState(true);
 
   return (
     <div style={{ width: 360 }}>
-      <AiToolArray name='Key[ArrayName]' count={2} unit='шт.' opened={opened} onToggle={setOpened}>
-        <AiToolObject name='Key[0]' opened>
+      <AiToolArray name='Key[ArrayName]' count={2} unit='шт.' open={open} onOpenChange={setOpen}>
+        <AiToolObject name='Key[0]' open>
           <AiToolObject variant='string' name='region' value='ru-central1' />
           <AiToolObject variant='string' name='status' value='ok' />
         </AiToolObject>
-        <AiToolObject name='Key[1]' opened>
+        <AiToolObject name='Key[1]' open>
           <AiToolObject variant='string' name='region' value='ru-central1-a' />
           <AiToolObject variant='string' name='status' value='pending' />
         </AiToolObject>
@@ -627,8 +627,8 @@ export function ArrayList() {
 | `error` | `boolean` | — | Состояние ошибки: имя и счётчик красные. По умолчанию наследуется от `AiToolDetails`. |
 | `mono` | `boolean` | — | Моноширинный режим имени и счётчика. По умолчанию наследуется от `AiToolDetails`. |
 | `name` | `ReactNode` | — | Имя узла (`Key[ArrayName]`). |
-| `onToggle` | `((opened: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `opened`. |
-| `opened` | `boolean` | `false` | Раскрытое состояние. Источник истины — родитель. |
+| `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
+| `open` | `boolean` | `false` | Раскрытое состояние. Источник истины — родитель. |
 | `unit` | `string` | — | Единица измерения после количества (например `шт.`). |
 
 ## AiToolBadge
@@ -743,7 +743,7 @@ export function DetailsCard() {
 | `onToggleSecret` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Клик по кнопке-«глаз» заголовка. |
 | `scroll` | `boolean` | `true` | Ограничить высоту контента и включить вертикальный скролл. По умолчанию `true`. |
 | `secretRevealed` | `boolean` | `false` | Секрет раскрыт. Источник истины — родитель. |
-| `showSecret` | `boolean` | `false` | Показать кнопку-«глаз» в заголовке для раскрытия секрета. |
+| `showEyeButton` | `boolean` | `false` | Показать кнопку-«глаз» в заголовке для раскрытия секрета. |
 | `state` | `"default"` \| `"error"` | `default` | Состояние: `default` — нейтральный, `error` — красная рамка и лейбл. |
 
 ##### Related types
@@ -754,7 +754,7 @@ export function DetailsCard() {
 
 Заголовок-чип части блока деталей (Запрос / Ответ) с кнопкой-«глаз» для показа секретных значений в теле.
 
-Заголовок-чип части блока деталей — обычно «Запрос» или «Ответ». Опциональная кнопка-«глаз» (`showSecret` + `onToggleSecret`) переключает показ секретных значений в теле блока.
+Заголовок-чип части блока деталей — обычно «Запрос» или «Ответ». Опциональная кнопка-«глаз» (`showEyeButton` + `onToggleSecret`) переключает показ секретных значений в теле блока.
 
 ### Когда использовать
 
@@ -770,7 +770,7 @@ export function DetailsCard() {
 
 #### Secret
 
-`showSecret` добавляет кнопку-«глаз». Видимое состояние — `secretRevealed` (источник истины — родитель): зачёркнутый глаз — секреты скрыты, открытый — показаны.
+`showEyeButton` добавляет кнопку-«глаз». Видимое состояние — `secretRevealed` (источник истины — родитель): зачёркнутый глаз — секреты скрыты, открытый — показаны.
 
 ### Примеры использования
 
@@ -789,7 +789,7 @@ export function DetailsLabelSecret() {
     <div style={{ width: 280 }}>
       <AiToolDetailsLabel
         label='Ответ'
-        showSecret
+        showEyeButton
         secretRevealed={revealed}
         onToggleSecret={() => setRevealed(prev => !prev)}
       />
@@ -808,9 +808,9 @@ export function DetailsLabelSecret() {
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-details-label` |  |
 | `label` | `ReactNode` | — | Текст лейбла (заголовок блока деталей). |
-| `onToggleSecret` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Клик по кнопке-«глаз». Не вызывается, если `showSecret` не задан. |
+| `onToggleSecret` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Клик по кнопке-«глаз». Не вызывается, если `showEyeButton` не задан. |
 | `secretRevealed` | `boolean` | `false` | Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель. |
-| `showSecret` | `boolean` | `false` | Показать кнопку-«глаз» для раскрытия секретного значения. |
+| `showEyeButton` | `boolean` | `false` | Показать кнопку-«глаз» для раскрытия секретного значения. |
 | `state` | `"default"` \| `"error"` | `default` | Состояние: `default` — нейтральный, `error` — красный. |
 
 ##### Related types

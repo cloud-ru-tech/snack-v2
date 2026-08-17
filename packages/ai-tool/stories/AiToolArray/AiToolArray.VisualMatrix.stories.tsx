@@ -15,7 +15,7 @@ const meta: Meta<typeof AiToolArray> = {
 export default meta;
 type Story = StoryObj<typeof AiToolArray>;
 
-const openedStates = [false, true] as const;
+const openStates = [false, true] as const;
 const monoStates = [false, true] as const;
 const errorStates = [false, true] as const;
 
@@ -25,20 +25,20 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.grid}>
       <StoryTable
-        sectionTitle='State × Opened'
+        sectionTitle='State × Open'
         firstColumnHeader='—'
-        columnHeaders={openedStates.map(o => (o ? 'OPENED' : 'CLOSED'))}
+        columnHeaders={openStates.map(o => (o ? 'OPEN' : 'CLOSED'))}
         rows={[
           {
             variantLabel: 'array',
-            cells: openedStates.map(opened => (
-              <div key={String(opened)} className={styles.cell}>
+            cells: openStates.map(open => (
+              <div key={String(open)} className={styles.cell}>
                 <AiToolArray
                   name='Key[ArrayName]'
                   count={2}
                   unit='шт.'
-                  opened={opened}
-                  data-test-id={`${TEST_IDS.array}-${opened ? 'opened' : 'closed'}`}
+                  open={open}
+                  data-test-id={`${TEST_IDS.array}-${open ? 'open' : 'closed'}`}
                 >
                   <AiToolKeyValue label='0' value='alpha' />
                   <AiToolKeyValue label='1' value='beta' />

@@ -14,15 +14,15 @@ const meta: Meta<typeof AiToolObject> = {
   args: {
     name: 'Key[ObjectName]',
     variant: AI_TOOL_OBJECT_TYPE.Complex,
-    opened: true,
+    open: true,
     'data-test-id': TEST_IDS.object,
   },
   argTypes: {
-    onToggle: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
     children: { table: { disable: true } },
   },
   render: function Render(args: AiToolObjectProps) {
-    const [{ opened }, updateArgs] = useArgs<AiToolObjectProps>();
+    const [{ open }, updateArgs] = useArgs<AiToolObjectProps>();
     return (
       <DemoPage>
         <DemoPanel width='narrow'>
@@ -32,7 +32,7 @@ const meta: Meta<typeof AiToolObject> = {
             значение сразу рядом с ключом.
           </DemoHint>
           <DemoActions block>
-            <AiToolObject {...args} opened={opened} onToggle={next => updateArgs({ opened: next })}>
+            <AiToolObject {...args} open={open} onOpenChange={next => updateArgs({ open: next })}>
               <AiToolKeyValue label='region' value='ru-central1' />
               <AiToolKeyValue label='status' value='ok' />
             </AiToolObject>

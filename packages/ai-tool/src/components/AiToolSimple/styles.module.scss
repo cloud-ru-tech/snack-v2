@@ -46,7 +46,7 @@
   @include m.tool-name-truncate;
 }
 
-.root[data-opened] .name {
+.root[data-open] .name {
   overflow-wrap: anywhere;
   white-space: normal;
 }

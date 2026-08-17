@@ -14,7 +14,7 @@ const meta: Meta<typeof AiToolDetailsLabel> = {
   args: {
     label: 'Ответ',
     state: AI_TOOL_DETAILS_STATE.Default,
-    showSecret: true,
+    showEyeButton: true,
     secretRevealed: false,
     'data-test-id': TEST_IDS.detailsLabel,
   },

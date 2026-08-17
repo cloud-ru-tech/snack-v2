@@ -3,17 +3,17 @@ import { useId } from 'react';
 
 export type ToolDisclosureParams = {
   /** Раскрытое состояние (controlled). */
-  opened?: boolean;
+  open?: boolean;
   /** Начальное раскрытое состояние (uncontrolled). */
-  defaultOpened: boolean;
-  /** Переключение раскрытия. Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  defaultOpen: boolean;
+  /** Переключение раскрытия. Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /** Есть ли раскрываемый контент. */
   hasDetails: boolean;
 };
 
 export type ToolDisclosure = {
-  opened: boolean;
+  open: boolean;
   /** Переключить раскрытие на противоположное. */
   toggle: () => void;
   /** id details-контейнера для связи с chevron-кнопкой. */
@@ -30,21 +30,21 @@ export type ToolDisclosure = {
 
 /**
  * Общая механика раскрытия составных инструментов (`AiTool`, `AiToolSimple`):
- * controlled/uncontrolled `opened`, связка chevron ↔ details через `aria-controls`.
+ * controlled/uncontrolled `open`, связка chevron ↔ details через `aria-controls`.
  */
 export function useToolDisclosure({
-  opened: openedProp,
-  defaultOpened,
-  onToggle,
+  open: openProp,
+  defaultOpen,
+  onOpenChange,
   hasDetails,
 }: ToolDisclosureParams): ToolDisclosure {
-  const [opened, setOpened] = useUncontrolledProp(openedProp, defaultOpened, onToggle);
+  const [open, setOpen] = useUncontrolledProp(openProp, defaultOpen, onOpenChange);
   const detailsId = useId();
-  const showDetails = Boolean(opened) && hasDetails;
+  const showDetails = Boolean(open) && hasDetails;
 
   return {
-    opened: Boolean(opened),
-    toggle: () => setOpened(!opened),
+    open: Boolean(open),
+    toggle: () => setOpen(!open),
     detailsId,
     ariaControls: showDetails ? detailsId : undefined,
     showDetails,

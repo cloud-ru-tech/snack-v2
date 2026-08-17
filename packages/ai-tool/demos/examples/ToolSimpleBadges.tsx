@@ -16,7 +16,7 @@ export function ToolSimpleBadges() {
         name='status_for_users'
         icon={AI_TOOL_ICON_TYPE.Act}
         state={AI_TOOL_STATUS_STATE.Loading}
-        defaultOpened
+        defaultOpen
         description='Запрашивает статусы пользователей и агрегирует результат.'
       >
         <AiToolBadge badgeType={AI_TOOL_BADGE_TYPE.CloudRu} label='users-service' />

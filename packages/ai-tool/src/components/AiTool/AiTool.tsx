@@ -30,12 +30,12 @@ export type AiToolOwnProps = {
    * (ведущие нулевые единицы опускаются, секунды показываются всегда).
    */
   duration?: number;
-  /** Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`. */
-  opened?: boolean;
+  /** Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. */
+  open?: boolean;
   /** Начальное раскрытое состояние (uncontrolled). */
-  defaultOpened?: boolean;
-  /** Переключение раскрытия. Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  defaultOpen?: boolean;
+  /** Переключение раскрытия. Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /** Содержимое блока запроса. Блок рендерится только при переданном значении. */
   call?: ReactNode;
   /** Содержимое блока ответа. Блок рендерится только при переданном значении. */
@@ -59,7 +59,7 @@ export type AiToolOwnProps = {
  * Составной инструмент AI-стриминга: заголовок (статус-точка, иконка типа,
  * имя, длительность, chevron) и раскрываемые блоки запроса и ответа
  * (`AiToolDetails`). Раскрытие управляется chevron-кнопкой; состояние —
- * controlled (`opened` + `onToggle`) либо uncontrolled (`defaultOpened`).
+ * controlled (`open` + `onOpenChange`) либо uncontrolled (`defaultOpen`).
  */
 export type AiToolProps = WithSupportProps<
   AiToolOwnProps & Omit<ComponentPropsWithoutRef<'div'>, keyof AiToolOwnProps>
@@ -70,9 +70,9 @@ export function AiTool({
   icon,
   state = AI_TOOL_STATUS_STATE.Pending,
   duration,
-  opened: openedProp,
-  defaultOpened = false,
-  onToggle,
+  open: openProp,
+  defaultOpen = false,
+  onOpenChange,
   call,
   result,
   callLabel = 'Запрос',
@@ -86,10 +86,10 @@ export function AiTool({
   const hasResult = isSlotFilled(result);
   const hasDetails = hasCall || hasResult;
   const durationSegments = duration ? formatDuration(duration) : [];
-  const { opened, toggle, detailsId, ariaControls, showDetails } = useToolDisclosure({
-    opened: openedProp,
-    defaultOpened,
-    onToggle,
+  const { open, toggle, detailsId, ariaControls, showDetails } = useToolDisclosure({
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
     hasDetails,
   });
 
@@ -98,7 +98,7 @@ export function AiTool({
       {...rest}
       className={cn(styles.root, className)}
       data-state={state}
-      data-opened={opened || undefined}
+      data-open={open || undefined}
       data-test-id={dataTestId}
     >
       <div className={styles.stepper}>
@@ -126,7 +126,7 @@ export function AiTool({
           {hasDetails && (
             <AiButtonChevron
               className={styles.chevron}
-              opened={opened}
+              open={open}
               aria-controls={ariaControls}
               onClick={toggle}
               data-test-id={TEST_IDS.toolChevron}

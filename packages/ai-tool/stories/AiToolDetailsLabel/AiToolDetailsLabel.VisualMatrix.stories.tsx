@@ -17,9 +17,9 @@ type Story = StoryObj<typeof AiToolDetailsLabel>;
 const states = Object.values(AI_TOOL_DETAILS_STATE);
 
 const secretColumns = [
-  { key: 'plain', header: 'PLAIN', showSecret: false, secretRevealed: false },
-  { key: 'hidden', header: 'SECRET HIDDEN', showSecret: true, secretRevealed: false },
-  { key: 'revealed', header: 'SECRET REVEALED', showSecret: true, secretRevealed: true },
+  { key: 'plain', header: 'PLAIN', showEyeButton: false, secretRevealed: false },
+  { key: 'hidden', header: 'SECRET HIDDEN', showEyeButton: true, secretRevealed: false },
+  { key: 'revealed', header: 'SECRET REVEALED', showEyeButton: true, secretRevealed: true },
 ] as const;
 
 export const VisualMatrix: Story = {
@@ -37,7 +37,7 @@ export const VisualMatrix: Story = {
             key={`${state}-${col.key}`}
             label='part_name'
             state={state}
-            showSecret={col.showSecret}
+            showEyeButton={col.showEyeButton}
             secretRevealed={col.secretRevealed}
             data-test-id={`${TEST_IDS.detailsLabel}-${state}-${col.key}`}
           />

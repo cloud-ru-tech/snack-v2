@@ -15,9 +15,9 @@ export type AiToolArrayOwnProps = {
   /** Единица измерения после количества (например `шт.`). */
   unit?: string;
   /** Раскрытое состояние. Источник истины — родитель. */
-  opened?: boolean;
-  /** Переключение раскрытия. Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  open?: boolean;
+  /** Переключение раскрытия. Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /** Состояние ошибки: имя и счётчик красные. По умолчанию наследуется от `AiToolDetails`. */
   error?: boolean;
   /** Моноширинный режим имени и счётчика. По умолчанию наследуется от `AiToolDetails`. */
@@ -32,7 +32,7 @@ export type AiToolArrayOwnProps = {
  * Публичный props компонента `AiToolArray`.
  *
  * Презентационный сворачиваемый список содержимого инструмента: имя, счётчик
- * элементов и chevron. Раскрытие controlled: `opened` + `onToggle`.
+ * элементов и chevron. Раскрытие controlled: `open` + `onOpenChange`.
  */
 export type AiToolArrayProps = WithSupportProps<
   AiToolArrayOwnProps & Omit<ComponentPropsWithoutRef<'div'>, keyof AiToolArrayOwnProps>
@@ -42,8 +42,8 @@ export function AiToolArray({
   name,
   count,
   unit,
-  opened = false,
-  onToggle,
+  open = false,
+  onOpenChange,
   error,
   mono,
   children,
@@ -59,7 +59,7 @@ export function AiToolArray({
     <div
       {...rest}
       className={cn(styles.root, className)}
-      data-opened={opened || undefined}
+      data-open={open || undefined}
       data-error={effectiveError || undefined}
       data-mono={effectiveMono || undefined}
       data-test-id={dataTestId}
@@ -74,12 +74,12 @@ export function AiToolArray({
         )}
         <AiButtonChevron
           className={styles.chevron}
-          opened={opened}
+          open={open}
           data-test-id={TEST_IDS.arrayToggle}
-          onClick={() => onToggle?.(!opened)}
+          onClick={() => onOpenChange?.(!open)}
         />
       </div>
-      {opened && (
+      {open && (
         <AiToolContentContext.Provider value={{ mono: effectiveMono, error: effectiveError }}>
           <div className={styles.nested}>{children}</div>
         </AiToolContentContext.Provider>

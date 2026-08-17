@@ -14,8 +14,8 @@ const meta: Meta<typeof AiToolSimple> = {
   args: {
     name: SIMPLE_NAME,
     icon: AI_TOOL_ICON_TYPE.Search,
-    defaultOpened: false,
-    onToggle: fn(),
+    defaultOpen: false,
+    onOpenChange: fn(),
     'data-test-id': TEST_IDS.simple,
   },
 };
@@ -47,20 +47,20 @@ export const InteractionTest: Story = {
       expect(canvas.queryByTestId(TEST_IDS.simpleContent)).toBeNull();
     });
 
-    await step('click chevron: description and content appear, onToggle(true)', async () => {
+    await step('click chevron: description and content appear, onOpenChange(true)', async () => {
       await userEvent.click(chevron);
       await expect(canvas.getByTestId(TEST_IDS.simpleDescription)).toBeVisible();
       await expect(canvas.getByTestId(TEST_IDS.simpleContent)).toBeVisible();
-      expect(args.onToggle).toHaveBeenCalledTimes(1);
-      expect(args.onToggle).toHaveBeenLastCalledWith(true);
+      expect(args.onOpenChange).toHaveBeenCalledTimes(1);
+      expect(args.onOpenChange).toHaveBeenLastCalledWith(true);
     });
 
     await step('keyboard: Enter on focused chevron collapses details', async () => {
       chevron.focus();
       await userEvent.keyboard('{Enter}');
       expect(canvas.queryByTestId(TEST_IDS.simpleDescription)).toBeNull();
-      expect(args.onToggle).toHaveBeenCalledTimes(2);
-      expect(args.onToggle).toHaveBeenLastCalledWith(false);
+      expect(args.onOpenChange).toHaveBeenCalledTimes(2);
+      expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
     });
   },
 };

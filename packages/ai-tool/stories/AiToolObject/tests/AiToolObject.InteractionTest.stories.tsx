@@ -23,14 +23,14 @@ type Story = StoryObj<typeof AiToolObject>;
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   render: function Render(args: AiToolObjectProps) {
-    const [opened, setOpened] = useState(false);
+    const [open, setOpen] = useState(false);
     return (
       <DemoPage>
         <DemoPanel width='narrow'>
           <DemoTitle>Interaction</DemoTitle>
           <DemoHint>Проверяет, что нажатие на шеврон раскрывает и снова сворачивает вложенное дерево.</DemoHint>
           <DemoActions block>
-            <AiToolObject {...args} opened={opened} onToggle={setOpened}>
+            <AiToolObject {...args} open={open} onOpenChange={setOpen}>
               <AiToolKeyValue label='region' value='ru-central1' data-test-id='ai-tool-object-child' />
             </AiToolObject>
           </DemoActions>

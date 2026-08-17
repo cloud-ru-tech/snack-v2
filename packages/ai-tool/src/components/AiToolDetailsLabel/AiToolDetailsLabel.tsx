@@ -13,11 +13,11 @@ export type AiToolDetailsLabelOwnProps = {
   /** Состояние: `default` — нейтральный, `error` — красный. */
   state?: AiToolDetailsState;
   /** Показать кнопку-«глаз» для раскрытия секретного значения. */
-  showSecret?: boolean;
+  showEyeButton?: boolean;
   /** Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель. */
   secretRevealed?: boolean;
-  /** Клик по кнопке-«глаз». Не вызывается, если `showSecret` не задан. */
-  onToggleSecret?: (event: MouseEvent<HTMLButtonElement>) => void;
+  /** Клик по кнопке-«глаз». Не вызывается, если `showEyeButton` не задан. */
+  onToggleSecret?(event: MouseEvent<HTMLButtonElement>): void;
   /** Доп. класс корня. */
   className?: string;
 };
@@ -27,7 +27,7 @@ export type AiToolDetailsLabelOwnProps = {
  *
  * Презентационный заголовок-чип блока деталей инструмента. Несёт текст лейбла и
  * опциональную кнопку-«глаз» для раскрытия секретного содержимого
- * (`showSecret` + `onToggleSecret`, видимое состояние — `secretRevealed`).
+ * (`showEyeButton` + `onToggleSecret`, видимое состояние — `secretRevealed`).
  */
 export type AiToolDetailsLabelProps = WithSupportProps<
   AiToolDetailsLabelOwnProps & Omit<ComponentPropsWithoutRef<'div'>, keyof AiToolDetailsLabelOwnProps>
@@ -36,7 +36,7 @@ export type AiToolDetailsLabelProps = WithSupportProps<
 export function AiToolDetailsLabel({
   label,
   state = AI_TOOL_DETAILS_STATE.Default,
-  showSecret = false,
+  showEyeButton = false,
   secretRevealed = false,
   onToggleSecret,
   className,
@@ -46,7 +46,7 @@ export function AiToolDetailsLabel({
   return (
     <div {...rest} className={cn(styles.root, className)} data-state={state} data-test-id={dataTestId}>
       {label && <span className={styles.label}>{label}</span>}
-      {showSecret && (
+      {showEyeButton && (
         <button
           type='button'
           className={styles.secret}

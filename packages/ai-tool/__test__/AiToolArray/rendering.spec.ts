@@ -8,8 +8,8 @@ test.describe('AiToolArray — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
-  test('opened propagates to data-opened', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true }));
-    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-opened', 'true');
+  test('open propagates to data-open', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ open: true }));
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-open', 'true');
   });
 });

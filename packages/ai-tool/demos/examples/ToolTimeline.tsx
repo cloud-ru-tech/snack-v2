@@ -22,7 +22,7 @@ export function ToolTimeline() {
         icon={AI_TOOL_ICON_TYPE.Act}
         state={AI_TOOL_STATUS_STATE.Loading}
         duration={9}
-        defaultOpened
+        defaultOpen
         call={<AiToolText mono>{'{ "user_id": 42 }'}</AiToolText>}
       />
     </div>

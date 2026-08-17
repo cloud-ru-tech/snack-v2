@@ -29,7 +29,7 @@ const meta: Meta<typeof AiToolDetails> = {
     label: 'create_instance',
     state: AI_TOOL_DETAILS_STATE.Default,
     scroll: true,
-    showSecret: true,
+    showEyeButton: true,
     secretRevealed: false,
     'data-test-id': TEST_IDS.details,
   },

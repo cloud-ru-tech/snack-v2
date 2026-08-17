@@ -25,14 +25,14 @@ type Story = StoryObj<typeof AiToolArray>;
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   render: function Render(args: AiToolArrayProps) {
-    const [opened, setOpened] = useState(false);
+    const [open, setOpen] = useState(false);
     return (
       <DemoPage>
         <DemoPanel width='narrow'>
           <DemoTitle>Interaction</DemoTitle>
           <DemoHint>Проверяет, что нажатие на шеврон раскрывает и снова сворачивает список.</DemoHint>
           <DemoActions block>
-            <AiToolArray {...args} opened={opened} onToggle={setOpened}>
+            <AiToolArray {...args} open={open} onOpenChange={setOpen}>
               <AiToolKeyValue label='0' value='alpha' data-test-id='ai-tool-array-child' />
             </AiToolArray>
           </DemoActions>

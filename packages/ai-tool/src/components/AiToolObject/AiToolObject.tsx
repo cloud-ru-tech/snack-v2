@@ -16,9 +16,9 @@ export type AiToolObjectOwnProps = {
   /** Тип узла: `complex` — сворачиваемое дерево, `string` — инлайн ключ-значение. */
   variant?: AiToolObjectType;
   /** Раскрытое состояние (только для `complex`). Источник истины — родитель. */
-  opened?: boolean;
-  /** Переключение раскрытия (только для `complex`). Получает новое значение `opened`. */
-  onToggle?: (opened: boolean) => void;
+  open?: boolean;
+  /** Переключение раскрытия (только для `complex`). Получает новое значение `open`. */
+  onOpenChange?(open: boolean): void;
   /** Состояние ошибки: имя и значение красные. По умолчанию наследуется от `AiToolDetails`. */
   error?: boolean;
   /** Моноширинный режим имени и значения. По умолчанию наследуется от `AiToolDetails`. */
@@ -34,7 +34,7 @@ export type AiToolObjectOwnProps = {
  *
  * Презентационный узел дерева содержимого инструмента. `complex` —
  * сворачиваемый узел с chevron'ом и вложенными детьми; `string` — инлайн пара
- * имя-значение. Раскрытие controlled: `opened` + `onToggle`.
+ * имя-значение. Раскрытие controlled: `open` + `onOpenChange`.
  */
 export type AiToolObjectProps = WithSupportProps<
   AiToolObjectOwnProps & Omit<ComponentPropsWithoutRef<'div'>, keyof AiToolObjectOwnProps>
@@ -44,8 +44,8 @@ export function AiToolObject({
   name,
   value,
   variant = AI_TOOL_OBJECT_TYPE.Complex,
-  opened = false,
-  onToggle,
+  open = false,
+  onOpenChange,
   error,
   mono,
   children,
@@ -63,7 +63,7 @@ export function AiToolObject({
       {...rest}
       className={cn(styles.root, className)}
       data-variant={variant}
-      data-opened={(isComplex && opened) || undefined}
+      data-open={(isComplex && open) || undefined}
       data-error={effectiveError || undefined}
       data-mono={effectiveMono || undefined}
       data-test-id={dataTestId}
@@ -74,12 +74,12 @@ export function AiToolObject({
             {name && <span className={styles.name}>{name}</span>}
             <AiButtonChevron
               className={styles.chevron}
-              opened={opened}
+              open={open}
               data-test-id={TEST_IDS.objectToggle}
-              onClick={() => onToggle?.(!opened)}
+              onClick={() => onOpenChange?.(!open)}
             />
           </div>
-          {opened && (
+          {open && (
             <AiToolContentContext.Provider value={{ mono: effectiveMono, error: effectiveError }}>
               <div className={styles.nested}>{children}</div>
             </AiToolContentContext.Provider>

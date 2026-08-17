@@ -34,7 +34,7 @@
         "required": false,
         "defaultValue": "ai-tool"
       },
-      "defaultOpened": {
+      "defaultOpen": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -66,15 +66,15 @@
         "required": true,
         "description": "Имя инструмента — моноширинная строка заголовка, обрезается ellipsis."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Переключение раскрытия. Получает новое значение `opened`."
+        "description": "Переключение раскрытия. Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
-        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`."
       },
       "result": {
         "type": "ReactNode",
@@ -167,12 +167,12 @@
         "required": false,
         "description": "Имя узла (`Key[ArrayName]`)."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Переключение раскрытия. Получает новое значение `opened`."
+        "description": "Переключение раскрытия. Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -292,7 +292,7 @@
         "defaultValue": "false",
         "description": "Секрет раскрыт. Источник истины — родитель."
       },
-      "showSecret": {
+      "showEyeButton": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -349,7 +349,7 @@
       "onToggleSecret": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
-        "description": "Клик по кнопке-«глаз». Не вызывается, если `showSecret` не задан."
+        "description": "Клик по кнопке-«глаз». Не вызывается, если `showEyeButton` не задан."
       },
       "secretRevealed": {
         "type": "boolean",
@@ -357,7 +357,7 @@
         "defaultValue": "false",
         "description": "Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель."
       },
-      "showSecret": {
+      "showEyeButton": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -535,12 +535,12 @@
         "required": false,
         "description": "Имя узла (`Key[ObjectName]`)."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Переключение раскрытия (только для `complex`). Получает новое значение `opened`."
+        "description": "Переключение раскрытия (только для `complex`). Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -601,7 +601,7 @@
         "required": false,
         "defaultValue": "ai-tool-simple"
       },
-      "defaultOpened": {
+      "defaultOpen": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
@@ -633,15 +633,15 @@
         "required": true,
         "description": "Имя инструмента — строка заголовка; в свёрнутом состоянии обрезается ellipsis."
       },
-      "onToggle": {
-        "type": "((opened: boolean) => void)",
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
         "required": false,
-        "description": "Переключение раскрытия. Получает новое значение `opened`."
+        "description": "Переключение раскрытия. Получает новое значение `open`."
       },
-      "opened": {
+      "open": {
         "type": "boolean",
         "required": false,
-        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpened`."
+        "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`."
       },
       "state": {
         "type": "enum",

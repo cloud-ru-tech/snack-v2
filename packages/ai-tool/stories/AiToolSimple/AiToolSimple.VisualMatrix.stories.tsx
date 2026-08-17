@@ -19,13 +19,13 @@ type Story = StoryObj<typeof AiToolSimple>;
 
 const LONG_NAME = 'request_statuses_for_users_in_all_connected_services_and_aggregate';
 
-type OpenedCase = {
+type OpenCase = {
   label: string;
   suffix: string;
   name: ReactNode;
 };
 
-const openedCases: OpenedCase[] = [
+const openCases: OpenCase[] = [
   { label: 'default', suffix: 'default', name: SIMPLE_NAME },
   { label: 'длинное имя', suffix: 'long-name', name: LONG_NAME },
 ];
@@ -48,19 +48,19 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.grid}>
       <StoryTable
-        sectionTitle='Opened × Name'
+        sectionTitle='Open × Name'
         firstColumnHeader='Name'
-        columnHeaders={['CLOSED', 'OPENED']}
-        rows={openedCases.map(({ label, suffix, name }) => ({
+        columnHeaders={['CLOSED', 'OPEN']}
+        rows={openCases.map(({ label, suffix, name }) => ({
           variantLabel: label,
-          cells: [false, true].map(opened => (
-            <div key={String(opened)} className={styles.cell}>
+          cells: [false, true].map(open => (
+            <div key={String(open)} className={styles.cell}>
               <AiToolSimple
                 name={name}
                 icon={AI_TOOL_ICON_TYPE.Search}
-                opened={opened}
+                open={open}
                 description={SIMPLE_DESCRIPTION}
-                data-test-id={`${TEST_IDS.simple}-${suffix}-${opened ? 'opened' : 'closed'}`}
+                data-test-id={`${TEST_IDS.simple}-${suffix}-${open ? 'open' : 'closed'}`}
               >
                 {badgesPreset}
               </AiToolSimple>
@@ -69,7 +69,7 @@ export const VisualMatrix: Story = {
         }))}
       />
       <StoryTable
-        sectionTitle='Slots (opened)'
+        sectionTitle='Slots (open)'
         firstColumnHeader='Slots'
         columnHeaders={['—']}
         rows={slotCases.map(({ label, suffix, description, children }) => ({
@@ -79,7 +79,7 @@ export const VisualMatrix: Story = {
               <AiToolSimple
                 name='create_instance'
                 icon={AI_TOOL_ICON_TYPE.Act}
-                opened
+                open
                 description={description}
                 data-test-id={`${TEST_IDS.simple}-slots-${suffix}`}
               >

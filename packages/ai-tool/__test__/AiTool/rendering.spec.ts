@@ -18,16 +18,16 @@ test.describe('AiTool — rendering', () => {
     await expect(getByTestId(TEST_IDS.status)).toHaveAttribute('data-state', 'loading');
   });
 
-  test('opened=true reveals call and result details', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true }));
-    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-opened', 'true');
+  test('open=true reveals call and result details', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ open: true }));
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-open', 'true');
     await expect(getByTestId(TEST_IDS.call)).toBeVisible();
     await expect(getByTestId(TEST_IDS.result)).toBeVisible();
     await expect(getByTestId(TEST_IDS.chevron)).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('state=error marks result details as error', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ state: 'error', opened: true }));
+    await gotoStory(buildStoryOptions({ state: 'error', open: true }));
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-state', 'error');
     await expect(getByTestId(TEST_IDS.status)).toHaveAttribute('data-state', 'error');
     await expect(getByTestId(TEST_IDS.result)).toHaveAttribute('data-state', 'error');
@@ -35,7 +35,7 @@ test.describe('AiTool — rendering', () => {
   });
 
   test('falsy call/result render no details blocks', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ opened: true, call: false, result: '' }));
+    await gotoStory(buildStoryOptions({ open: true, call: false, result: '' }));
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.call)).toHaveCount(0);
     await expect(getByTestId(TEST_IDS.result)).toHaveCount(0);

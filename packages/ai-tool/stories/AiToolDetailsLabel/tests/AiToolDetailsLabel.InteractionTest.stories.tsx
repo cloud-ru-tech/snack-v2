@@ -12,7 +12,7 @@ const meta: Meta<typeof AiToolDetailsLabel> = {
   component: AiToolDetailsLabel,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
-    showSecret: true,
+    showEyeButton: true,
     onToggleSecret: fn(),
     'data-test-id': TEST_IDS.detailsLabel,
   },
