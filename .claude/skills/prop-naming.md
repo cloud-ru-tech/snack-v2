@@ -61,6 +61,8 @@
 
 **Сигнал по типу:** обязательный `ReactNode`-payload тяготеет к `content`; опциональный `string` под обязательным `title` — почти всегда `description`.
 
+**Исключение — `text` у текстовых примитивов.** Компонент, который **обрабатывает саму строку** (измеряет, режет, рендерит в SVG-маску), держит её в `text: string`, а не в `content`: `TruncateString`, `AiShimmer`. Признак — тип обязан быть `string` (не `ReactNode`), потому что реализация работает с символами, а не с деревом узлов. Для таких компонентов `text` — канон, греп-проверка §3 их не касается.
+
 > **Решай по роли, а не по домену пакета.** Принадлежность компонента к группе инвентаря (карточки, тосты, настройки) ничего не говорит о том, `content` там или `description`: «описание под заголовком» у `SwitchRow` / `ToggleCard` / `CardVacancy` / `ToastSystemEvent` играет ту же роль, что у `attachment` / `avatar-detail`, и потому называется одинаково — `description`. Домен вводит в заблуждение; применяй тест «убери текст».
 
 ### Item / option shape
@@ -112,7 +114,7 @@
 
 ```bash
 PKG=<pkg>
-# text как подпись контрола → label (НЕ трогать TruncateString text=, insideText, data-*text)
+# text как подпись контрола → label (НЕ трогать TruncateString text=, AiShimmer text=, insideText, data-*text)
 grep -rnE "^\s+text\??:" packages/$PKG/src --include="*.ts" --include="*.tsx"
 # option как primary text строки → label (НЕ трогать options-массивы, FilterOption, <option>)
 grep -rnE "^\s+option\??:\s*(string|ReactNode)" packages/$PKG/src
