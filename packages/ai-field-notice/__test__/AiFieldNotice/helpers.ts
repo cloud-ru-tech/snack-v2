@@ -1,6 +1,6 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-import { ANIMATION_DELAY_INTERVAL, ANIMATION_HOVER_DELAY } from '../../src/constants';
+import { ANIMATION_DELAY_INTERVAL, ANIMATION_HOVER_DELAY, TEST_IDS as COMPONENT_TEST_IDS } from '../../src/constants';
 
 /** Длительность transition пункта описания — см. `.item` в
  * `src/components/AiFieldNoticeAnimatedDescription/styles.module.scss`. */
@@ -14,10 +14,12 @@ export const DESCRIPTION_ROTATION_SETTLE_MS = ANIMATION_DELAY_INTERVAL + DESCRIP
 export const DESCRIPTION_HOVER_SETTLE_MS = ANIMATION_HOVER_DELAY + DESCRIPTION_TRANSITION_MS;
 
 export const TEST_IDS = {
-  root: 'ai-field-notice',
-  queue: 'ai-queue',
-  description: 'ai-field-notice__description',
-  banner: 'ai-field-notice__banner',
+  root: COMPONENT_TEST_IDS.root,
+  queue: COMPONENT_TEST_IDS.queue,
+  content: COMPONENT_TEST_IDS.content,
+  banner: COMPONENT_TEST_IDS.banner,
+  // Кросс-пакетный импорт в спеках запрещён, поэтому id баннера — литералы.
+  // Синхронизируй с `TEST_IDS` из `@ds/ai-field-banner/src/constants`.
   bannerContent: 'ai-field-banner__content',
   bannerAction: 'ai-field-banner__action',
   bannerIcon: 'ai-field-banner__icon',

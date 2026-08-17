@@ -41,7 +41,7 @@ test.describe('AiFieldNotice — visual regression', () => {
 
     const root = page.getByTestId(TEST_IDS.banner);
     const action = page.getByTestId(TEST_IDS.bannerAction);
-    const description = page.getByTestId(TEST_IDS.description);
+    const description = page.getByTestId(TEST_IDS.content);
     await expect(root).toBeVisible();
     await expect(action).toBeVisible();
 
