@@ -83,9 +83,12 @@ export async function scaffold(opts: ScaffoldOptions): Promise<ScaffoldResult> {
   }
 
   try {
-    // package metadata + tsconfigs + license
+    // package metadata + tsconfigs + license + changelog
     writeRendered(tpl('package.json'), out('package.json'), vars, opts.dryRun ?? false)
     copyVerbatim(tpl('LICENSE'), out('LICENSE'), opts.dryRun ?? false)
+    // Заголовок обязан совпадать дословно: lerna ищет строку про Conventional
+    // Commits, чтобы дописать релиз под неё, а не продублировать заголовок.
+    copyVerbatim(tpl('CHANGELOG.md'), out('CHANGELOG.md'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.esm.json'), out('tsconfig.esm.json'), opts.dryRun ?? false)
     copyVerbatim(tpl('tsconfig.cjs.json'), out('tsconfig.cjs.json'), opts.dryRun ?? false)
 

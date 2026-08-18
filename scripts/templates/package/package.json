@@ -1,11 +1,13 @@
 {
   "name": "@ds/{{PKG_NAME}}",
   "version": "0.0.0",
+  "description": "{{DESCRIPTION}}",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
     "directory": "packages/{{PKG_NAME}}"
   },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/{{PKG_NAME}}",
   "license": "Apache-2.0",
   "author": "{{AUTHOR}}",
   "type": "module",
@@ -20,7 +22,7 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "files": ["dist", "src"],
+  "files": ["dist", "src", "./CHANGELOG.md", "./LICENSE"],
   "sideEffects": ["*.css", "**/*.css"],
   "publishConfig": { "access": "public" }
 }
