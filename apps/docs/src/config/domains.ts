@@ -22,8 +22,7 @@ export const DOMAINS: readonly Domain[] = [
     id: 'components',
     label: 'Snack',
     storybookLabel: 'Snack',
-    description:
-      'Базовые UI-кирпичики дизайн-системы: кнопки, поля, навигация, оверлеи. Подходят для любого продукта поверх @ds.',
+    description: 'Базовые UI-кирпичики дизайн-системы: кнопки, поля, навигация, оверлеи. Подходят для любого продукта.',
     isDefault: true,
   },
   {
