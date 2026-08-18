@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossCircleSVG } from '@ds/icons/interface/system';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { useEventHandler } from '@ds/utils';
 import { MouseEventHandler, RefObject, useMemo } from 'react';
 
@@ -56,7 +56,7 @@ export function useClearButton({
             appearance='neutral'
             disabled={disabled}
             size={BUTTON_SIZE_MAP[size]}
-            icon={<CrossCircleSVG />}
+            icon={<CrossSVG />}
             onClick={handleClear}
             tabIndex={tabIndex}
             onKeyDown={onKeyDown}
