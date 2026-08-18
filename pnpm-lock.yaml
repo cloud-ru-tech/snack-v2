@@ -2408,37 +2408,37 @@ importers:
   packages/uikit-product-card-predefined:
     dependencies:
       '@ds/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@ds/card':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../card
       '@ds/icon-predefined':
         specifier: workspace:^
         version: link:../icon-predefined
       '@ds/icons':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../icons
       '@ds/list':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../list
       '@ds/promo-tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../promo-tag
       '@ds/tag':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tag
       '@ds/toggles':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../toggles
       '@ds/truncate-string':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../truncate-string
       '@ds/typography':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../typography
       '@ds/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../utils
       classnames:
         specifier: 'catalog:'
