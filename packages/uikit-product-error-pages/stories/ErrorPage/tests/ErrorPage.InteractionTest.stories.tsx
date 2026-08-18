@@ -11,7 +11,7 @@ const onSupportCenterClick = fn();
 const onMainButtonClick = fn();
 
 const meta: Meta<typeof ErrorPage> = {
-  title: 'Uikit Product/ErrorPage/Tests/Interaction',
+  title: 'Uikit Product/ErrorPages/Tests/Interaction',
   component: ErrorPage,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

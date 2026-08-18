@@ -8,7 +8,7 @@ import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof ErrorPage> = {
-  title: 'Uikit Product/ErrorPage/Examples/Custom',
+  title: 'Uikit Product/ErrorPages/Examples/Custom',
   component: ErrorPage,
   parameters: { layout: 'fullscreen' },
 };

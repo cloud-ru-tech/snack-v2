@@ -7,9 +7,9 @@ export const TEST_IDS = {
 } as const;
 
 export const AI_TOOL_BADGE_STORIES = {
-  playground: { name: 'aitoolelements-atoms-aitoolbadge', story: 'playground' },
-  visualMatrix: { name: 'aitoolelements-atoms-aitoolbadge', story: 'visual-matrix' },
-  polymorphic: { name: 'aitoolelements-atoms-aitoolbadge-examples-polymorphic', story: 'polymorphic' },
+  playground: { name: 'aitool-atoms-aitoolbadge', story: 'playground' },
+  visualMatrix: { name: 'aitool-atoms-aitoolbadge', story: 'visual-matrix' },
+  polymorphic: { name: 'aitool-atoms-aitoolbadge-examples-polymorphic', story: 'polymorphic' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

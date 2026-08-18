@@ -15,7 +15,7 @@ type PlaygroundArgs = {
 };
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Uikit Product/ErrorPage',
+  title: 'Uikit Product/ErrorPages',
   component: ErrorPage,
   parameters: { layout: 'fullscreen' },
   args: {

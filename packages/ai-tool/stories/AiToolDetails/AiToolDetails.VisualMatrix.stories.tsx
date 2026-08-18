@@ -7,7 +7,7 @@ import { TEST_IDS } from '../testIds';
 import styles from './AiToolDetails.VisualMatrix.module.scss';
 
 const meta: Meta<typeof AiToolDetails> = {
-  title: 'AI/AiToolElements/Atoms/AiToolDetails',
+  title: 'AI/AiTool/Atoms/AiToolDetails',
   component: AiToolDetails,
   parameters: { layout: 'padded' },
 };

@@ -7,7 +7,7 @@ import { TEST_IDS } from '../testIds';
 import styles from './AiToolKeyValue.VisualMatrix.module.scss';
 
 const meta: Meta<typeof AiToolKeyValue> = {
-  title: 'AI/AiToolElements/Content/AiToolKeyValue',
+  title: 'AI/AiTool/Content/AiToolKeyValue',
   component: AiToolKeyValue,
   parameters: { layout: 'padded' },
 };

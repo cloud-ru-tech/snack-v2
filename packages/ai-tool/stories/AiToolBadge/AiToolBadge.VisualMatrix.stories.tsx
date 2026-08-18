@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof AiToolBadge> = {
-  title: 'AI/AiToolElements/Atoms/AiToolBadge',
+  title: 'AI/AiTool/Atoms/AiToolBadge',
   component: AiToolBadge,
   parameters: { layout: 'padded' },
 };

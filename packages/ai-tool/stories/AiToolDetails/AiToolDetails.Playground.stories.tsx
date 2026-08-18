@@ -22,7 +22,7 @@ const BODY_ROWS = [
 ] as const;
 
 const meta: Meta<typeof AiToolDetails> = {
-  title: 'AI/AiToolElements/Atoms/AiToolDetails',
+  title: 'AI/AiTool/Atoms/AiToolDetails',
   component: AiToolDetails,
   parameters: { layout: 'fullscreen' },
   args: {

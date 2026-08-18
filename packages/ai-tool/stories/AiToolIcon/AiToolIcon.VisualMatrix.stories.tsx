@@ -6,7 +6,7 @@ import { StoryTable } from '#storybook/components';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof AiToolIcon> = {
-  title: 'AI/AiToolElements/Atoms/AiToolIcon',
+  title: 'AI/AiTool/Atoms/AiToolIcon',
   component: AiToolIcon,
   parameters: { layout: 'padded' },
 };

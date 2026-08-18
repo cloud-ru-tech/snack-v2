@@ -7,7 +7,7 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 
 const meta: Meta<typeof AiToolBadge> = {
-  title: 'AI/AiToolElements/Atoms/AiToolBadge/Examples/Polymorphic',
+  title: 'AI/AiTool/Atoms/AiToolBadge/Examples/Polymorphic',
   component: AiToolBadge,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

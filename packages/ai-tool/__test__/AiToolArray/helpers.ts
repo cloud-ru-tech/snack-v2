@@ -7,8 +7,8 @@ export const TEST_IDS = {
 } as const;
 
 export const AI_TOOL_ARRAY_STORIES = {
-  playground: { name: 'aitoolelements-content-aitoolarray', story: 'playground' },
-  visualMatrix: { name: 'aitoolelements-content-aitoolarray', story: 'visual-matrix' },
+  playground: { name: 'aitool-content-aitoolarray', story: 'playground' },
+  visualMatrix: { name: 'aitool-content-aitoolarray', story: 'visual-matrix' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

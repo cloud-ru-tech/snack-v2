@@ -8,7 +8,7 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof AiToolObject> = {
-  title: 'AI/AiToolElements/Content/AiToolObject',
+  title: 'AI/AiTool/Content/AiToolObject',
   component: AiToolObject,
   parameters: { layout: 'fullscreen' },
   args: {

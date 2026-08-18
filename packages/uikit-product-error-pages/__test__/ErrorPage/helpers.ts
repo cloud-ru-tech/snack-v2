@@ -6,10 +6,10 @@ export { TEST_IDS };
 export const ERROR_PAGE_TEST_ID = TEST_IDS.root;
 
 export const ERROR_PAGE_STORIES = {
-  playground: { name: 'errorpage', story: 'playground' },
-  visualMatrix: { name: 'errorpage', story: 'visual-matrix' },
-  custom: { name: 'errorpage-examples-custom', story: 'custom' },
-  interactionTest: { name: 'errorpage-tests-interaction', story: 'interaction-test' },
+  playground: { name: 'errorpages', story: 'playground' },
+  visualMatrix: { name: 'errorpages', story: 'visual-matrix' },
+  custom: { name: 'errorpages-examples-custom', story: 'custom' },
+  interactionTest: { name: 'errorpages-tests-interaction', story: 'interaction-test' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(
