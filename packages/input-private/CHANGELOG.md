@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.12 (2026-08-18)
+
+### Bug Fixes
+
+- **FF-8772:** use CrossSVG for input clear button ([86642ec](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/86642ec51f73aaa5542c6308edd1abd5e54c1886))
+
 ## 1.0.11 (2026-08-17)
 
 **Note:** Version bump only for package @ds/input-private

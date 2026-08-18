@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.2 (2026-08-18)
+
+### Bug Fixes
+
+- **FF-8772:** restore content color in dropzone slot ([3e3a98d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/3e3a98dc4ea68711280b63001b7e882f11e26f60))
+- **FF-8772:** scope dropzone dashed border to border state layer ([4d28b50](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/4d28b50036ea3c26c8fa58d838c63249dde7cb99))
+
 ## 1.2.1 (2026-08-17)
 
 ### Bug Fixes
