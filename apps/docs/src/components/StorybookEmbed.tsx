@@ -1,4 +1,4 @@
-import { withBase } from '../lib/base-url';
+import { getStorybookBaseUrl } from '../lib/storybook-url';
 import styles from './StorybookEmbed.module.scss';
 
 type StorybookEmbedProps = {
@@ -12,13 +12,6 @@ type StorybookEmbedProps = {
 };
 
 const DEFAULT_HEIGHT = 420;
-const STORYBOOK_DEV_URL = 'http://localhost:6006';
-
-/** Prod: same site root as Astro `base` + `/storybook`. Dev: local Storybook on port 6006. */
-function getStorybookBaseUrl(): string {
-  if (import.meta.env.DEV) return STORYBOOK_DEV_URL;
-  return withBase('/storybook').replace(/\/$/, '');
-}
 
 function encodeKeyValues(entries: Record<string, string | number | boolean>): string {
   return Object.entries(entries)

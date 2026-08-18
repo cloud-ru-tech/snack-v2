@@ -241,9 +241,10 @@ body {
     gap: base.$sn-primitive-dimension-4;
   }
 
-  // На mobile поиску нужна вся доступная ширина — ссылка на репозиторий
-  // доступна через страницу Contribution Guide и пункты сайдбара.
-  .header-end > .header-github {
+  // На mobile поиску нужна вся доступная ширина — ссылки на репозиторий и Storybook
+  // доступны через страницу Contribution Guide и пункты сайдбара.
+  .header-end > .header-github,
+  .header-end > .header-storybook {
     display: none;
   }
 

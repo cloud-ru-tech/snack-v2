@@ -1,0 +1,99 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-32;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  padding: base.$sn-primitive-dimension-24;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-display-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.lead {
+  @include base.composite-var(base.$sn-regular-body-l);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  padding: base.$sn-primitive-dimension-20;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-brand-anatomy-radius-block-m;
+
+  color: inherit;
+  text-decoration: none;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+
+  transition: border-color 0.15s ease-in-out;
+
+  &:hover {
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeMedium solid base.$sn-theme-color-primary-accent;
+    outline-offset: base.$sn-primitive-dimension-2;
+  }
+}
+
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-40;
+  border-radius: base.$sn-brand-anatomy-radius-block-s;
+
+  color: base.$sn-theme-color-primary-accent;
+
+  background: base.$sn-theme-color-primary-decorTransparent;
+}
+
+.cardTitle {
+  @include base.composite-var(base.$sn-regular-title-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.cardText {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.hint {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

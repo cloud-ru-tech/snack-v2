@@ -18,9 +18,12 @@
   "include": [
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
+    "stories/**/*.ts",
+    "stories/**/*.tsx",
     "../../types/**/*.d.ts",
     "../docs/src/lib/figma.ts",
     "../docs/src/config/categories.ts",
+    "../docs/src/config/external-links.ts",
     "../docs/src/config/domains.ts",
     "../../packages/*/src/**/*.ts",
     "../../packages/*/src/**/*.tsx",

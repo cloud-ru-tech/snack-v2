@@ -30,12 +30,15 @@ const STORY_PKG_RE = /[\\/]packages[\\/]([^\\/]+)[\\/]stories[\\/]/;
  * импортят соседние пакеты.
  */
 function storiesGlobs(): string[] {
+  // Разводящая страница Storybook (`Introduction/Welcome`) не привязана к пакету и входит
+  // в сборку всегда, в том числе при фильтрации по SB_PACKAGES.
+  const intro = '../stories/**/*.stories.@(ts|tsx)';
   const pkgs = (process.env.SB_PACKAGES ?? '')
     .split(',')
     .map(s => s.trim())
     .filter(Boolean);
-  if (pkgs.length === 0) return ['../../../packages/*/stories/**/*.stories.@(ts|tsx)'];
-  return pkgs.map(p => `../../../packages/${p}/stories/**/*.stories.@(ts|tsx)`);
+  if (pkgs.length === 0) return [intro, '../../../packages/*/stories/**/*.stories.@(ts|tsx)'];
+  return [intro, ...pkgs.map(p => `../../../packages/${p}/stories/**/*.stories.@(ts|tsx)`)];
 }
 
 declare global {
