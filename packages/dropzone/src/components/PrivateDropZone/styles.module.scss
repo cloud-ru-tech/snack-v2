@@ -115,7 +115,9 @@ $sizes: 's', 'm', 'l';
 
   @include m.has-state-layer-as-child(#{borderLayer});
 
-  > [data-state-layer] {
+  // Пунктир — только бордер-слою: overLayer'у миксин задаёт лишь фон, и `dashed` включил
+  // бы ему рамку с initial-значениями (`medium` + `currentColor`).
+  > [data-state-layer][data-state='borderOnBackground'] {
     border-style: dashed !important;
   }
 }
