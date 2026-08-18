@@ -24,6 +24,9 @@ test.describe('ServerTable — visual regression', () => {
   });
 
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
+    // Матрица из нескольких measure-based таблиц: ~25s на нагруженном раннере против
+    // дефолтных 30s. Утраиваем лимит, иначе тест уходит в таймаут до сравнения кадра.
+    test.slow();
     await gotoStory(buildStoryOptions(undefined, SERVER_TABLE_STORIES.visualMatrix));
     await waitForFonts();
     await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: TABLE_LAYOUT_SETTLE_MS });

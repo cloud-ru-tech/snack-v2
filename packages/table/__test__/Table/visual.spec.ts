@@ -87,6 +87,9 @@ test.describe('Table — visual regression', () => {
   });
 
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
+    // Матрица из нескольких measure-based таблиц: ~25s на нагруженном раннере против
+    // дефолтных 30s. Утраиваем лимит, иначе тест уходит в таймаут до сравнения кадра.
+    test.slow();
     await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.visualMatrix));
     await waitForFonts();
     // Секция loading (полный skeleton при data=[]): ждём скелетон именно в ней.
