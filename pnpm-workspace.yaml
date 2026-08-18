@@ -45,7 +45,7 @@ linkWorkspacePackages: true
 onlyBuiltDependencies:
   - '@cloud-ru/ft-config-husky'
 
-saveWorkspaceProtocol: false
+saveWorkspaceProtocol: rolling
 
 shamefullyHoist: true
 
