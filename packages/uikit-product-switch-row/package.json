@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-switch-row",
-  "version": "1.1.3",
+  "version": "1.0.0",
   "description": "Кликабельная строка настройки с заголовком, описанием и Switch — целиком кликабельна, поддерживает клавиатуру и tooltip-подсказки.",
   "repository": {
     "type": "git",

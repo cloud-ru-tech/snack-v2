@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-promo-tag-predefined",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "Предопределённый промо-тег продукта с локализованным текстом и tooltip — пресеты product-статусов Cloud.ru.",
   "repository": {
     "type": "git",

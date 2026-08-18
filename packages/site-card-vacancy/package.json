@@ -1,6 +1,6 @@
 {
   "name": "@ds/site-card-vacancy",
-  "version": "2.1.1",
+  "version": "1.0.0",
   "description": "Карточка-ссылка вакансии с заголовком и описанием, нейтральным или акцентным фоном, hover/pressed-состояниями и фокусом.",
   "repository": {
     "type": "git",

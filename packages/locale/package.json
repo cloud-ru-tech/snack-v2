@@ -1,6 +1,6 @@
 {
   "name": "@ds/locale",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "Рантайм локализации — строки живут в самих пакетах (defineLocale/defineMessages), провайдер несёт только язык.",
   "repository": {
     "type": "git",

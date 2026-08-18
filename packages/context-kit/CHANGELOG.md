@@ -3,16 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 1.0.1 (2026-07-09)
+# 1.0.0 (2026-08-18)
 
-### Dependencies
-
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
-
-# 0.1.0 (2026-07-08)
-
-### Features
-
-- **FF-8638:** storybook layoutType toolbar-global and adaptive rollout ([9115367](https://github.com/cloud-ru-tech/snack-v2/commit/9115367c9093680604dfd29b1781a2c304644a0d))
-- **FF-8661:** add @ds/context-kit provider foundation ([9573efc](https://github.com/cloud-ru-tech/snack-v2/commit/9573efc706528b9caba22511eaf853ff2afbde29))
-- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+Initial stable release under the `@cloud-ru/ds-*` scope.

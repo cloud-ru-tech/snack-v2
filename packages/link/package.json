@@ -1,6 +1,6 @@
 {
   "name": "@ds/link",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "Семантическая ссылка дизайн-системы — 10 appearance, полиморфный рендер (a / button / кастомный компонент), inline-режим в тексте и интеграция с TruncateString.",
   "repository": {
     "type": "git",

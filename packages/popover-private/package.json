@@ -1,6 +1,6 @@
 {
   "name": "@ds/popover-private",
-  "version": "1.3.0",
+  "version": "1.0.0",
   "description": "Низкоуровневый popover на @floating-ui — позиционирование, стрелка, триггеры. Используется как фундамент для Tooltip, Popover, Dropdown.",
   "repository": {
     "type": "git",

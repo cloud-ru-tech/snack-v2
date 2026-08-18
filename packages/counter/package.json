@@ -1,6 +1,6 @@
 {
   "name": "@ds/counter",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Компактный счётчик для отображения числовых меток, бейджей и состояний.",
   "repository": {
     "type": "git",

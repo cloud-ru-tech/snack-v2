@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-quota",
-  "version": "3.0.2",
+  "version": "1.0.0",
   "description": "Виджеты квот проекта — выпадающий QuotaWidget, аккордеон QuotaWidgetMini и карточка квоты QuotaWidgetCard с прогрессом и состояниями loading/error.",
   "repository": {
     "type": "git",

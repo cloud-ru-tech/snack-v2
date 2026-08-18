@@ -1,6 +1,6 @@
 {
   "name": "@ds/context-kit",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Основа всех сквозных провайдеров дизайн-системы — версионно-устойчивый React-контекст-синглтон поверх useSyncExternalStore, безопасный для SSR и микрофронтов.",
   "repository": {
     "type": "git",

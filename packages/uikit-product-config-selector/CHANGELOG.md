@@ -3,61 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 1.0.12 (2026-08-17)
+# 1.0.0 (2026-08-18)
 
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.11 (2026-08-17)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.10 (2026-07-30)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.9 (2026-07-29)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.8 (2026-07-28)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.7 (2026-07-27)
-
-### Bug Fixes
-
-- **FF-8784:** note config-selector figma padding token gap ([3dfa73b](https://github.com/cloud-ru-tech/snack-v2/commit/3dfa73b72e73632e78b153379fa6af18530b2182))
-
-## 1.0.6 (2026-07-23)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.5 (2026-07-17)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.4 (2026-07-17)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.3 (2026-07-13)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.2 (2026-07-13)
-
-**Note:** Version bump only for package @ds/uikit-product-config-selector
-
-## 1.0.1 (2026-07-09)
-
-### Dependencies
-
-- **FF-8678:** up all packages to v1 ([c0e22e7](https://github.com/cloud-ru-tech/snack-v2/commit/c0e22e73db3ad840302bcf5096f9806b712851d8))
-
-# 0.1.0 (2026-07-08)
-
-### Features
-
-- **FF-8437:** add config-selector component ([620b343](https://github.com/cloud-ru-tech/snack-v2/commit/620b343ab42ea40faad89c72ed4554c470973d28))
-- **FF-8678:** add licenses ([1a24aa6](https://github.com/cloud-ru-tech/snack-v2/commit/1a24aa6f50bba548b5fef2e9ecf2b2a61541428e))
+Initial stable release under the `@cloud-ru/ds-*` scope.

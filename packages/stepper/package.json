@@ -1,6 +1,6 @@
 {
   "name": "@ds/stepper",
-  "version": "1.0.10",
+  "version": "1.0.0",
   "description": "Адаптивный индикатор прогресса для многошаговых сценариев — единый render-prop API, раскладка из AdaptiveProvider.",
   "repository": {
     "type": "git",

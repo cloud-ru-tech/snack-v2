@@ -1,6 +1,6 @@
 {
   "name": "@ds/carousel",
-  "version": "1.2.4",
+  "version": "1.0.0",
   "description": "Компонент горизонтальной прокрутки слайдов — стрелки, пагинация, свайп, автопрокрутка, infinite scroll и multi-item отображение.",
   "repository": {
     "type": "git",

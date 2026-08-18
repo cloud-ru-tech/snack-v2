@@ -1,6 +1,6 @@
 {
   "name": "@ds/progress-bar",
-  "version": "1.1.6",
+  "version": "1.0.0",
   "description": "Пакет индикаторов прогресса дизайн-системы — линейный ProgressBar, круговой ProgressBarCircle и верхний page-индикатор ProgressBarPage.",
   "repository": {
     "type": "git",

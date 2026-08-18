@@ -3,37 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 1.2.2 (2026-08-17)
+# 1.0.0 (2026-08-18)
 
-**Note:** Version bump only for package @ds/popup-private
-
-## 1.2.1 (2026-08-17)
-
-### Bug Fixes
-
-- **FF-8772:** gate window header gap on back button and stretch header to window width ([e313207](https://github.com/cloud-ru-tech/snack-v2/commit/e313207055b4a368c220b7ec85244406d6146d46))
-- **FF-8772:** restore sheet header gap, body top padding and footer button size ([b15db1f](https://github.com/cloud-ru-tech/snack-v2/commit/b15db1f462023193388e39cb13ac0358548247b1))
-
-# 1.2.0 (2026-07-30)
-
-### Features
-
-- **FF-8713:** add href props ([6ebcdde](https://github.com/cloud-ru-tech/snack-v2/commit/6ebcddee1ae4b518d10d8e20319937d8861cac55))
-
-## 1.1.2 (2026-07-29)
-
-**Note:** Version bump only for package @ds/popup-private
-
-## 1.1.1 (2026-07-28)
-
-**Note:** Version bump only for package @ds/popup-private
-
-# 1.1.0 (2026-07-27)
-
-### Bug Fixes
-
-- **FF-8784:** apply popup header after-title slot styles ([e30a6c7](https://github.com/cloud-ru-tech/snack-v2/commit/e30a6c7f9a6d379bf6ad4d90f95e355567d60140))
-
-### Features
-
-- **FF-8784:** add @ds/popup-private with surface-aware popup slots ([8fff9d1](https://github.com/cloud-ru-tech/snack-v2/commit/8fff9d1e871694723f45b5a4b85746714a1be7b6))
+Initial stable release under the `@cloud-ru/ds-*` scope.

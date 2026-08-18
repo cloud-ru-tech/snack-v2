@@ -1,6 +1,6 @@
 {
   "name": "@ds/field-decorator",
-  "version": "2.0.2",
+  "version": "1.0.0",
   "description": "Структурная обёртка label/caption/hint/error/length для нестандартных input'ов и сложных композиций.",
   "repository": {
     "type": "git",

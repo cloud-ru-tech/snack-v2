@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-shimmer",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "Анимированный shimmer-блок для AI-сценариев с типографикой как в `@ds/typography`.",
   "repository": {
     "type": "git",

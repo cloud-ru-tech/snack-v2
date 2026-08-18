@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-price-summary",
-  "version": "3.0.3",
+  "version": "1.0.0",
   "description": "Блоки итоговой цены для checkout и конфигураторов — полный PriceSummary и компактный PriceSummarySmall.",
   "repository": {
     "type": "git",
