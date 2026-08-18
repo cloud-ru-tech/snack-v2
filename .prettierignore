@@ -1,2 +1,3 @@
 scripts/templates/
 packages/figma-variables/build/
+pnpm-lock.yaml
