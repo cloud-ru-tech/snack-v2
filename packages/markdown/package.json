@@ -1,6 +1,6 @@
 {
   "name": "@ds/markdown",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "license": "Apache-2.0",
   "author": "Nikita Ershov <niershov@cloud.ru>",
   "type": "module",

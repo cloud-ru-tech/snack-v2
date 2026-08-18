@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.2 (2026-08-18)
+
+### Bug Fixes
+
+- **FF-8789:** apply disable motion for mobile layout ([d11627f](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d11627fd4421b35d4a4537e6244ccce8eb518edc))
+
 ## 3.2.1 (2026-08-17)
 
 **Note:** Version bump only for package @ds/drawer

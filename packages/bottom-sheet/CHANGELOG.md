@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.2.0 (2026-08-18)
+
+### Features
+
+- **FF-8789:** add disableMotion prop ([460e7f2](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/460e7f2bcd948791dceec207defca1f687096a1d))
+
 ## 3.1.2 (2026-08-17)
 
 **Note:** Version bump only for package @ds/bottom-sheet
