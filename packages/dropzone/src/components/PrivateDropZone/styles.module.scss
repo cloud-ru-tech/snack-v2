@@ -65,7 +65,6 @@ $sizes: 's', 'm', 'l';
   border: none;
 
   font-family: inherit;
-  color: transparent;
   text-decoration: none;
 
   background: transparent;
@@ -75,8 +74,12 @@ $sizes: 's', 'm', 'l';
 
   @include m.with-material('acrylic', #{acrylic});
 
-  // Типографику и цвет контента компонент не задаёт: в Figma это слот целиком,
-  // содержимое наследует стили родителя.
+  // Типографику компонент не задаёт: в Figma это слот целиком, её приносит содержимое.
+  // Цвет задаёт базовый: ресет `<button>` ставил `color: transparent`, и текст,
+  // переданный в слот строкой, наследовал прозрачный — рендерился невидимым.
+  .content {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
 
   // Макет: focusedFrame/primary/outside — рамка вплотную к боксу (bbox линии равен боксу
   // компонента), толщина из focusLine/field, как у остальных полеподобных контролов.
