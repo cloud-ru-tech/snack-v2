@@ -50,6 +50,7 @@ export function BaseItem({
   open,
   itemRef,
   switch: switchProp,
+  showSwitchIcon,
   onKeyDown,
   onFocus,
   indeterminate,
@@ -238,7 +239,7 @@ export function BaseItem({
             disabled={disabled}
             checked={isChecked}
             data-test-id={TEST_IDS.baseItemSwitch}
-            // TODO Phase 5: восстановить поддержку showIcon={showSwitchIcon} когда появится в @ds/toggles
+            showIcon={showSwitchIcon}
           />
         )}
 
