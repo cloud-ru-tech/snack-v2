@@ -334,7 +334,8 @@ $divider-width: base.simple-var(
   flex-direction: column;
 
   width: 100%;
-  min-width: 0;
+  // По колонкам, как и с данными: иначе тело схлопывается до вьюпорта.
+  min-width: max-content;
   min-height: 100%;
 }
 
@@ -507,4 +508,25 @@ $divider-width: base.simple-var(
   flex: 1 1 auto;
   width: 100%;
   max-width: 100%;
+}
+
+// Копия колонки под курсором (DragOverlay + DragPreview): паддинги ячейки шапки.
+// Живёт в портале, вне DOM таблицы, поэтому типографику и цвет заголовка
+// (в сетке они приходят от предков) задаём здесь явно.
+.columnDragPreview {
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: base.simple-var(table.$table, 'anatomy', 'content', 'tableCell', 'min-height');
+  padding: base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-top')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-right')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-bottom')
+    base.simple-var(table.$table, 'anatomy', 'content', 'tableHead', 'padding-left');
+  border-radius: table.$sn-table-anatomy-content-borderRadius;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  white-space: nowrap;
+
+  @include base.composite-var(base.$sn-regular-body-m);
 }

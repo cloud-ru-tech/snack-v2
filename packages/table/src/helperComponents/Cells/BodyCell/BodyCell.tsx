@@ -1,11 +1,10 @@
-import { useSortable } from '@dnd-kit/sortable';
 import { Cell as TableCell, flexRender } from '@tanstack/react-table';
 import cn from 'classnames';
 import { CSSProperties } from 'react';
 
 import { TEST_IDS } from '../../../constants';
-import { useCellSizes } from '../../../hooks';
-import { ColumnDefinition } from '../../../types';
+import { useCellSizes, useColumnDragTransform } from '../../../hooks';
+import { ColumnDefinition, ColumnOrder } from '../../../types';
 import { Cell, CellProps } from '../Cell';
 import styles from './styles.module.scss';
 
@@ -13,18 +12,19 @@ type BodyCellProps<TData> = Omit<CellProps, 'style' | 'children'> & {
   cell: TableCell<TData, unknown>;
   rowAutoHeight?: boolean;
   isDraggable?: boolean;
+  columnOrder?: ColumnOrder;
 };
 
-type BodyCellViewProps<TData> = Omit<BodyCellProps<TData>, 'isDraggable'> & {
+type BodyCellViewProps<TData> = Omit<BodyCellProps<TData>, 'isDraggable' | 'columnOrder'> & {
   style: CSSProperties;
-  setNodeRef?: (node: HTMLDivElement | null) => void;
+  isDragging?: boolean;
 };
 function BodyCellView<TData>({
   cell,
   className,
   rowAutoHeight,
   style,
-  setNodeRef,
+  isDragging,
   ...props
 }: BodyCellViewProps<TData>) {
   const columnDef = cell.column.columnDef as ColumnDefinition<TData>;
@@ -32,13 +32,13 @@ function BodyCellView<TData>({
   return (
     <Cell
       {...props}
-      ref={setNodeRef}
       style={style}
       className={cn(styles.tableBodyCell, className, columnDef.cellClassName)}
       data-row-auto-height={rowAutoHeight || undefined}
       data-align={columnDef.align}
       data-no-padding={columnDef.noBodyCellPadding || undefined}
       data-column-id={cell.column.id}
+      data-dragging={isDragging || undefined}
       data-test-id={TEST_IDS.bodyCell}
     >
       {flexRender(columnDef.cell, cell.getContext())}
@@ -46,22 +46,25 @@ function BodyCellView<TData>({
   );
 }
 
-function StaticBodyCell<TData>(props: Omit<BodyCellProps<TData>, 'isDraggable'>) {
+function StaticBodyCell<TData>(props: Omit<BodyCellProps<TData>, 'isDraggable' | 'columnOrder'>) {
   const style = useCellSizes(props.cell);
 
   return <BodyCellView {...props} style={style} />;
 }
 
-function DraggableBodyCell<TData>(props: Omit<BodyCellProps<TData>, 'isDraggable'>) {
-  const { setNodeRef, isDragging, transform } = useSortable({ id: props.cell.column.id });
-  const style = useCellSizes(props.cell, { isDraggable: true, isDragging, transform });
+function DraggableBodyCell<TData>({
+  columnOrder,
+  ...props
+}: Omit<BodyCellProps<TData>, 'isDraggable'> & { columnOrder: ColumnOrder }) {
+  const { transform, isDragging } = useColumnDragTransform(props.cell.column.id, columnOrder);
+  const style = useCellSizes(props.cell, { isDraggable: true, transform });
 
-  return <BodyCellView {...props} style={style} setNodeRef={setNodeRef} />;
+  return <BodyCellView {...props} style={style} isDragging={isDragging} />;
 }
 
-export function BodyCell<TData>({ isDraggable, ...props }: BodyCellProps<TData>) {
-  if (isDraggable) {
-    return <DraggableBodyCell {...props} />;
+export function BodyCell<TData>({ isDraggable, columnOrder, ...props }: BodyCellProps<TData>) {
+  if (isDraggable && columnOrder) {
+    return <DraggableBodyCell {...props} columnOrder={columnOrder} />;
   }
 
   return <StaticBodyCell {...props} />;

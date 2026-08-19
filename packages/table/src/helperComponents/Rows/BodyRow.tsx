@@ -1,4 +1,3 @@
-import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import { Row as TableRow } from '@tanstack/react-table';
 import { CSSProperties, MouseEvent, useState } from 'react';
 
@@ -86,15 +85,15 @@ export function BodyRow<TData>({
         {columnVirtualPadding && columnVirtualPadding.left > 0 && (
           <div aria-hidden style={{ width: columnVirtualPadding.left, flexShrink: 0 } as CSSProperties} />
         )}
-        {enableColumnsOrderSortByDrag ? (
-          <SortableContext items={columnOrder} strategy={horizontalListSortingStrategy}>
-            {unpinned.map(cell => (
-              <BodyCell key={cell.id} cell={cell} rowAutoHeight={rowAutoHeight} isDraggable />
-            ))}
-          </SortableContext>
-        ) : (
-          unpinned.map(cell => <BodyCell key={cell.id} cell={cell} rowAutoHeight={rowAutoHeight} />)
-        )}
+        {unpinned.map(cell => (
+          <BodyCell
+            key={cell.id}
+            cell={cell}
+            rowAutoHeight={rowAutoHeight}
+            isDraggable={enableColumnsOrderSortByDrag}
+            columnOrder={columnOrder}
+          />
+        ))}
         {columnVirtualPadding && columnVirtualPadding.right > 0 && (
           <div aria-hidden style={{ width: columnVirtualPadding.right, flexShrink: 0 } as CSSProperties} />
         )}

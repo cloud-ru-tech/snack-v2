@@ -1,3 +1,4 @@
+export * from './alignOverlayToHeader';
 export * from './columnSize';
 export * from './getColumnIdentifier';
 export * from './getColumnStyleVars';

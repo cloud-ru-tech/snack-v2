@@ -1,10 +1,12 @@
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { isMobileLayout, LayoutPresets, mergePresets, useAdaptiveLayout, useLayoutDefaults } from '@ds/adaptive';
 import { FiltersState } from '@ds/chips';
+import { DragPreview } from '@ds/drag-and-drop';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { useThemeClassnames } from '@ds/theme';
 import { ToolbarPersistConfig } from '@ds/toolbar';
 import { extractSupportProps } from '@ds/utils';
+import { flexRender } from '@tanstack/react-table';
 import cn from 'classnames';
 import { CSSProperties, ReactNode, Ref, RefObject, useEffect, useMemo } from 'react';
 
@@ -14,6 +16,7 @@ import {
   DEFAULT_ROW_SELECTION,
   DEFAULT_SORTING,
   DEFAULT_VIEW,
+  TABLE_COLUMN_CSS_VARS,
   VIEW,
 } from '../../constants';
 import { CellAutoResizeContext, TableContext, useCellAutoResizeController } from '../../contexts';
@@ -53,7 +56,7 @@ import {
 } from './hooks';
 import { isFilterableColumn } from './hooks/useColumnSettings/utils';
 import styles from './styles.module.scss';
-import { getColumnIdentifier, getPinnedGroups } from './utils';
+import { alignOverlayToHeader, getColumnIdentifier, getPinnedGroups } from './utils';
 
 const TABLE_CONTENT_ACRYLIC = getControlsAcrylicAttrs(BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level);
 
@@ -252,11 +255,12 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     }
   }, [areColumnsSettingsEnabled, enabledColumns, hideableColumnIds, onSortingChange, sorting]);
 
-  const { columnOrder, setColumnOrder, dndContextProps, enableColumnsOrderSortByDrag } = useColumnOrderByDrag({
-    tableColumns: allTableColumns,
-    savedState,
-    columnSettings: columnsSettingsProp,
-  });
+  const { columnOrder, setColumnOrder, dndContextProps, enableColumnsOrderSortByDrag, draggingColumnId } =
+    useColumnOrderByDrag({
+      tableColumns: allTableColumns,
+      savedState,
+      columnSettings: columnsSettingsProp,
+    });
 
   const manualPagination = infiniteLoading || manualPaginationProp;
   const columnsSettings = useMemo(() => getColumnsSettings(columnOrder), [columnOrder, getColumnsSettings]);
@@ -466,6 +470,25 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     showHeader &&
     (isLoadingState || centerRows.length > 0 || filteredTopRows.length > 0 || (isEmptyBody && !dataError));
 
+  const draggingHeader = draggingColumnId
+    ? table.getFlatHeaders().find(header => header.column.id === draggingColumnId)
+    : undefined;
+
+  // Копия колонки едет за курсором в портале: внутри скролла она растила бы его ширину
+  // и ныряла под закреплённые колонки.
+  const draggingColumnPreview = (
+    <DragOverlay dropAnimation={null} modifiers={[alignOverlayToHeader]}>
+      {draggingHeader ? (
+        <DragPreview
+          className={styles.columnDragPreview}
+          style={{ width: `var(${TABLE_COLUMN_CSS_VARS.size(draggingHeader.column.id)})` } as CSSProperties}
+        >
+          {flexRender(draggingHeader.column.columnDef.header, draggingHeader.getContext())}
+        </DragPreview>
+      ) : null}
+    </DragOverlay>
+  );
+
   const tableHeaderElement = showTableHeader ? (
     <HeaderRow
       rowAutoHeight={rowAutoHeight}
@@ -595,7 +618,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const tableScrollContent = (
     <div className={styles.body} data-empty-body={isEmptyBody || undefined} style={columnSizes.vars as CSSProperties}>
       <CellAutoResizeContext.Provider value={{ updateCellMap, removeCellFromMap }}>
-        <DndContext {...dndContextProps}>{tableScrollRows}</DndContext>
+        {tableScrollRows}
       </CellAutoResizeContext.Provider>
     </div>
   );
@@ -603,7 +626,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   const tableContentWithProviders = (
     <div className={styles.body} data-empty-body={isEmptyBody || undefined} style={columnSizes.vars as CSSProperties}>
       <CellAutoResizeContext.Provider value={{ updateCellMap, removeCellFromMap }}>
-        <DndContext {...dndContextProps}>{tableBody}</DndContext>
+        {tableBody}
       </CellAutoResizeContext.Provider>
     </div>
   );
@@ -724,23 +747,27 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
               </div>
             ) : null}
 
-            <TableScrollHost
-              view={view}
-              isMobile={isMobile}
-              isCardsView={isCardsView}
-              usePageStickyHeader={usePageStickyHeader}
-              scrollOverflow={scrollOverflow}
-              scrollPaddingAbsolute={scrollPaddingAbsolute}
-              internalScrollRef={internalScrollRef}
-              scrollRef={scrollRef as Ref<HTMLDivElement>}
-              scrollContainerRef={scrollContainerRef as RefObject<HTMLDivElement>}
-              handleScrollInitialized={handleScrollInitialized}
-              syncHeaderHorizontalScroll={syncHeaderHorizontalScroll}
-              tableHeaderElement={tableHeaderElement}
-              columnSizeVars={columnSizes.vars as CSSProperties}
-            >
-              {scrollContent}
-            </TableScrollHost>
+            {/* Накрывает и шапку, и тело: sticky-шапка рендерится вне скролла. */}
+            <DndContext {...dndContextProps}>
+              {draggingColumnPreview}
+              <TableScrollHost
+                view={view}
+                isMobile={isMobile}
+                isCardsView={isCardsView}
+                usePageStickyHeader={usePageStickyHeader}
+                scrollOverflow={scrollOverflow}
+                scrollPaddingAbsolute={scrollPaddingAbsolute}
+                internalScrollRef={internalScrollRef}
+                scrollRef={scrollRef as Ref<HTMLDivElement>}
+                scrollContainerRef={scrollContainerRef as RefObject<HTMLDivElement>}
+                handleScrollInitialized={handleScrollInitialized}
+                syncHeaderHorizontalScroll={syncHeaderHorizontalScroll}
+                tableHeaderElement={tableHeaderElement}
+                columnSizeVars={columnSizes.vars as CSSProperties}
+              >
+                {scrollContent}
+              </TableScrollHost>
+            </DndContext>
             {!isCardsView && outline ? <span className={styles.contentBorder} aria-hidden /> : null}
           </div>
 

@@ -23,7 +23,6 @@ export function useEmptyState({
     const noDataState: EmptyStateProps = {
       icon: { icon: SearchSVG, appearance: 'neutral', background: true },
       title: t('noData.title'),
-      content: t('noData.content'),
       ...noDataStateProp,
     };
 

@@ -3,6 +3,10 @@
 @use '@ds/figma-variables/build/scss/components/table.module' as table;
 
 .tableEmptyStateWrapper {
+  // Живёт внутри горизонтального скролла колонок: без sticky уезжает вместе с ними.
+  position: sticky;
+  left: 0;
+
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -10,7 +14,7 @@
   justify-content: center;
 
   box-sizing: border-box;
-  width: 100%;
+  width: var(--table-viewport-width, 100%);
   min-height: base.simple-var(table.$table, 'anatomy', 'content', 'body', 'min-height'); // 304px
   padding: base.$sn-primitive-dimension-24;
 }

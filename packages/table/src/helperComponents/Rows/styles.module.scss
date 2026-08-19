@@ -116,6 +116,11 @@ $row-bg-tones: (
   width: $pinned-border;
 }
 
+// Под шапкой строк нет — продолжать разделитель нечем, обрезаем хвост.
+.tableHeader .rowPinnedCells::after {
+  bottom: 0;
+}
+
 .rowPinnedCells[data-position='left'] {
   left: 0;
 }

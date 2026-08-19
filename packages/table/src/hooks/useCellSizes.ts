@@ -6,7 +6,6 @@ import { TABLE_COLUMN_CSS_VARS } from '../constants';
 
 type CellSizesOptions = {
   isDraggable?: boolean;
-  isDragging?: boolean;
   transform?: Transform | null;
 };
 
@@ -15,7 +14,6 @@ export function useCellSizes<TData>(
   options?: CellSizesOptions,
 ): CSSProperties {
   const column = element.column;
-  const isDragging = options?.isDragging ?? false;
   const transform = options?.transform ?? null;
 
   const minWidth = column.columnDef.minSize;
@@ -33,10 +31,8 @@ export function useCellSizes<TData>(
     };
 
     if (options?.isDraggable) {
-      styles.opacity = isDragging ? 0.8 : 1;
       styles.position = 'relative';
       styles.transform = CSS.Translate.toString(transform);
-      styles.zIndex = isDragging ? 1 : undefined;
 
       if (isHeaderCell) {
         styles.whiteSpace = 'nowrap';
@@ -44,5 +40,5 @@ export function useCellSizes<TData>(
     }
 
     return styles;
-  }, [options?.isDraggable, flexShrink, isDragging, isHeaderCell, maxWidth, minWidth, transform, width]);
+  }, [options?.isDraggable, flexShrink, isHeaderCell, maxWidth, minWidth, transform, width]);
 }

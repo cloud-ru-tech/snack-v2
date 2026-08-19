@@ -1,8 +1,9 @@
 import {
   closestCenter,
+  CollisionDetection,
   DndContextProps,
   DragEndEvent,
-  KeyboardSensor,
+  DragStartEvent,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -39,8 +40,11 @@ export function useColumnOrderByDrag<TData extends object>({
   setColumnOrder: Dispatch<SetStateAction<string[]>>;
   dndContextProps: DndContextProps;
   enableColumnsOrderSortByDrag: boolean;
+  /** Колонка под курсором прямо сейчас: по ней рендерится копия в портале. */
+  draggingColumnId?: string;
 } {
   const [columnOrder, setColumnOrderState] = useState<string[]>(() => prepareInitialState(tableColumns, savedState));
+  const [draggingColumnId, setDraggingColumnId] = useState<string>();
 
   useEffect(() => {
     setColumnOrderState(prev => {
@@ -78,8 +82,18 @@ export function useColumnOrderByDrag<TData extends object>({
     [columnOrder, savedState],
   );
 
+  const handleDragStart = useCallback(({ active }: DragStartEvent) => {
+    setDraggingColumnId(String(active.id));
+  }, []);
+
+  const handleDragCancel = useCallback(() => {
+    setDraggingColumnId(undefined);
+  }, []);
+
   const handleDragEnd = useCallback(
     ({ active, over }: DragEndEvent) => {
+      setDraggingColumnId(undefined);
+
       if (!active || !over) {
         return;
       }
@@ -105,11 +119,18 @@ export function useColumnOrderByDrag<TData extends object>({
     [columnOrder, setColumnOrder],
   );
 
-  const sensors = useSensors(
-    useSensor(MouseSensor, draggingOptions),
-    useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {}),
+  // `over` вне SortableContext сбрасывает transform'ы всей сортировки — колонка рывком
+  // возвращается на место. Держим `over` внутри колонок сортировки.
+  const collisionDetection = useCallback<CollisionDetection>(
+    args =>
+      closestCenter({
+        ...args,
+        droppableContainers: args.droppableContainers.filter(container => columnOrder.includes(String(container.id))),
+      }),
+    [columnOrder],
   );
+
+  const sensors = useSensors(useSensor(MouseSensor, draggingOptions), useSensor(TouchSensor, {}));
 
   const enableColumnsOrderSortByDrag = Boolean(columnSettings?.enableDrag);
 
@@ -119,17 +140,20 @@ export function useColumnOrderByDrag<TData extends object>({
     }
 
     return {
-      collisionDetection: closestCenter,
+      collisionDetection,
       modifiers: [restrictToHorizontalAxis],
+      onDragStart: handleDragStart,
+      onDragCancel: handleDragCancel,
       onDragEnd: handleDragEnd,
       sensors,
     };
-  }, [enableColumnsOrderSortByDrag, handleDragEnd, sensors]);
+  }, [collisionDetection, enableColumnsOrderSortByDrag, handleDragCancel, handleDragEnd, handleDragStart, sensors]);
 
   return {
     columnOrder,
     setColumnOrder,
     dndContextProps,
     enableColumnsOrderSortByDrag,
+    draggingColumnId,
   };
 }

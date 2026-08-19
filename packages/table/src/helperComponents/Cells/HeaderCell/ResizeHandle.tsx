@@ -53,8 +53,7 @@ export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData
   return (
     <>
       <div
-        role='button'
-        tabIndex={0}
+        aria-hidden
         className={cn(styles.tableHeaderIcon, styles.tableHeaderResizeHandle)}
         data-resizing={isResizing || undefined}
         onMouseDown={handleMouseDown}

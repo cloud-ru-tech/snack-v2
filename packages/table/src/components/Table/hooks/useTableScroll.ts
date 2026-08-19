@@ -67,7 +67,6 @@ export function useTableScroll({
 
     if (!usePageStickyHeader) {
       wrapper?.style.removeProperty(TABLE_CSS_VARS.headerScrollLeft);
-      wrapper?.style.removeProperty(TABLE_CSS_VARS.viewportWidth);
 
       return;
     }
@@ -85,6 +84,27 @@ export function useTableScroll({
 
     return () => observer.disconnect();
   }, [usePageStickyHeader, isScrollReady, columnSizeVars, syncHeaderHorizontalScroll, view, isLoadingState]);
+
+  // Ширина вьюпорта нужна не только sticky-шапке: по ней центрируется пустое состояние.
+  useLayoutEffect(() => {
+    const wrapper = wrapperRef.current;
+    const viewport = internalScrollRef.current;
+
+    if (!wrapper || !viewport) {
+      return;
+    }
+
+    const syncViewportWidth = () => {
+      wrapper.style.setProperty(TABLE_CSS_VARS.viewportWidth, `${viewport.clientWidth}px`);
+    };
+
+    syncViewportWidth();
+
+    const observer = new ResizeObserver(syncViewportWidth);
+    observer.observe(viewport);
+
+    return () => observer.disconnect();
+  }, [isScrollReady, usePageStickyHeader, view, isCardsView, isLoadingState]);
 
   useLayoutEffect(() => {
     if (!usePageStickyHeader || !showToolbar) {

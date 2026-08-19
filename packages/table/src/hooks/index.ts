@@ -1,4 +1,5 @@
 export * from './useCellSizes';
+export * from './useColumnDragTransform';
 export * from './useColumnsSettingsToolbarSlot';
 export * from './useExportToolbarSlot';
 export * from './useHeaderGroups';

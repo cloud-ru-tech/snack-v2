@@ -15,7 +15,6 @@ const TABLE_MESSAGES = defineMessages({
     },
     noData: {
       title: 'No data',
-      content: 'Try refreshing the page',
     },
     noResults: {
       title: 'Nothing found',
@@ -40,7 +39,6 @@ const TABLE_MESSAGES = defineMessages({
     },
     noData: {
       title: 'Нет данных',
-      content: 'Обновите страницу',
     },
     noResults: {
       title: 'Ничего не найдено',

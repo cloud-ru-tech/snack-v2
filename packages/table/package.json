@@ -48,6 +48,7 @@
     "@ds/button": "workspace:^",
     "@ds/card": "workspace:^",
     "@ds/chips": "workspace:^",
+    "@ds/drag-and-drop": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/info-block": "workspace:^",
     "@ds/list": "workspace:^",

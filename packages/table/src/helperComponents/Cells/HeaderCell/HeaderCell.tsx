@@ -1,4 +1,5 @@
 import { useSortable } from '@dnd-kit/sortable';
+import { DRAG_MODE, DragGhost } from '@ds/drag-and-drop';
 import { TruncateString } from '@ds/truncate-string';
 import { flexRender, Header } from '@tanstack/react-table';
 import cn from 'classnames';
@@ -35,8 +36,8 @@ export function HeaderCell<TData>({
   const columnSizingInfo = header.getContext().table.getState().columnSizingInfo;
   const isSomeColumnResizing = columnSizingInfo.isResizingColumn;
   const columnDef = header.column.columnDef as ColumnDefinition<TData>;
-  const { attributes, listeners, setNodeRef, isDragging, transform } = useSortable({ id: header.column.id });
-  const style = useCellSizes(header, { isDraggable, isDragging, transform });
+  const { listeners, setNodeRef, isDragging, transform } = useSortable({ id: header.column.id });
+  const style = useCellSizes(header, { isDraggable, transform });
 
   const sortingHandler = (e: MouseEvent) => {
     if (isSomeColumnResizing) return;
@@ -51,8 +52,8 @@ export function HeaderCell<TData>({
       return {};
     }
 
-    return { ...attributes, ...listeners };
-  }, [attributes, header.column.id, isDraggable, listeners]);
+    return listeners;
+  }, [header.column.id, isDraggable, listeners]);
 
   return (
     <Cell
@@ -65,6 +66,7 @@ export function HeaderCell<TData>({
       data-test-id={TEST_IDS.headerCell}
       data-header-id={header.id}
       data-resizing={isResizing || undefined}
+      data-dragging={(isDraggable && isDragging) || undefined}
       data-pin-position={pinPosition || undefined}
       data-row-auto-height={rowAutoHeight || undefined}
       role='columnheader'
@@ -77,9 +79,10 @@ export function HeaderCell<TData>({
         cellRef.current = element;
       }}
     >
-      <div
+      <DragGhost
+        dragging={isDraggable && isDragging}
+        mode={DRAG_MODE.Dynamic}
         className={styles.tableHeaderCellDragWrapper}
-        data-dragging={(isDraggable && isDragging) || undefined}
         {...draggableProps}
       >
         <div className={styles.tableHeaderCellMain} data-align={columnDef.headerAlign || undefined}>
@@ -102,7 +105,7 @@ export function HeaderCell<TData>({
             </div>
           )}
         </div>
-      </div>
+      </DragGhost>
       {Boolean(isResizable) && <ResizeHandle header={header} cellRef={cellRef} />}
     </Cell>
   );

@@ -1,4 +1,8 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
+
+// Та же толщина, что у строковых разделителей таблицы.
+$drag-rail: base.simple-var(table.$table, 'anatomy', 'content', 'tableLine', 'background', 'interaction', 'width');
 
 .tableCell {
   @include base.composite-var(base.$sn-regular-body-m);
@@ -10,4 +14,11 @@
   width: 100%;
 
   background-color: transparent;
+
+  // `box-shadow`, а не `border`: ширина ячейки не должна меняться в момент захвата.
+  &[data-dragging] {
+    box-shadow:
+      inset #{$drag-rail} 0 0 0 base.$sn-theme-color-available-borderColor,
+      inset calc(-1 * #{$drag-rail}) 0 0 0 base.$sn-theme-color-available-borderColor;
+  }
 }
