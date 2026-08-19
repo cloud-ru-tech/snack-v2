@@ -2,7 +2,7 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { dataTestIdSelector } from '#playwright-tooling/utils';
 
 import { NESTED_DRAWER_BODY, NESTED_DRAWER_TITLE } from '../../stories/Drawer/constants';
-import { buildStoryOptions, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
+import { buildStoryOptions, DRAWER_STORIES, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
 
 const CHROME_VIEWPORT = { width: 1200, height: 871 };
 
@@ -91,6 +91,36 @@ test.describe('Drawer — interaction', () => {
       await scrollTarget.evaluate(el => el.scrollBy({ top: 120, behavior: 'auto' }));
       const scrollTop = await scrollTarget.evaluate(el => el.scrollTop);
       expect(scrollTop).not.toBe(0);
+    } finally {
+      await page.setViewportSize(originalViewport);
+    }
+  });
+
+  test('scrolls body with the wheel while a modal stays open underneath', async ({ gotoStory, page, getByTestId }) => {
+    const originalViewport = page.viewportSize() ?? CHROME_VIEWPORT;
+    await page.setViewportSize({ width: 900, height: 480 });
+
+    try {
+      await gotoStory(buildStoryOptions(undefined, DRAWER_STORIES.inModal));
+
+      const ids = TEST_IDS.drawer.inModal;
+      await getByTestId(ids.modal.triggerOpen).click();
+      await getByTestId(ids.drawer.triggerOpen).click();
+
+      const drawer = getByTestId(ids.drawer.root);
+      await expect(drawer).toBeVisible();
+
+      const body = drawer.locator(dataTestIdSelector(TEST_IDS.body));
+      await expect(body).toContainText('Lorem', { timeout: 15000 });
+
+      const viewport = body.locator('[data-overlayscrollbars-viewport]');
+      const scrollTarget = (await viewport.count()) > 0 ? viewport.first() : body;
+
+      // Именно колесо, не `scrollBy`: лок модалки гасит wheel вне своего поддерева.
+      await scrollTarget.hover();
+      await page.mouse.wheel(0, 400);
+
+      await expect.poll(() => scrollTarget.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
     } finally {
       await page.setViewportSize(originalViewport);
     }

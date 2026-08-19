@@ -46,6 +46,7 @@
     "@ds/utils": "workspace:^",
     "@rc-component/drawer": "^1.4.2",
     "classnames": "catalog:",
+    "react-remove-scroll": "catalog:",
     "tabbable": "catalog:"
   }
 }

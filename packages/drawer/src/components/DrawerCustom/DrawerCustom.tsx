@@ -6,6 +6,7 @@ import { extractSupportProps, useModalOpenState } from '@ds/utils';
 import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from '@rc-component/drawer';
 import cn from 'classnames';
 import { ComponentType, CSSProperties, useMemo } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { TEST_IDS, WIDTH_AS_VALUES } from '../../constants';
 import {
@@ -18,7 +19,7 @@ import {
 } from '../../helperComponents';
 import { interopDefault } from '../../utils/interopDefault';
 import { motionProps } from './constants';
-import { useDrawerFocusTrap } from './hooks';
+import { useDrawerFocusTrap, useOuterScrollLock } from './hooks';
 import { useDrawerResize } from './hooks/useDrawerResize';
 import styles from './styles.module.scss';
 import { DrawerCustomProps } from './types';
@@ -80,6 +81,7 @@ function DrawerFrame(props: DrawerCustomProps) {
   useModalOpenState(open, onClose, { closeOnPopstate, closeByCloseWatcher: !showBlackout });
 
   const focusTrapRef = useDrawerFocusTrap(Boolean(open));
+  const outerScrollLock = useOuterScrollLock(Boolean(open));
 
   // Без явного container портал идёт через PortalContextProvider (как у Modal): скоуп к локальному
   // элементу и отказ от body-level scroll lock, который rc-drawer ставит при рендере в document.body.
@@ -117,7 +119,13 @@ function DrawerFrame(props: DrawerCustomProps) {
       prefixCls='snack-rc-drawer'
       {...(disableMotions ? {} : motionProps)}
     >
-      <div ref={focusTrapRef} className={styles.focusScope}>
+      {/* Свой лок в стеке `react-remove-scroll`: иначе лок модалки-родителя гасит скролл дровера. */}
+      <RemoveScroll
+        enabled={showBlackout || outerScrollLock}
+        removeScrollBar={false}
+        ref={focusTrapRef}
+        className={styles.focusScope}
+      >
         {showButtonClosed && (
           <div className={styles.showButtonClosedWrapper}>
             <PopupCloseButton
@@ -136,7 +144,7 @@ function DrawerFrame(props: DrawerCustomProps) {
         {tooltip}
 
         {nestedDrawer}
-      </div>
+      </RemoveScroll>
     </RcDrawer>
   );
 }

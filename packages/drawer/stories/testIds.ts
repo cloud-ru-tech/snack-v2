@@ -21,6 +21,11 @@ export const TEST_IDS = {
       bottom: 'drawer-trigger-bottom',
     },
     nestedTrigger: 'drawer-nested-trigger',
+    /** Modal → Drawer: скролл тела дровера поверх открытой модалки. */
+    inModal: {
+      modal: { root: 'drawer-in-modal-modal', triggerOpen: 'drawer-in-modal-modal-trigger' },
+      drawer: { root: 'drawer-in-modal-drawer', triggerOpen: 'drawer-in-modal-drawer-trigger' },
+    },
     /** Корень родительского Drawer в NestedDrawer-сценарии. */
     parent: 'drawer-parent',
     parentState: 'drawer-parent-state',

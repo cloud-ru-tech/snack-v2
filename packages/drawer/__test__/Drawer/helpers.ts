@@ -20,6 +20,12 @@ export const DRAWER_STORIES = {
     group: 'drawer',
     story: 'placements-triggers',
   },
+  // stories/Drawer/examples/Drawer.InModal.stories.tsx
+  inModal: {
+    name: 'drawer-examples-inmodal',
+    group: 'drawer',
+    story: 'in-modal',
+  },
   // stories/Drawer/examples/Drawer.NestedDrawer.stories.tsx
   nestedDrawer: {
     name: 'drawer-examples-nesteddrawer',
