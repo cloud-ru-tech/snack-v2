@@ -254,13 +254,13 @@ Bulk-бар в тулбаре (чекбокс «выбрать все» и сч�
 - `enableDrag` — переупорядочивание колонок: перетаскивание заголовков в таблице и строк в меню настроек (через `onItemsReorder` у `@ds/list`). Оба канала пишут в один и тот же `columnOrder`.
 - `enableSettingsMenu` — меню видимости колонок в тулбаре.
 
-Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`):
+Поведение колонки в меню задаётся на самой колонке через `columnSettings.mode` (ось `COLUMN_SETTINGS_MODE`), режим по умолчанию — `defaultVisible`:
 
 - `locked` — колонка есть в меню, но строка disabled (всегда видима, свитч нельзя выключить).
-- `defaultVisible` — в меню, по умолчанию включена.
+- `defaultVisible` — в меню, по умолчанию включена. Так ведёт себя колонка без `columnSettings.mode`.
 - `defaultHidden` — в меню, по умолчанию выключена.
 
-`columnSettings.label` — название колонки в меню настроек. Колонки без `columnSettings` тоже показываются в меню (disabled, label из `header`); исключение — служебные `selection` / `rowActions`.
+`columnSettings.label` — название колонки в меню настроек; без него берётся `header`. Служебные колонки (`selection` / `rowActions` / `status`) видимостью не управляются: первые две в меню не показываются, `status` — disabled.
 
 `savedState` сохраняет состояние таблицы в localStorage и query-параметрах: `id` обязан быть уникальным в рамках приложения; `resize` / `columnSettings` включают сохранение ширин и видимости колонок; `serializer` / `parser` / `filterQueryKey` настраивают сериализацию фильтров.
 

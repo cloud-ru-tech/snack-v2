@@ -69,6 +69,7 @@ type FilterableProps = {
   columnSettings?: {
     /** Название колонки в настройках таблицы */
     label?: string;
+    /** Поведение колонки в меню настроек. По умолчанию `defaultVisible` */
     mode?: ColumnSettingsMode;
   };
 } & ({ id: string } | { accessorKey: string });
@@ -77,13 +78,10 @@ type FilterableNormalColumnDefinition<TData> = NormalColumnDefinition<TData> & F
 type FilterablePinnedColumnDefinition<TData> = PinnedColumnDefinition<TData> & FilterableProps;
 
 export type FilterableColumnDefinition<TData> =
-  | FilterableNormalColumnDefinition<TData>
-  | FilterablePinnedColumnDefinition<TData>;
+  FilterableNormalColumnDefinition<TData> | FilterablePinnedColumnDefinition<TData>;
 
 export type ColumnDefinition<TData> =
-  | NormalColumnDefinition<TData>
-  | PinnedColumnDefinition<TData>
-  | FilterableColumnDefinition<TData>;
+  NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>;
 
 export type ColumnOrder = string[];
 

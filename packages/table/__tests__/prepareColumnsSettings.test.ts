@@ -49,7 +49,7 @@ const pinnedGroups: PinnedGroupsState<Row> = {
     // mode: locked — в меню есть, но disabled + checked.
     { accessorKey: 'status', columnSettings: { label: 'Status', mode: COLUMN_SETTINGS_MODE.Locked } },
     { accessorKey: 'age', columnSettings: { label: 'Age' } },
-    // Без columnSettings — в меню есть, disabled + checked, label из header.
+    // Без columnSettings — режим по умолчанию `defaultVisible`, label из header.
     { accessorKey: 'createdAt', header: 'Created' },
   ],
   right: [{ id: 'actions', pinned: COLUMN_PIN_POSITION.Right, size: 48, columnSettings: { label: 'Actions' } }],
@@ -72,7 +72,7 @@ describe('prepareColumnsSettings', () => {
     expect(section.items?.map(group => asGroup(group).type)).toEqual(['group', 'group', 'group']);
   });
 
-  it('includes all user columns; excludes selection; marks inactive as disabled', () => {
+  it('includes all user columns; excludes selection; marks locked as disabled', () => {
     const [section] = prepareColumnsSettings({ pinnedGroups, columnOrder, areAllColumnsEnabled: false, t });
     const [leftGroup, unpinnedGroup, rightGroup] = (section.items ?? []).map(asGroup);
 
@@ -84,7 +84,7 @@ describe('prepareColumnsSettings', () => {
     const createdAt = unpinnedGroup.items.find(item => item.id === 'createdAt');
 
     expect(status).toMatchObject({ disabled: true, checked: true, content: { label: 'Status' } });
-    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { label: 'Created' } });
+    expect(createdAt).toMatchObject({ disabled: false, content: { label: 'Created' } });
   });
 
   it('sorts options inside a group according to columnOrder', () => {

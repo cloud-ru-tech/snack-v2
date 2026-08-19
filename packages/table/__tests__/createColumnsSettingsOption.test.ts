@@ -52,19 +52,20 @@ describe('createColumnsSettingsOption', () => {
     });
   });
 
-  it('disables hidden columns and columns without columnSettings', () => {
+  it('disables locked columns', () => {
     expect(
       createColumnsSettingsOption<Row>({
         accessorKey: 'amount',
         columnSettings: { label: 'Balance', mode: COLUMN_SETTINGS_MODE.Locked },
       }),
     ).toMatchObject({ id: 'amount', disabled: true, checked: true });
+  });
 
+  it('builds an enabled option for a column without columnSettings (default mode)', () => {
     expect(createColumnsSettingsOption<Row>({ accessorKey: 'name', header: 'Имя' })).toMatchObject({
       id: 'name',
       content: { label: 'Имя' },
-      disabled: true,
-      checked: true,
+      disabled: false,
     });
   });
 });

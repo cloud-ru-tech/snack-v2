@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { isFilterableColumn } from '../src/components/Table/hooks/useColumnSettings/utils/isFilterableColumn';
-import { COLUMN_PIN_POSITION, COLUMN_SETTINGS_MODE } from '../src/constants';
+import { COLUMN_PIN_POSITION, COLUMN_SETTINGS_MODE, DefaultColumns } from '../src/constants';
 import { ColumnDefinition } from '../src/types';
 
 type Row = { name: string };
@@ -22,8 +22,14 @@ describe('isFilterableColumn', () => {
     expect(isFilterableColumn(pinned)).toBe(true);
   });
 
-  it('returns false for a column without columnSettings', () => {
-    expect(isFilterableColumn<Row>({ accessorKey: 'name' })).toBe(false);
+  it('returns true for a column without columnSettings (default mode is defaultVisible)', () => {
+    expect(isFilterableColumn<Row>({ accessorKey: 'name' })).toBe(true);
+  });
+
+  it('returns false for service columns', () => {
+    expect(isFilterableColumn<Row>({ id: DefaultColumns.RowActions } as unknown as ColumnDefinition<Row>)).toBe(false);
+    expect(isFilterableColumn<Row>({ id: DefaultColumns.Selection } as unknown as ColumnDefinition<Row>)).toBe(false);
+    expect(isFilterableColumn<Row>({ id: DefaultColumns.Status } as unknown as ColumnDefinition<Row>)).toBe(false);
   });
 
   it('returns false for hidden mode', () => {
@@ -49,9 +55,7 @@ describe('isFilterableColumn', () => {
     expect(isFilterableColumn(colDef)).toBe(false);
   });
 
-  it('treats an explicitly undefined columnSettings key as present (`in`-check contract)', () => {
-    // Фиксация текущего контракта: guard проверяет наличие ключа через `in`,
-    // поэтому `columnSettings: undefined` проходит проверку.
+  it('returns true when columnSettings is explicitly undefined', () => {
     expect(isFilterableColumn<Row>({ accessorKey: 'name', columnSettings: undefined })).toBe(true);
   });
 });

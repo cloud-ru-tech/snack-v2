@@ -13,7 +13,7 @@ export const COLUMN_ALIGN = {
 export const COLUMN_SETTINGS_MODE = {
   /** В меню настроек `Switch` заблокирован, колонка всегда видима */
   Locked: 'locked',
-  /** В меню, по умолчанию включена */
+  /** В меню, по умолчанию включена. Режим по умолчанию для любой колонки */
   DefaultVisible: 'defaultVisible',
   /** В меню, по умолчанию выключена */
   DefaultHidden: 'defaultHidden',

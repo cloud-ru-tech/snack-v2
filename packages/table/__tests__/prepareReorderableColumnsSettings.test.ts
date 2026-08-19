@@ -42,13 +42,13 @@ describe('prepareReorderableColumnsSettings', () => {
     expect(result.pinBottom.map(item => item.id)).toEqual(['actions']);
   });
 
-  it('marks hidden and columns without columnSettings as disabled', () => {
+  it('marks locked columns as disabled and keeps columns without columnSettings active', () => {
     const result = prepareReorderableColumnsSettings({ pinnedGroups, columnOrder });
     const status = result.items.find(item => item.id === 'status');
     const createdAt = result.items.find(item => item.id === 'createdAt');
 
     expect(status).toMatchObject({ disabled: true, checked: true });
-    expect(createdAt).toMatchObject({ disabled: true, checked: true, content: { label: 'Created' } });
+    expect(createdAt).toMatchObject({ disabled: false, content: { label: 'Created' } });
   });
 
   it('sorts unpinned items according to columnOrder', () => {

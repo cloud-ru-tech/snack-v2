@@ -1,3 +1,4 @@
+export * from './getColumnSettingsMode';
 export * from './isFilterableColumn';
 export * from './isColumnEnabledInitially';
 export * from './isColumnVisibilityConfigurable';
