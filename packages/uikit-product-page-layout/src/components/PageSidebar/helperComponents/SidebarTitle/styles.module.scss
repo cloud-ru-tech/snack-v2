@@ -5,6 +5,8 @@
   flex-direction: row;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
+
+  min-width: 0;
 }
 
 .icon {
