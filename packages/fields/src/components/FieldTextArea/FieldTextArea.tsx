@@ -14,7 +14,9 @@ import {
   MouseEvent,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
+  useReducer,
   useRef,
   useState,
 } from 'react';
@@ -169,6 +171,12 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
   const copyButtonRef = useRef<HTMLButtonElement>(null);
   const [focusVisible, setFocusVisible] = useState(false);
   const [hover, setHover] = useState(false);
+
+  // autosize меряет высоту до того, как ThemeScope навесит классы темы — пересчитываем после mount.
+  const [, remeasure] = useReducer((tick: number) => tick + 1, 0);
+  useEffect(() => {
+    remeasure();
+  }, []);
 
   const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
