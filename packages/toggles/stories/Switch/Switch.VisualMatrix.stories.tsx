@@ -47,6 +47,13 @@ export const VisualMatrix: Story = {
               ],
             },
             {
+              variantLabel: 'With icon',
+              cells: [
+                <Switch key={'unchecked'} showIcon size={size} />,
+                <Switch key={'checked'} checked showIcon size={size} />,
+              ],
+            },
+            {
               variantLabel: 'Load',
               cells: [
                 <Switch key={'unchecked'} loading size={size} />,

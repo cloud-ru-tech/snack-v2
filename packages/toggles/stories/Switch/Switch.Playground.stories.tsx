@@ -46,6 +46,7 @@ export const Playground: Story = {
     defaultChecked: undefined,
     loading: false,
     disabled: false,
+    showIcon: false,
     /** Без ключей в args Storybook не применяет id/name из URL (автотесты / шаринг ссылки). */
     id: undefined,
     name: undefined,

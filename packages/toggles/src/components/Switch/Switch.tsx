@@ -9,7 +9,10 @@ import { ToggleProps } from '../../types';
 import { getIconSize, getVisualStateAttributes } from '../../utils';
 import styles from './styles.module.scss';
 
-export type SwitchProps = ToggleProps;
+export type SwitchProps = ToggleProps & {
+  /** Показывать ли иконку внутри ползунка. Спиннер в состоянии `loading` показывается независимо */
+  showIcon?: boolean;
+};
 
 const SPINNER_SIZE_MAP = {
   [SIZE.XS]: LOADER_SIZE.XS,
@@ -35,6 +38,7 @@ export function Switch({
   onFocus,
   disabled = false,
   loading = false,
+  showIcon = false,
   size = SIZE.S,
   className,
   'data-test-id': dataTestId,
@@ -63,7 +67,7 @@ export function Switch({
           <div className={styles.backgroundStateLayer} data-state='emptyDarkOnAccent' />
           <div className={styles.flag}>
             <div className={styles.surface} {...stateDataAttributes}>
-              <Icon size={size} loading={Boolean(loading)} />
+              {(showIcon || loading) && <Icon size={size} loading={Boolean(loading)} />}
             </div>
           </div>
         </div>

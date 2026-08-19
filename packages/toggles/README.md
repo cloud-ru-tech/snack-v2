@@ -213,6 +213,9 @@ export function RadioStates() {
 
 #### Size
 `xs` — для плотных настроек и таблиц, `s` — дефолт в формах и карточках.
+
+#### Icon (default `false`)
+По умолчанию ползунок — пустой круг. `showIcon` добавляет галочку в состоянии «включено». Спиннер состояния `loading` показывается независимо от `showIcon`.
 ### Примеры использования
 #### 1. Базовый Switch
 
@@ -276,6 +279,7 @@ export function SwitchStates() {
 | `onChange` | `((checked: boolean) => void)` | — | Колбек смены значения |
 | `onClick` | `MouseEventHandler<HTMLInputElement>` | — | Колбек клика |
 | `onFocus` | `FocusEventHandler<HTMLInputElement>` | — | Колбек приобретения фокуса |
+| `showIcon` | `boolean` | `false` | Показывать ли иконку внутри ползунка. Спиннер в состоянии `loading` показывается независимо |
 | `size` | `"s"` \| `"xs"` | `s` | Размер |
 | `tabIndex` | `number` | — | HTML-аттрибут tab-index |
 | `value` | `string` | — | HTML-аттрибут value |

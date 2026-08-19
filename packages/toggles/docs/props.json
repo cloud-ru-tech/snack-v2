@@ -436,6 +436,12 @@
         "required": false,
         "description": "Колбек приобретения фокуса"
       },
+      "showIcon": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывать ли иконку внутри ползунка. Спиннер в состоянии `loading` показывается независимо"
+      },
       "size": {
         "type": "enum",
         "required": false,
