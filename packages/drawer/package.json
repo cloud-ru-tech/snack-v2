@@ -1,6 +1,6 @@
 {
   "name": "@ds/drawer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет выезжающих панелей — компоненты Drawer и DrawerCustom с едиными токенами позиции и ширины.",
   "repository": {
     "type": "git",

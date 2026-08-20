@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2026-08-20)
+
+### Bug Fixes
+
+- **FF-8679:** wire list showSwitchIcon to Switch showIcon ([9a95243](https://github.com/cloud-ru-tech/snack-v2/commit/9a952431ea0752df7933d12cdaecc96b5fe76baf))
+
 # 1.1.0 (2026-08-18)
 
 ### Features

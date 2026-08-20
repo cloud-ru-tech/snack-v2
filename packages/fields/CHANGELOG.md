@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.3 (2026-08-20)
+
+### Bug Fixes
+
+- **FF-8679:** stabilize textarea initial height ([eec63a6](https://github.com/cloud-ru-tech/snack-v2/commit/eec63a6f1dc6135c9b882b7d1e24ae4799a8e684))
+
 ## 1.0.2 (2026-08-20)
 
 ### Bug Fixes

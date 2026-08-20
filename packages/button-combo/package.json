@@ -1,6 +1,6 @@
 {
   "name": "@ds/button-combo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Кнопка с основным действием и выпадающим списком дополнительных действий.",
   "repository": {
     "type": "git",
