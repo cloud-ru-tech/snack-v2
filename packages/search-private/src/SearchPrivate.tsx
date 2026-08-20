@@ -100,7 +100,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
     showClearButton,
     size,
     onClear,
-    disabled: disabled || loading,
+    disabled,
   });
 
   const { postfixButtons, inputTabIndex, onInputKeyDown } = useButtonNavigation({
@@ -156,7 +156,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
         tabIndex={tabIndex ?? inputTabIndex}
         ref={mergeRefs(ref, localRef)}
         placeholder={placeholder || t('placeholder')}
-        disabled={disabled || loading}
+        disabled={disabled}
         type='text'
         data-test-id={PRIVATE_SEARCH_TEST_IDS.input}
       />
