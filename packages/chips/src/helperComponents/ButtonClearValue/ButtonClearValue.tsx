@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossCircleSVG } from '@ds/icons/interface/system';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { forwardRef, KeyboardEventHandler, MouseEventHandler } from 'react';
 
 import { ButtonSize } from '../../types';
@@ -25,7 +25,7 @@ export const ButtonClearValue = forwardRef<HTMLButtonElement, ButtonClearValuePr
         className={styles.clearButton}
         view='function'
         appearance='neutral'
-        icon={<CrossCircleSVG />}
+        icon={<CrossSVG />}
         size={size}
         onClick={handleClick}
         data-test-id={dataTestId}

@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { FieldShell } from '@ds/fields';
-import { CrossCircleSVG } from '@ds/icons/interface/system';
+import { CrossSVG } from '@ds/icons/interface/system';
 import { Scroll } from '@ds/scroll';
 import { Switch } from '@ds/toggles';
 import { extractSupportProps, isBrowser, useDebounce, useValueControl } from '@ds/utils';
@@ -308,7 +308,7 @@ export function MarkdownEditor({
                 view='function'
                 appearance='neutral'
                 size='m'
-                icon={<CrossCircleSVG />}
+                icon={<CrossSVG />}
                 data-test-id={TEST_IDS.editorClear}
                 aria-label={t('clear')}
                 onClick={handleClearButtonClick}

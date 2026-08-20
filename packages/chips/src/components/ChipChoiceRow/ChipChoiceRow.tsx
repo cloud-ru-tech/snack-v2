@@ -1,6 +1,6 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
-import { CrossCircleSVG, PlusSVG } from '@ds/icons/interface/system';
+import { CrossSVG, PlusSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
@@ -259,7 +259,7 @@ export function ChipChoiceRow<TState extends FiltersState>({
             appearance='neutral'
             onClick={handleFiltersClear}
             label={t('clear')}
-            icon={<CrossCircleSVG />}
+            icon={<CrossSVG />}
             iconPosition='before'
             size={MAP_ROW_SIZE_TO_BUTTON_SIZE[size]}
             data-test-id={CHIP_CHOICE_ROW_TEST_IDS.clearButton}
