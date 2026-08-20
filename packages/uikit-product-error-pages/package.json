@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-error-pages",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Полноэкранная error-страница с типовыми сценариями ошибок, действиями и декоративной иллюстрацией.",
   "repository": {
     "type": "git",
