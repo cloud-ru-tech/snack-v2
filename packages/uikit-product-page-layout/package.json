@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-page-layout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Набор страничных раскладок продуктового кабинета — каталог, детальная страница сервиса, форма, дерево-навигация, сайдбар и общие слоты — с адаптацией desktop/mobile через AdaptiveProvider.",
   "repository": {
     "type": "git",
