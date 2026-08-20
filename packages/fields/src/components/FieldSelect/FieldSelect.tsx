@@ -37,7 +37,16 @@ import {
 import fieldStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';
 import { FieldSelectProps } from './types';
-import { extractAppearance, extractLabel, filterItems, findItem, isMultiple, TAG_SIZE_MAP } from './utils';
+import {
+  extractAppearance,
+  extractLabel,
+  filterItems,
+  findItem,
+  flatten,
+  isMultiple,
+  TAG_SIZE_MAP,
+  WithIdContent,
+} from './utils';
 
 export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(function FieldSelect(props, ref) {
   const {
@@ -150,6 +159,19 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const allItems = useMemo(() => [...(pinTop ?? []), ...items, ...(pinBottom ?? [])], [items, pinTop, pinBottom]);
 
+  // Выбранное значение переживает смену `items` (серверный поиск, ленивая подгрузка).
+  const seenItems = useRef(new Map<ItemId, WithIdContent>());
+
+  const resolveItem = useMemo(() => {
+    for (const item of flatten(allItems)) {
+      if (item.id !== undefined) {
+        seenItems.current.set(item.id, item);
+      }
+    }
+
+    return (id: ItemId) => findItem(allItems, id) ?? seenItems.current.get(id);
+  }, [allItems]);
+
   const selectedPairs = useMemo(() => {
     if (!multiple || multipleValue.length === 0) {
       return [];
@@ -157,7 +179,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
     // Неизвестное значение (ещё не загружены опции) показываем по его id, не теряем (паритет с легаси).
     return multipleValue.map(id => {
-      const item = findItem(allItems, id);
+      const item = resolveItem(id);
 
       return {
         id,
@@ -166,7 +188,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         appearance: extractAppearance(item),
       };
     });
-  }, [allItems, multiple, multipleValue]);
+  }, [multiple, multipleValue, resolveItem]);
 
   const formatPair = useCallback(
     (pair: { id: ItemId; label: string }) => (selectedOptionFormatter ? selectedOptionFormatter(pair) : pair.label),
@@ -179,7 +201,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         return '';
       }
 
-      const item = findItem(allItems, singleValue);
+      const item = resolveItem(singleValue);
       const label = item ? extractLabel(item) : String(singleValue);
 
       return formatPair({ id: singleValue, label });
@@ -194,7 +216,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     }
 
     return selectedPairs.map(formatPair).join(', ');
-  }, [allItems, multiple, singleValue, selectedPairs, chips, props, formatPair]);
+  }, [multiple, singleValue, selectedPairs, chips, props, formatPair, resolveItem]);
 
   // Строка поиска: controlled через `search.value`, иначе локальный state. Auto-sync к выбранному
   // значению делаем через СТАБИЛЬНЫЙ setLocalInput, а не через setInputValue в deps эффекта —
