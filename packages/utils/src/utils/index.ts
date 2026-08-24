@@ -7,4 +7,4 @@ export * from './copyToClipboard';
 export * from './keyboard';
 export * from './throttle';
 export * from './typeGuards';
-export * from './stopEventPropagation';
+export * from './preventEvent';
