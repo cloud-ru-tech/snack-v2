@@ -41,7 +41,7 @@
   "dependencies": {
     "@cloud-ru/ft-request-payload-transform": "catalog:",
     "@dnd-kit/core": "catalog:",
-    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/modifiers": "catalog:",
     "@dnd-kit/sortable": "catalog:",
     "@dnd-kit/utilities": "catalog:",
     "@ds/adaptive": "workspace:^",
