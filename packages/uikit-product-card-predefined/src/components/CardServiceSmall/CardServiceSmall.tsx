@@ -3,7 +3,7 @@ import { PromoTag, PromoTagProps } from '@ds/promo-tag';
 import { Favourite } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
-import { useUncontrolledProp, withInnerRefSupport } from '@ds/utils';
+import { useValueControl, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import {
@@ -18,7 +18,7 @@ import {
 } from 'react';
 
 import { TEST_IDS, VISIBILITY_STRATEGY } from '../../constants';
-import { FavoriteProps } from '../../types';
+import { FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
 
 type BaseCardServiceSmallProps = {
@@ -44,10 +44,13 @@ type BaseCardServiceSmallProps = {
    * Промо-тег (бейдж). Тип — `PromoTagProps` из `@ds/promo-tag`.
    */
   promoBadge?: PromoTagProps;
+  /** Настройки кнопки «Избранное» */
+  favorite?: FavoriteProps;
   /**
-   * Настройки кнопки «Избранное». `visibilityStrategy` обязателен.
+   * Формат отображения кнопки «Избранное»: всегда или при наведении и фокусе
+   * @default 'hover'
    */
-  favorite?: FavoriteProps & { visibilityStrategy: 'always' | 'hover' };
+  actionsVisibility?: VisibilityStrategy;
   /** CSS-класс корневого элемента */
   className?: string;
   /** Support prop для тестов */
@@ -76,13 +79,18 @@ export function CardServiceSmall<T extends ElementType = 'div'>({
   outline,
   promoBadge,
   favorite,
+  actionsVisibility,
   className,
   as,
   innerRef,
   'data-test-id': dataTestId,
   ...rest
 }: CardServiceSmallProps<T>): ReactElement | null {
-  const [isFavourite, setIsFavourite] = useUncontrolledProp(favorite?.checked, false, favorite?.onChange);
+  const [isFavourite, setIsFavourite] = useValueControl<boolean>({
+    value: favorite?.checked,
+    defaultValue: false,
+    onChange: favorite?.onChange,
+  });
   const cardRef = useRef<HTMLElement>(null);
   const favouriteRef = useRef<HTMLInputElement>(null);
 
@@ -149,7 +157,7 @@ export function CardServiceSmall<T extends ElementType = 'div'>({
           {favorite?.enabled && (
             <div
               className={styles.favouriteWrapper}
-              data-visibility-strategy={favorite.visibilityStrategy ?? VISIBILITY_STRATEGY.hover}
+              data-actions-visibility={actionsVisibility ?? VISIBILITY_STRATEGY.hover}
             >
               <Favourite
                 size='s'

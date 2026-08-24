@@ -9,9 +9,9 @@ export function WithFavorite() {
     <CardServiceSmall
       title='Название сервиса'
       emblem={{ icon: PlaceholderSVG }}
+      actionsVisibility={VISIBILITY_STRATEGY.always}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.always,
         checked: isFavorite,
         onChange: setIsFavorite,
       }}

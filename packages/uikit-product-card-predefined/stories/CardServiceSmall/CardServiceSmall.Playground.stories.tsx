@@ -44,9 +44,9 @@ export const Playground: Story = {
     outline: false,
     disabled: false,
     onClick: fn(),
+    actionsVisibility: VISIBILITY_STRATEGY.hover,
     favorite: {
       enabled: true,
-      visibilityStrategy: VISIBILITY_STRATEGY.hover,
       onChange: fn(),
     },
   },

@@ -59,7 +59,7 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
-        sectionTitle='CardServiceSmall — favourite'
+        sectionTitle='CardServiceSmall — favorite'
         firstColumnHeader='state'
         columnHeaders={['enabled=false', 'always', 'hover']}
         rows={[
@@ -71,14 +71,16 @@ export const VisualMatrix: Story = {
                 'fav-always',
                 <CardServiceSmall
                   {...baseProps}
-                  favorite={{ enabled: true, visibilityStrategy: VISIBILITY_STRATEGY.always, onChange: fn() }}
+                  actionsVisibility={VISIBILITY_STRATEGY.always}
+                  favorite={{ enabled: true, onChange: fn() }}
                 />,
               ),
               matrixCell(
                 'fav-hover',
                 <CardServiceSmall
                   {...baseProps}
-                  favorite={{ enabled: true, visibilityStrategy: VISIBILITY_STRATEGY.hover, onChange: fn() }}
+                  actionsVisibility={VISIBILITY_STRATEGY.hover}
+                  favorite={{ enabled: true, onChange: fn() }}
                 />,
               ),
             ],
@@ -91,24 +93,16 @@ export const VisualMatrix: Story = {
                 'fav-always-checked',
                 <CardServiceSmall
                   {...baseProps}
-                  favorite={{
-                    enabled: true,
-                    visibilityStrategy: VISIBILITY_STRATEGY.always,
-                    checked: true,
-                    onChange: fn(),
-                  }}
+                  actionsVisibility={VISIBILITY_STRATEGY.always}
+                  favorite={{ enabled: true, checked: true, onChange: fn() }}
                 />,
               ),
               matrixCell(
                 'fav-hover-checked',
                 <CardServiceSmall
                   {...baseProps}
-                  favorite={{
-                    enabled: true,
-                    visibilityStrategy: VISIBILITY_STRATEGY.hover,
-                    checked: true,
-                    onChange: fn(),
-                  }}
+                  actionsVisibility={VISIBILITY_STRATEGY.hover}
+                  favorite={{ enabled: true, checked: true, onChange: fn() }}
                 />,
               ),
             ],

@@ -6,10 +6,8 @@ export function WithFavoriteHover() {
     <CardServiceSmall
       title='Название сервиса'
       emblem={{ icon: PlaceholderSVG }}
-      favorite={{
-        enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.hover,
-      }}
+      actionsVisibility={VISIBILITY_STRATEGY.hover}
+      favorite={{ enabled: true }}
     />
   );
 }

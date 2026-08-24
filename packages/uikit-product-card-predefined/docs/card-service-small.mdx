@@ -2,7 +2,7 @@
 title: CardServiceSmall
 package: '@ds/uikit-product-card-predefined'
 description: Компактная карточка сервиса — эмблема, заголовок, promo badge и кнопка «Избранное».
-order: 4
+order: 5
 ---
 
 import { Basic } from '../demos/examples/card-service-small/Basic'
@@ -86,7 +86,7 @@ import { CardServiceSmall } from '@ds/uikit-product-card-predefined'
 
 <Example
   title='Кнопка «Избранное» (always)'
-  description='favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.'
+  description='actionsVisibility="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.'
   code={WithFavoriteSrc}
 >
   <WithFavorite client:visible />
@@ -94,7 +94,7 @@ import { CardServiceSmall } from '@ds/uikit-product-card-predefined'
 
 <Example
   title='Кнопка «Избранное» (hover)'
-  description='favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.'
+  description='actionsVisibility="hover" — кнопка появляется при наведении и фокусе на карточке.'
   code={WithFavoriteHoverSrc}
 >
   <WithFavoriteHover client:visible />
@@ -119,6 +119,13 @@ import { CardServiceSmall } from '@ds/uikit-product-card-predefined'
 >
   <PolymorphicLink client:visible />
 </Example>
+
+## Видимость действий
+
+Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
+действиями сразу — тултипом, избранным и кнопкой раскрытия.
+пакета. `favorite.visibilityStrategy` устарел и оставлен для совместимости: если `actionsVisibility`
+не задан, значение берётся из него.
 
 ## Props
 

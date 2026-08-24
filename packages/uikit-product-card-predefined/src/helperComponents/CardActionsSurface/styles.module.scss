@@ -1,0 +1,50 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  // Позиционирование hover-поверхности живёт только здесь; карточка-потребитель задаёт отступы
+  // от своего угла через `--card-actions-surface-inset-*`.
+  &[data-actions-visibility='hover'] {
+    position: absolute;
+    top: var(--card-actions-surface-inset-top, 0);
+    right: var(--card-actions-surface-inset-right, 0);
+    transform: translateX(10%);
+
+    border-radius: base.$sn-density-radius-3xs;
+
+    visibility: hidden;
+    background-color: base.$sn-theme-color-neutral-background2Level;
+    box-shadow: base.$sn-boxShadow-elevation-level2;
+
+    transition:
+      visibility 100ms ease-in-out,
+      transform 150ms ease-in-out;
+
+    &:has(*:focus-visible) {
+      transform: translateX(0);
+      visibility: visible;
+    }
+  }
+}
+
+.favorite {
+  flex-shrink: 0;
+
+  &[data-checked='true'] {
+    svg {
+      color: base.$sn-theme-color-yellow-accent;
+    }
+  }
+}
+
+.expandButton {
+  flex-shrink: 0;
+}
+
+.tooltipTrigger {
+  display: flex;
+  flex-shrink: 0;
+}

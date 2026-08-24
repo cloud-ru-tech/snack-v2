@@ -47,6 +47,263 @@
     },
     "relatedTypes": {}
   },
+  "CardActionsSurface": {
+    "displayName": "CardActionsSurface",
+    "propsTypeName": "CardActionsSurfaceProps",
+    "props": {
+      "actionsSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер кнопок действий, для мобильного вида предполагается использовать `s`",
+        "typeRefs": [
+          "CardSize"
+        ]
+      },
+      "actionsVisibility": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "always",
+          "hover"
+        ],
+        "defaultValue": "hover",
+        "description": "Формат отображения действий: всегда или при наведении и фокусе",
+        "typeRefs": [
+          "VisibilityStrategy"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "expandable": {
+        "type": "{ value: boolean; onClick(): void; buttonRef?: RefObject<HTMLButtonElement>; }",
+        "required": false,
+        "description": "Кнопка раскрытия"
+      },
+      "favorite": {
+        "type": "(FavoriteProps & { buttonRef?: RefObject<HTMLButtonElement>; 'data-test-id'?: string; }) | undefined",
+        "required": false,
+        "description": "Кнопка «Избранное»",
+        "typeRefs": [
+          "FavoriteProps"
+        ]
+      },
+      "tooltip": {
+        "type": "(Omit<TooltipProps, \"children\"> & { buttonRef?: RefObject<HTMLButtonElement>; 'data-test-id'?: string; }) | undefined",
+        "required": false,
+        "description": "Кнопка info с тултипом",
+        "typeRefs": [
+          "TooltipProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "CardSize": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "own": false
+      },
+      "FavoriteProps": {
+        "kind": "interface",
+        "props": {
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние избранного (controlled)"
+          },
+          "enabled": {
+            "type": "boolean",
+            "required": true,
+            "description": "Включить отображение кнопки избранного"
+          },
+          "onChange": {
+            "type": "((value: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбэк изменения состояния избранного"
+          }
+        },
+        "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "Trigger": {
+        "kind": "union",
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
+        ],
+        "own": false
+      },
+      "VisibilityStrategy": {
+        "kind": "union",
+        "values": [
+          "always",
+          "hover"
+        ],
+        "own": true
+      }
+    }
+  },
   "CardBanner": {
     "displayName": "CardBanner",
     "propsTypeName": "CardBannerProps",
@@ -117,6 +374,48 @@
       }
     }
   },
+  "CardPromoTag": {
+    "displayName": "CardPromoTag",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс промо-тега"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "innerRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ref на trigger тултипа — по нему карточка водит фокус стрелками"
+      },
+      "promoTag": {
+        "type": "CardPromoTagProps",
+        "required": true,
+        "description": "Настройки promo tag, пришедшие в карточку"
+      },
+      "tooltipTrigger": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible",
+          "undefined"
+        ],
+        "description": "Триггер тултипа: карточка выбирает его по своему `actionsVisibility`"
+      }
+    },
+    "relatedTypes": {}
+  },
   "CardService": {
     "displayName": "CardService",
     "propsTypeName": "CardServiceProps",
@@ -182,10 +481,190 @@
       }
     }
   },
+  "CardServiceInfo": {
+    "displayName": "CardServiceInfo",
+    "propsTypeName": "CardServiceInfoProps",
+    "props": {
+      "actionsSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер кнопок действий, для мобильного вида предполагается использовать `s`",
+        "typeRefs": [
+          "CardSize"
+        ]
+      },
+      "actionsVisibility": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "always",
+          "hover"
+        ],
+        "defaultValue": "'hover'",
+        "description": "Формат отображения дополнительных действий: всегда или при наведении и фокусе",
+        "typeRefs": [
+          "VisibilityStrategy"
+        ]
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д.",
+        "typeRefs": [
+          "T"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Описание сервиса"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "expandable": {
+        "type": "{ value: boolean; onClick(): void; }",
+        "required": false,
+        "description": "Настройки кнопки раскрытия"
+      },
+      "favorite": {
+        "type": "FavoriteProps",
+        "required": false,
+        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → Favorite → expand; ArrowLeft — в обратном порядке.",
+        "typeRefs": [
+          "FavoriteProps"
+        ]
+      },
+      "icon": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": false,
+        "description": "Иконка сервиса"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef",
+          "T"
+        ]
+      },
+      "promoTag": {
+        "type": "CardPromoTagProps",
+        "required": false,
+        "description": "Настройки promo tag. При отсутствии не отображается",
+        "typeRefs": [
+          "CardPromoTagProps",
+          "PromoTagPredefinedBaseProps"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок карточки"
+      }
+    },
+    "relatedTypes": {
+      "CardPromoTagProps": {
+        "kind": "alias",
+        "type": "PromoTagPredefinedProps & { as?: never; innerRef?: never; }",
+        "own": true
+      },
+      "CardSize": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "FavoriteProps": {
+        "kind": "interface",
+        "props": {
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние избранного (controlled)"
+          },
+          "enabled": {
+            "type": "boolean",
+            "required": true,
+            "description": "Включить отображение кнопки избранного"
+          },
+          "onChange": {
+            "type": "((value: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбэк изменения состояния избранного"
+          }
+        },
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PromoTagPredefinedBaseProps": {
+        "kind": "alias",
+        "type": "{ [x: string]: any; [x: number]: any; [x: symbol]: any; }",
+        "own": false
+      },
+      "VisibilityStrategy": {
+        "kind": "union",
+        "values": [
+          "always",
+          "hover"
+        ],
+        "own": true
+      }
+    }
+  },
   "CardServiceLight": {
     "displayName": "CardServiceLight",
     "propsTypeName": "CardServiceLightProps",
     "props": {
+      "actionsSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер кнопок действий, для мобильного вида предполагается использовать `s`",
+        "typeRefs": [
+          "CardSize"
+        ]
+      },
+      "actionsVisibility": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "always",
+          "hover"
+        ],
+        "defaultValue": "'hover'",
+        "description": "Формат отображения дополнительных действий: всегда или при наведении и фокусе",
+        "typeRefs": [
+          "VisibilityStrategy"
+        ]
+      },
       "as": {
         "type": "ElementType",
         "required": false,
@@ -207,12 +686,18 @@
       "disabled": {
         "type": "boolean",
         "required": false,
+        "defaultValue": "false",
         "description": "Неактивное состояние"
+      },
+      "expandable": {
+        "type": "{ value: boolean; onClick(): void; }",
+        "required": false,
+        "description": "Настройки кнопки раскрытия"
       },
       "favorite": {
         "type": "FavoriteProps",
         "required": false,
-        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → фокус на Favourite; ArrowLeft на Favourite → фокус на карточку.",
+        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке.",
         "typeRefs": [
           "FavoriteProps"
         ]
@@ -231,24 +716,27 @@
           "T"
         ]
       },
-      "onKeyDown": {
-        "type": "KeyboardEventHandler<HTMLElement>",
-        "required": false,
-        "description": "Колбэк нажатия клавиши клавиатуры на карточке"
-      },
       "promoTag": {
-        "type": "PromoTagProps",
+        "type": "CardPromoTagProps",
         "required": false,
         "description": "Настройки promo tag. При отсутствии не отображается",
         "typeRefs": [
-          "PromoTagOwnProps",
-          "PromoTagProps"
+          "CardPromoTagProps",
+          "PromoTagPredefinedBaseProps"
         ]
       },
       "title": {
         "type": "string",
         "required": true,
         "description": "Заголовок карточки"
+      },
+      "tooltip": {
+        "type": "Omit<TooltipProps, \"size\" | \"trigger\">",
+        "required": false,
+        "description": "Подсказка с иконкой «?» рядом с заголовком",
+        "typeRefs": [
+          "TooltipProps"
+        ]
       },
       "truncate": {
         "type": "{ title?: number; }",
@@ -257,19 +745,22 @@
       }
     },
     "relatedTypes": {
-      "Appearance": {
+      "CardPromoTagProps": {
+        "kind": "alias",
+        "type": "PromoTagPredefinedProps & { as?: never; innerRef?: never; }",
+        "own": true
+      },
+      "CardSize": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
+          "m",
+          "s"
         ],
+        "own": true
+      },
+      "ChildrenFunction": {
+        "kind": "alias",
+        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
       "FavoriteProps": {
@@ -289,211 +780,172 @@
             "type": "((value: boolean) => void) | undefined",
             "required": false,
             "description": "Колбэк изменения состояния избранного"
-          },
-          "visibilityStrategy": {
-            "type": "VisibilityStrategy | undefined",
-            "required": false,
-            "values": [
-              "always",
-              "hover"
-            ],
-            "description": "Формат отображения: всегда или при наведении и фокусе",
-            "typeRefs": [
-              "VisibilityStrategy"
-            ]
           }
         },
         "own": true
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
       },
       "PolymorphicRef": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
         "own": false
       },
-      "PromoTagOwnProps": {
-        "kind": "interface",
-        "props": {
-          "afterContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент после текста"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент перед текстом"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLElement> | undefined",
-            "required": false,
-            "description": "Колбэк для обработки клика на тег"
-          },
-          "roleAppearance": {
-            "type": "RoleAppearance | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
-            "typeRefs": [
-              "RoleAppearance"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
+      "PromoTagPredefinedBaseProps": {
+        "kind": "alias",
+        "type": "{ [x: string]: any; [x: number]: any; [x: symbol]: any; }",
         "own": false
       },
-      "PromoTagProps": {
+      "TooltipProps": {
         "kind": "interface",
         "props": {
-          "afterContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
             "required": false,
-            "description": "Контент после текста"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
+            "description": "Триггер поповера (подробнее читайте ниже)",
             "typeRefs": [
-              "Appearance"
+              "ChildrenFunction"
             ]
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент перед текстом"
           },
           "className": {
             "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
             "required": false,
-            "description": "CSS-класс"
+            "description": "Закрывать ли поповер при переходе по истории браузера"
           },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
           },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
             "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "Placement"
             ]
           },
-          "label": {
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
             "type": "string | undefined",
             "required": false,
-            "description": "Текст компонента"
+            "description": "CSS-класс триггера"
           },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLElement> | undefined",
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
             "required": false,
-            "description": "Колбэк для обработки клика на тег"
-          },
-          "roleAppearance": {
-            "type": "RoleAppearance | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
-            "typeRefs": [
-              "RoleAppearance"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
+            "description": "Ref ссылка на триггер"
           }
         },
         "own": false
       },
-      "RoleAppearance": {
+      "Trigger": {
         "kind": "union",
         "values": [
-          "accent",
-          "decor"
-        ],
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
+          "click",
+          "clickAndFocusVisible",
+          "focus",
+          "focusVisible",
+          "hover",
+          "hoverAndFocus",
+          "hoverAndFocusVisible"
         ],
         "own": false
       },
@@ -511,6 +963,19 @@
     "displayName": "CardServiceSmall",
     "propsTypeName": "CardServiceSmallProps",
     "props": {
+      "actionsVisibility": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "always",
+          "hover"
+        ],
+        "defaultValue": "'hover'",
+        "description": "Формат отображения кнопки «Избранное»: всегда или при наведении и фокусе",
+        "typeRefs": [
+          "VisibilityStrategy"
+        ]
+      },
       "as": {
         "type": "ElementType",
         "required": false,
@@ -545,9 +1010,9 @@
         "description": "Эмблема: объект с иконкой-компонентом.\nПринимает `{ icon: JSXElementConstructor }` или произвольный ReactElement."
       },
       "favorite": {
-        "type": "(FavoriteProps & { visibilityStrategy: \"hover\" | \"always\"; })",
+        "type": "FavoriteProps",
         "required": false,
-        "description": "Настройки кнопки «Избранное». `visibilityStrategy` обязателен.",
+        "description": "Настройки кнопки «Избранное»",
         "typeRefs": [
           "FavoriteProps"
         ]
@@ -619,18 +1084,6 @@
             "type": "((value: boolean) => void) | undefined",
             "required": false,
             "description": "Колбэк изменения состояния избранного"
-          },
-          "visibilityStrategy": {
-            "type": "VisibilityStrategy | undefined",
-            "required": false,
-            "values": [
-              "always",
-              "hover"
-            ],
-            "description": "Формат отображения: всегда или при наведении и фокусе",
-            "typeRefs": [
-              "VisibilityStrategy"
-            ]
           }
         },
         "own": true

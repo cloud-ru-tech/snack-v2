@@ -6,9 +6,9 @@ export function WithFavoriteHover() {
     <CardServiceLight
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.hover}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.hover,
       }}
     />
   );

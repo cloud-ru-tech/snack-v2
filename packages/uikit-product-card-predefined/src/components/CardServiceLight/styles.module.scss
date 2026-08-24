@@ -1,57 +1,60 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-.favouriteWrapper {
+.root {
+  cursor: pointer;
+
   position: relative;
 
   display: flex;
-  flex-shrink: 0;
+  flex: 1 0 0;
+  align-items: center;
 
-  border-radius: base.$sn-density-radius-2xs;
+  width: 100%;
+  min-width: 228px;
+  padding: 0;
+  border: none;
+  border-radius: base.$sn-density-radius-3xs;
 
-  background-color: base.$sn-theme-color-neutral-background1Level;
-  box-shadow: base.$sn-boxShadow-elevation-level1;
-
-  // Стратегия `hover`: кнопка вынута из потока (position: absolute) и скрыта.
-  // Так текст заголовка занимает всю ширину и не сжимается под зарезервированное
-  // место кнопки. При наведении/фокусе кнопка проявляется поверх контента, а в
-  // checked-состоянии возвращается в поток (см. `.root:hover`), раздвигая контент.
-  &[data-visibility-strategy='hover'] {
-    position: absolute;
-    top: 50%;
-    right: base.$sn-primitive-dimension-4;
-    transform: translateY(-50%);
-
-    visibility: hidden;
-  }
-
-  &[data-visibility-strategy='always'] {
-    visibility: visible;
-  }
-}
-
-.root {
-  cursor: pointer;
-  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
   text-decoration: none;
 
-  &:hover,
-  &:focus-within {
-    .favouriteWrapper[data-visibility-strategy='hover'] {
-      visibility: visible;
+  background-color: transparent;
 
-      &[data-checked] {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-      }
+  &[data-disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-primary-accent solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: 0;
+  }
+
+  &:not([data-disabled]):focus-visible {
+    background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
+  }
+
+  &:not([data-disabled]):hover,
+  &:not([data-disabled]):focus-visible,
+  &:not([data-disabled])[data-tooltip-open],
+  &:not([data-disabled]):has(*:focus-visible) {
+    .cardActions {
+      position: relative;
+      transform: translateX(0);
+      visibility: visible;
+    }
+  }
+
+  @media (hover: hover) {
+    &:not([data-disabled]):hover {
+      background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
     }
   }
 }
 
 .container {
-  position: relative;
-
   display: flex;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
@@ -60,6 +63,7 @@
   width: 100%;
   min-width: 0;
   padding: base.$sn-primitive-dimension-4;
+  border-radius: inherit;
 }
 
 .icon {

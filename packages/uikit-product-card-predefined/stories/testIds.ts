@@ -6,5 +6,6 @@ export const TEST_IDS = {
   cardService: SRC_TEST_IDS.cardService,
   cardServiceSmall: SRC_TEST_IDS.cardServiceSmall,
   cardServiceLight: SRC_TEST_IDS.cardServiceLight,
+  cardServiceInfo: SRC_TEST_IDS.cardServiceInfo,
   cardSuggest: SRC_TEST_IDS.cardSuggest,
 } as const;

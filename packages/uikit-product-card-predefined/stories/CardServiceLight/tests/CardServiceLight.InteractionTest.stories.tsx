@@ -12,9 +12,9 @@ const meta: Meta<typeof CardServiceLight> = {
   args: {
     title: 'Мой сервис',
     icon: <PlaceholderSVG size={24} />,
+    actionsVisibility: VISIBILITY_STRATEGY.always,
     favorite: {
       enabled: true,
-      visibilityStrategy: VISIBILITY_STRATEGY.always,
     },
     'data-test-id': 'card-service-light',
   },
@@ -39,17 +39,17 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const card = canvas.getByTestId('card-service-light');
-    // Фокус уходит на нативный `<input>` внутри Favourite (favouriteRef → inputRef),
+    // Фокус уходит на нативный `<input>` внутри Favorite (favoriteRef → inputRef),
     // а не на его корневой `<span>` — адресуем именно input.
-    const favourite = canvas.getByTestId('card-service-light__favorite-native-input');
+    const favorite = canvas.getByTestId('card-service-light__favorite');
 
-    await step('keyboard: ArrowRight на карточке → фокус переходит на Favourite', async () => {
+    await step('keyboard: ArrowRight на карточке → фокус переходит на Favorite', async () => {
       card.focus();
       await userEvent.keyboard('{ArrowRight}');
-      await expect(favourite).toHaveFocus();
+      await expect(favorite).toHaveFocus();
     });
 
-    await step('keyboard: ArrowLeft на Favourite → фокус возвращается на карточку', async () => {
+    await step('keyboard: ArrowLeft на Favorite → фокус возвращается на карточку', async () => {
       await userEvent.keyboard('{ArrowLeft}');
       await expect(card).toHaveFocus();
     });

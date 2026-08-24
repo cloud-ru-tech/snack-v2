@@ -1,6 +1,6 @@
 # CardPredefined
 
-`@ds/uikit-product-card-predefined` — Пресеты карточек Product UI Kit — CardBanner, CardService, CardServiceLight, CardServiceSmall, CardSuggest, CardCustom.
+`@ds/uikit-product-card-predefined` — Пресеты карточек Product UI Kit — CardBanner, CardService, CardServiceLight, CardServiceInfo, CardServiceSmall, CardSuggest, CardCustom.
 
 Набор готовых карточек Product UI Kit на базе `@ds/card`:
 
@@ -13,7 +13,7 @@ pnpm add @ds/uikit-product-card-predefined
 ```
 
 ```ts
-import { CardBanner, CardService, CardServiceLight, CardSuggest } from '@ds/uikit-product-card-predefined'
+import { CardBanner, CardService, CardServiceLight, CardServiceInfo, CardSuggest } from '@ds/uikit-product-card-predefined';
 ```
 
 ## CardBanner
@@ -216,22 +216,10 @@ export function Basic() {
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { CardServiceLight } from '@ds/uikit-product-card-predefined';
 
 export function WithPromoTag() {
-  return (
-    <CardServiceLight
-      title='Мой сервис'
-      icon={<PlaceholderSVG size={24} />}
-      promoTag={{
-        label: 'New',
-        appearance: APPEARANCE.Primary,
-        role: ROLE_APPEARANCE.Accent,
-        size: SIZE.Xs,
-      }}
-    />
-  );
+  return <CardServiceLight title='Мой сервис' icon={<PlaceholderSVG size={24} />} promoTag={{ variant: 'preview' }} />;
 }
 ```
 
@@ -257,7 +245,7 @@ export function WithTruncate() {
 
 #### Кнопка «Избранное» (always)
 
-favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.
+actionsVisibility="always" — действия видны постоянно; favorite.checked и onChange задают controlled-режим избранного.
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -271,9 +259,9 @@ export function WithFavorite() {
     <CardServiceLight
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.always}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.always,
         checked: isFavorite,
         onChange: setIsFavorite,
       }}
@@ -284,7 +272,7 @@ export function WithFavorite() {
 
 #### Кнопка «Избранное» (hover)
 
-favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.
+actionsVisibility="hover" — действия появляются при наведении и фокусе на карточке.
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -295,9 +283,9 @@ export function WithFavoriteHover() {
     <CardServiceLight
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.hover}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.hover,
       }}
     />
   );
@@ -319,7 +307,7 @@ export function Disabled() {
 
 #### Обработка клика
 
-onClick передаётся в корневой Card — карточка интерактивна по умолчанию.
+onClick вызывается при клике по карточке.
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -369,19 +357,26 @@ export function PolymorphicLink() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `actionsSize` | `"m"` \| `"s"` | — | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
+| `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
 | `as` | `T` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — | Support prop для тестов |
-| `disabled` | `boolean` | — | Неактивное состояние |
-| `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». <br/> Keyboard: ArrowRight на карточке → фокус на Favourite; ArrowLeft на Favourite → фокус на карточку. |
+| `disabled` | `boolean` | `false` | Неактивное состояние |
+| `expandable` | `{ value: boolean; onClick(): void; }` | — | Настройки кнопки раскрытия |
+| `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». <br/> Keyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке. |
 | `icon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка сервиса |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
-| `onKeyDown` | `KeyboardEventHandler<HTMLElement>` | — | Колбэк нажатия клавиши клавиатуры на карточке |
-| `promoTag` | `PromoTagOwnProps` \| `PromoTagProps` | — | Настройки promo tag. При отсутствии не отображается |
+| `promoTag` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Настройки promo tag. При отсутствии не отображается |
 | `title` | `string` | — | Заголовок карточки |
+| `tooltip` | `TooltipProps` | — | Подсказка с иконкой «?» рядом с заголовком |
 | `truncate` | `{ title?: number; }` | — | Настройки обрезки текста заголовка |
 
 ##### Related types
+
+- `CardPromoTagProps` = `PromoTagPredefinedProps & { as?: never; innerRef?: never; }`
+
+- `CardSize` = `"m"` \| `"s"`
 
 **FavoriteProps**
 
@@ -390,7 +385,224 @@ export function PolymorphicLink() {
 | `checked` | `boolean \| undefined` | — | Состояние избранного (controlled) |
 | `enabled` | `boolean` | — | Включить отображение кнопки избранного |
 | `onChange` | `((value: boolean) => void) \| undefined` | — | Колбэк изменения состояния избранного |
-| `visibilityStrategy` | `"always"` \| `"hover"` | — | Формат отображения: всегда или при наведении и фокусе |
+
+- `VisibilityStrategy` = `"always"` \| `"hover"`
+
+### Видимость действий
+
+Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
+действиями сразу — тултипом, избранным и кнопкой раскрытия.
+
+## CardServiceInfo
+
+Карточка сервиса с описанием — иконка, заголовок, описание, promo tag и кнопка «Избранное».
+
+Карточка сервиса с описанием: иконка + заголовок + описание + promo tag + кнопка «Избранное». Подробный вариант рядом с `CardServiceLight`.
+
+### Когда использовать
+
+- Подробный режим списка сервисов (заголовок + описание).
+- Когда `CardServiceLight` слишком компактен и нужно показать `description`.
+
+### Примеры использования
+
+#### Базовый пример
+
+Карточка с иконкой, заголовком и описанием.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined';
+
+export function Basic() {
+  return (
+    <CardServiceInfo
+      title='Мой сервис'
+      description='Краткое описание сервиса для подробного режима карточки.'
+      icon={<PlaceholderSVG size={24} />}
+    />
+  );
+}
+```
+
+#### Promo tag
+
+Через promoTag рядом с заголовком отображается промо-бейдж.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined';
+
+export function WithPromoTag() {
+  return (
+    <CardServiceInfo
+      title='Мой сервис'
+      description='Краткое описание сервиса для подробного режима карточки.'
+      icon={<PlaceholderSVG size={24} />}
+      promoTag={{
+        variant: 'preview',
+      }}
+    />
+  );
+}
+```
+
+#### Кнопка «Избранное» (always)
+
+actionsVisibility="always" — действия видны постоянно; favorite.checked и onChange задают controlled-режим избранного.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
+import { useState } from 'react';
+
+export function WithFavorite() {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  return (
+    <CardServiceInfo
+      title='Мой сервис'
+      description='Краткое описание сервиса для подробного режима карточки.'
+      icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.always}
+      favorite={{
+        enabled: true,
+        checked: isFavorite,
+        onChange: setIsFavorite,
+      }}
+    />
+  );
+}
+```
+
+#### Кнопка «Избранное» (hover)
+
+actionsVisibility="hover" — действия появляются при наведении и фокусе на карточке.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo, VISIBILITY_STRATEGY } from '@ds/uikit-product-card-predefined';
+
+export function WithFavoriteHover() {
+  return (
+    <CardServiceInfo
+      title='Мой сервис'
+      description='Краткое описание сервиса для подробного режима карточки.'
+      icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.hover}
+      favorite={{
+        enabled: true,
+      }}
+    />
+  );
+}
+```
+
+#### Неактивное состояние
+
+disabled блокирует взаимодействие с карточкой.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined';
+
+export function Disabled() {
+  return (
+    <CardServiceInfo
+      title='Мой сервис'
+      description='Краткое описание сервиса для подробного режима карточки.'
+      icon={<PlaceholderSVG size={24} />}
+      disabled
+    />
+  );
+}
+```
+
+#### Обработка клика
+
+onClick вызывается при клике по карточке.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { Typography } from '@ds/typography';
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined';
+import { useState } from 'react';
+
+export function WithOnClick() {
+  const [clicks, setClicks] = useState(0);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <CardServiceInfo
+        title='Мой сервис'
+        description='Краткое описание сервиса для подробного режима карточки.'
+        icon={<PlaceholderSVG size={24} />}
+        onClick={() => setClicks(c => c + 1)}
+      />
+
+      <Typography variant='body' size='m'>
+        Кликов по карточке: {clicks}
+      </Typography>
+    </div>
+  );
+}
+```
+
+#### Ссылка (polymorphic)
+
+Через as и href карточка рендерится как якорь.
+
+```tsx
+import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined';
+
+export function PolymorphicLink() {
+  return (
+    <CardServiceInfo
+      as='a'
+      href='https://cloud.ru'
+      target='_blank'
+      title='Ссылка-сервис'
+      description='Карточка рендерится как якорь через as и href.'
+      icon={<PlaceholderSVG size={24} />}
+    />
+  );
+}
+```
+
+### Props
+
+**CardServiceInfoProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `actionsSize` | `"m"` \| `"s"` | `m` | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
+| `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
+| `as` | `T` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
+| `className` | `string` | — | CSS-класс корневого элемента |
+| `data-test-id` | `string` | — | Support prop для тестов |
+| `description` | `string` | — | Описание сервиса |
+| `disabled` | `boolean` | — | Неактивное состояние |
+| `expandable` | `{ value: boolean; onClick(): void; }` | — | Настройки кнопки раскрытия |
+| `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». <br/> Keyboard: ArrowRight на карточке → Favorite → expand; ArrowLeft — в обратном порядке. |
+| `icon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка сервиса |
+| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `promoTag` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Настройки promo tag. При отсутствии не отображается |
+| `title` | `string` | — | Заголовок карточки |
+
+##### Related types
+
+- `CardPromoTagProps` = `PromoTagPredefinedProps & { as?: never; innerRef?: never; }`
+
+- `CardSize` = `"m"` \| `"s"`
+
+**FavoriteProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean \| undefined` | — | Состояние избранного (controlled) |
+| `enabled` | `boolean` | — | Включить отображение кнопки избранного |
+| `onChange` | `((value: boolean) => void) \| undefined` | — | Колбэк изменения состояния избранного |
 
 - `VisibilityStrategy` = `"always"` \| `"hover"`
 
@@ -488,7 +700,7 @@ export function WithOutline() {
 
 #### Кнопка «Избранное» (always)
 
-favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.
+actionsVisibility="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -502,9 +714,9 @@ export function WithFavorite() {
     <CardServiceSmall
       title='Название сервиса'
       emblem={{ icon: PlaceholderSVG }}
+      actionsVisibility={VISIBILITY_STRATEGY.always}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.always,
         checked: isFavorite,
         onChange: setIsFavorite,
       }}
@@ -515,7 +727,7 @@ export function WithFavorite() {
 
 #### Кнопка «Избранное» (hover)
 
-favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.
+actionsVisibility="hover" — кнопка появляется при наведении и фокусе на карточке.
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
@@ -526,10 +738,8 @@ export function WithFavoriteHover() {
     <CardServiceSmall
       title='Название сервиса'
       emblem={{ icon: PlaceholderSVG }}
-      favorite={{
-        enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.hover,
-      }}
+      actionsVisibility={VISIBILITY_STRATEGY.hover}
+      favorite={{ enabled: true }}
     />
   );
 }
@@ -604,13 +814,14 @@ export function PolymorphicLink() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения кнопки «Избранное»: всегда или при наведении и фокусе |
 | `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `checked` | `boolean` | — | Выбранное состояние |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `emblem` | `ReactElement<any, string \| JSXElementConstructor<any>> \| { icon: JSXElementConstructor<{ className?: string \| undefined; size?: number \| undefined; }>; }` | — | Эмблема: объект с иконкой-компонентом. <br/> Принимает `{ icon: JSXElementConstructor }` или произвольный ReactElement. |
-| `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». `visibilityStrategy` обязателен. |
+| `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное» |
 | `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
 | `outline` | `boolean` | — | Рамка вокруг карточки |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-тег (бейдж). Тип — `PromoTagProps` из `@ds/promo-tag`. |
@@ -626,9 +837,15 @@ export function PolymorphicLink() {
 | `checked` | `boolean \| undefined` | — | Состояние избранного (controlled) |
 | `enabled` | `boolean` | — | Включить отображение кнопки избранного |
 | `onChange` | `((value: boolean) => void) \| undefined` | — | Колбэк изменения состояния избранного |
-| `visibilityStrategy` | `"always"` \| `"hover"` | — | Формат отображения: всегда или при наведении и фокусе |
 
 - `VisibilityStrategy` = `"always"` \| `"hover"`
+
+### Видимость действий
+
+Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
+действиями сразу — тултипом, избранным и кнопкой раскрытия.
+пакета. `favorite.visibilityStrategy` устарел и оставлен для совместимости: если `actionsVisibility`
+не задан, значение берётся из него.
 
 ## CardSuggest
 

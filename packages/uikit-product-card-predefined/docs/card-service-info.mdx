@@ -1,0 +1,108 @@
+---
+title: CardServiceInfo
+package: '@ds/uikit-product-card-predefined'
+description: Карточка сервиса с описанием — иконка, заголовок, описание, promo tag и кнопка «Избранное».
+order: 4
+---
+
+import { Basic } from '../demos/examples/card-service-info/Basic'
+import BasicSrc from '../demos/examples/card-service-info/Basic.tsx?raw'
+import { Disabled } from '../demos/examples/card-service-info/Disabled'
+import DisabledSrc from '../demos/examples/card-service-info/Disabled.tsx?raw'
+import { PolymorphicLink } from '../demos/examples/card-service-info/PolymorphicLink'
+import PolymorphicLinkSrc from '../demos/examples/card-service-info/PolymorphicLink.tsx?raw'
+import { WithFavorite } from '../demos/examples/card-service-info/WithFavorite'
+import WithFavoriteSrc from '../demos/examples/card-service-info/WithFavorite.tsx?raw'
+import { WithFavoriteHover } from '../demos/examples/card-service-info/WithFavoriteHover'
+import WithFavoriteHoverSrc from '../demos/examples/card-service-info/WithFavoriteHover.tsx?raw'
+import { WithOnClick } from '../demos/examples/card-service-info/WithOnClick'
+import WithOnClickSrc from '../demos/examples/card-service-info/WithOnClick.tsx?raw'
+import { WithPromoTag } from '../demos/examples/card-service-info/WithPromoTag'
+import WithPromoTagSrc from '../demos/examples/card-service-info/WithPromoTag.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import componentDoc from './props.json'
+
+# CardServiceInfo
+
+Карточка сервиса с описанием: иконка + заголовок + описание + promo tag + кнопка «Избранное». Подробный вариант рядом с `CardServiceLight`.
+
+## Когда использовать
+
+- Подробный режим списка сервисов (заголовок + описание).
+- Когда `CardServiceLight` слишком компактен и нужно показать `description`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-card-predefined
+```
+
+```ts
+import { CardServiceInfo } from '@ds/uikit-product-card-predefined'
+```
+
+## Примеры использования
+
+<Example title='Базовый пример' description='Карточка с иконкой, заголовком и описанием.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Promo tag'
+  description='Через promoTag рядом с заголовком отображается промо-бейдж.'
+  code={WithPromoTagSrc}
+>
+  <WithPromoTag client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (always)'
+  description='actionsVisibility="always" — действия видны постоянно; favorite.checked и onChange задают controlled-режим избранного.'
+  code={WithFavoriteSrc}
+>
+  <WithFavorite client:visible />
+</Example>
+
+<Example
+  title='Кнопка «Избранное» (hover)'
+  description='actionsVisibility="hover" — действия появляются при наведении и фокусе на карточке.'
+  code={WithFavoriteHoverSrc}
+>
+  <WithFavoriteHover client:visible />
+</Example>
+
+<Example title='Неактивное состояние' description='disabled блокирует взаимодействие с карточкой.' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+<Example
+  title='Обработка клика'
+  description='onClick вызывается при клике по карточке.'
+  code={WithOnClickSrc}
+>
+  <WithOnClick client:visible />
+</Example>
+
+<Example
+  title='Ссылка (polymorphic)'
+  description='Через as и href карточка рендерится как якорь.'
+  code={PolymorphicLinkSrc}
+>
+  <PolymorphicLink client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.CardServiceInfo} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-cardpredefined-cardserviceinfo--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-card-predefined', 'card-service-info')} />

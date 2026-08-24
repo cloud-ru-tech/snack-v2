@@ -71,7 +71,7 @@ import { CardServiceLight } from '@ds/uikit-product-card-predefined'
 
 <Example
   title='Кнопка «Избранное» (always)'
-  description='favorite.visibilityStrategy="always" — кнопка видна постоянно; checked и onChange задают controlled-режим.'
+  description='actionsVisibility="always" — действия видны постоянно; favorite.checked и onChange задают controlled-режим избранного.'
   code={WithFavoriteSrc}
 >
   <WithFavorite client:visible />
@@ -79,7 +79,7 @@ import { CardServiceLight } from '@ds/uikit-product-card-predefined'
 
 <Example
   title='Кнопка «Избранное» (hover)'
-  description='favorite.visibilityStrategy="hover" — кнопка появляется при наведении и фокусе на карточке.'
+  description='actionsVisibility="hover" — действия появляются при наведении и фокусе на карточке.'
   code={WithFavoriteHoverSrc}
 >
   <WithFavoriteHover client:visible />
@@ -91,7 +91,7 @@ import { CardServiceLight } from '@ds/uikit-product-card-predefined'
 
 <Example
   title='Обработка клика'
-  description='onClick передаётся в корневой Card — карточка интерактивна по умолчанию.'
+  description='onClick вызывается при клике по карточке.'
   code={WithOnClickSrc}
 >
   <WithOnClick client:visible />
@@ -104,6 +104,11 @@ import { CardServiceLight } from '@ds/uikit-product-card-predefined'
 >
   <PolymorphicLink client:visible />
 </Example>
+
+## Видимость действий
+
+Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
+действиями сразу — тултипом, избранным и кнопкой раскрытия.
 
 ## Props
 

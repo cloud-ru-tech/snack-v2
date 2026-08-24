@@ -9,9 +9,9 @@ export function WithFavorite() {
     <CardServiceLight
       title='Мой сервис'
       icon={<PlaceholderSVG size={24} />}
+      actionsVisibility={VISIBILITY_STRATEGY.always}
       favorite={{
         enabled: true,
-        visibilityStrategy: VISIBILITY_STRATEGY.always,
         checked: isFavorite,
         onChange: setIsFavorite,
       }}

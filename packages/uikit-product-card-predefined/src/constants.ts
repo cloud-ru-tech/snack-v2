@@ -12,7 +12,15 @@ export const TEST_IDS = {
   cardServiceLight: 'card-service-light',
   cardServiceLightTitle: 'card-service-light__title',
   cardServiceLightPromoTag: 'card-service-light__promo-tag',
+  cardServiceLightPromoTagTooltip: 'card-service-light__promo-tag__tooltip',
   cardServiceLightFavorite: 'card-service-light__favorite',
+  cardServiceLightTooltip: 'card-service-light__tooltip',
+  cardServiceInfo: 'card-service-info',
+  cardServiceInfoTitle: 'card-service-info__title',
+  cardServiceInfoDescription: 'card-service-info__description',
+  cardServiceInfoPromoTag: 'card-service-info__promo-tag',
+  cardServiceInfoPromoTagTooltip: 'card-service-info__promo-tag__tooltip',
+  cardServiceInfoFavorite: 'card-service-info__favorite',
   cardSuggest: 'card-suggest',
   cardSuggestContent: 'card-suggest__content',
   cardSuggestPromoBadge: 'card-suggest__promo-badge',
@@ -32,3 +40,5 @@ export const CARD_SIZE = {
   S: 's',
   M: 'm',
 } as const;
+
+export const TOOLTIP_HOVER_DELAY_OPEN_MS = 300;

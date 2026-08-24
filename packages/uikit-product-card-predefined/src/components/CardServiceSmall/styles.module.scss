@@ -10,11 +10,11 @@
 .favouriteWrapper {
   flex-shrink: 0;
 
-  &[data-visibility-strategy='hover'] {
+  &[data-actions-visibility='hover'] {
     display: none;
   }
 
-  &[data-visibility-strategy='always'] {
+  &[data-actions-visibility='always'] {
     display: flex;
   }
 }
@@ -24,7 +24,7 @@
 
   &:hover,
   &:focus-within {
-    .favouriteWrapper[data-visibility-strategy='hover'] {
+    .favouriteWrapper[data-actions-visibility='hover'] {
       display: flex;
     }
   }
