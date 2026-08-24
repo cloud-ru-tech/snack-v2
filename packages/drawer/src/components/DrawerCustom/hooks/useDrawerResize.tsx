@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { DrawerCustomProps } from '../types';
 
-const DRAGGER_SELECTOR = '.rc-drawer-resizable-dragger';
+const DRAGGER_SELECTOR = '.snack-rc-drawer-resizable-dragger';
 
 type UseDrawerResizeParams = Pick<DrawerCustomProps, 'position' | 'resizable'>;
 
@@ -39,7 +39,14 @@ export function useDrawerResize({ position, resizable: resizableProp }: UseDrawe
   }, [draggerTooltip]);
 
   const tooltip = draggerTooltip ? (
-    <Tooltip placement={position} offset={4} tip={draggerTooltip} open={open && !muted} onOpenChange={setOpen}>
+    <Tooltip
+      placement={position}
+      offset={4}
+      hoverDelayOpen={500}
+      tip={draggerTooltip}
+      open={open && !muted}
+      onOpenChange={setOpen}
+    >
       {({ ref: targetRefCallback }) => {
         if (!targetRefCallback) return null;
 
