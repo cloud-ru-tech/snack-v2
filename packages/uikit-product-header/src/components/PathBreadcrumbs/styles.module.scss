@@ -1,7 +1,11 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .breadcrumbs {
+  display: flex;
+  align-items: center;
+
   min-width: 0;
+  height: 100%;
   /* stylelint-disable-next-line declaration-no-important */
   padding: 0 base.$sn-primitive-dimension-8 !important;
 }

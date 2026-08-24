@@ -91,12 +91,7 @@ export function Content({
 
   const segmentPrefsById = useMemo(() => new Map((segmentPrefs ?? []).map(prefs => [prefs.id, prefs])), [segmentPrefs]);
 
-  const visibleSegments = useMemo(
-    () => segments.filter(segment => segment.items.some(group => getLinksGroupVisibleItemsCount(group) > 0)),
-    [segments],
-  );
-
-  const defaultSegmentId = visibleSegments[0]?.id ?? segments[0]?.id ?? '';
+  const defaultSegmentId = activeSegmentId ?? segments[0]?.id ?? '';
 
   const [segmentId = defaultSegmentId, setSegmentId] = useValueControl<string>({
     value: activeSegmentId,
@@ -108,10 +103,10 @@ export function Content({
   const enableServiceDrag = Boolean(favorite) && !isMobile && !isSearching;
 
   useEffect(() => {
-    if (!visibleSegments.some(segment => segment.id === segmentId) && defaultSegmentId) {
+    if (!segments.some(segment => segment.id === segmentId) && defaultSegmentId) {
       setSegmentId(defaultSegmentId);
     }
-  }, [defaultSegmentId, segmentId, setSegmentId, visibleSegments]);
+  }, [defaultSegmentId, segmentId, setSegmentId, segments]);
 
   const handleLinkClick = useCallback(
     (
@@ -179,12 +174,12 @@ export function Content({
 
   const segmentItems = useMemo(
     () =>
-      visibleSegments.map(segment => ({
+      segments.map(segment => ({
         value: segment.id,
         label: segment.label,
         icon: segment.icon,
       })),
-    [visibleSegments],
+    [segments],
   );
 
   const hasCards = visibleGroups.length > 0;
@@ -239,7 +234,7 @@ export function Content({
       <div
         className={cn(styles.content, className)}
         data-mobile={isMobile || undefined}
-        data-empty={!hasCards || undefined}
+        data-empty={(!loading && !hasCards) || undefined}
       >
         {!isSearching && (
           <>

@@ -86,13 +86,13 @@ $map-block-color-decor: (
   display: flex;
   flex-direction: column;
 
+  width: 100%;
   min-width: 0;
   padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8
     base.$sn-primitive-dimension-12;
   border-radius: $group-border-radius;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
-
 
   &[data-drag-preview] {
     cursor: grabbing;
@@ -188,7 +188,7 @@ $map-block-color-decor: (
     z-index: -1;
   }
 
-  &[data-color-scheme="light"] {
+  &[data-color-scheme='light'] {
     --highlight-border-color-from: hsl(155deg 48% 42% / 100%);
     --highlight-border-color-to: hsl(155deg 48% 42% / 32%);
     --highlight-background-color-from: hsl(0deg 0% 99% / 20%);
@@ -196,7 +196,7 @@ $map-block-color-decor: (
     --highlight-background-color: hsl(0deg 0% 99% / 100%);
   }
 
-  &[data-color-scheme="dark"] {
+  &[data-color-scheme='dark'] {
     --highlight-border-color-from: hsl(153deg 30% 55% / 100%);
     --highlight-border-color-to: hsl(157deg 51% 19% / 100%);
     --highlight-background-color-from: hsl(240deg 14% 16% / 100%);
@@ -214,7 +214,12 @@ $map-block-color-decor: (
     border-radius: inherit;
 
     opacity: 0.64;
-    background-image: linear-gradient(90deg, var(--highlight-border-color-from) 0%, var(--highlight-border-color-to) 50%, var(--highlight-border-color-from) 100%);
+    background-image: linear-gradient(
+      90deg,
+      var(--highlight-border-color-from) 0%,
+      var(--highlight-border-color-to) 50%,
+      var(--highlight-border-color-from) 100%
+    );
   }
 }
 
@@ -230,11 +235,13 @@ $map-block-color-decor: (
   background-color: transparent;
 
   [data-is-highlighted] & {
-    inset: var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width);
+    inset: var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width)
+      var(--highlight-border-width);
     border-radius: calc(#{$group-border-radius} - var(--highlight-border-width));
-    background: linear-gradient(90deg, var(--highlight-background-color-from) 2.29%, var(--highlight-background-color-to) 97.84%), var(--highlight-background-color);
+    background:
+      linear-gradient(90deg, var(--highlight-background-color-from) 2.29%, var(--highlight-background-color-to) 97.84%),
+      var(--highlight-background-color);
   }
-
 }
 
 .colorMarker {
