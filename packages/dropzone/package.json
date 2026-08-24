@@ -1,6 +1,6 @@
 {
   "name": "@ds/dropzone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет загрузки файлов — видимая зона Dropzone, триггер FileUpload и скрытая оверлей-зона HiddenDropZone над произвольным контентом.",
   "repository": {
     "type": "git",

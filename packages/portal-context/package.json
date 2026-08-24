@@ -1,6 +1,6 @@
 {
   "name": "@ds/portal-context",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Context, который задаёт DOM-узел для портальных компонентов (Tooltip, Popover, Dropdown, Modal, Drawer).",
   "repository": {
     "type": "git",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.2 (2026-08-24)
+
+### Bug Fixes
+
+- **FF-8718:** dragger tooltip delay ([9763a8e](https://github.com/cloud-ru-tech/snack-v2/commit/9763a8eca5d7a13f3c7fd9a85fda5aeafd6992a5))
+
 ## 1.0.1 (2026-08-20)
 
 ### Bug Fixes

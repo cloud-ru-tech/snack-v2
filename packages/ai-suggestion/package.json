@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-suggestion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-подсказки — простой чип и раскрывающаяся группа с вложенными подсказками.",
   "repository": {
     "type": "git",

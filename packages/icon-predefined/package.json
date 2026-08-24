@@ -1,6 +1,6 @@
 {
   "name": "@ds/icon-predefined",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SVG-иконка с предустановленным оформлением — цветной подложкой, размером и формой контейнера.",
   "repository": {
     "type": "git",

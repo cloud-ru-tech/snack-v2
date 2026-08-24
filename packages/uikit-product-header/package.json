@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-header",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Продуктовая шапка консоли — HeaderLayout, MainMenu, UserMenu, Logo, PathBreadcrumbs и PlatformLogo.",
   "repository": {
     "type": "git",
@@ -47,7 +47,6 @@
     "@ds/adaptive": "workspace:^",
     "@ds/avatar": "workspace:^",
     "@ds/breadcrumbs": "workspace:^",
-    "@ds/skeleton": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/drag-and-drop": "workspace:^",
@@ -61,6 +60,7 @@
     "@ds/scroll": "workspace:^",
     "@ds/search": "workspace:^",
     "@ds/segment-control": "workspace:^",
+    "@ds/skeleton": "workspace:^",
     "@ds/theme": "workspace:^",
     "@ds/tooltip": "workspace:^",
     "@ds/typography": "workspace:^",

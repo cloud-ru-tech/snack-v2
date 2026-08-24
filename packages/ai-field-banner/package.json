@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-field-banner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Инлайн-баннер для поля ввода с семантическим типом, иконкой, описанием и действием.",
   "repository": {
     "type": "git",

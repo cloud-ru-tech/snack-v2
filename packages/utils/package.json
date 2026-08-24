@@ -1,6 +1,6 @@
 {
   "name": "@ds/utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Хуки и хелперы для React-компонентов — controlled/uncontrolled, дебаунс, свайпы, модалки, персист данных, пропы и SSR.",
   "repository": {
     "type": "git",

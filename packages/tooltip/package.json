@@ -1,6 +1,6 @@
 {
   "name": "@ds/tooltip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет подсказок — компонент Tooltip для произвольного триггера и QuestionTooltip с иконкой «?» для полей форм и сложной терминологии.",
   "repository": {
     "type": "git",

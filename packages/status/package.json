@@ -1,6 +1,6 @@
 {
   "name": "@ds/status",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет статус-индикаторов — компоненты Status (подпись + маркер) и StatusIndicator (только маркер). Цветовая семантика состояний и поддержка loading/progress.",
   "repository": {
     "type": "git",

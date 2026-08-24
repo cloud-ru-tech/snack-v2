@@ -1,6 +1,6 @@
 {
   "name": "@ds/skeleton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет скелетонов дизайн-системы — компоненты Skeleton, SkeletonText и WithSkeleton для индикации состояния загрузки.",
   "repository": {
     "type": "git",

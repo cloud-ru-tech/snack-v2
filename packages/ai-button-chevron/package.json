@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-button-chevron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Кнопка-шеврон 16×16 для раскрытия и сворачивания в составных AI-компонентах стриминга.",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-copy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет копирования значений в буфер — компоненты CopyButton и CopyLine с единой логикой clipboard и иконкой подтверждения.",
   "repository": {
     "type": "git",

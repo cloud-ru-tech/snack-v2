@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-modal-predefined",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Product preset-компоненты для delete, recall и release notes сценариев на базе Modal и BottomSheet.",
   "repository": {
     "type": "git",

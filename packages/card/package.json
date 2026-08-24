@@ -1,6 +1,6 @@
 {
   "name": "@ds/card",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Корневая карточка с осями radius, view и слоем backgroundPredefined + acrylic.",
   "repository": {
     "type": "git",

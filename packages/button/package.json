@@ -1,6 +1,6 @@
 {
   "name": "@ds/button",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пакет кнопок дизайн-системы — компоненты Button и ButtonGroup с едиными токенами размеров, appearance и view.",
   "repository": {
     "type": "git",

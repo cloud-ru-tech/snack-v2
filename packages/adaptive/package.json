@@ -1,6 +1,6 @@
 {
   "name": "@ds/adaptive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Context текущей раскладки (layoutType) — переключает компоненты дизайн-системы между mobile и desktop поверхностями.",
   "repository": {
     "type": "git",

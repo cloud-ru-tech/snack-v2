@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-08-24)
+
+### Bug Fixes
+
+- **FF-8718:** hide close button ([27cf0a5](https://github.com/cloud-ru-tech/snack-v2/commit/27cf0a5de25ed659e1fe242a7c62f0383bc5e7d4))
+
 ## 1.0.4 (2026-08-20)
 
 **Note:** Version bump only for package @ds/uikit-product-notification
