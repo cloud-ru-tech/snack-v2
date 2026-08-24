@@ -3,21 +3,14 @@
 
 $sizes: 's', 'm', 'l';
 
-.postfix {
+.centerWrapper {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }
 
-.afterContent {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-}
-
-.container {
+.contentWrapper {
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -34,13 +27,10 @@ $sizes: 's', 'm', 'l';
       }
 
       .postfix {
-        $squareSideLength: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'max-height');
-
-        max-width: $squareSideLength;
-        max-height: $squareSideLength;
+        max-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'max-height');
       }
 
-      .afterContent {
+      .centerWrapper {
         max-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'max-height');
       }
 
@@ -54,10 +44,5 @@ $sizes: 's', 'm', 'l';
 }
 
 .prefix {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-
   color: base.$sn-theme-color-available-version-textTertiary;
 }

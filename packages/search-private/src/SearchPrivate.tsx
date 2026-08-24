@@ -132,12 +132,12 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
 
   return (
     <div
-      className={cn(styles.container, className)}
+      className={cn(styles.contentWrapper, className)}
       {...extractSupportProps(rest)}
       data-size={size}
       data-disabled={disabled || undefined}
     >
-      <span className={styles.prefix}>
+      <span className={cn(styles.prefix, styles.centerWrapper)}>
         {!disabled && loading ? (
           <Sun data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSun} size={LOADER_SIZE_MAP[size]} />
         ) : (
@@ -161,9 +161,9 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
         data-test-id={PRIVATE_SEARCH_TEST_IDS.input}
       />
 
-      <span className={styles.postfix}>{postfixButtons}</span>
+      <span className={cn(styles.postfix, styles.centerWrapper)}>{postfixButtons}</span>
 
-      {afterContent && <span className={styles.afterContent}>{afterContent}</span>}
+      {afterContent && <span className={styles.centerWrapper}>{afterContent}</span>}
     </div>
   );
 });
