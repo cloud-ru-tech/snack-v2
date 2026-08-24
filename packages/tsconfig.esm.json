@@ -325,6 +325,9 @@
       "path": "./uikit-product-upload-files/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-welcome-tour/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-widget/tsconfig.esm.json"
     }
   ]

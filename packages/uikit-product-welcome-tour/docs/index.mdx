@@ -1,0 +1,155 @@
+---
+title: WelcomeTour
+package: '@ds/uikit-product-welcome-tour'
+description: Онбординг-тур по интерфейсу — пошаговые подсказки с подсветкой целевых элементов.
+order: 0
+---
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { CustomLabels } from '../demos/examples/CustomLabels'
+import CustomLabelsSrc from '../demos/examples/CustomLabels.tsx?raw'
+import { WithoutBackButton } from '../demos/examples/WithoutBackButton'
+import WithoutBackButtonSrc from '../demos/examples/WithoutBackButton.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import welcomeTourDoc from './props.json'
+
+# WelcomeTour
+
+Онбординг-тур по интерфейсу: затемняет страницу, подсвечивает целевой элемент шага и показывает рядом подсказку с заголовком, описанием, индикатором прогресса и кнопками навигации. Шаги описываются пропом `steps`, запуск — через `open` / `defaultOpen`.
+
+## Когда использовать
+
+- Первое знакомство с разделом: показать, где что находится, сразу после входа или после релиза.
+- Анонс новой функции — короткий тур из одного-двух шагов вокруг новых элементов.
+- Обучающий сценарий, где важна последовательность: сначала фильтры, потом действие над выбранным.
+
+Когда **не** нужен:
+
+- Подсказка к одному элементу:
+  - [`Tooltip`](/components/tooltip) — короткое пояснение по наведению.
+  - [`HotSpot`](/components/hot-spot) — точка привлечения внимания без пошагового сценария.
+- Блокирующее подтверждение — [`Modal`](/components/modal).
+- Справка, которую читают целиком, а не проходят по шагам — отдельная страница документации.
+
+## Анатомия
+
+Тур состоит из трёх частей: полноэкранный оверлей, вырез вокруг целевого элемента шага (spotlight) и подсказка, прикреплённая к вырезу. Оверлей перехватывает клики по остальной странице; целевой элемент остаётся видимым в вырезе.
+
+### Слоты подсказки
+
+Каждый элемент `steps[i]` собирается из:
+
+- `title` — заголовок шага.
+- `subtitle` — подзаголовок под заголовком.
+- `content` — тело шага.
+- `target` — целевой элемент: CSS-селектор, DOM-нода, ref или геттер.
+
+Все слоты необязательные, кроме `target`. Индикатор прогресса появляется автоматически, когда шагов больше одного, и остаётся неинтерактивным — он показывает позицию в туре, навигация идёт кнопками.
+
+### Placement (default `bottom`)
+
+`steps[i].placement` задаёт положение подсказки относительно целевого элемента: `top`, `bottom`, `left`, `right` и их варианты `-start` / `-end`, а также `auto` (движок выбирает сторону сам) и `center` (подсказка по центру экрана — для шага без привязки к элементу). Если выбранной стороне не хватает места, подсказка разворачивается на противоположную.
+
+### Кнопки (default `['back', 'primary', 'skip']`)
+
+Проп `buttons` перечисляет, какие кнопки показывает подсказка:
+
+- `back` — «Назад»; на первом шаге скрывается автоматически.
+- `primary` — «Далее», на последнем шаге — кнопка завершения.
+- `skip` — крестик в шапке подсказки, завершает тур досрочно.
+
+Подписи берутся из locale пакета и переопределяются пропом `labels` (весь тур) либо `steps[i].labels` (один шаг). Escape завершает тур целиком, как у остальных оверлеев ДС; пока тур открыт, Tab ходит по кругу внутри подсказки.
+
+## Do / Don't
+
+- ✅ Один тур на сценарий: 3–5 шагов вокруг ключевых элементов раздела.
+- ❌ Тур на 12 шагов через весь интерфейс — до конца дойдут единицы.
+- ✅ Запускать тур один раз и запоминать факт прохождения на стороне приложения (`onOpenChange` со статусом `finished` / `skipped`).
+- ❌ Показывать тур при каждом входе в раздел — он становится модальным препятствием.
+- ✅ Привязывать шаг к элементу, который уже отрисован и виден.
+- ❌ Указывать `target` на элемент за пределами вьюпорта или появляющийся асинхронно — шаг не найдёт цель.
+- ✅ Формулировать шаг одним действием: что это и зачем нажимать.
+- ❌ Складывать в `content` абзац справки — для этого есть документация раздела.
+- ✅ Оставлять `skip`: пользователь должен уметь выйти в любой момент.
+- ❌ Делать тур безвыходным (`buttons` только с `primary`) в обязательном онбординге.
+
+## Адаптивность
+
+> **Только desktop.** Компонент не читает раскладку из [`@ds/adaptive`](/components/adaptive) и отдельной mobile-поверхности не получит: пошаговый онбординг — сценарий десктопного интерфейса. Подсказка и полноэкранный оверлей одинаковы на всех разрешениях.
+
+Что это значит на практике:
+
+- Ширина подсказки ограничена сверху и на узком экране занимает почти всю его ширину.
+- Оверлей и вырез вокруг целевого элемента считаются от вьюпорта и работают на любом размере, но подсказка рядом с мелким элементом может не поместиться на выбранной стороне — движок развернёт её на противоположную.
+- `layoutPresets` у компонента нет: пропы применяются одинаково на всех раскладках, `AdaptiveProvider` на тур не влияет.
+
+Если раздел открывают преимущественно с телефона, тур там лучше не запускать: решение о показе принимает приложение, и оно же хранит состояние прохождения.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-welcome-tour
+```
+
+```ts
+import { TOUR_BUTTON, TOUR_PLACEMENT, WelcomeTour } from '@ds/uikit-product-welcome-tour'
+```
+
+## Примеры использования
+
+<Example
+  title='Базовое использование'
+  description='Тур из двух шагов, целевые элементы задаются ref-ами.'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Управляемый режим'
+  description='`open` и `stepIndex` живут во внешнем состоянии — тур запускается с произвольного шага.'
+  code={ControlledSrc}
+>
+  <Controlled client:visible />
+</Example>
+
+<Example
+  title='Свои подписи кнопок'
+  description='`labels` переопределяет дефолты из locale, `steps[i].labels` — подписи одного шага.'
+  code={CustomLabelsSrc}
+>
+  <CustomLabels client:visible />
+</Example>
+
+<Example
+  title='Тур без кнопки «Назад»'
+  description='`buttons` без `back` — линейный сценарий, только вперёд.'
+  code={WithoutBackButtonSrc}
+>
+  <WithoutBackButton client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={welcomeTourDoc.WelcomeTour} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-welcometour--playground' height={520} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-welcome-tour')} title='WelcomeTour — Product UI Kit' />
+
+## Смотри также
+
+- [HotSpot](/components/hot-spot) — точка привлечения внимания к элементу без пошагового сценария.
+- [Popover](/components/popover) — всплывающий слой рядом с триггером.
+- [Tooltip](/components/tooltip) — короткая подсказка по наведению.

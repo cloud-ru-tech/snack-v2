@@ -1,0 +1,277 @@
+{
+  "TourHint": {
+    "displayName": "TourHint",
+    "propsTypeName": null,
+    "description": "Подсказка шага — `tooltipComponent` для react-joyride. Поверхность повторяет\nконтейнер `@ds/popover` (padding / радиус / тень / фон из токенов popover'а),\nраскладка внутри — заголовок, подзаголовок, тело и футер с индикатором и кнопками.",
+    "props": {
+      "backProps": {
+        "type": "{ 'aria-label': string; 'data-action': string; onClick: MouseEventHandler<HTMLElement>; role: string; title: string; }",
+        "required": true,
+        "description": "Props to spread on the back button."
+      },
+      "closeProps": {
+        "type": "{ 'aria-label': string; 'data-action': string; onClick: MouseEventHandler<HTMLElement>; role: string; title: string; }",
+        "required": true
+      },
+      "continuous": {
+        "type": "boolean",
+        "required": true,
+        "description": "Whether the tour is in continuous mode."
+      },
+      "controls": {
+        "type": "Controls",
+        "required": true
+      },
+      "index": {
+        "type": "number",
+        "required": true
+      },
+      "isLastStep": {
+        "type": "boolean",
+        "required": true
+      },
+      "primaryProps": {
+        "type": "{ 'aria-label': string; 'data-action': string; onClick: MouseEventHandler<HTMLElement>; role: string; title: string; }",
+        "required": true
+      },
+      "size": {
+        "type": "number",
+        "required": true
+      },
+      "skipProps": {
+        "type": "{ 'aria-label': string; 'data-action': string; onClick: MouseEventHandler<HTMLElement>; role: string; title: string; }",
+        "required": true
+      },
+      "step": {
+        "type": "{ id?: string | undefined; title?: ReactNode; before?: BeforeHook | undefined; after?: AfterHook | undefined; data?: any; content: ReactNode; ... 42 more ...; isFixed: boolean; }",
+        "required": true
+      },
+      "tooltipProps": {
+        "type": "{ 'aria-modal': boolean; role: string; }",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TourSteps": {
+    "displayName": "TourSteps",
+    "propsTypeName": null,
+    "description": "Индикатор прогресса тура. Неинтерактивен: навигация идёт кнопками подсказки.\n\nТочки `PaginationSlider` — кнопки, режима «только индикатор» у него нет и заводить его\nпод единственного потребителя не планируется. Поэтому после монтирования точки\nпереводятся в `disabled`: focus-trap движка собирает узлы селектором\n`button:not([disabled])`. `tabIndex = -1` селектор не учитывает, `inert` зацикливает\nтрап на себе и делает кнопку «Далее» недостижимой с клавиатуры.\n\nКлики снимает `pointer-events: none`, озвучку — `aria-hidden` (позицию в туре\nскринридеру сообщает скрытый текст в `TourHint`).",
+    "props": {
+      "current": {
+        "type": "number",
+        "required": true,
+        "description": "Индекс текущего шага (с нуля)."
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общее количество шагов."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "WelcomeTour": {
+    "displayName": "WelcomeTour",
+    "propsTypeName": "WelcomeTourProps",
+    "description": "Онбординг-тур по интерфейсу: затемняет страницу, подсвечивает целевой элемент шага\nи показывает рядом подсказку с заголовком, описанием, индикатором прогресса и кнопками.\n\nШаги описываются пропом `steps`; целевой элемент задаётся CSS-селектором, DOM-нодой,\nref'ом или геттером. Запуск — через `open` / `defaultOpen`, текущий шаг — через\n`stepIndex` / `defaultStepIndex`. Подписи кнопок берутся из locale и переопределяются\nпропом `labels` (или `labels` конкретного шага).\n\nСобственного DOM-узла у компонента нет — вся разметка живёт в портале. Поэтому\n`data-test-id` компонент не принимает: слоты подсказки адресуются через публичную\nконстанту `TEST_IDS`.",
+    "props": {
+      "buttons": {
+        "type": "TourButton[]",
+        "required": false,
+        "defaultValue": "[TOUR_BUTTON.Back, TOUR_BUTTON.Primary, TOUR_BUTTON.Skip]",
+        "description": "Набор кнопок подсказки.",
+        "typeRefs": [
+          "TourButton"
+        ]
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Запущен ли тур изначально. Неуправляемый режим."
+      },
+      "defaultStepIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Индекс шага, с которого начинается тур. Неуправляемый режим."
+      },
+      "labels": {
+        "type": "Partial<TourLabels>",
+        "required": false,
+        "description": "Подписи кнопок. Переопределяют значения из locale.",
+        "typeRefs": [
+          "TourLabels"
+        ]
+      },
+      "onOpenChange": {
+        "type": "((open: boolean, status: TourStatus) => void)",
+        "required": false,
+        "description": "Колбек смены состояния тура. Вторым аргументом приходит статус, с которым тур завершился."
+      },
+      "onStepChange": {
+        "type": "((index: number) => void)",
+        "required": false,
+        "description": "Колбек смены шага.\n\nВ неуправляемом режиме сообщает об уже случившемся переходе — в том числе о показе\nпервого шага при запуске тура. В управляемом (когда задан `stepIndex`) это запрос на\nпереход: компонент сам шаг не меняет, новый индекс обязан применить потребитель —\nиначе тур остановится на текущем шаге."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Запущен ли тур. Управляемый режим."
+      },
+      "portalContainer": {
+        "type": "HTMLElement | null",
+        "required": false,
+        "description": "Контейнер для портала. По умолчанию — контейнер из `PortalContextProvider` либо `document.body`."
+      },
+      "scrollOffset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "20",
+        "description": "Отступ при скролле к целевому элементу, px."
+      },
+      "stepIndex": {
+        "type": "number",
+        "required": false,
+        "description": "Индекс текущего шага. Управляемый режим."
+      },
+      "steps": {
+        "type": "TourStep[]",
+        "required": true,
+        "description": "Шаги тура.",
+        "typeRefs": [
+          "TourStep"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "TourButton": {
+        "kind": "union",
+        "values": [
+          "back",
+          "primary",
+          "skip"
+        ],
+        "own": true
+      },
+      "TourLabels": {
+        "kind": "interface",
+        "props": {
+          "back": {
+            "type": "string",
+            "required": true,
+            "description": "Кнопка возврата к предыдущему шагу."
+          },
+          "close": {
+            "type": "string",
+            "required": true,
+            "description": "Кнопка-крестик в шапке подсказки."
+          },
+          "finish": {
+            "type": "string",
+            "required": true,
+            "description": "Кнопка на последнем шаге."
+          },
+          "next": {
+            "type": "string",
+            "required": true,
+            "description": "Кнопка перехода к следующему шагу."
+          }
+        },
+        "own": true
+      },
+      "TourPlacement": {
+        "kind": "union",
+        "values": [
+          "auto",
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "center",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": true
+      },
+      "TourStep": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Тело шага."
+          },
+          "labels": {
+            "type": "Partial<TourLabels> | undefined",
+            "required": false,
+            "description": "Подписи кнопок для этого шага. Переопределяют `labels` компонента.",
+            "typeRefs": [
+              "TourLabels"
+            ]
+          },
+          "onFinish": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Колбек ухода с шага. Вызывается на любом переходе — «Далее», «Назад», а также при\nзакрытии тура с этого шага. Для отметки «шаг пройден» этого недостаточно: сверяйся\nсо статусом из `onOpenChange`."
+          },
+          "placement": {
+            "type": "TourPlacement | undefined",
+            "required": false,
+            "values": [
+              "auto",
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "center",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение подсказки относительно целевого элемента.",
+            "typeRefs": [
+              "TourPlacement"
+            ]
+          },
+          "subtitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок под заголовком."
+          },
+          "target": {
+            "type": "string | HTMLElement | RefObject<HTMLElement | null> | (() => HTMLElement | null)",
+            "required": true,
+            "description": "Целевой элемент, вокруг которого подсвечивается вырез и к которому крепится подсказка.",
+            "typeRefs": [
+              "TourTarget"
+            ]
+          },
+          "title": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Заголовок шага."
+          }
+        },
+        "own": true
+      },
+      "TourTarget": {
+        "kind": "alias",
+        "type": "string | HTMLElement | RefObject<HTMLElement | null> | (() => HTMLElement | null)",
+        "own": true
+      }
+    }
+  }
+}

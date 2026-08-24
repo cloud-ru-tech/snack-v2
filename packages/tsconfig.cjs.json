@@ -320,6 +320,9 @@
       "path": "./uikit-product-upload-files/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-welcome-tour/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
     }
   ]

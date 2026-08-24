@@ -1,0 +1,55 @@
+{
+  "name": "@ds/uikit-product-welcome-tour",
+  "version": "0.1.0",
+  "description": "Онбординг-тур по интерфейсу — пошаговые подсказки с подсветкой целевых элементов.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-welcome-tour"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-welcome-tour",
+  "license": "Apache-2.0",
+  "author": "Aleksey Alekseev <analekseev@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/pagination": "workspace:^",
+    "@ds/portal-context": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "react-joyride": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

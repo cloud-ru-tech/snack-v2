@@ -1,0 +1,20 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.targets {
+  display: flex;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: center;
+}
+
+.target {
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-brand-anatomy-radius-popover-xl;
+  color: base.$sn-theme-color-available-version-textMain;
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.matrixTargetRow {
+  display: flex;
+  justify-content: center;
+  padding: base.$sn-primitive-dimension-24 base.$sn-primitive-dimension-0;
+}

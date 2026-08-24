@@ -284,6 +284,7 @@ export const FIGMA_NODES = {
   },
   'uikit-product-title-clickable': { ...PRODUCT, nodeId: '3024-193' }, // uikit-product-title-clickable → TitleClickable
   'uikit-product-widget': { ...PRODUCT, nodeId: '3024:760' }, // uikit-product-widget → widget
+  'uikit-product-welcome-tour': { ...PRODUCT, nodeId: '3295:3217' }, // uikit-product-welcome-tour → onboarding
   'uikit-product-card-predefined': {
     _: { ...PRODUCT, nodeId: '2171-287' }, // canvas root
     'card-banner': { ...PRODUCT, nodeId: '2171-1507' },
