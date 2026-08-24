@@ -4,6 +4,9 @@
 
 $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 
+/** Нужен только этим компонентам потому что у них есть подложка и нужен отступ снизу */
+$bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
+
 .acrylic {
   pointer-events: none;
   position: absolute;
@@ -16,7 +19,7 @@ $components: 'accordionPrimary', 'accordionSecondary', 'accordionTertiary';
 }
 
 .wrapper {
-  @each $component in $components {
+  @each $component in $bottomPaddingHack {
     &[data-component='#{$component}'] {
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container');
 
