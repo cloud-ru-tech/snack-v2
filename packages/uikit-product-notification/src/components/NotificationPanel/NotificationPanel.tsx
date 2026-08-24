@@ -48,6 +48,7 @@ export function NotificationPanel({
       width={width}
       className={cn(surfaceClassName, className)}
       showBlackout={showBlackout}
+      showButtonClosed={false}
       {...rest}
     >
       {content}
