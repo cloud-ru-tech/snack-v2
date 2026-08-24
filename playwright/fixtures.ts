@@ -9,6 +9,8 @@ import { FIXED_TEST_TIME } from './constants/common';
 import { dataTestIdSelector, getStorybookUrl, getStorybookUrlById, StorybookUrlOptions, waitForFonts } from './utils';
 
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
+/** Сколько раз пытаемся доставить URL-args в стори через канал preview (см. gotoStory). */
+const ARGS_APPLY_ATTEMPTS = 3;
 const REPO_ROOT = resolve(process.cwd());
 const COVERAGE_DIR = resolve(REPO_ROOT, 'coverage', 'raw', 'playwright');
 // Тесты бегут против собранного storybook-static (его поднимает http-server на
@@ -161,34 +163,88 @@ export const test = base.extend<PlaywrightFixtures>({
             ).__STORYBOOK_PREVIEW__;
             return Boolean(api?.channel && api?.selectionStore);
           },
-          { timeout: 5000 },
+          { timeout: 15000 },
         )
         .catch(() => {});
 
-      const appliedArgs = await page.evaluate(() => {
-        const api = (
-          window as unknown as {
-            __STORYBOOK_PREVIEW__?: {
-              channel?: { emit: (event: string, payload: unknown) => void };
-              selectionStore?: {
-                selection?: { storyId?: string };
-                selectionSpecifier?: { args?: Record<string, unknown> };
-              };
-            };
-          }
-        ).__STORYBOOK_PREVIEW__;
-        const storyId = api?.selectionStore?.selection?.storyId;
-        const args = api?.selectionStore?.selectionSpecifier?.args;
-        if (!api?.channel || !storyId || !args || Object.keys(args).length === 0) {
-          return null;
-        }
-        api.channel.emit('updateStoryArgs', { storyId, updatedArgs: args });
-        return args;
-      });
+      // Emit + verify: под нагрузкой (несколько воркеров на одном dev-сервере) канал
+      // успевает доставить событие не всегда, и стори остаётся на дефолтных args. Поэтому
+      // после emit'а сверяемся со store и при расхождении повторяем — молчаливый пропуск
+      // args ловится не тестом на args, а флейком в произвольном месте спека.
+      let requestedArgs: Record<string, unknown> | null = null;
+      let applied = false;
 
-      if (appliedArgs) {
-        // Give Storybook a tick to re-render with updated args.
-        await page.waitForLoadState('networkidle').catch(() => {});
+      for (let attempt = 0; attempt < ARGS_APPLY_ATTEMPTS; attempt += 1) {
+        requestedArgs = await page.evaluate(() => {
+          const api = (
+            window as unknown as {
+              __STORYBOOK_PREVIEW__?: {
+                channel?: { emit: (event: string, payload: unknown) => void };
+                selectionStore?: {
+                  selection?: { storyId?: string };
+                  selectionSpecifier?: { args?: Record<string, unknown> };
+                };
+              };
+            }
+          ).__STORYBOOK_PREVIEW__;
+          const storyId = api?.selectionStore?.selection?.storyId;
+          const args = api?.selectionStore?.selectionSpecifier?.args;
+          if (!api?.channel || !storyId || !args || Object.keys(args).length === 0) {
+            return null;
+          }
+          api.channel.emit('updateStoryArgs', { storyId, updatedArgs: args });
+          return args;
+        });
+
+        if (!requestedArgs) break; // стори без URL-args — сверять нечего
+
+        applied = await page
+          .waitForFunction(
+            argNames => {
+              const api = (
+                window as unknown as {
+                  __STORYBOOK_PREVIEW__?: {
+                    storyStoreValue?: { args?: { argsByStoryId?: Record<string, Record<string, unknown>> } };
+                    selectionStore?: { selection?: { storyId?: string } };
+                  };
+                }
+              ).__STORYBOOK_PREVIEW__;
+              const storyId = api?.selectionStore?.selection?.storyId ?? '';
+              const storyArgs = api?.storyStoreValue?.args?.argsByStoryId?.[storyId];
+
+              return Boolean(storyArgs) && argNames.every(name => name in (storyArgs as Record<string, unknown>));
+            },
+            Object.keys(requestedArgs),
+            { timeout: 2000 },
+          )
+          .then(() => true)
+          .catch(() => false);
+
+        if (applied) {
+          // Store обновлён, но React коммитит рендер следующим кадром — ждём его,
+          // иначе тест кликает по стори, ещё отрисованной с дефолтными args.
+          await page
+            .evaluate(
+              () =>
+                new Promise<void>(resolve => {
+                  // Тело page.evaluate сериализуется и исполняется в браузере — до
+                  // SSR-рантайма этот код не доходит, ssr-safe-react тут ложно срабатывает.
+                  // eslint-disable-next-line @cloud-ru/ssr-safe-react/domApi
+                  requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+                }),
+            )
+            .catch(() => {});
+          break;
+        }
+      }
+
+      // Попытки исчерпаны, а args так и не доехали. Молча продолжать нельзя: спек
+      // пойдёт по дефолтным args и упадёт где-то дальше — ровно тот флейк, от которого
+      // защищает цикл. Падаем здесь, с перечислением неподъехавших ключей.
+      if (requestedArgs && !applied) {
+        throw new Error(
+          `gotoStory: URL-args не доехали до стори за ${ARGS_APPLY_ATTEMPTS} попыток: ${Object.keys(requestedArgs).join(', ')}`,
+        );
       }
 
       // Play-функция стори стартует автоматически при рендере: без этого ожидания спек
