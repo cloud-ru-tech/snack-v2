@@ -1,0 +1,14 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.searchWrap {
+  &:not([data-mobile]) {
+    flex: 1 1 auto;
+
+    // NOTE: у Search уже есть свои паддинги внутри компонента, поэтому здесь паддинги на 2px меньше
+    padding: base.$sn-primitive-dimension-2 base.$sn-primitive-dimension-10;
+  }
+}
+
+.search {
+  width: 100%;
+}

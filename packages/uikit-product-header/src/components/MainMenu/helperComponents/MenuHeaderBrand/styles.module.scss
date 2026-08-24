@@ -1,0 +1,17 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.container {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.closeButton {
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-start;
+}

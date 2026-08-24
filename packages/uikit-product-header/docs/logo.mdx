@@ -1,0 +1,52 @@
+---
+title: Logo
+package: '@ds/uikit-product-header'
+description: Логотип продукта в шапке — дефолтная иконка, кастомное изображение и badge режима окружения.
+order: 4
+---
+
+import { Basic } from '../demos/examples/logo/Basic';
+import BasicSrc from '../demos/examples/logo/Basic.tsx?raw';
+import { WithMode } from '../demos/examples/logo/WithMode';
+import WithModeSrc from '../demos/examples/logo/WithMode.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import componentDoc from './props.json';
+
+# Logo
+
+`Logo` — ссылка на главную с иконкой Cloud или кастомным изображением. Поддерживает badge режима окружения (`develop`, `stage`, `hybrid`).
+
+## Когда использовать
+
+- Слот `logo` в `HeaderLayout`.
+- Отображение режима стенда рядом с логотипом.
+
+## Примеры использования
+
+<Example title='Базовый логотип' description='Дефолтная иконка с tooltip при наведении.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Режимы окружения'
+  description='Проп `mode` добавляет promo-tag с подписью стенда.'
+  code={WithModeSrc}
+>
+  <WithMode client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.Logo} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-header-headerlayout--playground' height={120} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header', 'logo')} />

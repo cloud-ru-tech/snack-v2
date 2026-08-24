@@ -1,0 +1,277 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as button;
+
+// Радиус контейнера группы: от него считается радиус подложки внутри рамки выделения.
+$group-border-radius: base.$sn-density-radius-2xs;
+
+$map-block-color-decor: (
+  'transparent': 'transparent',
+  'neutral': base.$sn-theme-color-neutral-decor,
+  'primary': base.$sn-theme-color-primary-decor,
+  'red': base.$sn-theme-color-red-decor,
+  'orange': base.$sn-theme-color-orange-decor,
+  'yellow': base.$sn-theme-color-yellow-decor,
+  'green': base.$sn-theme-color-green-decor,
+  'blue': base.$sn-theme-color-blue-decor,
+  'violet': base.$sn-theme-color-violet-decor,
+  'pink': base.$sn-theme-color-pink-decor,
+);
+
+.headerActions {
+  pointer-events: none;
+
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  opacity: 0;
+  outline: none;
+
+  &[data-always-visible] {
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  flex: 1 0 0;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-40;
+  padding-inline: base.$sn-primitive-dimension-8;
+  border-radius: base.$sn-density-radius-2xs;
+
+  &:focus-visible,
+  &:has(:focus-visible) {
+    .headerActions {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: base.$sn-theme-color-neutral-decorTransparent;
+
+      .headerActions {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.headerTitle {
+  flex: 1 0 0;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  &:hover,
+  &:focus-visible,
+  &:has(:focus-visible) {
+    .headerActions {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+}
+
+.group {
+  position: relative;
+
+  overflow-x: clip;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8
+    base.$sn-primitive-dimension-12;
+  border-radius: $group-border-radius;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+
+  &[data-drag-preview] {
+    cursor: grabbing;
+
+    .header {
+      cursor: grabbing;
+      background-color: base.$sn-theme-color-neutral-decorTransparent;
+
+      .headerActions {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.groupDragPreview {
+  cursor: grabbing;
+  container-type: inline-size;
+  border-radius: $group-border-radius;
+}
+
+.groupDragPreviewHeader {
+  padding: base.$sn-primitive-dimension-4 0;
+}
+
+.dragHandle {
+  all: unset;
+
+  touch-action: none;
+  cursor: grab;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border: none;
+  border-radius: button.$sn-button-anatomy-size-s-container-borderRadius;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  background-color: transparent;
+  outline: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}
+
+.groupBody {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  gap: base.$sn-primitive-dimension-4;
+
+  &:not([data-mobile]) {
+    // Drawer десктопного меню ресайзится пользователем (см. MenuDesktop.resizable),
+    // поэтому колонки реагируют на реальную ширину контейнера (container query
+    // от `.rightContent`), а не на ширину viewport.
+    // Перестраиваться должно при ширине дровера 1024px, поэтому width тут указан с вычетом
+    @container (width <= 728px) {
+      grid-template-columns: repeat(2, minmax(auto, 1fr));
+    }
+  }
+
+  &[data-mobile] {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
+}
+
+.decoration {
+  --highlight-border-width: 1px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+
+  [data-drag-preview] & {
+    z-index: -1;
+  }
+
+  &[data-color-scheme="light"] {
+    --highlight-border-color-from: hsl(155deg 48% 42% / 100%);
+    --highlight-border-color-to: hsl(155deg 48% 42% / 32%);
+    --highlight-background-color-from: hsl(0deg 0% 99% / 20%);
+    --highlight-background-color-to: hsl(152deg 39% 79% / 12%);
+    --highlight-background-color: hsl(0deg 0% 99% / 100%);
+  }
+
+  &[data-color-scheme="dark"] {
+    --highlight-border-color-from: hsl(153deg 30% 55% / 100%);
+    --highlight-border-color-to: hsl(157deg 51% 19% / 100%);
+    --highlight-background-color-from: hsl(240deg 14% 16% / 100%);
+    --highlight-background-color-to: hsl(157deg 51% 19% / 20%);
+    --highlight-background-color: hsl(240deg 14% 16% / 100%);
+  }
+
+  &[data-is-highlighted]::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    opacity: 0.64;
+    background-image: linear-gradient(90deg, var(--highlight-border-color-from) 0%, var(--highlight-border-color-to) 50%, var(--highlight-border-color-from) 100%);
+  }
+}
+
+.decorationBackground {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  background-color: transparent;
+
+  [data-is-highlighted] & {
+    inset: var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width);
+    border-radius: calc(#{$group-border-radius} - var(--highlight-border-width));
+    background: linear-gradient(90deg, var(--highlight-background-color-from) 2.29%, var(--highlight-background-color-to) 97.84%), var(--highlight-background-color);
+  }
+
+}
+
+.colorMarker {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: base.$sn-primitive-dimension-4;
+
+  visibility: hidden;
+
+  @each $color, $decor in $map-block-color-decor {
+    &[data-block-color='#{$color}'] {
+      visibility: visible;
+      background-color: $decor;
+    }
+  }
+}
+
+.skeletonTitle {
+  display: flex;
+  align-items: center;
+
+  height: base.$sn-primitive-dimension-40;
+  padding: 0 base.$sn-primitive-dimension-8;
+
+  font-size: base.$sn-primitive-dimension-16;
+  line-height: base.$sn-primitive-dimension-40;
+}
+
+.skeletonBody {
+  padding-bottom: base.$sn-primitive-dimension-4;
+}
+
+.skeletonService {
+  padding: base.$sn-primitive-dimension-4;
+}

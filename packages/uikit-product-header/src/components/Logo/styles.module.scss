@@ -1,0 +1,64 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.logoImg {
+  width: auto;
+  min-height: base.$sn-primitive-dimension-24;
+  max-height: base.$sn-primitive-dimension-24;
+}
+
+.logoWrap {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+// Стек из двух иконок (бренд-логотип + hover-хинт «домой»), сложенных друг на друга.
+.iconStack {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.icon {
+  transform-origin: 50% center;
+  transform-box: fill-box;
+  color: base.$sn-theme-color-primary-accent;
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconDefault {
+  opacity: 1;
+}
+
+.iconHover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.logo {
+  position: relative;
+  flex-shrink: 0;
+
+  &:active:not([data-disabled]) {
+    .iconDefault {
+      opacity: 0;
+    }
+
+    .iconHover {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-disabled]) {
+      .iconDefault {
+        opacity: 0;
+      }
+
+      .iconHover {
+        opacity: 1;
+      }
+    }
+  }
+}

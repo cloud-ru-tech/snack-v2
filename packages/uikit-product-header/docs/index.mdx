@@ -1,0 +1,35 @@
+---
+title: Header
+package: '@ds/uikit-product-header'
+description: Продуктовая шапка консоли — HeaderLayout, MainMenu, UserMenu, Logo, PathBreadcrumbs и PlatformLogo.
+order: 0
+---
+
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+
+# Header
+
+| Компонент | Назначение |
+| --- | --- |
+| [`HeaderLayout`](/components/uikit-product-header/header-layout) | Компоновка слотов шапки: меню, логотип, селектор, хлебные крошки, тулбар |
+| [`MainMenu`](/components/uikit-product-header/main-menu) | Главное меню навигации с сегментами, поиском и избранным |
+| [`UserMenu`](/components/uikit-product-header/user-menu) | Меню пользователя: профиль, тема, настройки и выход |
+| [`Logo`](/components/uikit-product-header/logo) | Логотип продукта с режимом окружения и кастомным изображением |
+| [`PathBreadcrumbs`](/components/uikit-product-header/path-breadcrumbs) | Хлебные крошки пути в шапке |
+| [`PlatformLogo`](/components/uikit-product-header/platform-logo) | Иконки платформ (Evolution, Advanced, Enterprise и др.) |
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header
+```
+
+```ts
+import { HeaderLayout, MainMenu, UserMenu } from '@ds/uikit-product-header';
+import '@ds/uikit-product-header/style.css';
+```
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header')} />

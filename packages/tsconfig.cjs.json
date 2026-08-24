@@ -257,9 +257,6 @@
       "path": "./uikit-product-button-predefined/tsconfig.cjs.json"
     },
     {
-      "path": "./uikit-product-card-predefined/tsconfig.cjs.json"
-    },
-    {
       "path": "./uikit-product-config-selector/tsconfig.cjs.json"
     },
     {
@@ -299,10 +296,16 @@
       "path": "./uikit-product-promo-tag-predefined/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-card-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-switch-row/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-title-clickable/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-header/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-quota/tsconfig.cjs.json"

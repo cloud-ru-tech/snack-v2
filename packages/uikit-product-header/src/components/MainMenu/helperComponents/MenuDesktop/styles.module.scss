@@ -1,0 +1,114 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/divider.module' as divider;
+@use '@ds/figma-variables/build/scss/components/drawer.module' as drawer;
+
+.drawer {
+  border-radius: drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius
+    drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius
+    drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomRightRadius
+    drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderBottomLeftRadius;
+
+  svg {
+    fill: currentcolor;
+  }
+}
+
+.scroll {
+  box-sizing: border-box;
+}
+
+.left {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: var(--snack-menu-left-width);
+  min-height: 0;
+  padding: base.$sn-primitive-dimension-16;
+
+  &:has(> :only-child) {
+    justify-content: flex-end;
+  }
+}
+
+.drawerRoot {
+  width: 100%;
+
+  // NOTE: cелектор такой потому, что не получается достучаться до нужной дивки и переопределить стили без !important
+  [data-test-id='header__drawer-menu'][data-small][data-position][data-width] {
+    width: 100%;
+    // NOTE: ширина по макету 264px, но у дровера еще зашит паддинг. Не стал его обнулять
+    max-width: calc(264px + #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight});
+
+    .left {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.leftTop {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.settingItems {
+  flex-shrink: 0;
+  height: auto;
+}
+
+.right {
+  position: relative;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-width: 0;
+  height: 100%;
+}
+
+.rightContent {
+  container-type: inline-size;
+  overflow-x: clip;
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-16;
+}
+
+.menu {
+  --snack-menu-header-height: 40px;
+  --snack-menu-left-width: 263px;
+
+  position: relative;
+  height: 100vh;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.menuBody {
+  display: flex;
+  box-sizing: border-box;
+  height: calc(100% - var(--snack-menu-header-height));
+}
+
+.menuHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: var(--snack-menu-header-height);
+}
+
+.menuHeaderBrand {
+  width: var(--snack-menu-left-width);
+  height: var(--snack-menu-header-height);
+  padding: 0 base.$sn-primitive-dimension-4;
+}

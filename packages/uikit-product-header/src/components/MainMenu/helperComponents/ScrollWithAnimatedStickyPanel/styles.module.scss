@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+  height: 100%;
+
+  :global {
+    .os-scrollbar-vertical {
+      /* stylelint-disable-next-line declaration-no-important */
+      top: var(--snack-autohide-panel-height, 0)!important;
+    }
+  }
+}
+
+.panel {
+  position: absolute;
+  width: 100%;
+}

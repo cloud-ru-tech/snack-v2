@@ -1,0 +1,77 @@
+$slide-x: -12px;
+$slide-y: 4px;
+
+.wrapper {
+  will-change: transform, opacity;
+
+  // Лонгхенды, а не шорткат `animation`: шорткат без имени lightningcss сворачивает
+  // в `animation: none`, и на прод-сборке анимация не запускалась.
+  animation-duration: 0.24s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+
+  &[data-animation-type='fade-slide-up-right'] {
+    transform: translate($slide-x, $slide-y);
+    opacity: 0;
+    animation-name: fade-slide-up-right;
+  }
+
+  &[data-animation-type='fade-slide-up'] {
+    transform: translate(0, $slide-y);
+    opacity: 0;
+    animation-name: fade-slide-up;
+  }
+
+  &[data-animation-type='slide-right'] {
+    transform: translate($slide-x, 0);
+    animation-name: slide-right;
+  }
+
+  &[data-animation-type='fade-in'] {
+    animation-name: fade-in;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-slide-up {
+  0% {
+    transform: translate(0, $slide-y);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-slide-up-right {
+  0% {
+    transform: translate($slide-x, $slide-y);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translate($slide-x, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}

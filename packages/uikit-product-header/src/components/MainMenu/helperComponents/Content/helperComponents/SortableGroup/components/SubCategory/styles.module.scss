@@ -1,0 +1,77 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.subcategoryTitleActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  min-width: 0;
+
+  visibility: hidden;
+}
+
+.subcategory {
+  min-width: 0;
+
+  &:has([data-subcategory-body]) {
+    grid-column: 1 / -1;
+    padding: 0 base.$sn-primitive-dimension-4;
+    border-radius: base.$sn-density-radius-2xs;
+    background-color: base.$sn-theme-color-neutral-decorTransparent;
+  }
+}
+
+.subcategoryAccordion {
+  min-width: 0;
+}
+
+.subcategoryTitle {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  min-width: 0;
+  padding-left: base.$sn-primitive-dimension-4;
+
+  &:hover,
+  &:focus-within {
+    .subcategoryTitleActions {
+      visibility: visible;
+    }
+  }
+}
+
+.subcategoryTitleRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-32;
+}
+
+.subcategoryTitleClickable {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.subcategoryDescription {
+  width: 100%;
+  padding-bottom: base.$sn-primitive-dimension-4;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.subcategoryTitleDraggable {
+  touch-action: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.subcategoryCollapsedCard {
+  flex: 1;
+  min-width: 0;
+}

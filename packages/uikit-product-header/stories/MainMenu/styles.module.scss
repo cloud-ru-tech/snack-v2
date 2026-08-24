@@ -1,0 +1,36 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.cell {
+  padding: base.$sn-primitive-dimension-16;
+}
+
+/* Заглушка селекта проекта справа от логотипа — показывает, что слот `logo` принимает несколько элементов. */
+.logoPlug {
+  width: base.$sn-primitive-dimension-48;
+  background-color: base.$sn-theme-color-neutral-decor;
+}
+
+.banners {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  width: 100%;
+  min-width: 0;
+
+  &[data-mobile] {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.banner {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.bannerLogo {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}

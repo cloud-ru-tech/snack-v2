@@ -1,0 +1,75 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.closeButton {
+  position: absolute;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+
+  @media (hover: hover) {
+    visibility: hidden;
+  }
+}
+
+.root {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-48;
+  padding: 0 base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-density-radius-2xs;
+
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    .closeButton {
+      visibility: visible;
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  flex: 1 1 auto;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.title {
+  overflow: hidden;
+  flex-shrink: 1;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.afterTitle {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: flex-end;
+}

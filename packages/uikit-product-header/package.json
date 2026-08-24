@@ -1,0 +1,77 @@
+{
+  "name": "@ds/uikit-product-header",
+  "version": "1.0.0",
+  "description": "Продуктовая шапка консоли — HeaderLayout, MainMenu, UserMenu, Logo, PathBreadcrumbs и PlatformLogo.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-header"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-header",
+  "license": "Apache-2.0",
+  "author": "Aleksei Belov <anbelov@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@dnd-kit/core": "catalog:",
+    "@dnd-kit/modifiers": "catalog:",
+    "@dnd-kit/sortable": "catalog:",
+    "@dnd-kit/utilities": "catalog:",
+    "@ds/accordion": "workspace:^",
+    "@ds/adaptive": "workspace:^",
+    "@ds/avatar": "workspace:^",
+    "@ds/breadcrumbs": "workspace:^",
+    "@ds/skeleton": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/divider": "workspace:^",
+    "@ds/drag-and-drop": "workspace:^",
+    "@ds/drawer": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/info-block": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/modal": "workspace:^",
+    "@ds/promo-tag": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/search": "workspace:^",
+    "@ds/segment-control": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/uikit-product-card-predefined": "workspace:^",
+    "@ds/uikit-product-switch-row": "workspace:^",
+    "@ds/uikit-product-title-clickable": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "fuse.js": "^7.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

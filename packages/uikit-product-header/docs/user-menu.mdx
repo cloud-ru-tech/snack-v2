@@ -1,0 +1,56 @@
+---
+title: UserMenu
+package: '@ds/uikit-product-header'
+description: Меню пользователя — профиль, переключатель темы, пункты настроек и выход.
+order: 3
+---
+
+import { Basic } from '../demos/examples/user-menu/Basic';
+import BasicSrc from '../demos/examples/user-menu/Basic.tsx?raw';
+import { ControlledTheme } from '../demos/examples/user-menu/ControlledTheme';
+import ControlledThemeSrc from '../demos/examples/user-menu/ControlledTheme.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import componentDoc from './props.json';
+
+# UserMenu
+
+`UserMenu` — dropdown с профилем пользователя, переключателем темы, дополнительными пунктами и кнопкой выхода.
+
+## Когда использовать
+
+- Блок аккаунта в правой части шапки консоли.
+- Переключение light / dark / system темы из интерфейса.
+
+## Примеры использования
+
+<Example
+  title='Базовое меню'
+  description='Профиль, тема, пункты настроек и actions. Открывается по клику на аватар.'
+  code={BasicSrc}
+>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Controlled тема'
+  description='`theme.value` и `theme.onChange` синхронизируют выбор темы с приложением.'
+  code={ControlledThemeSrc}
+>
+  <ControlledTheme client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.UserMenu} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-header-usermenu--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header', 'user-menu')} />

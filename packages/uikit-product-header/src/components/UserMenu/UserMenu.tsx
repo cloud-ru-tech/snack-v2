@@ -1,0 +1,103 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { Avatar } from '@ds/avatar';
+import { BaseItemProps, Droplist, ListProps } from '@ds/list';
+import { useValueControl } from '@ds/utils';
+import { useMemo } from 'react';
+
+import { TEST_IDS } from '../../constants';
+import { headerLocale } from '../../locale';
+import { HeaderButton } from '../HeaderButton';
+import { useUserMenuItems } from './hooks/useUserMenuItems';
+import styles from './styles.module.scss';
+import { ThemeProps, UserProfileProps } from './types';
+
+export type UserMenuProps = {
+  profile?: UserProfileProps;
+
+  theme?: ThemeProps;
+
+  items?: ListProps['items'];
+
+  settingItems?: BaseItemProps[];
+
+  onLogout?(): void;
+
+  open?: boolean;
+  setOpen?(open: boolean): void;
+  triggerTooltip?: string;
+
+  onClick?(): void;
+};
+
+export function UserMenu({
+  profile = {},
+  open: openProp,
+  setOpen: setOpenProp,
+  onLogout,
+  items,
+  settingItems,
+  theme,
+  onClick,
+  triggerTooltip,
+}: UserMenuProps) {
+  const { t } = headerLocale.useTranslations();
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
+
+  const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
+
+  const { fullName = '', inviteCount } = profile;
+
+  const userMenuItems = useUserMenuItems({
+    isMobile,
+    profile,
+    theme,
+    items,
+    settingItems,
+    onClose: () => {
+      setOpen(false);
+    },
+    onLogout,
+  });
+
+  const trigger = useMemo(
+    () => (
+      <HeaderButton
+        tooltip={{ tip: triggerTooltip }}
+        isMobile={isMobile}
+        onClick={() => {
+          setOpen?.(true);
+          onClick?.();
+        }}
+        counter={
+          Number(inviteCount)
+            ? {
+                value: Number(inviteCount),
+              }
+            : undefined
+        }
+        data-test-id={TEST_IDS.userMenu.button}
+        icon={<Avatar appearance='red' size='s' name={fullName} showTwoSymbols />}
+        data-pressed={open}
+      />
+    ),
+    [fullName, inviteCount, onClick, open, setOpen, isMobile, triggerTooltip],
+  );
+
+  return (
+    <Droplist
+      open={open}
+      onOpenChange={setOpen}
+      size='m'
+      items={userMenuItems}
+      trigger='click'
+      placement='bottom-end'
+      className={styles.userMenuDroplist}
+      closeOnPopstate
+      data-test-id={TEST_IDS.userMenu.root}
+      label={t('user')}
+    >
+      {trigger}
+    </Droplist>
+  );
+}

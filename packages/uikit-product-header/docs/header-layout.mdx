@@ -1,0 +1,57 @@
+---
+title: HeaderLayout
+package: '@ds/uikit-product-header'
+description: Компоновка слотов продуктовой шапки — меню, логотип, селектор, хлебные крошки и тулбар.
+order: 1
+---
+
+import { HeaderLayoutDemo } from '../demos/HeaderLayoutDemo';
+import { Basic } from '../demos/examples/header-layout/Basic';
+import BasicSrc from '../demos/examples/header-layout/Basic.tsx?raw';
+import { PartialSlots } from '../demos/examples/header-layout/PartialSlots';
+import PartialSlotsSrc from '../demos/examples/header-layout/PartialSlots.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import componentDoc from './props.json';
+
+# HeaderLayout
+
+`HeaderLayout` — контейнер шапки консоли. Раскладывает переданные слоты по зонам: меню, логотип, селектор проекта, хлебные крошки и правый тулбар.
+
+## Когда использовать
+
+- Сборка верхней панели консоли из готовых блоков (`MainMenu`, `Logo`, `PathBreadcrumbs`, `UserMenu`).
+- Единая раскладка шапки на desktop и mobile через `AdaptiveProvider`.
+
+## Демо
+
+<HeaderLayoutDemo client:visible />
+
+## Примеры использования
+
+<Example title='Полная шапка' description='Все слоты заполнены.' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='Частичная компоновка'
+  description='Слоты `select` и `toolbar` опциональны — можно не передавать.'
+  code={PartialSlotsSrc}
+>
+  <PartialSlots client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.HeaderLayout} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-header-headerlayout--playground' height={120} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header', 'header-layout')} />

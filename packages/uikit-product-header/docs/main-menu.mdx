@@ -1,0 +1,62 @@
+---
+title: MainMenu
+package: '@ds/uikit-product-header'
+description: Главное меню навигации — сегменты сервисов, поиск, избранное и настройки отображения.
+order: 2
+---
+
+import { Basic } from '../demos/examples/main-menu/Basic';
+import BasicSrc from '../demos/examples/main-menu/Basic.tsx?raw';
+import { WithSearch } from '../demos/examples/main-menu/WithSearch';
+import WithSearchSrc from '../demos/examples/main-menu/WithSearch.tsx?raw';
+import { WithFavorites } from '../demos/examples/main-menu/WithFavorites';
+import WithFavoritesSrc from '../demos/examples/main-menu/WithFavorites.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import componentDoc from './props.json';
+
+# MainMenu
+
+`MainMenu` — drawer с каталогом сервисов: сегменты, fuzzy-поиск, избранное, DnD групп и карточек. На desktop — resizable drawer, на mobile — fullscreen.
+
+## Когда использовать
+
+- Навигация по каталогу облачных сервисов из шапки консоли.
+- Сценарии с избранным, недавними сервисами и настройками отображения карточек.
+
+## Примеры использования
+
+<Example title='Базовое меню' description='Один сегмент с группами сервисов. Открывается кнопкой «Меню».' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example
+  title='С поиском'
+  description='Controlled `search` фильтрует карточки по fuzzy-совпадению.'
+  code={WithSearchSrc}
+>
+  <WithSearch client:visible />
+</Example>
+
+<Example
+  title='С избранным'
+  description='`favorite.value` и `favorite.onChange` управляют списком избранных сервисов.'
+  code={WithFavoritesSrc}
+>
+  <WithFavorites client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.MainMenu} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-header-mainmenu--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header', 'main-menu')} />

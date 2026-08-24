@@ -1,0 +1,48 @@
+---
+title: PathBreadcrumbs
+package: '@ds/uikit-product-header'
+description: Хлебные крошки пути в шапке — обёртка над Breadcrumbs с продуктовыми отступами.
+order: 5
+---
+
+import { Basic } from '../demos/examples/path-breadcrumbs/Basic';
+import BasicSrc from '../demos/examples/path-breadcrumbs/Basic.tsx?raw';
+import { LongTrail } from '../demos/examples/path-breadcrumbs/LongTrail';
+import LongTrailSrc from '../demos/examples/path-breadcrumbs/LongTrail.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import componentDoc from './props.json';
+
+# PathBreadcrumbs
+
+`PathBreadcrumbs` — продуктовая обёртка `@ds/breadcrumbs` для слота `breadcrumbs` в `HeaderLayout`.
+
+## Когда использовать
+
+- Отображение пути навигации в центральной зоне шапки.
+- Длинные цепочки разделов с автоматическим truncate.
+
+## Примеры использования
+
+<Example title='Короткий путь' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Длинный путь' description='Последний элемент неактивен при `items.length > 1`.' code={LongTrailSrc}>
+  <LongTrail client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={componentDoc.PathBreadcrumbs} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-header-headerlayout--playground' height={120} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-header', 'path-breadcrumbs')} />

@@ -1,0 +1,13 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background: base.$sn-theme-color-neutral-decor;
+}

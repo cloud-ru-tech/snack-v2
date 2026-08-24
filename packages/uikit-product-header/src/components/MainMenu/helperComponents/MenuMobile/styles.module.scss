@@ -1,0 +1,32 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$menuHeaderHeight: base.$sn-primitive-dimension-40;
+
+.menuHeader {
+  height: $menuHeaderHeight;
+  padding: 0 base.$sn-primitive-dimension-4;
+  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  min-width: 0;
+}
+
+.drawerMobile {
+  // NOTE: по умолчанию у BottomSheet другой цвет бэкграунда
+  /* stylelint-disable-next-line declaration-no-important */
+  background-color: base.$sn-theme-color-neutral-background !important;
+}
+
+.scrollMobile {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  min-height: 100%;
+  margin-top: $menuHeaderHeight;
+  padding: base.$sn-primitive-dimension-16;
+}

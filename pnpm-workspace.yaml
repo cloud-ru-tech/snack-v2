@@ -11,6 +11,7 @@ catalog:
   # ES module scope`. 1.61.0 — последняя версия, на которой suite собирается.
   '@playwright/test': 1.61.0
   '@dnd-kit/core': ^6.3.1
+  '@dnd-kit/modifiers': ^9.0.0
   '@dnd-kit/sortable': ^10.0.0
   '@dnd-kit/utilities': ^3.2.2
   '@tanstack/match-sorter-utils': ^8.19.4

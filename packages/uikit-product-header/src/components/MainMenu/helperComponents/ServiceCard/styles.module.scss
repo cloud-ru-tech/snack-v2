@@ -1,0 +1,14 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.card {
+  min-width: 0;
+}
+
+.dragCardPreview {
+  cursor: grabbing;
+  border-radius: base.$sn-density-radius-3xs;
+}
+
+.draggableCard {
+  min-width: 0;
+}

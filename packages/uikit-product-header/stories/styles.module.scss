@@ -1,0 +1,78 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.select {
+  display: flex;
+  align-items: center;
+
+  width: 176px;
+  height: base.$sn-primitive-dimension-48;
+  padding: 0 base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-top: none;
+  border-bottom: none;
+
+  .title {
+    @include base.composite-var(base.$sn-regular-label-s);
+
+    color: base.$sn-theme-color-neutral-text;
+  }
+}
+
+.wrapper {
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.plug {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-density-radius-xs;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: base.$sn-theme-color-primary-decor;
+}
+
+.plugBanners {
+  height: base.$sn-primitive-dimension-88;
+}
+
+.plugProductSelect,
+.plugProjectSelectMobile {
+  height: base.$sn-primitive-dimension-56;
+}
+
+.plugProjectSelect {
+  width: 176px;
+  height: base.$sn-primitive-dimension-40;
+}
+
+.plugBreadcrumbs {
+  width: 300px;
+  height: base.$sn-primitive-dimension-40;
+}
+
+.plugBreadcrumbsMobile {
+  width: 300px;
+  height: base.$sn-primitive-dimension-32;
+}
+
+.plugLogo,
+.plugMenu {
+  height: base.$sn-primitive-dimension-40;
+}
+
+.plugToolbar {
+  width: 160px;
+  height: base.$sn-primitive-dimension-40;
+}
