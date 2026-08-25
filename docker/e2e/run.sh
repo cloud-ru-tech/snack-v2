@@ -4,7 +4,8 @@
 #
 # Порядок:
 #   1. pnpm install
-#   2. build:storybook (Linux static; build:packages по умолчанию НЕ запускается — см. ниже)
+#   2. build:storybook — только при прямом запуске run.sh: scripts/docker-e2e.mts собирает
+#      статику на хосте и передаёт DOCKER_E2E_SKIP_STORYBOOK_BUILD=1
 #   3. http-server apps/storybook/storybook-static &
 #   4. tsx scripts/coverage-serve.mts --wait-only
 #   5. playwright test
@@ -83,18 +84,15 @@ STORYBOOK_PORT="${STORYBOOK_PORT:-6006}"
 STORYBOOK_URL="http://127.0.0.1:${STORYBOOK_PORT}/"
 STATIC_DIR="/work/apps/storybook/storybook-static"
 
-# По умолчанию static собираем здесь же, в Linux — чтобы одна команда работала «из коробки».
-# Но сборка платформо-нейтральна: storybook-static это JS/CSS/HTML-бандл, а пиксельный паритет с CI
-# даёт Chromium в linux/amd64, который остаётся в контейнере в любом случае. Поэтому статику МОЖНО
-# собрать на хосте (macOS/arm64 — нативно, без Rosetta, в разы быстрее) и переиспользовать через
-# DOCKER_E2E_SKIP_STORYBOOK_BUILD=1: /work приходит bind-mount'ом, контейнер увидит хостовую сборку.
-# Проверено прогоном всех visual-спеков на macOS-собранной статике — 342 снимка совпали с эталонами.
-# build:packages по умолчанию НЕ запускается: Storybook static собирается из исходников через
-# vite-алиасы @ds/* → packages/*/src (apps/storybook/.storybook/main.ts → collectDsAliases), а
-# спеки гоняются против поднятой статики и dist не импортируют. На CI пакеты перед e2e тоже не
-# собираются. Форсить сборку dist (например, для диагностики самой сборки пакетов) —
-# DOCKER_E2E_BUILD_PACKAGES=1.
-#   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — пропустить и storybook static (reuse предыдущей сборки).
+# Штатный путь — статику собирает хост (scripts/docker-e2e.mts) и передаёт сюда
+# DOCKER_E2E_SKIP_STORYBOOK_BUILD=1; ветка ниже остаётся для прямого запуска run.sh.
+# Бандл storybook-static платформо-нейтрален, пиксельный паритет с CI даёт Chromium в
+# linux/amd64, который остаётся в контейнере; /work приходит bind-mount'ом, поэтому контейнер
+# видит хостовую сборку.
+# build:packages по умолчанию не запускается: storybook static резолвит @ds/* → packages/*/src
+# через vite-алиасы (apps/storybook/.storybook/main.ts → collectDsAliases), спеки работают
+# против статики и dist не импортируют. На CI пакеты перед e2e тоже не собираются. Включить
+# сборку dist — DOCKER_E2E_BUILD_PACKAGES=1.
 if [[ "${DOCKER_E2E_BUILD_PACKAGES:-0}" == "1" && "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
   echo '→ pnpm build:packages (DOCKER_E2E_BUILD_PACKAGES=1)'
   pnpm build:packages
@@ -104,15 +102,8 @@ fi
 
 if [[ "${DOCKER_E2E_SKIP_STORYBOOK_BUILD:-0}" != "1" ]]; then
   echo '→ pnpm build:storybook'
-  # Heap-лимит V8: дефолт 8192 в скрипте `storybook build` (apps/storybook/package.json),
-  # дефолтные ~2 ГБ падают OOM на большом наборе сторей. На Apple Silicon эмулируемый
-  # amd64-контейнер + 8 ГБ heap не влезают в маленькую VM Docker Desktop → SIGSEGV (139)
-  # в фазе Vite-transform. Escape-hatch: DOCKER_E2E_STORYBOOK_HEAP=<MB> занижает heap, чтобы
-  # сборка уместилась (ценой риска OOM самой сборки — подбирай под объём VM).
-  if [[ -n "${DOCKER_E2E_STORYBOOK_HEAP:-}" ]]; then
-    export STORYBOOK_HEAP_MB="${DOCKER_E2E_STORYBOOK_HEAP}"
-    echo "→ storybook build heap override: ${STORYBOOK_HEAP_MB} MB (--max-old-space-size)"
-  fi
+  # Heap-лимит V8 — STORYBOOK_HEAP_MB (дефолт 8192 в `storybook build`, apps/storybook/package.json):
+  # дефолтные ~2 ГБ падают OOM на большом наборе сторей.
   pnpm build:storybook
 else
   echo '→ skip build:storybook (DOCKER_E2E_SKIP_STORYBOOK_BUILD=1)'

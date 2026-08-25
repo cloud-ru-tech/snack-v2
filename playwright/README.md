@@ -127,7 +127,7 @@ pnpm test:e2e:docker:visual:update packages/accordion
 
 Скрипт: `scripts/docker-e2e.mts`, entrypoint: `docker/e2e/run.sh`. Образ: `snack-v2-e2e:local` из `docker/e2e/Dockerfile` (chromium вшит). Override — `DOCKER_E2E_IMAGE`.
 
-Порядок: `pnpm install` → `build:storybook` → `http-server` → тесты. `build:packages` по умолчанию **не** запускается (storybook static резолвит `@ds/*` → `packages/*/src` через алиасы; форс — `DOCKER_E2E_BUILD_PACKAGES=1`). Быстрый повтор: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1`.
+Порядок: `build:storybook` на хосте → в контейнере `pnpm install` → `http-server` → тесты. `build:packages` по умолчанию **не** запускается (storybook static резолвит `@ds/*` → `packages/*/src` через алиасы; форс — `DOCKER_E2E_BUILD_PACKAGES=1`). Быстрый повтор без пересборки статики: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1` — только если стори и исходники с прошлого прогона не менялись, иначе эталоны снимутся со старой статики.
 
 ## Env
 

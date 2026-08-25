@@ -16,20 +16,23 @@
  *   pnpm test:e2e:docker:visual packages/calendar     # visual одного пакета
  *   pnpm test:e2e:docker -- --no-install packages/foo # без pnpm install
  *
- * Порядок внутри контейнера:
- *   pnpm install → build:storybook → http-server → тесты (chromium уже вшит в образ;
- *   build:packages по умолчанию НЕ запускается — форс через DOCKER_E2E_BUILD_PACKAGES=1)
+ * Порядок:
+ *   build:storybook на хосте → docker run: pnpm install → http-server → тесты
+ *   (chromium уже вшит в образ; build:packages по умолчанию не запускается — включается через
+ *   DOCKER_E2E_BUILD_PACKAGES=1)
+ *
+ * Storybook static собирается на хосте, а не в контейнере: бандл платформо-нейтрален, пиксельный
+ * паритет с CI даёт Chromium в linux/amd64, который остаётся в контейнере. Нативная сборка на
+ * macOS/arm64 быстрее эмулируемой amd64 и не упирается в память VM Docker Desktop. /work приходит
+ * bind-mount'ом, поэтому контейнер видит хостовую статику.
  *
  * Env:
  *   DOCKER_E2E_IMAGE                  — override образа (пропускает docker build; для CI-образа)
  *   DOCKER_E2E_NO_BUILD_IMAGE=1       — не пересобирать локальный образ (взять уже собранный тег)
  *   DOCKER_E2E_PLATFORM               — default linux/amd64; пустая строка = без --platform
  *   DOCKER_E2E_INSTALL=0              — пропустить pnpm install (или флаг --no-install)
- *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не пересобирать storybook static (reuse предыдущей сборки)
- *   DOCKER_E2E_STORYBOOK_HEAP=<MB>    — занизить V8 heap сборки storybook (--max-old-space-size),
- *                                       дефолт 8192; escape-hatch, когда 8 ГБ heap + эмуляция amd64
- *                                       не влезают в VM Docker Desktop и build падает SIGSEGV (139)
- *   DOCKER_E2E_BUILD_PACKAGES=1       — форсить build:packages (по умолчанию НЕ собирается: storybook
+ *   DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 — не собирать storybook static на хосте (reuse предыдущей сборки)
+ *   DOCKER_E2E_BUILD_PACKAGES=1       — включить build:packages (по умолчанию не собирается: storybook
  *                                       static резолвит @ds/* → packages/<pkg>/src через алиасы, dist не нужен)
  */
 import { spawnSync } from 'node:child_process';
@@ -45,7 +48,13 @@ const DEFAULT_IMAGE = 'snack-v2-e2e:local';
 const DOCKERFILE_DIR = resolve(ROOT, 'docker/e2e');
 
 /** Задаются скриптом явно — не пробрасываем из хоста/.env. */
-const DOCKER_E2E_VARS_MANAGED = new Set(['DOCKER_E2E_INSTALL', 'DOCKER_E2E_MODE', 'DOCKER_E2E_VISUAL_PATH']);
+const DOCKER_E2E_VARS_MANAGED = new Set([
+  'DOCKER_E2E_INSTALL',
+  'DOCKER_E2E_MODE',
+  'DOCKER_E2E_VISUAL_PATH',
+  // Внутри контейнера сборка всегда пропускается: статику собирает хост (см. buildStorybookOnHost).
+  'DOCKER_E2E_SKIP_STORYBOOK_BUILD',
+]);
 
 /** Подхватывает `.env` в корне (только ключи, которых нет в shell env). */
 function loadDotEnv(): void {
@@ -205,6 +214,21 @@ function buildLocalImage(tag: string, platform: string): void {
   }
 }
 
+/** Storybook static для контейнера: собирается на хосте нативно — см. шапку файла. */
+function buildStorybookOnHost(): void {
+  if (process.env.DOCKER_E2E_SKIP_STORYBOOK_BUILD === '1') {
+    console.error('→ skip build:storybook на хосте (DOCKER_E2E_SKIP_STORYBOOK_BUILD=1)');
+    return;
+  }
+
+  console.error('→ pnpm build:storybook (на хосте, нативно)');
+  const res = spawnSync('pnpm', ['build:storybook'], { stdio: 'inherit', cwd: ROOT });
+  if (res.status !== 0) {
+    console.error('build:storybook не удался — см. лог выше.');
+    process.exit(res.status ?? 1);
+  }
+}
+
 function main(): void {
   if (!existsSync(RUN_SCRIPT)) {
     console.error(`Missing entrypoint: ${RUN_SCRIPT}`);
@@ -234,6 +258,8 @@ function main(): void {
     buildLocalImage(image, platform);
   }
 
+  buildStorybookOnHost();
+
   const dockerArgs = [
     'run',
     '--rm',
@@ -244,6 +270,8 @@ function main(): void {
     '/work',
     '-e',
     `DOCKER_E2E_INSTALL=${install}`,
+    '-e',
+    'DOCKER_E2E_SKIP_STORYBOOK_BUILD=1',
     '-e',
     `PW_CI_WORKERS=${process.env.PW_CI_WORKERS ?? '2'}`,
   ];

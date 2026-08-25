@@ -196,26 +196,24 @@ pnpm test:e2e:docker:visual:update                            # все visual.sp
 
 Образ: `snack-v2-e2e:local`, собирается из `docker/e2e/Dockerfile` (bookworm + вшитые chromium и его OS-deps — на рантайме браузер не докачивается). Первый build — минуты, дальше из кэша слоёв Docker (повторно ~1–2 сек, если Dockerfile и версия Playwright не менялись). Override — `DOCKER_E2E_IMAGE`.
 
-Первый прогон долгий (~10–15 мин): docker build образа + `build:storybook`. Повторный быстрее: `DOCKER_E2E_SKIP_STORYBOOK_BUILD=1` (reuse предыдущей статики). `build:packages` по умолчанию **не** запускается — storybook static резолвит `@ds/*` → `packages/*/src` через vite-алиасы, dist не нужен (на CI пакеты перед e2e тоже не собираются). Форс сборки dist для диагностики — `DOCKER_E2E_BUILD_PACKAGES=1`.
+`storybook-static` собирает **хост**, а не контейнер: бандл платформо-нейтрален, а пиксельный паритет с CI даёт Chromium внутри `linux/amd64`, который остаётся в контейнере. На Apple Silicon это нативная arm64-сборка вместо эмулируемой — минуты превращаются в ~1 мин; `/work` приходит bind-mount'ом, поэтому контейнер видит хостовую статику. Первый прогон дольше на docker build образа. `build:packages` по умолчанию **не** запускается — storybook static резолвит `@ds/*` → `packages/*/src` через vite-алиасы, dist не нужен (на CI пакеты перед e2e тоже не собираются). Форс сборки dist для диагностики — `DOCKER_E2E_BUILD_PACKAGES=1`.
 
-#### Быстрый цикл: собрать статику на маке
+#### Переиспользование статики между прогонами
 
-Контейнер идёт как `linux/amd64`, а на Apple Silicon это Rosetta-эмуляция — именно `build:storybook` в ней и съедает основное время. Но сборка **платформо-нейтральна**: `storybook-static` — обычный JS/CSS/HTML-бандл, а пиксельный паритет с CI даёт Chromium внутри linux/amd64, который остаётся в контейнере. Значит статику можно собрать на хосте нативно и переиспользовать (`/work` приходит bind-mount'ом):
+Сборка статики — самая долгая часть прогона, и она нужна только когда менялись стори или исходники компонентов. Если подряд снимаешь несколько пакетов без правок между ними, второй и следующий прогоны можно пустить по уже собранной статике:
 
 ```bash
-pnpm build:storybook                                         # нативно на arm64, ~1 мин вместо минут в эмуляции
-
 DOCKER_E2E_INSTALL=0 DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 \
   pnpm test:e2e:docker:visual:update:changed packages/<pkg>  # ~30 сек на пакет
 ```
 
-Проверено прогоном **всех** visual-спеков на macOS-собранной статике: 342 снимка совпали с эталонами. Пересобирать статику нужно только когда менялись стори или исходники компонентов.
+`DOCKER_E2E_SKIP_STORYBOOK_BUILD=1` — ловушка: после правки стори он снимет эталоны со **старой** статики, и разошедшийся рендер уедет в baseline как истина. Ставь его только тогда, когда точно знаешь, что с прошлой сборки ничего не менялось.
 
 Не запускай несколько visual-контейнеров параллельно: под эмуляцией они делят CPU, и снимки с `hover` / тултипами / анимацией начинают флейкать. С `:update` флейковый кадр запишется в эталон как истина.
 
 #### Частые ошибки
 
-- **`Segmentation fault` / `Exit status 139` в фазе `build:storybook` (`transforming...`).** Сборке Storybook нужен V8-heap 8192 МБ (запинен в `apps/storybook/package.json`; дефолтные ~2 ГБ падают OOM на большом наборе сторей). На Apple Silicon контейнер идёт как эмулируемый `linux/amd64`, и heap + накладные расходы эмуляции не влезают в память VM Docker Desktop → процесс падает с SIGSEGV (139), а не с чистым OOM (137). Симптом «до этого работало, а теперь медленно и падает» обычно означает, что обновление Docker Desktop сбросило Resources к дефолту. Два способа:
+- **`Segmentation fault` / `Exit status 139` в фазе `build:storybook` (`transforming...`).** Актуально для сборки **внутри контейнера** — прямой запуск `docker/e2e/run.sh`; через `pnpm test:e2e:docker*` статику собирает хост нативно, и этот сценарий не возникает. Сборке Storybook нужен V8-heap 8192 МБ (запинен в `apps/storybook/package.json`; дефолтные ~2 ГБ падают OOM на большом наборе сторей). На Apple Silicon контейнер идёт как эмулируемый `linux/amd64`, и heap + накладные расходы эмуляции не влезают в память VM Docker Desktop → процесс падает с SIGSEGV (139), а не с чистым OOM (137). Симптом «до этого работало, а теперь медленно и падает» обычно означает, что обновление Docker Desktop сбросило Resources к дефолту. Два способа:
   - **Поднять память Docker Desktop** (рекомендуется — сохраняет amd64-рендеринг = паритет с CI). Docker Desktop → **Settings** → **Resources** → **Memory** → **16 GB** (минимум 12 GB) → **Apply & restart**. Проверка:
 
     ```bash
@@ -224,10 +222,10 @@ DOCKER_E2E_INSTALL=0 DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 \
 
     Заодно там же в **Settings → General** проверь галку «Use Rosetta for x86_64/amd64 emulation» — без неё amd64 идёт через QEMU и всё становится ещё медленнее.
 
-  - **Занизить heap сборки** без изменения памяти VM — `DOCKER_E2E_STORYBOOK_HEAP=<МБ>`:
+  - **Занизить heap сборки** — `STORYBOOK_HEAP_MB=<МБ>` (читает скрипт `build` в `apps/storybook/package.json`, поэтому работает и на хосте, и внутри контейнера):
 
     ```bash
-    DOCKER_E2E_STORYBOOK_HEAP=6144 pnpm test:e2e:docker:visual:update:changed packages/<pkg>
+    STORYBOOK_HEAP_MB=6144 pnpm test:e2e:docker:visual:update:changed packages/<pkg>
     ```
 
     Это escape-hatch «уместить сборку под маленькую VM»: слишком низкое значение упрётся уже в чистый OOM (137) — тогда подними число (7168) либо всё же добавь памяти VM. Дефолт (без переменной) — 8192, поведение CI не меняется.
