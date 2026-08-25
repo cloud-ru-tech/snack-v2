@@ -1,6 +1,6 @@
 import { APPEARANCE, Button, ICON_POSITION, VIEW } from '@ds/button';
 import { FieldSelectSingleProps } from '@ds/fields';
-import { CrossCircleSVG, SearchSVG, UpdateSVG } from '@ds/icons/interface/system';
+import { CrossSVG, SearchSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';
@@ -37,7 +37,7 @@ export function useSelectDataStates({ entityName, entityIcon, onRefetch }: Props
         ),
       },
       errorDataState: {
-        icon: { icon: CrossCircleSVG, appearance: 'neutral' },
+        icon: { icon: CrossSVG, appearance: 'neutral' },
         description: `${t('FieldSelectCreate.loadError')} ${entityName.plural.toLocaleLowerCase()}`,
         footer: onRefetch ? (
           <Button
