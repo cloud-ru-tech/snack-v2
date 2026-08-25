@@ -121,16 +121,9 @@ test.describe('List — visual regression', () => {
     const root = getByTestId(TEST_IDS.list.collapseScenario);
 
     // Стартово раскрыты `general` и `workspace-resources`. Раскрываем `billing` и вложенный
-    // `Payment methods` явной кнопкой-триггером (шеврон `groupIndicator`) — клик по телу строки
-    // больше не переключает collapse. `.first()` — header-шеврон самого accordion'а (до детей).
-    await getByTestId(`${LIST_INTERNAL_TEST_IDS.accordionItem}-billing`)
-      .getByTestId(LIST_INTERNAL_TEST_IDS.groupIndicator)
-      .first()
-      .click();
-    await getByTestId(`${LIST_INTERNAL_TEST_IDS.accordionItem}-billing-methods`)
-      .getByTestId(LIST_INTERNAL_TEST_IDS.groupIndicator)
-      .first()
-      .click();
+    // `Payment methods` кликом по строке группы целиком — шеврон `groupIndicator` неинтерактивен.
+    await getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing`).click();
+    await getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing-methods`).click();
     await expect(getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing-card`)).toBeVisible();
 
     // Увести курсор, чтобы hover-фон последнего кликнутого ряда не попал в кадр.

@@ -80,80 +80,33 @@ $sizes: 's', 'm', 'l';
   color: base.$sn-theme-color-available-version-textSecondary;
 }
 
-.expandableIcon {
-  display: flex;
-  align-items: center;
-  color: base.$sn-theme-color-available-version-textSecondary;
-  fill: currentcolor;
-}
-
 .groupIndicator {
-  cursor: pointer;
-
-  position: relative;
+  // Шеврон — индикатор состояния, а не кнопка: раскрытие переключает клик по всей строке.
+  // Своих hover/pressed/focus-состояний у него нет.
+  pointer-events: none;
 
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
 
-  padding: 0;
-  border: none;
-
-  // Token bridge: list/groupIndicator/cornerRadius (8) ещё не выгружен scss-композитом
-  // из @ds/figma-variables — берём примитив dimension-8 напрямую.
-  border-radius: base.$sn-primitive-dimension-8;
-
   // Закрытым шеврон в макете приглушён (@0.80), сплошной `textMain` — только раскрытым.
   color: base.$sn-theme-color-available-version-textSecondary;
 
-  appearance: none;
-  background: transparent;
-  outline: none;
+  fill: currentcolor;
 
   svg {
-    position: relative;
-    z-index: 1;
-    width: base.$sn-density-size-icon-xs;
-    height: base.$sn-density-size-icon-xs;
+    width: 100%;
+    height: 100%;
   }
 
-  &:focus-visible {
-    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
-  }
-
-  // В раскрытом состоянии мастер меняет скругление с 8 на 2 — кнопка становится
-  // «квадратнее» под подложкой нажатия (варианты `groupIndicatorS/Xs`, `open=true`).
+  // Раскрытая группа держит постоянную подложку `neutral/decorTransparent`
+  // (варианты мастера `groupIndicatorS/Xs`, `open=true`).
   &[data-open] {
     border-radius: base.$sn-primitive-dimension-2;
     color: base.$sn-theme-color-available-version-textMain;
+    background: base.$sn-theme-color-neutral-decorTransparent;
   }
-}
-
-.groupIndicatorState {
-  pointer-events: none;
-
-  position: absolute;
-  inset: 0;
-
-  border-radius: inherit;
-
-  background: transparent;
-}
-
-.groupIndicator:hover > .groupIndicatorState {
-  background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
-}
-
-.groupIndicator:active > .groupIndicatorState {
-  background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
-}
-
-// Раскрытая группа держит постоянную подложку `neutral/decorTransparent`,
-// а не pressed-слой состояния.
-.groupIndicator[data-open] > .groupIndicatorState {
-  background: base.$sn-theme-color-neutral-decorTransparent;
 }
 
 .markerContainer {
@@ -234,17 +187,12 @@ $level: var(--level, 0);
         padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
       }
 
-      .expandableIcon {
-        width: base.simple-var(icons.$iconSizeMap, $size);
-        height: base.simple-var(icons.$iconSizeMap, $size);
-      }
-
       .groupIndicator {
         width: base.simple-var(icons.$iconSizeMap, $size);
         height: base.simple-var(icons.$iconSizeMap, $size);
-        // Строка выровнена по flex-start; centeredWrapper.padding-top сдвигает чеврон на центр
+        // Строка выровнена по flex-start; centeredWrapper.padding-top сдвигает шеврон на центр
         // первой строки текста (как у afterContent/beforeContent). margin (а не padding) —
-        // чтобы квадрат state-layer'а остался icon-сеткой, а не растянулся по вертикали.
+        // чтобы подложка раскрытого состояния осталась icon-сеткой, а не растянулась по вертикали.
         margin-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
       }
 
@@ -280,12 +228,7 @@ $level: var(--level, 0);
 
 .innerWrapper {
   &[data-disabled] {
-    .expandableIcon {
-      color: base.$sn-theme-color-available-version-textDisabled;
-    }
-
     .groupIndicator {
-      cursor: not-allowed;
       color: base.$sn-theme-color-available-version-textDisabled;
     }
 

@@ -39,19 +39,12 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
     (isSelectionMultiple && checkedProp),
   );
 
-  const handleKeyDown = useCallback(() => {
+  // Раскрытие переключает вся строка целиком: клик/Enter по телу и ArrowRight с клавиатуры.
+  const handleToggle = useCallback(() => {
     toggleOpenCollapseItem?.(id ?? '');
   }, [id, toggleOpenCollapseItem]);
 
   const itemsJSX = useRenderItems(items);
-
-  // Раскрытие привязано к явной кнопке-триггеру `groupIndicator` (шеврон справа) и
-  // ТОЛЬКО переключает collapse — `option.onClick` сюда не зовём, иначе у потребителя,
-  // который вешает на onClick собственный toggle, выходит двойное переключение.
-  // Клик по телу строки (выбор/навигация) идёт через `option.onClick` в BaseItem.
-  const handleExpandIconClick = () => {
-    toggleOpenCollapseItem?.(id ?? '');
-  };
 
   return (
     <CollapseBlockPrivate
@@ -62,9 +55,9 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
           disabled={disabled}
           open={isOpen}
           expandIcon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
-          onExpandIconClick={handleExpandIconClick}
+          onToggleExpand={handleToggle}
           isParentNode
-          onOpenNestedList={handleKeyDown}
+          onOpenNestedList={handleToggle}
           checked={checked}
           indeterminate={indeterminate}
           onSelect={!disabled ? handleOnSelect : undefined}

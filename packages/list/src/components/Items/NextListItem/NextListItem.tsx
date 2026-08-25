@@ -149,7 +149,7 @@ export function NextListItem({
         indeterminate={indeterminate}
         checked={checked}
         onOpenNestedList={openSublist}
-        onExpandIconClick={openSublist}
+        onToggleExpand={openSublist}
         onSelect={handleOnSelect}
       />
     </Dropdown>

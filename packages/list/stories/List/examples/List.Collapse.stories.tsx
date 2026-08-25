@@ -71,7 +71,9 @@ function CollapseScenario() {
     <DemoPage>
       <DemoPanel width='narrow'>
         <DemoTitle>Collapse</DemoTitle>
-        <DemoHint>Controlled expand: click the chevron trigger to toggle. Includes a group → collapse branch.</DemoHint>
+        <DemoHint>
+          Controlled expand: click anywhere on a group row to toggle. Includes a group → collapse branch.
+        </DemoHint>
         <DemoActions align='center'>
           <div className={styles.listFrame}>
             <List
@@ -93,22 +95,22 @@ export const Collapse: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.list.collapseScenario);
-    // Раскрытие переключает явная кнопка-триггер `groupIndicator` (шеврон), а не клик по строке.
+    // Раскрытие переключает клик по строке группы целиком (шеврон — только индикатор).
     // Тогглим billing открыть→закрыть: проверяем триггер и возвращаем стори в исходное
     // состояние (general/workspace раскрыты, billing свёрнут) — на него опираются e2e-спеки,
     // которые грузят эту же стори (play выполняется при загрузке).
-    const billingTrigger = () =>
+    const billingRow = () =>
       root.querySelector(
-        `[data-test-id="${INTERNAL_TEST_IDS.accordionItem}-billing"] [data-test-id="${INTERNAL_TEST_IDS.groupIndicator}"]`,
+        `[data-test-id="${INTERNAL_TEST_IDS.accordionItem}-billing"] [data-test-id="${INTERNAL_TEST_IDS.baseItem}_billing"]`,
       ) as HTMLElement;
 
-    await step('chevron trigger opens the collapse branch', async () => {
-      await userEvent.click(billingTrigger());
+    await step('row click opens the collapse branch', async () => {
+      await userEvent.click(billingRow());
       await expect(canvas.getByTestId(`${INTERNAL_TEST_IDS.baseItem}_billing-invoices`)).toBeVisible();
     });
 
-    await step('chevron trigger closes it back (restores initial state)', async () => {
-      await userEvent.click(billingTrigger());
+    await step('row click closes it back (restores initial state)', async () => {
+      await userEvent.click(billingRow());
       await expect(canvas.queryByTestId(`${INTERNAL_TEST_IDS.baseItem}_billing-invoices`)).toBeNull();
     });
   },

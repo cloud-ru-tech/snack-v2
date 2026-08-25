@@ -25,11 +25,11 @@ type AllBaseItemProps = FlattenBaseItem & {
   isParentNode?: boolean;
   onOpenNestedList?(e?: KeyboardEvent<HTMLElement>): void;
   /**
-   * Клик по явной кнопке-триггеру `groupIndicator` (шеврон справа), открывающей/закрывающей
-   * вложенный список. Если передан — шеврон рендерится как отдельная интерактивная кнопка
-   * со своим state-layer'ом, а клик по телу строки больше не переключает раскрытие.
+   * Переключение раскрытия вложенного списка. Триггер — вся строка целиком (клик или
+   * Enter/Space), шеврон `groupIndicator` при этом остаётся неинтерактивным индикатором
+   * состояния.
    */
-  onExpandIconClick?(e: MouseEvent<HTMLElement>): void;
+  onToggleExpand?(): void;
   /**
    * Слот ручки drag&drop (Figma `centeredWrapper`) — рендерится первым в строке, перед
    * маркером/чекбоксом. Интерактивность (обработчики `@dnd-kit`) и содержимое (иконка)
@@ -57,7 +57,7 @@ export function BaseItem({
   checked: checkedProp,
   onSelect,
   onOpenNestedList,
-  onExpandIconClick,
+  onToggleExpand,
   isParentNode,
   className,
   inactive,
@@ -107,7 +107,11 @@ export function BaseItem({
     // пункту меню), поэтому keyboard-событие пробрасывается под тем же типом.
     onClick?.(e as MouseEvent<HTMLElement>);
 
-    if (interactive && !isParentNode) {
+    if (isParentNode) {
+      // Раскрытие вложенного списка триггерит вся строка целиком: шеврон `groupIndicator` —
+      // только индикатор состояния, собственной интерактивности у него нет.
+      onToggleExpand?.();
+    } else if (interactive) {
       handleChange();
     }
 
@@ -129,14 +133,19 @@ export function BaseItem({
     }
 
     if (e.key === 'Enter' || e.key === ' ') {
-      if (isSelectionMultiple && isParentNode && onSelect) {
-        onSelect();
+      if (isParentNode) {
+        // В multiple-режиме Enter/Space на группе выбирает всю ветку, иначе — раскрывает её.
+        if (isSelectionMultiple && onSelect) {
+          onSelect();
+        } else {
+          onToggleExpand?.();
+        }
+      } else {
+        // Повторяем клик по элементу: `handleItemClick` сам вызывает `handleChange` /
+        // `closeDroplist`. Отдельный `handleChange` здесь не нужен — иначе в multiple-режиме
+        // выбор переключался бы дважды (toggle + откат) и Enter не менял бы состояние.
+        handleItemClick(e);
       }
-
-      // Повторяем клик по элементу: `handleItemClick` сам вызывает `handleChange` /
-      // `closeDroplist`. Отдельный `handleChange` здесь не нужен — иначе в multiple-режиме
-      // выбор переключался бы дважды (toggle + откат) и Enter не менял бы состояние.
-      !isParentNode && handleItemClick(e);
 
       e.stopPropagation();
       e.preventDefault();
@@ -147,18 +156,6 @@ export function BaseItem({
     if (isParentNode) {
       e.stopPropagation();
     }
-  };
-
-  const handleExpandIconClick = (e: MouseEvent<HTMLElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    // Триггер раскрытия изолирован от клика по строке: всплытие останавливаем,
-    // чтобы клик по шеврону не активировал выбор/навигацию пункта.
-    e.stopPropagation();
-    e.preventDefault();
-    onExpandIconClick?.(e);
   };
 
   const props = extractSupportProps(rest);
@@ -201,6 +198,7 @@ export function BaseItem({
         data-non-pointer={(inactive && !onClick) || undefined}
         data-variant={mode || undefined}
         data-open={open || undefined}
+        aria-expanded={isParentNode ? Boolean(open) : undefined}
         onKeyDown={handleItemKeyDown}
         onFocus={handleItemFocus}
         style={{ '--level': level }}
@@ -243,26 +241,16 @@ export function BaseItem({
           />
         )}
 
-        {!switchProp &&
-          expandIcon &&
-          (onExpandIconClick ? (
-            <button
-              type='button'
-              className={styles.groupIndicator}
-              data-size={size}
-              data-open={open || undefined}
-              data-test-id={TEST_IDS.groupIndicator}
-              tabIndex={-1}
-              disabled={disabled}
-              onClick={handleExpandIconClick}
-              onMouseDown={e => e.stopPropagation()}
-            >
-              <span className={styles.groupIndicatorState} aria-hidden />
-              {expandIcon}
-            </button>
-          ) : (
-            <span className={styles.expandableIcon}>{expandIcon}</span>
-          ))}
+        {!switchProp && expandIcon && (
+          <span
+            className={styles.groupIndicator}
+            data-open={open || undefined}
+            data-test-id={TEST_IDS.groupIndicator}
+            aria-hidden
+          >
+            {expandIcon}
+          </span>
+        )}
       </li>
     </div>
   );

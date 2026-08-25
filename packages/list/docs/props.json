@@ -188,11 +188,6 @@
         "required": false,
         "description": "Колбек обработки клика"
       },
-      "onExpandIconClick": {
-        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false,
-        "description": "Клик по явной кнопке-триггеру `groupIndicator` (шеврон справа), открывающей/закрывающей\nвложенный список. Если передан — шеврон рендерится как отдельная интерактивная кнопка\nсо своим state-layer'ом, а клик по телу строки больше не переключает раскрытие."
-      },
       "onFocus": {
         "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
         "required": false,
@@ -215,6 +210,11 @@
       "onSelect": {
         "type": "(() => void)",
         "required": false
+      },
+      "onToggleExpand": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Переключение раскрытия вложенного списка. Триггер — вся строка целиком (клик или\nEnter/Space), шеврон `groupIndicator` при этом остаётся неинтерактивным индикатором\nсостояния."
       },
       "open": {
         "type": "boolean",
