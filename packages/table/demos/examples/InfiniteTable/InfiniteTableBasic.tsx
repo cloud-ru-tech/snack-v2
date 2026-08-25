@@ -1,4 +1,4 @@
-import { InfiniteTable, SimpleColumnDef } from '@ds/table';
+import { defineColumns, InfiniteTable, SimpleColumnDef } from '@ds/table';
 import { useCallback, useState } from 'react';
 
 type User = {
@@ -40,7 +40,7 @@ export function InfiniteTableBasic() {
     <div style={{ display: 'grid', gridTemplateRows: 'minmax(0, 1fr)', height: 360 }}>
       <InfiniteTable
         data={items}
-        columns={columns}
+        columns={defineColumns(columns)}
         getRowId={user => user.id}
         loading={loading}
         hasMore={hasMore}

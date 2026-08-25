@@ -1526,10 +1526,12 @@
         "description": "Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=3)."
       },
       "columns": {
-        "type": "SimpleColumnDef<TData>[]",
+        "type": "ColumnDefinition<TData>[]",
         "required": true,
+        "description": "Определения колонок в стандартном виде — том же, что у `Table.columnDefinitions`.\nУпрощённое описание здесь не используется: у таблиц с бесконечной подгрузкой колонки\nобычно не выражаются им (спред `getStatusColumnDef`, собственный `cell`, `id` не совпадающий\nс `accessorKey`), а `defineColumns` остаётся доступен отдельно, если он всё же нужен.",
         "typeRefs": [
-          "SimpleColumnDef"
+          "ColumnDefinition",
+          "Except"
         ]
       },
       "columnsSettings": {
@@ -2123,65 +2125,6 @@
         "type": "Virtualizer<HTMLElement, Element> | null",
         "own": true
       },
-      "SimpleColumnDef": {
-        "kind": "interface",
-        "props": {
-          "align": {
-            "type": "\"left\" | \"right\" | undefined",
-            "required": false,
-            "values": [
-              "left",
-              "right"
-            ],
-            "description": "Выравнивание ячейки и заголовка"
-          },
-          "column": {
-            "type": "ColumnDefinition<T> | undefined",
-            "required": false,
-            "description": "Полное определение колонки вместо маппинга",
-            "typeRefs": [
-              "ColumnDefinition",
-              "Except"
-            ]
-          },
-          "format": {
-            "type": "\"date\" | \"currency\" | ((value: unknown, row: T) => ReactNode) | undefined",
-            "required": false,
-            "description": "Формат значения или кастомный рендер"
-          },
-          "header": {
-            "type": "string",
-            "required": true,
-            "description": "Заголовок колонки"
-          },
-          "hidden": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скрыть колонку по умолчанию (показывается в меню настроек)"
-          },
-          "key": {
-            "type": "keyof T & string",
-            "required": true,
-            "description": "Ключ поля в данных строки"
-          },
-          "resizable": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Ручное изменение ширины"
-          },
-          "sortable": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить сортировку"
-          },
-          "width": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Ширина колонки, px"
-          }
-        },
-        "own": true
-      },
       "StickyControls": {
         "kind": "interface",
         "props": {
@@ -2205,6 +2148,27 @@
               "TableStickyControlsBackgroundPredefined"
             ]
           },
+          "enabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить sticky-хром при скролле страницы."
+          },
+          "offsetBottom": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ снизу (px): высота внешнего sticky UI под таблицей (mobile tab bar).\nТолько при `enabled: true`."
+          },
+          "offsetTop": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ сверху (px): высота внешнего sticky UI над таблицей (app header, tabs).\nТолько при `enabled: true`."
+          }
+        },
+        "own": true
+      },
+      "StickyControlsLayoutDefaults": {
+        "kind": "interface",
+        "props": {
           "enabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -7618,10 +7582,6 @@
         "type": "string",
         "required": false
       },
-      "loadMoreButton": {
-        "type": "ReactNode",
-        "required": false
-      },
       "loadingTable": {
         "type": "Table<TData>",
         "required": true
@@ -7754,10 +7714,6 @@
       "filteredTopRows": {
         "type": "Row<TData>[]",
         "required": true
-      },
-      "loadMoreButton": {
-        "type": "ReactNode",
-        "required": false
       },
       "loadingTableRows": {
         "type": "Row<TData>[]",

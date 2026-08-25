@@ -27,7 +27,6 @@ type TableCardsBodyProps<TData extends object> = {
   showInfiniteLoadingTail: boolean;
   loadingTableRows: Row<TData>[];
   loadingTable: Table<TData>;
-  loadMoreButton?: ReactNode;
 };
 
 export function TableCardsBody<TData extends object>({
@@ -45,7 +44,6 @@ export function TableCardsBody<TData extends object>({
   showInfiniteLoadingTail,
   loadingTableRows,
   loadingTable,
-  loadMoreButton,
 }: TableCardsBodyProps<TData>) {
   const renderContentCard = (row: Row<TData>, selectionAppearance?: RowAppearance) => {
     const defaultRender = (
@@ -85,7 +83,6 @@ export function TableCardsBody<TData extends object>({
           </div>
         </SkeletonContextProvider>
       ) : null}
-      {loadMoreButton}
       {emptyState}
     </>
   );

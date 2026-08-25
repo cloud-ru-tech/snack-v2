@@ -21,7 +21,6 @@ type TableRowsBodyProps<TData extends object> = {
   emptyState: ReactNode;
   showInfiniteLoadingTail: boolean;
   loadingTableRows: Row<TData>[];
-  loadMoreButton?: ReactNode;
 };
 
 export function TableRowsBody<TData extends object>({
@@ -36,7 +35,6 @@ export function TableRowsBody<TData extends object>({
   emptyState,
   showInfiniteLoadingTail,
   loadingTableRows,
-  loadMoreButton,
 }: TableRowsBodyProps<TData>) {
   return (
     <>
@@ -111,7 +109,6 @@ export function TableRowsBody<TData extends object>({
           ))}
         </SkeletonContextProvider>
       ) : null}
-      {loadMoreButton}
       {emptyState}
     </>
   );

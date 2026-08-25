@@ -1,4 +1,4 @@
-import { InfiniteTable, InfiniteTableInput, LoadMoreTrigger, SimpleColumnDef, VIEW } from '@ds/table';
+import { defineColumns, InfiniteTable, InfiniteTableInput, LoadMoreTrigger, VIEW } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentType, useCallback, useState } from 'react';
 
@@ -11,12 +11,12 @@ const ALL_USERS = makeUsers(60);
 const PAGE_LENGTH = 15;
 const LOAD_DELAY_MS = 400;
 
-const infiniteColumns: SimpleColumnDef<User>[] = [
+const infiniteColumns = defineColumns<User>([
   { key: 'name', header: 'Имя', sortable: true, width: 200 },
   { key: 'email', header: 'Email', width: 240 },
   { key: 'role', header: 'Роль', sortable: true, width: 140 },
   { key: 'amount', header: 'Сумма', sortable: true, align: 'right', width: 140, format: 'currency' },
-];
+]);
 
 type StoryArgs = Omit<InfiniteTableInput<User>, 'data' | 'columns' | 'getRowId' | 'onLoadMore' | 'hasMore' | 'loading'>;
 

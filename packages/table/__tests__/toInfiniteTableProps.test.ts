@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
+import { defineColumns } from '../src/columnUtils';
 import { toInfiniteTableProps } from '../src/presets/infiniteTable/toInfiniteTableProps';
+
+type Row = { id: string };
 
 describe('toInfiniteTableProps', () => {
   it('enables row virtualization by default', () => {
     const result = toInfiniteTableProps(
       {
         data: [{ id: '1' }],
-        columns: [{ key: 'id', header: 'ID' }],
+        columns: defineColumns<Row>([{ key: 'id', header: 'ID' }]),
       },
       null,
     );
@@ -19,7 +22,7 @@ describe('toInfiniteTableProps', () => {
     const result = toInfiniteTableProps(
       {
         data: [{ id: '1' }],
-        columns: [{ key: 'id', header: 'ID' }],
+        columns: defineColumns<Row>([{ key: 'id', header: 'ID' }]),
         enableRowVirtualization: false,
       },
       null,

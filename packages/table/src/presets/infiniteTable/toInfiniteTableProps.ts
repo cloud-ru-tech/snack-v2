@@ -1,13 +1,20 @@
 import { Ref } from 'react';
 
-import { CardViewInput, defineColumns, mapCardViewProps, SimpleColumnDef } from '../../columnUtils';
+import { CardViewInput, mapCardViewProps } from '../../columnUtils';
 import { InfiniteTableProps } from '../../components/types';
+import { ColumnDefinition } from '../../types';
 import { wrapGetRowId } from '../wrapGetRowId';
 
 /** Входные пропсы `InfiniteTable` / `useInfiniteTableProps` */
 export type InfiniteTableInput<TData extends object> = CardViewInput<TData> & {
   data: TData[];
-  columns: SimpleColumnDef<TData>[];
+  /**
+   * Определения колонок в стандартном виде — том же, что у `Table.columnDefinitions`.
+   * Упрощённое описание здесь не используется: у таблиц с бесконечной подгрузкой колонки
+   * обычно не выражаются им (спред `getStatusColumnDef`, собственный `cell`, `id` не совпадающий
+   * с `accessorKey`), а `defineColumns` остаётся доступен отдельно, если он всё же нужен.
+   */
+  columns: ColumnDefinition<TData>[];
   getRowId?: (row: TData) => string;
 } & Omit<
     InfiniteTableProps<TData>,
@@ -37,7 +44,7 @@ export function toInfiniteTableProps<TData extends object>(
     ...rest,
     ...mapCardViewProps({ headlineKey, defaultView, view, onViewChange, renderCard }),
     data,
-    columnDefinitions: defineColumns(columns),
+    columnDefinitions: columns,
     infiniteLoading: true,
     outline: outline ?? true,
     enableRowVirtualization: enableRowVirtualization ?? true,

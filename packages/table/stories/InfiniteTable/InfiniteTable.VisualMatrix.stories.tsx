@@ -1,4 +1,4 @@
-import { InfiniteTable, VIEW } from '@ds/table';
+import { defineColumns, InfiniteTable, VIEW } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof InfiniteTable>;
 
 const baseProps = {
   data: PRESET_USERS,
-  columns: presetUserColumns,
+  columns: defineColumns(presetUserColumns),
   getRowId: (user: (typeof PRESET_USERS)[number]) => user.id,
   hasMore: false,
   'data-test-id': TEST_IDS.table.root,

@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import { defineColumns } from '../../columnUtils';
 import { InfiniteTableProps } from '../../components/types';
 import { wrapGetRowId } from '../wrapGetRowId';
 import { InfiniteTableInput, toInfiniteTableProps } from './toInfiniteTableProps';
@@ -21,13 +20,11 @@ export function useInfiniteTableProps<TData extends object>(
 
   const { columns, getRowId } = input;
 
-  const columnDefinitions = useMemo(() => defineColumns(columns), [columns]);
-
   const wrappedGetRowId = useMemo(() => wrapGetRowId(getRowId), [getRowId]);
 
   return {
     ...toInfiniteTableProps(input, isButtonMode ? null : scrollRef),
-    columnDefinitions,
+    columnDefinitions: columns,
     getRowId: wrappedGetRowId,
   };
 }

@@ -1,4 +1,4 @@
-import { SimpleColumnDef, Table, useInfiniteTableProps } from '@ds/table';
+import { defineColumns, SimpleColumnDef, Table, useInfiniteTableProps } from '@ds/table';
 import { useCallback, useState } from 'react';
 
 type User = { id: string; name: string; email: string };
@@ -31,7 +31,7 @@ export function InfiniteTableWithHook() {
 
   const tableProps = useInfiniteTableProps({
     data: items,
-    columns,
+    columns: defineColumns(columns),
     getRowId: user => user.id,
     loading,
     hasMore,

@@ -1,4 +1,4 @@
-import { InfiniteTable, SimpleColumnDef } from '@ds/table';
+import { defineColumns, InfiniteTable, SimpleColumnDef } from '@ds/table';
 
 type User = { id: string; name: string; email: string };
 
@@ -15,7 +15,7 @@ const columns: SimpleColumnDef<User>[] = [
 export function InfiniteTableStatic() {
   return (
     <div style={{ display: 'grid', gridTemplateRows: 'minmax(0, 1fr)', height: 280 }}>
-      <InfiniteTable data={USERS} columns={columns} getRowId={user => user.id} hasMore={false} outline />
+      <InfiniteTable data={USERS} columns={defineColumns(columns)} getRowId={user => user.id} hasMore={false} outline />
     </div>
   );
 }

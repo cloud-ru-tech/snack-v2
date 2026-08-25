@@ -2011,7 +2011,7 @@ export function TreeTableWithSelection() {
 #### Подгрузка при скролле
 
 ```tsx
-import { InfiniteTable, SimpleColumnDef } from '@ds/table';
+import { defineColumns, InfiniteTable, SimpleColumnDef } from '@ds/table';
 import { useCallback, useState } from 'react';
 
 type User = {
@@ -2053,7 +2053,7 @@ export function InfiniteTableBasic() {
     <div style={{ display: 'grid', gridTemplateRows: 'minmax(0, 1fr)', height: 360 }}>
       <InfiniteTable
         data={items}
-        columns={columns}
+        columns={defineColumns(columns)}
         getRowId={user => user.id}
         loading={loading}
         hasMore={hasMore}
@@ -2068,7 +2068,7 @@ export function InfiniteTableBasic() {
 #### Через хук useInfiniteTableProps
 
 ```tsx
-import { SimpleColumnDef, Table, useInfiniteTableProps } from '@ds/table';
+import { defineColumns, SimpleColumnDef, Table, useInfiniteTableProps } from '@ds/table';
 import { useCallback, useState } from 'react';
 
 type User = { id: string; name: string; email: string };
@@ -2101,7 +2101,7 @@ export function InfiniteTableWithHook() {
 
   const tableProps = useInfiniteTableProps({
     data: items,
-    columns,
+    columns: defineColumns(columns),
     getRowId: user => user.id,
     loading,
     hasMore,
@@ -2119,7 +2119,7 @@ export function InfiniteTableWithHook() {
 #### Без подгрузки (hasMore: false)
 
 ```tsx
-import { InfiniteTable, SimpleColumnDef } from '@ds/table';
+import { defineColumns, InfiniteTable, SimpleColumnDef } from '@ds/table';
 
 type User = { id: string; name: string; email: string };
 
@@ -2136,7 +2136,7 @@ const columns: SimpleColumnDef<User>[] = [
 export function InfiniteTableStatic() {
   return (
     <div style={{ display: 'grid', gridTemplateRows: 'minmax(0, 1fr)', height: 280 }}>
-      <InfiniteTable data={USERS} columns={columns} getRowId={user => user.id} hasMore={false} outline />
+      <InfiniteTable data={USERS} columns={defineColumns(columns)} getRowId={user => user.id} hasMore={false} outline />
     </div>
   );
 }

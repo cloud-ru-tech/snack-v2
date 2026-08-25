@@ -1,4 +1,4 @@
-import { InfiniteTable } from '@ds/table';
+import { defineColumns, InfiniteTable } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -20,12 +20,12 @@ const ALL_USERS = makeUsers(45);
 const PAGE_LENGTH = 15;
 const LOAD_DELAY_MS = 400;
 
-const columns = [
-  { key: 'name' as const, header: 'Имя', sortable: true, width: 200 },
-  { key: 'email' as const, header: 'Email', width: 240 },
-  { key: 'role' as const, header: 'Роль', width: 140 },
-  { key: 'amount' as const, header: 'Сумма', align: 'right' as const, width: 140, format: 'currency' as const },
-];
+const columns = defineColumns<User>([
+  { key: 'name', header: 'Имя', sortable: true, width: 200 },
+  { key: 'email', header: 'Email', width: 240 },
+  { key: 'role', header: 'Роль', width: 140 },
+  { key: 'amount', header: 'Сумма', align: 'right', width: 140, format: 'currency' },
+]);
 
 function LoadMoreButtonTable() {
   const [items, setItems] = useState<User[]>(() => ALL_USERS.slice(0, PAGE_LENGTH));

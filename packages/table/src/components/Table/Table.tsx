@@ -511,7 +511,6 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
       emptyState={tableEmptyState}
       showInfiniteLoadingTail={showInfiniteLoadingTail}
       loadingTableRows={loadingTableRows}
-      loadMoreButton={loadMoreButtonNode}
     />
   );
 
@@ -531,7 +530,6 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
       showInfiniteLoadingTail={showInfiniteLoadingTail}
       loadingTableRows={loadingTableRows}
       loadingTable={loadingTable}
-      loadMoreButton={loadMoreButtonNode}
     />
   );
 
@@ -768,6 +766,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
                 {scrollContent}
               </TableScrollHost>
             </DndContext>
+            {loadMoreButtonNode}
             {!isCardsView && outline ? <span className={styles.contentBorder} aria-hidden /> : null}
           </div>
 
