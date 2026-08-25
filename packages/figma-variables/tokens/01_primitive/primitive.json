@@ -2197,6 +2197,128 @@
             "$type": "color",
             "$value": "#fcfcfc"
           }
+        },
+        "brandF": {
+          "5": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#212128"
+          },
+          "10": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#242430"
+          },
+          "15": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#292a35"
+          },
+          "25": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#363742"
+          },
+          "45": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#5b5d69"
+          },
+          "55": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#393a45"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#999aa8"
+          },
+          "65": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#aeafbd"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#dee0ef"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#f5f6fe"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#fafaff"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_FILLS"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "#fdfeff"
+          }
         }
       },
       "fontFamily": {
@@ -2305,6 +2427,22 @@
           }
         },
         "brandE": {
+          "mono": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Text Mono"
+          },
+          "sans": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "SB Sans Interface"
+          }
+        },
+        "brandF": {
           "mono": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true

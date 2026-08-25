@@ -195,6 +195,7 @@ const brandOptionsWithIcons: SelectOption[] = [
   { value: 'brandC', title: BRAND_OPTIONS[2].label, icon: <BrandColorDot color={BRAND_COLOR.brandC} /> },
   { value: 'brandD', title: BRAND_OPTIONS[3].label, icon: <BrandColorDot color={BRAND_COLOR.brandD} /> },
   { value: 'brandE', title: BRAND_OPTIONS[4].label, icon: <BrandColorDot color={BRAND_COLOR.brandE} /> },
+  { value: 'brandF', title: BRAND_OPTIONS[5].label, icon: <BrandColorDot color={BRAND_COLOR.brandF} /> },
 ];
 
 const brandRoleOptionsWithIcons: SelectOption[] = [

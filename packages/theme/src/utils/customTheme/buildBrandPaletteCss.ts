@@ -1,12 +1,12 @@
 import { BRAND } from '../../constants/appearance';
 import { buildBrandPaletteVars } from './buildBrandPaletteVars';
 
-// Правило нацелено на сами бренд-классы (`.sn-brandA/B/C/D/E`), а не на один элемент inline: компоненты,
+// Правило нацелено на сами бренд-классы (`.sn-brandA/B/C/D/E/F`), а не на один элемент inline: компоненты,
 // переэмитящие набор `sn-*` на своих обёртках (Table/Stepper/Alert через `useThemeClassnames`), заново
 // объявляют `--sn-brand-color-primary-*` из класса бренда — inline на предке они перекрыли бы, правило
 // на том же бренд-классе — нет.
 // Один seed переопределяет сразу все бренд-классы (потребитель не знает, в какой бренд-слот завернётся
-// его поддерево). TODO FF-8813: возможность задавать seed индивидуально для каждого бренда (brandA/B/C/D/E).
+// его поддерево). TODO FF-8813: возможность задавать seed индивидуально для каждого бренда (brandA/B/C/D/E/F).
 const BRAND_CLASS_SELECTOR = `:is(${Object.values(BRAND)
   .map(brand => `.sn-${brand}`)
   .join(',')})`;

@@ -183,7 +183,7 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"`
+- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"`
 
 - `BrandRole` = `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"`
 
@@ -196,7 +196,7 @@ export function LocalDensity() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` | — | Бренд — `sn-brandA` … |
+| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"` | — | Бренд — `sn-brandA` … |
 | `brandRole` | `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"` | — | Роль бренда (палитра) — `sn-main` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
@@ -222,7 +222,7 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"`
+- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"`
 
 - `BrandRole` = `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"`
 
@@ -235,7 +235,7 @@ export function LocalDensity() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` | — | Бренд — `sn-brandA` … |
+| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"` | — | Бренд — `sn-brandA` … |
 | `brandRole` | `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"` | — | Роль бренда (палитра) — `sn-main` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
@@ -248,7 +248,7 @@ export function LocalDensity() {
 - **PortalContext** — корневой DOM-узел для порталов.
 ## Кастомный бренд-цвет
 
-Помимо предустановленных брендов (`brandA` / `brandB` / `brandC` / `brandD` / `brandE`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
+Помимо предустановленных брендов (`brandA` / `brandB` / `brandC` / `brandD` / `brandE` / `brandF`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
 
 Палитра применяется **CSS-правилом на бренд-классы** (`.sn-brandA/B/C/D/E`), а не inline-переменными на одном элементе. Это принципиально: компоненты, переобъявляющие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
 

@@ -257,6 +257,20 @@ export const themeVars = {
           '90': 'var(--sn-primitive-color-brandE-90, #f1f1fd)',
           '95': 'var(--sn-primitive-color-brandE-95, #f8f8fc)',
           '99': 'var(--sn-primitive-color-brandE-99, #fcfcfc)'
+        },
+        brandF: {
+          '5': 'var(--sn-primitive-color-brandF-5, #212128)',
+          '10': 'var(--sn-primitive-color-brandF-10, #242430)',
+          '15': 'var(--sn-primitive-color-brandF-15, #292a35)',
+          '25': 'var(--sn-primitive-color-brandF-25, #363742)',
+          '45': 'var(--sn-primitive-color-brandF-45, #5b5d69)',
+          '55': 'var(--sn-primitive-color-brandF-55, #393a45)',
+          '60': 'var(--sn-primitive-color-brandF-60, #999aa8)',
+          '65': 'var(--sn-primitive-color-brandF-65, #aeafbd)',
+          '80': 'var(--sn-primitive-color-brandF-80, #dee0ef)',
+          '90': 'var(--sn-primitive-color-brandF-90, #f5f6fe)',
+          '95': 'var(--sn-primitive-color-brandF-95, #fafaff)',
+          '99': 'var(--sn-primitive-color-brandF-99, #fdfeff)'
         }
       },
       fontFamily: {
@@ -286,6 +300,10 @@ export const themeVars = {
         brandE: {
           mono: 'var(--sn-primitive-fontFamily-brandE-mono, \"SB Sans Text Mono\")',
           sans: 'var(--sn-primitive-fontFamily-brandE-sans, \"SB Sans Interface\")'
+        },
+        brandF: {
+          mono: 'var(--sn-primitive-fontFamily-brandF-mono, \"SB Sans Text Mono\")',
+          sans: 'var(--sn-primitive-fontFamily-brandF-sans, \"SB Sans Interface\")'
         }
       },
       strokeWeight: {
@@ -736,6 +754,26 @@ export const themeVars = {
           backgroundActivatedDefault: 'var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26)',
           onAccentLight: 'var(--sn-brandRole-color-brandE-onAccentLight, #fcfcfc)',
           onAccentDark: 'var(--sn-brandRole-color-brandE-onAccentDark, #0e0e24)'
+        },
+        brandF: {
+          '5': 'var(--sn-brandRole-color-brandF-5, #212128)',
+          '10': 'var(--sn-brandRole-color-brandF-10, #242430)',
+          '15': 'var(--sn-brandRole-color-brandF-15, #292a35)',
+          '25': 'var(--sn-brandRole-color-brandF-25, #363742)',
+          '45': 'var(--sn-brandRole-color-brandF-45, #5b5d69)',
+          '55': 'var(--sn-brandRole-color-brandF-55, #393a45)',
+          '60': 'var(--sn-brandRole-color-brandF-60, #999aa8)',
+          '65': 'var(--sn-brandRole-color-brandF-65, #aeafbd)',
+          '80': 'var(--sn-brandRole-color-brandF-80, #dee0ef)',
+          '90': 'var(--sn-brandRole-color-brandF-90, #f5f6fe)',
+          '95': 'var(--sn-brandRole-color-brandF-95, #fafaff)',
+          '99': 'var(--sn-brandRole-color-brandF-99, #fdfeff)',
+          transparent: 'var(--sn-brandRole-color-brandF-transparent, #393a4524)',
+          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandF-backgroundActivatedPressed, #393a4573)',
+          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandF-backgroundActivatedHovered, #393a4559)',
+          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandF-backgroundActivatedDefault, #393a4526)',
+          onAccentLight: 'var(--sn-brandRole-color-brandF-onAccentLight, #fdfeff)',
+          onAccentDark: 'var(--sn-brandRole-color-brandF-onAccentDark, #212128)'
         }
       },
       kitService: {

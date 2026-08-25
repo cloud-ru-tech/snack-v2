@@ -33,6 +33,7 @@ const BRAND_ITEMS: Segment<Brand>[] = [
   { value: 'brandC', label: 'C' },
   { value: 'brandD', label: 'D' },
   { value: 'brandE', label: 'E' },
+  { value: 'brandF', label: 'F' },
 ];
 
 function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {

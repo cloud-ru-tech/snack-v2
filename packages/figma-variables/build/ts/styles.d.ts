@@ -257,6 +257,20 @@ export declare const themeVars: {
                     '95': string;
                     '99': string;
                 };
+                brandF: {
+                    '5': string;
+                    '10': string;
+                    '15': string;
+                    '25': string;
+                    '45': string;
+                    '55': string;
+                    '60': string;
+                    '65': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                };
             };
             fontFamily: {
                 fontWeight: {
@@ -283,6 +297,10 @@ export declare const themeVars: {
                     mono: string;
                 };
                 brandE: {
+                    mono: string;
+                    sans: string;
+                };
+                brandF: {
                     mono: string;
                     sans: string;
                 };
@@ -717,6 +735,26 @@ export declare const themeVars: {
                     onAccentDark: string;
                 };
                 brandE: {
+                    '5': string;
+                    '10': string;
+                    '15': string;
+                    '25': string;
+                    '45': string;
+                    '55': string;
+                    '60': string;
+                    '65': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    transparent: string;
+                    backgroundActivatedPressed: string;
+                    backgroundActivatedHovered: string;
+                    backgroundActivatedDefault: string;
+                    onAccentLight: string;
+                    onAccentDark: string;
+                };
+                brandF: {
                     '5': string;
                     '10': string;
                     '15': string;

@@ -219,6 +219,18 @@
   --sn-primitive-color-brandE-90: #f1f1fd;
   --sn-primitive-color-brandE-95: #f8f8fc;
   --sn-primitive-color-brandE-99: #fcfcfc;
+  --sn-primitive-color-brandF-5: #212128;
+  --sn-primitive-color-brandF-10: #242430;
+  --sn-primitive-color-brandF-15: #292a35;
+  --sn-primitive-color-brandF-25: #363742;
+  --sn-primitive-color-brandF-45: #5b5d69;
+  --sn-primitive-color-brandF-55: #393a45;
+  --sn-primitive-color-brandF-60: #999aa8;
+  --sn-primitive-color-brandF-65: #aeafbd;
+  --sn-primitive-color-brandF-80: #dee0ef;
+  --sn-primitive-color-brandF-90: #f5f6fe;
+  --sn-primitive-color-brandF-95: #fafaff;
+  --sn-primitive-color-brandF-99: #fdfeff;
   --sn-primitive-fontFamily-fontWeight-light: "Light";
   --sn-primitive-fontFamily-fontWeight-bold: "Bold";
   --sn-primitive-fontFamily-fontWeight-semiBold: "Semibold";
@@ -234,6 +246,8 @@
   --sn-primitive-fontFamily-brandD-mono: "SB Sans Text Mono";
   --sn-primitive-fontFamily-brandE-mono: "SB Sans Text Mono";
   --sn-primitive-fontFamily-brandE-sans: "SB Sans Interface";
+  --sn-primitive-fontFamily-brandF-mono: "SB Sans Text Mono";
+  --sn-primitive-fontFamily-brandF-sans: "SB Sans Interface";
   --sn-primitive-strokeWeight-strokeThin: 0.5px;
   --sn-primitive-strokeWeight-strokeRegular: 1px;
   --sn-primitive-strokeWeight-strokeMedium: 1.5px;
