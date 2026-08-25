@@ -1,6 +1,6 @@
 {
   "name": "@ds/alert",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Семантическое уведомление — компонент Alert для inline-нотификаций в контенте и AlertTop для системных баннеров по верхней кромке.",
   "repository": {
     "type": "git",

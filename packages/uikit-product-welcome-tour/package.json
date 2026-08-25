@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-welcome-tour",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Онбординг-тур по интерфейсу — пошаговые подсказки с подсветкой целевых элементов.",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@ds/modal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Пакет модальных окон — компоненты Modal и ModalCustom с едиными токенами ширины и режимов закрытия.",
   "repository": {
     "type": "git",

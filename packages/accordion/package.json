@@ -1,6 +1,6 @@
 {
   "name": "@ds/accordion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Аккордеон дизайн-системы — контейнер Accordion и три уровня раскрываемых блоков CollapseBlock с общими токенами view, backgroundPredefined и chevronPosition.",
   "repository": {
     "type": "git",

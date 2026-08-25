@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-info-row",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Строки «метка — значение» по макету Figma infoRow — компонент InfoRow и группа InfoGroup по данным.",
   "repository": {
     "type": "git",

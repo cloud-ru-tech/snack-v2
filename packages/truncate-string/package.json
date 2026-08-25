@@ -1,6 +1,6 @@
 {
   "name": "@ds/truncate-string",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Обрезает длинный текст и показывает полный текст в тултипе — варианты `end` и `middle`, поддержка многострочного обрезания.",
   "repository": {
     "type": "git",
