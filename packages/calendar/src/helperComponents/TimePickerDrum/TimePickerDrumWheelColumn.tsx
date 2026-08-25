@@ -295,7 +295,7 @@ export const TimePickerDrumWheelColumn = forwardRef<TimePickerDrumWheelColumnHan
 
     return (
       <div
-        className={cn(className)}
+        className={className}
         data-test-id={dataTestId}
         onLostPointerCapture={startMomentum}
         onPointerCancel={onPointerCancel}
