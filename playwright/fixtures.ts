@@ -172,6 +172,7 @@ export const test = base.extend<PlaywrightFixtures>({
       // после emit'а сверяемся со store и при расхождении повторяем — молчаливый пропуск
       // args ловится не тестом на args, а флейком в произвольном месте спека.
       let requestedArgs: Record<string, unknown> | null = null;
+      let verifiableArgNames: string[] = [];
       let applied = false;
 
       for (let attempt = 0; attempt < ARGS_APPLY_ATTEMPTS; attempt += 1) {
@@ -198,6 +199,17 @@ export const test = base.extend<PlaywrightFixtures>({
 
         if (!requestedArgs) break; // стори без URL-args — сверять нечего
 
+        // Args со значением `undefined` Storybook применяет как удаление ключа из store,
+        // поэтому сверяем только те, что должны в нём появиться.
+        verifiableArgNames = Object.entries(requestedArgs)
+          .filter(([, value]) => value !== undefined)
+          .map(([name]) => name);
+
+        if (verifiableArgNames.length === 0) {
+          applied = true;
+          break;
+        }
+
         applied = await page
           .waitForFunction(
             argNames => {
@@ -214,7 +226,7 @@ export const test = base.extend<PlaywrightFixtures>({
 
               return Boolean(storyArgs) && argNames.every(name => name in (storyArgs as Record<string, unknown>));
             },
-            Object.keys(requestedArgs),
+            verifiableArgNames,
             { timeout: 2000 },
           )
           .then(() => true)
@@ -243,7 +255,7 @@ export const test = base.extend<PlaywrightFixtures>({
       // защищает цикл. Падаем здесь, с перечислением неподъехавших ключей.
       if (requestedArgs && !applied) {
         throw new Error(
-          `gotoStory: URL-args не доехали до стори за ${ARGS_APPLY_ATTEMPTS} попыток: ${Object.keys(requestedArgs).join(', ')}`,
+          `gotoStory: URL-args не доехали до стори за ${ARGS_APPLY_ATTEMPTS} попыток: ${verifiableArgNames.join(', ')}`,
         );
       }
 

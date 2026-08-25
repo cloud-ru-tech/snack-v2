@@ -12,6 +12,33 @@
   flex-direction: column;
 }
 
+// Мост через зазор `offset` со стороны триггера: без него курсор по пути к телу поповера
+// идёт над чужими элементами и открывает их поповеры.
+.floating::before {
+  content: '';
+  position: absolute;
+}
+
+.floating[data-placement^='top']::before {
+  inset: 100% 0 auto;
+  height: var(--popover-gap, 0);
+}
+
+.floating[data-placement^='bottom']::before {
+  inset: auto 0 100%;
+  height: var(--popover-gap, 0);
+}
+
+.floating[data-placement^='left']::before {
+  inset: 0 auto 0 100%;
+  width: var(--popover-gap, 0);
+}
+
+.floating[data-placement^='right']::before {
+  inset: 0 100% 0 auto;
+  width: var(--popover-gap, 0);
+}
+
 .floatingHidden {
   display: none;
 }

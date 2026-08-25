@@ -31,3 +31,9 @@
 .triggerButton {
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16;
 }
+
+.stackTight {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}

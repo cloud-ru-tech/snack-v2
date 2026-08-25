@@ -11,6 +11,7 @@ export const TOOLTIP_STORIES = {
   interactionTest: { name: 'tooltip-tooltip-tests-interaction', story: 'interaction-test' },
   longTextDefault: { name: 'tooltip-tooltip-tests-longtext', story: 'long-text-default' },
   longTextNoMaxWidth: { name: 'tooltip-tooltip-tests-longtext', story: 'long-text-no-max-width' },
+  stackedHover: { name: 'tooltip-tooltip-tests-stackedhover', story: 'stacked-hover' },
   noMaxWidthShort: { name: 'tooltip-tooltip-tests-longtext', story: 'no-max-width-short' },
 } as const satisfies Record<string, StoryRef>;
 

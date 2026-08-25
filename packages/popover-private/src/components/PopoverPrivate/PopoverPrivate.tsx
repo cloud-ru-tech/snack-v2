@@ -29,7 +29,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import cn from 'classnames';
-import { ForwardedRef, ReactNode, RefObject, useCallback, useEffect, useRef } from 'react';
+import { CSSProperties, ForwardedRef, ReactNode, RefObject, useCallback, useEffect, useRef } from 'react';
 
 import {
   DEFAULT_FALLBACK_PLACEMENTS,
@@ -336,7 +336,8 @@ function PopoverPrivateComponent({
           [styles.floatingHidden as string]: Boolean(middlewareData.hide?.referenceHidden),
         })}
         ref={refs.setFloating}
-        style={floatingStyles}
+        // Ширина моста через зазор — см. `.floating::before` в стилях.
+        style={{ ...floatingStyles, '--popover-gap': `${offsetValue + arrowOffset}px` } as CSSProperties}
         data-placement={placement}
         {...getFloatingProps({
           ...(stopPropagation.onClick && { onClick: stopPropagationMouse }),

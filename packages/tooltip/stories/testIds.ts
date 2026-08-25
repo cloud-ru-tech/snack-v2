@@ -9,6 +9,9 @@ export const TEST_IDS = {
   tooltip: {
     triggerOpen: 'tooltip-trigger',
     content: 'tooltip-content',
+    /** StackedHover: второй (верхний) триггер и его контент. */
+    upperTrigger: 'tooltip-upper-trigger',
+    upperContent: 'tooltip-upper-content',
     /** VisualMatrix trigger-panel — key per cell. */
     vmTrigger: (key: string) => `tooltip-vm-${key}`,
   },
