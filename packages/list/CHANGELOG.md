@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-08-25)
+
+### BREAKING CHANGES
+
+- **FF-8948:** toggle collapse item by clicking the whole row, chevron is a state indicator ([40ceab4](https://github.com/cloud-ru-tech/snack-v2/commit/40ceab47b8075c866a592ebf02f37b773f534fe1))
+
 ## 1.1.4 (2026-08-25)
 
 **Note:** Version bump only for package @ds/list

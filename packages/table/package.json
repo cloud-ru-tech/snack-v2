@@ -1,6 +1,6 @@
 {
   "name": "@ds/table",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Таблица данных: клиентская Table, серверная ServerTable и preset-обёртки с упрощённым API.",
   "repository": {
     "type": "git",

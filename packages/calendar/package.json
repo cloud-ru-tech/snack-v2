@@ -1,6 +1,6 @@
 {
   "name": "@ds/calendar",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Пакет календаря и выбора времени — Calendar с режимами даты, диапазона и месяца/года, TimePicker и TimePickerDropdown для времени в составе полей ввода.",
   "repository": {
     "type": "git",
