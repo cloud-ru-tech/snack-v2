@@ -71,7 +71,7 @@ export function BottomSheet({
       // Атрибут пишем только при наличии title (spread, не `: undefined`) — иначе затёр бы
       // aria-label/aria-labelledby из `...rest` для title-less sheet'а.
       {...(title ? { 'aria-labelledby': titleId } : {})}
-      className={cn(className)}
+      className={className}
       disableMotions={false}
     >
       <div className={styles.root}>
