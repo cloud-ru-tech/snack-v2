@@ -65,6 +65,7 @@ export { default as ReserchTestSVG } from './ReserchTest';
 export { default as RobotSVG } from './Robot';
 export { default as RoundStarSVG } from './RoundStar';
 export { default as SchoolBuildingSVG } from './SchoolBuilding';
+export { default as ServicesSVG } from './Services';
 export { default as ShieldSVG } from './Shield';
 export { default as ShieldArrowsSVG } from './ShieldArrows';
 export { default as ShieldDatacenterSVG } from './ShieldDatacenter';

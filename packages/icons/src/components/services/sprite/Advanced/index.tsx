@@ -1,4 +1,5 @@
 export { default as AdvancedSVG } from './Advanced';
+export { default as AdvancedConfigSVG } from './AdvancedConfig';
 export { default as AppStageSVG } from './AppStage';
 export { default as ApplicationOperationManagementSVG } from './ApplicationOperationManagement';
 export { default as ApplicationOrchestrationServiceSVG } from './ApplicationOrchestrationService';

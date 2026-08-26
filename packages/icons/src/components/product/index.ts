@@ -1,3 +1,4 @@
+export * from './sprite/Interface/S/Admin-Console';
 export * from './sprite/Interface/S/Basic';
 export * from './sprite/Interface/S/File';
 export * from './sprite/Interface/S/Info';

@@ -33,6 +33,7 @@ export { default as EvolutionPromptRegistrySVG } from './EvolutionPromptRegistry
 export { default as EvolutionProtectionPlatformSVG } from './EvolutionProtectionPlatform';
 export { default as EvolutionRepoSVG } from './EvolutionRepo';
 export { default as EvolutionStackSVG } from './EvolutionStack';
+export { default as ExperimentTrackingSVG } from './ExperimentTracking';
 export { default as FirewallSVG } from './Firewall';
 export { default as GpuResourcesSVG } from './GpuResources';
 export { default as ImagesSVG } from './Images';

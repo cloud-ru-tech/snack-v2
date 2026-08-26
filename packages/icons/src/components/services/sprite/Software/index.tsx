@@ -3,6 +3,7 @@ export { default as AnthropicSVG } from './Anthropic';
 export { default as ApacheFlinkSVG } from './ApacheFlink';
 export { default as ApacheIgnitSVG } from './ApacheIgnit';
 export { default as BaseAltSVG } from './BaseAlt';
+export { default as BasisDynamixSVG } from './BasisDynamix';
 export { default as BillingSVG } from './Billing';
 export { default as CerebroSVG } from './Cerebro';
 export { default as CouchDbSVG } from './CouchDb';
