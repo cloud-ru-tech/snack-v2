@@ -45,7 +45,7 @@ export function TitleClickable<T extends ElementType = 'a'>({
         <span
           data-test-id={TEST_IDS.chevron}
           className={styles.chevron}
-          data-acrylic-appearance='neutral'
+          data-acrylic-appearance='decorTransparent'
           data-acrylic-level='1Level'
           aria-hidden
         >
