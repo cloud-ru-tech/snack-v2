@@ -138,8 +138,10 @@ export default meta;
 type Story = StoryObj<typeof FieldSelect>;
 
 // Droplist рендерит айтемы в portal вне canvasElement — ищем их через document по list-test-id.
+// Подчёркивание в префиксе обязательно: id самого айтема — `<baseItem>_<id>`, а внутренние слоты
+// (`<baseItem>-marker`, `-label`, `-checkbox`) идут через дефис и без него попали бы в выборку.
 function queryItems(): HTMLElement[] {
-  return Array.from(document.querySelectorAll<HTMLElement>(`[data-test-id^="${LIST_TEST_IDS.baseItem}"]`));
+  return Array.from(document.querySelectorAll<HTMLElement>(`[data-test-id^="${LIST_TEST_IDS.baseItem}_"]`));
 }
 
 function queryFirstItem(): HTMLElement | null {
@@ -217,6 +219,9 @@ export const InteractionTest: Story = {
       await userEvent.click(clearButton);
       await waitFor(() => expect(singleInput.value).toBe(''));
       expect(onChangeSingle).toHaveBeenLastCalledWith(undefined);
+      // Очистка должна «держаться»: поле controlled, потребитель прислал `undefined` — компонент
+      // не имеет права откатиться на прошлый локальный выбор (крестик исчезает вместе со значением).
+      await waitFor(() => expect(within(single).queryByTestId(TEST_IDS.fieldSelectClear)).toBeNull());
       // Возврат фокуса на input после clear проверяется в реальной среде (Playwright) —
       // в storybook-test фокус после клика по кнопке ненадёжен.
     });
@@ -226,7 +231,8 @@ export const InteractionTest: Story = {
       await userEvent.keyboard('{ArrowDown}');
       await waitFor(() => expect(queryItems().length).toBeGreaterThan(0));
       await userEvent.type(singleInput, 'lar');
-      await waitFor(() => expect(queryItems().length).toBeLessThan(options.length));
+      // Из трёх опций fuzzy-запрос `lar` оставляет только `Large`.
+      await waitFor(() => expect(queryItems()).toHaveLength(1));
       // Закрываем дроплист, чтобы его portal-overlay не перекрывал соседние поля в следующих шагах.
       await userEvent.keyboard('{Escape}');
       await waitFor(() => expect(queryFirstItem()).toBeNull());

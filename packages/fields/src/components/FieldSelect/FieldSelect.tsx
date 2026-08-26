@@ -142,13 +142,28 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     multiple && Array.isArray(props.defaultValue) ? (props.defaultValue as ItemId[]) : [],
   );
 
+  // Controlled-режим «залипает»: как только потребитель прислал `value`, локальный стейт больше
+  // не читается. Иначе очистка (потребитель ставит `undefined`) откатывалась бы на устаревший
+  // локальный выбор и воскрешала прошлое значение.
+  const singleControlled = useRef(false);
+  const multipleControlled = useRef(false);
+
+  if (!multiple && props.value !== undefined) {
+    singleControlled.current = true;
+  }
+
+  if (multiple && Array.isArray(props.value)) {
+    multipleControlled.current = true;
+  }
+
   const singleValue = useMemo<ItemId | undefined>(() => {
     if (multiple) {
       return undefined;
     }
 
-    const raw = (props.value as ItemId | undefined) ?? singleLocal;
+    const raw = singleControlled.current ? (props.value as ItemId | undefined) : singleLocal;
 
+    // `''` = «значение не выбрано»: формы отдают пустое значение строкой.
     return raw === '' ? undefined : raw;
   }, [multiple, props.value, singleLocal]);
 
@@ -156,7 +171,12 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     if (!multiple) {
       return [];
     }
-    return Array.isArray(props.value) ? (props.value as ItemId[]) : multipleLocal;
+
+    if (multipleControlled.current) {
+      return Array.isArray(props.value) ? (props.value as ItemId[]) : [];
+    }
+
+    return multipleLocal;
   }, [multiple, props.value, multipleLocal]);
 
   const effectiveValidationState = useMemo(
