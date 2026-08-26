@@ -57,9 +57,10 @@ export function rgb2hsl(htmlColor: string): [number, number, number] {
   return [h, s, l];
 }
 
-// Treats colors with low hue + medium lightness OR high hue + high lightness as
-// 'light enough that text should be dark'. Hue thresholds use the 0–360 scale.
-export function isDark(color: string) {
+// Возвращает true, когда фон СВЕТЛЫЙ («достаточно светлый, чтобы текст на нём был тёмным»).
+// Пороги оттенка — по шкале 0–360. Прежнее имя isDark читалось ровно наоборот и уже привело
+// к тому, что на светлой теме редактор получал базовую тему vs-dark.
+export function isLightBackground(color: string) {
   const [h, , l] = rgb2hsl(color);
 
   return (h < 198 && l >= 0.5) || (h >= 198 && l >= 0.75);

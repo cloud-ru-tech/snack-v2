@@ -27,6 +27,7 @@ export const DEFAULT_THEME_VALUES = {
     'editor.lineHighlightBackground': '#decdfb',
     'editorCursor.foreground': '#794ed3',
     'editorWhitespace.foreground': '#dedede',
+    'editor.placeholder.foreground': '#898989',
     'scrollbarSlider.background': '#75757552',
     'scrollbarSlider.hoverBackground': '#7575757B',
     'scrollbarSlider.activeBackground': '#757575A4',

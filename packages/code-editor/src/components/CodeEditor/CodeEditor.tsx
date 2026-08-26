@@ -9,7 +9,7 @@ import { useCallback, useId, useMemo, useRef, useState } from 'react';
 
 import { CODE_EDITOR_OPTIONS, DEFAULT_THEME_OPTIONS, DEFAULT_THEME_VALUES, TEST_IDS } from '../../constants';
 import { EditorBaseProps, EditorWithJsonSchemaProps } from '../../types';
-import { hexWithAlpha, isDark, uppercaseFirstLetter } from '../../utils';
+import { hexWithAlpha, isLightBackground, uppercaseFirstLetter } from '../../utils';
 import { useApplyJsonSchema, useCalculatedThemeValues } from './hooks';
 import styles from './styles.module.scss';
 
@@ -150,6 +150,8 @@ function CodeEditorClient({
               'editor.lineHighlightBorder': '#00000000',
               'editorCursor.foreground': themeValues.brand.accent,
               'editorWhitespace.foreground': themeValues.text.secondary,
+              // placeholder — наследовал светлый дефолт vs-dark и пропадал на светлом фоне.
+              'editor.placeholder.foreground': themeValues.text.secondary,
               'scrollbarSlider.background': withAlpha(themeValues.text.main, 0.16),
               'scrollbarSlider.hoverBackground': withAlpha(themeValues.text.main, 0.28),
               'scrollbarSlider.activeBackground': withAlpha(themeValues.text.main, 0.4),
@@ -174,7 +176,7 @@ function CodeEditorClient({
 
   const dark = useMemo(() => {
     const bg = themeValues?.bg;
-    return bg ? isDark(bg) : false;
+    return bg ? !isLightBackground(bg) : false;
   }, [themeValues?.bg]);
 
   // defineTheme writes to monaco's global theme registry. Run via layoutEffect
