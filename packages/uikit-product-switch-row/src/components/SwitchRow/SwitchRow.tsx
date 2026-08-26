@@ -76,6 +76,7 @@ export function SwitchRow({
     <Switch
       data-test-id={TEST_IDS.switch}
       size='s'
+      showIcon
       checked={checked}
       disabled={disabled}
       tabIndex={-1}
