@@ -128,10 +128,18 @@ $scrollbar-slider-active-zone: 12px;
  * станет глобальным и не совпадёт с хэшем из JS. Родитель — только :global(цепочка).
  */
 @each $orientation in $orientations {
-  :global(.#{$theme-name} > .os-scrollbar-#{$orientation} > .os-scrollbar-track > .os-scrollbar-handle) {
+  .scroll:global(.#{$theme-name}) > :global(.os-scrollbar-#{$orientation} > .os-scrollbar-track > .os-scrollbar-handle) {
     pointer-events: initial;
+
     position: relative;
+
     border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-invertNeutral-decorTransparent;
+    // Снек v1 вешает на хост тот же глобальный класс osThemeSnack и красит ползунок правилом
+    // с такой же специфичностью, добавляя opacity .32. В консоли, где часть микрофронтов ещё на v1,
+    // этот множитель ложился поверх нашего 8%-токена и ползунок выцветал до ~2.6%. Селектор выше
+    // заскоуплен локальным .scroll — он есть только у v2, поэтому правило и выигрывает по
+    // специфичности, и не достаёт до скроллов v1.
+    opacity: 1;
     background: base.$sn-theme-color-neutral-decorTransparent;
 
     .#{stateLayer} {
