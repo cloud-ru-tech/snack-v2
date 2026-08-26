@@ -96,12 +96,15 @@ export function External() {
 | `appearance` | `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Семантический цвет |
 | `as` | `ComponentType \| ElementType` | `'a'` | Полиморфный компонент. <br/> Оформить переданный компонент или html элемент в стиль ссылки. <br/> Список атрибутов, которые переданный компонент должен принять: <br/> - `className` <br/> - `data-size` <br/> - `data-text-mode` <br/> - `data-appearance` <br/> - `data-inside-text` |
 | `data-test-id` | `string` | — |  |
-| `href` | `string` | — |  |
-| `innerRef` | `any` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `insideText` | `boolean` | `false` | Находится ли ссылка внутри текста (и можно ли её переносить) |
 | `label` | `string` | `` | Текст ссылки |
-| `onClick` | `((e: MouseEvent<HTMLAnchorElement>) => void) \| undefined` | — |  |
 | `roleAppearance` | `"onAccent"` \| `"regular"` | `regular` | Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке |
-| `target` | `string \| undefined` | — |  |
 | `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания строки: <br/> - `end` - с конца; <br/> - `middle` - посередине |
 | `underlined` | `boolean` | `false` | Наличие нижнего подчеркивания |
+
+#### Related types
+
+- `Appearance` = `"blue"` \| `"green"` \| `"invertNeutral"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `RoleAppearance` = `"onAccent"` \| `"regular"`

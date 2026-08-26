@@ -181,6 +181,20 @@ import {
 
 ##### Related types
 
+**ActionsProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `maxVisibleItems` | `number \| undefined` | — |  |
+
+**ButtonDroplistProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `button` | `ButtonProps` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
@@ -741,11 +755,26 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `hideDelete` | `boolean \| undefined` | — |  |
-| `hideDownload` | `boolean \| undefined` | — |  |
-| `hideRetry` | `boolean \| undefined` | — |  |
-| `items` | `Action[]` | — |  |
+| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
 | `maxVisibleItems` | `number` | — |  |
+
+#### Related types
+
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, "size">; } & { as?: "button" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "data-test-id" | keyof AriaAttributes | "className" | "view" | "label" | "ref" | "disabled" | "size" | "icon" | "appearance" | "loading" | "as" | "iconPosition" | "fullWidth" | "minWidth" | "counter">) | ({ variant: typeof BUTTON_TYPE.Outline; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, "size">; } & { as?: "button" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "data-test-id" | keyof AriaAttributes | "className" | "view" | "label" | "ref" | "disabled" | "size" | "icon" | "appearance" | "loading" | "as" | "iconPosition" | "fullWidth" | "minWidth" | "counter">) | ({ variant: typeof BUTTON_TYPE.Tonal; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, "size">; } & { as?: "button" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "data-test-id" | keyof AriaAttributes | "className" | "view" | "label" | "ref" | "disabled" | "size" | "icon" | "appearance" | "loading" | "as" | "iconPosition" | "fullWidth" | "minWidth" | "counter">) | ({ variant: typeof BUTTON_TYPE.Function; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, "size">; } & { as?: "button" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "data-test-id" | keyof AriaAttributes | "className" | "view" | "label" | "ref" | "disabled" | "size" | "icon" | "appearance" | "loading" | "as" | "iconPosition" | "fullWidth" | "minWidth" | "counter">) | ({ variant: typeof BUTTON_TYPE.Simple; } & { 'data-test-id'?: string; } & AriaAttributes & { label?: string; icon?: ReactNode; iconPosition?: IconPosition; appearance?: Appearance; size?: Size; disabled?: boolean; loading?: boolean; fullWidth?: boolean; minWidth?: boolean; className?: string; view?: View; counter?: Omit<CounterProps, "size">; } & { as?: "button" | undefined; innerRef?: ((instance: HTMLButtonElement | null) => void | DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES[keyof DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES]) | RefObject<HTMLButtonElement> | null | undefined; } & Omit<Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "data-test-id" | keyof AriaAttributes | "className" | "view" | "label" | "ref" | "disabled" | "size" | "icon" | "appearance" | "loading" | "as" | "iconPosition" | "fullWidth" | "minWidth" | "counter">) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "size" | "icon" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+
+**ButtonDroplistProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `button` | `ButtonProps` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
+**ButtonKebabProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `button` | `ButtonProps` | — |  |
+| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## MobilePageCatalog
 
@@ -826,6 +855,13 @@ import {
 | `title` | `string` | — | Заголовок страницы |
 
 #### Related types
+
+**ActionsProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `maxVisibleItems` | `number \| undefined` | — |  |
 
 **ButtonDroplistProps**
 

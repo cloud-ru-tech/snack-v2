@@ -27,10 +27,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "className": {
         "type": "string",
@@ -84,8 +81,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "label": {
@@ -147,6 +143,21 @@
         ],
         "own": true
       },
+      "Appearance (@ds/counter)": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
       "CounterProps": {
         "kind": "interface",
         "props": {
@@ -166,7 +177,7 @@
             ],
             "description": "Внешний вид",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/counter)"
             ]
           },
           "className": {
@@ -209,7 +220,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/counter)"
             ]
           },
           "value": {
@@ -263,15 +274,22 @@
         ],
         "own": true
       },
+      "Size (@ds/counter)": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
       "Variant": {
         "kind": "union",
         "values": [
-          "icon-after",
-          "icon-before",
-          "icon-only",
-          "label-only"
+          "count",
+          "count-k",
+          "count-plus"
         ],
-        "own": true
+        "own": false
       },
       "View": {
         "kind": "union",

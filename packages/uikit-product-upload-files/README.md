@@ -187,7 +187,7 @@ export function Disabled() {
 | `attachmentClassname` | `string` | — | CSS-класс прикрепленного файла |
 | `className` | `string` | — | CSS-класс корня |
 | `data-test-id` | `string` | — |  |
-| `defaultValue` | `TResult` \| `UploadFileItem` | — | Начальное значение |
+| `defaultValue` | `UploadFileItem` | — | Начальное значение |
 | `disabled` | `boolean` | `false` | Заблокировано |
 | `error` | `string` | — | Ошибка формы (например required из RHF) |
 | `hint` | `ReactNode` | — | Подсказка question tooltip у метки |
@@ -198,8 +198,8 @@ export function Disabled() {
 | `onBlur` | `FocusEventHandler<HTMLDivElement>` | — |  |
 | `onChange` | `((items: UploadFileItem<unknown>[]) => void)` | — | Колбэк изменения значения |
 | `optional` | `boolean` | `true` | Показывает «Опционально» справа от метки |
-| `upload` | `TResult` \| `UploadFn` | — | Обязательная кастомная функция загрузки |
-| `value` | `TResult` \| `UploadFileItem` | — | Контролируемое значение |
+| `upload` | `UploadFn` | — | Обязательная кастомная функция загрузки |
+| `value` | `UploadFileItem` | — | Контролируемое значение |
 
 #### Related types
 
@@ -211,7 +211,7 @@ export function Disabled() {
 | `file` | `File` | — |  |
 | `id` | `string` | — |  |
 | `progress` | `number \| undefined` | — |  |
-| `result` | `TResult` | — |  |
+| `result` | `TResult \| undefined` | — |  |
 | `status` | `"error"` \| `"success"` \| `"uploading"` | — |  |
 
 **UploadFilesAcceptItem**

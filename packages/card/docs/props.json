@@ -5,10 +5,7 @@
     "props": {
       "as": {
         "type": "ElementType",
-        "required": false,
-        "typeRefs": [
-          "T"
-        ]
+        "required": false
       },
       "backgroundPredefined": {
         "type": "enum",
@@ -56,8 +53,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "interactive": {

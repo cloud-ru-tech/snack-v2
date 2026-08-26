@@ -95,19 +95,14 @@
       "defaultValue": {
         "type": "IdType",
         "required": false,
-        "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
-        "typeRefs": [
-          "Value"
-        ]
+        "description": "ID выбранного по умолчанию сегмента (uncontrolled)."
       },
       "items": {
         "type": "Segment<Value>[]",
         "required": true,
         "description": "Набор сегментов.",
         "typeRefs": [
-          "Segment",
-          "SegmentType",
-          "Value"
+          "Segment"
         ]
       },
       "name": {
@@ -118,10 +113,7 @@
       "onChange": {
         "type": "((value: Value) => void)",
         "required": false,
-        "description": "Колбек смены выбранного сегмента.",
-        "typeRefs": [
-          "Value"
-        ]
+        "description": "Колбек смены выбранного сегмента."
       },
       "outline": {
         "type": "boolean",
@@ -145,10 +137,7 @@
       "value": {
         "type": "IdType",
         "required": false,
-        "description": "Value выбранного сегмента.",
-        "typeRefs": [
-          "Value"
-        ]
+        "description": "Value выбранного сегмента."
       },
       "width": {
         "type": "enum",
@@ -216,10 +205,7 @@
           "value": {
             "type": "Value",
             "required": true,
-            "description": "Идентификатор сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
+            "description": "Идентификатор сегмента."
           }
         },
         "own": true
@@ -232,15 +218,6 @@
           "s"
         ],
         "own": true
-      },
-      "Value": {
-        "kind": "union",
-        "values": [
-          "0%",
-          "100%",
-          "50%"
-        ],
-        "own": false
       },
       "Width": {
         "kind": "union",

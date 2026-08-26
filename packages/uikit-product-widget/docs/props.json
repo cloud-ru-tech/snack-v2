@@ -420,7 +420,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/avatar)"
             ]
           },
           "src": {
@@ -521,16 +521,13 @@
             ],
             "description": "Вариант оформления",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/button)"
             ]
           },
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
           },
           "className": {
             "type": "string | undefined",
@@ -581,8 +578,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "label": {
@@ -610,7 +606,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/button)"
             ]
           },
           "view": {
@@ -684,7 +680,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/info-block)"
             ]
           },
           "title": {
@@ -722,7 +718,7 @@
             ],
             "description": "Позиция иконки относительно лейбла.",
             "typeRefs": [
-              "IconPosition"
+              "IconPosition (@ds/segment-control)"
             ]
           },
           "label": {
@@ -738,10 +734,7 @@
           "value": {
             "type": "Value",
             "required": true,
-            "description": "Идентификатор сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
+            "description": "Идентификатор сегмента."
           }
         },
         "own": false
@@ -761,19 +754,14 @@
           "defaultValue": {
             "type": "Value | undefined",
             "required": false,
-            "description": "ID выбранного по умолчанию сегмента (uncontrolled).",
-            "typeRefs": [
-              "Value"
-            ]
+            "description": "ID выбранного по умолчанию сегмента (uncontrolled)."
           },
           "items": {
             "type": "SegmentType<Value>[]",
             "required": true,
             "description": "Набор сегментов.",
             "typeRefs": [
-              "Segment",
-              "SegmentType",
-              "Value"
+              "Segment"
             ]
           },
           "name": {
@@ -784,10 +772,7 @@
           "onChange": {
             "type": "((value: Value) => void) | undefined",
             "required": false,
-            "description": "Колбек смены выбранного сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
+            "description": "Колбек смены выбранного сегмента."
           },
           "outline": {
             "type": "boolean | undefined",
@@ -810,10 +795,7 @@
           "value": {
             "type": "Value | undefined",
             "required": false,
-            "description": "Value выбранного сегмента.",
-            "typeRefs": [
-              "Value"
-            ]
+            "description": "Value выбранного сегмента."
           },
           "width": {
             "type": "Width | undefined",
@@ -833,8 +815,9 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "l",
+          "m",
+          "s"
         ],
         "own": false
       },
@@ -960,15 +943,6 @@
             "description": "Ref ссылка на триггер"
           }
         },
-        "own": false
-      },
-      "Value": {
-        "kind": "union",
-        "values": [
-          "0%",
-          "100%",
-          "50%"
-        ],
         "own": false
       },
       "WidgetActionListProps": {

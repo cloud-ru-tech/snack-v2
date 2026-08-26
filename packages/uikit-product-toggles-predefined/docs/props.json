@@ -90,6 +90,21 @@
         ],
         "own": false
       },
+      "Appearance (@ds/promo-tag)": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
       "Emblem": {
         "kind": "alias",
         "type": "EmblemPicture | EmblemIcon",
@@ -184,7 +199,7 @@
             ],
             "description": "Внешний вид",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/promo-tag)"
             ]
           },
           "beforeContent": {
@@ -229,7 +244,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/promo-tag)"
             ]
           }
         },
@@ -259,16 +274,13 @@
             ],
             "description": "Внешний вид",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/promo-tag)"
             ]
           },
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п."
           },
           "beforeContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -289,8 +301,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "label": {
@@ -325,7 +336,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/promo-tag)"
             ]
           }
         },
@@ -347,6 +358,15 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/promo-tag)": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": false
       }
     }
   },
@@ -387,7 +407,10 @@
           "m",
           "s"
         ],
-        "description": "Расстояние между карточками"
+        "description": "Расстояние между карточками",
+        "typeRefs": [
+          "Gap"
+        ]
       },
       "onChange": {
         "type": "((value: string) => void) | ((value: string[]) => void) | undefined",
@@ -401,7 +424,10 @@
           "horizontal",
           "vertical"
         ],
-        "description": "Направление раскладки"
+        "description": "Направление раскладки",
+        "typeRefs": [
+          "Orientation"
+        ]
       },
       "selectionMode": {
         "type": "enum",
@@ -418,6 +444,24 @@
         "description": "Controlled состояние"
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "Gap": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "Orientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      }
+    }
   }
 }

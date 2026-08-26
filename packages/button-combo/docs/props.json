@@ -147,15 +147,9 @@
       "Appearance": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
+          "critical",
           "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
+          "primary"
         ],
         "own": false
       },
@@ -295,8 +289,9 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "l",
+          "m",
+          "s"
         ],
         "own": false
       },

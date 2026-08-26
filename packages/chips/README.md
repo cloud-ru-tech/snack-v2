@@ -433,14 +433,14 @@ export function ChoiceRowPinned() {
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `defaultValue` | `TState` | — | Начальное состояние фильтров |
+| `defaultValue` | `Partial<TState>` | — | Начальное состояние фильтров |
 | `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
 | `onChange` | `((filters: TState) => void)` | — | Колбек изменения состояния фильтров |
 | `onVisibleFiltersChange` | `((value: string[]) => void)` | — | Коллбек на изменение видимых фильтров |
 | `showAddButton` | `boolean` | `true` | Скрыть/показать кнопку добавления фильров |
 | `showClearButton` | `boolean` | `true` | Скрыть/показать кнопку очиски фильтров |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
-| `value` | `TState` | — | Состояние фильтров |
+| `value` | `FiltersState` | — | Состояние фильтров |
 | `visibleFilters` | `string[]` | — | Состояние для видимых фильтров |
 
 ##### Related types
@@ -464,7 +464,9 @@ export function ChoiceRowPinned() {
 | `mode` | `"date-time"` | — | Режим выбора даты и времени |
 | `showSeconds` | `boolean \| undefined` | — | Показывать секунды в выборе и отображении времени |
 
-- `Size` = `"l"` \| `"m"` \| `"s"`
+- `ChipChoiceRowFilter` = `OmitBetter<ChipChoiceProps, "value" | "defaultValue" | "onChange" | "size"> & { pinned?: boolean; }`
+
+- `ChipChoiceRowSize` = `"l"` \| `"m"` \| `"s"`
 
 ### Смотри также
 

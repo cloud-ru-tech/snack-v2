@@ -888,6 +888,24 @@
       }
     },
     "relatedTypes": {
+      "AutoscrollTo": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "right"
+        ],
+        "own": false
+      },
+      "BarHideStrategy": {
+        "kind": "union",
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "own": false
+      },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
         "props": {
@@ -1084,119 +1102,9 @@
         },
         "own": true
       },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
       "Item": {
         "kind": "alias",
         "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
-        "own": true
-      },
-      "ItemContent": {
-        "kind": "interface",
-        "props": {
-          "caption": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "description": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "label": {
-            "type": "string | number",
-            "required": true
-          },
-          "truncate": {
-            "type": "TruncateProps | undefined",
-            "required": false,
-            "typeRefs": [
-              "TruncateProps"
-            ]
-          }
-        },
         "own": true
       },
       "ItemId": {
@@ -1204,10 +1112,105 @@
         "type": "string | number",
         "own": true
       },
-      "OnChangeHandler": {
-        "kind": "alias",
-        "type": "(value: T) => void",
-        "own": true
+      "OriginalScrollProps": {
+        "kind": "interface",
+        "props": {
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onInitialized": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size (@ds/scroll)"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
       },
       "Placement": {
         "kind": "union",
@@ -1233,6 +1236,16 @@
           "auto",
           "eq",
           "gte"
+        ],
+        "own": false
+      },
+      "Resize": {
+        "kind": "union",
+        "values": [
+          "both",
+          "horizontal",
+          "none",
+          "vertical"
         ],
         "own": false
       },
@@ -1390,6 +1403,14 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/scroll)": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -1776,7 +1797,10 @@
       },
       "emptyStates": {
         "type": "{ noDataState: EmptyStateProps; noResultsState: EmptyStateProps; errorDataState: EmptyStateProps; }",
-        "required": true
+        "required": true,
+        "typeRefs": [
+          "EmptyStateProps"
+        ]
       },
       "hasNoItems": {
         "type": "boolean",
@@ -1794,10 +1818,723 @@
           "m",
           "s",
           "undefined"
+        ],
+        "typeRefs": [
+          "ListPrivateProps"
         ]
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "CollapseState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "onChange": {
+            "type": "((value?: ItemId[]) => void) | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "EmptyStateProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "footer": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Вложенный контент (например ButtonGroup)"
+          },
+          "icon": {
+            "type": "IconPredefinedProps | undefined",
+            "required": false,
+            "description": "Иконка",
+            "typeRefs": [
+              "IconPredefinedProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "FlattenBaseItem": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот после основного контента"
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот до основного контента"
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляемое состояние выбранности айтема"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+          },
+          "id": {
+            "type": "string | number",
+            "required": true,
+            "description": "Уникальный идентификатор",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "inactive": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТак же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection)"
+          },
+          "itemRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на DOM-элемент айтема"
+          },
+          "itemWrapRender": {
+            "type": "((item: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+          },
+          "onBlur": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки блюра"
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "onFocus": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки фокуса"
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия клавиши"
+          },
+          "onMouseDown": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия кнопки мыши"
+          },
+          "showSwitchIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения иконки у чекбоксов"
+          },
+          "switch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения состояния выбранного элемента через switch"
+          }
+        },
+        "own": true
+      },
+      "IconPredefinedProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "background": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие цветной подложки"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true,
+            "description": "JSX иконки"
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
+          "shape": {
+            "type": "\"rounded\" | \"squared\" | undefined",
+            "required": false,
+            "values": [
+              "rounded",
+              "squared"
+            ],
+            "description": "Форма: круглая или квадратная"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "3xl",
+              "5xl",
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size (@ds/icon-predefined)"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": true
+      },
+      "ListPrivateProps": {
+        "kind": "interface",
+        "props": {
+          "active": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "collapse": {
+            "type": "CollapseState | undefined",
+            "required": false,
+            "description": "Настройки раскрытия элементов",
+            "typeRefs": [
+              "CollapseState"
+            ]
+          },
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+          },
+          "dataFiltered": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "footer": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомизируемый элемент в конце списка"
+          },
+          "footerActiveElementsRefs": {
+            "type": "RefObject<HTMLElement>[] | undefined",
+            "required": false,
+            "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+          },
+          "footerDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+          },
+          "header": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
+          },
+          "headerDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+          },
+          "items": {
+            "type": "ItemId[]",
+            "required": true,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "keyboardNavigationRef": {
+            "type": "RefObject<{ focusItem(id: ItemId): void; }> | undefined",
+            "required": false,
+            "description": "Ссылка на управление навигацией листа с клавиатуры",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "limitedScrollHeight": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг, отвечающий за состояние загрузки списка"
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "nested": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии данных",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии результатов поиска или фильтров",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "onBlur": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "onDragEnd": {
+            "type": "((event: DragEndEvent) => void) | undefined",
+            "required": false
+          },
+          "onFocus": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "onKeyDown": {
+            "type": "(((e: KeyboardEvent<HTMLElement>) => void) & ((e: KeyboardEvent<HTMLElement>) => void)) | undefined",
+            "required": false,
+            "description": "Обработчик события по нажатию клавиш"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "pinBottom": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "pinTop": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс для scroll обертки основного списка айтемов"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "scrollToSelectedItem": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
+          },
+          "search": {
+            "type": "SearchState | undefined",
+            "required": false,
+            "description": "Настройки поисковой строки",
+            "typeRefs": [
+              "SearchState"
+            ]
+          },
+          "searchItem": {
+            "type": "FlattenBaseItem | undefined",
+            "required": false,
+            "typeRefs": [
+              "FlattenBaseItem"
+            ]
+          },
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "sortableIds": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "`tabIndex` корневого элемента списка (для управления порядком фокуса)"
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "OriginalScrollProps": {
+        "kind": "interface",
+        "props": {
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onInitialized": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size (@ds/scroll)"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "SearchState": {
+        "kind": "interface",
+        "props": {
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onChange": {
+            "type": "(value: string, e?: ChangeEvent<HTMLInputElement>) => void",
+            "required": true
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "placeholder": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "SelectionMultipleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"multiple\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId[]> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "SelectionSingleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"single\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
   },
   "ListPrivate": {
     "displayName": "ListPrivate",
@@ -2831,6 +3568,24 @@
       }
     },
     "relatedTypes": {
+      "AutoscrollTo": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "right"
+        ],
+        "own": false
+      },
+      "BarHideStrategy": {
+        "kind": "union",
+        "values": [
+          "leave",
+          "move",
+          "never",
+          "scroll"
+        ],
+        "own": false
+      },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
         "props": {
@@ -3027,130 +3782,110 @@
         },
         "own": true
       },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
       "Item": {
         "kind": "alias",
         "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
         "own": true
       },
-      "ItemContent": {
+      "OriginalScrollProps": {
         "kind": "interface",
         "props": {
-          "caption": {
-            "type": "string | undefined",
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false
           },
           "className": {
             "type": "string | undefined",
             "required": false
           },
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
+          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
           },
-          "description": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "label": {
-            "type": "string | number",
-            "required": true
-          },
-          "truncate": {
-            "type": "TruncateProps | undefined",
+          "onInitialized": {
+            "type": "(() => void) | undefined",
             "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
             "typeRefs": [
-              "TruncateProps"
+              "Resize"
             ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size (@ds/scroll)"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
           }
         },
-        "own": true
-      },
-      "ItemId": {
-        "kind": "alias",
-        "type": "string | number",
-        "own": true
-      },
-      "OnChangeHandler": {
-        "kind": "alias",
-        "type": "(value: T) => void",
-        "own": true
+        "own": false
       },
       "Placement": {
         "kind": "union",
@@ -3183,6 +3918,16 @@
         "kind": "alias",
         "type": "SimpleItem | SimpleGroupItem",
         "own": true
+      },
+      "Resize": {
+        "kind": "union",
+        "values": [
+          "both",
+          "horizontal",
+          "none",
+          "vertical"
+        ],
+        "own": false
       },
       "ScrollProps": {
         "kind": "interface",
@@ -3338,6 +4083,14 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/scroll)": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": false
       },
       "Trigger": {
         "kind": "union",

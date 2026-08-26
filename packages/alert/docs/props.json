@@ -128,10 +128,7 @@
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
           },
           "className": {
             "type": "string | undefined",
@@ -165,8 +162,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "invertFocusOutlineColor": {
@@ -405,10 +401,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "className": {
         "type": "string",
@@ -444,8 +437,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "invertFocusOutlineColor": {
@@ -680,10 +672,7 @@
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
           },
           "className": {
             "type": "string | undefined",
@@ -717,8 +706,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "invertFocusOutlineColor": {

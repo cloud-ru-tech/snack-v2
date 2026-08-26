@@ -28,10 +28,6 @@
         "required": false,
         "description": "Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`."
       },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -153,11 +149,9 @@
         "values": [
           "blue",
           "green",
-          "loading",
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"

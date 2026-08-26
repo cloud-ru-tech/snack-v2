@@ -19,7 +19,11 @@ import {
   type ComponentDoc,
   formatPropsJson,
   isRicher,
+  preferOwnRelatedNames,
   type PropDef,
+  type RelatedEntry,
+  relatedKeyFor,
+  type RelatedRegistry,
   type RelatedType,
 } from './gen-props-output.mts';
 
@@ -163,12 +167,35 @@ function isFromNodeModulesOrReact(symbol: ts.Symbol): boolean {
   });
 }
 
+/** Ссылки на именованные типы: имя → символ объявления. По имени резолвить нельзя — они не уникальны в монорепе. */
+type TypeRefMap = Map<string, ts.Symbol>;
+
+const pkgNameCache = new Map<string, string>();
+
+/** Имя пакета (`@ds/<pkg>`) по пути файла — им разводятся одноимённые типы. */
+function pkgNameForFile(file: string): string {
+  const match = /^(.*\/packages\/[^/]+)\//.exec(file);
+  if (!match) return 'external';
+  const dir = match[1];
+  const cached = pkgNameCache.get(dir);
+  if (cached) return cached;
+  let name = dir.slice(dir.lastIndexOf('/') + 1);
+  try {
+    const pkg = JSON.parse(readFileSync(resolve(dir, 'package.json'), 'utf8')) as { name?: string };
+    if (pkg.name) name = pkg.name;
+  } catch {
+    // package.json отсутствует или не читается — остаётся имя папки
+  }
+  pkgNameCache.set(dir, name);
+  return name;
+}
+
 function typeToString(checker: ts.TypeChecker, type: ts.Type, node?: ts.Node): string {
   return checker.typeToString(type, node, ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.InTypeAlias);
 }
 
 // Walk a syntactic TypeNode and collect identifier-based type names (ignores resolution/inlining).
-function collectNamedRefsFromNode(checker: ts.TypeChecker, node: ts.TypeNode | undefined, out: Set<string>): void {
+function collectNamedRefsFromNode(checker: ts.TypeChecker, node: ts.TypeNode | undefined, out: TypeRefMap): void {
   if (!node) return;
   const visit = (n: ts.Node): void => {
     if (ts.isTypeReferenceNode(n)) {
@@ -179,10 +206,11 @@ function collectNamedRefsFromNode(checker: ts.TypeChecker, node: ts.TypeNode | u
           const sym = checker.getSymbolAtLocation(id);
           if (sym) {
             const target = sym.flags & ts.SymbolFlags.Alias ? checker.getAliasedSymbol(sym) : sym;
-            if (!isFromNodeModulesOrReact(target)) {
+            // Параметр дженерика (`T` в `ButtonProps<T>`) — не тип, раскрывать нечего.
+            if ((target.flags & ts.SymbolFlags.TypeParameter) === 0 && !isFromNodeModulesOrReact(target)) {
               const declFiles = (target.getDeclarations() ?? []).map(d => d.getSourceFile().fileName);
               if (declFiles.some(f => f.includes('/packages/') && !f.includes('/node_modules/'))) {
-                out.add(name);
+                out.set(name, target);
               }
             }
           }
@@ -198,7 +226,7 @@ function collectNamedRefsFromNode(checker: ts.TypeChecker, node: ts.TypeNode | u
 function collectNamedRefs(
   checker: ts.TypeChecker,
   type: ts.Type,
-  out: Set<string>,
+  out: TypeRefMap,
   seen: Set<ts.Type> = new Set(),
 ): void {
   if (seen.has(type)) return;
@@ -217,7 +245,7 @@ function collectNamedRefs(
   if (aliasSym) {
     const name = aliasSym.getName();
     if (!isBuiltinName(name) && !isFromNodeModulesOrReact(aliasSym)) {
-      out.add(name);
+      out.set(name, aliasSym);
     }
     if (type.aliasTypeArguments) {
       for (const t of type.aliasTypeArguments) collectNamedRefs(checker, t, out, seen);
@@ -238,7 +266,7 @@ function collectNamedRefs(
       // heuristic: only include if it actually has declarations in our packages src
       const declFiles = (sym.getDeclarations() ?? []).map(d => d.getSourceFile().fileName);
       if (declFiles.some(f => f.includes('/packages/') && !f.includes('/node_modules/'))) {
-        out.add(name);
+        out.set(name, sym);
       }
     }
   }
@@ -254,7 +282,8 @@ function isBuiltinName(name: string): boolean {
   return BUILTIN_TYPE_NAMES.has(name) || PRIMITIVE_TYPES.has(name);
 }
 
-// Only true for symbols that actually denote a *type* (alias / interface / class / enum / type-param).
+// Only true for symbols that actually denote a *named, expandable* type (alias / interface / class / enum).
+// Type parameters (`T`) are deliberately out — there is no declaration to expand into a related type.
 // A function type's `getSymbol()` returns the function/method symbol itself — that's not a type ref,
 // it's the property's own name leaking through, and would create bogus typeRefs like
 // `typeRefs: ['onExpandedChange']`.
@@ -264,14 +293,39 @@ function isTypeSymbol(sym: ts.Symbol): boolean {
     ts.SymbolFlags.Interface |
     ts.SymbolFlags.Class |
     ts.SymbolFlags.Enum |
-    ts.SymbolFlags.EnumMember |
-    ts.SymbolFlags.TypeParameter;
+    ts.SymbolFlags.EnumMember;
   if ((sym.flags & TYPE_FLAGS) !== 0) return true;
   if (sym.flags & ts.SymbolFlags.Alias) {
     // Aliased import — peek at what it points to.
     return false;
   }
   return false;
+}
+
+/**
+ * Объявление типа у символа. Не `getDeclarations()[0]`: при слиянии значения и типа
+ * (`export const X = {…}` + `export type X = ValueOf<typeof X>`) первым идёт значение.
+ */
+function typeDeclOf(symbol: ts.Symbol): ts.Declaration | undefined {
+  const decls = symbol.getDeclarations() ?? [];
+  return decls.find(d => ts.isTypeAliasDeclaration(d) || ts.isInterfaceDeclaration(d)) ?? decls[0];
+}
+
+/** Отложенное раскрытие: имя уже зарезервировано, тело раскрывается из очереди. */
+type PendingExpansion = { name: string; symbol: ts.Symbol; depth: number };
+
+/** Ключ типа в `relatedTypes` с резервированием имени: нераскрытый тип тоже не отдаёт своё имя чужому. */
+function claimRelatedKey(name: string, decl: ts.Declaration, registry: RelatedRegistry, ownPkgDir: string): string {
+  const declFile = decl.getSourceFile().fileName;
+  const entry: RelatedEntry = {
+    declId: `${declFile}:${decl.pos}`,
+    base: name,
+    own: declFile.startsWith(ownPkgDir + '/'),
+    pkgName: pkgNameForFile(declFile),
+  };
+  const key = relatedKeyFor(name, entry, registry);
+  if (!registry.has(key)) registry.set(key, entry);
+  return key;
 }
 
 // Given a type name, resolve its aliasSymbol declaration from program and expand it.
@@ -304,6 +358,7 @@ function describeMemberType(
   checker: ts.TypeChecker,
   memberType: ts.Type,
   declNode: ts.Node | undefined,
+  refsOut?: TypeRefMap,
 ): { type: string; values?: string[]; typeRefs?: string[] } {
   const typeStr = typeToString(checker, memberType, declNode);
 
@@ -326,9 +381,9 @@ function describeMemberType(
     if (!allLiteral) values.length = 0;
   }
 
-  const refs = new Set<string>();
+  const refs: TypeRefMap = refsOut ?? new Map();
   collectNamedRefs(checker, memberType, refs);
-  const typeRefs = [...refs];
+  const typeRefs = [...refs.keys()];
 
   const out: { type: string; values?: string[]; typeRefs?: string[] } = { type: typeStr };
   if (values.length > 0) out.values = values;
@@ -340,25 +395,30 @@ function expandType(
   program: ts.Program,
   checker: ts.TypeChecker,
   name: string,
+  refSymbol: ts.Symbol | undefined,
   depth: number,
   relatedOut: Record<string, RelatedType>,
+  registry: RelatedRegistry,
   limits: { maxRelated: number; warned: Set<string> },
   ownPkgDir: string,
-): void {
-  if (relatedOut[name]) return;
+  queue: PendingExpansion[],
+): string | null {
+  // Символ приходит от места ссылки; поиск по имени — только для корневого типа пропсов.
+  const symbol = refSymbol ?? findTypeSymbol(program, checker, name, ownPkgDir);
+  if (!symbol) return null;
+  const decl = typeDeclOf(symbol);
+  if (!decl) return null;
+
+  const key = claimRelatedKey(name, decl, registry, ownPkgDir);
+  const own = registry.get(key)?.own ?? false;
+  if (relatedOut[key]) return key;
   if (Object.keys(relatedOut).length >= limits.maxRelated) {
     if (!limits.warned.has('limit')) {
       console.warn(`   (relatedTypes cap ${limits.maxRelated} reached)`);
       limits.warned.add('limit');
     }
-    return;
+    return key;
   }
-
-  const symbol = findTypeSymbol(program, checker, name, ownPkgDir);
-  if (!symbol) return;
-  const decl = symbol.getDeclarations()?.[0];
-  if (!decl) return;
-  const own = decl.getSourceFile().fileName.startsWith(ownPkgDir + '/');
 
   // Get the declared type
   let declaredType: ts.Type;
@@ -367,7 +427,7 @@ function expandType(
   } else if (ts.isInterfaceDeclaration(decl)) {
     declaredType = checker.getTypeAtLocation(decl);
   } else {
-    return;
+    return null;
   }
 
   // Union of string/number literals → union
@@ -384,8 +444,8 @@ function expandType(
       }
     }
     if (allLit && vals.length > 0) {
-      relatedOut[name] = { kind: 'union', values: vals, own };
-      return;
+      relatedOut[key] = { kind: 'union', values: vals, own };
+      return key;
     }
   }
 
@@ -409,31 +469,38 @@ function expandType(
         .map(c => c.text)
         .join('\n')
         .trim();
-      const described = describeMemberType(checker, pType, pDecl);
+      const synRefs: TypeRefMap = new Map();
+      const described = describeMemberType(checker, pType, pDecl, synRefs);
       // Syntactic collection from the declaration's typeNode
-      const synRefs = new Set<string>(described.typeRefs ?? []);
       if (pDecl && ts.isPropertySignature(pDecl) && pDecl.type) {
         collectNamedRefsFromNode(checker, pDecl.type, synRefs);
       }
-      const mergedRefs = [...synRefs];
       const def: PropDef = { type: stripImportPaths(described.type), required };
       if (described.values) def.values = described.values;
       if (desc) def.description = desc;
-      if (mergedRefs.length > 0) def.typeRefs = mergedRefs;
       out[pname] = def;
 
-      if (depth < 2 && mergedRefs.length > 0) {
-        for (const ref of mergedRefs) expandType(program, checker, ref, depth + 1, relatedOut, limits, ownPkgDir);
+      if (synRefs.size > 0) {
+        // Имя резервируется сразу, раскрытие уходит в очередь — обход по уровням, чтобы
+        // вложенные типы не исчерпали лимит раньше тех, на которые ссылаются пропсы.
+        const refKeys = [...synRefs].map(([refName, refSym]) => {
+          const refDecl = typeDeclOf(refSym);
+          if (!refDecl) return refName;
+          if (depth < 2) queue.push({ name: refName, symbol: refSym, depth: depth + 1 });
+          return claimRelatedKey(refName, refDecl, registry, ownPkgDir);
+        });
+        def.typeRefs = [...new Set(refKeys)];
       }
     }
     if (Object.keys(out).length > 0) {
-      relatedOut[name] = { kind: 'interface', props: out, own };
-      return;
+      relatedOut[key] = { kind: 'interface', props: out, own };
+      return key;
     }
   }
 
   // Fallback: alias — strip absolute import() paths so output is usable in docs
-  relatedOut[name] = { kind: 'alias', type: stripImportPaths(typeToString(checker, declaredType, decl)), own };
+  relatedOut[key] = { kind: 'alias', type: stripImportPaths(typeToString(checker, declaredType, decl)), own };
+  return key;
 }
 
 // Replace `import("/abs/path/to/file").Name` with just `Name`.
@@ -588,9 +655,7 @@ for (const [pkgDir, files] of byPkg) {
   try {
     // One shared program for every package: react-docgen-typescript would otherwise build
     // its own program per parse() call (~90 programs per run — the bulk of gen:props runtime).
-    components = program
-      ? parser.parseWithProgramProvider(files, () => program)
-      : parser.parse(files);
+    components = program ? parser.parseWithProgramProvider(files, () => program) : parser.parse(files);
   } catch (e) {
     console.warn(`⚠  ${pkgName}: parse error — ${e}`);
     continue;
@@ -635,15 +700,17 @@ for (const [pkgDir, files] of byPkg) {
     // ── Enrichment: propsTypeName + typeRefs + relatedTypes ────────────────
     let propsTypeName: string | null = null;
     const relatedTypes: Record<string, RelatedType> = {};
+    const relatedSymbols: RelatedRegistry = new Map();
+    const expansionQueue: PendingExpansion[] = [];
 
     if (program && checker && hasEntry) {
       propsTypeName = resolvePropsTypeName(program, checker, entryFile, comp.displayName);
 
       if (propsTypeName) {
         const limits = { maxRelated: 20, warned: new Set<string>() };
-        const rootSym = findTypeSymbol(program, checker, propsTypeName);
+        const rootSym = findTypeSymbol(program, checker, propsTypeName, pkgDir);
         if (rootSym) {
-          const rootDecl = rootSym.getDeclarations()?.[0];
+          const rootDecl = typeDeclOf(rootSym);
           if (rootDecl && (ts.isTypeAliasDeclaration(rootDecl) || ts.isInterfaceDeclaration(rootDecl))) {
             const rootType = ts.isTypeAliasDeclaration(rootDecl)
               ? checker.getTypeAtLocation(rootDecl.type)
@@ -659,8 +726,9 @@ for (const [pkgDir, files] of byPkg) {
 
               if (!props[pname]) {
                 // Skip props inherited purely from React DOM / aria types — they pollute the API surface.
-                // `children` is always interesting (PropsWithChildren), so allow it through.
-                if (pname !== 'children' && isInheritedNoise(p)) continue;
+                // `children` проверяется наравне с остальными: из `PropsWithChildren` он проходит,
+                // из `ComponentPropsWithoutRef` — отсекается, компонент такой слот не рендерит.
+                if (isInheritedNoise(p)) continue;
                 const required = !(p.flags & ts.SymbolFlags.Optional);
                 const desc = p
                   .getDocumentationComment(checker)
@@ -674,16 +742,38 @@ for (const [pkgDir, files] of byPkg) {
                 props[pname] = def;
               }
 
-              const refs = new Set<string>();
+              const refs: TypeRefMap = new Map();
               collectNamedRefs(checker, pType, refs);
               // Also collect syntactically from the declaration type node — catches CounterProps inside Omit<...>
               if (pDecl && ts.isPropertySignature(pDecl) && pDecl.type) {
                 collectNamedRefsFromNode(checker, pDecl.type, refs);
               }
               if (refs.size > 0) {
-                props[pname].typeRefs = [...refs];
-                for (const r of refs) expandType(program, checker, r, 1, relatedTypes, limits, pkgDir);
+                const refKeys = [...refs].map(([refName, refSym]) => {
+                  const refDecl = typeDeclOf(refSym);
+                  if (!refDecl) return refName;
+                  expansionQueue.push({ name: refName, symbol: refSym, depth: 1 });
+                  return claimRelatedKey(refName, refDecl, relatedSymbols, pkgDir);
+                });
+                props[pname].typeRefs = [...new Set(refKeys)];
               }
+            }
+
+            // FIFO: сначала типы, на которые ссылаются пропсы компонента, потом типы с их полей.
+            while (expansionQueue.length > 0) {
+              const pending = expansionQueue.shift() as PendingExpansion;
+              expandType(
+                program,
+                checker,
+                pending.name,
+                pending.symbol,
+                pending.depth,
+                relatedTypes,
+                relatedSymbols,
+                limits,
+                pkgDir,
+                expansionQueue,
+              );
             }
           }
         }
@@ -697,6 +787,7 @@ for (const [pkgDir, files] of byPkg) {
       relatedTypes,
       ...(comp.description ? { description: comp.description } : {}),
     };
+    preferOwnRelatedNames(candidate, relatedSymbols);
     const existing = output[comp.displayName];
     if (!existing || isRicher(candidate, existing)) {
       output[comp.displayName] = candidate;

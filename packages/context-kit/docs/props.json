@@ -7,10 +7,7 @@
       "defaultValue": {
         "type": "T",
         "required": true,
-        "description": "Значение по умолчанию (SSR-baseline / когда провайдера нет в дереве).",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Значение по умолчанию (SSR-baseline / когда провайдера нет в дереве)."
       },
       "key": {
         "type": "string",

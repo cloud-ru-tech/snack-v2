@@ -179,7 +179,7 @@
           "top-end",
           "top-start"
         ],
-        "own": true
+        "own": false
       },
       "Size": {
         "kind": "union",
@@ -356,7 +356,7 @@
           "top-end",
           "top-start"
         ],
-        "own": true
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -417,7 +417,7 @@
           "top-end",
           "top-start"
         ],
-        "own": true
+        "own": false
       },
       "TooltipProps": {
         "kind": "interface",

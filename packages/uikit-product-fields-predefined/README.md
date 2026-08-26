@@ -167,6 +167,10 @@ export function FieldMaskControlled() {
 | `validationState` | `"default"` \| `"error"` \| `"success"` \| `"warning"` | — | Состояние валидации |
 | `value` | `string` | — | Значение поля (controlled-режим) |
 
+##### Related types
+
+- `Mask` = `"code"` \| `"ip-v4-address"` \| `"ip-v4-address-with-mask"` \| `"passport"` \| `"snils"` \| `"uuid"`
+
 ### Адаптивность
 
 `autoFocus` на mobile выключается (наследуется из `@ds/fields`) — автофокус там открывает экранную клавиатуру без действия пользователя. Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет. Вернуть автофокус на mobile — пропом `layoutPresets`:
@@ -866,6 +870,8 @@ export function FieldSelectCreateModal() {
 
 ##### Related types
 
+- `EntityIcon` = `((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)`
+
 **EntityName**
 
 | Prop | Type | Default | Description |
@@ -874,6 +880,10 @@ export function FieldSelectCreateModal() {
 | `single` | `string` | — | Единственное число (винительный падеж) — для кнопки «Создать <single>». |
 
 - `ManagedLayoutKeys` = `"approveButton"` \| `"cancelButton"` \| `"onClose"` \| `"open"`
+
+- `Permission` = `"canCreate"` \| `"canRead"` \| `"none"`
+
+- `SelectFieldProps` = `(Omit<FieldSelectSingleProps, OmittedSelectKeys> & { selection?: "single"; }) | (Omit<FieldSelectMultipleProps, OmittedSelectKeys> & { selection: "multiple"; })`
 
 ### Адаптивность
 

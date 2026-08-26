@@ -14,10 +14,6 @@
         "defaultValue": "Запрос",
         "description": "Заголовок блока запроса."
       },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -193,10 +189,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный тег корня (`'a'` для ссылки и т.д.). По умолчанию `'span'`.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный тег корня (`'a'` для ссылки и т.д.). По умолчанию `'span'`."
       },
       "badgeType": {
         "type": "enum",
@@ -225,8 +218,7 @@
         "required": false,
         "description": "Ref на корневой элемент (вместо `forwardRef`).",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "label": {
@@ -327,10 +319,6 @@
     "displayName": "AiToolDetailsLabel",
     "propsTypeName": "AiToolDetailsLabelProps",
     "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -392,10 +380,6 @@
     "displayName": "AiToolIcon",
     "propsTypeName": "AiToolIconProps",
     "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -442,10 +426,6 @@
     "displayName": "AiToolKeyValue",
     "propsTypeName": "AiToolKeyValueProps",
     "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,
@@ -688,10 +668,6 @@
     "displayName": "AiToolStatus",
     "propsTypeName": "AiToolStatusProps",
     "props": {
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false,

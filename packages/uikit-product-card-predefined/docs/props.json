@@ -316,10 +316,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д."
       },
       "className": {
         "type": "string",
@@ -351,8 +348,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент / инстанс",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "onClose": {
@@ -428,10 +424,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д."
       },
       "className": {
         "type": "string",
@@ -463,8 +456,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент / инстанс",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "title": {
@@ -514,10 +506,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д."
       },
       "className": {
         "type": "string",
@@ -562,8 +551,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент / инстанс",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "promoTag": {
@@ -668,10 +656,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д."
       },
       "className": {
         "type": "string",
@@ -712,8 +697,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент / инстанс",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "promoTag": {
@@ -979,10 +963,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д."
       },
       "checked": {
         "type": "boolean",
@@ -1022,8 +1003,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент / инстанс",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "outline": {
@@ -1093,302 +1073,7 @@
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
         "own": false
       },
-      "PromoTagOwnProps": {
-        "kind": "interface",
-        "props": {
-          "afterContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент после текста"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент перед текстом"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLElement> | undefined",
-            "required": false,
-            "description": "Колбэк для обработки клика на тег"
-          },
-          "roleAppearance": {
-            "type": "RoleAppearance | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
-            "typeRefs": [
-              "RoleAppearance"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
-      "PromoTagProps": {
-        "kind": "interface",
-        "props": {
-          "afterContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент после текста"
-          },
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-            "typeRefs": [
-              "T"
-            ]
-          },
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент перед текстом"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
-            "typeRefs": [
-              "PolymorphicRef",
-              "T"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст компонента"
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLElement> | undefined",
-            "required": false,
-            "description": "Колбэк для обработки клика на тег"
-          },
-          "roleAppearance": {
-            "type": "RoleAppearance | undefined",
-            "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
-            "typeRefs": [
-              "RoleAppearance"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
-      "RoleAppearance": {
-        "kind": "union",
-        "values": [
-          "accent",
-          "decor"
-        ],
-        "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "s",
-          "xs"
-        ],
-        "own": false
-      },
-      "VisibilityStrategy": {
-        "kind": "union",
-        "values": [
-          "always",
-          "hover"
-        ],
-        "own": true
-      }
-    }
-  },
-  "CardSuggest": {
-    "displayName": "CardSuggest",
-    "propsTypeName": "CardSuggestProps",
-    "props": {
-      "as": {
-        "type": "ElementType",
-        "required": false,
-        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д.",
-        "typeRefs": [
-          "T"
-        ]
-      },
-      "className": {
-        "type": "string",
-        "required": false,
-        "description": "CSS-класс корневого элемента"
-      },
-      "content": {
-        "type": "string",
-        "required": true,
-        "description": "Описание"
-      },
-      "data-test-id": {
-        "type": "string",
-        "required": false,
-        "description": "Support prop для тестов"
-      },
-      "disabled": {
-        "type": "boolean",
-        "required": false,
-        "description": "Неактивное состояние"
-      },
-      "innerRef": {
-        "type": "any",
-        "required": false,
-        "description": "Ref на реальный DOM-элемент / инстанс",
-        "typeRefs": [
-          "PolymorphicRef",
-          "T"
-        ]
-      },
-      "promoBadge": {
-        "type": "PromoTagProps",
-        "required": false,
-        "description": "Промо-тег.\nИспользуйте `PromoTagProps` из `@ds/promo-tag`.",
-        "typeRefs": [
-          "PromoTagOwnProps",
-          "PromoTagProps"
-        ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "m",
-          "s"
-        ],
-        "defaultValue": "m",
-        "description": "Размер: управляет типографикой и отступами.\n`'m'` — roleTitle/m + roleBody/m, padding 16px;\n`'s'` — roleTitle/s + roleBody/s, padding 8px.",
-        "typeRefs": [
-          "CardSize"
-        ]
-      },
-      "title": {
-        "type": "string",
-        "required": true,
-        "description": "Заголовок"
-      },
-      "truncate": {
-        "type": "{ title?: number; content?: number; } | undefined",
-        "required": false,
-        "description": "Настройки обрезки текста"
-      }
-    },
-    "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": false
-      },
-      "CardSize": {
-        "kind": "union",
-        "values": [
-          "m",
-          "s"
-        ],
-        "own": true
-      },
-      "PolymorphicRef": {
+      "PolymorphicRef (@ds/promo-tag)": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
         "own": false
@@ -1498,10 +1183,7 @@
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п."
           },
           "beforeContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -1522,8 +1204,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef (@ds/promo-tag)"
             ]
           },
           "label": {
@@ -1575,6 +1256,305 @@
       "Size": {
         "kind": "union",
         "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": false
+      },
+      "VisibilityStrategy": {
+        "kind": "union",
+        "values": [
+          "always",
+          "hover"
+        ],
+        "own": true
+      }
+    }
+  },
+  "CardSuggest": {
+    "displayName": "CardSuggest",
+    "propsTypeName": "CardSuggestProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента"
+      },
+      "content": {
+        "type": "string",
+        "required": true,
+        "description": "Описание"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Support prop для тестов"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Неактивное состояние"
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на реальный DOM-элемент / инстанс",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
+      },
+      "promoBadge": {
+        "type": "PromoTagProps",
+        "required": false,
+        "description": "Промо-тег.\nИспользуйте `PromoTagProps` из `@ds/promo-tag`.",
+        "typeRefs": [
+          "PromoTagOwnProps",
+          "PromoTagProps"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер: управляет типографикой и отступами.\n`'m'` — roleTitle/m + roleBody/m, padding 16px;\n`'s'` — roleTitle/s + roleBody/s, padding 8px.",
+        "typeRefs": [
+          "CardSize"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок"
+      },
+      "truncate": {
+        "type": "{ title?: number; content?: number; } | undefined",
+        "required": false,
+        "description": "Настройки обрезки текста"
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
+      "CardSize": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PolymorphicRef (@ds/promo-tag)": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "PromoTagOwnProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "PromoTagProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент после текста"
+          },
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п."
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Контент перед текстом"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
+            "typeRefs": [
+              "PolymorphicRef (@ds/promo-tag)"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст компонента"
+          },
+          "onClick": {
+            "type": "MouseEventHandler<HTMLElement> | undefined",
+            "required": false,
+            "description": "Колбэк для обработки клика на тег"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
           "s",
           "xs"
         ],

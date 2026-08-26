@@ -155,7 +155,3 @@ export function WithAfterContent() {
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `tabIndex` | `number` | — |  |
 | `value` | `string` | — | Значение input |
-
-#### Related types
-
-- `Size` = `"l"` \| `"m"` \| `"s"`

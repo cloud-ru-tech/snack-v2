@@ -245,10 +245,7 @@
         "props": {
           "as": {
             "type": "As | undefined",
-            "required": false,
-            "typeRefs": [
-              "As"
-            ]
+            "required": false
           },
           "className": {
             "type": "string | undefined",
@@ -549,7 +546,6 @@
             "required": false,
             "description": "Позволяет подписываться на изменения процесса загрузки файла внутри компонента\n— обновляет элемент независимо от всего списка (повышение производительности при частых обновлениях).",
             "typeRefs": [
-              "T",
               "ToastUploadStateSubscription"
             ]
           },
@@ -682,7 +678,6 @@
             "required": false,
             "description": "Позволяет подписываться на изменения процесса загрузки файла внутри компонента\n— обновляет элемент независимо от всего списка (повышение производительности при частых обновлениях).",
             "typeRefs": [
-              "T",
               "ToastUploadStateSubscription"
             ]
           },
@@ -713,10 +708,6 @@
         "typeRefs": [
           "ToastUploadProgressAppearance"
         ]
-      },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
       },
       "progress": {
         "type": "number",
@@ -859,10 +850,7 @@
           "as": {
             "type": "As | undefined",
             "required": false,
-            "description": "Polymorphic элемент. Дефолт — `'button'`.",
-            "typeRefs": [
-              "As"
-            ]
+            "description": "Polymorphic элемент. Дефолт — `'button'`."
           },
           "label": {
             "type": "string",

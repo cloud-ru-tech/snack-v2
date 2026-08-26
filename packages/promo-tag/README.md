@@ -111,11 +111,11 @@ export function Polymorphic() {
 |------|------|---------|-------------|
 | `afterContent` | `ReactNode` | `null` | Контент после текста |
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | `primary` | Внешний вид |
-| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| Link из react-router-dom и т.п. |
+| `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' \| 'a' \| Link из react-router-dom и т.п. |
 | `beforeContent` | `ReactNode` | `null` | Контент перед текстом |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Явный проп вместо forwardRef — как в Button и AiToolBadge. |
 | `label` | `string` | — | Текст компонента |
 | `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
 | `roleAppearance` | `"accent"` \| `"decor"` | `accent` | Роль, в которой применяется `appearance`: акцентная заливка или декоративная |

@@ -19,10 +19,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный тег корня — `'a'` по умолчанию (карточка-ссылка), либо роутерный `Link` / `'button'` / `'div'`.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный тег корня — `'a'` по умолчанию (карточка-ссылка), либо роутерный `Link` / `'button'` / `'div'`."
       },
       "className": {
         "type": "string",
@@ -43,8 +40,7 @@
         "required": false,
         "description": "Ref на корневой элемент.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "mobile": {

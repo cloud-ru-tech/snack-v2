@@ -77,9 +77,9 @@ export function Uncontrolled() {
 |------|------|---------|-------------|
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс на корневой контейнер |
-| `defaultValue` | `T` | — | Выбранная вкладка по умолчанию |
+| `defaultValue` | `string` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
-| `value` | `T` | — | Текущая вкладка |
+| `value` | `string` | — | Текущая вкладка |
 
 ## Tab
 
@@ -149,10 +149,6 @@ export function Disabled() {
 | `label` | `string` | — | Заголовок вкладки |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Колбек клика по кнопке переключения |
 | `value` | `string` | — | Value вкладки |
-
-##### Related types
-
-- `Size` = `"l"` \| `"m"`
 
 ## TabBar
 

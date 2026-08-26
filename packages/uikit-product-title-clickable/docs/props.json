@@ -6,10 +6,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom).",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom)."
       },
       "avatar": {
         "type": "({ 'data-test-id'?: string; } & AriaAttributes & { name: string; src?: string; appearance?: Appearance | undefined; size?: Size | undefined; ... 5 more ...; innerRef?: Ref<...> | undefined; } & HTMLAttributes<...> & { ...; }) | undefined",
@@ -53,8 +50,7 @@
         "required": false,
         "description": "Ref на корневой элемент.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "showArrow": {
@@ -83,7 +79,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -211,6 +206,11 @@
       "Size": {
         "kind": "union",
         "values": [
+          "3xl",
+          "6xl",
+          "9xl",
+          "l",
+          "m",
           "s",
           "xs"
         ],
@@ -221,11 +221,9 @@
         "values": [
           "blue",
           "green",
-          "loading",
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -260,10 +258,6 @@
         "type": "ReactNode",
         "required": false,
         "description": "Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`."
-      },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
       },
       "className": {
         "type": "string",
@@ -356,7 +350,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -374,6 +367,11 @@
       "Size": {
         "kind": "union",
         "values": [
+          "3xl",
+          "6xl",
+          "9xl",
+          "l",
+          "m",
           "s",
           "xs"
         ],
@@ -384,11 +382,9 @@
         "values": [
           "blue",
           "green",
-          "loading",
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"

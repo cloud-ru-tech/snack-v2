@@ -62,7 +62,6 @@
         "required": false,
         "description": "Начальное значение",
         "typeRefs": [
-          "TResult",
           "UploadFileItem"
         ]
       },
@@ -124,7 +123,6 @@
         "required": true,
         "description": "Обязательная кастомная функция загрузки",
         "typeRefs": [
-          "TResult",
           "UploadFn"
         ]
       },
@@ -133,7 +131,6 @@
         "required": false,
         "description": "Контролируемое значение",
         "typeRefs": [
-          "TResult",
           "UploadFileItem"
         ]
       }
@@ -233,10 +230,7 @@
           },
           "result": {
             "type": "TResult | undefined",
-            "required": false,
-            "typeRefs": [
-              "TResult"
-            ]
+            "required": false
           },
           "status": {
             "type": "\"error\" | \"success\" | \"uploading\"",

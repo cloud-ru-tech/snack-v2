@@ -180,10 +180,6 @@ export function Queue() {
 | `vmIp` | `string` | — | IP-адрес виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`. |
 | `vmName` | `string` | — | Имя виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`. |
 
-#### Related types
-
-- `Variant` = `"password"` \| `"queue"` \| `"ssh"` \| `"support"` \| `"vmAgent"`
-
 ## Смотри также
 
 - [`@ds/ai-field-banner`](/packages/ai-field-banner) — базовый баннер под полем ввода.

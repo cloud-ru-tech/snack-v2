@@ -205,8 +205,11 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "3xl",
+          "5xl",
+          "l",
+          "m",
+          "s"
         ],
         "own": false
       }

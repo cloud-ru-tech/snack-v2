@@ -349,6 +349,22 @@
         ],
         "own": false
       },
+      "Appearance (@ds/link)": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "invertNeutral",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
       "AppearanceState": {
         "kind": "union",
         "values": [
@@ -455,17 +471,81 @@
       "LinkProps": {
         "kind": "interface",
         "props": {
-          "href": {
-            "type": "string",
-            "required": true
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "invertNeutral",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Appearance (@ds/link)"
+            ]
           },
-          "onClick": {
-            "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
-            "required": false
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`"
           },
-          "target": {
+          "data-test-id": {
             "type": "string | undefined",
             "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef (@ds/utils)"
+            ]
+          },
+          "insideText": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Находится ли ссылка внутри текста (и можно ли её переносить)"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст ссылки"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "onAccent",
+              "regular"
+            ],
+            "description": "Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке",
+            "typeRefs": [
+              "RoleAppearance (@ds/link)"
+            ]
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          },
+          "underlined": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие нижнего подчеркивания"
           }
         },
         "own": false
@@ -630,10 +710,7 @@
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п."
           },
           "beforeContent": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -654,8 +731,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "label": {
@@ -704,9 +780,18 @@
         ],
         "own": false
       },
+      "RoleAppearance (@ds/link)": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "regular"
+        ],
+        "own": false
+      },
       "Size": {
         "kind": "union",
         "values": [
+          "m",
           "s",
           "xs"
         ],
@@ -776,22 +861,120 @@
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "invertNeutral",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": false
+      },
       "LinkProps": {
         "kind": "interface",
         "props": {
-          "href": {
-            "type": "string",
-            "required": true
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "invertNeutral",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Семантический цвет",
+            "typeRefs": [
+              "Appearance"
+            ]
           },
-          "onClick": {
-            "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
-            "required": false
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Полиморфный компонент.\n\nОформить переданный компонент или html элемент в стиль ссылки.\n\nСписок атрибутов, которые переданный компонент должен принять:\n<br/> - `className`\n<br/> - `data-size`\n<br/> - `data-text-mode`\n<br/> - `data-appearance`\n<br/> - `data-inside-text`"
           },
-          "target": {
+          "data-test-id": {
             "type": "string | undefined",
             "required": false
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+            "typeRefs": [
+              "PolymorphicRef"
+            ]
+          },
+          "insideText": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Находится ли ссылка внутри текста (и можно ли её переносить)"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст ссылки"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "onAccent",
+              "regular"
+            ],
+            "description": "Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
+          },
+          "underlined": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Наличие нижнего подчеркивания"
           }
         },
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "regular"
+        ],
+        "own": false
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
         "own": false
       }
     }

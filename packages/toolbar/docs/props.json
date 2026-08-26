@@ -323,18 +323,13 @@
         "required": false,
         "description": "Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>\nНа mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯»\n(`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки\nили элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`."
       },
-      "api": {
-        "type": "{ mode: \"wysiwyg\" | \"raw\"; focus(): void; isActive(id: ToolbarItemId): boolean; isHeadingActive(level: HeadingLevel): boolean; toggle(id: ToolbarItemId): void; toggleHeading(level: HeadingLevel): void; setParagraph(): void; getLinkHref(): string | undefined; getLinkTitle(): string | undefined; setLink(props: LinkProps): void; insertImage(src: string, alt: string): void; insertTable(rows: number, cols: number): void; subscribe(callback: () => void): () => void; }",
-        "required": true,
-        "description": "Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме.",
-        "typeRefs": [
-          "ToolbarApi"
-        ]
-      },
       "bulkActions": {
         "type": "BulkAction[]",
         "required": false,
-        "description": "Список массовых действий"
+        "description": "Список массовых действий",
+        "typeRefs": [
+          "BulkActionsProps"
+        ]
       },
       "checked": {
         "type": "boolean",
@@ -353,28 +348,31 @@
       "dataView": {
         "type": "ToolbarDataViewProps",
         "required": false,
-        "description": "Переключатель вида данных — SegmentControl (showDataView в Figma)"
+        "description": "Переключатель вида данных — SegmentControl (showDataView в Figma)",
+        "typeRefs": [
+          "DataViewBaseProps",
+          "ToolbarDataViewProps"
+        ]
       },
       "filterRow": {
         "type": "FilterRow<TState>",
-        "required": false
+        "required": false,
+        "typeRefs": [
+          "FilterRow"
+        ]
       },
       "indeterminate": {
         "type": "boolean",
         "required": false,
         "description": "Состояние частичного выбора"
       },
-      "items": {
-        "type": "ToolbarItemId[]",
-        "required": true,
-        "typeRefs": [
-          "ToolbarItemId"
-        ]
-      },
       "moreActions": {
         "type": "Action[]",
         "required": false,
-        "description": "Элементы выпадающего списка кнопки с действиями"
+        "description": "Элементы выпадающего списка кнопки с действиями",
+        "typeRefs": [
+          "MoreActionsProps"
+        ]
       },
       "onCheck": {
         "type": "(() => void)",
@@ -395,12 +393,18 @@
       "persist": {
         "type": "ToolbarPersistConfig<TState>",
         "required": false,
-        "description": "Конфиг для сохранения состояния в localStorage и queryParams. <br>\nПоле id должно быть уникальным для каждого инстанса компонента. <br>"
+        "description": "Конфиг для сохранения состояния в localStorage и queryParams. <br>\nПоле id должно быть уникальным для каждого инстанса компонента. <br>",
+        "typeRefs": [
+          "ToolbarPersistConfig"
+        ]
       },
       "search": {
         "type": "SearchProps",
         "required": false,
-        "description": "Параметры отвечают за строку поиска <br>\n<strong>value</strong>: Значение строки поиска <br>\n<strong>onChange</strong>: Колбэк смены значения <br>\n<strong>onSubmit</strong>: Колбэк на подтверждение поиска по строке\n<strong>placeholder</strong>: Плейсхолдер <br>\n<strong>loading</strong>: Состояние загрузки <br>"
+        "description": "Параметры отвечают за строку поиска <br>\n<strong>value</strong>: Значение строки поиска <br>\n<strong>onChange</strong>: Колбэк смены значения <br>\n<strong>onSubmit</strong>: Колбэк на подтверждение поиска по строке\n<strong>placeholder</strong>: Плейсхолдер <br>\n<strong>loading</strong>: Состояние загрузки <br>",
+        "typeRefs": [
+          "SearchProps"
+        ]
       },
       "selectedCount": {
         "type": "number",
@@ -420,90 +424,759 @@
       }
     },
     "relatedTypes": {
-      "ToolbarApi": {
+      "Action": {
         "kind": "interface",
         "props": {
-          "focus": {
-            "type": "() => void",
-            "required": true
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
           },
-          "getLinkHref": {
-            "type": "() => string | undefined",
-            "required": true
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
           },
-          "getLinkTitle": {
-            "type": "() => string | undefined",
-            "required": true
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
           },
-          "insertImage": {
-            "type": "(src: string, alt: string) => void",
-            "required": true
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
           },
-          "insertTable": {
-            "type": "(rows: number, cols: number) => void",
-            "required": true
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
           },
-          "isActive": {
-            "type": "(id: ToolbarItemId) => boolean",
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "BaseChipProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключён"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка"
+          },
+          "label": {
+            "type": "string",
             "required": true,
-            "description": "Активна ли кнопка (checked-стейт). В raw-режиме — всегда false."
+            "description": "Текст чипа"
           },
-          "isHeadingActive": {
-            "type": "(level: HeadingLevel) => boolean",
-            "required": true,
-            "description": "Активен ли заголовок уровня `level` на текущей строке. В raw-режиме — false."
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние загрузки"
           },
-          "mode": {
-            "type": "\"wysiwyg\" | \"raw\"",
-            "required": true,
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Индекс в порядке фокусировки"
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
             "values": [
-              "raw",
-              "wysiwyg"
+              "end",
+              "middle"
             ],
-            "description": "Режим бэкенда: `wysiwyg` (TipTap, preview) либо `raw` (markdown-исходник в textarea)."
-          },
-          "setLink": {
-            "type": "(props: LinkProps) => void",
-            "required": true
-          },
-          "setParagraph": {
-            "type": "() => void",
-            "required": true
-          },
-          "subscribe": {
-            "type": "(callback: () => void) => () => void",
-            "required": true,
-            "description": "Подписка на изменение selection/контента — для перерисовки checked-стейтов."
-          },
-          "toggle": {
-            "type": "(id: ToolbarItemId) => void",
-            "required": true,
-            "description": "Toggle инлайн/блочной кнопки (bold…block-code)."
-          },
-          "toggleHeading": {
-            "type": "(level: HeadingLevel) => void",
-            "required": true
+            "description": "Вариант обрезания строки",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
           }
         },
         "own": false
       },
-      "ToolbarItemId": {
+      "BulkAction": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
+            "required": true
+          },
+          "label": {
+            "type": "string",
+            "required": true
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "tooltip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "BulkActionsProps": {
+        "kind": "interface",
+        "props": {
+          "actions": {
+            "type": "BulkAction[] | undefined",
+            "required": false,
+            "description": "Список массовых действий",
+            "typeRefs": [
+              "BulkAction"
+            ]
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Значение чекбокса"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "indeterminate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние частичного выбора"
+          },
+          "onCheck": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Колбек смены значения чекбокса"
+          },
+          "selectedCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество выбранных элементов (для подписи Selected: N)"
+          },
+          "showBulkCheckbox": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать чекбокс слева (Figma: showBulkCheckbox)"
+          },
+          "totalCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Общее количество элементов (для подписи Selected: N of M)"
+          }
+        },
+        "own": true
+      },
+      "DataViewBaseProps": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "DataViewValue | undefined",
+            "required": false,
+            "values": [
+              "compact",
+              "list"
+            ],
+            "typeRefs": [
+              "DataViewValue"
+            ]
+          },
+          "items": {
+            "type": "Segment<DataViewValue>[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "DataViewValue",
+              "Segment",
+              "SegmentControlProps"
+            ]
+          },
+          "onChange": {
+            "type": "((value: DataViewValue) => void) | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "DataViewValue | undefined",
+            "required": false,
+            "values": [
+              "compact",
+              "list"
+            ],
+            "typeRefs": [
+              "DataViewValue"
+            ]
+          }
+        },
+        "own": true
+      },
+      "DataViewValue": {
         "kind": "union",
         "values": [
-          "block-code",
-          "block-quote",
-          "bold",
-          "bullet-list",
-          "heading",
-          "image",
-          "inline-code",
-          "italic",
-          "link",
-          "ordered-list",
-          "strikethrough",
-          "table"
+          "compact",
+          "list"
         ],
+        "own": true
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
+      },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterTitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
+      "EmptyState": {
+        "kind": "interface",
+        "props": {
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+          },
+          "dataFiltered": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии данных",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии результатов поиска или фильтров",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FilterRow": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "defaultValue": {
+            "type": "Partial<TState> | undefined",
+            "required": false,
+            "description": "Начальное состояние фильтров"
+          },
+          "filters": {
+            "type": "ChipChoiceRowFilter[]",
+            "required": true,
+            "description": "Массив чипов",
+            "typeRefs": [
+              "BaseChipProps",
+              "ChipChoiceDateWithSeconds",
+              "ChipChoiceRowFilter",
+              "DropdownBridgeProps",
+              "DroplistListProps",
+              "DroplistMobileSlots",
+              "EmptyState",
+              "PublicListContextType",
+              "ScrollProps",
+              "SelectionMultipleState",
+              "SelectionSingleState",
+              "SelectionState"
+            ]
+          },
+          "initialOpen": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Начальное состояние filter-row (mobile)"
+          },
+          "onChange": {
+            "type": "((filters: TState) => void) | undefined",
+            "required": false,
+            "description": "Колбек изменения состояния фильтров"
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false
+          },
+          "onVisibleFiltersChange": {
+            "type": "((value: string[]) => void) | undefined",
+            "required": false,
+            "description": "Коллбек на изменение видимых фильтров"
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "showAddButton": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть/показать кнопку добавления фильров"
+          },
+          "showClearButton": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть/показать кнопку очиски фильтров"
+          },
+          "value": {
+            "type": "TState | undefined",
+            "required": false,
+            "description": "Состояние фильтров"
+          },
+          "visibleFilters": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Состояние для видимых фильтров"
+          }
+        },
+        "own": true
+      },
+      "MoreActionsProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "moreActions": {
+            "type": "Action[]",
+            "required": true,
+            "description": "Элементы выпадающего списка кнопки с действиями",
+            "typeRefs": [
+              "Action"
+            ]
+          }
+        },
+        "own": true
+      },
+      "PublicListContextType": {
+        "kind": "interface",
+        "props": {
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size (@ds/list)"
+            ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "SearchProps": {
+        "kind": "interface",
+        "props": {
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "onChange": {
+            "type": "(value: string) => void",
+            "required": true
+          },
+          "onSubmit": {
+            "type": "((value: string) => void) | undefined",
+            "required": false
+          },
+          "placeholder": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "Segment": {
+        "kind": "interface",
+        "props": {
+          "counter": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Счётчик в сегменте (отображается после лейбла)."
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние активности сегмента."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка сегмента."
+          },
+          "iconPosition": {
+            "type": "IconPosition | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ],
+            "description": "Позиция иконки относительно лейбла.",
+            "typeRefs": [
+              "IconPosition"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текстовый заголовок сегмента."
+          },
+          "renderWrapSegment": {
+            "type": "((segment: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Render-обёртка над сегментом."
+          },
+          "value": {
+            "type": "Value",
+            "required": true,
+            "description": "Идентификатор сегмента."
+          }
+        },
+        "own": false
+      },
+      "SegmentControlProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "defaultValue": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "ID выбранного по умолчанию сегмента (uncontrolled)."
+          },
+          "items": {
+            "type": "SegmentType<Value>[]",
+            "required": true,
+            "description": "Набор сегментов.",
+            "typeRefs": [
+              "Segment"
+            ]
+          },
+          "name": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Имя поля (hidden input для формы)."
+          },
+          "onChange": {
+            "type": "((value: Value) => void) | undefined",
+            "required": false,
+            "description": "Колбек смены выбранного сегмента."
+          },
+          "outline": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Обводка."
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер компонента.",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "value": {
+            "type": "Value | undefined",
+            "required": false,
+            "description": "Value выбранного сегмента."
+          },
+          "width": {
+            "type": "Width | undefined",
+            "required": false,
+            "values": [
+              "auto",
+              "full"
+            ],
+            "description": "Управление шириной компонента.",
+            "typeRefs": [
+              "Width"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionMultipleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"multiple\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId[]> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionState": {
+        "kind": "interface",
+        "props": {
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ToolbarDataViewProps": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "defaultValue": {
+            "type": "DataViewValue | undefined",
+            "required": false,
+            "values": [
+              "compact",
+              "list"
+            ],
+            "typeRefs": [
+              "DataViewValue"
+            ]
+          },
+          "items": {
+            "type": "Segment<DataViewValue>[] | undefined",
+            "required": false,
+            "typeRefs": [
+              "DataViewValue",
+              "Segment",
+              "SegmentControlProps"
+            ]
+          },
+          "onChange": {
+            "type": "((value: DataViewValue) => void) | undefined",
+            "required": false
+          },
+          "show": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать переключатель вида. Если `dataView` не передан — равносильно `show: false`"
+          },
+          "value": {
+            "type": "DataViewValue | undefined",
+            "required": false,
+            "values": [
+              "compact",
+              "list"
+            ],
+            "typeRefs": [
+              "DataViewValue"
+            ]
+          }
+        },
+        "own": true
+      },
+      "ToolbarPersistConfig": {
+        "kind": "interface",
+        "props": {
+          "filterQueryKey": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Ключ для queryParams"
+          },
+          "id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Уникальный id для текущего инстанса компонента"
+          },
+          "onLoad": {
+            "type": "((state: PersistedFilterState<T>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк при первом рендере для получения сохраненных данных и установки их в стейт"
+          },
+          "parser": {
+            "type": "((value: string) => PersistedFilterState<T>) | undefined",
+            "required": false,
+            "description": "Custom-парсер queryParams для преобразования в данные состояния"
+          },
+          "serializer": {
+            "type": "((value: PersistedFilterState<T>) => string) | undefined",
+            "required": false,
+            "description": "Custom-сериализация состояния перед сохранением в queryParams"
+          },
+          "state": {
+            "type": "PersistedFilterState<T> | undefined",
+            "required": false,
+            "description": "Состояние для сохранения",
+            "typeRefs": [
+              "PersistedFilterState"
+            ]
+          },
+          "validateData": {
+            "type": "((value: unknown) => value is PersistedFilterState<T>) | undefined",
+            "required": false,
+            "description": "Валидатор сохраненных"
+          }
+        },
+        "own": true
       }
     }
   },

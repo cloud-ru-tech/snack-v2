@@ -190,7 +190,7 @@ export function WrapTags() {
 |------|------|---------|-------------|
 | `align` | `"baseline"` \| `"center"` \| `"flex-end"` \| `"flex-start"` \| `"self-end"` \| `"self-start"` \| `"stretch"` | — | Выравнивание по поперечной оси (`align-items`). |
 | `alignContent` | `"baseline"` \| `"center"` \| `"flex-end"` \| `"flex-start"` \| `"space-around"` \| `"space-between"` \| `"space-evenly"` \| `"stretch"` | — | Выравнивание строк многострочного flex (`align-content`, работает при `wrap`). |
-| `as` | `T` | — | Элемент или компонент для рендера. По умолчанию `div`. |
+| `as` | `ElementType` | — | Элемент или компонент для рендера. По умолчанию `div`. |
 | `children` | `ReactNode` | — | Содержимое контейнера. |
 | `className` | `string` | — | Дополнительный класс. |
 | `columnGap` | `"025m"` \| `"050m"` \| `"10m"` \| `"1m"` \| `"2m"` \| `"3m"` \| `"4m"` \| `"5m"` \| `"6m"` \| `"7m"` \| `"8m"` \| `"9m"` | — | Отступ между колонками (CSS `column-gap`). Только токен модульной шкалы (см. `gap`). |
@@ -200,7 +200,7 @@ export function WrapTags() {
 | `fullWidth` | `boolean` | `false` | Растянуть контейнер на всю ширину родителя (`width: 100%`). |
 | `gap` | `"025m"` \| `"050m"` \| `"10m"` \| `"1m"` \| `"2m"` \| `"3m"` \| `"4m"` \| `"5m"` \| `"6m"` \| `"7m"` \| `"8m"` \| `"9m"` | — | Отступ между детьми (CSS `gap`). Только токен модульной шкалы (привязан к <br/> dimension-токенам DS). <br/> <pre> <br/> 025m - 2px <br/> 050m - 4px <br/> 1m - 8px <br/> 2m - 16px <br/> 3m - 24px <br/> 4m - 32px <br/> 5m - 40px <br/> 6m - 48px <br/> 7m - 56px <br/> 8m - 64px <br/> 9m - 72px <br/> 10m - 80px <br/> </pre> |
 | `height` | `Size` | — | Высота контейнера. Keyword (`ElementSize`), число (px) или CSS-строка (`'50%'`). |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. |
 | `justify` | `"center"` \| `"flex-end"` \| `"flex-start"` \| `"space-around"` \| `"space-between"` \| `"space-evenly"` \| `"stretch"` | — | Выравнивание по главной оси (`justify-content`). |
 | `overflow` | `"auto"` \| `"clip"` \| `"hidden"` \| `"scroll"` \| `"visible"` | — | Переполнение по обеим осям (`overflow`). |
 | `overflowX` | `"auto"` \| `"clip"` \| `"hidden"` \| `"scroll"` \| `"visible"` | — | Переполнение по горизонтали (`overflow-x`). |

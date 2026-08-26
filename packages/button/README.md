@@ -198,7 +198,7 @@ export function Loading() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `primary` | Вариант оформления |
-| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
+| `as` | `ElementType` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string` | — | Дополнительный класс |
 | `counter` | `CounterProps` | — | Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки). |
 | `data-test-id` | `string` | — |  |
@@ -206,7 +206,7 @@ export function Loading() {
 | `fullWidth` | `boolean` | `false` | На всю ширину |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | `before` | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string` | — | Текст кнопки |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `minWidth` | `boolean` | `true` | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
@@ -222,8 +222,6 @@ export function Loading() {
 - `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
-
-- `Variant` = `"icon-after"` \| `"icon-before"` \| `"icon-only"` \| `"label-only"`
 
 - `View` = `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"`
 

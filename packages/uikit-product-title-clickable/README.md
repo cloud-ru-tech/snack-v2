@@ -143,7 +143,7 @@ export function HiddenArrow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — | Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom). |
+| `as` | `ElementType` | — | Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom). |
 | `avatar` | `AvatarProps` | — | @deprecated Используй `before={<TitleClickableAvatar {...} subtitle={...} />}`. <br/> Аватар с subtitle (Figma `userTitle`). |
 | `before` | `ReactNode` | — | Слот слева от заголовка. Произвольная нода либо предзаготовленные пресеты <br/> `<TitleClickableIcon icon={...} />` / `<TitleClickableAvatar {...} />`. <br/> Соответствует Figma-слоту `+ slotTitle` (`simpleTitle` / `userTitle`). |
 | `children` | `ReactNode` | — | Кастомное содержимое вместо title/before |
@@ -151,7 +151,7 @@ export function HiddenArrow() {
 | `data-test-id` | `string` | — |  |
 | `fullWidth` | `boolean` | — | Занимает ли всю ширину |
 | `icon` | `ReactNode` | — | @deprecated Используй `before={<TitleClickableIcon icon={...} />}`. <br/> Иконка слева от заголовка. |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на корневой элемент. |
+| `innerRef` | `PolymorphicRef` | — | Ref на корневой элемент. |
 | `showArrow` | `boolean` | `true` | Показывать иконку-стрелку справа. Иконка автоматически меняется на `external link` при `target='_blank'`. |
 | `title` | `string` | — | Заголовок |
 | `titleTag` | `ElementType` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
@@ -178,7 +178,6 @@ export function WithAvatar() {
 |------|------|---------|-------------|
 | `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид (цвет) |
 | `badge` | `ReactNode` | — | Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`. |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |

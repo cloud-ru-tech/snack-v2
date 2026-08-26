@@ -180,10 +180,6 @@
         "type": "ReactNode",
         "required": false
       },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
-      },
       "className": {
         "type": "string",
         "required": false

@@ -21,17 +21,15 @@
           "yellowBackground"
         ],
         "defaultValue": "neutralBackground1Level",
-        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nЗадаёт палитру подложки: цвета, `transparent` и `decorTransparent`.\nПо умолчанию `material/neutralBackground1Level`."
+        "description": "Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`).\nЗадаёт палитру подложки: цвета, `transparent` и `decorTransparent`.\nПо умолчанию `material/neutralBackground1Level`.",
+        "typeRefs": [
+          "BackgroundPredefinedFill"
+        ]
       },
       "children": {
         "type": "ReactNode",
         "required": false,
         "description": "Содержимое"
-      },
-      "content": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false,
-        "description": "Подзаголовок"
       },
       "contentClassName": {
         "type": "string",
@@ -52,7 +50,10 @@
           "s"
         ],
         "defaultValue": "m",
-        "description": "Размер"
+        "description": "Размер",
+        "typeRefs": [
+          "Size"
+        ]
       },
       "view": {
         "type": "enum",
@@ -63,9 +64,48 @@
           "simple"
         ],
         "defaultValue": "simple",
-        "description": "Визуальный режим поверхности"
+        "description": "Визуальный режим поверхности",
+        "typeRefs": [
+          "View"
+        ]
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "BackgroundPredefinedFill": {
+        "kind": "union",
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "View": {
+        "kind": "union",
+        "values": [
+          "elevated",
+          "outline",
+          "simple"
+        ],
+        "own": true
+      }
+    }
   }
 }

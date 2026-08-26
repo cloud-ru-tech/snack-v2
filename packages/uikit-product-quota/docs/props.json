@@ -235,15 +235,9 @@
       "Appearance": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
+          "critical",
           "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
+          "primary"
         ],
         "own": false
       },
@@ -266,10 +260,7 @@
           "as": {
             "type": "T | undefined",
             "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-            "typeRefs": [
-              "T"
-            ]
+            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
           },
           "className": {
             "type": "string | undefined",
@@ -320,8 +311,7 @@
             "required": false,
             "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
             "typeRefs": [
-              "PolymorphicRef",
-              "T"
+              "PolymorphicRef"
             ]
           },
           "label": {
@@ -390,7 +380,7 @@
             ],
             "description": "Внешний вид",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/counter)"
             ]
           },
           "className": {
@@ -433,7 +423,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/counter)"
             ]
           },
           "value": {
@@ -504,8 +494,9 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "l",
+          "m",
+          "s"
         ],
         "own": false
       },

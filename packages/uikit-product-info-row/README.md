@@ -60,10 +60,10 @@ export function InfoGroupBasic() {
 |------|------|---------|-------------|
 | `className` | `string` | — |  |
 | `columns` | `"double"` \| `"single"` | — |  |
-| `data` | `T` | — |  |
+| `data` | `DataType \| undefined` | — |  |
 | `data-test-id` | `string` | — |  |
 | `formatBoolean` | `((value: boolean) => string)` | — | Локализация булевых значений при выводе по `accessorKey` |
-| `items` | `DesktopInfoRowPropsBase` \| `InfoGroupItem` \| `T` | — |  |
+| `items` | `DesktopInfoRowPropsBase` \| `InfoGroupItem` | — |  |
 | `loading` | `boolean` | — |  |
 | `width` | `"fixed"` \| `"full"` | — |  |
 

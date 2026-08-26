@@ -228,10 +228,10 @@
       "Size": {
         "kind": "union",
         "values": [
-          "l",
-          "m"
+          "s",
+          "xs"
         ],
-        "own": true
+        "own": false
       },
       "Variant": {
         "kind": "union",
@@ -379,7 +379,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/counter)"
             ]
           },
           "value": {
@@ -512,10 +512,7 @@
       "defaultValue": {
         "type": "string",
         "required": false,
-        "description": "Выбранная вкладка по умолчанию",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Выбранная вкладка по умолчанию"
       },
       "onChange": {
         "type": "((id: T) => void)",
@@ -525,10 +522,7 @@
       "value": {
         "type": "string",
         "required": false,
-        "description": "Текущая вкладка",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Текущая вкладка"
       }
     },
     "relatedTypes": {}

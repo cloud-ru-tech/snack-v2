@@ -197,24 +197,127 @@ export function WithDataView() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. |
-| `api` | `ToolbarApi` | — | Бэкенд команд: WYSIWYG (TipTap) в preview-режиме либо markdown-исходник (textarea) в raw-режиме. |
-| `bulkActions` | `BulkAction[]` | — | Список массовых действий |
+| `bulkActions` | `BulkActionsProps` | — | Список массовых действий |
 | `checked` | `boolean` | — | Значение чекбокса |
 | `className` | `string` | — | Класснейм |
 | `data-test-id` | `string` | — |  |
-| `dataView` | `ToolbarDataViewProps` | — | Переключатель вида данных — SegmentControl (showDataView в Figma) |
-| `filterRow` | `FilterRow<TState>` | — |  |
+| `dataView` | `DataViewBaseProps` \| `ToolbarDataViewProps` | — | Переключатель вида данных — SegmentControl (showDataView в Figma) |
+| `filterRow` | `FilterRow` | — |  |
 | `indeterminate` | `boolean` | — | Состояние частичного выбора |
-| `items` | `ToolbarItemId` | — |  |
-| `moreActions` | `Action[]` | — | Элементы выпадающего списка кнопки с действиями |
+| `moreActions` | `MoreActionsProps` | — | Элементы выпадающего списка кнопки с действиями |
 | `onCheck` | `(() => void)` | — | Колбек смены значения чекбокса |
 | `onRefresh` | `(() => void)` | — | Колбек обновления |
 | `outline` | `boolean` | `true` | Внешний бордер |
-| `persist` | `ToolbarPersistConfig<TState>` | — | Конфиг для сохранения состояния в localStorage и queryParams. <br> <br/> Поле id должно быть уникальным для каждого инстанса компонента. <br> |
+| `persist` | `ToolbarPersistConfig` | — | Конфиг для сохранения состояния в localStorage и queryParams. <br> <br/> Поле id должно быть уникальным для каждого инстанса компонента. <br> |
 | `search` | `SearchProps` | — | Параметры отвечают за строку поиска <br> <br/> <strong>value</strong>: Значение строки поиска <br> <br/> <strong>onChange</strong>: Колбэк смены значения <br> <br/> <strong>onSubmit</strong>: Колбэк на подтверждение поиска по строке <br/> <strong>placeholder</strong>: Плейсхолдер <br> <br/> <strong>loading</strong>: Состояние загрузки <br> |
 | `selectedCount` | `number` | — | Количество выбранных элементов (для подписи Selected: N) |
 | `showBulkCheckbox` | `boolean` | `true` | Показывать чекбокс слева (Figma: showBulkCheckbox) |
 | `totalCount` | `number` | — | Общее количество элементов (для подписи Selected: N of M) |
+
+#### Related types
+
+**Action**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `ItemContent` | — | Основной контент айтема |
+| `data-test-id` | `string \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — | Флаг неактивности элемента |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбек обработки клика |
+| `tagLabel` | `string \| undefined` | — |  |
+
+**BulkAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — |  |
+| `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
+| `label` | `string` | — |  |
+| `onClick` | `(() => void) \| undefined` | — |  |
+| `tooltip` | `TooltipProps` | — |  |
+
+**BulkActionsProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `actions` | `BulkAction` | — | Список массовых действий |
+| `checked` | `boolean \| undefined` | — | Значение чекбокса |
+| `data-test-id` | `string \| undefined` | — |  |
+| `indeterminate` | `boolean \| undefined` | — | Состояние частичного выбора |
+| `onCheck` | `(() => void) \| undefined` | — | Колбек смены значения чекбокса |
+| `selectedCount` | `number \| undefined` | — | Количество выбранных элементов (для подписи Selected: N) |
+| `showBulkCheckbox` | `boolean \| undefined` | — | Показывать чекбокс слева (Figma: showBulkCheckbox) |
+| `totalCount` | `number \| undefined` | — | Общее количество элементов (для подписи Selected: N of M) |
+
+**DataViewBaseProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultValue` | `"compact"` \| `"list"` | — |  |
+| `items` | `DataViewValue` \| `Segment` \| `SegmentControlProps` | — |  |
+| `onChange` | `((value: DataViewValue) => void) \| undefined` | — |  |
+| `value` | `"compact"` \| `"list"` | — |  |
+
+- `DataViewValue` = `"compact"` \| `"list"`
+
+**FilterRow**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string \| undefined` | — | CSS-класс |
+| `defaultValue` | `Partial<TState> \| undefined` | — | Начальное состояние фильтров |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
+| `initialOpen` | `boolean \| undefined` | — | Начальное состояние filter-row (mobile) |
+| `onChange` | `((filters: TState) => void) \| undefined` | — | Колбек изменения состояния фильтров |
+| `onOpenChange` | `((isOpen: boolean) => void) \| undefined` | — |  |
+| `onVisibleFiltersChange` | `((value: string[]) => void) \| undefined` | — | Коллбек на изменение видимых фильтров |
+| `open` | `boolean \| undefined` | — |  |
+| `showAddButton` | `boolean \| undefined` | — | Скрыть/показать кнопку добавления фильров |
+| `showClearButton` | `boolean \| undefined` | — | Скрыть/показать кнопку очиски фильтров |
+| `value` | `TState \| undefined` | — | Состояние фильтров |
+| `visibleFilters` | `string[] \| undefined` | — | Состояние для видимых фильтров |
+
+**MoreActionsProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string \| undefined` | — |  |
+| `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
+
+**SearchProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `loading` | `boolean \| undefined` | — |  |
+| `onChange` | `(value: string) => void` | — |  |
+| `onSubmit` | `((value: string) => void) \| undefined` | — |  |
+| `placeholder` | `string \| undefined` | — |  |
+| `value` | `string` | — |  |
+
+**ToolbarDataViewProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string \| undefined` | — |  |
+| `defaultValue` | `"compact"` \| `"list"` | — |  |
+| `items` | `DataViewValue` \| `Segment` \| `SegmentControlProps` | — |  |
+| `onChange` | `((value: DataViewValue) => void) \| undefined` | — |  |
+| `show` | `boolean \| undefined` | — | Показать переключатель вида. Если `dataView` не передан — равносильно `show: false` |
+| `value` | `"compact"` \| `"list"` | — |  |
+
+**ToolbarPersistConfig**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `filterQueryKey` | `string \| undefined` | — | Ключ для queryParams |
+| `id` | `string \| undefined` | — | Уникальный id для текущего инстанса компонента |
+| `onLoad` | `((state: PersistedFilterState<T>) => void) \| undefined` | — | Колбэк при первом рендере для получения сохраненных данных и установки их в стейт |
+| `parser` | `((value: string) => PersistedFilterState<T>) \| undefined` | — | Custom-парсер queryParams для преобразования в данные состояния |
+| `serializer` | `((value: PersistedFilterState<T>) => string) \| undefined` | — | Custom-сериализация состояния перед сохранением в queryParams |
+| `state` | `PersistedFilterState` | — | Состояние для сохранения |
+| `validateData` | `((value: unknown) => value is PersistedFilterState<T>) \| undefined` | — | Валидатор сохраненных |
 
 ## Смотри также
 

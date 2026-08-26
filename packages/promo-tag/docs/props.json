@@ -32,10 +32,7 @@
       "as": {
         "type": "ElementType",
         "required": false,
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п.",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | Link из react-router-dom и т.п."
       },
       "beforeContent": {
         "type": "ReactNode",
@@ -57,8 +54,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nЯвный проп вместо forwardRef — как в Button и AiToolBadge.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "label": {

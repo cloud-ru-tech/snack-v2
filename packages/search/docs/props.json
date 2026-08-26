@@ -134,7 +134,7 @@
           "m",
           "s"
         ],
-        "own": true
+        "own": false
       }
     }
   }

@@ -9,10 +9,7 @@
       },
       "root": {
         "type": "RefObject<HTMLElement | null>",
-        "required": false,
-        "typeRefs": [
-          "T"
-        ]
+        "required": false
       }
     },
     "relatedTypes": {}

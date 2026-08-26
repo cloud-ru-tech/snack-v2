@@ -511,7 +511,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -565,6 +565,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -986,32 +995,6 @@
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
-      "DroplistMobileSlots": {
-        "kind": "interface",
-        "props": {
-          "actionButton": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): заголовок шапки."
-          },
-          "onBackButtonClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
-          },
-          "slotAfterTitle": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
-          }
-        },
-        "own": false
-      },
       "EmptyState": {
         "kind": "interface",
         "props": {
@@ -1133,127 +1116,6 @@
         },
         "own": true
       },
-      "FieldElementDroplistProps": {
-        "kind": "interface",
-        "props": {
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "onOpenChange": {
-            "type": "((open: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены состояния раскрытия"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Контролируемое состояние раскрытия"
-          },
-          "pinBottom": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные снизу",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "pinTop": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные сверху",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollToSelectedItem": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
-          },
-          "search": {
-            "type": "SearchState | undefined",
-            "required": false,
-            "description": "Настройки поисковой строки",
-            "typeRefs": [
-              "SearchState"
-            ]
-          },
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
-          },
-          "widthStrategy": {
-            "type": "PopoverWidthStrategy | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "eq",
-              "gte"
-            ],
-            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-            "typeRefs": [
-              "PopoverWidthStrategy"
-            ]
-          }
-        },
-        "own": true
-      },
       "FieldElementSlot": {
         "kind": "interface",
         "props": {
@@ -1323,6 +1185,28 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Показать шеврон раскрытия"
+          }
+        },
+        "own": true
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": true
@@ -1398,7 +1282,7 @@
             ],
             "description": "Размер списка",
             "typeRefs": [
-              "Size"
+              "Size (@ds/list)"
             ]
           },
           "virtualized": {
@@ -1506,7 +1390,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -1562,18 +1446,6 @@
       "ScrollProps": {
         "kind": "interface",
         "props": {
-          "autoscrollTo": {
-            "type": "AutoscrollTo | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "right"
-            ],
-            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
-            "typeRefs": [
-              "AutoscrollTo"
-            ]
-          },
           "barHideStrategy": {
             "type": "BarHideStrategy | undefined",
             "required": false,
@@ -1583,73 +1455,33 @@
               "never",
               "scroll"
             ],
-            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "BarHideStrategy"
+              "OriginalScrollProps"
             ]
-          },
-          "children": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "clickScrolling": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скролить ли по клику в скроллбар."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "onInitialized": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Коллбэк вызывающийся на инициализацию скролла"
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек события скрола."
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
           },
-          "overflow": {
-            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
-            "required": false,
-            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
-          },
-          "paddingAbsolute": {
+          "scroll": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Должны ли паддинги быть абсолютными"
+            "description": "Включить ли скролл для основной части списка"
           },
-          "resize": {
-            "type": "Resize | undefined",
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
             "required": false,
-            "values": [
-              "both",
-              "horizontal",
-              "none",
-              "vertical"
-            ],
-            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
-            "typeRefs": [
-              "Resize"
-            ]
+            "description": "Ссылка на контейнер, который скроллится"
           },
-          "size": {
-            "type": "Size | undefined",
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
             "required": false,
-            "values": [
-              "m",
-              "s"
-            ],
-            "description": "Размер скролбаров",
-            "typeRefs": [
-              "Size"
-            ]
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
           },
           "untouchableScrollbars": {
             "type": "boolean | undefined",
@@ -1675,6 +1507,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -2262,7 +2103,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -2316,6 +2157,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -2951,7 +2801,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -3005,6 +2855,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -3592,30 +3451,6 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
-      "CollapseState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "onChange": {
-            "type": "((value?: ItemId[]) => void) | undefined",
-            "required": false
-          },
-          "value": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
       "CommonGroupItem": {
         "kind": "interface",
         "props": {
@@ -3937,7 +3772,7 @@
             ],
             "description": "Размер списка",
             "typeRefs": [
-              "Size"
+              "Size (@ds/list)"
             ]
           },
           "slotAfterTitle": {
@@ -4124,7 +3959,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/field-decorator)"
             ]
           },
           "validationState": {
@@ -4143,6 +3978,28 @@
           }
         },
         "own": false
+      },
+      "FieldLayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": true
       },
       "FieldLength": {
         "kind": "interface",
@@ -4227,38 +4084,118 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/icon-predefined)"
             ]
           }
         },
         "own": false
       },
-      "Item": {
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": false
+      },
+      "ItemProps": {
+        "kind": "alias",
+        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
+        "own": false
+      },
+      "OriginalScrollProps": {
         "kind": "interface",
         "props": {
-          "href": {
+          "autoscrollTo": {
+            "type": "AutoscrollTo | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "right"
+            ],
+            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
+            "typeRefs": [
+              "AutoscrollTo"
+            ]
+          },
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "children": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "className": {
             "type": "string | undefined",
             "required": false
           },
-          "icon": {
-            "type": "JSXElementConstructor<{ size: number; }> | undefined",
-            "required": false
+          "clickScrolling": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скролить ли по клику в скроллбар."
           },
-          "id": {
-            "type": "string",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> | undefined",
-            "required": false
-          },
-          "shortLabel": {
+          "data-test-id": {
             "type": "string | undefined",
             "required": false
+          },
+          "onInitialized": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Коллбэк вызывающийся на инициализацию скролла"
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек события скрола."
+          },
+          "overflow": {
+            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
+            "required": false,
+            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
+          },
+          "paddingAbsolute": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Должны ли паддинги быть абсолютными"
+          },
+          "resize": {
+            "type": "Resize | undefined",
+            "required": false,
+            "values": [
+              "both",
+              "horizontal",
+              "none",
+              "vertical"
+            ],
+            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
+            "typeRefs": [
+              "Resize"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер скролбаров",
+            "typeRefs": [
+              "Size (@ds/scroll)"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
           }
         },
         "own": false
@@ -4444,18 +4381,6 @@
       "ScrollProps": {
         "kind": "interface",
         "props": {
-          "autoscrollTo": {
-            "type": "AutoscrollTo | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "right"
-            ],
-            "description": "Включает автоскрол при маунте и изменении размера контента:\n<br /> - `bottom` - автоскрол вниз,\n<br /> - `right` - автоскрол вправо,",
-            "typeRefs": [
-              "AutoscrollTo"
-            ]
-          },
           "barHideStrategy": {
             "type": "BarHideStrategy | undefined",
             "required": false,
@@ -4465,73 +4390,33 @@
               "never",
               "scroll"
             ],
-            "description": "Управление скрытием скролл баров:\n<br /> - `Never` - показывать всегда\n<br /> - `Leave` - скрывать когда курсор покидает компонент\n<br /> - `Scroll` - показывать только когда происходит скроллинг\n<br /> - `Move` - показывать при движении курсора над компонентом",
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "BarHideStrategy"
+              "OriginalScrollProps"
             ]
-          },
-          "children": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "clickScrolling": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скролить ли по клику в скроллбар."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "onInitialized": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Коллбэк вызывающийся на инициализацию скролла"
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек события скрола."
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
           },
-          "overflow": {
-            "type": "{ x?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; y?: \"hidden\" | \"visible\" | \"scroll\" | \"visible-hidden\" | \"visible-scroll\"; } | undefined",
-            "required": false,
-            "description": "Поведение overflow по осям. По умолчанию OverlayScrollbars выставляет `scroll`\nна обе оси; если контента по оси быть не должно — передавай `'hidden'`."
-          },
-          "paddingAbsolute": {
+          "scroll": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Должны ли паддинги быть абсолютными"
+            "description": "Включить ли скролл для основной части списка"
           },
-          "resize": {
-            "type": "Resize | undefined",
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
             "required": false,
-            "values": [
-              "both",
-              "horizontal",
-              "none",
-              "vertical"
-            ],
-            "description": "Настройка возможности регулировать Scroll-контейнер:\n<br /> - `None` - нельзя изменять размер\n<br /> - `Horizontal` - можно изменять размер только по горизонтали\n<br /> - `Vertical` - можно изменять размер только по вертикали\n<br /> - `Both` - можно изменять размер в обеих координатах",
-            "typeRefs": [
-              "Resize"
-            ]
+            "description": "Ссылка на контейнер, который скроллится"
           },
-          "size": {
-            "type": "Size | undefined",
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
             "required": false,
-            "values": [
-              "m",
-              "s"
-            ],
-            "description": "Размер скролбаров",
-            "typeRefs": [
-              "Size"
-            ]
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
           },
           "untouchableScrollbars": {
             "type": "boolean | undefined",
@@ -4563,78 +4448,6 @@
           "value": {
             "type": "string | undefined",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "SelectionMultipleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"multiple\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId[]> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId[] | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          }
-        },
-        "own": false
-      },
-      "SelectionSingleState": {
-        "kind": "interface",
-        "props": {
-          "defaultValue": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Начальное состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "mode": {
-            "type": "\"single\"",
-            "required": true,
-            "description": "Режим выбора"
-          },
-          "onChange": {
-            "type": "OnChangeHandler<ItemId> | undefined",
-            "required": false,
-            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
-            "typeRefs": [
-              "ItemId",
-              "OnChangeHandler"
-            ]
-          },
-          "value": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Controlled состояние",
-            "typeRefs": [
-              "ItemId"
-            ]
           }
         },
         "own": false
@@ -4776,8 +4589,9 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "l",
+          "m",
+          "s"
         ],
         "own": false
       },
@@ -5209,7 +5023,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -5263,6 +5077,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -5704,7 +5527,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -5758,6 +5581,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -6394,7 +6226,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -6448,6 +6280,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -6908,7 +6749,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -6962,6 +6803,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",
@@ -7379,7 +7229,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -7433,6 +7283,15 @@
         "own": false
       },
       "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "Size (@ds/tooltip)": {
         "kind": "union",
         "values": [
           "s",

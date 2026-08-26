@@ -110,7 +110,7 @@ export function CascadingThemes() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
-| `root` | `T` | — |  |
+| `root` | `RefObject<HTMLElement \| null>` | — |  |
 
 ## Смотри также
 

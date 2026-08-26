@@ -129,21 +129,22 @@
       "Size": {
         "kind": "union",
         "values": [
-          "s",
-          "xs"
+          "m",
+          "s"
         ],
         "own": false
       },
       "Variant": {
         "kind": "union",
         "values": [
-          "password",
-          "queue",
-          "ssh",
-          "support",
-          "vmAgent"
+          "agentic",
+          "critical",
+          "help",
+          "information",
+          "security",
+          "warning"
         ],
-        "own": true
+        "own": false
       }
     }
   },

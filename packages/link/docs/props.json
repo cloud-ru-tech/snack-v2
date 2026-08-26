@@ -20,7 +20,10 @@
           "yellow"
         ],
         "defaultValue": "primary",
-        "description": "Семантический цвет"
+        "description": "Семантический цвет",
+        "typeRefs": [
+          "Appearance"
+        ]
       },
       "as": {
         "type": "ComponentType | ElementType",
@@ -32,14 +35,13 @@
         "type": "string",
         "required": false
       },
-      "href": {
-        "type": "string",
-        "required": true
-      },
       "innerRef": {
         "type": "any",
         "required": false,
-        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+        "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
       },
       "insideText": {
         "type": "boolean",
@@ -53,10 +55,6 @@
         "defaultValue": "",
         "description": "Текст ссылки"
       },
-      "onClick": {
-        "type": "((e: MouseEvent<HTMLAnchorElement>) => void) | undefined",
-        "required": false
-      },
       "roleAppearance": {
         "type": "enum",
         "required": false,
@@ -65,11 +63,10 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке"
-      },
-      "target": {
-        "type": "string | undefined",
-        "required": false
+        "description": "Роль, в которой применяется `appearance`: обычный текст или текст на акцентной подложке",
+        "typeRefs": [
+          "RoleAppearance"
+        ]
       },
       "truncateVariant": {
         "type": "enum",
@@ -78,7 +75,10 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине"
+        "description": "Вариант обрезания строки:\n<br/> - `end` - с конца;\n<br/> - `middle` - посередине",
+        "typeRefs": [
+          "TruncateStringProps"
+        ]
       },
       "underlined": {
         "type": "boolean",
@@ -87,6 +87,41 @@
         "description": "Наличие нижнего подчеркивания"
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "invertNeutral",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "onAccent",
+          "regular"
+        ],
+        "own": true
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
+        "own": false
+      }
+    }
   }
 }

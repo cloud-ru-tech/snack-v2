@@ -68,7 +68,7 @@ import { InputPrivate, useClearButton, useButtonNavigation } from '@ds/input-pri
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `inputRef` | `T` | — |  |
+| `inputRef` | `RefObject<T \| null>` | — |  |
 | `onButtonKeyDown` | `KeyboardEventHandler<HTMLButtonElement>` | `() => {}` |  |
 | `postfixButtons` | `ActiveItem` \| `ButtonProps` \| `InactiveItem` | — |  |
 | `prefixButtons` | `ActiveItem` \| `ButtonProps` \| `InactiveItem` | `[]` |  |

@@ -179,7 +179,6 @@ export function MobileLayout() {
 |------|------|---------|-------------|
 | `appearance` | `"critical"` \| `"neutral"` \| `"primary"` | `neutral` | Вариант оформления |
 | `as` | `"button"` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс <br/> Класс триггерной кнопки. |
 | `closeDroplistOnItemClick` | `boolean` | `false` | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
@@ -187,7 +186,7 @@ export function MobileLayout() {
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — | Отключена |
 | `fullWidth` | `boolean` | — | На всю ширину |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
 | `loading` | `boolean` | — | Состояние загрузки |

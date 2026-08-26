@@ -203,10 +203,7 @@
     "props": {
       "inputRef": {
         "type": "RefObject<T | null>",
-        "required": true,
-        "typeRefs": [
-          "T"
-        ]
+        "required": true
       },
       "onButtonKeyDown": {
         "type": "KeyboardEventHandler<HTMLButtonElement>",

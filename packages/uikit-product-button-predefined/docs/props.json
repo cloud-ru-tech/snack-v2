@@ -23,14 +23,7 @@
         "values": [
           "button"
         ],
-        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)",
-        "typeRefs": [
-          "T"
-        ]
-      },
-      "children": {
-        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-        "required": false
+        "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "className": {
         "type": "string",
@@ -75,8 +68,7 @@
         "required": false,
         "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
         "typeRefs": [
-          "PolymorphicRef",
-          "T"
+          "PolymorphicRef"
         ]
       },
       "items": {
@@ -163,6 +155,15 @@
       "Appearance": {
         "kind": "union",
         "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "own": false
+      },
+      "Appearance (@ds/counter)": {
+        "kind": "union",
+        "values": [
           "blue",
           "green",
           "neutral",
@@ -172,24 +173,6 @@
           "red",
           "violet",
           "yellow"
-        ],
-        "own": false
-      },
-      "AutoscrollTo": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "right"
-        ],
-        "own": false
-      },
-      "BarHideStrategy": {
-        "kind": "union",
-        "values": [
-          "leave",
-          "move",
-          "never",
-          "scroll"
         ],
         "own": false
       },
@@ -361,7 +344,7 @@
             ],
             "description": "Внешний вид",
             "typeRefs": [
-              "Appearance"
+              "Appearance (@ds/counter)"
             ]
           },
           "className": {
@@ -429,33 +412,8 @@
         "own": false
       },
       "Item": {
-        "kind": "interface",
-        "props": {
-          "href": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "JSXElementConstructor<{ size: number; }> | undefined",
-            "required": false
-          },
-          "id": {
-            "type": "string",
-            "required": true
-          },
-          "label": {
-            "type": "string",
-            "required": true
-          },
-          "onClick": {
-            "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> | undefined",
-            "required": false
-          },
-          "shortLabel": {
-            "type": "string | undefined",
-            "required": false
-          }
-        },
+        "kind": "alias",
+        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
         "own": false
       },
       "ItemContent": {
@@ -500,48 +458,7 @@
         "type": "string | number",
         "own": false
       },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "own": false
-      },
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": false
-      },
-      "Resize": {
-        "kind": "union",
-        "values": [
-          "both",
-          "horizontal",
-          "none",
-          "vertical"
-        ],
-        "own": false
-      },
-      "RoleAppearance": {
-        "kind": "union",
-        "values": [
-          "accent",
-          "decor"
-        ],
-        "own": false
-      },
-      "ScrollProps": {
+      "OriginalScrollProps": {
         "kind": "interface",
         "props": {
           "autoscrollTo": {
@@ -630,8 +547,87 @@
             ],
             "description": "Размер скролбаров",
             "typeRefs": [
-              "Size"
+              "Size (@ds/scroll)"
             ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      },
+      "RoleAppearance": {
+        "kind": "union",
+        "values": [
+          "accent",
+          "decor"
+        ],
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
           },
           "untouchableScrollbars": {
             "type": "boolean | undefined",

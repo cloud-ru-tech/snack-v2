@@ -962,21 +962,7 @@ export function DroplistWithHeader() {
 
 - `Item` = `BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem`
 
-**ItemContent**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `caption` | `string \| undefined` | — |  |
-| `className` | `string \| undefined` | — |  |
-| `data-test-id` | `string \| undefined` | — |  |
-| `description` | `string \| undefined` | — |  |
-| `disabled` | `boolean \| undefined` | — |  |
-| `label` | `string \| number` | — |  |
-| `truncate` | `TruncateProps` | — |  |
-
 - `ItemId` = `string | number`
-
-- `OnChangeHandler` = `(value: T) => void`
 
 **ScrollProps**
 

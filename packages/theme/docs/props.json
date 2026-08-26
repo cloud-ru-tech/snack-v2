@@ -387,10 +387,7 @@
       "themeMap": {
         "type": "Record<T, string>",
         "required": true,
-        "description": "Объект с указанием соответсвия темы и css-класса",
-        "typeRefs": [
-          "T"
-        ]
+        "description": "Объект с указанием соответсвия темы и css-класса"
       }
     },
     "relatedTypes": {}

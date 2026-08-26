@@ -240,13 +240,13 @@ export function Controlled() {
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс контейнера. |
 | `data-test-id` | `string` | — |  |
-| `defaultValue` | `Value` | — | ID выбранного по умолчанию сегмента (uncontrolled). |
-| `items` | `Segment` \| `SegmentType` \| `Value` | — | Набор сегментов. |
+| `defaultValue` | `IdType` | — | ID выбранного по умолчанию сегмента (uncontrolled). |
+| `items` | `Segment` | — | Набор сегментов. |
 | `name` | `string` | — | Имя поля (hidden input для формы). |
-| `onChange` | `Value` | — | Колбек смены выбранного сегмента. |
+| `onChange` | `((value: Value) => void)` | — | Колбек смены выбранного сегмента. |
 | `outline` | `boolean` | — | Обводка. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер компонента. |
-| `value` | `Value` | — | Value выбранного сегмента. |
+| `value` | `IdType` | — | Value выбранного сегмента. |
 | `width` | `"auto"` \| `"full"` | `auto` | Управление шириной компонента. |
 
 #### Related types

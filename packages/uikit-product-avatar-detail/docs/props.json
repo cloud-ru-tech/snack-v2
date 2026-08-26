@@ -45,7 +45,6 @@
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"
@@ -168,6 +167,11 @@
       "Size": {
         "kind": "union",
         "values": [
+          "3xl",
+          "6xl",
+          "9xl",
+          "l",
+          "m",
           "s",
           "xs"
         ],
@@ -178,11 +182,9 @@
         "values": [
           "blue",
           "green",
-          "loading",
           "neutral",
           "orange",
           "pink",
-          "primary",
           "red",
           "violet",
           "yellow"

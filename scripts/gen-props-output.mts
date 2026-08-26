@@ -11,27 +11,93 @@ export type PropDef = {
   description?: string;
   required: boolean;
   typeRefs?: string[];
-}
+};
 
 export type RelatedUnion = {
   kind: 'union';
   values: string[];
   own?: boolean;
-}
+};
 
 export type RelatedAlias = {
   kind: 'alias';
   type: string;
   own?: boolean;
-}
+};
 
 export type RelatedInterface = {
   kind: 'interface';
   props: Record<string, PropDef>;
   own?: boolean;
-}
+};
 
 export type RelatedType = RelatedUnion | RelatedAlias | RelatedInterface;
+
+/** Чем занят ключ в `relatedTypes`. Имена типов в монорепе не уникальны, поэтому занятость решается по объявлению. */
+export type RelatedEntry = {
+  /** Идентичность объявления: `<файл>:<позиция>`. */
+  declId: string;
+  /** Исходное имя типа — ключ мог получить пометку `Name (@ds/<pkg>)`. */
+  base: string;
+  /** Объявлен в документируемом пакете. */
+  own: boolean;
+  /** Пакет-владелец объявления. */
+  pkgName: string;
+};
+
+export type RelatedRegistry = Map<string, RelatedEntry>;
+
+/** Ключ типа в `relatedTypes`: имя, а при занятости другим объявлением — с пакетом-владельцем. */
+export function relatedKeyFor(
+  name: string,
+  decl: Pick<RelatedEntry, 'declId' | 'pkgName'>,
+  registry: RelatedRegistry,
+): string {
+  const claimed = registry.get(name);
+  if (claimed?.declId === decl.declId) return name;
+
+  // Одно объявление — одна запись: под вторым именем оно приходит через алиас импорта
+  // (`import { Segment as SegmentType }`), дублировать незачем.
+  for (const [key, entry] of registry) {
+    if (entry.declId === decl.declId) return key;
+  }
+
+  return claimed ? `${name} (${decl.pkgName})` : name;
+}
+
+/**
+ * Голое имя достаётся типу самого пакета: при коллизии чужой тип получает пометку
+ * `Name (@ds/<pkg>)`, а все `typeRefs` переписываются на новые ключи.
+ */
+export function preferOwnRelatedNames(
+  doc: { props: Record<string, PropDef>; relatedTypes: Record<string, RelatedType> },
+  registry: RelatedRegistry,
+): void {
+  const renames = new Map<string, string>();
+
+  for (const [key, entry] of registry) {
+    if (key === entry.base || !entry.own) continue;
+    const claimed = registry.get(entry.base);
+    if (!claimed || claimed.own) continue;
+    renames.set(entry.base, `${entry.base} (${claimed.pkgName})`);
+    renames.set(key, entry.base);
+  }
+  if (renames.size === 0) return;
+
+  const rewriteRefs = (props: Record<string, PropDef>): void => {
+    for (const def of Object.values(props)) {
+      if (def.typeRefs) def.typeRefs = def.typeRefs.map(ref => renames.get(ref) ?? ref);
+    }
+  };
+
+  rewriteRefs(doc.props);
+  const next: Record<string, RelatedType> = {};
+  for (const [key, related] of Object.entries(doc.relatedTypes)) {
+    if (related.kind === 'interface') rewriteRefs(related.props);
+    next[renames.get(key) ?? key] = related;
+  }
+  doc.relatedTypes = next;
+}
 
 export type ComponentDoc = {
   displayName: string;
@@ -39,7 +105,7 @@ export type ComponentDoc = {
   description?: string;
   props: Record<string, PropDef>;
   relatedTypes: Record<string, RelatedType>;
-}
+};
 
 /**
  * Имена, попавшие в файл импортом из другого пакета (bare-specifier).

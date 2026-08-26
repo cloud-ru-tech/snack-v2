@@ -147,13 +147,13 @@ export function PolymorphicLink() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionLabel` | `string` | — | Текст кнопки действия |
-| `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `image` | `{ src: string; alt: string; }` | — | Изображение |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `onClose` | `MouseEventHandler<HTMLElement>` | — | Колбэк закрытия. При наличии отображается кнопка «Закрыть» |
 | `title` | `string` | — | Заголовок карточки |
 
@@ -175,13 +175,13 @@ export function PolymorphicLink() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionLabel` | `string` | — | Текст кнопки действия |
-| `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `emblem` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Эмблема — передавайте `<IconPredefined icon={...} />` или произвольный ReactElement |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `title` | `string` | — | Заголовок карточки |
 
 ## CardServiceLight
@@ -359,14 +359,14 @@ export function PolymorphicLink() {
 |------|------|---------|-------------|
 | `actionsSize` | `"m"` \| `"s"` | — | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
 | `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
-| `as` | `T` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | `false` | Неактивное состояние |
 | `expandable` | `{ value: boolean; onClick(): void; }` | — | Настройки кнопки раскрытия |
 | `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». <br/> Keyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке. |
 | `icon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка сервиса |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `promoTag` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Настройки promo tag. При отсутствии не отображается |
 | `title` | `string` | — | Заголовок карточки |
 | `tooltip` | `TooltipProps` | — | Подсказка с иконкой «?» рядом с заголовком |
@@ -578,7 +578,7 @@ export function PolymorphicLink() {
 |------|------|---------|-------------|
 | `actionsSize` | `"m"` \| `"s"` | `m` | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
 | `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
-| `as` | `T` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `description` | `string` | — | Описание сервиса |
@@ -586,7 +586,7 @@ export function PolymorphicLink() {
 | `expandable` | `{ value: boolean; onClick(): void; }` | — | Настройки кнопки раскрытия |
 | `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное». <br/> Keyboard: ArrowRight на карточке → Favorite → expand; ArrowLeft — в обратном порядке. |
 | `icon` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Иконка сервиса |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `promoTag` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Настройки promo tag. При отсутствии не отображается |
 | `title` | `string` | — | Заголовок карточки |
 
@@ -815,14 +815,14 @@ export function PolymorphicLink() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения кнопки «Избранное»: всегда или при наведении и фокусе |
-| `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `checked` | `boolean` | — | Выбранное состояние |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | — | Неактивное состояние |
 | `emblem` | `ReactElement<any, string \| JSXElementConstructor<any>> \| { icon: JSXElementConstructor<{ className?: string \| undefined; size?: number \| undefined; }>; }` | — | Эмблема: объект с иконкой-компонентом. <br/> Принимает `{ icon: JSXElementConstructor }` или произвольный ReactElement. |
 | `favorite` | `FavoriteProps` | — | Настройки кнопки «Избранное» |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `outline` | `boolean` | — | Рамка вокруг карточки |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-тег (бейдж). Тип — `PromoTagProps` из `@ds/promo-tag`. |
 | `title` | `string` | — | Заголовок карточки |
@@ -1009,12 +1009,12 @@ export function PolymorphicLink() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
+| `as` | `ElementType` | — | Полиморфный элемент: `'div'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
 | `content` | `string` | — | Описание |
 | `data-test-id` | `string` | — | Support prop для тестов |
 | `disabled` | `boolean` | — | Неактивное состояние |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент / инстанс |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент / инстанс |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-тег. <br/> Используйте `PromoTagProps` из `@ds/promo-tag`. |
 | `size` | `"m"` \| `"s"` | `m` | Размер: управляет типографикой и отступами. <br/> `'m'` — roleTitle/m + roleBody/m, padding 16px; <br/> `'s'` — roleTitle/s + roleBody/s, padding 8px. |
 | `title` | `string` | — | Заголовок |

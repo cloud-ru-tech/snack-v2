@@ -232,7 +232,7 @@ export function DeployFailureCard() {
 | `fullWidth` | `boolean \| undefined` | — | На всю ширину |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `minWidth` | `boolean \| undefined` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
@@ -647,10 +647,6 @@ export function PanelFull() {
 | `data-test-id` | `string` | — |  |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string` | — | Заголовок |
-
-##### Related types
-
-- `Appearance` = `"default"` \| `"error"` \| `"success"` \| `"warning"`
 
 ## NotificationPanel
 

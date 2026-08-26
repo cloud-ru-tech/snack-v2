@@ -134,12 +134,12 @@ export function Collapsible() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
+| `as` | `T \| undefined` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string \| undefined` | — | Дополнительный класс |
 | `disabled` | `boolean \| undefined` | — | Отключена |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `invertFocusOutlineColor` | `boolean \| undefined` | — | Инвертировать цвет фокусного контура |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
@@ -310,12 +310,12 @@ export function SystemNotice() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
+| `as` | `T \| undefined` | — | Элемент или компонент для рендера: 'button' \| 'a' \| ComponentType (например Link из react-router-dom) |
 | `className` | `string \| undefined` | — | Дополнительный класс |
 | `disabled` | `boolean \| undefined` | — | Отключена |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `invertFocusOutlineColor` | `boolean \| undefined` | — | Инвертировать цвет фокусного контура |
 | `label` | `string \| undefined` | — | Текст кнопки |
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |

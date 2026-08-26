@@ -154,7 +154,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/icon-predefined)"
             ]
           }
         },
@@ -168,6 +168,17 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/icon-predefined)": {
+        "kind": "union",
+        "values": [
+          "3xl",
+          "5xl",
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
       }
     }
   }

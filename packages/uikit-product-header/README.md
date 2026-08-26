@@ -225,12 +225,20 @@ export function WithFavorites() {
 
 ##### Related types
 
-**EmptyStateProps**
+**FavoriteProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `isFavoritesSegment` | `boolean` | — |  |
-| `isMobile` | `boolean \| undefined` | — |  |
+| `actions` | `BaseItemProps` | — | Действия для списка сервисов |
+| `loading` | `boolean \| undefined` | — | Флаг загрузки данных |
+| `onChange` | `(productId: string) => (addingValue: boolean, position?: number) => void` | — | Колбэк переключения избранного для карточки сервиса. <br/> `position` передаётся при добавлении через drag из сетки сервисов — индекс, <br/> на который должна встать карточка среди избранного (см. <br/> {@link <br/> FavoriteProps.onOrderChange <br/> } <br/> ). <br/> При переключении избранного кликом не передаётся. |
+| `onFavoriteServiceClick` | `((serviceId: string, event?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по карточке сервиса в сегменте «Избранное» |
+| `onOrderChange` | `((orderedIds: string[]) => void) \| undefined` | — | Колбэк вызывается после перетаскивания карточек внутри избранного с новым порядком id. <br/> Добавление новой карточки через drag из сетки сервисов идёт через <br/> {@link <br/> FavoriteProps.onChange <br/> } <br/> с `position` — этот колбэк для такого добавления не вызывается. |
+| `onRecentServiceClick` | `((serviceId: string, event?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по карточке сервиса в сегменте «Недавнее» |
+| `onSegmentChange` | `((segment: FavoritesSegment) => void) \| undefined` | — | Колбэк смены сегмента панели избранного. |
+| `recentServices` | `string[] \| undefined` | — | Список id недавно открытых сервисов |
+| `segment` | `"favorites"` \| `"recent"` | — | Активный сегмент («Избранное» / «Недавнее») в панели избранного. <br/> Не передано — неуправляемое состояние (дефолт `'favorites'`). |
+| `value` | `string[]` | — | Список id избранных сервисов |
 
 **LinksGroup**
 
@@ -245,6 +253,15 @@ export function WithFavorites() {
 | `items` | `InnerLink` | — | Карточки сервисов или ссылок внутри группы. |
 | `label` | `LinksGroupTitle` \| `TitleClickable` \| `TitleStatic` | — | Заголовок группы в сетке карточек и в боковой навигации. |
 | `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+
+**MainMenuPreferencesProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onOpenChange` | `((open: boolean) => void) \| undefined` | — | Колбэк открытия/закрытия модалки. |
+| `open` | `boolean \| undefined` | — | Открыта ли модалка настроек. <br/> Не передано — состояние открытия неуправляемое (модалка сама переключает себя по клику на кнопку). |
+| `showDescription` | `MainMenuToggleProps` | — | Показывать описания сервисов в карточках. |
+| `showGroupsColors` | `MainMenuToggleProps` | — | Отображать цвета блоков групп ( <br/> {@link <br/> LinksGroup.blockColor <br/> } <br/> ). <br/> `value: false` скрывает цвета всех групп независимо от заданного `blockColor`. |
 
 **MainMenuSegment**
 
@@ -263,6 +280,16 @@ export function WithFavorites() {
 | `expanded` | `string[] \| undefined` | — | Id раскрытых групп. Если не передан — uncontrolled (по умолчанию все раскрыты). |
 | `id` | `string` | — | Id сегмента из <br/> {@link <br/> MainMenuSegment.id <br/> } <br/> . |
 | `order` | `string[] \| undefined` | — | Порядок id групп. Если не передан — uncontrolled для этого сегмента <br/> (дефолт = порядок `items`; новые группы добавляются в конец). |
+
+**SearchProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onBlur` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки потери фокуса |
+| `onChange` | `(value: string) => void` | — |  |
+| `onFocus` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки получения фокуса |
+| `onSearchNoResult` | `((value: string) => void) \| undefined` | — |  |
+| `value` | `string` | — |  |
 
 ## UserMenu
 
@@ -340,13 +367,6 @@ export function ControlledTheme() {
 | `triggerTooltip` | `string` | — |  |
 
 ##### Related types
-
-**EmptyStateProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isFavoritesSegment` | `boolean` | — |  |
-| `isMobile` | `boolean \| undefined` | — |  |
 
 - `ThemeMode` = `"dark"` \| `"light"` \| `"system"`
 

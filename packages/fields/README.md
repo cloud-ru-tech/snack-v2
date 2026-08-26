@@ -216,24 +216,6 @@ export function Affixes() {
 | `variant` | `"after"` \| `"before"` | — | Положение относительно поля |
 | `withDropdownList` | `boolean \| undefined` | — | Показать шеврон раскрытия |
 
-**FieldElementDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `closeDroplistOnItemClick` | `boolean \| undefined` | — | Закрывать выпадающий список после клика на базовый айтем. <br/> Работает в режимах selection: 'none' \| 'single' |
-| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
-| `onOpenChange` | `((open: boolean) => void) \| undefined` | — | Колбек смены состояния раскрытия |
-| `open` | `boolean \| undefined` | — | Контролируемое состояние раскрытия |
-| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные снизу |
-| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные сверху |
-| `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Положение поповера относительно своего триггера (children). |
-| `scroll` | `boolean \| undefined` | — | Включить ли скролл для основной части списка |
-| `scrollToSelectedItem` | `boolean \| undefined` | — | Флаг, отвечающий за прокручивание до выбранного элемента |
-| `search` | `SearchState` | — | Настройки поисковой строки |
-| `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
-| `virtualized` | `boolean \| undefined` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
-| `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | — | Стратегия управления шириной контейнера поповера <br/> - `auto` - соответствует ширине контента, <br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире, <br/> - `eq` - Equal, строго равен ширине таргета. |
-
 **FieldElementSlot**
 
 | Prop | Type | Default | Description |
@@ -248,6 +230,15 @@ export function Affixes() {
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер (совпадает с размером поля) |
 | `tabIndex` | `number \| undefined` | — | HTML tabIndex (`-1` — исключить кнопку из tab-order, фокус по Tab уходит в поле) |
 | `withDropdownList` | `boolean \| undefined` | — | Показать шеврон раскрытия |
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 - `Variant` = `"after"` \| `"before"`
 
@@ -511,6 +502,17 @@ export function Select() {
 | `value` | `ItemId` | — | Управляемое значение <br/> Управляемые значения |
 | `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `'eq' — равна ширине триггера` | Стратегия ширины дроплиста. |
+
+#### Related types
+
+**FieldLayoutPresets**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `desktop` | `any` | — |  |
+| `desktopSmall` | `any` | — |  |
+| `mobile` | `any` | — |  |
+| `tablet` | `any` | — |  |
 
 ## FieldSlider
 

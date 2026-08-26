@@ -252,7 +252,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -313,6 +313,14 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/tooltip)": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
       },
       "Trigger": {
         "kind": "union",
@@ -652,7 +660,7 @@
             ],
             "description": "Размер",
             "typeRefs": [
-              "Size"
+              "Size (@ds/tooltip)"
             ]
           },
           "tabIndex": {
@@ -713,6 +721,14 @@
           "s"
         ],
         "own": true
+      },
+      "Size (@ds/tooltip)": {
+        "kind": "union",
+        "values": [
+          "s",
+          "xs"
+        ],
+        "own": false
       },
       "Trigger": {
         "kind": "union",

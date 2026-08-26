@@ -5,6 +5,10 @@ import {
   type ComponentDoc,
   formatPropsJson,
   isRicher,
+  preferOwnRelatedNames,
+  type RelatedEntry,
+  relatedKeyFor,
+  type RelatedRegistry,
   sortOutput,
 } from '../gen-props-output.mts';
 import counterContract from './fixtures/counter-props.contract.json';
@@ -98,6 +102,102 @@ describe('gen-props output', () => {
   });
 });
 
+describe('related type name collisions', () => {
+  // `Variant` объявлен и в @ds/ai-field-banner, и в @ds/ai-field-notice. Ключ в `relatedTypes` —
+  // строка, поэтому разные объявления обязаны получать разные ключи.
+  const bannerVariant: RelatedEntry = {
+    declId: '/repo/packages/ai-field-banner/src/types.ts:120',
+    base: 'Variant',
+    own: false,
+    pkgName: '@ds/ai-field-banner',
+  };
+  const noticeVariant: RelatedEntry = {
+    declId: '/repo/packages/ai-field-notice/src/types.ts:200',
+    base: 'Variant',
+    own: true,
+    pkgName: '@ds/ai-field-notice',
+  };
+
+  it('gives the bare name to the first declaration that claims it', () => {
+    expect(relatedKeyFor('Variant', bannerVariant, new Map())).toBe('Variant');
+  });
+
+  it('returns the same key for a repeat visit of the same declaration', () => {
+    const registry: RelatedRegistry = new Map([['Variant', bannerVariant]]);
+
+    expect(relatedKeyFor('Variant', bannerVariant, registry)).toBe('Variant');
+  });
+
+  it('qualifies a foreign declaration when the name is already taken', () => {
+    const registry: RelatedRegistry = new Map([['Variant', bannerVariant]]);
+
+    expect(relatedKeyFor('Variant', noticeVariant, registry)).toBe('Variant (@ds/ai-field-notice)');
+  });
+
+  it('reuses the existing key when the same declaration arrives under an import alias', () => {
+    const segment: RelatedEntry = {
+      declId: '/repo/packages/segment-control/src/types.ts:40',
+      base: 'Segment',
+      own: true,
+      pkgName: '@ds/segment-control',
+    };
+    const registry: RelatedRegistry = new Map([['Segment', segment]]);
+
+    // `import { Segment as SegmentType }` — то же объявление, другое имя в месте ссылки.
+    expect(relatedKeyFor('SegmentType', segment, registry)).toBe('Segment');
+  });
+
+  it("hands the bare name to the package's own type and rewrites every ref", () => {
+    const registry: RelatedRegistry = new Map([
+      ['Variant', bannerVariant],
+      ['Variant (@ds/ai-field-notice)', { ...noticeVariant }],
+    ]);
+    const doc: Pick<ComponentDoc, 'props' | 'relatedTypes'> = {
+      props: {
+        variant: { type: 'Variant', required: true, typeRefs: ['Variant (@ds/ai-field-notice)'] },
+        banner: { type: 'AiFieldBannerProps', required: false, typeRefs: ['AiFieldBannerProps'] },
+      },
+      relatedTypes: {
+        Variant: { kind: 'union', values: ['agentic', 'critical'], own: false },
+        'Variant (@ds/ai-field-notice)': { kind: 'union', values: ['password', 'ssh'], own: true },
+        AiFieldBannerProps: {
+          kind: 'interface',
+          own: false,
+          props: { variant: { type: 'Variant', required: false, typeRefs: ['Variant'] } },
+        },
+      },
+    };
+
+    preferOwnRelatedNames(doc, registry);
+
+    expect(Object.keys(doc.relatedTypes).sort()).toEqual([
+      'AiFieldBannerProps',
+      'Variant',
+      'Variant (@ds/ai-field-banner)',
+    ]);
+    // Свой union забрал голое имя, чужой получил пометку пакета.
+    expect(doc.relatedTypes.Variant).toMatchObject({ values: ['password', 'ssh'], own: true });
+    expect(doc.relatedTypes['Variant (@ds/ai-field-banner)']).toMatchObject({ values: ['agentic', 'critical'] });
+    // Ссылки на обоих концах указывают на новые ключи, а не на прежние.
+    expect(doc.props.variant.typeRefs).toEqual(['Variant']);
+    const nested = doc.relatedTypes.AiFieldBannerProps;
+    expect(nested.kind === 'interface' && nested.props.variant.typeRefs).toEqual(['Variant (@ds/ai-field-banner)']);
+  });
+
+  it('renames nothing when there is no collision', () => {
+    const registry: RelatedRegistry = new Map([['Variant', noticeVariant]]);
+    const doc: Pick<ComponentDoc, 'props' | 'relatedTypes'> = {
+      props: { variant: { type: 'Variant', required: true, typeRefs: ['Variant'] } },
+      relatedTypes: { Variant: { kind: 'union', values: ['password', 'ssh'], own: true } },
+    };
+
+    preferOwnRelatedNames(doc, registry);
+
+    expect(Object.keys(doc.relatedTypes)).toEqual(['Variant']);
+    expect(doc.props.variant.typeRefs).toEqual(['Variant']);
+  });
+});
+
 describe('collectExternallyImportedNames', () => {
   it('collects named, default and namespace imports from other packages', () => {
     const names = collectExternallyImportedNames(`
@@ -109,7 +209,7 @@ describe('collectExternallyImportedNames', () => {
     expect([...names].sort()).toEqual(['AbkhaziaSVG', 'Button', 'RussiaSVG', 'utils']);
   });
 
-  it('ignores relative imports — это код самого пакета', () => {
+  it("ignores relative imports — the package's own code", () => {
     const names = collectExternallyImportedNames(`
       import { FieldPhone } from './FieldPhone';
       import { COUNTRIES } from '../constants';

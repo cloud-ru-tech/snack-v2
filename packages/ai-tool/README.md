@@ -154,7 +154,6 @@ export function ToolCallTree() {
 |------|------|---------|-------------|
 | `call` | `ReactNode` | — | Содержимое блока запроса. Блок рендерится только при переданном значении. |
 | `callLabel` | `ReactNode` | `Запрос` | Заголовок блока запроса. |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Доп. класс корня. |
 | `connector` | `boolean` | `false` | Линия-коннектор к следующему инструменту в таймлайне. Линия выходит <br/> на 8px ниже корня — рассчитана на вертикальный список с `gap: 8px`. |
 | `data-test-id` | `string` | `ai-tool` |  |
@@ -310,7 +309,6 @@ export function IconSet() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-icon` |  |
 | `variant` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait). |
@@ -366,7 +364,6 @@ export function StatusRow() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-status` |  |
 | `state` | `"error"` \| `"loading"` \| `"pending"` \| `"success"` | — | Состояние выполнения инструмента: success / error / loading / pending. |
@@ -476,7 +473,6 @@ export function KeyValuePair() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-key-value` |  |
 | `error` | `boolean` | — | Состояние ошибки: ключ и значение красные. По умолчанию наследуется от `AiToolDetails`. |
@@ -675,11 +671,11 @@ export function Badges() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — | Полиморфный тег корня (`'a'` для ссылки и т.д.). По умолчанию `'span'`. |
+| `as` | `ElementType` | — | Полиморфный тег корня (`'a'` для ссылки и т.д.). По умолчанию `'span'`. |
 | `badgeType` | `"cloud-ru"` \| `"other"` | — | Тип бейджа — определяет встроенную иконку (`cloud-ru` / `other`). Без него иконка не рендерится. |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-badge` |  |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на корневой элемент (вместо `forwardRef`). |
+| `innerRef` | `PolymorphicRef` | — | Ref на корневой элемент (вместо `forwardRef`). |
 | `label` | `ReactNode` | — | Текст бейджа (одна строка с ellipsis). |
 
 ##### Related types
@@ -804,7 +800,6 @@ export function DetailsLabelSecret() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-details-label` |  |
 | `label` | `ReactNode` | — | Текст лейбла (заголовок блока деталей). |

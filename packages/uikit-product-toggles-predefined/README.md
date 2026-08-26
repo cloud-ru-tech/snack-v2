@@ -249,3 +249,9 @@ export function Controlled() {
 | `orientation` | `"horizontal"` \| `"vertical"` | — | Направление раскладки |
 | `selectionMode` | `"multiple"` \| `"single"` | — | Режим выбора |
 | `value` | `string \| string[]` | — | Controlled состояние |
+
+#### Related types
+
+- `Gap` = `"l"` \| `"m"` \| `"s"`
+
+- `Orientation` = `"horizontal"` \| `"vertical"`

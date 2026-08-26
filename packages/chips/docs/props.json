@@ -894,10 +894,7 @@
       "defaultValue": {
         "type": "Partial<TState>",
         "required": false,
-        "description": "Начальное состояние фильтров",
-        "typeRefs": [
-          "TState"
-        ]
+        "description": "Начальное состояние фильтров"
       },
       "filters": {
         "type": "ChipChoiceRowFilter[]",
@@ -957,10 +954,7 @@
       "value": {
         "type": "FiltersState",
         "required": false,
-        "description": "Состояние фильтров",
-        "typeRefs": [
-          "TState"
-        ]
+        "description": "Состояние фильтров"
       },
       "visibleFilters": {
         "type": "string[]",
@@ -969,24 +963,6 @@
       }
     },
     "relatedTypes": {
-      "AutoscrollTo": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "right"
-        ],
-        "own": false
-      },
-      "BarHideStrategy": {
-        "kind": "union",
-        "values": [
-          "leave",
-          "move",
-          "never",
-          "scroll"
-        ],
-        "own": false
-      },
       "BaseChipProps": {
         "kind": "interface",
         "props": {
@@ -1052,6 +1028,20 @@
             "description": "Показывать секунды в выборе и отображении времени"
           }
         },
+        "own": true
+      },
+      "ChipChoiceRowFilter": {
+        "kind": "alias",
+        "type": "OmitBetter<ChipChoiceProps, \"value\" | \"defaultValue\" | \"onChange\" | \"size\"> & { pinned?: boolean; }",
+        "own": true
+      },
+      "ChipChoiceRowSize": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
         "own": true
       },
       "DropdownBridgeProps": {
@@ -1269,73 +1259,17 @@
         },
         "own": false
       },
-      "OutsideClickHandler": {
+      "ItemId": {
         "kind": "alias",
-        "type": "(event: MouseEvent) => boolean",
+        "type": "string | number",
         "own": false
       },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
+      "OnChangeHandler": {
+        "kind": "alias",
+        "type": "(value: T) => void",
         "own": false
       },
-      "PublicListContextType": {
-        "kind": "interface",
-        "props": {
-          "contentRender": {
-            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер функция основного контента айтема"
-          },
-          "marker": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отображать ли маркер у выбранного элемента списка"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер списка",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false
-          }
-        },
-        "own": false
-      },
-      "Resize": {
-        "kind": "union",
-        "values": [
-          "both",
-          "horizontal",
-          "none",
-          "vertical"
-        ],
-        "own": false
-      },
-      "ScrollProps": {
+      "OriginalScrollProps": {
         "kind": "interface",
         "props": {
           "autoscrollTo": {
@@ -1424,8 +1358,107 @@
             ],
             "description": "Размер скролбаров",
             "typeRefs": [
+              "Size (@ds/scroll)"
+            ]
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "Placement": {
+        "kind": "union",
+        "values": [
+          "bottom",
+          "bottom-end",
+          "bottom-start",
+          "left",
+          "left-end",
+          "left-start",
+          "right",
+          "right-end",
+          "right-start",
+          "top",
+          "top-end",
+          "top-start"
+        ],
+        "own": false
+      },
+      "PublicListContextType": {
+        "kind": "interface",
+        "props": {
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
               "Size"
             ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка",
+            "typeRefs": [
+              "OriginalScrollProps"
+            ]
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
           },
           "untouchableScrollbars": {
             "type": "boolean | undefined",
@@ -1528,19 +1561,6 @@
           "l",
           "m",
           "s"
-        ],
-        "own": true
-      },
-      "Trigger": {
-        "kind": "union",
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
         ],
         "own": false
       },

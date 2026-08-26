@@ -209,10 +209,7 @@
       },
       "data": {
         "type": "DataType | undefined",
-        "required": true,
-        "typeRefs": [
-          "T"
-        ]
+        "required": true
       },
       "data-test-id": {
         "type": "string",
@@ -228,8 +225,7 @@
         "required": true,
         "typeRefs": [
           "DesktopInfoRowPropsBase",
-          "InfoGroupItem",
-          "T"
+          "InfoGroupItem"
         ]
       },
       "loading": {

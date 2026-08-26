@@ -189,13 +189,13 @@ export function DisabledCard() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `as` | `T` | — |  |
+| `as` | `ElementType` | — |  |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `checked` | `boolean` | — | Выбран (для multiSelect — показывает чек-бэйдж в углу). |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Заблокированный режим: интерактив отключён, opacity снижен. |
-| `innerRef` | `PolymorphicRef` \| `T` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `innerRef` | `PolymorphicRef` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `interactive` | `boolean` | `true` | Включает интерактивные эффекты (hover/press state layer, cursor: pointer, focus-ring). <br/> Установи `false` для презентационной карточки без отклика на курсор. |
 | `multiSelect` | `boolean` | `false` | Режим множественного выбора — добавляет чек-бэйдж в углу при `checked`. |
 | `radius` | `"l"` \| `"m"` \| `"s"` | `m` | Радиус контейнера. |
