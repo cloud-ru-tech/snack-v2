@@ -12,6 +12,11 @@
         "type": "string",
         "required": false
       },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключённое состояние: копирование не выполняется, `onClick` не вызывается."
+      },
       "label": {
         "type": "string",
         "required": false,

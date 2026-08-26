@@ -120,6 +120,7 @@ export function CopyButtonWithHandler() {
 |------|------|---------|-------------|
 | `className` | `string` | — | Дополнительный класс. |
 | `data-test-id` | `string` | — |  |
+| `disabled` | `boolean` | — | Отключённое состояние: копирование не выполняется, `onClick` не вызывается. |
 | `label` | `string` | — | Текст рядом с иконкой. Если не задан — кнопка отображается только с иконкой. |
 | `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Доп. обработчик клика. |
 | `size` | `"l"` \| `"m"` \| `"s"` | `s` | Размер кнопки (s / m / l). По-умолчанию s. |

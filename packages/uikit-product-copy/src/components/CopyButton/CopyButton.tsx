@@ -14,13 +14,16 @@ export type CopyButtonProps = WithSupportProps<{
   className?: string;
   /** Доп. обработчик клика. */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  /** Отключённое состояние: копирование не выполняется, `onClick` не вызывается. */
+  disabled?: boolean;
 }>;
 
-export function CopyButton({ valueToCopy, size = 's', label, className, onClick, ...rest }: CopyButtonProps) {
+export function CopyButton({ valueToCopy, size = 's', label, className, onClick, disabled, ...rest }: CopyButtonProps) {
   const { isChecked, copy } = useCopyToClipboard();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
     event.stopPropagation();
+    if (disabled) return;
     if (valueToCopy) copy(String(valueToCopy));
     onClick?.(event);
   };
@@ -32,6 +35,7 @@ export function CopyButton({ valueToCopy, size = 's', label, className, onClick,
       view='function'
       appearance='neutral'
       size={size}
+      disabled={disabled}
       type='button'
       aria-label={label ? undefined : 'Copy'}
       label={label}
