@@ -259,9 +259,9 @@ export const test = base.extend<PlaywrightFixtures>({
         );
       }
 
-      // Play-функция стори стартует автоматически при рендере: без этого ожидания спек
-      // конкурирует с ней за DOM и фокус. Набор терминальных фаз — как в `checkIfAborted`
-      // (preview-api); `finished` выставляется уже после play.
+      // Ждём конца play: иначе спек конкурирует с ней за DOM и фокус. `completing`, а не
+      // `finished` — между ними preview-api висит все 5s в `waitForAnimations` из-за вечно
+      // `running` scroll-driven анимации ручки overlayscrollbars.
       await page
         .waitForFunction(
           () => {
@@ -269,7 +269,9 @@ export const test = base.extend<PlaywrightFixtures>({
               .__STORYBOOK_PREVIEW__;
             if (!preview) return true;
 
-            return ['finished', 'aborted', 'errored'].includes(preview.currentRender?.phase ?? '');
+            return ['completing', 'completed', 'afterEach', 'finished', 'aborted', 'errored'].includes(
+              preview.currentRender?.phase ?? '',
+            );
           },
           { timeout: 30000 },
         )
@@ -350,6 +352,14 @@ export const test = base.extend<PlaywrightFixtures>({
       await page.mouse.move(startX, startY);
       await page.mouse.down();
       await page.mouse.move(endX, endY, { steps: options?.steps ?? 10 });
+      // dnd-kit коммитит `over` кадром позже последнего mousemove — без паузы drop «в никуда».
+      await page.evaluate(
+        () =>
+          new Promise<void>(resolve => {
+            // eslint-disable-next-line @cloud-ru/ssr-safe-react/domApi -- исполняется в браузере
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+          }),
+      );
       await page.mouse.up();
     });
   },

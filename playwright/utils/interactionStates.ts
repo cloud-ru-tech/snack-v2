@@ -16,6 +16,38 @@ const VM_PADDING = 8;
 const VM_SNAPSHOT_NAME = 'visual-matrix.png';
 
 /**
+ * Ждёт покоя bbox всех локаторов — один общий дедлайн на набор. Поштучный `waitForStableBbox`
+ * в `Promise.all` конкурирует сам с собой на одной странице и молча сдаётся по дедлайну,
+ * отдавая неустаканившийся элемент.
+ */
+async function waitForStableBoxes(
+  page: Page,
+  locators: Locator[],
+  { stableForMs = 250, pollMs = 100, timeoutMs = 8000 } = {},
+): Promise<void> {
+  const readBoxes = async () => JSON.stringify(await Promise.all(locators.map(loc => loc.boundingBox())));
+
+  const deadline = Date.now() + timeoutMs;
+  let signature = await readBoxes();
+  let stableSince = Date.now();
+
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(pollMs);
+    const next = await readBoxes();
+
+    if (next !== signature) {
+      signature = next;
+      stableSince = Date.now();
+      continue;
+    }
+
+    if (Date.now() - stableSince >= stableForMs) {
+      return;
+    }
+  }
+}
+
+/**
  * Tolerance сравнения снимка с baseline'ом. Дефолт — `MATCH_SNAPSHOT_DEFAULT_OPTS`;
  * точечный override нужен, когда общий коридор для конкретного снимка либо слишком узкий
  * (снимок флейкует), либо слишком широкий (правка не пробивает порог, и
@@ -74,10 +106,14 @@ export async function assertVisualMatrixSnapshot(
   // measure-based-rendering (TagRow с overflow, ResizeObserver-based layouts)
   // делают второй render-pass после первичного mount → высота прыгает на
   // десятки px между прогонами.
-  await Promise.all(all.map(loc => waitForStableBbox(loc)));
-  const cells: ScreenshotCell[] = await Promise.all(
-    all.map(async (loc, i) => ({ label: `section-${i}`, png: await loc.screenshot(opts) })),
-  );
+  await waitForStableBoxes(page, all);
+
+  // По очереди: у параллельных element-screenshot'ов общий отсчёт `actionTimeout`, а снимает
+  // Playwright всё равно последовательно — хвостовые секции падают по таймауту в очереди.
+  const cells: ScreenshotCell[] = [];
+  for (const [i, loc] of all.entries()) {
+    cells.push({ label: `section-${i}`, png: await loc.screenshot(opts) });
+  }
   const composite = await composeScreenshots(cells, { layout: 'col', labelHeight: 0, gap: 8, padding: VM_PADDING });
   expect(composite).toMatchSnapshot(snapshotName, matchOpts);
 }
@@ -100,7 +136,7 @@ export async function screenshotRegion(
   // (popover/dropdown/tooltip) дописывает position после открытия одним rAF,
   // и без ожидания union-clip берёт промежуточные координаты → 1px-jitter
   // в высоте/ширине composite-снимка.
-  await Promise.all(locators.map(l => waitForStableBbox(l)));
+  await waitForStableBoxes(page, locators);
   const boxes = await Promise.all(locators.map(l => l.boundingBox()));
   const valid = boxes.filter((b): b is NonNullable<typeof b> => Boolean(b));
   if (valid.length === 0) throw new Error('screenshotRegion: no visible locators');

@@ -63,7 +63,7 @@ test.describe('Table — interaction (real browser)', () => {
     expect(after.width).toBeGreaterThan(before.width + RESIZE_DELTA - 15);
   });
 
-  test('column reorder: dnd-kit header drag moves the column', async ({ page, gotoStory, getByTestId }) => {
+  test('column reorder: dnd-kit header drag moves the column', async ({ page, gotoStory, getByTestId, dragTo }) => {
     // columnsSettings.enableDrag включён в args Playground'а
     await gotoStory(buildStoryOptions());
     const headerCells = getByTestId(COMPONENT.headerCell);
@@ -77,17 +77,11 @@ test.describe('Table — interaction (real browser)', () => {
     const nameHeader = headerCellById(page, 'name');
     const emailHeader = headerCellById(page, 'email');
     await waitForStableBbox(nameHeader);
-    const nameBox = await nameHeader.boundingBox();
-    const emailBox = await emailHeader.boundingBox();
-    if (!nameBox || !emailBox) throw new Error('header cells have no boundingBox');
 
     // mousedown в центре name-заголовка (listeners dnd-kit висят на drag-wrapper
     // внутри ячейки), движение со steps > activationConstraint.distance(5px),
     // drop в центре email-заголовка → arrayMove в onDragEnd
-    await page.mouse.move(nameBox.x + nameBox.width / 2, nameBox.y + nameBox.height / 2);
-    await page.mouse.down();
-    await page.mouse.move(emailBox.x + emailBox.width / 2, emailBox.y + emailBox.height / 2, { steps: 12 });
-    await page.mouse.up();
+    await dragTo(nameHeader, { target: emailHeader, steps: 12 });
 
     await expect(async () => {
       const orderAfter = await headerCells.evaluateAll(elements =>

@@ -58,6 +58,8 @@ test.describe('Stepper — visual regression', () => {
     getByTestId,
     waitForFonts,
   }) => {
+    // 20 ячеек — 20 снимков: на нагруженном раннере не влезают в дефолтные 30s.
+    test.slow();
     await gotoStory(buildStoryOptions(undefined, STEPPER_STORIES.interactionStates));
     await waitForFonts();
 
