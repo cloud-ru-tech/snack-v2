@@ -193,10 +193,11 @@ export function Content({
       return (
         <SortableContext items={visibleGroups.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
           <Accordion selectionMode='multiple' expanded={expandedIds} onExpandedChange={onExpandedChange}>
-            {visibleGroups.map(({ id, label, items, favoritesEnabled = true, blockColor, highlight }) => (
+            {visibleGroups.map(({ id, label, icon, items, favoritesEnabled = true, blockColor, highlight }) => (
               <SortableGroup
                 key={id}
                 id={id}
+                icon={icon}
                 label={label}
                 items={items}
                 isExpanded={expandedIds.includes(id)}

@@ -4,25 +4,27 @@ import { Accordion } from '@ds/accordion';
 import { DRAG_MODE, DragGhost, DragPreview } from '@ds/drag-and-drop';
 import { useThemeAppearance } from '@ds/theme';
 
-import { LinksGroupBlockColor, LinksGroupTitle } from '../../../../types';
+import { LinksGroup, LinksGroupBlockColor, LinksGroupTitle } from '../../../../types';
 import { TEST_IDS } from '../../constants';
 import { SortableGroupCards, SortableGroupCardsProps, SortableGroupHeader } from './components';
 import styles from './styles.module.scss';
 
-export type SortableGroupProps = Omit<SortableGroupCardsProps, 'groupId'> & {
-  id: string;
+export type SortableGroupProps = Omit<SortableGroupCardsProps, 'groupId'> &
+  Pick<LinksGroup, 'icon'> & {
+    id: string;
 
-  label: LinksGroupTitle;
+    label: LinksGroupTitle;
 
-  isExpanded?: boolean;
+    isExpanded?: boolean;
 
-  blockColor?: LinksGroupBlockColor;
+    blockColor?: LinksGroupBlockColor;
 
-  highlight?: boolean;
-};
+    highlight?: boolean;
+  };
 
 export function SortableGroup({
   id,
+  icon,
   label,
   items,
   isExpanded,
@@ -71,6 +73,7 @@ export function SortableGroup({
         afterTitle={
           <SortableGroupHeader
             label={label}
+            icon={icon}
             isExpanded={isExpanded}
             enableServiceDrag={enableServiceDrag}
             attributes={attributes}

@@ -7,7 +7,7 @@ const EMPTY_HREF = '#';
 
 export const SERVICE_GROUPS: LinksGroup[] = [
   {
-    label: { text: 'ML/AI инструменты' },
+    label: { text: 'ML/AI инструменты', href: '#' },
     id: 'svpInference',
     blockColor: 'blue',
     highlight: true,

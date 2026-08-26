@@ -1,5 +1,4 @@
 export * from './innerLink';
-export * from './getAvatarNameFromLabel';
 export * from './flatLinksGroups';
 export * from './getLinkEmblem';
 export * from './mapInnerLinksToListItems';

@@ -21,12 +21,7 @@ export type InnerLink = {
    * остаётся только первое по приоритету сегментов (см. {@link MainMenuProps.segments}).
    */
   id: string;
-  /**
-   * Иконка карточки.
-   *
-   * Если не задана, вместо иконки рендерится `Avatar` с двухбуквенным текстом по `label`
-   * (см. `getAvatarNameFromLabel`).
-   */
+  /** Иконка карточки. */
   icon?: JSXElementConstructor<{
     size?: number;
     className?: string;
@@ -56,10 +51,12 @@ export type InnerLink = {
 type TitleStatic = {
   text: string;
   onClick?: never;
+  href?: never;
 };
 
 type TitleClickable = {
   text: string;
+  href?: string;
   onClick?(e?: MouseEvent<HTMLElement>): void;
 };
 
@@ -79,6 +76,10 @@ export type LinksGroup = {
   id: string;
   /** Заголовок группы в сетке карточек и в боковой навигации. */
   label: LinksGroupTitle;
+  icon?: JSXElementConstructor<{
+    size?: number;
+    className?: string;
+  }>;
   /**
    * Синонимы заголовка группы для fuzzy-поиска.
    */
