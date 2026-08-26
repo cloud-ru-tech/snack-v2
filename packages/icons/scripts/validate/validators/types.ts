@@ -13,7 +13,11 @@ export type IconInfo = {
   xml: SVGIcon;
 };
 
+export type ValidationResult = {
+  level: 'error' | 'warning';
+  message: string;
+};
+
 export type Validator = {
-  error: string;
-  validate(props: { icon: IconInfo; allIcons: IconInfo[] }): boolean;
+  validate(props: { icon: IconInfo; allIcons: IconInfo[] }): ValidationResult | null;
 };

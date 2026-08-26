@@ -3,7 +3,13 @@ import path from 'path';
 
 import { XMLParser } from 'fast-xml-parser';
 
-import { validateIconSize, validateIconUniqueness, validateNameUniqueness, Validator } from './validators';
+import {
+  validateIconSize,
+  validateIconUniqueness,
+  validateNameUniqueness,
+  ValidationResult,
+  Validator,
+} from './validators';
 import { getIconGroups, getGroupSourcePath } from '../shared/iconGroups';
 
 const OPTIONS = {
@@ -48,13 +54,36 @@ async function getAllSvgPaths(dir: string, baseDir: string): Promise<string[]> {
     }
   }
 
+  const validations: ValidationResult[] = [];
+
   validators.forEach(validator => {
-    allIcons.forEach(icon => {
-      if (!validator.validate({ icon, allIcons })) {
-        throw new Error(`${icon.path}: ${validator.error}`);
+    let [icon, ...tail] = allIcons;
+
+    while (icon) {
+      const validationResult = validator.validate({ icon, allIcons: tail });
+
+      if (validationResult) {
+        validations.push(validationResult);
       }
-    });
+
+      [icon, ...tail] = tail;
+    }
   });
+
+  const warnings = validations.filter(v => v.level === 'warning');
+  const errors = validations.filter(v => v.level === 'error');
+
+  warnings.forEach(warning => {
+    console.warn(`\n[${warning.level}] ${warning.message}`);
+  });
+
+  errors.forEach(error => {
+    console.error(`\n[${error.level}] ${error.message}`);
+  });
+
+  if (errors.length) {
+    process.exit(1);
+  }
 
   // eslint-disable-next-line no-console
   console.log('Все иконки валидны.');

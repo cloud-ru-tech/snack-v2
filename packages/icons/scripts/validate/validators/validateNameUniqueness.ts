@@ -1,6 +1,6 @@
 import { basename } from 'path';
 import { normalizeToSymbolIdPart } from '../../shared/symbolId';
-import { Validator } from './types';
+import { IconInfo, Validator } from './types';
 
 /**
  * Уникальность производного имени внутри группы (префикс пути до первого `/`), без учёта
@@ -9,14 +9,24 @@ import { Validator } from './types';
  * схлопываются в одно и то же имя сгенерированного компонента (например, `Eye.svg` и
  * `eye.svg`, или два варианта `Exit.svg`).
  */
+function getNameDuplicates(icon: IconInfo, allIcons: IconInfo[]): IconInfo[] {
+  const group = icon.path.split('/')[0];
+  const idPart = normalizeToSymbolIdPart(basename(icon.path));
+
+  return allIcons.filter(i => i.path.split('/')[0] === group && normalizeToSymbolIdPart(basename(i.path)) === idPart);
+}
+
 export const validateNameUniqueness: Validator = {
-  error: `дублирующееся имя иконки внутри группы (без учёта регистра) — переименуй один из исходных SVG`,
   validate: ({ icon, allIcons }) => {
-    const group = icon.path.split('/')[0];
-    const idPart = normalizeToSymbolIdPart(basename(icon.path));
-    const matches = allIcons.filter(
-      i => i.path.split('/')[0] === group && normalizeToSymbolIdPart(basename(i.path)) === idPart,
-    );
-    return matches.length === 1;
+    const duplicates = getNameDuplicates(icon, allIcons);
+
+    if (duplicates.length === 0) {
+      return null;
+    }
+
+    return {
+      level: 'error',
+      message: `Дублирующие по имени (без учёта регистра) иконки: ${[icon, ...duplicates].map(i => `\n\t- ${i.path}`)}`,
+    };
   },
 };

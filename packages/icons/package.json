@@ -91,7 +91,7 @@
     "sync:icons": "pnpm exec tsx scripts/pipeline/syncGeneratedIcons.ts",
     "create-export-index-file": "pnpm exec tsx scripts/pipeline/createExportIndexFile.ts",
     "sync:types-versions": "pnpm exec tsx scripts/pipeline/syncTypesVersions.ts",
-    "build:icons": "pnpm exec tsx scripts/pipeline/buildIcons.ts",
+    "build:icons": "pnpm validate:icons && pnpm exec tsx scripts/pipeline/buildIcons.ts",
     "fix:icons": "pnpm exec tsx scripts/pipeline/fixIcons.ts",
     "post-process-icons": "pnpm exec tsx scripts/pipeline/postProcessIconFallback.ts",
     "copy:sprite-svg": "node scripts/copySpriteSvgToDist.cjs"
