@@ -330,6 +330,11 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
   /**
    * Включает виртуализацию строк (windowing по вертикали).
    * Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется.
+   *
+   * 🔴 Требует `size` у колонок: виртуализованные строки позиционируются абсолютно и не участвуют в
+   * расчёте внутренней ширины, поэтому колонка без `size` делит ширину контейнера поровну с
+   * остальными вместо растягивания по содержимому.
+   *
    * @default false
    */
   enableRowVirtualization?: boolean;
@@ -416,8 +421,7 @@ export type ClientTableProps<
 };
 
 export type TableProps<TData extends object, TFilters extends FiltersState = Record<string, unknown>> =
-  | InfiniteTableProps<TData, TFilters>
-  | ClientTableProps<TData, TFilters>;
+  InfiniteTableProps<TData, TFilters> | ClientTableProps<TData, TFilters>;
 
 export type ServerTableProps<TData extends object, TFilters extends FiltersState = Record<string, unknown>> = Omit<
   ClientTableProps<TData, TFilters>,

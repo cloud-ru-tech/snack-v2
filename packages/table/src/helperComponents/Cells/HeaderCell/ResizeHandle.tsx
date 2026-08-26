@@ -37,6 +37,24 @@ function getResizeIndicatorOffset<TData>({ header, cellRef }: ResizeHandleProps<
 export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData>) {
   const isResizing = header.column.getIsResizing();
   const resizeHandler = header.getResizeHandler();
+  const { table } = header.getContext();
+
+  // У колонки без `size` нет записи в columnSizing, и tanstack стартует перетаскивание от дефолта
+  // columnDef (150px), а не от отрисованной ширины. Реальная ширина фиксируется заранее, на
+  // наведении: к моменту mousedown состояние уже применено.
+  const pinRenderedWidth = () => {
+    const id = header.column.id;
+
+    if (table.getState().columnSizing[id] !== undefined) {
+      return;
+    }
+
+    const rendered = cellRef.current?.offsetWidth;
+
+    if (rendered) {
+      table.setColumnSizing(prev => ({ ...prev, [id]: rendered }));
+    }
+  };
 
   const handleMouseDown = (event: MouseEvent) => {
     if (event.detail === 2) {
@@ -56,6 +74,7 @@ export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData
         aria-hidden
         className={cn(styles.tableHeaderIcon, styles.tableHeaderResizeHandle)}
         data-resizing={isResizing || undefined}
+        onMouseEnter={pinRenderedWidth}
         onMouseDown={handleMouseDown}
         onTouchStart={resizeHandler}
         onMouseUp={stopEventPropagation}

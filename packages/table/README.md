@@ -940,7 +940,7 @@ export function FullWidth() {
 | `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
-| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
+| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. <br/> 🔴 Требует `size` у колонок: виртуализованные строки позиционируются абсолютно и не участвуют в <br/> расчёте внутренней ширины, поэтому колонка без `size` делит ширину контейнера поровну с <br/> остальными вместо растягивания по содержимому. |
 | `enableSelectPinned` | `boolean` | `false` | Параметр отвечает за чекбокс выбора закрепленных строк |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `expanding` | `TreeColumnDefinitionProps` | — | Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`, <br/> `initialState`, `state`, `onChange`. |
@@ -1360,7 +1360,7 @@ export function ServerDriven() {
 | `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
-| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
+| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. <br/> 🔴 Требует `size` у колонок: виртуализованные строки позиционируются абсолютно и не участвуют в <br/> расчёте внутренней ширины, поэтому колонка без `size` делит ширину контейнера поровну с <br/> остальными вместо растягивания по содержимому. |
 | `enableSelectPinned` | `boolean` | — | Параметр отвечает за чекбокс выбора закрепленных строк |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `expanding` | `TreeColumnDefinitionProps` | — | Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`, <br/> `initialState`, `state`, `onChange`. |
@@ -2483,7 +2483,7 @@ export function EntitiesTableWithFilters() {
 | `defaultView` | `"cards"` \| `"table"` | `'table' (на mobile — `cards`)` | Начальный режим отображения (uncontrolled). <br/> Если не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`). |
 | `enableColumnVirtualization` | `boolean` | `false` | Включает виртуализацию колонок (windowing по горизонтали). <br/> Рекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`. <br/> Pinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки. |
 | `enableFuzzySearch` | `boolean` | — | Включить нечеткий поиск |
-| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. |
+| `enableRowVirtualization` | `boolean` | `false` | Включает виртуализацию строк (windowing по вертикали). <br/> Рекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется. <br/> 🔴 Требует `size` у колонок: виртуализованные строки позиционируются абсолютно и не участвуют в <br/> расчёте внутренней ширины, поэтому колонка без `size` делит ширину контейнера поровну с <br/> остальными вместо растягивания по содержимому. |
 | `enableSelectPinned` | `boolean` | — | Параметр отвечает за чекбокс выбора закрепленных строк |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `expanding` | `{ getSubRows: (element: T) => T[]; expandingColumnDefinition: TreeColumnDefinitionProps<T>; initialState?: ExpandedState; state?: ExpandedState \| undefined; onChange?(state: ExpandedState): void; } \| undefined` | — | Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`, <br/> `initialState`, `state`, `onChange`. |
