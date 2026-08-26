@@ -1,0 +1,15 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.bottomItems {
+  width: 100%;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.bottomDivider {
+  margin: base.$sn-primitive-dimension-2 0;
+}

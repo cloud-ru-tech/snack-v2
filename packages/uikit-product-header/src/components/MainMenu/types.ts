@@ -1,4 +1,4 @@
-import { BaseItemProps, ListProps } from '@ds/list';
+import { BaseItemProps } from '@ds/list';
 import { SearchProps as SearchPropsSnack } from '@ds/search';
 import { CardServiceLightProps } from '@ds/uikit-product-card-predefined';
 import { JSXElementConstructor, MouseEvent, ReactNode } from 'react';
@@ -218,6 +218,10 @@ export type MainMenuPreferencesProps = {
   showGroupsColors?: MainMenuToggleProps;
 };
 
+export type MainMenuSettingsItem = Pick<InnerLink, 'id' | 'label' | 'icon' | 'onClick' | 'href' | 'hidden'> & {
+  divider?: 'before' | 'after';
+};
+
 export type MainMenuProps = {
   disabled?: boolean;
   open?: boolean;
@@ -225,6 +229,7 @@ export type MainMenuProps = {
 
   logo?: ReactNode;
   leftTop?: ReactNode;
+  leftBottom?: ReactNode;
   rightTop?: ReactNode;
 
   /**
@@ -269,10 +274,10 @@ export type MainMenuProps = {
   /**
    * Пункты левой колонки (desktop) / нижней части списка (mobile).
    *
-   * Плоский список `List` (`BaseItem` и при необходимости `type: 'group'` с `divider` для разделителей).
+   * Плоский список (`dividerBefore` для разделителей).
    * Не связан с сегментами правой панели и не меняется при сортировке групп в сегментах.
    */
-  settingItems?: ListProps['items'];
+  settingItems?: MainMenuSettingsItem[];
 
   /**
    * Платформенные группы (например «Облачные продукты», «Другие продукты»).

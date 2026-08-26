@@ -206,6 +206,7 @@ export function WithFavorites() {
 | `disabled` | `boolean` | — |  |
 | `draggerTooltip` | `string` | — | Текст подсказки для драггера (desktop only) |
 | `favorite` | `FavoriteProps` | — |  |
+| `leftBottom` | `ReactNode` | — |  |
 | `leftTop` | `ReactNode` | — |  |
 | `loading` | `boolean` | — | Флаг загрузки данных |
 | `logo` | `ReactNode` | — |  |
@@ -221,7 +222,7 @@ export function WithFavorites() {
 | `segmentPrefs` | `MainMenuSegmentPrefs` | — | Пользовательские prefs сегментов (порядок / раскрытие групп). <br/> Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля. |
 | `segments` | `MainMenuSegment` | — | Сегменты правой панели (сетка карточек) — только каталог. <br/> При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`. <br/> Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только <br/> первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются. <br/> При `segments.length > 1` показывается SegmentControl (скрывается во время поиска). <br/> Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже. |
 | `setOpen` | `((open: boolean) => void)` | — |  |
-| `settingItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ListProps` \| `ScrollProps` | — | Пункты левой колонки (desktop) / нижней части списка (mobile). <br/> Плоский список `List` (`BaseItem` и при необходимости `type: 'group'` с `divider` для разделителей). <br/> Не связан с сегментами правой панели и не меняется при сортировке групп в сегментах. |
+| `settingItems` | `InnerLink` \| `MainMenuSettingsItem` | — | Пункты левой колонки (desktop) / нижней части списка (mobile). <br/> Плоский список (`dividerBefore` для разделителей). <br/> Не связан с сегментами правой панели и не меняется при сортировке групп в сегментах. |
 
 ##### Related types
 
@@ -240,6 +241,24 @@ export function WithFavorites() {
 | `segment` | `"favorites"` \| `"recent"` | — | Активный сегмент («Избранное» / «Недавнее») в панели избранного. <br/> Не передано — неуправляемое состояние (дефолт `'favorites'`). |
 | `value` | `string[]` | — | Список id избранных сервисов |
 
+- `FavoritesSegment` = `"favorites"` \| `"recent"`
+
+**InnerLink**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `aliases` | `string[]` | — | Синонимы для fuzzy-поиска. |
+| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
+| `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
+| `disabled` | `boolean \| undefined` | — |  |
+| `hidden` | `boolean \| undefined` | — |  |
+| `href` | `string \| undefined` | — |  |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
+| `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
+| `items` | `InnerLink` | — | Вложенные сервисы подкатегории. <br/> При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка <br/> с кнопкой раскрытия, в развёрнутом — заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> и сетка вложенных сервисов. |
+| `label` | `string` | — | Заголовок карточки. |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+
 **LinksGroup**
 
 | Prop | Type | Default | Description |
@@ -249,10 +268,15 @@ export function WithFavorites() {
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточек группы в избранное. |
 | `hidden` | `boolean \| undefined` | — |  |
 | `highlight` | `boolean \| undefined` | — | Визуальное выделение группы |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — |  |
 | `id` | `string` | — | Уникальный идентификатор группы (якорь скролла, поиск по id). |
 | `items` | `InnerLink` | — | Карточки сервисов или ссылок внутри группы. |
 | `label` | `LinksGroupTitle` \| `TitleClickable` \| `TitleStatic` | — | Заголовок группы в сетке карточек и в боковой навигации. |
 | `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+
+- `LinksGroupBlockColor` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
+- `LinksGroupTitle` = `TitleStatic | TitleClickable`
 
 **MainMenuPreferencesProps**
 
@@ -281,6 +305,25 @@ export function WithFavorites() {
 | `id` | `string` | — | Id сегмента из <br/> {@link <br/> MainMenuSegment.id <br/> } <br/> . |
 | `order` | `string[] \| undefined` | — | Порядок id групп. Если не передан — uncontrolled для этого сегмента <br/> (дефолт = порядок `items`; новые группы добавляются в конец). |
 
+**MainMenuSettingsItem**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `divider` | `"after"` \| `"before"` | — |  |
+| `hidden` | `boolean \| undefined` | — |  |
+| `href` | `string \| undefined` | — |  |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
+| `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
+| `label` | `string` | — | Заголовок карточки. |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+
+**MainMenuToggleProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onChange` | `(value: boolean) => void` | — |  |
+| `value` | `boolean` | — |  |
+
 **SearchProps**
 
 | Prop | Type | Default | Description |
@@ -290,6 +333,22 @@ export function WithFavorites() {
 | `onFocus` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки получения фокуса |
 | `onSearchNoResult` | `((value: string) => void) \| undefined` | — |  |
 | `value` | `string` | — |  |
+
+**TitleClickable**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `href` | `string \| undefined` | — |  |
+| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+| `text` | `string` | — |  |
+
+**TitleStatic**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `href` | `undefined` | — |  |
+| `onClick` | `undefined` | — |  |
+| `text` | `string` | — |  |
 
 ## UserMenu
 

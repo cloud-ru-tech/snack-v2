@@ -1,4 +1,3 @@
-import { List } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useMemo } from 'react';
 
@@ -9,6 +8,7 @@ import { useMenuItems } from '../../hooks/useMenuItems';
 import { MainMenuProps } from '../../types';
 import { Content } from '../Content';
 import { Favorites } from '../Favorites';
+import { MenuBottom } from '../MenuBottom';
 import { MenuHeaderBrand } from '../MenuHeaderBrand';
 import { MountAnimation } from '../MountAnimation';
 import { ScrollWithAnimatedStickyPanel } from '../ScrollWithAnimatedStickyPanel';
@@ -33,11 +33,13 @@ export function MenuMobile({
   logo,
   rightTop,
   leftTop,
+  leftBottom,
   loading,
 }: MainMenuProps) {
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 
   const hasSegments = segments && segments.some(segment => segment.items.length > 0);
+  const hasBottomItems = Boolean(settingItems?.length) || Boolean(leftBottom);
 
   const isSearching = Boolean(search?.value);
 
@@ -94,7 +96,7 @@ export function MenuMobile({
             </MainMenuDndContext>
           )}
 
-          {!isSearching && settingItems && <List items={settingItems} size='m' barHideStrategy='never' />}
+          {!isSearching && hasBottomItems && <MenuBottom settingItems={settingItems} leftBottom={leftBottom} />}
         </MountAnimation>
       </ScrollWithAnimatedStickyPanel>
     </MobileDrawerCustom>

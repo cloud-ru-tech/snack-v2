@@ -1,6 +1,5 @@
 import { Divider } from '@ds/divider';
 import { DrawerCustom } from '@ds/drawer';
-import { List } from '@ds/list';
 import { Scroll } from '@ds/scroll';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -11,6 +10,7 @@ import { useMenuItems } from '../../hooks/useMenuItems';
 import { MainMenuProps } from '../../types';
 import { Content } from '../Content';
 import { Favorites } from '../Favorites';
+import { MenuBottom } from '../MenuBottom';
 import { MenuHeaderBrand } from '../MenuHeaderBrand';
 import { MountAnimation } from '../MountAnimation';
 import { Search } from '../Search';
@@ -34,6 +34,7 @@ export function MenuDesktop({
   logo,
   rightTop,
   leftTop,
+  leftBottom,
   defaultWidth = MENU_WIDTH_MAX,
   onWidthChangeEnd,
   draggerTooltip,
@@ -64,6 +65,7 @@ export function MenuDesktop({
   }, [open, hasSearch, searchRef]);
 
   const isNeedRightBlock = segments && segments.some(segment => segment.items.length > 0);
+  const hasBottomItems = Boolean(settingItems?.length) || Boolean(leftBottom);
 
   const allServiceGroups = useMemo(() => segments?.flatMap(segment => segment.items) ?? [], [segments]);
 
@@ -96,9 +98,7 @@ export function MenuDesktop({
           {leftTop && <div className={styles.leftTop}>{leftTop}</div>}
           {isNeedRightBlock && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} />}
 
-          {Boolean(settingItems?.length) && (
-            <List items={settingItems ?? []} size='m' barHideStrategy='never' className={styles.settingItems} />
-          )}
+          {hasBottomItems && <MenuBottom settingItems={settingItems} leftBottom={leftBottom} />}
         </MountAnimation>
 
         {isNeedRightBlock && (

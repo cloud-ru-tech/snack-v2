@@ -10,6 +10,8 @@ export const TEST_IDS = {
     search: 'header__drawer-menu__search',
     left: 'header__drawer-menu__left',
     right: 'header__drawer-menu__right',
+    leftBottom: 'header__drawer-menu__left-bottom',
+    leftBottomItems: 'header__drawer-menu__left-bottom-items',
   },
   userMenu: {
     root: 'header__user-menu',

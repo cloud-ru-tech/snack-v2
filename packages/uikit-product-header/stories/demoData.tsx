@@ -1,6 +1,6 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 
-import { InnerLink, LinksGroup } from '../src';
+import { InnerLink, LinksGroup, MainMenuSettingsItem } from '../src';
 
 const EMPTY_ON_CLICK = () => {};
 const EMPTY_HREF = '#';
@@ -683,42 +683,34 @@ export const SETTING_ITEMS = ADMINISTRATIVE_SECTIONS.flatMap(({ items }) => item
 }));
 
 /** Плоский список левой колонки MainMenu (с divider между блоками), не связан с сегментами. */
-export const MAIN_MENU_SIDEBAR_ITEMS = [
+export const MAIN_MENU_SIDEBAR_ITEMS: MainMenuSettingsItem[] = [
   {
     id: 'control-center',
-    content: { label: 'Центр управления' },
-    beforeContent: <PlaceholderSVG />,
+    label: 'Центр управления',
+    icon: PlaceholderSVG,
     onClick: EMPTY_ON_CLICK,
     href: EMPTY_HREF,
-  },
-  {
-    type: 'group' as const,
-    divider: true,
-    items: [],
+    divider: 'after',
   },
   {
     id: 'sidebar-support',
-    content: { label: 'Поддержка' },
-    beforeContent: <PlaceholderSVG />,
+    label: 'Поддержка',
+    icon: PlaceholderSVG,
     onClick: EMPTY_ON_CLICK,
     href: EMPTY_HREF,
   },
   {
     id: 'sidebar-docs',
-    content: { label: 'Документация' },
-    beforeContent: <PlaceholderSVG />,
+    label: 'Документация',
+    icon: PlaceholderSVG,
     onClick: EMPTY_ON_CLICK,
     href: EMPTY_HREF,
   },
   {
-    type: 'group' as const,
-    divider: true,
-    items: [],
-  },
-  {
+    divider: 'before',
     id: 'sidebar-marketplace',
-    content: { label: 'Маркетплейс' },
-    beforeContent: <PlaceholderSVG />,
+    label: 'Маркетплейс',
+    icon: PlaceholderSVG,
     onClick: EMPTY_ON_CLICK,
     href: EMPTY_HREF,
   },
