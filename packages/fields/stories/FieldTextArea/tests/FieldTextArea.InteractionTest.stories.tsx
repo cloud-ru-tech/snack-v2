@@ -10,6 +10,7 @@ const CLEAR_BUTTON_TEST_ID = 'button-clear-value';
 const READONLY_FIELD_TEST_ID = 'field-textarea-readonly';
 const UNCONTROLLED_FIELD_TEST_ID = 'field-textarea-uncontrolled';
 const HARD_CAP_FIELD_TEST_ID = 'field-textarea-hard-cap';
+const EDIT_COPY_FIELD_TEST_ID = 'field-textarea-edit-copy';
 
 const HARD_CAP = 8;
 
@@ -45,6 +46,12 @@ function InteractionScenario() {
             onCopyButtonClick={onCopyButtonClick}
           />
           <FieldTextArea
+            data-test-id={EDIT_COPY_FIELD_TEST_ID}
+            label='Copy in edit mode'
+            defaultValue='copy me while typing'
+            showCopyButtonInEditMode
+          />
+          <FieldTextArea
             data-test-id={HARD_CAP_FIELD_TEST_ID}
             label='Hard cap'
             defaultValue=''
@@ -77,6 +84,7 @@ export const InteractionTest: Story = {
     const uncontrolledField = canvas.getByTestId(UNCONTROLLED_FIELD_TEST_ID);
     const readonlyField = canvas.getByTestId(READONLY_FIELD_TEST_ID);
     const hardCapField = canvas.getByTestId(HARD_CAP_FIELD_TEST_ID);
+    const editCopyField = canvas.getByTestId(EDIT_COPY_FIELD_TEST_ID);
     // textarea test-id дублируется между полями сцены — скоупим запрос к корню каждого поля.
     const input = within(root).getByTestId<HTMLTextAreaElement>(TEST_IDS.fieldTextAreaInput);
 
@@ -115,11 +123,16 @@ export const InteractionTest: Story = {
       await expect(clearBtn).toHaveFocus();
     });
 
-    await step('editable field with value shows both clear and copy', async () => {
+    await step('editable field with value shows clear, but no copy by default', async () => {
       const clearBtn = within(root).getByTestId(CLEAR_BUTTON_TEST_ID);
       await expect(clearBtn).toBeVisible();
-      await expect(within(root).getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
+      await expect(within(root).queryByTestId(TEST_IDS.fieldTextCopyButton)).not.toBeInTheDocument();
       await expect(clearBtn).toHaveFocus();
+    });
+
+    await step('showCopyButtonInEditMode shows both clear and copy in the editable field', async () => {
+      await expect(within(editCopyField).getByTestId(CLEAR_BUTTON_TEST_ID)).toBeVisible();
+      await expect(within(editCopyField).getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
     });
 
     await step('clear button empties the value, fires onChange("") and refocuses the textarea', async () => {

@@ -642,7 +642,8 @@ export function FieldDescriptionRHFExample() {
 | `required` | `boolean` | `false` | Показать знак обязательности `*` |
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
-| `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
+| `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при непустом value в режиме readonly, как у остальных полей) |
+| `showCopyButtonInEditMode` | `boolean` | `false` | Показывать кнопку копирования и в обычном (не readonly) режиме — рядом с кнопкой очистки. <br/> Опция только для textarea: в многострочном поле копирование значения осмысленно и при вводе. |
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |
@@ -1257,7 +1258,8 @@ export function FieldDescriptionRHFExample() {
 | `required` | `boolean` | `false` | Показать знак обязательности `*` |
 | `resizable` | `boolean` | `true` | Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`. |
 | `showClearButton` | `boolean` | `true` | Кнопка очистки (видна при value && !readonly) |
-| `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при value && !disabled, независимо от readonly) |
+| `showCopyButton` | `boolean` | `true` | Кнопка копирования (видна при непустом value в режиме readonly, как у остальных полей) |
+| `showCopyButtonInEditMode` | `boolean` | `false` | Показывать кнопку копирования и в обычном (не readonly) режиме — рядом с кнопкой очистки. <br/> Опция только для textarea: в многострочном поле копирование значения осмысленно и при вводе. |
 | `showHintIcon` | `boolean` | — | Отображение статус-иконки у подсказки (по умолчанию `true`) |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер |
 | `spellCheck` | `boolean` | — | Проверка орфографии |

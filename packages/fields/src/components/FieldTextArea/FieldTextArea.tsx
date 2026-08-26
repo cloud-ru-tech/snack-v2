@@ -105,10 +105,16 @@ type FieldTextAreaOwnProps = {
    */
   showClearButton?: boolean;
   /**
-   * Кнопка копирования (видна при value && !disabled, независимо от readonly)
+   * Кнопка копирования (видна при непустом value в режиме readonly, как у остальных полей)
    * @default true
    */
   showCopyButton?: boolean;
+  /**
+   * Показывать кнопку копирования и в обычном (не readonly) режиме — рядом с кнопкой очистки.
+   * Опция только для textarea: в многострочном поле копирование значения осмысленно и при вводе.
+   * @default false
+   */
+  showCopyButtonInEditMode?: boolean;
   /** Колбек после копирования */
   onCopyButtonClick?(): void;
   /** Колбек фокуса */
@@ -157,6 +163,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
     footer,
     showClearButton: showClearButtonProp = true,
     showCopyButton: showCopyButtonProp = true,
+    showCopyButtonInEditMode = false,
     onCopyButtonClick,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
@@ -192,9 +199,9 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
   const stringValue = String(value ?? '');
   const isResizable = resizable && !disabled && !readOnly;
   const showClearUi = Boolean(showClearButtonProp && stringValue && !readOnly && !disabled);
-  // Copy не завязан на readonly (паритет с snack-uikit master): виден при любом непустом значении.
-  // В editable-режиме показываются обе кнопки (clear + copy), в readonly — только copy.
-  const showCopyUi = Boolean(showCopyButtonProp && stringValue && !disabled);
+  // По умолчанию copy — только в readonly, как у остальных полей. В editable-режиме кнопка
+  // появляется лишь по явному `showCopyButtonInEditMode`; тогда видны обе (clear + copy).
+  const showCopyUi = Boolean(showCopyButtonProp && stringValue && !disabled && (readOnly || showCopyButtonInEditMode));
 
   const onClear = useCallback(() => {
     setValue('');

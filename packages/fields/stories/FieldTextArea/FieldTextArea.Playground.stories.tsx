@@ -36,6 +36,7 @@ const meta: Meta<StoryProps> = {
     resizable: false,
     showClearButton: true,
     showCopyButton: true,
+    showCopyButtonInEditMode: false,
     showFooter: false,
     defaultValue: '',
     'data-test-id': TEST_IDS.fieldTextArea,
@@ -56,7 +57,8 @@ const meta: Meta<StoryProps> = {
     maxLength: { control: { type: 'number', min: 0, max: 1000 } },
     // Clear виден только в editable-режиме (value && !readonly && !disabled) — контрол прячем при readonly.
     showClearButton: { if: { arg: 'readonly', eq: false } },
-    // Copy не завязан на readonly (виден при value && !disabled в любом режиме) — контрол доступен всегда.
+    // Copy в обычном режиме — только по явному showCopyButtonInEditMode, поэтому контрол прячем при readonly.
+    showCopyButtonInEditMode: { if: { arg: 'readonly', eq: false } },
     showFooter: { name: '[Stories]: showFooter', control: 'boolean' },
     // Uncontrolled-режим: панель крутит только defaultValue, controlled-партнёры спрятаны.
     value: { table: { disable: true } },

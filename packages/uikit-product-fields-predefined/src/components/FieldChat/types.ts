@@ -4,7 +4,7 @@ import { FieldTextAreaProps } from '@ds/fields';
 
 export type FieldChatProps = Omit<
   FieldTextAreaProps,
-  // minRows/maxRows/showCopyButton/onKeyDown зафиксированы внутри FieldChat и в API не выносятся.
+  // minRows/maxRows/кнопка копирования/onKeyDown зафиксированы внутри FieldChat и в API не выносятся.
   | 'placeholder'
   | 'hint'
   | 'label'
@@ -15,6 +15,7 @@ export type FieldChatProps = Omit<
   | 'minRows'
   | 'maxRows'
   | 'showCopyButton'
+  | 'showCopyButtonInEditMode'
   | 'onKeyDown'
 > & {
   /** Колбек действия при отправке */
