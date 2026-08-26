@@ -1,11 +1,6 @@
 import { useDraggable } from '@dnd-kit/core';
 import { DRAG_MODE, DragGhost, DragPreview } from '@ds/drag-and-drop';
-import {
-  CardServiceInfo,
-  CardServiceInfoProps,
-  CardServiceLight,
-  CardServiceLightProps,
-} from '@ds/uikit-product-card-predefined';
+import { CardServiceInfo, CardServiceLight, CardServiceLightProps } from '@ds/uikit-product-card-predefined';
 import cn from 'classnames';
 import { MouseEvent } from 'react';
 
@@ -46,7 +41,7 @@ export function ServiceCard({
         }
       : undefined;
 
-  const commonProps: CardServiceLightProps<'a'> | CardServiceInfoProps<'a'> = {
+  const commonProps: CardServiceLightProps<'a'> = {
     as: 'a',
     title: service.label,
     icon: getLinkEmblem(service),
@@ -55,7 +50,6 @@ export function ServiceCard({
     onClick: (event: MouseEvent<HTMLElement>) => onServiceClick?.(service, event),
     favorite: favoriteProps,
     actionsVisibility: isMobile ? 'always' : 'hover',
-    actionsSize: isMobile ? 's' : 'm',
     promoTag: service.badge,
     className: cn(styles.card, className),
     tabIndex,
@@ -63,7 +57,7 @@ export function ServiceCard({
   };
 
   const card = showDescription ? (
-    <CardServiceInfo {...commonProps} description={service.description ?? ''} />
+    <CardServiceInfo {...commonProps} description={service.description ?? ''} actionsSize={isMobile ? 's' : 'm'} />
   ) : (
     <CardServiceLight
       {...commonProps}

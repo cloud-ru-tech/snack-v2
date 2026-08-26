@@ -105,7 +105,6 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
                   as='a'
                   className={styles.card}
                   actionsVisibility='always'
-                  actionsSize='s'
                   favorite={{
                     enabled: true,
                     checked: true,
