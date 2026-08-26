@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-tool",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Базовые презентационные элементы для сборки AI-компонентов Tool и Tool Simple — иконки, статус, текст, key-value, дерево, бейджи и блок деталей.",
   "repository": {
     "type": "git",
