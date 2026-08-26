@@ -141,10 +141,17 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     // строкой при переключении selection) не должен ронять компонент на `.map` строки.
     multiple && Array.isArray(props.defaultValue) ? (props.defaultValue as ItemId[]) : [],
   );
-  const singleValue = useMemo<ItemId | undefined>(
-    () => (!multiple ? ((props.value as ItemId | undefined) ?? singleLocal) : undefined),
-    [multiple, props.value, singleLocal],
-  );
+
+  const singleValue = useMemo<ItemId | undefined>(() => {
+    if (multiple) {
+      return undefined;
+    }
+
+    const raw = (props.value as ItemId | undefined) ?? singleLocal;
+
+    return raw === '' ? undefined : raw;
+  }, [multiple, props.value, singleLocal]);
+
   const multipleValue = useMemo<ItemId[]>(() => {
     if (!multiple) {
       return [];

@@ -28,6 +28,9 @@ const onChangeMultiple = fn();
 const onChangeCreatable = fn();
 const onChangeDisabledChip = fn();
 const onCopyReadonly = fn();
+const onChangeEmptyString = fn();
+
+const EMPTY_STRING_PLACEHOLDER = 'Choose…';
 
 function InteractionScenario() {
   const [single, setSingle] = useState<ItemId | undefined>(undefined);
@@ -109,6 +112,15 @@ function InteractionScenario() {
             defaultValue='l'
             onCopyButtonClick={onCopyReadonly}
           />
+          <FieldSelect
+            data-test-id={STORY_TEST_IDS.fieldSelect.emptyStringRoot}
+            label='Size (single, empty string value)'
+            placeholder={EMPTY_STRING_PLACEHOLDER}
+            items={options}
+            selection='single'
+            value=''
+            onChange={onChangeEmptyString}
+          />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
@@ -145,6 +157,7 @@ export const InteractionTest: Story = {
     const disabledChip = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.disabledChipRoot);
     const creatable = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleCreatableRoot);
     const readonly = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.readonlyRoot);
+    const emptyString = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.emptyStringRoot);
 
     onChangeSingle.mockClear();
     onChangeSingleCreatable.mockClear();
@@ -152,6 +165,7 @@ export const InteractionTest: Story = {
     onChangeCreatable.mockClear();
     onChangeDisabledChip.mockClear();
     onCopyReadonly.mockClear();
+    onChangeEmptyString.mockClear();
 
     await step('renders all fields', async () => {
       await expect(single).toBeVisible();
@@ -160,6 +174,15 @@ export const InteractionTest: Story = {
       await expect(disabledChip).toBeVisible();
       await expect(creatable).toBeVisible();
       await expect(readonly).toBeVisible();
+      await expect(emptyString).toBeVisible();
+    });
+
+    await step('empty string value: treated as no value (placeholder shown, no clear button)', async () => {
+      const input = within(emptyString).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+
+      await expect(input.value).toBe('');
+      await expect(input).toHaveAttribute('placeholder', EMPTY_STRING_PLACEHOLDER);
+      expect(within(emptyString).queryByTestId(TEST_IDS.fieldSelectClear)).toBeNull();
     });
 
     await step('keyboard: Enter on closed trigger opens the Droplist', async () => {

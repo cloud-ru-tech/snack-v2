@@ -163,9 +163,9 @@ type CommonSelectProps = FieldSelectDecoratorProps &
 export type FieldSelectSingleProps = CommonSelectProps & {
   /** Режим выбора. По умолчанию `'single'`. */
   selection?: typeof SELECTION_MODE.Single;
-  /** Управляемое значение */
+  /** Управляемое значение. Пустая строка трактуется как «значение не выбрано». */
   value?: ItemId;
-  /** Неуправляемое значение по умолчанию */
+  /** Неуправляемое значение по умолчанию. Пустая строка трактуется как «значение не выбрано». */
   defaultValue?: ItemId;
   /** Колбек смены значения */
   onChange?(value: ItemId | undefined): void;

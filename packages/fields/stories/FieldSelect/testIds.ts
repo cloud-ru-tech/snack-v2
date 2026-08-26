@@ -10,5 +10,6 @@ export const TEST_IDS = {
     multipleCreatableRoot: 'field-select-multiple-creatable',
     disabledChipRoot: 'field-select-disabled-chip',
     readonlyRoot: 'field-select-readonly',
+    emptyStringRoot: 'field-select-empty-string',
   },
 } as const;
