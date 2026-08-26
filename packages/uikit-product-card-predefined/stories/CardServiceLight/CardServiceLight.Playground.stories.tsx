@@ -53,7 +53,7 @@ const meta: Meta<StoryProps> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CardServiceLight>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

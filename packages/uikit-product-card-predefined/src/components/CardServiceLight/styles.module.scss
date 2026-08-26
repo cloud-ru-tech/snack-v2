@@ -62,8 +62,13 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
+  min-height: base.$sn-primitive-dimension-32;
   padding: base.$sn-primitive-dimension-4;
   border-radius: inherit;
+
+  &[data-mobile] {
+    min-height: base.$sn-primitive-dimension-40;
+  }
 }
 
 .icon {

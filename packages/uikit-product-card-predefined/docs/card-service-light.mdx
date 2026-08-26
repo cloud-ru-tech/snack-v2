@@ -110,6 +110,16 @@ import { CardServiceLight } from '@ds/uikit-product-card-predefined'
 Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
 действиями сразу — тултипом, избранным и кнопкой раскрытия.
 
+## Адаптивность
+
+Desktop-first: раскладку берёт `AdaptiveProvider`. На mobile:
+
+- у внутреннего `.container` ставится `data-mobile` — `min-height` 40 вместо 32;
+- кнопки действий рендерятся с размером `s` вместо `m`.
+
+Отдельного пропа раскладки нет; форс — toolbar-global `layoutType` / вложенный
+`AdaptiveProvider` / `withLayoutType`.
+
 ## Props
 
 <PropsTable data={componentDoc.CardServiceLight} />

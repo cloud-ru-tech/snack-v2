@@ -357,7 +357,6 @@ export function PolymorphicLink() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actionsSize` | `"m"` \| `"s"` | — | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
 | `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
 | `as` | `ElementType` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
@@ -376,8 +375,6 @@ export function PolymorphicLink() {
 
 - `CardPromoTagProps` = `PromoTagPredefinedProps & { as?: never; innerRef?: never; }`
 
-- `CardSize` = `"m"` \| `"s"`
-
 **FavoriteProps**
 
 | Prop | Type | Default | Description |
@@ -392,6 +389,16 @@ export function PolymorphicLink() {
 
 Проп карточки `actionsVisibility` (`'hover'` по умолчанию) управляет всеми
 действиями сразу — тултипом, избранным и кнопкой раскрытия.
+
+### Адаптивность
+
+Desktop-first: раскладку берёт `AdaptiveProvider`. На mobile:
+
+- у внутреннего `.container` ставится `data-mobile` — `min-height` 40 вместо 32;
+- кнопки действий рендерятся с размером `s` вместо `m`.
+
+Отдельного пропа раскладки нет; форс — toolbar-global `layoutType` / вложенный
+`AdaptiveProvider` / `withLayoutType`.
 
 ## CardServiceInfo
 

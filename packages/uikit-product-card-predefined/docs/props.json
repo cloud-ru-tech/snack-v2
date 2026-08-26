@@ -628,18 +628,6 @@
     "displayName": "CardServiceLight",
     "propsTypeName": "CardServiceLightProps",
     "props": {
-      "actionsSize": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "m",
-          "s"
-        ],
-        "description": "Размер кнопок действий, для мобильного вида предполагается использовать `s`",
-        "typeRefs": [
-          "CardSize"
-        ]
-      },
       "actionsVisibility": {
         "type": "enum",
         "required": false,
@@ -732,14 +720,6 @@
       "CardPromoTagProps": {
         "kind": "alias",
         "type": "PromoTagPredefinedProps & { as?: never; innerRef?: never; }",
-        "own": true
-      },
-      "CardSize": {
-        "kind": "union",
-        "values": [
-          "m",
-          "s"
-        ],
         "own": true
       },
       "ChildrenFunction": {

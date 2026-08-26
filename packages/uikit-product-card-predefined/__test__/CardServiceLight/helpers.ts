@@ -23,6 +23,7 @@ export const CARD_SERVICE_LIGHT_STORIES = {
 export function buildStoryOptions(
   props?: Record<string, unknown>,
   ref: UikitStoryRef = CARD_SERVICE_LIGHT_STORIES.playground,
+  globals?: Record<string, unknown>,
 ): StorybookUrlOptions {
   return {
     category: ref.category,
@@ -33,5 +34,6 @@ export function buildStoryOptions(
       'data-test-id': TEST_IDS.cardServiceLight,
       ...props,
     },
+    globals,
   };
 }

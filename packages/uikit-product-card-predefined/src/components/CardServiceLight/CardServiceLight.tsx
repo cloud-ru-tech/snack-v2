@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { PolymorphicRef } from '@ds/card';
 import { useThemeClassnames } from '@ds/theme';
 import { TooltipProps } from '@ds/tooltip';
@@ -18,18 +19,13 @@ import {
 } from 'react';
 
 import { TEST_IDS, TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
-import {
-  CardActionsSurface,
-  CardActionsSurfaceProps,
-  CardPromoTag,
-  createCardActionsKeyDownHandler,
-} from '../../helperComponents';
+import { CardActionsSurface, CardPromoTag, createCardActionsKeyDownHandler } from '../../helperComponents';
 import { CardPromoTagProps, FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
 
 const TARGET_BLANK = '_blank';
 
-type BaseCardServiceLightProps = Pick<CardActionsSurfaceProps, 'actionsSize'> & {
+type BaseCardServiceLightProps = {
   /** Иконка сервиса */
   icon?: ReactElement;
   /** Заголовок карточки */
@@ -83,13 +79,14 @@ export function CardServiceLight<T extends ElementType = 'button'>({
   actionsVisibility: actionsVisibilityProp,
   favorite,
   tooltip,
-  actionsSize,
   className,
   disabled = false,
   expandable,
   'data-test-id': dataTestId,
   ...rest
 }: CardServiceLightProps<T>): ReactElement | null {
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
   const Component: ElementType = as ?? 'button';
   const cardRef = useRef<HTMLElement>(null);
   const tooltipTriggerRef = useRef<HTMLButtonElement>(null);
@@ -182,7 +179,7 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       {...polymorphicProps}
     >
       <span className={styles.outlineBorder} aria-hidden />
-      <div className={styles.container}>
+      <div className={styles.container} data-mobile={isMobile || undefined}>
         {icon && <div className={styles.icon}>{icon}</div>}
 
         <div className={styles.content}>
@@ -209,7 +206,7 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       </div>
 
       <CardActionsSurface
-        actionsSize={actionsSize}
+        actionsSize={isMobile ? 's' : 'm'}
         actionsVisibility={actionsVisibility}
         className={styles.cardActions}
         tooltip={

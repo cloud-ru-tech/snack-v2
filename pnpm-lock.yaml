@@ -2451,6 +2451,9 @@ importers:
 
   packages/uikit-product-card-predefined:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button
