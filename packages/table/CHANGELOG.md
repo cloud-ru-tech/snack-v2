@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.8 (2026-08-27)
+
+### Bug Fixes
+
+- **FF-8948:** keep load-more button out of the horizontal scroller, take standard column defs in InfiniteTable ([a29c542](https://github.com/cloud-ru-tech/snack-v2/commit/a29c542527966c084dcca69e657e0b8db9936927))
+- **FF-8948:** pin rendered width before resizing sizeless column ([23f5764](https://github.com/cloud-ru-tech/snack-v2/commit/23f5764fb820f3067b77fab86b3e115b922f35f6))
+- **FF-8948:** stop infinite column sizing updates for minSize-only columns ([c7d0064](https://github.com/cloud-ru-tech/snack-v2/commit/c7d00649fa12aaa254ecd5115db74b75b157de61))
+
 ## 1.0.7 (2026-08-25)
 
 **Note:** Version bump only for package @ds/table

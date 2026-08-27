@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-config-selector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chip-toggle для выбора одной опции конфигурации — кликабельный chip с состояниями checked / available / disabled и tooltip-подсказками.",
   "repository": {
     "type": "git",

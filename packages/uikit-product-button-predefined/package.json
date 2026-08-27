@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-button-predefined",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Function-кнопка с выпадающим списком (desktop) или modal (mobile).",
   "repository": {
     "type": "git",

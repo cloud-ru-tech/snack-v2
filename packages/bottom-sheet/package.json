@@ -1,6 +1,6 @@
 {
   "name": "@ds/bottom-sheet",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mobile-first overlay-контейнер с drag-handle и swipe-down для диалогов, выпадающих списков и фильтров. Поддерживает snap-points (раскрытие на половину → full).",
   "repository": {
     "type": "git",

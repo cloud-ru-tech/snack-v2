@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-chain-of-thoughts",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Цепочка рассуждений AI-агента (Chain of Thoughts) — сворачиваемый заголовок «Размышляю» с длительностью и список строк-инструментов.",
   "repository": {
     "type": "git",

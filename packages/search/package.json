@@ -1,6 +1,6 @@
 {
   "name": "@ds/search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Компонент поискового поля — три размера, фон, рамка состояния, состояния loading и disabled, слот для действия внутри поля.",
   "repository": {
     "type": "git",

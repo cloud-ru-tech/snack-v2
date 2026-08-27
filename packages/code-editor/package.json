@@ -1,6 +1,6 @@
 {
   "name": "@ds/code-editor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Обёртка над monaco-editor с темизацией на токенах дизайн-системы, шапкой с языком и кнопкой копирования, async/lazy-загрузкой и JSON/YAML-валидацией по schema.",
   "repository": {
     "type": "git",

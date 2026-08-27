@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-08-27)
+
+### Features
+
+- **FF-8948:** add fullWidth prop to Attachment ([d685af7](https://github.com/cloud-ru-tech/snack-v2/commit/d685af7187b363926dd0ff9d15b308b82ee0975b))
+
 ## 1.0.4 (2026-08-25)
 
 **Note:** Version bump only for package @ds/attachment
