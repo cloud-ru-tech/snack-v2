@@ -44,6 +44,8 @@ $panelMotions: (
       position: absolute;
       z-index: initial;
       inset: 0;
+      // Не даём wheel/touch «протечь» к скроллу страницы под маской.
+      overscroll-behavior: none;
 
       opacity: 1;
       background-color: base.$sn-theme-color-blackout;
@@ -75,6 +77,8 @@ $panelMotions: (
 
       position: relative;
 
+      overflow: hidden;
+      overscroll-behavior: none;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -307,8 +311,19 @@ $panelMotions: (
   @include m.with-material('acrylic', #{drawer});
 }
 
-.focusScope {
-  display: contents;
+.scrollLock {
+  // Реальный flex-бокс (не `display: contents`): иначе capture `onWheel` у RemoveScroll
+  // в части браузеров не вызывается, и колесо по header/search/пустым зонам крутит фон.
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
 }
 
 .showButtonClosed {

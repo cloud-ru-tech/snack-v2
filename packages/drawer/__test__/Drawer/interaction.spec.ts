@@ -39,6 +39,88 @@ test.describe('Drawer — interaction', () => {
     await expect(getByTestId(TEST_IDS.header)).not.toBeVisible();
   });
 
+  test('body scroll is locked when drawer is open', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ showAfterHeadline: false, showMedia: false }));
+
+    await page.evaluate(() => {
+      document.documentElement.style.minHeight = '300vh';
+      window.scrollTo(0, 200);
+    });
+
+    await getByTestId(TEST_IDS.drawer.triggerOpen).click();
+    await expect(getByTestId(TEST_IDS.header)).toBeVisible();
+
+    const scrollYBefore = await page.evaluate(() => window.scrollY);
+
+    await page.evaluate(() => {
+      const event = new WheelEvent('wheel', { deltaY: 1200, bubbles: true, cancelable: true });
+      document.body.dispatchEvent(event);
+    });
+    await page.mouse.move(2, 2);
+    await page.mouse.wheel(0, 1200);
+
+    const scrollYAfter = await page.evaluate(() => window.scrollY);
+    expect(scrollYAfter).toBe(scrollYBefore);
+  });
+
+  test('overlay wheel does not scroll the page', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(
+      buildStoryOptions({
+        showAfterHeadline: false,
+        showMedia: false,
+        content: '',
+      }),
+    );
+
+    await page.evaluate(() => {
+      document.documentElement.style.minHeight = '200vh';
+      window.scrollTo(0, 400);
+    });
+
+    await getByTestId(TEST_IDS.drawer.triggerOpen).click();
+    await expect(getByTestId(TEST_IDS.header)).toBeVisible();
+
+    const scrollYBefore = await page.evaluate(() => window.scrollY);
+
+    const box = await page.locator(OVERLAY_SELECTOR).boundingBox();
+    if (box == null) {
+      throw new Error('Expected drawer mask bounding box');
+    }
+    // Правый край viewport — зона mask справа от left-drawer панели.
+    await page.mouse.move(box.x + box.width - 20, box.y + box.height / 2);
+    await page.mouse.wheel(0, 1200);
+
+    const scrollYAfter = await page.evaluate(() => window.scrollY);
+    expect(scrollYAfter).toBe(scrollYBefore);
+  });
+
+  test('wheel over non-scrollable panel chrome does not scroll the page', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(
+      buildStoryOptions({
+        showAfterHeadline: false,
+        showMedia: false,
+        content: 'Short',
+        longBodyContent: false,
+      }),
+    );
+
+    await page.evaluate(() => {
+      document.documentElement.style.minHeight = '200vh';
+      window.scrollTo(0, 400);
+    });
+
+    await getByTestId(TEST_IDS.drawer.triggerOpen).click();
+    const header = getByTestId(TEST_IDS.header);
+    await expect(header).toBeVisible();
+
+    const scrollYBefore = await page.evaluate(() => window.scrollY);
+    await header.hover();
+    await page.mouse.wheel(0, 1200);
+
+    const scrollYAfter = await page.evaluate(() => window.scrollY);
+    expect(scrollYAfter).toBe(scrollYBefore);
+  });
+
   test('short body content does NOT cause vertical scroll', async ({ gotoStory, page, getByTestId }) => {
     await gotoStory(
       buildStoryOptions({

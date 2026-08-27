@@ -84,7 +84,9 @@ function DrawerFrame(props: DrawerCustomProps) {
   const outerScrollLock = useOuterScrollLock(Boolean(open));
 
   // Без явного container портал идёт через PortalContextProvider (как у Modal): скоуп к локальному
-  // элементу и отказ от body-level scroll lock, который rc-drawer ставит при рендере в document.body.
+  // контейнеру вместо document.body. Скролл фона лочит `RemoveScroll` — у `@rc-component/drawer`
+  // своего body scroll lock больше нет; wheel по mask / нескроллируемым зонам панели не должен
+  // крутить страницу под дровером.
   const portalContextRef = usePortalContext();
   const resolvedContainer =
     container ?? (portalContextRef.current ? () => portalContextRef.current as HTMLElement : undefined);
@@ -119,12 +121,17 @@ function DrawerFrame(props: DrawerCustomProps) {
       prefixCls='snack-rc-drawer'
       {...(disableMotions ? {} : motionProps)}
     >
-      {/* Свой лок в стеке `react-remove-scroll`: иначе лок модалки-родителя гасит скролл дровера. */}
+      {/*
+        Свой лок в стеке `react-remove-scroll`: иначе лок модалки-родителя гасит скролл дровера.
+        `removeScrollBar={false}` — не ставим `data-scroll-locked` на body (см. useOuterScrollLock).
+        Нельзя `display: contents`: capture `onWheel` на contents-узле в части браузеров не
+        срабатывает → wheel по search/header/mask уходит в скролл страницы под дровером.
+      */}
       <RemoveScroll
         enabled={showBlackout || outerScrollLock}
         removeScrollBar={false}
         ref={focusTrapRef}
-        className={styles.focusScope}
+        className={styles.scrollLock}
       >
         {showButtonClosed && (
           <div className={styles.showButtonClosedWrapper}>
