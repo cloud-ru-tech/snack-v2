@@ -82,6 +82,18 @@
     base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'headlineWrapper', 'padding-left');
 }
 
+// В мастере (popupDropdownHeader) divider — последний элемент шапки: сверху отделён на
+// `header.gap`, снизу отступа нет — контейнер dropdown размещает шапку и тело без зазора.
+.headerDivider {
+  margin-top: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'dropdown', 'header', 'gap');
+}
+
+// В мастере divider футера позиционирован абсолютно по его верхней кромке, а расстояние
+// до кнопок задаёт footer.padding-top — в коде этот отступ описан в `.bottomBar`.
+.footerDivider {
+  margin: 0;
+}
+
 .bottomBar {
   box-sizing: border-box;
   padding:

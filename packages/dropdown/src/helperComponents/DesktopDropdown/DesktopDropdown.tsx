@@ -59,11 +59,11 @@ export function DesktopDropdown({
                 {search}
               </div>
             )}
-            {hasTopBar && headerDivider && <Divider className={styles.dividerWrapper} />}
+            {hasTopBar && headerDivider && <Divider className={styles.headerDivider} />}
             <DropdownBody state={state} bodyPadding={bodyPadding}>
               {content}
             </DropdownBody>
-            {footer && footerDivider && <Divider className={styles.dividerWrapper} />}
+            {footer && footerDivider && <Divider className={styles.footerDivider} />}
             {footer && <div className={styles.bottomBar}>{footer}</div>}
           </div>
         </div>

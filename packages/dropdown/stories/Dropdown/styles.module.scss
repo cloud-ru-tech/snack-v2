@@ -25,6 +25,12 @@
   min-height: 180px;
 }
 
+// Секция chrome: шапка + список + футер выше обычной ячейки, поэтому запас по высоте больше.
+.chromeCell {
+  min-width: 260px;
+  min-height: 320px;
+}
+
 .list {
   display: flex;
   flex-direction: column;
