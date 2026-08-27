@@ -1,6 +1,6 @@
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Accordion } from '@ds/accordion';
-import { SearchSVG } from '@ds/icons/interface/system';
+import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
@@ -219,7 +219,7 @@ export function Content({
       <InfoBlock
         size='m'
         icon={{
-          icon: SearchSVG,
+          icon: isSearching ? SearchSVG : CrossSVG,
           appearance: 'neutral',
         }}
         content={isSearching ? t('noDataFound') : t('noData')}
