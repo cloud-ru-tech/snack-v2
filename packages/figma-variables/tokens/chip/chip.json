@@ -87,7 +87,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.s}"
+                "$value": "{sn.density.icon.s}"
               },
               "maxHeight": {
                 "$extensions": {
@@ -97,7 +97,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.s}"
+                "$value": "{sn.density.icon.s}"
               }
             }
           },
@@ -185,7 +185,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.s}"
+                "$value": "{sn.density.icon.s}"
               },
               "maxHeight": {
                 "$extensions": {
@@ -195,7 +195,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.s}"
+                "$value": "{sn.density.icon.s}"
               }
             }
           },
@@ -283,7 +283,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.xs}"
+                "$value": "{sn.density.icon.xs}"
               },
               "maxHeight": {
                 "$extensions": {
@@ -293,7 +293,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.size.icon.xs}"
+                "$value": "{sn.density.icon.xs}"
               }
             }
           }

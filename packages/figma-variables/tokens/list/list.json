@@ -27,7 +27,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by12}"
+                        "$value": "{sn.primitive.font.lineHeight.16}"
                       },
                       "gap": {
                         "$extensions": {
@@ -167,16 +167,6 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.s}"
-                },
-                "minHeight": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.density.size.icon.xs}"
                 }
               },
               "borderRadius": {
@@ -188,6 +178,18 @@
                 },
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.listItem.s}"
+              },
+              "nestingLevel": {
+                "paddingLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.nestingLevel.s.paddingLeft}"
+                }
               }
             },
             "subtitle": {
@@ -237,7 +239,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by14}"
+                        "$value": "{sn.primitive.font.lineHeight.20}"
                       },
                       "gap": {
                         "$extensions": {
@@ -303,16 +305,6 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.m}"
-                },
-                "minHeight": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.density.size.icon.s}"
                 }
               },
               "borderRadius": {
@@ -388,6 +380,18 @@
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.2}"
                 }
+              },
+              "nestingLevel": {
+                "paddingLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.nestingLevel.m.paddingLeft}"
+                }
               }
             },
             "subtitle": {
@@ -437,7 +441,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by16}"
+                        "$value": "{sn.primitive.font.lineHeight.24}"
                       },
                       "gap": {
                         "$extensions": {
@@ -503,16 +507,6 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.l}"
-                },
-                "minHeight": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.density.size.icon.s}"
                 }
               },
               "borderRadius": {
@@ -587,6 +581,18 @@
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.4}"
+                }
+              },
+              "nestingLevel": {
+                "paddingLeft": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.nestingLevel.l.paddingLeft}"
                 }
               }
             },

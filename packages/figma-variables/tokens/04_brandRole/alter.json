@@ -264,126 +264,126 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.5}"
+            "$value": "{sn.primitive.color.brandCAlter.5}"
           },
           "10": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.10}"
+            "$value": "{sn.primitive.color.brandCAlter.10}"
           },
           "15": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.15}"
+            "$value": "{sn.primitive.color.brandCAlter.15}"
           },
           "25": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.25}"
+            "$value": "{sn.primitive.color.brandCAlter.25}"
           },
           "45": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.45}"
+            "$value": "{sn.primitive.color.brandCAlter.45}"
           },
           "55": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.55}"
+            "$value": "{sn.primitive.color.brandCAlter.55}"
           },
           "60": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.60}"
+            "$value": "{sn.primitive.color.brandCAlter.60}"
           },
           "65": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.65}"
+            "$value": "{sn.primitive.color.brandCAlter.65}"
           },
           "80": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.80}"
+            "$value": "{sn.primitive.color.brandCAlter.80}"
           },
           "90": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.90}"
+            "$value": "{sn.primitive.color.brandCAlter.90}"
           },
           "95": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.95}"
+            "$value": "{sn.primitive.color.brandCAlter.95}"
           },
           "99": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter4.99}"
+            "$value": "{sn.primitive.color.brandCAlter.99}"
           },
           "transparent": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff26"
+            "$value": "#a068ff26"
           },
           "backgroundActivatedDefault": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff26"
+            "$value": "#a068ff26"
           },
           "backgroundActivatedHovered": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff73"
+            "$value": "#a068ff73"
           },
           "backgroundActivatedPressed": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdffa6"
+            "$value": "#a068ffa6"
           },
           "onAccentLight": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter4.5}"
+            "$value": "{sn.primitive.color.brandCAlter.99}"
           },
           "onAccentDark": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.99}"
+            "$value": "{sn.primitive.color.brandCAlter.5}"
           }
         },
         "brandD": {
@@ -392,382 +392,126 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.5}"
+            "$value": "{sn.primitive.color.brandCAlter.5}"
           },
           "10": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.10}"
+            "$value": "{sn.primitive.color.brandCAlter.10}"
           },
           "15": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.15}"
+            "$value": "{sn.primitive.color.brandCAlter.15}"
           },
           "25": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.25}"
+            "$value": "{sn.primitive.color.brandCAlter.25}"
           },
           "45": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.45}"
+            "$value": "{sn.primitive.color.brandCAlter.45}"
           },
           "55": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.55}"
+            "$value": "{sn.primitive.color.brandCAlter.55}"
           },
           "60": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.60}"
+            "$value": "{sn.primitive.color.brandCAlter.60}"
           },
           "65": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.65}"
+            "$value": "{sn.primitive.color.brandCAlter.65}"
           },
           "80": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.80}"
+            "$value": "{sn.primitive.color.brandCAlter.80}"
           },
           "90": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.90}"
+            "$value": "{sn.primitive.color.brandCAlter.90}"
           },
           "95": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.95}"
+            "$value": "{sn.primitive.color.brandCAlter.95}"
           },
           "99": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter4.99}"
+            "$value": "{sn.primitive.color.brandCAlter.99}"
           },
           "transparent": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff21"
+            "$value": "#a068ff21"
           },
           "backgroundActivatedDefault": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff26"
+            "$value": "#a068ff26"
           },
           "backgroundActivatedHovered": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdff73"
+            "$value": "#a068ff73"
           },
           "backgroundActivatedPressed": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "#fbfdffa6"
+            "$value": "#a068ffa6"
           },
           "onAccentLight": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter4.5}"
+            "$value": "{sn.primitive.color.brandCAlter.99}"
           },
           "onAccentDark": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.brandCAlter2.99}"
-          }
-        },
-        "brandE": {
-          "5": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.5}"
-          },
-          "10": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.10}"
-          },
-          "15": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.15}"
-          },
-          "25": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.25}"
-          },
-          "45": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.45}"
-          },
-          "55": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.55}"
-          },
-          "60": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.60}"
-          },
-          "65": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.65}"
-          },
-          "80": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.80}"
-          },
-          "90": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.90}"
-          },
-          "95": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.95}"
-          },
-          "99": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.99}"
-          },
-          "transparent": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#5558fa24"
-          },
-          "backgroundActivatedPressed": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#5558fa73"
-          },
-          "backgroundActivatedHovered": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#5558fa59"
-          },
-          "backgroundActivatedDefault": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#5558fa26"
-          },
-          "onAccentLight": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.99}"
-          },
-          "onAccentDark": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandE.5}"
-          }
-        },
-        "brandF": {
-          "5": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.5}"
-          },
-          "10": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.10}"
-          },
-          "15": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.15}"
-          },
-          "25": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.25}"
-          },
-          "45": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.45}"
-          },
-          "55": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.55}"
-          },
-          "60": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.60}"
-          },
-          "65": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.65}"
-          },
-          "80": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.80}"
-          },
-          "90": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.90}"
-          },
-          "95": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.95}"
-          },
-          "99": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.99}"
-          },
-          "transparent": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#393a4524"
-          },
-          "backgroundActivatedPressed": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#393a4573"
-          },
-          "backgroundActivatedHovered": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#393a4559"
-          },
-          "backgroundActivatedDefault": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "#393a4526"
-          },
-          "onAccentLight": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.99}"
-          },
-          "onAccentDark": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.brandF.5}"
+            "$value": "{sn.primitive.color.brandCAlter.5}"
           }
         }
       },
@@ -781,7 +525,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "03_brandRole:"
+            "$value": "04_brandRole:"
           },
           "modificationName": {
             "$extensions": {
@@ -791,7 +535,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "alter2"
+            "$value": "alter"
           }
         }
       }

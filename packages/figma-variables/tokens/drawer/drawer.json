@@ -392,7 +392,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.l}"
+              "$value": "{sn.primitive.dimension.24}"
             },
             "paddingBottom": {
               "$extensions": {
@@ -402,7 +402,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.s}"
+              "$value": "{sn.primitive.dimension.8}"
             }
           },
           "bodyWrapper": {

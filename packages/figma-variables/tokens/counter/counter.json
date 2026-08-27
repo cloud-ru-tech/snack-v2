@@ -4,6 +4,63 @@
       "anatomy": {
         "size": {
           "xs": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.11}",
+                "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.14}",
+                "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
+                "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "minHeight": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -43,7 +100,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.typography.roleLabel.lineHeightS}"
+                "$value": "{sn.counter.anatomy.size.xs.symbol.lineHeight}"
               },
               "minWidth": {
                 "$extensions": {
@@ -53,7 +110,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.typography.roleLabel.lineHeightS}"
+                "$value": "{sn.counter.anatomy.size.xs.symbol.lineHeight}"
               },
               "borderRadius": {
                 "$extensions": {
@@ -78,6 +135,63 @@
             }
           },
           "s": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.14}",
+                "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.20}",
+                "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.l}",
+                "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "minHeight": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -117,7 +231,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.typography.roleLabel.lineHeightL}"
+                "$value": "{sn.counter.anatomy.size.s.symbol.lineHeight}"
               },
               "minWidth": {
                 "$extensions": {
@@ -127,7 +241,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.typography.roleLabel.lineHeightL}"
+                "$value": "{sn.counter.anatomy.size.s.symbol.lineHeight}"
               },
               "borderRadius": {
                 "$extensions": {

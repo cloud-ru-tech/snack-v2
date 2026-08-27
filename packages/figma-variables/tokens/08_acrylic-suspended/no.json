@@ -42,25 +42,27 @@
         "$value": "false"
       },
       "kitService": {
-        "modeName": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": true
+        "text": {
+          "modeName": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "08_acrylic:"
           },
-          "$type": "text",
-          "$value": "07_acrylic:"
-        },
-        "modificationName": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": true
-          },
-          "$type": "text",
-          "$value": "no"
+          "modificationName": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "no"
+          }
         }
       },
       "blurBackground1Level": {

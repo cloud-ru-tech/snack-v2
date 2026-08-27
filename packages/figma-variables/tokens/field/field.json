@@ -26,8 +26,8 @@
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.wrapper.vertical.s}"
                 },
-                "inputLine": {
-                  "horizontalPadding": {
+                "inputWrapper": {
+                  "paddingLeft": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -38,6 +38,16 @@
                     "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
                   },
                   "gap": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
+                  },
+                  "paddingRight": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -140,7 +150,7 @@
                 "$value": "{sn.brand.anatomy.radius.field.s}"
               },
               "centeredWrapper": {
-                "maxHeight": {
+                "height": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -149,6 +159,27 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleBody.lineHeightS}"
+                },
+                "width": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.xs}"
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT",
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.vertical.s}"
                 }
               },
               "resizeWrapper": {
@@ -418,8 +449,8 @@
                 "$value": "{sn.brand.anatomy.line.field.strokeWeight}"
               },
               "contentWrapper": {
-                "inputLine": {
-                  "horizontalPadding": {
+                "inputWrapper": {
+                  "paddingLeft": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -430,6 +461,16 @@
                     "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
                   },
                   "gap": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
+                  },
+                  "paddingRight": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -452,7 +493,7 @@
                 }
               },
               "centeredWrapper": {
-                "maxHeight": {
+                "height": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -461,6 +502,27 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleBody.lineHeightM}"
+                },
+                "width": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.s}"
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT",
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.vertical.m}"
                 }
               },
               "resizeWrapper": {
@@ -708,8 +770,8 @@
                 "$value": "{sn.brand.anatomy.line.field.strokeWeight}"
               },
               "contentWrapper": {
-                "inputLine": {
-                  "horizontalPadding": {
+                "inputWrapper": {
+                  "paddingLeft": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -720,6 +782,16 @@
                     "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
                   },
                   "gap": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "ALL_SCOPES"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
+                  },
+                  "paddingRight": {
                     "$extensions": {
                       "com.figma.scopes": [
                         "ALL_SCOPES"
@@ -742,7 +814,7 @@
                 }
               },
               "centeredWrapper": {
-                "maxHeight": {
+                "height": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -751,6 +823,27 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleBody.lineHeightL}"
+                },
+                "width": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.s}"
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT",
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.container.vertical.l}"
                 }
               },
               "resizeWrapper": {

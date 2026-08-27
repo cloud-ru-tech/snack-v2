@@ -322,7 +322,7 @@
   {
     "id": "02_density-compact",
     "name": "compact",
-    "group": "02_density",
+    "group": "03_density",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -465,7 +465,7 @@
   {
     "id": "02_density-comfort",
     "name": "comfort",
-    "group": "02_density",
+    "group": "03_density",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -608,7 +608,7 @@
   {
     "id": "04_brand-brandb",
     "name": "brandB",
-    "group": "04_brand",
+    "group": "05_brand",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -867,7 +867,7 @@
   {
     "id": "04_brandmode-brandb",
     "name": "brandB",
-    "group": "04_brand",
+    "group": "05_brand",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -890,7 +890,7 @@
   {
     "id": "05_theme-light",
     "name": "light",
-    "group": "05_theme",
+    "group": "06_theme",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1101,7 +1101,7 @@
   {
     "id": "05_theme-dark",
     "name": "dark",
-    "group": "05_theme",
+    "group": "06_theme",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1312,7 +1312,7 @@
   {
     "id": "06_language-en",
     "name": "en",
-    "group": "06_language",
+    "group": "07_language",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1477,7 +1477,7 @@
   {
     "id": "06_language-ru",
     "name": "ru",
-    "group": "06_language",
+    "group": "07_language",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1642,7 +1642,7 @@
   {
     "id": "07_acrylic-suspended-no",
     "name": "no",
-    "group": "07_acrylic-suspended",
+    "group": "08_acrylic-suspended",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -1665,7 +1665,7 @@
   {
     "id": "07_acrylic-suspended-yes",
     "name": "yes",
-    "group": "07_acrylic-suspended",
+    "group": "08_acrylic-suspended",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -3472,21 +3472,21 @@
   {
     "id": "19dd577526812d03bef1ab4ca0323920f8bf0f9b",
     "name": "main",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {}
   },
   {
     "id": "3d0c955e6d45df5538f9bf09126e6ea7ca867936",
     "name": "alter",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {}
   },
   {
     "id": "02_density-spacious",
     "name": "spacious",
-    "group": "02_density",
+    "group": "03_density",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -3629,7 +3629,7 @@
   {
     "id": "04_brand-branda",
     "name": "brandA",
-    "group": "04_brand",
+    "group": "05_brand",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -3888,7 +3888,7 @@
   {
     "id": "04_brand-brandc",
     "name": "brandC",
-    "group": "04_brand",
+    "group": "05_brand",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4248,7 +4248,7 @@
   {
     "id": "03_brandrole-main",
     "name": "main",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4315,7 +4315,7 @@
   {
     "id": "03_brandrole-alter",
     "name": "alter",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4382,7 +4382,7 @@
   {
     "id": "03_brandrole-alter2",
     "name": "alter2",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4449,7 +4449,7 @@
   {
     "id": "03_brandrole-alter3",
     "name": "alter3",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4516,7 +4516,7 @@
   {
     "id": "03_brandrole-alter4",
     "name": "alter4",
-    "group": "03_brandRole",
+    "group": "04_brandRole",
     "selectedTokenSets": {},
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {
@@ -4579,5 +4579,21 @@
     },
     "$figmaCollectionId": "VariableCollectionId:26086:46179",
     "$figmaModeId": "28712:2"
+  },
+  {
+    "id": "85350d899b5e6759af7bd8bd7ecafbcedd8818c7",
+    "name": "webDesktop",
+    "group": "02_platform",
+    "selectedTokenSets": {},
+    "$figmaStyleReferences": {},
+    "$figmaVariableReferences": {}
+  },
+  {
+    "id": "cb255457efb9b91c5841e35cf3cbac3b5c820204",
+    "name": "webMobile",
+    "group": "02_platform",
+    "selectedTokenSets": {},
+    "$figmaStyleReferences": {},
+    "$figmaVariableReferences": {}
   }
 ]

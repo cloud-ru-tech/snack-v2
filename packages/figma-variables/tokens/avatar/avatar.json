@@ -4,6 +4,63 @@
       "anatomy": {
         "size": {
           "xs": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.11}",
+                "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.14}",
+                "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
+                "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -35,7 +92,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.2}"
+                "$value": "{sn.brand.anatomy.radius.avatar.xs}"
               }
             },
             "borderWidth": {
@@ -62,6 +119,63 @@
             }
           },
           "s": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.11}",
+                "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.14}",
+                "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
+                "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -93,7 +207,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.brand.anatomy.radius.avatar.s}"
               }
             },
             "borderWidth": {
@@ -120,6 +234,63 @@
             }
           },
           "m": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.14}",
+                "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.20}",
+                "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.l}",
+                "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -151,7 +322,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.6}"
+                "$value": "{sn.brand.anatomy.radius.avatar.m}"
               }
             },
             "borderWidth": {
@@ -178,6 +349,63 @@
             }
           },
           "l": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.title}",
+                "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.16}",
+                "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.24}",
+                "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.title.m}",
+                "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.l}",
+                "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -209,7 +437,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.8}"
+                "$value": "{sn.brand.anatomy.radius.avatar.l}"
               }
             },
             "borderWidth": {
@@ -236,6 +464,63 @@
             }
           },
           "3xl": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.headline}",
+                "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.28}",
+                "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.36}",
+                "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.headline.m}",
+                "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.xs}",
+                "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -267,7 +552,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.12}"
+                "$value": "{sn.brand.anatomy.radius.avatar.3xl}"
               }
             },
             "borderWidth": {
@@ -294,6 +579,63 @@
             }
           },
           "6xl": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.display}",
+                "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.40}",
+                "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.48}",
+                "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.display.s}",
+                "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.xs}",
+                "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -325,7 +667,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.16}"
+                "$value": "{sn.brand.anatomy.radius.avatar.6xl}"
               }
             },
             "borderWidth": {
@@ -352,6 +694,63 @@
             }
           },
           "9xl": {
+            "symbol": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.display}",
+                "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.48}",
+                "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.60}",
+                "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.display.m}",
+                "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.xs}",
+                "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
+              }
+            },
             "square": {
               "$extensions": {
                 "com.figma.scopes": [
@@ -383,7 +782,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.20}"
+                "$value": "{sn.brand.anatomy.radius.avatar.9xl}"
               }
             },
             "borderWidth": {

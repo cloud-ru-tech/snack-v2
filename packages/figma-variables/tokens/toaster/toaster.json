@@ -65,7 +65,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.size.icon.s}"
+                    "$value": "{sn.density.icon.s}"
                   }
                 }
               },

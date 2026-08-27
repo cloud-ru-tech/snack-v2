@@ -65,7 +65,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.2}"
+                "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
               },
               "iconBefore": {
                 "paddingLeft": {
@@ -219,7 +219,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
               },
               "iconAfter": {
                 "paddingLeft": {
@@ -373,7 +373,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
               },
               "iconAfter": {
                 "paddingLeft": {

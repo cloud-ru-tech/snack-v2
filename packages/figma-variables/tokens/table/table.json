@@ -173,7 +173,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.primitive.dimension.4}"
+                    "$value": "{sn.density.table.headToggleOffset}"
                   },
                   "width": {
                     "$extensions": {
@@ -238,7 +238,58 @@
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
-                      "$value": "{sn.density.spacing.interval.xs}"
+                      "$value": "{sn.density.table.headToggleOffset}"
+                    },
+                    "levelIndicator": {
+                      "paddingLeft": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT",
+                            "GAP"
+                          ],
+                          "com.figma.hiddenFromPublishing": true
+                        },
+                        "$type": "number",
+                        "$value": "{sn.density.icon.half.s}"
+                      },
+                      "level": {
+                        "paddingRight": {
+                          "$extensions": {
+                            "com.figma.scopes": [
+                              "WIDTH_HEIGHT",
+                              "GAP"
+                            ],
+                            "com.figma.hiddenFromPublishing": true
+                          },
+                          "$type": "number",
+                          "$value": "{sn.density.icon.half.s}"
+                        },
+                        "paddingTop": {
+                          "$extensions": {
+                            "com.figma.scopes": [
+                              "WIDTH_HEIGHT",
+                              "GAP"
+                            ],
+                            "com.figma.hiddenFromPublishing": true
+                          },
+                          "$type": "number",
+                          "$value": "{sn.density.nestingLevel.m.level.paddingTop}"
+                        }
+                      },
+                      "firstLevel": {
+                        "paddingLeft": {
+                          "$extensions": {
+                            "com.figma.scopes": [
+                              "WIDTH_HEIGHT",
+                              "GAP"
+                            ],
+                            "com.figma.hiddenFromPublishing": true
+                          },
+                          "$type": "number",
+                          "$value": "{sn.density.icon.half.xs}",
+                          "$description": "Отступ первой колонки вложенности: половина чекбокса в шапке таблицы — по нему выравнивается первая вертикаль."
+                        }
+                      }
                     }
                   },
                   "centeredWrapper": {
@@ -251,6 +302,43 @@
                       },
                       "$type": "number",
                       "$value": "{sn.primitive.dimension.24}"
+                    },
+                    "childLine": {
+                      "maxWidth": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT",
+                            "GAP"
+                          ],
+                          "com.figma.hiddenFromPublishing": true
+                        },
+                        "$type": "number",
+                        "$value": "{sn.density.icon.s}"
+                      },
+                      "paddingRight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT",
+                            "GAP"
+                          ],
+                          "com.figma.hiddenFromPublishing": true
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.12}"
+                      },
+                      "level": {
+                        "paddingRight": {
+                          "$extensions": {
+                            "com.figma.scopes": [
+                              "WIDTH_HEIGHT",
+                              "GAP"
+                            ],
+                            "com.figma.hiddenFromPublishing": true
+                          },
+                          "$type": "number",
+                          "$value": "{sn.density.nestingLevel.m.level.paddingRight}"
+                        }
+                      }
                     }
                   }
                 },
@@ -263,7 +351,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.primitive.dimension.4}"
+                    "$value": "{sn.density.table.headToggleOffset}"
                   },
                   "width": {
                     "$extensions": {

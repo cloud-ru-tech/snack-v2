@@ -37,7 +37,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by16}"
+                        "$value": "{sn.primitive.font.lineHeight.24}"
                       },
                       "gap": {
                         "$extensions": {
@@ -63,8 +63,8 @@
                   }
                 }
               },
-              "centeredWrapper": {
-                "width": {
+              "toggleButton": {
+                "maxWidth": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -72,8 +72,10 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.size.icon.s}"
-                },
+                  "$value": "{sn.density.icon.s}"
+                }
+              },
+              "centeredWrapper": {
                 "toggleWrapper": {
                   "minHeight": {
                     "$extensions": {
@@ -83,7 +85,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.size.icon.s}"
+                    "$value": "{sn.density.icon.s}"
                   }
                 },
                 "paddingVertical": {
@@ -182,6 +184,18 @@
                 },
                 "$type": "number",
                 "$value": "{sn.density.spacing.control.container.vertical.l}"
+              },
+              "folderIcon": {
+                "maxWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.s}"
+                }
               }
             }
           },
@@ -259,7 +273,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by12}"
+                        "$value": "{sn.primitive.font.lineHeight.16}"
                       }
                     }
                   },
@@ -332,16 +346,6 @@
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.s}"
                 },
-                "width": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.density.size.icon.xs}"
-                },
                 "toggleWrapper": {
                   "minHeight": {
                     "$extensions": {
@@ -351,7 +355,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.size.icon.xs}"
+                    "$value": "{sn.density.icon.xs}"
                   }
                 },
                 "paddingRight": {
@@ -362,15 +366,11 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.8}"
+                  "$value": "{sn.density.nestingLevel.s.paddingLeft}"
                 }
-              }
-            }
-          },
-          "m": {
-            "treeItem": {
-              "centeredWrapper": {
-                "width": {
+              },
+              "toggleButton": {
+                "maxWidth": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "ALL_SCOPES"
@@ -378,8 +378,38 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.size.icon.s}"
-                },
+                  "$value": "{sn.density.icon.xs}"
+                }
+              },
+              "folderIcon": {
+                "maxWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.xs}"
+                }
+              }
+            }
+          },
+          "m": {
+            "treeItem": {
+              "toggleButton": {
+                "maxWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.s}"
+                }
+              },
+              "centeredWrapper": {
                 "paddingVertical": {
                   "$extensions": {
                     "com.figma.scopes": [
@@ -399,7 +429,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.size.icon.s}"
+                    "$value": "{sn.density.icon.s}"
                   }
                 },
                 "paddingRight": {
@@ -445,7 +475,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.font.lineHeight.by14}"
+                        "$value": "{sn.primitive.font.lineHeight.20}"
                       },
                       "gap": {
                         "$extensions": {
@@ -546,6 +576,18 @@
                 },
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.button.m}"
+              },
+              "folderIcon": {
+                "maxWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.icon.s}"
+                }
               }
             }
           }
