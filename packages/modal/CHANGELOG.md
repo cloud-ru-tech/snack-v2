@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.4 (2026-08-27)
+
+### Bug Fixes
+
+- **FF-8868:** keep window safe-area in modal dialog slots and lay out footer with FooterActions ([0fd2dd6](https://github.com/cloud-ru-tech/snack-v2/commit/0fd2dd6a8c7deaacbf240013cb307899cc54b994))
+
 ## 1.0.3 (2026-08-27)
 
 ### Bug Fixes

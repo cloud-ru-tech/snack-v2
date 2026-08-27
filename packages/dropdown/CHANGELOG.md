@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.4 (2026-08-27)
+
+### Bug Fixes
+
+- **FF-8868:** fix dropdown separator styles according to figma ([cea292b](https://github.com/cloud-ru-tech/snack-v2/commit/cea292ba7dffd3bec054efc7d3c62e17cd106fdd))
+
 ## 1.0.3 (2026-08-27)
 
 **Note:** Version bump only for package @ds/dropdown

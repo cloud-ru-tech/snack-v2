@@ -1,6 +1,6 @@
 {
   "name": "@ds/dropdown",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Выпадающий блок с произвольным контентом и встроенными состояниями loading / not-found / no-data / data-error.",
   "repository": {
     "type": "git",

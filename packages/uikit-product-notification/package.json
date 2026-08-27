@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-notification",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Пакет уведомлений — карточка NotificationCard, лента NotificationPanelContent со стеками и группами и адаптивная обёртка NotificationPanel (drawer на desktop, bottom-sheet на mobile).",
   "repository": {
     "type": "git",
