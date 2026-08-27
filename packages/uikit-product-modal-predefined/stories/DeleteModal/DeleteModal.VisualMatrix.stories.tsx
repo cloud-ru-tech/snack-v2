@@ -9,15 +9,21 @@ import styles from '../styles.module.scss';
 
 const VM_TRIGGER_TEST_ID = (state: string) => `delete-modal-vm__${state}`;
 
-type State = 'regular' | 'confirmable' | 'confirmableText' | 'deleting';
+type State = 'regular' | 'confirmable' | 'confirmableText' | 'confirmableLong' | 'deleting';
 
-const STATES = ['regular', 'confirmable', 'confirmableText', 'deleting'] as const;
+const STATES = ['regular', 'confirmable', 'confirmableText', 'confirmableLong', 'deleting'] as const;
+
+const CONFIRM_TEXT_BY_STATE: Partial<Record<State, string>> = {
+  confirmable: 'vm-production-01',
+  confirmableText: 'vm-production-01',
+  confirmableLong: 'vm-production-cluster-eu-central-01-replica-0007-standby-region-a-zone-3-node-17',
+};
 
 function VisualMatrixCanvas() {
   const [active, setActive] = useState<State | null>(null);
   const close = () => setActive(null);
 
-  const isConfirmable = active === 'confirmable' || active === 'confirmableText';
+  const isConfirmable = active === 'confirmable' || active === 'confirmableText' || active === 'confirmableLong';
 
   return (
     <div className={styles.panel}>
@@ -50,7 +56,7 @@ function VisualMatrixCanvas() {
           content='После удаления восстановить объект будет невозможно.'
           titleTooltip='Удаление затронет все связанные ресурсы'
           confirmable={isConfirmable}
-          confirmText={isConfirmable ? 'vm-production-01' : undefined}
+          confirmText={active ? CONFIRM_TEXT_BY_STATE[active] : undefined}
           confirmTextVariant={active === 'confirmableText' ? CONFIRM_TEXT_VARIANT.Text : CONFIRM_TEXT_VARIANT.Name}
           deleting={active === 'deleting'}
           onDelete={closeModal => closeModal()}

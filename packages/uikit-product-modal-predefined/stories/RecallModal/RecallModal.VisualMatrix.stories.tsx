@@ -9,7 +9,15 @@ import styles from '../styles.module.scss';
 
 const VM_TRIGGER_TEST_ID = (state: string) => `recall-modal-vm__${state}`;
 
-type State = 'regular' | 'confirmable' | 'loading';
+type State = 'regular' | 'confirmable' | 'confirmableLong' | 'loading';
+
+const STATES = ['regular', 'confirmable', 'confirmableLong', 'loading'] as const;
+
+// confirmableLong несёт длинный идентификатор: проверяет middle-truncate строки подтверждения.
+const CONFIRM_TEXT_BY_STATE: Partial<Record<State, string>> = {
+  confirmable: 'recall-operation-01',
+  confirmableLong: 'recall-operation-cluster-eu-central-01-batch-0007-retry-region-a-zone-3-step-17',
+};
 
 function VisualMatrixCanvas() {
   const [active, setActive] = useState<State | null>(null);
@@ -20,11 +28,11 @@ function VisualMatrixCanvas() {
       <StoryTable
         sectionTitle='states'
         firstColumnHeader='state'
-        columnHeaders={['regular', 'confirmable', 'loading']}
+        columnHeaders={[...STATES]}
         rows={[
           {
             variantLabel: 'recall',
-            cells: (['regular', 'confirmable', 'loading'] as const).map(state => (
+            cells: STATES.map(state => (
               <Button
                 key={state}
                 label={state}
@@ -44,8 +52,8 @@ function VisualMatrixCanvas() {
           onClose={close}
           content='Действие будет отозвано для всех связанных объектов.'
           titleTooltip='Отзыв затронет все связанные операции'
-          confirmable={active === 'confirmable'}
-          confirmText={active === 'confirmable' ? 'recall-operation-01' : undefined}
+          confirmable={active === 'confirmable' || active === 'confirmableLong'}
+          confirmText={active ? CONFIRM_TEXT_BY_STATE[active] : undefined}
           loading={active === 'loading'}
           onRecall={closeModal => closeModal()}
         />

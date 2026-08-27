@@ -1,4 +1,5 @@
 import { FieldCombo, FieldComboProps, VALIDATION_STATE } from '@ds/fields';
+import { TruncateString } from '@ds/truncate-string';
 import { CopyButton } from '@ds/uikit-product-copy';
 import { WithSupportProps } from '@ds/utils';
 import { forwardRef } from 'react';
@@ -49,7 +50,7 @@ export const InputConfirm = forwardRef<HTMLInputElement, InputConfirmProps>(func
     <div className={styles.root}>
       {confirmLabel && <span className={styles.confirmLabel}>{confirmLabel}</span>}
       <div className={styles.confirmText} data-align={copyLineAlign}>
-        <span className={styles.confirmValue}>{confirmText}</span>
+        <TruncateString className={styles.confirmValue} variant='middle' text={confirmText} />
         {!hideConfirmCopyButton && <CopyButton valueToCopy={confirmText} data-test-id={TEST_IDS.confirmCopyButton} />}
       </div>
 

@@ -27,4 +27,6 @@
 
 .confirmValue {
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  min-width: 0;
 }

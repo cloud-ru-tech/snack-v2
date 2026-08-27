@@ -18,7 +18,7 @@ test.describe('RecallModal — visual regression', () => {
   test('states', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     const cells = [];
 
-    for (const state of ['regular', 'confirmable', 'loading']) {
+    for (const state of ['regular', 'confirmable', 'confirmableLong', 'loading']) {
       await gotoStory(buildStoryOptions(undefined, RECALL_MODAL_STORIES.visualMatrix));
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.recallModal)).toBeVisible();
