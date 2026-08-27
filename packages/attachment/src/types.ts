@@ -54,6 +54,11 @@ export type AttachmentSquareProps = WithSupportProps<{
 }>;
 
 export type AttachmentProps = AttachmentSquareProps & {
+  /**
+   * Растянуть карточку на всю ширину контейнера. Выключенная — ужимается по содержимому.
+   * @default true
+   */
+  fullWidth?: boolean;
   truncate?: {
     /**
      * Максимальное кол-во строк заголовка

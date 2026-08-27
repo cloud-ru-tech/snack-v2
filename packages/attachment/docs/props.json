@@ -57,6 +57,12 @@
         "required": false,
         "description": "Файл"
       },
+      "fullWidth": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Растянуть карточку на всю ширину контейнера. Выключенная — ужимается по содержимому."
+      },
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
         "required": false,

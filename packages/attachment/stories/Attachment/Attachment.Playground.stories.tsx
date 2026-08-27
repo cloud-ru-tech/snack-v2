@@ -70,6 +70,7 @@ const meta: Meta<PlaygroundArgs> = {
   parameters: { layout: 'fullscreen' },
   args: {
     size: SIZE.S,
+    fullWidth: true,
     title: 'Label text',
     description: 'Description text',
     file: 'image',

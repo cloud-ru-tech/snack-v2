@@ -27,6 +27,7 @@ export function Attachment({
   onRetry,
   size = 's',
   truncate,
+  fullWidth = true,
   className,
   ...rest
 }: AttachmentProps) {
@@ -52,6 +53,7 @@ export function Attachment({
       multiSelect
       interactive={interactive}
       className={cn(styles.root, className)}
+      data-full-width={fullWidth || undefined}
       data-attachment-error={hasError || undefined}
       aria-busy={isLoading || undefined}
     >

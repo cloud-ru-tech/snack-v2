@@ -188,6 +188,7 @@ export function AttachmentSelectable() {
 | `disabled` | `boolean` | — | Заблокировано |
 | `error` | `string` | — | Сообщение об ошибке |
 | `file` | `File` | — | Файл |
+| `fullWidth` | `boolean` | `true` | Растянуть карточку на всю ширину контейнера. Выключенная — ужимается по содержимому. |
 | `icon` | `IconPredefinedProps` | — | Иконка для файла <br/> @defaultIcon FileSVG |
 | `loading` | `boolean` | — | Управление состоянием загрузки |
 | `onClick` | `((event: MouseEvent<HTMLDivElement, MouseEvent>) => void)` | — | Клик по карточке |

@@ -13,9 +13,16 @@
   flex: 0 0 auto;
   width: 256px;
 
-  // Attachment.root по умолчанию `width: fit-content` — фиксируем 256px,
+  // Attachment.root при `fullWidth={false}` ужимается по контенту — фиксируем 256px,
   // чтобы соответствовать Figma-фрейму.
   > :first-child {
     width: 100%;
   }
+}
+
+// Секция FullWidth: разницу между `width: 100%` и `fit-content` видно только
+// в контейнере заведомо шире карточки.
+.wideCell {
+  display: flex;
+  width: 360px;
 }

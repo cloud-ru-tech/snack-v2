@@ -17,6 +17,8 @@ type Story = StoryObj<typeof Attachment>;
 
 const keySizes = [SIZE.S, SIZE.M] as const;
 
+const keyFullWidths = [true, false] as const;
+
 const states: Array<{ key: string; extra: Partial<AttachmentProps> }> = [
   { key: 'default', extra: {} },
   { key: 'checked', extra: { checked: true } },
@@ -59,6 +61,28 @@ function MatrixView() {
           }))}
         />
       ))}
+
+      <StoryTable
+        sectionTitle='FullWidth × Size'
+        firstColumnHeader='fullWidth'
+        columnHeaders={keySizes.map(s => s.toUpperCase())}
+        rows={keyFullWidths.map(fullWidth => ({
+          variantLabel: String(fullWidth),
+          cells: keySizes.map(size => (
+            <div key={size} className={styles.wideCell}>
+              <Attachment
+                file={imageFile}
+                size={size}
+                fullWidth={fullWidth}
+                title='Label text'
+                description='Description text'
+                onDownload={fn()}
+                onDelete={fn()}
+              />
+            </div>
+          )),
+        }))}
+      />
     </div>
   );
 }
