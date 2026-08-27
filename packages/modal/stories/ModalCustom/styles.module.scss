@@ -1,12 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-.footer {
-  display: flex;
-  gap: base.$sn-primitive-dimension-8;
-  justify-content: flex-end;
-  width: 100%;
-}
-
 .customBody > p + p {
   margin-top: base.$sn-primitive-dimension-12;
 }

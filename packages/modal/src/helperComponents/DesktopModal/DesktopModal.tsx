@@ -1,4 +1,3 @@
-import { FooterActions } from '@ds/bottom-sheet';
 import { Spinner } from '@ds/loader';
 import { extractSupportProps } from '@ds/utils';
 import { useId, useMemo } from 'react';
@@ -7,6 +6,7 @@ import styles from '../../components/Modal/styles.module.scss';
 import { ModalProps } from '../../components/Modal/types';
 import { ModalCustom } from '../../components/ModalCustom';
 import { MODE, TEST_IDS, WIDTH } from '../../constants';
+import slotStyles from '../styles.module.scss';
 
 /** Desktop-поверхность Modal'а: `ModalCustom` с пресетной разметкой. Internal. */
 export function DesktopModal({
@@ -36,25 +36,11 @@ export function DesktopModal({
   ...rest
 }: ModalProps) {
   const titleId = useId();
-  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `FooterActions`.
-  const footerContent =
-    footer ??
-    (approveButton || cancelButton || additionalButton ? (
-      <FooterActions
-        surface='window'
-        size='l'
-        approveButton={approveButton}
-        cancelButton={cancelButton}
-        additionalButton={additionalButton}
-        footerActionsOrientation={footerActionsOrientation}
-        testIds={{
-          approve: TEST_IDS.footerApprove,
-          cancel: TEST_IDS.footerCancel,
-          additional: TEST_IDS.footerAdditional,
-        }}
-      />
-    ) : null);
-  const hasFooter = footerContent != null && !loading;
+  // `footer` в приоритете над кнопками-слотами; слоты раскладывает сам `ModalCustom.Footer`.
+  const hasActions = Boolean(approveButton || cancelButton || additionalButton);
+  const hasFooter = (footer != null || hasActions) && !loading;
+  const footerActionProps =
+    footer != null ? {} : { approveButton, cancelButton, additionalButton, footerActionsOrientation };
   const hasTitle = Boolean(title);
   const supportProps = extractSupportProps(rest);
 
@@ -106,15 +92,18 @@ export function DesktopModal({
     >
       {media}
 
-      <div className={styles.safeAreaTop} />
-
       <ModalCustom.Header {...headerProps} />
 
       <ModalCustom.Body content={bodyContent} />
 
-      <div className={styles.safeAreaBottom} />
+      {/* Без футера нижнюю safe-area рисовать некому — слот её и несёт. */}
+      {!hasFooter && <div className={slotStyles.safeAreaBottom} />}
 
-      {hasFooter && <ModalCustom.Footer data-test-id={TEST_IDS.footer}>{footerContent}</ModalCustom.Footer>}
+      {hasFooter && (
+        <ModalCustom.Footer data-test-id={TEST_IDS.footer} {...footerActionProps}>
+          {footer}
+        </ModalCustom.Footer>
+      )}
     </ModalCustom>
   );
 }

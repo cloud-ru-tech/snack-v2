@@ -43,7 +43,6 @@ export function DesktopReleaseNotes({
       data-surface='modal'
       {...extractSupportProps(rest)}
     >
-      <div className={styles.safeAreaTop} />
       <ModalCustom.Header title={t('releaseNotes.title')} />
       <ModalCustom.Body
         className={styles.body}
@@ -64,7 +63,6 @@ export function DesktopReleaseNotes({
           />
         }
       />
-      <div className={styles.safeAreaBottom} />
       {shouldShowFooter && (
         <ModalCustom.Footer>
           <ReleaseNotesFooter

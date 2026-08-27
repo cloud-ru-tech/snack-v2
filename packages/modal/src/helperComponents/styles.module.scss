@@ -1,0 +1,21 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/modal.module' as modal;
+
+// Safe-area окна описана в слотах, а не во фрейме: так `media` остаётся у верхней кромки.
+.safeAreaTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  padding-top: base.simple-var(modal.$modal, 'anatomy', 'container', 'safeArea', 'padding-top');
+}
+
+.safeAreaBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  padding-bottom: base.simple-var(modal.$modal, 'anatomy', 'container', 'safeArea', 'padding-bottom');
+}

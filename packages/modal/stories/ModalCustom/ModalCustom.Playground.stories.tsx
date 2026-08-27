@@ -41,12 +41,10 @@ function PlaygroundRender(args: ModalCustomProps) {
             </div>
           }
         />
-        <ModalCustom.Footer>
-          <div className={styles.footer}>
-            <Button label='Close' appearance='neutral' view='outline' onClick={close} />
-            <Button label='Confirm' appearance='primary' view='filled' onClick={close} />
-          </div>
-        </ModalCustom.Footer>
+        <ModalCustom.Footer
+          cancelButton={{ label: 'Close', onClick: close }}
+          approveButton={{ label: 'Confirm', onClick: close }}
+        />
       </ModalCustom>
     </DemoPage>
   );

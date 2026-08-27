@@ -176,7 +176,23 @@
   "DialogFooter": {
     "displayName": "DialogFooter",
     "propsTypeName": null,
+    "description": "Футер окна вместе с зазором от `Body` (нижняя safe-area).\n\nКнопки-слоты раскладывает `FooterActions`. `children` — для нестандартного содержимого:\nраскладку в этом случае обеспечивает потребитель, `contentWrapper` выравнивает детей по левому краю.",
     "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка."
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка. Задаёт штатную раскладку футера — вместо `children`."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены."
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -185,6 +201,15 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Ориентация кнопок при ровно двух действиях."
       }
     },
     "relatedTypes": {}
@@ -192,6 +217,7 @@
   "DialogHeader": {
     "displayName": "DialogHeader",
     "propsTypeName": null,
+    "description": "Шапка окна вместе с верхней safe-area.\n\nОтступ лежит здесь, а не во фрейме: иначе его теряет ручная композиция из\n`ModalCustom.Header/Body/Footer`. На `sheet` не нужен — там свой `padding-top` в токенах.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -792,6 +818,21 @@
     "displayName": "ModalCustom.Footer",
     "propsTypeName": null,
     "props": {
+      "additionalButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Дополнительная (третья) кнопка."
+      },
+      "approveButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Основная кнопка. Задаёт штатную раскладку футера — вместо `children`."
+      },
+      "cancelButton": {
+        "type": "BottomSheetActionButton",
+        "required": false,
+        "description": "Кнопка отмены."
+      },
       "className": {
         "type": "string",
         "required": false,
@@ -800,6 +841,15 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "footerActionsOrientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Ориентация кнопок при ровно двух действиях."
       }
     },
     "relatedTypes": {}

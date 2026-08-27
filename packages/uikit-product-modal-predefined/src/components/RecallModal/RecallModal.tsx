@@ -56,7 +56,6 @@ export function RecallModal({
       data-test-id={TEST_IDS.recallModal}
       {...rest}
     >
-      <div className={styles.safeAreaTop} />
       <ModalCustom.Header
         title={t('recallModal.title')}
         subtitle={subtitle}
@@ -84,7 +83,6 @@ export function RecallModal({
           </div>
         }
       />
-      <div className={styles.safeAreaBottom} />
       <ModalCustom.Footer>
         <div className={styles.footer}>
           <Button

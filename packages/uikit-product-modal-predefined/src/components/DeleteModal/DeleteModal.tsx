@@ -61,7 +61,6 @@ export function DeleteModal({
       data-test-id={TEST_IDS.deleteModal}
       {...rest}
     >
-      <div className={styles.safeAreaTop} />
       <ModalCustom.Header
         title={title}
         subtitle={subtitle}
@@ -89,7 +88,6 @@ export function DeleteModal({
           </div>
         }
       />
-      <div className={styles.safeAreaBottom} />
       <ModalCustom.Footer>
         <div className={styles.footer}>
           <Button
