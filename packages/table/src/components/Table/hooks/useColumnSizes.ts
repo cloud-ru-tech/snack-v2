@@ -6,13 +6,32 @@ import { DefaultColumns } from '../../../constants';
 import { TREE_CELL_ID } from '../../../helperComponents/Cells/TreeCell/constants';
 import { ColumnDefinition } from '../../../types';
 import { TableProps } from '../../types';
-import {
-  getColumnIdentifier,
-  getColumnStyleVars,
-  getCurrentlyConfiguredHeaderWidth,
-  getInitColumnSizeFromLocalStorage,
-  saveStateToLocalStorage,
-} from '../utils';
+// Импорт по файлам: баррель `../utils` загружает helperComponents и весь пакет следом.
+import { getInitColumnSizeFromLocalStorage, saveStateToLocalStorage } from '../utils/columnSize';
+import { getColumnIdentifier } from '../utils/getColumnIdentifier';
+import { getColumnStyleVars } from '../utils/getColumnStyleVars';
+import { getCurrentlyConfiguredHeaderWidth } from '../utils/getCurrentlyConfiguredHeaderWidth';
+
+/** Дефолты `defaultColumnSizing`: наружу tanstack их не экспортирует. */
+const TANSTACK_DEFAULT_COLUMN_SIZE = 150;
+const TANSTACK_DEFAULT_COLUMN_MIN_SIZE = 20;
+const TANSTACK_DEFAULT_COLUMN_MAX_SIZE = Number.MAX_SAFE_INTEGER;
+
+/**
+ * Размер, который вернёт `header.getSize()`, пока в `columnSizing` нет записи о колонке.
+ * Сравнивать с `columnDef.size` напрямую нельзя: `getSize` ограничивает его значениями
+ * `minSize` и `maxSize`, поэтому у колонки с `minSize` больше `size` они не совпадут
+ * никогда — колонка постоянно считалась бы изменённой пользователем.
+ */
+function getDefaultColumnSize<TData>(header: Header<TData, unknown>): number {
+  const {
+    size = TANSTACK_DEFAULT_COLUMN_SIZE,
+    minSize = TANSTACK_DEFAULT_COLUMN_MIN_SIZE,
+    maxSize = TANSTACK_DEFAULT_COLUMN_MAX_SIZE,
+  } = header.column.columnDef;
+
+  return Math.min(Math.max(minSize, size), maxSize);
+}
 
 type UseColumnSizesParams<TData extends object> = {
   table: Table<TData>;
@@ -73,9 +92,9 @@ export function useColumnSizes<TData extends object>({
 
       if (header.column.getCanResize()) {
         const currentSize = header.getSize();
-        const colDefSize = header.column.columnDef.size;
+        const defaultSize = getDefaultColumnSize(header);
 
-        if (currentSize !== colDefSize || (i < resizedColumnIndex && prevSize === '100%')) {
+        if (currentSize !== defaultSize || (i < resizedColumnIndex && prevSize === '100%')) {
           let realSize = currentSize;
           let needsMeasurement = false;
 
@@ -169,7 +188,15 @@ export function useColumnSizes<TData extends object>({
       return;
     }
 
-    if (Object.keys(columnSizes.realSizes).length) {
+    // `setColumnSizing` всегда создаёт новый объект состояния таблицы, то есть вызывает
+    // рендер, а рендер возвращает выполнение сюда. Записываем только реальные изменения,
+    // иначе обновления становятся бесконечными.
+    const currentColumnSizing = table.getState().columnSizing;
+    const hasSizeChanges = Object.entries(columnSizes.realSizes).some(
+      ([columnId, size]) => currentColumnSizing[columnId] !== size,
+    );
+
+    if (hasSizeChanges) {
       table.setColumnSizing(old => ({ ...old, ...columnSizes.realSizes }));
     }
 
