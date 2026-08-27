@@ -3393,7 +3393,7 @@
           "hidden": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Скрыть элемент из списка (не рендерится и выпадает из навигации)"
+            "description": "Скрыть элемент из списка (не рендерится и исключается из навигации)"
           },
           "id": {
             "type": "ItemId | undefined",

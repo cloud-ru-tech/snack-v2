@@ -40,7 +40,7 @@ export type BaseItem = WithSupportProps<{
   id?: ItemId;
   /** Флаг неактивности элемента */
   disabled?: boolean;
-  /** Скрыть элемент из списка (не рендерится и выпадает из навигации) */
+  /** Скрыть элемент из списка (не рендерится и исключается из навигации) */
   hidden?: boolean;
   /** Ссылка на DOM-элемент айтема */
   itemRef?: RefObject<HTMLElement>;
@@ -49,7 +49,7 @@ export type BaseItem = WithSupportProps<{
   /**
    * Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)
    * <br>
-   * Так же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection)
+   * Также элемент исключается из навигации с клавиатуры и не может быть выбран (selection)
    */
   inactive?: boolean;
   /**
@@ -174,11 +174,7 @@ export type FlattenSimpleItem = FlattenBaseItem & CommonFlattenProps;
 export type FlattenItem =
   | FlattenBaseItem
   | ((
-      | FlattenNextListItem
-      | FlattenGroupListItem
-      | FlattenAccordionItem
-      | FlattenGroupSelectListItem
-      | FlattenSimpleItem
+      FlattenNextListItem | FlattenGroupListItem | FlattenAccordionItem | FlattenGroupSelectListItem | FlattenSimpleItem
     ) &
       CommonFlattenProps);
 

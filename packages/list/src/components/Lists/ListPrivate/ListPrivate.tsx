@@ -127,7 +127,7 @@ export const ListPrivate = forwardRef(
       useSensor(TouchSensor, {}),
       useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
     );
-    // Id перетаскиваемой строки — для рендера её копии в `DragOverlay`. Копия живёт в портале
+    // Id перетаскиваемой строки — для рендера её копии в `DragOverlay`. Копия рендерится в портале
     // над страницей и не режется `overflow: hidden` контейнера `List` (сама строка на время
     // переноса уступает место — её слот пустеет). `null`, когда перетаскивание не идёт.
     const [activeDragId, setActiveDragId] = useState<ItemId | null>(null);

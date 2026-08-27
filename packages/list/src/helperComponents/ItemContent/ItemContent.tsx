@@ -49,32 +49,34 @@ export function ItemContent({
 
   return (
     <div
-      className={cn(styles.content, className)}
+      className={cn(styles.textWrapper, className)}
       {...extractSupportProps(rest)}
       data-size={size ?? 's'}
       data-disabled={disabled || undefined}
     >
-      <div className={styles.headline}>
-        <div className={styles.label}>
-          <TruncateString
-            variant={truncate.variant}
-            text={String(label)}
-            maxLines={truncate.label}
-            data-test-id={TEST_IDS.baseItemLabel}
-          />
+      <div className={styles.textContent}>
+        <div className={styles.headline}>
+          <div className={styles.label}>
+            <TruncateString
+              variant={truncate.variant}
+              text={String(label)}
+              maxLines={truncate.label}
+              data-test-id={TEST_IDS.baseItemLabel}
+            />
+          </div>
+          {caption && <span className={styles.caption}>{caption}</span>}
         </div>
-        {caption && <span className={styles.caption}>{caption}</span>}
-      </div>
 
-      {description && (
-        <div className={styles.description}>
-          <TruncateString
-            text={description}
-            maxLines={truncate.description}
-            data-test-id={TEST_IDS.baseItemDescription}
-          />
-        </div>
-      )}
+        {description && (
+          <div className={styles.description}>
+            <TruncateString
+              text={description}
+              maxLines={truncate.description}
+              data-test-id={TEST_IDS.baseItemDescription}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

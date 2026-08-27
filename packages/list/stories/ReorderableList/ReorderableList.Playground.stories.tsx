@@ -19,7 +19,7 @@ const meta: Meta<typeof ReorderableList> = {
     'data-test-id': TEST_IDS.reorderableList.root,
   },
   argTypes: {
-    // Порядок — управляемый: `items` живут в локальном state render'а, а `onItemsReorder` его
+    // Порядок — управляемый: `items` хранятся в локальном state render'а, а `onItemsReorder` его
     // обновляет. Оба контрола показывали бы значение, которое story всё равно перезапишет.
     items: { table: { disable: true } },
     onItemsReorder: { table: { disable: true } },

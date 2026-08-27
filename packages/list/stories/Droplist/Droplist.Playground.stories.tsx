@@ -230,7 +230,7 @@ const meta: Meta<StoryProps> = {
       options: ['bottom-start', 'bottom-end', 'top-start', 'top-end'],
       if: { global: 'layoutType', neq: 'mobile' },
     },
-    // widthStrategy / barHideStrategy / trigger — enum'ы из API: options и значения подтягивает
+    // widthStrategy / barHideStrategy / trigger — enum'ы из API: options и значения выводит
     // docgen, ручаем только тип контрола (radio для ≤4 значений). widthStrategy — только desktop.
     widthStrategy: { control: 'radio', if: { global: 'layoutType', neq: 'mobile' } },
     barHideStrategy: { control: 'radio' },

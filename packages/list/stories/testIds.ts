@@ -10,6 +10,7 @@ export const TEST_IDS = {
     searchScenario: 'list-search',
     submenuScenario: 'list-submenu',
     bulkSelectScenario: 'list-bulk-select',
+    groupSpacingScenario: 'list-group-spacing',
     polymorphicScenario: 'list-polymorphic',
   },
   droplist: {

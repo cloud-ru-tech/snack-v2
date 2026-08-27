@@ -62,12 +62,13 @@ $loader-height: (
   gap: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-gap;
 
   box-sizing: border-box;
-  padding: 0 popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal
-    popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-gap;
+  padding: 0 popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal;
 
+  // В мастере (popupDropdownHeader) шапка — вертикальный стек, в котором divider такой же
+  // элемент, как titleWrapper: `header-gap` отделяет заголовок от линии, а под линией отступа
+  // нет — контейнер dropdown размещает шапку и список без зазора.
   &[data-divider] {
-    margin-bottom: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-gap;
-    padding-bottom: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-headlineWrapper-paddingHorizontal;
+    padding-bottom: popupPrivate.$sn-popupPrivate-anatomy-dropdown-header-gap;
     border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
   }
 }

@@ -28,7 +28,7 @@ export function SearchItem({ search, itemRef, onNavKeyDown, onFocus, inTopBar }:
   const { firstItemId, size = 'm' } = useNewListContext();
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // Поиск — текстовый input: гасим только Up/Down (навигация по списку), горизонтальные
+    // Поиск — текстовый input: перехватываются только Up/Down (навигация по списку), горизонтальные
     // стрелки оставляем каретке.
     preventScrollOnVerticalArrows(e);
 

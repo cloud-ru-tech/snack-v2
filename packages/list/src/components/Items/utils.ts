@@ -134,7 +134,7 @@ export function kindFlattenItems({ items, prefix, parentId, sortable }: KindFlat
         key: itemId,
         originalId: itemId,
         id: autoId,
-        // `inactive` элемент выпадает из клавиатурной навигации наравне с `disabled`
+        // `inactive` элемент исключается из клавиатурной навигации наравне с `disabled`
         // (см. JSDoc `BaseItem.inactive`). Гейтит только nav/bulk-select через
         // `extractActiveItems`; рендерный `disabled` в `flattenItems` остаётся исходным.
         disabled: item.disabled || item.inactive,

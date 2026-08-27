@@ -1,0 +1,13 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// dropdownContainer из макета: ширина 208, вертикальные поля 4 и тень второго уровня.
+.dropdown {
+  box-sizing: border-box;
+  width: 208px;
+  padding-top: base.$sn-primitive-dimension-4;
+  padding-bottom: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-primitive-dimension-4;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 8%);
+}

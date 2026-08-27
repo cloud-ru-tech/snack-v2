@@ -40,7 +40,7 @@ const items: Item[] = [
 ];
 
 // Controlled group-select: bulk-кнопка переключает всю группу разом.
-// `group-select` имеет смысл только в multiple-режиме (в single/none падает в обычный
+// `group-select` имеет смысл только в multiple-режиме (в single/none сводится к обычному
 // Separator без bulk-кнопки — см. rendering.spec).
 function BulkSelectScenario() {
   const [value, setValue] = useState<Array<string | number>>(['p1']);

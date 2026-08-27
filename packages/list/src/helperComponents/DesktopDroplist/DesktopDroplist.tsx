@@ -145,7 +145,7 @@ export function DesktopDroplist({
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent<HTMLElement>, cb?: (e: KeyboardEvent<HTMLElement>) => void) => {
-      // Up/Down открывают/закрывают дроплист — гасим их нативный скролл страницы. Только
+      // Up/Down открывают/закрывают дроплист — их нативный скролл страницы подавляется. Только
       // вертикальные: триггером может быть текстовое поле, где Left/Right двигают каретку.
       preventScrollOnVerticalArrows(e);
 

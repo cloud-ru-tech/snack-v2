@@ -180,9 +180,9 @@ export function FullWidth() {
 | `content` | `ItemContent` | — | Основной контент айтема |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Флаг неактивности элемента |
-| `hidden` | `boolean \| undefined` | — | Скрыть элемент из списка (не рендерится и выпадает из навигации) |
+| `hidden` | `boolean \| undefined` | — | Скрыть элемент из списка (не рендерится и исключается из навигации) |
 | `id` | `ItemId` | — | Уникальный идентификатор |
-| `inactive` | `boolean \| undefined` | — | Флаг отображения отключения реакции на любое css состояние (hover/focus и тд) <br/> <br> <br/> Так же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection) |
+| `inactive` | `boolean \| undefined` | — | Флаг отображения отключения реакции на любое css состояние (hover/focus и тд) <br/> <br> <br/> Также элемент исключается из навигации с клавиатуры и не может быть выбран (selection) |
 | `itemRef` | `RefObject<HTMLElement> \| undefined` | — | Ссылка на DOM-элемент айтема |
 | `itemWrapRender` | `((item: ReactNode) => ReactNode) \| undefined` | — | Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`) |
 | `label` | `string \| undefined` | — | Название действия: текст пункта списка и label основной кнопки при выборе |

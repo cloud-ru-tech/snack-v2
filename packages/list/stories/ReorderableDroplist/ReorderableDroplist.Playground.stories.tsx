@@ -23,7 +23,7 @@ const meta: Meta<typeof ReorderableDroplist> = {
     // Открытие — действие по триггеру, а не arg (см. rules/trigger-based-stories.md).
     open: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
-    // Порядок управляемый: живёт в локальном state render'а.
+    // Порядок управляемый: хранится в локальном state render'а.
     items: { table: { disable: true } },
     onItemsReorder: { table: { disable: true } },
   },

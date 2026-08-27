@@ -179,6 +179,7 @@ export function BaseItem({
   const itemJSX = (
     <div
       className={cn(commonStyles.itemWrapper, styles.innerWrapper, className)}
+      data-size={size}
       data-inactive={inactive || undefined}
       data-disabled={disabled || undefined}
       data-variant={mode || undefined}
@@ -227,18 +228,24 @@ export function BaseItem({
           </div>
         )}
 
-        {beforeContent && <div className={styles.beforeContent}>{beforeContent}</div>}
-        {contentNode}
-        {afterContent && <div className={styles.afterContent}>{afterContent}</div>}
+        {/* contentWrapper мастера: иконочные слоты и текст лежат в одном узле без gap —
+            их разделяют только горизонтальные поля textContent. */}
+        <div className={styles.contentWrapper}>
+          {beforeContent && <div className={styles.beforeContent}>{beforeContent}</div>}
+          {contentNode}
+          {afterContent && <div className={styles.afterContent}>{afterContent}</div>}
+        </div>
 
         {switchProp && interactive && (
-          <Switch
-            size={TOGGLE_SIZE_MAP[size]}
-            disabled={disabled}
-            checked={isChecked}
-            data-test-id={TEST_IDS.baseItemSwitch}
-            showIcon={showSwitchIcon}
-          />
+          <span className={styles.switchWrapper}>
+            <Switch
+              size={TOGGLE_SIZE_MAP[size]}
+              disabled={disabled}
+              checked={isChecked}
+              data-test-id={TEST_IDS.baseItemSwitch}
+              showIcon={showSwitchIcon}
+            />
+          </span>
         )}
 
         {!switchProp && expandIcon && (

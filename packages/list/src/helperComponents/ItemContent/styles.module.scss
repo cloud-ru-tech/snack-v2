@@ -48,10 +48,11 @@ $description-size-map: (
   color: base.$sn-theme-color-available-version-textSecondary;
 }
 
-.content {
+// Структура повторяет мастер: contentWrapper → textWrapper (вертикальные поля) →
+// textContent (горизонтальные поля и зазор headline ↔ description).
+.textWrapper {
   overflow: hidden;
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
 
@@ -59,14 +60,15 @@ $description-size-map: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
+      padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top');
+      padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom');
 
-      // textContent.gap — вертикальный зазор headline ↔ description. s/m = 0, l = 2.
-      gap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'gap');
-      // textWrapper: vertical padding вокруг строки контента, textContent: horizontal padding.
-      padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top')
-        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-right')
-        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom')
-        base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-left');
+      .textContent {
+        // textContent.gap — вертикальный зазор headline ↔ description. s/m = 0, l = 2.
+        gap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'gap');
+        padding-right: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-right');
+        padding-left: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'padding-left');
+      }
 
       .headline {
         gap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'headline', 'gap');
@@ -90,11 +92,19 @@ $description-size-map: (
     }
   }
 
+  // В мастере выключенное состояние — общая opacity на contentWrapper, без смены цвета текста:
+  // так различие label/caption/description сохраняется и в disabled.
   &[data-disabled] {
-    .label,
-    .description,
-    .caption {
-      color: base.$sn-theme-color-available-version-textDisabled;
-    }
+    opacity: base.$sn-theme-effect-opacity-disabled;
   }
+}
+
+.textContent {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  box-sizing: border-box;
 }

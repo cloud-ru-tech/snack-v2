@@ -185,6 +185,37 @@ $level: var(--level, 0);
         min-height: base.simple-var(icons.$iconSizeMap, $size);
         padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
         padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+
+        // Иконка в слоте ограничена icon-сеткой размера. Через max-*, потому что у svg
+        // из @ds/icons размер приходит инлайновым style и обычный width его не перебивает.
+        // Произвольный контент (counter, tag) правило не задевает — адресуется только прямой svg.
+        > svg {
+          max-width: base.simple-var(icons.$iconSizeMap, $size);
+          max-height: base.simple-var(icons.$iconSizeMap, $size);
+        }
+      }
+
+      // Switch выравнивается по центру первой строки текста тем же centeredWrapper-паддингом,
+      // что иконочные слоты: строка выровнена по flex-start, иначе контрол липнет к верхней кромке.
+      .switchWrapper {
+        padding-top: base.simple-var(
+          list.$list,
+          'anatomy',
+          'size',
+          $size,
+          'listItem',
+          'centeredWrapper',
+          'padding-top'
+        );
+        padding-bottom: base.simple-var(
+          list.$list,
+          'anatomy',
+          'size',
+          $size,
+          'listItem',
+          'centeredWrapper',
+          'padding-bottom'
+        );
       }
 
       .groupIndicator {
@@ -256,10 +287,14 @@ $level: var(--level, 0);
     }
 
     &[data-disabled] {
-      .markerContainer::before {
-        // В мастере выключенный маркер — сплошной `neutral/accent`, а не полупрозрачный
-        // текстовый токен: полоса остаётся читаемой на любом фоне.
-        background-color: base.$sn-theme-color-neutral-accent;
+      .markerContainer {
+        opacity: base.$sn-theme-effect-opacity-disabled;
+
+        &::before {
+          // В мастере выключенный маркер — сплошной `neutral/accent`, а не полупрозрачный
+          // текстовый токен: полоса остаётся читаемой на любом фоне.
+          background-color: base.$sn-theme-color-neutral-accent;
+        }
       }
     }
   }
@@ -270,4 +305,22 @@ $level: var(--level, 0);
   flex-grow: 1;
   flex-shrink: 1;
   box-sizing: border-box;
+}
+
+// contentWrapper мастера: собственного зазора не имеет — иконочные слоты отделены от текста
+// горизонтальными полями textContent, поэтому gap здесь не задаётся.
+.switchWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: content-box;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: flex-start;
+
+  min-width: 0;
 }

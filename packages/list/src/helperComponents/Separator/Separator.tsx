@@ -7,7 +7,6 @@ import { useCollapseLevelContext, useNewListContext } from '../../components/Lis
 import { TEST_IDS } from '../../constants';
 import { listLocale } from '../../locale';
 import { stopPropagation } from '../../utils';
-import { SELECT_BUTTON_SIZE_MAP } from './constants';
 import styles from './styles.module.scss';
 
 export type SeparatorProps = {
@@ -49,11 +48,11 @@ export function Separator({
     const { onClick, checked, itemRef, label } = selectButton;
 
     return (
-      <span className={styles.selectButton} data-size={size} data-weight={(divider && groupVariant) || undefined}>
+      <span className={styles.selectButton} data-size={size}>
         <Button
           view='function'
           appearance='neutral'
-          size={SELECT_BUTTON_SIZE_MAP[size]}
+          size={size}
           tabIndex={0}
           data-test-id={TEST_IDS.bulkSelectButton}
           onClick={(e: MouseEvent<HTMLElement>) => {
@@ -67,7 +66,7 @@ export function Separator({
         />
       </span>
     );
-  }, [divider, groupVariant, selectButton, size, t]);
+  }, [selectButton, size, t]);
 
   if (label) {
     return (
@@ -78,27 +77,29 @@ export function Separator({
         data-level-more-one={level > 1 || undefined}
         style={{ '--level': level } as CSSProperties}
       >
-        {beforeContent && (
-          <span className={styles.beforeContent} aria-hidden>
-            {beforeContent}
-          </span>
-        )}
-
-        <span className={styles.label} data-group-variant={groupVariant}>
-          <TruncateString variant={truncate?.variant} text={label} maxLines={1} />
-        </span>
-
-        <div className={styles.labelEnd}>
-          {selectButtonJSX}
-
-          {/* Figma weight-ось дивайдера = @ds/divider `variant`: subtitle → regular, subtitleTertiary → thin (легаси light). */}
-          {divider && (
-            <Divider
-              className={styles.divider}
-              variant={groupVariant === 'subtitle' ? VARIANT.Regular : VARIANT.Thin}
-            />
+        <div className={styles.contentWrapper}>
+          {beforeContent && (
+            <span className={styles.centeredWrapper} aria-hidden>
+              {beforeContent}
+            </span>
           )}
+
+          <div className={styles.textWrapper}>
+            <div className={styles.textContent}>
+              <span className={styles.headline} data-group-variant={groupVariant}>
+                <TruncateString variant={truncate?.variant} text={label} maxLines={1} />
+              </span>
+            </div>
+
+            {selectButtonJSX}
+          </div>
         </div>
+
+        {/* Figma weight-ось дивайдера = @ds/divider `variant`: subtitle → regular, subtitleTertiary → thin (легаси light).
+            Линия подчёркивает строку заголовка целиком, поэтому вынесена из потока. */}
+        {divider && (
+          <Divider className={styles.divider} variant={groupVariant === 'subtitle' ? VARIANT.Regular : VARIANT.Thin} />
+        )}
       </div>
     );
   }

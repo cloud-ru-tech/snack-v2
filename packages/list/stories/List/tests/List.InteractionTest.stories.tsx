@@ -27,7 +27,7 @@ const items: Item[] = [
   { id: 'b', beforeContent: <StarSVG />, content: { label: 'Analytics' }, onClick: onClickB },
   { id: 'c', content: { label: 'Billing' } },
   { id: 'notify', switch: true, content: { label: 'Notifications' } },
-  // inactive: рендерится, но не выбирается и выпадает из навигации; без onClick → data-non-pointer.
+  // inactive: рендерится, но не выбирается и исключается из навигации; без onClick → data-non-pointer.
   { id: 'dim', inactive: true, content: { label: 'Inactive row' } },
   // hidden: не рендерится в DOM вовсе.
   { id: 'ghost', hidden: true, content: { label: 'Hidden row' } },
@@ -125,7 +125,7 @@ export const InteractionTest: Story = {
     });
 
     await step('inactive item is non-interactive (data-non-pointer on the row, never checked)', async () => {
-      // data-inactive живёт на внешней обёртке (itemWrapper); адресуемый <li> несёт data-non-pointer.
+      // data-inactive стоит на внешней обёртке (itemWrapper); адресуемый <li> несёт data-non-pointer.
       const dim = canvas.getByTestId(itemId('dim'));
       await expect(dim).toHaveAttribute('data-non-pointer', 'true');
       await expect(dim).not.toHaveAttribute('data-checked', 'true');

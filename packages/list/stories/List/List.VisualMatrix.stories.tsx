@@ -475,7 +475,7 @@ export const VisualMatrix: Story = {
         ]}
       />
 
-      {/* Submenu (next-list) и Group with bulk select (group-select) живут отдельными scenario-сторис
+      {/* Submenu (next-list) и Group with bulk select (group-select) вынесены в отдельные scenario-сторис
           с явной Figma-привязкой: examples/List.Submenu.stories.tsx, examples/List.BulkSelect.stories.tsx. */}
 
       <StoryTable

@@ -920,7 +920,7 @@ export function DroplistWithHeader() {
 | `content` | `ItemContent` | — | Основной контент айтема |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Флаг неактивности элемента |
-| `hidden` | `boolean \| undefined` | — | Скрыть элемент из списка (не рендерится и выпадает из навигации) |
+| `hidden` | `boolean \| undefined` | — | Скрыть элемент из списка (не рендерится и исключается из навигации) |
 | `id` | `ItemId` | — | Уникальный идентификатор |
 | `itemRef` | `RefObject<HTMLElement> \| undefined` | — | Ссылка на DOM-элемент айтема |
 | `itemWrapRender` | `((item: ReactNode) => ReactNode) \| undefined` | — | Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`) |

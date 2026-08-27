@@ -54,7 +54,7 @@ type UseListItemsModelProps = {
  * Единая модель данных списка для `List` и `Droplist`: collapse-состояние,
  * плоские карты айтемов (`flattenItems` / `focusFlattenItems`) и производный
  * порядок навигации (`ids` / `expandedIds`). Оба компонента собирают одну и ту же
- * структуру, поэтому она живёт в одном хуке — расхождение между списком и дроплистом
+ * структуру, поэтому она собрана в одном хуке — расхождение между списком и дроплистом
  * физически невозможно.
  */
 export function useListItemsModel({
@@ -217,7 +217,7 @@ export function useNewKeyboardNavigation<T extends HTMLElement>({
 
   const handleListKeyDownFactory = useCallback(
     (ids: ItemId[], expandedIds: ItemId[]) => (e: KeyboardEvent<T>) => {
-      // Стрелки навигации по списку гасим централизованно — иначе нативное поведение скроллит
+      // Стрелки навигации по списку перехватываются централизованно — иначе нативное поведение скроллит
       // страницу (элементы — кнопки/li, не текст, поэтому безопасны все четыре стрелки).
       preventScrollOnArrowKeys(e);
 
