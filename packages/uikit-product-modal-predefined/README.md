@@ -5,7 +5,7 @@
 Пакет `@ds/uikit-product-modal-predefined` предоставляет готовые product-сценарии поверх `@ds/modal` и `@ds/bottom-sheet`.
 
 - **DeleteModal** — удаление объекта с опциональным подтверждением через ввод текста.
-- **RecallModal** — отзыв действия с тем же Figma-first `confirmable` состоянием.
+- **RecallModal** — отзыв действия с тем же подтверждением через ввод текста.
 - **ReleaseNotes** — адаптивный release notes: модальное окно на desktop, bottom sheet на mobile; состояния `data`, `noData`, `error`.
 
 ## Установка
@@ -22,13 +22,13 @@ import { DeleteModal, RecallModal, ReleaseNotes } from '@ds/uikit-product-modal-
 
 Источник: `Product UI Kit (variables)`, root node `3179:1987`.
 
-Пакет следует Figma-first API: `confirmable` и `contentState` являются публичными визуальными осями. Legacy `@cloud-ru/uikit-product-modal-predefined` используется как источник поведения, но новый пакет не является drop-in заменой legacy API.
+Пакет следует Figma-first API: `contentState` — публичная визуальная ось, поле подтверждения включается пропом `confirmText`. Legacy `@cloud-ru/uikit-product-modal-predefined` используется как источник поведения, но новый пакет не является drop-in заменой legacy API.
 
 ## DeleteModal
 
-Готовое модальное окно удаления с Figma-first состоянием confirmable.
+Готовое модальное окно удаления с опциональным подтверждением через ввод текста.
 
-`DeleteModal` — готовый сценарий удаления объекта. Для варианта из макета `deleteModalConfirmable` используйте `confirmable` и `confirmText`.
+`DeleteModal` — готовый сценарий удаления объекта. Вариант из макета `deleteModalConfirmable` включается пропом `confirmText`: если он передан, модалка показывает поле подтверждения.
 
 ### Примеры использования
 
@@ -73,7 +73,6 @@ export function DeleteConfirmable() {
         open={open}
         onClose={() => setOpen(false)}
         objectType='виртуальную машину'
-        confirmable
         confirmText='vm-production-01'
         onDelete={close => close()}
       />
@@ -89,9 +88,8 @@ export function DeleteConfirmable() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
+| `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения. Если передан — модалка показывает поле подтверждения |
 | `confirmTextVariant` | `"name"` \| `"text"` | `name` | Тип текста подтверждения |
-| `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
 | `content` | `ReactNode` | — | Основной текст модалки |
 | `data-test-id` | `string` | — |  |
 | `deleting` | `boolean` | — | Состояние загрузки кнопки удаления |
@@ -110,9 +108,9 @@ export function DeleteConfirmable() {
 
 ## RecallModal
 
-Готовое модальное окно отзыва действия с опциональным confirmable состоянием.
+Готовое модальное окно отзыва действия с опциональным подтверждением через ввод текста.
 
-`RecallModal` — готовый сценарий отзыва действия. Визуальная ось `confirmable` соответствует макету `recallModalConfirmable`.
+`RecallModal` — готовый сценарий отзыва действия. Вариант из макета `recallModalConfirmable` включается пропом `confirmText`: если он передан, модалка показывает поле подтверждения.
 
 ### Примеры использования
 
@@ -151,7 +149,6 @@ export function RecallConfirmable() {
       <RecallModal
         open={open}
         onClose={() => setOpen(false)}
-        confirmable
         confirmText='recall-operation-01'
         onRecall={close => close()}
       />
@@ -167,8 +164,7 @@ export function RecallConfirmable() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `closeOnPopstate` | `boolean` | — | Закрытие при навигации по истории |
-| `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения |
-| `confirmable` | `boolean` | `false` | Состояние с подтверждением через ввод текста |
+| `confirmText` | `string` | — | Текст, который нужно ввести для подтверждения. Если передан — модалка показывает поле подтверждения |
 | `content` | `ReactNode` | — | Основной текст модалки |
 | `data-test-id` | `string` | — |  |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |

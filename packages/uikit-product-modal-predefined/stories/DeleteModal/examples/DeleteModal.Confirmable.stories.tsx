@@ -14,7 +14,6 @@ const args: DeleteModalProps = {
   open: true,
   onClose: () => undefined,
   objectType: 'виртуальную машину',
-  confirmable: true,
   confirmText: 'vm-production-01',
   onDelete: () => undefined,
 };

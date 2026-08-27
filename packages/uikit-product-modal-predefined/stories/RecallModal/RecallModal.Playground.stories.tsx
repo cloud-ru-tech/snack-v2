@@ -46,7 +46,6 @@ const meta: Meta<RecallModalProps> = {
     content: 'Действие будет отозвано для всех связанных объектов.',
     subtitle: 'Отзыв применится сразу',
     titleTooltip: 'Отзыв затронет все связанные операции',
-    confirmable: true,
     confirmText: 'recall-operation-01',
     hideConfirmCopyButton: false,
     loading: false,

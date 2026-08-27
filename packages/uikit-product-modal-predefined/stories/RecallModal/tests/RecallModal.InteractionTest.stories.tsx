@@ -19,7 +19,6 @@ export const InteractionTest: Story = {
   args: {
     open: true,
     onClose: fn(),
-    confirmable: true,
     confirmText: 'recall-operation-01',
     onRecall,
   },

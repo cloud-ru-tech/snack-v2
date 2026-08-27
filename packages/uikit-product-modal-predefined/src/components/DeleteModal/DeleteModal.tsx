@@ -20,7 +20,6 @@ export function DeleteModal({
   onDelete,
   deleting,
   content,
-  confirmable = false,
   confirmText,
   hideConfirmCopyButton,
   subtitle,
@@ -30,10 +29,10 @@ export function DeleteModal({
   const { t } = modalPredefinedLocale.useTranslations();
   const inputRef = useRef<HTMLInputElement>(null);
   const { value, error, handleChange, reset, validate } = useTextFieldValidation({
-    target: confirmable ? confirmText : undefined,
+    target: confirmText,
     errorText: t('confirm.error'),
   });
-  const shouldShowConfirm = Boolean(confirmable && confirmText);
+  const shouldShowConfirm = Boolean(confirmText);
   const title = objectType ? t('deleteModal.title', { objectType }) : t('deleteModal.fallbackTitle');
   const confirmPlaceholder =
     confirmTextVariant === CONFIRM_TEXT_VARIANT.Text ? t('confirm.textPlaceholder') : t('confirm.namePlaceholder');
@@ -60,7 +59,6 @@ export function DeleteModal({
       closeOnPopstate={closeOnPopstate}
       width={WIDTH.S}
       data-test-id={TEST_IDS.deleteModal}
-      data-confirmable={confirmable || undefined}
       {...rest}
     >
       <div className={styles.safeAreaTop} />

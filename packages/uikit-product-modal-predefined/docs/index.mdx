@@ -10,7 +10,7 @@ order: 0
 Пакет `@ds/uikit-product-modal-predefined` предоставляет готовые product-сценарии поверх `@ds/modal` и `@ds/bottom-sheet`.
 
 - **DeleteModal** — удаление объекта с опциональным подтверждением через ввод текста.
-- **RecallModal** — отзыв действия с тем же Figma-first `confirmable` состоянием.
+- **RecallModal** — отзыв действия с тем же подтверждением через ввод текста.
 - **ReleaseNotes** — адаптивный release notes: модальное окно на desktop, bottom sheet на mobile; состояния `data`, `noData`, `error`.
 
 ## Установка
@@ -27,4 +27,4 @@ import { DeleteModal, RecallModal, ReleaseNotes } from '@ds/uikit-product-modal-
 
 Источник: `Product UI Kit (variables)`, root node `3179:1987`.
 
-Пакет следует Figma-first API: `confirmable` и `contentState` являются публичными визуальными осями. Legacy `@cloud-ru/uikit-product-modal-predefined` используется как источник поведения, но новый пакет не является drop-in заменой legacy API.
+Пакет следует Figma-first API: `contentState` — публичная визуальная ось, поле подтверждения включается пропом `confirmText`. Legacy `@cloud-ru/uikit-product-modal-predefined` используется как источник поведения, но новый пакет не является drop-in заменой legacy API.

@@ -11,7 +11,7 @@ export const releaseNotesItems: NoteItemProps[] = [
   },
   {
     title: 'Figma-first API',
-    description: '`confirmable` и `contentState` соответствуют осям из Product UI Kit.',
+    description: '`contentState` и поле подтверждения через `confirmText` соответствуют макетам Product UI Kit.',
     image: {
       src: 'https://placehold.co/520x320?text=Figma',
       alt: 'Figma preview',

@@ -13,7 +13,6 @@ type Story = StoryObj<typeof RecallModal>;
 const args: RecallModalProps = {
   open: true,
   onClose: () => undefined,
-  confirmable: true,
   confirmText: 'recall-operation-01',
   onRecall: () => undefined,
 };

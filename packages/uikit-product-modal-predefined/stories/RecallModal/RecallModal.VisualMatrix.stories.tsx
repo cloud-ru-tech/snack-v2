@@ -52,7 +52,6 @@ function VisualMatrixCanvas() {
           onClose={close}
           content='Действие будет отозвано для всех связанных объектов.'
           titleTooltip='Отзыв затронет все связанные операции'
-          confirmable={active === 'confirmable' || active === 'confirmableLong'}
           confirmText={active ? CONFIRM_TEXT_BY_STATE[active] : undefined}
           loading={active === 'loading'}
           onRecall={closeModal => closeModal()}

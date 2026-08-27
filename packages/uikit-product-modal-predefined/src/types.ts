@@ -26,9 +26,7 @@ export type NoteItemProps = {
 type BaseActionModalProps = Pick<ModalCustomProps, 'open' | 'onClose' | 'mode' | 'closeOnPopstate'> & {
   /** Подсказка рядом с заголовком */
   titleTooltip?: ReactNode;
-  /** Состояние с подтверждением через ввод текста */
-  confirmable?: boolean;
-  /** Текст, который нужно ввести для подтверждения */
+  /** Текст, который нужно ввести для подтверждения. Если передан — модалка показывает поле подтверждения */
   confirmText?: string;
   /** Скрыть кнопку копирования текста подтверждения */
   hideConfirmCopyButton?: boolean;

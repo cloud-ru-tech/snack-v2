@@ -19,7 +19,6 @@ export function RecallModal({
   onRecall,
   loading,
   content,
-  confirmable = false,
   confirmText,
   hideConfirmCopyButton,
   subtitle,
@@ -28,10 +27,10 @@ export function RecallModal({
   const { t } = modalPredefinedLocale.useTranslations();
   const inputRef = useRef<HTMLInputElement>(null);
   const { value, error, handleChange, reset, validate } = useTextFieldValidation({
-    target: confirmable ? confirmText : undefined,
+    target: confirmText,
     errorText: t('confirm.error'),
   });
-  const shouldShowConfirm = Boolean(confirmable && confirmText);
+  const shouldShowConfirm = Boolean(confirmText);
 
   const handleClose = () => {
     reset();
@@ -55,7 +54,6 @@ export function RecallModal({
       closeOnPopstate={closeOnPopstate}
       width={WIDTH.S}
       data-test-id={TEST_IDS.recallModal}
-      data-confirmable={confirmable || undefined}
       {...rest}
     >
       <div className={styles.safeAreaTop} />

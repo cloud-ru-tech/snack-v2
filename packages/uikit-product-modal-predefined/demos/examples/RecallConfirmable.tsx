@@ -11,7 +11,6 @@ export function RecallConfirmable() {
       <RecallModal
         open={open}
         onClose={() => setOpen(false)}
-        confirmable
         confirmText='recall-operation-01'
         onRecall={close => close()}
       />

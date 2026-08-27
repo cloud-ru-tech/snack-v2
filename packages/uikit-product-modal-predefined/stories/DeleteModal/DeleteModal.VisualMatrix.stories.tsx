@@ -23,8 +23,6 @@ function VisualMatrixCanvas() {
   const [active, setActive] = useState<State | null>(null);
   const close = () => setActive(null);
 
-  const isConfirmable = active === 'confirmable' || active === 'confirmableText' || active === 'confirmableLong';
-
   return (
     <div className={styles.panel}>
       <StoryTable
@@ -55,7 +53,6 @@ function VisualMatrixCanvas() {
           objectType='виртуальную машину'
           content='После удаления восстановить объект будет невозможно.'
           titleTooltip='Удаление затронет все связанные ресурсы'
-          confirmable={isConfirmable}
           confirmText={active ? CONFIRM_TEXT_BY_STATE[active] : undefined}
           confirmTextVariant={active === 'confirmableText' ? CONFIRM_TEXT_VARIANT.Text : CONFIRM_TEXT_VARIANT.Name}
           deleting={active === 'deleting'}

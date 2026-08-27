@@ -12,7 +12,6 @@ export function DeleteConfirmable() {
         open={open}
         onClose={() => setOpen(false)}
         objectType='виртуальную машину'
-        confirmable
         confirmText='vm-production-01'
         onDelete={close => close()}
       />

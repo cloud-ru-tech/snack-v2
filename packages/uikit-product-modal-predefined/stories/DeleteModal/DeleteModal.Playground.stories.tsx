@@ -19,7 +19,7 @@ function PlaygroundRender(args: DeleteModalProps) {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>DeleteModal</DemoTitle>
-        <DemoHint>Preset delete modal from Figma. `confirmable` controls the confirmation field.</DemoHint>
+        <DemoHint>Preset delete modal from Figma. `confirmText` turns on the confirmation field.</DemoHint>
         <DemoActions align='center'>
           <div className={styles.panel}>
             <Button
@@ -47,7 +47,6 @@ const meta: Meta<DeleteModalProps> = {
     content: 'После удаления восстановить объект будет невозможно.',
     subtitle: 'Действие необратимо',
     titleTooltip: 'Удаление затронет все связанные ресурсы',
-    confirmable: true,
     confirmText: 'vm-production-01',
     confirmTextVariant: CONFIRM_TEXT_VARIANT.Name,
     hideConfirmCopyButton: false,

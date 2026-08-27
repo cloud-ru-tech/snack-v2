@@ -20,7 +20,6 @@ export const InteractionTest: Story = {
     open: true,
     onClose: fn(),
     objectType: 'виртуальную машину',
-    confirmable: true,
     confirmText: 'vm-production-01',
     onDelete,
   },

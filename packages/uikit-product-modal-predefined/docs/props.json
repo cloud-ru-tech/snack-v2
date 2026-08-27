@@ -11,7 +11,7 @@
       "confirmText": {
         "type": "string",
         "required": false,
-        "description": "Текст, который нужно ввести для подтверждения"
+        "description": "Текст, который нужно ввести для подтверждения. Если передан — модалка показывает поле подтверждения"
       },
       "confirmTextVariant": {
         "type": "enum",
@@ -25,12 +25,6 @@
         "typeRefs": [
           "ConfirmTextVariant"
         ]
-      },
-      "confirmable": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Состояние с подтверждением через ввод текста"
       },
       "content": {
         "type": "ReactNode",
@@ -370,13 +364,7 @@
       "confirmText": {
         "type": "string",
         "required": false,
-        "description": "Текст, который нужно ввести для подтверждения"
-      },
-      "confirmable": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Состояние с подтверждением через ввод текста"
+        "description": "Текст, который нужно ввести для подтверждения. Если передан — модалка показывает поле подтверждения"
       },
       "content": {
         "type": "ReactNode",
