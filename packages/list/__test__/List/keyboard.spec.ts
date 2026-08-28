@@ -56,6 +56,9 @@ test.describe('List — keyboard navigation', () => {
     const single = getByTestId(`${TEST_IDS.list.selectionScenario}-single`);
     await expect(single).toBeVisible();
 
+    // Play кликает item'ы и оставляет фокус на строке — сбрасываем, чтобы ArrowDown
+    // шёл от корня списка (roving tabindex), а не продолжал с mid-list позиции.
+    await page.locator('body').click({ position: { x: 0, y: 0 } });
     await single.focus();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');

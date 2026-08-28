@@ -99,5 +99,11 @@ export const Selection: Story = {
       if (items[1]) await userEvent.click(items[1] as HTMLElement);
       if (items[3]) await userEvent.click(items[3] as HTMLElement);
     });
+
+    // Клики оставляют фокус на item — e2e keyboard-спек на этой стори жмёт ArrowDown
+    // с ожиданием старта от корня списка; чужой activeElement ломает roving.
+    await step('cleanup: blur leftover focus', async () => {
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    });
   },
 };
