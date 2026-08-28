@@ -65,6 +65,7 @@
 | `className` | `string` | — | CSS-класс контейнера body. |
 | `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLElement>` | — | Ссылка на скроллируемый контейнер body. |
 
 ## PopupCloseButton
 
@@ -98,7 +99,7 @@
 | `data-test-id` | `string` | — |  |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
 | `slotAfterTitle` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
-| `slotSecondTitle` | `ReactNode` | — | Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Есть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности. |
+| `slotSecondTitle` | `ReactNode` | — | Slot под подзаголовком — типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Рендерится на обеих поверхностях: `secondWrapper` в мастере `bottomSheet`, <br/> `subHeadlineWrapper` в мастере `window` (modal / drawer). |
 | `subtitle` | `ReactNode` | — | Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях. |
 | `testIds` | `PopupHeaderTestIds` | — | Переопределение `data-test-id` слотов шапки. Каждый пропущенный ключ берётся из `TEST_IDS`. <br/> Потребитель-обёртка (drawer/modal) прокидывает сюда свои id, чтобы сохранить публичный контракт. |
 | `title` | `ReactNode` | — | Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer). |

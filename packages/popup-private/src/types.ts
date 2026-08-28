@@ -1,6 +1,6 @@
 import { ButtonProps } from '@ds/button';
 import { ValueOf, WithSupportProps } from '@ds/utils';
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode, Ref } from 'react';
 
 import { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND } from './constants';
 
@@ -14,8 +14,7 @@ import { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND } from './constants';
  * ниже раскрывает анкорные атрибуты. Для нестандартного футера остаётся `footer: ReactNode`.
  */
 export type BottomSheetActionButton =
-  | Omit<ButtonProps<'button'>, 'fullWidth' | 'size'>
-  | Omit<ButtonProps<'a'>, 'fullWidth' | 'size'>;
+  Omit<ButtonProps<'button'>, 'fullWidth' | 'size'> | Omit<ButtonProps<'a'>, 'fullWidth' | 'size'>;
 
 export type MediaKind = ValueOf<typeof MEDIA_KIND>;
 
@@ -47,8 +46,9 @@ export type PopupHeaderProps = WithSupportProps<{
   /** Текстовая строка-подзаголовок под title (Figma `subtitleWrapper`). Рендерится на всех поверхностях. */
   subtitle?: ReactNode;
   /**
-   * Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.
-   * Есть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности.
+   * Slot под подзаголовком — типично `SearchBar`, `SegmentControl` или `Filter`.
+   * Рендерится на обеих поверхностях: `secondWrapper` в мастере `bottomSheet`,
+   * `subHeadlineWrapper` в мастере `window` (modal / drawer).
    */
   slotSecondTitle?: ReactNode;
   /**
@@ -97,6 +97,8 @@ export type PopupBodyProps = WithSupportProps<
      * @default true
      */
     bodyPadding?: boolean;
+    /** Ссылка на скроллируемый контейнер body. */
+    innerRef?: Ref<HTMLElement>;
     /** CSS-класс контейнера body. */
     className?: string;
   }>

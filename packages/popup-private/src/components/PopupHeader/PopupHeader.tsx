@@ -25,7 +25,6 @@ export function PopupHeader({
   ...rest
 }: PopupHeaderProps) {
   const surface = useSurfaceTokenSegment();
-  // `slotSecondTitle` (search/segment) есть только в мастере bottomSheet — на window/modal/drawer игнор.
   const isSheet = useOverlaySurface() === OVERLAY_SURFACE.Sheet;
   const hasHeadline = Boolean(title || onBackButtonClick || actionButton || slotAfterTitle);
 
@@ -115,7 +114,7 @@ export function PopupHeader({
         </div>
       )}
 
-      {isSheet && slotSecondTitle && (
+      {slotSecondTitle && (
         <div className={styles.secondWrapper} data-test-id={ids.slotSecondTitle}>
           {slotSecondTitle}
         </div>

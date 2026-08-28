@@ -149,4 +149,11 @@
   [data-surface='bottomSheet'] & {
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'secondWrapper');
   }
+
+  // window: Figma-слот `slotSubHeadline` живёт в `subHeadlineWrapper` — те же токены, что у подзаголовка.
+  [data-surface='window'] & {
+    align-self: stretch;
+
+    @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'subHeadlineWrapper');
+  }
 }

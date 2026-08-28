@@ -208,6 +208,11 @@
       "data-test-id": {
         "type": "string",
         "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на скроллируемый контейнер body."
       }
     },
     "relatedTypes": {}
@@ -292,7 +297,7 @@
       "slotSecondTitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Slot под подзаголовком (Figma `secondWrapper`) — типично `SearchBar`, `SegmentControl` или `Filter`.\nЕсть только в мастере `bottomSheet`, поэтому рендерится **только** на sheet-поверхности."
+        "description": "Slot под подзаголовком — типично `SearchBar`, `SegmentControl` или `Filter`.\nРендерится на обеих поверхностях: `secondWrapper` в мастере `bottomSheet`,\n`subHeadlineWrapper` в мастере `window` (modal / drawer)."
       },
       "subtitle": {
         "type": "ReactNode",
