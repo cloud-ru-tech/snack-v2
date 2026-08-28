@@ -17,6 +17,7 @@ export function MainMenu({
   platformGroups,
   logo,
   leftTop,
+  leftBottom,
   rightTop,
   segments,
   segmentPrefs,
@@ -70,6 +71,7 @@ export function MainMenu({
         search={search}
         logo={logo}
         leftTop={leftTop}
+        leftBottom={leftBottom}
         rightTop={rightTop}
         favorite={favorite}
         open={open}
