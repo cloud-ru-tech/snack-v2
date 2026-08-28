@@ -1498,7 +1498,7 @@
           "inactive": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТак же элемент пропадает из навигации с клавиатуры, и не может быть выбран (selection)"
+            "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТакже элемент исключается из навигации с клавиатуры и не может быть выбран (selection)"
           },
           "itemRef": {
             "type": "RefObject<HTMLElement> | undefined",

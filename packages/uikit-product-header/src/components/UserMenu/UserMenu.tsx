@@ -1,6 +1,6 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Avatar } from '@ds/avatar';
-import { BaseItemProps, Droplist, ListProps } from '@ds/list';
+import { BaseItemProps, Droplist, DroplistProps } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import { useMemo } from 'react';
 
@@ -11,12 +11,18 @@ import { useUserMenuItems } from './hooks/useUserMenuItems';
 import styles from './styles.module.scss';
 import { ThemeProps, UserProfileProps } from './types';
 
+// Выбор темы ведёт корневой список: `value` — текущая тема, `id` опций совпадает с
+// `ThemeMode`. `selection` контролируемый и без `onChange`, поэтому клики по обычным
+// пунктам меню (профиль, организации, выход) состояние выбора не меняют — подсвечена
+// всегда только текущая тема и ветка `Тема` над ней.
+const SELECTION_STUB: DroplistProps['selection'] = { mode: 'single', value: '__empty_stub__', onChange: () => {} };
+
 export type UserMenuProps = {
   profile?: UserProfileProps;
 
   theme?: ThemeProps;
 
-  items?: ListProps['items'];
+  items?: DroplistProps['items'];
 
   settingItems?: BaseItemProps[];
 
@@ -89,6 +95,7 @@ export function UserMenu({
       open={open}
       onOpenChange={setOpen}
       size='m'
+      selection={SELECTION_STUB}
       items={userMenuItems}
       trigger='click'
       placement='bottom-end'
