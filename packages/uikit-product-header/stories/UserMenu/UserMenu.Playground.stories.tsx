@@ -1,5 +1,6 @@
-import { UserMenu, UserMenuProps } from '@ds/uikit-product-header';
+import { ThemeMode, UserMenu, UserMenuProps } from '@ds/uikit-product-header';
 import { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
@@ -31,17 +32,23 @@ type Story = StoryObj<UserMenuProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: args => (
-    <DemoPage>
-      <DemoPanel width='wide'>
-        <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Меню пользователя: профиль, тема, настройки и выход.</DemoHint>
-        <DemoActions align='center'>
-          <UserMenu {...args} />
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
-  ),
+  // Тема хранится в state стори: со статическим `value` из args выбранной оставалась бы
+  // одна и та же тема, и переключение не было бы видно.
+  render: function Render({ theme, ...args }: UserMenuProps) {
+    const [themeMode, setThemeMode] = useState<ThemeMode | undefined>(theme?.value);
+
+    return (
+      <DemoPage>
+        <DemoPanel width='wide'>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Меню пользователя: профиль, тема, настройки и выход.</DemoHint>
+          <DemoActions align='center'>
+            <UserMenu {...args} theme={{ value: themeMode, onChange: setThemeMode }} />
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    );
+  },
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.userMenu.button)).toBeVisible();
   },

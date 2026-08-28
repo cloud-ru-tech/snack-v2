@@ -1,12 +1,38 @@
 import { ChevronRightSVG } from '@ds/icons/interface/system';
 import { MouseEvent } from 'react';
 
-import { BaseItemProps, Item, NextListItem } from '../../components/Items';
+import { BaseItemProps, Item, NextListItem, ReorderItem } from '../../components/Items';
 import { ITEM_TYPE } from '../../constants';
 
+/**
+ * Айтем уровня по индексному пути от корня. Путь разрешается на каждом рендере по актуальным
+ * `items`: иначе открытый sheet сохранял бы копию айтема, полученную при заходе во вложенный
+ * список, и не отражал бы её последующие изменения (например, смену выбранной строки).
+ */
+export function resolveItemByPath<T extends Item | ReorderItem>(
+  items: T[],
+  indexPath: number[],
+): NextListItem | undefined {
+  let source: T[] | undefined = items;
+  let node: T | undefined;
+
+  for (const index of indexPath) {
+    node = source?.[index];
+
+    if (!node || typeof node !== 'object' || !('items' in node)) {
+      source = undefined;
+      continue;
+    }
+
+    source = node.items as T[];
+  }
+
+  return node as NextListItem | undefined;
+}
+
 /** Текст `label` next-list-айтема — заголовок шапки sheet'а при заходе во вложенный список. */
-export function nextListOption(item: NextListItem): string | undefined {
-  const { content } = item;
+export function nextListOption(item?: NextListItem): string | undefined {
+  const content = item?.content;
   if (content && typeof content === 'object' && 'label' in content) {
     return String((content as { label: string | number }).label);
   }
@@ -17,16 +43,20 @@ export function nextListOption(item: NextListItem): string | undefined {
  * Готовит айтемы текущего уровня sheet'а:
  * - `next-list` превращается в базовый айтем с шевроном `>`, клик по которому уводит на уровень вложенного
  *   списка (drill-down), а не открывает второй BottomSheet (десктопный nested-popover на mobile неприменим);
+ *   позиция айтема передаётся в `onDrill` индексным путём — уровень разрешается по актуальным `items`;
  * - `group` / `group-select` / `collapse` рекурсивно обрабатываются (внутри них тоже может быть `next-list`);
  * - базовые айтемы (action-меню без `selection`) при `closeOnClick` закрывают sheet по клику.
  */
 export function buildLevelItems(
   items: Item[],
-  onDrill: (item: NextListItem) => void,
+  onDrill: (indexPath: number[]) => void,
   onClose: () => void,
   closeOnClick: boolean,
+  basePath: number[] = [],
 ): Item[] {
-  return items.map(item => {
+  return items.map((item, index) => {
+    const indexPath = [...basePath, index];
+
     if (item && typeof item === 'object' && 'type' in item) {
       if (item.type === ITEM_TYPE.NextList) {
         const next = item;
@@ -49,13 +79,13 @@ export function buildLevelItems(
           afterContent: <ChevronRightSVG />,
           onClick: (event: MouseEvent<HTMLElement>) => {
             next.onClick?.(event);
-            onDrill(next);
+            onDrill(indexPath);
           },
         };
       }
 
       if (item.type === ITEM_TYPE.Group || item.type === ITEM_TYPE.GroupSelect || item.type === ITEM_TYPE.Collapse) {
-        return { ...item, items: buildLevelItems(item.items, onDrill, onClose, closeOnClick) };
+        return { ...item, items: buildLevelItems(item.items, onDrill, onClose, closeOnClick, indexPath) };
       }
     }
 

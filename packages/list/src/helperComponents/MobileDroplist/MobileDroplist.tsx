@@ -9,7 +9,7 @@ import { List, ReorderableList } from '../../components/Lists/List';
 import { BaseDroplistProps, MobileDroplistProps } from '../../components/Lists/types';
 import { TEST_IDS } from '../../constants';
 import styles from './MobileDroplist.module.scss';
-import { buildLevelItems, nextListOption } from './utils';
+import { buildLevelItems, nextListOption, resolveItemByPath } from './utils';
 
 /**
  * Mobile-вариант `Droplist`: рендерит `List` (в переданном `size`) внутри `BottomSheet` из `@ds/bottom-sheet`.
@@ -47,8 +47,10 @@ export function MobileDroplist({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [open = false, setIsOpen] = useValueControl({ value: openProp, onChange: onOpenChange });
 
-  // Стек заходов во вложенные next-list'ы. Пустой — корневой уровень.
-  const [path, setPath] = useState<NextListItem[]>([]);
+  // Стек заходов во вложенные next-list'ы: индексный путь от корня на каждый уровень.
+  // Пустой — корневой уровень. Хранится путь, а не сам айтем: айтемы пересобираются на каждом
+  // рендере, и сохранённая копия оставила бы открытый sheet в устаревшем состоянии.
+  const [path, setPath] = useState<number[][]>([]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -135,7 +137,11 @@ export function MobileDroplist({
   // Каскад sheet'ов: корень + по одному sheet'у на каждый заход в next-list. Каждый накладывается
   // поверх предыдущего (свой backdrop), а не заменяет его содержимое. Назад — закрывает верхний.
   const sheets = [{ source: items, title: label, item: undefined as NextListItem | undefined }].concat(
-    path.map(item => ({ source: item.items, title: nextListOption(item), item })),
+    path.map(indexPath => {
+      const item = resolveItemByPath(items, indexPath);
+
+      return { source: item?.items ?? [], title: nextListOption(item), item };
+    }),
   );
 
   return (
@@ -151,7 +157,8 @@ export function MobileDroplist({
           ? undefined
           : buildLevelItems(
               source as Item[],
-              next => setPath(prev => [...prev.slice(0, levelIndex), next]),
+              relativePath =>
+                setPath(prev => [...prev.slice(0, levelIndex), [...(prev[levelIndex - 1] ?? []), ...relativePath]]),
               handleClose,
               closeOnClick,
             );

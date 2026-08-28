@@ -4785,7 +4785,7 @@
   "buildLevelItems": {
     "displayName": "buildLevelItems",
     "propsTypeName": null,
-    "description": "Готовит айтемы текущего уровня sheet'а:\n- `next-list` превращается в базовый айтем с шевроном `>`, клик по которому уводит на уровень вложенного\n  списка (drill-down), а не открывает второй BottomSheet (десктопный nested-popover на mobile неприменим);\n- `group` / `group-select` / `collapse` рекурсивно обрабатываются (внутри них тоже может быть `next-list`);\n- базовые айтемы (action-меню без `selection`) при `closeOnClick` закрывают sheet по клику.",
+    "description": "Готовит айтемы текущего уровня sheet'а:\n- `next-list` превращается в базовый айтем с шевроном `>`, клик по которому уводит на уровень вложенного\n  списка (drill-down), а не открывает второй BottomSheet (десктопный nested-popover на mobile неприменим);\n  позиция айтема передаётся в `onDrill` индексным путём — уровень разрешается по актуальным `items`;\n- `group` / `group-select` / `collapse` рекурсивно обрабатываются (внутри них тоже может быть `next-list`);\n- базовые айтемы (action-меню без `selection`) при `closeOnClick` закрывают sheet по клику.",
     "props": {},
     "relatedTypes": {}
   },
@@ -4968,6 +4968,13 @@
         "description": "Отключает возможность взаимодействовать со скролбарами мышью."
       }
     },
+    "relatedTypes": {}
+  },
+  "resolveItemByPath": {
+    "displayName": "resolveItemByPath",
+    "propsTypeName": null,
+    "description": "Айтем уровня по индексному пути от корня. Путь разрешается на каждом рендере по актуальным\n`items`: иначе открытый sheet сохранял бы копию айтема, полученную при заходе во вложенный\nсписок, и не отражал бы её последующие изменения (например, смену выбранной строки).",
+    "props": {},
     "relatedTypes": {}
   },
   "useCreateBaseItems": {
