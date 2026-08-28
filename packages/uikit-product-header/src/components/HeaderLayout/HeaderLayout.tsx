@@ -1,10 +1,10 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Divider } from '@ds/divider';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { useMobileLayout } from '../../hooks/useMobileLayout';
 import styles from './styles.module.scss';
 
 export type HeaderLayoutProps = WithSupportProps<{
@@ -17,7 +17,7 @@ export type HeaderLayoutProps = WithSupportProps<{
 }>;
 
 export function HeaderLayout({ menu, logo, select, breadcrumbs, toolbar, className, ...rest }: HeaderLayoutProps) {
-  const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
+  const isMobile = useMobileLayout();
 
   return (
     <header

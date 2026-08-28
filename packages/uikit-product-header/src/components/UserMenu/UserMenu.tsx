@@ -1,10 +1,10 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Avatar } from '@ds/avatar';
 import { BaseItemProps, Droplist, DroplistProps } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import { useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
 import { HeaderButton } from '../HeaderButton';
 import { useUserMenuItems } from './hooks/useUserMenuItems';
@@ -47,8 +47,7 @@ export function UserMenu({
   triggerTooltip,
 }: UserMenuProps) {
   const { t } = headerLocale.useTranslations();
-  const { layoutType } = useAdaptiveLayout();
-  const isMobile = isMobileLayout(layoutType);
+  const isMobile = useMobileLayout();
 
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 

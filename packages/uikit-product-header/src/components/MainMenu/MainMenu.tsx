@@ -1,9 +1,9 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { MainMenuSVG } from '@ds/icons/interface/product';
 import { useValueControl } from '@ds/utils';
 import { useEffect } from 'react';
 
 import { TEST_IDS } from '../../constants';
+import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
 import { HeaderButton } from '../HeaderButton';
 import { MenuDesktop } from './helperComponents/MenuDesktop';
@@ -41,7 +41,7 @@ export function MainMenu({
     if (!open && search?.value) search?.onChange('');
   }, [open, search]);
 
-  const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
+  const isMobile = useMobileLayout();
 
   const MenuComponent = isMobile ? MenuMobile : MenuDesktop;
 
