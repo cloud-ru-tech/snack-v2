@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-header-legacy",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -20,9 +20,17 @@
       "require": "./dist/cjs/locale/index.js"
     }
   },
-  "files": ["dist", "src"],
-  "sideEffects": ["*.css", "**/*.css"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@ds/adaptive": "workspace:^",
     "@ds/avatar": "workspace:^",
@@ -36,9 +44,9 @@
     "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/scroll": "workspace:^",
-    "@ds/uikit-product-card-predefined": "workspace:^",
     "@ds/search-private": "workspace:^",
     "@ds/typography": "workspace:^",
+    "@ds/uikit-product-card-predefined": "workspace:^",
     "@ds/uikit-product-title-clickable": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",

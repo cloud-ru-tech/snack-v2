@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-08-28)
+
+### Bug Fixes
+
+- **FF-8955:** remove flex from CardServiceLight ([65fa29e](https://github.com/cloud-ru-tech/snack-v2/commit/65fa29e86425142d554df1d399e0731fe5f71542))
+
+### BREAKING CHANGES
+
+- **FF-8883:** added missing min height for adaptive card service light and removed actionsSize prop ([fd54a3c](https://github.com/cloud-ru-tech/snack-v2/commit/fd54a3c54b91e7ca1421eb943e1c112b8dd35918))
+
 ## 2.0.4 (2026-08-27)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

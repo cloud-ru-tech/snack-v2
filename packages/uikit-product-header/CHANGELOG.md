@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.5 (2026-08-28)
+
+### Bug Fixes
+
+- **FF-8883:** header updates related to actionsSize ([e71770f](https://github.com/cloud-ru-tech/snack-v2/commit/e71770fedf18d504048d25182ab376f305fbd25a))
+- **FF-8883:** remove button default styles, revert icon and avatar position for title clickable ([705282b](https://github.com/cloud-ru-tech/snack-v2/commit/705282b9f740b66cc8296a804becfbc6e9f08188))
+
 ## 1.1.4 (2026-08-27)
 
 ### Bug Fixes

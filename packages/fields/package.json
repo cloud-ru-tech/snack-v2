@@ -1,6 +1,6 @@
 {
   "name": "@ds/fields",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Поля ввода с единой обёрткой label/caption/hint/error и общими осями size/validationState — текст, пароль, число, ползунок, дата, время, выбор, цвет.",
   "repository": {
     "type": "git",

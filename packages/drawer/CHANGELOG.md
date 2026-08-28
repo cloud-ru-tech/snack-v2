@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-08-28)
+
+### Bug Fixes
+
+- **FF-8883:** improved drawer custom scroll bug to prevent scroll when children are hovered ([b2029df](https://github.com/cloud-ru-tech/snack-v2/commit/b2029df02cd676cf08ad02aca3d07fede55155ca))
+
 ## 1.0.4 (2026-08-27)
 
 ### Bug Fixes
