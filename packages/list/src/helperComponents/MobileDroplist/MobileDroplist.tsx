@@ -35,6 +35,7 @@ export function MobileDroplist({
   container,
   closeOnPopstate,
   size,
+  snapPoints,
   // `footer` уводим в sticky-футер `BottomSheet` (кнопки действия прилипают к низу sheet'а, а не
   // скроллятся вместе со списком). `header` + `headerDivider` / `footerDivider` НЕ деструктурируем —
   // они уходят в `...rest` на корневой `List` (он рендерит шапку и её divider).
@@ -227,7 +228,7 @@ export function MobileDroplist({
             slotAfterTitle={isRoot ? slotAfterTitle : undefined}
             content={content}
             footer={isRoot ? footer : undefined}
-            snapPoints={expanded ? [1] : undefined}
+            snapPoints={expanded ? [1] : snapPoints}
             closeOnPopstate={closeOnPopstate ?? true}
           />
         );

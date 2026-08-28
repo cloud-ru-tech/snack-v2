@@ -1,4 +1,5 @@
 import { DragEndEvent } from '@dnd-kit/core';
+import { BottomSheetProps } from '@ds/bottom-sheet';
 import { DropdownProps } from '@ds/dropdown';
 import { WithSupportProps } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode, RefObject } from 'react';
@@ -182,7 +183,7 @@ type DroplistMobileSlots = {
  * (список size `l` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
  * применяются только на mobile.
  */
-export type DroplistProps = BaseDroplistProps & DroplistMobileSlots;
+export type DroplistProps = BaseDroplistProps & DroplistMobileSlots & Pick<BottomSheetProps, 'snapPoints'>;
 
 /**
  * Props адаптивного `ReorderableDroplist`: props `ReorderableList` + popover/mobile-обвязка
@@ -201,6 +202,7 @@ export type MobileDroplistProps = Omit<
   DesktopDroplistProps,
   'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName'
 > &
+  Pick<BottomSheetProps, 'snapPoints'> &
   DroplistMobileSlots;
 
 export type ListPrivateProps = Omit<

@@ -900,6 +900,7 @@ export function DroplistWithHeader() {
 | `selection` | `SelectionMultipleState` \| `SelectionSingleState` | — | Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`), <br/> `mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет — <br/> клик вызывает только `onClick` элемента. |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер списка |
 | `slotAfterTitle` | `ReactNode` | — | Только mobile (`BottomSheet`): slot справа от заголовка. |
+| `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
 | `trigger` | `"click"` \| `"clickAndFocusVisible"` \| `"focus"` \| `"focusVisible"` \| `"hover"` \| `"hoverAndFocus"` \| `"hoverAndFocusVisible"` | — | Условие отображения поповера: <br/> - `click` - открывать по клику <br/> - `hover` - открывать по ховеру <br/> - `focusVisible` - открывать по focus-visible <br/> - `focus` - открывать по фокусу <br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible <br/> - `hoverAndFocus` - открывать по ховеру и фокусу <br/> - `clickAndFocusVisible` - открывать по клику и focus-visible |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
 | `triggerElemRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент-триггер для дроплиста |
@@ -961,8 +962,6 @@ export function DroplistWithHeader() {
 | `icon` | `IconPredefinedProps` | — | Иконка |
 
 - `Item` = `BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem`
-
-- `ItemId` = `string | number`
 
 **ScrollProps**
 

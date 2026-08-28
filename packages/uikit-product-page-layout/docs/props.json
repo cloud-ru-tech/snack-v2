@@ -812,6 +812,14 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
           "trigger": {
             "type": "Trigger | undefined",
             "required": false,
@@ -1821,6 +1829,14 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
           },
           "trigger": {
             "type": "Trigger | undefined",
@@ -4688,6 +4704,14 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
           "trigger": {
             "type": "Trigger | undefined",
             "required": false,
@@ -5741,6 +5765,14 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
           },
           "trigger": {
             "type": "Trigger | undefined",
@@ -7432,6 +7464,14 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
           "trigger": {
             "type": "Trigger | undefined",
             "required": false,
@@ -8565,6 +8605,14 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
           },
           "trigger": {
             "type": "Trigger | undefined",
@@ -12059,6 +12107,14 @@
             "required": false,
             "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
           },
+          "snapPoints": {
+            "type": "SnapPoint[] | undefined",
+            "required": false,
+            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
+            "typeRefs": [
+              "SnapPoint"
+            ]
+          },
           "trigger": {
             "type": "Trigger | undefined",
             "required": false,
@@ -12495,6 +12551,11 @@
           "m",
           "s"
         ],
+        "own": false
+      },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": false
       },
       "TooltipProps": {
