@@ -20,6 +20,11 @@ test.describe('FieldDate — keyboard', () => {
     const single = getByTestId(STORY_TEST_IDS.fieldDate.singleRoot);
     const input = single.getByTestId(TEST_IDS.fieldDateInput);
 
+    // Play InteractionTest кликает range-from и может оставить portal открытым — сбрасываем
+    // до детерминированного старта (иначе getByTestId ловит 2 dropdown'а / strict mode).
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
+
     // Открываем кликом по иконке (детерминированный путь, см. Escape-тест). ArrowDown с фокуса
     // на инпуте уходит в сетку календаря (@ds/calendar) и не закрывает дропдаун — это и проверяем.
     await single.getByTestId(TEST_IDS.fieldDateCalendar).click();
@@ -34,6 +39,9 @@ test.describe('FieldDate — keyboard', () => {
     await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.interactionTest));
     const single = getByTestId(STORY_TEST_IDS.fieldDate.singleRoot);
     const input = single.getByTestId(TEST_IDS.fieldDateInput);
+
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
 
     // Открываем кликом по иконке (без handoff фокуса в сетку — он только на ArrowDown),
     // чтобы Escape детерминированно прошёл через сегментный handleKeyDown поля.
@@ -54,6 +62,9 @@ test.describe('FieldDate — keyboard', () => {
     await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.interactionTest));
     const rangeRoot = getByTestId(STORY_TEST_IDS.fieldDate.rangeRoot);
     const fromInput = rangeRoot.getByTestId(TEST_IDS.fieldDateInputFrom);
+
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
 
     // Открытие — за click-триггером Dropdown и ArrowDown (легаси-паритет): open-on-focus
     // конфликтовал с click-toggle (первый клик открывал и тут же закрывал календарь).
@@ -80,6 +91,9 @@ test.describe('FieldDate — keyboard', () => {
     const single = getByTestId(STORY_TEST_IDS.fieldDate.singleRoot);
     const input = single.getByTestId(TEST_IDS.fieldDateInput);
 
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
+
     // Клик открывает календарь (click-триггер), ArrowDown передаёт фокус в него (handoff).
     await input.click();
     await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toBeVisible();
@@ -96,6 +110,7 @@ test.describe('FieldDate — keyboard', () => {
   });
 
   test('single: ArrowRight from the last segment roves focus to clear, ArrowLeft returns', async ({
+    page,
     gotoStory,
     getByTestId,
   }) => {
@@ -103,6 +118,10 @@ test.describe('FieldDate — keyboard', () => {
     const single = getByTestId(STORY_TEST_IDS.fieldDate.singleRoot);
     const input = single.getByTestId(TEST_IDS.fieldDateInput);
     const clear = single.getByTestId(TEST_IDS.fieldDateClear);
+
+    // Закрываем leftover-календарь play: иначе фокус/клавиши уходят в portal mid-type.
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
 
     await input.click();
     await input.pressSequentially('15032026');
@@ -115,11 +134,18 @@ test.describe('FieldDate — keyboard', () => {
     await expect(input).toBeFocused();
   });
 
-  test('readonly: ArrowRight from the input roves focus to the copy button', async ({ gotoStory, getByTestId }) => {
+  test('readonly: ArrowRight from the input roves focus to the copy button', async ({
+    page,
+    gotoStory,
+    getByTestId,
+  }) => {
     await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.interactionTest));
     const readonly = getByTestId(STORY_TEST_IDS.fieldDate.readonlyRoot);
     const input = readonly.getByTestId(TEST_IDS.fieldDateInput);
     const copy = readonly.getByTestId(TEST_IDS.fieldDateCopy);
+
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
 
     // readonly: cursor-проверка nav замыкается по readonly-флагу — ArrowRight сразу уводит на copy.
     await input.focus();

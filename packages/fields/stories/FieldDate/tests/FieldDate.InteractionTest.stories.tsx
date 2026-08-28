@@ -139,5 +139,13 @@ export const InteractionTest: Story = {
       await expect(copyButton).toBeVisible();
       await expect(within(readonlyRoot).queryByTestId(TEST_IDS.fieldDateClear)).toBeNull();
     });
+
+    // Range-шаги выше открывают календарь кликом по from-input и оставляют фокус в поле.
+    // Без cleanup e2e на этой же стори ловит второй portal с тем же data-test-id
+    // (strict mode), перехват клавиш и «залипший» фокус — см. FieldDate keyboard/interaction.
+    await step('cleanup: close calendar portal and blur', async () => {
+      await userEvent.keyboard('{Escape}');
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    });
   },
 };

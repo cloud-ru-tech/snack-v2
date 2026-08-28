@@ -36,13 +36,15 @@ test.describe('FieldSecure — keyboard navigation', () => {
     await expect(input).toHaveAttribute('type', 'text');
   });
 
-  test('arrow nav: input → copy → «глаз» (readonly field)', async ({ gotoStory, getByTestId }) => {
+  test('arrow nav: input → copy → «глаз» (readonly field)', async ({ page, gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, FIELD_SECURE_STORIES.interactionTest));
     const readonly = getByTestId(STORY_TEST_IDS.fieldSecure.readonlyRoot);
     const input = readonly.getByTestId(TEST_IDS.fieldSecureInput);
     const copy = readonly.getByTestId(TEST_IDS.fieldTextCopyButton);
     const eye = readonly.getByTestId(TEST_IDS.fieldSecureHideButton);
 
+    // Play оставляет фокус на соседнем поле — явно стартуем с readonly input.
+    await page.locator('body').click({ position: { x: 0, y: 0 } });
     // readonly: ArrowRight на input (короткое замыкание по cursor-проверке) уводит на copy.
     await input.focus();
     await input.press('ArrowRight');

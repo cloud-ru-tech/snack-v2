@@ -139,5 +139,11 @@ export const InteractionTest: Story = {
       const readonly = within(canvas.getByTestId(STORY_TEST_IDS.fieldSecure.readonlyRoot));
       await expect(readonly.getByTestId(TEST_IDS.fieldTextCopyButton)).toBeVisible();
     });
+
+    // Play оставляет фокус на «глазе» controlled-поля — e2e keyboard-спеки на этой стори
+    // стартуют с чужого activeElement и ArrowRight уходит не туда.
+    await step('cleanup: blur leftover focus', async () => {
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    });
   },
 };

@@ -38,6 +38,7 @@ test.describe('FieldDate — interaction', () => {
   });
 
   test('single mode: typing a full date commits onChange (parent state switches)', async ({
+    page,
     gotoStory,
     getByTestId,
   }) => {
@@ -48,6 +49,11 @@ test.describe('FieldDate — interaction', () => {
     await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.interactionTest));
     const singleRoot = getByTestId(STORY_TEST_IDS.fieldDate.singleRoot);
     const input = singleRoot.getByTestId(TEST_IDS.fieldDateInput);
+
+    // Play InteractionTest открывает range-календарь — без Escape ввод в single обрывается
+    // на половине маски (focus/клавиши уходят в чужой portal).
+    await page.keyboard.press('Escape');
+    await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toHaveCount(0);
 
     await input.click();
     await input.pressSequentially('15032026');
