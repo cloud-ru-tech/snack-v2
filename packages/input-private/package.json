@@ -1,6 +1,6 @@
 {
   "name": "@ds/input-private",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Базовая обёртка `<input>` с состояниями, иконками, кнопкой очистки и счётчиком — фундамент для публичных полей ввода (Search, FieldText и пр.).",
   "repository": {
     "type": "git",

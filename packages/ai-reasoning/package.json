@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-reasoning",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Строка reasoning в AI-цепочке со степпер-линией, иконкой и текстовым описанием шага.",
   "repository": {
     "type": "git",

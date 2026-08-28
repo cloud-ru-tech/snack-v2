@@ -1,6 +1,6 @@
 {
   "name": "@ds/chips",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Пакет чипов дизайн-системы — ChipAssist, ChipToggle, семейство ChipChoice и ChipChoiceRow для действий, переключения и фильтрации.",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-load-status",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Строка статуса загрузки с линейным progress bar, заголовком и подсказкой — по макету Figma loadStatus.",
   "repository": {
     "type": "git",

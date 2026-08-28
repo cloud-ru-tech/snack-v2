@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-title-clickable",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Кликабельный заголовок-ссылка раздела с иконкой, шевроном и опциональным аватар-блоком — для шапок продуктовых разделов.",
   "repository": {
     "type": "git",

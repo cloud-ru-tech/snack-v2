@@ -1,6 +1,6 @@
 {
   "name": "@ds/pagination",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Пакет пагинации — компоненты Pagination с нумерованными страницами и PaginationSlider для плотной мини-навигации.",
   "repository": {
     "type": "git",

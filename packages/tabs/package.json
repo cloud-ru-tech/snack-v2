@@ -1,6 +1,6 @@
 {
   "name": "@ds/tabs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Пакет табов — compound-компонент Tabs c субкомпонентами TabBar, Tab и TabContent для горизонтальной и вертикальной навигации.",
   "repository": {
     "type": "git",
