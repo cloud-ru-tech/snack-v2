@@ -1,7 +1,7 @@
 import { useValueControl } from '@ds/utils';
 import { useCallback, useMemo } from 'react';
 
-import { TEST_IDS } from '../../../../constants';
+import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../../../constants';
 import { MobileDrawerCustom } from '../../../../mobileOverlays';
 import { MainMenuDndContext } from '../../hooks/useMainMenuDnd';
 import { useMenuItems } from '../../hooks/useMenuItems';
@@ -14,8 +14,6 @@ import { MountAnimation } from '../MountAnimation';
 import { ScrollWithAnimatedStickyPanel } from '../ScrollWithAnimatedStickyPanel';
 import { Search } from '../Search';
 import styles from './styles.module.scss';
-
-const SNAP_POINTS = [1];
 
 export function MenuMobile({
   open: openProp,
@@ -64,7 +62,7 @@ export function MenuMobile({
       swipeEnabled={false}
       data-test-id={TEST_IDS.mainMenu.drawerMobile}
       closeOnPopstate
-      snapPoints={SNAP_POINTS}
+      snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
       disableMotions={true}
     >
       <ScrollWithAnimatedStickyPanel

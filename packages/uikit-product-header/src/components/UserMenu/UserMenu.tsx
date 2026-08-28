@@ -3,7 +3,7 @@ import { BaseItemProps, Droplist, DroplistProps } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import { useMemo } from 'react';
 
-import { TEST_IDS } from '../../constants';
+import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../constants';
 import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
 import { HeaderButton } from '../HeaderButton';
@@ -102,6 +102,7 @@ export function UserMenu({
       closeOnPopstate
       data-test-id={TEST_IDS.userMenu.root}
       label={t('user')}
+      snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
     >
       {trigger}
     </Droplist>
