@@ -118,7 +118,7 @@ function DrawerFrame(props: DrawerCustomProps) {
       data-height-auto={heightAutoVertical ? true : undefined}
       data-acrylic-appearance='neutral'
       data-acrylic-level='1Level'
-      prefixCls='snack-rc-drawer'
+      prefixCls={styles.prefixCls}
       {...(disableMotions ? {} : motionProps)}
     >
       {/*

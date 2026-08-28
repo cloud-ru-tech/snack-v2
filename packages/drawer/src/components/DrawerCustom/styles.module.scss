@@ -10,6 +10,20 @@ $draggerWidth: base.$sn-primitive-dimension-4;
 $draggerPosition: calc(drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight - $draggerWidth - base.$sn-primitive-dimension-6);
 $activeDraggerHeight: calc(base.$sn-primitive-dimension-32 + base.$sn-primitive-dimension-24);
 
+// Классы rc-drawer/rc-motion глобальные (css-модуль их не хеширует), поэтому свои — с namespace и
+// версией: оболочка консоли на snack v1 объявляет те же `.maskMotion-*`/`.panelMotion-*` и смещает
+// панель своими правилами. В JS имена отдаёт `:export`. Версию повышать при несовместимом изменении.
+$classVersion: 'v1';
+$prefixCls: 'cloud-ru-ds-drawer-#{$classVersion}';
+$maskMotionName: '#{$prefixCls}-mask-motion';
+$panelMotionName: '#{$prefixCls}-panel-motion';
+
+:export {
+  maskMotionName: #{$maskMotionName};
+  panelMotionName: #{$panelMotionName};
+  prefixCls: #{$prefixCls};
+}
+
 // placement → offscreen transform для panelMotion-*
 $panelMotions: (
   'left': translateX(-100%),
@@ -18,14 +32,18 @@ $panelMotions: (
   'bottom': translateY(100%),
 );
 
-.drawerRoot:global(.snack-rc-drawer) {
+.drawerRoot:global(.#{$prefixCls}) {
   pointer-events: none;
 
   position: fixed;
   z-index: initial;
   inset: 0;
 
-  overflow: hidden;
+  // 🔴 Не обрезаем панель корнем: пока панель едет трансформом, обрезка заставляет браузер
+  // пересчитывать её в главном потоке каждый кадр — на тяжёлом кадре движение дёргается.
+  // Корень — `position: fixed`, а фиксированные элементы не участвуют в прокрутке документа,
+  // поэтому выехавшая за экран панель полос прокрутки не создаёт.
+  overflow: visible;
 
   transition: width 0s ease 0.3s, height 0s ease 0.3s, transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 
@@ -33,12 +51,12 @@ $panelMotions: (
     transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86), opacity 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86), box-shadow 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
   }
 
-  &:global(.snack-rc-drawer-open) {
+  &:global(.#{$prefixCls}-open) {
     transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
   }
 
   :global {
-    .snack-rc-drawer-mask {
+    .#{$prefixCls}-mask {
       pointer-events: auto;
 
       position: absolute;
@@ -52,27 +70,27 @@ $panelMotions: (
 
       transition: opacity 0.2s;
 
-      &.maskMotion-enter,
-      &.maskMotion-appear {
+      &.#{$maskMotionName}-enter,
+      &.#{$maskMotionName}-appear {
         opacity: 0;
       }
 
-      &.maskMotion-enter-active,
-      &.maskMotion-appear-active {
+      &.#{$maskMotionName}-enter-active,
+      &.#{$maskMotionName}-appear-active {
         opacity: 1;
       }
 
-      &.maskMotion-leave {
+      &.#{$maskMotionName}-leave {
         opacity: 1;
         transition: opacity 0.1s;
       }
 
-      &.maskMotion-leave-active {
+      &.#{$maskMotionName}-leave-active {
         opacity: 0;
       }
     }
 
-    .snack-rc-drawer-section {
+    .#{$prefixCls}-section {
       pointer-events: auto;
 
       position: relative;
@@ -90,10 +108,10 @@ $panelMotions: (
       box-shadow: base.$sn-boxShadow-elevation-level5;
     }
 
-    .snack-rc-drawer-content-wrapper {
+    .#{$prefixCls}-content-wrapper {
       pointer-events: none;
       will-change: transform;
-
+      
       position: absolute;
       z-index: initial;
 
@@ -112,7 +130,7 @@ $panelMotions: (
       &[data-position='top'] {
         @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop');
 
-        .snack-rc-drawer-section {
+        .#{$prefixCls}-section {
           @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionTop', 'container');
         }
       }
@@ -122,7 +140,7 @@ $panelMotions: (
 
         @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom');
 
-        .snack-rc-drawer-section {
+        .#{$prefixCls}-section {
           @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'horizontal', 'positionBottom', 'container');
         }
       }
@@ -134,7 +152,7 @@ $panelMotions: (
 
         @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft');
 
-        .snack-rc-drawer-section {
+        .#{$prefixCls}-section {
           @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionLeft', 'container');
         }
       }
@@ -146,7 +164,7 @@ $panelMotions: (
 
         @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight');
 
-        .snack-rc-drawer-section {
+        .#{$prefixCls}-section {
           @include base.composite-var(drawer.$drawer, 'anatomy', 'container', 'vertical', 'positionRight', 'container');
         }
       }
@@ -189,32 +207,32 @@ $panelMotions: (
       }
 
       @each $placement, $offscreen in $panelMotions {
-        &.panelMotion-#{$placement}-enter,
-        &.panelMotion-#{$placement}-appear {
+        &.#{$panelMotionName}-#{$placement}-enter,
+        &.#{$panelMotionName}-#{$placement}-appear {
           transform: $offscreen;
         }
 
-        &.panelMotion-#{$placement}-enter-active,
-        &.panelMotion-#{$placement}-appear-active {
+        &.#{$panelMotionName}-#{$placement}-enter-active,
+        &.#{$panelMotionName}-#{$placement}-appear-active {
           transform: translate(0);
         }
 
-        &.panelMotion-#{$placement}-leave {
+        &.#{$panelMotionName}-#{$placement}-leave {
           transform: translate(0);
         }
 
-        &.panelMotion-#{$placement}-leave-active {
+        &.#{$panelMotionName}-#{$placement}-leave-active {
           transform: $offscreen;
           transition: transform 0.1s ease-out;
         }
       }
     }
 
-    .snack-rc-drawer-content-wrapper-hidden {
+    .#{$prefixCls}-content-wrapper-hidden {
       display: none;
     }
 
-    .snack-rc-drawer-resizable-dragger {
+    .#{$prefixCls}-resizable-dragger {
       pointer-events: auto;
       cursor: ew-resize;
 
@@ -248,66 +266,66 @@ $panelMotions: (
       }
     }
 
-    .snack-rc-drawer-resizable-dragger-left {
+    .#{$prefixCls}-resizable-dragger-left {
       right: $draggerPosition;
     }
 
-    .snack-rc-drawer-resizable-dragger-right {
+    .#{$prefixCls}-resizable-dragger-right {
       left: $draggerPosition;
     }
   }
 
-  &:global(.snack-rc-drawer-left),
-  &:global(.snack-rc-drawer-right) {
+  &:global(.#{$prefixCls}-left),
+  &:global(.#{$prefixCls}-right) {
     top: 0;
     width: 0%;
     height: 100%;
   }
 
-  &:global(.snack-rc-drawer-left) {
+  &:global(.#{$prefixCls}-left) {
     left: 0;
   }
 
-  &:global(.snack-rc-drawer-right) {
+  &:global(.#{$prefixCls}-right) {
     right: 0;
   }
 
-  &:global(.snack-rc-drawer-top),
-  &:global(.snack-rc-drawer-bottom) {
+  &:global(.#{$prefixCls}-top),
+  &:global(.#{$prefixCls}-bottom) {
     left: 0;
     width: 100%;
     height: 0%;
   }
 
-  &:global(.snack-rc-drawer-top) {
+  &:global(.#{$prefixCls}-top) {
     top: 0;
   }
 
-  &:global(.snack-rc-drawer-bottom) {
+  &:global(.#{$prefixCls}-bottom) {
     bottom: 0;
   }
 
-  &:has(:global(.snack-rc-drawer-resizable-dragger-dragging)) {
+  &:has(:global(.#{$prefixCls}-resizable-dragger-dragging)) {
     cursor: ew-resize;
 
-    :global(.snack-rc-drawer-resizable-dragger) {
+    :global(.#{$prefixCls}-resizable-dragger) {
       height: $activeDraggerHeight;
     }
   }
 
 
-  &:global(.snack-rc-drawer-left.snack-rc-drawer-open),
-  &:global(.snack-rc-drawer-right.snack-rc-drawer-open) {
+  &:global(.#{$prefixCls}-left.#{$prefixCls}-open),
+  &:global(.#{$prefixCls}-right.#{$prefixCls}-open) {
     width: 100%;
   }
 
-  &:global(.snack-rc-drawer-top.snack-rc-drawer-open),
-  &:global(.snack-rc-drawer-bottom.snack-rc-drawer-open) {
+  &:global(.#{$prefixCls}-top.#{$prefixCls}-open),
+  &:global(.#{$prefixCls}-bottom.#{$prefixCls}-open) {
     height: 100%;
   }
 }
 
-.drawerRoot:global(.snack-rc-drawer .snack-rc-drawer-content-wrapper) {
+.drawerRoot:global(.#{$prefixCls} .#{$prefixCls}-content-wrapper) {
   @include m.with-material('acrylic', #{drawer});
 }
 

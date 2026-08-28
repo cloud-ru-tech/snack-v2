@@ -3,9 +3,10 @@ import { isBrowser } from '@ds/utils';
 import { DrawerProps } from '@rc-component/drawer';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
+import styles from '../styles.module.scss';
 import { DrawerCustomProps } from '../types';
 
-const DRAGGER_SELECTOR = '.snack-rc-drawer-resizable-dragger';
+const DRAGGER_SELECTOR = `.${styles.prefixCls}-resizable-dragger`;
 
 type UseDrawerResizeParams = Pick<DrawerCustomProps, 'position' | 'resizable'>;
 

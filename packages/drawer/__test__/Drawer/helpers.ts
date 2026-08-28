@@ -2,13 +2,12 @@ import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
 export { TEST_IDS } from '../../stories/testIds';
 
-// TODO(FF-8488): rc-drawer mask и rc-drawer content wrapper не получают наш
-// `data-test-id` от потребителя (внутри библиотеки). Пока используем CSS-классы
-// внутренней реализации как фоллбэк. См. TEST_IDS.public.overlay /
-// TEST_IDS.public.contentWrapper — публичные значения зарезервированы и
-// привяжутся к DOM, когда rc-drawer (или его замена) будет поддерживать
-// прокидывание атрибута на mask/wrapper.
-export const OVERLAY_SELECTOR = '.snack-rc-drawer-mask';
+// TODO(FF-8488): rc-drawer отдаёт для маски только `classNames`/`styles`, атрибут навесить нечем —
+// отсюда селектор по классу. Литерал дублирует `$prefixCls` из DrawerCustom/styles.module.scss:
+// playwright-compile не обрабатывает css-модули.
+export const OVERLAY_SELECTOR = '.cloud-ru-ds-drawer-v1-mask';
+
+/** `data-content-wrapper` ставит `DrawerCustom`; пользовательский `data-test-id` оседает на том же узле. */
 export const CONTENT_WRAPPER_SELECTOR = '[data-content-wrapper]';
 
 export const DRAWER_STORIES = {

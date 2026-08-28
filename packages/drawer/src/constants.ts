@@ -11,8 +11,8 @@ export const TEST_IDS = {
   footerCancel: 'drawer__footer-cancel',
   footerAdditional: 'drawer__footer-additional',
   nestedDrawer: 'drawer__nested',
+  /** Зарезервирован: rc-drawer отдаёт для маски только `classNames`/`styles`, атрибут навесить нечем. */
   overlay: 'drawer__overlay',
-  contentWrapper: 'drawer__content-wrapper',
 } as const;
 
 export const WIDTH = {

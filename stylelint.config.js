@@ -7,7 +7,15 @@ module.exports = {
     'selector-pseudo-class-no-unknown': [
       true,
       {
-        ignorePseudoClasses: ['global', 'local'],
+        // `:export` — ICSS-конструкция: отдаёт значения из SCSS в JS (css-modules).
+        ignorePseudoClasses: ['global', 'local', 'export'],
+      },
+    ],
+    'property-no-unknown': [
+      true,
+      {
+        // Внутри `:export` «свойства» — это имена экспортируемых значений, не CSS-свойства.
+        ignoreSelectors: [':export'],
       },
     ],
   },

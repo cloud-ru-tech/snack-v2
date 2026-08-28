@@ -35,7 +35,6 @@ test.describe('Drawer — keyboard', () => {
     const header = getByTestId(TEST_IDS.header);
     await expect(header).toBeVisible();
 
-    // TODO(FF-8488): CONTENT_WRAPPER_SELECTOR — internal rc-drawer attribute.
     // Cycle Tab several times; focus must always remain inside the drawer panel.
     for (let i = 0; i < 12; i += 1) {
       await page.keyboard.press('Tab');

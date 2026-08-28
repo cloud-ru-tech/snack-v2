@@ -2,7 +2,7 @@
 //
 // Объединяет публичные id из `src/constants.ts::TEST_IDS` (что компонент
 // сам ставит на свои слоты — closeButton, header, title, body, footer,
-// image, tooltip, subtitle, nestedDrawer, overlay, contentWrapper) и
+// image, tooltip, subtitle, nestedDrawer, overlay) и
 // stories-level id (триггеры открытия / VisualMatrix-кнопки).
 //
 // Stories и `__test__/Drawer/helpers.ts` импортируют единый объект отсюда.
