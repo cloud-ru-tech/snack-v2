@@ -1,6 +1,6 @@
 import { BottomSheetActionButton, BottomSheetProps, FooterActionsOrientation } from '@ds/bottom-sheet';
 import { WithSupportProps } from '@ds/utils';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, Ref } from 'react';
 
 import { DialogBodyProps, DialogHeaderProps } from '../../helperComponents';
 import { DrawerCustomProps } from '../DrawerCustom';
@@ -9,14 +9,18 @@ import { DrawerCustomProps } from '../DrawerCustom';
  * Адаптивный Drawer: desktop — боковая/верхняя/нижняя панель, `mobile` — `BottomSheet`.
  *
  * Только desktop: `position`, `width`, `heightAuto`, `nestedDrawer` (на mobile игнорируются).
- * Только mobile: `swipeEnabled`, `snapPoints`, `snapIndex`, `onSnapIndexChange`, `safeArea`
+ * Только mobile: `swipeEnabled`, `snapPoints`, `snapIndex`, `onSnapIndexChange`, `safeArea`, `withDividers`
  * (на desktop-панели игнорируются — это анатомия `BottomSheet`).
  */
 export type DrawerProps = WithSupportProps<
   Omit<DrawerCustomProps, 'nestedDrawer' | 'push' | 'resizable'> &
     Pick<BottomSheetProps, 'swipeEnabled' | 'snapPoints' | 'snapIndex' | 'onSnapIndexChange' | 'safeArea'> &
-    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'onBackButtonClick'> &
+    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'slotSecondTitle' | 'onBackButtonClick'> &
     Pick<DialogBodyProps, 'content'> & {
+      /** Ссылка на скроллируемый контейнер контента (например, для дозагрузки по скроллу). */
+      contentRef?: Ref<HTMLElement>;
+      /** Только mobile: разделители между шапкой/контентом/футером sheet'а. @default false */
+      withDividers?: boolean;
       /** Текстовая строка-подзаголовок под title. */
       subtitle?: ReactNode;
       /** CSS-класс */

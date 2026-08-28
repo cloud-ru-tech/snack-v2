@@ -1,4 +1,3 @@
-import { FooterActions } from '@ds/bottom-sheet';
 import cn from 'classnames';
 
 import { NESTED_DRAWER_PUSH_DISTANCE } from '../../components/Drawer/constants';
@@ -13,6 +12,7 @@ export function DesktopDrawer({
   media,
   title,
   slotAfterTitle,
+  slotSecondTitle,
   subtitle,
   onBackButtonClick,
   approveButton,
@@ -21,28 +21,14 @@ export function DesktopDrawer({
   footerActionsOrientation,
   footer,
   nestedDrawer,
+  contentRef,
+  // `withDividers` — mobile-only (мастер bottomSheet): молча уходит в `rest` и отбрасывается фреймом.
   className,
   ...rest
 }: DrawerProps) {
-  const showHeader = Boolean(title || subtitle || slotAfterTitle);
-  // Футер: произвольный `footer` (приоритет) либо сборка из слотов через общий `FooterActions`.
-  const footerContent =
-    footer ??
-    (approveButton || cancelButton || additionalButton ? (
-      <FooterActions
-        surface='window'
-        size='l'
-        approveButton={approveButton}
-        cancelButton={cancelButton}
-        additionalButton={additionalButton}
-        footerActionsOrientation={footerActionsOrientation}
-        testIds={{
-          approve: TEST_IDS.footerApprove,
-          cancel: TEST_IDS.footerCancel,
-          additional: TEST_IDS.footerAdditional,
-        }}
-      />
-    ) : null);
+  const showHeader = Boolean(title || subtitle || slotAfterTitle || slotSecondTitle);
+  // Произвольный `footer` приоритетнее кнопок-слотов; раскладку слотов делает сам `DrawerCustom.Footer`.
+  const hasFooter = Boolean(footer || approveButton || cancelButton || additionalButton);
 
   return (
     <DrawerCustom
@@ -53,12 +39,11 @@ export function DesktopDrawer({
     >
       {media}
 
-      <div className={styles.safeAreaTop} />
-
       {showHeader && (
         <DrawerCustom.Header
           title={title}
           slotAfterTitle={slotAfterTitle}
+          slotSecondTitle={slotSecondTitle}
           subtitle={subtitle}
           onBackButtonClick={onBackButtonClick}
           // Сохраняем публичный контракт test-id'ов drawer'а поверх общего `PopupHeader`.
@@ -71,12 +56,18 @@ export function DesktopDrawer({
         />
       )}
 
-      <DrawerCustom.Body data-test-id={TEST_IDS.body} content={content} />
+      <DrawerCustom.Body data-test-id={TEST_IDS.body} innerRef={contentRef} content={content} />
 
-      <div className={styles.safeAreaBottom} />
-
-      {footerContent != null && (
-        <DrawerCustom.Footer data-test-id={TEST_IDS.footer}>{footerContent}</DrawerCustom.Footer>
+      {hasFooter && (
+        <DrawerCustom.Footer
+          data-test-id={TEST_IDS.footer}
+          approveButton={footer ? undefined : approveButton}
+          cancelButton={footer ? undefined : cancelButton}
+          additionalButton={footer ? undefined : additionalButton}
+          footerActionsOrientation={footerActionsOrientation}
+        >
+          {footer}
+        </DrawerCustom.Footer>
       )}
 
       {nestedDrawer}

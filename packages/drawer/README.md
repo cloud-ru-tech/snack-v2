@@ -248,6 +248,7 @@ export function NestedDrawer() {
 | `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
+| `contentRef` | `Ref<HTMLElement>` | — | Ссылка на скроллируемый контейнер контента (например, для дозагрузки по скроллу). |
 | `data-test-id` | `string` | — |  |
 | `disableMotions` | `boolean` | `false` | Отключить анимации |
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<...> \| ReactPortal \| null))` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
@@ -265,12 +266,14 @@ export function NestedDrawer() {
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `showButtonClosed` | `boolean` | `true` | Отображение кнопки закрытия в шапке дровера |
 | `slotAfterTitle` | `ReactNode` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
+| `slotSecondTitle` | `ReactNode` | — | Slot под подзаголовком — типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Рендерится на обеих поверхностях: `secondWrapper` в мастере `bottomSheet`, <br/> `subHeadlineWrapper` в мастере `window` (modal / drawer). |
 | `snapIndex` | `number` | — | Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е; <br/> swipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен <br/> передать новое значение. |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
 | `subtitle` | `ReactNode` | — | Текстовая строка-подзаголовок под title. |
 | `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `title` | `ReactNode` | — | Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer). |
 | `width` | `Width` | `'s'` | Ширина (только при position: "left" \| "right") |
+| `withDividers` | `boolean` | `false` | Только mobile: разделители между шапкой/контентом/футером sheet'а. |
 
 ##### Related types
 
@@ -286,6 +289,7 @@ export function NestedDrawer() {
 | `closeOnPopstate` | `boolean \| undefined` | — | Закрывать дровер при перемещении по истории браузера |
 | `container` | `string \| HTMLElement \| undefined` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Содержимое body (альтернатива `children`). |
+| `contentRef` | `Ref<HTMLElement> \| undefined` | — | Ссылка на скроллируемый контейнер контента (например, для дозагрузки по скроллу). |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disableMotions` | `boolean \| undefined` | — | Отключить анимации |
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null)) \| undefined` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
@@ -303,12 +307,14 @@ export function NestedDrawer() {
 | `showBlackout` | `boolean \| undefined` | — | Отображение темной подложки |
 | `showButtonClosed` | `boolean \| undefined` | — | Отображение кнопки закрытия в шапке дровера |
 | `slotAfterTitle` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Slot справа от title (например, `QuestionTooltip` из `@ds/tooltip`). |
+| `slotSecondTitle` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Slot под подзаголовком — типично `SearchBar`, `SegmentControl` или `Filter`. <br/> Рендерится на обеих поверхностях: `secondWrapper` в мастере `bottomSheet`, <br/> `subHeadlineWrapper` в мастере `window` (modal / drawer). |
 | `snapIndex` | `number \| undefined` | — | Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е; <br/> swipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен <br/> передать новое значение. |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
 | `subtitle` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Текстовая строка-подзаголовок под title. |
 | `swipeEnabled` | `boolean \| undefined` | — | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `title` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer). |
 | `width` | `Width` | — | Ширина (только при position: "left" \| "right") |
+| `withDividers` | `boolean \| undefined` | — | Только mobile: разделители между шапкой/контентом/футером sheet'а. |
 
 - `Position` = `"bottom"` \| `"left"` \| `"right"` \| `"top"`
 

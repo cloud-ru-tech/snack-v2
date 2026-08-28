@@ -14,6 +14,7 @@ export function MobileDrawer({
   media,
   title,
   slotAfterTitle,
+  slotSecondTitle,
   subtitle,
   onBackButtonClick,
   approveButton,
@@ -33,19 +34,21 @@ export function MobileDrawer({
   snapIndex,
   onSnapIndexChange,
   safeArea,
+  withDividers = false,
   ...rest
 }: DrawerProps) {
   // Футер собирает сам `BottomSheet`.
   return (
     <BottomSheet
-      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
-      withDividers={false}
+      // Дефолт `withDividers` в sheet'е — `true`; у Drawer'а вид исторически без разделителей.
+      withDividers={withDividers}
       open={open}
       onClose={onClose}
       showBackdrop={showBlackout}
       title={title}
       subtitle={subtitle}
       slotAfterTitle={slotAfterTitle}
+      slotSecondTitle={slotSecondTitle}
       onBackButtonClick={onBackButtonClick}
       media={media}
       content={content}
