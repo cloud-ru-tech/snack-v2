@@ -19,6 +19,7 @@ export const SERVICE_GROUPS: LinksGroup[] = [
         href: EMPTY_HREF,
         icon: PlaceholderSVG,
         aliases: ['ml inference', 'инференс', 'ai', 'hugging face', 'ollama'],
+        description: 'Краткое описание в одну строку',
       },
       {
         id: 'notebooks',

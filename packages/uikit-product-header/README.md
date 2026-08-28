@@ -415,7 +415,7 @@ export function ControlledTheme() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ListProps` \| `ScrollProps` | — |  |
+| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — |  |
 | `onClick` | `(() => void)` | — |  |
 | `onLogout` | `(() => void)` | — |  |
 | `open` | `boolean` | — |  |

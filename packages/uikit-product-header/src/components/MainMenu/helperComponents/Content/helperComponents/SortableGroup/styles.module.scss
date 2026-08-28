@@ -169,6 +169,10 @@ $map-block-color-decor: (
   &[data-mobile] {
     grid-template-columns: repeat(1, minmax(200px, 1fr));
   }
+
+  &[data-subcategory-body] {
+    padding-bottom: base.$sn-primitive-dimension-4;
+  }
 }
 
 .decoration {

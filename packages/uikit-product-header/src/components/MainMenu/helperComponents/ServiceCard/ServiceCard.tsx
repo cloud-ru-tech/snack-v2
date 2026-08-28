@@ -83,12 +83,18 @@ export function DraggableServiceCard({
   dragDisabled,
   ...props
 }: DraggableServiceCardProps) {
+  const disabled = dragDisabled || service.disabled || favorite?.value.includes(service.id);
+
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: getServiceSourceDragId(groupId, service.id),
-    disabled: dragDisabled || service.disabled || favorite?.value.includes(service.id),
+    disabled,
   });
 
   const { tabIndex, ...restAttributes } = attributes ?? {};
+
+  if (disabled) {
+    return <ServiceCard service={service} favorite={favorite} {...props} tabIndex={tabIndex} />;
+  }
 
   return (
     <DragGhost
