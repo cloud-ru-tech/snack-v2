@@ -41,5 +41,21 @@ test.describe('Label — rendering', () => {
       await expect(getByTestId(SLOT_TEST_IDS.caption)).toBeVisible();
       await expect(getByTestId(SLOT_TEST_IDS.labelTooltip)).toBeVisible();
     });
+
+    test('required sign and tooltip are hidden without label', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(
+        buildStoryOptions({
+          label: null,
+          required: true,
+          caption: 'Caption',
+          labelTooltip: { tip: 'Tip' },
+        }),
+      );
+
+      await expect(getByTestId(SLOT_TEST_IDS.caption)).toBeVisible();
+      await expect(getByTestId(SLOT_TEST_IDS.label)).toHaveCount(0);
+      await expect(getByTestId(SLOT_TEST_IDS.required)).toHaveCount(0);
+      await expect(getByTestId(SLOT_TEST_IDS.labelTooltip)).toHaveCount(0);
+    });
   });
 });

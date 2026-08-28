@@ -26,8 +26,7 @@ export function FieldDecorator({
   readonly: readOnly,
   ...rest
 }: FieldDecoratorProps) {
-  const showLabelContent = label || required || labelTooltip;
-  const showHeader = showLabelContent || caption;
+  const showHeader = label || caption;
   const hintText = error || hint;
   const isFieldActive = !disabled && !readOnly;
   const showLength = isFieldActive && Boolean(length);

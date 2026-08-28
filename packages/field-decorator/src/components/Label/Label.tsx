@@ -18,8 +18,6 @@ export function Label({
   size = SIZE.M,
   ...rest
 }: LabelProps) {
-  const showLabelContent = label || required || labelTooltip;
-
   return (
     <div
       {...extractSupportProps(rest)}
@@ -28,7 +26,7 @@ export function Label({
       data-size={size}
       data-disabled={disabled || undefined}
     >
-      {showLabelContent && (
+      {label && (
         <div className={styles.labelContent}>
           <label className={styles.label} htmlFor={labelFor} data-test-id={TEST_IDS.label}>
             {label}
