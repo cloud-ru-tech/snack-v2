@@ -44,7 +44,7 @@ export function SortableGroupHeader({
             {...(label.href ? { as: 'a', href: label.href } : { as: 'div' })}
             onClick={handleLabelClick}
             title={label.text}
-            before={getLinkEmblem({ icon })}
+            icon={getLinkEmblem({ icon })}
           />
         ) : (
           label.text

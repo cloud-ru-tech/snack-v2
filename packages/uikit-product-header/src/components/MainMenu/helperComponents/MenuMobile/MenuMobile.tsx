@@ -71,9 +71,9 @@ export function MenuMobile({
         panel={<MenuHeaderBrand logo={logo} onClose={handleClose} className={styles.menuHeader} />}
       >
         <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
+          {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
           {search && <Search {...search} ref={searchRef} isMobile />}
           {favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
-          {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
 
           {hasSegments && (
             <MainMenuDndContext>
