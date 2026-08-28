@@ -1,24 +1,32 @@
 ---
 title: NotificationPanel
 package: '@ds/uikit-product-notification'
-description: Адаптивная обёртка панели уведомлений — на desktop открывает NotificationPanelContent в drawer, на mobile в bottom-sheet (выбор по layoutType).
-order: 130
+description: Адаптивная панель уведомлений — заголовок, фильтры, кнопка «прочитать все», лента карточек и состояния loading/blank. На desktop открывается в drawer, на mobile в bottom-sheet.
+order: 120
 ---
 
-import { PanelScenario } from '../demos/examples/PanelScenario'
-import PanelScenarioSrc from '../demos/examples/PanelScenario.tsx?raw'
-import { Example } from '#docs/components/Example'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import notificationDoc from './props.json'
+import { PanelBasic } from '../demos/examples/PanelBasic';
+import PanelBasicSrc from '../demos/examples/PanelBasic.tsx?raw';
+import { PanelLoading } from '../demos/examples/PanelLoading';
+import PanelLoadingSrc from '../demos/examples/PanelLoading.tsx?raw';
+import { PanelError } from '../demos/examples/PanelError';
+import PanelErrorSrc from '../demos/examples/PanelError.tsx?raw';
+import { PanelFull } from '../demos/examples/PanelFull';
+import PanelFullSrc from '../demos/examples/PanelFull.tsx?raw';
+import { PanelScenario } from '../demos/examples/PanelScenario';
+import PanelScenarioSrc from '../demos/examples/PanelScenario.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import notificationDoc from './props.json';
 
 # NotificationPanel
 
-Адаптивная обёртка [`NotificationPanelContent`](/components/uikit-product-notification/notification-panel). На desktop открывает панель в drawer, на mobile — в bottom-sheet. Выбор раскладки — по `layoutType` (как у `Widget` / `Toolbar`).
+Панель ленты уведомлений: заголовок, опциональные фильтры (segmented control, chip toggle), кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Собрана на `Drawer`, поэтому поверхность адаптивная: на desktop — боковая панель, на mobile — bottom-sheet.
 
-Контент передаётся пропом `content` как элемент `<NotificationPanelContent />`, а не как пропсы.
+Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
 
 ## Когда использовать
 
@@ -29,18 +37,32 @@ import notificationDoc from './props.json'
 
 ### Layout type (default `desktop`)
 
-Тип раскладки определяет обёртку:
+Раскладка приходит из `AdaptiveProvider` и определяет поверхность:
 
 - `desktop` — drawer (Figma `notificationDrawer`).
-- `mobile` — bottom-sheet (Figma `notificationBottomSheet`).
+- `mobile` — bottom-sheet (Figma `notificationBottomSheet`), `chipToggle` в этой раскладке не показывается.
 
 ### Position (default `right`)
 
-Сторона, с которой выезжает drawer. Только для `desktop`.
+Сторона, с которой выезжает панель. Только desktop.
 
 ### Width (default `s`)
 
-Ширина drawer. Только для `desktop`.
+Ширина панели. Только desktop.
+
+### Panel state
+
+Состояния тела панели (соответствуют Figma variant `content`):
+
+- `content` — стандартный список карточек через слот `content`.
+- `loading` — `loading={true}` показывает скелетоны (`skeletonsAmount`, default `2`).
+- `blank` — `content={<NotificationPanel.Blank />}` для пустого состояния и состояния ошибки.
+
+### Субкомпоненты слота `content`
+
+- `NotificationPanel.Group` — группа карточек с заголовком.
+- `NotificationPanel.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
+- `NotificationPanel.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
 
 ## Установка
 
@@ -49,14 +71,46 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-notification'
+import { NotificationPanel } from '@ds/uikit-product-notification';
 ```
 
 ## Примеры использования
 
 <Example
+  title='Базовая лента'
+  description='Список карточек через слот content, readAllButton помечает все прочитанными, onVisible — каждую при прокрутке.'
+  code={PanelBasicSrc}
+>
+  <PanelBasic client:visible />
+</Example>
+
+<Example
+  title='Загрузка'
+  description='loading + skeletonsAmount={4} вместо слота content; фильтры и readAllButton остаются на месте.'
+  code={PanelLoadingSrc}
+>
+  <PanelLoading client:visible />
+</Example>
+
+<Example
+  title='Ошибка загрузки'
+  description='Состояние ошибки через content={<NotificationPanel.Blank />} с иконкой и текстом — сервер недоступен.'
+  code={PanelErrorSrc}
+>
+  <PanelError client:visible />
+</Example>
+
+<Example
+  title='Полный сценарий продовой ленты'
+  description='Segments + chipToggle + settings + readAll, Group для критичных, Stack для повторяющихся алертов квоты по нескольким хостам.'
+  code={PanelFullSrc}
+>
+  <PanelFull client:visible />
+</Example>
+
+<Example
   title='Открытие из кнопки в шапке'
-  description='Триггер со счётчиком непрочитанных, useState для open/close, контент — <NotificationPanelContent /> с живыми карточками. Порталу нужен PortalContextProvider.'
+  description='Триггер со счётчиком непрочитанных и useState для open/close.'
   code={PanelScenarioSrc}
 >
   <PanelScenario client:visible />
@@ -64,11 +118,27 @@ import { NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-n
 
 ## Props
 
+### NotificationPanel
+
 <PropsTable data={notificationDoc.NotificationPanel} />
+
+### NotificationPanel.Stack
+
+<PropsTable data={notificationDoc.NotificationCardStack} />
+
+### NotificationPanel.Group
+
+<PropsTable data={notificationDoc.NotificationPanelGroup} />
+
+### NotificationPanel.Blank
+
+<PropsTable data={notificationDoc.NotificationPanelBlank} />
 
 ## Storybook
 
 <StorybookEmbed storyId='uikit-product-notification-notificationpanel--playground' height={520} />
+
+<StorybookEmbed storyId='uikit-product-notification-notificationcardstack--playground' height={520} />
 
 ## Figma
 

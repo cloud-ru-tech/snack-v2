@@ -5,20 +5,20 @@ description: Карточка одного уведомления — тип (ap
 order: 110
 ---
 
-import { BasicCard } from '../demos/examples/BasicCard'
-import BasicCardSrc from '../demos/examples/BasicCard.tsx?raw'
-import { UnreadCard } from '../demos/examples/UnreadCard'
-import UnreadCardSrc from '../demos/examples/UnreadCard.tsx?raw'
-import { IncidentCard } from '../demos/examples/IncidentCard'
-import IncidentCardSrc from '../demos/examples/IncidentCard.tsx?raw'
-import { DeployFailureCard } from '../demos/examples/DeployFailureCard'
-import DeployFailureCardSrc from '../demos/examples/DeployFailureCard.tsx?raw'
-import { Example } from '#docs/components/Example'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import notificationDoc from './props.json'
+import { BasicCard } from '../demos/examples/BasicCard';
+import BasicCardSrc from '../demos/examples/BasicCard.tsx?raw';
+import { UnreadCard } from '../demos/examples/UnreadCard';
+import UnreadCardSrc from '../demos/examples/UnreadCard.tsx?raw';
+import { IncidentCard } from '../demos/examples/IncidentCard';
+import IncidentCardSrc from '../demos/examples/IncidentCard.tsx?raw';
+import { DeployFailureCard } from '../demos/examples/DeployFailureCard';
+import DeployFailureCardSrc from '../demos/examples/DeployFailureCard.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import notificationDoc from './props.json';
 
 # NotificationCard
 
@@ -26,7 +26,7 @@ import notificationDoc from './props.json'
 
 ## Когда использовать
 
-- Элемент ленты внутри [`NotificationPanelContent`](/components/uikit-product-notification/notification-panel-content).
+- Элемент ленты внутри [`NotificationPanel`](/components/uikit-product-notification/notification-panel).
 - Отдельная карточка статуса операции (деплой, бэкап, инцидент) в произвольном контейнере.
 
 ## Анатомия
@@ -61,7 +61,7 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationCard } from '@ds/uikit-product-notification'
+import { NotificationCard } from '@ds/uikit-product-notification';
 ```
 
 ## Примеры использования

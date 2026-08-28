@@ -1,12 +1,11 @@
 # Notification
 
-`@ds/uikit-product-notification` — Пакет уведомлений — карточка NotificationCard, лента NotificationPanelContent со стеками и группами и адаптивная обёртка NotificationPanel (drawer на desktop, bottom-sheet на mobile).
+`@ds/uikit-product-notification` — Пакет уведомлений — карточка NotificationCard и адаптивная панель NotificationPanel со стеками и группами (drawer на desktop, bottom-sheet на mobile).
 
-Пакет `@ds/uikit-product-notification` собирает ленту уведомлений из трёх уровней: одиночная карточка, контейнер-лента и адаптивная обёртка для открытия ленты в drawer или bottom-sheet.
+Пакет `@ds/uikit-product-notification` собирает ленту уведомлений из двух уровней: одиночная карточка и адаптивная панель, которая открывает ленту в drawer или bottom-sheet.
 
 - ****NotificationCard**** — одиночная карточка уведомления: тип (`appearance`), состояние `unread`, ссылка, дата, кнопки действий и меню.
-- ****NotificationPanelContent**** — контейнер ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`.
-- ****NotificationPanel**** — адаптивная обёртка панели: на desktop открывает её в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
+- ****NotificationPanel**** — панель ленты: заголовок, фильтры, кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Namespace-субкомпоненты `Group`, `Stack`, `Blank`. На desktop открывается в drawer, на mobile — в bottom-sheet (выбор по `layoutType`).
 
 ## Установка
 
@@ -15,7 +14,7 @@ pnpm add @ds/uikit-product-notification
 ```
 
 ```ts
-import { NotificationCard, NotificationPanelContent, NotificationPanel } from '@ds/uikit-product-notification'
+import { NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
 ```
 
 ## NotificationCard
@@ -26,7 +25,7 @@ import { NotificationCard, NotificationPanelContent, NotificationPanel } from '@
 
 ### Когда использовать
 
-- Элемент ленты внутри **`NotificationPanelContent`**.
+- Элемент ленты внутри **`NotificationPanel`**.
 - Отдельная карточка статуса операции (деплой, бэкап, инцидент) в произвольном контейнере.
 
 ### Анатомия
@@ -237,34 +236,49 @@ export function DeployFailureCard() {
 | `loading` | `boolean \| undefined` | — | Состояние загрузки |
 | `minWidth` | `boolean \| undefined` | — | Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`. <br/> `false` — кнопка сжимается по контенту вместо фиксированного минимума. |
 
-## NotificationPanelContent
+## NotificationPanel
 
-Контейнер ленты уведомлений с заголовком, фильтрами, кнопкой «прочитать все», слотом-списком карточек и состояниями loading/blank. Namespace-субкомпоненты Stack/Group/Blank — композиции для слота content.
+Адаптивная панель уведомлений — заголовок, фильтры, кнопка «прочитать все», лента карточек и состояния loading/blank. На desktop открывается в drawer, на mobile в bottom-sheet.
 
-Контейнер ленты уведомлений. Содержит заголовок, опциональные фильтры (segmented control, chip toggle), кнопку «прочитать все», слот-список карточек и состояния `loading` / `blank`.
+Панель ленты уведомлений: заголовок, опциональные фильтры (segmented control, chip toggle), кнопка «прочитать все», слот-список карточек и состояния `loading` / `blank`. Собрана на `Drawer`, поэтому поверхность адаптивная: на desktop — боковая панель, на mobile — bottom-sheet.
 
-Namespace `NotificationPanelContent.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
+Namespace `NotificationPanel.{Blank, Group, Stack}` — субкомпоненты-композиции для слота `content`.
 
 ### Когда использовать
 
-- Лента уведомлений в центре экрана или на отдельной странице.
-- Контент внутри **`NotificationPanel`**.
+- Лента уведомлений, открываемая из иконки в шапке или тулбаре.
+- Один и тот же контент панели на desktop и mobile без дублирования разметки.
 
 ### Анатомия
 
+#### Layout type (default `desktop`)
+
+Раскладка приходит из `AdaptiveProvider` и определяет поверхность:
+
+- `desktop` — drawer (Figma `notificationDrawer`).
+- `mobile` — bottom-sheet (Figma `notificationBottomSheet`), `chipToggle` в этой раскладке не показывается.
+
+#### Position (default `right`)
+
+Сторона, с которой выезжает панель. Только desktop.
+
+#### Width (default `s`)
+
+Ширина панели. Только desktop.
+
 #### Panel state
 
-Состояния панели (соответствуют Figma variant `content`):
+Состояния тела панели (соответствуют Figma variant `content`):
 
 - `content` — стандартный список карточек через слот `content`.
 - `loading` — `loading={true}` показывает скелетоны (`skeletonsAmount`, default `2`).
-- `blank` — `content={<NotificationPanelContent.Blank />}` для пустого состояния и состояния ошибки.
+- `blank` — `content={<NotificationPanel.Blank />}` для пустого состояния и состояния ошибки.
 
 #### Субкомпоненты слота `content`
 
-- `NotificationPanelContent.Group` — группа карточек с заголовком.
-- `NotificationPanelContent.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
-- `NotificationPanelContent.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
+- `NotificationPanel.Group` — группа карточек с заголовком.
+- `NotificationPanel.Stack` — стек схлопывающихся карточек. Стек из одной карточки рендерится без обёртки.
+- `NotificationPanel.Blank` — пустое состояние (используется и для ошибки — с иконкой и текстом).
 
 ### Примеры использования
 
@@ -273,64 +287,71 @@ Namespace `NotificationPanelContent.{Blank, Group, Stack}` — субкомпо�
 Список карточек через слот content, readAllButton помечает все прочитанными, onVisible — каждую при прокрутке.
 
 ```tsx
-import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
+import { Button } from '@ds/button';
+import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
 import { useState } from 'react';
 
 export function PanelBasic() {
+  const [open, setOpen] = useState(false);
   const [readIds, setReadIds] = useState<Set<string>>(new Set());
   const markRead = (id: string) => setReadIds(prev => (prev.has(id) ? prev : new Set(prev).add(id)));
 
   return (
-    <NotificationPanelContent
-      title='Уведомления'
-      readAllButton={{
-        label: 'Прочитать всё',
-        onClick: () => setReadIds(new Set(['inc-4821', 'quota-var-data', 'deploy-9217', 'backup-1729'])),
-      }}
-      content={
-        <>
-          <NotificationCard
-            id='inc-4821'
-            label='INC-4821'
-            appearance={APPEARANCE.Error}
-            title='Кластер k8s-prod-1 деградирован'
-            description='3 из 5 нод недоступны последние 6 минут.'
-            date='03:14'
-            link={{ label: 'Открыть инцидент', href: '/incidents/INC-4821' }}
-            unread={!readIds.has('inc-4821')}
-            onVisible={markRead}
-          />
-          <NotificationCard
-            id='quota-var-data'
-            label='Storage'
-            appearance={APPEARANCE.Warning}
-            title='Лимит дисковой квоты'
-            description='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
-            date='02:50'
-            unread={!readIds.has('quota-var-data')}
-            onVisible={markRead}
-          />
-          <NotificationCard
-            id='deploy-9217'
-            label='api-gateway · v2.18.3'
-            appearance={APPEARANCE.Error}
-            title='Деплой не прошёл health-check'
-            description='Readiness probe вернул 503 на 4 из 6 подов.'
-            date='вчера · 23:11'
-            unread={!readIds.has('deploy-9217')}
-            onVisible={markRead}
-          />
-          <NotificationCard
-            id='backup-1729'
-            label='Backup'
-            appearance={APPEARANCE.Success}
-            title='Резервная копия завершена'
-            description='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
-            date='вчера · 14:32'
-          />
-        </>
-      }
-    />
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button label='Уведомления' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
+      <NotificationPanel
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Уведомления'
+        readAllButton={{
+          label: 'Прочитать всё',
+          onClick: () => setReadIds(new Set(['inc-4821', 'quota-var-data', 'deploy-9217', 'backup-1729'])),
+        }}
+        content={
+          <>
+            <NotificationCard
+              id='inc-4821'
+              label='INC-4821'
+              appearance={APPEARANCE.Error}
+              title='Кластер k8s-prod-1 деградирован'
+              description='3 из 5 нод недоступны последние 6 минут.'
+              date='03:14'
+              link={{ label: 'Открыть инцидент', href: '/incidents/INC-4821' }}
+              unread={!readIds.has('inc-4821')}
+              onVisible={markRead}
+            />
+            <NotificationCard
+              id='quota-var-data'
+              label='Storage'
+              appearance={APPEARANCE.Warning}
+              title='Лимит дисковой квоты'
+              description='Использовано 92% /var/data — осталось 38 ГБ из 480 ГБ.'
+              date='02:50'
+              unread={!readIds.has('quota-var-data')}
+              onVisible={markRead}
+            />
+            <NotificationCard
+              id='deploy-9217'
+              label='api-gateway · v2.18.3'
+              appearance={APPEARANCE.Error}
+              title='Деплой не прошёл health-check'
+              description='Readiness probe вернул 503 на 4 из 6 подов.'
+              date='вчера · 23:11'
+              unread={!readIds.has('deploy-9217')}
+              onVisible={markRead}
+            />
+            <NotificationCard
+              id='backup-1729'
+              label='Backup'
+              appearance={APPEARANCE.Success}
+              title='Резервная копия завершена'
+              description='Бэкап БД prod-1 (412 ГБ) загружен в s3://backups-prod/.'
+              date='вчера · 14:32'
+            />
+          </>
+        }
+      />
+    </div>
   );
 }
 ```
@@ -340,25 +361,34 @@ export function PanelBasic() {
 loading + skeletonsAmount={4} вместо слота content; фильтры и readAllButton остаются на месте.
 
 ```tsx
-import { NotificationPanelContent } from '@ds/uikit-product-notification';
+import { Button } from '@ds/button';
+import { NotificationPanel } from '@ds/uikit-product-notification';
+import { useState } from 'react';
 
 export function PanelLoading() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <NotificationPanelContent
-      title='Уведомления'
-      loading
-      skeletonsAmount={4}
-      segments={{
-        items: [
-          { value: 'all', label: 'Все' },
-          { value: 'unread', label: 'Непрочитанные' },
-          { value: 'mentions', label: 'Упоминания' },
-        ],
-        value: 'all',
-        onChange: () => {},
-      }}
-      readAllButton={{ label: 'Прочитать всё', onClick: () => {} }}
-    />
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button label='Уведомления' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
+      <NotificationPanel
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Уведомления'
+        loading
+        skeletonsAmount={4}
+        segments={{
+          items: [
+            { value: 'all', label: 'Все' },
+            { value: 'unread', label: 'Непрочитанные' },
+            { value: 'mentions', label: 'Упоминания' },
+          ],
+          value: 'all',
+          onChange: () => {},
+        }}
+        readAllButton={{ label: 'Прочитать всё', onClick: () => {} }}
+      />
+    </div>
   );
 }
 ```
@@ -368,7 +398,8 @@ export function PanelLoading() {
 Segments + chipToggle + settings + readAll, Group для критичных, Stack для повторяющихся алертов квоты по нескольким хостам.
 
 ```tsx
-import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
+import { Button } from '@ds/button';
+import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
 import { useMemo, useState } from 'react';
 
 type Filter = 'all' | 'unread' | 'mentions';
@@ -376,6 +407,7 @@ type Filter = 'all' | 'unread' | 'mentions';
 type CardId = 'inc-4821' | 'deploy-9217' | 'stack-quota' | 'mention-1' | 'backup-1729';
 
 export function PanelFull() {
+  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<Filter>('all');
   const [importantOnly, setImportantOnly] = useState(false);
   const [muted, setMuted] = useState(false);
@@ -407,21 +439,21 @@ export function PanelFull() {
 
   const attentionVisible = visible.inc || visible.deploy;
 
-  if (muted) {
-    return (
-      <NotificationPanelContent
-        title='Уведомления'
-        settings={{
-          button: { onClick: () => setMuted(false) },
-          actions: [{ content: { label: 'Снять заглушение' }, onClick: () => setMuted(false) }],
-        }}
-        content={<NotificationPanelContent.Blank />}
-      />
-    );
-  }
-
-  return (
-    <NotificationPanelContent
+  const panel = muted ? (
+    <NotificationPanel
+      open={open}
+      onClose={() => setOpen(false)}
+      title='Уведомления'
+      settings={{
+        button: { onClick: () => setMuted(false) },
+        actions: [{ content: { label: 'Снять заглушение' }, onClick: () => setMuted(false) }],
+      }}
+      content={<NotificationPanel.Blank />}
+    />
+  ) : (
+    <NotificationPanel
+      open={open}
+      onClose={() => setOpen(false)}
       title='Уведомления'
       segments={{
         items: [
@@ -452,7 +484,7 @@ export function PanelFull() {
       content={
         <>
           {attentionVisible && (
-            <NotificationPanelContent.Group title='Требуют внимания'>
+            <NotificationPanel.Group title='Требуют внимания'>
               {visible.inc && (
                 <NotificationCard
                   id='inc-4821'
@@ -483,12 +515,12 @@ export function PanelFull() {
                   onVisible={markRead}
                 />
               )}
-            </NotificationPanelContent.Group>
+            </NotificationPanel.Group>
           )}
 
           {visible.quota && (
             <>
-              <NotificationPanelContent.Stack
+              <NotificationPanel.Stack
                 title='Лимит дисковой квоты · 3 хоста'
                 unread={isUnread('stack-quota')}
                 actions={[
@@ -521,7 +553,7 @@ export function PanelFull() {
                   description='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
-              </NotificationPanelContent.Stack>
+              </NotificationPanel.Stack>
             </>
           )}
 
@@ -555,29 +587,129 @@ export function PanelFull() {
       }
     />
   );
+
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button label='Уведомления' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
+      {panel}
+    </div>
+  );
+}
+```
+
+#### Открытие из кнопки в шапке
+
+Триггер со счётчиком непрочитанных и useState для open/close.
+
+```tsx
+import { Button } from '@ds/button';
+import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
+import { useMemo, useState } from 'react';
+
+export function PanelScenario() {
+  const [open, setOpen] = useState(false);
+  const [readIds, setReadIds] = useState<Set<string>>(new Set());
+
+  const unreadCount = useMemo(() => ['inc-4821', 'deploy-9217'].filter(id => !readIds.has(id)).length, [readIds]);
+
+  const markRead = (id: string) => setReadIds(prev => (prev.has(id) ? prev : new Set(prev).add(id)));
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: '12px 16px',
+        minHeight: 56,
+      }}
+    >
+      <Button
+        label={unreadCount > 0 ? `Уведомления · ${unreadCount}` : 'Уведомления'}
+        view='outline'
+        appearance='neutral'
+        onClick={() => setOpen(true)}
+      />
+      <NotificationPanel
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Уведомления'
+        readAllButton={{
+          label: 'Прочитать всё',
+          onClick: () => setReadIds(new Set(['inc-4821', 'deploy-9217'])),
+        }}
+        content={
+          <>
+            <NotificationCard
+              id='inc-4821'
+              label='INC-4821'
+              appearance={APPEARANCE.Error}
+              title='Кластер k8s-prod-1 деградирован'
+              description='3 из 5 нод недоступны последние 6 минут.'
+              date='03:14'
+              link={{ label: 'Открыть инцидент', href: '/incidents/INC-4821' }}
+              unread={!readIds.has('inc-4821')}
+              onVisible={markRead}
+            />
+            <NotificationCard
+              id='deploy-9217'
+              label='api-gateway · v2.18.3'
+              appearance={APPEARANCE.Error}
+              title='Деплой не прошёл health-check'
+              description='Readiness probe вернул 503 на 4 из 6 подов.'
+              date='02:50'
+              primaryButton={{ label: 'Повторить', onClick: () => markRead('deploy-9217') }}
+              secondaryButton={{
+                label: 'Логи',
+                onClick: () => window.open('/logs/api-gateway/2.18.3', '_blank'),
+              }}
+              unread={!readIds.has('deploy-9217')}
+              onVisible={markRead}
+            />
+            <NotificationCard
+              id='backup-1729'
+              label='Backup'
+              appearance={APPEARANCE.Success}
+              title='Резервная копия завершена'
+              description='prod-1 (412 ГБ) → s3://backups-prod/2026-05-26/'
+              date='вчера · 14:32'
+            />
+          </>
+        }
+      />
+    </div>
+  );
 }
 ```
 
 ### Props
 
-#### NotificationPanelContent
+#### NotificationPanel
 
-**NotificationPanelContentProps**
+**NotificationPanelProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `chipToggle` | `{ label: string; checked: boolean; onChange(checked: boolean): void; }` | — | Переключатель для фильтрации |
-| `className` | `string` | — |  |
-| `content` | `ReactNode` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanelContent.Blank) |
+| `chipToggle` | `{ label: string; checked: boolean; onChange(checked: boolean): void; }` | — | Переключатель для фильтрации. Только desktop: в мастере bottomSheet его нет. |
+| `className` | `string` | — | CSS-класс для элемента с контентом <br/> CSS-класс |
+| `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
+| `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
+| `content` | `ReactNode` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanel.Blank) |
 | `data-test-id` | `string` | — |  |
 | `loading` | `boolean` | — | Состояние загрузки |
+| `onClose` | `() => void` | — | Колбэк закрытия |
+| `open` | `boolean` | — | Управление состоянием показан/не показан. |
+| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | `right` | Расположение |
 | `readAllButton` | `ButtonProps` \| `TooltipProps` | — | Кнопка в "шапке" панели |
+| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollEndRef` | `RefObject<HTMLDivElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `segments` | `SegmentControlProps` | — | Сегменты для фильтрации |
 | `settings` | `NotificationPanelSettingsProps` | — | Кнопка настроек и выпадающий список |
+| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `skeletonsAmount` | `number` | `2` | Количество скелетонов карточек для отображения при загрузке |
 | `title` | `string` | — | Заголовок панели |
+| `width` | `Width` | `s` | Ширина (только при position: "left" \| "right") |
 
 ##### Related types
 
@@ -599,7 +731,7 @@ export function PanelFull() {
 | `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
 | `size` | `"m"` \| `"s"` | — |  |
 
-#### NotificationPanelContent.Stack
+#### NotificationPanel.Stack
 
 **NotificationCardStackProps**
 
@@ -625,7 +757,7 @@ export function PanelFull() {
 | `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбек обработки клика |
 | `tagLabel` | `string \| undefined` | — | Лейбл-тег справа от текста |
 
-#### NotificationPanelContent.Group
+#### NotificationPanel.Group
 
 **NotificationPanelGroupProps**
 
@@ -636,7 +768,7 @@ export function PanelFull() {
 | `data-test-id` | `string` | — |  |
 | `title` | `string` | — | Заголовок группы |
 
-#### NotificationPanelContent.Blank
+#### NotificationPanel.Blank
 
 **NotificationPanelBlankProps**
 
@@ -647,78 +779,3 @@ export function PanelFull() {
 | `data-test-id` | `string` | — |  |
 | `icon` | `IconPredefinedProps` | — | Иконка |
 | `title` | `string` | — | Заголовок |
-
-## NotificationPanel
-
-Адаптивная обёртка панели уведомлений — на desktop открывает NotificationPanelContent в drawer, на mobile в bottom-sheet (выбор по layoutType).
-
-Адаптивная обёртка **`NotificationPanelContent`**. На desktop открывает панель в drawer, на mobile — в bottom-sheet. Выбор раскладки — по `layoutType` (как у `Widget` / `Toolbar`).
-
-Контент передаётся пропом `content` как элемент `<NotificationPanelContent />`, а не как пропсы.
-
-### Когда использовать
-
-- Лента уведомлений, открываемая из иконки в шапке или тулбаре.
-- Один и тот же контент панели на desktop и mobile без дублирования разметки.
-
-### Анатомия
-
-#### Layout type (default `desktop`)
-
-Тип раскладки определяет обёртку:
-
-- `desktop` — drawer (Figma `notificationDrawer`).
-- `mobile` — bottom-sheet (Figma `notificationBottomSheet`).
-
-#### Position (default `right`)
-
-Сторона, с которой выезжает drawer. Только для `desktop`.
-
-#### Width (default `s`)
-
-Ширина drawer. Только для `desktop`.
-
-### Props
-
-**NotificationPanelProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | CSS-класс для элемента с контентом |
-| `closeOnPopstate` | `boolean` | — | Закрывать дровер при перемещении по истории браузера |
-| `container` | `string \| HTMLElement` | — | Контейнер в котором будет рендерится Drawer. По-умолчанию - body |
-| `content` | `NotificationPanelContentProps` | — | Контент панели (`NotificationPanelContent`), отображаемый внутри обёртки |
-| `data-test-id` | `string` | — |  |
-| `onClose` | `() => void` | — | Колбэк закрытия |
-| `open` | `boolean` | — | Управление состоянием показан/не показан. |
-| `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | `right` | Расположение |
-| `rootClassName` | `string` | — | CSS-класс для корневого элемента |
-| `showBlackout` | `boolean` | `true` | Отображение темной подложки |
-| `width` | `Width` | `s` | Ширина (только при position: "left" \| "right") |
-
-##### Related types
-
-**NotificationPanelContentProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `chipToggle` | `{ label: string; checked: boolean; onChange(checked: boolean): void; } \| undefined` | — | Переключатель для фильтрации |
-| `className` | `string \| undefined` | — |  |
-| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент для отрисовки (e.g NotificationCard \| NotificationPanelContent.Blank) |
-| `data-test-id` | `string \| undefined` | — |  |
-| `loading` | `boolean \| undefined` | — | Состояние загрузки |
-| `readAllButton` | `ButtonProps` \| `TooltipProps` | — | Кнопка в "шапке" панели |
-| `scrollContainerRef` | `RefObject<HTMLElement> \| undefined` | — | Ссылка на контейнер, который скроллится |
-| `scrollEndRef` | `RefObject<HTMLDivElement> \| undefined` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
-| `segments` | `SegmentControlProps` | — | Сегменты для фильтрации |
-| `settings` | `NotificationPanelSettingsProps` | — | Кнопка настроек и выпадающий список |
-| `skeletonsAmount` | `number \| undefined` | — | Количество скелетонов карточек для отображения при загрузке |
-| `title` | `string` | — | Заголовок панели |
-
-**NotificationPanelSettingsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `actions` | `Action` | — | Дополнительные действия панели |
-| `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
-| `size` | `"m"` \| `"s"` | — |  |

@@ -2953,9 +2953,6 @@ importers:
       '@ds/chips':
         specifier: workspace:^
         version: link:../chips
-      '@ds/divider':
-        specifier: workspace:^
-        version: link:../divider
       '@ds/drawer':
         specifier: workspace:^
         version: link:../drawer

@@ -1,4 +1,5 @@
-import { APPEARANCE, NotificationCard, NotificationPanelContent } from '@ds/uikit-product-notification';
+import { Button } from '@ds/button';
+import { APPEARANCE, NotificationCard, NotificationPanel } from '@ds/uikit-product-notification';
 import { useMemo, useState } from 'react';
 
 type Filter = 'all' | 'unread' | 'mentions';
@@ -6,6 +7,7 @@ type Filter = 'all' | 'unread' | 'mentions';
 type CardId = 'inc-4821' | 'deploy-9217' | 'stack-quota' | 'mention-1' | 'backup-1729';
 
 export function PanelFull() {
+  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<Filter>('all');
   const [importantOnly, setImportantOnly] = useState(false);
   const [muted, setMuted] = useState(false);
@@ -37,21 +39,21 @@ export function PanelFull() {
 
   const attentionVisible = visible.inc || visible.deploy;
 
-  if (muted) {
-    return (
-      <NotificationPanelContent
-        title='Уведомления'
-        settings={{
-          button: { onClick: () => setMuted(false) },
-          actions: [{ content: { label: 'Снять заглушение' }, onClick: () => setMuted(false) }],
-        }}
-        content={<NotificationPanelContent.Blank />}
-      />
-    );
-  }
-
-  return (
-    <NotificationPanelContent
+  const panel = muted ? (
+    <NotificationPanel
+      open={open}
+      onClose={() => setOpen(false)}
+      title='Уведомления'
+      settings={{
+        button: { onClick: () => setMuted(false) },
+        actions: [{ content: { label: 'Снять заглушение' }, onClick: () => setMuted(false) }],
+      }}
+      content={<NotificationPanel.Blank />}
+    />
+  ) : (
+    <NotificationPanel
+      open={open}
+      onClose={() => setOpen(false)}
       title='Уведомления'
       segments={{
         items: [
@@ -82,7 +84,7 @@ export function PanelFull() {
       content={
         <>
           {attentionVisible && (
-            <NotificationPanelContent.Group title='Требуют внимания'>
+            <NotificationPanel.Group title='Требуют внимания'>
               {visible.inc && (
                 <NotificationCard
                   id='inc-4821'
@@ -113,12 +115,12 @@ export function PanelFull() {
                   onVisible={markRead}
                 />
               )}
-            </NotificationPanelContent.Group>
+            </NotificationPanel.Group>
           )}
 
           {visible.quota && (
             <>
-              <NotificationPanelContent.Stack
+              <NotificationPanel.Stack
                 title='Лимит дисковой квоты · 3 хоста'
                 unread={isUnread('stack-quota')}
                 actions={[
@@ -151,7 +153,7 @@ export function PanelFull() {
                   description='Использовано 84% — осталось 76 ГБ из 480 ГБ.'
                   date='вчера · 23:50'
                 />
-              </NotificationPanelContent.Stack>
+              </NotificationPanel.Stack>
             </>
           )}
 
@@ -184,5 +186,12 @@ export function PanelFull() {
         </>
       }
     />
+  );
+
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Button label='Уведомления' view='outline' appearance='neutral' onClick={() => setOpen(true)} />
+      {panel}
+    </div>
   );
 }
