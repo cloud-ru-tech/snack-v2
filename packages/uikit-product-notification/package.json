@@ -36,7 +36,6 @@
     "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/chips": "workspace:^",
-    "@ds/divider": "workspace:^",
     "@ds/drawer": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/info-block": "workspace:^",

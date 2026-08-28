@@ -1,15 +1,43 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-.notificationPanelDrawer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.panel {
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
-// BottomSheet сам ограничивает высоту (max-height вьюпорта) и держит `.content`
-// как flex-колонку с min-height:0 — панель внутри (`.wrapper` height:100%) получает
-// ограниченную высоту, поэтому её внутренний `Scroll` работает.
-.notificationPanelSheet {
+// Кнопки шапки (`markAllWrapper` + `functionWrapper` в Figma) прижаты к правому краю строки заголовка.
+.headerActions {
+  display: flex;
+  flex: 1 1 auto;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.filtersRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  // Сегменты в мобильном мастере растянуты на всю ширину sheet'а.
+  &[data-mobile] > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.body {
   display: flex;
   flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  min-height: 100%;
+}
+
+.scrollStub {
+  width: 100%;
+  height: base.$sn-primitive-dimension-1;
+}
+
+.inlineFlex {
+  display: inline-flex;
 }

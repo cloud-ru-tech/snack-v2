@@ -14,6 +14,8 @@ test.describe('NotificationPanel — rendering', () => {
     await expect(trigger).toBeVisible();
     await trigger.click();
     await expect(page.getByTestId(TEST_IDS.panel.title)).toBeVisible();
+    await expect(page.getByTestId(TEST_IDS.panel.readAll)).toBeVisible();
+    await expect(page.getByTestId(TEST_IDS.panel.segments)).toBeVisible();
   });
 
   // Функциональная проверка адаптивного свапа surface (не визуальная): раскладка из тулбар-глобала

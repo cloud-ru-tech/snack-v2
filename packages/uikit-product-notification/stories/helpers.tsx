@@ -1,10 +1,5 @@
 import { SearchSVG } from '@ds/icons/interface/system';
-import {
-  APPEARANCE,
-  NotificationCard,
-  NotificationCardProps,
-  NotificationPanelContent,
-} from '@ds/uikit-product-notification';
+import { APPEARANCE, NotificationCard, NotificationCardProps, NotificationPanel } from '@ds/uikit-product-notification';
 import { ReactNode } from 'react';
 import { fn } from 'storybook/test';
 
@@ -73,7 +68,7 @@ export function renderPanelContent({
 
   if (!cards.length) {
     return (
-      <NotificationPanelContent.Blank
+      <NotificationPanel.Blank
         title='Нет уведомлений'
         icon={{ icon: SearchSVG, appearance: 'neutral' }}
         content='Здесь появятся новые уведомления о событиях, когда что-то произойдёт.'
@@ -88,15 +83,15 @@ export function renderPanelContent({
         bunchSize: stackSize,
         items: list.map(card => <NotificationCard key={card.id} {...card} />),
         renderBunch: (chunk, index) => (
-          <NotificationPanelContent.Stack key={`stack-${index}`} title={stackTitle} actions={ACTIONS}>
+          <NotificationPanel.Stack key={`stack-${index}`} title={stackTitle} actions={ACTIONS}>
             {chunk}
-          </NotificationPanelContent.Stack>
+          </NotificationPanel.Stack>
         ),
       }),
       renderBunch: (chunk, index) => (
-        <NotificationPanelContent.Group key={`group-${index}`} title={`0${index + 1}.03.2026`}>
+        <NotificationPanel.Group key={`group-${index}`} title={`0${index + 1}.03.2026`}>
           {chunk}
-        </NotificationPanelContent.Group>
+        </NotificationPanel.Group>
       ),
     });
 

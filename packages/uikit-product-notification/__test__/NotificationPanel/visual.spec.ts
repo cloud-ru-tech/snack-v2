@@ -5,7 +5,7 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { waitForSettledInViewport } from '#playwright-tooling/utils';
+import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { buildStoryOptions, DRAWER_TRIGGER_TEST_ID, STORIES, TEST_IDS } from './helpers';
 
@@ -16,6 +16,13 @@ test.describe('NotificationPanel — visual regression', () => {
       testInfo.project.name !== VISUAL_BASELINE_PROJECT,
       `Visual baselines are ${VISUAL_BASELINE_PROJECT}-only`,
     );
+  });
+
+  // Инлайновая часть API — композиции тела панели (Blank / Group / Stack).
+  test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
+    await waitForFonts();
+    await assertVisualMatrixSnapshot(page);
   });
 
   test('open (right, width=s)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {

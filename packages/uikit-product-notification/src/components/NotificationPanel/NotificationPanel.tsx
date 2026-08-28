@@ -1,14 +1,31 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
-import { DrawerCustom, DrawerCustomProps, POSITION, WIDTH } from '@ds/drawer';
+import { Button, ButtonProps } from '@ds/button';
+import { ChipToggle } from '@ds/chips';
+import { Drawer, DrawerProps, POSITION, WIDTH } from '@ds/drawer';
+import { DecorCheckedSVG } from '@ds/icons/interface/product';
+import { SegmentControl, SegmentControlProps } from '@ds/segment-control';
+import { SkeletonContextProvider, WithSkeleton } from '@ds/skeleton';
+import { TooltipProps, WithTooltip } from '@ds/tooltip';
 import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ReactElement } from 'react';
+import { ReactNode, RefObject, useMemo } from 'react';
 
-import { NotificationPanelContent, NotificationPanelContentProps } from '../NotificationPanelContent';
+import { TEST_IDS } from '../../constants';
+import { NotificationCardSkeleton } from '../NotificationCard/NotificationCardSkeleton';
+import {
+  NotificationCardStack,
+  NotificationCardStackProps,
+  NotificationPanelBlank,
+  NotificationPanelBlankProps,
+  NotificationPanelGroup,
+  NotificationPanelGroupProps,
+  NotificationPanelSettings,
+  NotificationPanelSettingsProps,
+} from './components';
 import styles from './styles.module.scss';
 
 type SharedOverlayProps = Pick<
-  DrawerCustomProps,
+  DrawerProps,
   'open' | 'onClose' | 'className' | 'rootClassName' | 'showBlackout' | 'container' | 'closeOnPopstate'
 >;
 
@@ -18,40 +35,159 @@ type SharedOverlayProps = Pick<
  */
 export type NotificationPanelProps = WithSupportProps<
   {
-    /** Контент панели (`NotificationPanelContent`), отображаемый внутри обёртки */
-    content: ReactElement<NotificationPanelContentProps, typeof NotificationPanelContent>;
+    /** Заголовок панели */
+    title: string;
+    /** Кнопка настроек и выпадающий список */
+    settings?: NotificationPanelSettingsProps;
+    /** Сегменты для фильтрации */
+    segments?: Omit<SegmentControlProps, 'size' | 'data-test-id'>;
+    /** Переключатель для фильтрации. Только desktop: в мастере bottomSheet его нет. */
+    chipToggle?: {
+      label: string;
+      checked: boolean;
+      onChange(checked: boolean): void;
+    };
+    /** Кнопка в "шапке" панели */
+    readAllButton?: Omit<ButtonProps, 'data-test-id' | 'size'> & {
+      tooltip?: TooltipProps;
+    };
+    /** Состояние загрузки */
+    loading?: boolean;
+    /** Контент для отрисовки (e.g NotificationCard | NotificationPanel.Blank) */
+    content?: ReactNode;
+    /** Количество скелетонов карточек для отображения при загрузке */
+    skeletonsAmount?: number;
+    /** Ссылка на элемент, обозначающий самый конец прокручиваемого списка */
+    scrollEndRef?: RefObject<HTMLDivElement>;
+    /** Ссылка на контейнер, который скроллится */
+    scrollContainerRef?: RefObject<HTMLElement>;
   } & SharedOverlayProps &
-    Partial<Pick<DrawerCustomProps, 'position' | 'width'>>
+    Partial<Pick<DrawerProps, 'position' | 'width'>>
 >;
 
+const DEFAULT_SKELETONS_AMOUNT = 2;
+
 /**
- * Адаптивная обёртка панели уведомлений. Рендерит `NotificationPanelContent` в `DrawerCustom`, который сам
- * авто-свапается по `AdaptiveProvider`: на desktop — дровер, на mobile — bottom-sheet. Композит НЕ
- * выбирает поверхность сам (канон adaptive-components: swap у `DrawerCustom`) — контекст читается лишь
- * для surface-специфичного класса обёртки (на дровере нужен `height: 100%`, на sheet — нет).
- * `position`/`width` — desktop-only (на mobile-поверхности игнорируются самим дровером).
+ * Адаптивная панель уведомлений. Собрана на `Drawer`, который сам свапает поверхность по
+ * `AdaptiveProvider`: на desktop — панель (мастер `window`), на mobile — bottom-sheet. Шапка,
+ * фильтры и скроллируемое тело раскладываются слотами дровера, поэтому отступы и типографика
+ * приходят из токенов поверхности. `position` / `width` — desktop-only.
  */
 export function NotificationPanel({
+  title,
+  settings,
+  segments,
+  chipToggle,
+  readAllButton,
   content,
+  loading,
+  skeletonsAmount = DEFAULT_SKELETONS_AMOUNT,
+  scrollEndRef,
+  scrollContainerRef,
   position = POSITION.Right,
   width = WIDTH.S,
   className,
-  showBlackout,
   ...rest
 }: NotificationPanelProps) {
   const { layoutType } = useAdaptiveLayout();
-  const surfaceClassName = isMobileLayout(layoutType) ? styles.notificationPanelSheet : styles.notificationPanelDrawer;
+  const isMobile = isMobileLayout(layoutType);
+
+  const skeletons = useMemo(() => Array.from({ length: skeletonsAmount }, (_, i) => i), [skeletonsAmount]);
+
+  const { tooltip: readAllTooltip, ...readAllButtonProps } = readAllButton ?? {};
+
+  const buttonSize = isMobile ? 's' : 'm';
+
+  // Figma: `slotAfterHeadline` (window) / `slotAfterTitle` (bottomSheet) — кнопки прижаты вправо.
+  const actions = (readAllButton || settings) && (
+    <span className={styles.headerActions}>
+      {readAllButton && (
+        <WithTooltip tooltip={readAllTooltip}>
+          <Button
+            {...readAllButtonProps}
+            icon={readAllButtonProps.icon || <DecorCheckedSVG />}
+            view='function'
+            appearance='neutral'
+            size={buttonSize}
+            disabled={readAllButtonProps.disabled || loading}
+            data-test-id={TEST_IDS.panel.readAll}
+          />
+        </WithTooltip>
+      )}
+
+      {settings && <NotificationPanelSettings {...settings} size={buttonSize} />}
+    </span>
+  );
+
+  // Figma: `slotSubHeadline` (window) / `slotSecondTitle` (bottomSheet). ChipToggle есть только в
+  // desktop-мастере.
+  const filters = (segments || (!isMobile && chipToggle)) && (
+    <div className={styles.filtersRow} data-mobile={isMobile || undefined}>
+      {segments && (
+        <SegmentControl
+          {...segments}
+          size='s'
+          // В мобильном мастере сегменты делят всю ширину sheet'а.
+          width={isMobile ? 'full' : segments.width}
+          items={segments.items.map(item => ({
+            ...item,
+            disabled: item.disabled || loading,
+          }))}
+          data-test-id={TEST_IDS.panel.segments}
+        />
+      )}
+
+      {!isMobile && chipToggle && (
+        <ChipToggle
+          size='s'
+          disabled={loading}
+          label={chipToggle.label}
+          onChange={chipToggle.onChange}
+          checked={chipToggle.checked}
+          data-test-id={TEST_IDS.panel.chipToggle}
+        />
+      )}
+    </div>
+  );
 
   return (
-    <DrawerCustom
+    <Drawer
       position={position}
       width={width}
-      className={cn(surfaceClassName, className)}
-      showBlackout={showBlackout}
+      className={cn(styles.panel, className)}
       showButtonClosed={false}
+      title={<span data-test-id={TEST_IDS.panel.title}>{title}</span>}
+      slotAfterTitle={actions}
+      slotSecondTitle={filters}
+      withDividers={isMobile}
+      // Только mobile: в мастере bottomSheet панель открывается на всю высоту экрана.
+      snapPoints={[1]}
+      contentRef={scrollContainerRef}
+      content={
+        <div className={styles.body} aria-busy={loading || undefined}>
+          {content}
+
+          {loading && (
+            <SkeletonContextProvider loading={Boolean(loading)}>
+              {skeletons.map(skeleton => (
+                <WithSkeleton key={skeleton} skeleton={<NotificationCardSkeleton />} />
+              ))}
+            </SkeletonContextProvider>
+          )}
+
+          <div className={styles.scrollStub} ref={scrollEndRef} />
+        </div>
+      }
       {...rest}
-    >
-      {content}
-    </DrawerCustom>
+    />
   );
+}
+
+export namespace NotificationPanel {
+  export const Blank: typeof NotificationPanelBlank = NotificationPanelBlank;
+  export type BlankProps = NotificationPanelBlankProps;
+  export const Stack: typeof NotificationCardStack = NotificationCardStack;
+  export type StackProps = NotificationCardStackProps;
+  export const Group: typeof NotificationPanelGroup = NotificationPanelGroup;
+  export type GroupProps = NotificationPanelGroupProps;
 }
