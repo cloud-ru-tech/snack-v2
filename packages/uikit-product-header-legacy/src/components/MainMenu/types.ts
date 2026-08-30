@@ -140,8 +140,6 @@ export type MainMenuProps = {
 
   search?: SearchProps;
 
-  isMobile?: boolean;
-
   /** Нижний слот левой колонки sidebar (Figma `bottom > items`). */
   sidebarBottomSlot?: ReactNode;
 };

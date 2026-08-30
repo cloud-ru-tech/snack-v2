@@ -1,9 +1,9 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { TitleClickable, TitleClickableProps } from '@ds/uikit-product-title-clickable';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 
+import { useMobileLayout } from '../../../../hooks/useMobileLayout';
 import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
@@ -86,8 +86,7 @@ export function ServicesCategory({
   fullWidth,
   ...rest
 }: ServicesCategoryProps): ReactElement {
-  const { layoutType } = useAdaptiveLayout();
-  const isMobile = isMobileLayout(layoutType);
+  const isMobile = useMobileLayout();
 
   return (
     <section

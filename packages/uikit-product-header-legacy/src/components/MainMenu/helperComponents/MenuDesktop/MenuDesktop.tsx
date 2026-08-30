@@ -26,7 +26,6 @@ export function MenuDesktop({
   search,
   onLinkChange,
   sidebarBottomSlot,
-  isMobile,
 }: MainMenuProps) {
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 
@@ -184,7 +183,6 @@ export function MenuDesktop({
                     favorite={favorite}
                     serviceGroups={resultItems}
                     onLinkChange={onLinkChange}
-                    isMobile={isMobile}
                   />
                 ) : null}
               </Scroll>

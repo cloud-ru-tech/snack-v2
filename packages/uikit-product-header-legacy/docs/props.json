@@ -165,10 +165,6 @@
         "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
         "required": false
       },
-      "isMobile": {
-        "type": "boolean",
-        "required": false
-      },
       "leftTop": {
         "type": "ReactNode",
         "required": false
@@ -224,10 +220,6 @@
         "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
         "required": false
       },
-      "isMobile": {
-        "type": "boolean",
-        "required": false
-      },
       "leftTop": {
         "type": "ReactNode",
         "required": false
@@ -281,10 +273,6 @@
     "props": {
       "favorite": {
         "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
-        "required": false
-      },
-      "isMobile": {
-        "type": "boolean",
         "required": false
       },
       "leftTop": {

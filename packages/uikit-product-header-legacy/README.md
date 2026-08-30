@@ -505,7 +505,6 @@ export function MobileSurface() {
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — |  |
 | `favorite` | `{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }` | — |  |
-| `isMobile` | `boolean` | — |  |
 | `leftTop` | `ReactNode` | — |  |
 | `onLinkChange` | `((value: string) => void)` | — |  |
 | `open` | `boolean` | — |  |

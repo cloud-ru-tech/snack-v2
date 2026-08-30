@@ -1,4 +1,3 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { ChipToggle } from '@ds/chips';
 import { Divider } from '@ds/divider';
@@ -11,6 +10,7 @@ import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/util
 import cn from 'classnames';
 import { FocusEventHandler, forwardRef, useEffect, useRef } from 'react';
 
+import { useMobileLayout } from '../../../../hooks/useMobileLayout';
 import { headerLegacyLocale } from '../../../../locale';
 import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
@@ -100,8 +100,7 @@ export const NavigationSearch = forwardRef<HTMLDivElement, NavigationSearchProps
   },
   ref,
 ) {
-  const { layoutType } = useAdaptiveLayout();
-  const isMobile = isMobileLayout(layoutType);
+  const isMobile = useMobileLayout();
   const { t } = headerLegacyLocale.useTranslations();
   const placeholder = placeholderProp ?? t('navigationSearch.placeholder');
   const title = titleProp ?? t('navigationSearch.mobileTitle');

@@ -1,9 +1,9 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { MainMenuSVG } from '@ds/icons/interface/product';
 import { extractSupportProps, useValueControl, WithSupportProps } from '@ds/utils';
 import { ReactElement } from 'react';
 
+import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { TEST_IDS } from './constants';
 import { MenuDesktop } from './helperComponents/MenuDesktop';
 import { MenuMobile } from './helperComponents/MenuMobile';
@@ -23,15 +23,13 @@ export function MainMenu({
   onLinkChange,
   favorite,
   search,
-  isMobile,
   sidebarBottomSlot,
   disabled,
   ...rest
 }: WithSupportProps<MainMenuProps & { disabled?: boolean }>): ReactElement {
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
-  const { layoutType } = useAdaptiveLayout();
-  const isMobileView = isMobile ?? isMobileLayout(layoutType);
-  const MenuComponent = isMobileView ? MenuMobile : MenuDesktop;
+  const isMobile = useMobileLayout();
+  const MenuComponent = isMobile ? MenuMobile : MenuDesktop;
 
   return (
     <>
@@ -57,7 +55,6 @@ export function MainMenu({
         onLinkChange={onLinkChange}
         favorite={favorite}
         search={search}
-        isMobile={isMobile}
         sidebarBottomSlot={sidebarBottomSlot}
       />
     </>
