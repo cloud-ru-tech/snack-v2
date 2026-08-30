@@ -13,7 +13,9 @@ import {
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { usePortalContext } from '@ds/portal-context';
 import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { ServiceCard } from '../helperComponents/ServiceCard';
 import { FavoriteProps, LinksGroup } from '../types';
@@ -160,6 +162,16 @@ export function MainMenuDndContext({
   dragOverlay,
   overlayContextValue,
 }: Partial<MainMenuDndContextProps>) {
+  const portalContextRef = usePortalContext();
+
+  // `DragOverlay` рендерит `position: fixed` без собственного портала. Drawer-обёртка
+  // (`.snack-rc-drawer-content-wrapper`) держит `will-change: transform`, а это, как и
+  // настоящий transform, создаёт containing block для fixed-потомков — оверлей резолвится
+  // относительно бокса дровера, а не viewport. Если дровер открыт со смещением сверху
+  // (панель начинается не с 0), оверлей визуально уезжает ровно на эту величину. Портал
+  // в тот же корень, что использует сам Drawer, выносит оверлей из-под этого предка.
+  const dragOverlayNode = <DragOverlay dropAnimation={null}>{dragOverlay}</DragOverlay>;
+
   return (
     <MainMenuDndOverlayContext.Provider value={overlayContextValue ?? null}>
       <DndContext
@@ -175,7 +187,7 @@ export function MainMenuDndContext({
       >
         {children}
 
-        <DragOverlay dropAnimation={null}>{dragOverlay}</DragOverlay>
+        {portalContextRef.current ? createPortal(dragOverlayNode, portalContextRef.current) : dragOverlayNode}
       </DndContext>
     </MainMenuDndOverlayContext.Provider>
   );

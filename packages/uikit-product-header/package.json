@@ -56,6 +56,7 @@
     "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/modal": "workspace:^",
+    "@ds/portal-context": "workspace:^",
     "@ds/promo-tag": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/search": "workspace:^",
