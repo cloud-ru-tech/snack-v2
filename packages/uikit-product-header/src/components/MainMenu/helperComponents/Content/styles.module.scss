@@ -1,11 +1,15 @@
 .content {
   &[data-empty] {
-    align-items: center;
-    justify-content: center;
     height: 100%;
 
     &[data-mobile] {
       flex: 1 1 auto;
     }
   }
+}
+
+.noData {
+  flex: 1 1 auto;
+  place-self: center center;
+  justify-content: center;
 }

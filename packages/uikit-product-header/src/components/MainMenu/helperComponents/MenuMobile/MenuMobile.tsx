@@ -77,7 +77,7 @@ export function MenuMobile({
         <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
           {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
           {search && <Search {...search} ref={searchRef} isMobile />}
-          {favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
+          {!isSearching && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
 
           {hasSegments && (
             <MainMenuDndContext>

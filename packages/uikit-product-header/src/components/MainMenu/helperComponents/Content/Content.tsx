@@ -224,6 +224,8 @@ export function Content({
         }}
         content={isSearching ? t('noDataFound') : t('noData')}
         data-test-id={isSearching ? TEST_IDS.noDataFound : TEST_IDS.noData}
+        data-mobile={isMobile || undefined}
+        className={styles.noData}
       />
     );
   })();
@@ -232,11 +234,7 @@ export function Content({
     <>
       {search}
 
-      <div
-        className={cn(styles.content, className)}
-        data-mobile={isMobile || undefined}
-        data-empty={(!loading && !hasCards) || undefined}
-      >
+      <div className={cn(styles.content, className)} data-empty={(!loading && !hasCards) || undefined}>
         {!isSearching && (
           <>
             {isMobile && rightTop}
