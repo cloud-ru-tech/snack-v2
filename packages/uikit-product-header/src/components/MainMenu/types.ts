@@ -3,6 +3,7 @@ import { SearchProps as SearchPropsSnack } from '@ds/search';
 import { CardServiceLightProps } from '@ds/uikit-product-card-predefined';
 import { JSXElementConstructor, MouseEvent, ReactNode } from 'react';
 
+import { ContentProps } from './helperComponents/Content';
 import { FavoritesSegment } from './helperComponents/Favorites/constants';
 
 /**
@@ -222,7 +223,21 @@ export type MainMenuSettingsItem = Pick<InnerLink, 'id' | 'label' | 'icon' | 'on
   divider?: 'before' | 'after';
 };
 
-export type MainMenuProps = {
+export type MainMenuProps = Pick<
+  ContentProps,
+  | 'segments'
+  | 'searchGroups'
+  | 'segmentPrefs'
+  | 'activeSegmentId'
+  | 'onActiveSegmentChange'
+  | 'onSegmentOrderChange'
+  | 'onSegmentExpandedChange'
+  | 'onSegmentServiceClick'
+  | 'favorite'
+  | 'preferences'
+  | 'loading'
+  | 'rightTop'
+> & {
   disabled?: boolean;
   open?: boolean;
   setOpen?(open: boolean): void;
@@ -230,46 +245,6 @@ export type MainMenuProps = {
   logo?: ReactNode;
   leftTop?: ReactNode;
   leftBottom?: ReactNode;
-  rightTop?: ReactNode;
-
-  /**
-   * Сегменты правой панели (сетка карточек) — только каталог.
-   *
-   * При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`.
-   * Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только
-   * первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются.
-   * При `segments.length > 1` показывается SegmentControl (скрывается во время поиска).
-   * Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже.
-   */
-  segments?: MainMenuSegment[];
-
-  /**
-   * Пользовательские prefs сегментов (порядок / раскрытие групп).
-   *
-   * Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля.
-   */
-  segmentPrefs?: MainMenuSegmentPrefs[];
-
-  /**
-   * Активный сегмент правой панели (значение SegmentControl, см. {@link MainMenuSegment.id}).
-   *
-   * Не передано — неуправляемое состояние (дефолт — первый сегмент с видимыми карточками).
-   */
-  activeSegmentId?: string;
-
-  /** Колбэк смены активного сегмента правой панели. */
-  onActiveSegmentChange?(segmentId: string): void;
-
-  /**
-   * Колбэк после DnD групп в сегменте (без id синтетической группы избранного).
-   */
-  onSegmentOrderChange?(segmentId: string, orderedGroupIds: string[]): void;
-
-  /**
-   * Колбэк при изменении набора раскрытых групп сегмента
-   * (без id синтетической группы избранного).
-   */
-  onSegmentExpandedChange?(segmentId: string, expandedGroupIds: string[]): void;
 
   /**
    * Пункты левой колонки (desktop) / нижней части списка (mobile).
@@ -292,13 +267,6 @@ export type MainMenuProps = {
   favorite?: FavoriteProps;
 
   search?: SearchProps;
-
-  /**
-   * Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп.
-   *
-   * Не передано — кнопка настроек в тулбаре не отображается.
-   */
-  preferences?: MainMenuPreferencesProps;
 
   /**
    * Ширина дровера, с которой открывается меню (desktop only)

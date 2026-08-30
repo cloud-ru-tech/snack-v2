@@ -50,7 +50,7 @@ type InternalSegmentPrefs = {
 };
 
 type UseContentSegmentsSortableProps = {
-  segments: MainMenuSegment[];
+  segments?: MainMenuSegment[];
 
   activeSegmentId: string;
 
@@ -85,7 +85,7 @@ export function useContentSegmentsSortable({
   isMobile,
 }: UseContentSegmentsSortableProps) {
   const activeSegment = useMemo(
-    () => segments.find(segment => segment.id === activeSegmentId) ?? segments[0],
+    () => segments?.find(segment => segment.id === activeSegmentId) ?? segments?.[0],
     [activeSegmentId, segments],
   );
 

@@ -21,7 +21,7 @@
       "activeSegmentId": {
         "type": "string",
         "required": false,
-        "description": "Активный сегмент правой панели. Не передано — неуправляемое состояние\n(дефолт — первый сегмент с видимыми карточками)."
+        "description": "Активный сегмент правой панели (значение SegmentControl, см. {@link MainMenuSegment.id}).\n\nНе передано — неуправляемое состояние (дефолт — первый сегмент с видимыми карточками)."
       },
       "className": {
         "type": "string",
@@ -55,15 +55,23 @@
       },
       "onSegmentExpandedChange": {
         "type": "((segmentId: string, expandedGroupIds: string[]) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк при изменении набора раскрытых групп сегмента\n(без id синтетической группы избранного)."
       },
       "onSegmentOrderChange": {
         "type": "((segmentId: string, orderedGroupIds: string[]) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк после DnD групп в сегменте (без id синтетической группы избранного)."
+      },
+      "onSegmentServiceClick": {
+        "type": "((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по карточке сервиса в сегменте."
       },
       "preferences": {
         "type": "MainMenuPreferencesProps",
-        "required": false
+        "required": false,
+        "description": "Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп.\n\nНе передано — кнопка настроек в тулбаре не отображается."
       },
       "rightTop": {
         "type": "ReactNode",
@@ -86,11 +94,13 @@
       },
       "segmentPrefs": {
         "type": "MainMenuSegmentPrefs[]",
-        "required": false
+        "required": false,
+        "description": "Пользовательские prefs сегментов (порядок / раскрытие групп).\n\nНет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля."
       },
       "segments": {
         "type": "MainMenuSegment[]",
-        "required": true
+        "required": false,
+        "description": "Сегменты правой панели (сетка карточек) — только каталог.\n\nПри поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`.\nЕсли один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только\nпервое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются.\nПри `segments.length > 1` показывается SegmentControl (скрывается во время поиска).\nПорядок и раскрытие групп — через `segmentPrefs` и колбэки ниже."
       }
     },
     "relatedTypes": {}
@@ -126,7 +136,7 @@
       },
       "segmentItems": {
         "type": "ContentToolbarSegmentItem[]",
-        "required": true
+        "required": false
       }
     },
     "relatedTypes": {}
@@ -1375,6 +1385,11 @@
         "required": false,
         "description": "Колбэк после DnD групп в сегменте (без id синтетической группы избранного)."
       },
+      "onSegmentServiceClick": {
+        "type": "((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по карточке сервиса в сегменте."
+      },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
         "required": false,
@@ -1402,13 +1417,22 @@
       },
       "rightTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над тулбаром правой колонки (например, баннеры)"
       },
       "search": {
         "type": "SearchProps",
         "required": false,
         "typeRefs": [
           "SearchProps"
+        ]
+      },
+      "searchGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Результаты поиска (уже смерженные); в обычном режиме не используются.",
+        "typeRefs": [
+          "LinksGroup"
         ]
       },
       "segmentPrefs": {
@@ -2443,6 +2467,11 @@
         "required": false,
         "description": "Колбэк после DnD групп в сегменте (без id синтетической группы избранного)."
       },
+      "onSegmentServiceClick": {
+        "type": "((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по карточке сервиса в сегменте."
+      },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
         "required": false,
@@ -2464,11 +2493,17 @@
       },
       "rightTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над тулбаром правой колонки (например, баннеры)"
       },
       "search": {
         "type": "SearchProps",
         "required": false
+      },
+      "searchGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Результаты поиска (уже смерженные); в обычном режиме не используются."
       },
       "segmentPrefs": {
         "type": "MainMenuSegmentPrefs[]",
@@ -2570,6 +2605,11 @@
         "required": false,
         "description": "Колбэк после DnD групп в сегменте (без id синтетической группы избранного)."
       },
+      "onSegmentServiceClick": {
+        "type": "((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по карточке сервиса в сегменте."
+      },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
         "required": false,
@@ -2591,11 +2631,17 @@
       },
       "rightTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над тулбаром правой колонки (например, баннеры)"
       },
       "search": {
         "type": "SearchProps",
         "required": false
+      },
+      "searchGroups": {
+        "type": "LinksGroup[]",
+        "required": false,
+        "description": "Результаты поиска (уже смерженные); в обычном режиме не используются."
       },
       "segmentPrefs": {
         "type": "MainMenuSegmentPrefs[]",

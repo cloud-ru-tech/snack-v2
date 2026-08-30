@@ -25,6 +25,7 @@ export function MainMenu({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onSegmentServiceClick,
   favorite,
   search,
   preferences,
@@ -67,6 +68,7 @@ export function MainMenu({
         onActiveSegmentChange={onActiveSegmentChange}
         onSegmentOrderChange={onSegmentOrderChange}
         onSegmentExpandedChange={onSegmentExpandedChange}
+        onSegmentServiceClick={onSegmentServiceClick}
         platformGroups={platformGroups}
         search={search}
         logo={logo}

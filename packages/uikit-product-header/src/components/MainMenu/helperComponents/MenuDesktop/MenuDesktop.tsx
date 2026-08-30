@@ -28,6 +28,7 @@ export function MenuDesktop({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onSegmentServiceClick,
   favorite,
   search,
   preferences,
@@ -128,6 +129,7 @@ export function MenuDesktop({
                   onActiveSegmentChange={onActiveSegmentChange}
                   onSegmentOrderChange={onSegmentOrderChange}
                   onSegmentExpandedChange={onSegmentExpandedChange}
+                  onSegmentServiceClick={onSegmentServiceClick}
                   preferences={preferences}
                   loading={loading}
                 />

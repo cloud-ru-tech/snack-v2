@@ -27,6 +27,7 @@ export function MenuMobile({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onSegmentServiceClick,
   favorite,
   search,
   logo,
@@ -95,6 +96,7 @@ export function MenuMobile({
                 onActiveSegmentChange={onActiveSegmentChange}
                 onSegmentOrderChange={onSegmentOrderChange}
                 onSegmentExpandedChange={onSegmentExpandedChange}
+                onSegmentServiceClick={onSegmentServiceClick}
                 loading={loading}
               />
             </MainMenuDndContext>

@@ -213,12 +213,14 @@ export function WithFavorites() {
 | `onActiveSegmentChange` | `((segmentId: string) => void)` | — | Колбэк смены активного сегмента правой панели. |
 | `onSegmentExpandedChange` | `((segmentId: string, expandedGroupIds: string[]) => void)` | — | Колбэк при изменении набора раскрытых групп сегмента <br/> (без id синтетической группы избранного). |
 | `onSegmentOrderChange` | `((segmentId: string, orderedGroupIds: string[]) => void)` | — | Колбэк после DnD групп в сегменте (без id синтетической группы избранного). |
+| `onSegmentServiceClick` | `((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)` | — | Колбэк клика по карточке сервиса в сегменте. |
 | `onWidthChangeEnd` | `((width: number) => void)` | — | Вызывается при окончании изменения ширины дровера (desktop only) |
 | `open` | `boolean` | — |  |
 | `platformGroups` | `LinksGroup` | — | Платформенные группы (например «Облачные продукты», «Другие продукты»). <br/> Без поиска в сетке карточек **не отображаются**. <br/> С поиском: попадают в результаты при совпадении; порядок — <br/> после совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`. <br/> Обычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`). |
 | `preferences` | `MainMenuPreferencesProps` | — | Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп. <br/> Не передано — кнопка настроек в тулбаре не отображается. |
-| `rightTop` | `ReactNode` | — |  |
+| `rightTop` | `ReactNode` | — | Слот над тулбаром правой колонки (например, баннеры) |
 | `search` | `SearchProps` | — |  |
+| `searchGroups` | `LinksGroup` | — | Результаты поиска (уже смерженные); в обычном режиме не используются. |
 | `segmentPrefs` | `MainMenuSegmentPrefs` | — | Пользовательские prefs сегментов (порядок / раскрытие групп). <br/> Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля. |
 | `segments` | `MainMenuSegment` | — | Сегменты правой панели (сетка карточек) — только каталог. <br/> При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`. <br/> Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только <br/> первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются. <br/> При `segments.length > 1` показывается SegmentControl (скрывается во время поиска). <br/> Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже. |
 | `setOpen` | `((open: boolean) => void)` | — |  |

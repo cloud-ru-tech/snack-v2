@@ -10,6 +10,7 @@ import { headerLocale } from '../../../../locale';
 import { shouldBeOpenedInNewTab } from '../../../../utils/shouldBeOpenedInNewTab';
 import {
   FavoriteProps,
+  InnerLink,
   LinksGroup,
   MainMenuPreferencesProps,
   MainMenuSegment,
@@ -24,28 +25,60 @@ import { useSegmentDnd } from './hooks/useSegmentDnd';
 import styles from './styles.module.scss';
 
 export type ContentProps = {
-  segments: MainMenuSegment[];
+  /**
+   * Сегменты правой панели (сетка карточек) — только каталог.
+   *
+   * При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`.
+   * Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только
+   * первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются.
+   * При `segments.length > 1` показывается SegmentControl (скрывается во время поиска).
+   * Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже.
+   */
+  segments?: MainMenuSegment[];
 
   /** Результаты поиска (уже смерженные); в обычном режиме не используются. */
   searchGroups?: LinksGroup[];
 
+  /**
+   * Пользовательские prefs сегментов (порядок / раскрытие групп).
+   *
+   * Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля.
+   */
   segmentPrefs?: MainMenuSegmentPrefs[];
 
   /**
-   * Активный сегмент правой панели. Не передано — неуправляемое состояние
-   * (дефолт — первый сегмент с видимыми карточками).
+   * Активный сегмент правой панели (значение SegmentControl, см. {@link MainMenuSegment.id}).
+   *
+   * Не передано — неуправляемое состояние (дефолт — первый сегмент с видимыми карточками).
    */
   activeSegmentId?: string;
 
   /** Колбэк смены активного сегмента правой панели. */
   onActiveSegmentChange?(segmentId: string): void;
 
+  /**
+   * Колбэк после DnD групп в сегменте (без id синтетической группы избранного).
+   */
   onSegmentOrderChange?(segmentId: string, orderedGroupIds: string[]): void;
 
+  /**
+   * Колбэк при изменении набора раскрытых групп сегмента
+   * (без id синтетической группы избранного).
+   */
   onSegmentExpandedChange?(segmentId: string, expandedGroupIds: string[]): void;
+
+  /**
+   * Колбэк клика по карточке сервиса в сегменте.
+   */
+  onSegmentServiceClick?(service: InnerLink, e?: MouseEvent<HTMLElement>): void;
 
   favorite?: FavoriteProps;
 
+  /**
+   * Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп.
+   *
+   * Не передано — кнопка настроек в тулбаре не отображается.
+   */
   preferences?: MainMenuPreferencesProps;
 
   searchValue?: string;
@@ -77,6 +110,7 @@ export function Content({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onSegmentServiceClick,
   className,
   footer,
   favorite,
@@ -91,7 +125,7 @@ export function Content({
 
   const segmentPrefsById = useMemo(() => new Map((segmentPrefs ?? []).map(prefs => [prefs.id, prefs])), [segmentPrefs]);
 
-  const defaultSegmentId = activeSegmentId ?? segments[0]?.id ?? '';
+  const defaultSegmentId = activeSegmentId ?? segments?.[0]?.id ?? '';
 
   const [segmentId = defaultSegmentId, setSegmentId] = useValueControl<string>({
     value: activeSegmentId,
@@ -103,17 +137,14 @@ export function Content({
   const enableServiceDrag = Boolean(favorite) && !isMobile && !isSearching;
 
   useEffect(() => {
-    if (!segments.some(segment => segment.id === segmentId) && defaultSegmentId) {
+    if (!segments?.some(segment => segment.id === segmentId) && defaultSegmentId) {
       setSegmentId(defaultSegmentId);
     }
   }, [defaultSegmentId, segmentId, setSegmentId, segments]);
 
   const handleLinkClick = useCallback(
-    (
-      { disabled, onClick }: { disabled?: boolean; onClick?(e?: MouseEvent<HTMLElement>): void },
-      e?: MouseEvent<HTMLElement>,
-    ) => {
-      if (disabled) {
+    (service: InnerLink, e?: MouseEvent<HTMLElement>) => {
+      if (service.disabled) {
         e?.preventDefault();
         return;
       }
@@ -123,9 +154,10 @@ export function Content({
         onClose?.();
       }
 
-      onClick?.(e);
+      onSegmentServiceClick?.(service, e);
+      service.onClick?.(e);
     },
-    [onClose],
+    [onClose, onSegmentServiceClick],
   );
 
   const {
@@ -174,7 +206,7 @@ export function Content({
 
   const segmentItems = useMemo(
     () =>
-      segments.map(segment => ({
+      segments?.map(segment => ({
         value: segment.id,
         label: segment.label,
         icon: segment.icon,

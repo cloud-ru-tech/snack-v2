@@ -23,7 +23,7 @@ export type ContentToolbarProps = {
 
   onSegmentChange(segment: string): void;
 
-  segmentItems: ContentToolbarSegmentItem[];
+  segmentItems?: ContentToolbarSegmentItem[];
 
   allGroupsExpanded: boolean;
 
@@ -57,7 +57,7 @@ export function ContentToolbar({
     startTransition(() => preferences?.showDescription?.onChange(value));
   };
 
-  const hasSegmentItems = segmentItems.length > 0;
+  const hasSegmentItems = segmentItems && segmentItems?.length > 0;
 
   return (
     <div className={styles.root} data-test-id={TEST_IDS.toolbar}>

@@ -220,7 +220,7 @@ function MainMenuPlaygroundContent({
             setOpen={setOpen}
             loading={loading}
             disabled={disabled}
-            segments={showSegmentsWithCards ? segments : undefined}
+            segments={showSegmentsWithCards ? segments : []}
             segmentPrefs={segmentPrefs}
             onSegmentOrderChange={handleSegmentOrderChange}
             onSegmentExpandedChange={handleSegmentExpandedChange}
