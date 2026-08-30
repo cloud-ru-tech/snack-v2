@@ -1,11 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/divider.module' as divider;
 
 $menuHeaderHeight: base.$sn-primitive-dimension-40;
+$menuHeaderHeightWithDivider: calc(#{$menuHeaderHeight} + #{divider.$sn-divider-anatomy-container-height});
 
 .menuHeader {
   height: $menuHeaderHeight;
   padding: 0 base.$sn-primitive-dimension-4;
-  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
 }
 
 .rightContent {
@@ -27,6 +28,6 @@ $menuHeaderHeight: base.$sn-primitive-dimension-40;
   gap: base.$sn-primitive-dimension-8;
 
   min-height: 100%;
-  margin-top: $menuHeaderHeight;
+  margin-top: $menuHeaderHeightWithDivider;
   padding: base.$sn-primitive-dimension-16;
 }

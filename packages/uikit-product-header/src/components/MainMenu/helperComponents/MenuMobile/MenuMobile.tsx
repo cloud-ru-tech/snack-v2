@@ -1,3 +1,4 @@
+import { Divider } from '@ds/divider';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useMemo } from 'react';
 
@@ -66,7 +67,12 @@ export function MenuMobile({
       disableMotions={true}
     >
       <ScrollWithAnimatedStickyPanel
-        panel={<MenuHeaderBrand logo={logo} onClose={handleClose} className={styles.menuHeader} />}
+        panel={
+          <>
+            <MenuHeaderBrand logo={logo} onClose={handleClose} className={styles.menuHeader} />
+            <Divider orientation='horizontal' />
+          </>
+        }
       >
         <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
           {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
