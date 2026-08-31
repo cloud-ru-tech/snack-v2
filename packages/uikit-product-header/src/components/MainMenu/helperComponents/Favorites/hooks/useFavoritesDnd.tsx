@@ -6,8 +6,8 @@ import { FavoriteProps, InnerLink } from '../../../types';
 import {
   FAVORITES_DROP_ID,
   getServiceFavoriteDragId,
-  isServiceDragId,
   isServiceFavoriteDragId,
+  isServiceSourceDragId,
   parseServiceDragId,
 } from '../../../utils';
 import { ServiceCard } from '../../ServiceCard';
@@ -58,8 +58,15 @@ export function useFavoritesDnd({ favorite, favoriteItems, segment, setSegment }
 
   useDndMonitor({
     onDragStart({ active }) {
-      if (isServiceDragId(active.id)) {
-        setSegment(FAVORITES_SEGMENT.Favorites);
+      // Форсим сегмент только для карточки из каталога: избранное уже показывается на
+      // сегменте Favorites, и его же карточки только там и рендерятся — при реордере внутри
+      // списка `setSegment` вызывался бы с тем же значением. `useValueControl` не сравнивает
+      // значение с текущим и всё равно зовёт `onSegmentChange` — лишний колбэк на каждый drag.
+      if (isServiceSourceDragId(active.id)) {
+        if (segment !== FAVORITES_SEGMENT.Favorites) {
+          setSegment(FAVORITES_SEGMENT.Favorites);
+        }
+
         setDraggingToFavorites(true);
       }
 
