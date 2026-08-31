@@ -1,9 +1,10 @@
-import { Size, TEST_IDS, useCardContext } from '@ds/card';
+import { Size, useCardContext } from '@ds/card';
 import { TruncateString } from '@ds/truncate-string';
 import { SIZE as TYPOGRAPHY_SIZE, Typography, VARIANT } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 
+import { TEST_IDS } from '../../../constants';
 import { Emblem, EmblemProps } from '../../../helperComponents';
 import { DESCRIPTION_SIZE_MAP, TITLE_SIZE_MAP, TRUNCATE_DEFAULTS } from './constants';
 import styles from './styles.module.scss';
@@ -59,7 +60,7 @@ export function Header({
           variant={VARIANT.title}
           size={TITLE_SIZE_MAP[size]}
           className={styles.title}
-          data-test-id={TEST_IDS.title}
+          data-test-id={TEST_IDS.cardCustomTitle}
         >
           <TruncateString variant='end' maxLines={truncateStrings.title} text={title} />
         </Typography>
@@ -70,7 +71,7 @@ export function Header({
               variant='end'
               maxLines={truncateStrings.metadata}
               text={metadata}
-              data-test-id={TEST_IDS.metadata}
+              data-test-id={TEST_IDS.cardCustomMetadata}
             />
           </Typography>
         )}
@@ -81,7 +82,7 @@ export function Header({
             variant={VARIANT.body}
             size={DESCRIPTION_SIZE_MAP[size]}
             className={styles.description}
-            data-test-id={TEST_IDS.description}
+            data-test-id={TEST_IDS.cardCustomDescription}
           >
             <TruncateString variant='end' maxLines={truncateStrings.description} text={description} />
           </Typography>

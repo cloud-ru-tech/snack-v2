@@ -16,11 +16,4 @@ export const VIEW = {
 export const TEST_IDS = {
   root: 'card',
   checkBadge: 'card__check-badge',
-  emblemPicture: 'card__header__emblem-picture',
-  emblemIcon: 'card__header__emblem-icon',
-  title: 'card__header__title',
-  description: 'card__header__description',
-  metadata: 'card__header__metadata',
-  functionBadge: 'card__function-badge',
-  droplist: 'card__function-badge-droplist',
 } as const;

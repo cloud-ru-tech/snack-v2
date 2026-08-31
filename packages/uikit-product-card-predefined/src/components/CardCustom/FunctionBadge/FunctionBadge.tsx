@@ -1,10 +1,11 @@
-import { TEST_IDS, useCardContext } from '@ds/card';
+import { useCardContext } from '@ds/card';
 import { KebabSVG } from '@ds/icons/interface/system';
 import { BaseItemProps, Droplist } from '@ds/list';
 import { Tag } from '@ds/tag';
 import { useLayoutEffect } from '@ds/utils';
 import { MouseEvent, ReactElement, ReactNode, useCallback, useContext, useRef, useState } from 'react';
 
+import { TEST_IDS } from '../../../constants';
 import { FunctionBadgeContext } from '../../../functionBadgeContext';
 import { FunctionBadgeWrapper } from '../../../helperComponents/FunctionBadgeWrapper';
 import styles from './styles.module.scss';
@@ -46,7 +47,7 @@ function FunctionBadgeButton({ icon, options }: Pick<FunctionBadgeProps, 'icon' 
         onOpenChange={setIsOpen}
         widthStrategy='gte'
         scroll
-        data-test-id={TEST_IDS.droplist}
+        data-test-id={TEST_IDS.cardCustomDroplist}
         placement='bottom-end'
         triggerElemRef={buttonRef}
         items={options.map(({ icon: optionIcon, tagLabel, onClick: onItemClick, ...item }) => ({
@@ -63,7 +64,7 @@ function FunctionBadgeButton({ icon, options }: Pick<FunctionBadgeProps, 'icon' 
       >
         <button
           type='button'
-          data-test-id={TEST_IDS.functionBadge}
+          data-test-id={TEST_IDS.cardCustomFunctionBadge}
           className={styles.button}
           onClick={onClick}
           ref={buttonRef}

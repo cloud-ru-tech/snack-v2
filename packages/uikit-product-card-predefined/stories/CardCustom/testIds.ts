@@ -1,1 +1,3 @@
-export { TEST_IDS } from '../../../card/src/constants';
+export const TEST_IDS = {
+  root: 'card',
+} as const;

@@ -1,6 +1,7 @@
-import { RADIUS, Size, TEST_IDS, useCardContext } from '@ds/card';
+import { RADIUS, Size, useCardContext } from '@ds/card';
 import { IconPredefined, IconPredefinedProps, SIZE as ICON_SIZE } from '@ds/icon-predefined';
 
+import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
 type PictureProps = {
@@ -30,7 +31,7 @@ export function Emblem(props: EmblemProps) {
         alt={props.alt}
         data-size={radius}
         className={styles.img}
-        data-test-id={TEST_IDS.emblemPicture}
+        data-test-id={TEST_IDS.cardCustomEmblemPicture}
       />
     );
   }
@@ -42,7 +43,7 @@ export function Emblem(props: EmblemProps) {
       background={props.background ?? true}
       size={ICON_SIZE_MAP[radius]}
       shape={props.shape ?? 'rounded'}
-      data-test-id={TEST_IDS.emblemIcon}
+      data-test-id={TEST_IDS.cardCustomEmblemIcon}
     />
   );
 }

@@ -16,7 +16,7 @@ test.describe('CardCustom — rendering', () => {
     test('renders header title slot', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
 
-      await expect(getByTestId(TEST_IDS.title)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.cardCustomTitle)).toBeVisible();
     });
   });
 
@@ -34,7 +34,7 @@ test.describe('CardCustom — rendering', () => {
 
       await expect(getByTestId(CARD_CUSTOM_TEST_ID)).toHaveAttribute('data-disabled', 'true');
       // FunctionBadge возвращает `null`, когда карточка disabled — узла в DOM нет.
-      await expect(getByTestId(TEST_IDS.functionBadge)).toHaveCount(0);
+      await expect(getByTestId(TEST_IDS.cardCustomFunctionBadge)).toHaveCount(0);
     });
   });
 });
