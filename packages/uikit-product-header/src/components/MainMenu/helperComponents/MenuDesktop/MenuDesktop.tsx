@@ -65,7 +65,12 @@ export function MenuDesktop({
     return () => cancelAnimationFrame(frameId);
   }, [open, hasSearch, searchRef]);
 
-  const isNeedRightBlock = segments && segments.some(segment => segment.items.length > 0);
+  // `segments !== undefined` — сигнал «каталог вообще используется» (консьюмер без сегментов
+  // никогда не передаёт проп, и `loading` в этом случае к правой панели не относится). Пока
+  // сегменты используются, `loading` держит панель смонтированной на время ответа бэка — иначе
+  // `Content` не успевает показать свой skeleton (он монтируется только когда данные уже пришли),
+  // и между "ничего" и карточками на кадр проскакивает пустое состояние «нет данных».
+  const isNeedRightBlock = segments !== undefined && (loading || segments.some(segment => segment.items.length > 0));
   const hasBottomItems = Boolean(settingItems?.length) || Boolean(leftBottom);
 
   const allServiceGroups = useMemo(() => segments?.flatMap(segment => segment.items) ?? [], [segments]);
