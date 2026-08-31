@@ -194,7 +194,7 @@ export const NavigationSearch = forwardRef<HTMLDivElement, NavigationSearchProps
           <Typography
             className={styles.title}
             variant='title'
-            size='s'
+            size='m'
             weight='regular'
             data-test-id={NAVIGATION_SEARCH_TEST_IDS.title}
           >
