@@ -7,7 +7,6 @@
 $sizes: 'xs', 's';
 $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
-
 .container {
   overflow: hidden;
   display: inline-flex;
@@ -53,10 +52,14 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   }
 }
 
-// Текст-стиль единый для обоих размеров: label/s (11px).
 .label {
+  overflow: hidden;
   flex-grow: 0;
-  flex-shrink: 0;
+
+  min-width: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @include base.composite-var(base.$sn-regular-label-s);
 
