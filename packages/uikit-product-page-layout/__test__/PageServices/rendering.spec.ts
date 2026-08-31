@@ -29,6 +29,20 @@ test.describe('PageServices — rendering', () => {
     }
   });
 
+  // Action-ссылка (`as='a'` + `href`) рендерится нативным анкором: работают средняя кнопка,
+  // «копировать адрес ссылки», контекстное меню. `rel` при `target='_blank'` проставляет `Button`.
+  test('action with as=a renders native anchor', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+
+    const link = getByTestId(TEST_IDS.pageServices.linkAction);
+
+    await expect(link).toBeVisible();
+    await expect(link).toHaveJSProperty('tagName', 'A');
+    await expect(link).toHaveAttribute('href', 'https://cloud.ru/docs');
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   // Регрессия: action с `tooltip` остаётся прямым flex-потомком контейнера действий
   // (`ActionView` рендерит `Tooltip` с `disableSpanWrapper`). Со span-обёрткой `flex: 0 1 auto`
   // перебивает `fullWidth`-кнопку, и она сжимается по контенту вместо остатка строки.

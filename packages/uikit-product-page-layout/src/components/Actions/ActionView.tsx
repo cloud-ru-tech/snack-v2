@@ -41,13 +41,13 @@ export function ActionView({
 
   switch (variant) {
     case BUTTON_TYPE.Outline:
-      return addTooltip(<Button view={VIEW.Outline} {...(buttonProps as ButtonProps)} {...commonProps} />);
+      return addTooltip(<Button view={VIEW.Outline} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
     case BUTTON_TYPE.Tonal:
-      return addTooltip(<Button view={VIEW.Tonal} {...(buttonProps as ButtonProps)} {...commonProps} />);
+      return addTooltip(<Button view={VIEW.Tonal} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
     case BUTTON_TYPE.Function:
-      return addTooltip(<Button view={VIEW.Function} {...(buttonProps as ButtonProps)} {...commonProps} />);
+      return addTooltip(<Button view={VIEW.Function} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
     case BUTTON_TYPE.Simple:
-      return addTooltip(<Button view={VIEW.Simple} {...(buttonProps as ButtonProps)} {...commonProps} />);
+      return addTooltip(<Button view={VIEW.Simple} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
     case BUTTON_TYPE.Dropdown: {
       return addTooltip(<ButtonDropdown {...(buttonProps as ButtonDropdownProps)} {...commonProps} />);
     }
@@ -66,6 +66,6 @@ export function ActionView({
     }
     case BUTTON_TYPE.Filled:
     default:
-      return addTooltip(<Button view={VIEW.Filled} {...(buttonProps as ButtonProps)} {...commonProps} />);
+      return addTooltip(<Button view={VIEW.Filled} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
   }
 }

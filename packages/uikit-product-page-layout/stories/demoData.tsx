@@ -197,7 +197,15 @@ export const SERVICE_ACTIONS: Action[] = [
     onClick: fn(),
     'data-test-id': TEST_IDS.pageServices.primaryAction,
   },
-  { variant: 'outline', appearance: BUTTON_APPEARANCE.Neutral, label: 'Документация', onClick: fn() },
+  {
+    variant: 'outline',
+    appearance: BUTTON_APPEARANCE.Neutral,
+    label: 'Документация',
+    as: 'a',
+    href: 'https://cloud.ru/docs',
+    target: '_blank',
+    'data-test-id': TEST_IDS.pageServices.linkAction,
+  },
 ];
 
 // ---------------------------------------------------------------------------

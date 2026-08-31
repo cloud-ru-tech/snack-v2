@@ -6,5 +6,9 @@ export const TEST_IDS = {
   pageSidebar: { root: 'page-sidebar' },
   treeNavigation: { root: 'tree-navigation' },
   pageForm: { root: 'page-form' },
-  pageServices: { root: 'page-services', primaryAction: 'page-services-primary-action' },
+  pageServices: {
+    root: 'page-services',
+    primaryAction: 'page-services-primary-action',
+    linkAction: 'page-services-link-action',
+  },
 } as const;
