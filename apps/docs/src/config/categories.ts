@@ -142,7 +142,6 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       description: 'Продуктовые блоки данных и виджеты: инфо-строки, цена, квоты, виджеты, промо-теги.',
       packages: [
         'uikit-product-avatar-detail',
-        'uikit-product-card-predefined',
         'uikit-product-info-row',
         'uikit-product-price-summary',
         'uikit-product-quota',
@@ -166,9 +165,11 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
     },
     {
       id: 'layout',
-      label: 'Layout',
-      description: 'Раскладка продуктовых интерфейсов.',
+      label: 'Layout & containers',
+      description:
+        'Раскладка продуктовых интерфейсов и поверхности-контейнеры: предопределённые карточки, флекс-обёртки, страничный layout, хедер.',
       packages: [
+        'uikit-product-card-predefined',
         'uikit-product-flex',
         'uikit-product-layout',
         'uikit-product-page-layout',
