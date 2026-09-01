@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-09-01)
+
+### Features
+
+- **FF-8873:** pass snapPoints prop from Droplist to DroplistMobile ([42085bc](https://github.com/cloud-ru-tech/snack-v2/commit/42085bce406c8cd23148611246ca12a16014b77f))
+
 ## 2.0.3 (2026-08-28)
 
 **Note:** Version bump only for package @ds/fields

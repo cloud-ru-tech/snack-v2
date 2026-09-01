@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-09-01)
+
+### BREAKING CHANGES
+
+- **FF-8873:** build notification panel on adaptive drawer and drop NotificationPanelContent ([bd41718](https://github.com/cloud-ru-tech/snack-v2/commit/bd4171894620b1edec665fdea439e7fccfd85e3b))
+
 ## 1.0.11 (2026-08-28)
 
 **Note:** Version bump only for package @ds/uikit-product-notification

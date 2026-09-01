@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-toggles-predefined",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Кликабельные карточки выбора (ToggleCard) и группа выбора (ToggleGroup) — предзаготовленный паттерн single/multiple-выбора на базе @ds/card.",
   "repository": {
     "type": "git",

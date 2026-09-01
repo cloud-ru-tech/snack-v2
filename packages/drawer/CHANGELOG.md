@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-01)
+
+### Features
+
+- **FF-8873:** align drawer slots with window master and forward second title, content ref and dividers ([2c7dadf](https://github.com/cloud-ru-tech/snack-v2/commit/2c7dadfdb29988c1fa1dc42b4c22bea2419d6e67))
+- **FF-8873:** render popup second-title slot on window surface and add body innerRef ([60771ea](https://github.com/cloud-ru-tech/snack-v2/commit/60771ea6d3ba7fa12deae4a19aba922846383835))
+
 ## 1.0.6 (2026-08-28)
 
 **Note:** Version bump only for package @ds/drawer

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.2 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8873:** [header-legacy] add useMobileLayout instead of common isMobileLayout check ([cb1c380](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/cb1c380e31855f77a6621647819e058eca8d82af))
+
 ## 0.1.1 (2026-08-28)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy

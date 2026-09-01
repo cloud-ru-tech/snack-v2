@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8873:** TitleClickable chevron background color ([07c8a01](https://github.com/cloud-ru-tech/snack-v2/commit/07c8a0128033039cdc6c7d90819e6553c37cb576))
+
 ## 1.0.5 (2026-08-28)
 
 **Note:** Version bump only for package @ds/uikit-product-title-clickable
