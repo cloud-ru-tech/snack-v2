@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-09-01)
+
+### Features
+
+- **FF-8947:** allow link actions in page-layout action panel ([85391dc](https://github.com/cloud-ru-tech/snack-v2/commit/85391dc3b53e58abc284f07a8ff4b0534a5dc208))
+
 # 1.1.0 (2026-09-01)
 
 ### Features

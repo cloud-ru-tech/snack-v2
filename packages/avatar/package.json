@@ -1,6 +1,6 @@
 {
   "name": "@ds/avatar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Аватар пользователя с фото, инициалами, размерами и цветовыми схемами.",
   "repository": {
     "type": "git",

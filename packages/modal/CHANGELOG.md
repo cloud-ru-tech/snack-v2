@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8947:** keep focus ring visible for a field atop modal body ([db63e06](https://github.com/cloud-ru-tech/snack-v2/commit/db63e069b702ad4146924817660588418dac35de))
+
 # 1.1.0 (2026-09-01)
 
 ### Features

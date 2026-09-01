@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.13 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8947:** cap pinned column width so its resize handle stays reachable ([fa9370c](https://github.com/cloud-ru-tech/snack-v2/commit/fa9370c891823cf270676db504d6a4e3e0e7d441))
+- **FF-8947:** fix table column resize handles ([3beba8e](https://github.com/cloud-ru-tech/snack-v2/commit/3beba8e4527e83cdbec04803d1fe3855a0aea563))
+
 ## 1.0.12 (2026-09-01)
 
 **Note:** Version bump only for package @ds/table

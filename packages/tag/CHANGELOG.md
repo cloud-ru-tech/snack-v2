@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.9 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8947:** let tag label shrink so long text truncates with ellipsis ([06f35e6](https://github.com/cloud-ru-tech/snack-v2/commit/06f35e6e701e56f82dc9f0428b1ec461c2a6df83))
+
 ## 1.0.8 (2026-09-01)
 
 **Note:** Version bump only for package @ds/tag

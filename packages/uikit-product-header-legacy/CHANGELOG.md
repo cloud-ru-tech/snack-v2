@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.3 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8964:** updated typography for mobile navigation search in header legacy ([61be42c](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/61be42cda500975779e01048db52d266eff22748))
+
 ## 0.1.2 (2026-09-01)
 
 ### Bug Fixes

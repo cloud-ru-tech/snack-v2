@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.10 (2026-09-01)
+
+### Bug Fixes
+
+- **FF-8947:** use version text tokens in card playground demo content ([0a83a41](https://github.com/cloud-ru-tech/snack-v2/commit/0a83a41233b86ec11c61f897cb9cee354522c585))
+
 ## 1.0.9 (2026-09-01)
 
 **Note:** Version bump only for package @ds/card
