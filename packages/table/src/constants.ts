@@ -55,9 +55,17 @@ export const TABLE_CSS_VARS = {
   virtualRowStart: '--virtual-row-start',
 } as const;
 
+/**
+ * Точка в `accessorKey` обрывает CSS-идентификатор. Кодируем символ, а не схлопываем в `_`:
+ * иначе `a.b` и `a_b` дали бы одно имя.
+ */
+function toCssVarToken(columnId: string): string {
+  return columnId.replaceAll(/[^\w-]/g, char => `_${char.codePointAt(0)?.toString(16)}_`);
+}
+
 export const TABLE_COLUMN_CSS_VARS = {
-  size: (columnId: string) => `--table-column-${columnId}-size`,
-  flex: (columnId: string) => `--table-column-${columnId}-flex`,
+  size: (columnId: string) => `--table-column-${toCssVarToken(columnId)}-size`,
+  flex: (columnId: string) => `--table-column-${toCssVarToken(columnId)}-flex`,
 };
 
 /** Идентификаторы предопределённых служебных колонок */

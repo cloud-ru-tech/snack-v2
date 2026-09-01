@@ -1,6 +1,6 @@
 import { useLayoutEffect } from '@ds/utils';
 import type { Header, Table } from '@tanstack/react-table';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { DefaultColumns } from '../../../constants';
 import { TREE_CELL_ID } from '../../../helperComponents/Cells/TreeCell/constants';
@@ -11,27 +11,6 @@ import { getInitColumnSizeFromLocalStorage, saveStateToLocalStorage } from '../u
 import { getColumnIdentifier } from '../utils/getColumnIdentifier';
 import { getColumnStyleVars } from '../utils/getColumnStyleVars';
 import { getCurrentlyConfiguredHeaderWidth } from '../utils/getCurrentlyConfiguredHeaderWidth';
-
-/** Дефолты `defaultColumnSizing`: наружу tanstack их не экспортирует. */
-const TANSTACK_DEFAULT_COLUMN_SIZE = 150;
-const TANSTACK_DEFAULT_COLUMN_MIN_SIZE = 20;
-const TANSTACK_DEFAULT_COLUMN_MAX_SIZE = Number.MAX_SAFE_INTEGER;
-
-/**
- * Размер, который вернёт `header.getSize()`, пока в `columnSizing` нет записи о колонке.
- * Сравнивать с `columnDef.size` напрямую нельзя: `getSize` ограничивает его значениями
- * `minSize` и `maxSize`, поэтому у колонки с `minSize` больше `size` они не совпадут
- * никогда — колонка постоянно считалась бы изменённой пользователем.
- */
-function getDefaultColumnSize<TData>(header: Header<TData, unknown>): number {
-  const {
-    size = TANSTACK_DEFAULT_COLUMN_SIZE,
-    minSize = TANSTACK_DEFAULT_COLUMN_MIN_SIZE,
-    maxSize = TANSTACK_DEFAULT_COLUMN_MAX_SIZE,
-  } = header.column.columnDef;
-
-  return Math.min(Math.max(minSize, size), maxSize);
-}
 
 type UseColumnSizesParams<TData extends object> = {
   table: Table<TData>;
@@ -46,7 +25,6 @@ export function useColumnSizes<TData extends object>({
   isLoadingState,
   savedState,
 }: UseColumnSizesParams<TData>) {
-  const columnSizeVarsRef = useRef<Record<string, string>>();
   const [measuredHeaderWidths, setMeasuredHeaderWidths] = useState<Record<string, number>>({});
   const isResizingColumn = table.getState().columnSizingInfo.isResizingColumn;
 
@@ -67,7 +45,6 @@ export function useColumnSizes<TData extends object>({
 
       const originalColumnDefSize = originalColDef?.size;
       let initSize = originalColumnDefSize ? `${originalColumnDefSize}px` : '100%';
-      const prevSize = columnSizeVarsRef.current?.[sizeKey];
       const isResizeSavedToStore = originalColDef?.enableResizing && savedState?.id && savedState?.resize !== false;
 
       if (isResizeSavedToStore) {
@@ -90,30 +67,30 @@ export function useColumnSizes<TData extends object>({
 
       let size = initSize;
 
-      if (header.column.getCanResize()) {
+      // Ширина задана, если о колонке есть запись в `columnSizing`. Сравнение с дефолтом врало на
+      // колонке, чей `minSize` совпал с рассчитанным дефолтом. Ресайзимость здесь ни при чём:
+      // замороженная колонка должна остаться фиксированной и после отпускания кнопки.
+      const hasAssignedSize = table.getState().columnSizing[header.id] !== undefined;
+
+      if (hasAssignedSize) {
         const currentSize = header.getSize();
-        const defaultSize = getDefaultColumnSize(header);
 
-        if (currentSize !== defaultSize || (i < resizedColumnIndex && prevSize === '100%')) {
-          let realSize = currentSize;
-          let needsMeasurement = false;
+        realSizes[header.id] = currentSize;
+        size = `${currentSize}px`;
+      } else if (resizedColumnIndex >= 0 && size === '100%') {
+        // Началось перетаскивание — фиксируем на отрисованной ширине ВСЕ тянущиеся колонки разом,
+        // включая НЕресайзимые: стабильность раскладки от ресайзимости не зависит. Зафиксировать
+        // часть нельзя — у тянущихся колонок `width: 100%` и `flex-shrink: 1`, ширину они делят
+        // сообща, и стоит одной выпасть из дележа, как остаток перераспределяется на остальные.
+        const measuredWidth = measuredHeaderWidths[header.id];
 
-          if (prevSize === '100%') {
-            const measuredWidth = measuredHeaderWidths[header.id];
-
-            if (measuredWidth !== undefined) {
-              realSize = measuredWidth;
-            } else {
-              needsMeasurement = true;
-              headerIdsToMeasure.push(header.id);
-            }
-          }
-
-          if (!needsMeasurement) {
-            realSizes[header.id] = realSize;
-            size = `${realSize}px`;
-          }
+        if (measuredWidth === undefined) {
+          headerIdsToMeasure.push(header.id);
+        } else if (measuredWidth) {
+          realSizes[header.id] = measuredWidth;
+          size = `${measuredWidth}px`;
         }
+        // Без layout (jsdom, скрытая таблица) замер даёт 0 — тогда колонка остаётся тянущейся.
       }
 
       if (isLoadingState && header.id === TREE_CELL_ID) {
@@ -199,8 +176,6 @@ export function useColumnSizes<TData extends object>({
     if (hasSizeChanges) {
       table.setColumnSizing(old => ({ ...old, ...columnSizes.realSizes }));
     }
-
-    columnSizeVarsRef.current = columnSizes.vars;
   }, [columnSizes, table]);
 
   useEffect(() => {

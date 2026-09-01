@@ -39,23 +39,6 @@ export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData
   const resizeHandler = header.getResizeHandler();
   const { table } = header.getContext();
 
-  // У колонки без `size` нет записи в columnSizing, и tanstack стартует перетаскивание от дефолта
-  // columnDef (150px), а не от отрисованной ширины. Реальная ширина фиксируется заранее, на
-  // наведении: к моменту mousedown состояние уже применено.
-  const pinRenderedWidth = () => {
-    const id = header.column.id;
-
-    if (table.getState().columnSizing[id] !== undefined) {
-      return;
-    }
-
-    const rendered = cellRef.current?.offsetWidth;
-
-    if (rendered) {
-      table.setColumnSizing(prev => ({ ...prev, [id]: rendered }));
-    }
-  };
-
   const handleMouseDown = (event: MouseEvent) => {
     if (event.detail === 2) {
       header.column.resetSize();
@@ -64,6 +47,22 @@ export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData
     }
 
     resizeHandler(event);
+
+    // У колонки без `size` tanstack стартует от дефолта columnDef, а не от отрисованной ширины.
+    // Правим состояние ресайза, а не `columnSizing`: запись туда ужимает соседей ещё до протяжки.
+    const rendered = cellRef.current?.getBoundingClientRect().width;
+
+    if (!rendered) {
+      return;
+    }
+
+    table.setColumnSizingInfo(old => ({
+      ...old,
+      startSize: rendered,
+      columnSizingStart: old.columnSizingStart.map(([columnId, size]) =>
+        columnId === header.column.id ? [columnId, rendered] : [columnId, size],
+      ),
+    }));
   };
 
   const offset = isResizing ? getResizeIndicatorOffset({ header, cellRef }) : 0;
@@ -74,10 +73,9 @@ export function ResizeHandle<TData>({ header, cellRef }: ResizeHandleProps<TData
         aria-hidden
         className={cn(styles.tableHeaderIcon, styles.tableHeaderResizeHandle)}
         data-resizing={isResizing || undefined}
-        onMouseEnter={pinRenderedWidth}
         onMouseDown={handleMouseDown}
         onTouchStart={resizeHandler}
-        onMouseUp={stopEventPropagation}
+        onClick={stopEventPropagation}
       />
       {isResizing && (
         <div

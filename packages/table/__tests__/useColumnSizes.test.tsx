@@ -6,6 +6,7 @@ import { createRoot, Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { useColumnSizes } from '../src/components/Table/hooks/useColumnSizes';
+import { TABLE_COLUMN_CSS_VARS } from '../src/constants';
 
 /** Флаг React'а «мы внутри act()» — глобального объявления в типах нет, ставим точечно. */
 const actEnv = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
@@ -23,7 +24,10 @@ type ProbeApi = {
   renders: number;
   vars: Record<string, string>;
   columnSizing: Record<string, number>;
+  toMeasure: string[];
+  measureHistory: string[][];
   setColumnSizing(sizes: Record<string, number>): void;
+  startResizing(columnId: string): void;
 };
 
 /**
@@ -40,7 +44,10 @@ function renderProbe(columns: ColumnDef<Row>[]) {
     renders: 0,
     vars: {},
     columnSizing: {},
+    toMeasure: [],
+    measureHistory: [],
     setColumnSizing: () => undefined,
+    startResizing: () => undefined,
   };
 
   function Probe() {
@@ -60,7 +67,11 @@ function renderProbe(columns: ColumnDef<Row>[]) {
     api.renders += 1;
     api.vars = columnSizes.vars;
     api.columnSizing = table.getState().columnSizing;
+    api.toMeasure = columnSizes.headerIdsToMeasure;
+    api.measureHistory.push(columnSizes.headerIdsToMeasure);
     api.setColumnSizing = sizes => table.setColumnSizing(sizes);
+    api.startResizing = columnId =>
+      table.setColumnSizingInfo(old => ({ ...old, isResizingColumn: columnId, startOffset: 0, startSize: 0 }));
 
     return null;
   }
@@ -132,6 +143,56 @@ describe('useColumnSizes', () => {
     expect(api.renders).toBeLessThan(12);
 
     unmount();
+  });
+
+  it('отдаёт px колонке, у которой minSize совпал с дефолтным размером', () => {
+    const { api, unmount } = renderProbe([
+      { id: 'name', accessorKey: 'name', header: 'Наименование', size: 200 },
+      { id: 'chargeType', accessorKey: 'chargeType', header: 'Тип тарификации', minSize: 200 },
+    ]);
+
+    expect(api.vars[SIZE_VAR('chargeType')]).toBe('100%');
+
+    act(() => {
+      api.setColumnSizing({ chargeType: 200 });
+    });
+
+    expect(api.vars[SIZE_VAR('chargeType')]).toBe('200px');
+
+    unmount();
+  });
+
+  it('на старте перетаскивания фиксирует и НЕресайзимые тянущиеся колонки', () => {
+    // Тянущиеся колонки делят ширину сообща (`width: 100%` + `flex-shrink: 1`). Если заморозить
+    // только ресайзимые, остаток перераспределится на остальные и таблица дёрнется на нажатии.
+    const { api, unmount } = renderProbe([
+      { id: 'name', accessorKey: 'name', header: 'Наименование', enableResizing: true },
+      { id: 'chargeType', accessorKey: 'chargeType', header: 'Тип тарификации', enableResizing: false },
+    ]);
+
+    expect(api.measureHistory.flat()).toEqual([]);
+
+    act(() => {
+      api.startResizing('name');
+    });
+
+    // обе колонки уходят на замер — и ресайзимая, и нет
+    // (в jsdom замер возвращает 0, поэтому в vars они останутся тянущимися — проверяем очередь)
+    const queued = api.measureHistory.flat();
+
+    expect(queued).toContain('name');
+    expect(queued).toContain('chargeType');
+
+    unmount();
+  });
+
+  it('имя CSS-переменной не ломается о точку в id колонки', () => {
+    expect(TABLE_COLUMN_CSS_VARS.size('diskType.name')).toBe('--table-column-diskType_2e_name-size');
+    expect(TABLE_COLUMN_CSS_VARS.flex('diskType.name')).toBe('--table-column-diskType_2e_name-flex');
+    expect(TABLE_COLUMN_CSS_VARS.size('a.b')).not.toBe(TABLE_COLUMN_CSS_VARS.size('a_b'));
+    expect(TABLE_COLUMN_CSS_VARS.size('snack_predefined_statusColumn')).toBe(
+      '--table-column-snack_predefined_statusColumn-size',
+    );
   });
 
   it('сохраняет ширину колонки, изменённую пользователем', () => {
