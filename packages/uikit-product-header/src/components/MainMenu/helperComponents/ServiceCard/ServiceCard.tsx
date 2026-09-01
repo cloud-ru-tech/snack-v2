@@ -31,13 +31,14 @@ export function ServiceCard({
   expandable,
 }: ServiceCardProps) {
   const isInFavorites = favorite?.value.includes(service.id) ?? false;
+  const isFavoriteEnabled = service.favoritesEnabled ?? true;
 
   const favoriteProps: CardServiceLightProps['favorite'] =
     !dragPreview && favorite
       ? {
           checked: isInFavorites,
           onChange: favorite.onChange(service.id),
-          enabled: !service.disabled,
+          enabled: !service.disabled && isFavoriteEnabled,
         }
       : undefined;
 
@@ -83,7 +84,8 @@ export function DraggableServiceCard({
   dragDisabled,
   ...props
 }: DraggableServiceCardProps) {
-  const disabled = dragDisabled || service.disabled || favorite?.value.includes(service.id);
+  const isFavoriteEnabled = service.favoritesEnabled ?? true;
+  const disabled = dragDisabled || service.disabled || favorite?.value.includes(service.id) || !isFavoriteEnabled;
 
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: getServiceSourceDragId(groupId, service.id),

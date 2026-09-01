@@ -11,6 +11,7 @@ export type SortableGroupCardsProps = Pick<
   groupId: string;
   items: InnerLink[];
   enableServiceDrag?: boolean;
+  groupFavoritesEnabled?: boolean;
 };
 
 export function SortableGroupCards({
@@ -20,6 +21,7 @@ export function SortableGroupCards({
   isMobile,
   enableServiceDrag,
   favorite,
+  groupFavoritesEnabled,
   onServiceClick,
 }: SortableGroupCardsProps) {
   return (
@@ -41,6 +43,7 @@ export function SortableGroupCards({
               isMobile={isMobile}
               dragDisabled={!enableServiceDrag}
               favorite={favorite}
+              groupFavoritesEnabled={groupFavoritesEnabled}
               onServiceClick={onServiceClick}
             />
           );

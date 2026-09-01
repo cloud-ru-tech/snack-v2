@@ -14,6 +14,7 @@ export type SubCategoryProps = Pick<
 > & {
   groupId: string;
   dragDisabled?: boolean;
+  groupFavoritesEnabled?: boolean;
 };
 
 export function SubCategory({
@@ -24,6 +25,7 @@ export function SubCategory({
   dragDisabled,
   favorite,
   onServiceClick,
+  groupFavoritesEnabled,
 }: SubCategoryProps) {
   const subcategoryId = getSubCategoryId(groupId, service.id);
   const nestedGroupId = getNestedServiceGroupId(groupId, service.id);
@@ -54,7 +56,7 @@ export function SubCategory({
               showDescription={showDescription}
               isMobile={isMobile}
               dragDisabled={dragDisabled}
-              favorite={favorite}
+              favorite={groupFavoritesEnabled ? favorite : undefined}
               onServiceClick={onServiceClick}
             />
           }

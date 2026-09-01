@@ -20,6 +20,8 @@ export type SortableGroupProps = Omit<SortableGroupCardsProps, 'groupId'> &
     blockColor?: LinksGroupBlockColor;
 
     highlight?: boolean;
+
+    groupFavoritesEnabled?: boolean;
   };
 
 export function SortableGroup({
@@ -32,6 +34,7 @@ export function SortableGroup({
   isMobile,
   enableServiceDrag,
   favorite,
+  groupFavoritesEnabled = true,
   onServiceClick,
   blockColor,
   highlight,
@@ -89,6 +92,7 @@ export function SortableGroup({
           isMobile={isMobile}
           enableServiceDrag={enableServiceDrag}
           favorite={favorite}
+          groupFavoritesEnabled={groupFavoritesEnabled}
           onServiceClick={onServiceClick}
         />
       </Accordion.CollapseBlockTertiary>
@@ -104,6 +108,7 @@ export function SortableGroupDragPreview({
   showDescription,
   isMobile,
   favorite,
+  groupFavoritesEnabled,
   blockColor,
   highlight,
 }: Omit<SortableGroupProps, 'enableServiceDrag'>) {
@@ -128,6 +133,7 @@ export function SortableGroupDragPreview({
             showDescription={showDescription}
             isMobile={isMobile}
             favorite={favorite}
+            groupFavoritesEnabled={groupFavoritesEnabled}
           />
         )}
       </div>

@@ -36,6 +36,8 @@ export type InnerLink = {
   disabled?: boolean;
   hidden?: boolean;
   badge?: CardServiceLightProps['promoTag'];
+  /** Разрешено ли добавление карточки в избранное. default=true - разрешено */
+  favoritesEnabled?: boolean;
   /**
    * Вложенные сервисы подкатегории.
    *

@@ -467,6 +467,11 @@
             "type": "boolean | undefined",
             "required": false
           },
+          "favoritesEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли добавление карточки в избранное. default=true - разрешено"
+          },
           "hidden": {
             "type": "boolean | undefined",
             "required": false
@@ -1762,6 +1767,11 @@
             "type": "boolean | undefined",
             "required": false
           },
+          "favoritesEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли добавление карточки в избранное. default=true - разрешено"
+          },
           "hidden": {
             "type": "boolean | undefined",
             "required": false
@@ -2985,6 +2995,11 @@
             "type": "boolean | undefined",
             "required": false
           },
+          "favoritesEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли добавление карточки в избранное. default=true - разрешено"
+          },
           "hidden": {
             "type": "boolean | undefined",
             "required": false
@@ -3644,6 +3659,11 @@
         "type": "FavoriteProps",
         "required": false
       },
+      "groupFavoritesEnabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
       "highlight": {
         "type": "boolean",
         "required": false
@@ -3693,6 +3713,10 @@
       },
       "favorite": {
         "type": "FavoriteProps",
+        "required": false
+      },
+      "groupFavoritesEnabled": {
+        "type": "boolean",
         "required": false
       },
       "groupId": {
@@ -3754,6 +3778,10 @@
       },
       "favorite": {
         "type": "FavoriteProps",
+        "required": false
+      },
+      "groupFavoritesEnabled": {
+        "type": "boolean",
         "required": false
       },
       "highlight": {
@@ -3851,6 +3879,10 @@
       },
       "favorite": {
         "type": "FavoriteProps",
+        "required": false
+      },
+      "groupFavoritesEnabled": {
+        "type": "boolean",
         "required": false
       },
       "groupId": {

@@ -225,7 +225,7 @@ export function Content({
       return (
         <SortableContext items={visibleGroups.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
           <Accordion selectionMode='multiple' expanded={expandedIds} onExpandedChange={onExpandedChange}>
-            {visibleGroups.map(({ id, label, icon, items, favoritesEnabled = true, blockColor, highlight }) => (
+            {visibleGroups.map(({ id, label, icon, items, favoritesEnabled, blockColor, highlight }) => (
               <SortableGroup
                 key={id}
                 id={id}
@@ -237,7 +237,8 @@ export function Content({
                 showDescription={showDescription}
                 isMobile={isMobile}
                 enableServiceDrag={enableServiceDrag}
-                favorite={favoritesEnabled ? favorite : undefined}
+                favorite={favorite}
+                groupFavoritesEnabled={favoritesEnabled}
                 onServiceClick={handleLinkClick}
                 highlight={highlight}
               />

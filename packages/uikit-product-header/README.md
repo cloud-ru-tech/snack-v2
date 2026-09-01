@@ -342,6 +342,7 @@ function LocalMainMenu() {
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
+| `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
@@ -512,6 +513,7 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
+| `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
