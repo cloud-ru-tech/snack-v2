@@ -49,7 +49,7 @@ export function ToastUploadFileLine({ item: initItem }: ToastUploadFileLineProps
   return (
     <div className={styles.fileLine} data-test-id={TEST_IDS.uploadFileItem}>
       <div className={styles.fileHeadLine}>
-        <TruncateString text={item.title} className={styles.fileTitle} maxLines={1} />
+        <TruncateString text={item.title} className={styles.fileTitle} maxLines={1} tooltipClassName={styles.tooltip} />
 
         {linkInfo && (
           <Link
@@ -85,7 +85,12 @@ export function ToastUploadFileLine({ item: initItem }: ToastUploadFileLineProps
         <div className={styles.fileStatusWrap}>
           <LoadingStatus status={item.status} actions={item.actions} />
 
-          <TruncateString className={styles.fileStatusDescription} data-status={item.status} text={item.statusLabel} />
+          <TruncateString
+            className={styles.fileStatusDescription}
+            data-status={item.status}
+            tooltipClassName={styles.tooltip}
+            text={item.statusLabel}
+          />
         </div>
 
         <span className={styles.fileSize} data-status={item.status}>

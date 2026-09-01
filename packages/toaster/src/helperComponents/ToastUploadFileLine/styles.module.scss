@@ -49,6 +49,12 @@
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 }
 
+.tooltip {
+  // z-index у тостеров 9999, если будет меньше, то тултип будет отображаться под тостером
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  z-index: 9999;
+}
+
 .fileStatusLine {
   display: flex;
   gap: toaster.$sn-toaster-anatomy-toast-upload-container-fileLine-statusLine-gap;
