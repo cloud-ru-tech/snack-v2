@@ -10,10 +10,26 @@ import { figmaNode } from '#docs/lib/figma';
 
 # Header
 
+`@ds/uikit-product-header` — новая продуктовая шапка консоли на Snack V2: layout, главное меню с сегментами и избранным, меню пользователя, логотип и хлебные крошки.
+
+## Когда использовать
+
+- Новая навигация консоли с сегментами сервисов, избранным и настройками отображения карточек.
+- Полная замена header на Snack V2 без legacy-контрактов Figma `headerOld` / `navigationOldDrawer`.
+- Поэтапная миграция: `MenuMobile` (bottom sheet) подключается к legacy [`MainMenu`](/components/uikit-product-header-legacy/main-menu) через `customMobileMenu`.
+
+Когда **не** нужен:
+
+- Обратная совместимость со старым drawer и API `serviceGroups` / `LinksGroup`:
+  - используйте [`@ds/uikit-product-header-legacy`](/components/uikit-product-header-legacy).
+
+## Компоненты
+
 | Компонент | Назначение |
 | --- | --- |
 | [`HeaderLayout`](/components/uikit-product-header/header-layout) | Компоновка слотов шапки: меню, логотип, селектор, хлебные крошки, тулбар |
-| [`MainMenu`](/components/uikit-product-header/main-menu) | Главное меню навигации с сегментами, поиском и избранным |
+| [`MainMenu`](/components/uikit-product-header/main-menu) | Главное меню: trigger + drawer (desktop resizable / mobile bottom sheet) |
+| [`MenuMobile`](/components/uikit-product-header/main-menu#menumobile) | Только mobile-drawer без trigger; для `customMobileMenu` в legacy |
 | [`UserMenu`](/components/uikit-product-header/user-menu) | Меню пользователя: профиль, тема, настройки и выход |
 | [`Logo`](/components/uikit-product-header/logo) | Логотип продукта с режимом окружения и кастомным изображением |
 | [`PathBreadcrumbs`](/components/uikit-product-header/path-breadcrumbs) | Хлебные крошки пути в шапке |
@@ -26,10 +42,15 @@ pnpm add @ds/uikit-product-header
 ```
 
 ```ts
-import { HeaderLayout, MainMenu, UserMenu } from '@ds/uikit-product-header';
+import { HeaderLayout, MainMenu, MenuMobile, UserMenu } from '@ds/uikit-product-header';
 import '@ds/uikit-product-header/style.css';
 ```
 
 ## Figma
 
 <FigmaEmbed node={figmaNode('uikit-product-header')} />
+
+## Смотри также
+
+- [`@ds/uikit-product-header-legacy`](/components/uikit-product-header-legacy) — legacy-шапка для параллельного релиза и `customMobileMenu`.
+- [`@ds/adaptive`](/components/adaptive) — `AdaptiveProvider` / `layoutType` для desktop/mobile поверхностей.

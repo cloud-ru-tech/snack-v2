@@ -20,12 +20,89 @@ import componentDoc from './props.json';
 
 # MainMenu
 
-`MainMenu` — drawer с каталогом сервисов: сегменты, fuzzy-поиск, избранное, DnD групп и карточек. На desktop — resizable drawer, на mobile — fullscreen.
+`MainMenu` — drawer с каталогом сервисов: сегменты, fuzzy-поиск, избранное, DnD групп и карточек.
+
+- **Desktop** — resizable `@ds/drawer` слева: левая колонка (избранное, настройки), правая — сегменты и сетка карточек.
+- **Mobile** — fullscreen bottom sheet (`MobileDrawerCustom`, `position='bottom'`): sticky header с логотипом, scroll-body, поиск и каталог.
+
+Поверхность выбирается через `AdaptiveProvider` (`layoutType`).
 
 ## Когда использовать
 
-- Навигация по каталогу облачных сервисов из шапки консоли.
+- Навигация по каталогу облачных сервисов из шапки консоли (новая продуктовая навигация).
 - Сценарии с избранным, недавними сервисами и настройками отображения карточек.
+- Mobile-меню для микрофронта на legacy [`HeaderLayout`](/components/uikit-product-header-legacy/header-layout): `MenuMobile` подключается через `customMobileMenu` у [`@ds/uikit-product-header-legacy` / MainMenu](/components/uikit-product-header-legacy/main-menu).
+
+Когда **не** нужен:
+
+- Legacy drawer по Figma `navigationOldDrawer` / `navigationOldDrawerMobile`:
+  - используйте [`@ds/uikit-product-header-legacy`](/components/uikit-product-header-legacy/main-menu).
+
+## Анатомия
+
+### Trigger и drawer
+
+- trigger — `HeaderButton` с `MainMenuSVG` и tooltip «Сервисы».
+- desktop drawer — resizable `DrawerCustom`, слева; drag-handle для ширины.
+- mobile drawer — fullscreen bottom sheet; swipe отключён (`swipeEnabled={false}`).
+
+### Левая колонка (desktop)
+
+- `leftTop` — слот над избранным (например, селектор платформы).
+- `Favorites` — избранные сервисы с DnD (`MainMenuDndContext`).
+- `settingItems` — административные пункты (`mapInnerLinksToListItems`).
+- `leftBottom` — дополнительный слот внизу колонки.
+
+### Правая колонка (desktop)
+
+- `rightTop` — баннеры.
+- `Search` — fuzzy-поиск по каталогу.
+- `segments` — сегменты с `SegmentControl` (если сегментов > 1).
+- Сетка карточек `CardServiceSmall` по группам в активном сегменте.
+
+### Mobile body
+
+- `MenuHeaderBrand` + divider — sticky header с кнопкой закрытия.
+- `leftTop`, `Search`, `rightTop`, `Content` — в scroll-body.
+- `settingItems` / `leftBottom` — нижняя зона (`MenuBottom`).
+- Избранное без drag&drop (desktop-only DnD).
+
+### open / setOpen
+
+Controlled-открытие drawer. Без `open` состояние держит сам компонент.
+
+## MenuMobile
+
+`MenuMobile` экспортируется из `@ds/uikit-product-header` отдельно от `MainMenu` — тот же API (`MainMenuProps`), но без кнопки-триггера. Используется:
+
+- внутри `MainMenu` на mobile-поверхности;
+- в legacy-интеграции: `customMobileMenu` у `@ds/uikit-product-header-legacy` / `MainMenu`.
+
+```ts
+import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
+```
+
+<PropsTable data={componentDoc.MenuMobile} />
+
+## Адаптивность
+
+| Проп / поведение | Desktop | Mobile |
+| --- | --- | --- |
+| Drawer | Resizable слева | Fullscreen bottom sheet |
+| `favorite` DnD | Да | Нет |
+| `segments` / `SegmentControl` | Да | Да (скрывается при поиске) |
+| `preferences` | Модалка настроек в тулбаре | То же |
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-header
+```
+
+```ts
+import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
+import '@ds/uikit-product-header/style.css';
+```
 
 ## Примеры использования
 
@@ -49,6 +126,33 @@ import componentDoc from './props.json';
   <WithFavorites client:visible />
 </Example>
 
+### Интеграция с legacy MainMenu
+
+```tsx
+import { useState } from 'react';
+import { MainMenu as LegacyMainMenu } from '@ds/uikit-product-header-legacy';
+import { MenuMobile } from '@ds/uikit-product-header';
+
+function LocalMainMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <LegacyMainMenu
+      open={open}
+      setOpen={setOpen}
+      serviceGroups={legacyGroups}
+      customMobileMenu={
+        <MenuMobile
+          open={open}
+          setOpen={setOpen}
+          segments={headerSegments}
+        />
+      }
+    />
+  );
+}
+```
+
 ## Props
 
 <PropsTable data={componentDoc.MainMenu} />
@@ -60,3 +164,8 @@ import componentDoc from './props.json';
 ## Figma
 
 <FigmaEmbed node={figmaNode('uikit-product-header', 'main-menu')} />
+
+## Смотри также
+
+- [`@ds/uikit-product-header-legacy` / MainMenu](/components/uikit-product-header-legacy/main-menu) — legacy drawer и проп `customMobileMenu`.
+- [`@ds/uikit-product-card-predefined`](/components/uikit-product-card-predefined) — карточки сервисов в сетке.

@@ -2548,7 +2548,7 @@
   },
   "MenuMobile": {
     "displayName": "MenuMobile",
-    "propsTypeName": null,
+    "propsTypeName": "MainMenuProps",
     "props": {
       "activeSegmentId": {
         "type": "string",
@@ -2571,7 +2571,10 @@
       },
       "favorite": {
         "type": "FavoriteProps",
-        "required": false
+        "required": false,
+        "typeRefs": [
+          "FavoriteProps"
+        ]
       },
       "leftBottom": {
         "type": "ReactNode",
@@ -2622,12 +2625,18 @@
       "platformGroups": {
         "type": "LinksGroup[]",
         "required": false,
-        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок —\nпосле совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`.\nОбычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`)."
+        "description": "Платформенные группы (например «Облачные продукты», «Другие продукты»).\n\nБез поиска в сетке карточек **не отображаются**.\nС поиском: попадают в результаты при совпадении; порядок —\nпосле совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`.\nОбычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`).",
+        "typeRefs": [
+          "LinksGroup"
+        ]
       },
       "preferences": {
         "type": "MainMenuPreferencesProps",
         "required": false,
-        "description": "Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп.\n\nНе передано — кнопка настроек в тулбаре не отображается."
+        "description": "Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп.\n\nНе передано — кнопка настроек в тулбаре не отображается.",
+        "typeRefs": [
+          "MainMenuPreferencesProps"
+        ]
       },
       "rightTop": {
         "type": "ReactNode",
@@ -2636,22 +2645,34 @@
       },
       "search": {
         "type": "SearchProps",
-        "required": false
+        "required": false,
+        "typeRefs": [
+          "SearchProps"
+        ]
       },
       "searchGroups": {
         "type": "LinksGroup[]",
         "required": false,
-        "description": "Результаты поиска (уже смерженные); в обычном режиме не используются."
+        "description": "Результаты поиска (уже смерженные); в обычном режиме не используются.",
+        "typeRefs": [
+          "LinksGroup"
+        ]
       },
       "segmentPrefs": {
         "type": "MainMenuSegmentPrefs[]",
         "required": false,
-        "description": "Пользовательские prefs сегментов (порядок / раскрытие групп).\n\nНет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля."
+        "description": "Пользовательские prefs сегментов (порядок / раскрытие групп).\n\nНет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля.",
+        "typeRefs": [
+          "MainMenuSegmentPrefs"
+        ]
       },
       "segments": {
         "type": "MainMenuSegment[]",
         "required": false,
-        "description": "Сегменты правой панели (сетка карточек) — только каталог.\n\nПри поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`.\nЕсли один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только\nпервое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются.\nПри `segments.length > 1` показывается SegmentControl (скрывается во время поиска).\nПорядок и раскрытие групп — через `segmentPrefs` и колбэки ниже."
+        "description": "Сегменты правой панели (сетка карточек) — только каталог.\n\nПри поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`.\nЕсли один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только\nпервое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются.\nПри `segments.length > 1` показывается SegmentControl (скрывается во время поиска).\nПорядок и раскрытие групп — через `segmentPrefs` и колбэки ниже.",
+        "typeRefs": [
+          "MainMenuSegment"
+        ]
       },
       "setOpen": {
         "type": "((open: boolean) => void)",
@@ -2660,10 +2681,655 @@
       "settingItems": {
         "type": "MainMenuSettingsItem[]",
         "required": false,
-        "description": "Пункты левой колонки (desktop) / нижней части списка (mobile).\n\nПлоский список (`dividerBefore` для разделителей).\nНе связан с сегментами правой панели и не меняется при сортировке групп в сегментах."
+        "description": "Пункты левой колонки (desktop) / нижней части списка (mobile).\n\nПлоский список (`dividerBefore` для разделителей).\nНе связан с сегментами правой панели и не меняется при сортировке групп в сегментах.",
+        "typeRefs": [
+          "InnerLink",
+          "MainMenuSettingsItem"
+        ]
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "BaseItemProps": {
+        "kind": "interface",
+        "props": {
+          "afterContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот после основного контента"
+          },
+          "beforeContent": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Слот до основного контента"
+          },
+          "checked": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляемое состояние выбранности айтема"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Скрыть элемент из списка (не рендерится и исключается из навигации)"
+          },
+          "id": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Уникальный идентификатор",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "inactive": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТакже элемент исключается из навигации с клавиатуры и не может быть выбран (selection)"
+          },
+          "itemRef": {
+            "type": "RefObject<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на DOM-элемент айтема"
+          },
+          "itemWrapRender": {
+            "type": "((item: ReactNode) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
+          },
+          "onBlur": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки блюра"
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "onFocus": {
+            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки фокуса"
+          },
+          "onKeyDown": {
+            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия клавиши"
+          },
+          "onMouseDown": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки нажатия кнопки мыши"
+          },
+          "showSwitchIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения иконки у чекбоксов"
+          },
+          "switch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг отображения состояния выбранного элемента через switch"
+          }
+        },
+        "own": false
+      },
+      "CardServiceLightProps": {
+        "kind": "interface",
+        "props": {
+          "actionsVisibility": {
+            "type": "VisibilityStrategy | undefined",
+            "required": false,
+            "values": [
+              "always",
+              "hover"
+            ],
+            "description": "Формат отображения дополнительных действий: всегда или при наведении и фокусе",
+            "typeRefs": [
+              "VisibilityStrategy"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс корневого элемента"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Support prop для тестов"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Неактивное состояние"
+          },
+          "expandable": {
+            "type": "{ value: boolean; onClick(): void; } | undefined",
+            "required": false,
+            "description": "Настройки кнопки раскрытия"
+          },
+          "favorite": {
+            "type": "FavoriteProps | undefined",
+            "required": false,
+            "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке.",
+            "typeRefs": [
+              "FavoriteProps (@ds/uikit-product-card-predefined)"
+            ]
+          },
+          "icon": {
+            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Иконка сервиса"
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент / инстанс",
+            "typeRefs": [
+              "PolymorphicRef"
+            ]
+          },
+          "promoTag": {
+            "type": "CardPromoTagProps | undefined",
+            "required": false,
+            "description": "Настройки promo tag. При отсутствии не отображается",
+            "typeRefs": [
+              "CardPromoTagProps",
+              "PromoTagPredefinedBaseProps"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок карточки"
+          },
+          "tooltip": {
+            "type": "Omit<TooltipProps, \"size\" | \"trigger\"> | undefined",
+            "required": false,
+            "description": "Подсказка с иконкой «?» рядом с заголовком",
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "truncate": {
+            "type": "{ title?: number; } | undefined",
+            "required": false,
+            "description": "Настройки обрезки текста заголовка"
+          }
+        },
+        "own": false
+      },
+      "FavoriteProps": {
+        "kind": "interface",
+        "props": {
+          "actions": {
+            "type": "{ items: BaseItemProps[]; onDroplistOpenChange?(open: boolean): void; } | undefined",
+            "required": false,
+            "description": "Действия для списка сервисов",
+            "typeRefs": [
+              "BaseItemProps"
+            ]
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг загрузки данных"
+          },
+          "onChange": {
+            "type": "(productId: string) => (addingValue: boolean, position?: number) => void",
+            "required": true,
+            "description": "Колбэк переключения избранного для карточки сервиса.\n\n`position` передаётся при добавлении через drag из сетки сервисов — индекс,\nна который должна встать карточка среди избранного (см. \n{@link \nFavoriteProps.onOrderChange\n}\n).\nПри переключении избранного кликом не передаётся."
+          },
+          "onFavoriteServiceClick": {
+            "type": "((serviceId: string, event?: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк клика по карточке сервиса в сегменте «Избранное»"
+          },
+          "onOrderChange": {
+            "type": "((orderedIds: string[]) => void) | undefined",
+            "required": false,
+            "description": "Колбэк вызывается после перетаскивания карточек внутри избранного с новым порядком id.\n\nДобавление новой карточки через drag из сетки сервисов идёт через\n\n{@link \nFavoriteProps.onChange\n}\n с `position` — этот колбэк для такого добавления не вызывается."
+          },
+          "onRecentServiceClick": {
+            "type": "((serviceId: string, event?: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк клика по карточке сервиса в сегменте «Недавнее»"
+          },
+          "onSegmentChange": {
+            "type": "((segment: FavoritesSegment) => void) | undefined",
+            "required": false,
+            "description": "Колбэк смены сегмента панели избранного."
+          },
+          "recentServices": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Список id недавно открытых сервисов"
+          },
+          "segment": {
+            "type": "FavoritesSegment | undefined",
+            "required": false,
+            "values": [
+              "favorites",
+              "recent"
+            ],
+            "description": "Активный сегмент («Избранное» / «Недавнее») в панели избранного.\n\nНе передано — неуправляемое состояние (дефолт `'favorites'`).",
+            "typeRefs": [
+              "FavoritesSegment"
+            ]
+          },
+          "value": {
+            "type": "string[]",
+            "required": true,
+            "description": "Список id избранных сервисов"
+          }
+        },
+        "own": true
+      },
+      "FavoritesSegment": {
+        "kind": "union",
+        "values": [
+          "favorites",
+          "recent"
+        ],
+        "own": true
+      },
+      "InnerLink": {
+        "kind": "interface",
+        "props": {
+          "aliases": {
+            "type": "string[]",
+            "required": true,
+            "description": "Синонимы для fuzzy-поиска."
+          },
+          "badge": {
+            "type": "CardPromoTagProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "CardServiceLightProps",
+              "PromoTagPredefinedBaseProps"
+            ]
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Краткое описание сервиса — отображается при включённом переключателе «Описание»."
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+            "required": false,
+            "description": "Иконка карточки."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске).\n\nОдин и тот же сервис может быть представлен в разных сегментах с разной\nдетализацией (простая карточка в общем каталоге и раскрытая с вложенными\nсервисами версия в другом сегменте) — в этом случае обеим версиям задаётся\nобщий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах\nостаётся только первое по приоритету сегментов (см. \n{@link \nMainMenuProps.segments\n}\n)."
+          },
+          "items": {
+            "type": "InnerLink[] | undefined",
+            "required": false,
+            "description": "Вложенные сервисы подкатегории.\n\nПри наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка\nс кнопкой раскрытия, в развёрнутом — заголовок \n{@link \nTitleClickable\n}\n и сетка вложенных сервисов.",
+            "typeRefs": [
+              "InnerLink"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок карточки."
+          },
+          "onClick": {
+            "type": "(e?: MouseEvent<HTMLElement>) => void",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "LinksGroup": {
+        "kind": "interface",
+        "props": {
+          "aliases": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Синонимы заголовка группы для fuzzy-поиска."
+          },
+          "blockColor": {
+            "type": "LinksGroupBlockColor | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Цвет блока группы.",
+            "typeRefs": [
+              "LinksGroupBlockColor"
+            ]
+          },
+          "favoritesEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли добавление карточек группы в избранное."
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "highlight": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Визуальное выделение группы"
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+            "required": false
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор группы (якорь скролла, поиск по id)."
+          },
+          "items": {
+            "type": "InnerLink[]",
+            "required": true,
+            "description": "Карточки сервисов или ссылок внутри группы.",
+            "typeRefs": [
+              "InnerLink"
+            ]
+          },
+          "label": {
+            "type": "TitleStatic | TitleClickable",
+            "required": true,
+            "description": "Заголовок группы в сетке карточек и в боковой навигации.",
+            "typeRefs": [
+              "LinksGroupTitle",
+              "TitleClickable",
+              "TitleStatic"
+            ]
+          },
+          "onClick": {
+            "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          }
+        },
+        "own": true
+      },
+      "LinksGroupBlockColor": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
+      "LinksGroupTitle": {
+        "kind": "alias",
+        "type": "TitleStatic | TitleClickable",
+        "own": true
+      },
+      "MainMenuPreferencesProps": {
+        "kind": "interface",
+        "props": {
+          "onOpenChange": {
+            "type": "((open: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбэк открытия/закрытия модалки."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Открыта ли модалка настроек.\n\nНе передано — состояние открытия неуправляемое (модалка сама переключает себя по клику на кнопку)."
+          },
+          "showDescription": {
+            "type": "{ value: boolean; onChange(value: boolean): void; }",
+            "required": true,
+            "description": "Показывать описания сервисов в карточках.",
+            "typeRefs": [
+              "MainMenuToggleProps"
+            ]
+          },
+          "showGroupsColors": {
+            "type": "MainMenuToggleProps | undefined",
+            "required": false,
+            "description": "Отображать цвета блоков групп (\n{@link \nLinksGroup.blockColor\n}\n).\n`value: false` скрывает цвета всех групп независимо от заданного `blockColor`.",
+            "typeRefs": [
+              "MainMenuToggleProps"
+            ]
+          }
+        },
+        "own": true
+      },
+      "MainMenuSegment": {
+        "kind": "interface",
+        "props": {
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка сегмента в SegmentControl; без неё — только `label`."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор сегмента (значение SegmentControl)."
+          },
+          "items": {
+            "type": "LinksGroup[]",
+            "required": true,
+            "description": "Группы карточек сегмента (каталог).",
+            "typeRefs": [
+              "LinksGroup"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Подпись сегмента в SegmentControl."
+          },
+          "pinBottomOnSearch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Группы сегмента в выдаче поиска — после совпадений из обычных сегментов и `platformGroups`."
+          }
+        },
+        "own": true
+      },
+      "MainMenuSegmentPrefs": {
+        "kind": "interface",
+        "props": {
+          "expanded": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Id раскрытых групп. Если не передан — uncontrolled (по умолчанию все раскрыты)."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Id сегмента из \n{@link \nMainMenuSegment.id\n}\n."
+          },
+          "order": {
+            "type": "string[] | undefined",
+            "required": false,
+            "description": "Порядок id групп. Если не передан — uncontrolled для этого сегмента\n(дефолт = порядок `items`; новые группы добавляются в конец)."
+          }
+        },
+        "own": true
+      },
+      "MainMenuSettingsItem": {
+        "kind": "interface",
+        "props": {
+          "divider": {
+            "type": "\"before\" | \"after\" | undefined",
+            "required": false,
+            "values": [
+              "after",
+              "before"
+            ]
+          },
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "icon": {
+            "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
+            "required": false,
+            "description": "Иконка карточки."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске).\n\nОдин и тот же сервис может быть представлен в разных сегментах с разной\nдетализацией (простая карточка в общем каталоге и раскрытая с вложенными\nсервисами версия в другом сегменте) — в этом случае обеим версиям задаётся\nобщий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах\nостаётся только первое по приоритету сегментов (см. \n{@link \nMainMenuProps.segments\n}\n)."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок карточки."
+          },
+          "onClick": {
+            "type": "(e?: MouseEvent<HTMLElement>) => void",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "MainMenuToggleProps": {
+        "kind": "interface",
+        "props": {
+          "onChange": {
+            "type": "(value: boolean) => void",
+            "required": true
+          },
+          "value": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "PromoTagPredefinedBaseProps": {
+        "kind": "alias",
+        "type": "{ [x: string]: any; [x: number]: any; [x: symbol]: any; }",
+        "own": false
+      },
+      "SearchProps": {
+        "kind": "interface",
+        "props": {
+          "onBlur": {
+            "type": "FocusEventHandler<HTMLInputElement> | undefined",
+            "required": false,
+            "description": "Колбек обработки потери фокуса"
+          },
+          "onChange": {
+            "type": "(value: string) => void",
+            "required": true
+          },
+          "onFocus": {
+            "type": "FocusEventHandler<HTMLInputElement> | undefined",
+            "required": false,
+            "description": "Колбек обработки получения фокуса"
+          },
+          "onSearchNoResult": {
+            "type": "((value: string) => void) | undefined",
+            "required": false
+          },
+          "value": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "TitleClickable": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false
+          },
+          "text": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      },
+      "TitleStatic": {
+        "kind": "interface",
+        "props": {
+          "href": {
+            "type": "undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "undefined",
+            "required": false
+          },
+          "text": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      }
+    }
   },
   "MountAnimation": {
     "displayName": "MountAnimation",
