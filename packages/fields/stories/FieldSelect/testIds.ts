@@ -11,5 +11,6 @@ export const TEST_IDS = {
     disabledChipRoot: 'field-select-disabled-chip',
     readonlyRoot: 'field-select-readonly',
     emptyStringRoot: 'field-select-empty-string',
+    collapseRoot: 'field-select-collapse',
   },
 } as const;

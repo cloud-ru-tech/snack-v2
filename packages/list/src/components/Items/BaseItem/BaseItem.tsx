@@ -115,7 +115,7 @@ export function BaseItem({
       handleChange();
     }
 
-    if (!isSelectionMultiple && closeDroplistOnItemClick) {
+    if (!isParentNode && !isSelectionMultiple && closeDroplistOnItemClick) {
       closeDroplist();
     }
   };

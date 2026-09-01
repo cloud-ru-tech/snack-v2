@@ -22,6 +22,18 @@ const permissionOptions: ItemProps[] = [
   { id: 'delete', content: { label: 'Delete' } },
 ];
 
+const collapseOptions: ItemProps[] = [
+  {
+    type: 'collapse',
+    id: 'advanced',
+    content: { label: 'Advanced sizes' },
+    items: [
+      { id: 'xl', content: { label: 'X-Large' } },
+      { id: 'xxl', content: { label: 'XX-Large' } },
+    ],
+  },
+];
+
 const onChangeSingle = fn();
 const onChangeSingleCreatable = fn();
 const onChangeMultiple = fn();
@@ -65,6 +77,12 @@ function InteractionScenario() {
               onChangeSingleCreatable(value);
               setSingleCreatable(value);
             }}
+          />
+          <FieldSelect
+            data-test-id={STORY_TEST_IDS.fieldSelect.collapseRoot}
+            label='Instance size (collapse)'
+            items={collapseOptions}
+            selection='single'
           />
           <FieldSelect
             data-test-id={STORY_TEST_IDS.fieldSelect.multipleRoot}
@@ -155,6 +173,7 @@ export const InteractionTest: Story = {
     const single = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.singleRoot);
     const singleInput = within(single).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
     const singleCreatable = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.singleCreatableRoot);
+    const collapse = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.collapseRoot);
     const multiple = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleRoot);
     const disabledChip = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.disabledChipRoot);
     const creatable = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleCreatableRoot);
@@ -172,6 +191,7 @@ export const InteractionTest: Story = {
     await step('renders all fields', async () => {
       await expect(single).toBeVisible();
       await expect(singleCreatable).toBeVisible();
+      await expect(collapse).toBeVisible();
       await expect(multiple).toBeVisible();
       await expect(disabledChip).toBeVisible();
       await expect(creatable).toBeVisible();
@@ -197,6 +217,20 @@ export const InteractionTest: Story = {
     await step('keyboard: Escape closes the open Droplist', async () => {
       await userEvent.keyboard('{Escape}');
       await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('collapse: clicking a group header keeps the Droplist open; selecting a child closes it', async () => {
+      const input = within(collapse).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      const documentCanvas = within(document.body);
+
+      await userEvent.click(input);
+      await waitFor(() => expect(documentCanvas.getByTestId(`${LIST_TEST_IDS.baseItem}_advanced`)).toBeVisible());
+      await userEvent.click(documentCanvas.getByTestId(`${LIST_TEST_IDS.baseItem}_advanced`));
+      await waitFor(() => expect(documentCanvas.getByTestId(`${LIST_TEST_IDS.baseItem}_xl`)).toBeVisible());
+
+      await userEvent.click(documentCanvas.getByTestId(`${LIST_TEST_IDS.baseItem}_xl`));
+      await waitFor(() => expect(documentCanvas.queryByTestId(`${LIST_TEST_IDS.baseItem}_advanced`)).toBeNull());
+      await expect(input.value).toBe('X-Large');
     });
 
     await step('keyboard: ArrowDown re-opens the Droplist and renders items', async () => {
