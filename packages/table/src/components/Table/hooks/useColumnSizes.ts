@@ -11,6 +11,10 @@ import { getInitColumnSizeFromLocalStorage, saveStateToLocalStorage } from '../u
 import { getColumnIdentifier } from '../utils/getColumnIdentifier';
 import { getColumnStyleVars } from '../utils/getColumnStyleVars';
 import { getCurrentlyConfiguredHeaderWidth } from '../utils/getCurrentlyConfiguredHeaderWidth';
+import { getTableViewportWidth } from '../utils/getTableViewportWidth';
+
+/** Закреплённая колонка не прокручивается: без запаса её ручка ресайза уезжает за край видимой области. */
+const PINNED_COLUMN_VIEWPORT_RESERVE = 160;
 
 type UseColumnSizesParams<TData extends object> = {
   table: Table<TData>;
@@ -73,7 +77,19 @@ export function useColumnSizes<TData extends object>({
       const hasAssignedSize = table.getState().columnSizing[header.id] !== undefined;
 
       if (hasAssignedSize) {
-        const currentSize = header.getSize();
+        let currentSize = header.getSize();
+        // `pinned` живёт в ColumnDefinition кита, а `_getColumnDefs` отдаёт тип tanstack.
+        const isPinned = Boolean((originalColDef as unknown as ColumnDefinition<TData> | undefined)?.pinned);
+
+        if (isPinned) {
+          const viewportWidth = getTableViewportWidth(header.id);
+
+          if (viewportWidth) {
+            const minSize = header.column.columnDef.minSize ?? 0;
+
+            currentSize = Math.min(currentSize, Math.max(minSize, viewportWidth - PINNED_COLUMN_VIEWPORT_RESERVE));
+          }
+        }
 
         realSizes[header.id] = currentSize;
         size = `${currentSize}px`;
