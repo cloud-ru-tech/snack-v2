@@ -24,12 +24,26 @@ export function MainMenu({
   favorite,
   search,
   sidebarBottomSlot,
+  customMobileMenu,
   disabled,
   ...rest
 }: WithSupportProps<MainMenuProps & { disabled?: boolean }>): ReactElement {
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
   const isMobile = useMobileLayout();
-  const MenuComponent = isMobile ? MenuMobile : MenuDesktop;
+
+  const menuProps = {
+    open,
+    setOpen,
+    leftTop,
+    rightTop,
+    settingItems,
+    serviceGroups,
+    platformGroups,
+    onLinkChange,
+    favorite,
+    search,
+    sidebarBottomSlot,
+  };
 
   return (
     <>
@@ -44,19 +58,7 @@ export function MainMenu({
         data-test-id={TEST_IDS.trigger}
       />
 
-      <MenuComponent
-        open={open}
-        setOpen={setOpen}
-        leftTop={leftTop}
-        rightTop={rightTop}
-        settingItems={settingItems}
-        serviceGroups={serviceGroups}
-        platformGroups={platformGroups}
-        onLinkChange={onLinkChange}
-        favorite={favorite}
-        search={search}
-        sidebarBottomSlot={sidebarBottomSlot}
-      />
+      {isMobile ? (customMobileMenu ?? <MenuMobile {...menuProps} />) : <MenuDesktop {...menuProps} />}
     </>
   );
 }

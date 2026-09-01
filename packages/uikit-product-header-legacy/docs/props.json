@@ -153,6 +153,11 @@
     "propsTypeName": "WithSupportProps",
     "description": "Legacy MainMenu: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer.",
     "props": {
+      "customMobileMenu": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile: заменяет legacy `MenuMobile` (левый drawer).\nНапример, `MenuMobile` из `@ds/uikit-product-header` (bottom sheet).\n\nПередавайте те же `open` / `setOpen`, что и в `MainMenu` (controlled), иначе триггер и кастомное меню разойдутся."
+      },
       "data-test-id": {
         "type": "string",
         "required": false
@@ -202,7 +207,7 @@
       "settingItems": {
         "type": "LinksGroup",
         "required": false,
-        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`.\n\nMobile: `CardServiceLight` + `Divider` внизу scroll-body."
       },
       "sidebarBottomSlot": {
         "type": "ReactNode",
@@ -216,6 +221,11 @@
     "displayName": "MenuDesktop",
     "propsTypeName": null,
     "props": {
+      "customMobileMenu": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile: заменяет legacy `MenuMobile` (левый drawer).\nНапример, `MenuMobile` из `@ds/uikit-product-header` (bottom sheet).\n\nПередавайте те же `open` / `setOpen`, что и в `MainMenu` (controlled), иначе триггер и кастомное меню разойдутся."
+      },
       "favorite": {
         "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
         "required": false
@@ -257,7 +267,7 @@
       "settingItems": {
         "type": "LinksGroup",
         "required": false,
-        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`.\n\nMobile: `CardServiceLight` + `Divider` внизу scroll-body."
       },
       "sidebarBottomSlot": {
         "type": "ReactNode",
@@ -271,6 +281,11 @@
     "displayName": "MenuMobile",
     "propsTypeName": null,
     "props": {
+      "customMobileMenu": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Только mobile: заменяет legacy `MenuMobile` (левый drawer).\nНапример, `MenuMobile` из `@ds/uikit-product-header` (bottom sheet).\n\nПередавайте те же `open` / `setOpen`, что и в `MainMenu` (controlled), иначе триггер и кастомное меню разойдутся."
+      },
       "favorite": {
         "type": "{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }",
         "required": false
@@ -312,7 +327,7 @@
       "settingItems": {
         "type": "LinksGroup",
         "required": false,
-        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`.\n\nMobile: `CardServiceLight` + `Divider` внизу scroll-body."
       },
       "sidebarBottomSlot": {
         "type": "ReactNode",
@@ -633,7 +648,7 @@
       "settingItems": {
         "type": "LinksGroup",
         "required": false,
-        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`."
+        "description": "Административные сервисы (одна группа, например «Административные сервисы»).\n\nБез поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.\nС поиском: группа попадает в результаты только при совпадении; отображается **последней**\n(ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`.\n\nMobile: `CardServiceLight` + `Divider` внизу scroll-body."
       }
     },
     "relatedTypes": {}

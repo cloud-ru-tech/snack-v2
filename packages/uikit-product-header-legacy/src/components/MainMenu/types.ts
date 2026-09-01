@@ -113,6 +113,8 @@ export type MainMenuProps = {
    * Без поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек.
    * С поиском: группа попадает в результаты только при совпадении; отображается **последней**
    * (ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`.
+   *
+   * Mobile: `CardServiceLight` + `Divider` внизу scroll-body.
    */
   settingItems?: LinksGroup;
   /**
@@ -142,4 +144,12 @@ export type MainMenuProps = {
 
   /** Нижний слот левой колонки sidebar (Figma `bottom > items`). */
   sidebarBottomSlot?: ReactNode;
+
+  /**
+   * Только mobile: заменяет legacy `MenuMobile` (левый drawer).
+   * Например, `MenuMobile` из `@ds/uikit-product-header` (bottom sheet).
+   *
+   * Передавайте те же `open` / `setOpen`, что и в `MainMenu` (controlled), иначе триггер и кастомное меню разойдутся.
+   */
+  customMobileMenu?: ReactNode;
 };

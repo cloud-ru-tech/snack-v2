@@ -15,12 +15,12 @@ import { figmaNode } from '#docs/lib/figma'
 ## Когда использовать
 
 - Нужна обратимо совместимая шапка и меню навигации старого кабинета на стеке `@ds/*`.
-- Собирается MainMenu с селектором платформ и категориями сервисов: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer.
+- Собирается MainMenu с селектором платформ и категориями сервисов: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer (или новое bottom-sheet-меню через `customMobileMenu`).
 
 Когда **не** нужен пакет:
 
 - Новая продуктовая шапка без legacy-контрактов:
-  - используйте актуальные layout/header-пакеты Product UI Kit.
+  - используйте [`@ds/uikit-product-header`](/components/uikit-product-header).
 - Отдельная карточка сервиса вне меню:
   - используйте [`@ds/uikit-product-card-predefined`](/components/uikit-product-card-predefined).
 
@@ -30,7 +30,7 @@ import { figmaNode } from '#docs/lib/figma'
 | --- | --- |
 | [`HeaderLayout`](/components/uikit-product-header-legacy/header-layout) | Контейнер шапки: `menu`, `logo`, `select`, `breadcrumbs`, `toolbar` |
 | [`Logo`](/components/uikit-product-header-legacy/logo) | Брендовый логотип (Button + CloudLogo) |
-| [`MainMenu`](/components/uikit-product-header-legacy/main-menu) | Кнопка + адаптивный drawer (desktop две колонки / mobile одна) |
+| [`MainMenu`](/components/uikit-product-header-legacy/main-menu) | Кнопка + адаптивный drawer (desktop две колонки / mobile левый drawer или `customMobileMenu`) |
 | [`PlatformLogo`](/components/uikit-product-header-legacy/platform-logo) | Иконка платформы (SVG или Avatar по `avatarName`) |
 
 ## Установка
@@ -57,7 +57,8 @@ import {
 
 ## Смотри также
 
-- [`MainMenu`](/components/uikit-product-header-legacy/main-menu) — desktop/mobile drawer и слоты `leftTop` / `search`.
+- [`MainMenu`](/components/uikit-product-header-legacy/main-menu) — desktop/mobile drawer, слоты `leftTop` / `search`, интеграция с [`MenuMobile`](/components/uikit-product-header/main-menu) через `customMobileMenu`.
+- [`@ds/uikit-product-header`](/components/uikit-product-header) — новая шапка и mobile bottom sheet для поэтапной миграции.
 - [`@ds/uikit-product-card-predefined`](/components/uikit-product-card-predefined) — `CardServiceLight` в сетке категорий.
 - [`@ds/drawer`](/components/drawer) — drawer, на котором собран MainMenu.
 - [`@ds/adaptive`](/components/adaptive) — `AdaptiveProvider` / `layoutType` для поверхности MainMenu.

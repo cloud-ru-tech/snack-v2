@@ -7,12 +7,12 @@
 ## Когда использовать
 
 - Нужна обратимо совместимая шапка и меню навигации старого кабинета на стеке `@ds/*`.
-- Собирается MainMenu с селектором платформ и категориями сервисов: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer.
+- Собирается MainMenu с селектором платформ и категориями сервисов: desktop — двухколоночный drawer; mobile — левый одноколоночный drawer (или новое bottom-sheet-меню через `customMobileMenu`).
 
 Когда **не** нужен пакет:
 
 - Новая продуктовая шапка без legacy-контрактов:
-  - используйте актуальные layout/header-пакеты Product UI Kit.
+  - используйте **`@ds/uikit-product-header`**.
 - Отдельная карточка сервиса вне меню:
   - используйте **`@ds/uikit-product-card-predefined`**.
 
@@ -36,7 +36,8 @@ import {
 
 ## Смотри также
 
-- **`MainMenu`** — desktop/mobile drawer и слоты `leftTop` / `search`.
+- **`MainMenu`** — desktop/mobile drawer, слоты `leftTop` / `search`, интеграция с **`MenuMobile`** через `customMobileMenu`.
+- **`@ds/uikit-product-header`** — новая шапка и mobile bottom sheet для поэтапной миграции.
 - **`@ds/uikit-product-card-predefined`** — `CardServiceLight` в сетке категорий.
 - **`@ds/drawer`** — drawer, на котором собран MainMenu.
 - **`@ds/adaptive`** — `AdaptiveProvider` / `layoutType` для поверхности MainMenu.
@@ -249,9 +250,9 @@ Legacy MainMenu — кнопка MainMenuSVG и адаптивный drawer на
 Legacy MainMenu (Figma `navigationOldDrawer` / `navigationOldDrawerMobile`). Кнопка с `MainMenuSVG` открывает drawer навигации.
 
 - **Desktop** — двухколоночный `@ds/drawer` (`DrawerCustom`): левая колонка 256px, divider, правая с поиском и категориями.
-- **Mobile** — левый одноколоночный drawer (не BottomSheet): заголовок «Навигация», scroll-body со sticky-поиском.
+- **Mobile** — по умолчанию левый одноколоночный drawer (не BottomSheet): заголовок «Навигация», scroll-body со sticky-поиском. Через `customMobileMenu` можно подставить mobile-меню из **`@ds/uikit-product-header`** (bottom sheet).
 
-Поверхность выбирается через `AdaptiveProvider` (`layoutType`); проп `isMobile` — legacy override.
+Поверхность выбирается через `AdaptiveProvider` (`layoutType`).
 
 ### Когда использовать
 
@@ -263,7 +264,7 @@ Legacy MainMenu (Figma `navigationOldDrawer` / `navigationOldDrawerMobile`). К�
 - Только верхняя полоса без drawer:
   - используйте **`HeaderLayout`**.
 - Новая продуктовая навигация без legacy-контрактов:
-  - используйте актуальные layout/header-пакеты Product UI Kit.
+  - используйте **`@ds/uikit-product-header`**.
 
 ### Анатомия
 
@@ -292,10 +293,18 @@ Legacy MainMenu (Figma `navigationOldDrawer` / `navigationOldDrawerMobile`). К�
 1. `leftTop` — в микрофронте и Figma: два `PlatformSelector` (платформа + проект с `avatarName`).
 2. `search` — свёрнутый `NavigationSearch`; при скролле остаётся sticky (`position: sticky`).
 3. `rightTop` — баннеры в колонку (`data-mobile` на контейнере).
-4. `serviceGroups` — те же категории; favorite на карточках всегда виден.
-5. `settingItems` — `@ds/list` с divider внизу.
+4. `serviceGroups` — те же категории в сетке из одной колонки (`data-mobile` на `.services`); favorite на карточках всегда виден.
+5. `settingItems` — `CardServiceLight` + `Divider` внизу scroll-body.
 
 `sidebarBottomSlot` на mobile **не** рендерится (legacy-поведение).
+
+#### customMobileMenu
+
+Только на mobile: заменяет встроенный legacy `MenuMobile` (левый drawer). Типичный сценарий — микрофронт с legacy `HeaderLayout` и новым mobile-меню из `@ds/uikit-product-header`.
+
+- `MenuMobile` импортируется из `@ds/uikit-product-header`, **не** из `@ds/uikit-product-header-legacy`.
+- Передаются те же controlled `open` / `setOpen`, что и в `MainMenu` — иначе кнопка-триггер и drawer разойдутся.
+- Данные для `MenuMobile` маппятся на API нового header (`segments`, `settingItems` и т.д.) отдельно от legacy-пропов `MainMenu`.
 
 #### open / setOpen
 
@@ -496,12 +505,44 @@ export function MobileSurface() {
 }
 ```
 
+#### Новое mobile-меню через `customMobileMenu`
+
+Controlled-состояние drawer общее для trigger и mobile-меню:
+
+```tsx
+import { useState } from 'react';
+import { MainMenu } from '@ds/uikit-product-header-legacy';
+import { MenuMobile } from '@ds/uikit-product-header';
+
+function HeaderMainMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <MainMenu
+      open={open}
+      setOpen={setOpen}
+      serviceGroups={legacyServiceGroups}
+      /* …остальные legacy-пропы для desktop… */
+      customMobileMenu={
+        <MenuMobile
+          open={open}
+          setOpen={setOpen}
+          segments={headerSegments}
+          /* …пропы API @ds/uikit-product-header… */
+        />
+      }
+    />
+  );
+}
+```
+
 ### Props
 
 **WithSupportProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `customMobileMenu` | `ReactNode` | — | Только mobile: заменяет legacy `MenuMobile` (левый drawer). <br/> Например, `MenuMobile` из `@ds/uikit-product-header` (bottom sheet). <br/> Передавайте те же `open` / `setOpen`, что и в `MainMenu` (controlled), иначе триггер и кастомное меню разойдутся. |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | — |  |
 | `favorite` | `{ value: string[]; onChange: (productId: string) => (addingValue: boolean) => void; }` | — |  |
@@ -513,7 +554,7 @@ export function MobileSurface() {
 | `search` | `SearchProps` | — |  |
 | `serviceGroups` | `LinksGroup[]` | — | Основные группы облачных сервисов (инфраструктура, сеть, хранилище и т.п.). <br/> Всегда видны в сетке карточек при пустом поиске; участвуют в избранном и боковой навигации. <br/> При поиске фильтруются вместе с остальными группами и показываются **первыми** в выдаче. |
 | `setOpen` | `((open: boolean) => void)` | — |  |
-| `settingItems` | `LinksGroup` | — | Административные сервисы (одна группа, например «Административные сервисы»). <br/> Без поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек. <br/> С поиском: группа попадает в результаты только при совпадении; отображается **последней** <br/> (ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`. |
+| `settingItems` | `LinksGroup` | — | Административные сервисы (одна группа, например «Административные сервисы»). <br/> Без поиска: пункты в нижней части левой колонки (desktop), не в сетке карточек. <br/> С поиском: группа попадает в результаты только при совпадении; отображается **последней** <br/> (ниже `serviceGroups` и `platformGroups`). Обычно `favoritesEnabled: false`. <br/> Mobile: `CardServiceLight` + `Divider` внизу scroll-body. |
 | `sidebarBottomSlot` | `ReactNode` | — | Нижний слот левой колонки sidebar (Figma `bottom > items`). |
 
 ### Storybook
@@ -525,18 +566,23 @@ WithSampleContent (Figma mobile composition):
 Desktop (`navigationOldDrawer`):
 
 Mobile (`navigationOldDrawerMobile`):
+
+### Смотри также
+
+- **`@ds/uikit-product-header` / MainMenu** — новое меню и экспорт `MenuMobile` (bottom sheet) для `customMobileMenu`.
+- **`@ds/uikit-product-card-predefined`** — `CardServiceLight` в сетке категорий и в `settingItems` на mobile.
 ### Адаптивность
 
 Desktop-first: раскладку берёт `AdaptiveProvider` в корне приложения / Storybook. Переключение toolbar `layoutType=mobile` показывает mobile-поверхность без смены API.
 
 | Проп | Desktop | Mobile |
 |------|---------|--------|
-| `isMobile` | Явный override поверхности; без пропа — из контекста | То же |
+| `customMobileMenu` | — | Заменяет legacy `MenuMobile`; без пропа — левый drawer |
 | `sidebarBottomSlot` | Нижний слот левой колонки | Не рендерится |
-| `settingItems` | Карточки в левой колонке | `@ds/list` внизу scroll-body |
+| `settingItems` | Карточки в левой колонке | `CardServiceLight` + `Divider` внизу scroll-body |
 | `leftTop` | Один селектор платформы | Платформа + проект (два `PlatformSelector`) |
 | `search` | Вне Scroll, всегда развёрнут | Sticky в scroll-body, сначала свёрнут |
-| `rightTop` / `serviceGroups` | Правая колонка | Одноколоночный scroll-body |
+| `rightTop` / `serviceGroups` | Правая колонка | Одноколоночный scroll-body; сетка сервисов — 1 колонка |
 
 Форс конкретной раскладки в Storybook — toolbar-global `layoutType` или вложенный `AdaptiveProvider` / `withLayoutType`.
 
