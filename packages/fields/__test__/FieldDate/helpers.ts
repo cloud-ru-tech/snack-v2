@@ -17,6 +17,7 @@ export const FIELD_DATE_STORIES = {
   playground: { name: 'fields-fielddate', story: 'playground' },
   visualMatrix: { name: 'fields-fielddate', story: 'visual-matrix' },
   interactionTest: { name: 'fields-fielddate-tests-interaction', story: 'interaction-test' },
+  outsideClickWide: { name: 'fields-fielddate-tests-interaction', story: 'outside-click-wide' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

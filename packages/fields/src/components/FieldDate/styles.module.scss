@@ -8,6 +8,10 @@ $sizes: 's', 'm', 'l';
 
   &[data-disabled='true'] {
     cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+    }
   }
 
   &[data-readonly='true'] {

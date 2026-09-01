@@ -149,3 +149,21 @@ export const InteractionTest: Story = {
     });
   },
 };
+
+export const OutsideClickWide: Story = {
+  tags: ['test', 'dev'],
+  render: () => (
+    <DemoPage style={{ placeItems: 'end center' }}>
+      <DemoPanel width='wide'>
+        <DemoTitle>Outside click (wide field)</DemoTitle>
+        <DemoHint>Широкое поле воспроизводит свободную область справа от календаря.</DemoHint>
+        <DemoActions block>
+          <FieldDate data-test-id={TEST_IDS.fieldDate} label='Дата' />
+        </DemoActions>
+      </DemoPanel>
+    </DemoPage>
+  ),
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByTestId(TEST_IDS.fieldDate)).toBeVisible();
+  },
+};

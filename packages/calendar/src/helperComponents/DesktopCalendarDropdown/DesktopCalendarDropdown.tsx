@@ -3,11 +3,11 @@ import { useUncontrolledProp } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo } from 'react';
 
-import { Calendar } from '../../components/Calendar';
-import { CalendarDropdownProps } from '../../components/CalendarDropdown/CalendarDropdown';
+import { Calendar, CalendarDropdownProps } from '../../components';
 import styles from '../../components/CalendarDropdown/styles.module.scss';
 import { getTestIdBuilder } from '../../utils';
 import { Footer } from '../Footer';
+import { getAlignedFallbackPlacements } from './utils';
 
 export function DesktopCalendarDropdown({
   children,
@@ -35,6 +35,10 @@ export function DesktopCalendarDropdown({
   const [open, setOpen] = useUncontrolledProp(openProp, false, onOpenChange);
 
   const getTestId = useMemo(() => getTestIdBuilder(testId), [testId]);
+  const resolvedFallbackPlacements = useMemo(
+    () => fallbackPlacements ?? getAlignedFallbackPlacements(placement),
+    [fallbackPlacements, placement],
+  );
 
   const handleFooterApply = useCallback(() => {
     onApply?.();
@@ -66,13 +70,15 @@ export function DesktopCalendarDropdown({
       triggerClickByKeys={triggerClickByKeys}
       triggerRef={triggerRef}
       outsideClick={outsideClick}
-      fallbackPlacements={fallbackPlacements}
+      fallbackPlacements={resolvedFallbackPlacements}
       disableSpanWrapper={disableSpanWrapper}
       closeOnPopstate={closeOnPopstate}
       open={open}
       onOpenChange={setOpen}
       content={content}
-      widthStrategy='gte'
+      // Ширина floating-узла совпадает с видимым календарём. Растягивание до ширины триггера
+      // создаёт прозрачную область, которая ошибочно считается внутренней для outside-click.
+      widthStrategy='auto'
     >
       {children}
     </Dropdown>

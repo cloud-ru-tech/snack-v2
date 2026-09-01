@@ -80,6 +80,52 @@ test.describe('FieldDate — interaction', () => {
     await fromInput.click();
     await expect(getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID)).toBeVisible();
   });
+
+  test('wide field keeps the calendar left-aligned when it flips above the trigger', async ({
+    gotoStory,
+    getByTestId,
+  }) => {
+    await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.outsideClickWide));
+    const root = getByTestId(TEST_IDS.fieldDate);
+    const calendar = getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID);
+
+    await root.getByTestId(TEST_IDS.fieldDateCalendar).click();
+    await expect(calendar).toBeVisible();
+
+    const [rootBox, calendarBox] = await Promise.all([root.boundingBox(), calendar.boundingBox()]);
+    if (!rootBox || !calendarBox) {
+      throw new Error('FieldDate or calendar bounding box is unavailable');
+    }
+
+    expect(calendarBox.y + calendarBox.height).toBeLessThanOrEqual(rootBox.y + 1);
+    expect(Math.abs(calendarBox.x - rootBox.x)).toBeLessThanOrEqual(1);
+  });
+
+  test('clicking beside the visible calendar closes the dropdown', async ({ page, gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions(undefined, FIELD_DATE_STORIES.outsideClickWide));
+    const root = getByTestId(TEST_IDS.fieldDate);
+    const calendar = getByTestId(CALENDAR_DROPDOWN_CONTENT_TEST_ID);
+
+    await root.getByTestId(TEST_IDS.fieldDateCalendar).click();
+    await expect(calendar).toBeVisible();
+
+    const calendarBox = await calendar.boundingBox();
+    if (!calendarBox) {
+      throw new Error('Calendar bounding box is unavailable');
+    }
+
+    const rootBox = await root.boundingBox();
+    if (!rootBox) {
+      throw new Error('FieldDate bounding box is unavailable');
+    }
+
+    // Точка находится справа от видимого календаря, но внутри горизонтальной ширины FieldDate —
+    // это ровно широкая прозрачная область из приложения-потребителя.
+    const clickX = calendarBox.x + calendarBox.width + 16;
+    expect(clickX).toBeLessThan(rootBox.x + rootBox.width);
+    await page.mouse.click(clickX, calendarBox.y + calendarBox.height / 2);
+    await expect(calendar).toHaveCount(0);
+  });
 });
 
 // onCopyButtonClick / реальная запись в буфер для FieldDate не e2e-тестируется здесь: copy-кнопка

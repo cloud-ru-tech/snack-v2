@@ -42,6 +42,15 @@ test.describe('FieldDate — rendering', () => {
     await expect(getByTestId(TEST_IDS.fieldDateInput)).toHaveAttribute('placeholder', /чч:мм:сс/);
   });
 
+  test('disabled mode uses the not-allowed cursor across the field surface', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ disabled: true }));
+    const root = getByTestId(TEST_IDS.fieldDate);
+    const input = root.getByTestId(TEST_IDS.fieldDateInput);
+
+    await expect(root).toHaveCSS('cursor', 'not-allowed');
+    await expect(input).toHaveCSS('cursor', 'not-allowed');
+  });
+
   // Функциональная проверка адаптивного свапа surface (не визуальная): раскладка из тулбар-глобала
   // `layoutType`. Desktop → popover-календарь (нет BottomSheet-handle); mobile → календарь в BottomSheet.
   test.describe('adaptive surface swap', () => {
