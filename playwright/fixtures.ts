@@ -150,6 +150,29 @@ export const test = base.extend<PlaywrightFixtures>({
       // Ожидание рендера storybook-root (в Storybook 10+ используется #storybook-root)
       await playwrightExpect(page.locator('#storybook-root')).toBeAttached({ timeout: 15000 });
 
+      // Ждём конца play: иначе спек конкурирует с ней за DOM и фокус. `completing`, а не
+      // `finished` — между ними preview-api висит все 5s в `waitForAnimations` из-за вечно
+      // `running` scroll-driven анимации ручки overlayscrollbars.
+      const waitForRenderSettled = () =>
+        page
+          .waitForFunction(
+            () => {
+              const preview = (window as unknown as { __STORYBOOK_PREVIEW__?: { currentRender?: { phase?: string } } })
+                .__STORYBOOK_PREVIEW__;
+              if (!preview) return true;
+
+              return ['completing', 'completed', 'afterEach', 'finished', 'aborted', 'errored'].includes(
+                preview.currentRender?.phase ?? '',
+              );
+            },
+            { timeout: 30000 },
+          )
+          .catch(() => {});
+
+      // Порядок важен: `updateStoryArgs` в фазе `playing` стартует параллельный render, тот
+      // доходит до `completed` на ещё не доигравшей story.
+      await waitForRenderSettled();
+
       // Apply URL args via the preview channel. Storybook 10's iframe.html parses
       // selectionSpecifier.args from the URL but only applies them when the
       // manager app sends them back via channel — which never happens when we
@@ -259,23 +282,7 @@ export const test = base.extend<PlaywrightFixtures>({
         );
       }
 
-      // Ждём конца play: иначе спек конкурирует с ней за DOM и фокус. `completing`, а не
-      // `finished` — между ними preview-api висит все 5s в `waitForAnimations` из-за вечно
-      // `running` scroll-driven анимации ручки overlayscrollbars.
-      await page
-        .waitForFunction(
-          () => {
-            const preview = (window as unknown as { __STORYBOOK_PREVIEW__?: { currentRender?: { phase?: string } } })
-              .__STORYBOOK_PREVIEW__;
-            if (!preview) return true;
-
-            return ['completing', 'completed', 'afterEach', 'finished', 'aborted', 'errored'].includes(
-              preview.currentRender?.phase ?? '',
-            );
-          },
-          { timeout: 30000 },
-        )
-        .catch(() => {});
+      await waitForRenderSettled();
     }) as GotoStoryFn;
     await customUse(navigate);
   },

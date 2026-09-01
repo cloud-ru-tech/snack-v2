@@ -87,12 +87,19 @@ test.describe('List — visual regression', () => {
   // Главный артефакт: вся VisualMatrix (size × selection × состояния × составные типы айтемов
   // × separator × chrome × pinned × empty × truncate) одним снимком.
   test('visual-matrix', async ({ page, gotoStory, waitForFonts }) => {
+    // 13 StoryTable-секций по очереди + ожидание покоя collapse-блоков: не укладывается в 30s.
+    test.slow();
     await gotoStory(buildStoryOptions(undefined, LIST_STORIES.visualMatrix));
     await waitForFonts();
     // Collapse-блоки матрицы доигрывают `transition: gap 300ms` после монтирования —
     // без ожидания покоя снимок ловит промежуточный кадр.
     await waitForStableRender(page.locator(STORYBOOK_ROOT_SELECTOR), { stableForMs: COLLAPSE_SETTLE_MS });
-    await assertVisualMatrixSnapshot(page);
+    // Кадр 8.6M px: общий кап в 200 px пробивает antialiasing-шум текста между раннерами
+    // при нулевой геометрической разнице. Поднимаем точечно, ratio и threshold — общие.
+    await assertVisualMatrixSnapshot(page, undefined, undefined, {
+      ...MATCH_SNAPSHOT_DEFAULT_OPTS,
+      maxDiffPixels: 1500,
+    });
   });
 
   // Variant × State (2 × 4 = 8 cells): псевдоклассовые состояния обоих selection-режимов.

@@ -32,6 +32,8 @@ test.describe('ReleaseNotes — visual regression', () => {
   });
 
   test('content states (desktop surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    // Пять перезагрузок story с ожиданием шрифтов и картинок: не укладывается в 30s.
+    test.slow();
     const cells = [];
 
     for (const state of ['data', 'one', 'noData', 'error', 'loading']) {
