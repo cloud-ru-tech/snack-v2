@@ -57,7 +57,7 @@ export const ChipChoiceBase = forwardRef<HTMLDivElement, ChipChoiceBaseProps>(
     const localRef = useRef<HTMLDivElement>(null);
 
     const clearButtonRef = useRef<HTMLButtonElement>(null);
-    const showClearButton = Boolean(onClearButtonClick && (Array.isArray(value) ? value.length : value));
+    const showClearButton = Boolean(onClearButtonClick);
 
     const [isDroplistOpened, setIsDroplistOpened] = useState(false);
 
