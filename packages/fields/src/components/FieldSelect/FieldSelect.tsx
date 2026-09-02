@@ -18,8 +18,7 @@ import {
   useState,
 } from 'react';
 
-// Минимальная ширина поискового input'а в режиме чипов: при пустом вводе input «схлопывается»
-// к этому значению и прижимается к последнему чипу (паритет с легаси BASE_MIN_WIDTH).
+// Минимальная ширина поискового input'а в режиме чипов (паритет с легаси BASE_MIN_WIDTH).
 const SEARCH_INPUT_PLUG_MIN_WIDTH = 4;
 
 import { FieldDecorator, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
@@ -116,14 +115,10 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  // Реальный <input>: `inputRef` уходит в Droplist как `triggerElemRef`, а `PopoverPrivate`
-  // перезаписывает его `.current` своей span-обёрткой (см. MR!101). Отдельный ref на сам input
-  // нужен для `useButtonNavigation` (курсор/фокус) и возврата фокуса после очистки.
+  // Отдельный ref на реальный <input>: `inputRef.current` перезаписывается span-обёрткой PopoverPrivate.
   const inputElementRef = useRef<HTMLInputElement>(null);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const copyButtonRef = useRef<HTMLButtonElement>(null);
-  // Контейнер чипов+input (замер доступной ширины) и скрытый плаг (замер ширины введённого текста)
-  // для расчёта minWidth поискового input'а в режиме чипов — см. searchInput ниже.
   const contentRef = useRef<HTMLDivElement>(null);
   const inputPlugRef = useRef<HTMLSpanElement>(null);
   const [chipInputMinWidth, setChipInputMinWidth] = useState<number | undefined>(undefined);
@@ -136,15 +131,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     !multiple ? (props.defaultValue as ItemId | undefined) : undefined,
   );
   const [multipleLocal, setMultipleLocal] = useState<ItemId[]>(
-    // Array.isArray-страховка: при multiple defaultValue обязан быть массивом по типам,
-    // но «расхлябанный» вызов (например, Storybook-spread, где single-default остаётся
-    // строкой при переключении selection) не должен ронять компонент на `.map` строки.
+    // Страховка от вызова без типов (Storybook-spread): при multiple defaultValue может прийти строкой.
     multiple && Array.isArray(props.defaultValue) ? (props.defaultValue as ItemId[]) : [],
   );
 
-  // Controlled-режим «залипает»: как только потребитель прислал `value`, локальный стейт больше
-  // не читается. Иначе очистка (потребитель ставит `undefined`) откатывалась бы на устаревший
-  // локальный выбор и воскрешала прошлое значение.
+  // Controlled-режим «залипает»: иначе очистка через `value: undefined` откатится на локальный стейт.
   const singleControlled = useRef(false);
   const multipleControlled = useRef(false);
 
@@ -245,30 +236,36 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     return selectedPairs.map(formatPair).join(', ');
   }, [multiple, singleValue, selectedPairs, chips, props, formatPair, resolveItem]);
 
-  // Строка поиска: controlled через `search.value`, иначе локальный state. Auto-sync к выбранному
-  // значению делаем через СТАБИЛЬНЫЙ setLocalInput, а не через setInputValue в deps эффекта —
-  // иначе нестабильная ссылка сеттера зацикливает эффект (сбрасывала бы значение постоянно).
   const [localInput, setLocalInput] = useState(search?.defaultValue ?? selectedLabel);
   const inputValue = search?.value !== undefined ? search.value : localInput;
   const [typing, setTyping] = useState(false);
 
-  const setInputValue = useCallback(
-    (next: string) => {
-      if (search?.value === undefined) {
-        setLocalInput(next);
-      }
-      search?.onChange?.(next);
-    },
-    [search],
-  );
+  // `search` — объектный литерал с новой идентичностью каждый рендер; ref делает `setInputValue` стабильным.
+  const searchRef = useRef(search);
+  searchRef.current = search;
+
+  const setInputValue = useCallback((next: string) => {
+    const currentSearch = searchRef.current;
+
+    if (currentSearch?.value === undefined) {
+      setLocalInput(next);
+    }
+
+    currentSearch?.onChange?.(next);
+  }, []);
+
+  const syncedLabelRef = useRef(selectedLabel);
 
   useEffect(() => {
-    if (!typing && resetSearchOnOptionSelection && search?.value === undefined) {
-      setLocalInput(selectedLabel);
+    if (typing || !resetSearchOnOptionSelection || syncedLabelRef.current === selectedLabel) {
+      return;
     }
-  }, [selectedLabel, typing, resetSearchOnOptionSelection, search]);
 
-  // autocomplete — клиентскую фильтрацию не делаем, список берётся из items как есть (серверный поиск).
+    syncedLabelRef.current = selectedLabel;
+    setInputValue(selectedLabel);
+  }, [selectedLabel, typing, resetSearchOnOptionSelection, setInputValue]);
+
+  // При autocomplete фильтрует сервер — items берутся как есть.
   const filteredItems = useMemo(() => {
     if (!searchable || autocomplete || !typing) {
       return items;
@@ -295,8 +292,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const handleOpenChange = useCallback(
     (next: boolean) => {
-      // Дроплист открывается кликом по полю (Droplist дёргает onOpenChange(true)).
-      // readonly/disabled поле открывать нельзя — блокируем открытие, закрытие разрешаем.
+      // readonly/disabled поле открывать нельзя, закрывать — можно.
       if (next && (disabled || readOnly)) return;
       if (openProp === undefined) {
         setOpenLocal(next);
@@ -428,9 +424,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     return copied;
   }, [onCopyButtonClick, valueToCopy]);
 
-  // Clear/Copy как roving-postfix: ArrowRight из input (курсор в конце или readonly) уводит на
-  // кнопку, ArrowLeft — обратно в поле. Паритет с FieldCombo. `inputElementRef` — реальный input,
-  // т.к. `inputRef` клобберится popover'ом.
+  // Clear/Copy — roving-postfix (ArrowRight/ArrowLeft), паритет с FieldCombo.
   const clearButtonSettings = useClearButton({
     clearButtonRef,
     showClearButton: showClear,
@@ -458,10 +452,9 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   });
 
   const handleTriggerKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    // Пробрасываем consumer onKeyDown до внутренней обработки (паритет с легаси useHandleOnKeyDown).
+    // Consumer-обработчик идёт до внутренней обработки (паритет с легаси useHandleOnKeyDown).
     onKeyDownProp?.(event);
 
-    // Roving-навигация по clear/copy (ArrowRight/ArrowLeft). ArrowDown/Enter ниже не перехватываются.
     onInputKeyDown(event);
 
     if (disabled || readOnly) {
@@ -479,7 +472,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     }
 
     if (addOptionByEnter && event.key === 'Enter' && inputValue !== '') {
-      // Зафиксировать введённый текст как новый выбор (создание опции «на лету»).
+      // Введённый текст становится новым значением (создание опции «на лету»).
       event.preventDefault();
 
       if (multiple) {
@@ -554,10 +547,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const hasChips = chips && selectedPairs.length > 0;
 
-  // minWidth поискового input'а в режиме чипов: ширина введённого текста (скрытый `.inputPlug`),
-  // но не больше ширины строки чипов (`contentRef`). Замер в layout-эффекте (до paint, без мигания):
-  // пустой ввод → ~4px (input прижат к последнему чипу), длинный ввод → перенос на новую строку
-  // через flex-wrap. Без чипов minWidth не задаётся (input занимает всю строку как single-select).
+  // minWidth поискового input'а = ширина введённого текста (`.inputPlug`), но не больше строки чипов.
+  // Замер до paint, иначе input мигает при вводе.
   useLayoutEffect(() => {
     if (!hasChips) {
       setChipInputMinWidth(undefined);
@@ -588,8 +579,6 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     />
   );
 
-  // В режиме чипов input заворачивается в `.inputWrapper` с динамической minWidth (флоу за чипами);
-  // без чипов — обычный `inputArea` на всю строку.
   const searchInput = hasChips ? (
     <div className={styles.inputWrapper} style={{ minWidth: chipInputMinWidth } as CSSProperties}>
       {searchInputField}
@@ -599,7 +588,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   );
 
   const trigger = (
-    // Семантика: combobox-обёртка с InputPrivate внутри (input = focusable element).
+    // Focusable-элемент — InputPrivate внутри, обёртка только собирает combobox.
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       className={cn(fieldStyles.fieldWrapper, styles.trigger, fieldClassName)}
@@ -636,9 +625,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
           {iconBefore && <div className={fieldStyles.iconSlot}>{iconBefore}</div>}
           <div className={fieldStyles.inputLine}>
             {prefix && <span className={fieldStyles.prefix}>{prefix}</span>}
-            {/* Чипы и поисковый input живут в одном wrap-контейнере (паритет с легаси
-                FieldSelect .contentWrapper): input течёт сразу за последним чипом и
-                переносится на новую строку только когда не влезает. */}
+            {/* Чипы и input в одном wrap-контейнере: input течёт за последним чипом. */}
             {hasChips ? (
               <div className={styles.chipsRow} ref={contentRef} data-test-id={TEST_IDS.fieldSelectChips}>
                 {selectedPairs.map(pair => (
@@ -651,8 +638,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
                   />
                 ))}
                 {searchInput}
-                {/* Скрытый плаг: рендерит введённый текст той же типографикой, замеряем его ширину
-                    для minWidth поискового input'а (см. layout-эффект выше). aria-hidden — вне дерева. */}
+                {/* Скрытая копия введённого текста — по её ширине считается minWidth input'а. */}
                 <span ref={inputPlugRef} className={styles.inputPlug} aria-hidden>
                   {inputValue}
                 </span>
@@ -660,9 +646,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
             ) : (
               searchInput
             )}
-            {/* Clear/Copy — roving-postfix через useButtonNavigation (ArrowRight/ArrowLeft).
-                Слот-обёртка гасит всплытие mousedown/click к Droplist-триггеру; test-id и onClick
-                живут на <Button> внутри (адресуемый = интерактивный). */}
+            {/* Обёртка гасит всплытие mousedown/click к Droplist-триггеру. */}
             {postfixButtons && (
               // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <span
