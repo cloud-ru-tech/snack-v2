@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-09-02)
+
+### Bug Fixes
+
+- **PDS-4414:** keep FieldSelect open when expanding collapse group ([179fd2b](https://github.com/cloud-ru-tech/snack-v2/commit/179fd2bc891677cc4cb47f466aefed5a818ea1d0))
+
 ## 2.1.1 (2026-09-01)
 
 **Note:** Version bump only for package @ds/list
