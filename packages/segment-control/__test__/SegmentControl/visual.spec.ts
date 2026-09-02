@@ -29,19 +29,14 @@ test.describe('SegmentControl — visual regression', () => {
     await gotoStory(buildStoryOptions());
     await waitForFonts();
 
-    // Снимаем root (всю segment-control), чтобы было видно контекст — но
-    // hover/focus/pressed целимся во второй (невыбранный) сегмент: на первом state-фоны
-    // и focus-ring скрыты выбранным состоянием.
+    // hover/pressed целим в невыбранный сегмент: выбранный на них не реагирует.
+    // ArrowRight в focusAction сдвинул бы выбор и обнулил ячейку pressed.
     const secondSegment = getByTestId(segmentTestId('analytics'));
     await assertInteractionStatesSnapshot(page, {
       target: getByTestId(TEST_IDS.root),
       hoverTarget: secondSegment,
       pressedTarget: secondSegment,
       includePressed: true,
-      focusAction: async p => {
-        await p.keyboard.press('Tab');
-        await p.keyboard.press('ArrowRight');
-      },
       layout: 'col',
     });
   });

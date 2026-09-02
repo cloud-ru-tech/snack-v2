@@ -68,12 +68,27 @@ export function Segment({
       role='radio'
       type='button'
     >
-      <span className={styles.stateLayer} data-state={'emptyNeutralOnBackground'} aria-hidden />
       <span className={styles.textWrapper}>
-        {iconBefore && <span className={styles.icon}>{icon}</span>}
-        {label && <TruncateString className={styles.label} text={label} />}
-        {iconAfter && <span className={styles.icon}>{icon}</span>}
-        {counter != null && <Counter size='xs' appearance='primary' value={Number(counter) || 0} />}
+        {iconBefore && (
+          <span className={styles.icon} data-text-opacity>
+            {icon}
+          </span>
+        )}
+        {label && (
+          <span className={styles.label} data-text-opacity>
+            <TruncateString text={label} />
+          </span>
+        )}
+        {iconAfter && (
+          <span className={styles.icon} data-text-opacity>
+            {icon}
+          </span>
+        )}
+        {counter != null && (
+          <span className={styles.counter} data-text-opacity>
+            <Counter size='xs' appearance='primary' value={Number(counter) || 0} />
+          </span>
+        )}
       </span>
     </button>
   );

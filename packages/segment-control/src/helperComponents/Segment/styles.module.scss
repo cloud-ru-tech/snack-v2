@@ -22,13 +22,6 @@ $typography: (
   min-width: 0;
 }
 
-.stateLayer {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-
 // В макете слот иконки — 16 / 24 / 24 по размерам сегмента.
 $icon-size-by-size: (
   's': base.$sn-density-size-icon-xs,
@@ -44,8 +37,15 @@ $icon-size-by-size: (
 }
 
 .label {
+  overflow: hidden;
   min-width: 0;
   color: inherit;
+}
+
+.counter {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 .segment {
@@ -67,7 +67,9 @@ $icon-size-by-size: (
 
   background-color: transparent;
 
-  @include m.has-state-layer-as-child(#{stateLayer});
+  &:not([data-active]) {
+    @include m.has-content-with-text-opacity(#{textWrapper});
+  }
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
@@ -102,24 +104,8 @@ $icon-size-by-size: (
     }
   }
 
-  &:hover {
-    color: base.$sn-theme-color-available-version-textMain;
-  }
-
   &[data-active] {
     color: base.$sn-theme-color-available-version-textMain;
-
-    // Selected segment не реагирует на hover/pressed/active.
-    &:active:not([data-disabled]) .stateLayer[data-state='emptyNeutralOnBackground'],
-    &[data-pressed='true']:not([data-disabled]) .stateLayer[data-state='emptyNeutralOnBackground'] {
-      background: transparent;
-    }
-
-    @media (hover: hover) {
-      &:hover:not([data-disabled]) .stateLayer[data-state='emptyNeutralOnBackground'] {
-        background: transparent;
-      }
-    }
   }
 
   &[data-disabled],

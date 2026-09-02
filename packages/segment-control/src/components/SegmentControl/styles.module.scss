@@ -82,13 +82,20 @@ $sizes: 's', 'm', 'l';
 
   min-width: 0;
 
+  > * {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  button {
+    width: 100%;
+    min-width: 0;
+  }
+
   &[data-width='full'] {
     flex-basis: 0;
     flex-grow: 1;
-
-    > button {
-      width: 100%;
-    }
   }
 }
 
