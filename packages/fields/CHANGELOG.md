@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.3 (2026-09-02)
+
+### Bug Fixes
+
+- **FF-8959:** sync FieldSelect search to the selected value when search is controlled ([2f29e15](https://github.com/cloud-ru-tech/snack-v2/commit/2f29e15eeb3e1dd54bb119fd27ab68d5d84e383e))
+
 ## 2.1.2 (2026-09-02)
 
 ### Bug Fixes

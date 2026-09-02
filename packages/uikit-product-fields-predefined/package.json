@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-fields-predefined",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Набор предопределённых полей формы поверх @ds/fields — телефон, маски, имя, описание, код и другие готовые сценарии ввода.",
   "repository": {
     "type": "git",
