@@ -23,6 +23,8 @@ const PLACEMENTS: TourPlacement[] = [
   TOUR_PLACEMENT.Right,
 ];
 
+const HINT_WIDTH = 320;
+
 type Composition = (typeof COMPOSITIONS)[number];
 
 type ActiveCombo = { key: string; composition: Composition; placement: TourPlacement };
@@ -34,6 +36,7 @@ function buildStep(composition: Composition, placement: TourPlacement): TourStep
     subtitle: composition.subtitle ? 'Подзаголовок шага' : undefined,
     content: composition.content ? 'Описание шага тура для пользователя.' : undefined,
     placement,
+    width: HINT_WIDTH,
   };
 }
 
@@ -56,7 +59,7 @@ function VisualMatrixCanvas() {
         </div>
 
         <StoryTable
-          firstColumnHeader='композиция \\ placement'
+          firstColumnHeader='композиция / placement'
           columnHeaders={PLACEMENTS.map(placement => placement.toUpperCase())}
           rows={COMPOSITIONS.map(composition => ({
             variantLabel: composition.label,

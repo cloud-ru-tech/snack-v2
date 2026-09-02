@@ -8,9 +8,13 @@ import { TOUR_BUTTON, TOUR_STATUS } from '../../constants';
 import { TourHint } from '../../helperComponents';
 import { welcomeTourLocale } from '../../locale';
 import { WelcomeTourProps } from '../../types';
-import { toJoyrideSteps, toTourStatus, TOUR_COLORS, TOUR_GEOMETRY } from './utils';
+import { TOUR_COLORS, TOUR_GEOMETRY } from './constants';
+import { removeUnionElement } from './spotlight';
+import { toJoyrideSteps, toTourStatus } from './utils';
 
 const DEFAULT_BUTTONS = [TOUR_BUTTON.Back, TOUR_BUTTON.Primary, TOUR_BUTTON.Skip];
+
+const FLOATING_OPTIONS = { shiftOptions: { crossAxis: true, padding: 16 } };
 
 /**
  * Онбординг-тур по интерфейсу: затемняет страницу, подсвечивает целевой элемент шага
@@ -36,6 +40,7 @@ export function WelcomeTour({
   labels: componentLabels,
   buttons = DEFAULT_BUTTONS,
   scrollOffset,
+  spotlightPadding,
   portalContainer,
 }: WelcomeTourProps) {
   const { t } = welcomeTourLocale.useTranslations();
@@ -43,10 +48,10 @@ export function WelcomeTour({
 
   const [isOpen, setOpen] = useUncontrolledProp(open, defaultOpen, onOpenChange);
 
-  // Свой контейнер портала: цвета из `TOUR_COLORS` уходят в движок CSS-переменными и
-  // резолвятся от узла портала, а не от подсказки, — поэтому класс темы нужен именно тут,
-  // иначе под `ChildThemeProvider` оверлей и стрелка возьмут тему корня документа.
-  // Стилей у контейнера нет: свой позиционирующий контекст сломал бы вырез.
+  // Свой контейнер портала: CSS-переменные из `TOUR_COLORS` резолвятся от узла портала,
+  // а не от подсказки, — без класса темы здесь под `ChildThemeProvider` оверлей и стрелка
+  // возьмут тему корня документа. Стилей у контейнера нет: свой позиционирующий контекст
+  // сломал бы вырез.
   const themeClassnames = useThemeClassnames();
   const [portalElement] = useState<HTMLElement | null>(() => (isBrowser() ? document.createElement('div') : null));
 
@@ -65,8 +70,6 @@ export function WelcomeTour({
 
   // Завершённый тур движок держит в статусе `finished`, повторный `run={true}` его не
   // перезапускает — на каждый переход «закрыт → открыт» пересоздаём инстанс через `key`.
-  // Счётчик растёт в фазе рендера и в StrictMode прибавляется дважды: важна уникальность
-  // ключа, а не его значение.
   const runIdRef = useRef(0);
   const wasOpenRef = useRef(false);
 
@@ -76,8 +79,6 @@ export function WelcomeTour({
 
   wasOpenRef.current = isOpen;
 
-  // Мемо работает только когда потребитель мемоизирует `labels` и `buttons`; на инлайн-
-  // литералах не срабатывает. Без него движок пересчитывал бы позиции на каждый рендер.
   const joyrideSteps = useMemo(
     () =>
       toJoyrideSteps({
@@ -92,18 +93,24 @@ export function WelcomeTour({
   const handleEvent = useCallback(
     ({ action, controlled, type, index, status }: EventData) => {
       switch (type) {
+        // Неуправляемый режим: индекс уже переключил движок, компонент сообщает о факте.
+        // В управляемом переход — запрос, о нём сообщает `STEP_AFTER`.
         case EVENTS.STEP_BEFORE:
-          // Неуправляемый режим: индекс уже переключил движок, компонент сообщает о факте.
-          // В управляемом переход — запрос, о нём сообщает `STEP_AFTER`.
           if (!controlled) onStepChange?.(index);
           break;
 
         case EVENTS.STEP_AFTER: {
           steps[index]?.onFinish?.();
 
-          // В управляемом режиме движок не двигает индекс сам (`updateState` отбрасывает
-          // `patch.index`), поэтому без этого вызова тур закроет текущий шаг и не откроет
-          // следующий. Только для навигации: `skip` и `close` завершают тур, не меняя шаг.
+          // В управляемом режиме движок не двигает индекс, поэтому `index >= size` не
+          // наступает и `tour:end` не приходит — завершаем тур сами.
+          if (controlled && index === steps.length - 1 && (action === ACTIONS.CLOSE || action === ACTIONS.NEXT)) {
+            setOpen(false, TOUR_STATUS.Finished);
+            break;
+          }
+
+          // По той же причине сами запрашиваем следующий индекс. Только для навигации:
+          // `skip` и `close` завершают тур, не меняя шаг.
           if (controlled && (action === ACTIONS.NEXT || action === ACTIONS.PREV)) {
             const nextIndex = action === ACTIONS.PREV ? index - 1 : index + 1;
 
@@ -113,9 +120,22 @@ export function WelcomeTour({
           break;
         }
 
-        // Завершение тура движок сообщает событием `tour:end`; `tour:status`
-        // приходит только на stop/reset и для закрытия не годится.
+        // Цель шага может не отрисоваться вовсе (адаптив прячет блок на узком экране).
+        // Сам движок перескакивает такой шаг только в неуправляемом режиме.
+        case EVENTS.TARGET_NOT_FOUND: {
+          if (!controlled) break;
+
+          const nextIndex = action === ACTIONS.PREV ? index - 1 : index + 1;
+
+          if (nextIndex >= 0 && nextIndex < steps.length) onStepChange?.(nextIndex);
+          else setOpen(false, TOUR_STATUS.Finished);
+
+          break;
+        }
+
         case EVENTS.TOUR_END:
+          // Узел общей подсветки живёт вне React-дерева — убираем его вместе с туром.
+          removeUnionElement();
           setOpen(false, toTourStatus(status));
           break;
 
@@ -127,11 +147,8 @@ export function WelcomeTour({
   );
 
   // Esc завершает тур целиком, как у остальных оверлеев ДС; `dismissKeyAction` движка
-  // закрывает только текущий шаг, поэтому он выключен, а Esc обрабатывается здесь.
-  //
-  // Слушаем на всплытии, уважаем `defaultPrevented` и уступаем чужому слою: шаг тура может
-  // открыть диалог, и Esc тогда адресован ему. Условие именно «фокус в чужом слое», а не
-  // «фокус в подсказке»: сразу после запуска фокус ещё на триггере, и Esc обязан работать.
+  // закрывает только текущий шаг, поэтому он выключен. Уступаем чужому слою: шаг тура
+  // может открыть диалог, и Esc тогда адресован ему.
   useEffect(() => {
     if (!isOpen || !isBrowser()) return;
 
@@ -156,6 +173,12 @@ export function WelcomeTour({
       key={runIdRef.current}
       continuous
       initialStepIndex={defaultStepIndex}
+      // `shift` движка удерживает подсказку в экране только по главной оси — поперёк она
+      // уезжает за край.
+      floatingOptions={FLOATING_OPTIONS}
+      // Пока `onBeforeShow` ждёт, движок показывает собственный спиннер — не из ДС.
+      // Ожидания здесь короткие, а затемнение и так говорит, что тур идёт.
+      loaderComponent={null}
       onEvent={handleEvent}
       options={{
         arrowBase: TOUR_GEOMETRY.arrowBase,
@@ -166,15 +189,17 @@ export function WelcomeTour({
         offset: TOUR_GEOMETRY.offset,
         overlayClickAction: false,
         overlayColor: TOUR_COLORS.overlay,
-        scrollOffset,
+        // Ключи добавляются только когда значение задано: явный `undefined` перетирает
+        // дефолт движка, и расчёты позиции уходят в `NaN`.
+        ...(scrollOffset !== undefined ? { scrollOffset } : {}),
         skipBeacon: true,
+        ...(spotlightPadding !== undefined ? { spotlightPadding } : {}),
         spotlightRadius: TOUR_GEOMETRY.spotlightRadius,
         textColor: TOUR_COLORS.text,
       }}
       portalElement={portalElement}
       run={isOpen}
-      // `stepIndex` переводит движок в controlled-режим, поэтому пробрасываем его
-      // только когда потребитель действительно управляет шагом снаружи.
+      // `stepIndex` переводит движок в controlled-режим — пробрасываем как есть.
       stepIndex={stepIndex}
       steps={joyrideSteps}
       tooltipComponent={TourHint}

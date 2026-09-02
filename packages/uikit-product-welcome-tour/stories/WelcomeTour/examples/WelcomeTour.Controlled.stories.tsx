@@ -123,7 +123,7 @@ export const Controlled: Story = {
       await expect(canvas.getByTestId(TEST_IDS.controlled.state)).toHaveTextContent('stepIndex: 0');
     });
 
-    await step('click: крестик закрывает тур, не сдвигая шаг', async () => {
+    await step('click: кнопка закрытия закрывает тур, не сдвигая шаг', async () => {
       await userEvent.click(screen.getByTestId(TEST_IDS.closeIcon));
 
       await waitFor(() => {

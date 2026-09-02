@@ -68,7 +68,7 @@ test.describe('WelcomeTour — visual regression', () => {
     // Оверлей во весь экран: кадр по `#storybook-root` захватил бы demo-обёртку под
     // затемнением, viewport-снимок режет ровно по экрану (visual-regression-standard.md).
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
-      'open-default.png',
+      'open.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });

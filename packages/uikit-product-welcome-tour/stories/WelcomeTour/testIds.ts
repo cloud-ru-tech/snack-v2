@@ -1,5 +1,5 @@
 // Импорт из `src/constants`, а не из entry `@ds/uikit-product-welcome-tour` — entry
-// тащит SCSS-модули, что ломает playwright-compile при импорте этого файла в e2e helpers.
+// подтягивает SCSS-модули, что ломает playwright-compile при импорте этого файла в e2e helpers.
 import { TEST_IDS as PACKAGE_TEST_IDS } from '../../src/constants';
 
 export const TEST_IDS = {

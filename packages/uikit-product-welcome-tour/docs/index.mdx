@@ -5,20 +5,20 @@ description: Онбординг-тур по интерфейсу — пошаг�
 order: 0
 ---
 
-import { Basic } from '../demos/examples/Basic'
-import BasicSrc from '../demos/examples/Basic.tsx?raw'
-import { Controlled } from '../demos/examples/Controlled'
-import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
-import { CustomLabels } from '../demos/examples/CustomLabels'
-import CustomLabelsSrc from '../demos/examples/CustomLabels.tsx?raw'
-import { WithoutBackButton } from '../demos/examples/WithoutBackButton'
-import WithoutBackButtonSrc from '../demos/examples/WithoutBackButton.tsx?raw'
-import { Example } from '#docs/components/Example'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import welcomeTourDoc from './props.json'
+import { Basic } from '../demos/examples/Basic';
+import BasicSrc from '../demos/examples/Basic.tsx?raw';
+import { Controlled } from '../demos/examples/Controlled';
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw';
+import { CustomLabels } from '../demos/examples/CustomLabels';
+import CustomLabelsSrc from '../demos/examples/CustomLabels.tsx?raw';
+import { WithoutBackButton } from '../demos/examples/WithoutBackButton';
+import WithoutBackButtonSrc from '../demos/examples/WithoutBackButton.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import welcomeTourDoc from './props.json';
 
 # WelcomeTour
 
@@ -55,7 +55,7 @@ import welcomeTourDoc from './props.json'
 
 ### Placement (default `bottom`)
 
-`steps[i].placement` задаёт положение подсказки относительно целевого элемента: `top`, `bottom`, `left`, `right` и их варианты `-start` / `-end`, а также `auto` (движок выбирает сторону сам) и `center` (подсказка по центру экрана — для шага без привязки к элементу). Если выбранной стороне не хватает места, подсказка разворачивается на противоположную.
+`steps[i].placement` задаёт положение подсказки относительно целевого элемента: `top`, `bottom`, `left`, `right` и их варианты `-start` / `-end`, а также `auto` (сторона подбирается автоматически) и `center` (подсказка по центру экрана — для шага без привязки к элементу). Если выбранной стороне не хватает места, подсказка разворачивается на противоположную.
 
 ### Кнопки (default `['back', 'primary', 'skip']`)
 
@@ -63,14 +63,14 @@ import welcomeTourDoc from './props.json'
 
 - `back` — «Назад»; на первом шаге скрывается автоматически.
 - `primary` — «Далее», на последнем шаге — кнопка завершения.
-- `skip` — крестик в шапке подсказки, завершает тур досрочно.
+- `skip` — кнопка закрытия в шапке подсказки, завершает тур досрочно.
 
 Подписи берутся из locale пакета и переопределяются пропом `labels` (весь тур) либо `steps[i].labels` (один шаг). Escape завершает тур целиком, как у остальных оверлеев ДС; пока тур открыт, Tab ходит по кругу внутри подсказки.
 
 ## Do / Don't
 
 - ✅ Один тур на сценарий: 3–5 шагов вокруг ключевых элементов раздела.
-- ❌ Тур на 12 шагов через весь интерфейс — до конца дойдут единицы.
+- ❌ Тур на 12 шагов через весь интерфейс — такой редко проходят до конца.
 - ✅ Запускать тур один раз и запоминать факт прохождения на стороне приложения (`onOpenChange` со статусом `finished` / `skipped`).
 - ❌ Показывать тур при каждом входе в раздел — он становится модальным препятствием.
 - ✅ Привязывать шаг к элементу, который уже отрисован и виден.
@@ -99,7 +99,7 @@ pnpm add @ds/uikit-product-welcome-tour
 ```
 
 ```ts
-import { TOUR_BUTTON, TOUR_PLACEMENT, WelcomeTour } from '@ds/uikit-product-welcome-tour'
+import { TOUR_BUTTON, TOUR_PLACEMENT, WelcomeTour } from '@ds/uikit-product-welcome-tour';
 ```
 
 ## Примеры использования

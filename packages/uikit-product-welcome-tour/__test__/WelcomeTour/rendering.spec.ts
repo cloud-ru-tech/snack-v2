@@ -70,8 +70,8 @@ test.describe('WelcomeTour — rendering', () => {
   });
 
   test('labels prop overrides locale defaults', async ({ gotoStory, getByTestId }) => {
-    // Значения латиницей: URL-args с кириллицей Storybook не декодирует и молча
-    // роняет их в дефолт (см. test-environment-pitfalls.md).
+    // Значения латиницей: URL-args с кириллицей Storybook не декодирует и без ошибки
+    // подставляет дефолт (см. test-environment-pitfalls.md).
     await gotoStory(buildStoryOptions({ labels: { next: 'Onward' } }));
     await getByTestId(TEST_IDS.triggerOpen).click();
 

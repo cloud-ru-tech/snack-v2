@@ -131,6 +131,15 @@
         "defaultValue": "20",
         "description": "Отступ при скролле к целевому элементу, px."
       },
+      "spotlightPadding": {
+        "type": "TourSpotlightPadding",
+        "required": false,
+        "defaultValue": "10",
+        "description": "Отступ выреза от границ целевого элемента для всех шагов. Шаг переопределяет своим\n`spotlightPadding`.",
+        "typeRefs": [
+          "TourSpotlightPadding"
+        ]
+      },
       "stepIndex": {
         "type": "number",
         "required": false,
@@ -201,6 +210,11 @@
         ],
         "own": true
       },
+      "TourSpotlightPadding": {
+        "kind": "alias",
+        "type": "number | { top?: number; right?: number; bottom?: number; left?: number; }",
+        "own": true
+      },
       "TourStep": {
         "kind": "interface",
         "props": {
@@ -216,6 +230,11 @@
             "typeRefs": [
               "TourLabels"
             ]
+          },
+          "onBeforeShow": {
+            "type": "(() => Promise<void>) | undefined",
+            "required": false,
+            "description": "Хук перед показом шага. Тур ждёт разрешения промиса и до тех пор шаг не показывает —\nэтим дожидаются анимации и появления целевого элемента (открытие меню, смена таба).\nОжидание ограничено `beforeTimeout` движка (5с); после таймаута шаг пропускается."
           },
           "onFinish": {
             "type": "(() => void) | undefined",
@@ -246,6 +265,22 @@
               "TourPlacement"
             ]
           },
+          "spotlightPadding": {
+            "type": "TourSpotlightPadding | undefined",
+            "required": false,
+            "description": "Отступ выреза от границ целевого элемента. Переопределяет `spotlightPadding` компонента.",
+            "typeRefs": [
+              "TourSpotlightPadding"
+            ]
+          },
+          "spotlightTarget": {
+            "type": "TourTarget | TourTarget[] | undefined",
+            "required": false,
+            "description": "Элемент, который подсвечивает вырез, если он не совпадает с `target`. Подсказка\nостаётся прикреплённой к `target`: так крупный блок подсвечивается целиком, а\nподсказка цепляется за компактный якорь внутри него и не выходит за вьюпорт.\n\nСписок целей подсвечивается одним вырезом по их общей области — этим собирают\nкнопку и раскрытый под ней список, которые в DOM лежат в разных поддеревьях.\nКаждый селектор берётся целиком: `querySelectorAll`, а не первый совпавший узел.",
+            "typeRefs": [
+              "TourTarget"
+            ]
+          },
           "subtitle": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
@@ -263,6 +298,11 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Заголовок шага."
+          },
+          "width": {
+            "type": "string | number | undefined",
+            "required": false,
+            "description": "Ширина подсказки, px или CSS-значение. По умолчанию подсказка растёт по содержимому\nдо 480px; сужение нужно, когда сбоку от цели меньше места и подсказка иначе\nперекидывается движком на другую сторону."
           }
         },
         "own": true

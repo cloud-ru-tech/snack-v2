@@ -35,7 +35,7 @@
 
 ### Placement (default `bottom`)
 
-`steps[i].placement` задаёт положение подсказки относительно целевого элемента: `top`, `bottom`, `left`, `right` и их варианты `-start` / `-end`, а также `auto` (движок выбирает сторону сам) и `center` (подсказка по центру экрана — для шага без привязки к элементу). Если выбранной стороне не хватает места, подсказка разворачивается на противоположную.
+`steps[i].placement` задаёт положение подсказки относительно целевого элемента: `top`, `bottom`, `left`, `right` и их варианты `-start` / `-end`, а также `auto` (сторона подбирается автоматически) и `center` (подсказка по центру экрана — для шага без привязки к элементу). Если выбранной стороне не хватает места, подсказка разворачивается на противоположную.
 
 ### Кнопки (default `['back', 'primary', 'skip']`)
 
@@ -43,7 +43,7 @@
 
 - `back` — «Назад»; на первом шаге скрывается автоматически.
 - `primary` — «Далее», на последнем шаге — кнопка завершения.
-- `skip` — крестик в шапке подсказки, завершает тур досрочно.
+- `skip` — кнопка закрытия в шапке подсказки, завершает тур досрочно.
 
 Подписи берутся из locale пакета и переопределяются пропом `labels` (весь тур) либо `steps[i].labels` (один шаг). Escape завершает тур целиком, как у остальных оверлеев ДС; пока тур открыт, Tab ходит по кругу внутри подсказки.
 
@@ -54,7 +54,7 @@ pnpm add @ds/uikit-product-welcome-tour
 ```
 
 ```ts
-import { TOUR_BUTTON, TOUR_PLACEMENT, WelcomeTour } from '@ds/uikit-product-welcome-tour'
+import { TOUR_BUTTON, TOUR_PLACEMENT, WelcomeTour } from '@ds/uikit-product-welcome-tour';
 ```
 
 ## Примеры использования
@@ -236,6 +236,7 @@ export function WithoutBackButton() {
 | `open` | `boolean` | — | Запущен ли тур. Управляемый режим. |
 | `portalContainer` | `HTMLElement \| null` | — | Контейнер для портала. По умолчанию — контейнер из `PortalContextProvider` либо `document.body`. |
 | `scrollOffset` | `number` | `20` | Отступ при скролле к целевому элементу, px. |
+| `spotlightPadding` | `TourSpotlightPadding` | `10` | Отступ выреза от границ целевого элемента для всех шагов. Шаг переопределяет своим <br/> `spotlightPadding`. |
 | `stepIndex` | `number` | — | Индекс текущего шага. Управляемый режим. |
 | `steps` | `TourStep` | — | Шаги тура. |
 
@@ -254,17 +255,23 @@ export function WithoutBackButton() {
 
 - `TourPlacement` = `"auto"` \| `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"center"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"`
 
+- `TourSpotlightPadding` = `number | { top?: number; right?: number; bottom?: number; left?: number; }`
+
 **TourStep**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Тело шага. |
 | `labels` | `TourLabels` | — | Подписи кнопок для этого шага. Переопределяют `labels` компонента. |
+| `onBeforeShow` | `(() => Promise<void>) \| undefined` | — | Хук перед показом шага. Тур ждёт разрешения промиса и до тех пор шаг не показывает — <br/> этим дожидаются анимации и появления целевого элемента (открытие меню, смена таба). <br/> Ожидание ограничено `beforeTimeout` движка (5с); после таймаута шаг пропускается. |
 | `onFinish` | `(() => void) \| undefined` | — | Колбек ухода с шага. Вызывается на любом переходе — «Далее», «Назад», а также при <br/> закрытии тура с этого шага. Для отметки «шаг пройден» этого недостаточно: сверяйся <br/> со статусом из `onOpenChange`. |
 | `placement` | `"auto"` \| `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"center"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Положение подсказки относительно целевого элемента. |
+| `spotlightPadding` | `TourSpotlightPadding` | — | Отступ выреза от границ целевого элемента. Переопределяет `spotlightPadding` компонента. |
+| `spotlightTarget` | `TourTarget` | — | Элемент, который подсвечивает вырез, если он не совпадает с `target`. Подсказка <br/> остаётся прикреплённой к `target`: так крупный блок подсвечивается целиком, а <br/> подсказка цепляется за компактный якорь внутри него и не выходит за вьюпорт. <br/> Список целей подсвечивается одним вырезом по их общей области — этим собирают <br/> кнопку и раскрытый под ней список, которые в DOM лежат в разных поддеревьях. <br/> Каждый селектор берётся целиком: `querySelectorAll`, а не первый совпавший узел. |
 | `subtitle` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Подзаголовок под заголовком. |
 | `target` | `TourTarget` | — | Целевой элемент, вокруг которого подсвечивается вырез и к которому крепится подсказка. |
 | `title` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Заголовок шага. |
+| `width` | `string \| number \| undefined` | — | Ширина подсказки, px или CSS-значение. По умолчанию подсказка растёт по содержимому <br/> до 480px; сужение нужно, когда сбоку от цели меньше места и подсказка иначе <br/> перекидывается движком на другую сторону. |
 
 - `TourTarget` = `string | HTMLElement | RefObject<HTMLElement | null> | (() => HTMLElement | null)`
 
@@ -276,7 +283,7 @@ export function WithoutBackButton() {
 ## Do / Don't
 
 - ✅ Один тур на сценарий: 3–5 шагов вокруг ключевых элементов раздела.
-- ❌ Тур на 12 шагов через весь интерфейс — до конца дойдут единицы.
+- ❌ Тур на 12 шагов через весь интерфейс — такой редко проходят до конца.
 - ✅ Запускать тур один раз и запоминать факт прохождения на стороне приложения (`onOpenChange` со статусом `finished` / `skipped`).
 - ❌ Показывать тур при каждом входе в раздел — он становится модальным препятствием.
 - ✅ Привязывать шаг к элементу, который уже отрисован и виден.

@@ -15,7 +15,9 @@
   // держит длинный текст от растягивания подсказки на весь экран, а выразить его нечем:
   // в `popover.$popover → anatomy → container` нет max-width (он заведён только у тултипа),
   // шкала `sn-primitive-dimension-*` заканчивается на 136. Значение из легаси-пакета.
-  max-width: 480px;
+  // `min(...)` — фолбэк для узкого вьюпорта: подсказка не бывает шире экрана, иначе
+  // движку некуда её поставить и она уезжает за край (сузить её он не умеет).
+  max-width: min(480px, calc(100vw - 2 * 16px));
 
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: break-word;
@@ -31,13 +33,22 @@
   justify-content: space-between;
 }
 
+.close {
+  // Без заголовка крестик остаётся единственным элементом шапки — `space-between`
+  // прижал бы его влево.
+  margin-left: auto;
+}
+
 .subtitle,
 .content {
   margin: 0;
 }
 
 .footer {
+  // Кнопки не ужимаются по содержимому, поэтому на узкой подсказке (`width` шага) ряд
+  // переносится, а индикатор уходит на строку выше — иначе кнопки вылезают за подсказку.
   display: flex;
+  flex-wrap: wrap;
   gap: base.$sn-primitive-dimension-16;
   align-items: center;
   justify-content: space-between;
@@ -45,8 +56,10 @@
 
 .actions {
   display: flex;
+  flex-shrink: 0;
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
+
   margin-left: auto;
 }
 

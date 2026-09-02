@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { TourStep, WelcomeTour } from '@ds/uikit-product-welcome-tour';
+import { TourStep, WelcomeTour, WelcomeTourProps } from '@ds/uikit-product-welcome-tour';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
@@ -17,12 +17,12 @@ const STEPS: TourStep[] = TARGETS.map((label, index) => ({
   content: `Описание того, что делает «${label}».`,
 }));
 
-type InteractionStoryProps = {
+type InteractionStoryProps = Omit<WelcomeTourProps, 'onOpenChange' | 'onStepChange'> & {
   onOpenChange(open: boolean): void;
   onStepChange(index: number): void;
 };
 
-function InteractionRender({ onOpenChange, onStepChange }: InteractionStoryProps) {
+function InteractionRender({ onOpenChange, onStepChange, ...rest }: InteractionStoryProps) {
   const [open, setOpen] = useState(false);
 
   const handleOpenChange = (next: boolean) => {
@@ -59,15 +59,17 @@ function InteractionRender({ onOpenChange, onStepChange }: InteractionStoryProps
         </DemoActions>
       </DemoPanel>
 
-      <WelcomeTour open={open} steps={STEPS} onOpenChange={handleOpenChange} onStepChange={onStepChange} />
+      <WelcomeTour {...rest} open={open} onOpenChange={handleOpenChange} onStepChange={onStepChange} />
     </DemoPage>
   );
 }
 
 const meta: Meta<InteractionStoryProps> = {
   title: 'Components/WelcomeTour/Tests/Interaction',
+  component: WelcomeTour,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
+    steps: STEPS,
     onOpenChange: fn(),
     onStepChange: fn(),
   },

@@ -10,6 +10,14 @@ import { TourSteps } from '../TourSteps';
 import styles from './styles.module.scss';
 import { TourStepData } from './types';
 
+/** Движок кладёт в пропсы кнопок `title` со своими подписями — браузер рисует по нему нативный тултип. */
+function withoutNativeTitle<T extends { title?: string }>(props: T): Omit<T, 'title'> {
+  const rest = { ...props };
+  delete rest.title;
+
+  return rest;
+}
+
 /**
  * Подсказка шага — `tooltipComponent` для react-joyride. Поверхность повторяет
  * контейнер `@ds/popover` (padding / радиус / тень / фон из токенов popover'а),
@@ -26,14 +34,18 @@ export function TourHint({
   isLastStep,
   step,
 }: TooltipRenderProps) {
-  // `Partial`, а не `TourStepData`: каст к полному типу прятал бы падение на
-  // `buttons.includes(...)`. `data` кладёт `toJoyrideSteps`, его отсутствие означает шаг
-  // мимо публичного API — рисовать нечем.
   const { t } = welcomeTourLocale.useTranslations();
   const titleId = useId();
   const contentId = useId();
 
+  // `Partial`, а не `TourStepData`: каст к полному типу прятал бы падение на
+  // `buttons.includes(...)` у шага, пришедшего мимо `toJoyrideSteps`.
   const { subtitle, labels, buttons = [] } = (step.data ?? {}) as Partial<TourStepData>;
+
+  const backButtonProps = withoutNativeTitle(backProps);
+  const primaryButtonProps = withoutNativeTitle(primaryProps);
+  const closeButtonProps = withoutNativeTitle(closeProps);
+  const skipButtonProps = withoutNativeTitle(skipProps);
 
   if (!labels) return null;
 
@@ -42,15 +54,16 @@ export function TourHint({
   const showPrimary = buttons.includes(TOUR_BUTTON.Primary);
 
   return (
-    // `tooltipProps` даёт `role='alertdialog'` + `aria-modal`, имя и описание задаются
-    // здесь — так заголовку не нужен произвольный уровень в чужой иерархии страницы.
-    // Спред идёт первым, чтобы не перетереть эти aria-атрибуты.
+    // Спред первым: `tooltipProps` даёт `role='alertdialog'` + `aria-modal`, перетирать их нельзя.
     <div
       {...tooltipProps}
       aria-describedby={step.content ? contentId : undefined}
       aria-labelledby={step.title ? titleId : undefined}
       className={styles.hint}
       data-test-id={TEST_IDS.hint}
+      // Ширину шага движок отдаёт только в свои стили тултипа — у подсказки они свои.
+      // `max-width` не трогаем: он держит фолбэк по ширине экрана.
+      style={step.width !== undefined ? { width: step.width } : undefined}
     >
       {(step.title || showSkip) && (
         <div className={styles.header}>
@@ -61,7 +74,8 @@ export function TourHint({
           )}
           {showSkip && (
             <Button
-              {...skipProps}
+              {...skipButtonProps}
+              className={styles.close}
               appearance={APPEARANCE.Neutral}
               aria-label={labels.close}
               data-test-id={TEST_IDS.closeIcon}
@@ -109,13 +123,29 @@ export function TourHint({
 
         <div className={styles.actions}>
           {showBack && (
-            <Button {...backProps} data-test-id={TEST_IDS.backButton} label={labels.back} view={VIEW.Simple} />
+            <Button
+              {...backButtonProps}
+              appearance={APPEARANCE.Neutral}
+              data-test-id={TEST_IDS.backButton}
+              label={labels.back}
+              view={VIEW.Outline}
+            />
           )}
           {showPrimary &&
             (isLastStep ? (
-              <Button {...closeProps} data-test-id={TEST_IDS.finishButton} label={labels.finish} view={VIEW.Filled} />
+              <Button
+                {...closeButtonProps}
+                data-test-id={TEST_IDS.finishButton}
+                label={labels.finish}
+                view={VIEW.Filled}
+              />
             ) : (
-              <Button {...primaryProps} data-test-id={TEST_IDS.nextButton} label={labels.next} view={VIEW.Filled} />
+              <Button
+                {...primaryButtonProps}
+                data-test-id={TEST_IDS.nextButton}
+                label={labels.next}
+                view={VIEW.Filled}
+              />
             ))}
         </div>
       </div>
