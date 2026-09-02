@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-09-02)
+
+### Bug Fixes
+
+- **FF-8964:** export MenuMobile from new header ([38d1de7](https://github.com/cloud-ru-tech/snack-v2/commit/38d1de7cffd16cc8743b1cb51b229539cef2f3a0))
+
+### Features
+
+- **FF-8932:** allow to disable favorite for InnerLink ([8dbc81d](https://github.com/cloud-ru-tech/snack-v2/commit/8dbc81da951ca73674cde2e6d7c5b7656eaed0a4))
+
 ## 1.2.2 (2026-09-02)
 
 **Note:** Version bump only for package @ds/uikit-product-header

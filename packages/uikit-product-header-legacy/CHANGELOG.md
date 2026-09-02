@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.5 (2026-09-02)
+
+### Bug Fixes
+
+- **FF-8964:** customMobileMenu prop for header legacy ([4f0ac4a](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/4f0ac4a5ac02a17de4c6f0ebd524d996af2fec5d))
+
 ## 0.1.4 (2026-09-02)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy
