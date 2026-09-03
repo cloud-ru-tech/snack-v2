@@ -1,5 +1,6 @@
 import { FieldDecoratorProps, ValidationState } from '@ds/field-decorator';
 import { DroplistProps, ItemId, ItemProps } from '@ds/list';
+import { Appearance as TagAppearance } from '@ds/tag';
 import { ValueOf } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode } from 'react';
 
@@ -8,6 +9,14 @@ import { SELECTION_MODE } from './constants';
 
 /** Режим выбора FieldSelect: одно значение или несколько. */
 export type Selection = ValueOf<typeof SELECTION_MODE>;
+
+// ItemProps — union с рекурсивными группами, поэтому раздаём поле по всем веткам.
+type WithTagAppearance<T> = T extends { items: ItemProps[] }
+  ? Omit<T, 'items'> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[] }
+  : T & { appearance?: TagAppearance };
+
+/** Айтем дроплиста: айтем `@ds/list` плюс `appearance` — цвет тега выбранного значения при `selection='multiple'`. */
+export type FieldSelectItem = WithTagAppearance<ItemProps>;
 
 type FieldSelectDecoratorProps = Omit<FieldDecoratorProps, 'children' | 'validationState' | 'size'>;
 
@@ -48,11 +57,11 @@ type CommonSelectProps = FieldSelectDecoratorProps &
     /** CSS-класс оболочки поля */
     fieldClassName?: string;
     /** Список айтемов дроплиста (формат `@ds/list`) */
-    items: ItemProps[];
+    items: FieldSelectItem[];
     /** Пресет-айтемы сверху (формат `@ds/list`) */
-    pinTop?: ItemProps[];
+    pinTop?: FieldSelectItem[];
     /** Пресет-айтемы снизу (формат `@ds/list`) */
-    pinBottom?: ItemProps[];
+    pinBottom?: FieldSelectItem[];
     /** Placeholder в триггере, когда нет выбранного значения */
     placeholder?: string;
     /** Иконка перед текстом */

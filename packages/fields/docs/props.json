@@ -3045,13 +3045,13 @@
         "description": "Ref на корневой DOM-элемент"
       },
       "items": {
-        "type": "Item[]",
+        "type": "FieldSelectItem[]",
         "required": true,
         "description": "Список айтемов дроплиста (формат `@ds/list`)",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
           "CommonGroupItem",
-          "ItemProps",
+          "FieldSelectItem",
           "ScrollProps"
         ]
       },
@@ -3162,24 +3162,24 @@
         ]
       },
       "pinBottom": {
-        "type": "Item[]",
+        "type": "FieldSelectItem[]",
         "required": false,
         "description": "Пресет-айтемы снизу (формат `@ds/list`)",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
           "CommonGroupItem",
-          "ItemProps",
+          "FieldSelectItem",
           "ScrollProps"
         ]
       },
       "pinTop": {
-        "type": "Item[]",
+        "type": "FieldSelectItem[]",
         "required": false,
         "description": "Пресет-айтемы сверху (формат `@ds/list`)",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
           "CommonGroupItem",
-          "ItemProps",
+          "FieldSelectItem",
           "ScrollProps"
         ]
       },
@@ -4025,6 +4025,11 @@
         },
         "own": false
       },
+      "FieldSelectItem": {
+        "kind": "alias",
+        "type": "({ 'data-test-id'?: string; } & AriaAttributes & { beforeContent?: ReactNode; afterContent?: ReactNode; content?: ItemContentProps | ReactNode; onClick?(e: MouseEvent<HTMLElement>): void; onMouseDown?(e: MouseEvent<HTMLElement>): void; onKeyDown?(e: KeyboardEvent<HTMLElement>): void; onFocus?(e: FocusEvent<HTMLElement>): void; onBlur?(e: FocusEvent<HTMLElement>): void; id?: ItemId; disabled?: boolean; hidden?: boolean; itemRef?: RefObject<HTMLElement>; className?: string; inactive?: boolean; switch?: boolean; showSwitchIcon?: boolean; itemWrapRender?(item: ReactNode): ReactNode; checked?: boolean; } & { appearance?: TagAppearance; }) | (Omit<GroupItem, \"items\"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<GroupSelectItem, \"items\"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<NextListItem, \"items\"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<AccordionItem, \"items\"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; })",
+        "own": true
+      },
       "IconPredefinedProps": {
         "kind": "interface",
         "props": {
@@ -4101,11 +4106,6 @@
       "ItemId": {
         "kind": "alias",
         "type": "string | number",
-        "own": false
-      },
-      "ItemProps": {
-        "kind": "alias",
-        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
         "own": false
       },
       "OriginalScrollProps": {

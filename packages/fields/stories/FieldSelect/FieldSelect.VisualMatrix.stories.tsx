@@ -1,4 +1,4 @@
-import { FieldSelect, SIZE, VALIDATION_STATE } from '@ds/fields';
+import { FieldSelect, FieldSelectItem, SIZE, VALIDATION_STATE } from '@ds/fields';
 import { SearchSVG } from '@ds/icons/interface/system';
 import { ItemId, ItemProps } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
@@ -28,10 +28,7 @@ const zoneOptions: ItemProps[] = [
   { id: 'd', content: { label: 'kz-central1-a' } },
 ];
 
-// item.appearance задаёт цвет чипа выбранного значения (extractAppearance → Tag appearance).
-// `appearance` — additive-поле: компонент читает его через WithIdContent, но публичный
-// тип ItemProps его не объявляет — поэтому расширяем тип литерала здесь.
-const coloredOptions: (ItemProps & { appearance: string })[] = [
+const coloredOptions: FieldSelectItem[] = [
   { id: 'a', content: { label: 'ru-central1-a' }, appearance: 'green' },
   { id: 'b', content: { label: 'ru-central1-b' }, appearance: 'blue' },
   { id: 'c', content: { label: 'ru-central1-c' }, appearance: 'violet' },

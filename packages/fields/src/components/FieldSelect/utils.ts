@@ -1,13 +1,13 @@
 import { Size } from '@ds/field-decorator';
-import { ItemId, ItemProps } from '@ds/list';
+import { ItemId } from '@ds/list';
 import { Appearance as TagAppearance, Size as TagSize } from '@ds/tag';
 
 import { SELECTION_MODE } from './constants';
-import { FieldSelectMultipleProps, FieldSelectProps } from './types';
+import { FieldSelectItem, FieldSelectMultipleProps, FieldSelectProps } from './types';
 
 export const TAG_SIZE_MAP: Record<Size, TagSize> = { s: 'xs', m: 'xs', l: 's' };
 
-export type WithIdContent = { id?: ItemId; content?: unknown; disabled?: boolean; appearance?: unknown };
+export type WithIdContent = { id?: ItemId; content?: unknown; disabled?: boolean; appearance?: TagAppearance };
 
 export function extractLabel(item: WithIdContent): string {
   const { content, id } = item;
@@ -48,29 +48,27 @@ export function extractSearchText(item: WithIdContent): string {
   return parts.join(' ');
 }
 
-// Цвет чипа выбранного значения (multiple) — паритет с легаси `option.appearance`.
-// Берётся с самого item'а (additive: потребитель задаёт `appearance` на элементе items).
+// Цвет тега выбранного значения (multiple) — паритет с легаси `option.appearance`.
+// Проверка типа нужна и при типизированном поле: items часто приходят из ответа бэкенда.
 export function extractAppearance(item?: WithIdContent): TagAppearance | undefined {
-  const a = item?.appearance;
-
-  return typeof a === 'string' ? (a as TagAppearance) : undefined;
+  return typeof item?.appearance === 'string' ? item.appearance : undefined;
 }
 
-export function flatten(items: ItemProps[]): WithIdContent[] {
+export function flatten(items: FieldSelectItem[]): WithIdContent[] {
   const out: WithIdContent[] = [];
 
   for (const item of items) {
     out.push(item as WithIdContent);
 
     if ('items' in item && Array.isArray(item.items)) {
-      out.push(...flatten(item.items as ItemProps[]));
+      out.push(...flatten(item.items as FieldSelectItem[]));
     }
   }
 
   return out;
 }
 
-export function findItem(items: ItemProps[], id: ItemId): WithIdContent | undefined {
+export function findItem(items: FieldSelectItem[], id: ItemId): WithIdContent | undefined {
   for (const item of flatten(items)) {
     if (item.id === id) {
       return item;
@@ -102,25 +100,25 @@ export function isFuzzyMatch(haystack: string, needle: string): boolean {
   return false;
 }
 
-export function filterItems(items: ItemProps[], query: string, fuzzy: boolean): ItemProps[] {
+export function filterItems(items: FieldSelectItem[], query: string, fuzzy: boolean): FieldSelectItem[] {
   if (!query) {
     return items;
   }
 
   const q = query.toLowerCase();
 
-  const matches = (item: ItemProps): boolean => {
+  const matches = (item: FieldSelectItem): boolean => {
     const text = extractSearchText(item as WithIdContent).toLowerCase();
 
     return fuzzy ? isFuzzyMatch(text, q) : text.includes(q);
   };
 
-  const walk = (list: ItemProps[]): ItemProps[] =>
+  const walk = (list: FieldSelectItem[]): FieldSelectItem[] =>
     list.flatMap(item => {
       if ('items' in item && Array.isArray(item.items)) {
-        const filteredChildren = walk(item.items as ItemProps[]);
+        const filteredChildren = walk(item.items as FieldSelectItem[]);
 
-        return filteredChildren.length > 0 ? [{ ...item, items: filteredChildren } as ItemProps] : [];
+        return filteredChildren.length > 0 ? [{ ...item, items: filteredChildren } as FieldSelectItem] : [];
       }
 
       return matches(item) ? [item] : [];

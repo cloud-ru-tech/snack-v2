@@ -460,7 +460,7 @@ export function Select() {
 | `iconBefore` | `ReactNode` | — | Иконка перед текстом |
 | `id` | `string` | — | HTML-атрибут `id` для input (и `for` у label) |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |
-| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Список айтемов дроплиста (формат `@ds/list`) |
+| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `FieldSelectItem` \| `ScrollProps` | — | Список айтемов дроплиста (формат `@ds/list`) |
 | `label` | `string` | — | Заголовок |
 | `labelFor` | `string` | — | HTML-атрибут `for` для `<label>` |
 | `labelTooltip` | `QuestionTooltipProps` | — | Подсказка (question-tooltip) у заголовка |
@@ -478,8 +478,8 @@ export function Select() {
 | `onKeyDown` | `((event: KeyboardEvent<HTMLInputElement>) => void)` | — | Колбек нажатия клавиши на input (вызывается после внутренней обработки навигации) |
 | `onOpenChange` | `DroplistProps` | — | Колбек смены открытия |
 | `open` | `DroplistProps` | — | Управляемое открытие дроплиста |
-| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы снизу (формат `@ds/list`) |
-| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `ItemProps` \| `ScrollProps` | — | Пресет-айтемы сверху (формат `@ds/list`) |
+| `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `FieldSelectItem` \| `ScrollProps` | — | Пресет-айтемы снизу (формат `@ds/list`) |
+| `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `FieldSelectItem` \| `ScrollProps` | — | Пресет-айтемы сверху (формат `@ds/list`) |
 | `placeholder` | `string` | — | Placeholder в триггере, когда нет выбранного значения |
 | `placement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Placement дроплиста |
 | `postfix` | `ReactNode` | — | Постфикс — текст или нода после значения (Figma `postfix`) |
@@ -513,6 +513,8 @@ export function Select() {
 | `desktopSmall` | `any` | — |  |
 | `mobile` | `any` | — |  |
 | `tablet` | `any` | — |  |
+
+- `FieldSelectItem` = `({ 'data-test-id'?: string; } & AriaAttributes & { beforeContent?: ReactNode; afterContent?: ReactNode; content?: ItemContentProps | ReactNode; onClick?(e: MouseEvent<HTMLElement>): void; onMouseDown?(e: MouseEvent<HTMLElement>): void; onKeyDown?(e: KeyboardEvent<HTMLElement>): void; onFocus?(e: FocusEvent<HTMLElement>): void; onBlur?(e: FocusEvent<HTMLElement>): void; id?: ItemId; disabled?: boolean; hidden?: boolean; itemRef?: RefObject<HTMLElement>; className?: string; inactive?: boolean; switch?: boolean; showSwitchIcon?: boolean; itemWrapRender?(item: ReactNode): ReactNode; checked?: boolean; } & { appearance?: TagAppearance; }) | (Omit<GroupItem, "items"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<GroupSelectItem, "items"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<NextListItem, "items"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; }) | (Omit<AccordionItem, "items"> & { appearance?: TagAppearance; items: WithTagAppearance<ItemProps>[]; })`
 
 ## FieldSlider
 
