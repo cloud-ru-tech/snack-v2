@@ -1,6 +1,9 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-$content-max-height: 140px;
+$content-max-heights: (
+  'small': 140px,
+  'large': 360px,
+);
 
 .root {
   isolation: isolate;
@@ -9,6 +12,7 @@ $content-max-height: 140px;
   overflow: hidden;
 
   box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-28 base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-0;
   border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-neutral-decorTransparent;
   border-radius: base.$sn-density-radius-2xs;
 
@@ -33,10 +37,13 @@ $content-max-height: 140px;
   gap: base.$sn-primitive-dimension-8;
   align-items: flex-start;
 
-  margin-top: base.$sn-primitive-dimension-32;
-  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-4;
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8;
 }
 
 .scroll {
-  max-height: $content-max-height;
+  @each $height, $max-height in $content-max-heights {
+    .root[data-height='#{$height}'] & {
+      max-height: $max-height;
+    }
+  }
 }

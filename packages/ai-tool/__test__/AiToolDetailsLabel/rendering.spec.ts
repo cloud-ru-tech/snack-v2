@@ -12,4 +12,15 @@ test.describe('AiToolDetailsLabel — rendering', () => {
     await gotoStory(buildStoryOptions({ state: 'error' }));
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-state', 'error');
   });
+
+  test('shows copy button only for a non-empty copyValue', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ copyValue: '' }));
+    await expect(getByTestId(TEST_IDS.copy)).toHaveCount(0);
+
+    await gotoStory(buildStoryOptions({ copyValue: 'TextBlock Text' }));
+    await expect(getByTestId(TEST_IDS.copy)).toBeVisible();
+
+    await gotoStory(buildStoryOptions({ copyValue: 'TextBlock Text', showCopyButton: false }));
+    await expect(getByTestId(TEST_IDS.copy)).toHaveCount(0);
+  });
 });

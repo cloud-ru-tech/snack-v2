@@ -12,10 +12,10 @@
   border-top-left-radius: base.$sn-density-radius-3xs;
   border-top-right-radius: base.$sn-density-radius-3xs;
 
-  background-color: base.$sn-theme-color-neutral-decorTransparent;
+  background-color: base.$sn-theme-color-neutral-background;
 
   &[data-state='error'] {
-    background-color: base.$sn-theme-color-red-decorTransparent;
+    background-color: base.$sn-theme-color-red-background;
   }
 }
 
@@ -32,7 +32,7 @@
   }
 }
 
-.secret {
+.action {
   cursor: pointer;
 
   display: inline-flex;
@@ -40,6 +40,8 @@
   align-items: center;
   justify-content: center;
 
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
   padding: base.$sn-primitive-dimension-0;
   border: none;
   border-radius: base.$sn-density-radius-3xs;

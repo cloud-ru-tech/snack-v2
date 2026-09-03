@@ -8,6 +8,7 @@ export function DetailsLabelSecret() {
     <div style={{ width: 280 }}>
       <AiToolDetailsLabel
         label='Ответ'
+        copyValue='TextBlock Text'
         showEyeButton
         secretRevealed={revealed}
         onToggleSecret={() => setRevealed(prev => !prev)}

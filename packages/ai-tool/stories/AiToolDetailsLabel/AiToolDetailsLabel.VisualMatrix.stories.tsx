@@ -17,9 +17,46 @@ type Story = StoryObj<typeof AiToolDetailsLabel>;
 const states = Object.values(AI_TOOL_DETAILS_STATE);
 
 const secretColumns = [
-  { key: 'plain', header: 'PLAIN', showEyeButton: false, secretRevealed: false },
-  { key: 'hidden', header: 'SECRET HIDDEN', showEyeButton: true, secretRevealed: false },
-  { key: 'revealed', header: 'SECRET REVEALED', showEyeButton: true, secretRevealed: true },
+  {
+    key: 'plain',
+    header: 'COPY HIDDEN',
+    copyValue: 'TextBlock Text',
+    showCopyButton: false,
+    showEyeButton: false,
+    secretRevealed: false,
+  },
+  {
+    key: 'copy',
+    header: 'COPY',
+    copyValue: 'TextBlock Text',
+    showCopyButton: true,
+    showEyeButton: false,
+    secretRevealed: false,
+  },
+  {
+    key: 'copy-empty',
+    header: 'COPY VALUE EMPTY',
+    copyValue: '',
+    showCopyButton: true,
+    showEyeButton: false,
+    secretRevealed: false,
+  },
+  {
+    key: 'hidden',
+    header: 'SECRET HIDDEN',
+    copyValue: undefined,
+    showCopyButton: false,
+    showEyeButton: true,
+    secretRevealed: false,
+  },
+  {
+    key: 'revealed',
+    header: 'SECRET REVEALED',
+    copyValue: undefined,
+    showCopyButton: false,
+    showEyeButton: true,
+    secretRevealed: true,
+  },
 ] as const;
 
 export const VisualMatrix: Story = {
@@ -37,6 +74,8 @@ export const VisualMatrix: Story = {
             key={`${state}-${col.key}`}
             label='part_name'
             state={state}
+            copyValue={col.copyValue}
+            showCopyButton={col.showCopyButton}
             showEyeButton={col.showEyeButton}
             secretRevealed={col.secretRevealed}
             data-test-id={`${TEST_IDS.detailsLabel}-${state}-${col.key}`}

@@ -2,6 +2,7 @@ import { ValueOf } from '@ds/utils';
 
 import {
   AI_TOOL_BADGE_TYPE,
+  AI_TOOL_DETAILS_HEIGHT,
   AI_TOOL_DETAILS_STATE,
   AI_TOOL_ICON_TYPE,
   AI_TOOL_KEY_VALUE_TYPE,
@@ -15,3 +16,4 @@ export type AiToolKeyValueType = ValueOf<typeof AI_TOOL_KEY_VALUE_TYPE>;
 export type AiToolObjectType = ValueOf<typeof AI_TOOL_OBJECT_TYPE>;
 export type AiToolBadgeType = ValueOf<typeof AI_TOOL_BADGE_TYPE>;
 export type AiToolDetailsState = ValueOf<typeof AI_TOOL_DETAILS_STATE>;
+export type AiToolDetailsHeight = ValueOf<typeof AI_TOOL_DETAILS_HEIGHT>;

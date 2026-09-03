@@ -1,7 +1,7 @@
-import { EyeClosedSVG, EyeSVG } from '@ds/icons/interface/system';
-import { WithSupportProps } from '@ds/utils';
+import { CheckSVG, CopySVG, EyeClosedSVG, EyeSVG } from '@ds/icons/interface/system';
+import { useCopyToClipboard, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ComponentPropsWithoutRef, MouseEvent, ReactElement, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, MouseEvent, ReactElement, ReactNode, useCallback } from 'react';
 
 import { AI_TOOL_DETAILS_STATE, TEST_IDS } from '../../constants';
 import { AiToolDetailsState } from '../../types';
@@ -12,6 +12,12 @@ export type AiToolDetailsLabelOwnProps = {
   label?: ReactNode;
   /** Состояние: `default` — нейтральный, `error` — красный. */
   state?: AiToolDetailsState;
+  /** Содержимое связанного `ToolDetails` для копирования. */
+  copyValue?: string;
+  /** Вызывается после копирования содержимого. */
+  onCopyClick?(value: string): void;
+  /** Показать кнопку копирования. По умолчанию `true`; требуется непустой `copyValue`. */
+  showCopyButton?: boolean;
   /** Показать кнопку-«глаз» для раскрытия секретного значения. */
   showEyeButton?: boolean;
   /** Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель. */
@@ -36,6 +42,9 @@ export type AiToolDetailsLabelProps = WithSupportProps<
 export function AiToolDetailsLabel({
   label,
   state = AI_TOOL_DETAILS_STATE.Default,
+  copyValue,
+  onCopyClick,
+  showCopyButton = true,
   showEyeButton = false,
   secretRevealed = false,
   onToggleSecret,
@@ -43,13 +52,34 @@ export function AiToolDetailsLabel({
   'data-test-id': dataTestId = TEST_IDS.detailsLabel,
   ...rest
 }: AiToolDetailsLabelProps): ReactElement {
+  const { isChecked, copy } = useCopyToClipboard();
+
+  const showCopy = showCopyButton && Boolean(copyValue);
+
+  const handleCopyClick = useCallback(() => {
+    if (!copyValue) return;
+    copy(copyValue);
+    onCopyClick?.(copyValue);
+  }, [copy, copyValue, onCopyClick]);
+
   return (
     <div {...rest} className={cn(styles.root, className)} data-state={state} data-test-id={dataTestId}>
       {label && <span className={styles.label}>{label}</span>}
+      {showCopy && (
+        <button
+          type='button'
+          className={styles.action}
+          data-test-id={TEST_IDS.detailsLabelCopy}
+          aria-label={isChecked ? 'Copied' : 'Copy'}
+          onClick={handleCopyClick}
+        >
+          {isChecked ? <CheckSVG size={16} /> : <CopySVG size={16} />}
+        </button>
+      )}
       {showEyeButton && (
         <button
           type='button'
-          className={styles.secret}
+          className={styles.action}
           data-test-id={TEST_IDS.detailsLabelSecret}
           aria-label={secretRevealed ? 'Hide secret' : 'Show secret'}
           aria-pressed={secretRevealed}

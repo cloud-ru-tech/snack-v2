@@ -34,6 +34,11 @@ export const AI_TOOL_DETAILS_STATE = {
   Error: 'error',
 } as const;
 
+export const AI_TOOL_DETAILS_HEIGHT = {
+  Small: 'small',
+  Large: 'large',
+} as const;
+
 export const TEST_IDS = {
   tool: 'ai-tool',
   toolStatus: 'ai-tool__status',
@@ -66,5 +71,6 @@ export const TEST_IDS = {
   badgeIcon: 'ai-tool-badge__icon',
   details: 'ai-tool-details',
   detailsLabel: 'ai-tool-details-label',
+  detailsLabelCopy: 'ai-tool-details-label__copy',
   detailsLabelSecret: 'ai-tool-details-label__secret',
 } as const;

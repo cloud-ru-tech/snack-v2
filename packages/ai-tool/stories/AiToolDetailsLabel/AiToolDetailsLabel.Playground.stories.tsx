@@ -14,11 +14,15 @@ const meta: Meta<typeof AiToolDetailsLabel> = {
   args: {
     label: 'Ответ',
     state: AI_TOOL_DETAILS_STATE.Default,
+    copyValue: 'TextBlock Text',
+    showCopyButton: true,
     showEyeButton: true,
     secretRevealed: false,
     'data-test-id': TEST_IDS.detailsLabel,
   },
   argTypes: {
+    copyValue: { if: { arg: 'showCopyButton', eq: true } },
+    onCopyClick: { table: { disable: true } },
     onToggleSecret: { table: { disable: true } },
   },
   render: function Render(args: AiToolDetailsLabelProps) {
@@ -28,8 +32,9 @@ const meta: Meta<typeof AiToolDetailsLabel> = {
         <DemoPanel width='narrow'>
           <DemoTitle>Playground</DemoTitle>
           <DemoHint>
-            Заголовок части блока деталей — обычно «Запрос» или «Ответ». Кнопка-глаз переключает показ секретных
-            значений в теле блока: зачёркнутый глаз — секреты скрыты, открытый — показаны.
+            Заголовок части блока деталей — обычно «Запрос» или «Ответ». `showCopyButton` управляет кнопкой копирования
+            содержимого связанного ToolDetails. Кнопка-глаз переключает показ секретных значений в теле блока:
+            зачёркнутый глаз — секреты скрыты, открытый — показаны.
           </DemoHint>
           <DemoActions align='start'>
             <AiToolDetailsLabel

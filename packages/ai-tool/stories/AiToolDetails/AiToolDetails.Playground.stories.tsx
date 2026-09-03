@@ -1,4 +1,10 @@
-import { AI_TOOL_DETAILS_STATE, AiToolDetails, AiToolDetailsProps, AiToolKeyValue } from '@ds/ai-tool';
+import {
+  AI_TOOL_DETAILS_HEIGHT,
+  AI_TOOL_DETAILS_STATE,
+  AiToolDetails,
+  AiToolDetailsProps,
+  AiToolKeyValue,
+} from '@ds/ai-tool';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
@@ -21,6 +27,10 @@ const BODY_ROWS = [
   ['public_ip', '84.201.10.42'],
 ] as const;
 
+const BODY_COPY_VALUE = [...BODY_ROWS, ['token', SECRET_MASK] as const]
+  .map(([key, value]) => `${key}: ${value}`)
+  .join('\n');
+
 const meta: Meta<typeof AiToolDetails> = {
   title: 'AI/AiTool/Atoms/AiToolDetails',
   component: AiToolDetails,
@@ -28,12 +38,18 @@ const meta: Meta<typeof AiToolDetails> = {
   args: {
     label: 'create_instance',
     state: AI_TOOL_DETAILS_STATE.Default,
+    height: AI_TOOL_DETAILS_HEIGHT.Small,
     scroll: true,
+    copyValue: BODY_COPY_VALUE,
+    showCopyButton: true,
     showEyeButton: true,
     secretRevealed: false,
     'data-test-id': TEST_IDS.details,
   },
   argTypes: {
+    copyValue: { if: { arg: 'showCopyButton', eq: true } },
+    height: { control: 'radio', options: Object.values(AI_TOOL_DETAILS_HEIGHT) },
+    onCopyClick: { table: { disable: true } },
     onToggleSecret: { table: { disable: true } },
     children: { table: { disable: true } },
   },
@@ -45,7 +61,8 @@ const meta: Meta<typeof AiToolDetails> = {
           <DemoTitle>Playground</DemoTitle>
           <DemoHint>
             Свёрнутый блок инструмента. Тело выше 140px: при `scroll=true` оно прокручивается под фиксированной высотой,
-            при `scroll=false` карточка растягивается по контенту. Кнопка-глаз раскрывает значение `token`.
+            при `scroll=false` карточка растягивается по контенту. `showCopyButton` управляет кнопкой копирования
+            содержимого карточки. Кнопка-глаз раскрывает значение `token`.
           </DemoHint>
           <DemoActions block>
             <AiToolDetails

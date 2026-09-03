@@ -257,15 +257,38 @@
         "required": false,
         "description": "Доп. класс корня."
       },
+      "copyValue": {
+        "type": "string",
+        "required": false,
+        "description": "Сериализованное содержимое `ToolDetails` для копирования."
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
         "defaultValue": "ai-tool-details"
       },
+      "height": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "large",
+          "small"
+        ],
+        "defaultValue": "small",
+        "description": "Максимальная высота прокручиваемого контента. По умолчанию `small`.",
+        "typeRefs": [
+          "AiToolDetailsHeight"
+        ]
+      },
       "label": {
         "type": "ReactNode",
         "required": false,
         "description": "Текст заголовка-лейбла."
+      },
+      "onCopyClick": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Вызывается после копирования содержимого."
       },
       "onToggleSecret": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
@@ -283,6 +306,12 @@
         "required": false,
         "defaultValue": "false",
         "description": "Секрет раскрыт. Источник истины — родитель."
+      },
+      "showCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показать кнопку копирования. По умолчанию `true`; требуется непустой `copyValue`."
       },
       "showEyeButton": {
         "type": "boolean",
@@ -305,6 +334,14 @@
       }
     },
     "relatedTypes": {
+      "AiToolDetailsHeight": {
+        "kind": "union",
+        "values": [
+          "large",
+          "small"
+        ],
+        "own": true
+      },
       "AiToolDetailsState": {
         "kind": "union",
         "values": [
@@ -324,6 +361,11 @@
         "required": false,
         "description": "Доп. класс корня."
       },
+      "copyValue": {
+        "type": "string",
+        "required": false,
+        "description": "Содержимое связанного `ToolDetails` для копирования."
+      },
       "data-test-id": {
         "type": "string",
         "required": false,
@@ -333,6 +375,11 @@
         "type": "ReactNode",
         "required": false,
         "description": "Текст лейбла (заголовок блока деталей)."
+      },
+      "onCopyClick": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Вызывается после копирования содержимого."
       },
       "onToggleSecret": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
@@ -344,6 +391,12 @@
         "required": false,
         "defaultValue": "false",
         "description": "Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель."
+      },
+      "showCopyButton": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показать кнопку копирования. По умолчанию `true`; требуется непустой `copyValue`."
       },
       "showEyeButton": {
         "type": "boolean",

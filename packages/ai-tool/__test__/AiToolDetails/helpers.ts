@@ -4,6 +4,7 @@ import { TEST_IDS as COMPONENT_TEST_IDS } from '../../src/constants';
 
 export const TEST_IDS = {
   root: COMPONENT_TEST_IDS.details,
+  copy: COMPONENT_TEST_IDS.detailsLabelCopy,
 } as const;
 
 export const AI_TOOL_DETAILS_STORIES = {

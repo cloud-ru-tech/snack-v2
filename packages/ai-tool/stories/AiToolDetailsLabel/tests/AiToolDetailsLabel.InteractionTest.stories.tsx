@@ -12,8 +12,11 @@ const meta: Meta<typeof AiToolDetailsLabel> = {
   component: AiToolDetailsLabel,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
+    showCopyButton: true,
     showEyeButton: true,
+    copyValue: 'TextBlock Text',
     onToggleSecret: fn(),
+    onCopyClick: fn(),
     'data-test-id': TEST_IDS.detailsLabel,
   },
 };
@@ -29,7 +32,7 @@ export const InteractionTest: Story = {
       <DemoPage>
         <DemoPanel width='narrow'>
           <DemoTitle>Interaction</DemoTitle>
-          <DemoHint>Проверяет, что нажатие на кнопку-глаз переключает раскрытие секрета.</DemoHint>
+          <DemoHint>Проверяет переключение секрета и копирование значения.</DemoHint>
           <DemoActions align='start'>
             <AiToolDetailsLabel
               {...args}
@@ -55,6 +58,11 @@ export const InteractionTest: Story = {
 
     await step('secret button stays reachable after toggle', async () => {
       await expect(canvas.getByTestId(TEST_IDS.detailsLabelSecret)).toBeVisible();
+    });
+
+    await step('click copy: onCopyClick receives copied value', async () => {
+      await userEvent.click(canvas.getByTestId(TEST_IDS.detailsLabelCopy));
+      expect(args.onCopyClick).toHaveBeenCalledWith('TextBlock Text');
     });
   },
 };

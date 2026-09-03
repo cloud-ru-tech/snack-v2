@@ -708,6 +708,19 @@ export function Badges() {
 
 Ограничивает высоту тела и включает вертикальный скролл. При `false` карточка растягивается по контенту.
 
+#### Height (default `small`)
+
+Задаёт максимальную высоту тела при `scroll=true`:
+
+- `small` — компактный блок до 140 px.
+- `large` — расширенный блок до 360 px для длинных аргументов или результатов.
+
+При `scroll=false` значение `height` не ограничивает рост карточки.
+
+#### Copy
+
+`showCopyButton` управляет кнопкой копирования в заголовке. В `copyValue` передаётся строковое представление содержимого `ToolDetails`, например JSON или многострочный текст. Кнопка отображается при `showCopyButton=true` и непустом `copyValue`. После копирования `onCopyClick` получает скопированное содержимое.
+
 ### Примеры использования
 
 #### Блок деталей
@@ -717,10 +730,12 @@ AiToolDetails с моноширинным контентом
 ```tsx
 import { AiToolDetails, AiToolText } from '@ds/ai-tool';
 
+const DETAILS_CONTENT = '{ "region": "ru-central1", "status": "ok" }';
+
 export function DetailsCard() {
   return (
-    <AiToolDetails label='create_instance' state='default'>
-      <AiToolText mono>{`{ "region": "ru-central1", "status": "ok" }`}</AiToolText>
+    <AiToolDetails label='create_instance' state='default' height='large' copyValue={DETAILS_CONTENT}>
+      <AiToolText mono>{DETAILS_CONTENT}</AiToolText>
     </AiToolDetails>
   );
 }
@@ -734,15 +749,21 @@ export function DetailsCard() {
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | Контент блока деталей (текст, key-value, дерево). |
 | `className` | `string` | — | Доп. класс корня. |
+| `copyValue` | `string` | — | Сериализованное содержимое `ToolDetails` для копирования. |
 | `data-test-id` | `string` | `ai-tool-details` |  |
+| `height` | `"large"` \| `"small"` | `small` | Максимальная высота прокручиваемого контента. По умолчанию `small`. |
 | `label` | `ReactNode` | — | Текст заголовка-лейбла. |
+| `onCopyClick` | `((value: string) => void)` | — | Вызывается после копирования содержимого. |
 | `onToggleSecret` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Клик по кнопке-«глаз» заголовка. |
 | `scroll` | `boolean` | `true` | Ограничить высоту контента и включить вертикальный скролл. По умолчанию `true`. |
 | `secretRevealed` | `boolean` | `false` | Секрет раскрыт. Источник истины — родитель. |
+| `showCopyButton` | `boolean` | `true` | Показать кнопку копирования. По умолчанию `true`; требуется непустой `copyValue`. |
 | `showEyeButton` | `boolean` | `false` | Показать кнопку-«глаз» в заголовке для раскрытия секрета. |
 | `state` | `"default"` \| `"error"` | `default` | Состояние: `default` — нейтральный, `error` — красная рамка и лейбл. |
 
 ##### Related types
+
+- `AiToolDetailsHeight` = `"large"` \| `"small"`
 
 - `AiToolDetailsState` = `"default"` \| `"error"`
 
@@ -768,6 +789,10 @@ export function DetailsCard() {
 
 `showEyeButton` добавляет кнопку-«глаз». Видимое состояние — `secretRevealed` (источник истины — родитель): зачёркнутый глаз — секреты скрыты, открытый — показаны.
 
+#### Copy
+
+`showCopyButton` управляет кнопкой копирования. В `copyValue` передаётся строковое представление содержимого связанного `ToolDetails`. Кнопка отображается при `showCopyButton=true` и непустом `copyValue`. После копирования `onCopyClick` получает скопированное содержимое.
+
 ### Примеры использования
 
 #### Переключение секрета
@@ -785,6 +810,7 @@ export function DetailsLabelSecret() {
     <div style={{ width: 280 }}>
       <AiToolDetailsLabel
         label='Ответ'
+        copyValue='TextBlock Text'
         showEyeButton
         secretRevealed={revealed}
         onToggleSecret={() => setRevealed(prev => !prev)}
@@ -801,10 +827,13 @@ export function DetailsLabelSecret() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | Доп. класс корня. |
+| `copyValue` | `string` | — | Содержимое связанного `ToolDetails` для копирования. |
 | `data-test-id` | `string` | `ai-tool-details-label` |  |
 | `label` | `ReactNode` | — | Текст лейбла (заголовок блока деталей). |
+| `onCopyClick` | `((value: string) => void)` | — | Вызывается после копирования содержимого. |
 | `onToggleSecret` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Клик по кнопке-«глаз». Не вызывается, если `showEyeButton` не задан. |
 | `secretRevealed` | `boolean` | `false` | Секрет раскрыт: глаз открыт (секреты видны). Зачёркнутый глаз — секреты скрыты. Источник истины — родитель. |
+| `showCopyButton` | `boolean` | `true` | Показать кнопку копирования. По умолчанию `true`; требуется непустой `copyValue`. |
 | `showEyeButton` | `boolean` | `false` | Показать кнопку-«глаз» для раскрытия секретного значения. |
 | `state` | `"default"` \| `"error"` | `default` | Состояние: `default` — нейтральный, `error` — красный. |
 
