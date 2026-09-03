@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-09-03)
+
+### Features
+
+- **FF-8762:** add showStepIndicator prop to welcome tour ([f4beeb2](https://github.com/cloud-ru-tech/snack-v2/commit/f4beeb2d72919d58312cf2a7a00822812517ae27))
+
 # 1.1.0 (2026-09-02)
 
 ### Features

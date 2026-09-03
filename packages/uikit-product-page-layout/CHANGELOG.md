@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-09-03)
+
+### Features
+
+- **FF-8959:** show a tooltip with the full status label when it is truncated ([fbff1c1](https://github.com/cloud-ru-tech/snack-v2/commit/fbff1c127caf68e4ee648b3b4494dc161cd4dce4))
+
 ## 1.2.1 (2026-09-02)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout

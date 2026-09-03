@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-03)
+
+### Features
+
+- **FF-8959:** show a tooltip with the full tag label when it is truncated ([ba346b7](https://github.com/cloud-ru-tech/snack-v2/commit/ba346b70f2bad14010ee5845b147139e6edde0c1))
+
 ## 1.0.9 (2026-09-01)
 
 ### Bug Fixes

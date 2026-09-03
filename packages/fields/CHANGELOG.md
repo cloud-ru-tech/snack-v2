@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-09-03)
+
+### Features
+
+- **FF-8959:** type the tag appearance on field select items ([9e053d8](https://github.com/cloud-ru-tech/snack-v2/commit/9e053d847a629bfca81fc4c6eee9c51b507bb529))
+
 ## 2.1.3 (2026-09-02)
 
 ### Bug Fixes
