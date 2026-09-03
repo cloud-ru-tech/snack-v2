@@ -41,6 +41,14 @@ test.describe('WelcomeTour — rendering', () => {
     await expect(getByTestId(TEST_IDS.steps)).not.toBeAttached();
   });
 
+  test('showStepIndicator=false hides indicator in multi-step tour', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ showSteps: true, showStepIndicator: false }));
+    await getByTestId(TEST_IDS.triggerOpen).click();
+
+    await expect(getByTestId(TEST_IDS.hint)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.steps)).not.toBeAttached();
+  });
+
   test('first step renders next + close, without back', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
     await getByTestId(TEST_IDS.triggerOpen).click();

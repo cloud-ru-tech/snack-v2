@@ -40,7 +40,7 @@ export function TourHint({
 
   // `Partial`, а не `TourStepData`: каст к полному типу прятал бы падение на
   // `buttons.includes(...)` у шага, пришедшего мимо `toJoyrideSteps`.
-  const { subtitle, labels, buttons = [] } = (step.data ?? {}) as Partial<TourStepData>;
+  const { subtitle, labels, buttons = [], showStepIndicator = true } = (step.data ?? {}) as Partial<TourStepData>;
 
   const backButtonProps = withoutNativeTitle(backProps);
   const primaryButtonProps = withoutNativeTitle(primaryProps);
@@ -113,7 +113,7 @@ export function TourHint({
       )}
 
       <div className={styles.footer}>
-        {size > 1 && (
+        {showStepIndicator && size > 1 && (
           <>
             {/* Точки прогресса под `aria-hidden`, позицию в туре озвучивает этот текст. */}
             <span className={styles.visuallyHidden}>{t('progress', { current: index + 1, total: size })}</span>

@@ -131,6 +131,12 @@
         "defaultValue": "20",
         "description": "Отступ при скролле к целевому элементу, px."
       },
+      "showStepIndicator": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Показывать ли индикатор прогресса. Он и так появляется только у тура длиннее одного\nшага; `false` убирает его вместе с озвучкой позиции для скринридера — это нужно там,\nгде часть шагов может отвалиться на лету (цели нет на странице, шаг пропускается),\nи «2 из 5» окажется неправдой."
+      },
       "spotlightPadding": {
         "type": "TourSpotlightPadding",
         "required": false,

@@ -39,6 +39,7 @@ export function WelcomeTour({
   onStepChange,
   labels: componentLabels,
   buttons = DEFAULT_BUTTONS,
+  showStepIndicator = true,
   scrollOffset,
   spotlightPadding,
   portalContainer,
@@ -86,8 +87,9 @@ export function WelcomeTour({
         labels: { next: t('next'), back: t('back'), finish: t('finish'), close: t('close') },
         componentLabels,
         buttons,
+        showStepIndicator,
       }),
-    [steps, t, componentLabels, buttons],
+    [steps, t, componentLabels, buttons, showStepIndicator],
   );
 
   const handleEvent = useCallback(

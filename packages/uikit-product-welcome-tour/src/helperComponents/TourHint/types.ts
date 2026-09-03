@@ -14,4 +14,6 @@ export type TourStepData = {
   labels: TourLabels;
   /** Набор кнопок подсказки. */
   buttons: TourButton[];
+  /** Показывать ли индикатор прогресса. */
+  showStepIndicator: boolean;
 };

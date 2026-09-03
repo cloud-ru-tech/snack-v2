@@ -11,6 +11,7 @@ type ToJoyrideStepsParams = {
   labels: TourLabels;
   componentLabels?: Partial<TourLabels>;
   buttons: TourButton[];
+  showStepIndicator: boolean;
 };
 
 /**
@@ -37,7 +38,13 @@ export function resolveLabels(
  * (`subtitle`, разрешённые подписи, набор кнопок), уезжают в `step.data` — оттуда
  * их читает `TourHint`.
  */
-export function toJoyrideSteps({ steps, labels, componentLabels, buttons }: ToJoyrideStepsParams): Step[] {
+export function toJoyrideSteps({
+  steps,
+  labels,
+  componentLabels,
+  buttons,
+  showStepIndicator,
+}: ToJoyrideStepsParams): Step[] {
   return steps.map(
     ({
       target,
@@ -75,6 +82,7 @@ export function toJoyrideSteps({ steps, labels, componentLabels, buttons }: ToJo
         subtitle,
         labels: resolveLabels(labels, componentLabels, stepLabels),
         buttons,
+        showStepIndicator,
       },
     }),
   );
