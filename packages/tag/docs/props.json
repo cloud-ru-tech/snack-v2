@@ -368,7 +368,7 @@
         "required": false
       },
       "setTagRef": {
-        "type": "((item: TagRowItemInner, index: number) => Ref<HTMLDivElement>)",
+        "type": "((item: TagRowItemInner) => Ref<HTMLDivElement>)",
         "required": false
       },
       "size": {

@@ -5,7 +5,7 @@ import { SIZE } from '../../constants';
 import { Size, TagRowItemInner } from '../../types';
 import styles from './styles.module.scss';
 
-type SetTagRef = (item: TagRowItemInner, index: number) => Ref<HTMLDivElement>;
+type SetTagRef = (item: TagRowItemInner) => Ref<HTMLDivElement>;
 
 type TagListProps = {
   items: TagRowItemInner[];
@@ -17,9 +17,9 @@ type TagListProps = {
 type OnDeleteHandler = () => void;
 
 function renderTag(size: Size, handleRemoveItem?: (item: TagRowItemInner) => OnDeleteHandler, setRef?: SetTagRef) {
-  return function TagRowItem(item: TagRowItemInner, index: number) {
+  return function TagRowItem(item: TagRowItemInner) {
     return (
-      <div key={item.id ?? item.label} ref={setRef?.(item, index)} className={styles.tagWrapper}>
+      <div key={item.id ?? item.label} ref={setRef?.(item)} className={styles.tagWrapper}>
         <Tag size={size} onDelete={handleRemoveItem?.(item)} {...item} />
       </div>
     );

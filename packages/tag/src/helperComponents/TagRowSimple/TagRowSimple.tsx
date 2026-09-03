@@ -10,7 +10,7 @@ type TagRowSimpleProps = {
   items: TagRowItemInner[];
   size: Size;
   onItemRemove?(item: string): void;
-  setTagRef?: (item: TagRowItemInner, index: number) => Ref<HTMLDivElement>;
+  setTagRef?: (item: TagRowItemInner) => Ref<HTMLDivElement>;
   className?: string;
 };
 

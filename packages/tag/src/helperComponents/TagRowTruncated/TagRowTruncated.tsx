@@ -19,17 +19,8 @@ type TagRowTruncatedProps = {
   onItemRemove?(item: string): void;
 };
 
-function setTagElement(
-  tag: TagRowItemInner,
-  index: number,
-  setFirstTagElement: (el: HTMLElement | null) => void,
-  tagsMapRef: MutableRefObject<Map<TagRowItemInner, HTMLElement | null>>,
-) {
+function setTagElement(tag: TagRowItemInner, tagsMapRef: MutableRefObject<Map<TagRowItemInner, HTMLElement | null>>) {
   return (tagElement: HTMLElement | null) => {
-    if (index === 0 && tagElement) {
-      setFirstTagElement(tagElement);
-    }
-
     if (tagElement === null) {
       tagsMapRef.current.delete(tag);
     } else {
@@ -53,11 +44,27 @@ function TagRowTruncatedInner({
   const hiddenRowElementRef = useRef<HTMLDivElement>(null);
   const hiddenMoreButtonRef = useRef<HTMLButtonElement>(null);
 
-  const [firstTagElement, setFirstTagElement] = useState<HTMLElement | null>(null);
   const tagsMapRef = useRef(new Map<TagRowItemInner, HTMLElement | null>());
 
   const { width: maxWidth } = useResizeObserver(hiddenRowElementRef.current);
-  useResizeObserver(firstTagElement);
+
+  // Ширины тегов доезжают позже монтирования (шрифты, вложенные измерения), поэтому
+  // пересчитываем упаковку, пока они меняются, а не по одному первому тегу.
+  const [measuredWidths, setMeasuredWidths] = useState('');
+
+  useEffect(() => {
+    const observer = new ResizeObserver(() =>
+      setMeasuredWidths([...tagsMapRef.current.values()].map(element => element?.offsetWidth ?? 0).join()),
+    );
+
+    tagsMapRef.current.forEach(element => element && observer.observe(element));
+
+    if (hiddenMoreButtonRef.current) {
+      observer.observe(hiddenMoreButtonRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [items]);
 
   const gapWidth = getGapWidth(hiddenRowElementRef);
 
@@ -113,10 +120,9 @@ function TagRowTruncatedInner({
 
     setVisibleTags(newVisibleTags);
     setHiddenTags(newHiddenTags);
-  }, [items, rowLimit, maxWidth, gapWidth]);
+  }, [items, rowLimit, maxWidth, gapWidth, measuredWidths]);
 
-  const setTagRef = (item: TagRowItemInner, index: number) =>
-    setTagElement(item, index, setFirstTagElement, tagsMapRef);
+  const setTagRef = (item: TagRowItemInner) => setTagElement(item, tagsMapRef);
 
   return (
     <div className={cn(styles.wrapper, className)} {...extractSupportProps(rest)} data-size={size}>
