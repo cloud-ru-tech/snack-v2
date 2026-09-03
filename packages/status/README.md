@@ -87,6 +87,7 @@ export function WithBackground() {
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `progress` | `number` | — | Прогресс загрузки (от 0 до 100) |
 | `size` | `"s"` \| `"xs"` | `s` | Размер индикатора и подписи |
+| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания подписи, не поместившейся в контейнер. |
 
 ##### Related types
 

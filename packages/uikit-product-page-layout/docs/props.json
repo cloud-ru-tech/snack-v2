@@ -12853,6 +12853,18 @@
             "typeRefs": [
               "StatusSize"
             ]
+          },
+          "truncateVariant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Вариант обрезания подписи, не поместившейся в контейнер.",
+            "typeRefs": [
+              "TruncateStringProps"
+            ]
           }
         },
         "own": false
@@ -12882,6 +12894,11 @@
       "TreeNodeProps": {
         "kind": "alias",
         "type": "ChildTreeNode | ParentTreeNode",
+        "own": false
+      },
+      "TruncateStringProps": {
+        "kind": "alias",
+        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
         "own": false
       }
     }

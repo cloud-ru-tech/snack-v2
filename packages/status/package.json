@@ -35,6 +35,7 @@
   "dependencies": {
     "@ds/loader": "workspace:^",
     "@ds/progress-bar": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

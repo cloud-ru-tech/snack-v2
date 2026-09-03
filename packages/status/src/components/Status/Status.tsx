@@ -1,5 +1,6 @@
 import { Spinner } from '@ds/loader';
 import { ProgressBarCircle } from '@ds/progress-bar';
+import { TruncateString, TruncateStringProps } from '@ds/truncate-string';
 import { extractSupportProps, withInnerRefSupport, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { JSX, Ref } from 'react';
@@ -23,6 +24,8 @@ export type StatusProps = WithSupportProps<{
   appearance?: Appearance;
   /** CSS-класс */
   className?: string;
+  /** Вариант обрезания подписи, не поместившейся в контейнер. */
+  truncateVariant?: TruncateStringProps['variant'];
   /** Наличие фона */
   background?: boolean;
   /** Состояние загрузки */
@@ -38,6 +41,7 @@ export type StatusProps = WithSupportProps<{
 
 export function Status({
   label,
+  truncateVariant,
   size = STATUS_SIZE.S,
   appearance: appearanceProp = APPEARANCE.Neutral,
   className,
@@ -72,11 +76,9 @@ export function Status({
       data-background={background || undefined}
     >
       <div className={styles.centeredWrapper}>{marker}</div>
-      <label className={styles.label} data-test-id={TEST_IDS.status.label}>
-        {/* TODO: <TruncateString> - компонент в работе */}
-        {label}
-        {/* </TruncateString> */}
-      </label>
+      <span className={styles.label} data-test-id={TEST_IDS.status.label}>
+        <TruncateString text={label} variant={truncateVariant} />
+      </span>
     </div>
   );
 }

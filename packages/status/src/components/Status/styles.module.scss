@@ -55,11 +55,7 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
 .label {
   overflow: hidden;
   flex-grow: 0;
-
   min-width: 0;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   @include base.composite-var(base.$sn-regular-label-s);
 

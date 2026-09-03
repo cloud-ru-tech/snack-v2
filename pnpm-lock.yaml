@@ -2043,6 +2043,9 @@ importers:
       '@ds/progress-bar':
         specifier: workspace:^
         version: link:../progress-bar
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
