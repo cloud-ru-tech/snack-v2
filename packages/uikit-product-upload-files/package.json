@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-upload-files",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Поле загрузки файлов с drag-and-drop, валидацией по формату/размеру/количеству и кастомной функцией upload.",
   "repository": {
     "type": "git",

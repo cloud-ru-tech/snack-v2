@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2026-09-03)
+
+### Bug Fixes
+
+- **FF-8959:** repack tag row while tag widths are still settling ([cead8bb](https://github.com/cloud-ru-tech/snack-v2/commit/cead8bb341abebb938d0469b86da60601cad69af))
+
 # 1.1.0 (2026-09-03)
 
 ### Features
