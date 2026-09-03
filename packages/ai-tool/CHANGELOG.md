@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-09-03)
+
+### Features
+
+- **AIX-295:** add height, copy, and opaque label to AiToolDetails ([baa5d38](https://github.com/cloud-ru-tech/snack-v2/commit/baa5d38d6e3e0e44dd7b0261f03ab16323ee71c8))
+
 ## 2.0.2 (2026-08-28)
 
 **Note:** Version bump only for package @ds/ai-tool
