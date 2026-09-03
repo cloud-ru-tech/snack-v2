@@ -1,4 +1,5 @@
 import { CrossSVG } from '@ds/icons/interface/system';
+import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
@@ -9,6 +10,7 @@ import styles from './styles.module.scss';
 
 export function TagBase({
   label,
+  truncateVariant,
   size = SIZE.S,
   appearance = APPEARANCE.Neutral,
   onDelete,
@@ -29,7 +31,7 @@ export function TagBase({
       data-removable={isRemovable}
     >
       <span className={styles.textWrapper}>
-        <span className={styles.label}>{label}</span>
+        <TruncateString className={styles.label} text={label} variant={truncateVariant} />
       </span>
       {isRemovable && (
         <button

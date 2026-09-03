@@ -37,6 +37,7 @@
     "@ds/icons": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/scroll": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

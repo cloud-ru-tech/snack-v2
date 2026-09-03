@@ -1,3 +1,4 @@
+import { TruncateStringProps } from '@ds/truncate-string';
 import { PolymorphicRef, ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler, Ref } from 'react';
 
@@ -31,6 +32,8 @@ export type CommonTagProps = {
   tabIndex?: number;
   /** Обработчик удаления тега. Если задан — отображается крестик-remove */
   onDelete?: MouseEventHandler<HTMLButtonElement>;
+  /** Вариант обрезания подписи, не поместившейся в тег. */
+  truncateVariant?: TruncateStringProps['variant'];
 };
 
 export type TagBaseProps = WithSupportProps<{

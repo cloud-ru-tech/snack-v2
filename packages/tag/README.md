@@ -77,6 +77,7 @@ export function Removable() {
 | `onDelete` | `MouseEventHandler<HTMLButtonElement>` | — | Обработчик удаления тега. Если задан — отображается крестик-remove |
 | `size` | `"m"` \| `"s"` \| `"xs"` | — |  |
 | `tabIndex` | `number` | — |  |
+| `truncateVariant` | `"end"` \| `"middle"` | — | Вариант обрезания подписи, не поместившейся в тег. |
 
 ##### Related types
 

@@ -145,10 +145,7 @@ $removeButtonSize: (
   }
 
   .label {
-    overflow: hidden;
     color: base.$sn-theme-color-available-version-textSecondary;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   @each $appearance in $appearances {
