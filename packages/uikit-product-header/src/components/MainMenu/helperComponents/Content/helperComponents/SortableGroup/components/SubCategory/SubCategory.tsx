@@ -31,12 +31,16 @@ export function SubCategory({
   const nestedGroupId = getNestedServiceGroupId(groupId, service.id);
   const nestedItems = useMemo(() => service.items?.filter(item => !item.hidden) ?? [], [service.items]);
 
+  const isExpandableEnabled = service.expandableEnabled ?? false;
+
   // Раскрытие подкатегории — локальное uncontrolled состояние: наружу его пока не выводим.
   const [isExpanded, setIsExpanded] = useState<string | undefined>(subcategoryId);
 
   const handleExpandedChange = useCallback(() => {
-    setIsExpanded(isExpanded ? undefined : subcategoryId);
-  }, [isExpanded, subcategoryId]);
+    if (isExpandableEnabled) {
+      setIsExpanded(isExpanded ? undefined : subcategoryId);
+    }
+  }, [isExpanded, subcategoryId, isExpandableEnabled]);
 
   return (
     <div className={styles.subcategory} data-test-id={`${TEST_IDS.subcategory}-${service.id}`}>

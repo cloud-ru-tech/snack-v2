@@ -1,3 +1,4 @@
+@use '@ds/figma-variables/build/scss/components/segmentControl.module' as segmentControl;
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .root {
@@ -13,6 +14,27 @@
 
 .segmentControl {
   flex-shrink: 0;
+}
+
+.segmentControlSkeleton {
+  display: flex;
+  flex-shrink: 0;
+  // Ширина placeholder'а не выводится из токена: `SegmentControl` шириной `auto` считается по
+  // тексту лейблов сегментов, которых на момент загрузки ещё нет — значение приблизительное.
+  width: 264px;
+
+  // Высота — реальный токен анатомии SegmentControl(size='m'), а не подобранное на глаз число.
+  height: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', 'm', 'segment', 'container', 'height');
+
+  &[data-mobile] {
+    width: 100%;
+  }
+}
+
+.segmentControlSkeletonBlock {
+  width: 100%;
+  height: 100%;
+  border-radius: base.simple-var(segmentControl.$segmentControl, 'anatomy', 'size', 'm', 'container', 'border-radius');
 }
 
 .actions {

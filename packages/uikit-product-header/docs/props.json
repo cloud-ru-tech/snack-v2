@@ -117,6 +117,11 @@
         "type": "boolean",
         "required": false
       },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг загрузки данных — сегменты подгружаются с бэка, поэтому SegmentControl тоже уходит в скелетон."
+      },
       "onSegmentChange": {
         "type": "(segment: string) => void",
         "required": true
@@ -466,6 +471,11 @@
           "disabled": {
             "type": "boolean | undefined",
             "required": false
+          },
+          "expandableEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
           },
           "favoritesEnabled": {
             "type": "boolean | undefined",
@@ -1767,6 +1777,11 @@
             "type": "boolean | undefined",
             "required": false
           },
+          "expandableEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
+          },
           "favoritesEnabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -2994,6 +3009,11 @@
           "disabled": {
             "type": "boolean | undefined",
             "required": false
+          },
+          "expandableEnabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
           },
           "favoritesEnabled": {
             "type": "boolean | undefined",

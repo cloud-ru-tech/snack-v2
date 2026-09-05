@@ -280,6 +280,7 @@ export function Content({
               onToggleAllGroupsExpanded={handleToggleAllGroupsExpanded}
               preferences={preferences}
               isMobile={isMobile}
+              loading={loading}
             />
 
             {!isMobile && rightTop}

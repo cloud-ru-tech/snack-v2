@@ -2,6 +2,7 @@ import { Button } from '@ds/button';
 import { CollapseVerticalSVG, ExpandVerticalSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { Modal } from '@ds/modal';
 import { SegmentControl } from '@ds/segment-control';
+import { Skeleton, WithSkeleton } from '@ds/skeleton';
 import { SwitchRow } from '@ds/uikit-product-switch-row';
 import { useValueControl } from '@ds/utils';
 import { ReactNode, startTransition } from 'react';
@@ -33,6 +34,9 @@ export type ContentToolbarProps = {
   preferences?: MainMenuPreferencesProps;
 
   isMobile?: boolean;
+
+  /** Флаг загрузки данных — сегменты подгружаются с бэка, поэтому SegmentControl тоже уходит в скелетон. */
+  loading?: boolean;
 };
 
 export function ContentToolbar({
@@ -43,6 +47,7 @@ export function ContentToolbar({
   onToggleAllGroupsExpanded,
   preferences,
   isMobile,
+  loading,
 }: ContentToolbarProps) {
   const { t } = headerLocale.useTranslations();
   const [open = false, setOpen] = useValueControl<boolean>({
@@ -62,19 +67,32 @@ export function ContentToolbar({
   return (
     <div className={styles.root} data-test-id={TEST_IDS.toolbar}>
       {hasSegmentItems && (
-        <SegmentControl
-          size='m'
-          outline
-          value={segment}
-          onChange={onSegmentChange}
-          className={styles.segmentControl}
-          data-test-id={TEST_IDS.segmentControl}
-          items={segmentItems}
-          width={isMobile ? 'full' : 'auto'}
-        />
+        <WithSkeleton
+          loading={loading}
+          skeleton={
+            <div
+              className={styles.segmentControlSkeleton}
+              data-test-id={TEST_IDS.segmentControl}
+              data-mobile={isMobile || undefined}
+            >
+              <Skeleton className={styles.segmentControlSkeletonBlock} />
+            </div>
+          }
+        >
+          <SegmentControl
+            size='m'
+            outline
+            value={segment}
+            onChange={onSegmentChange}
+            className={styles.segmentControl}
+            data-test-id={TEST_IDS.segmentControl}
+            items={segmentItems}
+            width={isMobile ? 'full' : 'auto'}
+          />
+        </WithSkeleton>
       )}
 
-      {(preferences || !isMobile) && (
+      {(preferences || !isMobile) && !loading && (
         <div className={styles.actions}>
           {preferences && (
             <>

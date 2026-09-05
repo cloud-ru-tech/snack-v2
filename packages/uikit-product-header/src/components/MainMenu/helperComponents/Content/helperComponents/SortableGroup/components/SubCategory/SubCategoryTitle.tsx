@@ -56,7 +56,7 @@ export function SubCategoryTitle({
 
   if (expandable?.value) {
     return (
-      <div className={styles.subcategoryTitle}>
+      <div className={styles.subcategoryTitle} data-mobile={isMobile || undefined}>
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div className={styles.subcategoryTitleRow} onKeyDown={handleKeyDown}>
           <TitleClickable
@@ -73,6 +73,7 @@ export function SubCategoryTitle({
           <CardActionsSurface
             className={styles.subcategoryTitleActions}
             actionsVisibility='always'
+            actionsSize={isMobile ? 's' : 'm'}
             tooltip={
               hasTooltip
                 ? {
@@ -115,7 +116,14 @@ export function SubCategoryTitle({
   }
 
   return (
-    <div className={styles.subcategoryTitleDraggable} onPointerDown={stopEventPropagation}>
+    // Карточка — ссылка `<a>`: клик по ней бы долетал до `onClick={toggleOpen}` заголовка
+    // родительского CollapseBlockTertiary (см. TODO там) и лишний раз переключал аккордеон.
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div
+      className={styles.subcategoryTitleDraggable}
+      onPointerDown={stopEventPropagation}
+      onClick={stopEventPropagation}
+    >
       <DraggableServiceCard
         groupId={groupId}
         service={service}

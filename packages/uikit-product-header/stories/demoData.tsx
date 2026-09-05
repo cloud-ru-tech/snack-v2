@@ -604,6 +604,7 @@ export const ADMINISTRATIVE_SECTIONS: LinksGroup[] = [
         icon: PlaceholderSVG,
         onClick: EMPTY_ON_CLICK,
         href: EMPTY_HREF,
+        favoritesEnabled: false,
       })),
     })),
   },

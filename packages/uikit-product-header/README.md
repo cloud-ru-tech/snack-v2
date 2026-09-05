@@ -342,6 +342,7 @@ function LocalMainMenu() {
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
+| `expandableEnabled` | `boolean \| undefined` | — | Разрешено ли раскрытие карточки. default=false - Запрещено |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |
@@ -513,6 +514,7 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
+| `expandableEnabled` | `boolean \| undefined` | — | Разрешено ли раскрытие карточки. default=false - Запрещено |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |

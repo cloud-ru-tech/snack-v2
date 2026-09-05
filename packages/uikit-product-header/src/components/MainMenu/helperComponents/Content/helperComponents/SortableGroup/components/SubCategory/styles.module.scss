@@ -41,6 +41,13 @@
       visibility: visible;
     }
   }
+
+  // На мобилке ховера не бывает — действия карточки видны всегда (actionsVisibility='always').
+  &[data-mobile] {
+    .subcategoryTitleActions {
+      visibility: visible;
+    }
+  }
 }
 
 .subcategoryTitleRow {
