@@ -16,20 +16,34 @@
   white-space: nowrap;
 }
 
-.lead {
-  display: inline-flex;
-  gap: base.$sn-primitive-dimension-4;
+.iconSlot {
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
-}
+  justify-content: center;
 
-.shimmer {
-  display: inline-flex;
-  min-width: 0;
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+
+  line-height: 0;
+  color: base.$sn-theme-color-available-version-textSecondary;
 }
 
 .icon {
+  display: block;
   flex-shrink: 0;
-  color: base.$sn-theme-color-available-version-textTertiary;
+
+  width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+
+  color: inherit;
+}
+
+.shimmer {
+  flex: 0 1 auto;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .label {
@@ -41,6 +55,12 @@
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
   color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+// Внутри волны цвет даёт слот `AiShimmer`; `margin-left` повторяет `gap` ряда, чтобы таймер не сдвигался при переключении `shimmer`.
+.durationInWave {
+  margin-left: base.$sn-primitive-dimension-4;
+  color: inherit;
 }
 
 .durationSegment {

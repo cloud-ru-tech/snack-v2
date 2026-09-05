@@ -5,6 +5,7 @@ import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
+import { ICON_PRESETS } from './presets';
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
 
@@ -34,6 +35,11 @@ const meta: Meta<typeof AiShimmer> = {
     weight: {
       control: 'select',
       options: Object.values(WEIGHT),
+    },
+    icon: {
+      control: 'select',
+      options: Object.keys(ICON_PRESETS),
+      mapping: ICON_PRESETS,
     },
     iconMask: {
       control: 'select',

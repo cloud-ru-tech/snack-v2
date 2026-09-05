@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import { TEST_IDS } from '../testIds';
-import { CHAIN_DURATION, chainContentPreset } from './presets';
+import { CHAIN_DURATION, chainContentPreset, HEADLINE_ICON_PRESETS } from './presets';
 
 const meta: Meta<typeof AiChainOfThoughts> = {
   title: 'AI/AiChainOfThoughts/AiChainOfThoughts',
@@ -16,12 +16,18 @@ const meta: Meta<typeof AiChainOfThoughts> = {
     broken: false,
     duration: CHAIN_DURATION,
     defaultOpen: true,
+    shimmer: true,
     children: 'content',
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
     open: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
+    icon: {
+      control: 'select',
+      options: Object.keys(HEADLINE_ICON_PRESETS),
+      mapping: HEADLINE_ICON_PRESETS,
+    },
     label: { control: 'text' },
     brokenMessage: { control: 'text' },
     children: {

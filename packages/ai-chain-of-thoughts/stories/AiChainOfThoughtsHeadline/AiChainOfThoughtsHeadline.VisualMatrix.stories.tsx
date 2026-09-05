@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { CHAIN_DURATION } from '../AiChainOfThoughts/presets';
+import { CHAIN_DURATION, HEADLINE_ICON_CASES } from '../AiChainOfThoughts/presets';
 import styles from '../styles.module.scss';
 
 const meta: Meta<typeof AiChainOfThoughtsHeadline> = {
@@ -39,6 +39,25 @@ export const VisualMatrix: Story = {
                 inProgress={inProgress}
                 duration={CHAIN_DURATION}
                 collapsible={collapsible}
+                onOpenChange={noop}
+              />
+            </div>
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle='Shimmer × Icon (inProgress)'
+        firstColumnHeader='Shimmer'
+        columnHeaders={HEADLINE_ICON_CASES.map(({ label }) => label)}
+        rows={[true, false].map(shimmer => ({
+          variantLabel: String(shimmer),
+          cells: HEADLINE_ICON_CASES.map(({ label, icon }) => (
+            <div key={label} className={styles.cell}>
+              <AiChainOfThoughtsHeadline
+                duration={CHAIN_DURATION}
+                shimmer={shimmer}
+                icon={icon}
+                collapsible
                 onOpenChange={noop}
               />
             </div>

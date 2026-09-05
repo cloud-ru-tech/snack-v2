@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
+import { ICON_PRESETS } from './presets';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof AiShimmer> = {
@@ -92,15 +93,52 @@ export const VisualMatrix: Story = {
       <StoryTable
         sectionTitle='With icon'
         firstColumnHeader='Size'
-        columnHeaders={['AiShimmer + iconMask']}
+        columnHeaders={['iconMask', 'icon: AiIconGiga', 'icon: @ds/icons', 'icon: Sun']}
         rows={sizes.map(size => ({
           variantLabel: size.toUpperCase(),
           cells: [
-            <div className={styles.matrixCell} key={size}>
+            <div className={styles.matrixCell} key='mask'>
               <AiShimmer text='Размышляю 365 д 09 ч 09 м 09 с' size={size} iconMask={GIGA_MASK_IMAGE} />
+            </div>,
+            <div className={styles.matrixCell} key='giga'>
+              <AiShimmer text='Размышляю 365 д 09 ч 09 м 09 с' size={size} icon={ICON_PRESETS.giga} />
+            </div>,
+            <div className={styles.matrixCell} key='placeholder'>
+              <AiShimmer text='Размышляю 365 д 09 ч 09 м 09 с' size={size} icon={ICON_PRESETS.placeholder} />
+            </div>,
+            <div className={styles.matrixCell} key='sun'>
+              <AiShimmer text='Размышляю 365 д 09 ч 09 м 09 с' size={size} icon={ICON_PRESETS.sun} />
             </div>,
           ],
         }))}
+      />
+      <StoryTable
+        sectionTitle='Slot after'
+        firstColumnHeader='Slot'
+        columnHeaders={['AiShimmer + slotAfter']}
+        rows={[
+          {
+            variantLabel: 'text only',
+            cells: [
+              <div className={styles.matrixCell} key='no-slot'>
+                <AiShimmer text='Размышляю' size='s' iconMask={GIGA_MASK_IMAGE} />
+              </div>,
+            ],
+          },
+          {
+            variantLabel: 'with slot',
+            cells: [
+              <div className={styles.matrixCell} key='with-slot'>
+                <AiShimmer
+                  text='Размышляю'
+                  size='s'
+                  iconMask={GIGA_MASK_IMAGE}
+                  slotAfter={<span className={styles.slotAfter}>365 д 09 ч 09 м 09 с</span>}
+                />
+              </div>,
+            ],
+          },
+        ]}
       />
       <StoryTable
         sectionTitle='Width'

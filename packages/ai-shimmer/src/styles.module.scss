@@ -4,45 +4,51 @@ $weights: 'regular', 'thin', 'mono';
 $variants: 'display', 'headline', 'title', 'label', 'body';
 $sizes: 's', 'm', 'l';
 
-$spread-width: 108px;
-$spread-start-left: -124px;
-$spread-end-left: calc(100% + 124px);
-$default-line-width: 400px;
+// Волна вдвое шире строки: проход слева направо 3 s, пауза 2 s. Позиция в пикселях, чтобы иконка,
+// текст и слот шли одной полосой. Анимируется безразмерный прогресс, а не координата: кейфреймы
+// с `var()` внутри Firefox для зарегистрированного свойства не интерполирует.
+$wave-duration: 5s;
+$default-wave-width: 800px;
+$wave-width: var(--ai-shimmer-wave-width, #{$default-wave-width});
+$wave-x: calc(var(--ai-shimmer-progress) * #{$wave-width});
 
-/** Бегущий брендовый радиал-блик поверх приглушённой базы `$base-color`. */
-@mixin shimmer-paint($base-color) {
+@property --ai-shimmer-progress {
+  inherits: true;
+  initial-value: -0.75;
+  syntax: '<number>';
+}
+
+@mixin wave-motion {
+  animation: ai-shimmer-wave $wave-duration linear infinite;
+}
+
+// Градиент волны приходит из `WAVE_STOPS` (`constants.ts`) — один источник для текста и иконки.
+@mixin wave-paint($base-color) {
+  @include wave-motion;
+
   background-image:
-    radial-gradient(
-      ellipse at 66% 22%,
-      rgb(51 140 235 / 100%) 15%,
-      rgb(59 174 209 / 100%) 30%,
-      rgb(67 208 183 / 100%) 45%,
-      rgb(52 203 151 / 100%) 55%,
-      rgb(36 198 118 / 100%) 65%,
-      rgb(36 198 118 / 0%) 100%
-    ),
+    var(--ai-shimmer-wave-gradient),
     linear-gradient($base-color, $base-color);
   background-repeat: no-repeat;
   background-position:
-    $spread-start-left 0,
+    #{$wave-x} 0,
     0 0;
   background-origin: border-box;
   background-size:
-    $spread-width var(--ai-shimmer-spread-start-height),
+    #{$wave-width} 100%,
     100% 100%;
-
-  animation: shimmer-text-move 3.75s linear infinite;
 }
 
-@property --ai-shimmer-x {
-  inherits: true;
-  initial-value: -124px;
-  syntax: '<length>';
+@mixin lead-box {
+  display: block;
+  flex-shrink: 0;
+
+  width: var(--ai-shimmer-icon-size, #{base.$sn-primitive-dimension-16});
+  height: var(--ai-shimmer-icon-size, #{base.$sn-primitive-dimension-16});
+  margin-right: base.$sn-primitive-dimension-4;
 }
 
 .root {
-  position: relative;
-
   display: block;
 
   box-sizing: border-box;
@@ -52,14 +58,19 @@ $default-line-width: 400px;
 }
 
 .text {
+  @include wave-paint(base.$sn-theme-color-available-version-textSecondary);
+
   display: block;
 
   width: 100%;
   min-width: 0;
   max-width: 100%;
 
+  color: transparent;
   overflow-wrap: anywhere;
   white-space: pre-line;
+
+  background-clip: text;
 }
 
 @each $weight in $weights {
@@ -76,98 +87,136 @@ $default-line-width: 400px;
   }
 }
 
-.textGhost {
-  color: transparent;
-}
-
-.shimmer {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.shimmerText {
-  @include shimmer-paint(base.$sn-theme-color-available-version-textSecondary);
-
-  color: transparent;
-  background-clip: text;
-}
-
-/** Ведущая иконка: спейсер в ghost-слое и засвеченный силуэт в shimmer-слое. */
+// Ведущая иконка силуэтом: `iconMask` как CSS-маска над фоном-волной.
 .lead {
-  display: inline-block;
-
-  width: var(--ai-shimmer-icon-size, 16px);
-  height: var(--ai-shimmer-icon-size, 16px);
-  margin-right: base.$sn-primitive-dimension-4;
-
-  vertical-align: middle;
-}
-
-.shimmerIcon {
-  // Иконка на тон светлее текста — как в DS (icon = tertiary, текст = secondary).
-  @include shimmer-paint(base.$sn-theme-color-available-version-textTertiary);
+  @include wave-paint(base.$sn-theme-color-available-version-textSecondary);
+  @include lead-box;
 
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: var(--ai-shimmer-icon-size) var(--ai-shimmer-icon-size);
 }
 
-/**
- * С ведущей иконкой блик идёт сплошняком «иконка → конец строки». Иконка и текст
- * читают одну координату блика `--ai-shimmer-x` (в пикселях строки), поэтому полоса
- * не перезапускается на стыке. Вертикальный рост радиала не нужен — кейс однострочный.
- */
-.root[data-has-icon] {
-  .shimmerText,
-  .shimmerIcon {
-    background-position:
-      var(--ai-shimmer-x) 0,
-      0 0;
-    background-size:
-      $spread-width var(--ai-shimmer-spread-start-height),
-      100% 100%;
-    animation-name: shimmer-line-move;
+// Ведущая иконка узлом: сам узел живёт в `<mask>`, под маской — прямоугольники базы и волны.
+// Маска альфа-канальная, поэтому цвет иконки не важен — лишь бы он не был прозрачным.
+.leadIcon {
+  @include lead-box;
+  @include wave-motion;
+
+  overflow: hidden;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.leadMask {
+  mask-type: alpha;
+}
+
+.leadBase {
+  fill: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.leadWave {
+  transform: translateX(#{$wave-x});
+  width: $wave-width;
+}
+
+// Хвостовой слот — сосед текста, не потомок: внутри `.text` он получил бы вторую
+// полупрозрачную базу и вышел бы темнее подписи. Свой бокс — своя поправка на отступ.
+.slot {
+  @include wave-paint(base.$sn-theme-color-available-version-textTertiary);
+
+  flex-shrink: 0;
+  color: transparent;
+  background-position:
+    calc(#{$wave-x} - var(--ai-shimmer-slot-offset, 0px)) 0,
+    0 0;
+  background-clip: text;
+}
+
+// С иконкой или слотом строка — плоский flex-ряд: иначе слот переносится на вторую строку.
+.root[data-has-icon],
+.root[data-has-slot] {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+
+  .text {
+    display: flex;
+    align-items: center;
+
+    width: auto;
+    max-width: 100%;
+
+    overflow-wrap: normal;
+    white-space: nowrap;
   }
 }
 
-@keyframes shimmer-text-move {
+@keyframes ai-shimmer-wave {
   0% {
-    background-position:
-      $spread-start-left 0,
-      0 0;
-    background-size:
-      $spread-width var(--ai-shimmer-spread-start-height),
-      100% 100%;
+    --ai-shimmer-progress: -0.75;
   }
 
-  50% {
-    background-position:
-      $spread-end-left 0,
-      0 0;
-    background-size:
-      $spread-width var(--ai-shimmer-spread-end-height),
-      100% 100%;
-  }
-
+  60%,
   100% {
-    background-position:
-      $spread-end-left 0,
-      0 0;
-    background-size:
-      $spread-width var(--ai-shimmer-spread-end-height),
-      100% 100%;
+    --ai-shimmer-progress: 0.25;
   }
 }
 
-@keyframes shimmer-line-move {
-  0% {
-    --ai-shimmer-x: #{$spread-start-left};
+// Гасим движение по WCAG 2.3.3: волна снимается, остаётся ровная заливка базой.
+@media (prefers-reduced-motion: reduce) {
+  .text,
+  .lead,
+  .leadIcon,
+  .slot {
+    animation: none;
   }
 
-  50%,
-  100% {
-    --ai-shimmer-x: calc(var(--ai-shimmer-line-width, #{$default-line-width}) + 124px);
+  .text,
+  .lead {
+    background-image: linear-gradient(
+      base.$sn-theme-color-available-version-textSecondary,
+      base.$sn-theme-color-available-version-textSecondary
+    );
+  }
+
+  .slot {
+    background-image: linear-gradient(
+      base.$sn-theme-color-available-version-textTertiary,
+      base.$sn-theme-color-available-version-textTertiary
+    );
+  }
+
+  .leadWave {
+    display: none;
+  }
+}
+
+// В режиме высокой контрастности `color: transparent` спрятал бы текст целиком.
+@media (forced-colors: active) {
+  .text,
+  .slot {
+    color: CanvasText;
+    background-image: none;
+    animation: none;
+  }
+
+  .lead {
+    background-color: CanvasText;
+    background-image: none;
+    animation: none;
+  }
+
+  .leadIcon {
+    animation: none;
+  }
+
+  .leadBase {
+    fill: CanvasText;
+  }
+
+  .leadWave {
+    display: none;
   }
 }

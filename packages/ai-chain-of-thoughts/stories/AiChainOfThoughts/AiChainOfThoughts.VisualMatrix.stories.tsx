@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { StoryTable } from '#storybook/components';
 
 import styles from '../styles.module.scss';
-import { CHAIN_DURATION, chainContentPreset } from './presets';
+import { CHAIN_DURATION, chainContentPreset, HEADLINE_ICON_CASES } from './presets';
 
 const meta: Meta<typeof AiChainOfThoughts> = {
   title: 'AI/AiChainOfThoughts/AiChainOfThoughts',
@@ -34,6 +34,21 @@ export const VisualMatrix: Story = {
           cells: [false, true].map(open => (
             <div key={String(open)} className={styles.cell}>
               <AiChainOfThoughts inProgress={inProgress} duration={CHAIN_DURATION} defaultOpen={open}>
+                {chainContentPreset}
+              </AiChainOfThoughts>
+            </div>
+          )),
+        }))}
+      />
+      <StoryTable
+        sectionTitle='Shimmer × Icon'
+        firstColumnHeader='Shimmer'
+        columnHeaders={HEADLINE_ICON_CASES.map(({ label }) => label)}
+        rows={[true, false].map(shimmer => ({
+          variantLabel: String(shimmer),
+          cells: HEADLINE_ICON_CASES.map(({ label, icon }) => (
+            <div key={label} className={styles.cell}>
+              <AiChainOfThoughts duration={CHAIN_DURATION} shimmer={shimmer} icon={icon}>
                 {chainContentPreset}
               </AiChainOfThoughts>
             </div>

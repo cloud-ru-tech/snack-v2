@@ -38,7 +38,12 @@
       "duration": {
         "type": "number",
         "required": false,
-        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с. Скрыта в\nсостоянии `broken`."
+        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка слева от подписи в активном состоянии. По умолчанию — GigaChat, `null` скрывает.\nОжидается SVG-иконка: из `@ds/icons`, `AiIconGiga` или `Sun`; при включённом `shimmer`\nона заливается волной вместе с подписью."
       },
       "inProgress": {
         "type": "boolean",
@@ -60,6 +65,12 @@
         "type": "boolean",
         "required": false,
         "description": "Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`."
+      },
+      "shimmer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Shimmer на подписи «Размышляю» в активном состоянии. По умолчанию `true`."
       }
     },
     "relatedTypes": {}
@@ -98,7 +109,12 @@
       "duration": {
         "type": "number",
         "required": false,
-        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с (ведущие\nнулевые единицы опускаются, секунды показываются всегда). Скрыта в\nсостоянии `broken`."
+        "description": "Длительность рассуждения в секундах. Форматируется в д/ч/м/с (ведущие\nнулевые единицы опускаются, секунды показываются всегда)."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка слева от подписи в активном состоянии. По умолчанию — GigaChat, `null` скрывает.\nОжидается SVG-иконка: из `@ds/icons`, `AiIconGiga` или `Sun`; при включённом `shimmer`\nона заливается волной вместе с подписью."
       },
       "inProgress": {
         "type": "boolean",
@@ -121,8 +137,28 @@
         "required": false,
         "defaultValue": "false",
         "description": "Раскрытое состояние — задаёт направление chevron'а. По умолчанию `false`."
+      },
+      "shimmer": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Shimmer на подписи «Размышляю» в активном состоянии. По умолчанию `true`."
       }
     },
+    "relatedTypes": {}
+  },
+  "HEADLINE_ICON_SIZE": {
+    "displayName": "HEADLINE_ICON_SIZE",
+    "propsTypeName": null,
+    "description": "Размер иконки заголовка в px — тот же бокс, что у ведущей иконки `AiShimmer`.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "resolveHeadlineIcon": {
+    "displayName": "resolveHeadlineIcon",
+    "propsTypeName": null,
+    "description": "Иконка слева от подписи: в неактивном состоянии её нет, `undefined` даёт GigaChat\nпо умолчанию, любой узел подставляется как есть, `null` скрывает слот.",
+    "props": {},
     "relatedTypes": {}
   }
 }

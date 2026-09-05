@@ -4,7 +4,7 @@ import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import { CHAIN_DURATION } from '../AiChainOfThoughts/presets';
+import { CHAIN_DURATION, HEADLINE_ICON_PRESETS } from '../AiChainOfThoughts/presets';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof AiChainOfThoughtsHeadline> = {
@@ -17,11 +17,17 @@ const meta: Meta<typeof AiChainOfThoughtsHeadline> = {
     duration: CHAIN_DURATION,
     collapsible: true,
     open: false,
+    shimmer: true,
     onOpenChange: fn(),
     'data-test-id': TEST_IDS.headline,
   },
   argTypes: {
     onOpenChange: { table: { disable: true } },
+    icon: {
+      control: 'select',
+      options: Object.keys(HEADLINE_ICON_PRESETS),
+      mapping: HEADLINE_ICON_PRESETS,
+    },
     label: { control: 'text' },
     brokenMessage: { control: 'text' },
   },
@@ -30,7 +36,8 @@ const meta: Meta<typeof AiChainOfThoughtsHeadline> = {
       <DemoPanel width='narrow'>
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>
-          Заголовок цепочки рассуждений: иконка GigaChat, подпись «Размышляю» / «Размышлял», длительность и chevron.
+          Заголовок цепочки рассуждений: иконка GigaChat (или `icon`), подпись «Размышляю» / «Размышлял» с
+          опциональным shimmer, длительность и chevron.
         </DemoHint>
         <DemoActions block>
           <AiChainOfThoughtsHeadline {...args} />

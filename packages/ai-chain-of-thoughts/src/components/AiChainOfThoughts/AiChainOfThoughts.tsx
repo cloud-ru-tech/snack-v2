@@ -13,6 +13,8 @@ export function AiChainOfThoughts({
   broken = false,
   duration,
   label,
+  icon,
+  shimmer = true,
   brokenMessage,
   open: openProp,
   defaultOpen = false,
@@ -39,6 +41,8 @@ export function AiChainOfThoughts({
         broken={broken}
         duration={duration}
         label={label}
+        icon={icon}
+        shimmer={shimmer}
         brokenMessage={brokenMessage}
         collapsible={hasContent}
         open={Boolean(open)}

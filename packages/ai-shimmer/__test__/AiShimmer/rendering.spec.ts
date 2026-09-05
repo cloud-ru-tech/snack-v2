@@ -28,10 +28,16 @@ test.describe('AiShimmer — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-weight', 'thin');
   });
 
+  test('icon node renders as the wave mask', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ icon: 'giga' }));
+    await expect(getByTestId(TEST_IDS.icon)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-has-icon', 'true');
+  });
+
   test('shimmer effect is applied', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
 
-    const backgroundClip = await getByTestId(TEST_IDS.spread).evaluate(
+    const backgroundClip = await getByTestId(TEST_IDS.text).evaluate(
       element => window.getComputedStyle(element).backgroundClip,
     );
 

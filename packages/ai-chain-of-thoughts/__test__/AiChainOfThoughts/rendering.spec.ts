@@ -3,11 +3,15 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { buildStoryOptions, TEST_IDS } from './helpers';
 
 test.describe('AiChainOfThoughts — rendering', () => {
-  test('renders headline with shimmer label, duration and chevron', async ({ gotoStory, getByTestId }) => {
+  test('renders headline with integrated shimmer label, duration and chevron', async ({
+    gotoStory,
+    getByTestId,
+  }) => {
     await gotoStory(buildStoryOptions({ defaultOpen: false }));
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headline)).toBeVisible();
-    // В активном рассуждении иконка giga живёт внутри shimmer-подписи (без отдельного test-id).
+    // Иконка по умолчанию живёт внутри маски AiShimmer: в DOM есть, отдельным боксом не видна.
+    await expect(getByTestId(TEST_IDS.headlineIcon)).toHaveCount(1);
     await expect(getByTestId(TEST_IDS.headlineLabel)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineDuration)).toBeVisible();
     await expect(getByTestId(TEST_IDS.headlineChevron)).toBeVisible();
