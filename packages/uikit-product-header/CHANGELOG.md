@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.3 (2026-09-05)
+
+### Bug Fixes
+
+- **FF-8974:** cards group title skeleton size ([135daa5](https://github.com/cloud-ru-tech/snack-v2/commit/135daa5eac721af7cda5f79578507d27bc76e65d))
+- **FF-8974:** skeleton for segment, visible subCategory actions on mobile and proper size, disable subCategory expand when clicked on title ([60e0b1a](https://github.com/cloud-ru-tech/snack-v2/commit/60e0b1a3dd9569b206fc5aca781d0a75f2b2ef52))
+
 ## 1.3.2 (2026-09-03)
 
 **Note:** Version bump only for package @ds/uikit-product-header
