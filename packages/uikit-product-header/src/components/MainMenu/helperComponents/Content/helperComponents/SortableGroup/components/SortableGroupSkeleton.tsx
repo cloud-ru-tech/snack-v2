@@ -11,7 +11,7 @@ export function SortableGroupSkeleton({ isMobile }: SortableGroupSkeletonProps) 
     <div className={styles.group}>
       <SkeletonContext.Provider value={true}>
         <div className={styles.skeletonTitle}>
-          <SkeletonText lines={1} width={isMobile ? '50%' : '30%'} />
+          <SkeletonText variant='title' size='m' lines={1} width={isMobile ? '50%' : '30%'} />
         </div>
         <div className={styles.skeletonBody}>
           <div className={styles.groupBody} data-mobile={isMobile || undefined}>
