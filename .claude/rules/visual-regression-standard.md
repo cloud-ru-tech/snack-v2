@@ -124,6 +124,50 @@ await assertInteractionStatesSnapshot(page, {
 
 Не собирай `default + hover + focus` вручную из трёх отдельных `expect(...).toHaveScreenshot(...)` — используй утилиту.
 
+## Ожидание покоя — `waitForStableRender` и бесконечные анимации
+
+`waitForStableRender` ждёт, пока поддерево перестанет меняться: сигнатурой служит текст плюс `opacity`/`transform`/`visibility`/bbox каждого узла. Две вещи, которые надо знать:
+
+- **Узлы с бесконечной анимацией исключаются из сигнатуры вместе с поддеревом.** Skeleton-шиммер и SVG-спиннеры не останавливаются никогда, и без исключения сигнатура не стабилизируется в принципе. Исключать надо именно поддерево: анимация transform'а на корне спиннера двигает bbox его `circle`/`path`, хотя сами они не анимированы.
+- **Недостижение покоя — это падение, а не молчаливый выход по дедлайну.** Раньше функция просто возвращалась через `timeoutMs`, и потерянные секунды не были видны ни в отчёте, ни в логе: VM `ServerTable` выжигал ровно 15000мс на каждом прогоне (замерено: фаза `waitForStableRender` = 15035мс), а снимок всё равно снимался с произвольного кадра. Теперь бросается ошибка с подсказкой.
+
+Если новый спек падает на этой ошибке — источник изменений живой — например JS-таймер, меняющий содержимое. Варианты: сузить локатор до неподвижной части, заморозить время или признать ожидание неизбежным и оставить.
+
+## Сброс между состояниями — `remountStory`, не повторный `gotoStory`
+
+Composite-снимок нескольких состояний одной story (click-loop по триггерам VisualMatrix) **не** перезагружает story на каждой итерации. Повторный `gotoStory` на тот же URL — это полная загрузка документа (~2s на CI) ради того, чтобы обнулить `useState` в story-канвасе. Тот же сброс даёт фикстура `remountStory` через `forceRemount` preview-канала: React-корень пересоздаётся, state возвращается к начальному, ~12ms.
+
+```ts
+// ❌ Плохо — N полных загрузок страницы ради сброса состояния
+for (const state of STATES) {
+  await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
+  await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
+  await waitForFonts();
+  cells.push({ label: state, png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS) });
+}
+
+// ✅ Хорошо — одна загрузка, перемонтирование между состояниями
+await gotoStory(buildStoryOptions(undefined, STORIES.visualMatrix));
+await waitForFonts();
+
+for (const state of STATES) {
+  await remountStory();
+  await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
+  await waitForFonts();
+  cells.push({ label: state, png: await page.screenshot(SCREENSHOT_DEFAULT_OPTS) });
+}
+```
+
+Повторный `gotoStory` внутри цикла остаётся оправдан только когда меняется сама цель навигации — другая story или другие globals (`layoutType`).
+
+**Если ячейки различаются только пропсами — навигация не нужна вовсе.** Фикстура `setStoryArgs` меняет args уже загруженной story через preview-канал за единицы миллисекунд. Матрицы `Card` / `Attachment` / `AttachmentSquare` так ушли со 123 навигаций на 3 и с 157с на 16с. Грабли (слияние args, `default*`-пропы, состояние ввода) перечислены в [e2e-testing-standard.md](./e2e-testing-standard.md) §«Навигация — самый дорогой ресурс спека».
+
+## Composite: только визуально отличимые состояния
+
+`assertInteractionStatesSnapshot` принимает `states: Array<'default' | 'hover' | 'focus'>`. Состояние, которое у компонента физически не может отличаться от `default`, в composite не включается: у презентационного узла без `:focus`-стиля и без `tabIndex` ячейка `focus` — константный дубль, выглядящий как проверенный сигнал.
+
+Проверять так: если убрать состояние и baseline сузился ровно на ширину ячейки, а разницы в оставшихся нет — оно и не проверялось.
+
 ## Кадр снимка — bbox компонента, не `#storybook-root`
 
 Снимок должен содержать **только сам компонент + минимально необходимый контекст**. Лишний пустой viewport вокруг — шум: увеличивает PNG в килобайтах, размывает diff-сигнал, мешает code-review.

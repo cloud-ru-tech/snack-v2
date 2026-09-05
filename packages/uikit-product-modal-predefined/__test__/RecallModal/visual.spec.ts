@@ -15,11 +15,14 @@ test.describe('RecallModal — visual regression', () => {
     );
   });
 
-  test('states', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+  test('states', async ({ page, gotoStory, getByTestId, waitForFonts, remountStory }) => {
     const cells = [];
 
+    await gotoStory(buildStoryOptions(undefined, RECALL_MODAL_STORIES.visualMatrix));
+    await waitForFonts();
+
     for (const state of ['regular', 'confirmable', 'confirmableLong', 'loading']) {
-      await gotoStory(buildStoryOptions(undefined, RECALL_MODAL_STORIES.visualMatrix));
+      await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.recallModal)).toBeVisible();
       await waitForFonts();

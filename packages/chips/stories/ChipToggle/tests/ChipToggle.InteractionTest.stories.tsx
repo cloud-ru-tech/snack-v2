@@ -1,4 +1,4 @@
-import { ChipToggle, SIZE } from '@ds/chips';
+import { CHIP_TOGGLE_TEST_IDS, ChipToggle, SIZE } from '@ds/chips';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
@@ -45,7 +45,8 @@ export const InteractionTest: Story = {
     });
 
     await step('keyboard: Space calls onChange again', async () => {
-      root.focus();
+      // Корень — `<label>`, он не фокусируем; клавиатурный шаг адресует сам `<input>`.
+      canvas.getByTestId(CHIP_TOGGLE_TEST_IDS.input).focus();
       await userEvent.keyboard(' ');
       expect(args.onChange).toHaveBeenCalledTimes(2);
     });

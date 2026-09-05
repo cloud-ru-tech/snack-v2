@@ -16,96 +16,65 @@ const KEY_COMBOS = [
 ] as const;
 
 test.describe('CollapseBlockPrimary — rendering', () => {
-  test.describe('render', () => {
-    test('renders with default props', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
+  test('render, props propagation and states', async ({ gotoStory, getByTestId, page, setStoryArgs }) => {
+    await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
-      await expect(getByTestId(TEST_IDS.collapseBlock)).toBeVisible();
+    const root = getByTestId(TEST_IDS.collapseBlock);
+
+    await test.step('render: default props', async () => {
+      await expect(root).toBeVisible();
       await expect(getByTestId(TEST_IDS.title)).toBeVisible();
+      await expect(getByTestId(TEST_IDS.chevron)).toBeVisible();
+      await expect(root).toHaveAttribute('data-component', 'accordionPrimary');
+      await expect(root).toHaveAttribute('data-expanded', 'false');
     });
 
-    test('renders title text', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, title: 'Custom title' }));
-
+    await test.step('render: title text', async () => {
+      await setStoryArgs({ title: 'Custom title' });
       await expect(getByTestId(TEST_IDS.title)).toContainText('Custom title');
     });
 
-    test('hides title when title is not provided', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, title: '' }));
+    await test.step('render: block without title when title is empty', async () => {
+      await setStoryArgs({ title: '' });
       await expect(getByTestId(TEST_IDS.title)).toHaveCount(0);
+      await expect(root).toBeVisible();
     });
 
-    test('renders block without title', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, title: '' }));
-      await expect(getByTestId(TEST_IDS.collapseBlock)).toBeVisible();
-    });
-
-    test('renders subTitle when provided', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, subTitle: 'Custom subtitle' }));
-
+    await test.step('render: subTitle when provided', async () => {
+      await setStoryArgs({ title: undefined, subTitle: 'Custom subtitle' });
       await expect(getByTestId(TEST_IDS.subTitle)).toContainText('Custom subtitle');
     });
 
-    test('renders chevron by default', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
-
-      await expect(getByTestId(TEST_IDS.chevron)).toBeVisible();
-    });
-
-    test('hides chevron when showChevron=false', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, showChevron: false }));
-
+    await test.step('render: hides chevron when showChevron=false', async () => {
+      await setStoryArgs({ subTitle: undefined, showChevron: false });
       await expect(getByTestId(TEST_IDS.chevron)).toHaveCount(0);
     });
 
-    test('renders afterTitle slot when enabled', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ showAfterTitleSlot: true }));
-
+    await test.step('render: afterTitle slot toggles with showAfterTitleSlot', async () => {
+      await setStoryArgs({ showChevron: undefined, showAfterTitleSlot: true });
       await expect(getByTestId(TEST_IDS.afterTitle)).toBeVisible();
-    });
 
-    test('hides afterTitle slot when disabled', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ showAfterTitleSlot: false }));
-
+      await setStoryArgs({ showAfterTitleSlot: false });
       await expect(getByTestId(TEST_IDS.afterTitle)).toHaveCount(0);
     });
 
-    test('content is hidden in DOM by default (keepMounted=false)', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, keepMounted: false }));
-
+    await test.step('render: content mounts only with keepMounted=true', async () => {
+      await setStoryArgs({ showAfterTitleSlot: undefined, keepMounted: false });
       await expect(getByTestId(TEST_IDS.content)).toHaveCount(0);
-    });
 
-    test('content is mounted when keepMounted=true', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(
-        buildStoryOptions({
-          ...PLAYGROUND_DEFAULT_ARGS,
-          keepMounted: true,
-          children: 'Hello content',
-        }),
-      );
-
+      await setStoryArgs({ keepMounted: true, children: 'Hello content' });
       await expect(getByTestId(TEST_IDS.content)).toContainText('Hello content');
     });
-  });
 
-  test.describe('props propagation', () => {
+    await test.step('render: applies custom className', async () => {
+      await setStoryArgs({ keepMounted: undefined, children: undefined, className: 'custom-collapse' });
+      await expect(root).toHaveClass(/custom-collapse/);
+    });
+
     for (const { view, fill, chevronPosition } of KEY_COMBOS) {
-      test(`view=${view} + backgroundPredefined=${fill} + chevronPosition=${chevronPosition}`, async ({
-        gotoStory,
-        getByTestId,
-        page,
-      }) => {
-        await gotoStory(
-          buildStoryOptions({
-            ...PLAYGROUND_DEFAULT_ARGS,
-            view,
-            backgroundPredefined: fill,
-            chevronPosition,
-          }),
-        );
+      await test.step(`props propagation: view=${view} + backgroundPredefined=${fill} + chevronPosition=${chevronPosition}`, async () => {
+        await setStoryArgs({ className: undefined, view, backgroundPredefined: fill, chevronPosition });
 
-        const root = getByTestId(TEST_IDS.collapseBlock);
         await expect(root).toHaveAttribute('data-view', view);
 
         const { appearance, level } = backgroundPredefinedFillToAcrylic(fill);
@@ -115,25 +84,5 @@ test.describe('CollapseBlockPrimary — rendering', () => {
         await expect(page.locator(`[data-chevron-position="${chevronPosition}"]`)).toBeVisible();
       });
     }
-
-    test('data-component=accordionPrimary', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
-
-      await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-component', 'accordionPrimary');
-    });
-
-    test('applies custom className', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, className: 'custom-collapse' }));
-
-      await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveClass(/custom-collapse/);
-    });
-  });
-
-  test.describe('states', () => {
-    test('collapsed by default — data-expanded=false', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
-
-      await expect(getByTestId(TEST_IDS.collapseBlock)).toHaveAttribute('data-expanded', 'false');
-    });
   });
 });

@@ -11,7 +11,8 @@
 | Слой | Что проверяет | Где живёт | Что НЕ делает |
 |------|---------------|-----------|----------------|
 | **Storybook play** (`stories/<Name>/tests/*.stories.tsx`) | Behavioral: click, keyboard, focus, controlled-state, callback assertions, ARIA-state-after-action | `play: async ({ args, canvasElement, step }) => …` | Не делает screenshot, не запрашивает viewport-resize, не тестирует drag&drop с real DataTransfer |
-| **Storybook Test Runner** (`pnpm test:stories`) | Что все play-функции выполняются без exception/assertion-fail | CI-команда, уже подключена в `apps/storybook/package.json` и входит в `pnpm test` | Это просто запуск play-функций в headless Chrome через Playwright. Ничего нового не пишется. |
+| **Storybook Test Runner** (`pnpm test:stories`) | Что все play-функции выполняются без exception/assertion-fail | CI-команда, уже подключена в `apps/storybook/package.json` и входит в `pnpm test` | Это просто запуск play-функций в браузере через vitest. Ничего нового не пишется. |
+| **Coverage-харвестер** (`playwright/coverage/play-functions.spec.ts`, джоба `test-harvester`) | Что каждая story дорендеривается до фазы `finished`; попутно снимает V8-coverage | Один playwright-тест на story | Не проверяет содержимое — только что рендер и play не свалились. Ассерт по фазе тут обязателен: без него джоба была декоративной и зеленела на сломанных play. |
 | **Playwright `rendering.spec.ts`** | Smoke-render + props propagation в `data-*` для **ключевых** значений осей (не всех) | `gotoStory(buildStoryOptions({ axis: keyValue }))` + `toHaveAttribute('data-axis', value)` | Не итерирует все enum-values (это работа VisualMatrix-скриншота) |
 | **Playwright `interaction.spec.ts`** | **Только то, что Storybook play не может**: real DnD с `DataTransfer`, file upload через `<input type="file">`, viewport resize, scroll containment / body scroll lock, theme switching внутри портала, multi-frame, browser-specific quirks | Узкие специфические тесты | Не дублирует click/keyboard, которые уже в play |
 | **Playwright `keyboard.spec.ts`** | Только сложная keyboard navigation: focus-trap внутри портала, Arrow / Home / End nav через несколько элементов с roving tabindex, Escape closes layered portals | Минимум | Не повторяет «Enter triggers click on focused button» — это в play |
@@ -20,9 +21,9 @@
 
 ### CI gate для play-функций
 
-`pnpm test:stories` запускает все play-функции через `@storybook/test-runner`. Это **обязательный CI-шаг** (часть `pnpm test`). Если в `tests/<Name>.InteractionTest.stories.tsx::play` падает assertion — pipeline красный. Это значит:
+`pnpm test:stories` запускает все play-функции через **`@storybook/addon-vitest`** (vitest в browser mode на настоящем Chromium), а не через `@storybook/test-runner` — последний из проекта убран, и jest-флаг `-t` здесь работает иначе. Если в `tests/<Name>.InteractionTest.stories.tsx::play` падает assertion — pipeline красный. Это значит:
 
-- Не нужно дублировать behavioral checks в Playwright — они уже бегут в test-runner'е.
+- Не нужно дублировать behavioral checks в Playwright — они уже бегут в этом прогоне.
 - Перед миграцией пакета **обязательно** локально прогнать `pnpm test:stories` и убедиться, что fail-репорт читаем и play-функция реально валидирует поведение.
 
 ## Принцип минимальной достаточности
@@ -156,7 +157,7 @@ for (const size of Object.values(SIZE)) {
 Только если у компонента есть `as` prop и нужно проверить runtime-behavior, который браузер ставит сам, а jsdom — нет:
 
 1. `href` пробрасывается на anchor через spread props.
-2. `target='_blank'` инжектит `rel='noopener noreferrer'` (браузерная санитация, не наш код).
+2. `target='_blank'` проставляет `rel='noopener noreferrer'` (браузерная санитация, не наш код).
 3. Native `<button disabled>` не получает click; anchor с `aria-disabled='true'` — получает. Проверка через `toHaveAttribute('aria-disabled', 'true')` + `await locator.click()` без assertion'а на onClick (его контроль — в play).
 4. Прочие intrinsic-атрибуты, которые ставятся только при реальном рендере анкора/инпута.
 
@@ -177,6 +178,61 @@ for (const size of Object.values(SIZE)) {
 | M  | 4 (+ pressed) |
 | L  | 4–5 (+ portal-open) |
 | XL | 5–8 (+ scenario before/after) |
+
+## Навигация — самый дорогой ресурс спека
+
+Замерено на CI (медианы по 1793 тестам, два прогона): тесты с одним, двумя и тремя вызовами `gotoStory` дают **1.45с / 2.70с / 3.50с**. То есть одна навигация стоит **≈1.25с**, а фикстурный оверхед теста — ≈0.2с. У типичного `rendering.spec` теста ~86% времени уходит на загрузку документа, а не на ассерты.
+
+Отсюда правило: **нормируется число навигаций, а не число `test(...)`**. Ориентиры по tier'ам выше считают тесты, но если десять тестов ходят на одну и ту же story ради десяти `toHaveAttribute`, это десять полных загрузок — и tier тут ни при чём.
+
+### Один `test()` со `step()` вместо N тестов на одну story
+
+Когда несколько проверок отличаются только пропсами одного инстанса, они собираются в один тест: одна навигация, дальше args переключаются фикстурой `setStoryArgs` через preview-канал (единицы миллисекунд против ~1.25с).
+
+```ts
+// ❌ Плохо — 3 полные загрузки ради трёх атрибутов
+test('size=s', async ({ gotoStory, getByTestId }) => {
+  await gotoStory(buildStoryOptions({ size: 's' }));
+  await expect(getByTestId(ROOT)).toHaveAttribute('data-size', 's');
+});
+// …ещё два таких же
+
+// ✅ Хорошо — одна загрузка
+test('props propagation', async ({ gotoStory, getByTestId, setStoryArgs }) => {
+  await gotoStory(buildStoryOptions());
+  const root = getByTestId(ROOT);
+
+  for (const size of KEY_SIZES) {
+    await test.step(`size=${size}`, async () => {
+      await setStoryArgs({ size });
+      await expect(root).toHaveAttribute('data-size', size);
+    });
+  }
+});
+```
+
+### Три грабли, на которых это ломается
+
+1. **Стор args мержится, а не заменяется.** Проп, выставленный в предыдущем шаге, сохранится в следующем. Сбрасывается явным `undefined`: `setStoryArgs({ error: undefined })`.
+2. **`default*`-пропы читаются только на маунте.** `defaultChecked`, `defaultValue` и подобные сменой args не поднимаются — после них нужен `remountStory()` (~12мс).
+3. **Состояние ввода переживает ре-рендер.** Фокус и позиция курсора не сбрасываются, а Chrome ещё и запоминает точку старта последовательной навигации — после этого `Tab` уходит на элемент *после* целевого, а не на него. Перед шагом, выставляющим hover/focus, состояние сбрасывается явно:
+   ```ts
+   await page.evaluate(() => {
+     (document.activeElement as HTMLElement | null)?.blur();
+     document.body.setAttribute('tabindex', '-1');
+     document.body.focus();
+     document.body.removeAttribute('tabindex');
+   });
+   await page.mouse.move(0, 0);
+   ```
+
+### Когда слияние НЕ делается
+
+- Тесты ходят на **разные** story, с разными URL-args, влияющими на маунт, или с разными globals (`layoutType`) — цель навигации разная, экономить нечего.
+- Проверяется поведение, требующее чистого документа (scroll lock, focus-trap после перезагрузки).
+- Тест интеракционный и мутирует состояние так, что следующий шаг зависит от порядка — здесь `remountStory()` между шагами обязателен, и если он нужен на каждом шаге, выигрыш съедается.
+
+Цена слияния — гранулярность отчёта: падает не «size=l», а весь `props propagation`, и ретрай повторяет цепочку целиком. Имя `step` Playwright печатает в сообщении об ошибке и рисует в трейсе, так что диагностика деградирует, но не исчезает.
 
 ## Запрещённые паттерны
 

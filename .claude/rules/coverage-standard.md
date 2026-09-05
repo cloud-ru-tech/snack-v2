@@ -27,7 +27,7 @@ Coverage снимается **рантаймом** (V8/CDP через Playwright
 бандла. Storybook собирается чистым **с sourcemaps** (`build.sourcemap: true` в
 `apps/storybook/.storybook/main.ts`); фикстура `collectCoverage`
 (`playwright/fixtures.ts`) вызывает `page.coverage.startJSCoverage` /
-`stopJSCoverage`, конвертит V8-формат в istanbul через `v8-to-istanbul` по
+`stopJSCoverage`, преобразует V8-формат в istanbul через `v8-to-istanbul` по
 sourcemaps и пишет в `coverage/raw/playwright/`. Один и тот же чистый билд идёт
 и в деплой, и в тесты — на MR и на master одинаково (никакого `INSTRUMENT`).
 
@@ -178,7 +178,7 @@ pnpm exec tsx scripts/coverage-prefetch-stories.mts
 
 Дефолт `coverage-pkg.mts` — **workers=3** на локале, **`getWorkers()`** на CI. **Не** переопределяй на локали через `--workers=8` без warm-up'а Storybook.
 
-Warm-up: один последовательный прогон harvester'а с `--workers=1` после рестарта Storybook компилит все story в Vite-кеш. Дальше можно гонять с `workers=8` по уже прогретому кешу.
+Warm-up: один последовательный прогон harvester'а с `--workers=1` после рестарта Storybook компилит все story в Vite-кеш. Дальше можно гонять с `workers=8` по уже заполненному кешу.
 
 ## Чек-лист перед PR (для нового/изменённого пакета)
 

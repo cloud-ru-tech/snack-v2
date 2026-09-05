@@ -238,7 +238,7 @@ Stories из подпапок (`examples/`, `tests/`) импортируют tes
 - Единственный экспорт — `export const TEST_IDS = { ... } as const`. Не заводить набор отдельных `<NAME>_TEST_ID` const'ов.
 - Если у компонента есть только один публичный id (root) — это `TEST_IDS.root` (single-component) или `TEST_IDS.<componentName>.root` (multi).
 - Значения id — kebab-case строки (как в DOM), ключи — camelCase.
-- E2E `__test__/<Component>/helpers.ts` импортирует **`TEST_IDS` из stories** — `from '../../stories/testIds'` или соответствующего подпути. Не из entry `@ds/<pkg>` (entry подтягивает CSS-модули, что несовместимо с playwright-compile). Если пакет публикует `TEST_IDS` из `src/constants.ts` (когда компонент сам ставит id на свои слоты — см. ниже про component-level TEST_IDS), helpers тоже могут импортить оттуда `from '../../src/constants'`.
+- E2E `__test__/<Component>/helpers.ts` импортирует **`TEST_IDS` из stories** — `from '../../stories/testIds'` или соответствующего подпути. Не из entry `@ds/<pkg>` (entry тянет за собой CSS-модули, что несовместимо с playwright-compile). Если пакет публикует `TEST_IDS` из `src/constants.ts` (когда компонент сам ставит id на свои слоты — см. ниже про component-level TEST_IDS), helpers тоже могут импортить оттуда `from '../../src/constants'`.
 - Id, который используется в **одной** story (и нигде больше) и не присутствует в `TEST_IDS` — можно оставить инлайн. Переносим только повторяющиеся.
 
 При миграции пакета с отдельных `<NAME>_TEST_ID` const'ов на единый `TEST_IDS` — переписать все упоминания в specs сразу (sed-replace, ~10 минут на пакет). Не оставлять legacy-aliases в helpers как «переходный мост» — это удваивает поверхность и снова возвращает россыпь отдельных констант.

@@ -11,7 +11,9 @@ export function getEnvironmentDependentConfigPart({ outputDir }: { outputDir: st
   if (IS_CI) {
     return {
       forbidOnly: true,
-      retries: 3,
+      // Третий ретрай держит воркер ещё один полный таймаут теста, почти не добавляя
+      // шансов на зелёный прогон.
+      retries: 2,
       workers: getWorkers(),
       reporter: [['list'], ['blob', { outputDir: resolve(outputDir, 'reports/blob') }], junitReporter],
     };

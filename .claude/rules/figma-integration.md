@@ -112,7 +112,7 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 
 ## Storybook Figma-аддон
 
-Панель «Figma» в Storybook автоматически подтягивает узел из `FIGMA_NODES` по имени пакета из story `title`. Логика резолвера — общая с docs (`figmaNode`).
+Панель «Figma» в Storybook автоматически загружает узел из `FIGMA_NODES` по имени пакета из story `title`. Логика резолвера — общая с docs (`figmaNode`).
 
 Скрыть панель на конкретной story/meta (например, для приватных пакетов или story без визуального дизайна):
 

@@ -35,7 +35,9 @@ export default defineConfig({
     baseURL: UIKIT_URL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    // Не `retain-on-failure`: тот пишет видео для каждого теста и удаляет на успехе.
+    // Ретраи включены, поэтому видео упавшего теста снимется на первом же повторе.
+    video: 'on-first-retry',
     testIdAttribute: TEST_ID_ATTRIBUTE,
     actionTimeout: 10000,
     navigationTimeout: 20000,

@@ -19,11 +19,12 @@ test.describe('AiToolBadge — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('interaction states (default × hover × focus)', async ({ page, gotoStory, waitForFonts }) => {
+  test('interaction states (default × hover)', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions());
     await waitForFonts();
     const target = page.getByTestId(TEST_IDS.root);
     await expect(target).toBeVisible();
-    await assertInteractionStatesSnapshot(page, { target });
+    // Без `focus`: корень — `<span>` без tabIndex и без `:focus`-стиля, Tab до него не доходит.
+    await assertInteractionStatesSnapshot(page, { target, states: ['default', 'hover'] });
   });
 });

@@ -44,9 +44,8 @@ test.describe('Card — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('interaction states (figma matrix)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
-    // 54 ячейки = 54 gotoStory; дефолтных 30s не хватает даже на тёплом Storybook-кеше.
-    test.setTimeout(300_000);
+  test('interaction states (figma matrix)', async ({ page, gotoStory, getByTestId, waitForFonts, setStoryArgs }) => {
+    test.slow();
 
     const cells: ScreenshotCell[] = [];
     const groupSpacer = await sharp({
@@ -54,6 +53,19 @@ test.describe('Card — visual regression', () => {
     })
       .png()
       .toBuffer();
+
+    await gotoStory(
+      buildStoryOptions({
+        radius: RADII[0],
+        view: VIEWS[0],
+        interactive: true,
+        style: { width: `${CELL_WIDTH}px` },
+      }),
+    );
+    await waitForFonts();
+
+    const card = getByTestId(CARD_TEST_ID);
+    await card.waitFor({ state: 'visible' });
 
     let firstGroup = true;
     for (const radius of RADII) {
@@ -63,23 +75,25 @@ test.describe('Card — visual regression', () => {
       firstGroup = false;
       for (const row of ROW_STATES) {
         for (const view of VIEWS) {
-          await gotoStory(
-            buildStoryOptions({
-              radius,
-              view,
-              disabled: row.disabled,
-              checked: row.checked,
-              multiSelect: row.checked,
-              interactive: true,
-              style: { width: `${CELL_WIDTH}px` },
-            }),
-          );
-          await waitForFonts();
+          // Фокус и курсор переживают смену args. Одного `blur()` мало: Chrome хранит точку
+          // старта последовательной навигации, и `Tab` уводит фокус за карточку.
+          await page.evaluate(() => {
+            (document.activeElement as HTMLElement | null)?.blur();
+            document.body.setAttribute('tabindex', '-1');
+            document.body.focus();
+            document.body.removeAttribute('tabindex');
+          });
+          await page.mouse.move(0, 0);
 
-          const card = getByTestId(CARD_TEST_ID);
+          await setStoryArgs({
+            radius,
+            view,
+            disabled: row.disabled,
+            checked: row.checked,
+            multiSelect: row.checked,
+          });
           await card.waitFor({ state: 'visible' });
 
-          await page.mouse.move(0, 0);
           if (row.hover) {
             await card.hover();
           }

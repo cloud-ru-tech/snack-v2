@@ -6,7 +6,16 @@ import v8toIstanbul from 'v8-to-istanbul';
 import { expect as playwrightExpect, Locator, test as base } from '@playwright/test';
 
 import { FIXED_TEST_TIME } from './constants/common';
-import { dataTestIdSelector, getStorybookUrl, getStorybookUrlById, StorybookUrlOptions, waitForFonts } from './utils';
+import {
+  dataTestIdSelector,
+  getStorybookUrl,
+  getStorybookUrlById,
+  remountStory,
+  setStoryArgs,
+  StorybookUrlOptions,
+  trackPendingRequests,
+  waitForFonts,
+} from './utils';
 
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
 /** Сколько раз пытаемся доставить URL-args в стори через канал preview (см. gotoStory). */
@@ -48,6 +57,13 @@ type PlaywrightFixtures = {
   getByTestId(testId: string): Locator;
   /** Fixture-форма `waitForFonts` — без аргумента, использует `page` из контекста. См. `visual-regression-standard.md`. */
   waitForFonts(): Promise<void>;
+  /** Сбрасывает story к начальному состоянию без перезагрузки документа. См. `remountStory`. */
+  remountStory(): Promise<void>;
+  /**
+   * Меняет args текущей story через preview-канал, без перезагрузки документа. Внутреннее
+   * состояние компонента и состояние ввода при этом не сбрасываются — см. `setStoryArgs`.
+   */
+  setStoryArgs(args: Record<string, unknown>): Promise<void>;
   scrollBy(locator: Locator, options?: { top?: number; left?: number; behavior?: ScrollBehavior }): Promise<void>;
   getScrollTop(locator: Locator): Promise<number>;
   waitForNavigation(expectedPath: string, options?: { timeout?: number }): Promise<void>;
@@ -55,6 +71,7 @@ type PlaywrightFixtures = {
   collectCoverage: void;
   fixedClockEnabled: boolean;
   fixedClock: void;
+  trackRequests: void;
 };
 
 export const test = base.extend<PlaywrightFixtures>({
@@ -113,6 +130,15 @@ export const test = base.extend<PlaywrightFixtures>({
       if (Object.keys(merged).length > 0) {
         writeFileSync(resolve(COVERAGE_DIR, `${randomUUID()}.json`), JSON.stringify(merged));
       }
+    },
+    { auto: true },
+  ],
+  // Счётчик in-flight запросов для `waitForFonts`. Навешивается до первой навигации,
+  // иначе часть запросов пройдёт мимо него.
+  trackRequests: [
+    async ({ page }, customUse) => {
+      trackPendingRequests(page);
+      await customUse();
     },
     { auto: true },
   ],
@@ -291,6 +317,12 @@ export const test = base.extend<PlaywrightFixtures>({
   },
   waitForFonts: async ({ page }, customUse) => {
     await customUse(() => waitForFonts(page));
+  },
+  remountStory: async ({ page }, customUse) => {
+    await customUse(() => remountStory(page));
+  },
+  setStoryArgs: async ({ page }, customUse) => {
+    await customUse((args: Record<string, unknown>) => setStoryArgs(page, args));
   },
   // eslint-disable-next-line no-empty-pattern
   scrollBy: async ({}, customUse) => {

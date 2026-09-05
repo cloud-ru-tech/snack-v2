@@ -72,7 +72,7 @@ Visual snapshots делает [component-story-set](./component-story-set.md) (�
 
 5. **Создать `keyboard.spec.ts`** — один тест на каждый применимый пункт из закрытого списка kbd-сценариев. Tab/Enter/Space на одном focusable — это play, а не keyboard.spec.
 
-6. **Создать `polymorphism.spec.ts`** **только** если в API есть `as` prop. Проверяет runtime-атрибуты, которые ставит браузер: `href`, `target`, `rel=noopener noreferrer` (инжектится при `target=_blank`), `aria-disabled` на anchor'е (нативный `disabled` на `<a>` не работает).
+6. **Создать `polymorphism.spec.ts`** **только** если в API есть `as` prop. Проверяет runtime-атрибуты, которые ставит браузер: `href`, `target`, `rel=noopener noreferrer` (проставляется при `target=_blank`), `aria-disabled` на anchor'е (нативный `disabled` на `<a>` не работает).
 
 7. **Запуск** (из корня монорепо — селективные варианты в [fast-build-commands.md](../rules/fast-build-commands.md)):
    ```bash

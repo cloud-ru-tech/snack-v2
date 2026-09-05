@@ -31,13 +31,14 @@ test.describe('ReleaseNotes — visual regression', () => {
     );
   });
 
-  test('content states (desktop surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
-    // Пять перезагрузок story с ожиданием шрифтов и картинок: не укладывается в 30s.
-    test.slow();
+  test('content states (desktop surface)', async ({ page, gotoStory, getByTestId, waitForFonts, remountStory }) => {
     const cells = [];
 
+    await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix));
+    await waitForFonts();
+
     for (const state of ['data', 'one', 'noData', 'error', 'loading']) {
-      await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix));
+      await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();
       await waitForFonts();
@@ -51,12 +52,15 @@ test.describe('ReleaseNotes — visual regression', () => {
 
   // Mobile-поверхность (bottom sheet): форсим тулбар-глобалом `layoutType='mobile'` + mobile viewport.
   // Композит по всем состояниям контента — симметрично desktop-снимку `content-states.png`.
-  test('content states (mobile surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+  test('content states (mobile surface)', async ({ page, gotoStory, getByTestId, waitForFonts, remountStory }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     const cells = [];
 
+    await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix, { layoutType: 'mobile' }));
+    await waitForFonts();
+
     for (const state of ['data', 'one', 'noData', 'error', 'loading']) {
-      await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix, { layoutType: 'mobile' }));
+      await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();
       await waitForFonts();

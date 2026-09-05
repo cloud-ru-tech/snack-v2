@@ -4,7 +4,7 @@
 
 ## Принцип
 
-Адаптивность управляется **одним контекстом** (`AdaptiveProvider`), а не парными пакетами (`@snack-uikit/*` + `@cloud-ru/uikit-product-mobile-*`) и не пропом, прокинутым через дерево. Потребитель верстает под desktop, ставит **один `<AdaptiveProvider>` в корне** — mobile работает автоматически (desktop-first, см. ниже).
+Адаптивность управляется **одним контекстом** (`AdaptiveProvider`), а не парными пакетами (`@snack-uikit/*` + `@cloud-ru/uikit-product-mobile-*`) и не пропом, переданным через дерево. Потребитель верстает под desktop, ставит **один `<AdaptiveProvider>` в корне** — mobile работает автоматически (desktop-first, см. ниже).
 
 Публичный API адаптивного компонента **не различается** mobile/desktop: один компонент `X`, один тип `XProps`. Класс реализации (surface-swap / preset-defaults) — деталь внутреннего рендера, не часть контракта.
 
@@ -121,7 +121,7 @@ export function X({ collapsible, layoutPresets, ...props }: XProps) {
   - inline-renderable компонент (preset-класс): `layoutType` — **ось `StoryTable`** (desktop+mobile секции рядом, каждая в своём `AdaptiveProvider`) → один `visual-matrix.png` показывает разницу.
   - portal/overlay компонент (surface-swap): VM — desktop-ось; mobile-поверхность снимается отдельно в `visual.spec`.
 - **Visual baselines:** mobile-снимок требует (1) переключить toolbar-global `layoutType='mobile'` (в e2e — через URL-globals) + (2) `page.setViewportSize(MOBILE_VIEWPORT)` (`#playwright-tooling/constants/common`). Имена: portal → `open-desktop.png` + `open-mobile.png`; inline → общий `visual-matrix.png` с осью `layoutType`. Mobile-baseline = ground truth DS (Figma-parity тут не применим).
-- **Доки — секция `## Адаптивность`** (id `adaptive`): плашка-месседж (desktop-first), как форсить, таблица пресетов (preset-класс) либо таблица «проп → игнорируется на mobile/desktop» (surface-swap, синхронно с JSDoc-тегами), линк на центральную модель, `<StorybookEmbed>` адаптивной стори.
+- **Доки — секция `## Адаптивность`** (id `adaptive`): сообщение (desktop-first), как форсить, таблица пресетов (preset-класс) либо таблица «проп → игнорируется на mobile/desktop» (surface-swap, синхронно с JSDoc-тегами), линк на центральную модель, `<StorybookEmbed>` адаптивной стори.
 
 ## Запреты
 

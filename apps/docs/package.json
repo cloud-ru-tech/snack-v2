@@ -23,6 +23,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
+    "sass-embedded": "catalog:",
     "shiki": "catalog:"
   },
   "devDependencies": {

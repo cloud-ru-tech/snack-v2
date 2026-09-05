@@ -29,6 +29,10 @@ catalog:
   react-textarea-autosize: ^8.5.9
   react-transition-state: ^2.4.0
   sass: 1.102.0
+  # Нативный компилятор Sass. Без него vite при `api: 'modern-compiler'` молча
+  # откатывается на dart-sass, скомпилированный в JS, и 645 `.module.scss` собираются
+  # втрое дольше. Версия совпадает с `sass`.
+  sass-embedded: 1.102.0
   shiki: 4.3.1
   tabbable: ^6.5.0
   typescript: 5.9.3

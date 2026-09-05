@@ -44,7 +44,8 @@ if (!waitOnly) {
   }
 
   console.log(`[coverage-serve] starting http-server on :${PORT}`);
-  const server = spawn('pnpm', ['dlx', 'http-server', STATIC_DIR, '-p', String(PORT), '-s', '-c-1'], {
+  // `exec`, а не `dlx`: dlx идёт в реестр при каждом запуске, `exec` берёт локальную зависимость.
+  const server = spawn('pnpm', ['exec', 'http-server', STATIC_DIR, '-p', String(PORT), '-s', '-c-1'], {
     stdio: ['ignore', 'inherit', 'inherit'],
     detached: false,
   });

@@ -96,16 +96,20 @@ function categoryGroupingPlugin(): Plugin {
   return {
     name: 'ds-storybook-category-grouping',
     enforce: 'pre',
-    transform(code, id) {
-      if (!/\.stories\.tsx?$/.test(id)) return null;
-      let changed = false;
-      const out = code.replace(/title:\s*'([^']*\/[^']*)'/g, (full, title: string) => {
-        const r = regroupTitle(id, title);
-        if (!r) return full;
-        changed = true;
-        return `title: '${r.title}', id: '${r.id}'`;
-      });
-      return changed ? { code: out, map: null } : null;
+    // `filter` в объектной форме хука: rolldown отсеивает файлы у себя и не ходит через
+    // границу Rust↔JS на каждый модуль сборки ради одной регулярки.
+    transform: {
+      filter: { id: /\.stories\.tsx?$/ },
+      handler(code: string, id: string) {
+        let changed = false;
+        const out = code.replace(/title:\s*'([^']*\/[^']*)'/g, (full, title: string) => {
+          const r = regroupTitle(id, title);
+          if (!r) return full;
+          changed = true;
+          return `title: '${r.title}', id: '${r.id}'`;
+        });
+        return changed ? { code: out, map: null } : null;
+      },
     },
   };
 }
@@ -198,6 +202,13 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-vite',
     options: {},
+  },
+  core: {
+    // Анонимная статистика использования: на результат сборки не влияет, но в CI это
+    // внешний запрос прямо на пути сборки.
+    disableTelemetry: true,
+    // Баннер «что нового» — тоже сетевой запрос.
+    disableWhatsNewNotifications: true,
   },
   // Включает автогенерацию argTypes из TS-типов компонентов
   // (same wiring как у `pnpm gen:props` / `scripts/gen-props.mts`, который пишет

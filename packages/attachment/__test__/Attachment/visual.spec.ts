@@ -45,9 +45,11 @@ test.describe('Attachment — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('interaction states (figma matrix)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
-    // 30 ячеек = 30 навигаций; дефолтных 30s не хватает.
-    test.setTimeout(300_000);
+  test('interaction states (figma matrix)', async ({ page, gotoStory, getByTestId, waitForFonts, setStoryArgs }) => {
+    test.slow();
+
+    await gotoStory(buildStoryOptions({ size: SIZES[0], showClick: true }));
+    await waitForFonts();
 
     const cells: ScreenshotCell[] = [];
 
@@ -88,17 +90,17 @@ test.describe('Attachment — visual regression', () => {
             props.icon = 'default';
           } else {
             props.file = 'image';
+            props.icon = undefined;
           }
-          if (col === 'loading') props.loading = true;
-          if (row.error) props.error = ERROR_MESSAGE;
+          props.loading = col === 'loading' ? true : undefined;
+          props.error = row.error ? ERROR_MESSAGE : undefined;
 
-          await gotoStory(buildStoryOptions(props));
-          await waitForFonts();
+          await page.mouse.move(0, 0);
+          await setStoryArgs(props);
 
           const target = getByTestId(TEST_IDS.attachment.root);
           await target.waitFor({ state: 'visible' });
 
-          await page.mouse.move(0, 0);
           if (row.hover) await target.hover();
 
           const png = await screenshotWithPadding(page, target, CELL_PADDING, SCREENSHOT_DEFAULT_OPTS);

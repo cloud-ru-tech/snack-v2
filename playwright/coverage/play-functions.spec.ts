@@ -17,7 +17,7 @@ import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
 import { UIKIT_URL } from '../constants/common';
-import { test } from '../fixtures';
+import { expect, test } from '../fixtures';
 
 const BASE = UIKIT_URL.replace(/\/+$/, '');
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
@@ -57,7 +57,7 @@ test.describe.parallel('story coverage harvest', () => {
     test(`harvest ${story.id}`, async ({ page }) => {
       await page.goto(`${BASE}/iframe.html?id=${story.id}&viewMode=story`, { waitUntil: 'domcontentloaded' });
       // Ждём окончания play (phase=finished) или ошибки рендера (errored).
-      await page
+      const phase = await page
         .waitForFunction(
           () => {
             const api = (
@@ -67,13 +67,18 @@ test.describe.parallel('story coverage harvest', () => {
                 };
               }
             ).__STORYBOOK_PREVIEW__;
-            const phase = api?.currentRender?.phase ?? api?.currentRender?.state?.phase;
-            return phase === 'finished' || phase === 'errored';
+            const current = api?.currentRender?.phase ?? api?.currentRender?.state?.phase;
+            return current === 'finished' || current === 'errored' ? current : null;
           },
           { timeout: 5000 },
         )
-        .catch(() => {});
+        .then(handle => handle.jsonValue())
+        .catch(() => null);
       await page.waitForLoadState('networkidle', { timeout: 1500 }).catch(() => {});
+
+      // Без этого ассерта джоба зеленеет на сломанной play-функции: `errored` — тоже
+      // терминальная фаза, а оба ожидания выше глотают исключения.
+      expect(phase, `story ${story.id}: play-функция упала или не доиграла за 5s`).toBe('finished');
     });
   }
 });

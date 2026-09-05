@@ -71,8 +71,14 @@ export async function assertVisualMatrixSnapshot(
   page: Page,
   snapshotName = VM_SNAPSHOT_NAME,
   opts: Parameters<typeof page.screenshot>[0] = SCREENSHOT_DEFAULT_OPTS,
-  matchOpts: SnapshotMatchOptions = MATCH_SNAPSHOT_DEFAULT_OPTS,
+  /**
+   * Переопределения порогов сравнения. Мержатся с `MATCH_SNAPSHOT_DEFAULT_OPTS`, а не
+   * заменяют их: частичное переопределение иначе выбрасывает остальные ключи, а дефолтный
+   * `maxDiffPixels` у Playwright — 0, то есть спек падал бы от единственного пикселя.
+   */
+  matchOpts: SnapshotMatchOptions = {},
 ): Promise<void> {
+  const matchOptions: SnapshotMatchOptions = { ...MATCH_SNAPSHOT_DEFAULT_OPTS, ...matchOpts };
   const tables = page.getByTestId(STORY_TABLE_TEST_ID);
 
   // Стабилизируем число tables до снятия. Без этого race-condition в монтировании
@@ -94,7 +100,7 @@ export async function assertVisualMatrixSnapshot(
   }
 
   if (stableCount === 0) {
-    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(snapshotName, { ...opts, ...matchOpts });
+    await expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toHaveScreenshot(snapshotName, { ...opts, ...matchOptions });
     return;
   }
 
@@ -115,7 +121,7 @@ export async function assertVisualMatrixSnapshot(
     cells.push({ label: `section-${i}`, png: await loc.screenshot(opts) });
   }
   const composite = await composeScreenshots(cells, { layout: 'col', labelHeight: 0, gap: 8, padding: VM_PADDING });
-  expect(composite).toMatchSnapshot(snapshotName, matchOpts);
+  expect(composite).toMatchSnapshot(snapshotName, matchOptions);
 }
 
 /**
@@ -178,6 +184,14 @@ export type InteractionStatesOptions = {
   pressedTarget?: Locator;
   /** Снимать также pressed. По умолчанию false. */
   includePressed?: boolean;
+  /**
+   * Какие базовые состояния попадают в composite. По умолчанию все три.
+   *
+   * Состояние, которое у компонента не может отличаться от `default` — например `focus` у
+   * презентационного узла без `:focus`-стиля, — даёт константный дубль, выглядящий как
+   * проверенный сигнал. Композит заводится только под визуально отличимые состояния.
+   */
+  states?: Array<'default' | 'hover' | 'focus'>;
   /** Padding вокруг `target` при снимке cell — чтобы влез outline / shadow. По умолчанию 8. */
   padding?: number;
   /** Имя композитного snapshot-файла. По умолчанию `interaction-states.png`. */
@@ -233,13 +247,16 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
     focusAction = defaultFocusAction,
     pressedTarget = target,
     includePressed = false,
+    states = ['default', 'hover', 'focus'],
     padding = DEFAULT_PADDING,
     snapshotName = DEFAULT_SNAPSHOT_NAME,
-    matchOpts = MATCH_SNAPSHOT_DEFAULT_OPTS,
+    matchOpts = {},
     layout = 'row',
     settle,
     extraStates = [],
   } = options;
+  // Мерж по той же причине, что в `assertVisualMatrixSnapshot`.
+  const matchOptions: SnapshotMatchOptions = { ...MATCH_SNAPSHOT_DEFAULT_OPTS, ...matchOpts };
 
   const frameLocators = resolveFrame(frame);
 
@@ -257,21 +274,24 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
       : screenshotWithPadding(page, target, padding, SCREENSHOT_DEFAULT_OPTS);
   };
 
-  await resetState(page);
-  const defaultPng = await snap();
+  const cells: ScreenshotCell[] = [];
 
-  await hoverTarget.hover();
-  const hoverPng = await snap();
+  if (states.includes('default')) {
+    await resetState(page);
+    cells.push({ label: 'default', png: await snap() });
+  }
 
-  await resetState(page);
-  await focusAction(page);
-  const focusPng = await snap();
+  if (states.includes('hover')) {
+    await resetState(page);
+    await hoverTarget.hover();
+    cells.push({ label: 'hover', png: await snap() });
+  }
 
-  const cells: ScreenshotCell[] = [
-    { label: 'default', png: defaultPng },
-    { label: 'hover', png: hoverPng },
-    { label: 'focus', png: focusPng },
-  ];
+  if (states.includes('focus')) {
+    await resetState(page);
+    await focusAction(page);
+    cells.push({ label: 'focus', png: await snap() });
+  }
 
   if (includePressed) {
     await resetState(page);
@@ -296,5 +316,5 @@ export async function assertInteractionStatesSnapshot(page: Page, options: Inter
 
   const composeLayout: ComposeLayout = layout === 'col' ? { type: 'col' } : { type: 'row' };
   const composite = await composeScreenshots(cells, { layout: composeLayout });
-  expect(composite).toMatchSnapshot(snapshotName, matchOpts);
+  expect(composite).toMatchSnapshot(snapshotName, matchOptions);
 }

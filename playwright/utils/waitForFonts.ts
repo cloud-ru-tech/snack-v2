@@ -1,5 +1,7 @@
 import { Page } from '@playwright/test';
 
+import { waitForPendingRequests } from './pendingRequests';
+
 /**
  * Block until the page is visually stable enough for a screenshot.
  *
@@ -31,18 +33,18 @@ import { Page } from '@playwright/test';
  * доиграли естественным путём, layout стабилен. Опция screenshot'а
  * `animations: 'disabled'` подстраховывает на момент самого снимка.
  *
- * Ждём: fonts → networkidle → finish всех animations → два rAF.
+ * Ждём: fonts → отсутствие незавершённых запросов → finish всех animations → два rAF.
  */
 export async function waitForFonts(page: Page): Promise<void> {
   /* eslint-disable @cloud-ru/ssr-safe-react/domApi -- evaluated in browser context via page.evaluate */
   await page.evaluate(async () => {
     await document.fonts.ready;
   });
-  // networkidle с лимитом: в dev-Storybook HMR-WebSocket держит соединение
-  // открытым, и `waitForLoadState('networkidle')` без timeout зависает до
-  // глобального timeout'а теста. 5s достаточно, чтобы основной чанк сторя
-  // успел догрузиться; всё, что после — это уже фоновый шум HMR/analytics.
-  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
+  // Не `waitForLoadState('networkidle')`: он ждёт 500ms тишины в сети и не возвращается
+  // быстрее полусекунды, даже когда грузить нечего. Счётчик in-flight запросов даёт ту же
+  // гарантию и отдаёт управление сразу. Лимит 5s: dev-Storybook держит HMR-WebSocket
+  // открытым, ждать его бесконечно нельзя.
+  await waitForPendingRequests(page, 5000);
   await page.evaluate(async () => {
     // getAnimations() возвращает все running CSS-transitions/animations + WAAPI.
     // Infinite-анимации (spinner'ы, indeterminate progress) исключаем — их

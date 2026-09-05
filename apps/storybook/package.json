@@ -130,6 +130,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sass": "catalog:",
+    "sass-embedded": "catalog:",
     "storybook": "10.5.5",
     "typescript": "catalog:",
     "vitest": "catalog:"

@@ -15,11 +15,14 @@ test.describe('DeleteModal — visual regression', () => {
     );
   });
 
-  test('states', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+  test('states', async ({ page, gotoStory, getByTestId, waitForFonts, remountStory }) => {
     const cells = [];
 
+    await gotoStory(buildStoryOptions(undefined, DELETE_MODAL_STORIES.visualMatrix));
+    await waitForFonts();
+
     for (const state of ['regular', 'confirmable', 'confirmableLong', 'deleting']) {
-      await gotoStory(buildStoryOptions(undefined, DELETE_MODAL_STORIES.visualMatrix));
+      await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.deleteModal)).toBeVisible();
       await waitForFonts();

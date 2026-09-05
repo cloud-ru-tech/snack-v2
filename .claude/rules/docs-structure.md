@@ -149,7 +149,7 @@ Tier XS/S: обычно достаточно `demo` + `when` + `examples` + `pro
 
 Секция `## Демо` с интерактивным `<Canvas>`-плейграундом (`demos/<Name>Demo.tsx` поверх `#docs/components/Canvas`) уместна **только** для props-driven компонентов без центральных колбеков и состояния. Условия — все одновременно:
 
-- API сводится к сериализуемым пропсам (`size`, `appearance`, `view`, `disabled`, `label`, …) — Canvas умеет крутить ровно их.
+- API сводится к сериализуемым пропсам (`size`, `appearance`, `view`, `disabled`, `label`, …) — Canvas настраивает ровно их.
 - Колбеков нет либо они не определяют смысл компонента (`onClick` у `Button` ОК, потому что нажатие очевидно; `onChange` у `Slider` — не ОК, без живого сценария ползунок «не двигается»).
 - Нет внутреннего состояния, которое нужно показать (open/close у Modal/Drawer/Popover/Dropdown, current page у Pagination, controlled value у Search/Toggles/Tabs).
 
@@ -189,7 +189,7 @@ import <name>Doc from './props.json'
 - Индексируй по имени компонента: `buttonDoc.Button`, `togglesDoc.Checkbox`, `listDoc.ItemContent`. Передать весь `<name>Doc` без `.<ComponentName>` — ошибка (это map, а не `ComponentDoc`).
 - Опционально `include={['propA', 'propB']}` — показать только перечисленные пропсы.
 
-`<PropsTable>` рендерится SSR. Related-типы (unions / aliases / interfaces), на которые ссылаются пропсы, выводятся под основной таблицей и попадают в правый TOC как H3-якоря — плагин `remark-props-table-headings` на билде читает `./props.json` и инжектит скрытые H3-заголовки по именам related-типов.
+`<PropsTable>` рендерится SSR. Related-типы (unions / aliases / interfaces), на которые ссылаются пропсы, выводятся под основной таблицей и попадают в правый TOC как H3-якоря — плагин `remark-props-table-headings` на билде читает `./props.json` и вставляет скрытые H3-заголовки по именам related-типов.
 
 **`<PropsTable data={<name>Doc.<Component>} />` с несуществующим ключом — жёсткий краш билда.** Если `<Component>` нет в `props.json` (компонент удалён/переименован, либо `props.json` не перегенерён), `<name>Doc.<Component>` === `undefined`, и SSR падает с `TypeError: Cannot read properties of undefined (reading 'props')` — рушится **весь** `build:docs`. В отличие от `<FigmaEmbed node={figmaNode(...)} />`, который при отсутствии узла безопасно рендерит `null`, пропущенный ключ `PropsTable` краш**ит**. При удалении/переименовании публичного компонента **обязательно**: (1) убери его секцию `### <Component>` + `<PropsTable>` из MDX, (2) перегенери `pnpm gen:props`. Проверяй рендер через `pnpm build:docs:fast` — `build:storybook` эту ошибку **не ловит** (Vite не SSR-рендерит docs-страницы).
 

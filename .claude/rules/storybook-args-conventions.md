@@ -117,7 +117,7 @@ icon: {
 
 ## Описание пропа — только JSDoc, никаких `description` в argTypes
 
-JSDoc-комментарий на пропе — единственное место для описания. Он подтягивается:
+JSDoc-комментарий на пропе — единственное место для описания. Он попадает:
 
 - в **IDE hover/autocomplete** потребителя пакета,
 - в **`packages/<pkg>/docs/props.json`** (через `pnpm gen:props` → react-docgen-typescript),

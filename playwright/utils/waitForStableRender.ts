@@ -4,7 +4,22 @@ function readRenderSignature(locator: Locator): Promise<string> {
   return locator.evaluate(root => {
     const round = (value: number) => Math.round(value * 10) / 10;
 
-    const nodes = [root, ...Array.from(root.querySelectorAll('*'))];
+    // Узлы с бесконечной анимацией (skeleton-шиммер, спиннеры) исключаются: их transform и
+    // bbox меняются каждый кадр, поэтому сигнатура не стабилизируется никогда. На снимке их
+    // фризит `animations: 'disabled'`.
+    const endlessTargets = new Set<Element>();
+    // eslint-disable-next-line @cloud-ru/ssr-safe-react/domApi -- тело evaluate исполняется в браузере
+    for (const animation of document.getAnimations()) {
+      if (animation.effect?.getComputedTiming().iterations !== Infinity) continue;
+      const target = (animation.effect as KeyframeEffect | null)?.target;
+      if (!target) continue;
+      // Вместе с поддеревом: transform на корне SVG-спиннера двигает bbox его `circle`
+      // и `path`, хотя сами они не анимированы.
+      endlessTargets.add(target);
+      for (const descendant of target.querySelectorAll('*')) endlessTargets.add(descendant);
+    }
+
+    const nodes = [root, ...Array.from(root.querySelectorAll('*'))].filter(node => !endlessTargets.has(node));
     const states = nodes.map(node => {
       const { opacity, transform, visibility } = getComputedStyle(node);
       const { x, y, width, height } = node.getBoundingClientRect();
@@ -55,4 +70,12 @@ export async function waitForStableRender(
       return;
     }
   }
+
+  // Не устоявшееся поддерево означает, что снимок поймает произвольный кадр — тихий выход
+  // по дедлайну выдал бы его за нормальный.
+  throw new Error(
+    `waitForStableRender: поддерево не стабилизировалось за ${timeoutMs}ms ` +
+      `(stableForMs=${stableForMs}). Если источник изменений — бесконечная анимация, она ` +
+      'должна исключаться из сигнатуры; если это живой таймер — сузь локатор или заморозь время.',
+  );
 }

@@ -4,25 +4,13 @@
 
 ## Storybook Test Runner (vitest + chromium)
 
-### `userEvent.keyboard(' ')` / `'{ }'` / `'{Space}'` — Space не активирует native `<button>` click
+### `userEvent.keyboard(' ')` — Space на нативной кнопке: проверяй, а не избегай
 
-userEvent в storybook-test browser-окружении (vitest + storybook addon-vitest) **не** доводит `keyUp` Space до native `<button>` — `click` не срабатывает, `onClick`-mock не увеличивается. Все три формы (`' '`, `'{ }'`, `'{Space}'`) ведут себя одинаково.
+**Запись устарела и оставлена как предупреждение.** Она описывала поведение `@storybook/test-runner`; на нынешнем `@storybook/addon-vitest` (vitest browser mode на настоящем Chromium) Space **работает**: `packages/ai-card/.../AiCard.InteractionTest` жмёт Space на нативном `<button>` без своего `onKeyDown`, и прогон зелёный.
 
-**Решение**: не тестировать Space через `userEvent.keyboard` в play. Достаточно `{Enter}`-шага — нативное поведение Space на `<button>` гарантировано браузером. Если Space критичен — выноси в отдельный Playwright spec через `page.keyboard.press('Space')` (там работает).
+Отсюда правило: не выпиливай Space-шаг «по документации» и не уноси его в Playwright заранее — сначала прогони. Если компонент рендерит нативный `<button>`/`<input>`, браузерный дефолт отработает. Проблемы остаются у элементов, которые активируются только собственным `onKeyDown` (`<div role='button'>`): там Space обязан быть реализован в компоненте, и если его нет — это баг компонента, а не среды.
 
-```tsx
-// ❌ не работает в storybook-test
-await step('keyboard: Space triggers click', async () => {
-  await userEvent.keyboard('{Space}');
-  expect(args.onClick).toHaveBeenCalledTimes(2);
-});
-
-// ✅ Enter покрывает клавиатурную активацию
-await step('keyboard: Enter triggers click', async () => {
-  await userEvent.keyboard('{Enter}');
-  expect(args.onClick).toHaveBeenCalledTimes(2);
-});
-```
+Историческое следствие, которое стоит вычищать по мере встречи: часть Space-проверок была вынесена в Playwright, а в `ToggleCard.InteractionTest` шаг выпилен с комментарием «Space-step намеренно опущен». Это компенсация несуществующего ограничения — при правке рядом такие места можно возвращать в play, предварительно прогнав.
 
 ### `userEvent.keyboard('{ArrowRight}')` после `element.focus()` — rc-slider не реагирует
 
