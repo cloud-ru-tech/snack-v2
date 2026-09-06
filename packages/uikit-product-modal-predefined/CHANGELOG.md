@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.18 (2026-09-06)
+
+### Bug Fixes
+
+- **FF-8945:** align release notes with the layout and stabilize its size ([e1a32a6](https://github.com/cloud-ru-tech/snack-v2/commit/e1a32a6e5219acc6bf68f116010cbb169255f949))
+- **FF-8977:** shorten CI critical path via build split and faster tests ([3ce8ae9](https://github.com/cloud-ru-tech/snack-v2/commit/3ce8ae91f9e109380a015d6a2762e8676afc87ed))
+
 ## 1.0.17 (2026-09-03)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined
