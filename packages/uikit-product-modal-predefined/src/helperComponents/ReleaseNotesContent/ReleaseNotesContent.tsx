@@ -2,12 +2,11 @@ import { Button } from '@ds/button';
 import { Carousel } from '@ds/carousel';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
-import { Skeleton } from '@ds/skeleton';
 import cn from 'classnames';
 
 import { CONTENT_STATE, TEST_IDS } from '../../constants';
-import { NoteItemProps, ReleaseNotesContentState } from '../../types';
-import { NoteItem } from '../NoteItem';
+import { NoteItemProps, ReleaseNotesContentState, Surface } from '../../types';
+import { NoteItem, NoteItemSkeleton } from '../NoteItem';
 import styles from './styles.module.scss';
 
 export type ReleaseNotesContentProps = {
@@ -20,7 +19,7 @@ export type ReleaseNotesContentProps = {
   /** Текущая страница, zero-based */
   pageIndex: number;
   /** Поверхность */
-  surface: 'modal' | 'bottomSheet';
+  surface: Surface;
   /** Заголовок no-data */
   noDataTitle: string;
   /** Описание no-data */
@@ -56,8 +55,10 @@ export function ReleaseNotesContent({
 
   if (loading) {
     return (
-      <div className={styles.loading} data-surface={surface}>
-        <Skeleton loading width='100%' height='100%' borderRadius='var(--border-radius-l)' />
+      <div className={cn(styles.root, styles[surface])}>
+        <div className={styles.skeletonSlide}>
+          <NoteItemSkeleton surface={surface} />
+        </div>
       </div>
     );
   }

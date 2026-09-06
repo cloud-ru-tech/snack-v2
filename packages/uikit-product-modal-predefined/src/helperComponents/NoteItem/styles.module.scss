@@ -1,15 +1,23 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
+// Карточка новости по макету — квадрат 380×380: иллюстрация фиксирована, текст занимает остаток
+// ширины. Высота тоже фиксирована, поэтому окно одного размера во всех состояниях. Иначе карусель
+// растягивается по самому длинному слайду, и высота зависит и от набора новостей, и от того, доехали
+// ли данные. Описание длиннее карточки уходит в скролл.
+$card-size: calc(6 * #{base.$sn-primitive-dimension-64} - #{base.$sn-primitive-dimension-4});
+
 .root {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: base.$sn-primitive-dimension-24;
-  min-height: calc(5 * #{base.$sn-primitive-dimension-64});
+  grid-template-columns: minmax(0, 1fr) $card-size;
+  column-gap: base.$sn-primitive-dimension-8;
+  height: $card-size;
 
+  // На bottomSheet карточка растёт по контенту, а прокручивается тело sheet'а целиком: сам sheet
+  // при этом фиксирован snap-point'ом, поэтому его размер от длины описания не зависит.
   &[data-surface='bottomSheet'] {
     grid-template-columns: minmax(0, 1fr);
     row-gap: base.$sn-primitive-dimension-16;
-    min-height: 0;
+    height: auto;
   }
 }
 
@@ -17,30 +25,58 @@
   position: relative;
   overflow: hidden;
   min-width: 0;
-  border-radius: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-density-radius-2xs;
 }
 
-.image,
-.video {
+// Заливка только для заглушки: градиент скелетона полупрозрачный и на цветной подложке
+// выглядит темнее, чем скелетон текста на белом фоне модального окна.
+.media[data-status='error'] {
+  background: base.$sn-theme-color-neutral-background;
+}
+
+// На modal слот растянут по строке сетки, на bottomSheet это квадрат во всю ширину карточки.
+// В обоих случаях размеры слота известны до загрузки файла.
+.root[data-surface='bottomSheet'] .media {
+  aspect-ratio: 1;
+}
+
+.file {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.videoSkeleton {
+.mediaOverlay {
   position: absolute;
   inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaFallbackIcon {
+  color: base.$sn-theme-color-neutral-accent;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   row-gap: base.$sn-primitive-dimension-12;
+
   min-width: 0;
+  min-height: 0;
+}
+
+// Занимает остаток карточки: заголовок остаётся на месте, а описание прокручивается внутри.
+// `Typography` не задаёт цвет и наследует окружающий — на bottomSheet он приглушённый.
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
 }
 
 .description {
+  flex: 1;
   min-height: 0;
 }
 

@@ -21,3 +21,9 @@ export const RELEASE_NOTES_ITEMS: NoteItemProps[] = [
     },
   },
 ];
+
+/** Новости с заведомо недоступной иллюстрацией: путь не существует на сервере Storybook. */
+export const RELEASE_NOTES_ITEMS_BROKEN_IMAGE: NoteItemProps[] = RELEASE_NOTES_ITEMS.map(item => ({
+  ...item,
+  image: { ...item.image, src: '/release-notes-missing-illustration.png' },
+}));

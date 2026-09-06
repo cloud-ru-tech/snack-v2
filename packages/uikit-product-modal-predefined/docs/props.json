@@ -173,6 +173,12 @@
         "type": "Partial<ButtonProps>",
         "required": false,
         "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется)."
+      },
+      "snapPoint": {
+        "type": "SnapPoint",
+        "required": false,
+        "defaultValue": "0.85",
+        "description": "Только mobile: фиксированная позиция bottom sheet по высоте (на desktop игнорируется).\nДоля вьюпорта, пиксели или viewport-единицы — см. `SnapPoint` из `@ds/bottom-sheet`."
       }
     },
     "relatedTypes": {}
@@ -312,6 +318,12 @@
         "type": "Partial<ButtonProps>",
         "required": false,
         "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется)."
+      },
+      "snapPoint": {
+        "type": "SnapPoint",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Только mobile: фиксированная позиция bottom sheet по высоте (на desktop игнорируется).\nДоля вьюпорта, пиксели или viewport-единицы — см. `SnapPoint` из `@ds/bottom-sheet`."
       }
     },
     "relatedTypes": {}
@@ -348,6 +360,24 @@
         "type": "string",
         "required": false,
         "description": "Видео вместо статичной иллюстрации"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NoteItemSkeleton": {
+    "displayName": "NoteItemSkeleton",
+    "propsTypeName": null,
+    "description": "Скелетон карточки новости: те же классы сетки и тот же медиа-слот, что и у `NoteItem`,\nпоэтому переход `loading → data` не меняет геометрию.",
+    "props": {
+      "surface": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "bottomSheet",
+          "modal"
+        ],
+        "defaultValue": "modal",
+        "description": "Поверхность отображения"
       }
     },
     "relatedTypes": {}
@@ -508,6 +538,15 @@
         "description": "Только mobile: дополнительные пропсы action-кнопки \"Ознакомиться позже\" (на desktop игнорируется).",
         "typeRefs": [
           "ButtonProps"
+        ]
+      },
+      "snapPoint": {
+        "type": "SnapPoint",
+        "required": false,
+        "defaultValue": "0.85",
+        "description": "Только mobile: фиксированная позиция bottom sheet по высоте (на desktop игнорируется).\nДоля вьюпорта, пиксели или viewport-единицы — см. `SnapPoint` из `@ds/bottom-sheet`.",
+        "typeRefs": [
+          "SnapPoint"
         ]
       }
     },
@@ -784,6 +823,11 @@
         ],
         "own": false
       },
+      "SnapPoint": {
+        "kind": "alias",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "own": false
+      },
       "View": {
         "kind": "union",
         "values": [
@@ -878,15 +922,20 @@
     "displayName": "ReleaseNotesFooter",
     "propsTypeName": null,
     "props": {
-      "counterLabel": {
-        "type": "string",
-        "required": true,
-        "description": "Текст счётчика «1 из N» (используется на bottomSheet)"
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Состояние загрузки: количество страниц ещё неизвестно"
       },
       "onNextPageClick": {
         "type": "() => void",
         "required": true,
         "description": "Следующая страница"
+      },
+      "onPageChange": {
+        "type": "(pageIndex: number) => void",
+        "required": true,
+        "description": "Переход на страницу по клику в слайдере (используется на modal)"
       },
       "onPrevPageClick": {
         "type": "() => void",

@@ -1,21 +1,26 @@
 import { Button, ButtonProps } from '@ds/button';
 import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons/interface/system';
+import { PAGINATION_SLIDER_SIZE, PaginationSlider } from '@ds/pagination';
+import { Skeleton } from '@ds/skeleton';
 import { MouseEvent } from 'react';
 
-import { TEST_IDS } from '../../constants';
+import { SURFACE, TEST_IDS } from '../../constants';
+import { Surface } from '../../types';
 import styles from './styles.module.scss';
 
 export type ReleaseNotesFooterProps = {
   /** Поверхность отображения */
-  surface: 'modal' | 'bottomSheet';
+  surface: Surface;
   /** Количество страниц */
   total: number;
+  /** Состояние загрузки: количество страниц ещё неизвестно */
+  loading?: boolean;
   /** Текущая страница, zero-based */
   pageIndex: number;
   /** Номер страницы для отображения */
   readablePageNumber: number;
-  /** Текст счётчика «1 из N» (используется на bottomSheet) */
-  counterLabel: string;
+  /** Переход на страницу по клику в слайдере (используется на modal) */
+  onPageChange(pageIndex: number): void;
   /** Label кнопки «Ознакомиться позже» */
   readLaterLabel: string;
   /** Действие «Ознакомиться позже» */
@@ -31,18 +36,23 @@ export type ReleaseNotesFooterProps = {
 export function ReleaseNotesFooter({
   surface,
   total,
+  loading,
   pageIndex,
   readablePageNumber,
-  counterLabel,
   readLaterLabel,
   onReadLaterClick,
   onPrevPageClick,
   onNextPageClick,
+  onPageChange,
   readLaterButtonProps,
 }: ReleaseNotesFooterProps) {
-  const hasPagination = total > 1;
-  const isModal = surface === 'modal';
+  // Пока новости не загрузились, страниц ещё нет, но место под навигацию занято: иначе кнопки
+  // появляются рывком поверх уже отрисованного контента.
+  const hasPagination = loading || total > 1;
+  const isModal = surface === SURFACE.Modal;
   const buttonSize = isModal ? 'm' : 'l';
+
+  const handleSliderChange = (page: number) => onPageChange(page - 1);
 
   return (
     <div className={styles.root} data-surface={surface}>
@@ -56,15 +66,28 @@ export function ReleaseNotesFooter({
         onClick={onReadLaterClick}
       />
 
+      {isModal && hasPagination && (
+        <div className={styles.slider}>
+          <Skeleton loading={loading} className={styles.sliderSkeleton}>
+            <PaginationSlider
+              size={PAGINATION_SLIDER_SIZE.Xs}
+              total={total}
+              page={readablePageNumber}
+              onChange={handleSliderChange}
+              data-test-id={TEST_IDS.releaseNotesPaginationSlider}
+            />
+          </Skeleton>
+        </div>
+      )}
+
       {hasPagination && (
         <div className={styles.controls}>
-          {!isModal && <span className={styles.counter}>{counterLabel}</span>}
           <Button
             view='outline'
             appearance='neutral'
             size={buttonSize}
             icon={<ChevronLeftSVG />}
-            disabled={pageIndex === 0}
+            disabled={loading || pageIndex === 0}
             onClick={onPrevPageClick}
             data-test-id={TEST_IDS.releaseNotesPrevButton}
           />
@@ -73,7 +96,7 @@ export function ReleaseNotesFooter({
             appearance='neutral'
             size={buttonSize}
             icon={<ChevronRightSVG />}
-            disabled={readablePageNumber === total}
+            disabled={loading || readablePageNumber === total}
             onClick={onNextPageClick}
             data-test-id={TEST_IDS.releaseNotesNextButton}
           />

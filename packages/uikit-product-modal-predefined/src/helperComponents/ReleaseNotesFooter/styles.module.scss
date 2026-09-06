@@ -17,9 +17,16 @@
   align-items: center;
 }
 
-.counter {
-  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+// Слайдер страниц центрируется по футеру, а не по остатку между кнопками, — так в макете.
+.slider {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  color: base.$sn-theme-color-available-version-textTertiary;
-  white-space: nowrap;
+// Плейсхолдер слайдера: три точки по 16px — типовое количество новостей в выпуске.
+.sliderSkeleton {
+  width: calc(3 * #{base.$sn-primitive-dimension-16});
+  height: base.$sn-primitive-dimension-16;
+  border-radius: base.$sn-density-radius-2xs;
 }

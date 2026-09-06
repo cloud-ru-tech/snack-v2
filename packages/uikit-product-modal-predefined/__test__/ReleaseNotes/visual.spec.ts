@@ -10,7 +10,7 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { composeScreenshots } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
-import { buildStoryOptions, RELEASE_NOTES_STORIES, VM_TRIGGER_TEST_ID } from './helpers';
+import { buildStoryOptions, RELEASE_NOTES_STORIES, VM_STATES, VM_TRIGGER_TEST_ID } from './helpers';
 
 /**
  * Ждёт декодирования всех картинок в кадре: `toBeVisible()` проходит на ещё
@@ -37,7 +37,7 @@ test.describe('ReleaseNotes — visual regression', () => {
     await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix));
     await waitForFonts();
 
-    for (const state of ['data', 'one', 'noData', 'error', 'loading']) {
+    for (const state of VM_STATES) {
       await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();
@@ -59,7 +59,7 @@ test.describe('ReleaseNotes — visual regression', () => {
     await gotoStory(buildStoryOptions(undefined, RELEASE_NOTES_STORIES.visualMatrix, { layoutType: 'mobile' }));
     await waitForFonts();
 
-    for (const state of ['data', 'one', 'noData', 'error', 'loading']) {
+    for (const state of VM_STATES) {
       await remountStory();
       await getByTestId(VM_TRIGGER_TEST_ID(state)).click();
       await expect(getByTestId(TEST_IDS.releaseNotes)).toBeVisible();

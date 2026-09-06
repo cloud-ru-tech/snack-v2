@@ -1,5 +1,11 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { CONTENT_STATE, ReleaseNotes, ReleaseNotesProps, TEST_IDS } from '@ds/uikit-product-modal-predefined';
+import {
+  CONTENT_STATE,
+  DEFAULT_RELEASE_NOTES_SNAP_POINT,
+  ReleaseNotes,
+  ReleaseNotesProps,
+  TEST_IDS,
+} from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
@@ -50,6 +56,7 @@ const meta: Meta<ReleaseNotesProps> = {
     contentState: CONTENT_STATE.Data,
     items: RELEASE_NOTES_ITEMS,
     loading: false,
+    snapPoint: DEFAULT_RELEASE_NOTES_SNAP_POINT,
     'data-test-id': TEST_IDS.releaseNotes,
   },
   argTypes: {

@@ -67,11 +67,12 @@ export function DesktopReleaseNotes({
         <ModalCustom.Footer>
           <ReleaseNotesFooter
             surface='modal'
+            loading={loading}
             total={items.length}
             pageIndex={pageIndex}
             readablePageNumber={readablePageNumber}
-            counterLabel={t('releaseNotes.counter', { page: readablePageNumber, total: items.length })}
             readLaterLabel={t('releaseNotes.readLater')}
+            onPageChange={setPage}
             onReadLaterClick={handleReadLaterClick}
             onPrevPageClick={handlePrevPageClick}
             onNextPageClick={() => handleNextPageClick(items.length)}

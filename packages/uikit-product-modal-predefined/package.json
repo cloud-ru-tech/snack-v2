@@ -49,6 +49,7 @@
     "@ds/locale": "workspace:^",
     "@ds/markdown": "workspace:^",
     "@ds/modal": "workspace:^",
+    "@ds/pagination": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/skeleton": "workspace:^",
     "@ds/tooltip": "workspace:^",

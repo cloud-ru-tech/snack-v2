@@ -300,6 +300,7 @@ export function ReleaseNotesVideo() {
 | `onSlideChange` | `((slide: number) => void)` | — | Действие при смене слайда |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `readLaterButtonProps` | `ButtonProps` | — | Только mobile: дополнительные пропсы action-кнопки "Ознакомиться позже" (на desktop игнорируется). |
+| `snapPoint` | `SnapPoint` | `0.85` | Только mobile: фиксированная позиция bottom sheet по высоте (на desktop игнорируется). <br/> Доля вьюпорта, пиксели или viewport-единицы — см. `SnapPoint` из `@ds/bottom-sheet`. |
 
 ##### Related types
 
@@ -313,6 +314,12 @@ export function ReleaseNotesVideo() {
 | `video` | `string \| undefined` | — | Видео вместо статичной иллюстрации |
 
 - `ReleaseNotesContentState` = `"data"` \| `"error"` \| `"noData"`
+
+### Размеры и иллюстрации
+
+На desktop карточка новости — квадрат 380×380: иллюстрация занимает правую половину целиком, текст — остаток ширины. Размер карточки фиксирован, поэтому окно одного размера во всех состояниях и не зависит ни от длины описания, ни от того, загрузились ли данные; описание, которое не помещается, прокручивается внутри карточки. На mobile карточка растёт по контенту, а прокручивается тело sheet'а целиком — размер держит сам sheet. Его позицию задаёт проп `snapPoint` — доля вьюпорта, пиксели или viewport-единицы; по умолчанию `1`, весь экран.
+
+Размеры медиа-слота задаёт раскладка, а не сам файл: на desktop это те же 380×380, на mobile — квадрат во всю ширину карточки. До загрузки слот занят скелетоном, при ошибке загрузки — заглушкой с иконкой. Изображение вписывается по `object-fit: cover`: всё, что выходит за границы слота, обрезается — оставляйте в иллюстрации запас по краям.
 
 ### Адаптивность
 
@@ -349,7 +356,7 @@ export function ReleaseNotesVideo() {
 
 | Пропы | desktop | mobile |
 |-------|---------|--------|
-| `readLaterButtonProps` | игнорируется | используется |
+| `readLaterButtonProps`, `snapPoint` | игнорируются | используются |
 | `open`, `onClose`, `container`, `closeOnPopstate`, `contentState`, `items`, `loading`, `onReadLaterClick`, `onDataErrorRetryClick`, `onSlideChange` | используется | используется |
 
 Подробнее о модели адаптивности — **Adaptive**.

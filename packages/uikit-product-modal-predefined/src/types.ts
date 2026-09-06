@@ -1,11 +1,17 @@
+import { SnapPoint } from '@ds/bottom-sheet';
 import { ButtonProps } from '@ds/button';
 import { ModalCustomProps } from '@ds/modal';
 import { ValueOf, WithSupportProps } from '@ds/utils';
 import { ReactNode } from 'react';
 
-import { CONFIRM_TEXT_VARIANT, CONTENT_STATE } from './constants';
+import { CONFIRM_TEXT_VARIANT, CONTENT_STATE, MEDIA_STATUS, SURFACE } from './constants';
 
 export type ReleaseNotesContentState = ValueOf<typeof CONTENT_STATE>;
+
+/** Поверхность отображения release notes: модальное окно (desktop) или bottom sheet (mobile). */
+export type Surface = ValueOf<typeof SURFACE>;
+
+export type MediaStatus = ValueOf<typeof MEDIA_STATUS>;
 
 export type ConfirmTextVariant = ValueOf<typeof CONFIRM_TEXT_VARIANT>;
 
@@ -74,5 +80,11 @@ export type ReleaseNotesProps = WithSupportProps<
     onSlideChange?(slide: number): void;
     /** Только mobile: дополнительные пропсы action-кнопки "Ознакомиться позже" (на desktop игнорируется). */
     readLaterButtonProps?: Partial<ButtonProps>;
+    /**
+     * Только mobile: фиксированная позиция bottom sheet по высоте (на desktop игнорируется).
+     * Доля вьюпорта, пиксели или viewport-единицы — см. `SnapPoint` из `@ds/bottom-sheet`.
+     * @default 0.85
+     */
+    snapPoint?: SnapPoint;
   }
 >;

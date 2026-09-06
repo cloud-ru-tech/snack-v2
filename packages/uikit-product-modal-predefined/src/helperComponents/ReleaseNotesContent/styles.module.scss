@@ -1,9 +1,16 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/carousel.module' as carousel;
 
+// `width` обязателен: без него ширина считается по контенту, и в первые кадры открытия окна, пока
+// ширина тела не установилась, контейнер садится на свой `min-width` — контент оказывается уже и
+// сдвигается, когда раскладка достаётся. У карусели своя `width: 100%`, поэтому видно на скелетоне.
 .root {
   display: flex;
   flex-direction: column;
   row-gap: base.$sn-primitive-dimension-16;
+
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .modal {
@@ -16,6 +23,22 @@
 
 .carousel {
   min-width: 0;
+}
+
+$slide-border: base.$sn-primitive-strokeWeight-strokeRegular;
+$slide-padding-block: calc(
+  #{carousel.$sn-carousel-anatomy-contentWrapper-content-paddingVertical} + #{$slide-border}
+);
+
+// Скелетон рисуется вне карусели: она замеряет ширину слайда при монтировании, а на открытии
+// модального окна замер попадает на анимацию — до срабатывания ResizeObserver слайды стоят не по
+// месту. Отступы слайда повторяем её же токенами: по вертикали — паддинг контента плюс рамка слайда,
+// по горизонтали — только рамка, потому что ширину слайда карусель задаёт инлайном и паддинг её не
+// сужает. Так переход `loading → data` не двигает ни высоту окна, ни колонки карточки.
+.skeletonSlide {
+  box-sizing: border-box;
+  width: 100%;
+  padding: $slide-padding-block $slide-border;
 }
 
 .stateWrapper {
@@ -38,8 +61,4 @@
 .state {
   width: 100%;
   max-width: calc(9 * #{base.$sn-primitive-dimension-64} + 3 * #{base.$sn-primitive-dimension-16});
-}
-
-.loading {
-  height: calc(5 * #{base.$sn-primitive-dimension-64});
 }

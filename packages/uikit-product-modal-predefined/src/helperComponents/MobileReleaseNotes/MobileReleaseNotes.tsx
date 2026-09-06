@@ -2,7 +2,7 @@ import { BottomSheet } from '@ds/bottom-sheet';
 import { extractSupportProps } from '@ds/utils';
 import { MouseEvent } from 'react';
 
-import { CONTENT_STATE } from '../../constants';
+import { CONTENT_STATE, DEFAULT_RELEASE_NOTES_SNAP_POINT } from '../../constants';
 import { useReleaseNotesNavigation } from '../../hooks';
 import { modalPredefinedLocale } from '../../locale';
 import { ReleaseNotesProps } from '../../types';
@@ -20,6 +20,7 @@ export function MobileReleaseNotes({
   onDataErrorRetryClick,
   onSlideChange,
   readLaterButtonProps,
+  snapPoint = DEFAULT_RELEASE_NOTES_SNAP_POINT,
   ...rest
 }: ReleaseNotesProps) {
   const { t } = modalPredefinedLocale.useTranslations();
@@ -42,11 +43,10 @@ export function MobileReleaseNotes({
 
   return (
     <BottomSheet
-      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
-      withDividers={false}
       open={open}
       onClose={handleClose}
       closeOnPopstate={closeOnPopstate}
+      snapPoints={[snapPoint]}
       title={t('releaseNotes.title')}
       content={
         <ReleaseNotesContent
@@ -68,11 +68,12 @@ export function MobileReleaseNotes({
         shouldShowFooter ? (
           <ReleaseNotesFooter
             surface='bottomSheet'
+            loading={loading}
             total={items.length}
             pageIndex={pageIndex}
             readablePageNumber={readablePageNumber}
-            counterLabel={t('releaseNotes.counter', { page: readablePageNumber, total: items.length })}
             readLaterLabel={t('releaseNotes.readLater')}
+            onPageChange={setPage}
             onReadLaterClick={handleReadLaterButtonClick}
             onPrevPageClick={handlePrevPageClick}
             onNextPageClick={() => handleNextPageClick(items.length)}

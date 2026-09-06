@@ -12,6 +12,9 @@ export const RELEASE_NOTES_STORIES = {
 
 export const VM_TRIGGER_TEST_ID = (state: string) => `release-notes-vm__${state}`;
 
+/** Состояния VisualMatrix — держи в синхроне со `STATES` в `ReleaseNotes.VisualMatrix.stories.tsx`. */
+export const VM_STATES = ['data', 'one', 'mediaError', 'noData', 'error', 'loading'] as const;
+
 const buildStoryOptionsBase = createBuildStoryOptions({
   category: 'uikit-product',
   group: 'modalpredefined',

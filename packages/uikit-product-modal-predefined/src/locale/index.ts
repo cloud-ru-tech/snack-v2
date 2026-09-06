@@ -27,7 +27,6 @@ const MODAL_PREDEFINED_MESSAGES = defineMessages({
     releaseNotes: {
       title: 'What is new',
       readLater: 'Read later',
-      counter: '{{page}} of {{total}}',
       noDataTitle: 'No news yet',
       noDataDescription: 'Platform news will appear here soon',
       errorTitle: 'Could not get data',
@@ -61,7 +60,6 @@ const MODAL_PREDEFINED_MESSAGES = defineMessages({
     releaseNotes: {
       title: 'Что нового',
       readLater: 'Ознакомиться позже',
-      counter: '{{page}} из {{total}}',
       noDataTitle: 'Новостей пока нет',
       noDataDescription: 'Скоро здесь появятся новости платформы',
       errorTitle: 'Не удалось получить данные',
