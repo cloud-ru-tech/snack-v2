@@ -36,3 +36,9 @@ export const TOUR_COLORS = {
  * расчётной уезжает за край экрана.
  */
 export const DEFAULT_HINT_WIDTH = 480;
+
+/** Класс затемнения у react-joyride: отличить его от подсказки в общем портале больше нечем. */
+export const OVERLAY_CLASS_NAME = 'react-joyride__overlay';
+
+/** События, по которым закрываются слои страницы: floating-ui слушает `pointerdown`, прочие — `mousedown` и `click`. */
+export const OVERLAY_PRESS_EVENTS = ['pointerdown', 'mousedown', 'click'] as const;

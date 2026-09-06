@@ -3,8 +3,9 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { buildStoryOptions, TEST_IDS } from './helpers';
 
 // Только browser-specific сценарии из закрытого списка e2e-testing-standard.md (п.5,
-// клик по оверлею вне портала): реакция на клик и hit-testing поверх выреза. Клики по
-// кнопкам подсказки живут в play-функции InteractionTest, focus-trap — в keyboard.spec.
+// клик по оверлею вне портала): реакция на клик, hit-testing поверх выреза и всплытие
+// нативного события до документа. Клики по кнопкам подсказки живут в play-функции
+// InteractionTest, focus-trap — в keyboard.spec.
 
 test.describe('WelcomeTour — interaction', () => {
   test('overlay click does not close the tour', async ({ page, gotoStory, getByTestId }) => {
@@ -19,6 +20,26 @@ test.describe('WelcomeTour — interaction', () => {
     await page.mouse.click(5, 5);
 
     await expect(hint).toBeVisible();
+  });
+
+  test('overlay press does not reach the page', async ({ page, gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+    await getByTestId(TEST_IDS.triggerOpen).click();
+    await expect(getByTestId(TEST_IDS.hint)).toBeVisible();
+
+    // Слои страницы закрываются по нажатию мимо себя — обработчиком на документе.
+    // Факт отмечаем атрибутом: настоящий поток событий указателя даёт только браузер.
+    await page.evaluate(() => {
+      document.body.dataset.pressReachedPage = 'no';
+      document.addEventListener('pointerdown', () => {
+        document.body.dataset.pressReachedPage = 'yes';
+      });
+    });
+
+    // Угол вьюпорта — заведомо оверлей: подсказка и вырез находятся в центре страницы.
+    await page.mouse.click(5, 5);
+
+    await expect(page.locator('body')).toHaveAttribute('data-press-reached-page', 'no');
   });
 
   test('overlay blocks the page while the spotlight keeps the target reachable', async ({

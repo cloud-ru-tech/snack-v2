@@ -8,9 +8,9 @@ import { TOUR_BUTTON, TOUR_STATUS } from '../../constants';
 import { TourHint } from '../../helperComponents';
 import { welcomeTourLocale } from '../../locale';
 import { WelcomeTourProps } from '../../types';
-import { TOUR_COLORS, TOUR_GEOMETRY } from './constants';
+import { OVERLAY_PRESS_EVENTS, TOUR_COLORS, TOUR_GEOMETRY } from './constants';
 import { removeUnionElement } from './spotlight';
-import { toJoyrideSteps, toTourStatus } from './utils';
+import { isOverlayTarget, toJoyrideSteps, toTourStatus } from './utils';
 
 const DEFAULT_BUTTONS = [TOUR_BUTTON.Back, TOUR_BUTTON.Primary, TOUR_BUTTON.Skip];
 
@@ -147,6 +147,24 @@ export function WelcomeTour({
     },
     [steps, onStepChange, setOpen],
   );
+
+  // `overlayClickAction: false` отменяет только реакцию самого тура: нажатие всё равно
+  // доходит до документа, и раскрытый список, вокруг которого построен шаг, закрывается
+  // как от клика мимо себя. Гасим на подхвате в портале, вместе с уводом фокуса.
+  useEffect(() => {
+    if (!isOpen || !portalElement) return;
+
+    const swallowPress = (event: Event) => {
+      if (!isOverlayTarget(event.target)) return;
+
+      event.stopPropagation();
+      event.preventDefault();
+    };
+
+    OVERLAY_PRESS_EVENTS.forEach(type => portalElement.addEventListener(type, swallowPress, true));
+
+    return () => OVERLAY_PRESS_EVENTS.forEach(type => portalElement.removeEventListener(type, swallowPress, true));
+  }, [isOpen, portalElement]);
 
   // Esc завершает тур целиком, как у остальных оверлеев ДС; `dismissKeyAction` движка
   // закрывает только текущий шаг, поэтому он выключен. Уступаем чужому слою: шаг тура

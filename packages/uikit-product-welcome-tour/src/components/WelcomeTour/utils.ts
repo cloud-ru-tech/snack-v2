@@ -2,7 +2,7 @@ import { Step } from 'react-joyride';
 
 import { TOUR_STATUS } from '../../constants';
 import { TourButton, TourLabels, TourStatus, TourStep } from '../../types';
-import { DEFAULT_HINT_WIDTH } from './constants';
+import { DEFAULT_HINT_WIDTH, OVERLAY_CLASS_NAME } from './constants';
 import { getUnionElement } from './spotlight';
 import { prepareStep, resolveTargets } from './targets';
 
@@ -13,6 +13,11 @@ type ToJoyrideStepsParams = {
   buttons: TourButton[];
   showStepIndicator: boolean;
 };
+
+/** Пришло ли нажатие в затемнение, а не в подсказку: в портале лежат они оба. */
+export function isOverlayTarget(target: EventTarget | null): boolean {
+  return target instanceof Element && Boolean(target.closest(`.${OVERLAY_CLASS_NAME}`));
+}
 
 /**
  * Приводит статус движка к публичному `TourStatus`: наружу сообщаются только терминальные
