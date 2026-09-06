@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2026-09-06)
+
+### Bug Fixes
+
+- **FF-8762:** swallow overlay presses so page layers stay open during the tour ([3812a8f](https://github.com/cloud-ru-tech/snack-v2/commit/3812a8f7a207a0f61e9d85d890e58a5ba5762192))
+
 # 1.2.0 (2026-09-03)
 
 ### Features
