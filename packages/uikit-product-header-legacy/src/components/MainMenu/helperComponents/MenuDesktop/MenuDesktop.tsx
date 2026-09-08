@@ -6,7 +6,7 @@ import { useValueControl } from '@ds/utils';
 import { MouseEvent, useCallback, useEffect } from 'react';
 
 import { shouldBeOpenedInNewTab } from '../../../../utils/shouldBeOpenedInNewTab';
-import { DEFAULT_DRAWER_WIDTH, TEST_IDS } from '../../constants';
+import { DEFAULT_DRAWER_WIDTH, LEFT_COLUMN_WIDTH, TEST_IDS } from '../../constants';
 import { useMenuItems } from '../../hooks/useMenuItems';
 import { MainMenuProps } from '../../types';
 import { getLinkEmblem } from '../../utils';
@@ -86,7 +86,7 @@ export function MenuDesktop({
       open={open}
       onClose={handleCloseDrawer}
       position='left'
-      width={DEFAULT_DRAWER_WIDTH}
+      width={isNeedRightBlock ? DEFAULT_DRAWER_WIDTH : LEFT_COLUMN_WIDTH}
       showButtonClosed={false}
       className={styles.drawer}
       data-test-id={TEST_IDS.drawer}
