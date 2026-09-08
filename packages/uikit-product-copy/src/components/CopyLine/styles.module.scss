@@ -35,8 +35,11 @@
       display: none;
     }
 
+    // `:has(:focus-visible)`, а не `:focus-within` — клик по кнопке копирования оставляет
+    // на ней обычный `:focus` (не `:focus-visible`), и `:focus-within` держал кнопку
+    // видимой даже после того, как курсор уходит со строки.
     &:hover .copyButton,
-    &:focus-within .copyButton {
+    &:has(:focus-visible) .copyButton {
       display: inline-flex;
     }
   }
