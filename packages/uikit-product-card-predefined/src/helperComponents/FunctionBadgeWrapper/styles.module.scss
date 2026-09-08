@@ -20,10 +20,13 @@ $function-badge-border-radius: base.$sn-brand-anatomy-radius-card-toggles-xs;
   }
 }
 
+// `:has(:focus-visible)`, а не `:focus-within` — клик по кнопке бейджа (открытие droplist)
+// оставляет на ней обычный `:focus` (не `:focus-visible`), и `:focus-within` держал бейдж
+// видимым даже после того, как курсор уходит с карточки.
 @at-root {
   @media (hover: hover) {
     [data-card]:hover [data-function-badge-wrapper],
-    [data-card]:focus-within [data-function-badge-wrapper],
+    [data-card]:has(:focus-visible) [data-function-badge-wrapper],
     [data-card]:focus-visible [data-function-badge-wrapper] {
       display: block;
     }
