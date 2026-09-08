@@ -67,10 +67,14 @@ $appearance-unread-bg: (
     outline-offset: 0;
   }
 
+  // `:has(:focus-visible)`, а не `:focus-within:not(:focus)` — после клика мышью по
+  // кнопке действий фокус остаётся на native <button> (обычный `:focus`, не
+  // `:focus-visible`), и `:focus-within` держал кнопку видимой даже когда курсор
+  // уходит с карточки. `:focus-visible` матчит только клавиатурный фокус.
   &[data-droplist-open],
   &:hover,
   &:focus-visible,
-  &:focus-within:not(:focus) {
+  &:has(:focus-visible) {
     .notificationCardFunction {
       pointer-events: auto;
       opacity: 1;
