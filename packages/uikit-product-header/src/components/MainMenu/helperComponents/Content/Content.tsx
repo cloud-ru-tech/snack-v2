@@ -270,8 +270,6 @@ export function Content({
       <div className={cn(styles.content, className)} data-empty={(!loading && !hasCards) || undefined}>
         {!isSearching && (
           <>
-            {isMobile && rightTop}
-
             <ContentToolbar
               segment={segmentId}
               onSegmentChange={setSegmentId}
@@ -283,7 +281,7 @@ export function Content({
               loading={loading}
             />
 
-            {!isMobile && rightTop}
+            {rightTop}
           </>
         )}
 
