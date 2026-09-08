@@ -35,8 +35,11 @@
   min-width: 0;
   padding-left: base.$sn-primitive-dimension-4;
 
+  // `:has(:focus-visible)`, а не `:focus-within` — после клика мышью по тултипу/избранному
+  // в actions фокус остаётся на native <button> (обычный `:focus`, не `:focus-visible`), и
+  // `:focus-within` держал actions видимыми даже когда курсор уходит с заголовка.
   &:hover,
-  &:focus-within {
+  &:has(:focus-visible) {
     .subcategoryTitleActions {
       visibility: visible;
     }
