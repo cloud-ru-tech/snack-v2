@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.5 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** add box-sizing to fix MaiMenu desktop max-width ([8a32d91](https://github.com/cloud-ru-tech/snack-v2/commit/8a32d9174b137a996b28d47b096e6a5dd66e4400))
+
 ## 1.3.4 (2026-09-09)
 
 ### Bug Fixes

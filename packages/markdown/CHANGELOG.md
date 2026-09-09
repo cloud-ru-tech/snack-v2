@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.18 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** upd tiptap to mitigate vuln ([14c77f1](https://github.com/cloud-ru-tech/snack-v2/commit/14c77f1dbee567780cc1a3a9f00842a47d479115))
+
 ## 1.0.17 (2026-09-03)
 
 **Note:** Version bump only for package @ds/markdown
