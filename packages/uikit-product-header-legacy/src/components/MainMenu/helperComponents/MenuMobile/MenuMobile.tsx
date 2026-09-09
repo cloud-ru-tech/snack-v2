@@ -54,7 +54,7 @@ export function MenuMobile({
           return;
         }
 
-        if (!shouldBeOpenedInNewTab()) {
+        if (!shouldBeOpenedInNewTab(e)) {
           e?.preventDefault();
           handleCloseDrawer();
         }
