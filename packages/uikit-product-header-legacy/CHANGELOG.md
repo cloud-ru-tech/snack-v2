@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.10 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** detection of cmd+click in header-legacy ([b9a2000](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/b9a20003c3e3e7c894a17cc4c9b9c40531251584))
+
 ## 0.1.9 (2026-09-09)
 
 ### Bug Fixes
