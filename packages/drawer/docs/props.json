@@ -175,6 +175,11 @@
         "required": false,
         "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
+      },
       "width": {
         "type": "string | number",
         "required": false,
@@ -526,6 +531,11 @@
         "required": false,
         "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
       },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
+      },
       "width": {
         "type": "string | number",
         "required": false,
@@ -739,6 +749,11 @@
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
             "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
+          },
+          "truncate": {
+            "type": "{ title?: number; subtitle?: number; } | undefined",
+            "required": false,
+            "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
           },
           "width": {
             "type": "string | number | undefined",
@@ -1420,6 +1435,11 @@
         "type": "ReactNode",
         "required": false,
         "description": "Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer)."
+      },
+      "truncate": {
+        "type": "{ title?: number; subtitle?: number; } | undefined",
+        "required": false,
+        "description": "Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только\nкогда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer),\nгде длинный заголовок иначе переносится на несколько строк."
       },
       "width": {
         "type": "string | number",

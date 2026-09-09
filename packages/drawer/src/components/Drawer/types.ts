@@ -8,14 +8,14 @@ import { DrawerCustomProps } from '../DrawerCustom';
 /**
  * Адаптивный Drawer: desktop — боковая/верхняя/нижняя панель, `mobile` — `BottomSheet`.
  *
- * Только desktop: `position`, `width`, `heightAuto`, `nestedDrawer` (на mobile игнорируются).
+ * Только desktop: `position`, `width`, `heightAuto`, `nestedDrawer`, `truncate` (на mobile игнорируются).
  * Только mobile: `swipeEnabled`, `snapPoints`, `snapIndex`, `onSnapIndexChange`, `safeArea`, `withDividers`
  * (на desktop-панели игнорируются — это анатомия `BottomSheet`).
  */
 export type DrawerProps = WithSupportProps<
   Omit<DrawerCustomProps, 'nestedDrawer' | 'push' | 'resizable'> &
     Pick<BottomSheetProps, 'swipeEnabled' | 'snapPoints' | 'snapIndex' | 'onSnapIndexChange' | 'safeArea'> &
-    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'slotSecondTitle' | 'onBackButtonClick'> &
+    Pick<DialogHeaderProps, 'title' | 'slotAfterTitle' | 'slotSecondTitle' | 'onBackButtonClick' | 'truncate'> &
     Pick<DialogBodyProps, 'content'> & {
       /** Ссылка на скроллируемый контейнер контента (например, для дозагрузки по скроллу). */
       contentRef?: Ref<HTMLElement>;

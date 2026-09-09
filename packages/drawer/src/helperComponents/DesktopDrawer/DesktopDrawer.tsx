@@ -11,6 +11,7 @@ export function DesktopDrawer({
   content,
   media,
   title,
+  truncate,
   slotAfterTitle,
   slotSecondTitle,
   subtitle,
@@ -42,6 +43,7 @@ export function DesktopDrawer({
       {showHeader && (
         <DrawerCustom.Header
           title={title}
+          truncate={truncate}
           slotAfterTitle={slotAfterTitle}
           slotSecondTitle={slotSecondTitle}
           subtitle={subtitle}
