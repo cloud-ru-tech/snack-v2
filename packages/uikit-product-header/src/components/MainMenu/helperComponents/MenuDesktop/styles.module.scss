@@ -40,9 +40,11 @@
 
   // NOTE: cелектор такой потому, что не получается достучаться до нужной дивки и переопределить стили без !important
   [data-test-id='header__drawer-menu'][data-small][data-position][data-width] {
+    // NOTE: ширина по макету 263px, но у дровера еще зашит паддинг. Не стал его обнулять
+    // по умолчанию box-sizing: content-box; и из-за этого max-width определяется некорректно
+    box-sizing: border-box;
     width: 100%;
-    // NOTE: ширина по макету 264px, но у дровера еще зашит паддинг. Не стал его обнулять
-    max-width: calc(264px + #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight});
+    max-width: calc(263px + #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight});
 
     .left {
       width: 100%;
