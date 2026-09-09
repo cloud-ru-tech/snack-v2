@@ -107,7 +107,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
     inputRef: localRef,
     postfixButtons: useMemo(() => [clearButtonSettings], [clearButtonSettings]),
     readonly: false,
-    submitKeys: ['Enter', 'Space'],
+    submitKeys: ['Enter', ' '],
   });
 
   const handleKeyDown = useCallback(

@@ -199,7 +199,7 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
     inputRef: localRef,
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
     readonly: Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   const handleKeyDown = useCallback(

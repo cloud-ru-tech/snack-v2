@@ -232,7 +232,7 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
     postfixButtons: useMemo(() => [copyButtonSettings], [copyButtonSettings]),
     onButtonKeyDown: onPostfixKeyDown,
     readonly: Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   const handleKeyDown = useCallback(

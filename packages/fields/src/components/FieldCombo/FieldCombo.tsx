@@ -251,7 +251,7 @@ export const FieldCombo = forwardRef<HTMLInputElement, FieldComboProps>(function
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
     onButtonKeyDown: onPostfixButtonKeyDown,
     readonly: Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   const focusInput = useCallback(() => {

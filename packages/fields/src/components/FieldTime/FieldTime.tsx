@@ -242,7 +242,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     inputRef: localRef,
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
     readonly: Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   const handleMouseEnter = useCallback(() => {

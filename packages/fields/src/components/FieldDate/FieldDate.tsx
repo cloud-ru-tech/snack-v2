@@ -415,7 +415,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
     onButtonKeyDown: handlePostfixButtonKeyDown,
     readonly: Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   // Нав-цепочка бежит безусловно ПОСЛЕ движка (легаси useHandlers): движок ставит каретку в конец

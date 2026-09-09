@@ -448,10 +448,13 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     inputRef: inputElementRef,
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
     readonly: !searchable || Boolean(readOnly),
-    submitKeys: ['Enter', 'Space', 'Tab'],
+    submitKeys: ['Enter', ' ', 'Tab'],
   });
 
   const handleTriggerKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (searchable && event.key === ' ') {
+      event.stopPropagation();
+    }
     // Consumer-обработчик идёт до внутренней обработки (паритет с легаси useHandleOnKeyDown).
     onKeyDownProp?.(event);
 
