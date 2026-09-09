@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.4 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** hide subCategory tooltip when not hovered ([6aa1460](https://github.com/cloud-ru-tech/snack-v2/commit/6aa14605bd87f10b11e08d0081e75f73be0b27ac))
+- **FF-9025:** move mobile rightTop slot under segmentControl ([0fdb1fa](https://github.com/cloud-ru-tech/snack-v2/commit/0fdb1fa9026fc8f3b01ee8191e810b6e81c527f0))
+
 ## 1.3.3 (2026-09-05)
 
 ### Bug Fixes

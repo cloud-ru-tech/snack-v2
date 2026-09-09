@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.7 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** hide function-badge when closed and card is not hovered ([5e6a43c](https://github.com/cloud-ru-tech/snack-v2/commit/5e6a43c9c6c7398333d1ba00102916892b960fbc))
+
 ## 3.0.6 (2026-09-03)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

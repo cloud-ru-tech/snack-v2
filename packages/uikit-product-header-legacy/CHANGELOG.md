@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.9 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** proper drawer width without right block, pin sidebar items to bottom ([f02d90d](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/f02d90daca1e5a5125cb2de284236d2e9bda5d0a))
+
 ## 0.1.8 (2026-09-03)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy

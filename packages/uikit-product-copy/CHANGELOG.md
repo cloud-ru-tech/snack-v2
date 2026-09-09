@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2026-09-09)
+
+### Bug Fixes
+
+- **FF-9025:** hide copyButton after click and when card is not hovered ([8c30e3a](https://github.com/cloud-ru-tech/snack-v2/commit/8c30e3a5fd7eb5fa9b0a230d95c5d041d26f2daf))
+
 ## 1.1.2 (2026-09-01)
 
 **Note:** Version bump only for package @ds/uikit-product-copy
