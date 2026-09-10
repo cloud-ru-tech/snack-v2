@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.8 (2026-09-10)
+
+### Bug Fixes
+
+- **FF-8873:** align notification styles with Figma master ([fb8d860](https://github.com/cloud-ru-tech/snack-v2/commit/fb8d860ad84cac7346e0035630882da739e38f40))
+
 ## 2.0.7 (2026-09-10)
 
 **Note:** Version bump only for package @ds/uikit-product-notification
