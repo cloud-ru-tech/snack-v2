@@ -1,9 +1,9 @@
 /**
  * Coverage harvester: для каждой story с тегом `test` создаётся отдельный
- * playwright-тест, который грузит iframe.html?id=<storyId>, ждёт
- * `currentRender.phase === 'finished'` (момент после play-функции), и
- * fixture `collectCoverage` снимает runtime V8-coverage (CDP) и маппит его на
- * packages/*\/src по sourcemaps (см. playwright/fixtures.ts).
+ * playwright-тест, который грузит iframe.html?id=<storyId>, ждёт события
+ * `storyFinished` (терминальный сигнал рендера — приходит после play-функции и
+ * несёт её итог), и fixture `collectCoverage` снимает runtime V8-coverage (CDP)
+ * и маппит его на packages/*\/src по sourcemaps (см. playwright/fixtures.ts).
  *
  * Параллелится через playwright workers + --shard в CI (см. test-harvester
  * в gitlab-ci-uikit-snack-v2.yml).
@@ -23,6 +23,16 @@ const BASE = UIKIT_URL.replace(/\/+$/, '');
 const COVERAGE_ENABLED = process.env.COVERAGE === 'true';
 const FILTER = process.env.STORIES_FILTER || '';
 const FILTER_RE = FILTER ? new RegExp(FILTER) : null;
+
+/**
+ * Сколько ждём `storyFinished`. Прежние 5s гонялись наперегонки с самим storybook:
+ * после play он уходит в фазу `completing`, где `waitForAnimations` ждёт живые анимации
+ * и отпускает только по своему внутреннему 5s-таймауту (у table/markdown анимация ручки
+ * overlayscrollbars не завершается никогда) — то есть бюджет был меньше нижней границы.
+ * 20s — с запасом от замеров: самый долгий тест целиком (goto + ожидание + teardown
+ * coverage) занимал 7.5s локально на статике и 19.2s на раннере CI.
+ */
+const STORY_FINISHED_TIMEOUT = 20000;
 
 type StoryEntry = { id: string; type: 'story' | 'docs'; tags?: string[]; importPath: string };
 
@@ -55,30 +65,69 @@ test.describe.parallel('story coverage harvest', () => {
 
   for (const story of stories) {
     test(`harvest ${story.id}`, async ({ page }) => {
+      // Дефолтных 30s не хватает: на них ушёл бы весь STORY_FINISHED_TIMEOUT, а teardown
+      // fixture'ы `collectCoverage` (stopJSCoverage + маппинг тяжёлых чанков по sourcemaps)
+      // уже вылетал за них в CI. 45s — вдвое больше самого долгого теста на раннере.
+      test.setTimeout(45000);
+
+      // Слушателя вешаем до загрузки превью: события рендера приходят по одному разу,
+      // опросом `currentRender.phase` их не поймать. `storyFinished` — терминальный сигнал
+      // рендера, он же несёт статус: рендер-исключение и unhandled error в нём видно.
+      await page.addInitScript(() => {
+        type Channel = { on(event: string, listener: (payload: unknown) => void): void };
+        const state = window as unknown as { __HARVEST__?: { done: boolean; failure?: string } };
+        state.__HARVEST__ = { done: false };
+
+        function firstLine(payload: unknown): string {
+          const first = Array.isArray(payload) ? payload[0] : payload;
+          const message = (first as { message?: string } | undefined)?.message ?? String(first);
+          return message.split('\n')[0].slice(0, 200);
+        }
+
+        const fail = (reason: string) => {
+          if (state.__HARVEST__ && !state.__HARVEST__.failure) state.__HARVEST__.failure = reason;
+        };
+
+        let channel: Channel | undefined;
+        Object.defineProperty(window, '__STORYBOOK_ADDONS_CHANNEL__', {
+          configurable: true,
+          get: () => channel,
+          set(next: Channel | undefined) {
+            channel = next;
+            next?.on('storyThrewException', payload => fail(`story threw: ${firstLine(payload)}`));
+            next?.on('storyErrored', payload => fail(`story errored: ${firstLine(payload)}`));
+            next?.on('storyFinished', payload => {
+              const status = (payload as { status?: string } | undefined)?.status;
+              if (status && status !== 'success') fail(`storyFinished status=${status}`);
+              if (state.__HARVEST__) state.__HARVEST__.done = true;
+            });
+          },
+        });
+      });
+
       await page.goto(`${BASE}/iframe.html?id=${story.id}&viewMode=story`, { waitUntil: 'domcontentloaded' });
-      // Ждём окончания play (phase=finished) или ошибки рендера (errored).
-      const phase = await page
+
+      const result = await page
         .waitForFunction(
           () => {
-            const api = (
-              window as unknown as {
-                __STORYBOOK_PREVIEW__?: {
-                  currentRender?: { phase?: string; state?: { phase?: string } };
-                };
-              }
-            ).__STORYBOOK_PREVIEW__;
-            const current = api?.currentRender?.phase ?? api?.currentRender?.state?.phase;
-            return current === 'finished' || current === 'errored' ? current : null;
+            const state = (window as unknown as { __HARVEST__?: { done: boolean; failure?: string } }).__HARVEST__;
+            return state?.done || state?.failure ? state : null;
           },
-          { timeout: 5000 },
+          { timeout: STORY_FINISHED_TIMEOUT },
         )
         .then(handle => handle.jsonValue())
         .catch(() => null);
       await page.waitForLoadState('networkidle', { timeout: 1500 }).catch(() => {});
 
-      // Без этого ассерта джоба зеленеет на сломанной play-функции: `errored` — тоже
-      // терминальная фаза, а оба ожидания выше глотают исключения.
-      expect(phase, `story ${story.id}: play-функция упала или не доиграла за 5s`).toBe('finished');
+      // Ассерт держит две вещи: story дорендерилась и не упала на рендере. Провалившуюся
+      // play он не ловит — аддон interactions ставит `throwPlayFunctionExceptions: false`,
+      // и упавшая play доводит рендер до `finished` со статусом `success`. Гейт для play —
+      // `pnpm test:stories` (vitest browser), дублировать его тут нечем: харвестер грузит
+      // iframe напрямую, и часть сценариев на таймерах здесь просто не успевает.
+      expect(
+        result?.failure ?? (result ? null : `story не дорендерилась за ${STORY_FINISHED_TIMEOUT / 1000}s`),
+        `story ${story.id}`,
+      ).toBeNull();
     });
   }
 });
