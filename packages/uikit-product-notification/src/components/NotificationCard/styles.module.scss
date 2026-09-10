@@ -17,7 +17,6 @@ $appearance-unread-bg: (
 
 .stateLayer {
   pointer-events: none;
-  visibility: initial;
 }
 
 .notificationCardTitleIcon {
@@ -26,7 +25,7 @@ $appearance-unread-bg: (
   align-items: center;
   justify-content: center;
 
-  width: base.$sn-primitive-dimension-20;
+  width: base.$sn-density-size-icon-xs;
   height: base.$sn-primitive-dimension-20;
 }
 
@@ -62,10 +61,7 @@ $appearance-unread-bg: (
     cursor: pointer;
   }
 
-  &:focus-visible {
-    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-    outline-offset: 0;
-  }
+  @include m.with-focus-frame('regular', 'inside');
 
   // `:has(:focus-visible)`, а не `:focus-within:not(:focus)` — после клика мышью по
   // кнопке действий фокус остаётся на native <button> (обычный `:focus`, не
@@ -133,6 +129,9 @@ $appearance-unread-bg: (
 .notificationCardDate {
   display: flex;
   flex: 1 1 auto;
+  // Figma: `sn/notification/anatomy/notificationCard/date/gap` — алиас на
+  // `sn.primitive.dimension.4`. Коллекция `notification` пока не выгружена в
+  // `@ds/figma-variables`, поэтому ссылаемся на примитив напрямую.
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
   justify-content: flex-end;

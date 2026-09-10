@@ -18,13 +18,13 @@ export function NotificationCardSkeleton({ className, ...rest }: NotificationCar
       data-test-id={TEST_IDS.card.skeleton}
       {...extractSupportProps(rest)}
     >
-      <SkeletonText width={140} variant='label' size='s' lines={1} />
+      <SkeletonText width={140} variant='body' size='s' lines={1} />
 
       <div className={styles.notificationCardTitle}>
         <div className={styles.notificationCardTitleIcon}>
-          <SkeletonText width={16} variant='title' size='s' lines={1} />
+          <SkeletonText width={16} variant='label' size='l' lines={1} />
         </div>
-        <SkeletonText width={140} variant='title' size='s' lines={1} />
+        <SkeletonText width={140} variant='label' size='l' lines={1} />
       </div>
 
       <div className={styles.notificationCardContent}>
@@ -33,7 +33,7 @@ export function NotificationCardSkeleton({ className, ...rest }: NotificationCar
 
       <div className={styles.notificationCardFooter}>
         <SkeletonText width={140} variant='body' size='s' lines={1} />
-        <SkeletonText width={140} variant='label' size='s' lines={1} />
+        <SkeletonText width={140} variant='body' size='s' lines={1} />
       </div>
     </div>
   );

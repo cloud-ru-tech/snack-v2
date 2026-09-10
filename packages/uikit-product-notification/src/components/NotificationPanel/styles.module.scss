@@ -4,11 +4,11 @@
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
-// Кнопки шапки (`markAllWrapper` + `functionWrapper` в Figma) прижаты к правому краю строки заголовка.
+// Кнопки шапки (`markAllWrapper` + `functionWrapper` в Figma) прижаты к правому краю строки
+// заголовка и стыкуются без зазора — воздух между иконками даёт паддинг самих кнопок.
 .headerActions {
   display: flex;
   flex: 1 1 auto;
-  gap: base.$sn-primitive-dimension-8;
   align-items: center;
   justify-content: flex-end;
 }
@@ -18,6 +18,13 @@
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
   justify-content: space-between;
+
+  // Figma `functions` внутри `slotSubHeadline` — фрейм 36px с контролами 24px, прижатыми
+  // к низу. Сам `subHeadlineWrapper` дровера вертикальных отступов не даёт.
+  // В sheet-мастере контролы занимают всю высоту слота, поэтому отступ только на desktop.
+  &:not([data-mobile]) {
+    padding-top: base.$sn-primitive-dimension-12;
+  }
 
   // Сегменты в мобильном мастере растянуты на всю ширину sheet'а.
   &[data-mobile] > * {
