@@ -98,6 +98,7 @@ export function SwitchRow({
       className={cn(styles.switchRow, className)}
       role='switch'
       aria-checked={checked}
+      aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : 0}
       onClick={handleChange}
       onKeyDown={handleKeyDown}

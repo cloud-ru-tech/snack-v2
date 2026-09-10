@@ -57,9 +57,10 @@ test.describe('SwitchRow — rendering', () => {
       await expect(root).toHaveAttribute('aria-checked', 'false');
     });
 
-    await test.step('states: disabled → data-disabled=true, tabIndex=-1', async () => {
+    await test.step('states: disabled → data-disabled / aria-disabled, tabIndex=-1', async () => {
       await setStoryArgs({ disabled: true });
       await expect(root).toHaveAttribute('data-disabled', 'true');
+      await expect(root).toHaveAttribute('aria-disabled', 'true');
       await expect(root).toHaveAttribute('tabindex', '-1');
     });
 

@@ -101,11 +101,14 @@
       background-color: base.$sn-theme-color-neutral-background;
     }
 
-    &:not([data-checked]) {
-      .titleLayout,
-      .description {
-        color: base.$sn-theme-color-available-version-textSecondary;
-      }
+    // В Figma disabled-подложка — material/neutralBackground без активированного тона.
+    .stateLayer {
+      visibility: hidden;
+    }
+
+    .titleLayout,
+    .description {
+      color: base.$sn-theme-color-available-version-textDisabled;
     }
   }
 }
