@@ -65,6 +65,27 @@ const Template: StoryFn<StoryProps> = () => (
           getItemsRow({ key: 'checked (range in)', size, checked: true, rangePosition: RANGE_POSITION.In }),
           getItemsRow({ key: 'checked (range end)', size, checked: true, rangePosition: RANGE_POSITION.End }),
           getItemsRow({ key: 'disabled', size, disabled: true }),
+          getItemsRow({
+            key: 'disabled + checked (out, no range)',
+            size,
+            disabled: true,
+            checked: true,
+            rangePosition: RANGE_POSITION.Out,
+          }),
+          getItemsRow({
+            key: 'disabled + checked (range start)',
+            size,
+            disabled: true,
+            checked: true,
+            rangePosition: RANGE_POSITION.Start,
+          }),
+          getItemsRow({
+            key: 'disabled + checked (range in)',
+            size,
+            disabled: true,
+            checked: true,
+            rangePosition: RANGE_POSITION.In,
+          }),
           getItemsRow({ key: 'another', size, another: true }),
         ]}
       />

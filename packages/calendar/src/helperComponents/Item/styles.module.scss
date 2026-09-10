@@ -61,28 +61,28 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
 
   &:not([data-disabled]) {
     cursor: pointer;
+  }
 
-    @include m.has-state-layer-as-child(#{stateLayer});
+  @include m.has-state-layer-as-child(#{stateLayer});
 
-    &:not([data-another]) {
-      &[data-checked] {
-        background-color: base.$sn-theme-color-primary-accent;
-      }
-
-      &[data-range-position='in'] {
-        background-color: transparent;
-      }
+  &:not([data-another]) {
+    &[data-checked] {
+      background-color: base.$sn-theme-color-primary-accent;
     }
 
-    // Cap'ы диапазона (start/end/start-end), попавшие на ячейку соседнего месяца, тоже
-    // заливаются accent'ом, чтобы период визуально продолжался за границу месяца. In-range
-    // соседнего месяца остаётся прозрачным — подсветку рисует state-layer (см. Item.tsx).
-    &[data-another][data-checked] {
-      &[data-range-position='start'],
-      &[data-range-position='end'],
-      &[data-range-position='start-end'] {
-        background-color: base.$sn-theme-color-primary-accent;
-      }
+    &[data-range-position='in'] {
+      background-color: transparent;
+    }
+  }
+
+  // Cap'ы диапазона (start/end/start-end), попавшие на ячейку соседнего месяца, тоже
+  // заливаются accent'ом, чтобы период визуально продолжался за границу месяца. In-range
+  // соседнего месяца остаётся прозрачным — подсветку рисует state-layer (см. Item.tsx).
+  &[data-another][data-checked] {
+    &[data-range-position='start'],
+    &[data-range-position='end'],
+    &[data-range-position='start-end'] {
+      background-color: base.$sn-theme-color-primary-accent;
     }
   }
 }
@@ -101,6 +101,10 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
 
   &[data-disabled] {
     color: base.$sn-theme-color-available-version-textDisabled;
+
+    &[data-checked]:not([data-range-position='in']) {
+      color: base.$sn-theme-color-available-onComplementary;
+    }
   }
 
   &:not([data-disabled], [data-another]) {
@@ -206,7 +210,7 @@ $rangePositions: 'out', 'start', 'in', 'end', 'start-end'; // data-range-positio
     }
   }
 
-  &[data-disabled] {
+  &[data-disabled]:not([data-checked]) {
     .stateLayer {
       display: none;
     }
