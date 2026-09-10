@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.19 (2026-09-10)
+
+### Bug Fixes
+
+- **FF-8978:** always show status background in table StatusCell ([660bf14](https://github.com/cloud-ru-tech/snack-v2/commit/660bf14cd30df12572bf638d6e8f9f83c786859b))
+
 ## 1.0.18 (2026-09-10)
 
 **Note:** Version bump only for package @ds/table

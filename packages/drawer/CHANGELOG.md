@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-09-10)
+
+### Features
+
+- **FF-8978:** expose truncate prop on Drawer header ([f2de71d](https://github.com/cloud-ru-tech/snack-v2/commit/f2de71d976205a9b78d7a93f60a16592801ff26e))
+
 ## 1.1.1 (2026-09-01)
 
 **Note:** Version bump only for package @ds/drawer
