@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.2 (2026-09-10)
+
+### Bug Fixes
+
+- **FF-9040:** allow spaces in searchable FieldSelect ([6df8c69](https://github.com/cloud-ru-tech/snack-v2/commit/6df8c693ccb5a694e48ce7ab8c1faf5c7ede0f8f))
+
 ## 2.2.1 (2026-09-03)
 
 **Note:** Version bump only for package @ds/fields

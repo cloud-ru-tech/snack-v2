@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.15 (2026-09-10)
+
+### Bug Fixes
+
+- **FF-8977:** shorten CI critical path via build split and faster tests ([3ce8ae9](https://github.com/cloud-ru-tech/snack-v2/commit/3ce8ae91f9e109380a015d6a2762e8676afc87ed))
+
 ## 1.0.14 (2026-09-02)
 
 ### Bug Fixes
