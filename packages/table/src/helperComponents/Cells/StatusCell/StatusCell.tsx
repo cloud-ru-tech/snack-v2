@@ -88,7 +88,7 @@ function StatusCell({ appearance, label }: StatusCellProps) {
         className={styles.status}
         appearance={statusAppearance}
         loading={isLoading}
-        background={isCardField}
+        background
         size={isCardField ? STATUS_SIZE.S : STATUS_SIZE.XS}
         // Indicator-only вариант (без renderDescription): Status с пустым label = только точка.
         label={label ?? ''}
