@@ -50,7 +50,6 @@ export function ReleaseNotesFooter({
   // появляются рывком поверх уже отрисованного контента.
   const hasPagination = loading || total > 1;
   const isModal = surface === SURFACE.Modal;
-  const buttonSize = isModal ? 'm' : 'l';
 
   const handleSliderChange = (page: number) => onPageChange(page - 1);
 
@@ -59,7 +58,7 @@ export function ReleaseNotesFooter({
       <Button
         view='function'
         appearance='neutral'
-        size={buttonSize}
+        size='m'
         label={readLaterLabel}
         data-test-id={TEST_IDS.releaseNotesReadLaterButton}
         {...readLaterButtonProps}
@@ -85,7 +84,7 @@ export function ReleaseNotesFooter({
           <Button
             view='outline'
             appearance='neutral'
-            size={buttonSize}
+            size='m'
             icon={<ChevronLeftSVG />}
             disabled={loading || pageIndex === 0}
             onClick={onPrevPageClick}
@@ -94,7 +93,7 @@ export function ReleaseNotesFooter({
           <Button
             view='outline'
             appearance='neutral'
-            size={buttonSize}
+            size='m'
             icon={<ChevronRightSVG />}
             disabled={loading || readablePageNumber === total}
             onClick={onNextPageClick}

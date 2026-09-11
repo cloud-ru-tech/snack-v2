@@ -53,8 +53,9 @@ $slide-padding-block: calc(
     height: calc(7 * #{base.$sn-primitive-dimension-64} - #{base.$sn-primitive-dimension-4});
   }
 
+  // Блок центрируется по всей высоте тела sheet'а, а на низком экране растёт и прокручивается.
   &[data-surface='bottomSheet'] {
-    min-height: calc(7 * #{base.$sn-primitive-dimension-64});
+    min-height: 100%;
   }
 }
 

@@ -2,7 +2,9 @@ import { Button } from '@ds/button';
 import { Carousel } from '@ds/carousel';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
+import { Typography } from '@ds/typography';
 import cn from 'classnames';
+import { ReactNode } from 'react';
 
 import { CONTENT_STATE, TEST_IDS } from '../../constants';
 import { NoteItemProps, ReleaseNotesContentState, Surface } from '../../types';
@@ -35,6 +37,14 @@ export type ReleaseNotesContentProps = {
   /** Повторная загрузка */
   onDataErrorRetryClick?(): void;
 };
+
+function InfoBlockDescription({ children }: { children: ReactNode }) {
+  return (
+    <Typography variant='body' size='m'>
+      {children}
+    </Typography>
+  );
+}
 
 export function ReleaseNotesContent({
   contentState,
@@ -70,7 +80,7 @@ export function ReleaseNotesContent({
           className={styles.state}
           size='l'
           title={errorTitle}
-          content={errorDescription}
+          content={<InfoBlockDescription>{errorDescription}</InfoBlockDescription>}
           icon={{ icon: CrossSVG, appearance: 'neutral', background: true }}
           data-test-id={TEST_IDS.releaseNotesError}
           footer={
@@ -95,7 +105,7 @@ export function ReleaseNotesContent({
           className={styles.state}
           size='l'
           title={noDataTitle}
-          content={noDataDescription}
+          content={<InfoBlockDescription>{noDataDescription}</InfoBlockDescription>}
           data-test-id={TEST_IDS.releaseNotesNoData}
         />
       </div>

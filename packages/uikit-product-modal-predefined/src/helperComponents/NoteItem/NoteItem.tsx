@@ -1,6 +1,6 @@
 import { ImageSVG } from '@ds/icons/interface/system';
 import { Markdown } from '@ds/markdown';
-import { BAR_HIDE_STRATEGY, Scroll } from '@ds/scroll';
+import { BAR_HIDE_STRATEGY, Scroll, SIZE as SCROLL_SIZE } from '@ds/scroll';
 import { Skeleton } from '@ds/skeleton';
 import { Typography } from '@ds/typography';
 import { useCallback, useState } from 'react';
@@ -100,12 +100,14 @@ export function NoteItem({ title, description, image, video, surface = SURFACE.M
       <NoteItemMedia key={`${video ?? ''}|${image.src}`} image={image} video={video} />
 
       <div className={styles.content}>
-        <Typography className={styles.title} variant='title' size='l'>
-          {title}
-        </Typography>
+        <div className={styles.titleWrapper}>
+          <Typography className={styles.title} variant='title' size='l'>
+            {title}
+          </Typography>
+        </div>
 
-        <Scroll className={styles.description} barHideStrategy={BAR_HIDE_STRATEGY.Leave}>
-          <Markdown value={description} />
+        <Scroll className={styles.description} size={SCROLL_SIZE.S} barHideStrategy={BAR_HIDE_STRATEGY.Leave}>
+          <Markdown value={description} className={styles.markdown} />
         </Scroll>
       </div>
     </article>

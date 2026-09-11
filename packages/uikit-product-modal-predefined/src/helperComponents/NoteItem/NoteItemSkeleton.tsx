@@ -1,4 +1,5 @@
 import { Skeleton, SkeletonText } from '@ds/skeleton';
+import cn from 'classnames';
 
 import { SURFACE, TEST_IDS } from '../../constants';
 import { Surface } from '../../types';
@@ -24,8 +25,8 @@ export function NoteItemSkeleton({ surface = SURFACE.Modal }: NoteItemSkeletonPr
         <Skeleton loading width='100%' height='100%' />
       </div>
 
-      <div className={styles.content}>
-        <SkeletonText loading lines={TITLE_LINES} variant='headline' size='s' />
+      <div className={cn(styles.content, styles.skeletonContent)}>
+        <SkeletonText loading lines={TITLE_LINES} variant='title' size='l' />
 
         {PARAGRAPH_LINES.map((lines, index) => (
           <SkeletonText key={index} loading lines={lines} />

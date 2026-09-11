@@ -63,7 +63,7 @@ export function DesktopReleaseNotes({
           />
         }
       />
-      {shouldShowFooter && (
+      {shouldShowFooter ? (
         <ModalCustom.Footer>
           <ReleaseNotesFooter
             surface='modal'
@@ -78,6 +78,9 @@ export function DesktopReleaseNotes({
             onNextPageClick={() => handleNextPageClick(items.length)}
           />
         </ModalCustom.Footer>
+      ) : (
+        // Нижнюю safe-area окна несёт футер; без него отступ рисуется здесь, как в `DesktopModal`.
+        <div className={styles.safeAreaBottom} />
       )}
     </ModalCustom>
   );
