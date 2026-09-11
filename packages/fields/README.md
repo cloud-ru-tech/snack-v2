@@ -435,7 +435,8 @@ export function Select() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `addOptionByEnter` | `boolean` | `false` | Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»). |
+| `addCustomOptionTriggers` | `("enter" \| "blur")[] \| ("enter" \| "blur" \| "space" \| "comma")[]` | — | События, по которым произвольный ввод фиксируется как выбранная опция. <br/> Учитывается только при `allowCustomOption={true}`. <br/> Если не задан — используются все триггеры режима (`single`: enter, blur; `multiple`: enter, blur, space, comma). <br/> Триггеры, недоступные в текущем `selection`, игнорируются. |
+| `allowCustomOption` | `boolean` | `false` | Разрешить фиксировать произвольный ввод из строки поиска как выбранную опцию <br/> (значение, которого нет в `items`). |
 | `autoFocus` | `boolean` | — | Автофокус input при монтировании. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `autocomplete` | `boolean` | `false` | Не фильтровать список на клиенте — фильтрацию обеспечивает потребитель (серверный поиск). <br/> Введённый текст уходит в `search.onChange`, список берётся из `items` как есть. |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |

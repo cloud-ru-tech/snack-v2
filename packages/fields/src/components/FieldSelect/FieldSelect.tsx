@@ -2,7 +2,7 @@ import { ChevronDownSVG } from '@ds/icons/interface/system';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { Droplist, ItemId } from '@ds/list';
 import { Tag } from '@ds/tag';
-import { useLayoutEffect } from '@ds/utils';
+import { isBrowser, useLayoutEffect } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import {
@@ -33,14 +33,17 @@ import {
   useCopyButton,
 } from '../shared';
 import fieldStyles from '../shared/styles.module.scss';
+import { useCustomOption } from './hooks';
 import styles from './styles.module.scss';
-import { FieldSelectProps } from './types';
+import { FieldSelectMultipleProps, FieldSelectProps, FieldSelectSingleProps } from './types';
 import {
   extractAppearance,
   extractLabel,
   filterItems,
   findItem,
   flatten,
+  getMissingSelectedItems,
+  getSelectedIds,
   isMultiple,
   TAG_SIZE_MAP,
   WithIdContent,
@@ -77,7 +80,6 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     searchable = true,
     search,
     autocomplete = false,
-    addOptionByEnter = false,
     resetSearchOnOptionSelection = true,
     showClearButton = true,
     showCopyButton = true,
@@ -86,6 +88,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     name,
     autoFocus,
     layoutPresets,
+    value,
+    onChange,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     enableFuzzySearch = true,
@@ -111,12 +115,18 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const chips = multiple ? (props.chips ?? true) : false;
   const removeByBackspace = multiple ? (props.removeByBackspace ?? true) : false;
   const closeDroplistOnItemClick = props.closeDroplistOnItemClick ?? !multiple;
+  const allowCustomOption = props.allowCustomOption === true;
+  const addCustomOptionTriggers = allowCustomOption ? props.addCustomOptionTriggers : undefined;
+
+  const onSingleChange = onChange as FieldSelectSingleProps['onChange'];
+  const onMultipleChange = onChange as FieldSelectMultipleProps['onChange'];
 
   const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
 
   const inputRef = useRef<HTMLInputElement>(null);
   // Отдельный ref на реальный <input>: `inputRef.current` перезаписывается span-обёрткой PopoverPrivate.
   const inputElementRef = useRef<HTMLInputElement>(null);
+  const restoreInputFocusRef = useRef(false);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const copyButtonRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -139,11 +149,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const singleControlled = useRef(false);
   const multipleControlled = useRef(false);
 
-  if (!multiple && props.value !== undefined) {
+  if (!multiple && value !== undefined) {
     singleControlled.current = true;
   }
 
-  if (multiple && Array.isArray(props.value)) {
+  if (multiple && Array.isArray(value)) {
     multipleControlled.current = true;
   }
 
@@ -152,11 +162,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       return undefined;
     }
 
-    const raw = singleControlled.current ? (props.value as ItemId | undefined) : singleLocal;
+    const raw = singleControlled.current ? (value as ItemId | undefined) : singleLocal;
 
     // `''` = «значение не выбрано»: формы отдают пустое значение строкой.
     return raw === '' ? undefined : raw;
-  }, [multiple, props.value, singleLocal]);
+  }, [multiple, value, singleLocal]);
 
   const multipleValue = useMemo<ItemId[]>(() => {
     if (!multiple) {
@@ -164,11 +174,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     }
 
     if (multipleControlled.current) {
-      return Array.isArray(props.value) ? (props.value as ItemId[]) : [];
+      return Array.isArray(value) ? (value as ItemId[]) : [];
     }
 
     return multipleLocal;
-  }, [multiple, props.value, multipleLocal]);
+  }, [multiple, value, multipleLocal]);
 
   const effectiveValidationState = useMemo(
     () => (error ? VALIDATION_STATE.Error : validationState),
@@ -177,18 +187,31 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const allItems = useMemo(() => [...(pinTop ?? []), ...items, ...(pinBottom ?? [])], [items, pinTop, pinBottom]);
 
+  const selectedIds = useMemo(
+    () => getSelectedIds({ multiple, multipleValue, singleValue }),
+    [multiple, multipleValue, singleValue],
+  );
+
+  // Выбранное, которого нет в `items` (кастом по allowCustomOption, ленивая подгрузка) — в список, не только в чип.
+  const missingSelectedItems = useMemo(() => getMissingSelectedItems(selectedIds, allItems), [selectedIds, allItems]);
+
+  const itemsWithPlaceholders = useMemo(
+    () => (missingSelectedItems.length > 0 ? [...missingSelectedItems, ...items] : items),
+    [missingSelectedItems, items],
+  );
+
   // Выбранное значение переживает смену `items` (серверный поиск, ленивая подгрузка).
   const seenItems = useRef(new Map<ItemId, WithIdContent>());
 
   const resolveItem = useMemo(() => {
-    for (const item of flatten(allItems)) {
+    for (const item of flatten([...missingSelectedItems, ...allItems])) {
       if (item.id !== undefined) {
         seenItems.current.set(item.id, item);
       }
     }
 
-    return (id: ItemId) => findItem(allItems, id) ?? seenItems.current.get(id);
-  }, [allItems]);
+    return (id: ItemId) => findItem(allItems, id) ?? findItem(missingSelectedItems, id) ?? seenItems.current.get(id);
+  }, [allItems, missingSelectedItems]);
 
   const selectedPairs = useMemo(() => {
     if (!multiple || multipleValue.length === 0) {
@@ -213,6 +236,8 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     [selectedOptionFormatter],
   );
 
+  const formatSelected = 'formatSelected' in props && props.formatSelected;
+
   const selectedLabel = useMemo(() => {
     if (!multiple) {
       if (singleValue === undefined) {
@@ -229,12 +254,12 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       return '';
     }
 
-    if ('formatSelected' in props && props.formatSelected) {
-      return props.formatSelected(selectedPairs);
+    if (formatSelected) {
+      return formatSelected(selectedPairs);
     }
 
     return selectedPairs.map(formatPair).join(', ');
-  }, [multiple, singleValue, selectedPairs, chips, props, formatPair, resolveItem]);
+  }, [multiple, singleValue, selectedPairs, chips, formatSelected, formatPair, resolveItem]);
 
   const [localInput, setLocalInput] = useState(search?.defaultValue ?? selectedLabel);
   const inputValue = search?.value !== undefined ? search.value : localInput;
@@ -265,14 +290,14 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     setInputValue(selectedLabel);
   }, [selectedLabel, typing, resetSearchOnOptionSelection, setInputValue]);
 
-  // При autocomplete фильтрует сервер — items берутся как есть.
+  // При autocomplete фильтрует сервер — items берутся как есть, плюс выбранное вне списка.
   const filteredItems = useMemo(() => {
     if (!searchable || autocomplete || !typing) {
-      return items;
+      return itemsWithPlaceholders;
     }
 
-    return filterItems(items, inputValue, enableFuzzySearch);
-  }, [searchable, autocomplete, typing, items, inputValue, enableFuzzySearch]);
+    return filterItems(itemsWithPlaceholders, inputValue, enableFuzzySearch);
+  }, [searchable, autocomplete, typing, itemsWithPlaceholders, inputValue, enableFuzzySearch]);
 
   const filteredPinTop = useMemo(() => {
     if (!searchable || autocomplete || !typing || !pinTop) {
@@ -290,6 +315,84 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     return filterItems(pinBottom, inputValue, enableFuzzySearch);
   }, [searchable, autocomplete, typing, pinBottom, inputValue, enableFuzzySearch]);
 
+  const handleSingleChange = useCallback(
+    (next: ItemId | undefined) => {
+      if (multiple) {
+        return;
+      }
+
+      if (value === undefined) {
+        setSingleLocal(next);
+      }
+
+      onSingleChange?.(next);
+      setTyping(false);
+    },
+    [multiple, value, onSingleChange],
+  );
+
+  const restoreInputFocus = useCallback(() => {
+    restoreInputFocusRef.current = isBrowser() && inputElementRef.current === document.activeElement;
+  }, []);
+
+  const handleMultipleChange = useCallback(
+    (next: ItemId[]) => {
+      if (!multiple) {
+        return;
+      }
+
+      restoreInputFocus();
+
+      if (value === undefined) {
+        setMultipleLocal(next);
+      }
+
+      onMultipleChange?.(next);
+
+      if (searchable) {
+        setTyping(false);
+
+        if (resetSearchOnOptionSelection) {
+          setInputValue('');
+        }
+      }
+    },
+    [multiple, onMultipleChange, value, searchable, resetSearchOnOptionSelection, setInputValue, restoreInputFocus],
+  );
+
+  const resetCustomOptionSearch = useCallback(() => {
+    setTyping(false);
+
+    if (resetSearchOnOptionSelection) {
+      setInputValue(multiple ? '' : selectedLabel);
+    }
+  }, [resetSearchOnOptionSelection, setInputValue, multiple, selectedLabel]);
+
+  const {
+    listRef,
+    suppressCloseCommit,
+    enableCloseCommit,
+    tryCommitOnClose,
+    tryCommitOnBlur,
+    tryCommitFromKeyboard,
+    handleListSingleChange,
+    handleListMultipleChange,
+  } = useCustomOption({
+    allowCustomOption,
+    addCustomOptionTriggers,
+    multiple,
+    inputValue,
+    typing,
+    multipleValue,
+    commitSingle: handleSingleChange,
+    commitMultiple: handleMultipleChange,
+    resetSearch: resetCustomOptionSearch,
+    inputElementRef,
+    clearButtonRef,
+    copyButtonRef,
+    footerActiveElementsRefs,
+  });
+
   const handleOpenChange = useCallback(
     (next: boolean) => {
       // readonly/disabled поле открывать нельзя, закрывать — можно.
@@ -302,49 +405,28 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
       if (!next) {
         setTyping(false);
+        const committed = tryCommitOnClose();
 
-        if (resetSearchOnOptionSelection) {
+        // Кастомная опция не зафиксирована — вернуть лейбл выбранного значения.
+        if (resetSearchOnOptionSelection && !committed) {
           setInputValue(selectedLabel);
         }
       }
     },
-    [openProp, onOpenChange, disabled, readOnly, resetSearchOnOptionSelection, setInputValue, selectedLabel],
+    [
+      openProp,
+      onOpenChange,
+      disabled,
+      readOnly,
+      resetSearchOnOptionSelection,
+      setInputValue,
+      selectedLabel,
+      tryCommitOnClose,
+    ],
   );
 
-  const handleSingleChange = (next: ItemId | undefined) => {
-    if (multiple) {
-      return;
-    }
-
-    if (props.value === undefined) {
-      setSingleLocal(next);
-    }
-
-    props.onChange?.(next);
-    setTyping(false);
-  };
-
-  const handleMultipleChange = (next: ItemId[]) => {
-    if (!multiple) {
-      return;
-    }
-
-    if (props.value === undefined) {
-      setMultipleLocal(next);
-    }
-
-    props.onChange?.(next);
-
-    if (searchable) {
-      setTyping(false);
-
-      if (resetSearchOnOptionSelection) {
-        setInputValue('');
-      }
-    }
-  };
-
   const handleInputChange = (next: string) => {
+    enableCloseCommit();
     setInputValue(next);
     setTyping(true);
 
@@ -358,17 +440,17 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       // Отключённые выбранные значения остаются при очистке (паритет с легаси).
       const keepDisabled = selectedPairs.filter(pair => pair.disabled).map(pair => pair.id);
 
-      if (props.value === undefined) {
+      if (value === undefined) {
         setMultipleLocal(keepDisabled);
       }
 
-      props.onChange?.(keepDisabled);
+      onMultipleChange?.(keepDisabled);
     } else {
-      if (props.value === undefined) {
+      if (value === undefined) {
         setSingleLocal(undefined);
       }
 
-      props.onChange?.(undefined);
+      onSingleChange?.(undefined);
     }
 
     setInputValue('');
@@ -379,7 +461,17 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     if (required && !open) {
       handleOpenChange(true);
     }
-  }, [multiple, props, selectedPairs, setInputValue, required, open, handleOpenChange]);
+  }, [
+    multiple,
+    selectedPairs,
+    setInputValue,
+    required,
+    open,
+    handleOpenChange,
+    value,
+    onSingleChange,
+    onMultipleChange,
+  ]);
 
   const removeChip = useCallback(
     (id: ItemId) => {
@@ -394,13 +486,13 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
       const next = multipleValue.filter(v => v !== id);
 
-      if (props.value === undefined) {
+      if (value === undefined) {
         setMultipleLocal(next);
       }
 
-      props.onChange?.(next);
+      onMultipleChange?.(next);
     },
-    [multiple, multipleValue, props, selectedPairs],
+    [multiple, multipleValue, selectedPairs, value, onMultipleChange],
   );
 
   const handleRemoveChip = useCallback(
@@ -471,21 +563,13 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
     if (event.key === 'Escape' && open) {
       event.preventDefault();
+      suppressCloseCommit();
       handleOpenChange(false);
     }
 
-    if (addOptionByEnter && event.key === 'Enter' && inputValue !== '') {
-      // Введённый текст становится новым значением (создание опции «на лету»).
+    if (tryCommitFromKeyboard(event)) {
       event.preventDefault();
-
-      if (multiple) {
-        if (!multipleValue.includes(inputValue)) {
-          handleMultipleChange([...multipleValue, inputValue]);
-        }
-      } else {
-        handleSingleChange(inputValue);
-      }
-
+      event.stopPropagation();
       return;
     }
 
@@ -498,6 +582,13 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       event.preventDefault();
       const last = multipleValue[multipleValue.length - 1];
       removeChip(last);
+      restoreInputFocus();
+    }
+  };
+
+  const handleTriggerKeyDownCapture = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Escape') {
+      suppressCloseCommit();
     }
   };
 
@@ -536,19 +627,34 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     [searchable, onFocusProp],
   );
 
-  const handleInputBlur = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      setFocusVisible(false);
-      onBlurProp?.(event);
-    },
-    [onBlurProp],
-  );
+  const handleInputBlur = (event: FocusEvent<HTMLInputElement>) => {
+    setFocusVisible(false);
+    const blurResult = tryCommitOnBlur(event);
+
+    // Закрытый список не получит onOpenChange — вернуть лейбл выбранного значения.
+    // Клик по айтему открытого списка даёт relatedTarget === null, восстановление делает закрытие.
+    if (resetSearchOnOptionSelection && blurResult === 'skipped' && (!open || event.relatedTarget !== null)) {
+      setTyping(false);
+      setInputValue(selectedLabel);
+    }
+
+    onBlurProp?.(event);
+  };
 
   const droplistSelection = multiple
-    ? { mode: 'multiple' as const, value: multipleValue, onChange: handleMultipleChange }
-    : { mode: 'single' as const, value: singleValue, onChange: handleSingleChange };
+    ? { mode: 'multiple' as const, value: multipleValue, onChange: handleListMultipleChange }
+    : { mode: 'single' as const, value: singleValue, onChange: handleListSingleChange };
 
   const hasChips = chips && selectedPairs.length > 0;
+
+  useLayoutEffect(() => {
+    if (!restoreInputFocusRef.current) {
+      return;
+    }
+
+    restoreInputFocusRef.current = false;
+    inputElementRef.current?.focus();
+  }, [multipleValue.length]);
 
   // minWidth поискового input'а = ширина введённого текста (`.inputPlug`), но не больше строки чипов.
   // Замер до paint, иначе input мигает при вводе.
@@ -583,7 +689,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   );
 
   const searchInput = hasChips ? (
-    <div className={styles.inputWrapper} style={{ minWidth: chipInputMinWidth } as CSSProperties}>
+    <div key='search-input' className={styles.inputWrapper} style={{ minWidth: chipInputMinWidth } as CSSProperties}>
       {searchInputField}
     </div>
   ) : (
@@ -605,6 +711,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       data-test-id={dataTestId}
       onMouseEnter={handleTriggerMouseEnter}
       onMouseLeave={handleTriggerMouseLeave}
+      onKeyDownCapture={handleTriggerKeyDownCapture}
       onClick={handleTriggerClick}
     >
       <div className={fieldStyles.backgroundWrapper}>
@@ -698,6 +805,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         placement={placement}
         widthStrategy={widthStrategy}
         triggerElemRef={inputRef}
+        listRef={listRef}
         size={size}
         open={open}
         onOpenChange={handleOpenChange}

@@ -6,8 +6,11 @@ export const TEST_IDS = {
     // InteractionTest: отдельные корни, чтобы скоупить запросы к нужному полю.
     singleRoot: 'field-select-single',
     singleCreatableRoot: 'field-select-single-creatable',
+    singleAllowCustomRoot: 'field-select-single-allow-custom',
     multipleRoot: 'field-select-multiple',
     multipleCreatableRoot: 'field-select-multiple-creatable',
+    multipleCreatableWithoutChipsRoot: 'field-select-multiple-creatable-without-chips',
+    multipleEnterOnlyRoot: 'field-select-multiple-enter-only',
     disabledChipRoot: 'field-select-disabled-chip',
     readonlyRoot: 'field-select-readonly',
     emptyStringRoot: 'field-select-empty-string',

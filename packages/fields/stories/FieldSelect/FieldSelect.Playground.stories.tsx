@@ -1,8 +1,13 @@
 import {
+  ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_DEFAULT,
+  ADD_CUSTOM_OPTION_TRIGGERS_SINGLE_DEFAULT,
   FieldSelect,
+  FieldSelectMultipleAddCustomOptionTrigger,
   FieldSelectMultipleProps,
   FieldSelectProps,
+  FieldSelectSingleAddCustomOptionTrigger,
   Selection,
+  SELECTION_MODE,
   SIZE,
   TEST_IDS,
   VALIDATION_STATE,
@@ -10,6 +15,8 @@ import {
 import { SearchSVG } from '@ds/icons/interface/system';
 import { ItemId, ItemProps } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
@@ -21,12 +28,21 @@ const options: ItemProps[] = [
   { id: 'xl', content: { label: 'X-Large (8 vCPU, 16 GB)' } },
 ];
 
-// FieldSelectProps — дискриминированный union по `selection`. Для Playground'а нужен плоский
-// superset: берём multiple-вариант (в нём chips/removeByBackspace/formatSelected) и расширяем
-// `selection`/`defaultValue` под обе ветки; render кастует обратно к FieldSelectProps.
-type StoryProps = Omit<FieldSelectMultipleProps, 'selection' | 'defaultValue'> & {
-  selection?: Selection;
+// FieldSelectProps — дискриминированный union по `selection`.
+// Для Playground'а нужен плоский superset: multiple-ветка (chips/removeByBackspace/formatSelected)
+// плюс `selection`/`defaultValue` под обе ветки; render кастует обратно к FieldSelectProps.
+type StoryProps = Omit<
+  FieldSelectMultipleProps,
+  'selection' | 'defaultValue' | 'allowCustomOption' | 'addCustomOptionTriggers'
+> & {
   defaultValue?: ItemId | ItemId[];
+  selection?: Selection;
+  allowCustomOption?: boolean;
+  addCustomOptionTriggers: [];
+  /** Служебный режим панели: `off`, пока `allowCustomOption` выключен, иначе текущий `selection`. */
+  customOptionControls: 'off' | Selection;
+  triggersSingle?: FieldSelectSingleAddCustomOptionTrigger[];
+  triggersMultiple?: FieldSelectMultipleAddCustomOptionTrigger[];
 };
 
 const meta: Meta<StoryProps> = {
@@ -42,7 +58,10 @@ const meta: Meta<StoryProps> = {
     selection: 'single',
     searchable: true,
     autocomplete: false,
-    addOptionByEnter: false,
+    allowCustomOption: false,
+    customOptionControls: 'off',
+    triggersSingle: [...ADD_CUSTOM_OPTION_TRIGGERS_SINGLE_DEFAULT],
+    triggersMultiple: [...ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_DEFAULT],
     enableFuzzySearch: true,
     chips: true,
     showClearButton: true,
@@ -66,6 +85,22 @@ const meta: Meta<StoryProps> = {
     chips: { if: { arg: 'selection', eq: 'multiple' } },
     removeByBackspace: { if: { arg: 'selection', eq: 'multiple' } },
     formatSelected: { if: { arg: 'selection', eq: 'multiple' } },
+    allowCustomOption: { control: 'boolean' },
+    // if смотрит на один arg. customOptionControls собирает allowCustomOption и selection.
+    customOptionControls: { table: { disable: true } },
+    triggersSingle: {
+      name: 'addCustomOptionTriggers',
+      if: { arg: 'customOptionControls', eq: SELECTION_MODE.Single },
+      control: 'check',
+      options: [...ADD_CUSTOM_OPTION_TRIGGERS_SINGLE_DEFAULT],
+    },
+    triggersMultiple: {
+      name: 'addCustomOptionTriggers',
+      if: { arg: 'customOptionControls', eq: SELECTION_MODE.Multiple },
+      control: 'check',
+      options: [...ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_DEFAULT],
+    },
+    addCustomOptionTriggers: { table: { disable: true } },
     // copy-кнопка появляется только в readonly.
     showCopyButton: { if: { arg: 'readonly', eq: true } },
     iconBefore: {
@@ -90,17 +125,49 @@ const meta: Meta<StoryProps> = {
     onFocus: { table: { disable: true } },
     onBlur: { table: { disable: true } },
   },
-  render: args => (
-    <DemoPage>
-      <DemoPanel width='narrow'>
-        <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Select-поле с выпадающим списком (Droplist) и single/multiple selection.</DemoHint>
-        <DemoActions block>
-          <FieldSelect {...(args as FieldSelectProps)} />
-        </DemoActions>
-      </DemoPanel>
-    </DemoPage>
-  ),
+  render: function PlaygroundRender({
+    allowCustomOption,
+    triggersSingle,
+    triggersMultiple,
+    selection,
+    customOptionControls,
+    ...rest
+  }) {
+    const [, updateArgs] = useArgs<StoryProps>();
+    let nextControls: StoryProps['customOptionControls'] = 'off';
+
+    if (allowCustomOption) {
+      nextControls = selection === SELECTION_MODE.Multiple ? SELECTION_MODE.Multiple : SELECTION_MODE.Single;
+    }
+
+    useEffect(() => {
+      if (customOptionControls !== nextControls) {
+        updateArgs({ customOptionControls: nextControls });
+      }
+    }, [customOptionControls, nextControls, updateArgs]);
+
+    const triggersBySelection = selection === SELECTION_MODE.Multiple ? triggersMultiple : triggersSingle;
+    const addCustomOptionTriggers = allowCustomOption ? triggersBySelection : undefined;
+
+    return (
+      <DemoPage>
+        <DemoPanel width='narrow'>
+          <DemoTitle>Playground</DemoTitle>
+          <DemoHint>Select-поле с выпадающим списком (Droplist) и single/multiple selection.</DemoHint>
+          <DemoActions block>
+            <FieldSelect
+              {...({
+                ...rest,
+                selection,
+                allowCustomOption,
+                addCustomOptionTriggers,
+              } as FieldSelectProps)}
+            />
+          </DemoActions>
+        </DemoPanel>
+      </DemoPage>
+    );
+  },
 };
 
 export default meta;

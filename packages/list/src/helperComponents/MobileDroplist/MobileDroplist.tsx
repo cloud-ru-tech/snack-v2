@@ -43,6 +43,7 @@ export function MobileDroplist({
   footer,
   onItemsReorder,
   withDividers,
+  listRef,
   ...rest
 }: MobileDroplistProps) {
   const portalContext = usePortalContext();
@@ -205,9 +206,19 @@ export function MobileDroplist({
             data-fill={scrollable || undefined}
           >
             {reorderRoot && onItemsReorder ? (
-              <ReorderableList {...listCommonProps} items={items as ReorderItem[]} onItemsReorder={onItemsReorder} />
+              <ReorderableList
+                {...listCommonProps}
+                items={items as ReorderItem[]}
+                onItemsReorder={onItemsReorder}
+                ref={isRoot ? listRef : undefined}
+              />
             ) : (
-              <List {...listCommonProps} items={levelItems ?? []} virtualized={isRoot && virtualized} />
+              <List
+                {...listCommonProps}
+                items={levelItems ?? []}
+                virtualized={isRoot && virtualized}
+                ref={isRoot ? listRef : undefined}
+              />
             )}
           </div>
         );

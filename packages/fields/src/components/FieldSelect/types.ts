@@ -5,10 +5,40 @@ import { ValueOf } from '@ds/utils';
 import { FocusEvent, KeyboardEvent, ReactNode } from 'react';
 
 import { FieldLayoutPresets } from '../../hooks';
-import { SELECTION_MODE } from './constants';
+import {
+  ADD_CUSTOM_OPTION_TRIGGER,
+  ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_ALLOWED,
+  ADD_CUSTOM_OPTION_TRIGGERS_SINGLE_ALLOWED,
+  SELECTION_MODE,
+} from './constants';
 
 /** Режим выбора FieldSelect: одно значение или несколько. */
 export type Selection = ValueOf<typeof SELECTION_MODE>;
+
+/** Событие, по которому произвольный ввод фиксируется как выбранная опция. */
+export type FieldSelectAddCustomOptionTrigger = ValueOf<typeof ADD_CUSTOM_OPTION_TRIGGER>;
+
+/** Триггеры кастомной опции в режиме `single`. */
+export type FieldSelectSingleAddCustomOptionTrigger = (typeof ADD_CUSTOM_OPTION_TRIGGERS_SINGLE_ALLOWED)[number];
+
+/** Триггеры кастомной опции в режиме `multiple`. */
+export type FieldSelectMultipleAddCustomOptionTrigger = (typeof ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_ALLOWED)[number];
+
+type CustomOptionProps<CustomOptionTrigger extends FieldSelectAddCustomOptionTrigger> = {
+  /**
+   * Разрешить фиксировать произвольный ввод из строки поиска как выбранную опцию
+   * (значение, которого нет в `items`).
+   * @default false
+   */
+  allowCustomOption?: boolean;
+  /**
+   * События, по которым произвольный ввод фиксируется как выбранная опция.
+   * Учитывается только при `allowCustomOption={true}`.
+   * Если не задан — используются все триггеры режима (`single`: enter, blur; `multiple`: enter, blur, space, comma).
+   * Триггеры, недоступные в текущем `selection`, игнорируются.
+   */
+  addCustomOptionTriggers?: CustomOptionTrigger[];
+};
 
 // ItemProps — union с рекурсивными группами, поэтому раздаём поле по всем веткам.
 type WithTagAppearance<T> = T extends { items: ItemProps[] }
@@ -115,11 +145,6 @@ type CommonSelectProps = FieldSelectDecoratorProps &
      */
     autocomplete?: boolean;
     /**
-     * Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»).
-     * @default false
-     */
-    addOptionByEnter?: boolean;
-    /**
      * Сбрасывать строку поиска к выбранному значению после выбора. `false` нужен при асинхронной
      * подгрузке (оставить введённый запрос как значение, пока данные не пришли).
      * @default true
@@ -170,53 +195,55 @@ type CommonSelectProps = FieldSelectDecoratorProps &
     'data-test-id'?: string;
   };
 
-export type FieldSelectSingleProps = CommonSelectProps & {
-  /** Режим выбора. По умолчанию `'single'`. */
-  selection?: typeof SELECTION_MODE.Single;
-  /** Управляемое значение. Пустая строка трактуется как «значение не выбрано». */
-  value?: ItemId;
-  /** Неуправляемое значение по умолчанию. Пустая строка трактуется как «значение не выбрано». */
-  defaultValue?: ItemId;
-  /** Колбек смены значения */
-  onChange?(value: ItemId | undefined): void;
-  /**
-   * Закрывать дроплист после клика на айтем.
-   * @default true
-   */
-  closeDroplistOnItemClick?: boolean;
-};
+export type FieldSelectSingleProps = CommonSelectProps &
+  CustomOptionProps<FieldSelectSingleAddCustomOptionTrigger> & {
+    /** Режим выбора. По умолчанию `'single'`. */
+    selection?: typeof SELECTION_MODE.Single;
+    /** Управляемое значение. Пустая строка трактуется как «значение не выбрано». */
+    value?: ItemId;
+    /** Неуправляемое значение по умолчанию. Пустая строка трактуется как «значение не выбрано». */
+    defaultValue?: ItemId;
+    /** Колбек смены значения */
+    onChange?(value: ItemId | undefined): void;
+    /**
+     * Закрывать дроплист после клика на айтем.
+     * @default true
+     */
+    closeDroplistOnItemClick?: boolean;
+  };
 
-export type FieldSelectMultipleProps = CommonSelectProps & {
-  /** Режим выбора */
-  selection: typeof SELECTION_MODE.Multiple;
-  /** Управляемые значения */
-  value?: ItemId[];
-  /** Неуправляемые значения по умолчанию */
-  defaultValue?: ItemId[];
-  /** Колбек смены значений */
-  onChange?(value: ItemId[]): void;
-  /**
-   * Форматтер строки выбранных значений (используется, если `chips=false`).
-   * @default — список лейблов через `, `
-   */
-  formatSelected?(selected: { id: ItemId; label: string }[]): string;
-  /**
-   * Отображать выбранные значения как чипы (`@ds/tag`) внутри поля. Если `false`,
-   * показывает строку из `formatSelected` либо comma-joined.
-   * @default true
-   */
-  chips?: boolean;
-  /**
-   * Удалять последний чип по `Backspace`, когда строка ввода пустая.
-   * Работает только при `chips=true` и `searchable=true`.
-   * @default true
-   */
-  removeByBackspace?: boolean;
-  /**
-   * Закрывать дроплист после клика на айтем.
-   * @default false
-   */
-  closeDroplistOnItemClick?: boolean;
-};
+export type FieldSelectMultipleProps = CommonSelectProps &
+  CustomOptionProps<FieldSelectMultipleAddCustomOptionTrigger> & {
+    /** Режим выбора */
+    selection: typeof SELECTION_MODE.Multiple;
+    /** Управляемые значения */
+    value?: ItemId[];
+    /** Неуправляемые значения по умолчанию */
+    defaultValue?: ItemId[];
+    /** Колбек смены значений */
+    onChange?(value: ItemId[]): void;
+    /**
+     * Форматтер строки выбранных значений (используется, если `chips=false`).
+     * @default — список лейблов через `, `
+     */
+    formatSelected?(selected: { id: ItemId; label: string }[]): string;
+    /**
+     * Отображать выбранные значения как чипы (`@ds/tag`) внутри поля. Если `false`,
+     * показывает строку из `formatSelected` либо comma-joined.
+     * @default true
+     */
+    chips?: boolean;
+    /**
+     * Удалять последний чип по `Backspace`, когда строка ввода пустая.
+     * Работает только при `chips=true` и `searchable=true`.
+     * @default true
+     */
+    removeByBackspace?: boolean;
+    /**
+     * Закрывать дроплист после клика на айтем.
+     * @default false
+     */
+    closeDroplistOnItemClick?: boolean;
+  };
 
 export type FieldSelectProps = FieldSelectSingleProps | FieldSelectMultipleProps;

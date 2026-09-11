@@ -209,7 +209,7 @@ export type DroplistImplProps = DesktopDroplistProps & DroplistMobileSlots;
  */
 export type MobileDroplistProps = Omit<
   DesktopDroplistProps,
-  'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName' | 'disableSpanWrapper'
+  'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'triggerClassName' | 'disableSpanWrapper'
 > &
   Pick<BottomSheetProps, 'snapPoints' | 'withDividers'> &
   DroplistMobileSlots;

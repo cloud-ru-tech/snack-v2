@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { SELECTION_MODE } from '../src/components/FieldSelect/constants';
+import {
+  ADD_CUSTOM_OPTION_TRIGGER,
+  ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_DEFAULT,
+  SELECTION_MODE,
+} from '../src/components/FieldSelect/constants';
 import { FieldSelectProps } from '../src/components/FieldSelect/types';
 import {
   extractAppearance,
@@ -9,8 +13,15 @@ import {
   filterItems,
   findItem,
   flatten,
+  getCustomOptionTriggerByKey,
+  getMissingSelectedItems,
+  getSelectedIds,
+  isCustomOptionBlurInsideField,
   isFuzzyMatch,
   isMultiple,
+  resolveAddCustomOptionTriggers,
+  shouldCommitCustomOptionOnClose,
+  shouldHandleCustomOptionTrigger,
   TAG_SIZE_MAP,
   WithIdContent,
 } from '../src/components/FieldSelect/utils';
@@ -36,7 +47,7 @@ describe('extractLabel', () => {
     expect(extractLabel({ id: 'a', content: 7 })).toBe('7');
   });
 
-  it('reads option field from object content', () => {
+  it('reads label field from object content', () => {
     expect(extractLabel({ id: 'a', content: { label: 'Large' } })).toBe('Large');
     expect(extractLabel({ id: 'a', content: { label: 3 } })).toBe('3');
   });
@@ -64,12 +75,13 @@ describe('extractSearchText', () => {
 
 describe('extractAppearance', () => {
   it('returns string appearance', () => {
-    expect(extractAppearance({ appearance: 'critical' })).toBe('critical');
+    expect(extractAppearance({ appearance: 'red' })).toBe('red');
   });
 
   it('returns undefined for missing or non-string appearance', () => {
     expect(extractAppearance(undefined)).toBeUndefined();
     expect(extractAppearance({})).toBeUndefined();
+    // @ts-expect-error test for invalid appearance
     expect(extractAppearance({ appearance: 123 })).toBeUndefined();
   });
 });
@@ -112,6 +124,25 @@ describe('findItem', () => {
 
   it('returns undefined when missing', () => {
     expect(findItem(items, 'zzz')).toBeUndefined();
+  });
+});
+
+describe('getMissingSelectedItems', () => {
+  const items = [
+    { id: 'a', content: { label: 'A' } },
+    { id: 'g', content: { label: 'G' }, items: [{ id: 'nested', content: { label: 'Nested' } }] },
+  ] as unknown as Parameters<typeof getMissingSelectedItems>[1];
+
+  it('returns placeholder items for selected ids missing from the tree', () => {
+    expect(getMissingSelectedItems(['custom', 'a'], items)).toEqual([{ id: 'custom', content: { label: 'custom' } }]);
+  });
+
+  it('does not duplicate nested or pin items', () => {
+    expect(getMissingSelectedItems(['nested', 'a'], items)).toEqual([]);
+  });
+
+  it('skips empty string ids (treated as no value)', () => {
+    expect(getMissingSelectedItems([''], items)).toEqual([]);
   });
 });
 
@@ -180,5 +211,140 @@ describe('isMultiple', () => {
   it('returns false for single (default) selection', () => {
     expect(isMultiple({ selection: SELECTION_MODE.Single, items: [] } as FieldSelectProps)).toBe(false);
     expect(isMultiple({ items: [] } as FieldSelectProps)).toBe(false);
+  });
+});
+
+describe('getSelectedIds', () => {
+  it('returns the multiple value as-is', () => {
+    expect(getSelectedIds({ multiple: true, multipleValue: ['a', 'b'], singleValue: 'x' })).toEqual(['a', 'b']);
+  });
+
+  it('wraps a single value and treats undefined as empty', () => {
+    expect(getSelectedIds({ multiple: false, multipleValue: ['a'], singleValue: 'x' })).toEqual(['x']);
+    expect(getSelectedIds({ multiple: false, multipleValue: [], singleValue: undefined })).toEqual([]);
+  });
+});
+
+describe('getCustomOptionTriggerByKey', () => {
+  it('falls back to event.key when code is empty or unknown', () => {
+    expect(getCustomOptionTriggerByKey('Enter')).toBe(ADD_CUSTOM_OPTION_TRIGGER.Enter);
+    expect(getCustomOptionTriggerByKey('Unidentified')).toBeUndefined();
+    expect(getCustomOptionTriggerByKey(',')).toBe(ADD_CUSTOM_OPTION_TRIGGER.Comma);
+  });
+
+  it('returns undefined for unsupported event.key', () => {
+    expect(getCustomOptionTriggerByKey('Tab')).toBeUndefined();
+    expect(getCustomOptionTriggerByKey('Escape')).toBeUndefined();
+  });
+});
+
+describe('shouldHandleCustomOptionTrigger', () => {
+  it('is true when the trigger is in the available list', () => {
+    expect(shouldHandleCustomOptionTrigger(ADD_CUSTOM_OPTION_TRIGGER.Enter, [ADD_CUSTOM_OPTION_TRIGGER.Enter])).toBe(
+      true,
+    );
+  });
+
+  it('is false when the trigger is missing or undefined', () => {
+    expect(shouldHandleCustomOptionTrigger(ADD_CUSTOM_OPTION_TRIGGER.Blur, [ADD_CUSTOM_OPTION_TRIGGER.Enter])).toBe(
+      false,
+    );
+    expect(shouldHandleCustomOptionTrigger(undefined, [ADD_CUSTOM_OPTION_TRIGGER.Enter])).toBe(false);
+  });
+});
+
+describe('resolveAddCustomOptionTriggers', () => {
+  it('returns all default triggers when allowCustomOption is true and triggers are omitted', () => {
+    expect(
+      resolveAddCustomOptionTriggers({
+        allowCustomOption: true,
+        addCustomOptionTriggers: undefined,
+        multiple: true,
+      }),
+    ).toEqual([...ADD_CUSTOM_OPTION_TRIGGERS_MULTIPLE_DEFAULT]);
+  });
+
+  it('returns the provided list when allowCustomOption is true', () => {
+    expect(
+      resolveAddCustomOptionTriggers({
+        allowCustomOption: true,
+        addCustomOptionTriggers: [ADD_CUSTOM_OPTION_TRIGGER.Enter],
+      }),
+    ).toEqual([ADD_CUSTOM_OPTION_TRIGGER.Enter]);
+  });
+
+  it('drops triggers that are not allowed in the current selection mode', () => {
+    expect(
+      resolveAddCustomOptionTriggers({
+        allowCustomOption: true,
+        addCustomOptionTriggers: [
+          ADD_CUSTOM_OPTION_TRIGGER.Enter,
+          ADD_CUSTOM_OPTION_TRIGGER.Space,
+          ADD_CUSTOM_OPTION_TRIGGER.Comma,
+        ],
+      }),
+    ).toEqual([ADD_CUSTOM_OPTION_TRIGGER.Enter]);
+  });
+
+  it('keeps an empty list when the consumer passed no triggers', () => {
+    expect(
+      resolveAddCustomOptionTriggers({
+        allowCustomOption: true,
+        addCustomOptionTriggers: [],
+        multiple: true,
+      }),
+    ).toEqual([]);
+  });
+
+  it('returns an empty list when custom options are disabled', () => {
+    expect(
+      resolveAddCustomOptionTriggers({
+        allowCustomOption: false,
+        addCustomOptionTriggers: undefined,
+        multiple: true,
+      }),
+    ).toEqual([]);
+  });
+});
+
+describe('isCustomOptionBlurInsideField', () => {
+  it('is true when relatedTarget is inside one of the nodes', () => {
+    const list = document.createElement('div');
+    const item = document.createElement('button');
+    list.append(item);
+    const clearButton = document.createElement('button');
+    const footer = document.createElement('button');
+    const nodes = [list, clearButton, footer];
+
+    expect(isCustomOptionBlurInsideField(clearButton, nodes)).toBe(true);
+    expect(isCustomOptionBlurInsideField(item, nodes)).toBe(true);
+    expect(isCustomOptionBlurInsideField(footer, nodes)).toBe(true);
+  });
+
+  it('is false when relatedTarget is null or outside the field', () => {
+    expect(isCustomOptionBlurInsideField(null, [document.createElement('div')])).toBe(false);
+    expect(
+      isCustomOptionBlurInsideField(document.createElement('input'), [
+        document.createElement('div'),
+        document.createElement('button'),
+      ]),
+    ).toBe(false);
+  });
+});
+
+describe('shouldCommitCustomOptionOnClose', () => {
+  it('is true only when focus stayed on the input and commit is not skipped', () => {
+    const input = document.createElement('input');
+
+    expect(shouldCommitCustomOptionOnClose({ skip: false, inputElement: input, activeElement: input })).toBe(true);
+    expect(shouldCommitCustomOptionOnClose({ skip: true, inputElement: input, activeElement: input })).toBe(false);
+    expect(
+      shouldCommitCustomOptionOnClose({
+        skip: false,
+        inputElement: input,
+        activeElement: document.createElement('button'),
+      }),
+    ).toBe(false);
+    expect(shouldCommitCustomOptionOnClose({ skip: false, inputElement: input, activeElement: null })).toBe(false);
   });
 });

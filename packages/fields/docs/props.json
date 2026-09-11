@@ -2907,11 +2907,16 @@
     "displayName": "FieldSelect",
     "propsTypeName": "FieldSelectProps",
     "props": {
-      "addOptionByEnter": {
+      "addCustomOptionTriggers": {
+        "type": "(\"enter\" | \"blur\")[] | (\"enter\" | \"blur\" | \"space\" | \"comma\")[]",
+        "required": false,
+        "description": "События, по которым произвольный ввод фиксируется как выбранная опция.\nУчитывается только при `allowCustomOption={true}`.\nЕсли не задан — используются все триггеры режима (`single`: enter, blur; `multiple`: enter, blur, space, comma).\nТриггеры, недоступные в текущем `selection`, игнорируются."
+      },
+      "allowCustomOption": {
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Зафиксировать введённый текст как новый выбор по `Enter` (создание опции «на лету»)."
+        "description": "Разрешить фиксировать произвольный ввод из строки поиска как выбранную опцию\n(значение, которого нет в `items`)."
       },
       "autoFocus": {
         "type": "boolean",

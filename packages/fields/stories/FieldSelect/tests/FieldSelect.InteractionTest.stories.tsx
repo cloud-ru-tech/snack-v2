@@ -35,9 +35,11 @@ const collapseOptions: ItemProps[] = [
 ];
 
 const onChangeSingle = fn();
-const onChangeSingleCreatable = fn();
+const onChangeSingleAllowCustom = fn();
 const onChangeMultiple = fn();
 const onChangeCreatable = fn();
+const onChangeCreatableWithoutChips = fn();
+const onChangeEnterOnly = fn();
 const onChangeDisabledChip = fn();
 const onCopyReadonly = fn();
 const onChangeEmptyString = fn();
@@ -46,9 +48,11 @@ const EMPTY_STRING_PLACEHOLDER = 'Choose…';
 
 function InteractionScenario() {
   const [single, setSingle] = useState<ItemId | undefined>(undefined);
-  const [singleCreatable, setSingleCreatable] = useState<ItemId | undefined>(undefined);
+  const [singleAllowCustom, setSingleAllowCustom] = useState<ItemId | undefined>(undefined);
   const [multiple, setMultiple] = useState<ItemId[]>(['s', 'l']);
   const [creatable, setCreatable] = useState<ItemId[]>([]);
+  const [creatableWithoutChips, setCreatableWithoutChips] = useState<ItemId[]>(['custom-first']);
+  const [enterOnly, setEnterOnly] = useState<ItemId[]>([]);
   const [disabledChip, setDisabledChip] = useState<ItemId[]>(['read', 'write']);
 
   return (
@@ -67,15 +71,15 @@ function InteractionScenario() {
             }}
           />
           <FieldSelect
-            data-test-id={STORY_TEST_IDS.fieldSelect.singleCreatableRoot}
-            label='Size (single, addOptionByEnter)'
+            data-test-id={STORY_TEST_IDS.fieldSelect.singleAllowCustomRoot}
+            label='Size (single, allowCustomOption)'
             items={options}
             selection='single'
-            addOptionByEnter
-            value={singleCreatable}
+            allowCustomOption
+            value={singleAllowCustom}
             onChange={value => {
-              onChangeSingleCreatable(value);
-              setSingleCreatable(value);
+              onChangeSingleAllowCustom(value);
+              setSingleAllowCustom(value);
             }}
           />
           <FieldSelect
@@ -110,15 +114,42 @@ function InteractionScenario() {
           />
           <FieldSelect
             data-test-id={STORY_TEST_IDS.fieldSelect.multipleCreatableRoot}
-            label='Tags (multiple, addOptionByEnter)'
+            label='Tags (multiple, allowCustomOption)'
             items={options}
             selection='multiple'
             chips
-            addOptionByEnter
+            allowCustomOption
             value={creatable}
             onChange={value => {
               onChangeCreatable(value);
               setCreatable(value);
+            }}
+          />
+          <FieldSelect
+            data-test-id={STORY_TEST_IDS.fieldSelect.multipleEnterOnlyRoot}
+            label='Tags (multiple, enter only)'
+            items={options}
+            selection='multiple'
+            chips
+            allowCustomOption
+            addCustomOptionTriggers={['enter']}
+            value={enterOnly}
+            onChange={value => {
+              onChangeEnterOnly(value);
+              setEnterOnly(value);
+            }}
+          />
+          <FieldSelect
+            data-test-id={STORY_TEST_IDS.fieldSelect.multipleCreatableWithoutChipsRoot}
+            label='Tags (multiple, allowCustomOption, chips=false)'
+            items={options}
+            selection='multiple'
+            chips={false}
+            allowCustomOption
+            value={creatableWithoutChips}
+            onChange={value => {
+              onChangeCreatableWithoutChips(value);
+              setCreatableWithoutChips(value);
             }}
           />
           <FieldSelect
@@ -172,29 +203,35 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
     const single = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.singleRoot);
     const singleInput = within(single).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
-    const singleCreatable = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.singleCreatableRoot);
+    const singleAllowCustom = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.singleAllowCustomRoot);
     const collapse = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.collapseRoot);
     const multiple = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleRoot);
     const disabledChip = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.disabledChipRoot);
     const creatable = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleCreatableRoot);
+    const creatableWithoutChips = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleCreatableWithoutChipsRoot);
+    const enterOnly = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.multipleEnterOnlyRoot);
     const readonly = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.readonlyRoot);
     const emptyString = canvas.getByTestId(STORY_TEST_IDS.fieldSelect.emptyStringRoot);
 
     onChangeSingle.mockClear();
-    onChangeSingleCreatable.mockClear();
+    onChangeSingleAllowCustom.mockClear();
     onChangeMultiple.mockClear();
     onChangeCreatable.mockClear();
+    onChangeCreatableWithoutChips.mockClear();
+    onChangeEnterOnly.mockClear();
     onChangeDisabledChip.mockClear();
     onCopyReadonly.mockClear();
     onChangeEmptyString.mockClear();
 
     await step('renders all fields', async () => {
       await expect(single).toBeVisible();
-      await expect(singleCreatable).toBeVisible();
+      await expect(singleAllowCustom).toBeVisible();
       await expect(collapse).toBeVisible();
       await expect(multiple).toBeVisible();
       await expect(disabledChip).toBeVisible();
       await expect(creatable).toBeVisible();
+      await expect(creatableWithoutChips).toBeVisible();
+      await expect(enterOnly).toBeVisible();
       await expect(readonly).toBeVisible();
       await expect(emptyString).toBeVisible();
     });
@@ -248,6 +285,20 @@ export const InteractionTest: Story = {
       await waitFor(() => expect(singleInput.value).not.toBe(''));
     });
 
+    await step('search: clearing the input then leaving the field restores the selected label', async () => {
+      const selected = singleInput.value;
+      const lastChange = onChangeSingle.mock.lastCall?.[0];
+
+      singleInput.focus();
+      await userEvent.clear(singleInput);
+      await waitFor(() => expect(singleInput.value).toBe(''));
+      await userEvent.click(singleInput);
+      await waitFor(() => expect(singleInput.value).toBe(selected));
+      expect(onChangeSingle).toHaveBeenLastCalledWith(lastChange);
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
     await step('clear: clicking clear empties the field (onChange undefined)', async () => {
       const clearButton = within(single).getByTestId(TEST_IDS.fieldSelectClear);
       await userEvent.click(clearButton);
@@ -272,12 +323,49 @@ export const InteractionTest: Story = {
       await waitFor(() => expect(queryFirstItem()).toBeNull());
     });
 
-    await step('addOptionByEnter (single): Enter on typed text commits it as the value', async () => {
-      const input = within(singleCreatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+    await step('allowCustomOption (single): Escape discards typed text without committing', async () => {
+      const input = within(singleAllowCustom).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
       input.focus();
-      await userEvent.type(input, 'custom-size');
+      await userEvent.type(input, 'esc-me');
+      expect(onChangeSingleAllowCustom).not.toHaveBeenCalled();
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+      expect(onChangeSingleAllowCustom).not.toHaveBeenCalled();
+      await expect(input.value).toBe('');
+    });
+
+    await step('allowCustomOption (single): clicking an existing item does not commit the typed query', async () => {
+      const input = within(singleAllowCustom).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      await userEvent.click(input);
+      await userEvent.type(input, 'med');
+      const mediumItemSelector = `[data-test-id="${LIST_TEST_IDS.baseItem}_m"]`;
+      await waitFor(() => expect(input.ownerDocument.querySelector(mediumItemSelector)).not.toBeNull());
+      await userEvent.click(input.ownerDocument.querySelector(mediumItemSelector) as HTMLElement);
+      await waitFor(() => expect(onChangeSingleAllowCustom).toHaveBeenLastCalledWith('m'));
+      expect(onChangeSingleAllowCustom.mock.calls.map(call => call[0])).not.toContain('med');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+      await expect(input.value).toBe('Medium');
+    });
+
+    await step('allowCustomOption (single): Enter on typed text commits it as the value', async () => {
+      const input = within(singleAllowCustom).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      await userEvent.click(within(singleAllowCustom).getByTestId(TEST_IDS.fieldSelectClear));
+      onChangeSingleAllowCustom.mockClear();
+      await userEvent.type(input, 'custom-single');
       await userEvent.keyboard('{Enter}');
-      await waitFor(() => expect(onChangeSingleCreatable).toHaveBeenCalledWith('custom-size'));
+      await waitFor(() => expect(onChangeSingleAllowCustom).toHaveBeenCalledWith('custom-single'));
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (single): blur commits the typed value', async () => {
+      const input = within(singleAllowCustom).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      await userEvent.type(input, 'from-single-blur', {
+        initialSelectionStart: 0,
+        initialSelectionEnd: input.value.length,
+      });
+      await userEvent.click(singleInput);
+      await waitFor(() => expect(onChangeSingleAllowCustom).toHaveBeenLastCalledWith('from-single-blur'));
       await userEvent.keyboard('{Escape}');
       await waitFor(() => expect(queryFirstItem()).toBeNull());
     });
@@ -320,7 +408,29 @@ export const InteractionTest: Story = {
       await waitFor(() => expect(onChangeDisabledChip).toHaveBeenLastCalledWith(['read']));
     });
 
-    await step('addOptionByEnter (multiple): Enter on typed text creates a new chip', async () => {
+    await step('allowCustomOption (multiple, chips=false): blur commits only newly typed text', async () => {
+      const input = within(creatableWithoutChips).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      await expect(input.value).toBe('custom-first');
+
+      input.focus();
+      await userEvent.click(singleInput);
+      expect(onChangeCreatableWithoutChips).not.toHaveBeenCalled();
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+
+      await userEvent.type(input, 'custom-second', {
+        initialSelectionStart: 0,
+        initialSelectionEnd: input.value.length,
+      });
+      await userEvent.click(singleInput);
+      await waitFor(() =>
+        expect(onChangeCreatableWithoutChips).toHaveBeenLastCalledWith(['custom-first', 'custom-second']),
+      );
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (multiple): Enter on typed text creates a new chip', async () => {
       const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
       creatableInput.focus();
       await userEvent.type(creatableInput, 'custom-zone');
@@ -333,6 +443,89 @@ export const InteractionTest: Story = {
           ),
         ).toHaveLength(1),
       );
+      await expect(within(creatable).getByTestId(TEST_IDS.fieldSelectInput)).toHaveFocus();
+      await waitFor(() =>
+        expect(document.querySelector(`[data-test-id="${LIST_TEST_IDS.baseItem}_custom-zone"]`)).not.toBeNull(),
+      );
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (multiple): Space commits the typed value as a chip', async () => {
+      const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      creatableInput.focus();
+      await userEvent.type(creatableInput, 'from-space');
+      await userEvent.keyboard(' ');
+      await waitFor(() => expect(onChangeCreatable).toHaveBeenLastCalledWith(['custom-zone', 'from-space']));
+    });
+
+    await step('allowCustomOption (multiple): Comma commits the typed value as a chip', async () => {
+      const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      creatableInput.focus();
+      await userEvent.type(creatableInput, 'from-comma');
+      await userEvent.keyboard(',');
+      await waitFor(() =>
+        expect(onChangeCreatable).toHaveBeenLastCalledWith(['custom-zone', 'from-space', 'from-comma']),
+      );
+    });
+
+    await step('allowCustomOption (multiple): blur commits the typed value and adds it to the list', async () => {
+      const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      creatableInput.focus();
+      await userEvent.type(creatableInput, 'from-blur');
+      await userEvent.click(singleInput);
+      await waitFor(() =>
+        expect(onChangeCreatable).toHaveBeenLastCalledWith(['custom-zone', 'from-space', 'from-comma', 'from-blur']),
+      );
+      await userEvent.click(creatableInput);
+      await waitFor(() =>
+        expect(document.querySelector(`[data-test-id="${LIST_TEST_IDS.baseItem}_from-blur"]`)).not.toBeNull(),
+      );
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (multiple): clicking an existing item does not commit the typed query', async () => {
+      const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      creatableInput.focus();
+      await userEvent.type(creatableInput, 'sm');
+      await waitFor(() =>
+        expect(document.querySelector(`[data-test-id="${LIST_TEST_IDS.baseItem}_s"]`)).not.toBeNull(),
+      );
+      await userEvent.click(document.querySelector(`[data-test-id="${LIST_TEST_IDS.baseItem}_s"]`) as HTMLElement);
+      await waitFor(() => {
+        const last = onChangeCreatable.mock.lastCall?.[0] as ItemId[] | undefined;
+        expect(last?.includes('sm')).toBe(false);
+        expect(last).toContain('s');
+      });
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (multiple): Enter on an already selected value does not duplicate it', async () => {
+      const creatableInput = within(creatable).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      const last = onChangeCreatable.mock.lastCall?.[0];
+      creatableInput.focus();
+      await userEvent.type(creatableInput, 'custom-zone');
+      await userEvent.keyboard('{Enter}');
+      expect(onChangeCreatable.mock.lastCall?.[0]).toEqual(last);
+      await waitFor(() => expect(creatableInput.value).toBe(''));
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
+    });
+
+    await step('allowCustomOption (multiple, enter only): blur does not commit, Enter does', async () => {
+      const input = within(enterOnly).getByTestId(TEST_IDS.fieldSelectInput) as HTMLInputElement;
+      input.focus();
+      await userEvent.type(input, 'should-not-blur');
+      await userEvent.click(singleInput);
+      expect(onChangeEnterOnly).not.toHaveBeenCalled();
+      input.focus();
+      await userEvent.type(input, 'only-enter');
+      await userEvent.keyboard('{Enter}');
+      await waitFor(() => expect(onChangeEnterOnly).toHaveBeenCalledWith(['only-enter']));
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(queryFirstItem()).toBeNull());
     });
 
     await step('readonly: copy button is visible and clickable', async () => {

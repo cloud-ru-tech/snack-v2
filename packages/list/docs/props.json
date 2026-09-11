@@ -2349,6 +2349,11 @@
         "required": false,
         "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
       },
+      "listRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на элемент выпадающего списка"
+      },
       "loading": {
         "type": "boolean",
         "required": false,
