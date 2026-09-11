@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.20 (2026-09-11)
+
+### Bug Fixes
+
+- **FF-8978:** markdown link editor should edit text, fix italic texts ([4d3e80e](https://github.com/cloud-ru-tech/snack-v2/commit/4d3e80e8d2dcafed0531a49c04eb644c0b6139f3))
+
 ## 1.0.19 (2026-09-10)
 
 **Note:** Version bump only for package @ds/markdown
