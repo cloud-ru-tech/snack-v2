@@ -51,6 +51,12 @@ $block-top-spacings: (
     }
   }
 
+  // У части брендовых шрифтов (SB Sans Interface) нет курсивного начертания — разрешаем браузерный наклон.
+  em,
+  i {
+    font-synthesis-style: auto;
+  }
+
   ul,
   ol {
     padding-left: base.$sn-primitive-dimension-24;

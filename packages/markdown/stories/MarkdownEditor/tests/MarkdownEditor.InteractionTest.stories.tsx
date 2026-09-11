@@ -11,6 +11,24 @@ const SAMPLE = '# Hello\n\nSome paragraph.';
 // Минимальный набор тестируемых кнопок — чтобы все умещались в тулбар и не уходили в overflow.
 const TOOLBAR = [TOOLBAR_ITEM.Heading, TOOLBAR_ITEM.Bold, TOOLBAR_ITEM.Link, TOOLBAR_ITEM.Table, TOOLBAR_ITEM.Image];
 
+// Выделяет подстроку в contenteditable; selectionchange диспатчим сами, чтобы ProseMirror синхронизировал state сразу.
+function selectText(editable: HTMLElement, text: string) {
+  const walker = document.createTreeWalker(editable, NodeFilter.SHOW_TEXT);
+
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    const index = node.textContent?.indexOf(text) ?? -1;
+
+    if (index >= 0) {
+      editable.focus();
+      document.getSelection()?.setBaseAndExtent(node, index, node, index + text.length);
+      document.dispatchEvent(new Event('selectionchange'));
+      return;
+    }
+  }
+
+  throw new Error(`Text "${text}" not found in editor`);
+}
+
 const meta: Meta<typeof MarkdownEditor> = {
   title: 'Components/Markdown/MarkdownEditor/Tests/Interaction',
   component: MarkdownEditor,
@@ -102,6 +120,42 @@ export const InteractionTest: Story = {
       await waitFor(() => expect(bold).toHaveAttribute('data-checked', 'true'));
       await userEvent.click(bold);
       await waitFor(() => expect(bold).not.toHaveAttribute('data-checked'));
+    });
+
+    await step('Link modal: editing an existing link updates its text and href independently', async () => {
+      const linkButton = canvas.getByTestId(toolbarButtonTestId(TOOLBAR_ITEM.Link));
+
+      selectText(editable, 'paragraph');
+      await userEvent.click(linkButton);
+      const urlInput = body.getByTestId(TEST_IDS.linkModalUrl).querySelector('input') as HTMLInputElement;
+      await userEvent.type(urlInput, 'https://example.com');
+      await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
+      await waitFor(() => expect(editable.querySelector('a')).toHaveTextContent('paragraph'));
+
+      selectText(editable, 'paragraph');
+      await userEvent.click(linkButton);
+      const titleInput = body.getByTestId(TEST_IDS.linkModalTitle).querySelector('input') as HTMLInputElement;
+      await expect(titleInput).toHaveValue('paragraph');
+      await userEvent.clear(titleInput);
+      await userEvent.type(titleInput, 'docs');
+      await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
+      await waitFor(() => expect(body.queryByTestId(TEST_IDS.linkModal)).toBeNull());
+
+      await expect(editable.querySelector('a')).toHaveTextContent(/^docs$/);
+      await expect(editable.querySelector('a')).toHaveAttribute('href', 'https://example.com');
+
+      selectText(editable, 'docs');
+      await userEvent.click(linkButton);
+      const editUrlInput = body.getByTestId(TEST_IDS.linkModalUrl).querySelector('input') as HTMLInputElement;
+      await expect(editUrlInput).toHaveValue('https://example.com');
+      await userEvent.clear(editUrlInput);
+      await userEvent.type(editUrlInput, 'https://example.org');
+      await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
+      await waitFor(() => expect(body.queryByTestId(TEST_IDS.linkModal)).toBeNull());
+
+      // В документе есть ещё ссылка из raw-шага — адресуем правленую по href.
+      await expect(editable.querySelector('a[href="https://example.com"]')).toBeNull();
+      await expect(editable.querySelector('a[href="https://example.org"]')).toHaveTextContent(/^docs$/);
     });
 
     await step('Heading dropdown opens and applies H2', async () => {

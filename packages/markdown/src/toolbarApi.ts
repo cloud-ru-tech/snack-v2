@@ -1,3 +1,4 @@
+import { TextSelection } from '@tiptap/pm/state';
 import { Editor } from '@tiptap/react';
 import { RefObject } from 'react';
 
@@ -84,14 +85,23 @@ export function createWysiwygApi(editor: Editor): ToolbarApi {
         return;
       }
 
-      const chain = editor.chain().focus().extendMarkRange('link');
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        // Текст из модалки отличается от текущего — заменяем его, иначе не трогаем (сохраняем вложенные марки).
+        .command(({ tr }) => {
+          const { from, to } = tr.selection;
 
-      // Нет выделения, но задан текст — вставляем текст-ссылку. Иначе оборачиваем выделение.
-      if (editor.state.selection.empty && title) {
-        chain.insertContent({ type: 'text', text: title, marks: [{ type: 'link', attrs: { href } }] }).run();
-      } else {
-        chain.setLink({ href }).run();
-      }
+          if (title && title !== tr.doc.textBetween(from, to)) {
+            tr.insertText(title, from, to);
+            tr.setSelection(TextSelection.create(tr.doc, from, from + title.length));
+          }
+
+          return true;
+        })
+        .setLink({ href })
+        .run();
     },
     insertImage: (src, alt) => editor.chain().focus().setImage({ src, alt }).run(),
     insertTable: (rows, cols) => editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run(),
