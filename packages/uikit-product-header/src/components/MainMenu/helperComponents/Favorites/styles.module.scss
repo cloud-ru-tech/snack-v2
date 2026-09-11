@@ -58,10 +58,16 @@
 
 .listScrollInner {
   height: 100%;
-  // 12 карточек + gap + padding-top
+  // 12 карточек + gap + padding-top + padding-bottom от .list
   max-height: calc(
-    ((#{base.$sn-primitive-dimension-32} + #{base.$sn-primitive-dimension-4}) * 12) + #{base.$sn-primitive-dimension-4}
+    (#{base.$sn-primitive-dimension-32} * 12) + #{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-8}
   );
+
+  &[data-mobile] {
+    max-height: calc(
+      (#{base.$sn-primitive-dimension-40} * 6) + #{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-8}
+    );
+  }
 }
 
 .list {

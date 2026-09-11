@@ -94,7 +94,7 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
       избранного идёт через звёздочку на карточке. */
     return isMobile ? (
       <div className={styles.listScroll}>
-        <Scroll className={styles.listScrollInner} overflow={{ x: 'hidden' }}>
+        <Scroll className={styles.listScrollInner} data-mobile={isMobile || undefined} overflow={{ x: 'hidden' }}>
           <div className={styles.list} data-test-id={FAVORITES_TEST_IDS.list}>
             {isEmpty && <EmptyState isFavoritesSegment={isFavoritesSegment} isMobile />}
 

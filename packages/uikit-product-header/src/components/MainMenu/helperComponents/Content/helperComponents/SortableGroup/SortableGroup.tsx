@@ -116,7 +116,7 @@ export function SortableGroupDragPreview({
 
   return (
     <DragPreview className={styles.groupDragPreview}>
-      <div className={styles.group} data-drag-preview={true} data-block-color={blockColor}>
+      <div className={styles.group} data-drag-preview={true}>
         <div className={styles.decoration} data-color-scheme={colorScheme} data-is-highlighted={highlight || undefined}>
           <div className={styles.decorationBackground}>
             <div className={styles.colorMarker} data-block-color={blockColor} />

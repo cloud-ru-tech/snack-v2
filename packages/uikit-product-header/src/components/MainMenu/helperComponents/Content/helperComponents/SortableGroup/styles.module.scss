@@ -8,7 +8,6 @@ $map-block-color-decor: (
   'transparent': 'transparent',
   'neutral': base.$sn-theme-color-neutral-decor,
   'primary': base.$sn-theme-color-primary-decor,
-  'red': base.$sn-theme-color-red-decor,
   'orange': base.$sn-theme-color-orange-decor,
   'yellow': base.$sn-theme-color-yellow-decor,
   'green': base.$sn-theme-color-green-decor,
@@ -116,6 +115,7 @@ $map-block-color-decor: (
 }
 
 .groupDragPreviewHeader {
+  position: relative;
   padding: base.$sn-primitive-dimension-4 0;
 }
 
@@ -187,10 +187,6 @@ $map-block-color-decor: (
   width: 100%;
   height: 100%;
   border-radius: inherit;
-
-  [data-drag-preview] & {
-    z-index: -1;
-  }
 
   &[data-color-scheme='light'] {
     --highlight-border-color-from: hsl(155deg 48% 42% / 100%);
