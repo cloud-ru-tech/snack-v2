@@ -92,8 +92,6 @@ export type ContentProps = {
 
   isMobile?: boolean;
 
-  onClose?(): void;
-
   className?: string;
   /** Флаг загрузки данных */
   loading?: boolean;
@@ -115,7 +113,6 @@ export function Content({
   footer,
   favorite,
   isMobile,
-  onClose,
   preferences,
   loading,
 }: ContentProps) {
@@ -151,13 +148,12 @@ export function Content({
 
       if (!shouldBeOpenedInNewTab(e)) {
         e?.preventDefault();
-        onClose?.();
       }
 
       onSegmentServiceClick?.(service, e);
       service.onClick?.(e);
     },
-    [onClose, onSegmentServiceClick],
+    [onSegmentServiceClick],
   );
 
   const {

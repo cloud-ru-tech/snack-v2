@@ -49,10 +49,6 @@
         "required": false,
         "description": "Колбэк смены активного сегмента правой панели."
       },
-      "onClose": {
-        "type": "(() => void)",
-        "required": false
-      },
       "onSegmentExpandedChange": {
         "type": "((segmentId: string, expandedGroupIds: string[]) => void)",
         "required": false,

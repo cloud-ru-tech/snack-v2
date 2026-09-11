@@ -89,7 +89,6 @@ export function MenuMobile({
             <MainMenuDndContext>
               <Content
                 isMobile
-                onClose={handleClose}
                 className={styles.rightContent}
                 searchValue={search && search.value}
                 rightTop={rightTop}

@@ -122,7 +122,6 @@ export function MenuDesktop({
                 overflow={{ x: 'hidden' }}
               >
                 <Content
-                  onClose={handleCloseDrawer}
                   className={styles.rightContent}
                   searchValue={search?.value}
                   rightTop={rightTop}

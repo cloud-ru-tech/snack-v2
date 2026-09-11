@@ -74,6 +74,7 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
       key={service.id}
       as='a'
       className={styles.card}
+      actionsVisibility={isMobile ? 'always' : 'hover'}
       favorite={{
         enabled: true,
         checked: favorite.value.includes(service.id),
