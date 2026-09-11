@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.8 (2026-09-11)
+
+### Bug Fixes
+
+- **FF-9046:** proper favorites max-height, show decor on group drag ([00e35ad](https://github.com/cloud-ru-tech/snack-v2/commit/00e35adfd3cd28f67ed74524c6d1a045aeb97d57))
+- **FF-9046:** remove inner drawer close handling, make card actions always visible on mobile in lastVisited ([359d774](https://github.com/cloud-ru-tech/snack-v2/commit/359d774705f1a3579d825e7e7d664014e18d7db5))
+
 ## 1.3.7 (2026-09-10)
 
 **Note:** Version bump only for package @ds/uikit-product-header
