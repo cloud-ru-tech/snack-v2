@@ -1,7 +1,6 @@
 import { ChevronRightSVG, MoreSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps, ItemProps } from '@ds/list';
 import { usePortalContext } from '@ds/portal-context';
-import { Tooltip } from '@ds/tooltip';
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { TEST_IDS, TOOLBAR_ITEM, toolbarButtonTestId } from '../../constants';
@@ -264,15 +263,14 @@ export function Toolbar({ api, items }: ToolbarProps) {
               triggerClassName={styles.tooltipTrigger}
               data-test-id={TEST_IDS.toolbarMoreList}
             >
-              <Tooltip tip={t('toolbar.more')} triggerClassName={styles.tooltipTrigger}>
-                <PrivateButton
-                  icon={<MoreSVG />}
-                  data-test-id={TEST_IDS.toolbarMore}
-                  aria-label={t('toolbar.more')}
-                  aria-haspopup='menu'
-                  aria-expanded={moreOpen}
-                />
-              </Tooltip>
+              <PrivateButton
+                icon={<MoreSVG />}
+                tip={{ title: t('toolbar.more') }}
+                data-test-id={TEST_IDS.toolbarMore}
+                aria-label={t('toolbar.more')}
+                aria-haspopup='menu'
+                aria-expanded={moreOpen}
+              />
             </Droplist>
           </>
         )}

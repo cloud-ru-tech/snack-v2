@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { PointerEvent, useState } from 'react';
 
 import { tableCellTestId, TEST_IDS } from '../../constants';
 import { markdownLocale } from '../../locale';
@@ -11,11 +11,18 @@ export type TableSelectSettingsGridProps = {
 
 const MAX = 8;
 
+type Cell = { r: number; c: number };
+
 export function TableSelectSettingsGrid({ onPick }: TableSelectSettingsGridProps) {
   const { t } = markdownLocale.useTranslations();
-  const [hover, setHover] = useState<{ r: number; c: number } | null>(null);
+  const [hover, setHover] = useState<Cell | null>(null);
 
-  const cells: { r: number; c: number }[] = [];
+  const handleCellPointerEnter = (event: PointerEvent<HTMLButtonElement>, cell: Cell) => {
+    // iOS Safari не отправляет click по тапу, если hover меняет разметку.
+    if (event.pointerType === 'mouse') setHover(cell);
+  };
+
+  const cells: Cell[] = [];
   for (let r = 1; r <= MAX; r += 1) {
     for (let c = 1; c <= MAX; c += 1) {
       cells.push({ r, c });
@@ -25,7 +32,7 @@ export function TableSelectSettingsGrid({ onPick }: TableSelectSettingsGridProps
   return (
     <div className={styles.root} data-test-id={TEST_IDS.tableGridPicker}>
       <div className={styles.container}>
-        <div className={styles.grid} onMouseLeave={() => setHover(null)}>
+        <div className={styles.grid} onPointerLeave={() => setHover(null)}>
           {cells.map(({ r, c }) => {
             const checked = hover !== null && r <= hover.r && c <= hover.c;
             return (
@@ -33,7 +40,7 @@ export function TableSelectSettingsGrid({ onPick }: TableSelectSettingsGridProps
                 key={`${r}-${c}`}
                 hovered={hover?.r === r && hover?.c === c}
                 checked={checked}
-                onMouseEnter={() => setHover({ r, c })}
+                onPointerEnter={event => handleCellPointerEnter(event, { r, c })}
                 onClick={() => onPick(r, c)}
                 aria-label={t('table.insert', { rows: r, cols: c })}
                 data-test-id={tableCellTestId(r, c)}

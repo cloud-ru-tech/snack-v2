@@ -317,14 +317,14 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Hover-состояние (управляется родителем по mouseEnter)."
+        "description": "Hover-состояние (управляется родителем по pointerEnter)."
       },
       "onClick": {
         "type": "(() => void)",
         "required": false
       },
-      "onMouseEnter": {
-        "type": "(() => void)",
+      "onPointerEnter": {
+        "type": "((event: PointerEvent<HTMLButtonElement>) => void)",
         "required": false
       }
     },
