@@ -1,6 +1,6 @@
 import { ClipboardEvent, KeyboardEvent, MouseEvent, RefObject, useCallback, useRef } from 'react';
 
-import { SlotMeta } from './segments';
+import { SegmentKey, SlotMeta } from './segments';
 
 type UseSegmentedMaskParams = {
   inputRef: RefObject<HTMLInputElement | null>;
@@ -174,73 +174,71 @@ export function useSegmentedMask({
     [clearSlot, isValidDate, lastSlot, nextSlot, selectSlot, slots, tryToComplete],
   );
 
+  // Цифры сегмента храним отдельно от текста: по `01` в поле не отличить `1` от `0` + `1`.
+  const typedRef = useRef<{ key: SegmentKey; digits: string } | null>(null);
+  const resetTyped = useCallback(() => {
+    typedRef.current = null;
+  }, []);
+
   const typeDigit = useCallback(
     (slot: SlotMeta, key: string) => {
-      const text = getSlotText(slot);
-      const numberValue = Number(text) || 0;
-      const digit = Number(key);
-      const slotValue = parseInt(numberValue.toString() + key, 10) || 0;
-      const valueLength = slotValue.toString().length;
       const maxLength = slot.max.toString().length;
-      const isTheLastInput = /^0+$/.test(text) && maxLength === 2 && digit === 0;
+      const prev = typedRef.current?.key === slot.key ? typedRef.current.digits : '';
+      const appended = prev + key;
+      const overflow = Number(appended) > slot.max;
+      const digits = overflow ? key : appended;
+      const value = Number(digits);
+      const complete = overflow || digits.length >= maxLength || value * 10 > slot.max;
+      const accepted = value >= slot.min;
 
-      if (valueLength < maxLength) {
-        if (slotValue || slotValue >= slot.min) {
-          updateSlot(slot, slotValue);
-          if (isTheLastInput) checkInputAndGoNext(slot);
-        }
-        if (slotValue * 10 > slot.max) {
-          checkInputAndGoNext(slot);
-        }
-      } else if (valueLength > maxLength) {
-        if (digit * 10 > slot.max) {
-          updateSlot(slot, key);
-          checkInputAndGoNext(slot);
-        } else if (digit || digit >= slot.min) {
-          updateSlot(slot, key);
-        }
-      } else if (slotValue <= slot.max) {
-        updateSlot(slot, slotValue);
-        checkInputAndGoNext(slot);
-      } else if (digit * 10 > slot.max) {
-        updateSlot(slot, key);
-        checkInputAndGoNext(slot);
-      } else if (digit || digit >= slot.min) {
-        updateSlot(slot, key);
+      if (accepted) updateSlot(slot, value);
+
+      if (!complete) {
+        typedRef.current = { key: slot.key, digits };
+        return;
       }
+
+      typedRef.current = null;
+      if (accepted) checkInputAndGoNext(slot);
     },
-    [checkInputAndGoNext, getSlotText, updateSlot],
+    [checkInputAndGoNext, updateSlot],
   );
 
   const handleFocus = useCallback(() => {
     if (readonly || disabled) return;
+    resetTyped();
     ensureMask();
     // На фокус всегда выбираем ПЕРВЫЙ сегмент (паритет с легаси). При клике мышью `handleClick`
     // отработает следом и перевыберет сегмент под кареткой; при Tab остаётся первый.
     selectSlot(firstSlot);
-  }, [disabled, ensureMask, firstSlot, readonly, selectSlot]);
+  }, [disabled, ensureMask, firstSlot, readonly, resetTyped, selectSlot]);
 
   const handleClick = useCallback(
     (event: MouseEvent<HTMLInputElement>) => {
       if (readonly || disabled) return;
+      resetTyped();
       ensureMask();
       selectSlot(slotFromIndex(event.currentTarget.selectionStart));
     },
-    [disabled, ensureMask, readonly, selectSlot, slotFromIndex],
+    [disabled, ensureMask, readonly, resetTyped, selectSlot, slotFromIndex],
   );
 
   const handleBlur = useCallback(() => {
+    resetTyped();
     const input = inputRef.current;
     if (input && input.value === mask) {
       input.value = '';
       setValue('');
     }
-  }, [inputRef, mask, setValue]);
+  }, [inputRef, mask, resetTyped, setValue]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       const input = inputRef.current;
       if (!input || readonly || disabled) return;
+
+      // Любая клавиша, кроме цифры (стрелки, Backspace, Enter, Tab), начинает набор сегмента заново.
+      if (!/^\d$/.test(event.key)) resetTyped();
 
       // Tab уводит фокус из поля — не перехватываем.
       if (event.key === 'Tab') return;
@@ -318,6 +316,7 @@ export function useSegmentedMask({
       onEscape,
       prevSlot,
       readonly,
+      resetTyped,
       selectSlot,
       slotFromIndex,
       tryToComplete,
@@ -334,6 +333,7 @@ export function useSegmentedMask({
       event.preventDefault();
       const digits = event.clipboardData.getData('text').replace(/\D/g, '');
       if (!digits) return;
+      resetTyped();
       ensureMask();
 
       let cursor = 0;
@@ -354,7 +354,19 @@ export function useSegmentedMask({
       }
       emit();
     },
-    [disabled, emit, ensureMask, lastSlot, nextSlot, readonly, selectSlot, slots, tryToComplete, updateSlot],
+    [
+      disabled,
+      emit,
+      ensureMask,
+      lastSlot,
+      nextSlot,
+      readonly,
+      resetTyped,
+      selectSlot,
+      slots,
+      tryToComplete,
+      updateSlot,
+    ],
   );
 
   return { handleKeyDown, handleClick, handleFocus, handleBlur, handlePaste, selectSlot, firstSlot, lastSlot };

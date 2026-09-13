@@ -42,14 +42,18 @@ describe('FieldDate / mask', () => {
       expect(formatMask('129', DATE_MODE.Date)).toBe('12.09');
     });
 
-    it('clamps a full two-digit day above max to 31', () => {
-      // first digit 3 ≤ floor(31/10)=3, so no auto-zero-prefix; «39» as a full pair clamps to 31.
-      expect(formatMask('39', DATE_MODE.Date)).toBe('31');
+    it('restarts a full two-digit day above max from its last digit', () => {
+      // first digit 3 ≤ floor(31/10)=3, so no auto-zero-prefix; «39» as a full pair overflows → 09.
+      expect(formatMask('39', DATE_MODE.Date)).toBe('09');
     });
 
-    it('clamps a full two-digit month above max to 12', () => {
-      // day 31 valid; month 19 (first 1 ≤ floor(12/10)=1, pair 19 > 12) → clamp 12.
-      expect(formatMask('3119', DATE_MODE.Date)).toBe('31.12');
+    it('restarts a full two-digit month above max from its last digit', () => {
+      // day 31 valid; month 13 (first 1 ≤ floor(12/10)=1, pair 13 > 12) → 03.
+      expect(formatMask('3113', DATE_MODE.Date)).toBe('31.03');
+    });
+
+    it('keeps leading zeros in every segment', () => {
+      expect(formatMask('01102026', DATE_MODE.Date)).toBe('01.10.2026');
     });
 
     it('formats date-time with seconds', () => {
@@ -64,9 +68,9 @@ describe('FieldDate / mask', () => {
       expect(formatMask('150320269999', DATE_MODE.Date)).toBe('15.03.2026');
     });
 
-    it('clamps hour above 23', () => {
-      // 15.03.2026 then hour 29 (first 2 ≤ floor(23/10)=2, pair 29 > 23) → clamp 23.
-      expect(formatMask('1503202629', DATE_MODE.DateTime)).toBe('15.03.2026, 23');
+    it('restarts hour above 23 from its last digit', () => {
+      // 15.03.2026 then hour 29 (first 2 ≤ floor(23/10)=2, pair 29 > 23) → 09.
+      expect(formatMask('1503202629', DATE_MODE.DateTime)).toBe('15.03.2026, 09');
     });
   });
 

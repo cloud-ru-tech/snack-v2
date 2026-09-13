@@ -55,8 +55,9 @@ function buildSegments(mode: MaskMode, showSeconds: boolean): Segment[] {
  *    «десятку» (`day` → > 3, `month` → > 1, `hour` → > 2, `minute`/`second` → > 5), цифра трактуется
  *    как «единицы» и в начало сегмента добавляется ноль. Пример: `5` для day → `05.`,
  *    фокус автоматически уезжает на следующий сегмент.
- * 2. **Clamp полной двойки**: если набрано две цифры и значение превышает `max` сегмента —
- *    значение прижимается к верхней границе. Пример: `55` для day → `31`, `99` для month → `12`.
+ * 2. **Переполнение полной двойки**: если набрано две цифры и значение превышает `max` сегмента —
+ *    сегмент начинается заново с последней цифры (как посегментный ввод в `useSegmentedMask`).
+ *    Пример: `39` для day → `09`, `13` для month → `03`.
  */
 export function formatMask(input: string, mode: MaskMode, showSeconds = true): string {
   const maxLen = totalLen(mode, showSeconds);
@@ -81,7 +82,7 @@ export function formatMask(input: string, mode: MaskMode, showSeconds = true): s
     stream = stream.slice(seg.len);
     if (raw.length === seg.len) {
       const n = Number(raw);
-      out += n > seg.max ? String(seg.max).padStart(seg.len, '0') : raw;
+      out += n > seg.max ? raw.slice(-1).padStart(seg.len, '0') : raw;
     } else {
       out += raw;
     }

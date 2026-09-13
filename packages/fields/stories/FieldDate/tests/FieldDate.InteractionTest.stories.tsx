@@ -119,14 +119,14 @@ export const InteractionTest: Story = {
       expect(onChangeRange).not.toHaveBeenCalled();
     });
 
-    await step('range formatMask clamps a full segment over its max (day 35 → 31)', async () => {
+    await step('range formatMask restarts a full segment over its max from the last digit (day 35 → 05)', async () => {
       const rangeRoot = canvas.getByTestId(STORY_TEST_IDS.fieldDate.rangeRoot);
       const fromInput = within(rangeRoot).getByTestId<HTMLInputElement>(TEST_IDS.fieldDateInputFrom);
       await userEvent.clear(fromInput);
       await userEvent.click(fromInput);
-      // День 35 не превышает «десятки» (3 ≤ 3), но полные 35 > 31 → прижимается к верхней границе.
+      // День 35 не превышает «десятки» (3 ≤ 3), но полные 35 > 31 → сегмент начинается заново с 5.
       await userEvent.type(fromInput, '35');
-      await waitFor(() => expect(fromInput.value).toBe('31'));
+      await waitFor(() => expect(fromInput.value).toBe('05'));
     });
 
     await step('readonly shows the copy button and hides clear', async () => {

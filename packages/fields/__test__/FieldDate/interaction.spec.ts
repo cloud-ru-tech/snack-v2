@@ -61,9 +61,9 @@ test.describe('FieldDate — interaction', () => {
     await expect(input).toHaveValue('15.03.2026');
   });
 
-  // (Single-mode segment-engine clamp/rollback по невалидным дням — внутреннее поведение
-  // useSegmentedMask @ds/calendar, покрыто его unit-тестами; на уровне FieldDate проверяем
-  // happy-path коммит выше. Range formatMask clamp/auto-prefix покрыт в InteractionTest::play.)
+  // (Single-mode segment-engine overflow/rollback по невалидным дням — внутреннее поведение
+  // useSegmentedMask, покрыто __tests__/useSegmentedMask.test.tsx; на уровне FieldDate проверяем
+  // happy-path коммит выше. Range formatMask overflow/auto-prefix покрыт в InteractionTest::play.)
 
   test('range mode: clicking the from-input mounts the calendar dropdown (no aria-expanded)', async ({
     gotoStory,
