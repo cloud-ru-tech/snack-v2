@@ -520,12 +520,12 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(function F
                 </span>
               ) : (
                 <InputPrivate
-                  ref={mergeRefs(ref, fromInputRef)}
+                  ref={mergeRefs(ref, fromInputRef, singleSeg.nativeInputRef)}
                   className={fieldStyles.fieldInput}
                   value={singleInputValue}
                   placeholder={placeholderMask}
-                  // Single/date-time ведёт сегментный движок (keydown, useSegmentedMask), нативный
-                  // onChange игнорируется. Range — обычный ввод-по-маске (formatMask в handleRangeInput).
+                  // Single/date-time ведёт сегментный движок (useSegmentedMask), нативный onChange
+                  // игнорируется. Range — обычный ввод-по-маске (formatMask в handleRangeInput).
                   onChange={() => {}}
                   onKeyDown={handleSingleKeyDown}
                   onClick={singleSeg.handleClick}

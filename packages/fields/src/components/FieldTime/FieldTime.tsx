@@ -267,7 +267,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     [onInputKeyDown, timeSeg],
   );
 
-  // value ведёт сегментный движок (keydown); нативный onChange input'а игнорируем.
+  // value ведёт сегментный движок (useSegmentedMask); нативный onChange input'а игнорируем.
   const handleInputChange = useCallback(() => undefined, []);
 
   const handleInputFocus = useCallback(
@@ -323,7 +323,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
           <div className={fieldStyles.inputLine}>
             <div className={fieldStyles.inputArea}>
               <InputPrivate
-                ref={mergeRefs(ref, localRef)}
+                ref={mergeRefs(ref, localRef, timeSeg.nativeInputRef)}
                 className={fieldStyles.fieldInput}
                 value={inputValue}
                 onChange={handleInputChange}

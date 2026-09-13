@@ -1,6 +1,5 @@
 /* eslint-disable @cloud-ru/ssr-safe-react/domApi -- unit-тест в jsdom: контейнер для
    пробника создаётся вне компонента, ssr-гварды здесь неприменимы. */
-import { fireEvent } from '@testing-library/dom';
 import { act, useMemo, useRef } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -18,7 +17,7 @@ function renderProbe(mode: SegmentsMode, showSeconds = true) {
   function Probe() {
     const inputRef = useRef<HTMLInputElement>(null);
     const { mask, slots } = useMemo(() => buildSegments(mode, showSeconds), []);
-    const { handleKeyDown, handleFocus } = useSegmentedMask({
+    const { handleKeyDown, handleFocus, nativeInputRef } = useSegmentedMask({
       inputRef,
       mask,
       slots,
@@ -27,7 +26,17 @@ function renderProbe(mode: SegmentsMode, showSeconds = true) {
       onMaskedChange: masked => emitted.push(masked),
     });
 
-    return <input ref={inputRef} data-test-id='input' onKeyDown={handleKeyDown} onFocus={handleFocus} />;
+    return (
+      <input
+        ref={node => {
+          inputRef.current = node;
+          nativeInputRef(node);
+        }}
+        data-test-id='input'
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+      />
+    );
   }
 
   let root: Root;
@@ -39,11 +48,22 @@ function renderProbe(mode: SegmentsMode, showSeconds = true) {
   const input = container.querySelector('input') as HTMLInputElement;
   act(() => input.focus());
 
+  const dispatch = (event: Event) => {
+    let notPrevented = true;
+    act(() => {
+      notPrevented = input.dispatchEvent(event);
+    });
+    return notPrevented;
+  };
+
+  const beforeInput = (init: InputEventInit) =>
+    dispatch(new InputEvent('beforeinput', { bubbles: true, cancelable: true, ...init }));
+
+  // Как браузер: keydown, и если его не отменили — beforeinput с символом клавиши.
   const press = (...keys: string[]) => {
     for (const key of keys) {
-      act(() => {
-        fireEvent.keyDown(input, { key });
-      });
+      const keyDownNotPrevented = dispatch(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+      if (keyDownNotPrevented && key.length === 1) beforeInput({ inputType: 'insertText', data: key });
     }
   };
 
@@ -52,6 +72,8 @@ function renderProbe(mode: SegmentsMode, showSeconds = true) {
     emitted,
     type: (text: string) => press(...text),
     press,
+    dispatch,
+    beforeInput,
     selection: () => [input.selectionStart, input.selectionEnd],
     unmount: () =>
       act(() => {
@@ -158,5 +180,99 @@ describe('useSegmentedMask / ввод цифр', () => {
     probe.press('ArrowRight', 'ArrowLeft');
     probe.type('5');
     expect(probe.input.value).toBe('05.ММ.ГГГГ');
+  });
+});
+
+describe('useSegmentedMask / ввод без keydown', () => {
+  let probe: ReturnType<typeof renderProbe> | undefined;
+
+  beforeEach(() => {
+    actEnv.IS_REACT_ACT_ENVIRONMENT = true;
+  });
+
+  afterEach(() => {
+    probe?.unmount();
+    probe = undefined;
+    actEnv.IS_REACT_ACT_ENVIRONMENT = false;
+  });
+
+  it('keydown цифры и Unidentified не отменяется — ввод доходит до beforeinput', () => {
+    probe = renderProbe('date');
+    expect(probe.dispatch(new KeyboardEvent('keydown', { key: '1', bubbles: true, cancelable: true }))).toBe(true);
+    expect(probe.dispatch(new KeyboardEvent('keydown', { key: 'Unidentified', bubbles: true, cancelable: true }))).toBe(
+      true,
+    );
+  });
+
+  it('сочетания с Ctrl/Meta отдаются браузеру', () => {
+    probe = renderProbe('date');
+    expect(
+      probe.dispatch(new KeyboardEvent('keydown', { key: 'v', metaKey: true, bubbles: true, cancelable: true })),
+    ).toBe(true);
+    expect(
+      probe.dispatch(new KeyboardEvent('keydown', { key: 'c', ctrlKey: true, bubbles: true, cancelable: true })),
+    ).toBe(true);
+  });
+
+  it('beforeinput insertText без keydown вводит цифры (экранная клавиатура)', () => {
+    probe = renderProbe('date');
+    for (const data of '01102026') {
+      expect(probe.beforeInput({ inputType: 'insertText', data })).toBe(false);
+    }
+    expect(probe.input.value).toBe('01.10.2026');
+    expect(probe.emitted.at(-1)).toBe('01.10.2026');
+  });
+
+  it('beforeinput с нецифрами отменяется и не меняет значение', () => {
+    probe = renderProbe('date');
+    expect(probe.beforeInput({ inputType: 'insertText', data: 'a' })).toBe(false);
+    expect(probe.input.value).toBe('ДД.ММ.ГГГГ');
+  });
+
+  it('строка целиком одним beforeinput раскладывается с начала маски', () => {
+    probe = renderProbe('date-time', false);
+    probe.beforeInput({ inputType: 'insertReplacementText', data: '01.10.2026, 07:05' });
+    expect(probe.input.value).toBe('01.10.2026, 07:05');
+    expect(probe.emitted.at(-1)).toBe('01.10.2026, 07:05');
+  });
+
+  it('beforeinput deleteContentBackward очищает текущий сегмент', () => {
+    probe = renderProbe('date');
+    probe.type('0110');
+    probe.press('ArrowLeft');
+    probe.beforeInput({ inputType: 'deleteContentBackward' });
+    expect(probe.input.value).toBe('01.ММ.ГГГГ');
+    expect(probe.selection()).toEqual([3, 5]);
+  });
+
+  it('input без beforeinput (автозаполнение) раскладывает значение по сегментам', () => {
+    probe = renderProbe('date');
+    probe.input.value = '01.10.2026';
+    probe.dispatch(new Event('input', { bubbles: true }));
+    expect(probe.input.value).toBe('01.10.2026');
+    expect(probe.emitted.at(-1)).toBe('01.10.2026');
+  });
+
+  it('keydown Unidentified между цифрами не сбрасывает набранное: 0, 1 → 01', () => {
+    probe = renderProbe('date');
+    for (const data of '0105') {
+      probe.dispatch(new KeyboardEvent('keydown', { key: 'Unidentified', bubbles: true, cancelable: true }));
+      probe.beforeInput({ inputType: 'insertText', data });
+    }
+    expect(probe.input.value).toBe('01.05.ГГГГ');
+  });
+
+  it('композиция IME не меняет значение, цифру вводит её фиксация', () => {
+    probe = renderProbe('date');
+    probe.type('01');
+    // Выделен месяц [3, 5]; неотменяемую композицию браузер применяет сам.
+    probe.beforeInput({ inputType: 'insertCompositionText', data: '1', cancelable: false });
+    probe.input.value = '01.1.ГГГГ';
+    probe.dispatch(new InputEvent('input', { bubbles: true, inputType: 'insertCompositionText', data: '1' }));
+    expect(probe.input.value).toBe('01.ММ.ГГГГ');
+    expect(probe.selection()).toEqual([3, 5]);
+
+    probe.beforeInput({ inputType: 'insertText', data: '1' });
+    expect(probe.input.value).toBe('01.01.ГГГГ');
   });
 });

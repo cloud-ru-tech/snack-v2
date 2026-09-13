@@ -1,6 +1,19 @@
+import { useEventHandler } from '@ds/utils';
 import { ClipboardEvent, KeyboardEvent, MouseEvent, RefObject, useCallback, useRef } from 'react';
 
 import { SegmentKey, SlotMeta } from './segments';
+
+const RESET_TYPED_KEYS = new Set([
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowUp',
+  'ArrowDown',
+  'Backspace',
+  'Delete',
+  'Enter',
+  'Tab',
+  'Escape',
+]);
 
 type UseSegmentedMaskParams = {
   inputRef: RefObject<HTMLInputElement | null>;
@@ -32,6 +45,7 @@ type UseSegmentedMaskParams = {
  * Сегментный ввод даты/времени (порт `useDateField` из @snack-uikit/fields). Каретка ходит по
  * сегментам (`setSelectionRange` подсвечивает текущий), цифры заполняют сегмент с авто-переходом,
  * стрелки двигают по сегментам, Backspace очищает сегмент до плейсхолдера.
+ * `nativeInputRef` передаётся в `ref` того же input'а: значение правится через нативные `beforeinput`/`input`.
  */
 export function useSegmentedMask({
   inputRef,
@@ -237,8 +251,7 @@ export function useSegmentedMask({
       const input = inputRef.current;
       if (!input || readonly || disabled) return;
 
-      // Любая клавиша, кроме цифры (стрелки, Backspace, Enter, Tab), начинает набор сегмента заново.
-      if (!/^\d$/.test(event.key)) resetTyped();
+      if (RESET_TYPED_KEYS.has(event.key)) resetTyped();
 
       // Tab уводит фокус из поля — не перехватываем.
       if (event.key === 'Tab') return;
@@ -256,7 +269,13 @@ export function useSegmentedMask({
         return;
       }
 
+      // Копирование и вставку не блокируем: правку поля перехватит beforeinput.
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+
       onEdit?.();
+
+      // Экранные клавиатуры присылают `Unidentified` вместо цифры, её данные есть только в beforeinput.
+      if (/^\d$/.test(event.key) || event.key === 'Unidentified') return;
 
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -295,11 +314,6 @@ export function useSegmentedMask({
       if (event.key === 'Enter') {
         tryToComplete();
         emit();
-        return;
-      }
-      if (/^\d$/.test(event.key)) {
-        typeDigit(slot, event.key);
-        emit();
       }
     },
     [
@@ -320,19 +334,11 @@ export function useSegmentedMask({
       selectSlot,
       slotFromIndex,
       tryToComplete,
-      typeDigit,
     ],
   );
 
-  // Вставка (Ctrl+V) полной строки даты/времени: вытаскиваем цифры и заполняем сегменты
-  // слева направо. Нативный onChange у поля игнорируется (движок controlled), поэтому без
-  // этого обработчика вставка не работала бы вовсе.
-  const handlePaste = useCallback(
-    (event: ClipboardEvent<HTMLInputElement>) => {
-      if (readonly || disabled) return;
-      event.preventDefault();
-      const digits = event.clipboardData.getData('text').replace(/\D/g, '');
-      if (!digits) return;
+  const fillFromDigits = useCallback(
+    (digits: string) => {
       resetTyped();
       ensureMask();
 
@@ -352,22 +358,123 @@ export function useSegmentedMask({
       } else if (lastFilled) {
         selectSlot(nextSlot(lastFilled));
       }
-      emit();
     },
-    [
-      disabled,
-      emit,
-      ensureMask,
-      lastSlot,
-      nextSlot,
-      readonly,
-      resetTyped,
-      selectSlot,
-      slots,
-      tryToComplete,
-      updateSlot,
-    ],
+    [ensureMask, lastSlot, nextSlot, resetTyped, selectSlot, slots, tryToComplete, updateSlot],
   );
 
-  return { handleKeyDown, handleClick, handleFocus, handleBlur, handlePaste, selectSlot, firstSlot, lastSlot };
+  const handlePaste = useCallback(
+    (event: ClipboardEvent<HTMLInputElement>) => {
+      if (readonly || disabled) return;
+      event.preventDefault();
+      const digits = event.clipboardData.getData('text').replace(/\D/g, '');
+      if (!digits) return;
+      fillFromDigits(digits);
+      emit();
+    },
+    [disabled, emit, fillFromDigits, readonly],
+  );
+
+  const applyEdit = useCallback(
+    (inputType: string, text: string) => {
+      const input = inputRef.current;
+      if (!input) return;
+      onEdit?.();
+
+      if (inputType.startsWith('delete')) {
+        resetTyped();
+        clearSlot(slotFromIndex(input.selectionStart));
+        emit();
+        return;
+      }
+
+      const digits = text.replace(/\D/g, '');
+      if (!inputType.startsWith('insert') || !digits) return;
+
+      // Автозаполнение, `fill` и drop присылают строку целиком.
+      if (text.length > 1) {
+        fillFromDigits(digits);
+      } else {
+        typeDigit(slotFromIndex(input.selectionStart), digits);
+      }
+      emit();
+    },
+    [clearSlot, emit, fillFromDigits, inputRef, onEdit, resetTyped, slotFromIndex, typeDigit],
+  );
+
+  // Композицию IME браузер не даёт отменить — откатываем её в input.
+  const pendingEditRef = useRef<{ value: string; start: number; end: number } | null>(null);
+
+  const handleBeforeInput = useCallback(
+    (event: InputEvent) => {
+      const input = inputRef.current;
+      if (!input || readonly || disabled) return;
+      ensureMask();
+
+      if (!event.cancelable) {
+        pendingEditRef.current = { value: input.value, start: input.selectionStart ?? 0, end: input.selectionEnd ?? 0 };
+        return;
+      }
+
+      event.preventDefault();
+      applyEdit(event.inputType, event.data ?? event.dataTransfer?.getData('text') ?? '');
+    },
+    [applyEdit, disabled, ensureMask, inputRef, readonly],
+  );
+
+  const handleInput = useCallback(
+    (event: Event) => {
+      const input = inputRef.current;
+      if (!input || readonly || disabled) return;
+      const pending = pendingEditRef.current;
+      pendingEditRef.current = null;
+
+      if (pending) {
+        const inputType = event instanceof InputEvent ? event.inputType : '';
+        const inserted = input.value.slice(pending.start, input.value.length - (pending.value.length - pending.end));
+        input.value = pending.value;
+        setValue(pending.value);
+        input.setSelectionRange(pending.start, pending.end);
+        // Цифру композиции вводит её фиксация (insertText), иначе цифра запишется дважды.
+        if (!inputType.includes('Composition')) applyEdit(inputType, inserted);
+        return;
+      }
+
+      // Автозаполнение меняет значение без beforeinput.
+      const digits = input.value.replace(/\D/g, '');
+      input.value = mask;
+      setValue(mask);
+      fillFromDigits(digits);
+      emit();
+    },
+    [applyEdit, disabled, emit, fillFromDigits, inputRef, mask, readonly, setValue],
+  );
+
+  // React 18 не отдаёт `inputType` в `onBeforeInput`, поэтому слушаем нативные события.
+  const onNativeBeforeInput = useEventHandler(handleBeforeInput);
+  const onNativeInput = useEventHandler(handleInput);
+  const attachedInputRef = useRef<HTMLInputElement | null>(null);
+  const nativeInputRef = useCallback(
+    (node: HTMLInputElement | null) => {
+      /* eslint-disable @cloud-ru/ssr-safe-react/domApi -- callback-ref вызывается только в браузере */
+      attachedInputRef.current?.removeEventListener('beforeinput', onNativeBeforeInput);
+      attachedInputRef.current?.removeEventListener('input', onNativeInput);
+      attachedInputRef.current = node;
+      node?.addEventListener('beforeinput', onNativeBeforeInput);
+      node?.addEventListener('input', onNativeInput);
+      /* eslint-enable @cloud-ru/ssr-safe-react/domApi */
+    },
+    [onNativeBeforeInput, onNativeInput],
+  );
+
+  return {
+    handleKeyDown,
+    handleClick,
+    handleFocus,
+    handleBlur,
+    handlePaste,
+    nativeInputRef,
+    selectSlot,
+    firstSlot,
+    lastSlot,
+  };
 }
