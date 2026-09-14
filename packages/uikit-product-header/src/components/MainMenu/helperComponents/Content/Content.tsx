@@ -4,7 +4,7 @@ import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
-import { MouseEvent, ReactNode, useCallback, useDeferredValue, useEffect, useMemo } from 'react';
+import { MouseEvent, ReactNode, useCallback, useDeferredValue, useMemo } from 'react';
 
 import { headerLocale } from '../../../../locale';
 import { shouldBeOpenedInNewTab } from '../../../../utils/shouldBeOpenedInNewTab';
@@ -132,12 +132,6 @@ export function Content({
 
   const isSearching = Boolean(searchValue);
   const enableServiceDrag = Boolean(favorite) && !isMobile && !isSearching;
-
-  useEffect(() => {
-    if (!segments?.some(segment => segment.id === segmentId) && defaultSegmentId) {
-      setSegmentId(defaultSegmentId);
-    }
-  }, [defaultSegmentId, segmentId, setSegmentId, segments]);
 
   const handleLinkClick = useCallback(
     (service: InnerLink, e?: MouseEvent<HTMLElement>) => {
