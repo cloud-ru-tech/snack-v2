@@ -124,6 +124,7 @@ export const FIGMA_NODES = {
     'ai-tool-text': TOOL_ELEMENTS,
   },
   'ai-field-notice': { ...AI_COMPONENTS, nodeId: '7099-3727' }, // ai-field-notice → Field Notice
+  'ai-field-request': { ...AI_COMPONENTS, nodeId: '11403-37767' }, // ai-field-request → Field Request
   alert: { ...SNACK, nodeId: '3222-166' }, // alert → alert
   attachment: {
     _: { ...SNACK, nodeId: '5778-49181' },

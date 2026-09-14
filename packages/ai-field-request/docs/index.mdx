@@ -1,0 +1,121 @@
+---
+title: AiFieldRequest
+package: '@ds/ai-field-request'
+description: 'Панель запроса ответа человека вместо AI-поля ввода: заголовок, слот контента, раскрытие и кнопки действий.'
+order: 0
+---
+
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import aiFieldRequestDoc from './props.json';
+
+import { Default } from '../demos/examples/Default';
+import DefaultSrc from '../demos/examples/Default.tsx?raw';
+import { Destructive } from '../demos/examples/Destructive';
+import DestructiveSrc from '../demos/examples/Destructive.tsx?raw';
+import { Expanded } from '../demos/examples/Expanded';
+import ExpandedSrc from '../demos/examples/Expanded.tsx?raw';
+import { Loading } from '../demos/examples/Loading';
+import LoadingSrc from '../demos/examples/Loading.tsx?raw';
+
+# AiFieldRequest
+
+`AiFieldRequest` — обезличенная панель вместо AI-поля ввода, когда системе нужен ответ человека: заголовок, слот контента, раскрытие длинного текста и две кнопки действий.
+
+Компонент не решает, когда появиться, не хранит ответ и не отправляет его — только показывает содержимое и сообщает о нажатии. Анимация замены поля ввода и Escape остаются на стороне чата.
+
+## Когда использовать
+
+- Нужна панель подтверждения / опросника на месте AI-поля ввода.
+- Контент приходит снаружи (текст сейчас, форма или шаги опросника позже).
+
+### Когда не нужен
+
+- Инлайн-баннер подсказки у поля — `@ds/ai-field-banner` / `@ds/ai-field-notice`.
+- Модалка или drawer с произвольным футером — `@ds/modal` / `@ds/drawer`.
+
+## Анатомия
+
+### Title
+
+`title` — вопрос к человеку. Заголовок строится по формуле «действие + тип объекта» и заканчивается знаком вопроса: «Удалить виртуальную машину?», «Добавить правило в группу безопасности?», «Остановить кластер?». Так человек с первой строки понимает, что именно подтверждает; подробности живут в `content`. Максимум две строки, дальше обрезка по последнему целому слову.
+
+### Actions
+
+`primaryAction` и `secondaryAction` — объекты кнопок: `label` (подпись) и `onClick` (клик). У `primaryAction` есть ещё `loading` — состояние отправки. Оба пропса обязательны, подписи задаёт потребитель.
+
+### Appearance (default `primary`)
+
+Цвет основной кнопки:
+
+- `primary` — зелёная filled-кнопка.
+- `destructive` — красная filled-кнопка (для удаления).
+
+Вторичная кнопка всегда outline neutral. Подписи обеих кнопок задаёт потребитель.
+
+### Content slot
+
+`content` — тело панели, любой ReactNode: сейчас текст, позже форма или шаги опросника. Поэтому предел свёрнутого состояния задаётся высотой `maxHeight` (по умолчанию `88` px), а не числом строк. Строка обрезается через `TruncateString`: число строк вычисляется из `maxHeight` с округлением вниз до целых строк, чтобы не резать глифы. Любое другое содержимое ограничивается по `maxHeight` как есть. Кнопка «Показать» появляется автоматически, если контент не влезает; «Скрыть» в раскрытом виде видна всегда. Подписи кнопки раскрытия — «Показать» / «Скрыть».
+
+### Hint
+
+`hint` — подпись под карточкой. Не рендерится, если не задана.
+
+### Loading
+
+`primaryAction.loading` — индикатор на основной кнопке, вторичная кнопка недоступна, повторный клик по основной отсекается; раскрытие описания остаётся доступным.
+
+### Height
+
+Корень не выше родителя (`max-height: 100%`). Заголовок и футер с кнопками остаются на месте; в раскрытом виде скроллится только слот контента.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-field-request
+```
+
+```ts
+import { AiFieldRequest } from '@ds/ai-field-request';
+```
+
+## Примеры использования
+
+<Example
+  title='Default'
+  description='Свёрнутое состояние: длинный текст обрезан по `maxHeight`, кнопка «Показать» появилась сама'
+  code={DefaultSrc}
+>
+  <Default client:visible />
+</Example>
+
+<Example title='Destructive' description='`appearance="destructive"` — красная основная кнопка' code={DestructiveSrc}>
+  <Destructive client:visible />
+</Example>
+
+<Example title='Expanded' description='Раскрытое состояние: содержимое целиком, кнопка «Скрыть»' code={ExpandedSrc}>
+  <Expanded client:visible />
+</Example>
+
+<Example
+  title='Loading'
+  description='`primaryAction.loading` — индикатор на основной кнопке, вторичная кнопка недоступна'
+  code={LoadingSrc}
+>
+  <Loading client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiFieldRequestDoc.AiFieldRequest} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aifieldrequest--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-field-request')} />

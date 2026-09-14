@@ -1,0 +1,126 @@
+{
+  "AiFieldRequest": {
+    "displayName": "AiFieldRequest",
+    "propsTypeName": "AiFieldRequestProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "destructive",
+          "primary"
+        ],
+        "defaultValue": "primary",
+        "description": "Цвет основной кнопки: `primary` или `destructive`. По умолчанию `primary`.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот тела панели (текст, форма, опросник)."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-request"
+      },
+      "hint": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подпись под карточкой. Не рендерится, если не задана."
+      },
+      "maxHeight": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "88",
+        "description": "Максимальная высота свёрнутого содержимого в px. По умолчанию `88`.\nСлот принимает любой ReactNode, поэтому предел задаётся высотой, а не числом строк.\nДля строкового `content` высота округляется вниз до целого числа строк, чтобы не резать глифы;\nдля любого другого содержимого это обычный предел по высоте."
+      },
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
+        "required": false,
+        "description": "Колбэк смены раскрытия."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Controlled — раскрыто содержимое. Без `open` компонент uncontrolled, стартует свёрнутым."
+      },
+      "primaryAction": {
+        "type": "AiFieldRequestPrimaryAction",
+        "required": true,
+        "description": "Основная кнопка действий: подпись, клик и состояние отправки. Обязательный пропс.",
+        "typeRefs": [
+          "AiFieldRequestAction",
+          "AiFieldRequestPrimaryAction"
+        ]
+      },
+      "secondaryAction": {
+        "type": "AiFieldRequestAction",
+        "required": true,
+        "description": "Вторичная кнопка действий: подпись и клик. Обязательный пропс.",
+        "typeRefs": [
+          "AiFieldRequestAction"
+        ]
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Заголовок панели. Максимум две строки с обрезкой. Обязательный пропс."
+      }
+    },
+    "relatedTypes": {
+      "AiFieldRequestAction": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Подпись кнопки."
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Клик по кнопке."
+          }
+        },
+        "own": true
+      },
+      "AiFieldRequestPrimaryAction": {
+        "kind": "interface",
+        "props": {
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Подпись кнопки."
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Состояние отправки: индикатор на основной кнопке, вторичная кнопка недоступна.\nРаскрытие содержимого остаётся доступным."
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Клик по кнопке."
+          }
+        },
+        "own": true
+      },
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "destructive",
+          "primary"
+        ],
+        "own": true
+      }
+    }
+  }
+}

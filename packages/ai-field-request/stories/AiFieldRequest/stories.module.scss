@@ -1,0 +1,27 @@
+.root {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* Секция StoryTable — флекс-колонка: без этого таблица растягивается на всю ширину
+   контейнера, и в секции с одной колонкой карточка уезжает в центр пустого поля. */
+.matrixSection {
+  align-items: flex-start;
+}
+
+.matrixCell {
+  width: 480px;
+  max-width: 100%;
+}
+
+.constrainedParent {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  height: 300px;
+}
+
+.constrainedRoot {
+  height: 100%;
+  min-height: 0;
+}

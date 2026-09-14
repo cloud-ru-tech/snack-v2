@@ -352,6 +352,9 @@ importers:
       '@ds/ai-field-notice':
         specifier: workspace:*
         version: link:../../packages/ai-field-notice
+      '@ds/ai-field-request':
+        specifier: workspace:*
+        version: link:../../packages/ai-field-request
       '@ds/ai-icon-giga':
         specifier: workspace:*
         version: link:../../packages/ai-icon-giga
@@ -803,6 +806,27 @@ importers:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-field-request:
+    dependencies:
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

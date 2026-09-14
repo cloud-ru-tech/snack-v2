@@ -1,0 +1,53 @@
+{
+  "name": "@ds/ai-field-request",
+  "version": "0.0.0",
+  "description": "Панель запроса ответа человека вместо AI-поля ввода: заголовок, слот контента, раскрытие и кнопки действий.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-field-request"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-field-request",
+  "license": "Apache-2.0",
+  "author": "Артем Сауляк",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "dependencies": {
+    "@ds/button": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

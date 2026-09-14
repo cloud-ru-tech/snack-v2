@@ -1,0 +1,142 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  padding: base.$sn-primitive-dimension-8;
+}
+
+.card {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background-color: base.$sn-theme-color-neutral-decorTransparent;
+}
+
+.headline {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  padding: base.$sn-primitive-dimension-8;
+
+  box-shadow: inset 0 calc(-1 * #{base.$sn-primitive-strokeWeight-strokeRegular}) 0 0
+    base.$sn-theme-color-available-borderColor;
+}
+
+.labelContainer {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}
+
+.titleClamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow-wrap: break-word;
+}
+
+.content {
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
+  min-height: 0;
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  overflow-wrap: break-word;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  &[data-open] {
+    overflow: auto;
+  }
+}
+
+.footer {
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8;
+}
+
+.expand {
+  flex-shrink: 0;
+}
+
+.expandHidden {
+  pointer-events: none;
+
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+
+  visibility: hidden;
+}
+
+.expandIcon {
+  transition: transform 0.15s ease;
+
+  &[data-open] {
+    transform: rotate(180deg);
+  }
+}
+
+.actions {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hint {
+  width: 100%;
+  max-width: 100%;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 's');
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-align: center;
+  overflow-wrap: anywhere;
+}

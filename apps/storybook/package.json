@@ -17,6 +17,7 @@
     "@ds/ai-chain-of-thoughts": "workspace:*",
     "@ds/ai-field-banner": "workspace:*",
     "@ds/ai-field-notice": "workspace:*",
+    "@ds/ai-field-request": "workspace:*",
     "@ds/ai-icon-giga": "workspace:*",
     "@ds/ai-queue": "workspace:*",
     "@ds/ai-reasoning": "workspace:*",
