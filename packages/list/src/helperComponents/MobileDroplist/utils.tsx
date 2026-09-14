@@ -85,7 +85,7 @@ export function buildLevelItems(
       }
 
       if (item.type === ITEM_TYPE.Group || item.type === ITEM_TYPE.GroupSelect || item.type === ITEM_TYPE.Collapse) {
-        return { ...item, items: buildLevelItems(item.items, onDrill, onClose, closeOnClick, indexPath) };
+        return { ...item, items: buildLevelItems(item.items ?? [], onDrill, onClose, closeOnClick, indexPath) };
       }
     }
 
