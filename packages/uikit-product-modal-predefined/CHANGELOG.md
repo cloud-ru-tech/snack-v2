@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.23 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-8945:** reserve scrollbar gutter in ReleaseNotes modal content ([76adb63](https://github.com/cloud-ru-tech/snack-v2/commit/76adb638a3c5323e4c8b50568a7341aa6a6a7be6))
+
 ## 1.0.22 (2026-09-11)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.15 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-8945:** correct calendar Item disabled+checked appearance ([54c1af5](https://github.com/cloud-ru-tech/snack-v2/commit/54c1af5b74f68f818cf37ede0aa0bd588a5c7d67))
+
 ## 1.0.14 (2026-09-10)
 
 **Note:** Version bump only for package @ds/calendar
