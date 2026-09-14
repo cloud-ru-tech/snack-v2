@@ -29,6 +29,12 @@ function selectText(editable: HTMLElement, text: string) {
   throw new Error(`Text "${text}" not found in editor`);
 }
 
+// Посимвольный userEvent.type растягивает play под coverage на CI, значение вставляется одним событием.
+async function fillInput(input: HTMLInputElement, value: string) {
+  await userEvent.clear(input);
+  await userEvent.paste(value);
+}
+
 const meta: Meta<typeof MarkdownEditor> = {
   title: 'Components/Markdown/MarkdownEditor/Tests/Interaction',
   component: MarkdownEditor,
@@ -128,7 +134,7 @@ export const InteractionTest: Story = {
       selectText(editable, 'paragraph');
       await userEvent.click(linkButton);
       const urlInput = body.getByTestId(TEST_IDS.linkModalUrl).querySelector('input') as HTMLInputElement;
-      await userEvent.type(urlInput, 'https://example.com');
+      await fillInput(urlInput, 'https://example.com');
       await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
       await waitFor(() => expect(editable.querySelector('a')).toHaveTextContent('paragraph'));
 
@@ -136,8 +142,7 @@ export const InteractionTest: Story = {
       await userEvent.click(linkButton);
       const titleInput = body.getByTestId(TEST_IDS.linkModalTitle).querySelector('input') as HTMLInputElement;
       await expect(titleInput).toHaveValue('paragraph');
-      await userEvent.clear(titleInput);
-      await userEvent.type(titleInput, 'docs');
+      await fillInput(titleInput, 'docs');
       await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
       await waitFor(() => expect(body.queryByTestId(TEST_IDS.linkModal)).toBeNull());
 
@@ -148,8 +153,7 @@ export const InteractionTest: Story = {
       await userEvent.click(linkButton);
       const editUrlInput = body.getByTestId(TEST_IDS.linkModalUrl).querySelector('input') as HTMLInputElement;
       await expect(editUrlInput).toHaveValue('https://example.com');
-      await userEvent.clear(editUrlInput);
-      await userEvent.type(editUrlInput, 'https://example.org');
+      await fillInput(editUrlInput, 'https://example.org');
       await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
       await waitFor(() => expect(body.queryByTestId(TEST_IDS.linkModal)).toBeNull());
 
@@ -185,7 +189,7 @@ export const InteractionTest: Story = {
       await userEvent.click(canvas.getByTestId(toolbarButtonTestId(TOOLBAR_ITEM.Link)));
       await expect(body.getByTestId(TEST_IDS.linkModal)).toBeVisible();
       const input = body.getByTestId(TEST_IDS.linkModalUrl).querySelector('input') as HTMLInputElement;
-      await userEvent.type(input, 'https://example.com');
+      await fillInput(input, 'https://example.com');
       await userEvent.click(body.getByTestId(TEST_IDS.linkModalAdd));
       await waitFor(() => expect(body.queryByTestId(TEST_IDS.linkModal)).toBeNull());
     });
@@ -194,7 +198,7 @@ export const InteractionTest: Story = {
       await userEvent.click(canvas.getByTestId(toolbarButtonTestId(TOOLBAR_ITEM.Image)));
       await expect(body.getByTestId(TEST_IDS.imageModal)).toBeVisible();
       const input = body.getByTestId(TEST_IDS.imageModalUrl).querySelector('input') as HTMLInputElement;
-      await userEvent.type(input, 'https://example.com/a.png');
+      await fillInput(input, 'https://example.com/a.png');
       await userEvent.click(body.getByTestId(TEST_IDS.imageModalAdd));
       await waitFor(() => expect(body.queryByTestId(TEST_IDS.imageModal)).toBeNull());
     });
