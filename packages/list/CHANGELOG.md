@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-9049:** guard mobile droplist groups without items ([bdbe572](https://github.com/cloud-ru-tech/snack-v2/commit/bdbe572c9142739b58e480d3a23fa5350f2d757f))
+
 ## 2.1.3 (2026-09-10)
 
 **Note:** Version bump only for package @ds/list

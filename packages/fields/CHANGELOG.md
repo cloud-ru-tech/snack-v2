@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.4 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-9049:** handle date/time segment input via beforeinput for mobile keyboards, IME and autofill ([2bdf60d](https://github.com/cloud-ru-tech/snack-v2/commit/2bdf60da37d46a3be1e164874aa96fab26a08e08))
+- **FF-9049:** keep leading zeros in segmented date/time input, restart overflowing segment from last digit ([d7652ac](https://github.com/cloud-ru-tech/snack-v2/commit/d7652ac0bded8a0c5a4785ecb62b1e2d7d2720f8))
+
 ## 2.2.3 (2026-09-14)
 
 **Note:** Version bump only for package @ds/fields

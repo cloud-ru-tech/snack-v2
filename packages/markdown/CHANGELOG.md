@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.22 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-9049:** nest markdown table customize item into a divider group ([5a2e0db](https://github.com/cloud-ru-tech/snack-v2/commit/5a2e0db45034eb9e05b85153c679dea0d3c5a72e))
+- **FF-9049:** open markdown toolbar More menu on mobile, pick table size with a single tap ([d51e277](https://github.com/cloud-ru-tech/snack-v2/commit/d51e27726ce3dec480e48047440f5a866991418b))
+
 ## 1.0.21 (2026-09-14)
 
 **Note:** Version bump only for package @ds/markdown

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.2 (2026-09-14)
+
+### Bug Fixes
+
+- **FF-9049:** use size l for page form footer buttons ([7321fa1](https://github.com/cloud-ru-tech/snack-v2/commit/7321fa13b4d887272a59ba725b72a752b551d84e))
+
 ## 1.4.1 (2026-09-10)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout
