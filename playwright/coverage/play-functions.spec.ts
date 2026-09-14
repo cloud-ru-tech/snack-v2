@@ -29,10 +29,10 @@ const FILTER_RE = FILTER ? new RegExp(FILTER) : null;
  * после play он уходит в фазу `completing`, где `waitForAnimations` ждёт живые анимации
  * и отпускает только по своему внутреннему 5s-таймауту (у table/markdown анимация ручки
  * overlayscrollbars не завершается никогда) — то есть бюджет был меньше нижней границы.
- * 20s — с запасом от замеров: самый долгий тест целиком (goto + ожидание + teardown
- * coverage) занимал 7.5s локально на статике и 19.2s на раннере CI.
+ * 30s: на раннере CI тяжёлые story (table, uikit-product-fields-predefined) не укладывались в 20s,
+ * локально на статике те же story занимают 6–7s.
  */
-const STORY_FINISHED_TIMEOUT = 20000;
+const STORY_FINISHED_TIMEOUT = 30000;
 
 type StoryEntry = { id: string; type: 'story' | 'docs'; tags?: string[]; importPath: string };
 
@@ -65,10 +65,9 @@ test.describe.parallel('story coverage harvest', () => {
 
   for (const story of stories) {
     test(`harvest ${story.id}`, async ({ page }) => {
-      // Дефолтных 30s не хватает: на них ушёл бы весь STORY_FINISHED_TIMEOUT, а teardown
-      // fixture'ы `collectCoverage` (stopJSCoverage + маппинг тяжёлых чанков по sourcemaps)
-      // уже вылетал за них в CI. 45s — вдвое больше самого долгого теста на раннере.
-      test.setTimeout(45000);
+      // Сверх STORY_FINISHED_TIMEOUT нужен запас на teardown `collectCoverage`
+      // (stopJSCoverage + маппинг тяжёлых чанков по sourcemaps).
+      test.setTimeout(60000);
 
       // Слушателя вешаем до загрузки превью: события рендера приходят по одному разу,
       // опросом `currentRender.phase` их не поймать. `storyFinished` — терминальный сигнал
