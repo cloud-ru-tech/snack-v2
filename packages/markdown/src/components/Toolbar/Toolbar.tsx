@@ -96,15 +96,20 @@ export function Toolbar({ api, items }: ToolbarProps) {
         ),
         inactive: true,
       },
-      { type: 'group', content: '', divider: true },
       {
-        content: {
-          label: t('table.customize'),
-          className: styles.tableCustomizeOption,
-        },
-        onClick: openCustomize,
-        afterContent: <ChevronRightSVG />,
-        'data-test-id': TEST_IDS.tableCustomize,
+        type: 'group',
+        divider: true,
+        items: [
+          {
+            content: {
+              label: t('table.customize'),
+              className: styles.tableCustomizeOption,
+            },
+            onClick: openCustomize,
+            afterContent: <ChevronRightSVG />,
+            'data-test-id': TEST_IDS.tableCustomize,
+          },
+        ],
       },
     ],
     [api, t, openCustomize],
