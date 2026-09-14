@@ -3,110 +3,110 @@
     "brand": {
       "color": {
         "primary": {
-          "5": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.5}"
-          },
           "10": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.10}"
+            "$value": "{sn.brand.color.primary.10}"
           },
-          "15": {
+          "20": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.15}"
+            "$value": "{sn.brand.color.primary.20}"
           },
-          "25": {
+          "30": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.25}"
+            "$value": "{sn.brand.color.primary.30}"
           },
-          "45": {
+          "40": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.45}"
+            "$value": "{sn.brand.color.primary.40}"
           },
-          "55": {
+          "50": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.55}"
+            "$value": "{sn.brand.color.primary.50}"
           },
           "60": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.60}"
+            "$value": "{sn.brand.color.primary.60}"
           },
-          "65": {
+          "70": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.65}"
+            "$value": "{sn.brand.color.primary.70}"
           },
           "80": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.80}"
+            "$value": "{sn.brand.color.primary.80}"
           },
           "90": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.90}"
+            "$value": "{sn.brand.color.primary.90}"
           },
           "95": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.95}"
+            "$value": "{sn.brand.color.primary.95}"
           },
           "99": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.99}"
+            "$value": "{sn.brand.color.primary.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.primary.05}"
           },
           "transparent": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.transparent}"
+            "$value": "{sn.brand.color.primary.transparent}"
           },
           "onAccentLight": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.onAccentLight}"
+            "$value": "{sn.brand.color.primary.onAccentLight}"
           },
           "onAccentDark": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.brandRole.color.brandB.onAccentDark}"
+            "$value": "{sn.brand.color.primary.onAccentDark}"
           }
         },
         "text": {
@@ -116,28 +116,28 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000066"
+              "$value": "{sn.brand.color.text.version.disabled}"
             },
             "tertiary": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000099"
+              "$value": "{sn.brand.color.text.version.tertiary}"
             },
             "secondary": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#000000cc"
+              "$value": "{sn.brand.color.text.version.secondary}"
             },
             "main": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#000000"
+              "$value": "{sn.brand.color.text.version.main}"
             }
           },
           "inversion": {
@@ -146,28 +146,28 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#ffffff"
+              "$value": "{sn.brand.color.text.inversion.main}"
             },
             "secondary": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#ffffffd1"
+              "$value": "{sn.brand.color.text.inversion.secondary}"
             },
             "tertiary": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#ffffff99"
+              "$value": "{sn.brand.color.text.inversion.tertiary}"
             },
             "disabled": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#ffffff66"
+              "$value": "{sn.brand.color.text.inversion.disabled}"
             }
           }
         },
@@ -178,7 +178,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000052",
+              "$value": "{sn.brand.color.overlay.forLightMode.blackout}",
               "$description": "перекрывающее затемнение"
             }
           },
@@ -188,7 +188,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000052",
+              "$value": "{sn.brand.color.overlay.forDarkMode.blackout}",
               "$description": "перекрывающее затемнение"
             }
           }
@@ -201,7 +201,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "color",
-                "$value": "{sn.brandRole.color.brandB.backgroundActivatedDefault}"
+                "$value": "{sn.brand.color.state.activated.default.background}"
               }
             },
             "hovered": {
@@ -210,7 +210,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "color",
-                "$value": "{sn.brandRole.color.brandB.backgroundActivatedHovered}"
+                "$value": "{sn.brand.color.state.activated.hovered.background}"
               }
             },
             "pressed": {
@@ -219,7 +219,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "color",
-                "$value": "{sn.brandRole.color.brandB.backgroundActivatedPressed}"
+                "$value": "{sn.brand.color.state.activated.pressed.background}"
               }
             }
           },
@@ -231,7 +231,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#0000001a"
+                  "$value": "{sn.brand.color.state.neutralBorder.forLightMode.default.borderColor}"
                 }
               },
               "pressed": {
@@ -240,7 +240,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#0000004d"
+                  "$value": "{sn.brand.color.state.neutralBorder.forLightMode.pressed.borderColor}"
                 }
               },
               "hovered": {
@@ -249,7 +249,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#00000033"
+                  "$value": "{sn.brand.color.state.neutralBorder.forLightMode.hovered.borderColor}"
                 }
               }
             },
@@ -260,7 +260,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff1a"
+                  "$value": "{sn.brand.color.state.neutralBorder.forDarkMode.default.borderColor}"
                 }
               },
               "pressed": {
@@ -269,7 +269,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff4d"
+                  "$value": "{sn.brand.color.state.neutralBorder.forDarkMode.pressed.borderColor}"
                 }
               },
               "hovered": {
@@ -278,7 +278,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff33"
+                  "$value": "{sn.brand.color.state.neutralBorder.forDarkMode.hovered.borderColor}"
                 }
               }
             }
@@ -291,7 +291,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#00000000"
+                  "$value": "{sn.brand.color.state.neutral.forLightMode.default.background}"
                 }
               },
               "hovered": {
@@ -300,7 +300,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#00000014"
+                  "$value": "{sn.brand.color.state.neutral.forLightMode.hovered.background}"
                 }
               },
               "pressed": {
@@ -309,7 +309,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#0000001f"
+                  "$value": "{sn.brand.color.state.neutral.forLightMode.pressed.background}"
                 }
               }
             },
@@ -320,7 +320,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff00"
+                  "$value": "{sn.brand.color.state.neutral.forDarkMode.default.background}"
                 }
               },
               "hovered": {
@@ -329,7 +329,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff1a"
+                  "$value": "{sn.brand.color.state.neutral.forDarkMode.hovered.background}"
                 }
               },
               "pressed": {
@@ -338,96 +338,96 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "color",
-                  "$value": "#ffffff33"
+                  "$value": "{sn.brand.color.state.neutral.forDarkMode.pressed.background}"
                 }
               }
             }
           }
         },
         "neutral": {
-          "5": {
-            "$extensions": {
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "color",
-            "$value": "{sn.primitive.color.gray.5}"
-          },
           "10": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.10}"
+            "$value": "{sn.brand.color.neutral.10}"
           },
-          "15": {
+          "20": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.15}"
+            "$value": "{sn.brand.color.neutral.20}"
           },
-          "25": {
+          "30": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.25}"
+            "$value": "{sn.brand.color.neutral.30}"
           },
-          "45": {
+          "40": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.45}"
+            "$value": "{sn.brand.color.neutral.40}"
           },
-          "55": {
+          "50": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.55}"
+            "$value": "{sn.brand.color.neutral.50}"
           },
           "60": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.60}"
+            "$value": "{sn.brand.color.neutral.60}"
           },
-          "65": {
+          "70": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.65}"
+            "$value": "{sn.brand.color.neutral.70}"
           },
           "80": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.80}"
+            "$value": "{sn.brand.color.neutral.80}"
           },
           "90": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.90}"
+            "$value": "{sn.brand.color.neutral.90}"
           },
           "95": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.95}"
+            "$value": "{sn.brand.color.neutral.95}"
           },
           "99": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.gray.99}"
+            "$value": "{sn.brand.color.neutral.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.color.neutral.05}"
           },
           "transparent": {
             "forLightMode": {
@@ -435,14 +435,14 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#7c83b614"
+              "$value": "{sn.brand.color.neutral.transparent.forLightMode}"
             },
             "forDarkMode": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#a7abbe14"
+              "$value": "{sn.brand.color.neutral.transparent.forDarkMode}"
             }
           },
           "transparentInverted": {
@@ -451,14 +451,14 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#a6aabf0f"
+              "$value": "{sn.brand.color.neutral.transparentInverted.forLightMode}"
             },
             "forDarkMode": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#8b8fa70f"
+              "$value": "{sn.brand.color.neutral.transparentInverted.forDarkMode}"
             }
           }
         }
@@ -474,7 +474,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#0000004d"
+              "$value": "{sn.brand.effect.shadow.light.layer1Color}"
             },
             "layer2Color": {
               "$extensions": {
@@ -484,7 +484,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000026"
+              "$value": "{sn.brand.effect.shadow.light.layer2Color}"
             },
             "level1": {
               "layer1": {
@@ -496,7 +496,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -506,7 +506,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -516,9 +516,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -526,7 +526,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer1.spread}"
                 }
               },
               "layer2": {
@@ -538,7 +538,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -548,7 +548,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -558,9 +558,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -568,7 +568,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.light.level1.layer2.spread}"
                 }
               }
             },
@@ -582,7 +582,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -592,7 +592,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -602,9 +602,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -612,7 +612,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer1.spread}"
                 }
               },
               "layer2": {
@@ -624,7 +624,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -634,7 +634,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -644,9 +644,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.8}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -654,7 +654,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.brand.effect.shadow.light.level2.layer2.spread}"
                 }
               }
             },
@@ -668,7 +668,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -678,7 +678,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -688,9 +688,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.8}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -698,7 +698,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer1.spread}"
                 }
               },
               "layer2": {
@@ -710,7 +710,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -720,7 +720,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.8}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -730,9 +730,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -740,7 +740,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.brand.effect.shadow.light.level3.layer2.spread}"
                 }
               }
             },
@@ -754,7 +754,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -764,7 +764,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -774,9 +774,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.8}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -784,7 +784,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer1.spread}"
                 }
               },
               "layer2": {
@@ -796,7 +796,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -806,7 +806,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -816,9 +816,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -826,7 +826,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level4.layer2.spread}"
                 }
               }
             },
@@ -840,7 +840,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -850,7 +850,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -860,9 +860,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -870,7 +870,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer1.spread}"
                 }
               },
               "layer2": {
@@ -882,7 +882,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -892,7 +892,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.24}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -902,9 +902,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -912,7 +912,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.effect.shadow.light.level5.layer2.spread}"
                 }
               }
             }
@@ -926,7 +926,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000040"
+              "$value": "{sn.brand.effect.shadow.dark.layer1Color}"
             },
             "layer2Color": {
               "$extensions": {
@@ -936,7 +936,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "color",
-              "$value": "#00000040"
+              "$value": "{sn.brand.effect.shadow.dark.layer2Color}"
             },
             "level1": {
               "layer1": {
@@ -948,7 +948,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -958,7 +958,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -968,9 +968,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -978,7 +978,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer1.spread}"
                 }
               },
               "layer2": {
@@ -990,7 +990,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1000,7 +1000,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1010,9 +1010,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1020,7 +1020,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level1.layer2.spread}"
                 }
               }
             },
@@ -1034,7 +1034,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1044,7 +1044,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1054,9 +1054,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1064,7 +1064,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer1.spread}"
                 }
               },
               "layer2": {
@@ -1076,7 +1076,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1086,7 +1086,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1096,9 +1096,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1106,7 +1106,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level2.layer2.spread}"
                 }
               }
             },
@@ -1120,7 +1120,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1130,7 +1130,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1140,9 +1140,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1150,7 +1150,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer1.spread}"
                 }
               },
               "layer2": {
@@ -1162,7 +1162,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1172,7 +1172,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1182,9 +1182,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1192,7 +1192,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level3.layer2.spread}"
                 }
               }
             },
@@ -1206,7 +1206,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1216,7 +1216,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1226,9 +1226,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1236,7 +1236,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer1.spread}"
                 }
               },
               "layer2": {
@@ -1248,7 +1248,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1258,7 +1258,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1268,9 +1268,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1278,7 +1278,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level4.layer2.spread}"
                 }
               }
             },
@@ -1292,7 +1292,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer1.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1302,7 +1302,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer1.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1312,9 +1312,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer1.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1322,7 +1322,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer1.spread}"
                 }
               },
               "layer2": {
@@ -1334,7 +1334,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer2.positionX}"
                 },
                 "positionY": {
                   "$extensions": {
@@ -1344,7 +1344,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer2.positionY}"
                 },
                 "blur": {
                   "$extensions": {
@@ -1354,9 +1354,9 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.1}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer2.blur}"
                 },
-                "speed": {
+                "spread": {
                   "$extensions": {
                     "com.figma.scopes": [
                       "EFFECT_FLOAT"
@@ -1364,7 +1364,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.0}"
+                  "$value": "{sn.brand.effect.shadow.dark.level5.layer2.spread}"
                 }
               }
             }
@@ -1380,7 +1380,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": 10
+              "$value": "{sn.brand.effect.blur.overlay.backgroundBlur}"
             }
           }
         },
@@ -1393,7 +1393,697 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
-            "$value": 40
+            "$value": "{sn.brand.effect.opacity.focusedFrame}"
+          }
+        }
+      },
+      "palette": {
+        "blue": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.blue.05}"
+          }
+        },
+        "green": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.green.05}"
+          }
+        },
+        "pink": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.pink.05}"
+          }
+        },
+        "yellow": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.yellow.05}"
+          }
+        },
+        "violet": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.violet.05}"
+          }
+        },
+        "gray": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.gray.05}"
+          }
+        },
+        "red": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.red.05}"
+          }
+        },
+        "orange": {
+          "10": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.10}"
+          },
+          "20": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.20}"
+          },
+          "30": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.30}"
+          },
+          "40": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.40}"
+          },
+          "50": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.50}"
+          },
+          "60": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.60}"
+          },
+          "70": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.70}"
+          },
+          "80": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.80}"
+          },
+          "90": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.90}"
+          },
+          "95": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.95}"
+          },
+          "99": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.99}"
+          },
+          "05": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "color",
+            "$value": "{sn.brand.palette.orange.05}"
           }
         }
       },
@@ -1407,7 +2097,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "brandB"
+            "$value": "site"
           },
           "modeName": {
             "$extensions": {
@@ -1417,7 +2107,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "05_brand:"
+            "$value": "04_brand:"
           }
         }
       },
@@ -1431,7 +2121,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "/"
+            "$value": "{sn.brand.text.breadcrumbs.separator}"
           }
         }
       },
@@ -1446,7 +2136,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.regular.display}"
             },
             "headline": {
               "$extensions": {
@@ -1456,7 +2146,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.regular.headline}"
             },
             "title": {
               "$extensions": {
@@ -1466,7 +2156,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.regular.title}"
             },
             "label": {
               "$extensions": {
@@ -1476,7 +2166,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.regular.label}"
             },
             "body": {
               "$extensions": {
@@ -1486,7 +2176,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.regular.body}"
             }
           },
           "mono": {
@@ -1498,7 +2188,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.mono}"
+              "$value": "{sn.brand.font.fontFamily.mono.display}"
             },
             "headline": {
               "$extensions": {
@@ -1508,7 +2198,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.mono}"
+              "$value": "{sn.brand.font.fontFamily.mono.headline}"
             },
             "title": {
               "$extensions": {
@@ -1518,7 +2208,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.mono}"
+              "$value": "{sn.brand.font.fontFamily.mono.title}"
             },
             "label": {
               "$extensions": {
@@ -1528,7 +2218,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.mono}"
+              "$value": "{sn.brand.font.fontFamily.mono.label}"
             },
             "body": {
               "$extensions": {
@@ -1538,7 +2228,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.mono}"
+              "$value": "{sn.brand.font.fontFamily.mono.body}"
             }
           },
           "thin": {
@@ -1550,7 +2240,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.thin.display}"
             },
             "headline": {
               "$extensions": {
@@ -1560,7 +2250,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.thin.headline}"
             },
             "title": {
               "$extensions": {
@@ -1570,7 +2260,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.thin.title}"
             },
             "label": {
               "$extensions": {
@@ -1580,7 +2270,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.thin.label}"
             },
             "body": {
               "$extensions": {
@@ -1590,7 +2280,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "{sn.primitive.fontFamily.brandB.sans}"
+              "$value": "{sn.brand.font.fontFamily.thin.body}"
             }
           }
         },
@@ -1606,7 +2296,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.700}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.display.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1616,7 +2306,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.700}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.display.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1626,7 +2316,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.700}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.display.l}"
                 }
               },
               "headline": {
@@ -1638,7 +2328,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.headline.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1648,7 +2338,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.headline.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1658,7 +2348,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.headline.l}"
                 }
               },
               "title": {
@@ -1670,7 +2360,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.title.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1680,7 +2370,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.title.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1690,7 +2380,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.title.l}"
                 }
               },
               "label": {
@@ -1702,7 +2392,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.label.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1712,7 +2402,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.label.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1722,7 +2412,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.label.l}"
                 }
               },
               "body": {
@@ -1734,7 +2424,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.400}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.body.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1744,7 +2434,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.400}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.body.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1754,7 +2444,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.400}"
+                  "$value": "{sn.brand.font.fontWeight.light.regular.body.l}"
                 }
               }
             },
@@ -1768,7 +2458,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.display.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1778,7 +2468,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.display.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1788,7 +2478,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.display.l}"
                 }
               },
               "headline": {
@@ -1800,7 +2490,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.500}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.headline.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1810,7 +2500,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.500}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.headline.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1820,7 +2510,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.headline.l}"
                 }
               },
               "title": {
@@ -1832,7 +2522,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.500}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.title.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1842,7 +2532,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.500}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.title.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1852,7 +2542,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.500}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.title.l}"
                 }
               },
               "label": {
@@ -1864,7 +2554,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.label.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1874,7 +2564,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.label.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1884,7 +2574,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.label.l}"
                 }
               },
               "body": {
@@ -1896,7 +2586,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.300}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.body.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1906,7 +2596,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.300}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.body.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1916,7 +2606,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.300}"
+                  "$value": "{sn.brand.font.fontWeight.light.thin.body.l}"
                 }
               }
             }
@@ -1932,7 +2622,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.display.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1942,7 +2632,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.display.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1952,7 +2642,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.650}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.display.l}"
                 }
               },
               "headline": {
@@ -1964,7 +2654,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.headline.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -1974,7 +2664,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.headline.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -1984,7 +2674,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.headline.l}"
                 }
               },
               "title": {
@@ -1996,7 +2686,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.title.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2006,7 +2696,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.title.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2016,7 +2706,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.title.l}"
                 }
               },
               "label": {
@@ -2028,7 +2718,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.label.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2038,7 +2728,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.label.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2048,7 +2738,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.label.l}"
                 }
               },
               "body": {
@@ -2060,7 +2750,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.body.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2070,7 +2760,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.body.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2080,7 +2770,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.brand.font.fontWeight.dark.regular.body.l}"
                 }
               }
             },
@@ -2094,7 +2784,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.display.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2104,7 +2794,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.display.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2114,7 +2804,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.display.l}"
                 }
               },
               "headline": {
@@ -2126,7 +2816,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.headline.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2136,7 +2826,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.headline.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2146,7 +2836,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.headline.l}"
                 }
               },
               "title": {
@@ -2158,7 +2848,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.title.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2168,7 +2858,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.title.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2178,7 +2868,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.title.l}"
                 }
               },
               "label": {
@@ -2190,7 +2880,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.label.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2200,7 +2890,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.label.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2210,7 +2900,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.label.l}"
                 }
               },
               "body": {
@@ -2222,7 +2912,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.250}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.body.s}"
                 },
                 "m": {
                   "$extensions": {
@@ -2232,7 +2922,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.250}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.body.m}"
                 },
                 "l": {
                   "$extensions": {
@@ -2242,7 +2932,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.250}"
+                  "$value": "{sn.brand.font.fontWeight.dark.thin.body.l}"
                 }
               }
             }
@@ -2257,21 +2947,21 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.field.s}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.field.m}"
             },
             "l": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.field.l}"
             }
           },
           "button": {
@@ -2280,21 +2970,21 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.button.s}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.button.m}"
             },
             "l": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.button.l}"
             }
           },
           "chips": {
@@ -2303,21 +2993,21 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.full}"
+              "$value": "{sn.brand.anatomy.radius.chips.s}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.full}"
+              "$value": "{sn.brand.anatomy.radius.chips.m}"
             },
             "l": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.full}"
+              "$value": "{sn.brand.anatomy.radius.chips.l}"
             }
           },
           "tag": {
@@ -2326,70 +3016,24 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.tag.xs}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.tag.m}"
             },
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.tag.s}"
             }
           },
           "block": {
-            "s": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.primitive.dimension.6}"
-            },
-            "m": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.primitive.dimension.8}"
-            },
-            "l": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.primitive.dimension.12}"
-            }
-          },
-          "promoTag": {
-            "xs": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
-            },
-            "s": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
-            },
-            "m": {
-              "$extensions": {
-                "com.figma.hiddenFromPublishing": true
-              },
-              "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
-            }
-          },
-          "card": {
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
@@ -2410,6 +3054,52 @@
               },
               "$type": "number",
               "$value": "{sn.brand.anatomy.radius.block.l}"
+            }
+          },
+          "promoTag": {
+            "xs": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.promoTag.xs}"
+            },
+            "s": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.promoTag.s}"
+            },
+            "m": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.promoTag.m}"
+            }
+          },
+          "card": {
+            "s": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.card.s}"
+            },
+            "m": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.card.m}"
+            },
+            "l": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.card.l}"
             },
             "toggles": {
               "xs": {
@@ -2417,7 +3107,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.radius.3xs}"
+                "$value": "{sn.brand.anatomy.radius.card.toggles.xs}"
               }
             }
           },
@@ -2427,14 +3117,14 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.full}"
+              "$value": "{sn.brand.anatomy.radius.counter.xs}"
             },
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.full}"
+              "$value": "{sn.brand.anatomy.radius.counter.s}"
             }
           },
           "toggles": {
@@ -2444,14 +3134,14 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.full}"
+                "$value": "{sn.brand.anatomy.radius.toggles.switch.xs}"
               },
               "s": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.full}"
+                "$value": "{sn.brand.anatomy.radius.toggles.switch.s}"
               }
             },
             "checkbox": {
@@ -2464,7 +3154,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.brand.anatomy.radius.toggles.checkbox.framing.xs}"
                 },
                 "s": {
                   "$extensions": {
@@ -2474,7 +3164,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
+                  "$value": "{sn.brand.anatomy.radius.toggles.checkbox.framing.s}"
                 },
                 "flag": {
                   "surface": {
@@ -2486,7 +3176,7 @@
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
-                      "$value": "{sn.primitive.dimension.2}"
+                      "$value": "{sn.brand.anatomy.radius.toggles.checkbox.framing.flag.surface.xs}"
                     },
                     "s": {
                       "$extensions": {
@@ -2496,7 +3186,7 @@
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
-                      "$value": "{sn.primitive.dimension.2}"
+                      "$value": "{sn.brand.anatomy.radius.toggles.checkbox.framing.flag.surface.s}"
                     }
                   }
                 }
@@ -2509,7 +3199,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.popover.xl}"
             }
           },
           "tooltip": {
@@ -2518,7 +3208,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.tooltip.xs}"
             }
           },
           "dropdown": {
@@ -2527,7 +3217,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.dropdown.s}"
             }
           },
           "window": {
@@ -2536,7 +3226,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.12}"
+              "$value": "{sn.brand.anatomy.radius.window.m}"
             },
             "buttonClosed": {
               "m": {
@@ -2544,7 +3234,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.full}"
+                "$value": "{sn.brand.anatomy.radius.window.buttonClosed.m}"
               }
             }
           },
@@ -2554,7 +3244,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.xs}"
+              "$value": "{sn.brand.anatomy.radius.toaster.m}"
             }
           },
           "toolbar": {
@@ -2563,7 +3253,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.toolbar.xs}"
             }
           },
           "alert": {
@@ -2572,14 +3262,14 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.xs}"
+              "$value": "{sn.brand.anatomy.radius.alert.m}"
             },
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.xs}"
+              "$value": "{sn.brand.anatomy.radius.alert.s}"
             }
           },
           "status": {
@@ -2588,14 +3278,14 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.status.xs}"
             },
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.status.s}"
             }
           },
           "table": {
@@ -2604,7 +3294,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.table.m}"
             }
           },
           "listItem": {
@@ -2613,21 +3303,21 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.0}"
+              "$value": "{sn.brand.anatomy.radius.listItem.s}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.0}"
+              "$value": "{sn.brand.anatomy.radius.listItem.m}"
             },
             "l": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.0}"
+              "$value": "{sn.brand.anatomy.radius.listItem.l}"
             }
           },
           "avatar": {
@@ -2636,49 +3326,49 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.3xs}"
+              "$value": "{sn.brand.anatomy.radius.avatar.xs}"
             },
             "s": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.2xs}"
+              "$value": "{sn.brand.anatomy.radius.avatar.s}"
             },
             "m": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.xs}"
+              "$value": "{sn.brand.anatomy.radius.avatar.m}"
             },
             "l": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.s}"
+              "$value": "{sn.brand.anatomy.radius.avatar.l}"
             },
             "3xl": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.m}"
+              "$value": "{sn.brand.anatomy.radius.avatar.3xl}"
             },
             "6xl": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.l}"
+              "$value": "{sn.brand.anatomy.radius.avatar.6xl}"
             },
             "9xl": {
               "$extensions": {
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.radius.xl}"
+              "$value": "{sn.brand.anatomy.radius.avatar.9xl}"
             }
           }
         },
@@ -2693,7 +3383,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.8}"
+              "$value": "{sn.brand.anatomy.spacing.tooltip.padding}"
             }
           },
           "popover": {
@@ -2706,7 +3396,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.24}"
+              "$value": "{sn.brand.anatomy.spacing.popover.padding}"
             }
           },
           "dropdown": {
@@ -2719,7 +3409,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.4}"
+              "$value": "{sn.brand.anatomy.spacing.dropdown.paddingVertical}"
             }
           },
           "button": {
@@ -2734,7 +3424,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.xs}"
+                  "$value": "{sn.brand.anatomy.spacing.button.s.element.paddingHorizontal}"
                 }
               },
               "text": {
@@ -2747,7 +3437,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.s}"
+                  "$value": "{sn.brand.anatomy.spacing.button.s.text.paddingHorizontal}"
                 }
               },
               "badge": {
@@ -2760,7 +3450,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.s.badge.paddingRight}"
                 },
                 "paddingTop": {
                   "$extensions": {
@@ -2771,7 +3461,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.s.badge.paddingTop}"
                 }
               }
             },
@@ -2786,7 +3476,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.s}"
+                  "$value": "{sn.brand.anatomy.spacing.button.m.element.paddingHorizontal}"
                 }
               },
               "text": {
@@ -2799,7 +3489,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.l}"
+                  "$value": "{sn.brand.anatomy.spacing.button.m.text.paddingHorizontal}"
                 }
               },
               "badge": {
@@ -2812,7 +3502,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.m.badge.paddingRight}"
                 },
                 "paddingTop": {
                   "$extensions": {
@@ -2823,7 +3513,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.m.badge.paddingTop}"
                 }
               }
             },
@@ -2838,7 +3528,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.s}"
+                  "$value": "{sn.brand.anatomy.spacing.button.l.element.paddingHorizontal}"
                 }
               },
               "text": {
@@ -2851,7 +3541,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.density.scale.050.l}"
+                  "$value": "{sn.brand.anatomy.spacing.button.l.text.paddingHorizontal}"
                 }
               },
               "badge": {
@@ -2864,7 +3554,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.l.badge.paddingRight}"
                 },
                 "paddingTop": {
                   "$extensions": {
@@ -2875,7 +3565,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.4}"
+                  "$value": "{sn.brand.anatomy.spacing.button.l.badge.paddingTop}"
                 }
               }
             }
@@ -2891,7 +3581,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.48}"
+                "$value": "{sn.brand.anatomy.spacing.window.badgeButtonClosed.paddingRight}"
               },
               "paddingTop": {
                 "$extensions": {
@@ -2902,7 +3592,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.48}"
+                "$value": "{sn.brand.anatomy.spacing.window.badgeButtonClosed.paddingTop}"
               },
               "paddingBottom": {
                 "$extensions": {
@@ -2913,7 +3603,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.0}"
+                "$value": "{sn.brand.anatomy.spacing.window.badgeButtonClosed.paddingBottom}"
               },
               "paddingLeft": {
                 "$extensions": {
@@ -2924,7 +3614,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.0}"
+                "$value": "{sn.brand.anatomy.spacing.window.badgeButtonClosed.paddingLeft}"
               }
             }
           }
@@ -2940,7 +3630,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              "$value": "{sn.brand.anatomy.line.field.strokeWeight}"
             }
           },
           "button": {
@@ -2953,7 +3643,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              "$value": "{sn.brand.anatomy.line.button.strokeWeight}"
             }
           },
           "chips": {
@@ -2966,7 +3656,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+              "$value": "{sn.brand.anatomy.line.chips.strokeWeight}"
             }
           },
           "toggles": {
@@ -2979,7 +3669,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.strokeWeight.strokeMedium}"
+                "$value": "{sn.brand.anatomy.line.toggles.xs.strokeWeight}"
               }
             },
             "s": {
@@ -2991,7 +3681,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.strokeWeight.strokeSemiBold}"
+                "$value": "{sn.brand.anatomy.line.toggles.s.strokeWeight}"
               }
             }
           }
@@ -3018,7 +3708,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.strokeWeight.strokeBold}"
+              "$value": "{sn.brand.anatomy.focusLine.field.strokeWeight}"
             }
           },
           "control": {
@@ -3042,7 +3732,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.strokeWeight.strokeSemiBold}"
+              "$value": "{sn.brand.anatomy.focusLine.control.strokeWeight}"
             }
           }
         }

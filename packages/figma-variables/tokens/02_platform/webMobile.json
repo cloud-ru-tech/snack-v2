@@ -1,6 +1,32 @@
 {
   "sn": {
     "platform": {
+      "property": {
+        "boolean": {
+          "showOnWebDesktop": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "boolean",
+            "$value": "false",
+            "$description": "Флаг видимости: true только в режиме webDesktop. Переключает показ элемента между платформами."
+          },
+          "showOnWebMobile": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "ALL_SCOPES"
+              ],
+              "com.figma.hiddenFromPublishing": false
+            },
+            "$type": "boolean",
+            "$value": "true",
+            "$description": "Флаг видимости: true только в режиме webMobile. Переключает показ элемента между платформами."
+          }
+        }
+      },
       "kitService": {
         "text": {
           "modeName": {

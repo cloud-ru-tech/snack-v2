@@ -75,7 +75,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.primary.55}",
+            "$value": "{sn.brand.color.primary.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -88,7 +88,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.primary.45}",
+            "$value": "{sn.brand.color.primary.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -178,7 +178,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.55}",
+            "$value": "{sn.brand.color.neutral.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -191,7 +191,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.45}",
+            "$value": "{sn.brand.color.neutral.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -218,7 +218,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.90}",
+            "$value": "{sn.brand.palette.red.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -230,7 +230,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.95}",
+            "$value": "{sn.brand.palette.red.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -242,7 +242,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.99}",
+            "$value": "{sn.brand.palette.red.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -255,7 +255,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.80}",
+            "$value": "{sn.brand.palette.red.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -268,7 +268,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.99}",
+            "$value": "{sn.brand.palette.red.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -281,7 +281,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.55}",
+            "$value": "{sn.brand.palette.red.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -294,7 +294,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.red.45}",
+            "$value": "{sn.brand.palette.red.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -321,7 +321,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.90}",
+            "$value": "{sn.brand.palette.orange.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -333,7 +333,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.95}",
+            "$value": "{sn.brand.palette.orange.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -345,7 +345,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.99}",
+            "$value": "{sn.brand.palette.orange.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -358,7 +358,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.80}",
+            "$value": "{sn.brand.palette.orange.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -371,7 +371,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.99}",
+            "$value": "{sn.brand.palette.orange.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -384,7 +384,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.55}",
+            "$value": "{sn.brand.palette.orange.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -397,7 +397,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.orange.45}",
+            "$value": "{sn.brand.palette.orange.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -424,7 +424,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.90}",
+            "$value": "{sn.brand.palette.yellow.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -436,7 +436,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.95}",
+            "$value": "{sn.brand.palette.yellow.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -448,7 +448,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.99}",
+            "$value": "{sn.brand.palette.yellow.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -461,7 +461,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.80}",
+            "$value": "{sn.brand.palette.yellow.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -474,7 +474,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.25}",
+            "$value": "{sn.brand.palette.yellow.30}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -487,7 +487,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.55}",
+            "$value": "{sn.brand.palette.yellow.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -500,7 +500,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.yellow.45}",
+            "$value": "{sn.brand.palette.yellow.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -527,7 +527,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.90}",
+            "$value": "{sn.brand.palette.green.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -539,7 +539,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.95}",
+            "$value": "{sn.brand.palette.green.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -551,7 +551,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.99}",
+            "$value": "{sn.brand.palette.green.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -564,7 +564,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.80}",
+            "$value": "{sn.brand.palette.green.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -577,7 +577,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.99}",
+            "$value": "{sn.brand.palette.green.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -590,7 +590,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.55}",
+            "$value": "{sn.brand.palette.green.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -603,7 +603,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.green.45}",
+            "$value": "{sn.brand.palette.green.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -630,7 +630,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.90}",
+            "$value": "{sn.brand.palette.blue.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -642,7 +642,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.95}",
+            "$value": "{sn.brand.palette.blue.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -654,7 +654,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.99}",
+            "$value": "{sn.brand.palette.blue.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -667,7 +667,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.80}",
+            "$value": "{sn.brand.palette.blue.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -680,7 +680,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.99}",
+            "$value": "{sn.brand.palette.blue.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -693,7 +693,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.55}",
+            "$value": "{sn.brand.palette.blue.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -706,7 +706,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.blue.45}",
+            "$value": "{sn.brand.palette.blue.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -733,7 +733,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.90}",
+            "$value": "{sn.brand.palette.violet.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -745,7 +745,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.95}",
+            "$value": "{sn.brand.palette.violet.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -757,7 +757,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.99}",
+            "$value": "{sn.brand.palette.violet.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -770,7 +770,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.80}",
+            "$value": "{sn.brand.palette.violet.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -783,7 +783,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.99}",
+            "$value": "{sn.brand.palette.violet.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -796,7 +796,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.55}",
+            "$value": "{sn.brand.palette.violet.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -809,7 +809,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.violet.45}",
+            "$value": "{sn.brand.palette.violet.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -836,7 +836,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.90}",
+            "$value": "{sn.brand.palette.pink.90}",
             "$description": "Дальний фон по оси Z"
           },
           "background1Level": {
@@ -848,7 +848,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.95}",
+            "$value": "{sn.brand.palette.pink.95}",
             "$description": "Средний фон по оси Z"
           },
           "background2Level": {
@@ -860,7 +860,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.99}",
+            "$value": "{sn.brand.palette.pink.99}",
             "$description": "Ближний фон по оси Z"
           },
           "decor": {
@@ -873,7 +873,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.80}",
+            "$value": "{sn.brand.palette.pink.80}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -886,7 +886,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.99}",
+            "$value": "{sn.brand.palette.pink.99}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -899,7 +899,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.55}",
+            "$value": "{sn.brand.palette.pink.50}",
             "$description": "Формы, линии, текст или иконка"
           },
           "text": {
@@ -912,7 +912,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.primitive.color.pink.45}",
+            "$value": "{sn.brand.palette.pink.40}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -939,7 +939,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.5}",
+            "$value": "{sn.brand.color.neutral.05}",
             "$description": "Дальний фон по оси Z"
           },
           "decor": {
@@ -952,7 +952,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.25}",
+            "$value": "{sn.brand.color.neutral.30}",
             "$description": "Формы или линии"
           },
           "onAccent": {
@@ -965,7 +965,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.5}",
+            "$value": "{sn.brand.color.neutral.05}",
             "$description": "Текст или иконка поверх Accent"
           },
           "accent": {
@@ -978,7 +978,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.65}",
+            "$value": "{sn.brand.color.neutral.70}",
             "$description": "Формы, линии, текст или иконка"
           },
           "background1Level": {
@@ -1002,7 +1002,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.15}",
+            "$value": "{sn.brand.color.neutral.20}",
             "$description": "Ближний фон по оси Z"
           },
           "text": {
@@ -1015,7 +1015,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{sn.brand.color.neutral.65}",
+            "$value": "{sn.brand.color.neutral.70}",
             "$description": "Цветной текст или иконка"
           },
           "decorTransparent": {
@@ -1643,12 +1643,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level1.layer1.blur}",
                 "$description": "Радиус размытия слоя 1 тени уровня 1 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level1.layer1.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer1.spread}",
                 "$description": "Разброс (spread) слоя 1 тени уровня 1 (elevation)."
               }
             },
@@ -1677,12 +1677,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level1.layer2.blur}",
                 "$description": "Радиус размытия слоя 2 тени уровня 1 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level1.layer2.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level1.layer2.spread}",
                 "$description": "Разброс (spread) слоя 2 тени уровня 1 (elevation)."
               }
             }
@@ -1713,12 +1713,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level2.layer1.blur}",
                 "$description": "Радиус размытия слоя 1 тени уровня 2 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level2.layer1.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer1.spread}",
                 "$description": "Разброс (spread) слоя 1 тени уровня 2 (elevation)."
               }
             },
@@ -1747,12 +1747,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level2.layer2.blur}",
                 "$description": "Радиус размытия слоя 2 тени уровня 2 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level2.layer2.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level2.layer2.spread}",
                 "$description": "Разброс (spread) слоя 2 тени уровня 2 (elevation)."
               }
             }
@@ -1783,12 +1783,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level3.layer1.blur}",
                 "$description": "Радиус размытия слоя 1 тени уровня 3 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level3.layer1.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer1.spread}",
                 "$description": "Разброс (spread) слоя 1 тени уровня 3 (elevation)."
               }
             },
@@ -1817,12 +1817,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level3.layer2.blur}",
                 "$description": "Радиус размытия слоя 2 тени уровня 3 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level3.layer2.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level3.layer2.spread}",
                 "$description": "Разброс (spread) слоя 2 тени уровня 3 (elevation)."
               }
             }
@@ -1853,12 +1853,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level4.layer1.blur}",
                 "$description": "Радиус размытия слоя 1 тени уровня 4 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level4.layer1.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer1.spread}",
                 "$description": "Разброс (spread) слоя 1 тени уровня 4 (elevation)."
               }
             },
@@ -1887,12 +1887,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level4.layer2.blur}",
                 "$description": "Радиус размытия слоя 2 тени уровня 4 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level4.layer2.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level4.layer2.spread}",
                 "$description": "Разброс (spread) слоя 2 тени уровня 4 (elevation)."
               }
             }
@@ -1923,12 +1923,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level5.layer1.blur}",
                 "$description": "Радиус размытия слоя 1 тени уровня 5 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level5.layer1.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer1.spread}",
                 "$description": "Разброс (spread) слоя 1 тени уровня 5 (elevation)."
               }
             },
@@ -1957,12 +1957,12 @@
                 "$value": "{sn.brand.effect.shadow.light.level5.layer2.blur}",
                 "$description": "Радиус размытия слоя 2 тени уровня 5 (elevation)."
               },
-              "speed": {
+              "spread": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.brand.effect.shadow.light.level5.layer2.speed}",
+                "$value": "{sn.brand.effect.shadow.light.level5.layer2.spread}",
                 "$description": "Разброс (spread) слоя 2 тени уровня 5 (elevation)."
               }
             }
@@ -2105,7 +2105,7 @@
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
-            "$value": "06_theme:"
+            "$value": "05_theme:"
           }
         }
       },

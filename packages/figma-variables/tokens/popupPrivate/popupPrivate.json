@@ -278,16 +278,6 @@
                   "$type": "number",
                   "$value": "{sn.density.spacing.interval.l}"
                 },
-                "paddingVertical": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.primitive.dimension.10}"
-                },
                 "paddingRight": {
                   "$extensions": {
                     "com.figma.scopes": [
@@ -297,6 +287,17 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.interval.l}"
+                },
+                "minHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.size.m}",
+                  "$description": "Минимальная высота строки заголовка = высота контрола m (sn/density/size/m): заголовок держит высоту кнопок по бокам в любой плотности; при переносе на две строки контролы центрируются."
                 }
               },
               "paddingLeft": {
