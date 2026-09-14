@@ -126,7 +126,7 @@ function MobilePageFormBase({
 
           {footer && (
             <ButtonGroup
-              size='m'
+              size='l'
               filled
               // 2 кнопки — в ряд (делят ширину); 3 — в столбик (правило футеров).
               vertical={

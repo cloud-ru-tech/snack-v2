@@ -56,7 +56,7 @@ export function DesktopPageForm({
               {footer.buttonSecondary && (
                 <SecondaryButton
                   {...footer.buttonSecondary}
-                  size={SIZE.M}
+                  size={SIZE.L}
                   appearance={APPEARANCE.Neutral}
                   label={
                     footer.buttonSecondary.variant === 'custom'
@@ -68,12 +68,12 @@ export function DesktopPageForm({
 
               <div className={styles.mainActions}>
                 {footer.buttonAdditional && (
-                  <AdditionalButton {...footer.buttonAdditional} size={SIZE.M} appearance={APPEARANCE.Neutral} />
+                  <AdditionalButton {...footer.buttonAdditional} size={SIZE.L} appearance={APPEARANCE.Neutral} />
                 )}
 
                 <PrimaryButton
                   {...footer.buttonPrimary}
-                  size={SIZE.M}
+                  size={SIZE.L}
                   appearance={APPEARANCE.Primary}
                   label={
                     footer.buttonPrimary.variant === 'custom'
