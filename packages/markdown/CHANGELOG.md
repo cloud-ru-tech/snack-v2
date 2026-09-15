@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.23 (2026-09-15)
+
+### Bug Fixes
+
+- **MKP-3950:** fix dti in tabs package ([8987fc7](https://github.com/cloud-ru-tech/snack-v2/commit/8987fc7757d9c2ae5cba7c69ca50bfb0c762cb0f))
+
 ## 1.0.22 (2026-09-14)
 
 ### Bug Fixes
