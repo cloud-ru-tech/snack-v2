@@ -13,9 +13,10 @@ test.describe('ErrorPage — rendering', () => {
     await expect(getByTestId(TEST_IDS.statusCode)).toHaveText('404');
   });
 
-  test('PageUnavailable propagates status code 403', async ({ gotoStory, getByTestId }) => {
+  test('PageUnavailable has no status code tag', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ errorType: 'PageUnavailable' }));
-    await expect(getByTestId(TEST_IDS.statusCode)).toHaveText('403');
+    await expect(getByTestId(ERROR_PAGE_TEST_ID)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.statusCode)).toHaveCount(0);
   });
 
   test('Offline has no status code tag', async ({ gotoStory, getByTestId }) => {

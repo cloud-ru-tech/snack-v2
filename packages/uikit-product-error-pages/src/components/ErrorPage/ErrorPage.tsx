@@ -1,4 +1,4 @@
-import { Button } from '@ds/button';
+import { Button, ICON_POSITION } from '@ds/button';
 import { EmailSVG } from '@ds/icons/interface/system';
 import { Link } from '@ds/link';
 import { Tag } from '@ds/tag';
@@ -61,29 +61,31 @@ export function ErrorPage({
 
   return (
     <div className={cn(styles.page, className)} {...extractSupportProps(rest)}>
-      <div className={styles.wrapper}>
-        <div className={styles.leftSide}>
-          <div className={styles.textContainer}>
-            {logoNode}
+      {logoNode}
 
+      <div className={styles.contentGrid}>
+        <div className={styles.content}>
+          <div className={styles.titleWrapper}>
             <h1 className={styles.title} data-test-id={TEST_IDS.title} data-user>
               {content.title}
-
-              {content.statusCode && (
-                <Tag
-                  className={cn(styles.statusCode, compactThemeClassName)}
-                  appearance='neutral'
-                  size='s'
-                  label={String(content.statusCode)}
-                  data-test-id={TEST_IDS.statusCode}
-                />
-              )}
             </h1>
 
-            <div className={cn(styles.actions, isCustomErrorType ? custom?.actionWrapperClassName : undefined)}>
-              <span className={styles.actionsTitle}>{content.description}</span>
+            {content.statusCode && (
+              <Tag
+                className={cn(styles.statusCode, compactThemeClassName)}
+                appearance='neutral'
+                size='s'
+                label={String(content.statusCode)}
+                data-test-id={TEST_IDS.statusCode}
+              />
+            )}
+          </div>
 
-              <div className={styles.actionsLink}>
+          <div className={cn(styles.description, isCustomErrorType ? custom?.actionWrapperClassName : undefined)}>
+            <span className={styles.descriptionText}>{content.description}</span>
+
+            {(hasMainPageLink || hasBackLink) && (
+              <div className={styles.links}>
                 {hasMainPageLink && (
                   <Link
                     href={mainPageUrl}
@@ -102,10 +104,10 @@ export function ErrorPage({
                   />
                 )}
               </div>
-            </div>
+            )}
           </div>
 
-          <div className={styles.buttonContainer}>
+          <div className={styles.buttons}>
             {onSupportCenterClick && (
               <Button
                 view='outline'
@@ -115,6 +117,7 @@ export function ErrorPage({
                 label={t('supportCenterButton')}
                 onClick={onSupportCenterClick}
                 icon={<EmailSVG />}
+                iconPosition={ICON_POSITION.After}
                 data-test-id={TEST_IDS.supportButton}
               />
             )}
@@ -129,6 +132,7 @@ export function ErrorPage({
                   className={styles.button}
                   label={button.label}
                   icon={button.icon}
+                  iconPosition={ICON_POSITION.After}
                   data-test-id={TEST_IDS.mainButton}
                 />
               ) : (
@@ -137,6 +141,7 @@ export function ErrorPage({
                   className={styles.button}
                   label={button.label}
                   icon={button.icon}
+                  iconPosition={ICON_POSITION.After}
                   onClick={button.onClick}
                   data-test-id={TEST_IDS.mainButton}
                 />
@@ -144,7 +149,7 @@ export function ErrorPage({
           </div>
         </div>
 
-        <div className={styles.rightSide}>
+        <div className={styles.img}>
           <Illustration data-test-id={TEST_IDS.illustration} />
         </div>
       </div>

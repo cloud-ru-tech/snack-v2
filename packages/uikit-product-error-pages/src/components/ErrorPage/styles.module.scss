@@ -5,80 +5,98 @@ $breakpoint-tablet: 1023px;
 $gear-wheel-rotation-period: 10s;
 
 .page {
-  display: flex;
-
-  box-sizing: border-box;
-  height: 100%;
-  padding: base.$sn-primitive-dimension-16;
-
-  background-color: base.$sn-theme-color-neutral-background;
-}
-
-.wrapper {
   // CSS-переменные покраски декоративной иллюстрации (см. Illustration.tsx).
   --svg-exclamation-mark: #{base.$sn-theme-color-primary-accent};
   --svg-stroke: #{base.$sn-theme-color-neutral-decor};
   --svg-background: #{base.$sn-theme-color-neutral-background1Level};
 
   display: flex;
-  flex: 1 1 0;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-48;
+  gap: base.$sn-primitive-dimension-24;
 
   box-sizing: border-box;
   min-width: 0;
+  height: 100%;
   padding: base.$sn-primitive-dimension-48;
-  border-radius: base.$sn-brand-anatomy-radius-block-l;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 
   @media (max-width: $breakpoint-mobile) {
-    gap: base.$sn-primitive-dimension-24;
-    padding: base.$sn-primitive-dimension-24;
+    padding: base.$sn-primitive-dimension-16;
   }
+}
+
+// Раскладка макета: слева колонка контента, справа — иллюстрация.
+// На tablet и уже иллюстрация переезжает под контент, на mobile скрыта.
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex: 1 1 0;
+  gap: base.$sn-primitive-dimension-24;
+
+  width: 100%;
+  min-height: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-display-s);
+
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
 }
 
 .statusCode {
-  margin-left: base.$sn-primitive-dimension-8;
-  vertical-align: top;
+  flex-shrink: 0;
 }
 
-.leftSide {
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-24;
-
-  @media (max-width: $breakpoint-mobile) {
-    justify-content: space-between;
-    height: 100%;
-  }
-}
-
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-24;
-}
-
-.logo {
-  display: inline-flex;
-  height: base.$sn-primitive-dimension-24;
-  margin-bottom: base.$sn-primitive-dimension-24;
-  color: base.$sn-theme-color-available-version-textMain;
-
-  svg {
-    height: 100%;
-  }
-}
-
-.actions {
+.description {
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
+  width: 100%;
+
+  // На mobile описание забирает свободную высоту и прижимает кнопки к низу.
+  @media (max-width: $breakpoint-mobile) {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
 }
 
-.actionsLink {
+.descriptionText {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.links {
   @include base.composite-var(base.$sn-regular-body-m);
 
   display: flex;
@@ -86,41 +104,55 @@ $gear-wheel-rotation-period: 10s;
   gap: base.$sn-primitive-dimension-16;
 }
 
-.buttonContainer {
+.buttons {
   display: flex;
   flex-direction: row;
   gap: base.$sn-primitive-dimension-8;
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
+    width: 100%;
   }
 }
 
-.rightSide {
+.button {
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  height: base.$sn-primitive-dimension-24;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  svg {
+    height: 100%;
+  }
+}
+
+.img {
   display: flex;
-  // Занимает оставшуюся по высоте часть и ужимает иллюстрацию под доступное
-  // место, чтобы стэк (контент сверху + иллюстрация снизу) не вызывал скролл.
-  flex: 1 1 0;
-  flex-direction: column;
   align-items: flex-end;
-  align-self: flex-end;
   justify-content: flex-end;
 
-  width: 50%;
-  min-width: 500px;
-  max-width: 862px;
+  min-width: 0;
   min-height: 0;
 
   @media (max-width: $breakpoint-tablet) {
-    align-items: center;
-    width: 100%;
-    min-width: 0;
-    max-width: none;
+    justify-content: center;
   }
 
   @media (max-width: $breakpoint-mobile) {
     display: none;
   }
+}
+
+.pic {
+  max-width: 100%;
+  // SVG ужимается под размеры .img, сохраняя пропорции (viewBox 863×520).
+  min-height: 0;
+  max-height: 100%;
 }
 
 @keyframes rotating {
@@ -144,39 +176,4 @@ $gear-wheel-rotation-period: 10s;
   transform-box: fill-box;
   animation: rotating $gear-wheel-rotation-period linear infinite;
   animation-direction: reverse;
-}
-
-.button {
-  @media (max-width: $breakpoint-mobile) {
-    width: 100%;
-  }
-}
-
-.pic {
-  max-width: 100%;
-  // SVG ужимается под размеры rightSide, сохраняя пропорции (viewBox 863×520).
-  min-height: 0;
-  max-height: 100%;
-}
-
-.title {
-  @include base.composite-var(base.$sn-regular-display-s);
-
-  box-sizing: border-box;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-
-  color: base.$sn-theme-color-available-version-textMain;
-  overflow-wrap: break-word;
-
-  @media (max-width: $breakpoint-mobile) {
-    @include base.composite-var(base.$sn-regular-headline-m);
-  }
-}
-
-.actionsTitle {
-  @include base.composite-var(base.$sn-regular-body-m);
-
-  color: base.$sn-theme-color-available-version-textMain;
 }

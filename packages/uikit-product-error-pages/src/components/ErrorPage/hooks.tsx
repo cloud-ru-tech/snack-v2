@@ -14,7 +14,7 @@ export function useGetContentByErrorType({ errorType, custom }: ErrorTypeConfig)
   return useMemo(() => {
     switch (errorType) {
       case ERROR_TYPE.PageUnavailable:
-        return { title: t('pageUnavailableTitle'), description: t('actionRedirectTitle'), statusCode: 403 };
+        return { title: t('pageUnavailableTitle'), description: t('actionRedirectTitle') };
       case ERROR_TYPE.PageNotFound:
         return { title: t('pageNotFoundTitle'), description: t('actionRedirectTitle'), statusCode: 404 };
       case ERROR_TYPE.Offline:
