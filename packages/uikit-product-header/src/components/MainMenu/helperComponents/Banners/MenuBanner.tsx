@@ -72,8 +72,7 @@ export function MenuBanner({
         {promoTag && (
           <PromoTag
             {...promoTag}
-            as='span'
-            role={ROLE_APPEARANCE.Decor}
+            roleAppearance={ROLE_APPEARANCE.Decor}
             size={SIZE.Xs}
             data-test-id={MENU_BANNER_TEST_IDS.promoTag}
           />
