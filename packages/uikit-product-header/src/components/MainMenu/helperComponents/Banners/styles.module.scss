@@ -7,42 +7,37 @@
 
   @media (hover: hover) {
     visibility: hidden;
+    // Микро-задержка, чтобы фокус не сбросился и кнопка не скрылась
+    transition: visibility 1ms linear;
   }
 }
 
 .root {
+  width: 100%;
+  min-width: 0;
+
+  &:hover,
+  &:focus-visible,
+  &:has(*:focus-visible) {
+    .closeButton {
+      visibility: visible;
+    }
+  }
+}
+
+.contentRow {
   position: relative;
 
   display: flex;
-  gap: base.$sn-primitive-dimension-4;
+  gap: base.$sn-density-spacing-interval-s;
   align-items: center;
 
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: base.$sn-primitive-dimension-48;
+  min-height: base.$sn-primitive-dimension-40;
   padding: 0 base.$sn-primitive-dimension-12;
-  border-radius: base.$sn-density-radius-2xs;
-
-  font: inherit;
-  color: inherit;
-  text-align: left;
-  text-decoration: none;
-
-  background-color: base.$sn-theme-color-neutral-background1Level;
-
-  &:hover,
-  &:focus-visible,
-  &:focus-within {
-    .closeButton {
-      visibility: visible;
-    }
-  }
-
-  &:focus-visible {
-    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
-  }
+  border-radius: inherit;
 }
 
 .titleWrapper {

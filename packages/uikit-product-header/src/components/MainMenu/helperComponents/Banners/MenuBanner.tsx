@@ -1,4 +1,5 @@
 import { Button } from '@ds/button';
+import { Card } from '@ds/card';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { useThemeClassnames } from '@ds/theme';
@@ -33,7 +34,6 @@ export function MenuBanner({
   onClose,
   className,
   href = '#',
-  target,
   'data-test-id': dataTestId,
   ...rest
 }: MenuBannerProps): ReactElement {
@@ -50,53 +50,56 @@ export function MenuBanner({
   );
 
   return (
-    <a
+    <Card
+      as='a'
       href={href}
-      target={target}
-      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      radius='l'
+      view='simple'
       className={cn(styles.root, className)}
       data-test-id={dataTestId ?? MENU_BANNER_TEST_IDS.root}
       {...rest}
     >
-      <span className={styles.titleWrapper}>
-        <Typography
-          as='span'
-          variant='body'
-          size='m'
-          className={styles.title}
-          data-test-id={MENU_BANNER_TEST_IDS.title}
-        >
-          {title}
-        </Typography>
+      <div className={styles.contentRow}>
+        <span className={styles.titleWrapper}>
+          <Typography
+            as='span'
+            variant='body'
+            size='m'
+            className={styles.title}
+            data-test-id={MENU_BANNER_TEST_IDS.title}
+          >
+            {title}
+          </Typography>
 
-        {promoTag && (
-          <PromoTag
-            {...promoTag}
-            roleAppearance={ROLE_APPEARANCE.Decor}
-            size={SIZE.Xs}
-            data-test-id={MENU_BANNER_TEST_IDS.promoTag}
+          {promoTag && (
+            <PromoTag
+              {...promoTag}
+              roleAppearance={ROLE_APPEARANCE.Decor}
+              size={SIZE.Xs}
+              data-test-id={MENU_BANNER_TEST_IDS.promoTag}
+            />
+          )}
+        </span>
+
+        {afterTitle && (
+          <div className={styles.afterTitle} data-test-id={MENU_BANNER_TEST_IDS.afterTitle}>
+            {afterTitle}
+          </div>
+        )}
+
+        {onClose && (
+          <Button
+            className={cn(styles.closeButton, compactThemeClassname)}
+            view='elevated'
+            appearance='neutral'
+            size='s'
+            icon={<CrossSVG size={16} />}
+            onClick={handleClose}
+            aria-label={t('close')}
+            data-test-id={MENU_BANNER_TEST_IDS.close}
           />
         )}
-      </span>
-
-      {afterTitle && (
-        <div className={styles.afterTitle} data-test-id={MENU_BANNER_TEST_IDS.afterTitle}>
-          {afterTitle}
-        </div>
-      )}
-
-      {onClose && (
-        <Button
-          className={cn(styles.closeButton, compactThemeClassname)}
-          view='elevated'
-          appearance='neutral'
-          size='s'
-          icon={<CrossSVG size={16} />}
-          onClick={handleClose}
-          aria-label={t('close')}
-          data-test-id={MENU_BANNER_TEST_IDS.close}
-        />
-      )}
-    </a>
+      </div>
+    </Card>
   );
 }
