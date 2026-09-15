@@ -13,6 +13,8 @@ import { MultipleSelection } from '../demos/examples/MultipleSelection'
 import MultipleSelectionSrc from '../demos/examples/MultipleSelection.tsx?raw'
 import { GroupsCollapsible } from '../demos/examples/GroupsCollapsible'
 import GroupsCollapsibleSrc from '../demos/examples/GroupsCollapsible.tsx?raw'
+import { CollapseExpandIcon } from '../demos/examples/CollapseExpandIcon'
+import CollapseExpandIconSrc from '../demos/examples/CollapseExpandIcon.tsx?raw'
 import { WithSearch } from '../demos/examples/WithSearch'
 import WithSearchSrc from '../demos/examples/WithSearch.tsx?raw'
 import { NestedLevels } from '../demos/examples/NestedLevels'
@@ -149,6 +151,14 @@ import '@ds/list/style.css'
 </Example>
 
 <Example
+  title='Раскрытие только по шеврону'
+  description="collapse.toggleOn: 'expandIcon' — строка-ссылка ведёт на роут, раскрытие переключает шеврон."
+  code={CollapseExpandIconSrc}
+>
+  <CollapseExpandIcon client:visible />
+</Example>
+
+<Example
   title='Три уровня вложенности'
   description='Группы внутри групп — подходит для каталогов, файловых деревьев.'
   code={NestedLevelsSrc}
@@ -207,7 +217,7 @@ import '@ds/list/style.css'
 ## Item types
 
 - `BaseItem` — обычный элемент с `content` / `beforeContent` / `afterContent`; опционально `switch: true` для тумблер-презентации выбора.
-- `{ type: 'collapse', items }` — группа, раскрывается кликом по заголовку; управление — через `collapse`.
+- `{ type: 'collapse', items }` — группа с раскрытием; управление — через `collapse`, триггер раскрытия — через `collapse.toggleOn`.
 - `{ type: 'next-list', items, placement }` — раскрытие в соседний popover (для каскадных меню).
 - `{ type: 'group', items, groupVariant }` / `{ type: 'group-select', items, groupVariant }` — визуальная группа с label, `groupVariant` (`subtitle` / `subtitleTertiary`), опциональным `divider` и «выбрать всё» (`group-select`).
 
@@ -219,6 +229,17 @@ import '@ds/list/style.css'
 
 - **Uncontrolled** — передавайте `defaultValue`. Компонент хранит state сам, пригодно для форм/настроек, где значения потом читаются через `onChange`.
 - **Controlled** — `value` + `onChange`. Нужен, когда state живёт в URL / query / внешнем сторе, или когда требуется программно менять выбор/раскрытие.
+
+## Триггер раскрытия группы
+
+`collapse.toggleOn` задаёт, что переключает раскрытие `type: 'collapse'`-группы мышью:
+
+- `item` (по умолчанию) — клик по всей строке группы.
+- `expandIcon` — только клик по шеврону; клик по остальной части строки остаётся потребителю.
+
+`expandIcon` нужен, когда строка уже несёт собственное действие: `itemWrapRender` оборачивает её в ссылку роутера или на ней висит свой `onClick`. В режиме `item` такой клик делал бы две вещи разом — переходил по роуту и раскрывал группу.
+
+Клавиатура от режима не зависит: `Enter` / `Space` и `ArrowRight` на строке группы раскрывают её в обоих случаях. Шеврон в цепочку табуляции не входит.
 
 ## Виртуализация
 

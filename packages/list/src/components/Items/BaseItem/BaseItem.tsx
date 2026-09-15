@@ -26,10 +26,16 @@ type AllBaseItemProps = FlattenBaseItem & {
   onOpenNestedList?(e?: KeyboardEvent<HTMLElement>): void;
   /**
    * Переключение раскрытия вложенного списка. Триггер — вся строка целиком (клик или
-   * Enter/Space), шеврон `groupIndicator` при этом остаётся неинтерактивным индикатором
-   * состояния.
+   * Enter/Space). Если передан `onExpandIconClick`, клик по строке раскрытие больше не
+   * переключает и остаётся только клавиатурным триггером.
    */
   onToggleExpand?(): void;
+  /**
+   * Переключение раскрытия кликом по шеврону `groupIndicator`. Наличие обработчика и есть
+   * режим: пока он не передан, шеврон — неинтерактивный индикатор состояния, а раскрытие
+   * переключает клик по всей строке (`onToggleExpand`).
+   */
+  onExpandIconClick?(e: MouseEvent<HTMLElement>): void;
   /**
    * Слот ручки drag&drop (Figma `centeredWrapper`) — рендерится первым в строке, перед
    * маркером/чекбоксом. Интерактивность (обработчики `@dnd-kit`) и содержимое (иконка)
@@ -58,6 +64,7 @@ export function BaseItem({
   onSelect,
   onOpenNestedList,
   onToggleExpand,
+  onExpandIconClick,
   isParentNode,
   className,
   inactive,
@@ -108,9 +115,12 @@ export function BaseItem({
     onClick?.(e as MouseEvent<HTMLElement>);
 
     if (isParentNode) {
-      // Раскрытие вложенного списка триггерит вся строка целиком: шеврон `groupIndicator` —
-      // только индикатор состояния, собственной интерактивности у него нет.
-      onToggleExpand?.();
+      // Раскрытие вложенного списка триггерит вся строка целиком — кроме режима, где тогл
+      // отдан шеврону (`onExpandIconClick`): там клик по строке принадлежит потребителю
+      // (`onClick`, ссылка из `itemWrapRender`) и раскрытия не меняет.
+      if (!onExpandIconClick) {
+        onToggleExpand?.();
+      }
     } else if (interactive) {
       handleChange();
     }
@@ -150,6 +160,13 @@ export function BaseItem({
       e.stopPropagation();
       e.preventDefault();
     }
+  };
+
+  const handleExpandIconClick = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    onExpandIconClick?.(e);
   };
 
   const handleCheckboxClick = (e: MouseEvent) => {
@@ -249,10 +266,15 @@ export function BaseItem({
         )}
 
         {!switchProp && expandIcon && (
+          // Интерактивный шеврон не получает роль и фокус намеренно: клавиатурный путь идёт
+          // через строку, у неё же живёт `aria-expanded`. Лишний таб-стоп сломал бы порядок
+          // фокуса списка, а озвучивать AT недостижимый с клавиатуры элемент незачем.
           <span
             className={styles.groupIndicator}
             data-open={open || undefined}
+            data-interactive={Boolean(onExpandIconClick) || undefined}
             data-test-id={TEST_IDS.groupIndicator}
+            onClick={onExpandIconClick && handleExpandIconClick}
             aria-hidden
           >
             {expandIcon}

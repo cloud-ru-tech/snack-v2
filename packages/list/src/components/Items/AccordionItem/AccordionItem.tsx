@@ -1,7 +1,7 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { useCallback } from 'react';
 
-import { TEST_IDS } from '../../../constants';
+import { COLLAPSE_TOGGLE_ON, DEFAULT_COLLAPSE_TOGGLE_ON, TEST_IDS } from '../../../constants';
 import { CollapseBlockPrivate } from '../../../helperComponents';
 import {
   CollapseLevelContext,
@@ -17,7 +17,11 @@ type AccordionItemProps = Omit<FlattenAccordionItem, 'type'> & CommonFlattenProp
 
 export function AccordionItem({ id, disabled, allChildIds, items, ...option }: AccordionItemProps) {
   const { level = 0 } = useCollapseLevelContext();
-  const { openCollapseItems = [], toggleOpenCollapseItem } = useCollapseContext();
+  const {
+    openCollapseItems = [],
+    toggleOpenCollapseItem,
+    toggleOn = DEFAULT_COLLAPSE_TOGGLE_ON,
+  } = useCollapseContext();
 
   const { value, isSelectionSingle, isSelectionMultiple } = useSelectionContext();
 
@@ -39,10 +43,11 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
     (isSelectionMultiple && checkedProp),
   );
 
-  // Раскрытие переключает вся строка целиком: клик/Enter по телу и ArrowRight с клавиатуры.
   const handleToggle = useCallback(() => {
     toggleOpenCollapseItem?.(id ?? '');
   }, [id, toggleOpenCollapseItem]);
+
+  const isExpandIconTrigger = toggleOn === COLLAPSE_TOGGLE_ON.ExpandIcon;
 
   const itemsJSX = useRenderItems(items);
 
@@ -56,6 +61,7 @@ export function AccordionItem({ id, disabled, allChildIds, items, ...option }: A
           open={isOpen}
           expandIcon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
           onToggleExpand={handleToggle}
+          onExpandIconClick={isExpandIconTrigger ? handleToggle : undefined}
           isParentNode
           onOpenNestedList={handleToggle}
           checked={checked}

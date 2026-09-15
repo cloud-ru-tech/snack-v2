@@ -10,6 +10,14 @@
   max-height: 480px;
 }
 
+// Строка, обёрнутая в ссылку через itemWrapRender: ссылка — транспорт роутера, а не текст,
+// поэтому своей типографики и подчёркивания у неё нет.
+.itemLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .cell {
   width: 280px;
 }

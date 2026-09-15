@@ -6,6 +6,8 @@ export const TEST_IDS = {
     root: 'list',
     selectionScenario: 'list-selection',
     collapseScenario: 'list-collapse',
+    expandIconToggleScenario: 'list-expand-icon-toggle',
+    expandIconToggleRoute: 'list-expand-icon-toggle-route',
     virtualizedScenario: 'list-virtualized',
     searchScenario: 'list-search',
     submenuScenario: 'list-submenu',

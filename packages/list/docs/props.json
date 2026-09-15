@@ -188,6 +188,11 @@
         "required": false,
         "description": "Колбек обработки клика"
       },
+      "onExpandIconClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Переключение раскрытия кликом по шеврону `groupIndicator`. Наличие обработчика и есть\nрежим: пока он не передан, шеврон — неинтерактивный индикатор состояния, а раскрытие\nпереключает клик по всей строке (`onToggleExpand`)."
+      },
       "onFocus": {
         "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
         "required": false,
@@ -214,7 +219,7 @@
       "onToggleExpand": {
         "type": "(() => void)",
         "required": false,
-        "description": "Переключение раскрытия вложенного списка. Триггер — вся строка целиком (клик или\nEnter/Space), шеврон `groupIndicator` при этом остаётся неинтерактивным индикатором\nсостояния."
+        "description": "Переключение раскрытия вложенного списка. Триггер — вся строка целиком (клик или\nEnter/Space). Если передан `onExpandIconClick`, клик по строке раскрытие больше не\nпереключает и остаётся только клавиатурным триггером."
       },
       "open": {
         "type": "boolean",
@@ -1023,6 +1028,18 @@
           "onChange": {
             "type": "((value?: ItemId[]) => void) | undefined",
             "required": false
+          },
+          "toggleOn": {
+            "type": "CollapseToggleOn | undefined",
+            "required": false,
+            "values": [
+              "expandIcon",
+              "item"
+            ],
+            "description": "Что переключает раскрытие вложенного списка:\n<br> - `item` — клик по всей строке (по умолчанию),\n<br> - `expandIcon` — только клик по шеврону; клик по строке остаётся потребителю\n(например, когда `itemWrapRender` оборачивает строку в ссылку).\n\nКлавиатура (`Enter` / `Space` / `ArrowRight` на строке) раскрывает группу в обоих режимах.",
+            "typeRefs": [
+              "CollapseToggleOn"
+            ]
           },
           "value": {
             "type": "ItemId[] | undefined",
@@ -1846,6 +1863,18 @@
           "onChange": {
             "type": "((value?: ItemId[]) => void) | undefined",
             "required": false
+          },
+          "toggleOn": {
+            "type": "CollapseToggleOn | undefined",
+            "required": false,
+            "values": [
+              "expandIcon",
+              "item"
+            ],
+            "description": "Что переключает раскрытие вложенного списка:\n<br> - `item` — клик по всей строке (по умолчанию),\n<br> - `expandIcon` — только клик по шеврону; клик по строке остаётся потребителю\n(например, когда `itemWrapRender` оборачивает строку в ссылку).\n\nКлавиатура (`Enter` / `Space` / `ArrowRight` на строке) раскрывает группу в обоих режимах.",
+            "typeRefs": [
+              "CollapseToggleOn"
+            ]
           },
           "value": {
             "type": "ItemId[] | undefined",
@@ -3708,6 +3737,18 @@
           "onChange": {
             "type": "((value?: ItemId[]) => void) | undefined",
             "required": false
+          },
+          "toggleOn": {
+            "type": "CollapseToggleOn | undefined",
+            "required": false,
+            "values": [
+              "expandIcon",
+              "item"
+            ],
+            "description": "Что переключает раскрытие вложенного списка:\n<br> - `item` — клик по всей строке (по умолчанию),\n<br> - `expandIcon` — только клик по шеврону; клик по строке остаётся потребителю\n(например, когда `itemWrapRender` оборачивает строку в ссылку).\n\nКлавиатура (`Enter` / `Space` / `ArrowRight` на строке) раскрывает группу в обоих режимах.",
+            "typeRefs": [
+              "CollapseToggleOn"
+            ]
           },
           "value": {
             "type": "ItemId[] | undefined",

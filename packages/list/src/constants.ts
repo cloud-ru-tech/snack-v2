@@ -21,6 +21,13 @@ export const MODE = {
   Multiple: 'multiple',
 } as const;
 
+export const COLLAPSE_TOGGLE_ON = {
+  Item: 'item',
+  ExpandIcon: 'expandIcon',
+} as const;
+
+export const DEFAULT_COLLAPSE_TOGGLE_ON = COLLAPSE_TOGGLE_ON.Item;
+
 export const ITEM_TYPE = {
   NextList: 'next-list',
   Collapse: 'collapse',

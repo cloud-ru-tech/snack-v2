@@ -95,7 +95,8 @@ export const Collapse: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.list.collapseScenario);
-    // Раскрытие переключает клик по строке группы целиком (шеврон — только индикатор).
+    // Дефолтный режим (`collapse.toggleOn: 'item'`): раскрытие переключает клик по строке
+    // группы целиком, шеврон в нём — только индикатор состояния.
     // Тогглим billing открыть→закрыть: проверяем триггер и возвращаем стори в исходное
     // состояние (general/workspace раскрыты, billing свёрнут) — на него опираются e2e-спеки,
     // которые грузят эту же стори (play выполняется при загрузке).

@@ -2,7 +2,7 @@ import { ScrollProps as OriginalScrollProps } from '@ds/scroll';
 import { ValueOf } from '@ds/utils';
 import { ChangeEvent, KeyboardEvent, Ref } from 'react';
 
-import { ITEM_TYPE, MODE, SIZE } from './constants';
+import { COLLAPSE_TOGGLE_ON, ITEM_TYPE, MODE, SIZE } from './constants';
 
 /** Размер списка и его элементов */
 export type Size = ValueOf<typeof SIZE>;
@@ -12,6 +12,9 @@ export type Mode = ValueOf<typeof MODE>;
 
 /** Тип группового / составного элемента списка */
 export type ItemType = ValueOf<typeof ITEM_TYPE>;
+
+/** Триггер раскрытия вложенного списка у айтема `type: 'collapse'` */
+export type CollapseToggleOn = ValueOf<typeof COLLAPSE_TOGGLE_ON>;
 
 /** Настройки поисковой строки списка */
 export type SearchState = {

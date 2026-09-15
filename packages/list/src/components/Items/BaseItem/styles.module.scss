@@ -81,8 +81,9 @@ $sizes: 's', 'm', 'l';
 }
 
 .groupIndicator {
-  // Шеврон — индикатор состояния, а не кнопка: раскрытие переключает клик по всей строке.
-  // Своих hover/pressed/focus-состояний у него нет.
+  // По умолчанию шеврон — индикатор состояния, а не кнопка: раскрытие переключает клик по
+  // всей строке, поэтому клики шеврон не перехватывает. Своих hover/pressed/focus-состояний
+  // у него нет ни в одном из режимов.
   pointer-events: none;
 
   display: flex;
@@ -98,6 +99,13 @@ $sizes: 's', 'm', 'l';
   svg {
     width: 100%;
     height: 100%;
+  }
+
+  // Режим `collapse.toggleOn: 'expandIcon'`: тогл висит на шевроне, значит он должен
+  // принимать клики. Атрибут ставит `BaseItem` ровно тогда, когда пришёл `onExpandIconClick`.
+  &[data-interactive] {
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   // Раскрытая группа держит постоянную подложку `neutral/decorTransparent`

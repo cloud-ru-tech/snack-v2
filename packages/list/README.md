@@ -252,6 +252,78 @@ export function GroupsCollapsible() {
 }
 ```
 
+#### Раскрытие только по шеврону
+
+collapse.toggleOn: 'expandIcon' — строка-ссылка ведёт на роут, раскрытие переключает шеврон.
+
+```tsx
+import { List } from '@ds/list';
+import { ReactNode, useState } from 'react';
+
+import styles from './styles.module.scss';
+
+export function CollapseExpandIcon() {
+  const [route, setRoute] = useState('/guides');
+
+  // Так строку подключают к роутеру: `next/link` и аналоги отменяют свой переход, если клик уже
+  // обработали ниже по дереву (`e.defaultPrevented`). В режиме `toggleOn: 'expandIcon'` шеврон
+  // как раз гасит клик, поэтому раскрытие группы не уводит на роут.
+  const asLink = (href: string) =>
+    function wrapItem(node: ReactNode) {
+      return (
+        <a
+          href={href}
+          className={styles.link}
+          onClick={e => {
+            if (e.defaultPrevented) {
+              return;
+            }
+
+            e.preventDefault();
+            setRoute(href);
+          }}
+        >
+          {node}
+        </a>
+      );
+    };
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.box}>
+        <List
+          size='s'
+          collapse={{ defaultValue: ['guides'], toggleOn: 'expandIcon' }}
+          items={[
+            {
+              type: 'collapse',
+              id: 'guides',
+              content: { label: 'Руководства' },
+              itemWrapRender: asLink('/guides'),
+              items: [
+                { id: 'start', content: { label: 'Быстрый старт' }, itemWrapRender: asLink('/guides/start') },
+                { id: 'faq', content: { label: 'FAQ' }, itemWrapRender: asLink('/guides/faq') },
+              ],
+            },
+            {
+              type: 'collapse',
+              id: 'components',
+              content: { label: 'Компоненты' },
+              itemWrapRender: asLink('/components'),
+              items: [
+                { id: 'button', content: { label: 'Button' }, itemWrapRender: asLink('/components/button') },
+                { id: 'list', content: { label: 'List' }, itemWrapRender: asLink('/components/list') },
+              ],
+            },
+          ]}
+        />
+      </div>
+      <span>Текущий роут: {route}</span>
+    </div>
+  );
+}
+```
+
 #### Три уровня вложенности
 
 Группы внутри групп — подходит для каталогов, файловых деревьев.
@@ -551,7 +623,7 @@ export function ListItemWrap() {
 ### Item types
 
 - `BaseItem` — обычный элемент с `content` / `beforeContent` / `afterContent`; опционально `switch: true` для тумблер-презентации выбора.
-- `{ type: 'collapse', items }` — группа, раскрывается кликом по заголовку; управление — через `collapse`.
+- `{ type: 'collapse', items }` — группа с раскрытием; управление — через `collapse`, триггер раскрытия — через `collapse.toggleOn`.
 - `{ type: 'next-list', items, placement }` — раскрытие в соседний popover (для каскадных меню).
 - `{ type: 'group', items, groupVariant }` / `{ type: 'group-select', items, groupVariant }` — визуальная группа с label, `groupVariant` (`subtitle` / `subtitleTertiary`), опциональным `divider` и «выбрать всё» (`group-select`).
 
@@ -563,6 +635,17 @@ export function ListItemWrap() {
 
 - **Uncontrolled** — передавайте `defaultValue`. Компонент хранит state сам, пригодно для форм/настроек, где значения потом читаются через `onChange`.
 - **Controlled** — `value` + `onChange`. Нужен, когда state живёт в URL / query / внешнем сторе, или когда требуется программно менять выбор/раскрытие.
+
+### Триггер раскрытия группы
+
+`collapse.toggleOn` задаёт, что переключает раскрытие `type: 'collapse'`-группы мышью:
+
+- `item` (по умолчанию) — клик по всей строке группы.
+- `expandIcon` — только клик по шеврону; клик по остальной части строки остаётся потребителю.
+
+`expandIcon` нужен, когда строка уже несёт собственное действие: `itemWrapRender` оборачивает её в ссылку роутера или на ней висит свой `onClick`. В режиме `item` такой клик делал бы две вещи разом — переходил по роуту и раскрывал группу.
+
+Клавиатура от режима не зависит: `Enter` / `Space` и `ArrowRight` на строке группы раскрывают её в обоих случаях. Шеврон в цепочку табуляции не входит.
 
 ### Виртуализация
 
@@ -938,6 +1021,7 @@ export function DroplistWithHeader() {
 |------|------|---------|-------------|
 | `defaultValue` | `ItemId` | — |  |
 | `onChange` | `((value?: ItemId[]) => void) \| undefined` | — |  |
+| `toggleOn` | `"expandIcon"` \| `"item"` | — | Что переключает раскрытие вложенного списка: <br/> <br> - `item` — клик по всей строке (по умолчанию), <br/> <br> - `expandIcon` — только клик по шеврону; клик по строке остаётся потребителю <br/> (например, когда `itemWrapRender` оборачивает строку в ссылку). <br/> Клавиатура (`Enter` / `Space` / `ArrowRight` на строке) раскрывает группу в обоих режимах. |
 | `value` | `ItemId` | — |  |
 
 **CommonGroupItem**

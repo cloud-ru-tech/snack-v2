@@ -87,8 +87,8 @@ const ListImpl = forwardRef(
     };
 
     const collapseContextValue = useMemo(
-      () => ({ openCollapseItems, toggleOpenCollapseItem }),
-      [openCollapseItems, toggleOpenCollapseItem],
+      () => ({ openCollapseItems, toggleOpenCollapseItem, toggleOn: collapse.toggleOn }),
+      [openCollapseItems, toggleOpenCollapseItem, collapse.toggleOn],
     );
 
     const focusListContextValue = useMemo(

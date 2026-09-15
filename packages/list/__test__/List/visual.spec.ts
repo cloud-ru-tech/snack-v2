@@ -128,7 +128,8 @@ test.describe('List — visual regression', () => {
     const root = getByTestId(TEST_IDS.list.collapseScenario);
 
     // Стартово раскрыты `general` и `workspace-resources`. Раскрываем `billing` и вложенный
-    // `Payment methods` кликом по строке группы целиком — шеврон `groupIndicator` неинтерактивен.
+    // `Payment methods` кликом по строке группы целиком — стори в дефолтном режиме
+    // (`collapse.toggleOn: 'item'`), где шеврон кликов не принимает.
     await getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing`).click();
     await getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing-methods`).click();
     await expect(getByTestId(`${LIST_INTERNAL_TEST_IDS.baseItem}_billing-card`)).toBeVisible();
