@@ -26,7 +26,7 @@ export function ScrollButton({ size, onClick, direction, orientation }: ScrollBu
       data-direction={direction}
       data-size={size}
       data-orientation={orientation}
-      data-testid={`tabs__scroll-button-${direction}`}
+      data-test-id={`tabs__scroll-button-${direction}`}
     >
       <Button
         tabIndex={-1}

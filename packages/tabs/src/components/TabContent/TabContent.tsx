@@ -24,9 +24,9 @@ export function TabContent({ children, value, className, ...rest }: TabContentPr
       className={className}
       role='tabpanel'
       id={getTabContentId(value)}
-      {...extractSupportProps(rest)}
       aria-labelledby={value}
-      data-testid={`tabs__tab-content-${value}`}
+      data-test-id={`tabs__tab-content-${value}`}
+      {...extractSupportProps(rest)}
     >
       {children}
     </div>

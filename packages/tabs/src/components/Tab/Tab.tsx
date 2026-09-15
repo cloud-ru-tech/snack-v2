@@ -117,7 +117,7 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
     <button
       type='button'
       role='tab'
-      data-testid={`tabs__tab-${value}`}
+      data-test-id={`tabs__tab-${value}`}
       {...extractSupportProps(otherProps)}
       id={value}
       ref={ref}
@@ -140,7 +140,7 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
             appearance={counter.appearance}
             roleAppearance={counter.roleAppearance}
             value={counter.label}
-            data-testid={`tabs__tab-counter-${value}`}
+            data-test-id={`tabs__tab-counter-${value}`}
             {...counterProps}
           />
         )}

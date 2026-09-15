@@ -256,7 +256,7 @@ export function TabBar({
 
       {slotActionButton && (
         <div
-          data-testid='tabs__bar__after'
+          data-test-id='tabs__bar__after'
           data-orientation={orientation}
           data-size={size}
           className={styles.tabBarAfter}
