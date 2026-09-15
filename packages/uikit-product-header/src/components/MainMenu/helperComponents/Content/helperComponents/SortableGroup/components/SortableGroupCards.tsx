@@ -1,5 +1,5 @@
 import { InnerLink } from '../../../../../types';
-import { hasNestedItems } from '../../../../../utils/innerLink';
+import { isSubCategoryCard } from '../../../../../utils/innerLink';
 import { DraggableServiceCard, ServiceCardProps } from '../../../../ServiceCard';
 import styles from '../styles.module.scss';
 import { SubCategory } from './SubCategory';
@@ -33,7 +33,7 @@ export function SortableGroupCards({
 
         const key = String(groupId) + service.id;
 
-        if (hasNestedItems(service)) {
+        if (isSubCategoryCard(service)) {
           return (
             <SubCategory
               key={key}

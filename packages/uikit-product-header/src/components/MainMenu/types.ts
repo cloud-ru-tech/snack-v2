@@ -6,6 +6,8 @@ import { JSXElementConstructor, MouseEvent, ReactNode } from 'react';
 import { ContentProps } from './helperComponents/Content';
 import { FavoritesSegment } from './helperComponents/Favorites/constants';
 
+export type InnerLinkViewMode = 'group-title-only' | 'flat-link' | 'expanded' | 'expandable';
+
 /**
  * Карточка сервиса или ссылки внутри {@link LinksGroup}.
  *
@@ -38,15 +40,25 @@ export type InnerLink = {
   badge?: CardServiceLightProps['promoTag'];
   /** Разрешено ли добавление карточки в избранное. default=true - разрешено */
   favoritesEnabled?: boolean;
-  /** Разрешено ли раскрытие карточки. default=false - Запрещено */
-  expandableEnabled?: boolean;
+  /**
+   * Режим отображения карточки. default='expandable'.
+   *
+   * - `'expandable'` — подкатегория при наличии реальных {@link items}: заголовок
+   *   {@link TitleClickable} с шевроном и сетка вложенных сервисов (раскрытие/схлопывание —
+   *   см. {@link expandableEnabled}). Без `items` — обычная карточка сервиса.
+   * - `'group-title-only'` — заголовок подкатегории ({@link TitleClickable} с шевроном) без
+   *   раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка.
+   *   Полезно для группы, чьи вложенные сервисы показываются на отдельной странице.
+   * - `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы.
+   */
+  viewMode?: InnerLinkViewMode;
   /**
    * Вложенные сервисы подкатегории.
    *
    * При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка
    * с кнопкой раскрытия, в развёрнутом — заголовок {@link TitleClickable} и сетка вложенных сервисов.
    */
-  items?: InnerLink[];
+  items?: Omit<InnerLink, 'items' | 'viewMode' | 'expandableEnabled'>[];
   /**
    * Синонимы для fuzzy-поиска.
    */

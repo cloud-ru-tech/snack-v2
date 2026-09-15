@@ -4,6 +4,29 @@ export function hasNestedItems(item: InnerLink): boolean {
   return Boolean(item.items?.some(child => !child.hidden));
 }
 
+/**
+ * Рендерится ли карточка как подкатегория (заголовок {@link TitleClickable} + вложенная сетка).
+ *
+ * Решение зависит от `viewMode` (не указан — считается `'expandable'`):
+ * - `'flat-link'` — никогда, карточка всегда обычная ссылка, даже если `items` заданы.
+ * - `'group-title-only'` — всегда, даже без `items`: только заголовок, без раскрываемого тела
+ *   и кнопки переключения — карточка ведёт себя как обычная ссылка.
+ * - `'expandable'` — только при наличии реальных вложенных сервисов.
+ */
+export function isSubCategoryCard(item: InnerLink): boolean {
+  const viewMode = item.viewMode ?? 'expanded';
+
+  if (viewMode === 'flat-link') {
+    return false;
+  }
+
+  if (viewMode === 'group-title-only') {
+    return true;
+  }
+
+  return hasNestedItems(item);
+}
+
 export function flatInnerLinks(items: InnerLink[] = []): InnerLink[] {
   return items.flatMap(item => {
     if (item.hidden) {

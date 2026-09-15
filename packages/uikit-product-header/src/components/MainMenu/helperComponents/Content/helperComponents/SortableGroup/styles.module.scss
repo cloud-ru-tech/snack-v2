@@ -1,5 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/button.module' as button;
+@use '@ds/figma-variables/build/scss/components/accordion.module' as accordion;
 
 // Радиус контейнера группы: от него считается радиус подложки внутри рамки выделения.
 $group-border-radius: base.$sn-density-radius-2xs;
@@ -53,7 +54,7 @@ $map-block-color-decor: (
 
   @media (hover: hover) {
     &:hover {
-      background-color: base.$sn-theme-color-neutral-decorTransparent;
+      background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
 
       .headerActions {
         pointer-events: auto;
@@ -172,6 +173,10 @@ $map-block-color-decor: (
 
   &[data-subcategory-body] {
     padding-bottom: base.$sn-primitive-dimension-4;
+  }
+
+  &[data-subcategory-body='expanded'] {
+    padding-top: accordion.$sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical;
   }
 }
 

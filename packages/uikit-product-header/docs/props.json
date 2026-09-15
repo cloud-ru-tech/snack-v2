@@ -468,11 +468,6 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "expandableEnabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
-          },
           "favoritesEnabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -497,7 +492,7 @@
             "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске).\n\nОдин и тот же сервис может быть представлен в разных сегментах с разной\nдетализацией (простая карточка в общем каталоге и раскрытая с вложенными\nсервисами версия в другом сегменте) — в этом случае обеим версиям задаётся\nобщий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах\nостаётся только первое по приоритету сегментов (см. \n{@link \nMainMenuProps.segments\n}\n)."
           },
           "items": {
-            "type": "InnerLink[] | undefined",
+            "type": "Omit<InnerLink, \"items\" | \"viewMode\" | \"expandableEnabled\">[] | undefined",
             "required": false,
             "description": "Вложенные сервисы подкатегории.\n\nПри наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка\nс кнопкой раскрытия, в развёрнутом — заголовок \n{@link \nTitleClickable\n}\n и сетка вложенных сервисов.",
             "typeRefs": [
@@ -512,6 +507,20 @@
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
             "required": true
+          },
+          "viewMode": {
+            "type": "InnerLinkViewMode | undefined",
+            "required": false,
+            "values": [
+              "expandable",
+              "expanded",
+              "flat-link",
+              "group-title-only"
+            ],
+            "description": "Режим отображения карточки. default='expandable'.\n\n- `'expandable'` — подкатегория при наличии реальных \n{@link \nitems \n}\n: заголовок\n  \n{@link \nTitleClickable\n}\n с шевроном и сетка вложенных сервисов (раскрытие/схлопывание —\n  см. \n{@link \nexpandableEnabled \n}\n). Без `items` — обычная карточка сервиса.\n- `'group-title-only'` — заголовок подкатегории (\n{@link \nTitleClickable\n}\n с шевроном) без\n  раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка.\n  Полезно для группы, чьи вложенные сервисы показываются на отдельной странице.\n- `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы.",
+            "typeRefs": [
+              "InnerLinkViewMode"
+            ]
           }
         },
         "own": true
@@ -1773,11 +1782,6 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "expandableEnabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
-          },
           "favoritesEnabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -1802,7 +1806,7 @@
             "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске).\n\nОдин и тот же сервис может быть представлен в разных сегментах с разной\nдетализацией (простая карточка в общем каталоге и раскрытая с вложенными\nсервисами версия в другом сегменте) — в этом случае обеим версиям задаётся\nобщий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах\nостаётся только первое по приоритету сегментов (см. \n{@link \nMainMenuProps.segments\n}\n)."
           },
           "items": {
-            "type": "InnerLink[] | undefined",
+            "type": "Omit<InnerLink, \"items\" | \"viewMode\" | \"expandableEnabled\">[] | undefined",
             "required": false,
             "description": "Вложенные сервисы подкатегории.\n\nПри наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка\nс кнопкой раскрытия, в развёрнутом — заголовок \n{@link \nTitleClickable\n}\n и сетка вложенных сервисов.",
             "typeRefs": [
@@ -1817,8 +1821,32 @@
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
             "required": true
+          },
+          "viewMode": {
+            "type": "InnerLinkViewMode | undefined",
+            "required": false,
+            "values": [
+              "expandable",
+              "expanded",
+              "flat-link",
+              "group-title-only"
+            ],
+            "description": "Режим отображения карточки. default='expandable'.\n\n- `'expandable'` — подкатегория при наличии реальных \n{@link \nitems \n}\n: заголовок\n  \n{@link \nTitleClickable\n}\n с шевроном и сетка вложенных сервисов (раскрытие/схлопывание —\n  см. \n{@link \nexpandableEnabled \n}\n). Без `items` — обычная карточка сервиса.\n- `'group-title-only'` — заголовок подкатегории (\n{@link \nTitleClickable\n}\n с шевроном) без\n  раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка.\n  Полезно для группы, чьи вложенные сервисы показываются на отдельной странице.\n- `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы.",
+            "typeRefs": [
+              "InnerLinkViewMode"
+            ]
           }
         },
+        "own": true
+      },
+      "InnerLinkViewMode": {
+        "kind": "union",
+        "values": [
+          "expandable",
+          "expanded",
+          "flat-link",
+          "group-title-only"
+        ],
         "own": true
       },
       "LinksGroup": {
@@ -3006,11 +3034,6 @@
             "type": "boolean | undefined",
             "required": false
           },
-          "expandableEnabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Разрешено ли раскрытие карточки. default=false - Запрещено"
-          },
           "favoritesEnabled": {
             "type": "boolean | undefined",
             "required": false,
@@ -3035,7 +3058,7 @@
             "description": "Уникальный идентификатор карточки (также используется в избранном и при поиске).\n\nОдин и тот же сервис может быть представлен в разных сегментах с разной\nдетализацией (простая карточка в общем каталоге и раскрытая с вложенными\nсервисами версия в другом сегменте) — в этом случае обеим версиям задаётся\nобщий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах\nостаётся только первое по приоритету сегментов (см. \n{@link \nMainMenuProps.segments\n}\n)."
           },
           "items": {
-            "type": "InnerLink[] | undefined",
+            "type": "Omit<InnerLink, \"items\" | \"viewMode\" | \"expandableEnabled\">[] | undefined",
             "required": false,
             "description": "Вложенные сервисы подкатегории.\n\nПри наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка\nс кнопкой раскрытия, в развёрнутом — заголовок \n{@link \nTitleClickable\n}\n и сетка вложенных сервисов.",
             "typeRefs": [
@@ -3050,8 +3073,32 @@
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
             "required": true
+          },
+          "viewMode": {
+            "type": "InnerLinkViewMode | undefined",
+            "required": false,
+            "values": [
+              "expandable",
+              "expanded",
+              "flat-link",
+              "group-title-only"
+            ],
+            "description": "Режим отображения карточки. default='expandable'.\n\n- `'expandable'` — подкатегория при наличии реальных \n{@link \nitems \n}\n: заголовок\n  \n{@link \nTitleClickable\n}\n с шевроном и сетка вложенных сервисов (раскрытие/схлопывание —\n  см. \n{@link \nexpandableEnabled \n}\n). Без `items` — обычная карточка сервиса.\n- `'group-title-only'` — заголовок подкатегории (\n{@link \nTitleClickable\n}\n с шевроном) без\n  раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка.\n  Полезно для группы, чьи вложенные сервисы показываются на отдельной странице.\n- `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы.",
+            "typeRefs": [
+              "InnerLinkViewMode"
+            ]
           }
         },
+        "own": true
+      },
+      "InnerLinkViewMode": {
+        "kind": "union",
+        "values": [
+          "expandable",
+          "expanded",
+          "flat-link",
+          "group-title-only"
+        ],
         "own": true
       },
       "LinksGroup": {

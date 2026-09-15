@@ -342,7 +342,6 @@ function LocalMainMenu() {
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
-| `expandableEnabled` | `boolean \| undefined` | — | Разрешено ли раскрытие карточки. default=false - Запрещено |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |
@@ -351,6 +350,9 @@ function LocalMainMenu() {
 | `items` | `InnerLink` | — | Вложенные сервисы подкатегории. <br/> При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка <br/> с кнопкой раскрытия, в развёрнутом — заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> и сетка вложенных сервисов. |
 | `label` | `string` | — | Заголовок карточки. |
 | `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `viewMode` | `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"` | — | Режим отображения карточки. default='expandable'. <br/> - `'expandable'` — подкатегория при наличии реальных <br/> {@link <br/> items <br/> } <br/> : заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном и сетка вложенных сервисов (раскрытие/схлопывание — <br/> см. <br/> {@link <br/> expandableEnabled <br/> } <br/> ). Без `items` — обычная карточка сервиса. <br/> - `'group-title-only'` — заголовок подкатегории ( <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном) без <br/> раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка. <br/> Полезно для группы, чьи вложенные сервисы показываются на отдельной странице. <br/> - `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы. |
+
+- `InnerLinkViewMode` = `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"`
 
 **LinksGroup**
 
@@ -514,7 +516,6 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — |  |
-| `expandableEnabled` | `boolean \| undefined` | — | Разрешено ли раскрытие карточки. default=false - Запрещено |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
 | `hidden` | `boolean \| undefined` | — |  |
 | `href` | `string \| undefined` | — |  |
@@ -523,6 +524,9 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `items` | `InnerLink` | — | Вложенные сервисы подкатегории. <br/> При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка <br/> с кнопкой раскрытия, в развёрнутом — заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> и сетка вложенных сервисов. |
 | `label` | `string` | — | Заголовок карточки. |
 | `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `viewMode` | `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"` | — | Режим отображения карточки. default='expandable'. <br/> - `'expandable'` — подкатегория при наличии реальных <br/> {@link <br/> items <br/> } <br/> : заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном и сетка вложенных сервисов (раскрытие/схлопывание — <br/> см. <br/> {@link <br/> expandableEnabled <br/> } <br/> ). Без `items` — обычная карточка сервиса. <br/> - `'group-title-only'` — заголовок подкатегории ( <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном) без <br/> раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка. <br/> Полезно для группы, чьи вложенные сервисы показываются на отдельной странице. <br/> - `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы. |
+
+- `InnerLinkViewMode` = `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"`
 
 **LinksGroup**
 

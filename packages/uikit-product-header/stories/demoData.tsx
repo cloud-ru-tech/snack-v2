@@ -20,6 +20,17 @@ export const SERVICE_GROUPS: LinksGroup[] = [
         icon: PlaceholderSVG,
         aliases: ['ml inference', 'инференс', 'ai', 'hugging face', 'ollama'],
         description: 'Краткое описание в одну строку',
+        viewMode: 'flat-link' as const,
+        items: [
+          {
+            id: 'inference-in',
+            label: 'ML Inference внутри',
+            aliases: [],
+            onClick: EMPTY_ON_CLICK,
+            href: EMPTY_HREF,
+            icon: PlaceholderSVG,
+          },
+        ],
       },
       {
         id: 'notebooks',
@@ -592,13 +603,21 @@ export const ADMINISTRATIVE_SECTIONS: LinksGroup[] = [
           },
         ],
       },
+      {
+        // Без items: карточка отображается заголовком подкатегории (TitleClickable + шеврон),
+        // но ведёт себя как обычная ссылка — раздел договора открывается на отдельной странице.
+        id: 'contractManagement',
+        label: 'Управление договором',
+        viewMode: 'group-title-only' as const,
+        aliases: ['управление договором', 'contract management', 'договор'],
+      },
     ].map(item => ({
       ...item,
       description: 'Краткое описание административного сервиса',
       icon: PlaceholderSVG,
       onClick: EMPTY_ON_CLICK,
       href: EMPTY_HREF,
-      items: item.items.map(item => ({
+      items: item.items?.map(item => ({
         ...item,
         description: 'Краткое описание административного сервиса',
         icon: PlaceholderSVG,

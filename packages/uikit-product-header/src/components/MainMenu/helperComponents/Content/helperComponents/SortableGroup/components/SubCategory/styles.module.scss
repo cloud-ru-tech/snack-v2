@@ -13,11 +13,20 @@
 .subcategory {
   min-width: 0;
 
-  &:has([data-subcategory-body]) {
+  &:has([data-subcategory-body]),
+  &[data-title-only] {
     grid-column: 1 / -1;
     padding: 0 base.$sn-primitive-dimension-4;
     border-radius: base.$sn-density-radius-2xs;
     background-color: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  &[data-title-only] {
+    padding: base.$sn-primitive-dimension-4;
+  }
+
+  &:has([data-subcategory-body='expanded']) {
+    padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4 0;
   }
 }
 
