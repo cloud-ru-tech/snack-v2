@@ -6,7 +6,7 @@ import { preventEventDefault, preventEventDefaultAndPropagation } from '@ds/util
 import cn from 'classnames';
 import { MouseEvent, ReactElement, RefObject } from 'react';
 
-import { VISIBILITY_STRATEGY } from '../../constants';
+import { TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
 import { cardPredefinedLocale } from '../../locale';
 import { CardSize, FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
@@ -77,7 +77,13 @@ export function CardActionsSurface({
       data-actions-visibility={actionsVisibility}
     >
       {tooltip && (
-        <Tooltip {...tooltipProps} tip={tooltip.tip} trigger={tooltipTrigger} triggerClassName={styles.tooltipTrigger}>
+        <Tooltip
+          {...tooltipProps}
+          tip={tooltip.tip}
+          trigger={tooltipTrigger}
+          hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
+          triggerClassName={styles.tooltipTrigger}
+        >
           {/* Кнопки действий — `as='span'` внутри интерактивной карточки (вложенный `<button>` невалиден),
               поэтому роль и доступное имя проставляем руками. */}
           <Button
@@ -97,39 +103,51 @@ export function CardActionsSurface({
       )}
 
       {favorite?.enabled && (
-        <Button
-          as='span'
-          role='button'
-          aria-label={favorite.checked ? t('actions.favoriteRemove') : t('actions.favoriteAdd')}
-          aria-pressed={Boolean(favorite.checked)}
-          size={actionsSize}
-          appearance='neutral'
-          view='simple'
-          icon={favorite.checked ? <StarFilledSVG /> : <StarSVG />}
-          onClick={handleFavoriteClick}
-          className={styles.favorite}
-          innerRef={favorite.buttonRef}
-          tabIndex={-1}
-          data-test-id={favorite['data-test-id']}
-          data-checked={favorite.checked || undefined}
-        />
+        <Tooltip
+          tip={favorite.checked ? t('actions.favoriteRemove') : t('actions.favoriteAdd')}
+          trigger={tooltipTrigger}
+          triggerClassName={styles.tooltipTrigger}
+          hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
+        >
+          <Button
+            as='span'
+            role='button'
+            aria-pressed={Boolean(favorite.checked)}
+            size={actionsSize}
+            appearance='neutral'
+            view='simple'
+            icon={favorite.checked ? <StarFilledSVG /> : <StarSVG />}
+            onClick={handleFavoriteClick}
+            className={styles.favorite}
+            innerRef={favorite.buttonRef}
+            tabIndex={-1}
+            data-test-id={favorite['data-test-id']}
+            data-checked={favorite.checked || undefined}
+          />
+        </Tooltip>
       )}
 
       {expandable && (
-        <Button
-          as='span'
-          role='button'
-          aria-label={expandable.value ? t('actions.collapse') : t('actions.expand')}
-          aria-expanded={expandable.value}
-          size={actionsSize}
-          appearance='neutral'
-          view='simple'
-          icon={expandable.value ? <CollapseVerticalSVG /> : <ExpandVerticalSVG />}
-          onClick={handleExpandButtonClick}
-          className={styles.expandButton}
-          innerRef={expandable.buttonRef}
-          tabIndex={-1}
-        />
+        <Tooltip
+          tip={expandable.value ? t('actions.collapse') : t('actions.expand')}
+          trigger={tooltipTrigger}
+          triggerClassName={styles.tooltipTrigger}
+          hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
+        >
+          <Button
+            as='span'
+            role='button'
+            aria-expanded={expandable.value}
+            size={actionsSize}
+            appearance='neutral'
+            view='simple'
+            icon={expandable.value ? <CollapseVerticalSVG /> : <ExpandVerticalSVG />}
+            onClick={handleExpandButtonClick}
+            className={styles.expandButton}
+            innerRef={expandable.buttonRef}
+            tabIndex={-1}
+          />
+        </Tooltip>
       )}
     </div>
   );

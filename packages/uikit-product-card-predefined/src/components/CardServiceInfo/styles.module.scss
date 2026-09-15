@@ -59,7 +59,6 @@ $actions-counts: 1, 2;
   &:focus-visible,
   &:has(*:focus-visible) {
     .actions {
-      transform: translateX(0);
       visibility: visible;
     }
 

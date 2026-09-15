@@ -18,7 +18,7 @@ import {
   useState,
 } from 'react';
 
-import { TEST_IDS, TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
+import { TEST_IDS, VISIBILITY_STRATEGY } from '../../constants';
 import { CardActionsSurface, CardPromoTag, createCardActionsKeyDownHandler } from '../../helperComponents';
 import { CardPromoTagProps, FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
@@ -217,7 +217,6 @@ export function CardServiceLight<T extends ElementType = 'button'>({
                 buttonRef: tooltipTriggerRef,
                 open: isTooltipOpen,
                 onOpenChange: setIsTooltipOpen,
-                hoverDelayOpen: TOOLTIP_HOVER_DELAY_OPEN_MS,
               }
             : undefined
         }

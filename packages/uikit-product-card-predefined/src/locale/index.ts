@@ -4,8 +4,8 @@ const CARD_PREDEFINED_MESSAGES = defineMessages({
   'en-GB': {
     actions: {
       info: 'Details',
-      favoriteAdd: 'Add to favourites',
-      favoriteRemove: 'Remove from favourites',
+      favoriteAdd: 'Add to favorites',
+      favoriteRemove: 'Remove from favorites',
       expand: 'Expand',
       collapse: 'Collapse',
     },
