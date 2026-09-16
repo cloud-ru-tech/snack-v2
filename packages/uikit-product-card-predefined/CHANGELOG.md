@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-09-16)
+
+### Bug Fixes
+
+- **FF-9052:** remove transform animation and add tooltips for card actions ([ae8b090](https://github.com/cloud-ru-tech/snack-v2/commit/ae8b090c368b2437033b2132bae8a4ae26064c6c))
+
+### Features
+
+- **FF-9052:** add stateLayer for CardServiceLight ([614c719](https://github.com/cloud-ru-tech/snack-v2/commit/614c7193b83eb87697aa1a67f46eda1635aab128))
+
 ## 3.0.9 (2026-09-14)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

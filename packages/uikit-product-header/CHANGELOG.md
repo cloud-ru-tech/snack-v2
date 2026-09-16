@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2026-09-16)
+
+### Bug Fixes
+
+- **FF-9052:** min-height for favorite block ([734d9e3](https://github.com/cloud-ru-tech/snack-v2/commit/734d9e37531d2074dd1edc06240efc02c171f219))
+- **FF-9052:** proper roleAppearance for PromoTag, disable hover ([f93431c](https://github.com/cloud-ru-tech/snack-v2/commit/f93431cd813a684515947f09be5236f4b83bd882))
+- **FF-9052:** remove inner useEffect for handling activeSegment select ([b7e79cc](https://github.com/cloud-ru-tech/snack-v2/commit/b7e79cc80a63be27476c21f8791ee1bdbe726c17))
+- **FF-9052:** use Card for header MenuBanner ([55152b3](https://github.com/cloud-ru-tech/snack-v2/commit/55152b3f19f98e234c41e459975b71d09ed746c7))
+
+### Features
+
+- **FF-9052:** allow to show subcategory without cards, fix category title hover color ([e3dea85](https://github.com/cloud-ru-tech/snack-v2/commit/e3dea85d4b61a0b9846e070216567d535729dbda))
+
 ## 1.3.9 (2026-09-14)
 
 **Note:** Version bump only for package @ds/uikit-product-header
