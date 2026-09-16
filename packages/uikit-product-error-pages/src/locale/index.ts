@@ -13,7 +13,7 @@ const ERROR_PAGE_MESSAGES = defineMessages({
     offlineTitle: 'No Internet Connection',
     offlineText: 'Check your internet connection and try refreshing the page.',
     redirectTitle: 'The link will be removed',
-    redirectText: 'The link is obsolete and will be removed soon. Go to the new link',
+    redirectText: 'The link is obsolete and will be removed soon. Go to the new link.',
     redirectButton: 'Go to',
   },
   'ru-RU': {

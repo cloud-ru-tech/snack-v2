@@ -29,6 +29,18 @@ const logoVariants = [LOGO_VARIANT.Cloud, LOGO_VARIANT.Custom, LOGO_VARIANT.None
 
 const cell = (node: ReactNode) => <div className={styles.matrixCell}>{node}</div>;
 
+const containerWidths = [
+  { label: 'desktop / 1248', className: styles.matrixCell },
+  { label: 'tablet / 834', className: styles.matrixCellTablet },
+  { label: 'mobile / 360', className: styles.matrixCellMobile },
+] as const;
+
+const renderByContainerWidth = ({ label, className }: (typeof containerWidths)[number]) => (
+  <div className={className}>
+    <ErrorPage data-test-id={TEST_IDS.matrix('frontend', label.split(' ')[0])} logoVariant={LOGO_VARIANT.Cloud} />
+  </div>
+);
+
 const renderByErrorType = (errorType: (typeof errorTypes)[number]) => {
   const dataTestId = TEST_IDS.matrix(errorType, 'cloud');
 
@@ -79,6 +91,15 @@ export const VisualMatrix: Story = {
         rows={logoVariants.map(logoVariant => ({
           variantLabel: logoVariant,
           cells: [renderByLogo(logoVariant)],
+        }))}
+      />
+      <StoryTable
+        sectionTitle='Container width (errorType = FrontendError, logo = Cloud)'
+        firstColumnHeader='ширина контейнера'
+        columnHeaders={['sample']}
+        rows={containerWidths.map(width => ({
+          variantLabel: width.label,
+          cells: [renderByContainerWidth(width)],
         }))}
       />
     </div>

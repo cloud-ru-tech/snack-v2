@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 /**
- * CSS-переменные покраски иллюстрации. Значения задаёт `.wrapper` в
+ * CSS-переменные покраски иллюстрации. Значения задаёт `.page` в
  * `styles.module.scss` из токенов `base.$sn-*`, здесь — только имена.
  */
 const SVG_COLOR = {
@@ -16,7 +16,7 @@ type IllustrationProps = {
 
 /**
  * Декоративная иллюстрация error-страницы: окно браузера, бумажный самолётик,
- * восклицательный знак и две вращающиеся шестерёнки. Скрыта на mobile (см. `.rightSide`).
+ * восклицательный знак и две вращающиеся шестерёнки. Скрыта на mobile (см. `.img`).
  * Покраска — через CSS-переменные родителя, анимация — классы `.rotateSmall` / `.rotateBig`.
  */
 export function Illustration({ 'data-test-id': dataTestId }: IllustrationProps) {

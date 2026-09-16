@@ -61,96 +61,98 @@ export function ErrorPage({
 
   return (
     <div className={cn(styles.page, className)} {...extractSupportProps(rest)}>
-      {logoNode}
+      <div className={styles.layout}>
+        {logoNode}
 
-      <div className={styles.contentGrid}>
-        <div className={styles.content}>
-          <div className={styles.titleWrapper}>
-            <h1 className={styles.title} data-test-id={TEST_IDS.title} data-user>
-              {content.title}
-            </h1>
+        <div className={styles.contentGrid}>
+          <div className={styles.content}>
+            <div className={styles.titleWrapper}>
+              <h1 className={styles.title} data-test-id={TEST_IDS.title} data-user>
+                {content.title}
+              </h1>
 
-            {content.statusCode && (
-              <Tag
-                className={cn(styles.statusCode, compactThemeClassName)}
-                appearance='neutral'
-                size='s'
-                label={String(content.statusCode)}
-                data-test-id={TEST_IDS.statusCode}
-              />
-            )}
-          </div>
+              {content.statusCode && (
+                <Tag
+                  className={cn(styles.statusCode, compactThemeClassName)}
+                  appearance='neutral'
+                  size='s'
+                  label={String(content.statusCode)}
+                  data-test-id={TEST_IDS.statusCode}
+                />
+              )}
+            </div>
 
-          <div className={cn(styles.description, isCustomErrorType ? custom?.actionWrapperClassName : undefined)}>
-            <span className={styles.descriptionText}>{content.description}</span>
+            <div className={cn(styles.description, isCustomErrorType ? custom?.actionWrapperClassName : undefined)}>
+              <span className={styles.descriptionText}>{content.description}</span>
 
-            {(hasMainPageLink || hasBackLink) && (
-              <div className={styles.links}>
-                {hasMainPageLink && (
-                  <Link
-                    href={mainPageUrl}
-                    target='_self'
-                    label={t('mainPageLink')}
-                    data-test-id={TEST_IDS.mainPageLink}
-                  />
-                )}
+              {(hasMainPageLink || hasBackLink) && (
+                <div className={styles.links}>
+                  {hasMainPageLink && (
+                    <Link
+                      href={mainPageUrl}
+                      target='_self'
+                      label={t('mainPageLink')}
+                      data-test-id={TEST_IDS.mainPageLink}
+                    />
+                  )}
 
-                {hasBackLink && (
-                  <Link
-                    onClick={handleBackLinkClick}
-                    target='_self'
-                    label={t('backLink')}
-                    data-test-id={TEST_IDS.backLink}
-                  />
-                )}
-              </div>
-            )}
-          </div>
+                  {hasBackLink && (
+                    <Link
+                      onClick={handleBackLinkClick}
+                      target='_self'
+                      label={t('backLink')}
+                      data-test-id={TEST_IDS.backLink}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
 
-          <div className={styles.buttons}>
-            {onSupportCenterClick && (
-              <Button
-                view='outline'
-                appearance='primary'
-                size='m'
-                className={styles.button}
-                label={t('supportCenterButton')}
-                onClick={onSupportCenterClick}
-                icon={<EmailSVG />}
-                iconPosition={ICON_POSITION.After}
-                data-test-id={TEST_IDS.supportButton}
-              />
-            )}
-
-            {showMainButton &&
-              (button.href ? (
+            <div className={styles.buttons}>
+              {onSupportCenterClick && (
                 <Button
-                  as='a'
-                  href={button.href}
-                  target='_self'
+                  view='outline'
+                  appearance='primary'
                   size='m'
                   className={styles.button}
-                  label={button.label}
-                  icon={button.icon}
+                  label={t('supportCenterButton')}
+                  onClick={onSupportCenterClick}
+                  icon={<EmailSVG />}
                   iconPosition={ICON_POSITION.After}
-                  data-test-id={TEST_IDS.mainButton}
+                  data-test-id={TEST_IDS.supportButton}
                 />
-              ) : (
-                <Button
-                  size='m'
-                  className={styles.button}
-                  label={button.label}
-                  icon={button.icon}
-                  iconPosition={ICON_POSITION.After}
-                  onClick={button.onClick}
-                  data-test-id={TEST_IDS.mainButton}
-                />
-              ))}
-          </div>
-        </div>
+              )}
 
-        <div className={styles.img}>
-          <Illustration data-test-id={TEST_IDS.illustration} />
+              {showMainButton &&
+                (button.href ? (
+                  <Button
+                    as='a'
+                    href={button.href}
+                    target='_self'
+                    size='m'
+                    className={styles.button}
+                    label={button.label}
+                    icon={button.icon}
+                    iconPosition={ICON_POSITION.After}
+                    data-test-id={TEST_IDS.mainButton}
+                  />
+                ) : (
+                  <Button
+                    size='m'
+                    className={styles.button}
+                    label={button.label}
+                    icon={button.icon}
+                    iconPosition={ICON_POSITION.After}
+                    onClick={button.onClick}
+                    data-test-id={TEST_IDS.mainButton}
+                  />
+                ))}
+            </div>
+          </div>
+
+          <div className={styles.img}>
+            <Illustration data-test-id={TEST_IDS.illustration} />
+          </div>
         </div>
       </div>
     </div>

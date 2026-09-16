@@ -18,8 +18,23 @@
   gap: 1.5rem;
 }
 
+// Размеры ячеек = ширины, на которые реагируют @container-брейкпоинты компонента
+// (см. src/components/ErrorPage/styles.module.scss). Раскладка считается от ширины
+// ячейки, поэтому менять размер окна для проверки брейкпоинтов не нужно.
 .matrixCell {
   display: block;
-  width: 720px;
-  height: 520px;
+  width: 1248px;
+  height: 728px;
+}
+
+.matrixCellTablet {
+  display: block;
+  width: 834px;
+  height: 1112px;
+}
+
+.matrixCellMobile {
+  display: block;
+  width: 360px;
+  height: 640px;
 }

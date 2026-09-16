@@ -4,24 +4,37 @@ $breakpoint-mobile: 767px;
 $breakpoint-tablet: 1023px;
 $gear-wheel-rotation-period: 10s;
 
+// Брейкпоинты компонента считаются от его собственной ширины, а не от окна:
+// ErrorPage встраивают и на весь экран, и рядом с сайдбаром, и в модалку.
+// Ширину .page задаёт родитель — в нерастянутом flex-элементе или inline-block
+// компонент схлопнется (см. docs/index.mdx).
 .page {
   // CSS-переменные покраски декоративной иллюстрации (см. Illustration.tsx).
   --svg-exclamation-mark: #{base.$sn-theme-color-primary-accent};
   --svg-stroke: #{base.$sn-theme-color-neutral-decor};
   --svg-background: #{base.$sn-theme-color-neutral-background1Level};
 
+  container-type: inline-size;
+
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}
+
+// Padding живёт здесь, а не на .page: контейнер не может опрашивать свою
+// ширину, а @container меряет её без padding — иначе отступы не учтутся.
+.layout {
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-24;
 
   box-sizing: border-box;
-  min-width: 0;
   height: 100%;
   padding: base.$sn-primitive-dimension-48;
 
-  background-color: base.$sn-theme-color-neutral-background1Level;
-
-  @media (max-width: $breakpoint-mobile) {
+  @container (max-width: #{$breakpoint-mobile}) {
     padding: base.$sn-primitive-dimension-16;
   }
 }
@@ -37,7 +50,7 @@ $gear-wheel-rotation-period: 10s;
   width: 100%;
   min-height: 0;
 
-  @media (max-width: $breakpoint-tablet) {
+  @container (max-width: #{$breakpoint-tablet}) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -84,7 +97,7 @@ $gear-wheel-rotation-period: 10s;
   width: 100%;
 
   // На mobile описание забирает свободную высоту и прижимает кнопки к низу.
-  @media (max-width: $breakpoint-mobile) {
+  @container (max-width: #{$breakpoint-mobile}) {
     flex: 1 1 auto;
     min-height: 0;
   }
@@ -109,14 +122,14 @@ $gear-wheel-rotation-period: 10s;
   flex-direction: row;
   gap: base.$sn-primitive-dimension-8;
 
-  @media (max-width: $breakpoint-mobile) {
+  @container (max-width: #{$breakpoint-mobile}) {
     flex-direction: column;
     width: 100%;
   }
 }
 
 .button {
-  @media (max-width: $breakpoint-mobile) {
+  @container (max-width: #{$breakpoint-mobile}) {
     width: 100%;
   }
 }
@@ -139,11 +152,11 @@ $gear-wheel-rotation-period: 10s;
   min-width: 0;
   min-height: 0;
 
-  @media (max-width: $breakpoint-tablet) {
+  @container (max-width: #{$breakpoint-tablet}) {
     justify-content: center;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @container (max-width: #{$breakpoint-mobile}) {
     display: none;
   }
 }
