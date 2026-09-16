@@ -46,6 +46,7 @@
     "@ds/icons": "workspace:^",
     "@ds/list": "workspace:^",
     "@ds/locale": "workspace:^",
+    "@ds/materials": "workspace:^",
     "@ds/promo-tag": "workspace:^",
     "@ds/tag": "workspace:^",
     "@ds/theme": "workspace:^",

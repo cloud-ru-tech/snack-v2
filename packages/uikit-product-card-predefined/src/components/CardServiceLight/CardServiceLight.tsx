@@ -178,7 +178,7 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       data-tooltip-open={isTooltipOpen || undefined}
       {...polymorphicProps}
     >
-      <span className={styles.outlineBorder} aria-hidden />
+      <span className={styles.stateLayer} data-state='emptyNeutralOnBackground' aria-hidden />
       <div className={styles.container} data-mobile={isMobile || undefined}>
         {icon && <div className={styles.icon}>{icon}</div>}
 

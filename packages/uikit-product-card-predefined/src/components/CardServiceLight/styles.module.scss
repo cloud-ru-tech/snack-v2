@@ -1,4 +1,19 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+.stateLayer {
+  visibility: initial;
+}
+
+// `actionsVisibility='hover'` уже красится `position: absolute` в самом CardActionsSurface —
+// эта заливка не задевает. Для `actionsVisibility='always'` (мобильный вид) surface остаётся
+// `position: static`: чтобы он, как и `.container`, не рисовался под `.stateLayer`, тоже нужен
+// позиционированный брат.
+.cardActions {
+  &[data-actions-visibility='always'] {
+    position: relative;
+  }
+}
 
 .root {
   cursor: pointer;
@@ -24,15 +39,15 @@
     pointer-events: none;
     cursor: default;
     opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .stateLayer {
+      visibility: hidden;
+    }
   }
 
   &:focus-visible {
     outline: base.$sn-theme-color-primary-accent solid base.$sn-primitive-strokeWeight-strokeSemiBold;
     outline-offset: 0;
-  }
-
-  &:not([data-disabled]):focus-visible {
-    background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
   }
 
   &:not([data-disabled]):hover,
@@ -45,14 +60,12 @@
     }
   }
 
-  @media (hover: hover) {
-    &:not([data-disabled]):hover {
-      background-color: base.$sn-theme-color-material-stateLayer-darkOnAccent-hovered-filled;
-    }
-  }
+  @include m.has-state-layer-as-child('stateLayer');
 }
 
 .container {
+  position: relative;
+
   display: flex;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
