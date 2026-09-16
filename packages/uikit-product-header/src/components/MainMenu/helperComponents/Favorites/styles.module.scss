@@ -9,7 +9,8 @@
 
   box-sizing: border-box;
   width: 100%;
-  min-height: 0;
+  // высота всего блока с одной карточкой
+  min-height: base.$sn-primitive-dimension-88;
   padding: base.$sn-primitive-dimension-8 0 0;
   border-radius: base.$sn-density-radius-2xs;
 
@@ -40,7 +41,7 @@
   position: relative;
   flex: 1 1 auto;
   width: 100%;
-  min-height: 0;
+  min-height: base.$sn-primitive-dimension-44;
 
   &[data-insert-new] {
     [data-favorite] {

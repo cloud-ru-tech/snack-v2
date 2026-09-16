@@ -94,10 +94,6 @@ export function DraggableServiceCard({
 
   const { tabIndex, ...restAttributes } = attributes ?? {};
 
-  if (disabled) {
-    return <ServiceCard service={service} favorite={favorite} {...props} tabIndex={tabIndex} />;
-  }
-
   return (
     <DragGhost
       innerRef={setNodeRef}
