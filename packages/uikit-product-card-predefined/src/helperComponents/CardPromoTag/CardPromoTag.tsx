@@ -1,9 +1,11 @@
 import { TooltipProps } from '@ds/tooltip';
 import { PromoTagPredefined, PromoTagPredefinedProps } from '@ds/uikit-product-promo-tag-predefined';
 import { withInnerRefSupport } from '@ds/utils';
+import cn from 'classnames';
 import { createElement, ReactElement, RefObject } from 'react';
 
 import { CardPromoTagProps } from '../../types';
+import styles from './styles.module.scss';
 
 export type CardPromoTagRenderProps = {
   /** Настройки promo tag, пришедшие в карточку */
@@ -32,11 +34,10 @@ export function CardPromoTag({
   // JSX-спред union-типа TS сплющил бы заново.
   const props = {
     ...promoTag,
-    as: 'span',
     tabIndex: -1,
     tooltip: { ...promoTag.tooltip, trigger: tooltipTrigger },
     innerRef,
-    className,
+    className: cn(styles.promoTag, className),
     'data-test-id': dataTestId,
   } as PromoTagPredefinedProps;
 

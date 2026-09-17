@@ -153,7 +153,7 @@ export function CardServiceInfo<T extends ElementType = 'button'>({
                   tooltipTrigger={tooltipTrigger}
                   innerRef={promoTagTooltipTriggerRef}
                   data-test-id={TEST_IDS.cardServiceInfoPromoTag}
-                  className={cn(styles.promoTag, compactThemeClassName)}
+                  className={compactThemeClassName}
                 />
               )}
             </div>
