@@ -1,4 +1,11 @@
 {
+  "CAROUSEL_LAYOUT_PRESETS": {
+    "displayName": "CAROUSEL_LAYOUT_PRESETS",
+    "propsTypeName": null,
+    "description": "DS-пресет адаптива `Carousel`: на mobile стрелки скрыты, страницы листаются свайпом и пагинацией.",
+    "props": {},
+    "relatedTypes": {}
+  },
   "Carousel": {
     "displayName": "Carousel",
     "propsTypeName": "CarouselProps",
@@ -7,7 +14,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Использовать стрелки для переключения страниц"
+        "description": "Использовать стрелки для переключения страниц.\nНа mobile по умолчанию скрыты (`CAROUSEL_LAYOUT_PRESETS`), вернуть — через `layoutPresets`."
       },
       "autoSwipe": {
         "type": "number",
@@ -53,6 +60,15 @@
         "defaultValue": "false",
         "description": "Цикличная прокрутка"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<CarouselLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `CAROUSEL_LAYOUT_PRESETS`).\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
+        "typeRefs": [
+          "CarouselLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
       "pagination": {
         "type": "boolean",
         "required": false,
@@ -96,6 +112,17 @@
       }
     },
     "relatedTypes": {
+      "CarouselLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "arrows": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Использовать стрелки для переключения страниц.\nНа mobile по умолчанию скрыты (`CAROUSEL_LAYOUT_PRESETS`), вернуть — через `layoutPresets`."
+          }
+        },
+        "own": true
+      },
       "ControlsVisibility": {
         "kind": "union",
         "values": [
@@ -103,6 +130,28 @@
           "hover"
         ],
         "own": true
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
       }
     }
   },

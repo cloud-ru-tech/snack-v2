@@ -64,6 +64,32 @@ import { Carousel } from '@ds/carousel'
   <Infinite client:visible />
 </Example>
 
+## Адаптивность
+
+`Carousel` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет.
+
+На mobile стрелки скрыты: страницы листаются свайпом и пагинацией.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `arrows` | `true` | `false` |
+
+Источник mobile-дефолтов — экспортируемая константа `CAROUSEL_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `CAROUSEL_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { Carousel } from '@ds/carousel'
+
+// Явный проп задаёт desktop-значение, на mobile стрелки по-прежнему скрыты
+<Carousel arrows={false}>{items}</Carousel>
+
+// Вернуть стрелки на mobile
+<Carousel layoutPresets={{ mobile: { arrows: true } }}>{items}</Carousel>
+```
+
 ## Props
 <PropsTable data={carouselDoc.Carousel} />
 

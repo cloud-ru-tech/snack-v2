@@ -4,11 +4,6 @@
 .control {
   top: 50%;
 
-  :global(.sn-mobile) & {
-    // TODO: refactoring after https://jira.cloud.ru/browse/FF-8182
-    display: none;
-  }
-
   &[data-direction='prev'] {
     position: absolute;
     left: calc(#{base.simple-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlBack', 'padding-left')} / 2);

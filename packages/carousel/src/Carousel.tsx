@@ -1,3 +1,4 @@
+import { LayoutPresets, mergePresets, useLayoutDefaults } from '@ds/adaptive';
 import { PaginationSlider } from '@ds/pagination';
 import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -7,6 +8,9 @@ import { CONTROLS_VISIBILITY, TEST_IDS } from './constants';
 import { Control, ItemProvider } from './helperComponents';
 import styles from './styles.module.scss';
 import { ControlsVisibility } from './types';
+
+/** Пропы `Carousel`, дефолты которых меняет адаптив (preset-класс). */
+type CarouselLayoutDefaults = Pick<CarouselProps, 'arrows'>;
 
 export type CarouselProps = WithSupportProps<{
   /**
@@ -47,7 +51,8 @@ export type CarouselProps = WithSupportProps<{
    */
   swipeActivateLength?: number;
   /**
-   * Использовать стрелки для переключения страниц
+   * Использовать стрелки для переключения страниц.
+   * На mobile по умолчанию скрыты (`CAROUSEL_LAYOUT_PRESETS`), вернуть — через `layoutPresets`.
    * @default true
    */
   arrows?: boolean;
@@ -78,7 +83,17 @@ export type CarouselProps = WithSupportProps<{
    * @default 'hover'
    */
   controlsVisibility?: ControlsVisibility;
+  /**
+   * Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `CAROUSEL_LAYOUT_PRESETS`).
+   * Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.
+   */
+  layoutPresets?: LayoutPresets<CarouselLayoutDefaults>;
 }>;
+
+/** DS-пресет адаптива `Carousel`: на mobile стрелки скрыты, страницы листаются свайпом и пагинацией. */
+export const CAROUSEL_LAYOUT_PRESETS: LayoutPresets<CarouselLayoutDefaults> = {
+  mobile: { arrows: false },
+};
 
 export function Carousel({
   children: items,
@@ -86,7 +101,7 @@ export function Carousel({
   scrollBy: scrollByProp,
   transition = 0.4,
   swipe = true,
-  arrows = true,
+  arrows,
   pagination = true,
   className,
   gap,
@@ -95,8 +110,15 @@ export function Carousel({
   swipeActivateLength = 48,
   autoSwipe,
   controlsVisibility = CONTROLS_VISIBILITY.hover,
+  layoutPresets,
   ...rest
 }: CarouselProps) {
+  // arrows участвует в пресете — дефолт держим в базе useLayoutDefaults, не в деструктуризации.
+  const { arrows: resolvedArrows } = useLayoutDefaults<CarouselLayoutDefaults>(
+    { arrows: true },
+    mergePresets(CAROUSEL_LAYOUT_PRESETS, layoutPresets),
+    { arrows },
+  );
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollBy = useMemo(() => scrollByProp ?? Math.trunc(showItems), [showItems, scrollByProp]);
@@ -167,7 +189,7 @@ export function Carousel({
           {items}
         </ItemProvider>
 
-        {arrows && (
+        {resolvedArrows && (
           <>
             {(infiniteScroll || page > 0) && (
               <Control

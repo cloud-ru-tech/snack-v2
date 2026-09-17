@@ -103,7 +103,7 @@ export function Infinite() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `arrows` | `boolean` | `true` | Использовать стрелки для переключения страниц |
+| `arrows` | `boolean` | `true` | Использовать стрелки для переключения страниц. <br/> На mobile по умолчанию скрыты (`CAROUSEL_LAYOUT_PRESETS`), вернуть — через `layoutPresets`. |
 | `autoSwipe` | `number` | — | Автоматическое переключение слайдов в секундах |
 | `children` | `ReactElement<any, string \| JSXElementConstructor<any>>[]` | — | Массив айтемов |
 | `className` | `string` | — | CSS - класснейм |
@@ -111,6 +111,7 @@ export function Infinite() {
 | `data-test-id` | `string` | — |  |
 | `gap` | `string` | `var(--dimension-2m)` | Расстояние между айтемами |
 | `infiniteScroll` | `boolean` | `false` | Цикличная прокрутка |
+| `layoutPresets` | `CarouselLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `CAROUSEL_LAYOUT_PRESETS`). <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
 | `pagination` | `boolean` | `true` | Использовать пагинацию для переключения страниц |
 | `scrollBy` | `number` | `Math.trunc(show)` | Сдвиг айтемов при смене 1 страницы |
 | `showItems` | `number` | `1` | Кол-во отображаемых единовременно айтемов |
@@ -121,4 +122,36 @@ export function Infinite() {
 
 #### Related types
 
+**CarouselLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `arrows` | `boolean \| undefined` | — | Использовать стрелки для переключения страниц. <br/> На mobile по умолчанию скрыты (`CAROUSEL_LAYOUT_PRESETS`), вернуть — через `layoutPresets`. |
+
 - `ControlsVisibility` = `"always"` \| `"hover"`
+
+## Адаптивность
+
+`Carousel` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста **`@ds/adaptive`** — отдельного пропа `layoutType` нет.
+
+На mobile стрелки скрыты: страницы листаются свайпом и пагинацией.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `arrows` | `true` | `false` |
+
+Источник mobile-дефолтов — экспортируемая константа `CAROUSEL_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `CAROUSEL_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { Carousel } from '@ds/carousel'
+
+// Явный проп задаёт desktop-значение, на mobile стрелки по-прежнему скрыты
+<Carousel arrows={false}>{items}</Carousel>
+
+// Вернуть стрелки на mobile
+<Carousel layoutPresets={{ mobile: { arrows: true } }}>{items}</Carousel>
+```
