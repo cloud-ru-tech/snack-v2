@@ -3,63 +3,64 @@
     "promoTag": {
       "anatomy": {
         "size": {
-          "s": {
-            "container": {
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": "{sn.primitive.dimension.24}"
-              },
-              "padding": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
-              },
-              "borderRadius": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": "{sn.brand.anatomy.radius.promoTag.s}"
-              },
-              "minWidth": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": "{sn.primitive.dimension.24}"
-              },
-              "textWrapper": {
-                "padding": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": true
-                  },
-                  "$type": "number",
-                  "$value": "{sn.primitive.dimension.2}"
-                }
-              }
-            }
-          },
           "xs": {
+            "text": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Гарнитура подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.11}",
+                "$description": "Кегль подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.14}",
+                "$description": "Интерлиньяж подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
+                "$description": "Начертание подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Трекинг подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              }
+            },
             "container": {
               "textWrapper": {
                 "padding": {
@@ -113,9 +114,231 @@
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.promoTag.xs}"
               }
+            },
+            "element": {
+              "icon": {
+                "square": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.16}",
+                  "$description": "Сторона иконки в слоте элемента, размер xs. Инвариантна к платформе и плотности."
+                },
+                "strokeWeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "STROKE_FLOAT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                  "$description": "Толщина линии иконки в слоте элемента, размер xs. Инвариантна к платформе и плотности."
+                }
+              }
+            }
+          },
+          "s": {
+            "text": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Гарнитура подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.11}",
+                "$description": "Кегль подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.14}",
+                "$description": "Интерлиньяж подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
+                "$description": "Начертание подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Трекинг подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              }
+            },
+            "container": {
+              "minHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.24}"
+              },
+              "padding": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              },
+              "borderRadius": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.brand.anatomy.radius.promoTag.s}"
+              },
+              "minWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.24}"
+              },
+              "textWrapper": {
+                "padding": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
+                }
+              }
+            },
+            "element": {
+              "icon": {
+                "square": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.16}",
+                  "$description": "Сторона иконки в слоте элемента, размер s. Инвариантна к платформе и плотности."
+                },
+                "strokeWeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "STROKE_FLOAT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                  "$description": "Толщина линии иконки в слоте элемента, размер s. Инвариантна к платформе и плотности."
+                }
+              }
             }
           },
           "m": {
+            "text": {
+              "fontFamily": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_FAMILY"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "text",
+                "$value": "{sn.brand.font.fontFamily.regular.label}",
+                "$description": "Гарнитура подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontSize": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_SIZE"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.fontSize.12}",
+                "$description": "Кегль подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "lineHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LINE_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.lineHeight.16}",
+                "$description": "Интерлиньяж подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "fontWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "FONT_WEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.theme.typography.fontWeight.regular.label.m}",
+                "$description": "Начертание подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              },
+              "letterSpacing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "LETTER_SPACING"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.font.letterSpacing.s}",
+                "$description": "Трекинг подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
+              }
+            },
             "container": {
               "textWrapper": {
                 "padding": {
@@ -168,6 +391,32 @@
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.32}"
+              }
+            },
+            "element": {
+              "icon": {
+                "square": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.24}",
+                  "$description": "Сторона иконки в слоте элемента, размер m. Инвариантна к платформе и плотности."
+                },
+                "strokeWeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "STROKE_FLOAT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                  "$description": "Толщина линии иконки в слоте элемента, размер m. Инвариантна к платформе и плотности."
+                }
               }
             }
           }

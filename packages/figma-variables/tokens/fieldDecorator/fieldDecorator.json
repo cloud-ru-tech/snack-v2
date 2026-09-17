@@ -1,6 +1,6 @@
 {
   "sn": {
-    "labelDecorator": {
+    "fieldDecorator": {
       "size": {
         "s": {
           "labelWrapper": {
@@ -71,6 +71,30 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleLabel.lineHeightS}"
+                },
+                "icon": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}",
+                    "$description": "Сторона иконки подсказки, размер s. Инвариантна к платформе и плотности: обёртка следует высоте строки, иконка — нет."
+                  },
+                  "strokeWeight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "STROKE_FLOAT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                    "$description": "Толщина линии иконки подсказки, размер s. Инвариантна к платформе и плотности."
+                  }
                 }
               }
             }
@@ -167,6 +191,30 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleLabel.lineHeightL}"
+                },
+                "icon": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}",
+                    "$description": "Сторона иконки подсказки, размер l. Инвариантна к платформе и плотности: обёртка следует высоте строки, иконка — нет."
+                  },
+                  "strokeWeight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "STROKE_FLOAT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                    "$description": "Толщина линии иконки подсказки, размер l. Инвариантна к платформе и плотности."
+                  }
                 }
               }
             }
@@ -263,6 +311,30 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.typography.roleLabel.lineHeightM}"
+                },
+                "icon": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}",
+                    "$description": "Сторона иконки подсказки, размер m. Инвариантна к платформе и плотности: обёртка следует высоте строки, иконка — нет."
+                  },
+                  "strokeWeight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "STROKE_FLOAT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                    "$description": "Толщина линии иконки подсказки, размер m. Инвариантна к платформе и плотности."
+                  }
                 }
               }
             }

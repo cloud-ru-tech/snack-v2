@@ -15,7 +15,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
+                    "$value": "{sn.primitive.dimension.4}"
                   }
                 },
                 "minWidth": {
@@ -103,7 +103,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
+                    "$value": "{sn.primitive.dimension.2}"
                   }
                 }
               },

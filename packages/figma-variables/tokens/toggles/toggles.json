@@ -14,7 +14,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.24}"
+                  "$value": "{sn.primitive.dimension.20}"
                 },
                 "minHeight": {
                   "$extensions": {
@@ -24,7 +24,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.primitive.dimension.14}"
                 },
                 "flag": {
                   "minWidth": {
@@ -35,7 +35,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.primitive.dimension.16}"
+                    "$value": "{sn.primitive.dimension.14}"
                   },
                   "minHeight": {
                     "$extensions": {
@@ -45,7 +45,7 @@
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
-                    "$value": "{sn.primitive.dimension.16}"
+                    "$value": "{sn.primitive.dimension.14}"
                   },
                   "surface": {
                     "checkedFalse": {
@@ -57,7 +57,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.12}"
+                        "$value": "{sn.primitive.dimension.10}"
                       },
                       "height": {
                         "$extensions": {
@@ -67,7 +67,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.12}"
+                        "$value": "{sn.primitive.dimension.10}"
                       },
                       "borderRadius": {
                         "$extensions": {
@@ -99,7 +99,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.12}"
+                        "$value": "{sn.primitive.dimension.10}"
                       },
                       "height": {
                         "$extensions": {
@@ -109,7 +109,7 @@
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
-                        "$value": "{sn.primitive.dimension.12}"
+                        "$value": "{sn.primitive.dimension.10}"
                       },
                       "borderRadius": {
                         "$extensions": {
@@ -130,6 +130,72 @@
                         },
                         "$type": "number",
                         "$value": "{sn.brand.anatomy.line.toggles.xs.strokeWeight}"
+                      }
+                    },
+                    "icon": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии собственного глифа switch, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии спиннера внутри switch, размер xs. Инвариантна к платформе и плотности."
                       }
                     }
                   }
@@ -164,7 +230,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.24}"
+                  "$value": "{sn.primitive.dimension.20}"
                 },
                 "minHeight": {
                   "$extensions": {
@@ -188,7 +254,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.primitive.dimension.14}"
                 },
                 "flag": {
                   "minWidth": {
@@ -251,6 +317,39 @@
                       },
                       "$type": "number",
                       "$value": "{sn.brand.anatomy.line.toggles.xs.strokeWeight}"
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии спиннера внутри radio, размер xs. Инвариантна к платформе и плотности."
+                      }
                     }
                   }
                 },
@@ -262,7 +361,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.primitive.dimension.14}"
                 },
                 "borderRadius": {
                   "$extensions": {
@@ -318,7 +417,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.primitive.dimension.14}"
                 },
                 "flag": {
                   "minWidth": {
@@ -350,7 +449,7 @@
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
-                      "$value": "{sn.primitive.dimension.16}"
+                      "$value": "{sn.primitive.dimension.14}"
                     },
                     "height": {
                       "$extensions": {
@@ -360,7 +459,7 @@
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
-                      "$value": "{sn.primitive.dimension.16}"
+                      "$value": "{sn.primitive.dimension.14}"
                     },
                     "borderRadius": {
                       "$extensions": {
@@ -381,6 +480,72 @@
                       },
                       "$type": "number",
                       "$value": "{sn.brand.anatomy.line.toggles.xs.strokeWeight}"
+                    },
+                    "icon": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии собственного глифа checkbox, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.16}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии спиннера внутри checkbox, размер xs. Инвариантна к платформе и плотности."
+                      }
                     }
                   }
                 },
@@ -392,7 +557,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.dimension.16}"
+                  "$value": "{sn.primitive.dimension.14}"
                 },
                 "borderRadius": {
                   "$extensions": {
@@ -435,6 +600,74 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.icon.xs}"
+                }
+              }
+            },
+            "favouriteHeart": {
+              "framing": {
+                "flag": {
+                  "surface": {
+                    "icon": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии собственного глифа favouriteHeart, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии спиннера внутри favouriteHeart, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "favouriteStar": {
+              "framing": {
+                "flag": {
+                  "surface": {
+                    "icon": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии собственного глифа favouriteStar, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeRegular}",
+                        "$description": "Толщина линии спиннера внутри favouriteStar, размер xs. Инвариантна к платформе и плотности."
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -513,6 +746,39 @@
                       },
                       "$type": "number",
                       "$value": "{sn.brand.anatomy.line.toggles.s.strokeWeight}"
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии спиннера внутри radio, размер s. Инвариантна к платформе и плотности."
+                      }
                     }
                   }
                 },
@@ -643,6 +909,72 @@
                       },
                       "$type": "number",
                       "$value": "{sn.brand.anatomy.line.toggles.s.strokeWeight}"
+                    },
+                    "icon": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии собственного глифа checkbox, размер s. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии спиннера внутри checkbox, размер s. Инвариантна к платформе и плотности."
+                      }
                     }
                   }
                 },
@@ -837,6 +1169,72 @@
                         "$type": "number",
                         "$value": "{sn.brand.anatomy.line.toggles.s.strokeWeight}"
                       }
+                    },
+                    "icon": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии собственного глифа switch, размер s. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "width": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "height": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "WIDTH_HEIGHT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.dimension.24}"
+                      },
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии спиннера внутри switch, размер s. Инвариантна к платформе и плотности."
+                      }
                     }
                   }
                 },
@@ -871,6 +1269,74 @@
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.24}"
+                }
+              }
+            },
+            "favouriteHeart": {
+              "framing": {
+                "flag": {
+                  "surface": {
+                    "icon": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeSemiBold}",
+                        "$description": "Толщина линии собственного глифа favouriteHeart, размер s. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии спиннера внутри favouriteHeart, размер s. Инвариантна к платформе и плотности."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "favouriteStar": {
+              "framing": {
+                "flag": {
+                  "surface": {
+                    "icon": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeSemiBold}",
+                        "$description": "Толщина линии собственного глифа favouriteStar, размер s. Инвариантна к платформе и плотности."
+                      }
+                    },
+                    "loaderSpinner": {
+                      "strokeWeight": {
+                        "$extensions": {
+                          "com.figma.scopes": [
+                            "STROKE_FLOAT"
+                          ],
+                          "com.figma.hiddenFromPublishing": false
+                        },
+                        "$type": "number",
+                        "$value": "{sn.primitive.strokeWeight.strokeMedium}",
+                        "$description": "Толщина линии спиннера внутри favouriteStar, размер s. Инвариантна к платформе и плотности."
+                      }
+                    }
+                  }
                 }
               }
             }

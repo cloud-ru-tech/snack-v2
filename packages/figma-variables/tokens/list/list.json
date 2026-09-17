@@ -50,17 +50,18 @@
                       "$type": "number",
                       "$value": "{sn.density.spacing.control.wrapper.horizontal.s}"
                     }
-                  },
-                  "paddingVertical": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.density.spacing.control.wrapper.vertical.s}"
                   }
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.vertical.s}",
+                  "$description": "Охранное поле строки списка сверху и снизу: отступ от края contentWrapper до первой и последней строки. Держит слоты и текст на одной вертикали."
                 }
               },
               "paddingHorizontal": {
@@ -167,6 +168,17 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.s}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleBody.lineHeightS}",
+                  "$description": "Высота полосы слота before/after-контента строки списка: интерлиньяж строки значения. Обёртка без паддингов и FIXED — содержимое любого размера центрируется по первой строке и не меняет высоту строки. Охранное поле лежит на contentWrapper."
                 }
               },
               "borderRadius": {
@@ -252,17 +264,18 @@
                         "$value": "{sn.density.spacing.control.wrapper.horizontal.m}"
                       }
                     }
-                  },
-                  "paddingVertical": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.density.spacing.control.wrapper.vertical.m}"
                   }
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.vertical.m}",
+                  "$description": "Охранное поле строки списка сверху и снизу: отступ от края contentWrapper до первой и последней строки. Держит слоты и текст на одной вертикали."
                 }
               },
               "paddingHorizontal": {
@@ -305,6 +318,17 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.m}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleBody.lineHeightM}",
+                  "$description": "Высота полосы слота before/after-контента строки списка: интерлиньяж строки значения. Обёртка без паддингов и FIXED — содержимое любого размера центрируется по первой строке и не меняет высоту строки. Охранное поле лежит на contentWrapper."
                 }
               },
               "borderRadius": {
@@ -454,17 +478,18 @@
                         "$value": "{sn.density.spacing.control.wrapper.horizontal.l}"
                       }
                     }
-                  },
-                  "paddingVertical": {
-                    "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
-                      "com.figma.hiddenFromPublishing": true
-                    },
-                    "$type": "number",
-                    "$value": "{sn.density.spacing.control.wrapper.vertical.l}"
                   }
+                },
+                "paddingVertical": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.spacing.control.wrapper.vertical.l}",
+                  "$description": "Охранное поле строки списка сверху и снизу: отступ от края contentWrapper до первой и последней строки. Держит слоты и текст на одной вертикали."
                 }
               },
               "paddingHorizontal": {
@@ -507,6 +532,17 @@
                   },
                   "$type": "number",
                   "$value": "{sn.density.spacing.control.container.vertical.l}"
+                },
+                "height": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.density.typography.roleBody.lineHeightL}",
+                  "$description": "Высота полосы слота before/after-контента строки списка: интерлиньяж строки значения. Обёртка без паддингов и FIXED — содержимое любого размера центрируется по первой строке и не меняет высоту строки. Охранное поле лежит на contentWrapper."
                 }
               },
               "borderRadius": {

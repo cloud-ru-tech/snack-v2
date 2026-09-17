@@ -3,7 +3,7 @@
     "colorPicker": {
       "anatomy": {
         "size": {
-          "s": {
+          "xs": {
             "colorPicker": {
               "gap": {
                 "$extensions": {
@@ -36,7 +36,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.colorPicker.anatomy.size.s.colorPicker.gap}"
+                  "$value": "{sn.colorPicker.anatomy.size.xs.colorPicker.gap}"
                 }
               },
               "colorArea": {
@@ -125,7 +125,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.radius.2xs}"
+                "$value": "{sn.brand.anatomy.radius.avatar.xs}"
               },
               "width": {
                 "$extensions": {
@@ -149,7 +149,7 @@
               }
             }
           },
-          "m": {
+          "s": {
             "colorPicker": {
               "gap": {
                 "$extensions": {
@@ -182,7 +182,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.colorPicker.anatomy.size.m.colorPicker.gap}"
+                  "$value": "{sn.colorPicker.anatomy.size.s.colorPicker.gap}"
                 }
               },
               "colorArea": {
@@ -271,7 +271,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.radius.s}"
+                "$value": "{sn.brand.anatomy.radius.avatar.s}"
               },
               "width": {
                 "$extensions": {
@@ -295,7 +295,7 @@
               }
             }
           },
-          "l": {
+          "m": {
             "colorPicker": {
               "gap": {
                 "$extensions": {
@@ -328,7 +328,7 @@
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
-                  "$value": "{sn.colorPicker.anatomy.size.l.colorPicker.gap}"
+                  "$value": "{sn.colorPicker.anatomy.size.m.colorPicker.gap}"
                 }
               },
               "colorArea": {
@@ -417,7 +417,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.density.radius.s}"
+                "$value": "{sn.brand.anatomy.radius.avatar.m}"
               },
               "width": {
                 "$extensions": {

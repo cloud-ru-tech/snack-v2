@@ -56,6 +56,17 @@
           "$type": "number",
           "$value": 3,
           "$description": "Толщина линии 3 px. Не меняется с режимом плотности."
+        },
+        "strokeExtraBold": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "STROKE_FLOAT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": 2.5,
+          "$description": "Толщина обводки 2.5 — иконки размера l (пара к strokeBold 3 и strokeSemiBold 2)."
         }
       },
       "dimension": {

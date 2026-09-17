@@ -24,6 +24,16 @@
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.full}"
+              },
+              "strokeWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
               }
             },
             "m": {
@@ -46,6 +56,16 @@
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.full}"
+              },
+              "strokeWeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.strokeWeight.strokeRegular}"
               }
             }
           }

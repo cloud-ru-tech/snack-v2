@@ -227,6 +227,278 @@
               }
             }
           }
+        },
+        "button": {
+          "size": {
+            "s": {
+              "container": {
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
+                },
+                "minWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.72}"
+                },
+                "minHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.24}"
+                },
+                "iconOnly": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.24}"
+                  }
+                },
+                "labelOnly": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  }
+                },
+                "iconBefore": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.4}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  }
+                },
+                "iconAfter": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.4}"
+                  }
+                }
+              },
+              "label": {
+                "fontSize": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FONT_SIZE"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.font.fontSize.12}"
+                },
+                "lineHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "LINE_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.font.lineHeight.16}"
+                }
+              }
+            },
+            "m": {
+              "container": {
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.4}"
+                },
+                "minWidth": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.96}"
+                },
+                "minHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "WIDTH_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.32}"
+                },
+                "iconOnly": {
+                  "minWidth": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.32}"
+                  }
+                },
+                "labelOnly": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}"
+                  }
+                },
+                "iconBefore": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}"
+                  }
+                },
+                "iconAfter": {
+                  "paddingLeft": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.16}"
+                  },
+                  "paddingRight": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "GAP"
+                      ],
+                      "com.figma.hiddenFromPublishing": false
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.8}"
+                  }
+                }
+              },
+              "label": {
+                "fontSize": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "FONT_SIZE"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.font.fontSize.14}"
+                },
+                "lineHeight": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "LINE_HEIGHT"
+                    ],
+                    "com.figma.hiddenFromPublishing": false
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.font.lineHeight.20}"
+                }
+              }
+            }
+          }
         }
       }
     }

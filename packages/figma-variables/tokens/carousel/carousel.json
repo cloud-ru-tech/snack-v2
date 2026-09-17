@@ -55,7 +55,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.0}"
+                "$value": "{sn.primitive.dimension.8}"
               },
               "paddingRight": {
                 "$extensions": {
@@ -107,7 +107,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.0}"
+                "$value": "{sn.primitive.dimension.8}"
               }
             }
           }

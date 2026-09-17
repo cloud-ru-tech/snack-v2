@@ -35,6 +35,28 @@
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.24}"
               }
+            },
+            "icon": {
+              "width": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.24}"
+              },
+              "height": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.24}"
+              }
             }
           },
           "xs": {
@@ -68,6 +90,28 @@
                 },
                 "$type": "number",
                 "$value": "{sn.brand.anatomy.radius.toggles.checkbox.framing.xs}"
+              }
+            },
+            "icon": {
+              "width": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.16}"
+              },
+              "height": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ],
+                  "com.figma.hiddenFromPublishing": false
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.16}"
               }
             }
           }

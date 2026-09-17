@@ -1,43 +1,6 @@
 {
   "sn": {
     "density": {
-      "property": {
-        "boolean": {
-          "showOnCompact": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "boolean",
-            "$value": "false",
-            "$description": "Флаг видимости: true только в режиме compact. Переключает показ элемента между режимами плотности."
-          },
-          "showOnComfort": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "boolean",
-            "$value": "true",
-            "$description": "Флаг видимости: true только в режиме comfort. Переключает показ элемента между режимами плотности."
-          },
-          "showOnSpacious": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "boolean",
-            "$value": "false",
-            "$description": "Флаг видимости: true только в режиме spacious. Переключает показ элемента между режимами плотности."
-          }
-        }
-      },
       "kitService": {
         "text": {
           "modificationName": {
@@ -1748,6 +1711,19 @@
           "$type": "number",
           "$value": "{sn.platform.comfort.spacing.headToggleOffset}",
           "$description": "Довесок слева у ячейки переключателей шапки таблицы: доводит левый отступ чекбокса до его вертикального. Тем же числом смещается вложенность в строке, поэтому первая вертикаль всегда попадает в центр чекбокса шапки."
+        }
+      },
+      "touchTarget": {
+        "minSize": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "WIDTH_HEIGHT"
+            ],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "number",
+          "$value": "{sn.platform.touchTarget.minSize}",
+          "$description": "Минимальная область нажатия контрола (алиас sn/platform/touchTarget/minSize, одинаков во всех плотностях). Публичный вход для кода; в Figma ничего не биндит."
         }
       }
     }

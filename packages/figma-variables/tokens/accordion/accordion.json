@@ -303,6 +303,60 @@
               }
             }
           }
+        },
+        "buttonChevron": {
+          "container": {
+            "minWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.32}"
+            },
+            "minHeight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "WIDTH_HEIGHT"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.32}"
+            },
+            "gap": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "GAP"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.4}"
+            },
+            "borderRadius": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "CORNER_RADIUS"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.radius.button.m}"
+            },
+            "borderWidth": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "STROKE_FLOAT"
+                ],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "number",
+              "$value": "{sn.brand.anatomy.line.button.strokeWeight}"
+            }
+          }
         }
       }
     }
