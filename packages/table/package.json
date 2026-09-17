@@ -58,7 +58,6 @@
     "@ds/scroll": "workspace:^",
     "@ds/skeleton": "workspace:^",
     "@ds/status": "workspace:^",
-    "@ds/theme": "workspace:^",
     "@ds/toggles": "workspace:^",
     "@ds/toolbar": "workspace:^",
     "@ds/tooltip": "workspace:^",

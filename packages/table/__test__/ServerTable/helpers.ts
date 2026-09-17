@@ -22,9 +22,6 @@ export const SERVER_TABLE_STORIES = {
   visualMatrix: { name: 'table-servertable', story: 'visual-matrix' },
 } as const satisfies Record<string, StoryRef>;
 
-/** Storybook global `density` — mobile-сценарии рендерятся в comfort-плотности. */
-export const COMFORT_DENSITY_GLOBALS = { density: 'comfort' } as const;
-
 /**
  * Ключевая выборка по осям Playground — не декартово произведение. Вид задаём
  * controlled-пропом `view`: mobile-дефолт — cards (TABLE_LAYOUT_PRESETS.mobile),

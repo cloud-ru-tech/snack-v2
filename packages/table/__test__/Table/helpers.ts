@@ -11,11 +11,8 @@ export { DEFAULT_PAGE_SIZE, DefaultColumns, getPageNumberTestId, TEST_IDS };
 
 export const SKELETON_TEXT_LINE_TEST_ID = SKELETON_TEST_IDS.skeletonText.line;
 
-/** Storybook global `density` — mobile-сценарии рендерятся в comfort-плотности. */
-export const COMFORT_DENSITY_GLOBALS = { density: 'comfort' } as const;
-
-/** Mobile visual baseline: layoutType + comfort density. */
-export const MOBILE_COMFORT_GLOBALS = { layoutType: 'mobile', density: 'comfort' } as const;
+/** Storybook global `layoutType` для mobile-сценариев (плотность — глобальный дефолт compact). */
+export const MOBILE_GLOBALS = { layoutType: 'mobile' } as const;
 
 /** Ключевая выборка по осям Playground — не декартово произведение. */
 export const TABLE_KEY_COMBOS = [

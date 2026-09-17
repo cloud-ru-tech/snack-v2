@@ -95,37 +95,6 @@
   align-items: center;
 }
 
-.cellExpandButton {
-  flex-shrink: 0;
-  box-sizing: border-box;
-  width: base.simple-var(
-    table.$table,
-    'anatomy',
-    'content',
-    'tableLine',
-    'pinnedWrapper',
-    'elementWrapper',
-    'treeControl',
-    'centeredWrapper',
-    'width'
-  );
-
-  // `max-*` обязателен: иконки из @ds/icons приходят с инлайновым размером,
-  // и он перебивает `width`/`height` из таблицы стилей (приём из @ds/button).
-  svg {
-    width: base.$sn-density-size-icon-s;
-    max-width: base.$sn-density-size-icon-s;
-    height: base.$sn-density-size-icon-s;
-    max-height: base.$sn-density-size-icon-s;
-
-    transition: transform 0.2s ease;
-  }
-
-  &[data-expanded] svg {
-    transform: rotate(90deg);
-  }
-}
-
 .treeHeaderContainer {
   overflow: hidden;
   height: 100%;

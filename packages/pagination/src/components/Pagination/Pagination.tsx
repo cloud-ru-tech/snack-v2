@@ -1,4 +1,3 @@
-import { Button } from '@ds/button';
 import { ChevronLeftSVG, ChevronRightSVG } from '@ds/icons/interface/system';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
@@ -118,8 +117,6 @@ export function Pagination({
     return null;
   };
 
-  const buttonSize = size === PAGINATION_SIZE.M ? 'm' : 's';
-
   return (
     <PaginationContext.Provider value={{ size, variant }}>
       <nav
@@ -131,26 +128,20 @@ export function Pagination({
       >
         <ul className={styles.pagination} data-size={size}>
           <li>
-            <Button
-              view='simple'
-              appearance='neutral'
+            <PaginationNumberItem
               icon={<ChevronLeftSVG />}
               onClick={handlePreviousPageButtonClick}
               disabled={page === FIRST_PAGE}
-              size={buttonSize}
               aria-label='Previous page'
               data-test-id={TEST_IDS.prev}
             />
           </li>
           {entries.map(renderEntry)}
           <li>
-            <Button
-              view='simple'
-              appearance='neutral'
+            <PaginationNumberItem
               icon={<ChevronRightSVG />}
               onClick={handleNextPageButtonClick}
               disabled={page === total}
-              size={buttonSize}
               aria-label='Next page'
               data-test-id={TEST_IDS.next}
             />

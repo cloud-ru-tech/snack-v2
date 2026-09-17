@@ -1,5 +1,4 @@
-import { APPEARANCE, Button, VIEW } from '@ds/button';
-import { ChevronRightSVG, FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
+import { FileSVG, FolderOpenSVG, FolderSVG } from '@ds/icons/interface/system';
 import { Checkbox, Radio } from '@ds/toggles';
 import { TruncateString } from '@ds/truncate-string';
 import { useHierarchicalSelection } from '@ds/utils';
@@ -16,6 +15,7 @@ import {
   selectedIdsToRowSelectionState,
 } from '../../../helpers';
 import { ColumnDefinition } from '../../../types';
+import { TreeChevronButton } from '../../TreeChevronButton';
 import { TREE_CELL_ID } from './constants';
 import { getRowHierarchicalSelectionContext } from './rowHierarchicalSelection';
 import styles from './styles.module.scss';
@@ -299,15 +299,10 @@ export function getTreeColumnDef<TData>({
           {lines}
           {Boolean(parent) && <TreeLine horizontal visible={showLines} extended={shouldExtendHorizontalLine} />}
           {isExpandable && (
-            <Button
-              view={VIEW.Function}
-              appearance={APPEARANCE.Neutral}
-              size='s'
-              data-test-id={TEST_IDS.tree.chevron}
-              icon={<ChevronRightSVG />}
+            <TreeChevronButton
+              expanded={Boolean(isExpanded)}
               onClick={chevronClickHandler}
-              className={styles.cellExpandButton}
-              data-expanded={isExpanded || undefined}
+              data-test-id={TEST_IDS.tree.chevron}
             />
           )}
           {showToggle && !isToggleHidden && (

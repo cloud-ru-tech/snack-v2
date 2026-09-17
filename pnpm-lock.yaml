@@ -928,6 +928,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
@@ -2157,9 +2160,6 @@ importers:
       '@ds/status':
         specifier: workspace:^
         version: link:../status
-      '@ds/theme':
-        specifier: workspace:^
-        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles

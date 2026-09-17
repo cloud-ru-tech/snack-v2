@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { Table, TABLE_CSS_VARS, VIEW } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoHint } from '#storybook/components';
+import { DemoHint, LayoutScope } from '#storybook/components';
 
 import { TableStorySurfaceSync } from '../../components/TableStorySurfaceSync';
 import { buildUserColumns, makeUsers } from '../../fixtures';
@@ -31,7 +31,7 @@ const TAB_BAR_HEIGHT = 48;
 export const StickyControlsOffset: Story = {
   tags: ['dev', 'test'],
   render: () => (
-    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+    <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
       <TableStorySurfaceSync>
         <div className={exampleStyles.pageScrollDemo}>
           <div
@@ -71,7 +71,7 @@ export const StickyControlsOffset: Story = {
           </div>
         </div>
       </TableStorySurfaceSync>
-    </AdaptiveProvider>
+    </LayoutScope>
   ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -96,13 +96,22 @@
         "type": "string",
         "required": false
       },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
       "href": {
         "type": "string",
         "required": false
       },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка вместо текста — кнопки «назад» / «вперёд» (Figma `buttonPaginationS/M`)."
+      },
       "label": {
         "type": "string | number",
-        "required": true
+        "required": false
       },
       "onClick": {
         "type": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void",

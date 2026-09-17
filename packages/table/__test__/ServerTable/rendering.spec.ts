@@ -3,7 +3,6 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import {
   buildStoryOptions,
   CHIP_CHOICE_VALUE_TEST_ID,
-  COMFORT_DENSITY_GLOBALS,
   getPageNumberTestId,
   SEARCH_LOADING_SPINNER_TEST_ID,
   SERVER_TABLE_KEY_COMBOS,
@@ -52,8 +51,7 @@ test.describe('ServerTable — rendering', () => {
   test.describe('props propagation', () => {
     for (const { layoutType, view } of SERVER_TABLE_KEY_COMBOS) {
       test(`${layoutType} + ${view}`, async ({ gotoStory, getByTestId }) => {
-        const globals = layoutType === 'mobile' ? COMFORT_DENSITY_GLOBALS : undefined;
-        await gotoStory(buildStoryOptions({ layoutType, view }, SERVER_TABLE_STORIES.playground, globals));
+        await gotoStory(buildStoryOptions({ layoutType, view }, SERVER_TABLE_STORIES.playground));
         const root = getByTestId(TEST_IDS.serverTable.root);
         await expect(root).toHaveAttribute('data-layout-type', layoutType);
         await expect(root).toHaveAttribute('data-view', view);

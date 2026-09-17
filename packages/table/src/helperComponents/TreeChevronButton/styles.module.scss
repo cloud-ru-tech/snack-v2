@@ -1,0 +1,73 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
+@use '@ds/materials' as m;
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  // Обводка мастера — внутренняя и прозрачная: толщина из токена не должна увеличивать кнопку.
+  border-style: none;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: transparent;
+
+  @include base.composite-var(
+    table.$table,
+    'anatomy',
+    'content',
+    'tableLine',
+    'pinnedWrapper',
+    'elementWrapper',
+    'treeControl',
+    'centeredWrapper',
+    'buttonChevron',
+    'container'
+  );
+  @include m.has-content-with-text-opacity(#{content});
+
+  // Область нажатия на mobile ≥ `density.touchTarget.minSize` (44); на desktop токен 0 — совпадает с кнопкой.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: min(0px, calc((100% - #{base.simple-var(base.$sn-density, 'touchTarget', 'minSize')}) / 2));
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: inline-flex;
+  width: base.$sn-density-icon-xs;
+  height: base.$sn-density-icon-xs;
+
+  // Иконки `@ds/icons` ставят размер инлайн-стилем — ограничиваем размером слота.
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.2s ease;
+  }
+
+  [data-expanded] > .content > & svg {
+    transform: rotate(90deg);
+  }
+}

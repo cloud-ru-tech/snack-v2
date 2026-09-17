@@ -7948,6 +7948,27 @@
     },
     "relatedTypes": {}
   },
+  "TreeChevronButton": {
+    "displayName": "TreeChevronButton",
+    "propsTypeName": null,
+    "description": "Шеврон раскрытия ветки дерева в ячейке таблицы — Figma `buttonChevronTable`.",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "expanded": {
+        "type": "boolean",
+        "required": true,
+        "description": "Раскрыта ли ветка: шеврон повёрнут вниз"
+      },
+      "onClick": {
+        "type": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
   "TreeLine": {
     "displayName": "TreeLine",
     "propsTypeName": null,

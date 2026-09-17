@@ -1,18 +1,16 @@
-import { Button } from '@ds/button';
-import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import {
   BACKGROUND_PREDEFINED_FILL,
   type BackgroundPredefinedFill,
   backgroundPredefinedFillToAcrylic,
 } from '@ds/materials';
-import { useThemeClassnames } from '@ds/theme';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode, useId } from 'react';
 
 import { ANIMATION_DURATION, CHEVRON_POSITION, TEST_IDS, VIEW } from '../../constants';
+import { ChevronButton } from '../../helperComponents';
 import { ChevronPosition, View } from '../../types';
 import { useCollapseState } from './hooks';
 import styles from './styles.module.scss';
@@ -80,9 +78,8 @@ export function CollapseBlock({
   });
 
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
-
-  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
-  const themeClassName = useThemeClassnames({ density: 'compact' });
+  const titleId = useId();
+  const contentId = useId();
 
   return (
     <div
@@ -122,6 +119,7 @@ export function CollapseBlock({
                 size={MAP_COMPONENT_TO_TILE_SIZE[component]}
                 variant='title'
                 className={styles.title}
+                id={titleId}
                 data-test-id={TEST_IDS.title}
               >
                 <TruncateString text={title} variant='end' />
@@ -140,19 +138,18 @@ export function CollapseBlock({
           )}
         </div>
         {showChevron && (
-          <div className={cn(styles.chevronWrapper, themeClassName)}>
-            <Button
-              view='function'
-              size='m'
-              icon={isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
+          <div className={styles.chevronWrapper}>
+            <ChevronButton
+              expanded={isOpen}
+              contentId={contentId}
+              titleId={title ? titleId : undefined}
               data-test-id={TEST_IDS.chevron}
-              appearance='neutral'
             />
           </div>
         )}
       </div>
 
-      <div className={styles.collapse} data-expanded={isOpen || undefined} aria-hidden={!isOpen}>
+      <div id={contentId} className={styles.collapse} data-expanded={isOpen || undefined} aria-hidden={!isOpen}>
         {/* Контейнер живёт в DOM всегда: его вертикальные отступы анимируются вместе с
             раскрытием, а у только что смонтированного узла transition не с чего стартовать —
             отступ применился бы скачком. Размонтируется только контент. */}

@@ -33,7 +33,6 @@
     "**/*.css"
   ],
   "dependencies": {
-    "@ds/button": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/utils": "workspace:^"

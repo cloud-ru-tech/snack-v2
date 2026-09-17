@@ -34,6 +34,33 @@
     },
     "relatedTypes": {}
   },
+  "ChevronButton": {
+    "displayName": "ChevronButton",
+    "propsTypeName": null,
+    "description": "Шеврон заголовка аккордеона — Figma `buttonAccordion`. Клик обрабатывает строка заголовка.",
+    "props": {
+      "contentId": {
+        "type": "string",
+        "required": true,
+        "description": "id раскрываемой области"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "expanded": {
+        "type": "boolean",
+        "required": true,
+        "description": "Раскрыт ли блок: шеврон вверх / вниз"
+      },
+      "titleId": {
+        "type": "string",
+        "required": false,
+        "description": "id заголовка блока — имя кнопки"
+      }
+    },
+    "relatedTypes": {}
+  },
   "CollapseBlock": {
     "displayName": "CollapseBlock",
     "propsTypeName": "CollapseBlockProps",

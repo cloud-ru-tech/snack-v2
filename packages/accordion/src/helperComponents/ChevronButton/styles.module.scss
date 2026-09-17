@@ -1,0 +1,41 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/accordion.module' as accordion;
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-color: transparent;
+  border-style: solid;
+
+  color: base.$sn-theme-color-neutral-text;
+
+  background-color: transparent;
+
+  @include base.composite-var(accordion.$accordion, 'anatomy', 'buttonChevron', 'container');
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+}
+
+.icon {
+  display: inline-flex;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
+
+  // Иконки `@ds/icons` ставят размер инлайн-стилем — ограничиваем размером слота.
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

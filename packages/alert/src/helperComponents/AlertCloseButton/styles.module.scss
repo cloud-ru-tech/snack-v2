@@ -5,6 +5,7 @@
  * - Иконка (relative, поверх слоя)
  */
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/alert.module' as alert;
 @use '@ds/figma-variables/build/scss/components/button.module' as btn;
 @use '@ds/materials' as m;
 
@@ -12,8 +13,8 @@ $sizes: 's', 'm';
 
 // Размер глифа внутри кнопки: s → icon-xs (16), m → icon-s (24).
 $glyphSizes: (
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
 );
 
 .stateLayer {
@@ -37,7 +38,12 @@ $glyphSizes: (
 
   background: none;
 
-  @include m.has-state-layer-as-child(#{stateLayer});
+  // Область нажатия на mobile ≥ `density.touchTarget.minSize` (44); на desktop токен 0 — совпадает с кнопкой.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: min(0px, calc((100% - #{base.simple-var(base.$sn-density, 'touchTarget', 'minSize')}) / 2));
+  }
 
   &:focus-visible {
     outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
@@ -48,11 +54,13 @@ $glyphSizes: (
     outline-color: base.$sn-theme-color-available-onComplementary;
   }
 
+  @include m.has-state-layer-as-child(#{stateLayer});
+
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+      @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'iconOnly');
 
-      min-height: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'min-height');
+      min-height: base.simple-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'min-height');
       border-radius: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
 
       .icon > svg {

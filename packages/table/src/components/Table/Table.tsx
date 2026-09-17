@@ -3,7 +3,6 @@ import { isMobileLayout, LayoutPresets, mergePresets, useAdaptiveLayout, useLayo
 import { FiltersState } from '@ds/chips';
 import { DragPreview } from '@ds/drag-and-drop';
 import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
-import { useThemeClassnames } from '@ds/theme';
 import { ToolbarPersistConfig } from '@ds/toolbar';
 import { extractSupportProps } from '@ds/utils';
 import { flexRender } from '@tanstack/react-table';
@@ -604,7 +603,6 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     ],
   );
 
-  const themeClassName = useThemeClassnames({ density: isMobile ? 'comfort' : 'compact' });
 
   const controlsAcrylic = useMemo(
     () => (isStickyControls ? getControlsAcrylicAttrs(stickyControlsBackgroundPredefined) : null),
@@ -718,7 +716,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   return (
     <div
       ref={wrapperRef}
-      className={cn(styles.wrapper, className, themeClassName)}
+      className={cn(styles.wrapper, className)}
       data-view={view}
       data-layout-type={layoutType}
       data-sticky-controls={isStickyControls || undefined}

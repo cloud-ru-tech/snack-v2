@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, COMFORT_DENSITY_GLOBALS, TABLE_STORIES, TEST_IDS } from './helpers';
+import { buildStoryOptions, TABLE_STORIES, TEST_IDS } from './helpers';
 
 // Escape закрывает портальные droplist'ы / mobile BottomSheet — сценарии из
 // закрытого списка keyboard.spec (e2e-testing-standard §keyboard.spec.ts п.3).
@@ -41,7 +41,7 @@ test.describe('Table — keyboard', () => {
 
   test('Escape closes mobile column settings bottom sheet', async ({ gotoStory, page, getByTestId }) => {
     // Mobile-дефолт вида — cards (TABLE_LAYOUT_PRESETS.mobile); column settings доступен и там.
-    await gotoStory(buildStoryOptions({ layoutType: 'mobile' }, TABLE_STORIES.playground, COMFORT_DENSITY_GLOBALS));
+    await gotoStory(buildStoryOptions({ layoutType: 'mobile' }, TABLE_STORIES.playground));
 
     // Mobile: слоты `after` уезжают в more-actions overflow. На cards собранный порядок —
     // [export, sorting, columnSettings], значит column settings — afterOption__2.

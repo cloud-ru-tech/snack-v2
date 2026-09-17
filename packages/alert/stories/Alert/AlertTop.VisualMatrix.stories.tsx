@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { AlertTop, APPEARANCE } from '@ds/alert';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -87,7 +87,7 @@ export const VisualMatrix: Story = {
         rows={adaptiveLayouts.map(layoutType => ({
           variantLabel: layoutType,
           cells: [
-            <AdaptiveProvider key={layoutType} layoutType={layoutType}>
+            <LayoutScope key={layoutType} layoutType={layoutType}>
               <div className={styles.adaptiveCell}>
                 <AlertTop
                   appearance={APPEARANCE.Warning}
@@ -97,7 +97,7 @@ export const VisualMatrix: Story = {
                   onClose={fn()}
                 />
               </div>
-            </AdaptiveProvider>,
+            </LayoutScope>,
           ],
         }))}
       />

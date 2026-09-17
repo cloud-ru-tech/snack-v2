@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { DEFAULT_PAGE_SIZE, Table } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoHint } from '#storybook/components';
+import { DemoHint, LayoutScope } from '#storybook/components';
 
 import { TableStorySurfaceSync } from '../../components/TableStorySurfaceSync';
 import { buildUserColumns, SAMPLE_USERS } from '../../fixtures';
@@ -25,7 +25,7 @@ const columns = buildUserColumns({ withStatusColumn: true });
 export const MobileLayout: Story = {
   tags: ['dev', 'test'],
   render: () => (
-    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+    <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
       <TableStorySurfaceSync>
         <DemoHint>
           `layoutType=&quot;mobile&quot;` (из `AdaptiveProvider`) + `defaultView=&quot;cards&quot;` — вертикальный
@@ -50,7 +50,7 @@ export const MobileLayout: Story = {
           </div>
         </div>
       </TableStorySurfaceSync>
-    </AdaptiveProvider>
+    </LayoutScope>
   ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

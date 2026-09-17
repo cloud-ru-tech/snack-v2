@@ -1,9 +1,9 @@
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
 import { getPageNumberTestId } from '../../../pagination/src/constants';
-import { COMFORT_DENSITY_GLOBALS, TEST_IDS } from '../ServerTable/helpers';
+import { TEST_IDS } from '../ServerTable/helpers';
 
-export { COMFORT_DENSITY_GLOBALS, getPageNumberTestId, TEST_IDS };
+export { getPageNumberTestId, TEST_IDS };
 
 export const ENTITIES_TABLE_STORIES = {
   playground: { name: 'table-entitiestable', story: 'playground' },

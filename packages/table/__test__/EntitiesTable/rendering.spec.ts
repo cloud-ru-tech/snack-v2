@@ -2,7 +2,6 @@ import { expect, test } from '#playwright-tooling/fixtures';
 
 import {
   buildStoryOptions,
-  COMFORT_DENSITY_GLOBALS,
   ENTITIES_TABLE_KEY_COMBOS,
   ENTITIES_TABLE_STORIES,
   getPageNumberTestId,
@@ -37,8 +36,7 @@ test.describe('EntitiesTable — rendering', () => {
   test.describe('props propagation', () => {
     for (const { layoutType } of ENTITIES_TABLE_KEY_COMBOS) {
       test(`layoutType=${layoutType}`, async ({ gotoStory, getByTestId }) => {
-        const globals = layoutType === 'mobile' ? COMFORT_DENSITY_GLOBALS : undefined;
-        await gotoStory(buildStoryOptions({ layoutType }, ENTITIES_TABLE_STORIES.playground, globals));
+        await gotoStory(buildStoryOptions({ layoutType }, ENTITIES_TABLE_STORIES.playground));
         await expect(getByTestId(TEST_IDS.serverTable.root)).toHaveAttribute('data-layout-type', layoutType);
       });
     }

@@ -1,4 +1,4 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import {
   ColumnDefinition,
   getRowActionsColumnDef,
@@ -13,7 +13,7 @@ import {
 } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { buildUserColumns, SAMPLE_USERS, User } from '../fixtures';
 import { TEST_IDS } from '../testIds';
@@ -444,7 +444,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'mobile',
             cells: [
               <div key='layout-mobile-table' className={styles.mobileCell}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <Table
                     data={SMALL_DATA}
                     columnDefinitions={columns}
@@ -456,10 +456,10 @@ export const VisualMatrix: Story = {
                     suppressPagination
                     outline
                   />
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
               <div key='layout-mobile-cards' className={styles.mobileCell}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <Table
                     data={SMALL_DATA}
                     columnDefinitions={columns}
@@ -472,7 +472,7 @@ export const VisualMatrix: Story = {
                     suppressPagination
                     outline
                   />
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },

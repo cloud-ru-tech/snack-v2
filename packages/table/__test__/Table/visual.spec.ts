@@ -21,7 +21,7 @@ import {
   buildStoryOptions,
   getPageNumberTestId,
   headerCellById,
-  MOBILE_COMFORT_GLOBALS,
+  MOBILE_GLOBALS,
   TABLE_STORIES,
   TEST_IDS,
 } from './helpers';
@@ -213,7 +213,7 @@ test.describe('Table — visual regression', () => {
     getByTestId,
   }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_GLOBALS));
     await waitForFonts();
 
     // В cards-view строка рендерится как <Card> (`COMPONENT.card`), а не `bodyRow`.
@@ -289,7 +289,7 @@ test.describe('Table — visual regression', () => {
   // Mobile chrome: composite filter-row + открытый droplist чипа (как CalendarDropdown visual-matrix).
   test('mobile filters and filter droplist (composite)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions({}, TABLE_STORIES.filters, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions({}, TABLE_STORIES.filters, MOBILE_GLOBALS));
     await waitForFonts();
     await waitForStoryPlayCompletion(page);
 
@@ -323,7 +323,7 @@ test.describe('Table — visual regression', () => {
   // (слот гейтится areColumnsSettingsEnabled, не isCardsView), сам BottomSheet view-независим.
   test('open-mobile column settings bottom sheet', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.playground, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.playground, MOBILE_GLOBALS));
     await waitForFonts();
 
     // Mobile: слоты `after` уезжают в more-actions overflow. В cards-view порядок собранных
@@ -345,7 +345,7 @@ test.describe('Table — visual regression', () => {
   // Mobile stickyControls: toolbar и pagination липнут с offsetTop/offsetBottom (mock app chrome).
   test('mobile sticky controls with offsets (composite)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions({}, TABLE_STORIES.stickyControlsOffset, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions({}, TABLE_STORIES.stickyControlsOffset, MOBILE_GLOBALS));
     await waitForFonts();
 
     const root = getByTestId(TEST_IDS.table.root);

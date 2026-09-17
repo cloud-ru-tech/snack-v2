@@ -4,6 +4,11 @@
 
 $sizes: 's', 'm';
 
+$icon-sizes: (
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
+);
+
 $typography: (
   's': base.$sn-regular-label-s,
   'm': base.$sn-regular-label-m,
@@ -35,6 +40,28 @@ $typography: (
   outline: 0;
   outline-offset: 0;
 
+  // Область нажатия на mobile ≥ `density.touchTarget.minSize` (44) по высоте; на desktop токен 0.
+  // По горизонтали не расширяем — кнопки стоят вплотную и зоны наехали бы на соседние.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: min(0px, calc((100% - #{base.simple-var(base.$sn-density, 'touchTarget', 'minSize')}) / 2)) 0;
+  }
+
+  &[data-activated] {
+    color: base.$sn-theme-color-primary-text;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  }
+
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var(
@@ -45,6 +72,11 @@ $typography: (
         'paginationNumber',
         'itemPaginationNumber'
       );
+
+      .icon {
+        width: base.simple-var($icon-sizes, $size);
+        height: base.simple-var($icon-sizes, $size);
+      }
 
       .textWrapper {
         @include base.composite-var($typography, $size);
@@ -62,15 +94,6 @@ $typography: (
     }
   }
 
-  &[data-activated] {
-    color: base.$sn-theme-color-primary-text;
-  }
-
-  &:focus-visible {
-    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
-  }
-
   @include m.has-state-layer-as-child(#{stateLayer});
 }
 
@@ -79,4 +102,16 @@ $typography: (
   align-items: center;
   justify-content: center;
   min-width: 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Иконки `@ds/icons` ставят размер инлайн-стилем — ограничиваем размером слота.
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }

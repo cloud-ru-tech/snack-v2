@@ -1,4 +1,5 @@
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
+import { COLOR_SCHEME, useThemeClassnames } from '@ds/theme';
 import { TruncateString } from '@ds/truncate-string';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -112,6 +113,9 @@ export function AlertBase(props: AlertBaseProps) {
   const inlineColorProps = !isTop ? { 'data-color': themeColor } : {};
   // В макете `focusedFrame/regularInversion` стоит у всех шести сетов alertTop, не только у neutral.
   const invertFocusOutlineColor = isTop;
+  // На жёлтой подложке alertTop кнопки в макете переведены в тёмную тему — текст и иконки тёмные.
+  const darkThemeClassName = useThemeClassnames({ colorScheme: COLOR_SCHEME.Dark });
+  const buttonsThemeClassName = isTop && appearance === APPEARANCE.Warning ? darkThemeClassName : undefined;
 
   const hasFooterActions = Boolean(actions?.primary || actions?.secondary);
 
@@ -210,12 +214,7 @@ export function AlertBase(props: AlertBaseProps) {
     >
       <div className={cn(styles.body, { [styles.bodyInteractive]: collapsible && canExpand })} data-size={size}>
         {icon && (
-          <div
-            className={cn('sn-compact', styles.icon)}
-            data-size={size}
-            data-test-id={testIds.icon}
-            {...inlineColorProps}
-          >
+          <div className={styles.icon} data-size={size} data-test-id={testIds.icon} {...inlineColorProps}>
             {getAlertAppearanceIcon(appearance)}
           </div>
         )}
@@ -229,7 +228,7 @@ export function AlertBase(props: AlertBaseProps) {
           </div>
         </div>
 
-        <div className={styles.bodyActions} data-size={size}>
+        <div className={cn(styles.bodyActions, buttonsThemeClassName)} data-size={size}>
           {showExpandChevron && (
             <AlertButton
               data-test-id={testIds.expandingIcon}
@@ -247,7 +246,7 @@ export function AlertBase(props: AlertBaseProps) {
       </div>
 
       {showFooter && (
-        <div className={styles.footer} data-size={size}>
+        <div className={cn(styles.footer, buttonsThemeClassName)} data-size={size}>
           {showExpandChevron && closeButton}
           {actionsContent}
         </div>

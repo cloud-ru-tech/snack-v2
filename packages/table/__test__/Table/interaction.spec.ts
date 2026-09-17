@@ -5,7 +5,7 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import { dataTestIdSelector, waitForStableBbox } from '#playwright-tooling/utils';
 
 import { SAVED_STATE_ID } from '../../stories/testIds';
-import { buildStoryOptions, headerCellById, MOBILE_COMFORT_GLOBALS, TABLE_STORIES, TEST_IDS } from './helpers';
+import { buildStoryOptions, headerCellById, MOBILE_GLOBALS, TABLE_STORIES, TEST_IDS } from './helpers';
 
 // Только browser-specific сценарии из закрытого списка e2e-testing-standard,
 // не покрываемые Storybook play:
@@ -182,7 +182,7 @@ test.describe('Table — interaction (real browser)', () => {
     getByTestId,
   }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_COMFORT_GLOBALS));
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.rowActions, MOBILE_GLOBALS));
 
     // На mobile layout table рендерится в cards-view; RowActionsButton — триггер MobileDroplist,
     // открывающий actions-sheet кликом (onClick инжектится MobileDroplist в клонированный триггер).

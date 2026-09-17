@@ -3,7 +3,6 @@ import { expect, test } from '#playwright-tooling/fixtures';
 import {
   bodyCellsByColumnId,
   buildStoryOptions,
-  COMFORT_DENSITY_GLOBALS,
   DEFAULT_PAGE_SIZE,
   DefaultColumns,
   getPageNumberTestId,
@@ -142,13 +141,7 @@ test.describe('Table — rendering', () => {
     });
 
     test('layoutType=mobile with defaultView=cards renders card list', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(
-        buildStoryOptions(
-          { layoutType: 'mobile', defaultView: 'cards' },
-          TABLE_STORIES.mobileLayout,
-          COMFORT_DENSITY_GLOBALS,
-        ),
-      );
+      await gotoStory(buildStoryOptions({ layoutType: 'mobile', defaultView: 'cards' }, TABLE_STORIES.mobileLayout));
       const root = getByTestId(TEST_IDS.table.root);
       await expect(root).toHaveAttribute('data-layout-type', 'mobile');
       await expect(root).toHaveAttribute('data-view', 'cards');
@@ -159,9 +152,7 @@ test.describe('Table — rendering', () => {
 
     test('layoutType=mobile with view=table renders grid rows', async ({ gotoStory, getByTestId }) => {
       // Mobile-дефолт — cards (TABLE_LAYOUT_PRESETS.mobile); table рендерится при явном controlled `view`.
-      await gotoStory(
-        buildStoryOptions({ layoutType: 'mobile', view: 'table' }, TABLE_STORIES.playground, COMFORT_DENSITY_GLOBALS),
-      );
+      await gotoStory(buildStoryOptions({ layoutType: 'mobile', view: 'table' }, TABLE_STORIES.playground));
       const root = getByTestId(TEST_IDS.table.root);
       await expect(root).toHaveAttribute('data-layout-type', 'mobile');
       await expect(root).toHaveAttribute('data-view', 'table');
@@ -192,13 +183,7 @@ test.describe('Table — rendering', () => {
     });
 
     test('fullWidth=false on mobile ignores prop and stays full width', async ({ gotoStory, getByTestId }) => {
-      await gotoStory(
-        buildStoryOptions(
-          { fullWidth: false, layoutType: 'mobile' },
-          TABLE_STORIES.playground,
-          COMFORT_DENSITY_GLOBALS,
-        ),
-      );
+      await gotoStory(buildStoryOptions({ fullWidth: false, layoutType: 'mobile' }, TABLE_STORIES.playground));
 
       await expect(getByTestId(TEST_IDS.table.root)).not.toHaveAttribute('data-fit-content');
     });
@@ -218,8 +203,7 @@ test.describe('Table — rendering', () => {
   test.describe('props propagation', () => {
     for (const { layoutType, view } of TABLE_KEY_COMBOS) {
       test(`${layoutType} + ${view}`, async ({ gotoStory, getByTestId }) => {
-        const globals = layoutType === 'mobile' ? COMFORT_DENSITY_GLOBALS : undefined;
-        await gotoStory(buildStoryOptions({ layoutType, view }, TABLE_STORIES.playground, globals));
+        await gotoStory(buildStoryOptions({ layoutType, view }, TABLE_STORIES.playground));
         const root = getByTestId(TEST_IDS.table.root);
         await expect(root).toHaveAttribute('data-layout-type', layoutType);
         await expect(root).toHaveAttribute('data-view', view);

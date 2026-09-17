@@ -6,6 +6,7 @@
  * - Слой 3: контент (relative, z-index: 1)
  */
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/alert.module' as alert;
 @use '@ds/figma-variables/build/scss/components/button.module' as btn;
 @use '@ds/materials' as m;
 
@@ -68,6 +69,13 @@ $typography: (
   outline: 0;
   outline-offset: 0;
 
+  // Область нажатия на mobile ≥ `density.touchTarget.minSize` (44); на desktop токен 0 — совпадает с кнопкой.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: min(0px, calc((100% - #{base.simple-var(base.$sn-density, 'touchTarget', 'minSize')}) / 2));
+  }
+
   &[data-full-width] {
     width: 100%;
   }
@@ -93,24 +101,28 @@ $typography: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container');
+      // Размеры и отступы — токены кнопок алерта; радиус и толщина рамки остаются у button (как в Figma).
+      @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container');
+
+      border-width: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-width');
+      border-radius: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'border-radius');
 
       // Горизонтальный padding переехал с textWrapper (.label) на уровень контейнера
       // и различается по icon-позиции. data-variant совпадает с ключами токена 1:1.
       &[data-variant='label-only'] {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'labelOnly');
+        @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'labelOnly');
       }
 
       &[data-variant='icon-before'] {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconBefore');
+        @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'iconBefore');
       }
 
       &[data-variant='icon-after'] {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconAfter');
+        @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'iconAfter');
       }
 
       .content {
-        gap: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'gap');
+        gap: base.simple-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'gap');
       }
 
       [data-border-layer] {
@@ -118,7 +130,7 @@ $typography: (
       }
 
       &[data-variant='icon-only'] {
-        @include base.composite-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly');
+        @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'container', 'iconOnly');
       }
     }
   }
@@ -138,8 +150,8 @@ $typography: (
   .icon,
   .label {
     > svg {
-      max-width: base.$sn-density-size-icon-s;
-      max-height: base.$sn-density-size-icon-s;
+      max-width: base.$sn-density-icon-s;
+      max-height: base.$sn-density-icon-s;
     }
   }
 }
@@ -148,8 +160,8 @@ $typography: (
   .icon,
   .label {
     > svg {
-      max-width: base.$sn-density-size-icon-xs;
-      max-height: base.$sn-density-size-icon-xs;
+      max-width: base.$sn-density-icon-xs;
+      max-height: base.$sn-density-icon-xs;
     }
   }
 }
@@ -171,6 +183,7 @@ $typography: (
   @each $size in $sizes {
     .root[data-size='#{$size}'] & {
       @include base.composite-var($typography, $size);
+      @include base.composite-var(alert.$alert, 'anatomy', 'button', 'size', $size, 'label');
     }
   }
 
