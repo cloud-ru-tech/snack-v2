@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { APPEARANCE, Button, ButtonGroup, VIEW } from '@ds/button';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import { useId } from 'react';
@@ -121,33 +121,32 @@ export function TourHint({
           </>
         )}
 
-        <div className={styles.actions}>
-          {showBack && (
-            <Button
-              {...backButtonProps}
-              appearance={APPEARANCE.Neutral}
-              data-test-id={TEST_IDS.backButton}
-              label={labels.back}
-              view={VIEW.Outline}
-            />
-          )}
-          {showPrimary &&
-            (isLastStep ? (
-              <Button
-                {...closeButtonProps}
-                data-test-id={TEST_IDS.finishButton}
-                label={labels.finish}
-                view={VIEW.Filled}
-              />
-            ) : (
-              <Button
-                {...primaryButtonProps}
-                data-test-id={TEST_IDS.nextButton}
-                label={labels.next}
-                view={VIEW.Filled}
-              />
-            ))}
-        </div>
+        {(showBack || showPrimary) && (
+          <ButtonGroup
+            className={styles.actions}
+            secondaryAction={
+              showBack
+                ? {
+                    ...backButtonProps,
+                    appearance: APPEARANCE.Neutral,
+                    'data-test-id': TEST_IDS.backButton,
+                    label: labels.back,
+                    view: VIEW.Outline,
+                  }
+                : undefined
+            }
+            primaryAction={
+              showPrimary
+                ? {
+                    ...(isLastStep ? closeButtonProps : primaryButtonProps),
+                    'data-test-id': isLastStep ? TEST_IDS.finishButton : TEST_IDS.nextButton,
+                    label: isLastStep ? labels.finish : labels.next,
+                    view: VIEW.Filled,
+                  }
+                : undefined
+            }
+          />
+        )}
       </div>
     </div>
   );
