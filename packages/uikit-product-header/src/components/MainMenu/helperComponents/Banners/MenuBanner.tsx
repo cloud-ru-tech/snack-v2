@@ -74,6 +74,7 @@ export function MenuBanner({
           {promoTag && (
             <PromoTag
               {...promoTag}
+              className={styles.promoTag}
               roleAppearance={ROLE_APPEARANCE.Decor}
               size={SIZE.Xs}
               data-test-id={MENU_BANNER_TEST_IDS.promoTag}

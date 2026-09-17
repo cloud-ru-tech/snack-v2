@@ -2,13 +2,12 @@
 
 .emptyIcon {
   flex-shrink: 0;
+
   width: base.$sn-primitive-dimension-40;
   height: base.$sn-primitive-dimension-40;
 
-  &[data-favorite] {
-    fill: base.$sn-theme-color-neutral-decor;
-    stroke: base.$sn-theme-color-neutral-text;
-  }
+  fill: base.$sn-theme-color-neutral-decor;
+  stroke: base.$sn-theme-color-neutral-text;
 }
 
 .emptyState {

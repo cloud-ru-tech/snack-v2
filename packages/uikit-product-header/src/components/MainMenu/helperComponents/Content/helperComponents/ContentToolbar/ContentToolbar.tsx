@@ -1,4 +1,3 @@
-import { Button } from '@ds/button';
 import { CollapseVerticalSVG, ExpandVerticalSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { Modal } from '@ds/modal';
 import { SegmentControl } from '@ds/segment-control';
@@ -96,14 +95,12 @@ export function ContentToolbar({
         <div className={styles.actions}>
           {preferences && (
             <>
-              <Button
-                view='simple'
-                size='m'
-                appearance='neutral'
+              <HeaderButton
                 icon={<SettingsSVG />}
                 aria-label={t('menuSettingsTitle')}
                 data-test-id={TEST_IDS.settingsButton}
                 onClick={openModal}
+                tooltip={{ tip: t('menuSettingsTitle') }}
               />
 
               <Modal
