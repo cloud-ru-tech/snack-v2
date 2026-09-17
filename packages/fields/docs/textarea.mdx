@@ -110,6 +110,21 @@ import { FieldTextArea } from '@ds/fields'
   <TextAreaReadonly client:visible />
 </Example>
 
+## Адаптивность
+
+`FieldTextArea` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive).
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `autoFocus` | проп | `false` |
+
+На mobile автофокус не открывает клавиатуру без действия пользователя. Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+// Вернуть автофокус на mobile
+<FieldTextArea autoFocus layoutPresets={{ mobile: { autoFocus: true } }} />
+```
+
 ## Props
 
 <PropsTable data={fieldsDoc.FieldTextArea} />

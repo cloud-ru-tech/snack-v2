@@ -52,12 +52,24 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   }
 }
 
+// Размер спиннера — токен статуса, а не `density.icon.xs` из @ds/loader. Специфичность выше `.spinner[data-size]` лоадера.
+@each $size in $sizes {
+  [data-size='#{$size}'] .centeredWrapper .spinner {
+    width: base.simple-var(status.$status, 'anatomy', 'status', 'size', $size, 'loaderSpinner', 'width');
+    height: base.simple-var(status.$status, 'anatomy', 'status', 'size', $size, 'loaderSpinner', 'height');
+  }
+}
+
 .label {
   overflow: hidden;
   flex-grow: 0;
   min-width: 0;
 
-  @include base.composite-var(base.$sn-regular-label-s);
+  @each $size in $sizes {
+    [data-size='#{$size}'] & {
+      @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'text');
+    }
+  }
 
   @each $appearance in $appearances {
     [data-appearance='#{$appearance}'] & {

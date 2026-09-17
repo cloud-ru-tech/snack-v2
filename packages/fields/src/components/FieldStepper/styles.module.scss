@@ -1,15 +1,4 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/field.module' as field;
-
-$sizes: 's', 'm', 'l';
-
-// Figma-typo-мост: stepper inputLine.gap для size=m ссылается на токен size=s (=2px),
-// а не на size=m (=4px). s→s(2), m→s(2), l→l(6).
-$inputLineGapSizes: (
-  's': 's',
-  'm': 's',
-  'l': 'l',
-);
 
 // Tooltip оборачивает −/+ в block-триггер: растягиваем его на всю высоту слота,
 // чтобы buttonField-кнопка внутри занимала полную высоту поля (как в FieldText).
@@ -19,56 +8,30 @@ $inputLineGapSizes: (
   height: 100%;
 }
 
-// Copy-кнопка (readonly) центрируется во всю высоту слота, как и step-триггеры.
-.copyButton {
-  display: flex;
-  align-items: center;
-  height: 100%;
+// В макете префикс, значение и постфикс — группа по центру поля, обёртка значения по содержимому.
+.inputLine {
+  justify-content: center;
 }
 
-.valueArea {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: baseline;
-  justify-content: center;
-
-  min-width: 0;
-
-  color: base.$sn-theme-color-available-version-textMain;
-  text-align: center;
-
-  @each $size, $tokenSize in $inputLineGapSizes {
-    [data-size='#{$size}'] & {
-      gap: base.simple-var(
-        field.$field,
-        'anatomy',
-        'size',
-        $tokenSize,
-        'fieldContainer',
-        'contentWrapper',
-        'inputLine',
-        'gap'
-      );
-    }
-  }
+.inputArea {
+  flex: 0 1 auto;
 }
 
 .inputWrapper {
   display: flex;
   flex: 0 0 auto;
-
-  // ширина по числу символов значения (var выставляется компонентом), минимум 2ch.
-  // +1ch — запас под каретку и субпиксельное округление: без него значение шириной ровно
-  // N символов (напр. «100» = 3ch) обрезается ellipsis'ом инпута до «1…».
-  width: calc((var(--field-stepper-input-ch, 2) + 1) * 1ch);
   max-width: 100%;
 }
 
 .input {
   flex: 0 0 auto;
 
-  width: 100%;
+  // Ширина по числу символов значения (var выставляется компонентом). ch считается от шрифта
+  // самого input (типографика по размеру поля); цифры SB Sans моноширинные — 1 символ = 1ch.
+  // Запас dimension-2 — под каретку и округление, иначе «100» обрезается до «1…».
+  width: calc(var(--field-stepper-input-ch, 1) * 1ch + #{base.$sn-primitive-dimension-2});
   min-width: 1ch;
+  max-width: 100%;
 
   text-align: center;
 
@@ -81,18 +44,5 @@ $inputLineGapSizes: (
 
     /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-appearance: none;
-  }
-}
-
-.affix {
-  flex-shrink: 0;
-  color: base.$sn-theme-color-available-version-textTertiary;
-
-  // DS-типографика по size из корневого fieldWrapper. Без этого фолбэк на Nunito Sans 16/24
-  // визуально не сходится с инпутом.
-  @each $size in $sizes {
-    [data-size='#{$size}'] & {
-      @include base.composite-var(base.$sn-regular, 'body', $size);
-    }
   }
 }

@@ -1,7 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/colorPicker.module' as cp;
 
-$sizes: 's', 'm', 'l';
+// Размер компонента → ключ токенов colorPicker (в ките размеры токенов сдвинуты на ступень).
+$sizes: (
+  's': 'xs',
+  'm': 's',
+  'l': 'm',
+);
 
 .track {
   touch-action: none;
@@ -28,10 +33,10 @@ $sizes: 's', 'm', 'l';
     opacity: base.$sn-theme-effect-opacity-disabled;
   }
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     &[data-size='#{$size}'] {
-      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
-      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'sliderTrack', 'border-radius');
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'height');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'sliderTrack', 'border-radius');
     }
   }
 }
@@ -72,14 +77,14 @@ $sizes: 's', 'm', 'l';
     outline-offset: 0;
   }
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     [data-size='#{$size}'] > & {
-      --w: #{base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width')};
+      --w: #{base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'width')};
 
       width: var(--w);
-      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
-      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-width');
-      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-radius');
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'height');
+      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'border-width');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'border-radius');
     }
   }
 }

@@ -329,8 +329,8 @@ export const FieldColor = forwardRef<HTMLInputElement, FieldColorProps>(function
                 {...restInputProps}
                 data-test-id={TEST_IDS.fieldColorInput}
               />
-              {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
             </div>
+            {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
           </div>
           {/* Chevron присутствует во всех состояниях, включая readonly — паритет с Figma
               readonly-варианты тоже показывают chevron-down рядом с copy). */}

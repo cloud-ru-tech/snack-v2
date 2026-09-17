@@ -5,16 +5,6 @@ $sizes: 'xs', 's', 'm', 'l', '3xl', '6xl', '9xl';
 $shapes: 'rounded', 'squared';
 $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
-$typography: (
-  'xs': base.$sn-regular-label-s,
-  's': base.$sn-regular-label-s,
-  'm': base.$sn-regular-label-l,
-  'l': base.$sn-regular-title-m,
-  '3xl': base.$sn-regular-headline-m,
-  '6xl': base.$sn-regular-display-s,
-  '9xl': base.$sn-regular-display-m,
-);
-
 .avatar {
   user-select: none;
 
@@ -39,7 +29,7 @@ $typography: (
       height: base.simple-var(avatar.$avatar, 'anatomy', 'size', $size, 'height');
 
       .abbreviation {
-        @include base.composite-var($typography, $size);
+        @include base.composite-var(avatar.$avatar, 'anatomy', 'size', $size, 'symbol');
       }
 
       .border {

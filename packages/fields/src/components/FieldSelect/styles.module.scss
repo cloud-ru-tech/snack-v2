@@ -54,14 +54,16 @@ $chip-sizes: (
 
   @each $size, $tagSize in $chip-sizes {
     [data-size='#{$size}'] & {
+      $contentPaddingTop: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-top');
+      $contentPaddingBottom: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-bottom');
+      $inputWrapper: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputWrapper');
       // gap = tag.tagRow.gap по mapped tag size (Figma fieldSelectMultiple chips: 2 для xs/s) —
       // одновременно column- и row-gap при flex-wrap (отступ между чипами и между рядами).
       gap: base.simple-var(tag.$tag, 'anatomy', 'size', $tagSize, 'tagRow', 'gap');
-      // Вертикальные отступы строк чипов (Figma fieldContainer.contentWrapper.verticalPadding) —
-      // shared-поле их не применяет (single-line центрируется), а мультиселекту они нужны, чтобы
-      // ряды чипов не липли к краям контейнера (пропавшие отступы по макету).
-      padding-top: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-top');
-      padding-bottom: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'padding-bottom');
+
+      // Отступы рядов чипов по макету: вертикальные — contentWrapper.verticalPadding, горизонтальные — inputWrapper.
+      padding: $contentPaddingTop base.simple-var($inputWrapper, 'padding-right') $contentPaddingBottom
+        base.simple-var($inputWrapper, 'padding-left');
     }
   }
 }

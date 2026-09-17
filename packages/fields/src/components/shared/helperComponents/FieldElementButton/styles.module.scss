@@ -92,10 +92,10 @@ $sizes: 's', 'm', 'l';
       // s → icon-xs (16), m/l → icon-s (24). max-* (как в @ds/button): @ds/icons задают инлайн
       // `style="width:24"`, который перебивает width, но не max-width — поэтому клампится без JS-пропа.
       .elementWrapper svg {
-        $iconSize: base.$sn-density-size-icon-s;
+        $iconSize: base.$sn-density-icon-s;
 
         @if $size == 's' {
-          $iconSize: base.$sn-density-size-icon-xs;
+          $iconSize: base.$sn-density-icon-xs;
         }
 
         max-width: $iconSize;

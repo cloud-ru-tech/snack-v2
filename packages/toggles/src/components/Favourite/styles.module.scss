@@ -96,10 +96,24 @@ $sizes: 'xs', 's';
       }
 
       .framing {
-        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing');
+
+        // Кольцо фокуса по границе контейнера (Figma `focusedFrame/regular/outside`).
+        $containerWidth: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'container', 'min-width');
+        $framingWidth: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
+
+        --focus-offset: calc((#{$containerWidth} - #{$framingWidth}) / 2);
 
         width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
         height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-height');
+
+        @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing');
+      }
+
+      // Размер спиннера — токен toggles, а не `density.icon.*` из @ds/loader; по макету шире рамки, не ужимается.
+      .spinner {
+        flex-shrink: 0;
+        width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'flag', 'surface', 'loaderSpinner', 'width');
+        height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'flag', 'surface', 'loaderSpinner', 'height');
       }
 
       .flag {
@@ -132,7 +146,7 @@ $sizes: 'xs', 's';
   &[data-focusvisible='true'] {
     .framing {
       outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-      outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
+      outline-offset: var(--focus-offset);
     }
   }
 }

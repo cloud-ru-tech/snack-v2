@@ -51,7 +51,7 @@ export function Radio({
           <div className={styles.backgroundStateLayer} data-state='emptyNeutralOnBackground' />
           <div className={styles.flag}>
             {loading ? (
-              <Spinner size={SPINNER_SIZE_MAP[size]} />
+              <Spinner size={SPINNER_SIZE_MAP[size]} className={styles.spinner} />
             ) : (
               <div className={styles.surface} {...stateDataAttributes} data-text-opacity={checked || undefined} />
             )}

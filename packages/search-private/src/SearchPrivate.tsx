@@ -16,7 +16,6 @@ import { PRIVATE_SEARCH_TEST_IDS, SIZE } from './constants';
 import { searchPrivateLocale } from './locale';
 import styles from './styles.module.scss';
 import { Size } from './types';
-import { getIconSize } from './utils';
 
 export type SearchPrivateProps = WithSupportProps<
   {
@@ -141,7 +140,7 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
         {!disabled && loading ? (
           <Sun data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSun} size={LOADER_SIZE_MAP[size]} />
         ) : (
-          <SearchSVG data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSearch} size={getIconSize(size)} />
+          <SearchSVG data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSearch} className={styles.searchIcon} />
         )}
       </span>
 

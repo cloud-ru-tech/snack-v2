@@ -345,8 +345,8 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
                 {...extractSupportProps(rest)}
                 data-test-id={TEST_IDS.fieldTimeInput}
               />
-              {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
             </div>
+            {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
           </div>
           {/* Иконка часов — декоративная; дроплист открывается кликом по полю. */}
           <div className={fieldStyles.iconSlot} data-test-id={TEST_IDS.fieldTimeIcon} aria-hidden>

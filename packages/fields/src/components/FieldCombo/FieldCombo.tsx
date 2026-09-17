@@ -453,8 +453,8 @@ export const FieldCombo = forwardRef<HTMLInputElement, FieldComboProps>(function
                 autoFocus={resolvedAutoFocus}
                 data-test-id={innerTestIds?.input ?? TEST_IDS.fieldComboInput}
               />
-              {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
             </div>
+            {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
             {postfix && <span className={fieldStyles.postfix}>{postfix}</span>}
           </div>
           {iconAfter && <div className={fieldStyles.iconSlot}>{iconAfter}</div>}

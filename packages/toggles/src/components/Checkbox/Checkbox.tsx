@@ -29,7 +29,7 @@ function Icon({
   loading,
 }: Required<Pick<CheckboxProps, 'checked' | 'indeterminate' | 'loading' | 'size'>>) {
   if (loading) {
-    return <Spinner size={SPINNER_SIZE_MAP[size]} />;
+    return <Spinner size={SPINNER_SIZE_MAP[size]} className={styles.spinner} />;
   }
 
   const iconSize = getIconSize(size);

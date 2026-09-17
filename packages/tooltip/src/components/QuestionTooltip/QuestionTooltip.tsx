@@ -5,7 +5,6 @@ import cn from 'classnames';
 import { RefObject } from 'react';
 
 import { SIZE, TEST_IDS } from '../../constants';
-import { getIconSize } from '../../utils';
 import { Tooltip } from '../Tooltip';
 import styles from './styles.module.scss';
 import { QuestionTooltipProps } from './types';
@@ -52,7 +51,7 @@ export function QuestionTooltip({
         // нужен настоящий триггер (позиционирование, фокус).
         ref={triggerRef as RefObject<HTMLButtonElement>}
       >
-        <QuestionSVG size={getIconSize(size)} />
+        <QuestionSVG />
       </button>
     </Tooltip>
   );

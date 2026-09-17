@@ -52,9 +52,7 @@ $level: var(--level, 0);
   }
 }
 
-// Figma listItemGroup (0:5323): nestingLevel (16×29 indicator scale per level) + focusedFrameRegular/inside (outline при focus-visible).
-// nestingLevel рендерится тем же механизмом, что и в BaseItem: padding-left на родительском узле, шаг —
-// list.anatomy.size.<size>.listItem.nestingLevel.levelWrapper.padding-left (для s — `levellWrapper`, опечатка в Figma).
+// Figma listItemGroup: отступ вложенности — как у строки (BaseItem), фокус — outline внутри.
 .separatorWithLabel {
   position: relative;
 
@@ -77,19 +75,18 @@ $level: var(--level, 0);
       $itemPaddingLeft: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
       $itemGap: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'gap');
 
+      // Отступ вложенной группы — как у строки (см. BaseItem/styles.module.scss).
+      $nestingLevelStep: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'nestingLevel', 'padding-left');
+
       gap: $itemGap;
       padding: base.simple-var(list.$list, 'anatomy', 'size', $size, 'subtitle', 'padding-top')
         base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-right')
         base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-bottom')
         base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'padding-left');
 
-      // nestingLevel — индентация заголовка группы, если она вложена внутрь другой группы.
-      // Шаг тот же, что у строки: слот иконки плюс зазор (см. BaseItem/styles.module.scss).
       &[data-level-one],
       &[data-level-more-one] {
-        padding-left: calc(
-          $itemPaddingLeft + $level * calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap})
-        );
+        padding-left: calc($itemPaddingLeft + $level * #{$nestingLevelStep} + $itemGap);
       }
 
       .centeredWrapper {
@@ -264,10 +261,11 @@ $level: var(--level, 0);
   }
 }
 
+// Линия над заголовком — отделяет группу от предыдущей; до текста её отводит padding-top заголовка.
 .divider {
   position: absolute;
+  top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
 
   width: auto;

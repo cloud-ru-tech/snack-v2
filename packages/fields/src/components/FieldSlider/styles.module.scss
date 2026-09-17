@@ -37,11 +37,3 @@ $sizes: 's', 'm', 'l';
 
   color: base.$sn-theme-color-available-version-textTertiary;
 }
-
-// Copy-кнопка (readonly) центрируется в строке значения.
-.copyButton {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-}

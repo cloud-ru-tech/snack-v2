@@ -207,6 +207,28 @@ $sizes: 's', 'm', 'l';
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
+      // Отступы inputWrapper — только вокруг input: кнопки стоят вплотную к postfix / иконке / краю, как в макете.
+      $inputPaddingLeft: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'inputWrapper',
+        'padding-left'
+      );
+      $inputPaddingRight: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'contentWrapper',
+        'inputWrapper',
+        'padding-right'
+      );
+
       .lineWrapper {
         display: none;
         width: 0;
@@ -233,16 +255,17 @@ $sizes: 's', 'm', 'l';
         padding: $paddingTop $paddingRight $paddingBottom $paddingLeft;
       }
 
-      .inputLine {
-        @include base.composite-var(
-          field.$field,
-          'anatomy',
-          'size',
-          $size,
-          'fieldContainer',
-          'contentWrapper',
-          'inputLine'
-        );
+      .inputArea {
+        padding-right: $inputPaddingRight;
+        padding-left: $inputPaddingLeft;
+      }
+
+      .prefix {
+        padding-left: $inputPaddingLeft;
+      }
+
+      .postfix {
+        padding-right: $inputPaddingRight;
       }
 
       .prefix,
@@ -259,7 +282,7 @@ $sizes: 's', 'm', 'l';
           $size,
           'fieldContainer',
           'centeredWrapper',
-          'max-height'
+          'height'
         );
 
         // Иконки полей (iconBefore/iconAfter + декоративные chevron/calendar/watch) масштабируются
@@ -267,10 +290,10 @@ $sizes: 's', 'm', 'l';
         // приём, что в @ds/button: @ds/icons задают инлайн `style="width:24"`, который перебивает
         // обычный width, но не max-width, поэтому svg клампится к нужному размеру без JS-пропа.
         svg {
-          $iconSlotSize: base.$sn-density-size-icon-s;
+          $iconSlotSize: base.$sn-density-icon-s;
 
           @if $size == 's' {
-            $iconSlotSize: base.$sn-density-size-icon-xs;
+            $iconSlotSize: base.$sn-density-icon-xs;
           }
 
           max-width: $iconSlotSize;
@@ -280,28 +303,26 @@ $sizes: 's', 'm', 'l';
 
       .clearButtonSlot,
       .postfixButtonsSlot {
-        // Кнопки clear/copy — иконный квадрат (паритет с легаси ButtonClearValue: 16px при s,
-        // 24px при m/l), а не полноразмерная function-кнопка 32px. Те же icon-токены, что у .iconSlot.
-        // @ds/button читает min-height и iconOnly-minWidth через var() (figma-variables
-        // button.module.scss) — локальный override сжимает кнопку до иконного квадрата без
-        // правки @ds/button. BUTTON_SIZE_MAP (@ds/input-private): field s → button s, m/l → m.
-        $iconSquare: base.$sn-density-size-icon-s;
+        // Кнопки clear/copy — иконный квадрат слота centeredWrapper (как легаси ButtonClearValue), а не кнопка 32px.
+        // Размер кнопки — BUTTON_SIZE_MAP из @ds/input-private: field s → button s, m/l → m.
+        $slotWidth: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'width');
+        $iconSquare: base.$sn-density-icon-s;
         $btnSize: 'm';
 
         @if $size == 's' {
-          $iconSquare: base.$sn-density-size-icon-xs;
+          $iconSquare: base.$sn-density-icon-xs;
           $btnSize: 's';
         }
 
         --sn-button-anatomy-size-#{$btnSize}-container-minHeight: #{$iconSquare};
-        --sn-button-anatomy-size-#{$btnSize}-container-iconOnly-minWidth: #{$iconSquare};
+        --sn-button-anatomy-size-#{$btnSize}-container-iconOnly-minWidth: #{$slotWidth};
 
-        max-width: $iconSquare;
+        max-width: $slotWidth;
         max-height: $iconSquare;
 
         // Иконки @ds/icons инлайнят style width:24 — без max-* кнопка при field s не сожмётся до 16.
         svg {
-          max-width: $iconSquare;
+          max-width: $slotWidth;
           max-height: $iconSquare;
         }
       }
@@ -348,6 +369,12 @@ $sizes: 's', 'm', 'l';
   &[data-disabled='true'] {
     cursor: not-allowed;
     opacity: base.$sn-theme-effect-opacity-disabled;
+
+    // Кнопка сегмента, которая в макете не переходит в disabled вместе с полем (глаз FieldSecure):
+    // поле уже затемнено целиком, собственное затемнение кнопки (FieldElementButton) снимаем.
+    .elementButtonInheritDisabled[data-disabled='true'] > * {
+      opacity: 1;
+    }
   }
 
   &[data-readonly='true']:not([data-disabled='true']) {

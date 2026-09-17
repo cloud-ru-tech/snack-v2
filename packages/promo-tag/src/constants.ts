@@ -1,7 +1,3 @@
-import { TypographySize } from '@ds/typography';
-
-import { Size } from './types';
-
 export const APPEARANCE = {
   Neutral: 'neutral',
   Primary: 'primary',
@@ -23,12 +19,6 @@ export const SIZE = {
 export const ROLE_APPEARANCE = {
   Accent: 'accent',
   Decor: 'decor',
-} as const;
-
-export const MAP_SIZE_TO_TYPOGRAPHY_SIZE: Record<Size, TypographySize> = {
-  [SIZE.Xs]: 's',
-  [SIZE.S]: 's',
-  [SIZE.M]: 'm',
 } as const;
 
 export const TEST_IDS = {

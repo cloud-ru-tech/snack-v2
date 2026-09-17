@@ -2,6 +2,12 @@
 @use '@ds/figma-variables/build/scss/components/field.module' as field;
 
 $sizes: 's', 'm', 'l';
+// Иконка поиска: s → `searchIconXs`, m / l → `searchIconS`.
+$icon-sizes: (
+  's': 'xs',
+  'm': 's',
+  'l': 's',
+);
 
 .centerWrapper {
   display: inline-flex;
@@ -32,6 +38,14 @@ $sizes: 's', 'm', 'l';
 
       .centerWrapper {
         max-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'height');
+      }
+
+      .searchIcon {
+        $icon-size: base.simple-var(base.$sn-density, 'icon', base.simple-var($icon-sizes, $size));
+
+        // !important — иконки `@ds/icons` проставляют width/height инлайн-стилем.
+        width: $icon-size !important;
+        height: $icon-size !important;
       }
 
       &[data-disabled='true'] {

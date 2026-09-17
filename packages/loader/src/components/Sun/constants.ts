@@ -10,15 +10,16 @@ import { SunSize } from '../types';
  *
  * | размер | иконка | эталон Figma | `strokeWidth` |
  * |--------|--------|--------------|---------------|
- * | `xs`   | 16     | 1.25         | 1.875         |
+ * | `xs`   | 16     | 1            | 1.5           |
  * | `s`    | 24     | 1.5          | 1.5           |
  * | `m`    | 32     | 2            | 1.5           |
  * | `l`    | 40     | 2.5          | 1.5           |
  *
- * Без этой карты толщина выводилась из масштаба и при `xs` давала 1.0 вместо 1.25.
+ * Эталон — токен `density.icon.strokeWeight.<size>` в desktop compact; в других режимах
+ * размер иконки и токен растут пропорционально.
  */
 export const SUN_STROKE_WIDTH: Record<SunSize, number> = {
-  [SUN_SIZE.XS]: 1.875,
+  [SUN_SIZE.XS]: 1.5,
   [SUN_SIZE.S]: 1.5,
   [SUN_SIZE.M]: 1.5,
   [SUN_SIZE.L]: 1.5,

@@ -157,13 +157,12 @@ $level: var(--level, 0);
         $itemGap: list.$sn-list-anatomy-size-l-listItem-gap;
       }
 
-      // Шаг вложенности — слот иконки плюс зазор строки: обёртка `nestingLevel` занимает
-      // ровно иконочный слот, а между уровнями лежит тот же gap, что и между элементами строки.
-      $nestingLevelStep: calc(#{base.simple-var(icons.$iconSizeMap, $size)} + #{$itemGap});
+      // Уровни `nestingLevel` идут вплотную, зазор строки отделяет их от контента один раз.
+      $nestingLevelStep: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'nestingLevel', 'padding-left');
 
       &[data-level-one],
       &[data-level-more-one] {
-        padding-left: calc($itemPaddingLeft + $level * #{$nestingLevelStep});
+        padding-left: calc($itemPaddingLeft + $level * #{$nestingLevelStep} + $itemGap);
       }
 
       // Чекбокс: тот же centeredWrapper, что у иконки — контейнер = icon-сетке (16/24/24),

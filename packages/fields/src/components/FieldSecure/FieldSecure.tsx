@@ -346,8 +346,8 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
                   data-test-id={TEST_IDS.fieldSecureInput}
                 />
               </WithSkeleton>
-              {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
             </div>
+            {postfixButtons && <span className={fieldStyles.postfixButtonsSlot}>{postfixButtons}</span>}
           </div>
         </div>
       </div>
@@ -358,6 +358,7 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
           </div>
           <FieldElementButton
             ref={hideButtonRef}
+            className={fieldStyles.elementButtonInheritDisabled}
             variant='after'
             size={size}
             action={hidden ? <EyeSVG /> : <EyeClosedSVG />}

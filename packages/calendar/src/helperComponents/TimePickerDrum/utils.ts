@@ -123,8 +123,6 @@ export function getSizeLimits(size: Size) {
   if (size === SIZE.L) {
     return { itemHeight: 56, pickerHeight: 280 };
   }
-  if (size === SIZE.M) {
-    return { itemHeight: 48, pickerHeight: 240 };
-  }
-  return { itemHeight: 40, pickerHeight: 200 };
+  // В Figma у s и m строка одной высоты — 48.
+  return { itemHeight: 48, pickerHeight: 240 };
 }

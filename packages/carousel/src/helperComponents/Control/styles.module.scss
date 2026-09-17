@@ -10,18 +10,14 @@
   }
 
   &[data-direction='prev'] {
-    @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlBack');
-
     position: absolute;
-    left: 0;
+    left: calc(#{base.simple-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlBack', 'padding-left')} / 2);
     transform: translateY(-50%) translateX(-50%);
   }
 
   &[data-direction='next'] {
-    @include base.composite-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlForward');
-
     position: absolute;
-    right: 0;
+    right: calc(#{base.simple-var(carousel.$carousel, 'anatomy', 'contentWrapper', 'controlWrapper', 'controlForward', 'padding-right')} / 2);
     transform: translateY(-50%) translateX(50%);
   }
 }

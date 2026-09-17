@@ -1,5 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/labelDecorator.module' as labelDecorator;
+@use '@ds/figma-variables/build/scss/components/fieldDecorator.module' as fieldDecorator;
 
 $sizes: 's', 'm', 'l';
 
@@ -60,15 +60,15 @@ $captionTypography: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'labelWrapper', 'gap');
+      gap: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'labelWrapper', 'gap');
 
       .labelContent {
-        gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'labelWrapper', 'labelContent', 'gap');
+        gap: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'labelWrapper', 'labelContent', 'gap');
       }
 
       .labelTooltip {
         max-height: base.simple-var(
-          labelDecorator.$labelDecorator,
+          fieldDecorator.$fieldDecorator,
           'size',
           $size,
           'labelWrapper',

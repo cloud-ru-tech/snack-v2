@@ -7,8 +7,7 @@ $switchAnimationDuration: 0.1s;
 $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
 .spinner {
-  // По макету спиннер шире ползунка (24 на surface 16) и выходит за его границы,
-  // поэтому flex-контейнер не должен его ужимать.
+  // Спиннер шире ползунка и выходит за его границы — flex-контейнер не должен его ужимать.
   flex-shrink: 0;
 }
 
@@ -191,6 +190,12 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
         @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag');
       }
 
+      // Размер спиннера — токен toggles, а не `density.icon.*` из @ds/loader.
+      .spinner {
+        width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag', 'surface', 'loaderSpinner', 'width');
+        height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'flag', 'surface', 'loaderSpinner', 'height');
+      }
+
       .framing[data-checked="true"] .flag {
         $flagTrackWidth: base.simple-var(
           toggles.$toggles,
@@ -208,12 +213,8 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
 
       &[data-focusvisible="true"] {
         .container {
-          // Real offset
+          // Кольцо фокуса по границе контейнера (Figma `focusedFrame/regular/outside`).
           $offsetWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
-
-          @if ($size == 'xs') {
-            outline-offset: $offsetWidth;
-          }
 
           border-radius: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'border-radius');
           outline: $offsetWidth solid base.$sn-theme-color-available-complementary;

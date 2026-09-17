@@ -1,9 +1,8 @@
-import { Typography } from '@ds/typography';
 import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType, ReactElement } from 'react';
 
-import { APPEARANCE, MAP_SIZE_TO_TYPOGRAPHY_SIZE, ROLE_APPEARANCE, SIZE } from '../constants';
+import { APPEARANCE, ROLE_APPEARANCE, SIZE } from '../constants';
 import styles from './styles.module.scss';
 import { PromoTagProps } from './types';
 import { getSpreadProps } from './utils';
@@ -39,15 +38,9 @@ export function PromoTag<T extends ElementType = 'button'>({
       {...spreadProps}
     >
       {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='emptyDarkOnAccent' />}
-      {beforeContent}
-      {Boolean(label) && (
-        <span className={styles.labelWrapper}>
-          <Typography as='span' variant='label' size={MAP_SIZE_TO_TYPOGRAPHY_SIZE[size]}>
-            {label}
-          </Typography>
-        </span>
-      )}
-      {afterContent}
+      {beforeContent && <span className={styles.element}>{beforeContent}</span>}
+      {Boolean(label) && <span className={styles.labelWrapper}>{label}</span>}
+      {afterContent && <span className={styles.element}>{afterContent}</span>}
     </Component>
   );
 }

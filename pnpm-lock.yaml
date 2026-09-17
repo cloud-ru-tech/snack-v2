@@ -703,18 +703,12 @@ importers:
 
   packages/accordion:
     dependencies:
-      '@ds/button':
-        specifier: workspace:^
-        version: link:../button
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/theme':
-        specifier: workspace:^
-        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles
@@ -934,9 +928,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/theme':
-        specifier: workspace:^
-        version: link:../theme
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
@@ -1147,6 +1138,9 @@ importers:
 
   packages/carousel:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button
@@ -1839,9 +1833,6 @@ importers:
 
   packages/pagination:
     dependencies:
-      '@ds/button':
-        specifier: workspace:^
-        version: link:../button
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
@@ -1932,9 +1923,6 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
-      '@ds/typography':
-        specifier: workspace:^
-        version: link:../typography
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -2202,6 +2190,9 @@ importers:
 
   packages/tabs:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/button':
         specifier: workspace:^
         version: link:../button

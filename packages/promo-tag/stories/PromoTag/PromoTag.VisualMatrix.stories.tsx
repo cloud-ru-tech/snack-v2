@@ -1,14 +1,8 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE, Size } from '@ds/promo-tag';
+import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
-
-const iconSizes: Record<Size, number> = {
-  [SIZE.Xs]: 16,
-  [SIZE.S]: 16,
-  [SIZE.M]: 24,
-};
 
 const meta: Meta<PromoTagProps> = {
   title: 'Components/PromoTag',
@@ -74,7 +68,7 @@ export const VisualMatrix: Story = {
                 label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
-                beforeContent={<PlaceholderSVG size={iconSizes[size]} />}
+                beforeContent={<PlaceholderSVG />}
               />
             )),
           },
@@ -86,7 +80,7 @@ export const VisualMatrix: Story = {
                 label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
-                afterContent={<PlaceholderSVG size={iconSizes[size]} />}
+                afterContent={<PlaceholderSVG />}
               />
             )),
           },
@@ -98,8 +92,8 @@ export const VisualMatrix: Story = {
                 label='Promo'
                 appearance={APPEARANCE.Primary}
                 size={size}
-                beforeContent={<PlaceholderSVG size={iconSizes[size]} />}
-                afterContent={<PlaceholderSVG size={iconSizes[size]} />}
+                beforeContent={<PlaceholderSVG />}
+                afterContent={<PlaceholderSVG />}
               />
             )),
           },

@@ -335,7 +335,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
           overflow={{ x: 'hidden' }}
           data-test-id={TEST_IDS.fieldTextAreaScrollArea}
         >
-          <div className={fieldStyles.inputLine}>
+          <div className={fieldStyles.inputArea}>
             <TextareaAutosize
               ref={mergeRefs(ref, localRef)}
               className={styles.textarea}

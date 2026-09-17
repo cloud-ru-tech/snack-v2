@@ -1,7 +1,7 @@
 import { Button } from '@ds/button';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { CheckSVG, CopySVG } from '@ds/icons/interface/system';
-import { INPUT_MODE, InputPrivate, TYPE } from '@ds/input-private';
+import { BUTTON_SIZE_MAP, INPUT_MODE, InputPrivate, TYPE } from '@ds/input-private';
 import { Slider, SliderProps } from '@ds/slider';
 import { extractSupportProps, useValueControl } from '@ds/utils';
 import cn from 'classnames';
@@ -438,13 +438,13 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
                 />
               </div>
               {showCopyUi && (
-                <span className={styles.copyButton}>
+                <span className={fieldStyles.postfixButtonsSlot}>
                   <Button
                     innerRef={copyButtonRef}
                     type='button'
                     view='function'
                     appearance='neutral'
-                    size={size}
+                    size={BUTTON_SIZE_MAP[size]}
                     icon={copied ? <CheckSVG /> : <CopySVG />}
                     onClick={handleCopy}
                     onKeyDown={handleCopyButtonKeyDown}

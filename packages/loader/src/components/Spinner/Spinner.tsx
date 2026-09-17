@@ -16,7 +16,7 @@ export type SpinnerProps = WithSupportProps<{
 
 /** Компонент спиннер */
 export function Spinner({ size = LOADER_SIZE.S, className, ...rest }: SpinnerProps) {
-  const { frame, ring, strokeWidth } = SPINNER_GEOMETRY[size];
+  const { frame, ring } = SPINNER_GEOMETRY[size];
   const center = frame / 2;
   const radius = ring / 2;
 
@@ -29,13 +29,8 @@ export function Spinner({ size = LOADER_SIZE.S, className, ...rest }: SpinnerPro
       {...extractSupportProps(rest)}
       data-size={size}
     >
-      <circle opacity={SPINNER_TRACK_OPACITY} cx={center} cy={center} r={radius} strokeWidth={strokeWidth} />
-      <path
-        d={buildQuarterArcPath(center, radius)}
-        strokeWidth={strokeWidth}
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
+      <circle opacity={SPINNER_TRACK_OPACITY} cx={center} cy={center} r={radius} />
+      <path d={buildQuarterArcPath(center, radius)} strokeLinecap='round' strokeLinejoin='round' />
     </svg>
   );
 }

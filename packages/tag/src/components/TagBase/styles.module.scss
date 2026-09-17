@@ -6,19 +6,6 @@ $sizes: 'xs', 's', 'm';
 
 $appearances: 'neutral', 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
 
-$typography: (
-  'xs': base.$sn-regular-label-s,
-  's': base.$sn-regular-label-s,
-  'm': base.$sn-regular-label-m,
-);
-
-// Кнопка удаления = иконка: xs/s — icon-xs (16), m — icon-s (24).
-$removeButtonSize: (
-  'xs': base.$sn-density-size-icon-xs,
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
-);
-
 // Слой состояния лежит под контентом тега (`.textWrapper`, `.tagButton` подняты
 // в свой слой через `position: relative`) и не перехватывает клики по кнопке удаления.
 .stateLayer {
@@ -45,15 +32,16 @@ $removeButtonSize: (
 
   background: none;
 
-  &:active {
-    color: base.$sn-theme-color-available-version-textMain;
-  }
-
   /* stylelint-disable-next-line no-descending-specificity */
   &:focus-visible {
     color: base.$sn-theme-color-available-version-textSecondary;
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
     outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
+  }
+
+  &:active {
+    color: base.$sn-theme-color-available-version-textMain;
+    outline: none;
   }
 
   @media (hover: hover) {
@@ -89,34 +77,6 @@ $removeButtonSize: (
     min-width: 0;
   }
 
-  .tagButton {
-    cursor: pointer;
-
-    position: relative;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: inherit;
-
-    background: none;
-
-    &:focus-visible {
-      outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
-      outline-offset: calc(0px - base.$sn-primitive-strokeWeight-strokeSemiBold);
-    }
-
-    &:active {
-      outline: none;
-    }
-  }
-
   .icon {
     display: flex;
     align-items: center;
@@ -127,9 +87,10 @@ $removeButtonSize: (
     &[data-size='#{$size}'] {
       @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'container');
 
+      // Кнопка удаления = иконка `tag.anatomy.size.*.buttonRemove.icon` (16 / 16 / 24 во всех режимах).
       .tagButton {
-        min-width: base.simple-var($removeButtonSize, $size);
-        min-height: base.simple-var($removeButtonSize, $size);
+        min-width: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'buttonRemove', 'icon', 'width');
+        min-height: base.simple-var(tag.$tag, 'anatomy', 'size', $size, 'buttonRemove', 'icon', 'height');
       }
 
       .textWrapper {
@@ -139,7 +100,7 @@ $removeButtonSize: (
       }
 
       .label {
-        @include base.composite-var($typography, $size);
+        @include base.composite-var(tag.$tag, 'anatomy', 'size', $size, 'text');
       }
     }
   }

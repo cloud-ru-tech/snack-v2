@@ -11,11 +11,6 @@ $textColor: (
   'decor': 'text',
 );
 
-$typography: (
-  xs: base.$sn-regular-label-s,
-  s: base.$sn-regular-label-l,
-);
-
 // Два уровня повторяют макет: .counter — мастер (минимальный бокс, в который вписана
 // таблетка вместе с кольцом), .container — сама таблетка с фоном и текстом.
 .counter {
@@ -32,7 +27,7 @@ $typography: (
       @include base.composite-var(counter.$counter, 'anatomy', 'size', $size);
 
       .container {
-        @include base.composite-var($typography, $size);
+        @include base.composite-var(counter.$counter, 'anatomy', 'size', $size, 'symbol');
 
         min-width: base.simple-var(counter.$counter, 'anatomy', 'size', $size, 'container', 'min-width');
         min-height: base.simple-var(counter.$counter, 'anatomy', 'size', $size, 'container', 'min-height');

@@ -9,10 +9,8 @@ import { TEST_IDS } from './testIds';
 
 const slotPresets = {
   none: undefined,
-  icon16Before: <PlaceholderSVG data-test-id={TEST_IDS.beforeNode} size={16} />,
-  icon24Before: <PlaceholderSVG data-test-id={TEST_IDS.beforeNode} size={24} />,
-  icon16After: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} size={16} />,
-  icon24After: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} size={24} />,
+  iconBefore: <PlaceholderSVG data-test-id={TEST_IDS.beforeNode} />,
+  iconAfter: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} />,
 } as const;
 
 const meta: Meta<typeof PromoTag> = {
@@ -46,15 +44,15 @@ const meta: Meta<typeof PromoTag> = {
     size: { control: 'radio', options: Object.values(SIZE) },
     beforeContent: {
       control: 'select',
-      options: ['none', 'icon16Before', 'icon24Before'],
+      options: ['none', 'iconBefore'],
       mapping: slotPresets,
-      description: 'Контент перед текстом (none | icon16Before | icon24Before)',
+      description: 'Контент перед текстом (none | iconBefore)',
     },
     afterContent: {
       control: 'select',
-      options: ['none', 'icon16After', 'icon24After'],
+      options: ['none', 'iconAfter'],
       mapping: slotPresets,
-      description: 'Контент после текста (none | icon16After | icon24After)',
+      description: 'Контент после текста (none | iconAfter)',
     },
   },
 };

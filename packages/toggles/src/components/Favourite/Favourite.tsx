@@ -34,7 +34,7 @@ function Icon({
   disabled,
 }: Required<Pick<FavouriteProps, 'checked' | 'loading' | 'size' | 'disabled'>> & { variant: FavouriteIcon }) {
   if (loading) {
-    return <Spinner size={SPINNER_SIZE_MAP[size]} />;
+    return <Spinner size={SPINNER_SIZE_MAP[size]} className={styles.spinner} />;
   }
 
   const iconSize = getIconSize(size);

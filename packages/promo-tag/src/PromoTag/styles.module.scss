@@ -70,8 +70,25 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
 
   @each $size in $sizes {
     [data-size='#{$size}'] & {
+      @include base.composite-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'text');
+
       /* Только горизонтальный: высоту держит min-height контейнера. */
       padding: 0 base.simple-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'container', 'textWrapper', 'padding');
+    }
+  }
+}
+
+// Слот before/after: размер иконки задаёт размер тега (`promoTag.anatomy.size.*.element.icon`).
+.element {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  @each $size in $sizes {
+    [data-size='#{$size}'] & svg {
+      // !important — иконки `@ds/icons` проставляют width/height инлайн-стилем.
+      width: base.simple-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'element', 'icon', 'width') !important;
+      height: base.simple-var(promoTag.$promoTag, 'anatomy', 'size', $size, 'element', 'icon', 'height') !important;
     }
   }
 }

@@ -1,14 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/colorPicker.module' as colorPicker;
 
-// FieldColor size → colorPicker previewColor size (Figma fieldSelectColor):
-// s → colorPicker s (16px / radius 4), m → colorPicker m (24px / radius 8),
-// l → colorPicker m (24px / radius 8) — в макете L-поле референсит m-токен previewColor,
-// swatch не увеличивается до 32.
+// FieldColor size → размер previewColor в токенах colorPicker (Figma fieldSelectColor):
+// s → xs (16), m и l → s (24); у L-поля образец не растёт до 32.
 $swatch-sizes: (
-  's': 's',
-  'm': 'm',
-  'l': 'm',
+  's': 'xs',
+  'm': 's',
+  'l': 's',
 );
 
 .trigger {

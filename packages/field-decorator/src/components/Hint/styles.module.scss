@@ -1,5 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/labelDecorator.module' as labelDecorator;
+@use '@ds/figma-variables/build/scss/components/fieldDecorator.module' as fieldDecorator;
 
 $sizes: 's', 'm', 'l';
 
@@ -59,11 +59,6 @@ $hintTypography: (
     justify-content: center;
   }
 
-  .hintIcon > svg {
-    max-width: base.$sn-primitive-dimension-16;
-    max-height: base.$sn-primitive-dimension-16;
-  }
-
   .hintText,
   .length {
     color: base.$sn-theme-color-available-version-textTertiary;
@@ -71,24 +66,25 @@ $hintTypography: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'hintWrapper', 'gap');
+      gap: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'hintWrapper', 'gap');
 
       .hintContent {
-        gap: base.simple-var(labelDecorator.$labelDecorator, 'size', $size, 'hintWrapper', 'hintContent', 'gap');
+        gap: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'hintWrapper', 'hintContent', 'gap');
       }
 
       .hintIcon {
         width: base.simple-var(
-          labelDecorator.$labelDecorator,
+          fieldDecorator.$fieldDecorator,
           'size',
           $size,
           'hintWrapper',
           'hintContent',
           'iconWrapper',
-          'height'
+          'icon',
+          'width'
         );
         height: base.simple-var(
-          labelDecorator.$labelDecorator,
+          fieldDecorator.$fieldDecorator,
           'size',
           $size,
           'hintWrapper',
@@ -96,6 +92,13 @@ $hintTypography: (
           'iconWrapper',
           'height'
         );
+      }
+
+      // Глиф фиксированного размера (`iconWrapper.icon`); max-* — иконки `@ds/icons` ставят размер инлайн-стилем.
+      .hintIcon > svg {
+        flex-shrink: 0;
+        max-width: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'hintWrapper', 'hintContent', 'iconWrapper', 'icon', 'width');
+        max-height: base.simple-var(fieldDecorator.$fieldDecorator, 'size', $size, 'hintWrapper', 'hintContent', 'iconWrapper', 'icon', 'height');
       }
 
       .hintText,

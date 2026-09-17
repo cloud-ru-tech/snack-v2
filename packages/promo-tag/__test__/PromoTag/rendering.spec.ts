@@ -16,21 +16,21 @@ test.describe('PromoTag — rendering', () => {
   });
 
   test('renders beforeContent', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ beforeContent: 'icon16Before', size: 'xs' }));
+    await gotoStory(buildStoryOptions({ beforeContent: 'iconBefore', size: 'xs' }));
 
     await expect(getByTestId(TEST_IDS.beforeNode)).toBeVisible();
     await expect(getByTestId(TEST_IDS.afterNode)).toBeHidden();
   });
 
   test('renders afterContent', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ afterContent: 'icon16After', size: 'xs' }));
+    await gotoStory(buildStoryOptions({ afterContent: 'iconAfter', size: 'xs' }));
 
     await expect(getByTestId(TEST_IDS.afterNode)).toBeVisible();
     await expect(getByTestId(TEST_IDS.beforeNode)).toBeHidden();
   });
 
   test('renders both beforeContent and afterContent', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ beforeContent: 'icon16Before', afterContent: 'icon16After', size: 'xs' }));
+    await gotoStory(buildStoryOptions({ beforeContent: 'iconBefore', afterContent: 'iconAfter', size: 'xs' }));
 
     await expect(getByTestId(TEST_IDS.beforeNode)).toBeVisible();
     await expect(getByTestId(TEST_IDS.afterNode)).toBeVisible();

@@ -1,7 +1,7 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $iconSizeMap: (
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
-  'l': base.$sn-density-size-icon-s,
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
+  'l': base.$sn-density-icon-s,
 );

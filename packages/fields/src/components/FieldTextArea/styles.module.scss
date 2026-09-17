@@ -69,7 +69,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       // Резерв справа под колонку clear/copy-кнопок (квадрат centeredWrapper) + скроллбар
-      // + горизонтальный паддинг inputLine (отступ слота кнопок от скроллбара по Figma):
+      // + горизонтальный паддинг inputWrapper (отступ слота кнопок от скроллбара по Figma):
       // кнопки позиционируются абсолютно поверх скролл-области (см. .postfixColumn).
       $button-slot: base.simple-var(
         field.$field,
@@ -78,7 +78,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         $size,
         'fieldContainer',
         'centeredWrapper',
-        'max-height'
+        'height'
       );
       $input-line-padding: base.simple-var(
         field.$field,
@@ -87,7 +87,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         $size,
         'fieldContainer',
         'contentWrapper',
-        'inputLine',
+        'inputWrapper',
         'padding-right'
       );
 
@@ -132,7 +132,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
 }
 
 // Кнопки clear/copy — поверх скролл-области, левее скроллбара (паритет с Figma и легаси:
-// порядок справа налево — край поля, скроллбар, inputLine-паддинг, кнопки). Место под них
+// порядок справа налево — край поля, скроллбар, inputWrapper-паддинг, кнопки). Место под них
 // резервирует padding-right textarea выше. Grid-ячейки клампят слот каждой кнопки до
 // centeredWrapper-квадрата: сама кнопка крупнее слота и симметрично выступает за него
 // (тот же приём, что .postfixButtonsSlot в shared/styles для FieldText), первый слот
@@ -157,7 +157,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         $size,
         'fieldContainer',
         'centeredWrapper',
-        'max-height'
+        'height'
       );
       $input-line-padding: base.simple-var(
         field.$field,
@@ -166,7 +166,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         $size,
         'fieldContainer',
         'contentWrapper',
-        'inputLine',
+        'inputWrapper',
         'padding-right'
       );
       $line-height: base.simple-var(base.$sn-regular, 'body', $size, 'line-height');
@@ -183,6 +183,16 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
       // Кнопка центрируется по первой строке текста: verticalPadding (отступ контента сверху)
       // + центровка слота в line-height. Так 32px-кнопка верхним краем садится ровно на
       // внутреннюю границу поля (Figma), а не выступает над ней.
+      $slot-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'width');
+      $button-size: 'm';
+
+      @if $size == 's' {
+        $button-size: 's';
+      }
+
+      // Ширина кнопки — слот centeredWrapper из макета (16/24/24), высота остаётся высотой кнопки.
+      --sn-button-anatomy-size-#{$button-size}-container-iconOnly-minWidth: #{$slot-width};
+
       top: calc(#{$vertical-padding} + (#{$line-height} - #{$square}) / 2);
       right: calc(#{$scrollbar-width} + #{$input-line-padding});
       grid-auto-rows: $square;

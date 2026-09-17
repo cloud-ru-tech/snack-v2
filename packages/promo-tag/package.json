@@ -34,7 +34,6 @@
   ],
   "dependencies": {
     "@ds/materials": "workspace:^",
-    "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

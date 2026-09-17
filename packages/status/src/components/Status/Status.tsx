@@ -56,7 +56,7 @@ export function Status({
 
   if (loading) {
     appearance = APPEARANCE.Neutral;
-    marker = <Spinner size='xs' />;
+    marker = <Spinner size='xs' className={styles.spinner} />;
   } else if (progress !== undefined) {
     marker = <ProgressBarCircle progress={progress} appearance={appearance} size='xs' />;
   } else {

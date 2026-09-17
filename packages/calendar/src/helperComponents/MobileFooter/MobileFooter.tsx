@@ -1,4 +1,4 @@
-import { APPEARANCE, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, ButtonGroup, SIZE, VIEW } from '@ds/button';
 
 import { TEST_IDS } from '../../constants';
 import { useCalendarContext } from '../../hooks';
@@ -37,6 +37,7 @@ export function MobileFooter({ onApply, onCurrent, applyDisabled }: MobileFooter
       )}
       <ButtonGroup
         break
+        size={SIZE.L}
         primaryAction={{
           label: t('apply'),
           appearance: APPEARANCE.Primary,

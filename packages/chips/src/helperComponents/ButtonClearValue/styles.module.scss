@@ -1,18 +1,23 @@
 @use '@ds/figma-variables/build/scss/components/chip.module' as chip;
 
+// Размер кнопки → размер чипа в токенах слота: у чипов m и l кнопка m, слоты равны.
 $sizes: (
   's': 's',
   'm': 'm',
-  'l': 'l',
 );
 
 .clearButton {
-  @each $size, $tokenSize in $sizes {
+  @each $size, $chipSize in $sizes {
     &[data-size='#{$size}'] {
-      // Нужно сделать отрицательный margin, чтобы компенсировать padding у ChipChoiceBase
-      margin-right: calc(
-        0px - chip.simple-var(chip.$chip, 'anatomy', 'size', $tokenSize, 'container', 'padding-right')
-      );
+      $slotWidth: chip.simple-var(chip.$chip, 'anatomy', 'size', $chipSize, 'centeredWrapper', 'max-width');
+      $slotHeight: chip.simple-var(chip.$chip, 'anatomy', 'size', $chipSize, 'centeredWrapper', 'max-height');
+
+      // Вписываем кнопку в слот centeredWrapper через min-размеры @ds/button.
+      --sn-button-anatomy-size-#{$size}-container-minHeight: #{$slotHeight};
+      --sn-button-anatomy-size-#{$size}-container-iconOnly-minWidth: #{$slotWidth};
+
+      max-width: $slotWidth;
+      max-height: $slotHeight;
     }
   }
 }

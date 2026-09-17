@@ -260,7 +260,7 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
 
   // Ширина инпута по числу символов значения (минимум 2ch), задаётся через `ch`-юниты в CSS-переменной —
   // без px-хардкода и подгонки под ширину глифа.
-  const inputWidthCh = Math.max(2, String(value).length);
+  const inputWidthCh = Math.max(1, String(value).length);
 
   const handleMouseEnter = useCallback(() => {
     if (!readOnly) {
@@ -374,51 +374,56 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
       </div>
       <div className={fieldStyles.fieldContainer}>
         <div className={fieldStyles.contentWrapper}>
-          <div className={styles.valueArea}>
-            {prefix && <span className={styles.affix}>{prefix}</span>}
-            <div className={styles.inputWrapper} style={{ '--field-stepper-input-ch': inputWidthCh } as CSSProperties}>
-              <InputPrivate
-                ref={mergeRefs(ref, localRef)}
-                className={cn(fieldStyles.fieldInput, styles.input)}
-                value={String(value)}
-                type={TYPE.Number}
-                disabled={disabled}
-                readonly={readOnly}
-                onChange={handleInputChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onKeyDown={handleInputKeyDown}
-                id={id}
-                name={name}
-                min={min}
-                max={max}
-                step={step}
-                autoFocus={resolvedAutoFocus}
-                data-test-id={TEST_IDS.fieldStepperInput}
-                {...extractSupportProps(rest)}
-              />
+          <div className={cn(fieldStyles.inputLine, styles.inputLine)}>
+            {prefix && <span className={fieldStyles.prefix}>{prefix}</span>}
+            <div className={cn(fieldStyles.inputArea, styles.inputArea)}>
+              <div
+                className={styles.inputWrapper}
+                style={{ '--field-stepper-input-ch': inputWidthCh } as CSSProperties}
+              >
+                <InputPrivate
+                  ref={mergeRefs(ref, localRef)}
+                  className={cn(fieldStyles.fieldInput, styles.input)}
+                  value={String(value)}
+                  type={TYPE.Number}
+                  disabled={disabled}
+                  readonly={readOnly}
+                  onChange={handleInputChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  onKeyDown={handleInputKeyDown}
+                  id={id}
+                  name={name}
+                  min={min}
+                  max={max}
+                  step={step}
+                  autoFocus={resolvedAutoFocus}
+                  data-test-id={TEST_IDS.fieldStepperInput}
+                  {...extractSupportProps(rest)}
+                />
+              </div>
             </div>
-            {postfix && <span className={styles.affix}>{postfix}</span>}
+            {postfix && <span className={fieldStyles.postfix}>{postfix}</span>}
+            {showCopyUi && (
+              <span className={fieldStyles.postfixButtonsSlot}>
+                <Button
+                  innerRef={copyButtonRef}
+                  type='button'
+                  view='function'
+                  appearance='neutral'
+                  size={BUTTON_SIZE_MAP[size]}
+                  icon={copied ? <CheckSVG /> : <CopySVG />}
+                  onClick={handleCopy}
+                  onKeyDown={handleCopyButtonKeyDown}
+                  tabIndex={-1}
+                  data-test-id={TEST_IDS.fieldStepperCopyButton}
+                />
+              </span>
+            )}
           </div>
         </div>
       </div>
       <div className={fieldStyles.elementWrapperAfter}>
-        {showCopyUi && (
-          <span className={styles.copyButton}>
-            <Button
-              innerRef={copyButtonRef}
-              type='button'
-              view='function'
-              appearance='neutral'
-              size={BUTTON_SIZE_MAP[size]}
-              icon={copied ? <CheckSVG /> : <CopySVG />}
-              onClick={handleCopy}
-              onKeyDown={handleCopyButtonKeyDown}
-              tabIndex={-1}
-              data-test-id={TEST_IDS.fieldStepperCopyButton}
-            />
-          </span>
-        )}
         <div className={fieldStyles.lineWrapper} data-outline={background || undefined}>
           <Divider orientation='vertical' variant='regular' />
         </div>

@@ -1,7 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/colorPicker.module' as cp;
 
-$sizes: 's', 'm', 'l';
+// Размер компонента → ключ токенов colorPicker (в ките размеры токенов сдвинуты на ступень).
+$sizes: (
+  's': 'xs',
+  'm': 's',
+  'l': 'm',
+);
 
 // Figma master `colorPicker` (node 5664:155346) — naked flex column. Padding/border/bg
 // — это ответственность потребителя (Popover/Dropdown/Modal). Здесь только структура и токены.
@@ -10,10 +15,10 @@ $sizes: 's', 'm', 'l';
   flex-direction: column;
   box-sizing: border-box;
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     &[data-size='#{$size}'] {
-      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
-      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'min-width');
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
+      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'colorArea', 'min-width');
       max-width: 100%;
     }
   }
@@ -30,30 +35,30 @@ $sizes: 's', 'm', 'l';
     height: auto;
   }
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     &[data-size='#{$size}'] :global(.react-colorful) {
-      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
     }
 
     &[data-size='#{$size}'] :global(.react-colorful__saturation) {
       flex: none;
-      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'min-height');
-      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'colorArea', 'border-radius');
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'colorArea', 'min-height');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'colorArea', 'border-radius');
     }
 
     &[data-size='#{$size}'] :global(.react-colorful__pointer) {
-      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width');
-      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'height');
+      width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'width');
+      height: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'height');
       border-color: base.$sn-theme-color-neutral-onAccent;
-      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-width');
-      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'border-radius');
+      border-width: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'border-width');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'border-radius');
 
       box-shadow: base.simple-var(base.$sn-boxShadow, 'elevation', 'level3');
     }
 
     &[data-size='#{$size}'] :global(.react-colorful__hue),
     &[data-size='#{$size}'] :global(.react-colorful__alpha) {
-      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'sliderTrack', 'border-radius');
+      border-radius: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'sliderTrack', 'border-radius');
     }
 
     // Сбрасываем `scale` ручки от react-colorful — в макете она не растёт. Селектор на
@@ -88,7 +93,7 @@ $sizes: 's', 'm', 'l';
     // внутри track'а, точки 0% и 100% совпадают с левым/правым краем.
     &[data-size='#{$size}'] :global(.react-colorful__hue) :global(.react-colorful__interactive),
     &[data-size='#{$size}'] :global(.react-colorful__alpha) :global(.react-colorful__interactive) {
-      inset: 0 calc(base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'handleColor', 'bg', 'width') / 2);
+      inset: 0 calc(base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'width') / 2);
     }
   }
 }
@@ -98,9 +103,9 @@ $sizes: 's', 'm', 'l';
   flex-direction: column;
   box-sizing: border-box;
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     [data-size='#{$size}'] > & {
-      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
     }
   }
 }
@@ -110,9 +115,9 @@ $sizes: 's', 'm', 'l';
   flex-direction: column;
   box-sizing: border-box;
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     [data-size='#{$size}'] > & {
-      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'parameter', 'gap');
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'parameter', 'gap');
     }
   }
 }
@@ -121,9 +126,9 @@ $sizes: 's', 'm', 'l';
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     [data-size='#{$size}'] & {
-      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'parameter', 'gap');
+      gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'parameter', 'gap');
     }
   }
 
@@ -150,9 +155,9 @@ $sizes: 's', 'm', 'l';
   justify-content: space-between;
   box-sizing: border-box;
 
-  @each $size in $sizes {
+  @each $size, $tokenSize in $sizes {
     [data-size='#{$size}'] > & {
-      padding-top: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $size, 'colorPicker', 'gap');
+      padding-top: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
     }
   }
 }

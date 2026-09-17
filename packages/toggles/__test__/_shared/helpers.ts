@@ -58,5 +58,5 @@ export const A11Y_DISABLED_RULES = [
 export const CHECKBOX_SIZE_PX = { xs: 16, s: 24 } as const;
 export const RADIO_SIZE_PX = { xs: 16, s: 24 } as const;
 export const FAVOURITE_SIZE_PX = { xs: 16, s: 24 } as const;
-export const SWITCH_WIDTH_PX = { xs: 24, s: 36 } as const;
+export const SWITCH_WIDTH_PX = { xs: 20, s: 36 } as const;
 export const SWITCH_HEIGHT_PX = { xs: 16, s: 24 } as const;

@@ -96,7 +96,7 @@ export function Separator({
         </div>
 
         {/* Figma weight-ось дивайдера = @ds/divider `variant`: subtitle → regular, subtitleTertiary → thin (легаси light).
-            Линия подчёркивает строку заголовка целиком, поэтому вынесена из потока. */}
+            Линия отделяет группу от предыдущей над заголовком, поэтому вынесена из потока. */}
         {divider && (
           <Divider className={styles.divider} variant={groupVariant === 'subtitle' ? VARIANT.Regular : VARIANT.Thin} />
         )}

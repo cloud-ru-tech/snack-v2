@@ -9,8 +9,8 @@ $label-size-map: (
   'l': 'l',
 );
 
-// Подпись и описание набраны тем же размером, что заголовок: в мастере у всех
-// трёх текстов одна типографика внутри размера (s — 12/16, m — 14/20, l — 16/24).
+// Подпись — label thin того же размера (s — 11/14, m — 12/16, l — 14/20 в compact);
+// описание набрано тем же размером, что заголовок (body).
 $caption-size-map: (
   's': 's',
   'm': 'm',
@@ -83,7 +83,7 @@ $description-size-map: (
       }
 
       .caption {
-        @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', base.simple-var($caption-size-map, $size));
+        @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', base.simple-var($caption-size-map, $size));
       }
 
       .description {

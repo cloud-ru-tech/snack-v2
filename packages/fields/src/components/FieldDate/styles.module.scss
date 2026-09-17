@@ -27,7 +27,7 @@ $sizes: 's', 'm', 'l';
 
   @each $size in $sizes {
     [data-size='#{$size}'] & {
-      gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputLine', 'gap');
+      gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputWrapper', 'gap');
     }
   }
 }
