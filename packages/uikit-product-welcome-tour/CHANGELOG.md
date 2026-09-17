@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.2 (2026-09-17)
+
+### Bug Fixes
+
+- **FF-9082:** use button group in welcome-tour ([bb5f5d0](https://github.com/cloud-ru-tech/snack-v2/commit/bb5f5d01e0e25f8a9caaaca85b2124a9e88bcc58))
+
 ## 1.2.1 (2026-09-06)
 
 ### Bug Fixes
