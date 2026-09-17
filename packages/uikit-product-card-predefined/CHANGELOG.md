@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.1 (2026-09-17)
+
+### Bug Fixes
+
+- **FF-9146:** disable hover on CardPromoTag, removed unused classname ([efbf49e](https://github.com/cloud-ru-tech/snack-v2/commit/efbf49ec55507ef4779bbce3fc813e0c1c19faeb))
+- **FF-9146:** handle CardActionsSurface tooltips overlapping ([f3f684d](https://github.com/cloud-ru-tech/snack-v2/commit/f3f684de6498dacfb815ea962b6f22462fad5499))
+
 # 3.1.0 (2026-09-16)
 
 ### Bug Fixes

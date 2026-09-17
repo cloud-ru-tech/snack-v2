@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.1 (2026-09-17)
+
+### Bug Fixes
+
+- **FF-9146:** add tooltip for settings button, fixed color for EmptyRecent icon, inherit cursor for PromoTag in MenuBanner ([6ed78fd](https://github.com/cloud-ru-tech/snack-v2/commit/6ed78fdc6e909980f2f5bbb0e71d20363aa2d308))
+
 # 1.4.0 (2026-09-16)
 
 ### Bug Fixes
