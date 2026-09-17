@@ -209,14 +209,13 @@ export function CardServiceLight<T extends ElementType = 'button'>({
         actionsSize={isMobile ? 's' : 'm'}
         actionsVisibility={actionsVisibility}
         className={styles.cardActions}
+        onTooltipOpenChange={setIsTooltipOpen}
         tooltip={
           tooltip
             ? {
                 ...tooltip,
                 'data-test-id': TEST_IDS.cardServiceLightTooltip,
                 buttonRef: tooltipTriggerRef,
-                open: isTooltipOpen,
-                onOpenChange: setIsTooltipOpen,
               }
             : undefined
         }

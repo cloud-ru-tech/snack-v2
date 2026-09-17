@@ -4,12 +4,14 @@ import { CollapseVerticalSVG, ExpandVerticalSVG, StarFilledSVG, StarSVG } from '
 import { Tooltip, TooltipProps, TRIGGER } from '@ds/tooltip';
 import { preventEventDefault, preventEventDefaultAndPropagation } from '@ds/utils';
 import cn from 'classnames';
-import { MouseEvent, ReactElement, RefObject } from 'react';
+import { MouseEvent, ReactElement, RefObject, useCallback, useState } from 'react';
 
 import { TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
 import { cardPredefinedLocale } from '../../locale';
 import { CardSize, FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
+
+type TooltipType = 'info' | 'favorite' | 'expandable';
 
 export type CardActionsSurfaceProps = {
   /**
@@ -37,6 +39,8 @@ export type CardActionsSurfaceProps = {
   actionsSize?: CardSize;
   /** CSS-класс корневого элемента */
   className?: string;
+  /** Callback, вызываемый при открытии тултипа */
+  onTooltipOpenChange?(isOpen: boolean): void;
 };
 
 export function CardActionsSurface({
@@ -46,8 +50,19 @@ export function CardActionsSurface({
   expandable,
   actionsSize = 'm',
   className,
+  onTooltipOpenChange,
 }: CardActionsSurfaceProps): ReactElement | null {
   const { t } = cardPredefinedLocale.useTranslations();
+
+  const [visibleTooltip, setVisibleTooltip] = useState<TooltipType | undefined>(undefined);
+
+  const getHandleTooltipOpenChange = useCallback(
+    (tooltipType: TooltipType) => (isOpen: boolean) => {
+      setVisibleTooltip(isOpen ? tooltipType : undefined);
+      onTooltipOpenChange?.(isOpen);
+    },
+    [onTooltipOpenChange],
+  );
 
   if (!tooltip && !favorite && !expandable) {
     return null;
@@ -79,6 +94,8 @@ export function CardActionsSurface({
       {tooltip && (
         <Tooltip
           {...tooltipProps}
+          open={visibleTooltip === 'info'}
+          onOpenChange={getHandleTooltipOpenChange('info')}
           tip={tooltip.tip}
           trigger={tooltipTrigger}
           hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
@@ -108,6 +125,8 @@ export function CardActionsSurface({
           trigger={tooltipTrigger}
           triggerClassName={styles.tooltipTrigger}
           hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
+          open={visibleTooltip === 'favorite'}
+          onOpenChange={getHandleTooltipOpenChange('favorite')}
         >
           <Button
             as='span'
@@ -133,6 +152,8 @@ export function CardActionsSurface({
           trigger={tooltipTrigger}
           triggerClassName={styles.tooltipTrigger}
           hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
+          open={visibleTooltip === 'expandable'}
+          onOpenChange={getHandleTooltipOpenChange('expandable')}
         >
           <Button
             as='span'

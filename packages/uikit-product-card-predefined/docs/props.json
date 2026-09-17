@@ -95,6 +95,11 @@
           "FavoriteProps"
         ]
       },
+      "onTooltipOpenChange": {
+        "type": "((isOpen: boolean) => void)",
+        "required": false,
+        "description": "Callback, вызываемый при открытии тултипа"
+      },
       "tooltip": {
         "type": "(Omit<TooltipProps, \"children\"> & { buttonRef?: RefObject<HTMLButtonElement>; 'data-test-id'?: string; }) | undefined",
         "required": false,
