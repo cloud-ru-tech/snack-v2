@@ -86,7 +86,6 @@ function PlaygroundRender(args: StoryProps) {
 
 const meta: Meta<StoryProps> = {
   title: 'Components/BottomSheet/BottomSheetCustom',
-  globals: { density: 'comfort' },
   component: BottomSheetCustom,
   parameters: { layout: 'fullscreen' },
   args: {

@@ -86,7 +86,6 @@ function NestedRender() {
 
 const meta: Meta<typeof NestedRender> = {
   title: 'Components/BottomSheet/Examples/Nested',
-  globals: { density: 'comfort' },
   component: NestedRender,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

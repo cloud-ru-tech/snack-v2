@@ -2355,9 +2355,6 @@ importers:
       '@ds/tag':
         specifier: workspace:^
         version: link:../tag
-      '@ds/theme':
-        specifier: workspace:^
-        version: link:../theme
       '@ds/toggles':
         specifier: workspace:^
         version: link:../toggles

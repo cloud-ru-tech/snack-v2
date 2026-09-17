@@ -10,9 +10,6 @@ export { TEST_IDS as TOOLBAR_COMPONENT_TEST_IDS } from '../../src/testIds';
 
 export const TOOLBAR_TEST_ID = TEST_IDS.root;
 
-/** Storybook global `density` — mobile-сценарии рендерятся в comfort-плотности. */
-export const COMFORT_DENSITY_GLOBALS = { density: 'comfort' } as const;
-
 export const TOOLBAR_STORIES = {
   playground: { name: 'toolbar', story: 'playground' },
   visualMatrix: { name: 'toolbar', story: 'visual-matrix' },

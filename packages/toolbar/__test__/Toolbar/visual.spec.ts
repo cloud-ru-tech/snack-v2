@@ -10,13 +10,7 @@ import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
 import { expect, test } from '#playwright-tooling/fixtures';
 import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
 
-import {
-  buildStoryOptions,
-  COMFORT_DENSITY_GLOBALS,
-  TEST_IDS,
-  TOOLBAR_COMPONENT_TEST_IDS,
-  TOOLBAR_STORIES,
-} from './helpers';
+import { buildStoryOptions, TEST_IDS, TOOLBAR_COMPONENT_TEST_IDS, TOOLBAR_STORIES } from './helpers';
 
 test.describe('Toolbar — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -60,7 +54,7 @@ test.describe('Toolbar — visual regression', () => {
           showExtraSlot: true,
         },
         TOOLBAR_STORIES.playground,
-        { ...COMFORT_DENSITY_GLOBALS, layoutType: LAYOUT_TYPE.Mobile },
+        { layoutType: LAYOUT_TYPE.Mobile },
       ),
     );
     await waitForFonts();
@@ -82,7 +76,6 @@ test.describe('Toolbar — visual regression', () => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(
       buildStoryOptions({ 'data-test-id': TEST_IDS.mobile }, TOOLBAR_STORIES.mobile, {
-        ...COMFORT_DENSITY_GLOBALS,
         layoutType: LAYOUT_TYPE.Mobile,
       }),
     );

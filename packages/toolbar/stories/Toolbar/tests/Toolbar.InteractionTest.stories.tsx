@@ -1,4 +1,4 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { CheckSVG, CrossSVG } from '@ds/icons/interface/system';
 import { NATIVE_INPUT_SUFFIX } from '@ds/toggles';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
@@ -6,7 +6,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, LayoutScope } from '#storybook/components';
 
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
@@ -30,7 +30,7 @@ function InteractionDemo({ onRefresh, onCheck }: InteractionArgs) {
         <DemoHint>Refresh, bulk-checkbox и кнопка фильтров вызывают соответствующие колбэки.</DemoHint>
         <DemoActions block>
           <div className={styles.containerPlayground}>
-            <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+            <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
               <Toolbar
                 data-test-id={TEST_IDS.root}
                 search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
@@ -63,7 +63,7 @@ function InteractionDemo({ onRefresh, onCheck }: InteractionArgs) {
                   { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
                 ]}
               />
-            </AdaptiveProvider>
+            </LayoutScope>
           </div>
         </DemoActions>
       </DemoPanel>

@@ -54,7 +54,6 @@ function InteractionRender(args: StoryArgs) {
 
 const meta: Meta<StoryArgs> = {
   title: 'Components/BottomSheet/Tests/Interaction',
-  globals: { density: 'comfort' },
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
     onClose: fn(),

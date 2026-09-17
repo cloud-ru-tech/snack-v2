@@ -57,7 +57,6 @@ function ControlledRender(args: StoryArgs) {
 
 const meta: Meta<StoryArgs> = {
   title: 'Components/BottomSheet/Tests/Controlled',
-  globals: { density: 'comfort' },
   parameters: { layout: 'fullscreen', controls: { disable: true } },
   args: {
     onClose: fn(),

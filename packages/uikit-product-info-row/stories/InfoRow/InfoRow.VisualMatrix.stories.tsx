@@ -1,7 +1,7 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { InfoRow, InfoRowProps, POSITION } from '../../src';
 import { TEST_IDS } from '../testIds';
@@ -31,7 +31,7 @@ export const VisualMatrix: Story = {
         rows={layouts.map(layoutType => ({
           variantLabel: layoutType,
           cells: positions.map(position => (
-            <AdaptiveProvider key={`${layoutType}-${position}`} layoutType={layoutType}>
+            <LayoutScope key={`${layoutType}-${position}`} layoutType={layoutType}>
               <InfoRow
                 position={position}
                 label='Адаптивная метка'
@@ -40,7 +40,7 @@ export const VisualMatrix: Story = {
                 bottomDivider
                 data-test-id={TEST_IDS.infoRow.layout(layoutType, position)}
               />
-            </AdaptiveProvider>
+            </LayoutScope>
           )),
         }))}
       />
@@ -51,7 +51,7 @@ export const VisualMatrix: Story = {
         rows={layouts.map(layoutType => ({
           variantLabel: layoutType,
           cells: [false, true].map(loading => (
-            <AdaptiveProvider key={`${layoutType}-${loading}`} layoutType={layoutType}>
+            <LayoutScope key={`${layoutType}-${loading}`} layoutType={layoutType}>
               <InfoRow
                 position={POSITION.Inner}
                 label='Метка'
@@ -61,7 +61,7 @@ export const VisualMatrix: Story = {
                 bottomDivider
                 data-test-id={TEST_IDS.infoRow.loading(layoutType, loading.toString())}
               />
-            </AdaptiveProvider>
+            </LayoutScope>
           )),
         }))}
       />

@@ -50,12 +50,11 @@ export function MobileInfoRow({
 }: MobileInfoRowProps) {
   const showTruncate = labelTruncate != null && labelTruncate > 0;
 
-  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
-  const wrapperThemeClassName = useThemeClassnames({ density: 'comfort' });
+  // Плотность строки наследуется от приложения; действия фиксируем в compact, остальные оси — из контекста темы.
   const actionsThemeClassName = useThemeClassnames({ density: 'compact' });
 
   return (
-    <div {...extractSupportProps(rest)} className={cn(wrapperThemeClassName, styles.wrapper, className)}>
+    <div {...extractSupportProps(rest)} className={cn(styles.wrapper, className)}>
       {topDivider && position !== POSITION.First && <Divider variant={DIVIDER_VARIANT.Regular} />}
 
       <div className={styles.infoRow} data-position={position}>

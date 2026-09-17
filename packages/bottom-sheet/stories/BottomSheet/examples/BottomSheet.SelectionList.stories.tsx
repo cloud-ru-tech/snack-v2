@@ -88,7 +88,6 @@ function SelectionListRender() {
 
 const meta: Meta<typeof SelectionListRender> = {
   title: 'Components/BottomSheet/Examples/SelectionList',
-  globals: { density: 'comfort' },
   component: SelectionListRender,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

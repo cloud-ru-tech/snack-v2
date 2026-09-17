@@ -7,7 +7,7 @@ import {
   PopupMedia,
 } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
-import { useThemeClassnames } from '@ds/theme';
+import { PLATFORM, useThemeClassnames } from '@ds/theme';
 import { extractSupportProps, isBrowser, useLayoutEffect, useModalOpenState } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useEffect, useRef } from 'react';
@@ -152,8 +152,8 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     if (showBackdrop) onClose();
   }, [showBackdrop, onClose]);
 
-  // Мобильная поверхность — comfort-плотность.
-  const densityClassName = useThemeClassnames({ density: 'comfort' });
+  // Мобильная поверхность фиксирует только платформу webMobile, плотность наследуется от приложения.
+  const themeClassName = useThemeClassnames({ platform: PLATFORM.WebMobile });
 
   if (!isMounted) return null;
 
@@ -183,7 +183,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
         >
           <div
             ref={mergeRefCb}
-            className={cn(styles.content, densityClassName, className)}
+            className={cn(styles.content, themeClassName, className)}
             role='dialog'
             // aria-modal только для модального sheet'а: non-modal оставляет фон доступным AT.
             aria-modal={isModal ? 'true' : undefined}

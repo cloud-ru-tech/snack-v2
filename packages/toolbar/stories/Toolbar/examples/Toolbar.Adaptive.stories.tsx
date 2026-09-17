@@ -1,10 +1,10 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle, LayoutScope } from '#storybook/components';
 
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
@@ -53,7 +53,7 @@ function AdaptiveExample() {
           <section className={styles.adaptiveBlock}>
             <p className={styles.adaptiveLabel}>Desktop — Droplist, filter chips s</p>
             <div className={styles.containerAdaptive}>
-              <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+              <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                 <Toolbar
                   {...commonToolbarProps}
                   data-test-id={TEST_IDS.adaptiveDesktop}
@@ -63,14 +63,14 @@ function AdaptiveExample() {
                     onChange: setDesktopFilterValue,
                   }}
                 />
-              </AdaptiveProvider>
+              </LayoutScope>
             </div>
           </section>
 
           <section className={styles.adaptiveBlock}>
             <p className={styles.adaptiveLabel}>Mobile — BottomSheet для «⋯», filter chips s</p>
             <div className={styles.containerAdaptiveMobile}>
-              <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+              <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                 <Toolbar
                   {...commonToolbarProps}
                   data-test-id={TEST_IDS.adaptiveMobile}
@@ -80,7 +80,7 @@ function AdaptiveExample() {
                     onChange: setMobileFilterValue,
                   }}
                 />
-              </AdaptiveProvider>
+              </LayoutScope>
             </div>
           </section>
         </DemoActions>

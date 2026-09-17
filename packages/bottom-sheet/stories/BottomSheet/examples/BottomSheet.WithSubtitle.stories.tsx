@@ -45,7 +45,6 @@ function WithSubtitleRender() {
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet/Examples/WithSubtitle',
-  globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
 };

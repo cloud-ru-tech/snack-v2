@@ -1,11 +1,10 @@
-import { AdaptiveProvider } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { CheckSVG, CrossSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { LAYOUT_TYPE, TEST_IDS as TOOLBAR_TEST_IDS, Toolbar, ToolbarDataViewValue } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -67,7 +66,7 @@ function ToolbarMatrixCell({
   const containerClassName = layoutType === LAYOUT_TYPE.Mobile ? styles.containerMatrixMobile : styles.containerMatrix;
 
   return (
-    <AdaptiveProvider layoutType={layoutType}>
+    <LayoutScope layoutType={layoutType}>
       <div className={containerClassName}>
         <Toolbar
           outline={outline}
@@ -109,7 +108,7 @@ function ToolbarMatrixCell({
             : {})}
         />
       </div>
-    </AdaptiveProvider>
+    </LayoutScope>
   );
 }
 

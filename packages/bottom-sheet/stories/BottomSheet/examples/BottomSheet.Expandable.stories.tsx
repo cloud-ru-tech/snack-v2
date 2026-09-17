@@ -56,7 +56,6 @@ function ExpandableRender() {
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet/Examples/Expandable',
-  globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
 };

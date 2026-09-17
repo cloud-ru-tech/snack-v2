@@ -184,7 +184,6 @@ function VisualMatrixCanvas() {
 
 const meta: Meta<typeof VisualMatrixCanvas> = {
   title: 'Components/BottomSheet',
-  globals: { density: 'comfort' },
   component: VisualMatrixCanvas,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

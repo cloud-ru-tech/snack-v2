@@ -1,6 +1,5 @@
 import { BottomSheet } from '@ds/bottom-sheet';
 import { usePortalContext } from '@ds/portal-context';
-import { useThemeClassnames } from '@ds/theme';
 import { useLayoutEffect } from '@ds/utils';
 import { useState } from 'react';
 
@@ -43,12 +42,9 @@ export function MobileBulkActionsSheet({
     setBottomSheetKey('ready');
   }, []);
 
-  // Фиксируем density, остальные оси (colorScheme/brand/…) наследуем из контекста темы.
-  const themeClassName = useThemeClassnames({ density: 'comfort' });
-
+  // Платформу webMobile фиксирует сам BottomSheet: свой набор sn-классов здесь не нужен.
   return (
     <BottomSheet
-      className={themeClassName}
       key={bottomSheetKey}
       container={portalContext.current ?? undefined}
       open={open}

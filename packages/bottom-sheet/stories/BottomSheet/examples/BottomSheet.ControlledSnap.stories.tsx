@@ -84,7 +84,6 @@ function ControlledSnapRender() {
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet/Examples/ControlledSnap',
-  globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
 };

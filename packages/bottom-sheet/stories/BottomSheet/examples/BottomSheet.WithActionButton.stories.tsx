@@ -96,7 +96,6 @@ function WithActionButtonRender() {
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet/Examples/WithActionButton',
-  globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
 };

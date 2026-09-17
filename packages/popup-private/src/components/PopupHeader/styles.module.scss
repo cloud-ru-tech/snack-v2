@@ -76,8 +76,7 @@
   [data-surface='bottomSheet'] & {
     flex: 1 1 auto;
     gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'gap');
-    padding-top: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'padding-top');
-    padding-bottom: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'padding-bottom');
+    min-height: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'min-height');
   }
 
   [data-surface='window'] & {

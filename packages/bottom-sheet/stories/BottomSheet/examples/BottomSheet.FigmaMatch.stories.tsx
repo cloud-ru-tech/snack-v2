@@ -86,7 +86,6 @@ function FigmaMatchRender() {
 
 const meta: Meta<typeof FigmaMatchRender> = {
   title: 'Components/BottomSheet/Examples/FigmaMatch',
-  globals: { density: 'comfort' },
   component: FigmaMatchRender,
   parameters: {
     layout: 'fullscreen',

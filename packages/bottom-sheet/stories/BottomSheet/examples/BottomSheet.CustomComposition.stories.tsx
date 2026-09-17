@@ -58,7 +58,6 @@ function CustomCompositionRender() {
 
 const meta: Meta<typeof BottomSheetCustom> = {
   title: 'Components/BottomSheet/Examples/CustomComposition',
-  globals: { density: 'comfort' },
   component: BottomSheetCustom,
   parameters: { layout: 'fullscreen' },
 };

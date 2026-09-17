@@ -51,7 +51,6 @@ function ScrollableRender() {
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet/Examples/Scrollable',
-  globals: { density: 'comfort' },
   component: BottomSheet,
   parameters: { layout: 'fullscreen' },
 };

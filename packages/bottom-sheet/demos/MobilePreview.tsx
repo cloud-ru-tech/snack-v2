@@ -32,8 +32,8 @@ function disableDocsScrollLock(children: ReactNode): ReactNode {
  *
  * Bottom-sheet — mobile-only, поэтому в документации он показывается внутри телефонной
  * рамки: safe-area работает portal-контейнером (через `PortalContextProvider`) и
- * containing block'ом для `position: fixed`, а класс `sn-comfort` фиксирует мобильную
- * density. Это только обёртка примера — сам компонент используется как обычно, внутри.
+ * containing block'ом для `position: fixed`. Это только обёртка примера — сам компонент
+ * используется как обычно, внутри.
  */
 export function MobilePreview({ children }: MobilePreviewProps) {
   const safeAreaRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ export function MobilePreview({ children }: MobilePreviewProps) {
           <span>●●● ▮</span>
         </div>
 
-        <div ref={safeAreaRef} className={`${styles.safeArea} sn-comfort`}>
+        <div ref={safeAreaRef} className={styles.safeArea}>
           <PortalContextProvider root={safeAreaRef}>
             <div className={styles.appContent}>{disableDocsScrollLock(children)}</div>
           </PortalContextProvider>

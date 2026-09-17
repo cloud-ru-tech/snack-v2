@@ -97,7 +97,6 @@ function FiltersRender() {
 
 const meta: Meta<typeof FiltersRender> = {
   title: 'Components/BottomSheet/Examples/Filters',
-  globals: { density: 'comfort' },
   component: FiltersRender,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };

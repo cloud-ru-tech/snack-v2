@@ -12,7 +12,7 @@ type MobilePreviewProps = {
  *
  * Bottom-sheet и droplist — mobile-only, поэтому в документации они показываются внутри
  * телефонной рамки: safe-area работает portal-контейнером (через `PortalContextProvider`) и
- * containing block'ом для `position: fixed`, а класс `sn-comfort` фиксирует мобильную density.
+ * containing block'ом для `position: fixed`.
  */
 export function MobilePreview({ children }: MobilePreviewProps) {
   const safeAreaRef = useRef<HTMLDivElement>(null);
@@ -26,7 +26,7 @@ export function MobilePreview({ children }: MobilePreviewProps) {
           <span>●●● ▮</span>
         </div>
 
-        <div ref={safeAreaRef} className={`${styles.safeArea} sn-comfort`}>
+        <div ref={safeAreaRef} className={styles.safeArea}>
           <PortalContextProvider root={safeAreaRef}>
             <div className={styles.appContent}>{children}</div>
           </PortalContextProvider>

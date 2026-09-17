@@ -165,7 +165,6 @@ function MobileDemo() {
 
 const meta: Meta<typeof MobileDemo> = {
   title: 'Components/BottomSheet/Examples/Mobile',
-  globals: { density: 'comfort' },
   component: MobileDemo,
   parameters: {
     layout: 'fullscreen',

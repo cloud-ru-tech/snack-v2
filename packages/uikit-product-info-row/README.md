@@ -22,7 +22,7 @@ import '@ds/uikit-product-info-row/style.css'
 
 ## Состав пакета
 
-- ****InfoRow**** — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок. **Адаптивен**: на desktop горизонтальная плотная раскладка, на mobile — вертикальная comfort (density `comfort`, отступы и разделители по `position`: `first` / `inner` / `last`).
+- ****InfoRow**** — одна строка «метка — значение»; опционально две пары в ряд (`column="2"`), действия, скелетон, `withTip` для кнопок. **Адаптивен**: на desktop горизонтальная плотная раскладка, на mobile — вертикальная (плотность наследуется от приложения, отступы и разделители по `position`: `first` / `inner` / `last`).
 - ****InfoGroup**** — несколько строк по объекту `data` и схеме полей `items` (`accessorKey` или `render`). **Адаптивен** так же, как `InfoRow`.
 
 Раскладку оба берут из `AdaptiveProvider` (`@ds/adaptive`); отдельного пропа `layoutType` нет — форс через `withLayoutType` / вложенный `<AdaptiveProvider>`. Desktop/mobile-поверхности — internal. Вспомогательная **`getPosition({ index, length })`** возвращает `position` строки в списке.

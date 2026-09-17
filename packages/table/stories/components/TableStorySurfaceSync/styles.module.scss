@@ -7,6 +7,13 @@
 
   @include m.with-material('acrylic', #{acrylic});
 
+  // Обёртка — нижний слой страницы, размывать под ней нечего. При включённом акриле её
+  // backdrop-filter сделал бы её контейнером для position: fixed, и порталы (bottom sheet)
+  // рисовались бы от всей страницы, а не от экрана.
+  &[data-acrylic-appearance][data-acrylic-level] {
+    backdrop-filter: none;
+  }
+
   > :not(.acrylic) {
     position: relative;
     z-index: 1;

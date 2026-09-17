@@ -76,7 +76,6 @@ function TagPickerRender() {
 
 const meta: Meta<typeof TagPickerRender> = {
   title: 'Components/BottomSheet/Examples/TagPicker',
-  globals: { density: 'comfort' },
   component: TagPickerRender,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
 };
