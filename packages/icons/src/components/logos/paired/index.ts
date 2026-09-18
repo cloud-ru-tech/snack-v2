@@ -18,6 +18,7 @@ export { default as CloudLogo } from './CloudLogo';
 export { default as CloudLogoStage } from './CloudLogoStage';
 export { default as CloudSpannerLogo } from './CloudSpannerLogo';
 export { default as CloudSqlLogo } from './CloudSqlLogo';
+export { default as ConfluenceLogo } from './ConfluenceLogo';
 export { default as ConnaisseuerLogo } from './ConnaisseuerLogo';
 export { default as CplusLogo } from './CplusLogo';
 export { default as CsharpLogo } from './CsharpLogo';

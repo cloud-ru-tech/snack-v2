@@ -42,6 +42,8 @@ export { default as CloudSpannerLogoDarkSVG } from './CloudSpannerLogoDark';
 export { default as CloudSpannerLogoLightSVG } from './CloudSpannerLogoLight';
 export { default as CloudSqlLogoDarkSVG } from './CloudSqlLogoDark';
 export { default as CloudSqlLogoLightSVG } from './CloudSqlLogoLight';
+export { default as ConfluenceLogoDarkSVG } from './ConfluenceLogoDark';
+export { default as ConfluenceLogoLightSVG } from './ConfluenceLogoLight';
 export { default as ConnaisseuerLogoDarkSVG } from './ConnaisseuerLogoDark';
 export { default as ConnaisseuerLogoLightSVG } from './ConnaisseuerLogoLight';
 export { default as CplusLogoDarkSVG } from './CplusLogoDark';
