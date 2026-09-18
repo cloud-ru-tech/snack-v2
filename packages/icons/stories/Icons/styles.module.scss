@@ -43,20 +43,23 @@
 }
 
 .iconButtonMinimal {
-  min-width: base.$sn-primitive-dimension-24;
-  min-height: base.$sn-primitive-dimension-24;
+  cursor: pointer;
 
-  aspect-ratio: 1/1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  aspect-ratio: 1/1;
+  min-width: base.$sn-primitive-dimension-24;
+  min-height: base.$sn-primitive-dimension-24;
   border: none;
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
-  background: transparent;
+
   color: base.$sn-theme-color-available-complementary;
-  cursor: pointer;
+
+  background: transparent;
 
   &:hover {
     background: base.$sn-theme-color-neutral-background2Level;
@@ -73,17 +76,20 @@
 // по высоте. Фиксируем высоту ряда, ширина авто по контенту, рамка-чип вместо квадрата —
 // так соседние логотипы не слипаются и выравниваются по единой линии независимо от ширины.
 .iconButtonAuto {
-  height: base.$sn-primitive-dimension-40;
-  padding: 0 base.$sn-primitive-dimension-8;
+  cursor: pointer;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  height: base.$sn-primitive-dimension-40;
+  padding: 0 base.$sn-primitive-dimension-8;
   border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-primitive-dimension-8;
-  background: transparent;
+
   color: base.$sn-theme-color-available-complementary;
-  cursor: pointer;
+
+  background: transparent;
 
   &:hover {
     background: base.$sn-theme-color-neutral-background2Level;
@@ -102,14 +108,15 @@
 .emptyState {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
   padding: base.$sn-primitive-dimension-32;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
 
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-12;
-  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
 }
 
 .modalContent {
@@ -122,25 +129,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   height: base.$sn-primitive-dimension-84;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-12;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+
   background: base.$sn-theme-color-neutral-background2Level;
 }
 
 .modalCodeBlock {
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
+
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+
   background: base.$sn-theme-color-neutral-background2Level;
-  overflow-x: auto;
 }
 
 .modalCodeLabel {

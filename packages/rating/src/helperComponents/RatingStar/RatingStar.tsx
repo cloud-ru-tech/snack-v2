@@ -69,7 +69,7 @@ export function RatingStar({
         onMouseLeave={handleMouseLeave || undefined}
         onClick={handleClick ? () => handleClick(VALUE.Half) : undefined}
       >
-        <StarFilledSVG className={styles.icon} />
+        <StarFilledSVG />
       </div>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
@@ -79,7 +79,7 @@ export function RatingStar({
         onMouseLeave={handleMouseLeave}
         onClick={handleClick ? () => handleClick(VALUE.Full) : undefined}
       >
-        <StarFilledSVG className={styles.icon} />
+        <StarFilledSVG />
       </div>
     </div>
   );

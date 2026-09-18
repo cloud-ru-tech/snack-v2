@@ -94,34 +94,6 @@ $scrollbar-slider-active-zone: 12px;
       bottom: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', $size, 'height');
     }
   }
-
-  // TODO: кажется, это не используется, и у нас применяется нативный ресайз
-
-  /* ——— Corner (resize grip) ——— */
-
-  /* .#{$theme-name} > .os-scrollbar-corner {
-   --bg-icon-mask: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iYmxhY2siIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuNTMwMyAzLjQ2OTY3QzEzLjgyMzIgMy43NjI1NiAxMy44MjMyIDQuMjM3NDQgMTMuNTMwMyA0LjUzMDMzTDQuNTMwMzMgMTMuNTMwM0M0LjIzNzQ0IDEzLjgyMzIgMy43NjI1NiAxMy44MjMyIDMuNDY5NjcgMTMuNTMwM0MzLjE3Njc4IDEzLjIzNzQgMy4xNzY3OCAxMi43NjI2IDMuNDY5NjcgMTIuNDY5N0wxMi40Njk3IDMuNDY5NjdDMTIuNzYyNiAzLjE3Njc4IDEzLjIzNzQgMy4xNzY3OCAxMy41MzAzIDMuNDY5NjdaTTEzLjUzMDMgNy40Njk2N0MxMy44MjMyIDcuNzYyNTYgMTMuODIzMiA4LjIzNzQ0IDEzLjUzMDMgOC41MzAzM0w4LjUzMDMzIDEzLjUzMDNDOC4yMzc0NCAxMy44MjMyIDcuNzYyNTYgMTMuODIzMiA3LjQ2OTY3IDEzLjUzMDNDNy4xNzY3OCAxMy4yMzc0IDcuMTc2NzggMTIuNzYyNiA3LjQ2OTY3IDEyLjQ2OTdMMTIuNDY5NyA3LjQ2OTY3QzEyLjc2MjYgNy4xNzY3OCAxMy4yMzc0IDcuMTc2NzggMTMuNTMwMyA3LjQ2OTY3Wk0xMy41MzAzIDEyLjUzMDNDMTMuODIzMiAxMi4yMzc0IDEzLjgyMzIgMTEuNzYyNiAxMy41MzAzIDExLjQ2OTdDMTMuMjM3NCAxMS4xNzY4IDEyLjc2MjYgMTEuMTc2OCAxMi40Njk3IDExLjQ2OTdMMTEuNDY5NyAxMi40Njk3QzExLjE3NjggMTIuNzYyNiAxMS4xNzY4IDEzLjIzNzQgMTEuNDY5NyAxMy41MzAzQzExLjc2MjYgMTMuODIzMiAxMi4yMzc0IDEzLjgyMzIgMTIuNTMwMyAxMy41MzAzTDEzLjUzMDMgMTIuNTMwM1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=');
-   z-index: 0;
-  
-   width: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 'm', 'width');
-   height: scroll.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 'm', 'height');
-  
-   background-color: base.simple-var(base.$sn-theme, 'color', 'neutral', 'decor');
-   background-image: unset;
-  
-   mask-image: var(--bg-icon-mask);
-  
-   &:hover {
-     background-color: base.simple-var(base.$sn-theme, 'color', 'neutral', 'text');
-   }
-  }
-  
-  .os-dragging .#{$theme-name} > .os-scrollbar-corner:hover {
-   background-color: base.simple-var(base.$sn-theme, 'color', 'primary', 'accent');
-  }
-  .#{$theme-name}.os-host-resize-disabled > .os-scrollbar-corner {
-   display: none;
-  } */
 }
 
 /*
