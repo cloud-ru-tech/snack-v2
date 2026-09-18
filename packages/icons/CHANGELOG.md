@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-09-18)
+
+### Features
+
+- **FF-9022:** add gRPC, HTTP and ConfluenceLogo icons and others ([70bd9ea](https://github.com/cloud-ru-tech/snack-v2/commit/70bd9ea3ce9cfae463130bc9d53821b0dab87a13))
+
 # 1.1.0 (2026-08-28)
 
 ### Features

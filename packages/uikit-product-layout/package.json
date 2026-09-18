@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-layout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Блоки-состояния продуктового экрана — заглушка пустого состояния EmptyBlock и экран ограниченного доступа NoAccess.",
   "repository": {
     "type": "git",
