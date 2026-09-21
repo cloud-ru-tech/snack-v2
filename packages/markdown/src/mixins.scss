@@ -51,7 +51,7 @@ $block-top-spacings: (
     }
   }
 
-  // У части брендовых шрифтов (SB Sans Interface) нет курсивного начертания — разрешаем браузерный наклон.
+  // У SB Sans Display и SB Sans Text Mono нет курсива — разрешаем браузерный наклон.
   em,
   i {
     font-synthesis-style: auto;
