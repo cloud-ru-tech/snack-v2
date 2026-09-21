@@ -125,20 +125,19 @@ test.describe('BottomSheet — rendering & props propagation', () => {
     await expect(getByTestId(TEST_IDS.root)).not.toHaveAttribute('data-full-height');
   });
 
-  test('bodyPadding=false removes horizontal padding only (vertical survives)', async ({ gotoStory, getByTestId }) => {
+  test('bodyPadding=false removes horizontal and top padding (bottom survives)', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ bodyPadding: false }));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
     const body = getByTestId(TEST_IDS.body);
     await expect(body).toHaveAttribute('data-no-padding', 'true');
-    // Контракт Figma-оси `padding=false`: убираются ТОЛЬКО горизонтальные паддинги; вертикальные
-    // (top=interval-m, bottom=interval-l) сохраняются.
+    // Контракт Figma-оси `padding=false`: контент во всю ширину и сразу под шапкой, нижний отступ остаётся.
     const pad = await body.evaluate(el => {
       const s = getComputedStyle(el);
       return { left: s.paddingLeft, right: s.paddingRight, top: s.paddingTop, bottom: s.paddingBottom };
     });
     expect(pad.left).toBe('0px');
     expect(pad.right).toBe('0px');
-    expect(pad.top).not.toBe('0px');
+    expect(pad.top).toBe('0px');
     expect(pad.bottom).not.toBe('0px');
   });
 

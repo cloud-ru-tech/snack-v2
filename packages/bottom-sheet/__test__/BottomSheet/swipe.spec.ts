@@ -84,6 +84,8 @@ async function dragAndMeasureMid(
 }
 
 test.describe('BottomSheet — swipe / drag', () => {
+  // Скорость жеста считается через Date.now(): при замороженных часах elapsed = 1мс и любой drag — флик.
+  test.use({ fixedClockEnabled: false });
   test.beforeEach(skipOnDesktop);
 
   // —————————————————————————— Close on swipe-down ——————————————————————

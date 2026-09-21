@@ -1,10 +1,10 @@
 import { test } from '#playwright-tooling/fixtures';
 import { StorybookUrlOptions, StoryRef } from '#playwright-tooling/utils';
 
-// BottomSheet — чисто мобильный компонент (Figma-мастер только под mobile-вьюпорт). Desktop-движки
-// (chrome / firefox / safari) для него не запускаем — там нет ни сценария, ни визуального паритета.
-// `mobile` исключён намеренно: он байт-в-байт совпадает с `mobile-android` (тот же Pixel 7 / Chromium),
-// поэтому поведенческие спеки гоняем на mobile-android (Chromium) + mobile-ios (WebKit), без дубля.
+// BottomSheet — чисто мобильный компонент (Figma-мастер только под mobile-вьюпорт). Спеки гоняются
+// на mobile-android (Chromium) и mobile-ios (WebKit); остальные проекты их не собирают —
+// маска `BOTTOM_SHEET_SPECS` в `playwright/constants/projects.ts`. Список ниже оставлен
+// подстраховкой на случай нового проекта без этой маски.
 export const MOBILE_PROJECTS = new Set<string>(['mobile-android', 'mobile-ios']);
 
 export function skipOnDesktop() {

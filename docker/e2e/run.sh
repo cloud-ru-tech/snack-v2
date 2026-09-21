@@ -129,7 +129,9 @@ export UIKIT_SNACK_URL="${STORYBOOK_URL}"
 export STORYBOOK_URL="${STORYBOOK_URL}"
 export PW_CI_WORKERS="${PW_CI_WORKERS:-2}"
 
-PLAYWRIGHT_BASE=(test --project=chrome)
+# mobile-android собирает только mobile-only спеки (bottom-sheet), на остальные пакеты не влияет:
+# без него такие спеки не попали бы в прогон вообще.
+PLAYWRIGHT_BASE=(test --project=chrome --project=mobile-android)
 
 normalize_snapshot_args() {
   SNAPSHOT_ARGS=()
@@ -160,8 +162,10 @@ if [[ "${DOCKER_E2E_MODE:-}" == "visual" ]]; then
     exit 1
   fi
 
-  echo "→ pnpm exec playwright test --project=chrome (${#VISUAL_SPECS[@]} specs) ${SNAPSHOT_ARGS[*]:-}"
-  pnpm exec playwright test --project=chrome "${VISUAL_SPECS[@]}" "${OTHER_ARGS[@]}" "${SNAPSHOT_ARGS[@]}"
+  # Mobile-only компоненты (bottom-sheet) снимают эталоны на mobile-android — спеки сами скипают чужой проект.
+  VISUAL_PROJECTS=(--project=chrome --project=mobile-android)
+  echo "→ pnpm exec playwright test ${VISUAL_PROJECTS[*]} (${#VISUAL_SPECS[@]} specs) ${SNAPSHOT_ARGS[*]:-}"
+  pnpm exec playwright test "${VISUAL_PROJECTS[@]}" "${VISUAL_SPECS[@]}" "${OTHER_ARGS[@]}" "${SNAPSHOT_ARGS[@]}"
 else
   echo "→ pnpm exec playwright ${PLAYWRIGHT_BASE[*]} $*"
   pnpm exec playwright "${PLAYWRIGHT_BASE[@]}" "$@"
