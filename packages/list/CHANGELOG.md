@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-09-21)
+
+### Features
+
+- **DOCDEV-3699:** added expand options into List component ([1ee7af3](https://github.com/cloud-ru-tech/snack-v2/commit/1ee7af326c3b4c803db676c20a2c0ff0789705e5))
+
 ## 2.1.5 (2026-09-18)
 
 **Note:** Version bump only for package @ds/list
