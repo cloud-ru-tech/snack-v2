@@ -31,6 +31,8 @@ Figma в большинстве случаев даёт только desktop. Mo
 
 ## Класс 1 — surface-swap
 
+**Когда нужна отдельная mobile-поверхность.** Только если на телефоне другой **состав или раскладка слоёв**: всплывающий компонент → `BottomSheet`, боковая навигация → нижняя, колонки → стек. Тест: «что в дереве слоёв различается?». Ничего — surface-swap не нужен: «то же, но крупнее» даёт платформа темы. Контролы в слотах `BottomSheet` — `size=m` как выбор композиции, а не «крупнее, потому что mobile». Если макет оставляет popover на mobile (триггер в sticky-зоне, экран без скролла) — следовать макету, не свапать.
+
 `X` читает контекст и ветвит рендер между внутренними desktop/mobile поверхностями (`helperComponents/`) под единым API:
 
 ```tsx
@@ -66,6 +68,7 @@ export function X({ collapsible, layoutPresets, ...props }: XProps) {
 ```
 
 - **Preset-участвующие пропы — без destructure-дефолта** (иначе дефолт перебьёт пресет; дефолт держим в `base`-аргументе `useLayoutDefaults`).
+- **`size` в пресеты не кладётся.** Раскладка не переключает `size`: «то же, но крупнее» на mobile даёт платформа темы (`PLATFORM.WebMobile`), а не смена значения оси. Один `size` на обе раскладки — и в DS, и у потребителя: ветка `isMobileLayout(layoutType) ? 'm' : 's'` в композите запрещена.
 - Константа `X_LAYOUT_PRESETS: LayoutPresets<...>` **экспортируется** (документируема, форкабельна), типизируется участвующими пропами (`Pick<…>`), а не всем `XProps` — чтобы override не давал silent no-op на непартисипирующих ключах.
 - Императивный (нереактовый) путь: раскладку берёт `getGlobalAdaptiveStore()`, дефолты — чистой `resolveByLayout(...)`.
 
@@ -131,6 +134,7 @@ export function X({ collapsible, layoutPresets, ...props }: XProps) {
 - `DesktopX`/`MobileX`/`*Props`/`BaseXProps` в публичном барреле.
 - Платформенный проп без JSDoc-пометки `Только mobile:`/`Только desktop:`.
 - destructure-дефолт у preset-участвующего пропа — дефолт держи в `base`-аргументе `useLayoutDefaults` (single source), не в деструктуризации.
+- `size`, зависящий от раскладки: в `X_LAYOUT_PRESETS` / `layoutPresets` и ветками по `isMobileLayout` у потребителя — mobile-масштаб даёт платформа темы.
 - `X_LAYOUT_PRESETS`, типизированный всем `XProps` (silent no-op на непартисипирующих ключах) — типизируй участвующими (`Pick`).
 - `layoutType` как проп компонента или story-arg в stories (раскладка — через toolbar-global `AdaptiveProvider` в `preview.tsx`; форс — `LayoutScope`).
 

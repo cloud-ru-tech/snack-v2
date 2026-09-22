@@ -27,8 +27,8 @@ CLI-пакет `@ds/figma-selected-block` по CSS выделенного сло
 
 1. **Распарсить URL**: `node-id=2782-111252` → `2782:111252`, `fileKey` — из `/design/<key>/...`.
 2. **Получить токены ноды** через MCP:
-   - `mcp__figma-remote-mcp__get_variable_defs({ nodeId, fileKey })` — вернёт карту `{ "sn/button/anatomy/size/s/container/paddingHorizontal": "4", ... }` только для этой ноды (не детей).
-   - Если нужна структура поддерева — `mcp__figma-remote-mcp__get_metadata`, затем отдельные `get_variable_defs` / `get_design_context` по вложенным nodeId. MCP возвращает CSS для дочерних слоёв в виде Tailwind-классов с `var(--sn\/...)` — их нужно транслировать в чистый CSS.
+   - `get_variable_defs({ nodeId, fileKey })` — вернёт карту `{ "sn/button/anatomy/size/s/container/paddingHorizontal": "4", ... }` только для этой ноды (не детей).
+   - Если нужна структура поддерева — `get_metadata`, затем отдельные `get_variable_defs` / `get_design_context` по вложенным nodeId. MCP возвращает CSS для дочерних слоёв в виде Tailwind-классов с `var(--sn\/...)` — их нужно транслировать в чистый CSS.
 3. **Собрать CSS** для каждого интересующего слоя в `.css`-файл **как есть из Figma** — camelCase сохраняется, значения fallback (`, #FBFFFC`, `, 12px`) CLI игнорирует. Единственное преобразование — заменить разделитель пути со `/` на `-` (`sn/button/anatomy/...` из `get_variable_defs` → `--sn-button-anatomy-...`). Регистр leaf'ов не трогать: `paddingHorizontal`, `fontSizeM`, `onAccent` должны остаться в своём виде. **Не** переписывай CSS «под себя» — бери сырой output из Figma Inspect / MCP.
 4. **Запустить CLI**:
    ```bash

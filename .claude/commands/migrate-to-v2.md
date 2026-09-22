@@ -24,10 +24,10 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 **Принцип:** Figma — ground truth для визуального API и осей варьирования. Референс-пакет — ground truth для функционального поведения (таймеры, коллбэки, slots, side-effects). План = пересечение. Не принимай за чистую монету ни то ни другое, не сверив одно с другим. Любая ось/токен, упомянутый только в референсе и отсутствующий в Figma (или наоборот), — это явное **design decision**, которое должно попасть в «Зафиксированные решения» до единой строки кода.
 
 1. **Figma первым делом** (до чтения легаси-исходников, чтобы не ангажироваться API легаси-библиотеки):
-   - `mcp__figma-remote-mcp__get_metadata` на корневую ноду → полный список variant-осей (`state`, `size`, `appearance`, `view`, …) и их значений. Это исчерпывающий список визуальных пропов, которые ДОЛЖНЫ быть в API. Сохрани сырой output в план.
-   - `mcp__figma-remote-mcp__get_variable_defs` на 1–2 ключевых variant'ах (default + самый сложный) → таблица используемых токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`, `sn/button/anatomy/…`). Это черновик будущего SCSS.
-   - `mcp__figma-remote-mcp__get_design_context` (если нужна точная структура DOM) — даёт raw CSS каждого вложенного слоя; пригодится на имплементации.
-   - Составь таблицу `Figma variant → React prop` (колонки: Figma axis, значения, prop, default, data-attribute).
+   - `get_metadata` на корневую ноду → полный список variant-осей (`state`, `size`, `appearance`, `view`, …) и их значений. Это исчерпывающий список визуальных пропов, которые ДОЛЖНЫ быть в API (кроме осей из [figma-integration](../rules/figma-integration.md) §«Оси Figma без пропа»). Сохрани сырой output в план.
+   - `get_variable_defs` на 1–2 ключевых variant'ах (default + самый сложный) → таблица используемых токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`, `sn/button/anatomy/…`). Это черновик будущего SCSS.
+   - `get_design_context` (если нужна точная структура DOM) — даёт raw CSS каждого вложенного слоя; пригодится на имплементации.
+   - Составь таблицу `Figma variant → React prop` (колонки: Figma axis, значения, prop, default, data-attribute). Колонку `default` **не** выводи из дефолтного варианта Figma: это просто верхний левый вариант в сете. Дефолт берётся из легаси; если он расходится с Figma — строка в «Зафиксированные решения».
    - Проверь имена слоёв на `stateLayer/...`, `material/acrylic/...`, `focusedFrame/...` — это триггеры для `@ds/materials`-миксинов и `:focus-visible` (см. `.claude/rules/figma-to-code.md` и `packages/materials/docs/index.mdx`). Список найденных материальных слоёв → в план.
    - Зафиксируй `fileKey` / `nodeId` как ключ в `FIGMA_NODES` для `apps/docs/src/lib/figma.ts`.
 
@@ -35,6 +35,13 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
    - Сначала найди пакет в `node_modules` этого монорепо (может уже быть установлен как транзитивная зависимость): `find node_modules -maxdepth 4 -type d -name '<pkg>'` либо `pnpm why <pkg>`. Если нашёлся — бери `src/` (если опубликован) или разобранные `dist/*.js` + `.d.ts` оттуда.
    - Если в `node_modules` нет — скачай во временную папку: `mkdir -p .claude/tmp/<pkg> && cd .claude/tmp/<pkg> && npm pack <pkg> && tar -xzf *.tgz`. Если опубликован `src/` в tarball'е — читай его; иначе работай с `dist/` + `.d.ts`.
    - Путь(и) к найденному/распакованному коду зафиксируй в секции «Legacy источники» плана (абсолютные или относительно корня репо).
+   - **Слепок легаси — до любых правок**, отдельной секцией плана «Слепок легаси». Он нужен, чтобы после порта доказать, что ничего не потерялось молча (так пропал `footerMode` у TimePicker). Снимать:
+     - публичные экспорты (`index.d.ts`): компоненты, хуки, типы, константы;
+     - пропсы каждого публичного компонента из `.d.ts` с дефолтами и JSDoc;
+     - колбэки и их сигнатуры;
+     - строки локализации (ключи и тексты);
+     - `data-test-id` / `TEST_IDS` внутренних слотов.
+     После порта [component-validation-loop](../skills/component-validation-loop.md) (Стадия 1) раскладывает слепок на «перенесено / изменено осознанно / потеряно»; «потеряно» обязано быть пустым.
    - Прочитай код: **только функциональный слой** — коллбэки, хуки, таймеры, slots, truncate/clipboard/async-логика, structural composition, публичные типы из `.d.ts`. Визуальные константы (SIZES map, цвета, spacing-константы) **не** переноси в план как факт — они часто пришли из другой Figma и могут расходиться с текущей.
 
 3. **Reconcile Figma ↔ legacy** (обязательный шаг):
@@ -55,8 +62,8 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 Пиши план на русском, markdown. Скелет ниже — обязательный.
 
 1. **Заголовок** + 1-строчное summary с указанием legacy-источников и Figma `fileKey`.
-2. **Зафиксированные решения** — таблица `# | Вопрос | Решение` (scope, tier, API-совместимость drop-in vs breaking, специфика).
-3. **Research** — Figma nodes, variant → prop mapping, legacy API (типы/константы/хуки), **Маппинг зависимостей legacy → наши** таблицей.
+2. **Зафиксированные решения** — таблица `# | Вопрос | Решение | Источник` (scope, tier, API-совместимость drop-in vs breaking, специфика). Источник — проверяемая ссылка: Figma-нода (`nodeId`), файл легаси (`путь:строка`) или реплика пользователя (дата). Решение без источника в эту таблицу не попадает — оно уходит в раздел «Открытые вопросы» (сразу после этой таблицы): вопрос, кому он адресован (пользователь / дизайн), цена ошибки, предлагаемый ответ. План с непустыми «Открытыми вопросами» не финализируется.
+3. **Research** — Figma nodes, variant → prop mapping, legacy API (типы/константы/хуки), **Слепок легаси** (см. research, шаг 2), **Маппинг зависимостей legacy → наши** таблицей.
 4. **Scope и публичное API** — `src/index.ts` export-skeleton + список публичных компонентов/хуков/типов/констант.
 5. **Структура `src/`** — дерево (flat или nested по `.claude/rules/package-src-structure.md`).
 6. **Stories** — дерево `stories/<Name>/` (кол-во файлов по tier'у, обязательно Playground + VisualMatrix + *Test).
@@ -78,14 +85,14 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
     - `gen:props` и `gen:readme` прогнаны, props.json непустой.
     - **Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `base.composite-var(...)`.** Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (кроме явно обоснованных в комментарии).
     - Каждый Figma-слой `stateLayer/...` / `material/...` реализован через соответствующий миксин `@ds/materials`, а не через raw CSS.
-    - Оси React API ↔ Figma variant metadata взаимно-однозначны (или расхождения задокументированы в «Зафиксированных решениях»).
+    - Оси React API ↔ Figma variant metadata взаимно-однозначны (кроме осей из [figma-integration](../rules/figma-integration.md) §«Оси Figma без пропа») (или расхождения задокументированы в «Зафиксированных решениях»).
     - Figma-embed в `docs/index.mdx` работает (ключ для пакета добавлен в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`).
 13. **Связанные правила** — ссылки на релевантные `.claude/rules/*.md` и `.claude/skills/*.md`. Обязательно: `figma-integration.md`, `figma-to-code.md`, `.claude/skills/figma-selected-block.md`, `packages/materials/docs/index.mdx`.
 14. **Legacy источники** — пути к распакованному коду / ссылки в соседнем репо, чтобы агент-имплементатор знал, откуда портировать **только логику** (не копировать константы цветов/размеров 1:1).
 
 ## Конвенции
 
-- Версии зависимостей — строгие (см. `.claude/rules/packages-deps.md`).
+- Версии зависимостей — по `.claude/rules/packages-deps.md` (consumer-facing — `^`, dev — пин).
 - Никаких `react`/`react-dom` в `packages/*/package.json`.
 - Маппинг зависимостей legacy → наши — **обязательная таблица** (`@snack-uikit/icons` → `@ds/icons`, `@snack-uikit/utils::ValueOf` → `@ds/utils::ValueOf`, и т.д.).
 - Figma-переменные — через `@ds/figma-variables`, не `@snack-uikit/figma-tokens`. Значения берём через CLI `@ds/figma-selected-block`, а не на глаз.

@@ -17,7 +17,7 @@
    - Определить: есть ли `as` prop? какие `data-*` проставляются? какие публичные интеракции (`onClick`, `onChange`)?
 
 2. **Сверить оси с Figma (если есть nodeId)**
-   - `mcp__figma-remote-mcp__get_metadata` — каждая ось Figma-мастера должна быть в `constants.ts`.
+   - `get_metadata` — каждая ось Figma-мастера должна быть в `constants.ts` (кроме осей из [figma-integration](../rules/figma-integration.md) §«Оси Figma без пропа»).
    - Если в Figma больше осей, чем в API — сигнал, что API неполный; возвращать список и останавливаться.
 
 3. **Создать обязательные stories** в `stories/<Name>/`:

@@ -7,11 +7,10 @@ DOM-структура компонента практически повтор�
 ## Обязательный workflow при работе с Figma MCP
 
 1. Парсинг URL: `node-id=A-B` → `"A:B"`, `fileKey` — между `/design/` и `/<name>`.
-2. `get_code_connect_map` (если есть готовый маппинг — использовать его).
-3. `get_metadata` — структура слоёв, имена variants и инстансов.
-4. `get_variable_defs` — имена токенов (маппить на `@ds/figma-variables` через `base.simple-var` / `base.composite-var`).
-5. `get_design_context` — код-референс (React+Tailwind) **перепроектировать** на SCSS Modules + миксины `@design-system/materials`.
-6. `get_screenshot` — визуальная сверка.
+2. `get_metadata` — структура слоёв, имена variants и инстансов.
+3. `get_variable_defs` — имена токенов (маппить на `@ds/figma-variables` через `base.simple-var` / `base.composite-var`).
+4. `get_design_context` — код-референс (React+Tailwind) **перепроектировать** на SCSS Modules + миксины `@design-system/materials`.
+5. `get_screenshot` — визуальная сверка.
 
 ## Декодинг имён (краткая таблица)
 
@@ -21,6 +20,7 @@ DOM-структура компонента практически повтор�
 | `focusedFrame/...` (`hidden="true"`)       | **не DOM**; `&:focus-visible { outline: ...; outline-offset: ...; }`                                            |
 | `material/<appearance><Level>`             | `<span class={styles.acrylic} aria-hidden />` + `data-acrylic-appearance`/`data-acrylic-level` + `m.with-material('acrylic', #{acrylic})` |
 | Variants `size=`, `disabled=`, `load=` и т.д. | `data-size`, `data-disabled`, `data-loading` на корне                                                         |
+| Мод, приколотый к вложенному фрейму/инстансу (`explicitVariableModes`: тема, бренд, платформа, плотность) | не проп: поддерево в `ChildThemeProvider value={{ … }}` из `@ds/theme`; раскладка — `AdaptiveProvider` / `withLayoutType` из `@ds/adaptive` |
 
 Значения `data-state`: `emptyNeutralOnBackground`, `borderOnBackground`, `activatedOnBackground`, `versionOnColor`, `emptyVersionOnColor`, `inversionOnColor`, `emptyInversionOnColor`, `emptyDarkOnAccent` — только из этого списка (camelCase).
 
@@ -34,4 +34,4 @@ DOM-структура компонента практически повтор�
 
 Финальный чек-лист (по доменам) — в скилле [`pre-mr-audit`](../skills/pre-mr-audit.md) §«Финальные чек-листы». Источник истины по правилам — этот файл; gate перед MR — скилл.
 
-Worked example (Button), мини-примеры (Acrylic `5004:102`, Switch `2834:25184`), список gotchas и подробности по миксинам — в `docs/figma-to-code.md`.
+Эталонные ноды (Button, Acrylic `5004:102`, Switch `2834:25184`) и подробности по миксинам — в скилле [`figma-to-code`](../skills/figma-to-code.md).

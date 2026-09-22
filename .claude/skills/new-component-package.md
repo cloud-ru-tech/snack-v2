@@ -61,7 +61,7 @@
 
 - не уплощай `src/` при портировании из `storybook/` (1:1, без dot-prefix) — [package-src-structure.md](../rules/package-src-structure.md)
 - обнови все wire-точки (tsconfig references ×3 + dep в `apps/storybook`), иначе alias `@ds/<pkg>` не резолвится; `pnpm add-package` делает это сам — [reference-package-anatomy.md](../rules/reference-package-anatomy.md)
-- нет `react`/`react-dom`/`@types/react*` в `package.json`, версии строгие — [packages-deps.md](../rules/packages-deps.md)
+- нет `react`/`react-dom`/`@types/react*` в `package.json`, версии по [packages-deps.md](../rules/packages-deps.md)
 - группа (домен) в сайдбаре docs/Storybook выводится из префикса имени пакета — отдельных действий не нужно
 - категория **внутри** домена — ручной шаг: впиши пакет в `apps/docs/src/config/categories.ts` (`CATEGORIES_BY_DOMAIN`), иначе он упадёт в «Other» (build-warn) — [docs-structure.md](../rules/docs-structure.md) §«Категории внутри домена»
 

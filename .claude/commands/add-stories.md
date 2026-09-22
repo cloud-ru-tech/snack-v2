@@ -19,7 +19,7 @@ argument-hint: <pkg-name-or-path>
 2. `packages/<pkg>/stories/` — что уже есть. Не дублируй существующие Playground/VisualMatrix, обновляй при необходимости.
 3. `packages/<pkg>/package.json` — узнать публичные экспорты (single-component vs multi-component → влияет на `title` nesting).
 4. Tier по `.claude/rules/complexity-tiers.md`.
-5. Если в запросе есть Figma URL / nodeId — сверить оси Figma-мастера с `constants.ts` через `mcp__figma-remote-mcp__get_metadata`. Если осей в Figma больше — остановись и верни список проблем.
+5. Если в запросе есть Figma URL / nodeId — сверить оси Figma-мастера с `constants.ts` через `get_metadata`. Если осей в Figma больше — остановись и верни список проблем.
 
 ## Делегирование skill'у
 

@@ -16,6 +16,12 @@
 
 Подставь `PKG=<pkg>` (имя папки в `packages/`). Прогоняй блоки по очереди, для каждой находки — чини по соответствующему рулу, затем повторяй скан до пустого вывода.
 
+**Отчёт — с числами.** По каждому блоку: «просмотрено N файлов, находок M» (N — сколько файлов попало под glob блока). Без N пустой вывод не отличить от пустой области поиска (опечатка в пути, не тот `PKG`).
+
+**Отсутствие по грепу подтверждай чтением.** «Не найдено» — ещё не «нет»: регэксп мог промахнуться мимо другой формы записи. Для блоков, где важен именно ноль (J, L), открыть 1–2 файла и убедиться глазами; искать по корню слова, а не по фразе.
+
+**Калибровка на эталоне.** `packages/button` — эталон (сверено 2026-09-22): блоки A, C–K дают 0 строк, блок B — одного кандидата `buildAction` в `ButtonGroup.tsx` (замыкание на render-scope, остаётся по §2). Меняешь или добавляешь регэксп — сначала прогони его на `button`: срабатывание на эталоне означает ложную тревогу, чини регэксп, а не эталон.
+
 ### A. Инлайн JSX-обработчики с логикой ([component-internals.md](../rules/component-internals.md) §1)
 
 ```bash
@@ -30,7 +36,7 @@ grep -rnE "on[A-Z][a-zA-Z]*=\{\([a-zA-Z]*\) =>|on[A-Z][a-zA-Z]*=\{\(\) =>" packa
 
 ```bash
 # стрелки/функции, объявленные в .tsx — глазами отбери те, что не используют хуки/пропсы/state
-grep -rnE "const [a-zA-Z]+ = \(.*\) =>|function [a-zA-Z]+\(" packages/$PKG/src --include="*.tsx" | grep -v "use[A-Z]\|handle\|=> \(<\|return <\)"
+grep -rnE "const [a-zA-Z]+ = \(.*\) =>|function [a-zA-Z]+\(" packages/$PKG/src --include="*.tsx" | grep -v "use[A-Z]\|handle\|=> \(<\|return <\)\|function [A-Z]"
 ```
 
 Кандидат в `utils.ts` — если функцию можно объявить вне компонента без потери смысла (`clamp`, `parseMask`, `extractLabel`). Завязанные на render-scope — оставляй (`useCallback`).
@@ -67,6 +73,8 @@ grep -rnE "'(s|m|l|xs)'( ?\| ?'(s|m|l|xs)')+|'(none|single|multiple)'( ?\| ?'(no
 grep -rnE "\['s', ?'m', ?'l'\]|options: \['" packages/$PKG/stories --include="*.tsx"
 ```
 
+`options` рядом с `mapping` (ключи slot-пресетов: `['none', 'settings', …]`) — не находка, см. [storybook-args-conventions.md](../rules/storybook-args-conventions.md) §«mapping».
+
 Массив значений оси в `argTypes.options`/`render` — через `Object.values(CONST)` из той же const'ы пакета, не хардкод.
 
 ### G. Playground-гигиена ([storybook-args-conventions.md](../rules/storybook-args-conventions.md), [trigger-based-stories.md](../rules/trigger-based-stories.md))
@@ -93,12 +101,20 @@ grep -rnE "TODO|FIXME|TO DO" packages/$PKG/src
 
 Глазами по `*/types.ts`: продублированные `Size`/`value`-типы, которые уже есть в `FieldDecorator`/соседнем `types.ts` — заменить на импорт существующего типа.
 
-### J. Опечатки в JSDoc → расходятся в README/props.json ([writing-style.md](../rules/writing-style.md))
+### J. Опечатки и стоп-лист стиля в JSDoc/docs → расходятся в README/props.json ([writing-style.md](../rules/writing-style.md))
 
 ```bash
 # словарь известных опечаток (расширяй по мере находок)
 grep -rniE "пекреход|преставление|отбражени|колбэка?к|занчени|дефолтн ое" packages/$PKG/src --include="*.ts" --include="*.tsx"
 ```
+
+```bash
+# стоп-лист writing-style: жаргон, уменьшительные, «мы»/«ты», оценки, транслит.
+# LC_ALL обязателен: без UTF-8-локали классы [^а-яё] работают по байтам и ловят всё подряд.
+LC_ALL=en_US.UTF-8 grep -rniE 'прокин|прогре|моргн|мигн|инжект|подтягива|отвалит|прицеп|залить|склеи|склейк|демк|кнопочк|плашк|обёрточк|фолбэчок|тулз|(^|[^а-яё])(мы|ты)([^а-яё]|$)|прикольн|классн|(^|[^а-яё])(легко|просто)([^а-яё]|$)|удобн|мощн|очевидно|в данный момент|на текущий момент|дискашен|мерж|сабмит|риквест|флоу|тулинг|дродаун' packages/$PKG/src packages/$PKG/docs --include="*.ts" --include="*.tsx" --include="*.mdx"
+```
+
+Каждое совпадение — кандидат: слово может стоять в цитате UI-текста или быть частью другого слова, это не находка. Замены — таблицы [writing-style.md](../rules/writing-style.md). Латиница (`Suspense`, `loader`) — не нарушение, запрещён только кириллический транслит.
 
 JSDoc читается react-docgen'ом в Storybook-контролах и попадает в `props.json`/`README.md` → опечатка расползается по всем пакетам-потребителям. Чини в **исходном** JSDoc, затем `pnpm gen:props && pnpm gen:readme`.
 
@@ -201,7 +217,7 @@ grep -rn "$OLD" packages/$PKG/{src,stories,demos,docs,__test__} apps/docs/src/li
 - [ ] Hex/rgba → токены (`simple-var`/`composite-var`); focus frame → `:focus-visible`, не DOM-нода
 - [ ] На интерактивном корне с миксинами есть `position: relative`; `data-state` — из допустимого списка, camelCase
 - [ ] `.stateLayer`/`.acrylic`/`.acrylicEffect` имеют `position: absolute; inset: 0; pointer-events: none; border-radius: inherit`
-- [ ] Нет `React.FC`/`React.ReactNode`/`any`/`@ts-ignore`; в `package.json` нет `react`/`react-dom`, версии точные; в meta story указан `parameters.design.url`
+- [ ] Нет `React.FC`/`React.ReactNode`/`any`/`@ts-ignore`; в `package.json` нет `react`/`react-dom`, версии по `packages-deps` (consumer-facing — `^`, dev — пин); узел компонента есть в `FIGMA_NODES`
 
 ### Текст / JSDoc — writing-style
 - [ ] Нет жаргона/разговорных глаголов, уменьшительно-ласкательных, авторских «мы»/«я», маркетинговых эпитетов («просто»/«легко»/«удобно»), слов-наполнителей («очевидно»/«в данный момент»)

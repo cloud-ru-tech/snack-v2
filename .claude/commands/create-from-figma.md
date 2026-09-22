@@ -25,10 +25,10 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 **Принцип:** Figma — единственный ground truth. Variant-оси мастера = публичные визуальные пропы. Layer'ы `stateLayer/...`, `material/...`, `focusedFrame/...` = триггеры миксинов `@ds/materials` и `:focus-visible`. Функциональную семантику (коллбэки, controlled state, async-поведение) выводишь по аналогии с уже существующими пакетами этого репо и здравым смыслом — и обязательно подтверждаешь у пользователя.
 
 1. **Figma metadata** для каждой переданной ноды:
-   - `mcp__figma-remote-mcp__get_metadata` → полный список variant-осей (`size`, `appearance`, `view`, `state`, `disabled`, `loading`, `composition`, …) и их значений. Сохрани сырой output в план.
-   - `mcp__figma-remote-mcp__get_variable_defs` на 1–2 ключевых variant'ах (default + самый «тяжёлый») → таблица токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`).
-   - `mcp__figma-remote-mcp__get_design_context` — raw CSS / структура слоёв (нужно для понимания DOM и slot'ов: иконки, label, counter, описание, тултип…).
-   - `mcp__figma-remote-mcp__get_screenshot` — для визуальной сверки в плане (опционально: вставь ссылку, если pre-render возможен).
+   - `get_metadata` → полный список variant-осей (`size`, `appearance`, `view`, `state`, `disabled`, `loading`, `composition`, …) и их значений. Сохрани сырой output в план.
+   - `get_variable_defs` на 1–2 ключевых variant'ах (default + самый «тяжёлый») → таблица токенов (`sn/theme/color/…`, `sn/density/typography/…`, `sn/primitive/dimension/…`).
+   - `get_design_context` — raw CSS / структура слоёв (нужно для понимания DOM и slot'ов: иконки, label, counter, описание, тултип…).
+   - `get_screenshot` — для визуальной сверки в плане (опционально: вставь ссылку, если pre-render возможен).
    - Зафиксируй `fileKey` / `nodeId` как ключ в `FIGMA_NODES` для `apps/docs/src/lib/figma.ts`.
 
 2. **Декодинг имён слоёв** (см. `.claude/rules/figma-to-code.md`):
@@ -55,7 +55,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
 Пиши план на русском, markdown. Скелет ниже — обязательный.
 
 1. **Заголовок** + 1-строчное summary с указанием Figma `fileKey` и tier'а.
-2. **Зафиксированные решения** — таблица `# | Вопрос | Решение | Кто решил`. Сюда уезжают все гипотезы, утверждённые пользователем на чекпойнте-2.
+2. **Зафиксированные решения** — таблица `# | Вопрос | Решение | Кто решил | Источник`. Сюда уезжают все гипотезы, утверждённые пользователем на чекпойнте-2. Источник — проверяемая ссылка: Figma-нода (`nodeId`) или реплика пользователя (дата). Решение без источника уходит в раздел «Открытые вопросы» (сразу после этой таблицы): вопрос, кому он адресован (пользователь / дизайн), цена ошибки, предлагаемый ответ.
 3. **Research** — Figma nodes (URL, fileKey, nodeId), variant-оси (таблица: ось, значения, default), список слоёв `stateLayer/material/focusedFrame`, ссылки на соседние пакеты-шаблоны.
 4. **Публичное API** (главная секция этой команды):
    - `constants.ts` — все `as const` объекты + `TEST_IDS`.
@@ -85,14 +85,14 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
     - `gen:props` и `gen:readme` прогнаны, `props.json` непустой.
     - **Все значения spacing/color/typography/radius в `*.module.scss` — через `base.$sn-*` или `base.composite-var(...)`.** Захардкоженных `px`/`rem`/`#hex`/`rgba()` нет (кроме явно обоснованных в комментарии).
     - Каждый Figma-слой `stateLayer/...` / `material/...` реализован через миксин `@ds/materials`, не через raw CSS.
-    - Оси React API ↔ Figma variant metadata взаимно-однозначны (или расхождения зафиксированы в «Зафиксированных решениях»).
+    - Оси React API ↔ Figma variant metadata взаимно-однозначны (кроме осей из [figma-integration](../rules/figma-integration.md) §«Оси Figma без пропа») (или расхождения зафиксированы в «Зафиксированных решениях»).
     - Ключ пакета добавлен в `FIGMA_NODES` (`apps/docs/src/lib/figma.ts`), `<FigmaEmbed node={figmaNode('<pkg>')} />` в `docs/index.mdx` работает.
-    - В `package.json` нет `react`/`react-dom`/`@types/react*`, версии строгие (см. `.claude/rules/packages-deps.md`).
+    - В `package.json` нет `react`/`react-dom`/`@types/react*`, версии по `.claude/rules/packages-deps.md` (consumer-facing — `^`, dev — пин).
 13. **Связанные правила** — обязательно сошлись на: `component-api-surface.md`, `package-src-structure.md`, `figma-integration.md`, `figma-to-code.md`, `.claude/skills/figma-selected-block.md`, `packages/materials/docs/index.mdx`, `complexity-tiers.md`, `stories-standard.md`, `e2e-testing-standard.md`, `docs-structure.md`.
 
 ## Конвенции
 
-- Версии зависимостей — строгие (см. `.claude/rules/packages-deps.md`). Никаких `react`/`react-dom` в `packages/<pkg>/package.json`.
+- Версии зависимостей — по `.claude/rules/packages-deps.md` (consumer-facing — `^`, dev — пин). Никаких `react`/`react-dom` в `packages/<pkg>/package.json`.
 - Figma-переменные — через `@ds/figma-variables`. Значения берём через CLI `@ds/figma-selected-block`, не на глаз.
 - Material / state-layer / acrylic — через миксины `@ds/materials` (см. `packages/materials/docs/index.mdx`).
 - Naming: `SCREAMING_SNAKE_CASE` имя `as const` объекта, `PascalCase` ключи, `lowercase` значения (совпадают с DOM `data-*` и Figma variant values).

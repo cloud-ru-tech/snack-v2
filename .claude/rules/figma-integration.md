@@ -58,17 +58,53 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 
 ## Figma MCP
 
-Используется сервер `figma-remote-mcp` (tools `mcp__figma-remote-mcp__*`):
+Поддерживаются два сервера с одинаковым набором инструментов. В скиллах инструменты называются без префикса сервера (`get_metadata`, `get_variable_defs`) — вызывай через любой доступный. По умолчанию — remote: он не зависит от того, что открыто в Figma Desktop, и ре-чек идёт без участия человека. Local — запасной путь, когда remote упёрся в лимит или отвалилась авторизация.
 
-| Tool | Требует | Даёт |
-|------|---------|------|
-| `get_metadata` | `nodeId` | Полная структура Frame/Component/Variant — ключевые axes |
-| `get_design_context` | Выделение в Figma Desktop | React+Tailwind-референс, token refs, padding/gap |
-| `get_variable_defs` | Выделение в Figma Desktop | Design tokens (цвета, spacing, shadow) в terms `sn.*` |
-| `get_screenshot` | `nodeId` | PNG узла |
-| `add_code_connect_map` | `nodeId` + путь к реализации | Маппинг Figma ↔ код для Dev Mode |
+| | remote (`figma-remote-mcp`, в `.mcp.json`) | local (Figma Desktop, Dev Mode MCP) |
+|---|---|---|
+| Подключение | общее для репо | каждый сам; имя сервера задаёт пользователь, поэтому префикс `mcp__<name>__` не хардкодим |
+| Адресация | `fileKey` + `nodeId` из ссылки; выделение не видно и не нужно | активная вкладка Desktop; `nodeId` или текущее выделение |
+| Нужно открыть файл | нет | да, нужная вкладка должна быть активной |
+| Лимит | 600 вызовов в день / 20 в минуту (считаются чтения) | без квоты |
+| Ветка (`/design/<mainKey>/branch/<branchKey>/…`) | в `fileKey` передаётся `branchKey` | открыть ветку в Desktop |
+| Нода не находится | проверить `fileKey` / `nodeId`; 403 на все вызовы — переподключить коннектор через `/mcp` | открыта другая вкладка — попросить пользователя открыть нужный файл |
 
-**Важно:** `get_design_context` и `get_variable_defs` требуют, чтобы пользователь открыл Figma Desktop и выделил конкретный узел. Без выделения они возвращают ошибку. Используй `get_metadata` как fallback — он работает без выделения.
+| Tool | Даёт |
+|------|------|
+| `get_metadata` | Структура Frame/Component/Variant, x/y/width/height — ключевые axes |
+| `get_design_context` | React+Tailwind-референс, token refs, padding/gap |
+| `get_variable_defs` | Design tokens в terms `sn/*`; значения только в активном режиме переменных; принимает фрейм/компонент, не страницу |
+| `get_screenshot` | PNG узла |
+| `get_code_connect_map` / `add_code_connect_map` | Маппинг Figma ↔ код для Dev Mode — сейчас не настроен, `get_code_connect_map` возвращает `{}` |
+
+### Лимиты и грабли чтения
+
+- **Лимит remote:** 600 вызовов в день и 20 в минуту на пользователя (Organization, Dev/Full seat). Считаются только чтения; свой тариф — `whoami`.
+- **Ответ `use_figma` обрезается примерно на 20 КБ без ошибки** — обрезку видно только по оборванному JSON. Возвращать компактные структуры (id, имена), большие выборки дробить.
+- **`get_metadata` без `nodeId` отдаёт не все страницы** (2 из 60). Список страниц — read-only `use_figma`: `figma.root.children.map(p => ({ id: p.id, name: p.name }))`. На тяжёлых страницах `get_metadata` падает по таймауту — целиться в секцию или сет.
+- **`children` узла с неактивной страницы неполные** — слои, которые в узле есть, читаются как отсутствующие; `page.loadAsync()` не помогает, нужен `await figma.setCurrentPageAsync(<страница узла>)`. Скалярные свойства (имена, размеры, `componentPropertyDefinitions`) читаются верно и без переключения. При расхождении чтений источник правды — рендер (`get_screenshot`).
+- **Скрытые узлы внутри вложенных инстансов плагин не отдаёт** — сплошной обход такого поддерева делается REST-дампом.
+
+### REST — без квоты MCP
+
+`FIGMA_TOKEN` лежит в корневом `.env`. REST не расходует лимит MCP и не зависит от открытого файла:
+
+```bash
+curl -s -H "X-Figma-Token: $FIGMA_TOKEN" \
+  "https://api.figma.com/v1/files/<fileKey>/nodes?ids=<id1>,<id2>&depth=7" -o nodes.json
+```
+
+- Паддинги, `itemSpacing`, sizing, min/max, `clipsContent`, `boundVariables` — по каждой ноде. `depth` меньше 6 не доходит до вложенных обёрток, и вывод «обёрток нет» будет ложным.
+- Значения приходят в дефолтном режиме файла.
+- `devStatus` («Ready for dev») Plugin API не отдаёт — только REST `GET /v1/files/<key>?depth=4`.
+- Комментарии макета MCP не отдаёт — только REST `GET /v1/files/<key>/comments`.
+- Потребители переменной: дамп страниц `GET /v1/files/<key>/nodes?ids=<pageId>` + `grep` по `VariableID:<id>`.
+- `/variables/local` требует скоупа, которого у токена нет (403).
+
+**Значения токенов без Figma** — выгрузка переменных лежит в репо: `packages/figma-variables/tokens/` (коллекции `01_primitive` … `07_acrylic-suspended`, по файлу на режим). Для сверки значения токена по режимам читать её, а не тратить вызовы MCP.
+
+**`search_design_system`** без скоупа возвращает пустой ответ. Ключ библиотеки Snack Ui Kit variables:
+`includeLibraryKeys: ["lk-b63d451ff263ab2cee406b50cc14a7dcf27434534340dbe0bea73f4e0cbda5b5466e51213c627350cdf26db6c680fe3d98730103fbc176b4248d36befb8d8124"]`; ключи других библиотек — `get_libraries`.
 
 ## Чтение metadata → карта variants
 
@@ -79,7 +115,18 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 - Variant-ось boolean (`disabled`, `load`, `selected`, `expanded`, …) → boolean-проп.
 - Variant-ось «слот-композиция» (`labelOnly`/`iconBefore`/`iconOnly`/…) → разворачивается в slot-пропы (`icon`, `iconPosition`, наличие `label`).
 
-**Каждая ось Figma-компонента должна отражаться в VisualMatrix** (см. [stories-standard.md](./stories-standard.md)).
+**Дефолт пропа не выводится из Figma.** Дефолтный вариант сета — просто верхний левый в сетке (не порядок слоёв и не порядок значений в селекторе), дизайнер его специально не выбирает. Дефолт берётся из легаси или решения по API; если он расходится с Figma — строка в «Зафиксированных решениях» плана.
+
+### Оси Figma без пропа
+
+Не каждая variant-ось становится пропом. Эти оси в API **не** переносятся:
+
+- `state` (`default`/`hovered`/`pressed`) и `focused` — клиентские состояния: hover/press через `stateLayer` (миксин `has-state-layer-as-child` из `@design-system/materials`), фокус через `:focus-visible` (см. [figma-to-code.md](./figma-to-code.md)). В VisualMatrix не попадают — их снимает `interaction-states.png` (см. [visual-regression-standard.md](./visual-regression-standard.md)).
+- `mobile` (boolean) — отдельная поверхность или mobile-дефолты, реализуется через `@ds/adaptive` (surface-swap / preset-defaults, см. [adaptive-components.md](./adaptive-components.md)). Раскладку компонент читает из контекста, пропа нет.
+- Ось из одного значения (`disabled=[false]`, `state=[default]`) — пропа нет, это остаток сборки мастера.
+- Сеты, распиленные по размеру (`tabsHorizontalM` / `tabsHorizontalL`, `counterXs` / `counterS`), — одна ось `size`, значения берутся из суффикса имени сета.
+
+**Каждая остальная ось Figma-компонента должна отражаться в VisualMatrix** (см. [stories-standard.md](./stories-standard.md)).
 
 ## Figma-typo-мост
 
@@ -89,9 +136,9 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 - В `constants.ts` рядом со значением оставляем комментарий вида `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
 - В Code Connect mapping (когда подключим) — явно мапим опечатку в корректное значение.
 
-## Размеры → E2E assertion
+## Размеры
 
-Если Figma фиксирует размеры контейнера по оси (например, height по `size`) — **добавляй тест** в E2E `Dimensions` блок (см. [e2e-testing-standard.md](./e2e-testing-standard.md)).
+Фиксированные размеры контейнера из Figma (например, height по `size`) проверяются визуально — baseline'ом VisualMatrix. Отдельный `Dimensions`-блок / `dimensions.spec.ts` не заводится (см. [e2e-testing-standard.md](./e2e-testing-standard.md)).
 
 ## Embed URLs
 
@@ -102,11 +149,11 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 
 ## Workflow «Figma → пакет»
 
-1. Открыть Figma Desktop, выделить Frame/page компонента.
-2. Получить `nodeId` из URL (параметр `?node-id=<id>`).
+1. Взять ссылку на Frame/page компонента.
+2. Получить `fileKey` и `nodeId` из URL (параметр `?node-id=<id>`).
 3. Добавить ключ в `FIGMA_NODES` в `apps/docs/src/lib/figma.ts`. Для multi-component пакета — объект с `_` (root) и sub-ключами.
-4. Вызвать `mcp__figma-remote-mcp__get_metadata` для узла → построить карту axes.
-5. Если нужны padding/gap/цвета — вызвать `get_variable_defs` и `get_design_context` (требуют выделения).
+4. Вызвать `get_metadata` для узла → построить карту axes.
+5. Если нужны padding/gap/цвета — вызвать `get_variable_defs` и `get_design_context` по тому же `nodeId`.
 6. Обновить `styles.module.scss` компонента, если токены расходятся.
 7. Добавить `<FigmaEmbed node={figmaNode(...)} />` в `docs/<file>.mdx`.
 
