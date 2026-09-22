@@ -1,7 +1,7 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 // Ширина дорожки = ширина шевронной колонки; прокидывается через --tree-line-width от [data-size].
-$line-width: var(--tree-line-width, #{base.$sn-density-size-icon-s});
+$line-width: var(--tree-line-width, #{base.$sn-density-icon-s});
 
 .treeLine {
   pointer-events: none;

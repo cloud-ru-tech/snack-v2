@@ -36,8 +36,8 @@ $icon-colors: (
   align-items: center;
   justify-content: center;
 
-  width: base.$sn-density-size-icon-s;
-  height: base.$sn-density-size-icon-s;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
 
   > svg {
     width: 100%;
@@ -57,8 +57,8 @@ $icon-colors: (
   align-items: center;
   justify-content: center;
 
-  width: base.$sn-density-size-icon-s;
-  height: base.$sn-density-size-icon-s;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
 }
 
 .label {

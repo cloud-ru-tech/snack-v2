@@ -1,7 +1,7 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { NoAccess, NoAccessProps } from '../../src';
 import styles from './styles.module.scss';
@@ -34,11 +34,11 @@ export const VisualMatrix: Story = {
         rows={adaptiveLayouts.map(({ layoutType, label, cellClass }) => ({
           variantLabel: label,
           cells: [undefined, 'Название сервиса'].map(serviceName => (
-            <AdaptiveProvider key={`${label}-${serviceName ?? 'none'}`} layoutType={layoutType}>
+            <LayoutScope key={`${label}-${serviceName ?? 'none'}`} layoutType={layoutType}>
               <div className={cellClass}>
                 <NoAccess serviceName={serviceName} />
               </div>
-            </AdaptiveProvider>
+            </LayoutScope>
           )),
         }))}
       />

@@ -197,7 +197,7 @@ $sizes: ('s', 'm', 'l');
   left: 0;
 
   width: 100%;
-  height: calc(50% - var(--tree-chevron-size, #{base.$sn-density-size-icon-s}) / 2);
+  height: calc(50% - var(--tree-chevron-size, #{base.$sn-density-icon-s}) / 2);
 }
 
 .treeNodeLink {
@@ -208,14 +208,14 @@ $sizes: ('s', 'm', 'l');
 }
 
 $icon-size-by-size: (
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
-  'l': base.$sn-density-size-icon-s,
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
+  'l': base.$sn-density-icon-s,
 );
 
 @each $size in $sizes {
   .treeNode[data-size='#{$size}'] {
-    $centered-width: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'centeredWrapper', 'width');
+    $centered-width: base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'toggleButton', 'max-width');
     $centered-padding-top: base.simple-var(
       tree.$tree,
       'anatomy',

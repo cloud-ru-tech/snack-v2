@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { PriceSummary } from '@ds/uikit-product-price-summary';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { DEFAULT_DISCOUNT, DEFAULT_INVOICE, PLAYGROUND_DEFAULT_ARGS } from './constants';
 import { PriceSummaryFigmaSurface, PriceSummaryStory } from './PriceSummaryStory';
@@ -36,18 +36,18 @@ export const VisualMatrix: Story = {
             variantLabel: 'false',
             cells: [
               <div key='d' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
               <div key='m' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -55,18 +55,18 @@ export const VisualMatrix: Story = {
             variantLabel: 'true',
             cells: [
               <div key='d' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} loading />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
               <div key='m' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} loading />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -82,11 +82,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'with discount + invoice',
             cells: [
               <div key='full' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} discount={DEFAULT_DISCOUNT} invoice={DEFAULT_INVOICE} />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -94,11 +94,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'dataError',
             cells: [
               <div key='err' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory {...baseProps} dataError onRetry={() => undefined} />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -106,7 +106,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'hint + valueDelta',
             cells: [
               <div key='hint' className={styles.column}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PriceSummaryFigmaSurface>
                     <PriceSummaryStory
                       {...baseProps}
@@ -120,7 +120,7 @@ export const VisualMatrix: Story = {
                       valueDelta={{ type: 'increased', value: 500 }}
                     />
                   </PriceSummaryFigmaSurface>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },

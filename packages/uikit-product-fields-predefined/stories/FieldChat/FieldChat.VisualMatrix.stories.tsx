@@ -1,8 +1,7 @@
-import { AdaptiveProvider } from '@ds/adaptive';
 import { FieldChat } from '@ds/uikit-product-fields-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -33,17 +32,17 @@ export const VisualMatrix: Story = {
           rows={layoutTypes.map(layoutType => ({
             variantLabel: layoutType,
             cells: [
-              <AdaptiveProvider key={`${layoutType}-empty`} layoutType={layoutType}>
+              <LayoutScope key={`${layoutType}-empty`} layoutType={layoutType}>
                 <div className={styles.cell}>
                   <FieldChat handleSubmit={noop} attachment={{ onFilesUpload: noop, onFileDelete: noop }} />
                 </div>
-              </AdaptiveProvider>,
-              <AdaptiveProvider key={`${layoutType}-filled`} layoutType={layoutType}>
+              </LayoutScope>,
+              <LayoutScope key={`${layoutType}-filled`} layoutType={layoutType}>
                 <div className={styles.cell}>
                   <FieldChat value='Привет, как продвигается задача?' handleSubmit={noop} />
                 </div>
-              </AdaptiveProvider>,
-              <AdaptiveProvider key={`${layoutType}-files`} layoutType={layoutType}>
+              </LayoutScope>,
+              <LayoutScope key={`${layoutType}-files`} layoutType={layoutType}>
                 <div className={styles.cell}>
                   <FieldChat
                     value='Прикладываю отчёт'
@@ -51,12 +50,12 @@ export const VisualMatrix: Story = {
                     attachment={{ files, onFilesUpload: noop, onFileDelete: noop }}
                   />
                 </div>
-              </AdaptiveProvider>,
-              <AdaptiveProvider key={`${layoutType}-disabled`} layoutType={layoutType}>
+              </LayoutScope>,
+              <LayoutScope key={`${layoutType}-disabled`} layoutType={layoutType}>
                 <div className={styles.cell}>
                   <FieldChat value='Недоступно' disabled handleSubmit={noop} />
                 </div>
-              </AdaptiveProvider>,
+              </LayoutScope>,
             ],
           }))}
         />

@@ -36,11 +36,11 @@
 
   svg {
     flex: 0 0 auto;
-    stroke-width: md.$sn-density-size-icon-strokeWeight-s;
+    stroke-width: md.$sn-density-icon-strokeWeight-s;
 
     &:not(.chevron) {
-      width: md.$sn-density-size-icon-s;
-      height: md.$sn-density-size-icon-s;
+      width: md.$sn-density-icon-s;
+      height: md.$sn-density-icon-s;
     }
   }
 

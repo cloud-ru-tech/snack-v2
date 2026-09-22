@@ -24,9 +24,9 @@ $typography: (
 
 // В макете слот иконки — 16 / 24 / 24 по размерам сегмента.
 $icon-size-by-size: (
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
-  'l': base.$sn-density-size-icon-s,
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
+  'l': base.$sn-density-icon-s,
 );
 
 .icon {

@@ -116,7 +116,7 @@ $level: var(--level, 0);
       }
 
       // Раскладка повторяет мастер listItemGroup: root → contentWrapper → textWrapper →
-      // textContent → headline. Вертикальные поля несёт textWrapper, горизонтальные — textContent.
+      // textContent → headline. Вертикальные поля несёт contentWrapper, горизонтальные — textContent.
       .textWrapper {
         gap: $itemGap;
         padding-top: base.simple-var(
@@ -126,7 +126,6 @@ $level: var(--level, 0);
           $size,
           'listItem',
           'contentWrapper',
-          'textWrapper',
           'padding-top'
         );
         padding-bottom: base.simple-var(
@@ -136,7 +135,6 @@ $level: var(--level, 0);
           $size,
           'listItem',
           'contentWrapper',
-          'textWrapper',
           'padding-bottom'
         );
       }

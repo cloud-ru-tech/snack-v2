@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonGroup } from '@ds/button';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { EmptyBlock, EmptyBlockProps } from '../../src';
 import styles from './styles.module.scss';
@@ -38,7 +38,7 @@ export const VisualMatrix: Story = {
         rows={adaptiveLayouts.map(({ layoutType, label, cellClass }) => ({
           variantLabel: label,
           cells: [false, true].map(withFooter => (
-            <AdaptiveProvider key={`${label}-${withFooter}`} layoutType={layoutType}>
+            <LayoutScope key={`${label}-${withFooter}`} layoutType={layoutType}>
               <div className={cellClass}>
                 <EmptyBlock
                   title='Title text'
@@ -47,7 +47,7 @@ export const VisualMatrix: Story = {
                   footer={withFooter ? footer : undefined}
                 />
               </div>
-            </AdaptiveProvider>
+            </LayoutScope>
           )),
         }))}
       />

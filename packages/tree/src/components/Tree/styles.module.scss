@@ -15,7 +15,7 @@ $sizes: ('s', 'm', 'l');
   // --tree-line-width на корне: trunk и L-bend должны совпасть с центром шеврона.
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      --tree-line-width: #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'centeredWrapper', 'width')};
+      --tree-line-width: #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'toggleButton', 'max-width')};
       --tree-item-gap: #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'gap')};
     }
   }

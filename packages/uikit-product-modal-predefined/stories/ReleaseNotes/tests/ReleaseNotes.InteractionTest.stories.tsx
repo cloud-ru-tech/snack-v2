@@ -1,11 +1,18 @@
-import { withLayoutType } from '@ds/adaptive';
-import { ReleaseNotes, TEST_IDS } from '@ds/uikit-product-modal-predefined';
+import { ReleaseNotes, ReleaseNotesProps, TEST_IDS } from '@ds/uikit-product-modal-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+import { LayoutScope } from '#storybook/components';
+
 import { RELEASE_NOTES_ITEMS } from '../../mockData';
 
-const MobileReleaseNotes = withLayoutType(ReleaseNotes, 'mobile');
+function MobileReleaseNotes(props: ReleaseNotesProps) {
+  return (
+    <LayoutScope layoutType='mobile'>
+      <ReleaseNotes {...props} />
+    </LayoutScope>
+  );
+}
 
 const onSlideChange = fn();
 const onReadLaterClick = fn();

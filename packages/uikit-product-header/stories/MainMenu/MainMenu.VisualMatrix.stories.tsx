@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { ViewTileSVG } from '@ds/icons/interface/product';
 import { MainMenu } from '@ds/uikit-product-header';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { MAIN_MENU_SIDEBAR_ITEMS, SERVICE_GROUPS } from '../demoData';
 import styles from './styles.module.scss';
@@ -48,11 +48,11 @@ export const VisualMatrix: Story = {
       rows={layouts.map(({ layoutType, label }) => ({
         variantLabel: label,
         cells: [false, true].map(disabled => (
-          <AdaptiveProvider key={`${label}-${disabled}`} layoutType={layoutType}>
+          <LayoutScope key={`${label}-${disabled}`} layoutType={layoutType}>
             <div className={styles.cell}>
               <MainMenu open={false} disabled={disabled} segments={SEGMENTS} settingItems={MAIN_MENU_SIDEBAR_ITEMS} />
             </div>
-          </AdaptiveProvider>
+          </LayoutScope>
         )),
       }))}
     />

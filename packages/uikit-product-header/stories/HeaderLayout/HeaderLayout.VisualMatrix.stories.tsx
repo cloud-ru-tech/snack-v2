@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { HeaderLayout } from '@ds/uikit-product-header';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { Breadcrumbs, Logo, Menu, ProjectSelect, Toolbar } from '../PlugElement';
 import { TEST_IDS } from '../testIds';
@@ -34,7 +34,7 @@ export const VisualMatrix: Story = {
       rows={layouts.map(({ layoutType, label }) => ({
         variantLabel: label,
         cells: [
-          <AdaptiveProvider key={label} layoutType={layoutType}>
+          <LayoutScope key={label} layoutType={layoutType}>
             <div className={styles.cell}>
               <HeaderLayout
                 data-test-id={TEST_IDS.headerLayout.root}
@@ -45,7 +45,7 @@ export const VisualMatrix: Story = {
                 toolbar={<Toolbar />}
               />
             </div>
-          </AdaptiveProvider>,
+          </LayoutScope>,
         ],
       }))}
     />

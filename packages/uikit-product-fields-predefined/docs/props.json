@@ -201,11 +201,13 @@
         ]
       },
       "layoutPresets": {
-        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "type": "Partial<Record<LayoutType, Partial<FieldTextAreaLayoutDefaults>>>",
         "required": false,
-        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвуют `autoFocus` (на mobile выключен —\nоткрывает клавиатуру без действия) и `resizable` (на mobile выключен, `FIELD_TEXT_AREA_LAYOUT_PRESETS`).\nВернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true, resizable: true } }}`.",
         "typeRefs": [
-          "FieldLayoutPresets"
+          "FieldTextAreaLayoutDefaults",
+          "FieldTextAreaResizableDefaults",
+          "LayoutPresets"
         ]
       },
       "length": {
@@ -255,7 +257,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "false",
-        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`."
+        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`.\nНа mobile по умолчанию выключено (`FIELD_TEXT_AREA_LAYOUT_PRESETS`)."
       },
       "showClearButton": {
         "type": "boolean",
@@ -401,28 +403,6 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
-      "FieldLayoutPresets": {
-        "kind": "interface",
-        "props": {
-          "desktop": {
-            "type": "any",
-            "required": false
-          },
-          "desktopSmall": {
-            "type": "any",
-            "required": false
-          },
-          "mobile": {
-            "type": "any",
-            "required": false
-          },
-          "tablet": {
-            "type": "any",
-            "required": false
-          }
-        },
-        "own": false
-      },
       "FieldLength": {
         "kind": "interface",
         "props": {
@@ -435,6 +415,30 @@
             "type": "number | undefined",
             "required": false,
             "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "autoFocus": {
+            "type": "boolean",
+            "required": true
+          },
+          "resizable": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaResizableDefaults": {
+        "kind": "interface",
+        "props": {
+          "resizable": {
+            "type": "boolean",
+            "required": true
           }
         },
         "own": false
@@ -573,6 +577,28 @@
             "typeRefs": [
               "Size (@ds/icon-predefined)"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -1045,11 +1071,13 @@
         ]
       },
       "layoutPresets": {
-        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "type": "Partial<Record<LayoutType, Partial<FieldTextAreaLayoutDefaults>>>",
         "required": false,
-        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвуют `autoFocus` (на mobile выключен —\nоткрывает клавиатуру без действия) и `resizable` (на mobile выключен, `FIELD_TEXT_AREA_LAYOUT_PRESETS`).\nВернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true, resizable: true } }}`.",
         "typeRefs": [
-          "FieldLayoutPresets"
+          "FieldTextAreaLayoutDefaults",
+          "FieldTextAreaResizableDefaults",
+          "LayoutPresets"
         ]
       },
       "length": {
@@ -1123,7 +1151,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`."
+        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`.\nНа mobile по умолчанию выключено (`FIELD_TEXT_AREA_LAYOUT_PRESETS`)."
       },
       "showClearButton": {
         "type": "boolean",
@@ -1193,7 +1221,47 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
-      "FieldLayoutPresets": {
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "autoFocus": {
+            "type": "boolean",
+            "required": true
+          },
+          "resizable": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaResizableDefaults": {
+        "kind": "interface",
+        "props": {
+          "resizable": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
         "kind": "interface",
         "props": {
           "desktop": {
@@ -1211,22 +1279,6 @@
           "tablet": {
             "type": "any",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "FieldLength": {
-        "kind": "interface",
-        "props": {
-          "current": {
-            "type": "number",
-            "required": true,
-            "description": "Текущая длина текста"
-          },
-          "max": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Максимально допустимая длина"
           }
         },
         "own": false
@@ -1537,11 +1589,13 @@
         ]
       },
       "layoutPresets": {
-        "type": "Partial<Record<LayoutType, Partial<{ autoFocus: boolean; }>>>",
+        "type": "Partial<Record<LayoutType, Partial<FieldTextAreaLayoutDefaults>>>",
         "required": false,
-        "description": "Переопределение адаптивных дефолтов по раскладке. Участвует `autoFocus`: на mobile он выключен\n(открывает клавиатуру без действия). Вернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true } }}`.",
+        "description": "Переопределение адаптивных дефолтов по раскладке. Участвуют `autoFocus` (на mobile выключен —\nоткрывает клавиатуру без действия) и `resizable` (на mobile выключен, `FIELD_TEXT_AREA_LAYOUT_PRESETS`).\nВернуть на mobile — `layoutPresets={{ mobile: { autoFocus: true, resizable: true } }}`.",
         "typeRefs": [
-          "FieldLayoutPresets"
+          "FieldTextAreaLayoutDefaults",
+          "FieldTextAreaResizableDefaults",
+          "LayoutPresets"
         ]
       },
       "length": {
@@ -1610,7 +1664,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`."
+        "description": "Можно ли менять высоту мышкой за нижний угол. Игнорируется при `disabled` или `readonly`.\nНа mobile по умолчанию выключено (`FIELD_TEXT_AREA_LAYOUT_PRESETS`)."
       },
       "showClearButton": {
         "type": "boolean",
@@ -1680,7 +1734,47 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
-      "FieldLayoutPresets": {
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "autoFocus": {
+            "type": "boolean",
+            "required": true
+          },
+          "resizable": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": false
+      },
+      "FieldTextAreaResizableDefaults": {
+        "kind": "interface",
+        "props": {
+          "resizable": {
+            "type": "boolean",
+            "required": true
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
         "kind": "interface",
         "props": {
           "desktop": {
@@ -1698,22 +1792,6 @@
           "tablet": {
             "type": "any",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "FieldLength": {
-        "kind": "interface",
-        "props": {
-          "current": {
-            "type": "number",
-            "required": true,
-            "description": "Текущая длина текста"
-          },
-          "max": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Максимально допустимая длина"
           }
         },
         "own": false

@@ -1,9 +1,9 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
+import { DemoActions, DemoPage, DemoPanel, LayoutScope } from '#storybook/components';
 
 import { TEST_IDS } from '../../../src/constants';
 import styles from '../styles.module.scss';
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof ButtonDropdown>;
 export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+    <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
       <DemoPage>
         <DemoPanel>
           <DemoActions align='center'>
@@ -39,7 +39,7 @@ export const InteractionTest: Story = {
           </DemoActions>
         </DemoPanel>
       </DemoPage>
-    </AdaptiveProvider>
+    </LayoutScope>
   ),
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
@@ -60,7 +60,7 @@ export const InteractionTest: Story = {
 export const MobileInteractionTest: Story = {
   tags: ['test', 'dev'],
   render: () => (
-    <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+    <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
       <DemoPage>
         <DemoPanel>
           <DemoActions align='center'>
@@ -79,7 +79,7 @@ export const MobileInteractionTest: Story = {
           </DemoActions>
         </DemoPanel>
       </DemoPage>
-    </AdaptiveProvider>
+    </LayoutScope>
   ),
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);

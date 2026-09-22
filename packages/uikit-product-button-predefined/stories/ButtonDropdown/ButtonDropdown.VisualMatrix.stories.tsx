@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { ButtonDropdown } from '@ds/uikit-product-button-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -33,9 +33,9 @@ export const VisualMatrix: Story = {
         rows={sizes.map(size => ({
           variantLabel: size,
           cells: [
-            <AdaptiveProvider key={`d-${size}-closed`} layoutType={LAYOUT_TYPE.Desktop}>
+            <LayoutScope key={`d-${size}-closed`} layoutType={LAYOUT_TYPE.Desktop}>
               <ButtonDropdown label='Period' size={size} items={items} />
-            </AdaptiveProvider>,
+            </LayoutScope>,
           ],
         }))}
       />
@@ -50,9 +50,9 @@ export const VisualMatrix: Story = {
           {
             variantLabel: 's',
             cells: [
-              <AdaptiveProvider key='m-closed' layoutType={LAYOUT_TYPE.Mobile}>
+              <LayoutScope key='m-closed' layoutType={LAYOUT_TYPE.Mobile}>
                 <ButtonDropdown label='Period' size='s' items={items} />
-              </AdaptiveProvider>,
+              </LayoutScope>,
             ],
           },
         ]}

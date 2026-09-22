@@ -1,10 +1,10 @@
-import { AdaptiveProvider, LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
+import { LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
 import { WIDTH } from '@ds/segment-control';
 import { BUTTON_TYPE, Widget, WIDGET_STATE, WidgetState } from '@ds/uikit-product-widget';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -90,12 +90,12 @@ export const VisualMatrix: Story = {
         rows={layoutTypes.map(layoutType => ({
           variantLabel: layoutType,
           cells: [
-            <AdaptiveProvider key={`${layoutType}-narrow`} layoutType={layoutType}>
+            <LayoutScope key={`${layoutType}-narrow`} layoutType={layoutType}>
               {renderWidget(WIDGET_STATE.Default, false)}
-            </AdaptiveProvider>,
-            <AdaptiveProvider key={`${layoutType}-wide`} layoutType={layoutType}>
+            </LayoutScope>,
+            <LayoutScope key={`${layoutType}-wide`} layoutType={layoutType}>
               {renderWidget(WIDGET_STATE.Default, true)}
-            </AdaptiveProvider>,
+            </LayoutScope>,
           ],
         }))}
       />

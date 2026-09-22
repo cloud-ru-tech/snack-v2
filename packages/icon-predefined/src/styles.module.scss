@@ -7,11 +7,11 @@ $shapes: 'rounded', 'squared';
 
 // Размер глифа внутри контейнера — по макету: s→16, m/l→24, 3xl→32, 5xl→40.
 $glyphSizes: (
-  's': base.$sn-density-size-icon-xs,
-  'm': base.$sn-density-size-icon-s,
-  'l': base.$sn-density-size-icon-s,
-  '3xl': base.$sn-density-size-icon-m,
-  '5xl': base.$sn-density-size-icon-l,
+  's': base.$sn-density-icon-xs,
+  'm': base.$sn-density-icon-s,
+  'l': base.$sn-density-icon-s,
+  '3xl': base.$sn-density-icon-m,
+  '5xl': base.$sn-density-icon-l,
 );
 
 .decor {

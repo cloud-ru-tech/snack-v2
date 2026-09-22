@@ -23,7 +23,7 @@ export type LogoProps = WithSupportProps<{
 
 export function Logo({ path, loading, mode, href, onClick, className, tooltip, ...rest }: LogoProps) {
   const [error, setError] = useState<boolean>(false);
-  const brandCThemeClassName = useThemeClassnames({ brand: 'brandC' });
+  const logoThemeClassName = useThemeClassnames({ brand: 'hrGreen' });
 
   useEffect(() => {
     setError(false);
@@ -49,8 +49,8 @@ export function Logo({ path, loading, mode, href, onClick, className, tooltip, .
     return (
       <span className={styles.logoWrap}>
         <span className={styles.iconStack}>
-          <CloudLogo size={24} className={cn(styles.icon, brandCThemeClassName, styles.iconDefault)} />
-          <HomeFilledSVG size={24} className={cn(styles.icon, brandCThemeClassName, styles.iconHover)} />
+          <CloudLogo size={24} className={cn(styles.icon, logoThemeClassName, styles.iconDefault)} />
+          <HomeFilledSVG size={24} className={cn(styles.icon, logoThemeClassName, styles.iconHover)} />
         </span>
 
         {mode && mode !== HEADER_LOGO_MODE.Prod && (
@@ -58,7 +58,7 @@ export function Logo({ path, loading, mode, href, onClick, className, tooltip, .
         )}
       </span>
     );
-  }, [error, mode, path, brandCThemeClassName]);
+  }, [error, mode, path, logoThemeClassName]);
 
   return (
     <HeaderButton

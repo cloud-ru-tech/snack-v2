@@ -10,9 +10,9 @@ const FIXER_OPTION: FixerOptions = {
   throwIfDestinationDoesNotExist: false,
 };
 
-const STROKE_WEIGHT_VAR = 'var(--sn-density-size-icon-strokeWeight-s)';
+const STROKE_WEIGHT_VAR = 'var(--sn-density-icon-strokeWeight-s)';
 
-/** Заменяет хардкод fill/stroke на currentColor; stroke-width 1.5(px) — на --sn-density-size-icon-strokeWeight-s. Сохраняет fill="none" и stroke="none". */
+/** Заменяет хардкод fill/stroke на currentColor; stroke-width 1.5(px) — на --sn-density-icon-strokeWeight-s. Сохраняет fill="none" и stroke="none". */
 function normalizeSvgColors(svgContent: string): string {
   return svgContent
     .replace(/\bfill=(["'])(?!none|currentColor|inherit)([^"']*)\1/g, 'fill="currentColor"')

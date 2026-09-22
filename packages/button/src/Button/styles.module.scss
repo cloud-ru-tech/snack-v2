@@ -162,8 +162,8 @@ $label-typo: (
   .icon,
   .label {
     > svg {
-      max-width: base.$sn-density-size-icon-s;
-      max-height: base.$sn-density-size-icon-s;
+      max-width: base.$sn-density-icon-s;
+      max-height: base.$sn-density-icon-s;
     }
   }
 }
@@ -172,8 +172,8 @@ $label-typo: (
   .icon,
   .label {
     > svg {
-      max-width: base.$sn-density-size-icon-xs;
-      max-height: base.$sn-density-size-icon-xs;
+      max-width: base.$sn-density-icon-xs;
+      max-height: base.$sn-density-icon-xs;
     }
   }
 }

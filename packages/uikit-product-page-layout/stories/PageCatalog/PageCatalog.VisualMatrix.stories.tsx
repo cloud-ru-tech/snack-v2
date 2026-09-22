@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { PageCatalog } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { CatalogCards, PAGE_ACTIONS } from '../demoData';
 import styles from '../styles.module.scss';
@@ -32,11 +32,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'desktop',
             cells: [
               <div key='d' className={styles.deviceDesktop}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageCatalog title='Каталог сервисов' actions={PAGE_ACTIONS} data-test-id={TEST_IDS.pageCatalog.root}>
                     {content}
                   </PageCatalog>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -44,11 +44,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'mobile',
             cells: [
               <div key='m' className={styles.deviceMobile}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PageCatalog title='Каталог сервисов' actions={PAGE_ACTIONS} maxVisibleActionsItems={1}>
                     {content}
                   </PageCatalog>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },

@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { PageServices } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import {
   RUNNING_STATUS,
@@ -42,7 +42,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'with',
             cells: [
               <div key='d' className={styles.deviceDesktop}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageServices
                     title='vm-0c7afd'
                     slotAfterTitle={RUNNING_STATUS}
@@ -53,7 +53,7 @@ export const VisualMatrix: Story = {
                   >
                     <ServiceInfoContent />
                   </PageServices>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -61,11 +61,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'without',
             cells: [
               <div key='d' className={styles.deviceDesktop}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageServices title='vm-0c7afd' slotAfterTitle={RUNNING_STATUS} actions={SERVICE_ACTIONS} autoHeight>
                     <ServiceInfoContent />
                   </PageServices>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -81,7 +81,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'with',
             cells: [
               <div key='m' className={styles.deviceMobile}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PageServices
                     title='vm-0c7afd'
                     slotAfterTitle={RUNNING_STATUS}
@@ -92,7 +92,7 @@ export const VisualMatrix: Story = {
                   >
                     <ServiceInfoContent />
                   </PageServices>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -100,7 +100,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'without',
             cells: [
               <div key='m' className={styles.deviceMobile}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PageServices
                     title='vm-0c7afd'
                     slotAfterTitle={RUNNING_STATUS}
@@ -110,7 +110,7 @@ export const VisualMatrix: Story = {
                   >
                     <ServiceInfoContent />
                   </PageServices>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },

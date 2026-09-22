@@ -1,10 +1,10 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { Stepper } from '@ds/stepper';
 import { PageForm } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { FormFields, FormHelp, FormSections, PriceBreakdown } from '../demoData';
 import styles from '../styles.module.scss';
@@ -46,7 +46,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'with side items',
             cells: [
               <div key='adv' className={styles.deviceForm}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageForm
                     title='Создание инстанса'
                     subtitle='Заполните параметры конфигурации'
@@ -57,7 +57,7 @@ export const VisualMatrix: Story = {
                   >
                     <FormSections />
                   </PageForm>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -66,7 +66,7 @@ export const VisualMatrix: Story = {
             cells: [
               // Фрейм со своим скроллом: только в нём футер прилипает и показывает разделитель.
               <div key='sticky' className={styles.deviceFormScroll}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageForm
                     title='Создание инстанса'
                     subtitle='Заполните параметры конфигурации'
@@ -76,7 +76,7 @@ export const VisualMatrix: Story = {
                   >
                     <FormSections />
                   </PageForm>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -84,7 +84,7 @@ export const VisualMatrix: Story = {
             variantLabel: 'plain form',
             cells: [
               <div key='reg' className={styles.deviceForm}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Desktop}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
                   <PageForm
                     title='Создание инстанса'
                     subtitle='Заполните параметры конфигурации'
@@ -93,7 +93,7 @@ export const VisualMatrix: Story = {
                   >
                     <FormSections />
                   </PageForm>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },
@@ -109,11 +109,11 @@ export const VisualMatrix: Story = {
             variantLabel: 'mobile',
             cells: [
               <div key='m' className={styles.deviceMobile}>
-                <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
                   <PageForm title='Создание инстанса' priceSummary={priceSummary} footer={footer}>
                     <FormFields />
                   </PageForm>
-                </AdaptiveProvider>
+                </LayoutScope>
               </div>,
             ],
           },

@@ -60,8 +60,8 @@ $description-size-map: (
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-top');
-      padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'padding-bottom');
+      padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'padding-top');
+      padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'padding-bottom');
 
       .textContent {
         // textContent.gap — вертикальный зазор headline ↔ description. s/m = 0, l = 2.

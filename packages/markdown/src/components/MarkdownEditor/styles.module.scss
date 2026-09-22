@@ -5,13 +5,13 @@
 @use '../../mixins' as mx;
 
 // Внутренние отступы контента поверх паддинга fieldContainer (его задаёт FieldShell):
-// повторяют contentWrapper.verticalPadding + inputLine.horizontalPadding из field-токенов.
+// повторяют contentWrapper.verticalPadding + inputWrapper.paddingRight из field-токенов.
 $content-padding-vertical: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding;
 $content-padding-horizontal: field.$sn-field-anatomy-size-m-fieldContainer-paddingRight;
 $min-height: field.$sn-field-anatomy-size-m-fieldContainer-multiLine-minHeight;
 $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 's', 'width');
-$button-slot: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight;
-$input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding;
+$button-slot: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-height;
+$input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputWrapper-paddingRight;
 
 .root {
   display: flex;
@@ -93,8 +93,8 @@ $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrappe
 }
 
 .postfix {
-  $square: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-maxHeight;
-  $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputLine-horizontalPadding;
+  $square: field.$sn-field-anatomy-size-m-fieldContainer-centeredWrapper-height;
+  $input-line-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-inputWrapper-paddingRight;
   $line-height: base.$sn-regular-body-m-lineHeight;
   $vertical-padding: field.$sn-field-anatomy-size-m-fieldContainer-contentWrapper-verticalPadding;
 

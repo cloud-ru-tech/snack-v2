@@ -1,8 +1,8 @@
-import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { UserMenu } from '@ds/uikit-product-header';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { SETTING_ITEMS } from '../demoData';
 import styles from './styles.module.scss';
@@ -33,7 +33,7 @@ export const VisualMatrix: Story = {
       rows={layouts.map(({ layoutType, label }) => ({
         variantLabel: label,
         cells: [
-          <AdaptiveProvider key={label} layoutType={layoutType}>
+          <LayoutScope key={label} layoutType={layoutType}>
             <div className={styles.cell}>
               <UserMenu
                 profile={{ fullName: 'Ivan Petrov', email: 'ipetrov@cloud.ru' }}
@@ -41,7 +41,7 @@ export const VisualMatrix: Story = {
                 settingItems={SETTING_ITEMS}
               />
             </div>
-          </AdaptiveProvider>,
+          </LayoutScope>,
         ],
       }))}
     />
