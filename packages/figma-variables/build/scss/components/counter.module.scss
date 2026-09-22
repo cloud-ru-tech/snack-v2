@@ -5,18 +5,28 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
+$sn-counter-anatomy-size-xs-symbol-fontFamily: var(--sn-counter-anatomy-size-xs-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-counter-anatomy-size-xs-symbol-fontSize: var(--sn-counter-anatomy-size-xs-symbol-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-counter-anatomy-size-xs-symbol-lineHeight: var(--sn-counter-anatomy-size-xs-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-counter-anatomy-size-xs-symbol-fontWeight: var(--sn-counter-anatomy-size-xs-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-counter-anatomy-size-xs-symbol-letterSpacing: var(--sn-counter-anatomy-size-xs-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-counter-anatomy-size-xs-minHeight: var(--sn-counter-anatomy-size-xs-minHeight, #{st.$sn-primitive-dimension-16});
 $sn-counter-anatomy-size-xs-minWidth: var(--sn-counter-anatomy-size-xs-minWidth, #{st.$sn-primitive-dimension-16});
 $sn-counter-anatomy-size-xs-container-padding: var(--sn-counter-anatomy-size-xs-container-padding, #{st.$sn-primitive-dimension-2});
-$sn-counter-anatomy-size-xs-container-minHeight: var(--sn-counter-anatomy-size-xs-container-minHeight, #{st.$sn-density-typography-roleLabel-lineHeightS});
-$sn-counter-anatomy-size-xs-container-minWidth: var(--sn-counter-anatomy-size-xs-container-minWidth, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-counter-anatomy-size-xs-container-minHeight: var(--sn-counter-anatomy-size-xs-container-minHeight, #{$sn-counter-anatomy-size-xs-symbol-lineHeight});
+$sn-counter-anatomy-size-xs-container-minWidth: var(--sn-counter-anatomy-size-xs-container-minWidth, #{$sn-counter-anatomy-size-xs-symbol-lineHeight});
 $sn-counter-anatomy-size-xs-container-borderRadius: var(--sn-counter-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-counter-xs});
 $sn-counter-anatomy-size-xs-container-borderWidth: var(--sn-counter-anatomy-size-xs-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-counter-anatomy-size-s-symbol-fontFamily: var(--sn-counter-anatomy-size-s-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-counter-anatomy-size-s-symbol-fontSize: var(--sn-counter-anatomy-size-s-symbol-fontSize, #{st.$sn-primitive-font-fontSize-14});
+$sn-counter-anatomy-size-s-symbol-lineHeight: var(--sn-counter-anatomy-size-s-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-20});
+$sn-counter-anatomy-size-s-symbol-fontWeight: var(--sn-counter-anatomy-size-s-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-l});
+$sn-counter-anatomy-size-s-symbol-letterSpacing: var(--sn-counter-anatomy-size-s-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-counter-anatomy-size-s-minHeight: var(--sn-counter-anatomy-size-s-minHeight, #{st.$sn-primitive-dimension-24});
 $sn-counter-anatomy-size-s-minWidth: var(--sn-counter-anatomy-size-s-minWidth, #{st.$sn-primitive-dimension-24});
 $sn-counter-anatomy-size-s-container-padding: var(--sn-counter-anatomy-size-s-container-padding, #{st.$sn-primitive-dimension-4});
-$sn-counter-anatomy-size-s-container-minHeight: var(--sn-counter-anatomy-size-s-container-minHeight, #{st.$sn-density-typography-roleLabel-lineHeightL});
-$sn-counter-anatomy-size-s-container-minWidth: var(--sn-counter-anatomy-size-s-container-minWidth, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-counter-anatomy-size-s-container-minHeight: var(--sn-counter-anatomy-size-s-container-minHeight, #{$sn-counter-anatomy-size-s-symbol-lineHeight});
+$sn-counter-anatomy-size-s-container-minWidth: var(--sn-counter-anatomy-size-s-container-minWidth, #{$sn-counter-anatomy-size-s-symbol-lineHeight});
 $sn-counter-anatomy-size-s-container-borderRadius: var(--sn-counter-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-counter-s});
 $sn-counter-anatomy-size-s-container-borderWidth: var(--sn-counter-anatomy-size-s-container-borderWidth, #{st.$sn-primitive-strokeWeight-strokeMedium});
 
@@ -24,6 +34,13 @@ $counter: (
   "anatomy": (
     "size": (
       "xs": (
+        "symbol": (
+          "font-family": $sn-counter-anatomy-size-xs-symbol-fontFamily,
+          "font-size": $sn-counter-anatomy-size-xs-symbol-fontSize,
+          "line-height": $sn-counter-anatomy-size-xs-symbol-lineHeight,
+          "font-weight": $sn-counter-anatomy-size-xs-symbol-fontWeight,
+          "letter-spacing": $sn-counter-anatomy-size-xs-symbol-letterSpacing
+        ),
         "min-height": $sn-counter-anatomy-size-xs-minHeight,
         "min-width": $sn-counter-anatomy-size-xs-minWidth,
         "container": (
@@ -35,6 +52,13 @@ $counter: (
         )
       ),
       "s": (
+        "symbol": (
+          "font-family": $sn-counter-anatomy-size-s-symbol-fontFamily,
+          "font-size": $sn-counter-anatomy-size-s-symbol-fontSize,
+          "line-height": $sn-counter-anatomy-size-s-symbol-lineHeight,
+          "font-weight": $sn-counter-anatomy-size-s-symbol-fontWeight,
+          "letter-spacing": $sn-counter-anatomy-size-s-symbol-letterSpacing
+        ),
         "min-height": $sn-counter-anatomy-size-s-minHeight,
         "min-width": $sn-counter-anatomy-size-s-minWidth,
         "container": (

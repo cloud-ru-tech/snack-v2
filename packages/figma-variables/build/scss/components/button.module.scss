@@ -10,7 +10,7 @@ $sn-button-anatomy-size-s-container-borderRadius: var(--sn-button-anatomy-size-s
 $sn-button-anatomy-size-s-container-minWidth: var(--sn-button-anatomy-size-s-container-minWidth, #{st.$sn-density-size-4xl});
 $sn-button-anatomy-size-s-container-iconOnly-minWidth: var(--sn-button-anatomy-size-s-container-iconOnly-minWidth, #{st.$sn-density-size-s});
 $sn-button-anatomy-size-s-container-borderWidth: var(--sn-button-anatomy-size-s-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
-$sn-button-anatomy-size-s-container-gap: var(--sn-button-anatomy-size-s-container-gap, #{st.$sn-primitive-dimension-2});
+$sn-button-anatomy-size-s-container-gap: var(--sn-button-anatomy-size-s-container-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-button-anatomy-size-s-container-iconBefore-paddingLeft: var(--sn-button-anatomy-size-s-container-iconBefore-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-s-element-paddingHorizontal});
 $sn-button-anatomy-size-s-container-iconBefore-paddingRight: var(--sn-button-anatomy-size-s-container-iconBefore-paddingRight, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
 $sn-button-anatomy-size-s-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-s-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-s-text-paddingHorizontal});
@@ -24,7 +24,7 @@ $sn-button-anatomy-size-m-container-borderRadius: var(--sn-button-anatomy-size-m
 $sn-button-anatomy-size-m-container-minWidth: var(--sn-button-anatomy-size-m-container-minWidth, #{st.$sn-density-size-7xl});
 $sn-button-anatomy-size-m-container-iconOnly-minWidth: var(--sn-button-anatomy-size-m-container-iconOnly-minWidth, #{st.$sn-density-size-m});
 $sn-button-anatomy-size-m-container-borderWidth: var(--sn-button-anatomy-size-m-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
-$sn-button-anatomy-size-m-container-gap: var(--sn-button-anatomy-size-m-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-button-anatomy-size-m-container-gap: var(--sn-button-anatomy-size-m-container-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-button-anatomy-size-m-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-m-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
 $sn-button-anatomy-size-m-container-iconAfter-paddingRight: var(--sn-button-anatomy-size-m-container-iconAfter-paddingRight, #{st.$sn-brand-anatomy-spacing-button-m-element-paddingHorizontal});
 $sn-button-anatomy-size-m-container-labelOnly-paddingLeft: var(--sn-button-anatomy-size-m-container-labelOnly-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-m-text-paddingHorizontal});
@@ -38,7 +38,7 @@ $sn-button-anatomy-size-l-container-borderRadius: var(--sn-button-anatomy-size-l
 $sn-button-anatomy-size-l-container-minWidth: var(--sn-button-anatomy-size-l-container-minWidth, #{st.$sn-density-size-10xl});
 $sn-button-anatomy-size-l-container-iconOnly-minWidth: var(--sn-button-anatomy-size-l-container-iconOnly-minWidth, #{st.$sn-density-size-l});
 $sn-button-anatomy-size-l-container-borderWidth: var(--sn-button-anatomy-size-l-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
-$sn-button-anatomy-size-l-container-gap: var(--sn-button-anatomy-size-l-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-button-anatomy-size-l-container-gap: var(--sn-button-anatomy-size-l-container-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-button-anatomy-size-l-container-iconAfter-paddingLeft: var(--sn-button-anatomy-size-l-container-iconAfter-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});
 $sn-button-anatomy-size-l-container-iconAfter-paddingRight: var(--sn-button-anatomy-size-l-container-iconAfter-paddingRight, #{st.$sn-brand-anatomy-spacing-button-l-element-paddingHorizontal});
 $sn-button-anatomy-size-l-container-labelOnly-paddingLeft: var(--sn-button-anatomy-size-l-container-labelOnly-paddingLeft, #{st.$sn-brand-anatomy-spacing-button-l-text-paddingHorizontal});

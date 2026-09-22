@@ -6,10 +6,10 @@
 @use '../styles/styles.module' as st;
 
 $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by12});
+$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-16});
 $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
-$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
+$sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
 $sn-list-anatomy-size-s-listItem-paddingHorizontal: var(--sn-list-anatomy-size-s-listItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
 $sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-2});
 $sn-list-anatomy-size-s-listItem-markerWrapper-width: var(--sn-list-anatomy-size-s-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-2});
@@ -20,19 +20,20 @@ $sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-
 $sn-list-anatomy-size-s-listItem-gap: var(--sn-list-anatomy-size-s-listItem-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-list-anatomy-size-s-listItem-paddingVertical: var(--sn-list-anatomy-size-s-listItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
 $sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
-$sn-list-anatomy-size-s-listItem-centeredWrapper-minHeight: var(--sn-list-anatomy-size-s-listItem-centeredWrapper-minHeight, #{st.$sn-density-size-icon-xs});
+$sn-list-anatomy-size-s-listItem-centeredWrapper-height: var(--sn-list-anatomy-size-s-listItem-centeredWrapper-height, #{st.$sn-density-typography-roleBody-lineHeightS});
 $sn-list-anatomy-size-s-listItem-borderRadius: var(--sn-list-anatomy-size-s-listItem-borderRadius, #{st.$sn-brand-anatomy-radius-listItem-s});
+$sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft: var(--sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft, #{st.$sn-density-nestingLevel-s-paddingLeft});
 $sn-list-anatomy-size-s-subtitle-paddingTop: var(--sn-list-anatomy-size-s-subtitle-paddingTop, #{st.$sn-primitive-dimension-8});
 $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
-$sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by14});
+$sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-20});
 $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
-$sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-m});
+$sn-list-anatomy-size-m-listItem-contentWrapper-paddingVertical: var(--sn-list-anatomy-size-m-listItem-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-m});
 $sn-list-anatomy-size-m-listItem-paddingHorizontal: var(--sn-list-anatomy-size-m-listItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
 $sn-list-anatomy-size-m-listItem-gap: var(--sn-list-anatomy-size-m-listItem-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-list-anatomy-size-m-listItem-paddingVertical: var(--sn-list-anatomy-size-m-listItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
 $sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
-$sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight: var(--sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-list-anatomy-size-m-listItem-centeredWrapper-height: var(--sn-list-anatomy-size-m-listItem-centeredWrapper-height, #{st.$sn-density-typography-roleBody-lineHeightM});
 $sn-list-anatomy-size-m-listItem-borderRadius: var(--sn-list-anatomy-size-m-listItem-borderRadius, #{st.$sn-brand-anatomy-radius-listItem-s});
 $sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
 $sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
@@ -40,17 +41,18 @@ $sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomRightRadius: var(--sn
 $sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
 $sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-4});
 $sn-list-anatomy-size-m-listItem-markerWrapper-width: var(--sn-list-anatomy-size-m-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-2});
+$sn-list-anatomy-size-m-listItem-nestingLevel-paddingLeft: var(--sn-list-anatomy-size-m-listItem-nestingLevel-paddingLeft, #{st.$sn-density-nestingLevel-m-paddingLeft});
 $sn-list-anatomy-size-m-subtitle-paddingTop: var(--sn-list-anatomy-size-m-subtitle-paddingTop, #{st.$sn-primitive-dimension-10});
 $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-gap: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-2});
-$sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by16});
+$sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-24});
 $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
-$sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-paddingVertical: var(--sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-l});
+$sn-list-anatomy-size-l-listItem-contentWrapper-paddingVertical: var(--sn-list-anatomy-size-l-listItem-contentWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-l});
 $sn-list-anatomy-size-l-listItem-paddingHorizontal: var(--sn-list-anatomy-size-l-listItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
 $sn-list-anatomy-size-l-listItem-gap: var(--sn-list-anatomy-size-l-listItem-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-list-anatomy-size-l-listItem-paddingVertical: var(--sn-list-anatomy-size-l-listItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
 $sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical: var(--sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
-$sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight: var(--sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-list-anatomy-size-l-listItem-centeredWrapper-height: var(--sn-list-anatomy-size-l-listItem-centeredWrapper-height, #{st.$sn-density-typography-roleBody-lineHeightL});
 $sn-list-anatomy-size-l-listItem-borderRadius: var(--sn-list-anatomy-size-l-listItem-borderRadius, #{st.$sn-brand-anatomy-radius-listItem-l});
 $sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius, #{st.$sn-primitive-dimension-0});
 $sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius, #{st.$sn-primitive-dimension-2});
@@ -58,6 +60,7 @@ $sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomRightRadius: var(--sn
 $sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomLeftRadius: var(--sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
 $sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical: var(--sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical, #{st.$sn-primitive-dimension-6});
 $sn-list-anatomy-size-l-listItem-markerWrapper-width: var(--sn-list-anatomy-size-l-listItem-markerWrapper-width, #{st.$sn-primitive-dimension-4});
+$sn-list-anatomy-size-l-listItem-nestingLevel-paddingLeft: var(--sn-list-anatomy-size-l-listItem-nestingLevel-paddingLeft, #{st.$sn-density-nestingLevel-l-paddingLeft});
 $sn-list-anatomy-size-l-subtitle-paddingTop: var(--sn-list-anatomy-size-l-subtitle-paddingTop, #{st.$sn-primitive-dimension-12});
 
 $list: (
@@ -75,10 +78,10 @@ $list: (
                 ),
                 "padding-left": $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal,
                 "padding-right": $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal
-              ),
-              "padding-top": $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-paddingVertical
-            )
+              )
+            ),
+            "padding-top": $sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical,
+            "padding-bottom": $sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical
           ),
           "padding-left": $sn-list-anatomy-size-s-listItem-paddingHorizontal,
           "padding-right": $sn-list-anatomy-size-s-listItem-paddingHorizontal,
@@ -99,9 +102,12 @@ $list: (
           "centeredWrapper": (
             "padding-top": $sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical,
             "padding-bottom": $sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical,
-            "min-height": $sn-list-anatomy-size-s-listItem-centeredWrapper-minHeight
+            "height": $sn-list-anatomy-size-s-listItem-centeredWrapper-height
           ),
-          "border-radius": $sn-list-anatomy-size-s-listItem-borderRadius
+          "border-radius": $sn-list-anatomy-size-s-listItem-borderRadius,
+          "nestingLevel": (
+            "padding-left": $sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft
+          )
         ),
         "subtitle": (
           "padding-top": $sn-list-anatomy-size-s-subtitle-paddingTop
@@ -119,10 +125,10 @@ $list: (
                   "min-height": $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-minHeight,
                   "gap": $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-headline-gap
                 )
-              ),
-              "padding-top": $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-paddingVertical
-            )
+              )
+            ),
+            "padding-top": $sn-list-anatomy-size-m-listItem-contentWrapper-paddingVertical,
+            "padding-bottom": $sn-list-anatomy-size-m-listItem-contentWrapper-paddingVertical
           ),
           "padding-left": $sn-list-anatomy-size-m-listItem-paddingHorizontal,
           "padding-right": $sn-list-anatomy-size-m-listItem-paddingHorizontal,
@@ -132,7 +138,7 @@ $list: (
           "centeredWrapper": (
             "padding-top": $sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical,
             "padding-bottom": $sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical,
-            "min-height": $sn-list-anatomy-size-m-listItem-centeredWrapper-minHeight
+            "height": $sn-list-anatomy-size-m-listItem-centeredWrapper-height
           ),
           "border-radius": $sn-list-anatomy-size-m-listItem-borderRadius,
           "markerWrapper": (
@@ -145,6 +151,9 @@ $list: (
               "padding-bottom": $sn-list-anatomy-size-m-listItem-markerWrapper-marker-paddingVertical
             ),
             "width": $sn-list-anatomy-size-m-listItem-markerWrapper-width
+          ),
+          "nestingLevel": (
+            "padding-left": $sn-list-anatomy-size-m-listItem-nestingLevel-paddingLeft
           )
         ),
         "subtitle": (
@@ -163,10 +172,10 @@ $list: (
                   "min-height": $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-minHeight,
                   "gap": $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-textContent-headline-gap
                 )
-              ),
-              "padding-top": $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-paddingVertical,
-              "padding-bottom": $sn-list-anatomy-size-l-listItem-contentWrapper-textWrapper-paddingVertical
-            )
+              )
+            ),
+            "padding-top": $sn-list-anatomy-size-l-listItem-contentWrapper-paddingVertical,
+            "padding-bottom": $sn-list-anatomy-size-l-listItem-contentWrapper-paddingVertical
           ),
           "padding-left": $sn-list-anatomy-size-l-listItem-paddingHorizontal,
           "padding-right": $sn-list-anatomy-size-l-listItem-paddingHorizontal,
@@ -176,7 +185,7 @@ $list: (
           "centeredWrapper": (
             "padding-top": $sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical,
             "padding-bottom": $sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical,
-            "min-height": $sn-list-anatomy-size-l-listItem-centeredWrapper-minHeight
+            "height": $sn-list-anatomy-size-l-listItem-centeredWrapper-height
           ),
           "border-radius": $sn-list-anatomy-size-l-listItem-borderRadius,
           "markerWrapper": (
@@ -189,6 +198,9 @@ $list: (
               "padding-bottom": $sn-list-anatomy-size-l-listItem-markerWrapper-marker-paddingVertical
             ),
             "width": $sn-list-anatomy-size-l-listItem-markerWrapper-width
+          ),
+          "nestingLevel": (
+            "padding-left": $sn-list-anatomy-size-l-listItem-nestingLevel-paddingLeft
           )
         ),
         "subtitle": (

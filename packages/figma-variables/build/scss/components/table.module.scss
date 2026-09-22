@@ -20,14 +20,26 @@ $sn-table-anatomy-content-tableCell-contentWrapper-paddingBottom: var(--sn-table
 $sn-table-anatomy-content-tableCell-contentWrapper-slot-gap: var(--sn-table-anatomy-content-tableCell-contentWrapper-slot-gap, #{st.$sn-primitive-dimension-2});
 $sn-table-anatomy-content-tableCell-minHeight: var(--sn-table-anatomy-content-tableCell-minHeight, #{st.$sn-primitive-dimension-40});
 $sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-paddingLeft, #{st.$sn-primitive-dimension-8});
-$sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-density-table-headToggleOffset});
 $sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-table-anatomy-content-headLine-pinnedWrapper-elementWrapper-cellToggles-width, #{st.$sn-primitive-dimension-32});
 $sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth: var(--sn-table-anatomy-content-tableLine-background-regular-borderBottomWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth: var(--sn-table-anatomy-content-tableLine-background-interaction-borderVerticalWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft, #{st.$sn-primitive-dimension-8});
-$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft, #{st.$sn-density-spacing-interval-xs});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft, #{st.$sn-density-table-headToggleOffset});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-icon-half-s});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingRight: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-icon-half-s});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingTop: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-m-level-paddingTop});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-firstLevel-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-firstLevel-paddingLeft, #{st.$sn-density-icon-half-xs});
 $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width, #{st.$sn-primitive-dimension-24});
-$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-maxWidth: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-maxWidth, #{st.$sn-density-icon-s});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-paddingRight: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-paddingRight, #{st.$sn-primitive-dimension-12});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-level-paddingRight: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-level-paddingRight, #{st.$sn-density-nestingLevel-m-level-paddingRight});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minWidth: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minHeight: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-gap: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-gap, #{st.$sn-primitive-dimension-2});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderRadius: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderWidth: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-paddingLeft, #{st.$sn-density-table-headToggleOffset});
 $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellToggles-width, #{st.$sn-primitive-dimension-32});
 $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-cellTree-gap, #{st.$sn-primitive-dimension-4});
 $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap: var(--sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-dividerWrapper-gap, #{st.$sn-primitive-dimension-8});
@@ -87,10 +99,36 @@ $table: (
             "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-paddingLeft,
             "treeControl": (
               "nestingLevel": (
-                "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft
+                "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-paddingLeft,
+                "levelIndicator": (
+                  "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-paddingLeft,
+                  "level": (
+                    "padding-right": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingRight,
+                    "padding-top": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-level-paddingTop
+                  ),
+                  "firstLevel": (
+                    "padding-left": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-nestingLevel-levelIndicator-firstLevel-paddingLeft
+                  )
+                )
               ),
               "centeredWrapper": (
-                "width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width
+                "width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-width,
+                "childLine": (
+                  "max-width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-maxWidth,
+                  "padding-right": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-paddingRight,
+                  "level": (
+                    "padding-right": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-childLine-level-paddingRight
+                  )
+                ),
+                "buttonChevron": (
+                  "container": (
+                    "min-width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minWidth,
+                    "min-height": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-minHeight,
+                    "gap": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-gap,
+                    "border-radius": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderRadius,
+                    "border-width": $sn-table-anatomy-content-tableLine-pinnedWrapper-elementWrapper-treeControl-centeredWrapper-buttonChevron-container-borderWidth
+                  )
+                )
               )
             ),
             "cellToggles": (

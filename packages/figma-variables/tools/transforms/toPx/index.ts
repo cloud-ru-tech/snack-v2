@@ -1,7 +1,7 @@
-import { transformDimension } from '@tokens-studio/sd-transforms';
 import type { Transform } from 'style-dictionary/types';
 
 import { TransformName } from '../../types.js';
+import { transformDimensionToPx } from '../../utils/transformDimensionToPx.js';
 import { filter } from './filter.js';
 
 export const ToPXTransform: Transform = {
@@ -9,5 +9,5 @@ export const ToPXTransform: Transform = {
   type: 'value',
   transitive: true,
   filter,
-  transform: transformDimension,
+  transform: transformDimensionToPx,
 };

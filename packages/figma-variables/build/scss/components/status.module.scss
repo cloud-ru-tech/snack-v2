@@ -5,6 +5,30 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
+$sn-status-anatomy-status-size-xs-text-fontFamily: var(--sn-status-anatomy-status-size-xs-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-status-anatomy-status-size-xs-text-fontSize: var(--sn-status-anatomy-status-size-xs-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-status-anatomy-status-size-xs-text-lineHeight: var(--sn-status-anatomy-status-size-xs-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-status-anatomy-status-size-xs-text-fontWeight: var(--sn-status-anatomy-status-size-xs-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-status-anatomy-status-size-xs-text-letterSpacing: var(--sn-status-anatomy-status-size-xs-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
+$sn-status-anatomy-status-size-xs-container-paddingRight: var(--sn-status-anatomy-status-size-xs-container-paddingRight, #{st.$sn-primitive-dimension-4});
+$sn-status-anatomy-status-size-xs-container-minHeight: var(--sn-status-anatomy-status-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-status-anatomy-status-size-xs-container-borderRadius: var(--sn-status-anatomy-status-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-status-xs});
+$sn-status-anatomy-status-size-xs-container-centeredWrapper-square: var(--sn-status-anatomy-status-size-xs-container-centeredWrapper-square, #{st.$sn-primitive-dimension-16});
+$sn-status-anatomy-status-size-xs-container-paddingLeft: var(--sn-status-anatomy-status-size-xs-container-paddingLeft, #{st.$sn-primitive-dimension-0});
+$sn-status-anatomy-status-size-xs-container-gap: var(--sn-status-anatomy-status-size-xs-container-gap, #{st.$sn-primitive-dimension-0});
+$sn-status-anatomy-status-size-xs-loaderSpinner-square: var(--sn-status-anatomy-status-size-xs-loaderSpinner-square, #{st.$sn-primitive-dimension-16});
+$sn-status-anatomy-status-size-s-text-fontFamily: var(--sn-status-anatomy-status-size-s-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-status-anatomy-status-size-s-text-fontSize: var(--sn-status-anatomy-status-size-s-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-status-anatomy-status-size-s-text-lineHeight: var(--sn-status-anatomy-status-size-s-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-status-anatomy-status-size-s-text-fontWeight: var(--sn-status-anatomy-status-size-s-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-status-anatomy-status-size-s-text-letterSpacing: var(--sn-status-anatomy-status-size-s-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
+$sn-status-anatomy-status-size-s-container-paddingRight: var(--sn-status-anatomy-status-size-s-container-paddingRight, #{st.$sn-primitive-dimension-6});
+$sn-status-anatomy-status-size-s-container-minHeight: var(--sn-status-anatomy-status-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-status-anatomy-status-size-s-container-borderRadius: var(--sn-status-anatomy-status-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-status-s});
+$sn-status-anatomy-status-size-s-container-centeredWrapper-square: var(--sn-status-anatomy-status-size-s-container-centeredWrapper-square, #{st.$sn-primitive-dimension-16});
+$sn-status-anatomy-status-size-s-container-paddingLeft: var(--sn-status-anatomy-status-size-s-container-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-status-anatomy-status-size-s-container-gap: var(--sn-status-anatomy-status-size-s-container-gap, #{st.$sn-primitive-dimension-2});
+$sn-status-anatomy-status-size-s-loaderSpinner-square: var(--sn-status-anatomy-status-size-s-loaderSpinner-square, #{st.$sn-primitive-dimension-16});
 $sn-status-anatomy-statusIndicator-size-4xs-height: var(--sn-status-anatomy-statusIndicator-size-4xs-height, #{st.$sn-primitive-dimension-4});
 $sn-status-anatomy-statusIndicator-size-4xs-borderWidth: var(--sn-status-anatomy-statusIndicator-size-4xs-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-status-anatomy-statusIndicator-size-borderRadius: var(--sn-status-anatomy-statusIndicator-size-borderRadius, #{st.$sn-primitive-dimension-full});
@@ -17,21 +41,61 @@ $sn-status-anatomy-statusIndicator-size-xs-height: var(--sn-status-anatomy-statu
 $sn-status-anatomy-statusIndicator-size-xs-borderWidth: var(--sn-status-anatomy-statusIndicator-size-xs-borderWidth, #{st.$sn-primitive-strokeWeight-strokeBold});
 $sn-status-anatomy-statusIndicator-size-s-height: var(--sn-status-anatomy-statusIndicator-size-s-height, #{st.$sn-primitive-dimension-24});
 $sn-status-anatomy-statusIndicator-size-s-borderWidth: var(--sn-status-anatomy-statusIndicator-size-s-borderWidth, #{st.$sn-primitive-dimension-4});
-$sn-status-anatomy-status-size-xs-container-paddingRight: var(--sn-status-anatomy-status-size-xs-container-paddingRight, #{st.$sn-primitive-dimension-4});
-$sn-status-anatomy-status-size-xs-container-minHeight: var(--sn-status-anatomy-status-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
-$sn-status-anatomy-status-size-xs-container-borderRadius: var(--sn-status-anatomy-status-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-status-xs});
-$sn-status-anatomy-status-size-xs-container-centeredWrapper-square: var(--sn-status-anatomy-status-size-xs-container-centeredWrapper-square, #{st.$sn-primitive-dimension-16});
-$sn-status-anatomy-status-size-xs-container-paddingLeft: var(--sn-status-anatomy-status-size-xs-container-paddingLeft, #{st.$sn-primitive-dimension-0});
-$sn-status-anatomy-status-size-xs-container-gap: var(--sn-status-anatomy-status-size-xs-container-gap, #{st.$sn-primitive-dimension-0});
-$sn-status-anatomy-status-size-s-container-paddingRight: var(--sn-status-anatomy-status-size-s-container-paddingRight, #{st.$sn-primitive-dimension-6});
-$sn-status-anatomy-status-size-s-container-minHeight: var(--sn-status-anatomy-status-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
-$sn-status-anatomy-status-size-s-container-borderRadius: var(--sn-status-anatomy-status-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-status-s});
-$sn-status-anatomy-status-size-s-container-centeredWrapper-square: var(--sn-status-anatomy-status-size-s-container-centeredWrapper-square, #{st.$sn-primitive-dimension-16});
-$sn-status-anatomy-status-size-s-container-paddingLeft: var(--sn-status-anatomy-status-size-s-container-paddingLeft, #{st.$sn-primitive-dimension-4});
-$sn-status-anatomy-status-size-s-container-gap: var(--sn-status-anatomy-status-size-s-container-gap, #{st.$sn-primitive-dimension-2});
 
 $status: (
   "anatomy": (
+    "status": (
+      "size": (
+        "xs": (
+          "text": (
+            "font-family": $sn-status-anatomy-status-size-xs-text-fontFamily,
+            "font-size": $sn-status-anatomy-status-size-xs-text-fontSize,
+            "line-height": $sn-status-anatomy-status-size-xs-text-lineHeight,
+            "font-weight": $sn-status-anatomy-status-size-xs-text-fontWeight,
+            "letter-spacing": $sn-status-anatomy-status-size-xs-text-letterSpacing
+          ),
+          "container": (
+            "padding-right": $sn-status-anatomy-status-size-xs-container-paddingRight,
+            "min-height": $sn-status-anatomy-status-size-xs-container-minHeight,
+            "border-radius": $sn-status-anatomy-status-size-xs-container-borderRadius,
+            "centeredWrapper": (
+              "width": $sn-status-anatomy-status-size-xs-container-centeredWrapper-square,
+              "height": $sn-status-anatomy-status-size-xs-container-centeredWrapper-square
+            ),
+            "padding-left": $sn-status-anatomy-status-size-xs-container-paddingLeft,
+            "gap": $sn-status-anatomy-status-size-xs-container-gap
+          ),
+          "loaderSpinner": (
+            "width": $sn-status-anatomy-status-size-xs-loaderSpinner-square,
+            "height": $sn-status-anatomy-status-size-xs-loaderSpinner-square
+          )
+        ),
+        "s": (
+          "text": (
+            "font-family": $sn-status-anatomy-status-size-s-text-fontFamily,
+            "font-size": $sn-status-anatomy-status-size-s-text-fontSize,
+            "line-height": $sn-status-anatomy-status-size-s-text-lineHeight,
+            "font-weight": $sn-status-anatomy-status-size-s-text-fontWeight,
+            "letter-spacing": $sn-status-anatomy-status-size-s-text-letterSpacing
+          ),
+          "container": (
+            "padding-right": $sn-status-anatomy-status-size-s-container-paddingRight,
+            "min-height": $sn-status-anatomy-status-size-s-container-minHeight,
+            "border-radius": $sn-status-anatomy-status-size-s-container-borderRadius,
+            "centeredWrapper": (
+              "width": $sn-status-anatomy-status-size-s-container-centeredWrapper-square,
+              "height": $sn-status-anatomy-status-size-s-container-centeredWrapper-square
+            ),
+            "padding-left": $sn-status-anatomy-status-size-s-container-paddingLeft,
+            "gap": $sn-status-anatomy-status-size-s-container-gap
+          ),
+          "loaderSpinner": (
+            "width": $sn-status-anatomy-status-size-s-loaderSpinner-square,
+            "height": $sn-status-anatomy-status-size-s-loaderSpinner-square
+          )
+        )
+      )
+    ),
     "statusIndicator": (
       "size": (
         "4xs": (
@@ -55,36 +119,6 @@ $status: (
         "s": (
           "height": $sn-status-anatomy-statusIndicator-size-s-height,
           "border-width": $sn-status-anatomy-statusIndicator-size-s-borderWidth
-        )
-      )
-    ),
-    "status": (
-      "size": (
-        "xs": (
-          "container": (
-            "padding-right": $sn-status-anatomy-status-size-xs-container-paddingRight,
-            "min-height": $sn-status-anatomy-status-size-xs-container-minHeight,
-            "border-radius": $sn-status-anatomy-status-size-xs-container-borderRadius,
-            "centeredWrapper": (
-              "width": $sn-status-anatomy-status-size-xs-container-centeredWrapper-square,
-              "height": $sn-status-anatomy-status-size-xs-container-centeredWrapper-square
-            ),
-            "padding-left": $sn-status-anatomy-status-size-xs-container-paddingLeft,
-            "gap": $sn-status-anatomy-status-size-xs-container-gap
-          )
-        ),
-        "s": (
-          "container": (
-            "padding-right": $sn-status-anatomy-status-size-s-container-paddingRight,
-            "min-height": $sn-status-anatomy-status-size-s-container-minHeight,
-            "border-radius": $sn-status-anatomy-status-size-s-container-borderRadius,
-            "centeredWrapper": (
-              "width": $sn-status-anatomy-status-size-s-container-centeredWrapper-square,
-              "height": $sn-status-anatomy-status-size-s-container-centeredWrapper-square
-            ),
-            "padding-left": $sn-status-anatomy-status-size-s-container-paddingLeft,
-            "gap": $sn-status-anatomy-status-size-s-container-gap
-          )
         )
       )
     )

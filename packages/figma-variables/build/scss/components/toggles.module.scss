@@ -5,46 +5,65 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
-$sn-toggles-anatomy-size-xs-switch-framing-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-minWidth, #{st.$sn-primitive-dimension-24});
-$sn-toggles-anatomy-size-xs-switch-framing-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-minHeight, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width, #{st.$sn-primitive-dimension-12});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height, #{st.$sn-primitive-dimension-12});
+$sn-toggles-anatomy-size-xs-switch-framing-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-minWidth, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-xs-switch-framing-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-minHeight, #{st.$sn-primitive-dimension-14});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minWidth, #{st.$sn-primitive-dimension-14});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-minHeight, #{st.$sn-primitive-dimension-14});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-width, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-height, #{st.$sn-primitive-dimension-10});
 $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
 $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedFalse-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width, #{st.$sn-primitive-dimension-12});
-$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height, #{st.$sn-primitive-dimension-12});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-width, #{st.$sn-primitive-dimension-10});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height, #{st.$sn-primitive-dimension-10});
 $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
 $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-toggles-anatomy-size-xs-switch-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-switch-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-switch-xs});
 $sn-toggles-anatomy-size-xs-switch-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-switch-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
-$sn-toggles-anatomy-size-xs-switch-container-minWidth: var(--sn-toggles-anatomy-size-xs-switch-container-minWidth, #{st.$sn-primitive-dimension-24});
-$sn-toggles-anatomy-size-xs-switch-container-minHeight: var(--sn-toggles-anatomy-size-xs-switch-container-minHeight, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-radio-framing-minWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-switch-container-minWidth: var(--sn-toggles-anatomy-size-xs-switch-container-minWidth, #{st.$sn-primitive-dimension-20});
+$sn-toggles-anatomy-size-xs-switch-container-minHeight: var(--sn-toggles-anatomy-size-xs-switch-container-minHeight, #{st.$sn-density-icon-xs});
+$sn-toggles-anatomy-size-xs-radio-framing-minWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-minWidth, #{st.$sn-primitive-dimension-14});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-minWidth, #{$sn-toggles-anatomy-size-xs-radio-framing-minWidth});
-$sn-toggles-anatomy-size-xs-radio-framing-minHeight: var(--sn-toggles-anatomy-size-xs-radio-framing-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-minHeight: var(--sn-toggles-anatomy-size-xs-radio-framing-minHeight, #{st.$sn-primitive-dimension-14});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-minHeight, #{$sn-toggles-anatomy-size-xs-radio-framing-minHeight});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width, #{st.$sn-primitive-dimension-8});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height, #{st.$sn-primitive-dimension-8});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-toggles-anatomy-size-xs-radio-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-radio-framing-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-toggles-anatomy-size-xs-radio-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-radio-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
-$sn-toggles-anatomy-size-xs-radio-container-minWidth: var(--sn-toggles-anatomy-size-xs-radio-container-minWidth, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-radio-container-minHeight: var(--sn-toggles-anatomy-size-xs-radio-container-minHeight, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-checkbox-framing-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minWidth, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-radio-container-minWidth: var(--sn-toggles-anatomy-size-xs-radio-container-minWidth, #{st.$sn-density-icon-xs});
+$sn-toggles-anatomy-size-xs-radio-container-minHeight: var(--sn-toggles-anatomy-size-xs-radio-container-minHeight, #{st.$sn-density-icon-xs});
+$sn-toggles-anatomy-size-xs-checkbox-framing-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minWidth, #{st.$sn-primitive-dimension-14});
 $sn-toggles-anatomy-size-xs-checkbox-framing-flag-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-minWidth, #{$sn-toggles-anatomy-size-xs-checkbox-framing-minWidth});
-$sn-toggles-anatomy-size-xs-checkbox-framing-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-minHeight, #{st.$sn-primitive-dimension-14});
 $sn-toggles-anatomy-size-xs-checkbox-framing-flag-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-minHeight, #{$sn-toggles-anatomy-size-xs-checkbox-framing-minHeight});
-$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width, #{st.$sn-primitive-dimension-14});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height, #{st.$sn-primitive-dimension-14});
 $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-flag-surface-xs});
 $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-width: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-height: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-toggles-anatomy-size-xs-checkbox-framing-borderRadius: var(--sn-toggles-anatomy-size-xs-checkbox-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-s});
 $sn-toggles-anatomy-size-xs-checkbox-framing-borderWidth: var(--sn-toggles-anatomy-size-xs-checkbox-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-xs-strokeWeight});
-$sn-toggles-anatomy-size-xs-checkbox-container-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-container-minWidth, #{st.$sn-primitive-dimension-16});
-$sn-toggles-anatomy-size-xs-checkbox-container-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-container-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-toggles-anatomy-size-xs-checkbox-container-minWidth: var(--sn-toggles-anatomy-size-xs-checkbox-container-minWidth, #{st.$sn-density-icon-xs});
+$sn-toggles-anatomy-size-xs-checkbox-container-minHeight: var(--sn-toggles-anatomy-size-xs-checkbox-container-minHeight, #{st.$sn-density-icon-xs});
+$sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-toggles-anatomy-size-s-radio-framing-minWidth: var(--sn-toggles-anatomy-size-s-radio-framing-minWidth, #{st.$sn-primitive-dimension-20});
 $sn-toggles-anatomy-size-s-checkbox-framing-minWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-minWidth, #{st.$sn-primitive-dimension-20});
 $sn-toggles-anatomy-size-s-radio-framing-flag-minWidth: var(--sn-toggles-anatomy-size-s-radio-framing-flag-minWidth, #{$sn-toggles-anatomy-size-s-checkbox-framing-minWidth});
@@ -54,6 +73,9 @@ $sn-toggles-anatomy-size-s-radio-framing-flag-surface-width: var(--sn-toggles-an
 $sn-toggles-anatomy-size-s-radio-framing-flag-surface-height: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-height, #{st.$sn-primitive-dimension-10});
 $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 $sn-toggles-anatomy-size-s-radio-framing-minHeight: var(--sn-toggles-anatomy-size-s-radio-framing-minHeight, #{st.$sn-primitive-dimension-20});
 $sn-toggles-anatomy-size-s-radio-framing-borderRadius: var(--sn-toggles-anatomy-size-s-radio-framing-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-toggles-anatomy-size-s-radio-framing-borderWidth: var(--sn-toggles-anatomy-size-s-radio-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
@@ -65,6 +87,12 @@ $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-width: var(--sn-toggles
 $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height, #{st.$sn-primitive-dimension-20});
 $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-flag-surface-s});
 $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-width: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-width, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-height: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-height, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 $sn-toggles-anatomy-size-s-checkbox-framing-borderRadius: var(--sn-toggles-anatomy-size-s-checkbox-framing-borderRadius, #{st.$sn-brand-anatomy-radius-toggles-checkbox-framing-s});
 $sn-toggles-anatomy-size-s-checkbox-framing-borderWidth: var(--sn-toggles-anatomy-size-s-checkbox-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
 $sn-toggles-anatomy-size-s-checkbox-container-minWidth: var(--sn-toggles-anatomy-size-s-checkbox-container-minWidth, #{st.$sn-primitive-dimension-24});
@@ -82,9 +110,19 @@ $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-width: var(--
 $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height, #{st.$sn-primitive-dimension-16});
 $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-width: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-width, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-height: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-height, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-width: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-width, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-height: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-height, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 $sn-toggles-anatomy-size-s-switch-framing-borderWidth: var(--sn-toggles-anatomy-size-s-switch-framing-borderWidth, #{st.$sn-brand-anatomy-line-toggles-s-strokeWeight});
 $sn-toggles-anatomy-size-s-switch-container-minWidth: var(--sn-toggles-anatomy-size-s-switch-container-minWidth, #{st.$sn-primitive-dimension-36});
 $sn-toggles-anatomy-size-s-switch-container-minHeight: var(--sn-toggles-anatomy-size-s-switch-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
+$sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-icon-strokeWeight: var(--sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
+$sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight: var(--sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 
 $toggles: (
   "anatomy": (
@@ -109,6 +147,16 @@ $toggles: (
                   "height": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-height,
                   "border-radius": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderRadius,
                   "border-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-checkedTrue-borderWidth
+                ),
+                "icon": (
+                  "width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-width,
+                  "height": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-height,
+                  "border-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-xs-switch-framing-flag-surface-loaderSpinner-strokeWeight
                 )
               )
             ),
@@ -130,7 +178,12 @@ $toggles: (
                 "width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-width,
                 "height": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-height,
                 "border-radius": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderRadius,
-                "border-width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth
+                "border-width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-borderWidth,
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-xs-radio-framing-flag-surface-loaderSpinner-strokeWeight
+                )
               )
             ),
             "min-height": $sn-toggles-anatomy-size-xs-radio-framing-minHeight,
@@ -152,7 +205,17 @@ $toggles: (
                 "width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-width,
                 "height": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-height,
                 "border-radius": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderRadius,
-                "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth
+                "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-borderWidth,
+                "icon": (
+                  "width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-width,
+                  "height": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-height,
+                  "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-xs-checkbox-framing-flag-surface-loaderSpinner-strokeWeight
+                )
               )
             ),
             "min-height": $sn-toggles-anatomy-size-xs-checkbox-framing-minHeight,
@@ -162,6 +225,34 @@ $toggles: (
           "container": (
             "min-width": $sn-toggles-anatomy-size-xs-checkbox-container-minWidth,
             "min-height": $sn-toggles-anatomy-size-xs-checkbox-container-minHeight
+          )
+        ),
+        "favouriteHeart": (
+          "framing": (
+            "flag": (
+              "surface": (
+                "icon": (
+                  "border-width": $sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "border-width": $sn-toggles-anatomy-size-xs-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight
+                )
+              )
+            )
+          )
+        ),
+        "favouriteStar": (
+          "framing": (
+            "flag": (
+              "surface": (
+                "icon": (
+                  "border-width": $sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "border-width": $sn-toggles-anatomy-size-xs-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight
+                )
+              )
+            )
           )
         )
       ),
@@ -176,7 +267,12 @@ $toggles: (
                 "width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-width,
                 "height": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-height,
                 "border-radius": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderRadius,
-                "border-width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth
+                "border-width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-borderWidth,
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-s-radio-framing-flag-surface-loaderSpinner-strokeWeight
+                )
               )
             ),
             "min-height": $sn-toggles-anatomy-size-s-radio-framing-minHeight,
@@ -198,7 +294,17 @@ $toggles: (
                 "width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-width,
                 "height": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-height,
                 "border-radius": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderRadius,
-                "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth
+                "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-borderWidth,
+                "icon": (
+                  "width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-width,
+                  "height": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-height,
+                  "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-s-checkbox-framing-flag-surface-loaderSpinner-strokeWeight
+                )
               )
             ),
             "min-height": $sn-toggles-anatomy-size-s-checkbox-framing-minHeight,
@@ -230,6 +336,16 @@ $toggles: (
                   "height": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-height,
                   "border-radius": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderRadius,
                   "border-width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-checkedTrue-borderWidth
+                ),
+                "icon": (
+                  "width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-width,
+                  "height": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-height,
+                  "border-width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-width,
+                  "height": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-height,
+                  "border-width": $sn-toggles-anatomy-size-s-switch-framing-flag-surface-loaderSpinner-strokeWeight
                 )
               )
             ),
@@ -238,6 +354,34 @@ $toggles: (
           "container": (
             "min-width": $sn-toggles-anatomy-size-s-switch-container-minWidth,
             "min-height": $sn-toggles-anatomy-size-s-switch-container-minHeight
+          )
+        ),
+        "favouriteHeart": (
+          "framing": (
+            "flag": (
+              "surface": (
+                "icon": (
+                  "border-width": $sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "border-width": $sn-toggles-anatomy-size-s-favouriteHeart-framing-flag-surface-loaderSpinner-strokeWeight
+                )
+              )
+            )
+          )
+        ),
+        "favouriteStar": (
+          "framing": (
+            "flag": (
+              "surface": (
+                "icon": (
+                  "border-width": $sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-icon-strokeWeight
+                ),
+                "loaderSpinner": (
+                  "border-width": $sn-toggles-anatomy-size-s-favouriteStar-framing-flag-surface-loaderSpinner-strokeWeight
+                )
+              )
+            )
           )
         )
       )

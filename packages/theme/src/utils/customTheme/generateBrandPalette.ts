@@ -6,7 +6,7 @@ export type BrandPalette = Record<BrandPrimaryTone, string>;
 
 /**
  * Строит бренд-палитру из одного seed-цвета: берёт `L`/`C` каждого опорного тона `BASE_BRAND_PALETTE`
- * и поворачивает hue к hue seed-цвета (OKLCH). Тон акцента (`55`) становится самим seed-цветом.
+ * и поворачивает hue к hue seed-цвета (OKLCH). Тон акцента (`50`) становится самим seed-цветом.
  * Так один цвет потребителя перекрашивает всю шкалу `--sn-brand-color-primary-<tone>`, сохраняя
  * светлоту/насыщенность DS-палитры. Невалидный hex → `null`.
  */

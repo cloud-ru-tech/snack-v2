@@ -4,313 +4,13 @@
 export declare const themeVars: {
     sn: {
         primitive: {
-            color: {
-                yellow: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                blue: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandB: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                green: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                gray: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                pink: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                orange: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                violet: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                red: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandA: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandBAlter: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandC: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandCAlter: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandCAlter2: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandCAlter3: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandCAlter4: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandD: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandE: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-                brandF: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                };
-            };
-            fontFamily: {
-                fontWeight: {
-                    light: string;
-                    bold: string;
-                    semiBold: string;
-                    regular: string;
-                    lightSans: string;
-                };
-                brandB: {
-                    sans: string;
-                    mono: string;
-                };
-                brandA: {
-                    mono: string;
-                    sans: string;
-                };
-                brandC: {
-                    sans: string;
-                    mono: string;
-                };
-                brandD: {
-                    sans: string;
-                    mono: string;
-                };
-                brandE: {
-                    mono: string;
-                    sans: string;
-                };
-                brandF: {
-                    mono: string;
-                    sans: string;
-                };
-            };
             strokeWeight: {
                 strokeThin: string;
                 strokeRegular: string;
                 strokeMedium: string;
                 strokeSemiBold: string;
                 strokeBold: string;
+                strokeExtraBold: string;
             };
             dimension: {
                 '0': string;
@@ -321,6 +21,7 @@ export declare const themeVars: {
                 '8': string;
                 '10': string;
                 '12': string;
+                '14': string;
                 '16': string;
                 '20': string;
                 '24': string;
@@ -352,6 +53,10 @@ export declare const themeVars: {
                 '128': string;
                 '132': string;
                 '136': string;
+                '140': string;
+                '144': string;
+                '148': string;
+                '152': string;
                 full: string;
             };
             font: {
@@ -370,20 +75,18 @@ export declare const themeVars: {
                     byFontSize24: string;
                 };
                 lineHeight: {
-                    by16: string;
-                    by48: string;
-                    by40: string;
-                    by32: string;
-                    by28: string;
-                    by18: string;
-                    by12: string;
-                    by11: string;
-                    by14: string;
-                    by56: string;
-                    by24: string;
-                    by20: string;
-                    by36: string;
-                    by64: string;
+                    '14': string;
+                    '16': string;
+                    '20': string;
+                    '24': string;
+                    '28': string;
+                    '32': string;
+                    '36': string;
+                    '40': string;
+                    '48': string;
+                    '60': string;
+                    '64': string;
+                    '72': string;
                 };
                 letterSpacing: {
                     l: string;
@@ -429,14 +132,535 @@ export declare const themeVars: {
                 };
             };
         };
-        density: {
+        platform: {
             property: {
                 boolean: {
-                    showOnCompact: string;
-                    showOnComfort: string;
-                    showOnSpacious: string;
+                    showOnWebDesktop: string;
+                    showOnWebMobile: string;
                 };
             };
+            kitService: {
+                text: {
+                    modeName: string;
+                    modificationName: string;
+                };
+            };
+            compact: {
+                scale: {
+                    '100': {
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                        '4xl': string;
+                        '5xl': string;
+                        '6xl': string;
+                        '7xl': string;
+                        '8xl': string;
+                        '9xl': string;
+                        '10xl': string;
+                    };
+                    '025': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    '050': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                    };
+                };
+                spacing: {
+                    control: {
+                        container: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                        wrapper: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                    };
+                    interval: {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                    };
+                    headToggleOffset: string;
+                };
+                icon: {
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    strokeWeight: {
+                        m: string;
+                        s: string;
+                        l: string;
+                        xs: string;
+                        '2xs': string;
+                    };
+                    half: {
+                        xs: string;
+                        s: string;
+                    };
+                };
+                typography: {
+                    roleDisplay: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleHeadline: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleTitle: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleLabel: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleBody: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                };
+                radius: {
+                    '3xs': string;
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    xl: string;
+                    '2xl': string;
+                    '3xl': string;
+                    '4xl': string;
+                    '5xl': string;
+                    '6xl': string;
+                    '7xl': string;
+                    '8xl': string;
+                };
+            };
+            comfort: {
+                scale: {
+                    '100': {
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                        '4xl': string;
+                        '5xl': string;
+                        '6xl': string;
+                        '7xl': string;
+                        '8xl': string;
+                        '9xl': string;
+                        '10xl': string;
+                    };
+                    '025': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    '050': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                    };
+                };
+                spacing: {
+                    control: {
+                        container: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                        wrapper: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                    };
+                    interval: {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                    };
+                    headToggleOffset: string;
+                };
+                icon: {
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    strokeWeight: {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    half: {
+                        xs: string;
+                        s: string;
+                    };
+                };
+                typography: {
+                    roleDisplay: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleHeadline: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleTitle: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleLabel: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleBody: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                };
+                radius: {
+                    '3xs': string;
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    xl: string;
+                    '2xl': string;
+                    '3xl': string;
+                    '4xl': string;
+                    '5xl': string;
+                    '6xl': string;
+                    '7xl': string;
+                    '8xl': string;
+                };
+            };
+            spacious: {
+                scale: {
+                    '100': {
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                        '4xl': string;
+                        '5xl': string;
+                        '6xl': string;
+                        '7xl': string;
+                        '8xl': string;
+                        '9xl': string;
+                        '10xl': string;
+                    };
+                    '025': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    '050': {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                    };
+                };
+                spacing: {
+                    control: {
+                        container: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                        wrapper: {
+                            vertical: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                            horizontal: {
+                                xs: string;
+                                s: string;
+                                m: string;
+                                l: string;
+                            };
+                        };
+                    };
+                    interval: {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        xl: string;
+                        '2xl': string;
+                        '3xl': string;
+                    };
+                    headToggleOffset: string;
+                };
+                icon: {
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    strokeWeight: {
+                        '2xs': string;
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    half: {
+                        xs: string;
+                        s: string;
+                    };
+                };
+                typography: {
+                    roleDisplay: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleHeadline: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleTitle: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleLabel: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                    roleBody: {
+                        fontSizeL: string;
+                        lineHeightL: string;
+                        fontSizeM: string;
+                        lineHeightM: string;
+                        fontSizeS: string;
+                        lineHeightS: string;
+                    };
+                };
+                radius: {
+                    '3xs': string;
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    xl: string;
+                    '2xl': string;
+                    '3xl': string;
+                    '4xl': string;
+                    '5xl': string;
+                    '6xl': string;
+                    '7xl': string;
+                    '8xl': string;
+                };
+            };
+            target: {
+                minimum: string;
+            };
+            view: {
+                screen: {
+                    width: string;
+                    height: string;
+                };
+                page: {
+                    full: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                    medium: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                    narrow: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                    wide: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                };
+                grid: {
+                    full: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    medium: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    narrow: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    wide: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                };
+            };
+            touchTarget: {
+                minSize: string;
+            };
+        };
+        density: {
             kitService: {
                 text: {
                     modificationName: string;
@@ -492,20 +716,6 @@ export declare const themeVars: {
                 '2xl': string;
                 '3xl': string;
                 xl: string;
-                icon: {
-                    s: string;
-                    m: string;
-                    l: string;
-                    '2xs': string;
-                    xs: string;
-                    strokeWeight: {
-                        s: string;
-                        xs: string;
-                        '2xs': string;
-                        m: string;
-                        l: string;
-                    };
-                };
                 xs: string;
                 '4xl': string;
                 '5xl': string;
@@ -514,50 +724,6 @@ export declare const themeVars: {
                 '8xl': string;
                 '9xl': string;
                 '10xl': string;
-                screen: {
-                    width: string;
-                    height: string;
-                };
-                page: {
-                    narrow: {
-                        maxWidth: string;
-                        minWidth: string;
-                    };
-                    medium: {
-                        maxWidth: string;
-                        minWidth: string;
-                    };
-                    full: {
-                        minWidth: string;
-                        maxWidth: string;
-                    };
-                    wide: {
-                        minWidth: string;
-                        maxWidth: string;
-                    };
-                };
-                grid: {
-                    full: {
-                        count: string;
-                        gutter: string;
-                        margin: string;
-                    };
-                    narrow: {
-                        count: string;
-                        gutter: string;
-                        margin: string;
-                    };
-                    medium: {
-                        count: string;
-                        gutter: string;
-                        margin: string;
-                    };
-                    wide: {
-                        count: string;
-                        gutter: string;
-                        margin: string;
-                    };
-                };
             };
             spacing: {
                 control: {
@@ -628,6 +794,24 @@ export declare const themeVars: {
                 '7xl': string;
                 '8xl': string;
             };
+            icon: {
+                s: string;
+                m: string;
+                l: string;
+                '2xs': string;
+                xs: string;
+                strokeWeight: {
+                    s: string;
+                    xs: string;
+                    '2xs': string;
+                    m: string;
+                    l: string;
+                };
+                half: {
+                    xs: string;
+                    s: string;
+                };
+            };
             nestingLevel: {
                 s: {
                     paddingLeft: string;
@@ -651,152 +835,106 @@ export declare const themeVars: {
                     };
                 };
             };
-        };
-        brandRole: {
-            color: {
-                brandA: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedPressed: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedDefault: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
+            view: {
+                screen: {
+                    width: string;
+                    height: string;
                 };
-                brandB: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedPressed: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedDefault: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
+                page: {
+                    narrow: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                    medium: {
+                        maxWidth: string;
+                        minWidth: string;
+                    };
+                    full: {
+                        minWidth: string;
+                        maxWidth: string;
+                    };
+                    wide: {
+                        minWidth: string;
+                        maxWidth: string;
+                    };
                 };
-                brandC: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedDefault: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedPressed: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
-                };
-                brandD: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedDefault: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedPressed: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
-                };
-                brandE: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedPressed: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedDefault: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
-                };
-                brandF: {
-                    '5': string;
-                    '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
-                    '60': string;
-                    '65': string;
-                    '80': string;
-                    '90': string;
-                    '95': string;
-                    '99': string;
-                    transparent: string;
-                    backgroundActivatedPressed: string;
-                    backgroundActivatedHovered: string;
-                    backgroundActivatedDefault: string;
-                    onAccentLight: string;
-                    onAccentDark: string;
+                grid: {
+                    full: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    narrow: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    medium: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
+                    wide: {
+                        count: string;
+                        gutter: string;
+                        margin: string;
+                    };
                 };
             };
-            kitService: {
-                text: {
-                    modeName: string;
-                    modificationName: string;
+            scale: {
+                '100': {
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                    xl: string;
+                    '2xl': string;
+                    '3xl': string;
+                    '4xl': string;
+                    '5xl': string;
+                    '6xl': string;
+                    '7xl': string;
+                    '8xl': string;
+                    '9xl': string;
+                    '10xl': string;
                 };
+                '025': {
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                };
+                '050': {
+                    '2xs': string;
+                    xs: string;
+                    s: string;
+                    m: string;
+                    l: string;
+                };
+            };
+            table: {
+                headToggleOffset: string;
+            };
+            touchTarget: {
+                minSize: string;
             };
         };
         brand: {
             color: {
                 primary: {
-                    '5': string;
                     '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
                     '60': string;
-                    '65': string;
+                    '70': string;
                     '80': string;
                     '90': string;
                     '95': string;
                     '99': string;
+                    '05': string;
                     transparent: string;
                     onAccentLight: string;
                     onAccentDark: string;
@@ -885,18 +1023,18 @@ export declare const themeVars: {
                     };
                 };
                 neutral: {
-                    '5': string;
                     '10': string;
-                    '15': string;
-                    '25': string;
-                    '45': string;
-                    '55': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
                     '60': string;
-                    '65': string;
+                    '70': string;
                     '80': string;
                     '90': string;
                     '95': string;
                     '99': string;
+                    '05': string;
                     transparent: {
                         forLightMode: string;
                         forDarkMode: string;
@@ -917,13 +1055,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level2: {
@@ -931,13 +1069,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level3: {
@@ -945,13 +1083,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level4: {
@@ -959,13 +1097,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level5: {
@@ -973,13 +1111,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                     };
@@ -991,13 +1129,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level2: {
@@ -1005,13 +1143,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level3: {
@@ -1019,13 +1157,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level4: {
@@ -1033,13 +1171,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                         level5: {
@@ -1047,13 +1185,13 @@ export declare const themeVars: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                             layer2: {
                                 positionX: string;
                                 positionY: string;
                                 blur: string;
-                                speed: string;
+                                spread: string;
                             };
                         };
                     };
@@ -1065,6 +1203,120 @@ export declare const themeVars: {
                 };
                 opacity: {
                     focusedFrame: string;
+                };
+            };
+            palette: {
+                blue: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                green: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                pink: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                yellow: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                violet: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                gray: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                red: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
+                };
+                orange: {
+                    '10': string;
+                    '20': string;
+                    '30': string;
+                    '40': string;
+                    '50': string;
+                    '60': string;
+                    '70': string;
+                    '80': string;
+                    '90': string;
+                    '95': string;
+                    '99': string;
+                    '05': string;
                 };
             };
             kitService: {
@@ -1315,6 +1567,15 @@ export declare const themeVars: {
                         s: string;
                         m: string;
                         l: string;
+                    };
+                    avatar: {
+                        xs: string;
+                        s: string;
+                        m: string;
+                        l: string;
+                        '3xl': string;
+                        '6xl': string;
+                        '9xl': string;
                     };
                 };
                 spacing: {
@@ -1635,13 +1896,13 @@ export declare const themeVars: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                         layer2: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                     };
                     level2: {
@@ -1649,13 +1910,13 @@ export declare const themeVars: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                         layer2: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                     };
                     level3: {
@@ -1663,13 +1924,13 @@ export declare const themeVars: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                         layer2: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                     };
                     level4: {
@@ -1677,13 +1938,13 @@ export declare const themeVars: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                         layer2: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                     };
                     level5: {
@@ -1691,13 +1952,13 @@ export declare const themeVars: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                         layer2: {
                             positionX: string;
                             positionY: string;
                             blur: string;
-                            speed: string;
+                            spread: string;
                         };
                     };
                 };
@@ -1718,8 +1979,10 @@ export declare const themeVars: {
                 };
             };
             kitService: {
-                modificationName: string;
-                modeName: string;
+                text: {
+                    modificationName: string;
+                    modeName: string;
+                };
             };
             typography: {
                 fontWeight: {
@@ -1786,8 +2049,10 @@ export declare const themeVars: {
             colorEffect: string;
             effect: string;
             kitService: {
-                modeName: string;
-                modificationName: string;
+                text: {
+                    modeName: string;
+                    modificationName: string;
+                };
             };
             blurBackground1Level: string;
             opacityBackground: string;

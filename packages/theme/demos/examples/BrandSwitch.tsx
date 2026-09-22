@@ -7,10 +7,13 @@ import { BRAND, Brand, ChildThemeProvider } from '@ds/theme';
 import { Flex } from '@ds/uikit-product-flex';
 import { useState } from 'react';
 
-const BRAND_ITEMS = Object.values(BRAND).map(value => ({ value, label: value }));
+const BRAND_ITEMS = [BRAND.CloudConsole, BRAND.SnackUI, BRAND.Gitverse, BRAND.HrGreen, BRAND.SiteBlue].map(value => ({
+  value,
+  label: value,
+}));
 
 export function BrandSwitch() {
-  const [brand, setBrand] = useState<Brand>(BRAND.A);
+  const [brand, setBrand] = useState<Brand>(BRAND.CloudConsole);
 
   return (
     <Flex direction='column' gap='2m' align='flex-start'>

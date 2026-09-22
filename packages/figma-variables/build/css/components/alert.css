@@ -4,9 +4,9 @@
   
 .sn-alert {
   --sn-alert-anatomy-size-m-container-borderRadius: var(--sn-brand-anatomy-radius-alert-m, 4px);
-  --sn-alert-anatomy-size-m-container-content-text-paddingVertical: var(--sn-density-spacing-interval-2xs, 2px);
+  --sn-alert-anatomy-size-m-container-content-text-paddingVertical: var(--sn-density-spacing-interval-2xs, 4px);
   --sn-alert-anatomy-size-m-container-content-text-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
-  --sn-alert-anatomy-size-m-container-gap: var(--sn-density-spacing-interval-m, 16px);
+  --sn-alert-anatomy-size-m-container-gap: var(--sn-density-spacing-interval-m, 24px);
   --sn-alert-anatomy-size-m-container-actionWrapper-gap: var(--sn-primitive-dimension-8, 8px);
   --sn-alert-anatomy-size-m-container-paddingVertical: var(--sn-primitive-dimension-16, 16px);
   --sn-alert-anatomy-size-m-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
@@ -15,12 +15,36 @@
   --sn-alert-anatomy-size-m-container-paddingHorizontal: var(--sn-primitive-dimension-16, 16px);
   --sn-alert-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-alert-s, 4px);
   --sn-alert-anatomy-size-s-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-alert-anatomy-size-s-container-content-text-paddingVertical: var(--sn-density-spacing-interval-xs, 4px);
+  --sn-alert-anatomy-size-s-container-content-text-paddingVertical: var(--sn-density-spacing-interval-xs, 8px);
   --sn-alert-anatomy-size-s-container-content-text-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
-  --sn-alert-anatomy-size-s-container-gap: var(--sn-density-spacing-interval-s, 8px);
+  --sn-alert-anatomy-size-s-container-gap: var(--sn-density-spacing-interval-s, 12px);
   --sn-alert-anatomy-size-s-container-actionWrapper-gap: var(--sn-primitive-dimension-8, 8px);
   --sn-alert-anatomy-size-s-container-paddingVertical: var(--sn-primitive-dimension-8, 8px);
   --sn-alert-anatomy-size-s-container-centeredWrapper-height: var(--sn-primitive-dimension-24, 24px);
   --sn-alert-anatomy-size-s-container-actionWrapper-height: var(--sn-alert-anatomy-size-s-container-centeredWrapper-height, var(--sn-primitive-dimension-24, 24px));
   --sn-alert-anatomy-size-s-container-paddingHorizontal: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-s-container-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-alert-anatomy-button-size-s-container-minWidth: var(--sn-primitive-dimension-72, 72px);
+  --sn-alert-anatomy-button-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
+  --sn-alert-anatomy-button-size-s-container-iconOnly-minWidth: var(--sn-primitive-dimension-24, 24px);
+  --sn-alert-anatomy-button-size-s-container-labelOnly-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-s-container-labelOnly-paddingRight: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-s-container-iconBefore-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-alert-anatomy-button-size-s-container-iconBefore-paddingRight: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-s-container-iconAfter-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-s-container-iconAfter-paddingRight: var(--sn-primitive-dimension-4, 4px);
+  --sn-alert-anatomy-button-size-s-label-fontSize: var(--sn-primitive-font-fontSize-12, 12px);
+  --sn-alert-anatomy-button-size-s-label-lineHeight: var(--sn-primitive-font-lineHeight-16, 16px);
+  --sn-alert-anatomy-button-size-m-container-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-alert-anatomy-button-size-m-container-minWidth: var(--sn-primitive-dimension-96, 96px);
+  --sn-alert-anatomy-button-size-m-container-minHeight: var(--sn-primitive-dimension-32, 32px);
+  --sn-alert-anatomy-button-size-m-container-iconOnly-minWidth: var(--sn-primitive-dimension-32, 32px);
+  --sn-alert-anatomy-button-size-m-container-labelOnly-paddingLeft: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-button-size-m-container-labelOnly-paddingRight: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-button-size-m-container-iconBefore-paddingLeft: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-m-container-iconBefore-paddingRight: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-button-size-m-container-iconAfter-paddingLeft: var(--sn-primitive-dimension-16, 16px);
+  --sn-alert-anatomy-button-size-m-container-iconAfter-paddingRight: var(--sn-primitive-dimension-8, 8px);
+  --sn-alert-anatomy-button-size-m-label-fontSize: var(--sn-primitive-font-fontSize-14, 14px);
+  --sn-alert-anatomy-button-size-m-label-lineHeight: var(--sn-primitive-font-lineHeight-20, 20px);
 }

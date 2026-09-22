@@ -8,21 +8,32 @@ export const DENSITY = {
   Spacious: 'spacious',
 } as const;
 
-/** Бренд. Класс `sn-brandA` / `sn-brandB` / `sn-brandC` / `sn-brandD` / `sn-brandE` / `sn-brandF`. */
-export const BRAND = {
-  A: 'brandA',
-  B: 'brandB',
-  C: 'brandC',
-  D: 'brandD',
-  E: 'brandE',
-  F: 'brandF',
+/**
+ * Платформа — набор размеров, типографики и отступов, из которого плотность берёт свои значения.
+ * Класс `sn-webDesktop` / `sn-webMobile`.
+ */
+export const PLATFORM = {
+  WebDesktop: 'webDesktop',
+  WebMobile: 'webMobile',
 } as const;
 
-/** Роль бренда (палитра). Класс `sn-main` / `sn-alter` … */
-export const BRAND_ROLE = {
-  Main: 'main',
-  Alter: 'alter',
-  Alter2: 'alter2',
-  Alter3: 'alter3',
-  Alter4: 'alter4',
+/**
+ * Бренд. Класс `sn-<значение>`. Семейства HR-портала и сайта представлены финальными цветовыми
+ * вариантами: родительские слои `hrPortal`/`site` нужны только в Figma.
+ */
+export const BRAND = {
+  CloudConsole: 'cloudConsole',
+  GigaId: 'giga-id',
+  Gitverse: 'gitverse',
+  SnackUI: 'snackUI',
+  HrBlue: 'hrBlue',
+  HrGraphite: 'hrGraphite',
+  HrGreen: 'hrGreen',
+  HrPurple: 'hrPurple',
+  HrYellow: 'hrYellow',
+  SiteBlue: 'siteBlue',
+  SiteGraphite: 'siteGraphite',
+  SiteGreen: 'siteGreen',
+  SitePurple: 'sitePurple',
+  SiteYellow: 'siteYellow',
 } as const;

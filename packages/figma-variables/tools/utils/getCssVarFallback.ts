@@ -1,8 +1,8 @@
-import { transformDimension } from '@tokens-studio/sd-transforms';
 import type { TransformedToken } from 'style-dictionary';
 
 import { VARIABLES_WITHOUT_PX } from '../types.js';
 import { isColorToken, isColorValue, normalizeOpacityForCss, toKebabCase } from './index.js';
+import { transformDimensionToPx } from './transformDimensionToPx.js';
 
 const CSS_LENGTH_UNITS = /^-?\d+(\.\d+)?(px|em|rem|%|vh|vw|cm|mm|in|pt|pc)\s*$/i;
 
@@ -33,7 +33,7 @@ export function getCssVarFallback({
   const kebabName = toKebabCase(variableName);
 
   if (isNumeric(token.$value) && !VARIABLES_WITHOUT_PX.some(variable => kebabName.includes(variable))) {
-    const transformed = transformDimension({
+    const transformed = transformDimensionToPx({
       $type: token.$type ?? 'dimension',
       $value: Number(token.$value),
     });

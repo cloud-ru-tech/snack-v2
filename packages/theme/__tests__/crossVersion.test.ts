@@ -23,7 +23,7 @@ function makeProbe(useValue: () => ThemeAppearanceContextValue, id: string): Fun
       'data-id': id,
       'data-color': appearance.colorScheme ?? '',
       'data-brand': appearance.brand ?? '',
-      'data-role': appearance.brandRole ?? '',
+      'data-platform': appearance.platform ?? '',
       'data-density': appearance.density ?? '',
     });
   };
@@ -95,9 +95,14 @@ describe('cross-version провайдеры оформления', () => {
 
     const html = renderToStaticMarkup(
       h(otherVersionRoot.StoreProvider, {
-        store: appearanceStore({ colorScheme: 'dark', brand: 'brandA', brandRole: 'main', density: 'compact' }),
+        store: appearanceStore({
+          colorScheme: 'dark',
+          brand: 'cloudConsole',
+          platform: 'webDesktop',
+          density: 'compact',
+        }),
         children: h(ChildThemeProvider, {
-          value: { density: 'comfort', brand: 'brandC' },
+          value: { density: 'comfort', brand: 'snackUI' },
           // useThemeAppearance — из реального @ds/theme; читает слитое значение.
           children: h(makeProbe(useThemeAppearance, 'merged')),
         }),
@@ -105,8 +110,8 @@ describe('cross-version провайдеры оформления', () => {
     );
 
     expect(readAttr(html, 'merged', 'data-color')).toBe('dark'); // унаследовано от чужого root
-    expect(readAttr(html, 'merged', 'data-role')).toBe('main'); // унаследовано
+    expect(readAttr(html, 'merged', 'data-platform')).toBe('webDesktop'); // унаследовано
     expect(readAttr(html, 'merged', 'data-density')).toBe('comfort'); // override нашего Child
-    expect(readAttr(html, 'merged', 'data-brand')).toBe('brandC'); // override нашего Child
+    expect(readAttr(html, 'merged', 'data-brand')).toBe('snackUI'); // override нашего Child
   });
 });

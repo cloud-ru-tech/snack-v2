@@ -22,7 +22,8 @@ function nn<T>(value: T | null | undefined): T {
 }
 
 const sum = (channels: number[]): number => channels.reduce((acc, channel) => acc + channel, 0);
-const BRAND_LIST = '.sn-brandA,.sn-brandB,.sn-brandC,.sn-brandD,.sn-brandE,.sn-brandF';
+const BRAND_LIST =
+  '.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow';
 
 describe('customTheme / hex', () => {
   it('парсит #rrggbb, #rgb, с alpha и без #', () => {
@@ -112,7 +113,7 @@ describe('customTheme / buildBrandPaletteVars', () => {
     for (const tone of BRAND_PRIMARY_TONES) {
       expect(vars[`--sn-brand-color-primary-${tone}`]).toMatch(/^#[\da-f]{6}$/);
     }
-    expect(vars['--sn-brand-color-primary-transparent']).toBe('#389f7424');
+    expect(vars['--sn-brand-color-primary-transparent']).toBe('#389f741a');
     expect(vars['--sn-brand-color-primary-onAccentLight']).toBeDefined();
     expect(vars['--sn-brand-color-primary-onAccentDark']).toBeDefined();
   });
@@ -120,9 +121,9 @@ describe('customTheme / buildBrandPaletteVars', () => {
   it('задаёт activated-тинты акцента (default/hovered/pressed)', () => {
     const vars = nn(buildBrandPaletteVars('#389f74'));
 
-    expect(vars['--sn-brand-color-state-activated-default-background']).toBe('#389f7426');
-    expect(vars['--sn-brand-color-state-activated-hovered-background']).toBe('#389f7459');
-    expect(vars['--sn-brand-color-state-activated-pressed-background']).toBe('#389f7473');
+    expect(vars['--sn-brand-color-state-activated-default-background']).toBe('#389f741a');
+    expect(vars['--sn-brand-color-state-activated-hovered-background']).toBe('#389f7433');
+    expect(vars['--sn-brand-color-state-activated-pressed-background']).toBe('#389f744d');
   });
 
   it('контрастный акцент: светлая схема — near-white, тёмная — near-dark', () => {
@@ -152,8 +153,8 @@ describe('customTheme / buildBrandPaletteCss', () => {
     const css = nn(buildBrandPaletteCss('#ff7a00'));
 
     expect(css.startsWith(`:is(${BRAND_LIST}){`)).toBe(true);
-    expect(css).toContain('--sn-brand-color-primary-55:#ff7a00');
-    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a0026');
+    expect(css).toContain('--sn-brand-color-primary-50:#ff7a00');
+    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a001a');
     expect(css).not.toContain('data-');
   });
 
@@ -162,7 +163,7 @@ describe('customTheme / buildBrandPaletteCss', () => {
 
     expect(css).toContain(`#app :is(${BRAND_LIST})`);
     expect(css).toContain(`#app:is(${BRAND_LIST})`);
-    expect(css).toContain('--sn-brand-color-primary-55:#ff7a00');
+    expect(css).toContain('--sn-brand-color-primary-50:#ff7a00');
   });
 
   it('невалидный seed → null', () => {

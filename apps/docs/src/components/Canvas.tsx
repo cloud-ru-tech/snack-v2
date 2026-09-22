@@ -9,10 +9,12 @@ import {
   ThemeContrastSVG,
   UpdateSVG,
 } from '@ds/icons/interface/system';
+import { useThemeAppearance } from '@ds/theme';
 import { Switch } from '@ds/toggles';
 import { type ComponentType, type ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 
 import styles from './Canvas.module.scss';
+import { DocsChromeScope, DocsPreviewScope } from './layout/DocsChromeScope';
 
 // ─── Control types ────────────────────────────────────────────────────────────
 
@@ -199,6 +201,8 @@ export function Canvas<P extends Record<string, unknown>>({
 
   const [props, setProps] = useState<Record<string, unknown>>(initialProps);
   const [bg, setBg] = useState<BgTheme>('light');
+  // Читается до DocsChromeScope: панель Canvas — обвязка, а сам компонент получает оформление из настроек.
+  const { appearance } = useThemeAppearance();
   const [copied, setCopied] = useState(false);
   const [controlsVisible, setControlsVisible] = useState(true);
 
@@ -232,100 +236,106 @@ export function Canvas<P extends Record<string, unknown>>({
   }, [codeSnippet]);
 
   return (
-    <div className={styles.root}>
-      {/* Toolbar */}
-      <div className={styles.toolbar}>
-        <span className={styles.toolbarLabel}>Preview</span>
-        <div className={styles.toolbarActions}>
-          {(['light', 'surface', 'dark'] as BgTheme[]).map(t => (
+    <DocsChromeScope>
+      <div className={styles.root}>
+        {/* Toolbar */}
+        <div className={styles.toolbar}>
+          <span className={styles.toolbarLabel}>Preview</span>
+          <div className={styles.toolbarActions}>
+            {(['light', 'surface', 'dark'] as BgTheme[]).map(t => (
+              <Button
+                key={t}
+                size='s'
+                view={bg === t ? 'filled' : 'simple'}
+                appearance={bg === t ? 'primary' : 'neutral'}
+                icon={BG_ICONS[t]}
+                onClick={() => setBg(t)}
+                aria-label={`${t} background`}
+                aria-pressed={bg === t}
+                title={t}
+              />
+            ))}
+            <div className={styles.divider} />
             <Button
-              key={t}
               size='s'
-              view={bg === t ? 'filled' : 'simple'}
-              appearance={bg === t ? 'primary' : 'neutral'}
-              icon={BG_ICONS[t]}
-              onClick={() => setBg(t)}
-              aria-label={`${t} background`}
-              aria-pressed={bg === t}
-              title={t}
+              view='simple'
+              appearance='neutral'
+              icon={<UpdateSVG />}
+              onClick={reset}
+              aria-label='Reset to defaults'
+              title='Reset'
             />
-          ))}
-          <div className={styles.divider} />
-          <Button
-            size='s'
-            view='simple'
-            appearance='neutral'
-            icon={<UpdateSVG />}
-            onClick={reset}
-            aria-label='Reset to defaults'
-            title='Reset'
-          />
+          </div>
         </div>
-      </div>
 
-      {/* Preview — forced-dark variant piggybacks on figma-variables .sn-dark scoping */}
-      <div className={`${styles.preview} ${styles[`preview_${bg}`]} ${bg === 'dark' ? 'sn-dark' : ''}`}>
-        <Component {...(props as P)} />
-        {hasControls && (
-          <Button
-            size='s'
-            view='outline'
-            appearance='neutral'
-            label={controlsVisible ? 'Hide props' : 'Show props'}
-            icon={controlsVisible ? <EyeClosedSVG /> : <EyeSVG />}
-            onClick={() => setControlsVisible(v => !v)}
-            aria-label={controlsVisible ? 'Hide props controls' : 'Show props controls'}
-            aria-pressed={controlsVisible}
-            className={styles.previewToggleBtn}
-          />
-        )}
-      </div>
+        {/* Preview — forced-dark variant piggybacks on figma-variables .sn-dark scoping */}
+        <div className={`${styles.preview} ${styles[`preview_${bg}`]} ${bg === 'dark' ? 'sn-dark' : ''}`}>
+          <DocsPreviewScope
+            appearance={{ ...appearance, colorScheme: bg === 'dark' ? 'dark' : appearance.colorScheme }}
+            className={styles.componentScope}
+          >
+            <Component {...(props as P)} />
+          </DocsPreviewScope>
+          {hasControls && (
+            <Button
+              size='s'
+              view='outline'
+              appearance='neutral'
+              label={controlsVisible ? 'Hide props' : 'Show props'}
+              icon={controlsVisible ? <EyeClosedSVG /> : <EyeSVG />}
+              onClick={() => setControlsVisible(v => !v)}
+              aria-label={controlsVisible ? 'Hide props controls' : 'Show props controls'}
+              aria-pressed={controlsVisible}
+              className={styles.previewToggleBtn}
+            />
+          )}
+        </div>
 
-      {/* Controls */}
-      {hasControls && controlsVisible && (
-        <div className={styles.controls}>
-          <div className={styles.tableGrid} role='table'>
-            <div className={styles.headCell} role='columnheader'>
-              Prop
-            </div>
-            <div className={styles.headCell} role='columnheader'>
-              Type
-            </div>
-            <div className={`${styles.headCell} ${styles.valueCell}`} role='columnheader'>
-              Value
-            </div>
-            {Object.entries(mergedControls).map(([key, def]) => (
-              <div key={key} className={styles.row} role='row'>
-                <div className={styles.cell} role='cell'>
-                  <code className={styles.propName}>{key}</code>
-                </div>
-                <div className={`${styles.cell} ${styles.typeCell}`} role='cell'>
-                  {def.type === 'select' || def.type === 'radio' ? def.options.join(' | ') : def.type}
-                </div>
-                <div className={`${styles.cell} ${styles.valueCell}`} role='cell'>
-                  {(def.type === 'select' || def.type === 'radio') && (
-                    <select
-                      className={styles.select}
-                      value={String(props[key] ?? def.options[0])}
-                      onChange={e => update(key, e.target.value)}
-                    >
-                      {def.options.map(opt => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  )}
+        {/* Controls */}
+        {hasControls && controlsVisible && (
+          <div className={styles.controls}>
+            <div className={styles.tableGrid} role='table'>
+              <div className={styles.headCell} role='columnheader'>
+                Prop
+              </div>
+              <div className={styles.headCell} role='columnheader'>
+                Type
+              </div>
+              <div className={`${styles.headCell} ${styles.valueCell}`} role='columnheader'>
+                Value
+              </div>
+              {Object.entries(mergedControls).map(([key, def]) => (
+                <div key={key} className={styles.row} role='row'>
+                  <div className={styles.cell} role='cell'>
+                    <code className={styles.propName}>{key}</code>
+                  </div>
+                  <div className={`${styles.cell} ${styles.typeCell}`} role='cell'>
+                    {def.type === 'select' || def.type === 'radio' ? def.options.join(' | ') : def.type}
+                  </div>
+                  <div className={`${styles.cell} ${styles.valueCell}`} role='cell'>
+                    {(def.type === 'select' || def.type === 'radio') && (
+                      <select
+                        className={styles.select}
+                        value={String(props[key] ?? def.options[0])}
+                        onChange={e => update(key, e.target.value)}
+                      >
+                        {def.options.map(opt => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    )}
 
-                  {def.type === 'boolean' && (
-                    <>
-                      <Switch
-                        aria-label={key}
-                        size='xs'
-                        checked={Boolean(props[key])}
-                        onChange={value => update(key, Boolean(value))}
-                      />
-                      {/* <label className={styles.toggle} aria-label={key}>
+                    {def.type === 'boolean' && (
+                      <>
+                        <Switch
+                          aria-label={key}
+                          size='xs'
+                          checked={Boolean(props[key])}
+                          onChange={value => update(key, Boolean(value))}
+                        />
+                        {/* <label className={styles.toggle} aria-label={key}>
                       <input
                         type='checkbox'
                         className={styles.toggleInput}
@@ -336,59 +346,60 @@ export function Canvas<P extends Record<string, unknown>>({
                         <span className={styles.toggleThumb} />
                       </span>
                     </label> */}
-                    </>
-                  )}
+                      </>
+                    )}
 
-                  {def.type === 'text' && (
-                    <input
-                      type='text'
-                      className={styles.input}
-                      value={String(props[key] ?? '')}
-                      onChange={e => update(key, e.target.value)}
-                    />
-                  )}
+                    {def.type === 'text' && (
+                      <input
+                        type='text'
+                        className={styles.input}
+                        value={String(props[key] ?? '')}
+                        onChange={e => update(key, e.target.value)}
+                      />
+                    )}
 
-                  {def.type === 'number' && (
-                    <input
-                      type='number'
-                      className={styles.input}
-                      value={Number(props[key] ?? 0)}
-                      onChange={e => update(key, Number(e.target.value))}
-                    />
-                  )}
+                    {def.type === 'number' && (
+                      <input
+                        type='number'
+                        className={styles.input}
+                        value={Number(props[key] ?? 0)}
+                        onChange={e => update(key, Number(e.target.value))}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-
-      {/* Code panel */}
-      <div className={styles.codePanel}>
-        <div className={styles.codePanelHeader}>
-          <span className={styles.codePanelLabel}>Code</span>
-          <Button
-            size='s'
-            view='elevated'
-            appearance={copied ? 'primary' : 'neutral'}
-            icon={copied ? <CheckSVG /> : <CopySVG />}
-            label={copied ? 'Copied' : 'Copy'}
-            onClick={copyCode}
-            aria-label='Copy code'
-          />
-        </div>
-
-        {highlighted ? (
-          <div
-            className={`${styles.codePre} ${styles.codeShiki} sn-dark`}
-            dangerouslySetInnerHTML={{ __html: highlighted }}
-          />
-        ) : (
-          <pre className={`${styles.codePre} sn-dark`}>
-            <code>{codeSnippet}</code>
-          </pre>
         )}
+
+        {/* Code panel */}
+        <div className={styles.codePanel}>
+          <div className={styles.codePanelHeader}>
+            <span className={styles.codePanelLabel}>Code</span>
+            <Button
+              size='s'
+              view='elevated'
+              appearance={copied ? 'primary' : 'neutral'}
+              icon={copied ? <CheckSVG /> : <CopySVG />}
+              label={copied ? 'Copied' : 'Copy'}
+              onClick={copyCode}
+              aria-label='Copy code'
+            />
+          </div>
+
+          {highlighted ? (
+            <div
+              className={`${styles.codePre} ${styles.codeShiki} sn-dark`}
+              dangerouslySetInnerHTML={{ __html: highlighted }}
+            />
+          ) : (
+            <pre className={`${styles.codePre} sn-dark`}>
+              <code>{codeSnippet}</code>
+            </pre>
+          )}
+        </div>
       </div>
-    </div>
+    </DocsChromeScope>
   );
 }

@@ -30,8 +30,8 @@ $sn-popupPrivate-anatomy-bottomSheet-header-paddingBottom: var(--sn-popupPrivate
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-gap: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-gap, #{st.$sn-density-spacing-interval-s});
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap, #{st.$sn-density-spacing-interval-s});
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft, #{st.$sn-density-spacing-interval-l});
-$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical, #{st.$sn-primitive-dimension-10});
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight, #{st.$sn-density-spacing-interval-l});
+$sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-minHeight: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-minHeight, #{st.$sn-density-size-m});
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft, #{st.$sn-density-spacing-interval-s});
 $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight: var(--sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight, #{st.$sn-density-spacing-interval-s});
 $sn-popupPrivate-anatomy-bottomSheet-header-paddingTop: var(--sn-popupPrivate-anatomy-bottomSheet-header-paddingTop, #{st.$sn-density-spacing-interval-m});
@@ -103,9 +103,8 @@ $popupPrivate: (
           "headlineWrapper": (
             "gap": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-gap,
             "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingLeft,
-            "padding-top": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical,
-            "padding-bottom": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingVertical,
-            "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight
+            "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-paddingRight,
+            "min-height": $sn-popupPrivate-anatomy-bottomSheet-header-headline-headlineWrapper-minHeight
           ),
           "padding-left": $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingLeft,
           "padding-right": $sn-popupPrivate-anatomy-bottomSheet-header-headline-paddingRight

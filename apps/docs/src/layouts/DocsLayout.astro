@@ -7,12 +7,14 @@ import { StorybookLink } from '../components/layout/StorybookLink'
 import { HeaderNav } from '../components/layout/HeaderNav'
 import { HeaderSearch } from '../components/layout/HeaderSearch'
 import { ThemeHtmlApplier } from '../components/layout/ThemeHtmlApplier'
+import { PreviewThemeApplier } from '../components/layout/PreviewThemeApplier'
 import { PortalRootApplier } from '../components/layout/PortalRootApplier'
 import { NavProgress } from '../components/layout/NavProgress'
 import { TeamSnack } from '../components/layout/logo/TeamSnack'
 import { CloudRu } from '../components/layout/logo/CloudRu'
 import { ClientRouter } from 'astro:transitions'
-import { getThemeClassnames } from '@ds/theme/ssr'
+import { BRAND, getThemeClassnames } from '@ds/theme/ssr'
+import { CHROME_APPEARANCE, CHROME_PORTAL_ROOT_ID } from '../lib/docsChrome'
 import '../styles/global.css'
 import '../styles/docs-layout.scss'
 
@@ -26,7 +28,9 @@ const base = import.meta.env.BASE_URL
 
 // Дефолтный набор sn-* для <html> — единый источник из @ds/theme.
 // Inline-скрипт ниже корректирует оси по localStorage/системе до первой отрисовки.
-const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', brandRole: 'main', density: 'compact' })
+const htmlClass = getThemeClassnames({ colorScheme: 'light', ...CHROME_APPEARANCE })
+// Список брендов передаётся в inline-скрипт: он не может импортировать @ds/theme.
+const brands = Object.values(BRAND)
 ---
 
 <!doctype html>
@@ -41,6 +45,7 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
   </head>
   <body>
     <ThemeHtmlApplier client:load transition:persist />
+    <PreviewThemeApplier client:load transition:persist />
     <PortalRootApplier client:load transition:persist />
     <NavProgress client:load transition:persist />
     <!-- Top header -->
@@ -86,40 +91,35 @@ const htmlClass = getThemeClassnames({ colorScheme: 'light', brand: 'brandA', br
 
     <!-- Корень порталов: все оверлеи DS (Modal/Drawer/Popover/Tooltip) рендерятся сюда поверх
          хрома доков. Внутри стек по DOM-порядку (z-index оверлеев = 0). См. PortalRootApplier. -->
-    <div id="ds-portal-root" transition:persist></div>
+    <div id="ds-portal-root" data-docs-preview transition:persist></div>
+    <!-- Корень порталов обвязки (поиск, меню, навигация): её оформление не зависит от настроек примеров. -->
+    <div id={CHROME_PORTAL_ROOT_ID} transition:persist></div>
 
-    <script is:inline>
-      // No-FOUC bootstrap: синхронно ставит классы осей из localStorage до первой отрисовки.
+    <script is:inline define:vars={{ brands }}>
+      // No-FOUC bootstrap: синхронно ставит классы из localStorage до первой отрисовки.
       // is:inline сериализуется в строку без импортов, поэтому @ds/theme тут напрямую не доступен;
-      // после гидрации <html> ведёт ThemeHtmlApplier.
+      // после гидрации <html> ведёт ThemeHtmlApplier, примеры — PreviewThemeApplier.
       (function () {
         function apply() {
-          const cls = document.documentElement.classList
           const storedTheme = localStorage.getItem('ds-theme')
           const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
           const theme = storedTheme ?? system
+
+          // Обвязка доки: с настроек берётся только цветовая схема.
+          const cls = document.documentElement.classList
           cls.toggle('sn-dark', theme === 'dark')
           cls.toggle('sn-light', theme === 'light')
 
-          const brand = localStorage.getItem('ds-brand') ?? 'brandA'
-          cls.toggle('sn-brandA', brand === 'brandA')
-          cls.toggle('sn-brandB', brand === 'brandB')
-          cls.toggle('sn-brandC', brand === 'brandC')
-          cls.toggle('sn-brandD', brand === 'brandD')
-          cls.toggle('sn-brandE', brand === 'brandE')
-          cls.toggle('sn-brandF', brand === 'brandF')
-
-          const brandRole = localStorage.getItem('ds-brandRole') ?? 'main'
-          cls.toggle('sn-main', brandRole === 'main')
-          cls.toggle('sn-alter', brandRole === 'alter')
-          cls.toggle('sn-alter2', brandRole === 'alter2')
-          cls.toggle('sn-alter3', brandRole === 'alter3')
-          cls.toggle('sn-alter4', brandRole === 'alter4')
-
-          const density = localStorage.getItem('ds-density') ?? 'compact'
-          cls.toggle('sn-compact', density === 'compact')
-          cls.toggle('sn-comfort', density === 'comfort')
-          cls.toggle('sn-spacious', density === 'spacious')
+          // Примеры и их порталы: полный набор sn-* из настроек (тот же, что собирает getThemeClassnameList).
+          const storedBrand = localStorage.getItem('ds-brand')
+          const brand = brands.includes(storedBrand) ? storedBrand : 'cloudConsole'
+          const platform = localStorage.getItem('ds-platform') === 'webMobile' ? 'webMobile' : 'webDesktop'
+          const storedDensity = localStorage.getItem('ds-density')
+          const density = ['compact', 'comfort', 'spacious'].includes(storedDensity) ? storedDensity : 'compact'
+          const previewClasses = ['sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no', 'sn-' + platform, 'sn-' + density, 'sn-' + theme, 'sn-' + brand]
+          document.querySelectorAll('[data-docs-preview]').forEach(function (element) {
+            element.classList.add.apply(element.classList, previewClasses)
+          })
         }
         apply()
         document.addEventListener('astro:after-swap', apply)

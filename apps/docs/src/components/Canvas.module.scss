@@ -60,6 +60,11 @@
   transition: background m.$docs-duration-normal;
 }
 
+// Обёртка оформления вокруг компонента превью не участвует в раскладке — только несёт классы темы.
+.componentScope {
+  display: contents;
+}
+
 .previewToggleBtn {
   position: absolute;
   right: base.$sn-density-spacing-interval-m;

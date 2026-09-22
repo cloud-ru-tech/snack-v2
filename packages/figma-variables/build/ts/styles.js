@@ -5,316 +5,16 @@
 export const themeVars = {
   sn: {
     primitive: {
-      color: {
-        yellow: {
-          '5': 'var(--sn-primitive-color-yellow-5, #321f02)',
-          '10': 'var(--sn-primitive-color-yellow-10, #3c2503)',
-          '15': 'var(--sn-primitive-color-yellow-15, #4a2e04)',
-          '25': 'var(--sn-primitive-color-yellow-25, #724c08)',
-          '45': 'var(--sn-primitive-color-yellow-45, #ab7a08)',
-          '55': 'var(--sn-primitive-color-yellow-55, #f3b917)',
-          '60': 'var(--sn-primitive-color-yellow-60, #f2c148)',
-          '65': 'var(--sn-primitive-color-yellow-65, #efc76b)',
-          '80': 'var(--sn-primitive-color-yellow-80, #f0dfb1)',
-          '90': 'var(--sn-primitive-color-yellow-90, #fdf4cc)',
-          '95': 'var(--sn-primitive-color-yellow-95, #fffbe6)',
-          '99': 'var(--sn-primitive-color-yellow-99, #fffef6)'
-        },
-        blue: {
-          '5': 'var(--sn-primitive-color-blue-5, #20283d)',
-          '10': 'var(--sn-primitive-color-blue-10, #1f2e45)',
-          '15': 'var(--sn-primitive-color-blue-15, #1f3652)',
-          '25': 'var(--sn-primitive-color-blue-25, #294b71)',
-          '45': 'var(--sn-primitive-color-blue-45, #3b6fad)',
-          '55': 'var(--sn-primitive-color-blue-55, #4387e2)',
-          '60': 'var(--sn-primitive-color-blue-60, #669eec)',
-          '65': 'var(--sn-primitive-color-blue-65, #8cb6f1)',
-          '80': 'var(--sn-primitive-color-blue-80, #d6e2f4)',
-          '90': 'var(--sn-primitive-color-blue-90, #e6f4fd)',
-          '95': 'var(--sn-primitive-color-blue-95, #f2f9ff)',
-          '99': 'var(--sn-primitive-color-blue-99, #fdfeff)'
-        },
-        brandB: {
-          '5': 'var(--sn-primitive-color-brandB-5, #2b2540)',
-          '10': 'var(--sn-primitive-color-brandB-10, #302a4b)',
-          '15': 'var(--sn-primitive-color-brandB-15, #362c5a)',
-          '25': 'var(--sn-primitive-color-brandB-25, #4f3c8d)',
-          '45': 'var(--sn-primitive-color-brandB-45, #6642bd)',
-          '55': 'var(--sn-primitive-color-brandB-55, #794ed3)',
-          '60': 'var(--sn-primitive-color-brandB-60, #a681ef)',
-          '65': 'var(--sn-primitive-color-brandB-65, #c4aaf9)',
-          '80': 'var(--sn-primitive-color-brandB-80, #e1ccfe)',
-          '90': 'var(--sn-primitive-color-brandB-90, #f3e8ff)',
-          '95': 'var(--sn-primitive-color-brandB-95, #f7f2fc)',
-          '99': 'var(--sn-primitive-color-brandB-99, #fdfbff)'
-        },
-        green: {
-          '5': 'var(--sn-primitive-color-green-5, #25311b)',
-          '10': 'var(--sn-primitive-color-green-10, #293820)',
-          '15': 'var(--sn-primitive-color-green-15, #293f22)',
-          '25': 'var(--sn-primitive-color-green-25, #325625)',
-          '45': 'var(--sn-primitive-color-green-45, #438b4b)',
-          '55': 'var(--sn-primitive-color-green-55, #41b954)',
-          '60': 'var(--sn-primitive-color-green-60, #5bc266)',
-          '65': 'var(--sn-primitive-color-green-65, #89ca87)',
-          '80': 'var(--sn-primitive-color-green-80, #d2ead0)',
-          '90': 'var(--sn-primitive-color-green-90, #e4f5df)',
-          '95': 'var(--sn-primitive-color-green-95, #f1faed)',
-          '99': 'var(--sn-primitive-color-green-99, #fcfefa)'
-        },
-        gray: {
-          '5': 'var(--sn-primitive-color-gray-5, #262631)',
-          '10': 'var(--sn-primitive-color-gray-10, #2c2c3a)',
-          '15': 'var(--sn-primitive-color-gray-15, #333342)',
-          '25': 'var(--sn-primitive-color-gray-25, #4c4e5c)',
-          '45': 'var(--sn-primitive-color-gray-45, #81869c)',
-          '55': 'var(--sn-primitive-color-gray-55, #8b8fa7)',
-          '60': 'var(--sn-primitive-color-gray-60, #959bb1)',
-          '65': 'var(--sn-primitive-color-gray-65, #a6aabf)',
-          '80': 'var(--sn-primitive-color-gray-80, #e3e5ed)',
-          '90': 'var(--sn-primitive-color-gray-90, #eeeff3)',
-          '95': 'var(--sn-primitive-color-gray-95, #fdfdfd)',
-          '99': 'var(--sn-primitive-color-gray-99, #ffffff)'
-        },
-        pink: {
-          '5': 'var(--sn-primitive-color-pink-5, #3a1e2c)',
-          '10': 'var(--sn-primitive-color-pink-10, #442332)',
-          '15': 'var(--sn-primitive-color-pink-15, #53293c)',
-          '25': 'var(--sn-primitive-color-pink-25, #794459)',
-          '45': 'var(--sn-primitive-color-pink-45, #a85278)',
-          '55': 'var(--sn-primitive-color-pink-55, #dd5a8e)',
-          '60': 'var(--sn-primitive-color-pink-60, #e87ba2)',
-          '65': 'var(--sn-primitive-color-pink-65, #ec9cb6)',
-          '80': 'var(--sn-primitive-color-pink-80, #f5d9e1)',
-          '90': 'var(--sn-primitive-color-pink-90, #fceaf0)',
-          '95': 'var(--sn-primitive-color-pink-95, #fff5f7)',
-          '99': 'var(--sn-primitive-color-pink-99, #fdfcfc)'
-        },
-        orange: {
-          '5': 'var(--sn-primitive-color-orange-5, #3e1908)',
-          '10': 'var(--sn-primitive-color-orange-10, #481f06)',
-          '15': 'var(--sn-primitive-color-orange-15, #522505)',
-          '25': 'var(--sn-primitive-color-orange-25, #824a1c)',
-          '45': 'var(--sn-primitive-color-orange-45, #c46917)',
-          '55': 'var(--sn-primitive-color-orange-55, #f57e1f)',
-          '60': 'var(--sn-primitive-color-orange-60, #f98d33)',
-          '65': 'var(--sn-primitive-color-orange-65, #fea65f)',
-          '80': 'var(--sn-primitive-color-orange-80, #fbdeb6)',
-          '90': 'var(--sn-primitive-color-orange-90, #ffedcf)',
-          '95': 'var(--sn-primitive-color-orange-95, #fff6e5)',
-          '99': 'var(--sn-primitive-color-orange-99, #fffcf4)'
-        },
-        violet: {
-          '5': 'var(--sn-primitive-color-violet-5, #292334)',
-          '10': 'var(--sn-primitive-color-violet-10, #2f283b)',
-          '15': 'var(--sn-primitive-color-violet-15, #3b314a)',
-          '25': 'var(--sn-primitive-color-violet-25, #594571)',
-          '45': 'var(--sn-primitive-color-violet-45, #875699)',
-          '55': 'var(--sn-primitive-color-violet-55, #b163cc)',
-          '60': 'var(--sn-primitive-color-violet-60, #bb86e0)',
-          '65': 'var(--sn-primitive-color-violet-65, #c9a7e9)',
-          '80': 'var(--sn-primitive-color-violet-80, #e6dcf3)',
-          '90': 'var(--sn-primitive-color-violet-90, #f3edfc)',
-          '95': 'var(--sn-primitive-color-violet-95, #f9f5ff)',
-          '99': 'var(--sn-primitive-color-violet-99, #fdfdfd)'
-        },
-        red: {
-          '5': 'var(--sn-primitive-color-red-5, #3b1a1c)',
-          '10': 'var(--sn-primitive-color-red-10, #481d1f)',
-          '15': 'var(--sn-primitive-color-red-15, #572224)',
-          '25': 'var(--sn-primitive-color-red-25, #772c30)',
-          '45': 'var(--sn-primitive-color-red-45, #a93533)',
-          '55': 'var(--sn-primitive-color-red-55, #d52e33)',
-          '60': 'var(--sn-primitive-color-red-60, #f3605e)',
-          '65': 'var(--sn-primitive-color-red-65, #fb8074)',
-          '80': 'var(--sn-primitive-color-red-80, #fdd6cd)',
-          '90': 'var(--sn-primitive-color-red-90, #fee8e5)',
-          '95': 'var(--sn-primitive-color-red-95, #fef5f1)',
-          '99': 'var(--sn-primitive-color-red-99, #fffaf7)'
-        },
-        brandA: {
-          '5': 'var(--sn-primitive-color-brandA-5, #21372f)',
-          '10': 'var(--sn-primitive-color-brandA-10, #243e35)',
-          '15': 'var(--sn-primitive-color-brandA-15, #2b483c)',
-          '25': 'var(--sn-primitive-color-brandA-25, #2c5e49)',
-          '45': 'var(--sn-primitive-color-brandA-45, #22775b)',
-          '55': 'var(--sn-primitive-color-brandA-55, #389f74)',
-          '60': 'var(--sn-primitive-color-brandA-60, #5ebb91)',
-          '65': 'var(--sn-primitive-color-brandA-65, #85ceaa)',
-          '80': 'var(--sn-primitive-color-brandA-80, #caeadb)',
-          '90': 'var(--sn-primitive-color-brandA-90, #edf7f1)',
-          '95': 'var(--sn-primitive-color-brandA-95, #f5fdf8)',
-          '99': 'var(--sn-primitive-color-brandA-99, #fbfffc)'
-        },
-        brandBAlter: {
-          '5': 'var(--sn-primitive-color-brandBAlter-5, #3e1908)',
-          '10': 'var(--sn-primitive-color-brandBAlter-10, #481f06)',
-          '15': 'var(--sn-primitive-color-brandBAlter-15, #522505)',
-          '25': 'var(--sn-primitive-color-brandBAlter-25, #824a1c)',
-          '45': 'var(--sn-primitive-color-brandBAlter-45, #c46917)',
-          '55': 'var(--sn-primitive-color-brandBAlter-55, #f57e1f)',
-          '60': 'var(--sn-primitive-color-brandBAlter-60, #f98d33)',
-          '65': 'var(--sn-primitive-color-brandBAlter-65, #fea65f)',
-          '80': 'var(--sn-primitive-color-brandBAlter-80, #fed49c)',
-          '90': 'var(--sn-primitive-color-brandBAlter-90, #ffedcf)',
-          '95': 'var(--sn-primitive-color-brandBAlter-95, #fff6e5)',
-          '99': 'var(--sn-primitive-color-brandBAlter-99, #fffcf4)'
-        },
-        brandC: {
-          '5': 'var(--sn-primitive-color-brandC-5, #01190f)',
-          '10': 'var(--sn-primitive-color-brandC-10, #032016)',
-          '15': 'var(--sn-primitive-color-brandC-15, #022519)',
-          '25': 'var(--sn-primitive-color-brandC-25, #042f1f)',
-          '45': 'var(--sn-primitive-color-brandC-45, #21bd70)',
-          '55': 'var(--sn-primitive-color-brandC-55, #26d07c)',
-          '60': 'var(--sn-primitive-color-brandC-60, #49d891)',
-          '65': 'var(--sn-primitive-color-brandC-65, #6cdfa6)',
-          '80': 'var(--sn-primitive-color-brandC-80, #b1eed0)',
-          '90': 'var(--sn-primitive-color-brandC-90, #ebf8f0)',
-          '95': 'var(--sn-primitive-color-brandC-95, #f3fbf6)',
-          '99': 'var(--sn-primitive-color-brandC-99, #f9fdfa)'
-        },
-        brandCAlter: {
-          '5': 'var(--sn-primitive-color-brandCAlter-5, #241534)',
-          '10': 'var(--sn-primitive-color-brandCAlter-10, #311d46)',
-          '15': 'var(--sn-primitive-color-brandCAlter-15, #3d2658)',
-          '25': 'var(--sn-primitive-color-brandCAlter-25, #55347a)',
-          '45': 'var(--sn-primitive-color-brandCAlter-45, #8b5af3)',
-          '55': 'var(--sn-primitive-color-brandCAlter-55, #a068ff)',
-          '60': 'var(--sn-primitive-color-brandCAlter-60, #9f7be2)',
-          '65': 'var(--sn-primitive-color-brandCAlter-65, #af8de9)',
-          '80': 'var(--sn-primitive-color-brandCAlter-80, #e1d7f2)',
-          '90': 'var(--sn-primitive-color-brandCAlter-90, #eee7fb)',
-          '95': 'var(--sn-primitive-color-brandCAlter-95, #f6f2fe)',
-          '99': 'var(--sn-primitive-color-brandCAlter-99, #fdfcff)'
-        },
-        brandCAlter2: {
-          '5': 'var(--sn-primitive-color-brandCAlter2-5, #0c1f3a)',
-          '10': 'var(--sn-primitive-color-brandCAlter2-10, #122b4c)',
-          '15': 'var(--sn-primitive-color-brandCAlter2-15, #19375e)',
-          '25': 'var(--sn-primitive-color-brandCAlter2-25, #24507f)',
-          '45': 'var(--sn-primitive-color-brandCAlter2-45, #93bcdf)',
-          '55': 'var(--sn-primitive-color-brandCAlter2-55, #c0e0fc)',
-          '60': 'var(--sn-primitive-color-brandCAlter2-60, #87b3e5)',
-          '65': 'var(--sn-primitive-color-brandCAlter2-65, #9bc0ec)',
-          '80': 'var(--sn-primitive-color-brandCAlter2-80, #d6ecff)',
-          '90': 'var(--sn-primitive-color-brandCAlter2-90, #e7f0fb)',
-          '95': 'var(--sn-primitive-color-brandCAlter2-95, #f2f7fd)',
-          '99': 'var(--sn-primitive-color-brandCAlter2-99, #fbfdff)'
-        },
-        brandCAlter3: {
-          '5': 'var(--sn-primitive-color-brandCAlter3-5, #0f1304)',
-          '10': 'var(--sn-primitive-color-brandCAlter3-10, #111602)',
-          '15': 'var(--sn-primitive-color-brandCAlter3-15, #171d03)',
-          '25': 'var(--sn-primitive-color-brandCAlter3-25, #2e3807)',
-          '45': 'var(--sn-primitive-color-brandCAlter3-45, #859c2d)',
-          '55': 'var(--sn-primitive-color-brandCAlter3-55, #cff500)',
-          '60': 'var(--sn-primitive-color-brandCAlter3-60, #d6f456)',
-          '65': 'var(--sn-primitive-color-brandCAlter3-65, #e6f67a)',
-          '80': 'var(--sn-primitive-color-brandCAlter3-80, #f0f8c4)',
-          '90': 'var(--sn-primitive-color-brandCAlter3-90, #f6fbe0)',
-          '95': 'var(--sn-primitive-color-brandCAlter3-95, #fcffee)',
-          '99': 'var(--sn-primitive-color-brandCAlter3-99, #fdfff7)'
-        },
-        brandCAlter4: {
-          '5': 'var(--sn-primitive-color-brandCAlter4-5, #131313)',
-          '10': 'var(--sn-primitive-color-brandCAlter4-10, #181818)',
-          '15': 'var(--sn-primitive-color-brandCAlter4-15, #1e1e1e)',
-          '25': 'var(--sn-primitive-color-brandCAlter4-25, #282828)',
-          '45': 'var(--sn-primitive-color-brandCAlter4-45, #2e2e2e)',
-          '55': 'var(--sn-primitive-color-brandCAlter4-55, #222222)',
-          '60': 'var(--sn-primitive-color-brandCAlter4-60, #515357)',
-          '65': 'var(--sn-primitive-color-brandCAlter4-65, #a5a7ac)',
-          '80': 'var(--sn-primitive-color-brandCAlter4-80, #ebeced)',
-          '90': 'var(--sn-primitive-color-brandCAlter4-90, #f4f4f4)',
-          '95': 'var(--sn-primitive-color-brandCAlter4-95, #fcfcfc)',
-          '99': 'var(--sn-primitive-color-brandCAlter4-99, #ffffff)'
-        },
-        brandD: {
-          '5': 'var(--sn-primitive-color-brandD-5, #01190f)',
-          '10': 'var(--sn-primitive-color-brandD-10, #032016)',
-          '15': 'var(--sn-primitive-color-brandD-15, #022519)',
-          '25': 'var(--sn-primitive-color-brandD-25, #042f1f)',
-          '45': 'var(--sn-primitive-color-brandD-45, #29a37b)',
-          '55': 'var(--sn-primitive-color-brandD-55, #26d07c)',
-          '60': 'var(--sn-primitive-color-brandD-60, #49d891)',
-          '65': 'var(--sn-primitive-color-brandD-65, #6cdfa6)',
-          '80': 'var(--sn-primitive-color-brandD-80, #b1eed0)',
-          '90': 'var(--sn-primitive-color-brandD-90, #ebf8f0)',
-          '95': 'var(--sn-primitive-color-brandD-95, #f3fbf6)',
-          '99': 'var(--sn-primitive-color-brandD-99, #f9fdfa)'
-        },
-        brandE: {
-          '5': 'var(--sn-primitive-color-brandE-5, #0e0e24)',
-          '10': 'var(--sn-primitive-color-brandE-10, #11122d)',
-          '15': 'var(--sn-primitive-color-brandE-15, #181838)',
-          '25': 'var(--sn-primitive-color-brandE-25, #23244e)',
-          '45': 'var(--sn-primitive-color-brandE-45, #5359b7)',
-          '55': 'var(--sn-primitive-color-brandE-55, #5558fa)',
-          '60': 'var(--sn-primitive-color-brandE-60, #7b84ed)',
-          '65': 'var(--sn-primitive-color-brandE-65, #97a0ee)',
-          '80': 'var(--sn-primitive-color-brandE-80, #dddefc)',
-          '90': 'var(--sn-primitive-color-brandE-90, #f1f1fd)',
-          '95': 'var(--sn-primitive-color-brandE-95, #f8f8fc)',
-          '99': 'var(--sn-primitive-color-brandE-99, #fcfcfc)'
-        },
-        brandF: {
-          '5': 'var(--sn-primitive-color-brandF-5, #212128)',
-          '10': 'var(--sn-primitive-color-brandF-10, #242430)',
-          '15': 'var(--sn-primitive-color-brandF-15, #292a35)',
-          '25': 'var(--sn-primitive-color-brandF-25, #363742)',
-          '45': 'var(--sn-primitive-color-brandF-45, #5b5d69)',
-          '55': 'var(--sn-primitive-color-brandF-55, #393a45)',
-          '60': 'var(--sn-primitive-color-brandF-60, #999aa8)',
-          '65': 'var(--sn-primitive-color-brandF-65, #aeafbd)',
-          '80': 'var(--sn-primitive-color-brandF-80, #dee0ef)',
-          '90': 'var(--sn-primitive-color-brandF-90, #f5f6fe)',
-          '95': 'var(--sn-primitive-color-brandF-95, #fafaff)',
-          '99': 'var(--sn-primitive-color-brandF-99, #fdfeff)'
-        }
-      },
-      fontFamily: {
-        fontWeight: {
-          light: 'var(--sn-primitive-fontFamily-fontWeight-light, \"Light\")',
-          bold: 'var(--sn-primitive-fontFamily-fontWeight-bold, \"Bold\")',
-          semiBold: 'var(--sn-primitive-fontFamily-fontWeight-semiBold, \"Semibold\")',
-          regular: 'var(--sn-primitive-fontFamily-fontWeight-regular, \"Regular\")',
-          lightSans: 'var(--sn-primitive-fontFamily-fontWeight-lightSans, \"LightSans\")'
-        },
-        brandB: {
-          sans: 'var(--sn-primitive-fontFamily-brandB-sans, \"Inter\")',
-          mono: 'var(--sn-primitive-fontFamily-brandB-mono, \"Roboto Mono\")'
-        },
-        brandA: {
-          mono: 'var(--sn-primitive-fontFamily-brandA-mono, \"SB Sans Text Mono\")',
-          sans: 'var(--sn-primitive-fontFamily-brandA-sans, \"SB Sans Interface\")'
-        },
-        brandC: {
-          sans: 'var(--sn-primitive-fontFamily-brandC-sans, \"SB Sans Text\")',
-          mono: 'var(--sn-primitive-fontFamily-brandC-mono, \"SB Sans Text Mono\")'
-        },
-        brandD: {
-          sans: 'var(--sn-primitive-fontFamily-brandD-sans, \"SB Sans Text\")',
-          mono: 'var(--sn-primitive-fontFamily-brandD-mono, \"SB Sans Text Mono\")'
-        },
-        brandE: {
-          mono: 'var(--sn-primitive-fontFamily-brandE-mono, \"SB Sans Text Mono\")',
-          sans: 'var(--sn-primitive-fontFamily-brandE-sans, \"SB Sans Interface\")'
-        },
-        brandF: {
-          mono: 'var(--sn-primitive-fontFamily-brandF-mono, \"SB Sans Text Mono\")',
-          sans: 'var(--sn-primitive-fontFamily-brandF-sans, \"SB Sans Interface\")'
-        }
-      },
       strokeWeight: {
         strokeThin: 'var(--sn-primitive-strokeWeight-strokeThin, 0.5px)',
         strokeRegular: 'var(--sn-primitive-strokeWeight-strokeRegular, 1px)',
         strokeMedium: 'var(--sn-primitive-strokeWeight-strokeMedium, 1.5px)',
         strokeSemiBold: 'var(--sn-primitive-strokeWeight-strokeSemiBold, 2px)',
-        strokeBold: 'var(--sn-primitive-strokeWeight-strokeBold, 3px)'
+        strokeBold: 'var(--sn-primitive-strokeWeight-strokeBold, 3px)',
+        strokeExtraBold: 'var(--sn-primitive-strokeWeight-strokeExtraBold, 2.5px)'
       },
       dimension: {
-        '0': 'var(--sn-primitive-dimension-0, 0)',
+        '0': 'var(--sn-primitive-dimension-0, 0px)',
         '1': 'var(--sn-primitive-dimension-1, 1px)',
         '2': 'var(--sn-primitive-dimension-2, 2px)',
         '4': 'var(--sn-primitive-dimension-4, 4px)',
@@ -322,6 +22,7 @@ export const themeVars = {
         '8': 'var(--sn-primitive-dimension-8, 8px)',
         '10': 'var(--sn-primitive-dimension-10, 10px)',
         '12': 'var(--sn-primitive-dimension-12, 12px)',
+        '14': 'var(--sn-primitive-dimension-14, 14px)',
         '16': 'var(--sn-primitive-dimension-16, 16px)',
         '20': 'var(--sn-primitive-dimension-20, 20px)',
         '24': 'var(--sn-primitive-dimension-24, 24px)',
@@ -353,6 +54,10 @@ export const themeVars = {
         '128': 'var(--sn-primitive-dimension-128, 128px)',
         '132': 'var(--sn-primitive-dimension-132, 132px)',
         '136': 'var(--sn-primitive-dimension-136, 136px)',
+        '140': 'var(--sn-primitive-dimension-140, 140px)',
+        '144': 'var(--sn-primitive-dimension-144, 144px)',
+        '148': 'var(--sn-primitive-dimension-148, 148px)',
+        '152': 'var(--sn-primitive-dimension-152, 152px)',
         full: 'var(--sn-primitive-dimension-full, 10000px)'
       },
       font: {
@@ -371,26 +76,24 @@ export const themeVars = {
           byFontSize24: 'var(--sn-primitive-font-paragraphSpacing-byFontSize24, 12px)'
         },
         lineHeight: {
-          by16: 'var(--sn-primitive-font-lineHeight-by16, 24px)',
-          by48: 'var(--sn-primitive-font-lineHeight-by48, 60px)',
-          by40: 'var(--sn-primitive-font-lineHeight-by40, 48px)',
-          by32: 'var(--sn-primitive-font-lineHeight-by32, 40px)',
-          by28: 'var(--sn-primitive-font-lineHeight-by28, 36px)',
-          by18: 'var(--sn-primitive-font-lineHeight-by18, 24px)',
-          by12: 'var(--sn-primitive-font-lineHeight-by12, 16px)',
-          by11: 'var(--sn-primitive-font-lineHeight-by11, 14px)',
-          by14: 'var(--sn-primitive-font-lineHeight-by14, 20px)',
-          by56: 'var(--sn-primitive-font-lineHeight-by56, 64px)',
-          by24: 'var(--sn-primitive-font-lineHeight-by24, 32px)',
-          by20: 'var(--sn-primitive-font-lineHeight-by20, 28px)',
-          by36: 'var(--sn-primitive-font-lineHeight-by36, 44px)',
-          by64: 'var(--sn-primitive-font-lineHeight-by64, 72px)'
+          '14': 'var(--sn-primitive-font-lineHeight-14, 14px)',
+          '16': 'var(--sn-primitive-font-lineHeight-16, 16px)',
+          '20': 'var(--sn-primitive-font-lineHeight-20, 20px)',
+          '24': 'var(--sn-primitive-font-lineHeight-24, 24px)',
+          '28': 'var(--sn-primitive-font-lineHeight-28, 28px)',
+          '32': 'var(--sn-primitive-font-lineHeight-32, 32px)',
+          '36': 'var(--sn-primitive-font-lineHeight-36, 36px)',
+          '40': 'var(--sn-primitive-font-lineHeight-40, 40px)',
+          '48': 'var(--sn-primitive-font-lineHeight-48, 48px)',
+          '60': 'var(--sn-primitive-font-lineHeight-60, 60px)',
+          '64': 'var(--sn-primitive-font-lineHeight-64, 64px)',
+          '72': 'var(--sn-primitive-font-lineHeight-72, 72px)'
         },
         letterSpacing: {
           l: 'var(--sn-primitive-font-letterSpacing-l, 0.15px)',
           m: 'var(--sn-primitive-font-letterSpacing-m, 0.1px)',
           xs: 'var(--sn-primitive-font-letterSpacing-xs, -0.5px)',
-          s: 'var(--sn-primitive-font-letterSpacing-s, 0)'
+          s: 'var(--sn-primitive-font-letterSpacing-s, 0px)'
         },
         fontSize: {
           '11': 'var(--sn-primitive-font-fontSize-11, 11px)',
@@ -430,41 +133,562 @@ export const themeVars = {
         }
       }
     },
-    density: {
+    platform: {
       property: {
         boolean: {
-          showOnCompact: 'var(--sn-density-property-boolean-showOnCompact, \"false\")',
-          showOnComfort: 'var(--sn-density-property-boolean-showOnComfort, \"true\")',
-          showOnSpacious: 'var(--sn-density-property-boolean-showOnSpacious, \"false\")'
+          showOnWebDesktop: 'var(--sn-platform-property-boolean-showOnWebDesktop, \"true\")',
+          showOnWebMobile: 'var(--sn-platform-property-boolean-showOnWebMobile, \"false\")'
         }
       },
       kitService: {
         text: {
+          modeName: 'var(--sn-platform-kitService-text-modeName, \"02_platform:\")',
+          modificationName: 'var(--sn-platform-kitService-text-modificationName, \"webDesktop\")'
+        }
+      },
+      compact: {
+        scale: {
+          '100': {
+            xs: 'var(--sn-platform-compact-scale-100-xs, 16px)',
+            s: 'var(--sn-platform-compact-scale-100-s, 24px)',
+            m: 'var(--sn-platform-compact-scale-100-m, 32px)',
+            l: 'var(--sn-platform-compact-scale-100-l, 40px)',
+            xl: 'var(--sn-platform-compact-scale-100-xl, 48px)',
+            '2xl': 'var(--sn-platform-compact-scale-100-2xl, 56px)',
+            '3xl': 'var(--sn-platform-compact-scale-100-3xl, 64px)',
+            '4xl': 'var(--sn-platform-compact-scale-100-4xl, 72px)',
+            '5xl': 'var(--sn-platform-compact-scale-100-5xl, 80px)',
+            '6xl': 'var(--sn-platform-compact-scale-100-6xl, 88px)',
+            '7xl': 'var(--sn-platform-compact-scale-100-7xl, 96px)',
+            '8xl': 'var(--sn-platform-compact-scale-100-8xl, 104px)',
+            '9xl': 'var(--sn-platform-compact-scale-100-9xl, 112px)',
+            '10xl': 'var(--sn-platform-compact-scale-100-10xl, 120px)'
+          },
+          '025': {
+            '2xs': 'var(--sn-platform-compact-scale-025-2xs, 0px)',
+            xs: 'var(--sn-platform-compact-scale-025-xs, 2px)',
+            s: 'var(--sn-platform-compact-scale-025-s, 4px)',
+            m: 'var(--sn-platform-compact-scale-025-m, 6px)',
+            l: 'var(--sn-platform-compact-scale-025-l, 8px)'
+          },
+          '050': {
+            '2xs': 'var(--sn-platform-compact-scale-050-2xs, 0px)',
+            xs: 'var(--sn-platform-compact-scale-050-xs, 4px)',
+            s: 'var(--sn-platform-compact-scale-050-s, 8px)',
+            m: 'var(--sn-platform-compact-scale-050-m, 12px)',
+            l: 'var(--sn-platform-compact-scale-050-l, 16px)',
+            xl: 'var(--sn-platform-compact-scale-050-xl, 20px)'
+          }
+        },
+        spacing: {
+          control: {
+            container: {
+              vertical: {
+                xs: 'var(--sn-platform-compact-spacing-control-container-vertical-xs, 2px)',
+                s: 'var(--sn-platform-compact-spacing-control-container-vertical-s, 2px)',
+                m: 'var(--sn-platform-compact-spacing-control-container-vertical-m, 2px)',
+                l: 'var(--sn-platform-compact-spacing-control-container-vertical-l, 4px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-compact-spacing-control-container-horizontal-xs, 2px)',
+                s: 'var(--sn-platform-compact-spacing-control-container-horizontal-s, 4px)',
+                m: 'var(--sn-platform-compact-spacing-control-container-horizontal-m, 4px)',
+                l: 'var(--sn-platform-compact-spacing-control-container-horizontal-l, 8px)'
+              }
+            },
+            wrapper: {
+              vertical: {
+                xs: 'var(--sn-platform-compact-spacing-control-wrapper-vertical-xs, 2px)',
+                s: 'var(--sn-platform-compact-spacing-control-wrapper-vertical-s, 2px)',
+                m: 'var(--sn-platform-compact-spacing-control-wrapper-vertical-m, 4px)',
+                l: 'var(--sn-platform-compact-spacing-control-wrapper-vertical-l, 4px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-compact-spacing-control-wrapper-horizontal-xs, 2px)',
+                s: 'var(--sn-platform-compact-spacing-control-wrapper-horizontal-s, 2px)',
+                m: 'var(--sn-platform-compact-spacing-control-wrapper-horizontal-m, 4px)',
+                l: 'var(--sn-platform-compact-spacing-control-wrapper-horizontal-l, 4px)'
+              }
+            }
+          },
+          interval: {
+            '2xs': 'var(--sn-platform-compact-spacing-interval-2xs, 2px)',
+            xs: 'var(--sn-platform-compact-spacing-interval-xs, 4px)',
+            s: 'var(--sn-platform-compact-spacing-interval-s, 8px)',
+            m: 'var(--sn-platform-compact-spacing-interval-m, 16px)',
+            l: 'var(--sn-platform-compact-spacing-interval-l, 24px)',
+            xl: 'var(--sn-platform-compact-spacing-interval-xl, 32px)',
+            '2xl': 'var(--sn-platform-compact-spacing-interval-2xl, 40px)',
+            '3xl': 'var(--sn-platform-compact-spacing-interval-3xl, 48px)'
+          },
+          headToggleOffset: 'var(--sn-platform-compact-spacing-headToggleOffset, 4px)'
+        },
+        icon: {
+          '2xs': 'var(--sn-platform-compact-icon-2xs, 8px)',
+          xs: 'var(--sn-platform-compact-icon-xs, 16px)',
+          s: 'var(--sn-platform-compact-icon-s, 24px)',
+          m: 'var(--sn-platform-compact-icon-m, 32px)',
+          l: 'var(--sn-platform-compact-icon-l, 40px)',
+          strokeWeight: {
+            m: 'var(--sn-platform-compact-icon-strokeWeight-m, 2px)',
+            s: 'var(--sn-platform-compact-icon-strokeWeight-s, 1.5px)',
+            l: 'var(--sn-platform-compact-icon-strokeWeight-l, 2.5px)',
+            xs: 'var(--sn-platform-compact-icon-strokeWeight-xs, 1px)',
+            '2xs': 'var(--sn-platform-compact-icon-strokeWeight-2xs, 0.5px)'
+          },
+          half: {
+            xs: 'var(--sn-platform-compact-icon-half-xs, 8px)',
+            s: 'var(--sn-platform-compact-icon-half-s, 12px)'
+          }
+        },
+        typography: {
+          roleDisplay: {
+            fontSizeL: 'var(--sn-platform-compact-typography-roleDisplay-fontSizeL, 56px)',
+            lineHeightL: 'var(--sn-platform-compact-typography-roleDisplay-lineHeightL, 64px)',
+            fontSizeM: 'var(--sn-platform-compact-typography-roleDisplay-fontSizeM, 48px)',
+            lineHeightM: 'var(--sn-platform-compact-typography-roleDisplay-lineHeightM, 60px)',
+            fontSizeS: 'var(--sn-platform-compact-typography-roleDisplay-fontSizeS, 40px)',
+            lineHeightS: 'var(--sn-platform-compact-typography-roleDisplay-lineHeightS, 48px)'
+          },
+          roleHeadline: {
+            fontSizeL: 'var(--sn-platform-compact-typography-roleHeadline-fontSizeL, 32px)',
+            lineHeightL: 'var(--sn-platform-compact-typography-roleHeadline-lineHeightL, 40px)',
+            fontSizeM: 'var(--sn-platform-compact-typography-roleHeadline-fontSizeM, 28px)',
+            lineHeightM: 'var(--sn-platform-compact-typography-roleHeadline-lineHeightM, 36px)',
+            fontSizeS: 'var(--sn-platform-compact-typography-roleHeadline-fontSizeS, 24px)',
+            lineHeightS: 'var(--sn-platform-compact-typography-roleHeadline-lineHeightS, 32px)'
+          },
+          roleTitle: {
+            fontSizeL: 'var(--sn-platform-compact-typography-roleTitle-fontSizeL, 20px)',
+            lineHeightL: 'var(--sn-platform-compact-typography-roleTitle-lineHeightL, 28px)',
+            fontSizeM: 'var(--sn-platform-compact-typography-roleTitle-fontSizeM, 16px)',
+            lineHeightM: 'var(--sn-platform-compact-typography-roleTitle-lineHeightM, 24px)',
+            fontSizeS: 'var(--sn-platform-compact-typography-roleTitle-fontSizeS, 14px)',
+            lineHeightS: 'var(--sn-platform-compact-typography-roleTitle-lineHeightS, 20px)'
+          },
+          roleLabel: {
+            fontSizeL: 'var(--sn-platform-compact-typography-roleLabel-fontSizeL, 14px)',
+            lineHeightL: 'var(--sn-platform-compact-typography-roleLabel-lineHeightL, 20px)',
+            fontSizeM: 'var(--sn-platform-compact-typography-roleLabel-fontSizeM, 12px)',
+            lineHeightM: 'var(--sn-platform-compact-typography-roleLabel-lineHeightM, 16px)',
+            fontSizeS: 'var(--sn-platform-compact-typography-roleLabel-fontSizeS, 11px)',
+            lineHeightS: 'var(--sn-platform-compact-typography-roleLabel-lineHeightS, 14px)'
+          },
+          roleBody: {
+            fontSizeL: 'var(--sn-platform-compact-typography-roleBody-fontSizeL, 16px)',
+            lineHeightL: 'var(--sn-platform-compact-typography-roleBody-lineHeightL, 24px)',
+            fontSizeM: 'var(--sn-platform-compact-typography-roleBody-fontSizeM, 14px)',
+            lineHeightM: 'var(--sn-platform-compact-typography-roleBody-lineHeightM, 20px)',
+            fontSizeS: 'var(--sn-platform-compact-typography-roleBody-fontSizeS, 12px)',
+            lineHeightS: 'var(--sn-platform-compact-typography-roleBody-lineHeightS, 16px)'
+          }
+        },
+        radius: {
+          '3xs': 'var(--sn-platform-compact-radius-3xs, 2px)',
+          '2xs': 'var(--sn-platform-compact-radius-2xs, 4px)',
+          xs: 'var(--sn-platform-compact-radius-xs, 6px)',
+          s: 'var(--sn-platform-compact-radius-s, 8px)',
+          m: 'var(--sn-platform-compact-radius-m, 12px)',
+          l: 'var(--sn-platform-compact-radius-l, 16px)',
+          xl: 'var(--sn-platform-compact-radius-xl, 20px)',
+          '2xl': 'var(--sn-platform-compact-radius-2xl, 24px)',
+          '3xl': 'var(--sn-platform-compact-radius-3xl, 28px)',
+          '4xl': 'var(--sn-platform-compact-radius-4xl, 32px)',
+          '5xl': 'var(--sn-platform-compact-radius-5xl, 36px)',
+          '6xl': 'var(--sn-platform-compact-radius-6xl, 40px)',
+          '7xl': 'var(--sn-platform-compact-radius-7xl, 44px)',
+          '8xl': 'var(--sn-platform-compact-radius-8xl, 48px)'
+        }
+      },
+      comfort: {
+        scale: {
+          '100': {
+            xs: 'var(--sn-platform-comfort-scale-100-xs, 24px)',
+            s: 'var(--sn-platform-comfort-scale-100-s, 32px)',
+            m: 'var(--sn-platform-comfort-scale-100-m, 40px)',
+            l: 'var(--sn-platform-comfort-scale-100-l, 48px)',
+            xl: 'var(--sn-platform-comfort-scale-100-xl, 56px)',
+            '2xl': 'var(--sn-platform-comfort-scale-100-2xl, 64px)',
+            '3xl': 'var(--sn-platform-comfort-scale-100-3xl, 72px)',
+            '4xl': 'var(--sn-platform-comfort-scale-100-4xl, 80px)',
+            '5xl': 'var(--sn-platform-comfort-scale-100-5xl, 88px)',
+            '6xl': 'var(--sn-platform-comfort-scale-100-6xl, 96px)',
+            '7xl': 'var(--sn-platform-comfort-scale-100-7xl, 104px)',
+            '8xl': 'var(--sn-platform-comfort-scale-100-8xl, 112px)',
+            '9xl': 'var(--sn-platform-comfort-scale-100-9xl, 120px)',
+            '10xl': 'var(--sn-platform-comfort-scale-100-10xl, 128px)'
+          },
+          '025': {
+            '2xs': 'var(--sn-platform-comfort-scale-025-2xs, 2px)',
+            xs: 'var(--sn-platform-comfort-scale-025-xs, 4px)',
+            s: 'var(--sn-platform-comfort-scale-025-s, 6px)',
+            m: 'var(--sn-platform-comfort-scale-025-m, 8px)',
+            l: 'var(--sn-platform-comfort-scale-025-l, 10px)'
+          },
+          '050': {
+            '2xs': 'var(--sn-platform-comfort-scale-050-2xs, 4px)',
+            xs: 'var(--sn-platform-comfort-scale-050-xs, 8px)',
+            s: 'var(--sn-platform-comfort-scale-050-s, 12px)',
+            m: 'var(--sn-platform-comfort-scale-050-m, 16px)',
+            l: 'var(--sn-platform-comfort-scale-050-l, 20px)',
+            xl: 'var(--sn-platform-comfort-scale-050-xl, 24px)'
+          }
+        },
+        spacing: {
+          control: {
+            container: {
+              vertical: {
+                xs: 'var(--sn-platform-comfort-spacing-control-container-vertical-xs, 2px)',
+                s: 'var(--sn-platform-comfort-spacing-control-container-vertical-s, 2px)',
+                m: 'var(--sn-platform-comfort-spacing-control-container-vertical-m, 4px)',
+                l: 'var(--sn-platform-comfort-spacing-control-container-vertical-l, 6px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-comfort-spacing-control-container-horizontal-xs, 4px)',
+                s: 'var(--sn-platform-comfort-spacing-control-container-horizontal-s, 4px)',
+                m: 'var(--sn-platform-comfort-spacing-control-container-horizontal-m, 8px)',
+                l: 'var(--sn-platform-comfort-spacing-control-container-horizontal-l, 12px)'
+              }
+            },
+            wrapper: {
+              vertical: {
+                xs: 'var(--sn-platform-comfort-spacing-control-wrapper-vertical-xs, 2px)',
+                s: 'var(--sn-platform-comfort-spacing-control-wrapper-vertical-s, 4px)',
+                m: 'var(--sn-platform-comfort-spacing-control-wrapper-vertical-m, 4px)',
+                l: 'var(--sn-platform-comfort-spacing-control-wrapper-vertical-l, 4px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-comfort-spacing-control-wrapper-horizontal-xs, 4px)',
+                s: 'var(--sn-platform-comfort-spacing-control-wrapper-horizontal-s, 4px)',
+                m: 'var(--sn-platform-comfort-spacing-control-wrapper-horizontal-m, 4px)',
+                l: 'var(--sn-platform-comfort-spacing-control-wrapper-horizontal-l, 4px)'
+              }
+            }
+          },
+          interval: {
+            '2xs': 'var(--sn-platform-comfort-spacing-interval-2xs, 4px)',
+            xs: 'var(--sn-platform-comfort-spacing-interval-xs, 8px)',
+            s: 'var(--sn-platform-comfort-spacing-interval-s, 12px)',
+            m: 'var(--sn-platform-comfort-spacing-interval-m, 24px)',
+            l: 'var(--sn-platform-comfort-spacing-interval-l, 32px)',
+            xl: 'var(--sn-platform-comfort-spacing-interval-xl, 40px)',
+            '2xl': 'var(--sn-platform-comfort-spacing-interval-2xl, 48px)',
+            '3xl': 'var(--sn-platform-comfort-spacing-interval-3xl, 56px)'
+          },
+          headToggleOffset: 'var(--sn-platform-comfort-spacing-headToggleOffset, 0px)'
+        },
+        icon: {
+          '2xs': 'var(--sn-platform-comfort-icon-2xs, 16px)',
+          xs: 'var(--sn-platform-comfort-icon-xs, 24px)',
+          s: 'var(--sn-platform-comfort-icon-s, 24px)',
+          m: 'var(--sn-platform-comfort-icon-m, 32px)',
+          l: 'var(--sn-platform-comfort-icon-l, 40px)',
+          strokeWeight: {
+            '2xs': 'var(--sn-platform-comfort-icon-strokeWeight-2xs, 0.5px)',
+            xs: 'var(--sn-platform-comfort-icon-strokeWeight-xs, 1.5px)',
+            s: 'var(--sn-platform-comfort-icon-strokeWeight-s, 1.5px)',
+            m: 'var(--sn-platform-comfort-icon-strokeWeight-m, 2px)',
+            l: 'var(--sn-platform-comfort-icon-strokeWeight-l, 2.5px)'
+          },
+          half: {
+            xs: 'var(--sn-platform-comfort-icon-half-xs, 12px)',
+            s: 'var(--sn-platform-comfort-icon-half-s, 12px)'
+          }
+        },
+        typography: {
+          roleDisplay: {
+            fontSizeL: 'var(--sn-platform-comfort-typography-roleDisplay-fontSizeL, 56px)',
+            lineHeightL: 'var(--sn-platform-comfort-typography-roleDisplay-lineHeightL, 64px)',
+            fontSizeM: 'var(--sn-platform-comfort-typography-roleDisplay-fontSizeM, 48px)',
+            lineHeightM: 'var(--sn-platform-comfort-typography-roleDisplay-lineHeightM, 60px)',
+            fontSizeS: 'var(--sn-platform-comfort-typography-roleDisplay-fontSizeS, 40px)',
+            lineHeightS: 'var(--sn-platform-comfort-typography-roleDisplay-lineHeightS, 48px)'
+          },
+          roleHeadline: {
+            fontSizeL: 'var(--sn-platform-comfort-typography-roleHeadline-fontSizeL, 32px)',
+            lineHeightL: 'var(--sn-platform-comfort-typography-roleHeadline-lineHeightL, 40px)',
+            fontSizeM: 'var(--sn-platform-comfort-typography-roleHeadline-fontSizeM, 28px)',
+            lineHeightM: 'var(--sn-platform-comfort-typography-roleHeadline-lineHeightM, 36px)',
+            fontSizeS: 'var(--sn-platform-comfort-typography-roleHeadline-fontSizeS, 24px)',
+            lineHeightS: 'var(--sn-platform-comfort-typography-roleHeadline-lineHeightS, 32px)'
+          },
+          roleTitle: {
+            fontSizeL: 'var(--sn-platform-comfort-typography-roleTitle-fontSizeL, 20px)',
+            lineHeightL: 'var(--sn-platform-comfort-typography-roleTitle-lineHeightL, 28px)',
+            fontSizeM: 'var(--sn-platform-comfort-typography-roleTitle-fontSizeM, 16px)',
+            lineHeightM: 'var(--sn-platform-comfort-typography-roleTitle-lineHeightM, 24px)',
+            fontSizeS: 'var(--sn-platform-comfort-typography-roleTitle-fontSizeS, 14px)',
+            lineHeightS: 'var(--sn-platform-comfort-typography-roleTitle-lineHeightS, 20px)'
+          },
+          roleLabel: {
+            fontSizeL: 'var(--sn-platform-comfort-typography-roleLabel-fontSizeL, 16px)',
+            lineHeightL: 'var(--sn-platform-comfort-typography-roleLabel-lineHeightL, 24px)',
+            fontSizeM: 'var(--sn-platform-comfort-typography-roleLabel-fontSizeM, 14px)',
+            lineHeightM: 'var(--sn-platform-comfort-typography-roleLabel-lineHeightM, 20px)',
+            fontSizeS: 'var(--sn-platform-comfort-typography-roleLabel-fontSizeS, 12px)',
+            lineHeightS: 'var(--sn-platform-comfort-typography-roleLabel-lineHeightS, 16px)'
+          },
+          roleBody: {
+            fontSizeL: 'var(--sn-platform-comfort-typography-roleBody-fontSizeL, 18px)',
+            lineHeightL: 'var(--sn-platform-comfort-typography-roleBody-lineHeightL, 28px)',
+            fontSizeM: 'var(--sn-platform-comfort-typography-roleBody-fontSizeM, 16px)',
+            lineHeightM: 'var(--sn-platform-comfort-typography-roleBody-lineHeightM, 24px)',
+            fontSizeS: 'var(--sn-platform-comfort-typography-roleBody-fontSizeS, 14px)',
+            lineHeightS: 'var(--sn-platform-comfort-typography-roleBody-lineHeightS, 20px)'
+          }
+        },
+        radius: {
+          '3xs': 'var(--sn-platform-comfort-radius-3xs, 2px)',
+          '2xs': 'var(--sn-platform-comfort-radius-2xs, 4px)',
+          xs: 'var(--sn-platform-comfort-radius-xs, 8px)',
+          s: 'var(--sn-platform-comfort-radius-s, 12px)',
+          m: 'var(--sn-platform-comfort-radius-m, 16px)',
+          l: 'var(--sn-platform-comfort-radius-l, 20px)',
+          xl: 'var(--sn-platform-comfort-radius-xl, 24px)',
+          '2xl': 'var(--sn-platform-comfort-radius-2xl, 28px)',
+          '3xl': 'var(--sn-platform-comfort-radius-3xl, 32px)',
+          '4xl': 'var(--sn-platform-comfort-radius-4xl, 36px)',
+          '5xl': 'var(--sn-platform-comfort-radius-5xl, 40px)',
+          '6xl': 'var(--sn-platform-comfort-radius-6xl, 44px)',
+          '7xl': 'var(--sn-platform-comfort-radius-7xl, 48px)',
+          '8xl': 'var(--sn-platform-comfort-radius-8xl, 52px)'
+        }
+      },
+      spacious: {
+        scale: {
+          '100': {
+            xs: 'var(--sn-platform-spacious-scale-100-xs, 32px)',
+            s: 'var(--sn-platform-spacious-scale-100-s, 40px)',
+            m: 'var(--sn-platform-spacious-scale-100-m, 48px)',
+            l: 'var(--sn-platform-spacious-scale-100-l, 56px)',
+            xl: 'var(--sn-platform-spacious-scale-100-xl, 64px)',
+            '2xl': 'var(--sn-platform-spacious-scale-100-2xl, 72px)',
+            '3xl': 'var(--sn-platform-spacious-scale-100-3xl, 80px)',
+            '4xl': 'var(--sn-platform-spacious-scale-100-4xl, 88px)',
+            '5xl': 'var(--sn-platform-spacious-scale-100-5xl, 96px)',
+            '6xl': 'var(--sn-platform-spacious-scale-100-6xl, 104px)',
+            '7xl': 'var(--sn-platform-spacious-scale-100-7xl, 112px)',
+            '8xl': 'var(--sn-platform-spacious-scale-100-8xl, 120px)',
+            '9xl': 'var(--sn-platform-spacious-scale-100-9xl, 128px)',
+            '10xl': 'var(--sn-platform-spacious-scale-100-10xl, 136px)'
+          },
+          '025': {
+            '2xs': 'var(--sn-platform-spacious-scale-025-2xs, 4px)',
+            xs: 'var(--sn-platform-spacious-scale-025-xs, 6px)',
+            s: 'var(--sn-platform-spacious-scale-025-s, 8px)',
+            m: 'var(--sn-platform-spacious-scale-025-m, 10px)',
+            l: 'var(--sn-platform-spacious-scale-025-l, 12px)'
+          },
+          '050': {
+            '2xs': 'var(--sn-platform-spacious-scale-050-2xs, 8px)',
+            xs: 'var(--sn-platform-spacious-scale-050-xs, 12px)',
+            s: 'var(--sn-platform-spacious-scale-050-s, 16px)',
+            m: 'var(--sn-platform-spacious-scale-050-m, 20px)',
+            l: 'var(--sn-platform-spacious-scale-050-l, 24px)',
+            xl: 'var(--sn-platform-spacious-scale-050-xl, 28px)'
+          }
+        },
+        spacing: {
+          control: {
+            container: {
+              vertical: {
+                xs: 'var(--sn-platform-spacious-spacing-control-container-vertical-xs, 4px)',
+                s: 'var(--sn-platform-spacious-spacing-control-container-vertical-s, 4px)',
+                m: 'var(--sn-platform-spacious-spacing-control-container-vertical-m, 6px)',
+                l: 'var(--sn-platform-spacious-spacing-control-container-vertical-l, 8px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-spacious-spacing-control-container-horizontal-xs, 8px)',
+                s: 'var(--sn-platform-spacious-spacing-control-container-horizontal-s, 8px)',
+                m: 'var(--sn-platform-spacious-spacing-control-container-horizontal-m, 12px)',
+                l: 'var(--sn-platform-spacious-spacing-control-container-horizontal-l, 16px)'
+              }
+            },
+            wrapper: {
+              vertical: {
+                xs: 'var(--sn-platform-spacious-spacing-control-wrapper-vertical-xs, 4px)',
+                s: 'var(--sn-platform-spacious-spacing-control-wrapper-vertical-s, 6px)',
+                m: 'var(--sn-platform-spacious-spacing-control-wrapper-vertical-m, 6px)',
+                l: 'var(--sn-platform-spacious-spacing-control-wrapper-vertical-l, 6px)'
+              },
+              horizontal: {
+                xs: 'var(--sn-platform-spacious-spacing-control-wrapper-horizontal-xs, 8px)',
+                s: 'var(--sn-platform-spacious-spacing-control-wrapper-horizontal-s, 6px)',
+                m: 'var(--sn-platform-spacious-spacing-control-wrapper-horizontal-m, 6px)',
+                l: 'var(--sn-platform-spacious-spacing-control-wrapper-horizontal-l, 6px)'
+              }
+            }
+          },
+          interval: {
+            '2xs': 'var(--sn-platform-spacious-spacing-interval-2xs, 6px)',
+            xs: 'var(--sn-platform-spacious-spacing-interval-xs, 12px)',
+            s: 'var(--sn-platform-spacious-spacing-interval-s, 16px)',
+            m: 'var(--sn-platform-spacious-spacing-interval-m, 32px)',
+            l: 'var(--sn-platform-spacious-spacing-interval-l, 40px)',
+            xl: 'var(--sn-platform-spacious-spacing-interval-xl, 48px)',
+            '2xl': 'var(--sn-platform-spacious-spacing-interval-2xl, 56px)',
+            '3xl': 'var(--sn-platform-spacious-spacing-interval-3xl, 64px)'
+          },
+          headToggleOffset: 'var(--sn-platform-spacious-spacing-headToggleOffset, 0px)'
+        },
+        icon: {
+          '2xs': 'var(--sn-platform-spacious-icon-2xs, 16px)',
+          xs: 'var(--sn-platform-spacious-icon-xs, 24px)',
+          s: 'var(--sn-platform-spacious-icon-s, 24px)',
+          m: 'var(--sn-platform-spacious-icon-m, 32px)',
+          l: 'var(--sn-platform-spacious-icon-l, 40px)',
+          strokeWeight: {
+            '2xs': 'var(--sn-platform-spacious-icon-strokeWeight-2xs, 0.5px)',
+            xs: 'var(--sn-platform-spacious-icon-strokeWeight-xs, 1.5px)',
+            s: 'var(--sn-platform-spacious-icon-strokeWeight-s, 1.5px)',
+            m: 'var(--sn-platform-spacious-icon-strokeWeight-m, 2px)',
+            l: 'var(--sn-platform-spacious-icon-strokeWeight-l, 2.5px)'
+          },
+          half: {
+            xs: 'var(--sn-platform-spacious-icon-half-xs, 12px)',
+            s: 'var(--sn-platform-spacious-icon-half-s, 12px)'
+          }
+        },
+        typography: {
+          roleDisplay: {
+            fontSizeL: 'var(--sn-platform-spacious-typography-roleDisplay-fontSizeL, 64px)',
+            lineHeightL: 'var(--sn-platform-spacious-typography-roleDisplay-lineHeightL, 72px)',
+            fontSizeM: 'var(--sn-platform-spacious-typography-roleDisplay-fontSizeM, 48px)',
+            lineHeightM: 'var(--sn-platform-spacious-typography-roleDisplay-lineHeightM, 60px)',
+            fontSizeS: 'var(--sn-platform-spacious-typography-roleDisplay-fontSizeS, 40px)',
+            lineHeightS: 'var(--sn-platform-spacious-typography-roleDisplay-lineHeightS, 48px)'
+          },
+          roleHeadline: {
+            fontSizeL: 'var(--sn-platform-spacious-typography-roleHeadline-fontSizeL, 36px)',
+            lineHeightL: 'var(--sn-platform-spacious-typography-roleHeadline-lineHeightL, 48px)',
+            fontSizeM: 'var(--sn-platform-spacious-typography-roleHeadline-fontSizeM, 32px)',
+            lineHeightM: 'var(--sn-platform-spacious-typography-roleHeadline-lineHeightM, 40px)',
+            fontSizeS: 'var(--sn-platform-spacious-typography-roleHeadline-fontSizeS, 24px)',
+            lineHeightS: 'var(--sn-platform-spacious-typography-roleHeadline-lineHeightS, 32px)'
+          },
+          roleTitle: {
+            fontSizeL: 'var(--sn-platform-spacious-typography-roleTitle-fontSizeL, 20px)',
+            lineHeightL: 'var(--sn-platform-spacious-typography-roleTitle-lineHeightL, 28px)',
+            fontSizeM: 'var(--sn-platform-spacious-typography-roleTitle-fontSizeM, 16px)',
+            lineHeightM: 'var(--sn-platform-spacious-typography-roleTitle-lineHeightM, 24px)',
+            fontSizeS: 'var(--sn-platform-spacious-typography-roleTitle-fontSizeS, 14px)',
+            lineHeightS: 'var(--sn-platform-spacious-typography-roleTitle-lineHeightS, 20px)'
+          },
+          roleLabel: {
+            fontSizeL: 'var(--sn-platform-spacious-typography-roleLabel-fontSizeL, 16px)',
+            lineHeightL: 'var(--sn-platform-spacious-typography-roleLabel-lineHeightL, 24px)',
+            fontSizeM: 'var(--sn-platform-spacious-typography-roleLabel-fontSizeM, 14px)',
+            lineHeightM: 'var(--sn-platform-spacious-typography-roleLabel-lineHeightM, 20px)',
+            fontSizeS: 'var(--sn-platform-spacious-typography-roleLabel-fontSizeS, 12px)',
+            lineHeightS: 'var(--sn-platform-spacious-typography-roleLabel-lineHeightS, 16px)'
+          },
+          roleBody: {
+            fontSizeL: 'var(--sn-platform-spacious-typography-roleBody-fontSizeL, 20px)',
+            lineHeightL: 'var(--sn-platform-spacious-typography-roleBody-lineHeightL, 28px)',
+            fontSizeM: 'var(--sn-platform-spacious-typography-roleBody-fontSizeM, 16px)',
+            lineHeightM: 'var(--sn-platform-spacious-typography-roleBody-lineHeightM, 24px)',
+            fontSizeS: 'var(--sn-platform-spacious-typography-roleBody-fontSizeS, 14px)',
+            lineHeightS: 'var(--sn-platform-spacious-typography-roleBody-lineHeightS, 20px)'
+          }
+        },
+        radius: {
+          '3xs': 'var(--sn-platform-spacious-radius-3xs, 2px)',
+          '2xs': 'var(--sn-platform-spacious-radius-2xs, 4px)',
+          xs: 'var(--sn-platform-spacious-radius-xs, 10px)',
+          s: 'var(--sn-platform-spacious-radius-s, 16px)',
+          m: 'var(--sn-platform-spacious-radius-m, 20px)',
+          l: 'var(--sn-platform-spacious-radius-l, 24px)',
+          xl: 'var(--sn-platform-spacious-radius-xl, 28px)',
+          '2xl': 'var(--sn-platform-spacious-radius-2xl, 32px)',
+          '3xl': 'var(--sn-platform-spacious-radius-3xl, 36px)',
+          '4xl': 'var(--sn-platform-spacious-radius-4xl, 40px)',
+          '5xl': 'var(--sn-platform-spacious-radius-5xl, 44px)',
+          '6xl': 'var(--sn-platform-spacious-radius-6xl, 48px)',
+          '7xl': 'var(--sn-platform-spacious-radius-7xl, 52px)',
+          '8xl': 'var(--sn-platform-spacious-radius-8xl, 56px)'
+        }
+      },
+      target: {
+        minimum: 'var(--sn-platform-target-minimum, 24px)'
+      },
+      view: {
+        screen: {
+          width: 'var(--sn-platform-view-screen-width, 1248px)',
+          height: 'var(--sn-platform-view-screen-height, 728px)'
+        },
+        page: {
+          full: {
+            maxWidth: 'var(--sn-platform-view-page-full-maxWidth, 10000px)',
+            minWidth: 'var(--sn-platform-view-page-full-minWidth, 640px)'
+          },
+          medium: {
+            maxWidth: 'var(--sn-platform-view-page-medium-maxWidth, 960px)',
+            minWidth: 'var(--sn-platform-view-page-medium-minWidth, 720px)'
+          },
+          narrow: {
+            maxWidth: 'var(--sn-platform-view-page-narrow-maxWidth, 720px)',
+            minWidth: 'var(--sn-platform-view-page-narrow-minWidth, 640px)'
+          },
+          wide: {
+            maxWidth: 'var(--sn-platform-view-page-wide-maxWidth, 1280px)',
+            minWidth: 'var(--sn-platform-view-page-wide-minWidth, 960px)'
+          }
+        },
+        grid: {
+          full: {
+            count: 'var(--sn-platform-view-grid-full-count, 12px)',
+            gutter: 'var(--sn-platform-view-grid-full-gutter, 16px)',
+            margin: 'var(--sn-platform-view-grid-full-margin, 24px)'
+          },
+          medium: {
+            count: 'var(--sn-platform-view-grid-medium-count, 4px)',
+            gutter: 'var(--sn-platform-view-grid-medium-gutter, 16px)',
+            margin: 'var(--sn-platform-view-grid-medium-margin, 24px)'
+          },
+          narrow: {
+            count: 'var(--sn-platform-view-grid-narrow-count, 4px)',
+            gutter: 'var(--sn-platform-view-grid-narrow-gutter, 16px)',
+            margin: 'var(--sn-platform-view-grid-narrow-margin, 24px)'
+          },
+          wide: {
+            count: 'var(--sn-platform-view-grid-wide-count, 12px)',
+            gutter: 'var(--sn-platform-view-grid-wide-gutter, 16px)',
+            margin: 'var(--sn-platform-view-grid-wide-margin, 24px)'
+          }
+        }
+      },
+      touchTarget: {
+        minSize: 'var(--sn-platform-touchTarget-minSize, 0px)'
+      }
+    },
+    density: {
+      kitService: {
+        text: {
           modificationName: 'var(--sn-density-kitService-text-modificationName, \"comfort\")',
-          modeName: 'var(--sn-density-kitService-text-modeName, \"02_density:\")'
+          modeName: 'var(--sn-density-kitService-text-modeName, \"03_density:\")'
         }
       },
       typography: {
         roleDisplay: {
-          fontSizeS: 'var(--sn-density-typography-roleDisplay-fontSizeS, 32px)',
-          fontSizeM: 'var(--sn-density-typography-roleDisplay-fontSizeM, 40px)',
-          fontSizeL: 'var(--sn-density-typography-roleDisplay-fontSizeL, 48px)',
-          lineHeightS: 'var(--sn-density-typography-roleDisplay-lineHeightS, 40px)',
-          lineHeightM: 'var(--sn-density-typography-roleDisplay-lineHeightM, 48px)',
-          lineHeightL: 'var(--sn-density-typography-roleDisplay-lineHeightL, 60px)'
+          fontSizeS: 'var(--sn-density-typography-roleDisplay-fontSizeS, 40px)',
+          fontSizeM: 'var(--sn-density-typography-roleDisplay-fontSizeM, 48px)',
+          fontSizeL: 'var(--sn-density-typography-roleDisplay-fontSizeL, 56px)',
+          lineHeightS: 'var(--sn-density-typography-roleDisplay-lineHeightS, 48px)',
+          lineHeightM: 'var(--sn-density-typography-roleDisplay-lineHeightM, 60px)',
+          lineHeightL: 'var(--sn-density-typography-roleDisplay-lineHeightL, 64px)'
         },
         roleHeadline: {
-          fontSizeS: 'var(--sn-density-typography-roleHeadline-fontSizeS, 20px)',
-          lineHeightS: 'var(--sn-density-typography-roleHeadline-lineHeightS, 28px)',
-          fontSizeM: 'var(--sn-density-typography-roleHeadline-fontSizeM, 24px)',
-          lineHeightM: 'var(--sn-density-typography-roleHeadline-lineHeightM, 32px)',
-          fontSizeL: 'var(--sn-density-typography-roleHeadline-fontSizeL, 28px)',
-          lineHeightL: 'var(--sn-density-typography-roleHeadline-lineHeightL, 36px)'
+          fontSizeS: 'var(--sn-density-typography-roleHeadline-fontSizeS, 24px)',
+          lineHeightS: 'var(--sn-density-typography-roleHeadline-lineHeightS, 32px)',
+          fontSizeM: 'var(--sn-density-typography-roleHeadline-fontSizeM, 28px)',
+          lineHeightM: 'var(--sn-density-typography-roleHeadline-lineHeightM, 36px)',
+          fontSizeL: 'var(--sn-density-typography-roleHeadline-fontSizeL, 32px)',
+          lineHeightL: 'var(--sn-density-typography-roleHeadline-lineHeightL, 40px)'
         },
         roleTitle: {
-          fontSizeS: 'var(--sn-density-typography-roleTitle-fontSizeS, 16px)',
-          lineHeightS: 'var(--sn-density-typography-roleTitle-lineHeightS, 24px)',
-          fontSizeM: 'var(--sn-density-typography-roleTitle-fontSizeM, 18px)',
+          fontSizeS: 'var(--sn-density-typography-roleTitle-fontSizeS, 14px)',
+          lineHeightS: 'var(--sn-density-typography-roleTitle-lineHeightS, 20px)',
+          fontSizeM: 'var(--sn-density-typography-roleTitle-fontSizeM, 16px)',
           lineHeightM: 'var(--sn-density-typography-roleTitle-lineHeightM, 24px)',
           fontSizeL: 'var(--sn-density-typography-roleTitle-fontSizeL, 20px)',
           lineHeightL: 'var(--sn-density-typography-roleTitle-lineHeightL, 28px)'
@@ -483,96 +707,38 @@ export const themeVars = {
           fontSizeM: 'var(--sn-density-typography-roleBody-fontSizeM, 16px)',
           lineHeightM: 'var(--sn-density-typography-roleBody-lineHeightM, 24px)',
           fontSizeL: 'var(--sn-density-typography-roleBody-fontSizeL, 18px)',
-          lineHeightL: 'var(--sn-density-typography-roleBody-lineHeightL, 24px)'
+          lineHeightL: 'var(--sn-density-typography-roleBody-lineHeightL, 28px)'
         }
       },
       size: {
-        s: 'var(--sn-density-size-s, 40px)',
-        m: 'var(--sn-density-size-m, 48px)',
-        l: 'var(--sn-density-size-l, 56px)',
-        '2xl': 'var(--sn-density-size-2xl, 72px)',
-        '3xl': 'var(--sn-density-size-3xl, 80px)',
-        xl: 'var(--sn-density-size-xl, 64px)',
-        icon: {
-          s: 'var(--sn-density-size-icon-s, 24px)',
-          m: 'var(--sn-density-size-icon-m, 32px)',
-          l: 'var(--sn-density-size-icon-l, 40px)',
-          '2xs': 'var(--sn-density-size-icon-2xs, 16px)',
-          xs: 'var(--sn-density-size-icon-xs, 24px)',
-          strokeWeight: {
-            s: 'var(--sn-density-size-icon-strokeWeight-s, 1.5px)',
-            xs: 'var(--sn-density-size-icon-strokeWeight-xs, 1.5px)',
-            '2xs': 'var(--sn-density-size-icon-strokeWeight-2xs, 1px)',
-            m: 'var(--sn-density-size-icon-strokeWeight-m, 2px)',
-            l: 'var(--sn-density-size-icon-strokeWeight-l, 2.5px)'
-          }
-        },
-        xs: 'var(--sn-density-size-xs, 32px)',
-        '4xl': 'var(--sn-density-size-4xl, 88px)',
-        '5xl': 'var(--sn-density-size-5xl, 96px)',
-        '6xl': 'var(--sn-density-size-6xl, 104px)',
-        '7xl': 'var(--sn-density-size-7xl, 112px)',
-        '8xl': 'var(--sn-density-size-8xl, 120px)',
-        '9xl': 'var(--sn-density-size-9xl, 128px)',
-        '10xl': 'var(--sn-density-size-10xl, 136px)',
-        screen: {
-          width: 'var(--sn-density-size-screen-width, 360px)',
-          height: 'var(--sn-density-size-screen-height, 640px)'
-        },
-        page: {
-          narrow: {
-            maxWidth: 'var(--sn-density-size-page-narrow-maxWidth, 10000px)',
-            minWidth: 'var(--sn-density-size-page-narrow-minWidth, 320px)'
-          },
-          medium: {
-            maxWidth: 'var(--sn-density-size-page-medium-maxWidth, 10000px)',
-            minWidth: 'var(--sn-density-size-page-medium-minWidth, 320px)'
-          },
-          full: {
-            minWidth: 'var(--sn-density-size-page-full-minWidth, 320px)',
-            maxWidth: 'var(--sn-density-size-page-full-maxWidth, 10000px)'
-          },
-          wide: {
-            minWidth: 'var(--sn-density-size-page-wide-minWidth, 320px)',
-            maxWidth: 'var(--sn-density-size-page-wide-maxWidth, 10000px)'
-          }
-        },
-        grid: {
-          full: {
-            count: 'var(--sn-density-size-grid-full-count, 4px)',
-            gutter: 'var(--sn-density-size-grid-full-gutter, 8px)',
-            margin: 'var(--sn-density-size-grid-full-margin, 16px)'
-          },
-          narrow: {
-            count: 'var(--sn-density-size-grid-narrow-count, 4px)',
-            gutter: 'var(--sn-density-size-grid-narrow-gutter, 8px)',
-            margin: 'var(--sn-density-size-grid-narrow-margin, 16px)'
-          },
-          medium: {
-            count: 'var(--sn-density-size-grid-medium-count, 4px)',
-            gutter: 'var(--sn-density-size-grid-medium-gutter, 8px)',
-            margin: 'var(--sn-density-size-grid-medium-margin, 16px)'
-          },
-          wide: {
-            count: 'var(--sn-density-size-grid-wide-count, 4px)',
-            gutter: 'var(--sn-density-size-grid-wide-gutter, 8px)',
-            margin: 'var(--sn-density-size-grid-wide-margin, 16px)'
-          }
-        }
+        s: 'var(--sn-density-size-s, 32px)',
+        m: 'var(--sn-density-size-m, 40px)',
+        l: 'var(--sn-density-size-l, 48px)',
+        '2xl': 'var(--sn-density-size-2xl, 64px)',
+        '3xl': 'var(--sn-density-size-3xl, 72px)',
+        xl: 'var(--sn-density-size-xl, 56px)',
+        xs: 'var(--sn-density-size-xs, 24px)',
+        '4xl': 'var(--sn-density-size-4xl, 80px)',
+        '5xl': 'var(--sn-density-size-5xl, 88px)',
+        '6xl': 'var(--sn-density-size-6xl, 96px)',
+        '7xl': 'var(--sn-density-size-7xl, 104px)',
+        '8xl': 'var(--sn-density-size-8xl, 112px)',
+        '9xl': 'var(--sn-density-size-9xl, 120px)',
+        '10xl': 'var(--sn-density-size-10xl, 128px)'
       },
       spacing: {
         control: {
           container: {
             horizontal: {
-              s: 'var(--sn-density-spacing-control-container-horizontal-s, 8px)',
-              m: 'var(--sn-density-spacing-control-container-horizontal-m, 12px)',
-              l: 'var(--sn-density-spacing-control-container-horizontal-l, 16px)',
+              s: 'var(--sn-density-spacing-control-container-horizontal-s, 4px)',
+              m: 'var(--sn-density-spacing-control-container-horizontal-m, 8px)',
+              l: 'var(--sn-density-spacing-control-container-horizontal-l, 12px)',
               xs: 'var(--sn-density-spacing-control-container-horizontal-xs, 4px)'
             },
             vertical: {
-              s: 'var(--sn-density-spacing-control-container-vertical-s, 4px)',
-              m: 'var(--sn-density-spacing-control-container-vertical-m, 6px)',
-              l: 'var(--sn-density-spacing-control-container-vertical-l, 8px)',
+              s: 'var(--sn-density-spacing-control-container-vertical-s, 2px)',
+              m: 'var(--sn-density-spacing-control-container-vertical-m, 4px)',
+              l: 'var(--sn-density-spacing-control-container-vertical-l, 6px)',
               xs: 'var(--sn-density-spacing-control-container-vertical-xs, 2px)'
             }
           },
@@ -580,36 +746,36 @@ export const themeVars = {
             horizontal: {
               s: 'var(--sn-density-spacing-control-wrapper-horizontal-s, 4px)',
               m: 'var(--sn-density-spacing-control-wrapper-horizontal-m, 4px)',
-              l: 'var(--sn-density-spacing-control-wrapper-horizontal-l, 8px)',
+              l: 'var(--sn-density-spacing-control-wrapper-horizontal-l, 4px)',
               xs: 'var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px)'
             },
             vertical: {
-              s: 'var(--sn-density-spacing-control-wrapper-vertical-s, 6px)',
-              m: 'var(--sn-density-spacing-control-wrapper-vertical-m, 6px)',
-              l: 'var(--sn-density-spacing-control-wrapper-vertical-l, 8px)',
+              s: 'var(--sn-density-spacing-control-wrapper-vertical-s, 4px)',
+              m: 'var(--sn-density-spacing-control-wrapper-vertical-m, 4px)',
+              l: 'var(--sn-density-spacing-control-wrapper-vertical-l, 4px)',
               xs: 'var(--sn-density-spacing-control-wrapper-vertical-xs, 2px)'
             }
           }
         },
         interval: {
-          xs: 'var(--sn-density-spacing-interval-xs, 2px)',
-          s: 'var(--sn-density-spacing-interval-s, 4px)',
-          m: 'var(--sn-density-spacing-interval-m, 8px)',
-          l: 'var(--sn-density-spacing-interval-l, 12px)',
-          xl: 'var(--sn-density-spacing-interval-xl, 16px)',
-          '2xl': 'var(--sn-density-spacing-interval-2xl, 20px)',
-          '3xl': 'var(--sn-density-spacing-interval-3xl, 24px)',
-          '2xs': 'var(--sn-density-spacing-interval-2xs, 0)'
+          xs: 'var(--sn-density-spacing-interval-xs, 8px)',
+          s: 'var(--sn-density-spacing-interval-s, 12px)',
+          m: 'var(--sn-density-spacing-interval-m, 24px)',
+          l: 'var(--sn-density-spacing-interval-l, 32px)',
+          xl: 'var(--sn-density-spacing-interval-xl, 40px)',
+          '2xl': 'var(--sn-density-spacing-interval-2xl, 48px)',
+          '3xl': 'var(--sn-density-spacing-interval-3xl, 56px)',
+          '2xs': 'var(--sn-density-spacing-interval-2xs, 4px)'
         },
         block: {
           s: {
-            padding: 'var(--sn-density-spacing-block-s-padding, 4px)'
+            padding: 'var(--sn-density-spacing-block-s-padding, 12px)'
           },
           m: {
-            padding: 'var(--sn-density-spacing-block-m-padding, 6px)'
+            padding: 'var(--sn-density-spacing-block-m-padding, 24px)'
           },
           l: {
-            padding: 'var(--sn-density-spacing-block-l-padding, 12px)'
+            padding: 'var(--sn-density-spacing-block-l-padding, 32px)'
           }
         }
       },
@@ -622,183 +788,155 @@ export const themeVars = {
         '3xl': 'var(--sn-density-radius-3xl, 32px)',
         '4xl': 'var(--sn-density-radius-4xl, 36px)',
         '5xl': 'var(--sn-density-radius-5xl, 40px)',
-        '6xl': 'var(--sn-density-radius-6xl, 52px)',
+        '6xl': 'var(--sn-density-radius-6xl, 44px)',
         xs: 'var(--sn-density-radius-xs, 8px)',
         '2xs': 'var(--sn-density-radius-2xs, 4px)',
         '3xs': 'var(--sn-density-radius-3xs, 2px)',
-        '7xl': 'var(--sn-density-radius-7xl, 56px)',
-        '8xl': 'var(--sn-density-radius-8xl, 60px)'
+        '7xl': 'var(--sn-density-radius-7xl, 48px)',
+        '8xl': 'var(--sn-density-radius-8xl, 52px)'
+      },
+      icon: {
+        s: 'var(--sn-density-icon-s, 24px)',
+        m: 'var(--sn-density-icon-m, 32px)',
+        l: 'var(--sn-density-icon-l, 40px)',
+        '2xs': 'var(--sn-density-icon-2xs, 16px)',
+        xs: 'var(--sn-density-icon-xs, 24px)',
+        strokeWeight: {
+          s: 'var(--sn-density-icon-strokeWeight-s, 1.5px)',
+          xs: 'var(--sn-density-icon-strokeWeight-xs, 1.5px)',
+          '2xs': 'var(--sn-density-icon-strokeWeight-2xs, 0.5px)',
+          m: 'var(--sn-density-icon-strokeWeight-m, 2px)',
+          l: 'var(--sn-density-icon-strokeWeight-l, 2.5px)'
+        },
+        half: {
+          xs: 'var(--sn-density-icon-half-xs, 12px)',
+          s: 'var(--sn-density-icon-half-s, 12px)'
+        }
       },
       nestingLevel: {
         s: {
           paddingLeft: 'var(--sn-density-nestingLevel-s-paddingLeft, 12px)',
           level: {
             paddingRight: 'var(--sn-density-nestingLevel-s-level-paddingRight, 16px)',
-            paddingTop: 'var(--sn-density-nestingLevel-s-level-paddingTop, 20px)'
+            paddingTop: 'var(--sn-density-nestingLevel-s-level-paddingTop, 16px)'
           }
         },
         m: {
           paddingLeft: 'var(--sn-density-nestingLevel-m-paddingLeft, 12px)',
           level: {
-            paddingRight: 'var(--sn-density-nestingLevel-m-level-paddingRight, 24px)',
-            paddingTop: 'var(--sn-density-nestingLevel-m-level-paddingTop, 24px)'
+            paddingRight: 'var(--sn-density-nestingLevel-m-level-paddingRight, 20px)',
+            paddingTop: 'var(--sn-density-nestingLevel-m-level-paddingTop, 20px)'
           }
         },
         l: {
           paddingLeft: 'var(--sn-density-nestingLevel-l-paddingLeft, 12px)',
           level: {
-            paddingRight: 'var(--sn-density-nestingLevel-l-level-paddingRight, 28px)',
-            paddingTop: 'var(--sn-density-nestingLevel-l-level-paddingTop, 28px)'
+            paddingRight: 'var(--sn-density-nestingLevel-l-level-paddingRight, 24px)',
+            paddingTop: 'var(--sn-density-nestingLevel-l-level-paddingTop, 24px)'
           }
         }
-      }
-    },
-    brandRole: {
-      color: {
-        brandA: {
-          '5': 'var(--sn-brandRole-color-brandA-5, #21372f)',
-          '10': 'var(--sn-brandRole-color-brandA-10, #243e35)',
-          '15': 'var(--sn-brandRole-color-brandA-15, #2b483c)',
-          '25': 'var(--sn-brandRole-color-brandA-25, #2c5e49)',
-          '45': 'var(--sn-brandRole-color-brandA-45, #22775b)',
-          '55': 'var(--sn-brandRole-color-brandA-55, #389f74)',
-          '60': 'var(--sn-brandRole-color-brandA-60, #5ebb91)',
-          '65': 'var(--sn-brandRole-color-brandA-65, #85ceaa)',
-          '80': 'var(--sn-brandRole-color-brandA-80, #caeadb)',
-          '90': 'var(--sn-brandRole-color-brandA-90, #edf7f1)',
-          '95': 'var(--sn-brandRole-color-brandA-95, #f5fdf8)',
-          '99': 'var(--sn-brandRole-color-brandA-99, #fbfffc)',
-          transparent: 'var(--sn-brandRole-color-brandA-transparent, #389f7424)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandA-backgroundActivatedPressed, #389f7473)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandA-backgroundActivatedHovered, #389f7459)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandA-backgroundActivatedDefault, #389f7426)',
-          onAccentLight: 'var(--sn-brandRole-color-brandA-onAccentLight, #fbfffc)',
-          onAccentDark: 'var(--sn-brandRole-color-brandA-onAccentDark, #21372f)'
+      },
+      view: {
+        screen: {
+          width: 'var(--sn-density-view-screen-width, 1248px)',
+          height: 'var(--sn-density-view-screen-height, 728px)'
         },
-        brandB: {
-          '5': 'var(--sn-brandRole-color-brandB-5, #3e1908)',
-          '10': 'var(--sn-brandRole-color-brandB-10, #481f06)',
-          '15': 'var(--sn-brandRole-color-brandB-15, #522505)',
-          '25': 'var(--sn-brandRole-color-brandB-25, #824a1c)',
-          '45': 'var(--sn-brandRole-color-brandB-45, #c46917)',
-          '55': 'var(--sn-brandRole-color-brandB-55, #f57e1f)',
-          '60': 'var(--sn-brandRole-color-brandB-60, #f98d33)',
-          '65': 'var(--sn-brandRole-color-brandB-65, #fea65f)',
-          '80': 'var(--sn-brandRole-color-brandB-80, #fed49c)',
-          '90': 'var(--sn-brandRole-color-brandB-90, #ffedcf)',
-          '95': 'var(--sn-brandRole-color-brandB-95, #fff6e5)',
-          '99': 'var(--sn-brandRole-color-brandB-99, #fffcf4)',
-          transparent: 'var(--sn-brandRole-color-brandB-transparent, #f57e1f26)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandB-backgroundActivatedPressed, #f57e1fa6)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandB-backgroundActivatedHovered, #f57e1f73)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandB-backgroundActivatedDefault, #f57e1f26)',
-          onAccentLight: 'var(--sn-brandRole-color-brandB-onAccentLight, #fffcf4)',
-          onAccentDark: 'var(--sn-brandRole-color-brandB-onAccentDark, #3e1908)'
+        page: {
+          narrow: {
+            maxWidth: 'var(--sn-density-view-page-narrow-maxWidth, 720px)',
+            minWidth: 'var(--sn-density-view-page-narrow-minWidth, 640px)'
+          },
+          medium: {
+            maxWidth: 'var(--sn-density-view-page-medium-maxWidth, 960px)',
+            minWidth: 'var(--sn-density-view-page-medium-minWidth, 720px)'
+          },
+          full: {
+            minWidth: 'var(--sn-density-view-page-full-minWidth, 640px)',
+            maxWidth: 'var(--sn-density-view-page-full-maxWidth, 10000px)'
+          },
+          wide: {
+            minWidth: 'var(--sn-density-view-page-wide-minWidth, 960px)',
+            maxWidth: 'var(--sn-density-view-page-wide-maxWidth, 1280px)'
+          }
         },
-        brandC: {
-          '5': 'var(--sn-brandRole-color-brandC-5, #241534)',
-          '10': 'var(--sn-brandRole-color-brandC-10, #311d46)',
-          '15': 'var(--sn-brandRole-color-brandC-15, #3d2658)',
-          '25': 'var(--sn-brandRole-color-brandC-25, #55347a)',
-          '45': 'var(--sn-brandRole-color-brandC-45, #8b5af3)',
-          '55': 'var(--sn-brandRole-color-brandC-55, #a068ff)',
-          '60': 'var(--sn-brandRole-color-brandC-60, #9f7be2)',
-          '65': 'var(--sn-brandRole-color-brandC-65, #af8de9)',
-          '80': 'var(--sn-brandRole-color-brandC-80, #e1d7f2)',
-          '90': 'var(--sn-brandRole-color-brandC-90, #eee7fb)',
-          '95': 'var(--sn-brandRole-color-brandC-95, #f6f2fe)',
-          '99': 'var(--sn-brandRole-color-brandC-99, #fdfcff)',
-          transparent: 'var(--sn-brandRole-color-brandC-transparent, #a068ff26)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandC-backgroundActivatedDefault, #a068ff26)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandC-backgroundActivatedHovered, #a068ff73)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandC-backgroundActivatedPressed, #a068ffa6)',
-          onAccentLight: 'var(--sn-brandRole-color-brandC-onAccentLight, #fdfcff)',
-          onAccentDark: 'var(--sn-brandRole-color-brandC-onAccentDark, #241534)'
-        },
-        brandD: {
-          '5': 'var(--sn-brandRole-color-brandD-5, #241534)',
-          '10': 'var(--sn-brandRole-color-brandD-10, #311d46)',
-          '15': 'var(--sn-brandRole-color-brandD-15, #3d2658)',
-          '25': 'var(--sn-brandRole-color-brandD-25, #55347a)',
-          '45': 'var(--sn-brandRole-color-brandD-45, #8b5af3)',
-          '55': 'var(--sn-brandRole-color-brandD-55, #a068ff)',
-          '60': 'var(--sn-brandRole-color-brandD-60, #9f7be2)',
-          '65': 'var(--sn-brandRole-color-brandD-65, #af8de9)',
-          '80': 'var(--sn-brandRole-color-brandD-80, #e1d7f2)',
-          '90': 'var(--sn-brandRole-color-brandD-90, #eee7fb)',
-          '95': 'var(--sn-brandRole-color-brandD-95, #f6f2fe)',
-          '99': 'var(--sn-brandRole-color-brandD-99, #fdfcff)',
-          transparent: 'var(--sn-brandRole-color-brandD-transparent, #a068ff21)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandD-backgroundActivatedDefault, #a068ff26)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandD-backgroundActivatedHovered, #a068ff73)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandD-backgroundActivatedPressed, #a068ffa6)',
-          onAccentLight: 'var(--sn-brandRole-color-brandD-onAccentLight, #fdfcff)',
-          onAccentDark: 'var(--sn-brandRole-color-brandD-onAccentDark, #241534)'
-        },
-        brandE: {
-          '5': 'var(--sn-brandRole-color-brandE-5, #0e0e24)',
-          '10': 'var(--sn-brandRole-color-brandE-10, #11122d)',
-          '15': 'var(--sn-brandRole-color-brandE-15, #181838)',
-          '25': 'var(--sn-brandRole-color-brandE-25, #23244e)',
-          '45': 'var(--sn-brandRole-color-brandE-45, #5359b7)',
-          '55': 'var(--sn-brandRole-color-brandE-55, #5558fa)',
-          '60': 'var(--sn-brandRole-color-brandE-60, #7b84ed)',
-          '65': 'var(--sn-brandRole-color-brandE-65, #97a0ee)',
-          '80': 'var(--sn-brandRole-color-brandE-80, #dddefc)',
-          '90': 'var(--sn-brandRole-color-brandE-90, #f1f1fd)',
-          '95': 'var(--sn-brandRole-color-brandE-95, #f8f8fc)',
-          '99': 'var(--sn-brandRole-color-brandE-99, #fcfcfc)',
-          transparent: 'var(--sn-brandRole-color-brandE-transparent, #5558fa24)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandE-backgroundActivatedPressed, #5558fa73)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandE-backgroundActivatedHovered, #5558fa59)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandE-backgroundActivatedDefault, #5558fa26)',
-          onAccentLight: 'var(--sn-brandRole-color-brandE-onAccentLight, #fcfcfc)',
-          onAccentDark: 'var(--sn-brandRole-color-brandE-onAccentDark, #0e0e24)'
-        },
-        brandF: {
-          '5': 'var(--sn-brandRole-color-brandF-5, #212128)',
-          '10': 'var(--sn-brandRole-color-brandF-10, #242430)',
-          '15': 'var(--sn-brandRole-color-brandF-15, #292a35)',
-          '25': 'var(--sn-brandRole-color-brandF-25, #363742)',
-          '45': 'var(--sn-brandRole-color-brandF-45, #5b5d69)',
-          '55': 'var(--sn-brandRole-color-brandF-55, #393a45)',
-          '60': 'var(--sn-brandRole-color-brandF-60, #999aa8)',
-          '65': 'var(--sn-brandRole-color-brandF-65, #aeafbd)',
-          '80': 'var(--sn-brandRole-color-brandF-80, #dee0ef)',
-          '90': 'var(--sn-brandRole-color-brandF-90, #f5f6fe)',
-          '95': 'var(--sn-brandRole-color-brandF-95, #fafaff)',
-          '99': 'var(--sn-brandRole-color-brandF-99, #fdfeff)',
-          transparent: 'var(--sn-brandRole-color-brandF-transparent, #393a4524)',
-          backgroundActivatedPressed: 'var(--sn-brandRole-color-brandF-backgroundActivatedPressed, #393a4573)',
-          backgroundActivatedHovered: 'var(--sn-brandRole-color-brandF-backgroundActivatedHovered, #393a4559)',
-          backgroundActivatedDefault: 'var(--sn-brandRole-color-brandF-backgroundActivatedDefault, #393a4526)',
-          onAccentLight: 'var(--sn-brandRole-color-brandF-onAccentLight, #fdfeff)',
-          onAccentDark: 'var(--sn-brandRole-color-brandF-onAccentDark, #212128)'
+        grid: {
+          full: {
+            count: 'var(--sn-density-view-grid-full-count, 12px)',
+            gutter: 'var(--sn-density-view-grid-full-gutter, 16px)',
+            margin: 'var(--sn-density-view-grid-full-margin, 24px)'
+          },
+          narrow: {
+            count: 'var(--sn-density-view-grid-narrow-count, 4px)',
+            gutter: 'var(--sn-density-view-grid-narrow-gutter, 16px)',
+            margin: 'var(--sn-density-view-grid-narrow-margin, 24px)'
+          },
+          medium: {
+            count: 'var(--sn-density-view-grid-medium-count, 4px)',
+            gutter: 'var(--sn-density-view-grid-medium-gutter, 16px)',
+            margin: 'var(--sn-density-view-grid-medium-margin, 24px)'
+          },
+          wide: {
+            count: 'var(--sn-density-view-grid-wide-count, 12px)',
+            gutter: 'var(--sn-density-view-grid-wide-gutter, 16px)',
+            margin: 'var(--sn-density-view-grid-wide-margin, 24px)'
+          }
         }
       },
-      kitService: {
-        text: {
-          modeName: 'var(--sn-brandRole-kitService-text-modeName, \"03_brandRole:\")',
-          modificationName: 'var(--sn-brandRole-kitService-text-modificationName, \"alter\")'
+      scale: {
+        '100': {
+          xs: 'var(--sn-density-scale-100-xs, 24px)',
+          s: 'var(--sn-density-scale-100-s, 32px)',
+          m: 'var(--sn-density-scale-100-m, 40px)',
+          l: 'var(--sn-density-scale-100-l, 48px)',
+          xl: 'var(--sn-density-scale-100-xl, 56px)',
+          '2xl': 'var(--sn-density-scale-100-2xl, 64px)',
+          '3xl': 'var(--sn-density-scale-100-3xl, 72px)',
+          '4xl': 'var(--sn-density-scale-100-4xl, 80px)',
+          '5xl': 'var(--sn-density-scale-100-5xl, 88px)',
+          '6xl': 'var(--sn-density-scale-100-6xl, 96px)',
+          '7xl': 'var(--sn-density-scale-100-7xl, 104px)',
+          '8xl': 'var(--sn-density-scale-100-8xl, 112px)',
+          '9xl': 'var(--sn-density-scale-100-9xl, 120px)',
+          '10xl': 'var(--sn-density-scale-100-10xl, 128px)'
+        },
+        '025': {
+          '2xs': 'var(--sn-density-scale-025-2xs, 2px)',
+          xs: 'var(--sn-density-scale-025-xs, 4px)',
+          s: 'var(--sn-density-scale-025-s, 6px)',
+          m: 'var(--sn-density-scale-025-m, 8px)',
+          l: 'var(--sn-density-scale-025-l, 10px)'
+        },
+        '050': {
+          '2xs': 'var(--sn-density-scale-050-2xs, 4px)',
+          xs: 'var(--sn-density-scale-050-xs, 8px)',
+          s: 'var(--sn-density-scale-050-s, 12px)',
+          m: 'var(--sn-density-scale-050-m, 16px)',
+          l: 'var(--sn-density-scale-050-l, 20px)'
         }
+      },
+      table: {
+        headToggleOffset: 'var(--sn-density-table-headToggleOffset, 0px)'
+      },
+      touchTarget: {
+        minSize: 'var(--sn-density-touchTarget-minSize, 0px)'
       }
     },
     brand: {
       color: {
         primary: {
-          '5': 'var(--sn-brand-color-primary-5, #21372f)',
           '10': 'var(--sn-brand-color-primary-10, #243e35)',
-          '15': 'var(--sn-brand-color-primary-15, #2b483c)',
-          '25': 'var(--sn-brand-color-primary-25, #2c5e49)',
-          '45': 'var(--sn-brand-color-primary-45, #22775b)',
-          '55': 'var(--sn-brand-color-primary-55, #389f74)',
+          '20': 'var(--sn-brand-color-primary-20, #2b483c)',
+          '30': 'var(--sn-brand-color-primary-30, #2c5e49)',
+          '40': 'var(--sn-brand-color-primary-40, #22775b)',
+          '50': 'var(--sn-brand-color-primary-50, #389f74)',
           '60': 'var(--sn-brand-color-primary-60, #5ebb91)',
-          '65': 'var(--sn-brand-color-primary-65, #85ceaa)',
+          '70': 'var(--sn-brand-color-primary-70, #85ceaa)',
           '80': 'var(--sn-brand-color-primary-80, #caeadb)',
           '90': 'var(--sn-brand-color-primary-90, #edf7f1)',
           '95': 'var(--sn-brand-color-primary-95, #f5fdf8)',
           '99': 'var(--sn-brand-color-primary-99, #fbfffc)',
-          transparent: 'var(--sn-brand-color-primary-transparent, #389f7424)',
+          '05': 'var(--sn-brand-color-primary-05, #21372f)',
+          transparent: 'var(--sn-brand-color-primary-transparent, #389f741a)',
           onAccentLight: 'var(--sn-brand-color-primary-onAccentLight, #fbfffc)',
           onAccentDark: 'var(--sn-brand-color-primary-onAccentDark, #21372f)'
         },
@@ -827,13 +965,13 @@ export const themeVars = {
         state: {
           activated: {
             default: {
-              background: 'var(--sn-brand-color-state-activated-default-background, #389f7426)'
+              background: 'var(--sn-brand-color-state-activated-default-background, #389f741a)'
             },
             hovered: {
-              background: 'var(--sn-brand-color-state-activated-hovered-background, #389f7459)'
+              background: 'var(--sn-brand-color-state-activated-hovered-background, #389f7433)'
             },
             pressed: {
-              background: 'var(--sn-brand-color-state-activated-pressed-background, #389f7473)'
+              background: 'var(--sn-brand-color-state-activated-pressed-background, #389f744d)'
             }
           },
           neutralBorder: {
@@ -886,18 +1024,18 @@ export const themeVars = {
           }
         },
         neutral: {
-          '5': 'var(--sn-brand-color-neutral-5, #262631)',
           '10': 'var(--sn-brand-color-neutral-10, #2c2c3a)',
-          '15': 'var(--sn-brand-color-neutral-15, #333342)',
-          '25': 'var(--sn-brand-color-neutral-25, #4c4e5c)',
-          '45': 'var(--sn-brand-color-neutral-45, #81869c)',
-          '55': 'var(--sn-brand-color-neutral-55, #8b8fa7)',
+          '20': 'var(--sn-brand-color-neutral-20, #333342)',
+          '30': 'var(--sn-brand-color-neutral-30, #4c4e5c)',
+          '40': 'var(--sn-brand-color-neutral-40, #81869c)',
+          '50': 'var(--sn-brand-color-neutral-50, #8b8fa7)',
           '60': 'var(--sn-brand-color-neutral-60, #959bb1)',
-          '65': 'var(--sn-brand-color-neutral-65, #a6aabf)',
+          '70': 'var(--sn-brand-color-neutral-70, #a6aabf)',
           '80': 'var(--sn-brand-color-neutral-80, #e3e5ed)',
           '90': 'var(--sn-brand-color-neutral-90, #eeeff3)',
           '95': 'var(--sn-brand-color-neutral-95, #fdfdfd)',
           '99': 'var(--sn-brand-color-neutral-99, #ffffff)',
+          '05': 'var(--sn-brand-color-neutral-05, #262631)',
           transparent: {
             forLightMode: 'var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614)',
             forDarkMode: 'var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14)'
@@ -915,72 +1053,72 @@ export const themeVars = {
             layer2Color: 'var(--sn-brand-effect-shadow-light-layer2Color, #00000014)',
             level1: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level1-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-light-level1-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level1-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-light-level1-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level1-layer1-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level1-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-light-level1-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level1-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level1-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-light-level1-layer2-positionY, 2px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level1-layer2-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level1-layer2-speed, 1px)'
+                spread: 'var(--sn-brand-effect-shadow-light-level1-layer2-spread, 1px)'
               }
             },
             level2: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level2-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-light-level2-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level2-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-light-level2-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level2-layer1-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level2-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-light-level2-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level2-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level2-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-light-level2-layer2-positionY, 4px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level2-layer2-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level2-layer2-speed, 2px)'
+                spread: 'var(--sn-brand-effect-shadow-light-level2-layer2-spread, 2px)'
               }
             },
             level3: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level3-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-light-level3-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level3-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-light-level3-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level3-layer1-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level3-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-light-level3-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level3-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level3-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-light-level3-layer2-positionY, 8px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level3-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level3-layer2-speed, 2px)'
+                spread: 'var(--sn-brand-effect-shadow-light-level3-layer2-spread, 2px)'
               }
             },
             level4: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level4-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-light-level4-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level4-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-light-level4-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level4-layer1-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level4-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-light-level4-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level4-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level4-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-light-level4-layer2-positionY, 16px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level4-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level4-layer2-speed, 4px)'
+                spread: 'var(--sn-brand-effect-shadow-light-level4-layer2-spread, 4px)'
               }
             },
             level5: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level5-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-light-level5-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level5-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-light-level5-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level5-layer1-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level5-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-light-level5-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-light-level5-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-light-level5-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-light-level5-layer2-positionY, 24px)',
                 blur: 'var(--sn-brand-effect-shadow-light-level5-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-light-level5-layer2-speed, 4px)'
+                spread: 'var(--sn-brand-effect-shadow-light-level5-layer2-spread, 4px)'
               }
             }
           },
@@ -989,72 +1127,72 @@ export const themeVars = {
             layer2Color: 'var(--sn-brand-effect-shadow-dark-layer2Color, #00000026)',
             level1: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level1-layer1-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level1-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level1-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionY, 2px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level1-layer2-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level1-layer2-speed, 1px)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level1-layer2-spread, 1px)'
               }
             },
             level2: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level2-layer1-blur, 4px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level2-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level2-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionY, 4px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level2-layer2-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level2-layer2-speed, 2px)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level2-layer2-spread, 2px)'
               }
             },
             level3: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level3-layer1-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level3-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level3-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionY, 8px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level3-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level3-layer2-speed, 2px)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level3-layer2-spread, 2px)'
               }
             },
             level4: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level4-layer1-blur, 8px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level4-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level4-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionY, 16px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level4-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level4-layer2-speed, 4px)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level4-layer2-spread, 4px)'
               }
             },
             level5: {
               layer1: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionX, 0)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionY, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionX, 0px)',
+                positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionY, 0px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level5-layer1-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level5-layer1-speed, 0)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level5-layer1-spread, 0px)'
               },
               layer2: {
-                positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionX, 0)',
+                positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionY, 24px)',
                 blur: 'var(--sn-brand-effect-shadow-dark-level5-layer2-blur, 16px)',
-                speed: 'var(--sn-brand-effect-shadow-dark-level5-layer2-speed, 4px)'
+                spread: 'var(--sn-brand-effect-shadow-dark-level5-layer2-spread, 4px)'
               }
             }
           }
@@ -1068,9 +1206,123 @@ export const themeVars = {
           focusedFrame: 'var(--sn-brand-effect-opacity-focusedFrame, 0.4)'
         }
       },
+      palette: {
+        blue: {
+          '10': 'var(--sn-brand-palette-blue-10, #1f2e45)',
+          '20': 'var(--sn-brand-palette-blue-20, #1f3652)',
+          '30': 'var(--sn-brand-palette-blue-30, #294b71)',
+          '40': 'var(--sn-brand-palette-blue-40, #3b6fad)',
+          '50': 'var(--sn-brand-palette-blue-50, #4387e2)',
+          '60': 'var(--sn-brand-palette-blue-60, #669eec)',
+          '70': 'var(--sn-brand-palette-blue-70, #8cb6f1)',
+          '80': 'var(--sn-brand-palette-blue-80, #d6e2f4)',
+          '90': 'var(--sn-brand-palette-blue-90, #e6f4fd)',
+          '95': 'var(--sn-brand-palette-blue-95, #f2f9ff)',
+          '99': 'var(--sn-brand-palette-blue-99, #fdfeff)',
+          '05': 'var(--sn-brand-palette-blue-05, #20283d)'
+        },
+        green: {
+          '10': 'var(--sn-brand-palette-green-10, #293820)',
+          '20': 'var(--sn-brand-palette-green-20, #293f22)',
+          '30': 'var(--sn-brand-palette-green-30, #325625)',
+          '40': 'var(--sn-brand-palette-green-40, #438b4b)',
+          '50': 'var(--sn-brand-palette-green-50, #41b954)',
+          '60': 'var(--sn-brand-palette-green-60, #5bc266)',
+          '70': 'var(--sn-brand-palette-green-70, #89ca87)',
+          '80': 'var(--sn-brand-palette-green-80, #d2ead0)',
+          '90': 'var(--sn-brand-palette-green-90, #e4f5df)',
+          '95': 'var(--sn-brand-palette-green-95, #f1faed)',
+          '99': 'var(--sn-brand-palette-green-99, #fcfefa)',
+          '05': 'var(--sn-brand-palette-green-05, #25311b)'
+        },
+        pink: {
+          '10': 'var(--sn-brand-palette-pink-10, #442332)',
+          '20': 'var(--sn-brand-palette-pink-20, #53293c)',
+          '30': 'var(--sn-brand-palette-pink-30, #794459)',
+          '40': 'var(--sn-brand-palette-pink-40, #a85278)',
+          '50': 'var(--sn-brand-palette-pink-50, #dd5a8e)',
+          '60': 'var(--sn-brand-palette-pink-60, #e87ba2)',
+          '70': 'var(--sn-brand-palette-pink-70, #ec9cb6)',
+          '80': 'var(--sn-brand-palette-pink-80, #f5d9e1)',
+          '90': 'var(--sn-brand-palette-pink-90, #fceaf0)',
+          '95': 'var(--sn-brand-palette-pink-95, #fff5f7)',
+          '99': 'var(--sn-brand-palette-pink-99, #fdfcfc)',
+          '05': 'var(--sn-brand-palette-pink-05, #3a1e2c)'
+        },
+        yellow: {
+          '10': 'var(--sn-brand-palette-yellow-10, #3c2503)',
+          '20': 'var(--sn-brand-palette-yellow-20, #4a2e04)',
+          '30': 'var(--sn-brand-palette-yellow-30, #724c08)',
+          '40': 'var(--sn-brand-palette-yellow-40, #ab7a08)',
+          '50': 'var(--sn-brand-palette-yellow-50, #f3b917)',
+          '60': 'var(--sn-brand-palette-yellow-60, #f2c148)',
+          '70': 'var(--sn-brand-palette-yellow-70, #efc76b)',
+          '80': 'var(--sn-brand-palette-yellow-80, #f0dfb1)',
+          '90': 'var(--sn-brand-palette-yellow-90, #fdf4cc)',
+          '95': 'var(--sn-brand-palette-yellow-95, #fffbe6)',
+          '99': 'var(--sn-brand-palette-yellow-99, #fffef6)',
+          '05': 'var(--sn-brand-palette-yellow-05, #321f02)'
+        },
+        violet: {
+          '10': 'var(--sn-brand-palette-violet-10, #2f283b)',
+          '20': 'var(--sn-brand-palette-violet-20, #3b314a)',
+          '30': 'var(--sn-brand-palette-violet-30, #594571)',
+          '40': 'var(--sn-brand-palette-violet-40, #875699)',
+          '50': 'var(--sn-brand-palette-violet-50, #b163cc)',
+          '60': 'var(--sn-brand-palette-violet-60, #bb86e0)',
+          '70': 'var(--sn-brand-palette-violet-70, #c9a7e9)',
+          '80': 'var(--sn-brand-palette-violet-80, #e6dcf3)',
+          '90': 'var(--sn-brand-palette-violet-90, #f3edfc)',
+          '95': 'var(--sn-brand-palette-violet-95, #f9f5ff)',
+          '99': 'var(--sn-brand-palette-violet-99, #fdfdfd)',
+          '05': 'var(--sn-brand-palette-violet-05, #292334)'
+        },
+        gray: {
+          '10': 'var(--sn-brand-palette-gray-10, #2c2c3a)',
+          '20': 'var(--sn-brand-palette-gray-20, #333342)',
+          '30': 'var(--sn-brand-palette-gray-30, #4c4e5c)',
+          '40': 'var(--sn-brand-palette-gray-40, #81869c)',
+          '50': 'var(--sn-brand-palette-gray-50, #8b8fa7)',
+          '60': 'var(--sn-brand-palette-gray-60, #959bb1)',
+          '70': 'var(--sn-brand-palette-gray-70, #a6aabf)',
+          '80': 'var(--sn-brand-palette-gray-80, #e3e5ed)',
+          '90': 'var(--sn-brand-palette-gray-90, #eeeff3)',
+          '95': 'var(--sn-brand-palette-gray-95, #fdfdfd)',
+          '99': 'var(--sn-brand-palette-gray-99, #ffffff)',
+          '05': 'var(--sn-brand-palette-gray-05, #262631)'
+        },
+        red: {
+          '10': 'var(--sn-brand-palette-red-10, #481d1f)',
+          '20': 'var(--sn-brand-palette-red-20, #572224)',
+          '30': 'var(--sn-brand-palette-red-30, #772c30)',
+          '40': 'var(--sn-brand-palette-red-40, #a93533)',
+          '50': 'var(--sn-brand-palette-red-50, #d52e33)',
+          '60': 'var(--sn-brand-palette-red-60, #f3605e)',
+          '70': 'var(--sn-brand-palette-red-70, #fb8074)',
+          '80': 'var(--sn-brand-palette-red-80, #fdd6cd)',
+          '90': 'var(--sn-brand-palette-red-90, #fee8e5)',
+          '95': 'var(--sn-brand-palette-red-95, #fef5f1)',
+          '99': 'var(--sn-brand-palette-red-99, #fffaf7)',
+          '05': 'var(--sn-brand-palette-red-05, #3b1a1c)'
+        },
+        orange: {
+          '10': 'var(--sn-brand-palette-orange-10, #481f06)',
+          '20': 'var(--sn-brand-palette-orange-20, #522505)',
+          '30': 'var(--sn-brand-palette-orange-30, #824a1c)',
+          '40': 'var(--sn-brand-palette-orange-40, #c46917)',
+          '50': 'var(--sn-brand-palette-orange-50, #f57e1f)',
+          '60': 'var(--sn-brand-palette-orange-60, #f98d33)',
+          '70': 'var(--sn-brand-palette-orange-70, #fea65f)',
+          '80': 'var(--sn-brand-palette-orange-80, #fbdeb6)',
+          '90': 'var(--sn-brand-palette-orange-90, #ffedcf)',
+          '95': 'var(--sn-brand-palette-orange-95, #fff6e5)',
+          '99': 'var(--sn-brand-palette-orange-99, #fffcf4)',
+          '05': 'var(--sn-brand-palette-orange-05, #3e1908)'
+        }
+      },
       kitService: {
         text: {
-          modificationName: 'var(--sn-brand-kitService-text-modificationName, \"console cloud\")',
+          modificationName: 'var(--sn-brand-kitService-text-modificationName, \"cloudConsole\")',
           modeName: 'var(--sn-brand-kitService-text-modeName, \"04_brand:\")'
         }
       },
@@ -1313,9 +1565,18 @@ export const themeVars = {
             m: 'var(--sn-brand-anatomy-radius-table-m, 4px)'
           },
           listItem: {
-            s: 'var(--sn-brand-anatomy-radius-listItem-s, 0)',
-            m: 'var(--sn-brand-anatomy-radius-listItem-m, 0)',
-            l: 'var(--sn-brand-anatomy-radius-listItem-l, 0)'
+            s: 'var(--sn-brand-anatomy-radius-listItem-s, 0px)',
+            m: 'var(--sn-brand-anatomy-radius-listItem-m, 0px)',
+            l: 'var(--sn-brand-anatomy-radius-listItem-l, 0px)'
+          },
+          avatar: {
+            xs: 'var(--sn-brand-anatomy-radius-avatar-xs, 2px)',
+            s: 'var(--sn-brand-anatomy-radius-avatar-s, 2px)',
+            m: 'var(--sn-brand-anatomy-radius-avatar-m, 2px)',
+            l: 'var(--sn-brand-anatomy-radius-avatar-l, 2px)',
+            '3xl': 'var(--sn-brand-anatomy-radius-avatar-3xl, 2px)',
+            '6xl': 'var(--sn-brand-anatomy-radius-avatar-6xl, 2px)',
+            '9xl': 'var(--sn-brand-anatomy-radius-avatar-9xl, 2px)'
           }
         },
         spacing: {
@@ -1331,10 +1592,10 @@ export const themeVars = {
           button: {
             s: {
               element: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-s-element-paddingHorizontal, 4px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-s-element-paddingHorizontal, 8px)'
               },
               text: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 8px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-s-text-paddingHorizontal, 12px)'
               },
               badge: {
                 paddingRight: 'var(--sn-brand-anatomy-spacing-button-s-badge-paddingRight, 4px)',
@@ -1343,10 +1604,10 @@ export const themeVars = {
             },
             m: {
               element: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-m-element-paddingHorizontal, 8px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-m-element-paddingHorizontal, 12px)'
               },
               text: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 16px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-m-text-paddingHorizontal, 20px)'
               },
               badge: {
                 paddingRight: 'var(--sn-brand-anatomy-spacing-button-m-badge-paddingRight, 4px)',
@@ -1355,10 +1616,10 @@ export const themeVars = {
             },
             l: {
               element: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-l-element-paddingHorizontal, 8px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-l-element-paddingHorizontal, 12px)'
               },
               text: {
-                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 16px)'
+                paddingHorizontal: 'var(--sn-brand-anatomy-spacing-button-l-text-paddingHorizontal, 20px)'
               },
               badge: {
                 paddingRight: 'var(--sn-brand-anatomy-spacing-button-l-badge-paddingRight, 4px)',
@@ -1370,8 +1631,8 @@ export const themeVars = {
             badgeButtonClosed: {
               paddingRight: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingRight, 48px)',
               paddingTop: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingTop, 48px)',
-              paddingBottom: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingBottom, 0)',
-              paddingLeft: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingLeft, 0)'
+              paddingBottom: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingBottom, 0px)',
+              paddingLeft: 'var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingLeft, 0px)'
             }
           }
         },
@@ -1414,7 +1675,7 @@ export const themeVars = {
           onAccent: 'var(--sn-theme-color-primary-onAccent, #21372f)',
           accent: 'var(--sn-theme-color-primary-accent, #5ebb91)',
           text: 'var(--sn-theme-color-primary-text, #85ceaa)',
-          decorTransparent: 'var(--sn-theme-color-primary-decorTransparent, #389f7424)'
+          decorTransparent: 'var(--sn-theme-color-primary-decorTransparent, #389f741a)'
         },
         neutral: {
           background: 'var(--sn-theme-color-neutral-background, #262631)',
@@ -1565,13 +1826,13 @@ export const themeVars = {
             },
             activated: {
               default: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-default-filled, #389f7426)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-default-filled, #389f741a)'
               },
               hovered: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-hovered-filled, #389f7459)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-hovered-filled, #389f7433)'
               },
               pressed: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-pressed-filled, #389f7473)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-pressed-filled, #389f744d)'
               }
             },
             versionOnColor: {
@@ -1633,72 +1894,72 @@ export const themeVars = {
           layer2Color: 'var(--sn-theme-effect-shadow-layer2Color, #00000026)',
           level1: {
             layer1: {
-              positionX: 'var(--sn-theme-effect-shadow-level1-layer1-positionX, 0)',
-              positionY: 'var(--sn-theme-effect-shadow-level1-layer1-positionY, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level1-layer1-positionX, 0px)',
+              positionY: 'var(--sn-theme-effect-shadow-level1-layer1-positionY, 0px)',
               blur: 'var(--sn-theme-effect-shadow-level1-layer1-blur, 4px)',
-              speed: 'var(--sn-theme-effect-shadow-level1-layer1-speed, 0)'
+              spread: 'var(--sn-theme-effect-shadow-level1-layer1-spread, 0px)'
             },
             layer2: {
-              positionX: 'var(--sn-theme-effect-shadow-level1-layer2-positionX, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level1-layer2-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px)',
               blur: 'var(--sn-theme-effect-shadow-level1-layer2-blur, 4px)',
-              speed: 'var(--sn-theme-effect-shadow-level1-layer2-speed, 1px)'
+              spread: 'var(--sn-theme-effect-shadow-level1-layer2-spread, 1px)'
             }
           },
           level2: {
             layer1: {
-              positionX: 'var(--sn-theme-effect-shadow-level2-layer1-positionX, 0)',
-              positionY: 'var(--sn-theme-effect-shadow-level2-layer1-positionY, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level2-layer1-positionX, 0px)',
+              positionY: 'var(--sn-theme-effect-shadow-level2-layer1-positionY, 0px)',
               blur: 'var(--sn-theme-effect-shadow-level2-layer1-blur, 4px)',
-              speed: 'var(--sn-theme-effect-shadow-level2-layer1-speed, 0)'
+              spread: 'var(--sn-theme-effect-shadow-level2-layer1-spread, 0px)'
             },
             layer2: {
-              positionX: 'var(--sn-theme-effect-shadow-level2-layer2-positionX, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level2-layer2-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px)',
               blur: 'var(--sn-theme-effect-shadow-level2-layer2-blur, 8px)',
-              speed: 'var(--sn-theme-effect-shadow-level2-layer2-speed, 2px)'
+              spread: 'var(--sn-theme-effect-shadow-level2-layer2-spread, 2px)'
             }
           },
           level3: {
             layer1: {
-              positionX: 'var(--sn-theme-effect-shadow-level3-layer1-positionX, 0)',
-              positionY: 'var(--sn-theme-effect-shadow-level3-layer1-positionY, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level3-layer1-positionX, 0px)',
+              positionY: 'var(--sn-theme-effect-shadow-level3-layer1-positionY, 0px)',
               blur: 'var(--sn-theme-effect-shadow-level3-layer1-blur, 8px)',
-              speed: 'var(--sn-theme-effect-shadow-level3-layer1-speed, 0)'
+              spread: 'var(--sn-theme-effect-shadow-level3-layer1-spread, 0px)'
             },
             layer2: {
-              positionX: 'var(--sn-theme-effect-shadow-level3-layer2-positionX, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level3-layer2-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px)',
               blur: 'var(--sn-theme-effect-shadow-level3-layer2-blur, 16px)',
-              speed: 'var(--sn-theme-effect-shadow-level3-layer2-speed, 2px)'
+              spread: 'var(--sn-theme-effect-shadow-level3-layer2-spread, 2px)'
             }
           },
           level4: {
             layer1: {
-              positionX: 'var(--sn-theme-effect-shadow-level4-layer1-positionX, 0)',
-              positionY: 'var(--sn-theme-effect-shadow-level4-layer1-positionY, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level4-layer1-positionX, 0px)',
+              positionY: 'var(--sn-theme-effect-shadow-level4-layer1-positionY, 0px)',
               blur: 'var(--sn-theme-effect-shadow-level4-layer1-blur, 8px)',
-              speed: 'var(--sn-theme-effect-shadow-level4-layer1-speed, 0)'
+              spread: 'var(--sn-theme-effect-shadow-level4-layer1-spread, 0px)'
             },
             layer2: {
-              positionX: 'var(--sn-theme-effect-shadow-level4-layer2-positionX, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level4-layer2-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level4-layer2-positionY, 16px)',
               blur: 'var(--sn-theme-effect-shadow-level4-layer2-blur, 16px)',
-              speed: 'var(--sn-theme-effect-shadow-level4-layer2-speed, 4px)'
+              spread: 'var(--sn-theme-effect-shadow-level4-layer2-spread, 4px)'
             }
           },
           level5: {
             layer1: {
-              positionX: 'var(--sn-theme-effect-shadow-level5-layer1-positionX, 0)',
-              positionY: 'var(--sn-theme-effect-shadow-level5-layer1-positionY, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level5-layer1-positionX, 0px)',
+              positionY: 'var(--sn-theme-effect-shadow-level5-layer1-positionY, 0px)',
               blur: 'var(--sn-theme-effect-shadow-level5-layer1-blur, 16px)',
-              speed: 'var(--sn-theme-effect-shadow-level5-layer1-speed, 0)'
+              spread: 'var(--sn-theme-effect-shadow-level5-layer1-spread, 0px)'
             },
             layer2: {
-              positionX: 'var(--sn-theme-effect-shadow-level5-layer2-positionX, 0)',
+              positionX: 'var(--sn-theme-effect-shadow-level5-layer2-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level5-layer2-positionY, 24px)',
               blur: 'var(--sn-theme-effect-shadow-level5-layer2-blur, 16px)',
-              speed: 'var(--sn-theme-effect-shadow-level5-layer2-speed, 4px)'
+              spread: 'var(--sn-theme-effect-shadow-level5-layer2-spread, 4px)'
             }
           }
         },
@@ -1719,8 +1980,10 @@ export const themeVars = {
         }
       },
       kitService: {
-        modificationName: 'var(--sn-theme-kitService-modificationName, \"dark\")',
-        modeName: 'var(--sn-theme-kitService-modeName, \"05_theme:\")'
+        text: {
+          modificationName: 'var(--sn-theme-kitService-text-modificationName, \"dark\")',
+          modeName: 'var(--sn-theme-kitService-text-modeName, \"05_theme:\")'
+        }
       },
       typography: {
         fontWeight: {
@@ -1787,23 +2050,25 @@ export const themeVars = {
       colorEffect: 'var(--sn-acrylic-colorEffect, #1a1a1a)',
       effect: 'var(--sn-acrylic-effect, \"false\")',
       kitService: {
-        modeName: 'var(--sn-acrylic-kitService-modeName, \"07_acrylic:\")',
-        modificationName: 'var(--sn-acrylic-kitService-modificationName, \"no\")'
+        text: {
+          modeName: 'var(--sn-acrylic-kitService-text-modeName, \"07_acrylic-suspended:\")',
+          modificationName: 'var(--sn-acrylic-kitService-text-modificationName, \"no\")'
+        }
       },
-      blurBackground1Level: 'var(--sn-acrylic-blurBackground1Level, 0)',
+      blurBackground1Level: 'var(--sn-acrylic-blurBackground1Level, 0px)',
       opacityBackground: 'var(--sn-acrylic-opacityBackground, 1)',
-      blurBackground2Level: 'var(--sn-acrylic-blurBackground2Level, 0)',
-      blurBackground: 'var(--sn-acrylic-blurBackground, 0)',
+      blurBackground2Level: 'var(--sn-acrylic-blurBackground2Level, 0px)',
+      blurBackground: 'var(--sn-acrylic-blurBackground, 0px)',
       opacityBackground1Level: 'var(--sn-acrylic-opacityBackground1Level, 1)',
       opacityBackground2Level: 'var(--sn-acrylic-opacityBackground2Level, 1)'
     },
     boxShadow: {
       elevation: {
-        level1: 'var(--sn-boxShadow-elevation-level1, var(--sn-theme-effect-shadow-level1-layer1-positionX, 0) var(--sn-theme-effect-shadow-level1-layer1-positionY, 0) var(--sn-theme-effect-shadow-level1-layer1-blur, 4px) var(--sn-theme-effect-shadow-level1-layer1-speed, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level1-layer2-positionX, 0) var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px) var(--sn-theme-effect-shadow-level1-layer2-blur, 4px) var(--sn-theme-effect-shadow-level1-layer2-speed, 1px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level2: 'var(--sn-boxShadow-elevation-level2, var(--sn-theme-effect-shadow-level2-layer1-positionX, 0) var(--sn-theme-effect-shadow-level2-layer1-positionY, 0) var(--sn-theme-effect-shadow-level2-layer1-blur, 4px) var(--sn-theme-effect-shadow-level2-layer1-speed, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level2-layer2-positionX, 0) var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px) var(--sn-theme-effect-shadow-level2-layer2-blur, 8px) var(--sn-theme-effect-shadow-level2-layer2-speed, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level3: 'var(--sn-boxShadow-elevation-level3, var(--sn-theme-effect-shadow-level3-layer1-positionX, 0) var(--sn-theme-effect-shadow-level3-layer1-positionY, 0) var(--sn-theme-effect-shadow-level3-layer1-blur, 8px) var(--sn-theme-effect-shadow-level3-layer1-speed, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level3-layer2-positionX, 0) var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px) var(--sn-theme-effect-shadow-level3-layer2-blur, 16px) var(--sn-theme-effect-shadow-level3-layer2-speed, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level4: 'var(--sn-boxShadow-elevation-level4, var(--sn-theme-effect-shadow-level4-layer1-positionX, 0) var(--sn-theme-effect-shadow-level4-layer1-positionY, 0) var(--sn-theme-effect-shadow-level4-layer1-blur, 8px) var(--sn-theme-effect-shadow-level4-layer1-speed, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level4-layer2-positionX, 0) var(--sn-theme-effect-shadow-level4-layer2-positionY, 16px) var(--sn-theme-effect-shadow-level4-layer2-blur, 16px) var(--sn-theme-effect-shadow-level4-layer2-speed, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level5: 'var(--sn-boxShadow-elevation-level5, var(--sn-theme-effect-shadow-level5-layer1-positionX, 0) var(--sn-theme-effect-shadow-level5-layer1-positionY, 0) var(--sn-theme-effect-shadow-level5-layer1-blur, 16px) var(--sn-theme-effect-shadow-level5-layer1-speed, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level5-layer2-positionX, 0) var(--sn-theme-effect-shadow-level5-layer2-positionY, 24px) var(--sn-theme-effect-shadow-level5-layer2-blur, 16px) var(--sn-theme-effect-shadow-level5-layer2-speed, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))'
+        level1: 'var(--sn-boxShadow-elevation-level1, var(--sn-theme-effect-shadow-level1-layer1-positionX, 0) var(--sn-theme-effect-shadow-level1-layer1-positionY, 0) var(--sn-theme-effect-shadow-level1-layer1-blur, 4px) var(--sn-theme-effect-shadow-level1-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level1-layer2-positionX, 0) var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px) var(--sn-theme-effect-shadow-level1-layer2-blur, 4px) var(--sn-theme-effect-shadow-level1-layer2-spread, 1px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
+        level2: 'var(--sn-boxShadow-elevation-level2, var(--sn-theme-effect-shadow-level2-layer1-positionX, 0) var(--sn-theme-effect-shadow-level2-layer1-positionY, 0) var(--sn-theme-effect-shadow-level2-layer1-blur, 4px) var(--sn-theme-effect-shadow-level2-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level2-layer2-positionX, 0) var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px) var(--sn-theme-effect-shadow-level2-layer2-blur, 8px) var(--sn-theme-effect-shadow-level2-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
+        level3: 'var(--sn-boxShadow-elevation-level3, var(--sn-theme-effect-shadow-level3-layer1-positionX, 0) var(--sn-theme-effect-shadow-level3-layer1-positionY, 0) var(--sn-theme-effect-shadow-level3-layer1-blur, 8px) var(--sn-theme-effect-shadow-level3-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level3-layer2-positionX, 0) var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px) var(--sn-theme-effect-shadow-level3-layer2-blur, 16px) var(--sn-theme-effect-shadow-level3-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
+        level4: 'var(--sn-boxShadow-elevation-level4, var(--sn-theme-effect-shadow-level4-layer1-positionX, 0) var(--sn-theme-effect-shadow-level4-layer1-positionY, 0) var(--sn-theme-effect-shadow-level4-layer1-blur, 8px) var(--sn-theme-effect-shadow-level4-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level4-layer2-positionX, 0) var(--sn-theme-effect-shadow-level4-layer2-positionY, 16px) var(--sn-theme-effect-shadow-level4-layer2-blur, 16px) var(--sn-theme-effect-shadow-level4-layer2-spread, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
+        level5: 'var(--sn-boxShadow-elevation-level5, var(--sn-theme-effect-shadow-level5-layer1-positionX, 0) var(--sn-theme-effect-shadow-level5-layer1-positionY, 0) var(--sn-theme-effect-shadow-level5-layer1-blur, 16px) var(--sn-theme-effect-shadow-level5-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level5-layer2-positionX, 0) var(--sn-theme-effect-shadow-level5-layer2-positionY, 24px) var(--sn-theme-effect-shadow-level5-layer2-blur, 16px) var(--sn-theme-effect-shadow-level5-layer2-spread, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))'
       }
     },
     color: {
@@ -1824,24 +2089,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-regular-display-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-display-s-fontWeight, 550)',
-          'line-height': 'var(--sn-regular-display-s-lineHeight, 40)',
-          'font-size': 'var(--sn-regular-display-s-fontSize, 32)',
+          'line-height': 'var(--sn-regular-display-s-lineHeight, 48)',
+          'font-size': 'var(--sn-regular-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-regular-display-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-display-s-paragraphSpacing, 20)'
         },
         m: {
           'font-family': 'var(--sn-regular-display-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-display-m-fontWeight, 600)',
-          'line-height': 'var(--sn-regular-display-m-lineHeight, 48)',
-          'font-size': 'var(--sn-regular-display-m-fontSize, 40)',
+          'line-height': 'var(--sn-regular-display-m-lineHeight, 60)',
+          'font-size': 'var(--sn-regular-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-regular-display-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-display-m-paragraphSpacing, 24)'
         },
         l: {
           'font-family': 'var(--sn-regular-display-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-display-l-fontWeight, 650)',
-          'line-height': 'var(--sn-regular-display-l-lineHeight, 60)',
-          'font-size': 'var(--sn-regular-display-l-fontSize, 48)',
+          'line-height': 'var(--sn-regular-display-l-lineHeight, 64)',
+          'font-size': 'var(--sn-regular-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-regular-display-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-display-l-paragraphSpacing, 28)'
         }
@@ -1850,24 +2115,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-regular-headline-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-headline-s-fontWeight, 550)',
-          'line-height': 'var(--sn-regular-headline-s-lineHeight, 28)',
-          'font-size': 'var(--sn-regular-headline-s-fontSize, 20)',
+          'line-height': 'var(--sn-regular-headline-s-lineHeight, 32)',
+          'font-size': 'var(--sn-regular-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-regular-headline-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-headline-s-paragraphSpacing, 12)'
         },
         m: {
           'font-family': 'var(--sn-regular-headline-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-headline-m-fontWeight, 550)',
-          'line-height': 'var(--sn-regular-headline-m-lineHeight, 32)',
-          'font-size': 'var(--sn-regular-headline-m-fontSize, 24)',
+          'line-height': 'var(--sn-regular-headline-m-lineHeight, 36)',
+          'font-size': 'var(--sn-regular-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-regular-headline-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-headline-m-paragraphSpacing, 14)'
         },
         l: {
           'font-family': 'var(--sn-regular-headline-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-headline-l-fontWeight, 550)',
-          'line-height': 'var(--sn-regular-headline-l-lineHeight, 36)',
-          'font-size': 'var(--sn-regular-headline-l-fontSize, 28)',
+          'line-height': 'var(--sn-regular-headline-l-lineHeight, 40)',
+          'font-size': 'var(--sn-regular-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-regular-headline-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-headline-l-paragraphSpacing, 16)'
         }
@@ -1876,8 +2141,8 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-regular-title-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-title-s-fontWeight, 550)',
-          'line-height': 'var(--sn-regular-title-s-lineHeight, 24)',
-          'font-size': 'var(--sn-regular-title-s-fontSize, 16)',
+          'line-height': 'var(--sn-regular-title-s-lineHeight, 20)',
+          'font-size': 'var(--sn-regular-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-title-s-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-regular-title-s-paragraphSpacing, 7)'
         },
@@ -1885,7 +2150,7 @@ export const themeVars = {
           'font-family': 'var(--sn-regular-title-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-title-m-fontWeight, 550)',
           'line-height': 'var(--sn-regular-title-m-lineHeight, 24)',
-          'font-size': 'var(--sn-regular-title-m-fontSize, 18)',
+          'font-size': 'var(--sn-regular-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-title-m-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-regular-title-m-paragraphSpacing, 8)'
         },
@@ -1944,7 +2209,7 @@ export const themeVars = {
         l: {
           'font-family': 'var(--sn-regular-body-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-regular-body-l-fontWeight, 350)',
-          'line-height': 'var(--sn-regular-body-l-lineHeight, 24)',
+          'line-height': 'var(--sn-regular-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-regular-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-regular-body-l-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-regular-body-l-paragraphSpacing, 8)'
@@ -1956,24 +2221,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-thin-display-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-display-s-fontWeight, 550)',
-          'line-height': 'var(--sn-thin-display-s-lineHeight, 40)',
-          'font-size': 'var(--sn-thin-display-s-fontSize, 32)',
+          'line-height': 'var(--sn-thin-display-s-lineHeight, 48)',
+          'font-size': 'var(--sn-thin-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-thin-display-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-display-s-paragraphSpacing, 20)'
         },
         m: {
           'font-family': 'var(--sn-thin-display-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-display-m-fontWeight, 550)',
-          'line-height': 'var(--sn-thin-display-m-lineHeight, 48)',
-          'font-size': 'var(--sn-thin-display-m-fontSize, 40)',
+          'line-height': 'var(--sn-thin-display-m-lineHeight, 60)',
+          'font-size': 'var(--sn-thin-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-thin-display-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-display-m-paragraphSpacing, 24)'
         },
         l: {
           'font-family': 'var(--sn-thin-display-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-display-l-fontWeight, 550)',
-          'line-height': 'var(--sn-thin-display-l-lineHeight, 60)',
-          'font-size': 'var(--sn-thin-display-l-fontSize, 48)',
+          'line-height': 'var(--sn-thin-display-l-lineHeight, 64)',
+          'font-size': 'var(--sn-thin-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-thin-display-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-display-l-paragraphSpacing, 28)'
         }
@@ -1982,24 +2247,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-thin-headline-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-headline-s-fontWeight, 450)',
-          'line-height': 'var(--sn-thin-headline-s-lineHeight, 28)',
-          'font-size': 'var(--sn-thin-headline-s-fontSize, 20)',
+          'line-height': 'var(--sn-thin-headline-s-lineHeight, 32)',
+          'font-size': 'var(--sn-thin-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-thin-headline-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-headline-s-paragraphSpacing, 12)'
         },
         m: {
           'font-family': 'var(--sn-thin-headline-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-headline-m-fontWeight, 450)',
-          'line-height': 'var(--sn-thin-headline-m-lineHeight, 32)',
-          'font-size': 'var(--sn-thin-headline-m-fontSize, 24)',
+          'line-height': 'var(--sn-thin-headline-m-lineHeight, 36)',
+          'font-size': 'var(--sn-thin-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-thin-headline-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-headline-m-paragraphSpacing, 14)'
         },
         l: {
           'font-family': 'var(--sn-thin-headline-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-headline-l-fontWeight, 450)',
-          'line-height': 'var(--sn-thin-headline-l-lineHeight, 36)',
-          'font-size': 'var(--sn-thin-headline-l-fontSize, 28)',
+          'line-height': 'var(--sn-thin-headline-l-lineHeight, 40)',
+          'font-size': 'var(--sn-thin-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-thin-headline-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-headline-l-paragraphSpacing, 16)'
         }
@@ -2008,8 +2273,8 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-thin-title-s-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-title-s-fontWeight, 450)',
-          'line-height': 'var(--sn-thin-title-s-lineHeight, 24)',
-          'font-size': 'var(--sn-thin-title-s-fontSize, 16)',
+          'line-height': 'var(--sn-thin-title-s-lineHeight, 20)',
+          'font-size': 'var(--sn-thin-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-title-s-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-thin-title-s-paragraphSpacing, 7)'
         },
@@ -2017,7 +2282,7 @@ export const themeVars = {
           'font-family': 'var(--sn-thin-title-m-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-title-m-fontWeight, 450)',
           'line-height': 'var(--sn-thin-title-m-lineHeight, 24)',
-          'font-size': 'var(--sn-thin-title-m-fontSize, 18)',
+          'font-size': 'var(--sn-thin-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-title-m-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-thin-title-m-paragraphSpacing, 8)'
         },
@@ -2076,7 +2341,7 @@ export const themeVars = {
         l: {
           'font-family': 'var(--sn-thin-body-l-fontFamily, SB Sans Interface)',
           'font-weight': 'var(--sn-thin-body-l-fontWeight, 250)',
-          'line-height': 'var(--sn-thin-body-l-lineHeight, 24)',
+          'line-height': 'var(--sn-thin-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-thin-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-thin-body-l-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-thin-body-l-paragraphSpacing, 8)'
@@ -2088,24 +2353,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-mono-display-s-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-display-s-fontWeight, 550)',
-          'line-height': 'var(--sn-mono-display-s-lineHeight, 40)',
-          'font-size': 'var(--sn-mono-display-s-fontSize, 32)',
+          'line-height': 'var(--sn-mono-display-s-lineHeight, 48)',
+          'font-size': 'var(--sn-mono-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-mono-display-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-display-s-paragraphSpacing, 20)'
         },
         m: {
           'font-family': 'var(--sn-mono-display-m-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-display-m-fontWeight, 600)',
-          'line-height': 'var(--sn-mono-display-m-lineHeight, 48)',
-          'font-size': 'var(--sn-mono-display-m-fontSize, 40)',
+          'line-height': 'var(--sn-mono-display-m-lineHeight, 60)',
+          'font-size': 'var(--sn-mono-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-mono-display-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-display-m-paragraphSpacing, 24)'
         },
         l: {
           'font-family': 'var(--sn-mono-display-l-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-display-l-fontWeight, 650)',
-          'line-height': 'var(--sn-mono-display-l-lineHeight, 60)',
-          'font-size': 'var(--sn-mono-display-l-fontSize, 48)',
+          'line-height': 'var(--sn-mono-display-l-lineHeight, 64)',
+          'font-size': 'var(--sn-mono-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-mono-display-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-display-l-paragraphSpacing, 28)'
         }
@@ -2114,24 +2379,24 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-mono-headline-s-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-headline-s-fontWeight, 550)',
-          'line-height': 'var(--sn-mono-headline-s-lineHeight, 28)',
-          'font-size': 'var(--sn-mono-headline-s-fontSize, 20)',
+          'line-height': 'var(--sn-mono-headline-s-lineHeight, 32)',
+          'font-size': 'var(--sn-mono-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-mono-headline-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-headline-s-paragraphSpacing, 12)'
         },
         m: {
           'font-family': 'var(--sn-mono-headline-m-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-headline-m-fontWeight, 550)',
-          'line-height': 'var(--sn-mono-headline-m-lineHeight, 32)',
-          'font-size': 'var(--sn-mono-headline-m-fontSize, 24)',
+          'line-height': 'var(--sn-mono-headline-m-lineHeight, 36)',
+          'font-size': 'var(--sn-mono-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-mono-headline-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-headline-m-paragraphSpacing, 14)'
         },
         l: {
           'font-family': 'var(--sn-mono-headline-l-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-headline-l-fontWeight, 550)',
-          'line-height': 'var(--sn-mono-headline-l-lineHeight, 36)',
-          'font-size': 'var(--sn-mono-headline-l-fontSize, 28)',
+          'line-height': 'var(--sn-mono-headline-l-lineHeight, 40)',
+          'font-size': 'var(--sn-mono-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-mono-headline-l-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-mono-headline-l-paragraphSpacing, 16)'
         }
@@ -2140,8 +2405,8 @@ export const themeVars = {
         s: {
           'font-family': 'var(--sn-mono-title-s-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-title-s-fontWeight, 550)',
-          'line-height': 'var(--sn-mono-title-s-lineHeight, 24)',
-          'font-size': 'var(--sn-mono-title-s-fontSize, 16)',
+          'line-height': 'var(--sn-mono-title-s-lineHeight, 20)',
+          'font-size': 'var(--sn-mono-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-title-s-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-mono-title-s-paragraphSpacing, 7)'
         },
@@ -2149,7 +2414,7 @@ export const themeVars = {
           'font-family': 'var(--sn-mono-title-m-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-title-m-fontWeight, 550)',
           'line-height': 'var(--sn-mono-title-m-lineHeight, 24)',
-          'font-size': 'var(--sn-mono-title-m-fontSize, 18)',
+          'font-size': 'var(--sn-mono-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-title-m-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-mono-title-m-paragraphSpacing, 8)'
         },
@@ -2208,7 +2473,7 @@ export const themeVars = {
         l: {
           'font-family': 'var(--sn-mono-body-l-fontFamily, SB Sans Text Mono)',
           'font-weight': 'var(--sn-mono-body-l-fontWeight, 350)',
-          'line-height': 'var(--sn-mono-body-l-lineHeight, 24)',
+          'line-height': 'var(--sn-mono-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-mono-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-mono-body-l-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-mono-body-l-paragraphSpacing, 8)'

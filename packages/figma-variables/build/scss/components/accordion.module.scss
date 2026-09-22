@@ -31,6 +31,11 @@ $sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titl
 $sn-accordion-anatomy-accordionTertiary-container-borderRadius: var(--sn-accordion-anatomy-accordionTertiary-container-borderRadius, #{st.$sn-brand-anatomy-radius-block-s});
 $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical: var(--sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical, #{st.$sn-primitive-dimension-4});
 $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal: var(--sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal, #{st.$sn-primitive-dimension-0});
+$sn-accordion-anatomy-buttonChevron-container-minWidth: var(--sn-accordion-anatomy-buttonChevron-container-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-accordion-anatomy-buttonChevron-container-minHeight: var(--sn-accordion-anatomy-buttonChevron-container-minHeight, #{st.$sn-primitive-dimension-32});
+$sn-accordion-anatomy-buttonChevron-container-gap: var(--sn-accordion-anatomy-buttonChevron-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-accordion-anatomy-buttonChevron-container-borderRadius: var(--sn-accordion-anatomy-buttonChevron-container-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-accordion-anatomy-buttonChevron-container-borderWidth: var(--sn-accordion-anatomy-buttonChevron-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
 
 $accordion: (
   "anatomy": (
@@ -109,6 +114,15 @@ $accordion: (
           "padding-left": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal,
           "padding-right": $sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal
         )
+      )
+    ),
+    "buttonChevron": (
+      "container": (
+        "min-width": $sn-accordion-anatomy-buttonChevron-container-minWidth,
+        "min-height": $sn-accordion-anatomy-buttonChevron-container-minHeight,
+        "gap": $sn-accordion-anatomy-buttonChevron-container-gap,
+        "border-radius": $sn-accordion-anatomy-buttonChevron-container-borderRadius,
+        "border-width": $sn-accordion-anatomy-buttonChevron-container-borderWidth
       )
     )
   )

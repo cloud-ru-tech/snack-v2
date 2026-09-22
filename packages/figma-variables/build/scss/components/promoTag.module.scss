@@ -5,37 +5,54 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
-$sn-promoTag-anatomy-size-s-container-minHeight: var(--sn-promoTag-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
-$sn-promoTag-anatomy-size-s-container-padding: var(--sn-promoTag-anatomy-size-s-container-padding, #{st.$sn-primitive-dimension-4});
-$sn-promoTag-anatomy-size-s-container-borderRadius: var(--sn-promoTag-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-s});
-$sn-promoTag-anatomy-size-s-container-minWidth: var(--sn-promoTag-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
-$sn-promoTag-anatomy-size-s-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-s-container-textWrapper-padding, #{st.$sn-primitive-dimension-2});
+$sn-promoTag-anatomy-size-xs-text-fontFamily: var(--sn-promoTag-anatomy-size-xs-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-promoTag-anatomy-size-xs-text-fontSize: var(--sn-promoTag-anatomy-size-xs-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-promoTag-anatomy-size-xs-text-lineHeight: var(--sn-promoTag-anatomy-size-xs-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-promoTag-anatomy-size-xs-text-fontWeight: var(--sn-promoTag-anatomy-size-xs-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-promoTag-anatomy-size-xs-text-letterSpacing: var(--sn-promoTag-anatomy-size-xs-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-promoTag-anatomy-size-xs-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-xs-container-textWrapper-padding, #{st.$sn-primitive-dimension-2});
 $sn-promoTag-anatomy-size-xs-container-minHeight: var(--sn-promoTag-anatomy-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
 $sn-promoTag-anatomy-size-xs-container-padding: var(--sn-promoTag-anatomy-size-xs-container-padding, #{st.$sn-primitive-dimension-2});
 $sn-promoTag-anatomy-size-xs-container-minWidth: var(--sn-promoTag-anatomy-size-xs-container-minWidth, #{st.$sn-primitive-dimension-16});
 $sn-promoTag-anatomy-size-xs-container-borderRadius: var(--sn-promoTag-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-xs});
+$sn-promoTag-anatomy-size-xs-element-icon-square: var(--sn-promoTag-anatomy-size-xs-element-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-promoTag-anatomy-size-xs-element-icon-strokeWeight: var(--sn-promoTag-anatomy-size-xs-element-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-promoTag-anatomy-size-s-text-fontFamily: var(--sn-promoTag-anatomy-size-s-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-promoTag-anatomy-size-s-text-fontSize: var(--sn-promoTag-anatomy-size-s-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-promoTag-anatomy-size-s-text-lineHeight: var(--sn-promoTag-anatomy-size-s-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-promoTag-anatomy-size-s-text-fontWeight: var(--sn-promoTag-anatomy-size-s-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-promoTag-anatomy-size-s-text-letterSpacing: var(--sn-promoTag-anatomy-size-s-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
+$sn-promoTag-anatomy-size-s-container-minHeight: var(--sn-promoTag-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-promoTag-anatomy-size-s-container-padding: var(--sn-promoTag-anatomy-size-s-container-padding, #{st.$sn-primitive-dimension-4});
+$sn-promoTag-anatomy-size-s-container-borderRadius: var(--sn-promoTag-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-s});
+$sn-promoTag-anatomy-size-s-container-minWidth: var(--sn-promoTag-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-promoTag-anatomy-size-s-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-s-container-textWrapper-padding, #{st.$sn-primitive-dimension-2});
+$sn-promoTag-anatomy-size-s-element-icon-square: var(--sn-promoTag-anatomy-size-s-element-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-promoTag-anatomy-size-s-element-icon-strokeWeight: var(--sn-promoTag-anatomy-size-s-element-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-promoTag-anatomy-size-m-text-fontFamily: var(--sn-promoTag-anatomy-size-m-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-promoTag-anatomy-size-m-text-fontSize: var(--sn-promoTag-anatomy-size-m-text-fontSize, #{st.$sn-primitive-font-fontSize-12});
+$sn-promoTag-anatomy-size-m-text-lineHeight: var(--sn-promoTag-anatomy-size-m-text-lineHeight, #{st.$sn-primitive-font-lineHeight-16});
+$sn-promoTag-anatomy-size-m-text-fontWeight: var(--sn-promoTag-anatomy-size-m-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-m});
+$sn-promoTag-anatomy-size-m-text-letterSpacing: var(--sn-promoTag-anatomy-size-m-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-promoTag-anatomy-size-m-container-textWrapper-padding: var(--sn-promoTag-anatomy-size-m-container-textWrapper-padding, #{st.$sn-primitive-dimension-4});
 $sn-promoTag-anatomy-size-m-container-padding: var(--sn-promoTag-anatomy-size-m-container-padding, #{st.$sn-primitive-dimension-4});
 $sn-promoTag-anatomy-size-m-container-borderRadius: var(--sn-promoTag-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-promoTag-m});
 $sn-promoTag-anatomy-size-m-container-minHeight: var(--sn-promoTag-anatomy-size-m-container-minHeight, #{st.$sn-primitive-dimension-32});
 $sn-promoTag-anatomy-size-m-container-minWidth: var(--sn-promoTag-anatomy-size-m-container-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-promoTag-anatomy-size-m-element-icon-square: var(--sn-promoTag-anatomy-size-m-element-icon-square, #{st.$sn-primitive-dimension-24});
+$sn-promoTag-anatomy-size-m-element-icon-strokeWeight: var(--sn-promoTag-anatomy-size-m-element-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 
 $promoTag: (
   "anatomy": (
     "size": (
-      "s": (
-        "container": (
-          "min-height": $sn-promoTag-anatomy-size-s-container-minHeight,
-          "padding": $sn-promoTag-anatomy-size-s-container-padding,
-          "border-radius": $sn-promoTag-anatomy-size-s-container-borderRadius,
-          "min-width": $sn-promoTag-anatomy-size-s-container-minWidth,
-          "textWrapper": (
-            "padding": $sn-promoTag-anatomy-size-s-container-textWrapper-padding
-          )
-        )
-      ),
       "xs": (
+        "text": (
+          "font-family": $sn-promoTag-anatomy-size-xs-text-fontFamily,
+          "font-size": $sn-promoTag-anatomy-size-xs-text-fontSize,
+          "line-height": $sn-promoTag-anatomy-size-xs-text-lineHeight,
+          "font-weight": $sn-promoTag-anatomy-size-xs-text-fontWeight,
+          "letter-spacing": $sn-promoTag-anatomy-size-xs-text-letterSpacing
+        ),
         "container": (
           "textWrapper": (
             "padding": $sn-promoTag-anatomy-size-xs-container-textWrapper-padding
@@ -44,9 +61,48 @@ $promoTag: (
           "padding": $sn-promoTag-anatomy-size-xs-container-padding,
           "min-width": $sn-promoTag-anatomy-size-xs-container-minWidth,
           "border-radius": $sn-promoTag-anatomy-size-xs-container-borderRadius
+        ),
+        "element": (
+          "icon": (
+            "width": $sn-promoTag-anatomy-size-xs-element-icon-square,
+            "height": $sn-promoTag-anatomy-size-xs-element-icon-square,
+            "border-width": $sn-promoTag-anatomy-size-xs-element-icon-strokeWeight
+          )
+        )
+      ),
+      "s": (
+        "text": (
+          "font-family": $sn-promoTag-anatomy-size-s-text-fontFamily,
+          "font-size": $sn-promoTag-anatomy-size-s-text-fontSize,
+          "line-height": $sn-promoTag-anatomy-size-s-text-lineHeight,
+          "font-weight": $sn-promoTag-anatomy-size-s-text-fontWeight,
+          "letter-spacing": $sn-promoTag-anatomy-size-s-text-letterSpacing
+        ),
+        "container": (
+          "min-height": $sn-promoTag-anatomy-size-s-container-minHeight,
+          "padding": $sn-promoTag-anatomy-size-s-container-padding,
+          "border-radius": $sn-promoTag-anatomy-size-s-container-borderRadius,
+          "min-width": $sn-promoTag-anatomy-size-s-container-minWidth,
+          "textWrapper": (
+            "padding": $sn-promoTag-anatomy-size-s-container-textWrapper-padding
+          )
+        ),
+        "element": (
+          "icon": (
+            "width": $sn-promoTag-anatomy-size-s-element-icon-square,
+            "height": $sn-promoTag-anatomy-size-s-element-icon-square,
+            "border-width": $sn-promoTag-anatomy-size-s-element-icon-strokeWeight
+          )
         )
       ),
       "m": (
+        "text": (
+          "font-family": $sn-promoTag-anatomy-size-m-text-fontFamily,
+          "font-size": $sn-promoTag-anatomy-size-m-text-fontSize,
+          "line-height": $sn-promoTag-anatomy-size-m-text-lineHeight,
+          "font-weight": $sn-promoTag-anatomy-size-m-text-fontWeight,
+          "letter-spacing": $sn-promoTag-anatomy-size-m-text-letterSpacing
+        ),
         "container": (
           "textWrapper": (
             "padding": $sn-promoTag-anatomy-size-m-container-textWrapper-padding
@@ -55,6 +111,13 @@ $promoTag: (
           "border-radius": $sn-promoTag-anatomy-size-m-container-borderRadius,
           "min-height": $sn-promoTag-anatomy-size-m-container-minHeight,
           "min-width": $sn-promoTag-anatomy-size-m-container-minWidth
+        ),
+        "element": (
+          "icon": (
+            "width": $sn-promoTag-anatomy-size-m-element-icon-square,
+            "height": $sn-promoTag-anatomy-size-m-element-icon-square,
+            "border-width": $sn-promoTag-anatomy-size-m-element-icon-strokeWeight
+          )
         )
       )
     )

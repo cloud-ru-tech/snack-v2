@@ -4,7 +4,7 @@
   
 .sn-block {
   --sn-block-anatomy-s-borderRadius: var(--sn-brand-anatomy-radius-block-s, 4px);
-  --sn-block-anatomy-s-padding: var(--sn-density-spacing-block-s-padding, 16px);
+  --sn-block-anatomy-s-padding: var(--sn-density-spacing-block-s-padding, 12px);
   --sn-block-anatomy-s-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
   --sn-block-anatomy-m-borderRadius: var(--sn-brand-anatomy-radius-block-m, 4px);
   --sn-block-anatomy-m-padding: var(--sn-density-spacing-block-m-padding, 24px);

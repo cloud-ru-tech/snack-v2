@@ -12,8 +12,8 @@ $sn-chip-anatomy-size-l-container-textWrapper-paddingHorizontal: var(--sn-chip-a
 $sn-chip-anatomy-size-l-container-textWrapper-gap: var(--sn-chip-anatomy-size-l-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-chip-anatomy-size-l-container-paddingHorizontal: var(--sn-chip-anatomy-size-l-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
 $sn-chip-anatomy-size-l-container-minWidth: var(--sn-chip-anatomy-size-l-container-minWidth, #{st.$sn-density-size-l});
-$sn-chip-anatomy-size-l-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-l-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-s});
-$sn-chip-anatomy-size-l-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-l-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-l-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-l-centeredWrapper-maxWidth, #{st.$sn-density-icon-s});
+$sn-chip-anatomy-size-l-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-l-centeredWrapper-maxHeight, #{st.$sn-density-icon-s});
 $sn-chip-anatomy-size-m-container-textWrapper-gap: var(--sn-chip-anatomy-size-m-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-chip-anatomy-size-m-container-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-chip-anatomy-size-m-container-paddingHorizontal: var(--sn-chip-anatomy-size-m-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-m});
@@ -21,8 +21,8 @@ $sn-chip-anatomy-size-m-container-borderWidth: var(--sn-chip-anatomy-size-m-cont
 $sn-chip-anatomy-size-m-container-borderRadius: var(--sn-chip-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-chips-m});
 $sn-chip-anatomy-size-m-container-minHeight: var(--sn-chip-anatomy-size-m-container-minHeight, #{st.$sn-density-size-m});
 $sn-chip-anatomy-size-m-container-minWidth: var(--sn-chip-anatomy-size-m-container-minWidth, #{st.$sn-density-size-m});
-$sn-chip-anatomy-size-m-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-m-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-s});
-$sn-chip-anatomy-size-m-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-m-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-s});
+$sn-chip-anatomy-size-m-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-m-centeredWrapper-maxWidth, #{st.$sn-density-icon-s});
+$sn-chip-anatomy-size-m-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-m-centeredWrapper-maxHeight, #{st.$sn-density-icon-s});
 $sn-chip-anatomy-size-s-container-textWrapper-gap: var(--sn-chip-anatomy-size-s-container-textWrapper-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-chip-anatomy-size-s-container-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-chip-anatomy-size-s-container-paddingHorizontal: var(--sn-chip-anatomy-size-s-container-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
@@ -30,8 +30,8 @@ $sn-chip-anatomy-size-s-container-borderWidth: var(--sn-chip-anatomy-size-s-cont
 $sn-chip-anatomy-size-s-container-borderRadius: var(--sn-chip-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-chips-s});
 $sn-chip-anatomy-size-s-container-minHeight: var(--sn-chip-anatomy-size-s-container-minHeight, #{st.$sn-density-size-s});
 $sn-chip-anatomy-size-s-container-minWidth: var(--sn-chip-anatomy-size-s-container-minWidth, #{st.$sn-density-size-s});
-$sn-chip-anatomy-size-s-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-s-centeredWrapper-maxWidth, #{st.$sn-density-size-icon-xs});
-$sn-chip-anatomy-size-s-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-s-centeredWrapper-maxHeight, #{st.$sn-density-size-icon-xs});
+$sn-chip-anatomy-size-s-centeredWrapper-maxWidth: var(--sn-chip-anatomy-size-s-centeredWrapper-maxWidth, #{st.$sn-density-icon-xs});
+$sn-chip-anatomy-size-s-centeredWrapper-maxHeight: var(--sn-chip-anatomy-size-s-centeredWrapper-maxHeight, #{st.$sn-density-icon-xs});
 
 $chip: (
   "anatomy": (

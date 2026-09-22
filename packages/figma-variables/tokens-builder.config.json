@@ -9,6 +9,10 @@
   "excludeGroups": [
     "06_language"
   ],
+  "excludeTokenSets": [
+    "04_brand/hrPortal",
+    "04_brand/site"
+  ],
   "cssModules": false,
   "scssModules": true,
   "cssClassPrefix": "sn",

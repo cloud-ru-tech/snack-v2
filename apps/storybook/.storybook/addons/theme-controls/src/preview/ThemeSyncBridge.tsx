@@ -5,7 +5,7 @@ import { CHANNEL_SYNC_EVENT } from '../constants';
 
 /**
  * Слушает postMessage от родителя (документация) и синхронизирует
- * тему/бренд/платформу с глобалами Storybook через channel (обрабатывается в manager).
+ * тему/бренд/плотность/раскладку с глобалами Storybook через channel (обрабатывается в manager).
  */
 export function ThemeSyncBridge({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -13,9 +13,16 @@ export function ThemeSyncBridge({ children }: { children: ReactNode }) {
 
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === 'theme-sync') {
-        const { theme, brand, brandRole, platform, density, language } = event.data;
-        // Docs шлёт density под именем `platform`, поддерживаем оба ключа.
-        channel.emit(CHANNEL_SYNC_EVENT, { theme, brand, brandRole, density: density ?? platform, language });
+        const { theme, brand, density, language, layoutType } = event.data;
+        // Раскладку, зафиксированную в URL embed-а (`globals=layoutType:mobile`), документация не перетирает.
+        const layoutForced = /(^|;)layoutType:/.test(new URLSearchParams(window.location.search).get('globals') ?? '');
+        channel.emit(CHANNEL_SYNC_EVENT, {
+          theme,
+          brand,
+          density,
+          language,
+          layoutType: layoutForced ? undefined : layoutType,
+        });
       }
     };
 

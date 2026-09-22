@@ -17,8 +17,8 @@ $sn-modal-anatomy-container-width-l-maxWidth: 1872px;
 $sn-modal-anatomy-container-height-maxHeight: 900px;
 $sn-modal-anatomy-container-borderBottomRightRadius: var(--sn-modal-anatomy-container-borderBottomRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
 $sn-modal-anatomy-container-borderBottomLeftRadius: var(--sn-modal-anatomy-container-borderBottomLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
-$sn-modal-anatomy-container-safeArea-paddingBottom: var(--sn-modal-anatomy-container-safeArea-paddingBottom, #{st.$sn-density-spacing-interval-s});
-$sn-modal-anatomy-container-safeArea-paddingTop: var(--sn-modal-anatomy-container-safeArea-paddingTop, #{st.$sn-density-spacing-interval-l});
+$sn-modal-anatomy-container-safeArea-paddingBottom: var(--sn-modal-anatomy-container-safeArea-paddingBottom, #{st.$sn-primitive-dimension-8});
+$sn-modal-anatomy-container-safeArea-paddingTop: var(--sn-modal-anatomy-container-safeArea-paddingTop, #{st.$sn-primitive-dimension-24});
 $sn-modal-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-modal-anatomy-container-bodyWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
 $sn-modal-anatomy-container-bodyWrapper-paddingBottom: var(--sn-modal-anatomy-container-bodyWrapper-paddingBottom, #{st.$sn-density-spacing-interval-m});
 

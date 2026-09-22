@@ -1,0 +1,129 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+@forward '../styles/styles.module';
+@use '../styles/styles.module' as st;
+
+$sn-fieldDecorator-size-s-labelWrapper-labelContent-gap: var(--sn-fieldDecorator-size-s-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-s-labelWrapper-gap: var(--sn-fieldDecorator-size-s-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-fieldDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-fieldDecorator-size-s-hintWrapper-gap: var(--sn-fieldDecorator-size-s-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-s-hintWrapper-hintContent-gap: var(--sn-fieldDecorator-size-s-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-height: var(--sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightS});
+$sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-fieldDecorator-size-s-gap: var(--sn-fieldDecorator-size-s-gap, #{st.$sn-primitive-dimension-4});
+$sn-fieldDecorator-size-s-slotDecorator-gap: var(--sn-fieldDecorator-size-s-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+$sn-fieldDecorator-size-l-labelWrapper-labelContent-gap: var(--sn-fieldDecorator-size-l-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-l-labelWrapper-gap: var(--sn-fieldDecorator-size-l-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-fieldDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-fieldDecorator-size-l-hintWrapper-gap: var(--sn-fieldDecorator-size-l-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-l-hintWrapper-hintContent-gap: var(--sn-fieldDecorator-size-l-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-height: var(--sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightL});
+$sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-fieldDecorator-size-l-gap: var(--sn-fieldDecorator-size-l-gap, #{st.$sn-primitive-dimension-4});
+$sn-fieldDecorator-size-l-slotDecorator-gap: var(--sn-fieldDecorator-size-l-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+$sn-fieldDecorator-size-m-labelWrapper-labelContent-gap: var(--sn-fieldDecorator-size-m-labelWrapper-labelContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-m-labelWrapper-gap: var(--sn-fieldDecorator-size-m-labelWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-fieldDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-fieldDecorator-size-m-hintWrapper-gap: var(--sn-fieldDecorator-size-m-hintWrapper-gap, #{st.$sn-primitive-dimension-8});
+$sn-fieldDecorator-size-m-hintWrapper-hintContent-gap: var(--sn-fieldDecorator-size-m-hintWrapper-hintContent-gap, #{st.$sn-primitive-dimension-2});
+$sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-height: var(--sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-height, #{st.$sn-density-typography-roleLabel-lineHeightM});
+$sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-fieldDecorator-size-m-gap: var(--sn-fieldDecorator-size-m-gap, #{st.$sn-primitive-dimension-4});
+$sn-fieldDecorator-size-m-slotDecorator-gap: var(--sn-fieldDecorator-size-m-slotDecorator-gap, #{st.$sn-primitive-dimension-4});
+
+$fieldDecorator: (
+  "size": (
+    "s": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-fieldDecorator-size-s-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-fieldDecorator-size-s-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-fieldDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-fieldDecorator-size-s-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-fieldDecorator-size-s-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-height,
+            "icon": (
+              "width": $sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-square,
+              "height": $sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-square,
+              "border-width": $sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-strokeWeight
+            )
+          )
+        )
+      ),
+      "gap": $sn-fieldDecorator-size-s-gap,
+      "slotDecorator": (
+        "gap": $sn-fieldDecorator-size-s-slotDecorator-gap
+      )
+    ),
+    "l": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-fieldDecorator-size-l-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-fieldDecorator-size-l-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-fieldDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-fieldDecorator-size-l-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-fieldDecorator-size-l-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-height,
+            "icon": (
+              "width": $sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-square,
+              "height": $sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-square,
+              "border-width": $sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-strokeWeight
+            )
+          )
+        )
+      ),
+      "gap": $sn-fieldDecorator-size-l-gap,
+      "slotDecorator": (
+        "gap": $sn-fieldDecorator-size-l-slotDecorator-gap
+      )
+    ),
+    "m": (
+      "labelWrapper": (
+        "labelContent": (
+          "gap": $sn-fieldDecorator-size-m-labelWrapper-labelContent-gap
+        ),
+        "gap": $sn-fieldDecorator-size-m-labelWrapper-gap,
+        "questionTooltipWrapper": (
+          "max-height": $sn-fieldDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight
+        )
+      ),
+      "hintWrapper": (
+        "gap": $sn-fieldDecorator-size-m-hintWrapper-gap,
+        "hintContent": (
+          "gap": $sn-fieldDecorator-size-m-hintWrapper-hintContent-gap,
+          "iconWrapper": (
+            "height": $sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-height,
+            "icon": (
+              "width": $sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-square,
+              "height": $sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-square,
+              "border-width": $sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-strokeWeight
+            )
+          )
+        )
+      ),
+      "gap": $sn-fieldDecorator-size-m-gap,
+      "slotDecorator": (
+        "gap": $sn-fieldDecorator-size-m-slotDecorator-gap
+      )
+    )
+  )
+);

@@ -8,10 +8,10 @@
   --sn-toaster-anatomy-toast-systemEvent-container-gap: var(--sn-primitive-dimension-16, 16px);
   --sn-toaster-anatomy-toast-systemEvent-container-borderRadius: var(--sn-brand-anatomy-radius-toaster-m, 4px);
   --sn-toaster-anatomy-toast-systemEvent-container-content-gap: var(--sn-primitive-dimension-8, 8px);
-  --sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size: var(--sn-density-size-icon-s, 24px);
+  --sn-toaster-anatomy-toast-systemEvent-container-content-buttonClose-size: var(--sn-density-icon-s, 24px);
   --sn-toaster-anatomy-toast-systemEvent-container-actions-gap: var(--sn-primitive-dimension-4, 4px);
   --sn-toaster-anatomy-toast-systemEvent-container-progress-height: var(--sn-primitive-dimension-4, 4px);
-  --sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight: var(--sn-density-size-m, 56px);
+  --sn-toaster-anatomy-toast-systemEvent-container-closeAll-minHeight: var(--sn-density-size-m, 40px);
   --sn-toaster-anatomy-toast-systemEvent-container-closeAll-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
   --sn-toaster-anatomy-toast-systemEvent-container-maxWidth: 304px;
   --sn-toaster-anatomy-toast-systemEvent-gap: var(--sn-primitive-dimension-8, 8px);

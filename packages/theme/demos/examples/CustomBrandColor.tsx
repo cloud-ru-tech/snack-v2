@@ -23,7 +23,7 @@ export function CustomBrandColor() {
 
       {/* brandColor генерирует палитру `--sn-brand-color-primary-*` из одного seed-цвета — акцент
           компонентов ниже перекрашивается вслед за выбором. */}
-      <RootThemeProvider value={{ colorScheme: 'light', brand: 'brandA', brandRole: 'main' }} brandColor={color}>
+      <RootThemeProvider value={{ colorScheme: 'light', brand: 'cloudConsole' }} brandColor={color}>
         <Block>
           <Flex gap='2m' align='center' wrap>
             <Button appearance='primary' label='Действие' />

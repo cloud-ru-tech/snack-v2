@@ -16,6 +16,7 @@
   - поддерево: `<AdaptiveProvider layoutType='desktop'>…</AdaptiveProvider>`;
   - компонент/секция/generic: `withLayoutType(X, 'desktop')` (сахар над провайдером; module-scope, не в рендере; для дженериков — инлайновый `AdaptiveProvider`).
 - В приложении/демо — один `AdaptiveProvider` в корне (статичный `layoutType` или реактивный `store`). `useAdaptiveBootstrap()` (UA + matchMedia) зовётся в корне приложения, не внутри компонентов.
+- **Платформа темы — отдельная ось `@ds/theme`, раскладку она не читает.** Потребитель передаёт согласованные значения в оба провайдера: `platform: isMobileLayout(layoutType) ? PLATFORM.WebMobile : PLATFORM.WebDesktop`. Форс раскладки в поддереве без смены платформы оставляет desktop-размеры токенов.
 
 ## Принцип desktop-first
 
@@ -116,9 +117,9 @@ export function X({ collapsible, layoutPresets, ...props }: XProps) {
 
 ## Стори / e2e / доки
 
-- **`layoutType` — Storybook toolbar-global, не story-prop и не проп компонента:** один глобальный `<AdaptiveProvider layoutType={globals.layoutType}>` в `apps/storybook/.storybook/preview.tsx` оборачивает все стори (тулбар-переключатель desktop/mobile). Адаптивные Playground'и **не** заводят ни per-story обёртку, ни arg/контрол `layoutType`. Desktop-only контролы гейтятся `if: { global: 'layoutType', eq: 'desktop' }`. Форс конкретной стори — `withLayoutType(...)`; VisualMatrix, рендерящие обе раскладки осью, ставят свои внутренние `<AdaptiveProvider>` (переопределяют глобальный для своего поддерева).
+- **`layoutType` — Storybook toolbar-global, не story-prop и не проп компонента:** один глобальный `<AdaptiveProvider layoutType={globals.layoutType}>` в `apps/storybook/.storybook/preview.tsx` оборачивает все стори (тулбар-переключатель desktop/mobile). Адаптивные Playground'и **не** заводят ни per-story обёртку, ни arg/контрол `layoutType`. Desktop-only контролы гейтятся `if: { global: 'layoutType', eq: 'desktop' }`. Декоратор передаёт в `RootThemeProvider` платформу, согласованную с `layoutType`. Форс конкретной стори и VisualMatrix, рендерящие обе раскладки осью, — `<LayoutScope layoutType={…}>` из `#storybook/components` (`AdaptiveProvider` + платформа темы для поддерева); голый `AdaptiveProvider` / `withLayoutType` в stories не меняет платформу.
 - **VisualMatrix:**
-  - inline-renderable компонент (preset-класс): `layoutType` — **ось `StoryTable`** (desktop+mobile секции рядом, каждая в своём `AdaptiveProvider`) → один `visual-matrix.png` показывает разницу.
+  - inline-renderable компонент (preset-класс): `layoutType` — **ось `StoryTable`** (desktop+mobile секции рядом, каждая в своём `LayoutScope`) → один `visual-matrix.png` показывает разницу.
   - portal/overlay компонент (surface-swap): VM — desktop-ось; mobile-поверхность снимается отдельно в `visual.spec`.
 - **Visual baselines:** mobile-снимок требует (1) переключить toolbar-global `layoutType='mobile'` (в e2e — через URL-globals) + (2) `page.setViewportSize(MOBILE_VIEWPORT)` (`#playwright-tooling/constants/common`). Имена: portal → `open-desktop.png` + `open-mobile.png`; inline → общий `visual-matrix.png` с осью `layoutType`. Mobile-baseline = ground truth DS (Figma-parity тут не применим).
 - **Доки — секция `## Адаптивность`** (id `adaptive`): сообщение (desktop-first), как форсить, таблица пресетов (preset-класс) либо таблица «проп → игнорируется на mobile/desktop» (surface-swap, синхронно с JSDoc-тегами), линк на центральную модель, `<StorybookEmbed>` адаптивной стори.
@@ -131,7 +132,7 @@ export function X({ collapsible, layoutPresets, ...props }: XProps) {
 - Платформенный проп без JSDoc-пометки `Только mobile:`/`Только desktop:`.
 - destructure-дефолт у preset-участвующего пропа — дефолт держи в `base`-аргументе `useLayoutDefaults` (single source), не в деструктуризации.
 - `X_LAYOUT_PRESETS`, типизированный всем `XProps` (silent no-op на непартисипирующих ключах) — типизируй участвующими (`Pick`).
-- `layoutType` как проп компонента или story-arg в stories (раскладка — через toolbar-global `AdaptiveProvider` в `preview.tsx`; форс — `withLayoutType`).
+- `layoutType` как проп компонента или story-arg в stories (раскладка — через toolbar-global `AdaptiveProvider` в `preview.tsx`; форс — `LayoutScope`).
 
 ## Связанные правила
 

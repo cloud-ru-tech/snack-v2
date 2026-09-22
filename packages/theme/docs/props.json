@@ -31,23 +31,20 @@
       "Brand": {
         "kind": "union",
         "values": [
-          "brandA",
-          "brandB",
-          "brandC",
-          "brandD",
-          "brandE",
-          "brandF"
-        ],
-        "own": true
-      },
-      "BrandRole": {
-        "kind": "union",
-        "values": [
-          "alter",
-          "alter2",
-          "alter3",
-          "alter4",
-          "main"
+          "cloudConsole",
+          "giga-id",
+          "gitverse",
+          "hrBlue",
+          "hrGraphite",
+          "hrGreen",
+          "hrPurple",
+          "hrYellow",
+          "siteBlue",
+          "siteGraphite",
+          "siteGreen",
+          "sitePurple",
+          "siteYellow",
+          "snackUI"
         ],
         "own": true
       },
@@ -68,6 +65,14 @@
         ],
         "own": true
       },
+      "Platform": {
+        "kind": "union",
+        "values": [
+          "webDesktop",
+          "webMobile"
+        ],
+        "own": true
+      },
       "ThemeAppearance": {
         "kind": "interface",
         "props": {
@@ -80,31 +85,24 @@
             "type": "Brand | undefined",
             "required": false,
             "values": [
-              "brandA",
-              "brandB",
-              "brandC",
-              "brandD",
-              "brandE",
-              "brandF"
+              "cloudConsole",
+              "giga-id",
+              "gitverse",
+              "hrBlue",
+              "hrGraphite",
+              "hrGreen",
+              "hrPurple",
+              "hrYellow",
+              "siteBlue",
+              "siteGraphite",
+              "siteGreen",
+              "sitePurple",
+              "siteYellow",
+              "snackUI"
             ],
-            "description": "Бренд — `sn-brandA` …",
+            "description": "Бренд — `sn-cloudConsole` / `sn-hrBlue` …",
             "typeRefs": [
               "Brand"
-            ]
-          },
-          "brandRole": {
-            "type": "BrandRole | undefined",
-            "required": false,
-            "values": [
-              "alter",
-              "alter2",
-              "alter3",
-              "alter4",
-              "main"
-            ],
-            "description": "Роль бренда (палитра) — `sn-main` …",
-            "typeRefs": [
-              "BrandRole"
             ]
           },
           "colorScheme": {
@@ -131,6 +129,18 @@
             "typeRefs": [
               "Density"
             ]
+          },
+          "platform": {
+            "type": "Platform | undefined",
+            "required": false,
+            "values": [
+              "webDesktop",
+              "webMobile"
+            ],
+            "description": "Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive`\nтема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда.",
+            "typeRefs": [
+              "Platform"
+            ]
           }
         },
         "own": true
@@ -140,7 +150,7 @@
   "RootThemeProvider": {
     "displayName": "RootThemeProvider",
     "propsTypeName": "RootThemeProviderProps",
-    "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
+    "description": "Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей\n(`colorScheme`/`brand`/`platform`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень\n(`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),\nпоэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель\nчитает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.\n\nЭтот провайдер НЕ управляет состоянием цветовой схемы (override/system/cross-tab) — это `useColorScheme`;\nрезультат передаётся в `value.colorScheme`. Не путать со старым `ThemeProvider` (themeMap/changeTheme).",
     "props": {
       "brandColor": {
         "type": "string",
@@ -187,23 +197,20 @@
       "Brand": {
         "kind": "union",
         "values": [
-          "brandA",
-          "brandB",
-          "brandC",
-          "brandD",
-          "brandE",
-          "brandF"
-        ],
-        "own": true
-      },
-      "BrandRole": {
-        "kind": "union",
-        "values": [
-          "alter",
-          "alter2",
-          "alter3",
-          "alter4",
-          "main"
+          "cloudConsole",
+          "giga-id",
+          "gitverse",
+          "hrBlue",
+          "hrGraphite",
+          "hrGreen",
+          "hrPurple",
+          "hrYellow",
+          "siteBlue",
+          "siteGraphite",
+          "siteGreen",
+          "sitePurple",
+          "siteYellow",
+          "snackUI"
         ],
         "own": true
       },
@@ -224,6 +231,14 @@
         ],
         "own": true
       },
+      "Platform": {
+        "kind": "union",
+        "values": [
+          "webDesktop",
+          "webMobile"
+        ],
+        "own": true
+      },
       "ThemeAppearance": {
         "kind": "interface",
         "props": {
@@ -236,31 +251,24 @@
             "type": "Brand | undefined",
             "required": false,
             "values": [
-              "brandA",
-              "brandB",
-              "brandC",
-              "brandD",
-              "brandE",
-              "brandF"
+              "cloudConsole",
+              "giga-id",
+              "gitverse",
+              "hrBlue",
+              "hrGraphite",
+              "hrGreen",
+              "hrPurple",
+              "hrYellow",
+              "siteBlue",
+              "siteGraphite",
+              "siteGreen",
+              "sitePurple",
+              "siteYellow",
+              "snackUI"
             ],
-            "description": "Бренд — `sn-brandA` …",
+            "description": "Бренд — `sn-cloudConsole` / `sn-hrBlue` …",
             "typeRefs": [
               "Brand"
-            ]
-          },
-          "brandRole": {
-            "type": "BrandRole | undefined",
-            "required": false,
-            "values": [
-              "alter",
-              "alter2",
-              "alter3",
-              "alter4",
-              "main"
-            ],
-            "description": "Роль бренда (палитра) — `sn-main` …",
-            "typeRefs": [
-              "BrandRole"
             ]
           },
           "colorScheme": {
@@ -286,6 +294,18 @@
             "description": "Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`.",
             "typeRefs": [
               "Density"
+            ]
+          },
+          "platform": {
+            "type": "Platform | undefined",
+            "required": false,
+            "values": [
+              "webDesktop",
+              "webMobile"
+            ],
+            "description": "Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive`\nтема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда.",
+            "typeRefs": [
+              "Platform"
             ]
           }
         },

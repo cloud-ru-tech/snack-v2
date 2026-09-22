@@ -4,12 +4,12 @@ import { mergeAppearance } from '../src/utils/mergeAppearance';
 
 describe('mergeAppearance', () => {
   it('переопределяет заданные оси, наследует остальные', () => {
-    const parent = { colorScheme: 'dark', brand: 'brandA', density: 'compact' } as const;
+    const parent = { colorScheme: 'dark', brand: 'cloudConsole', density: 'compact' } as const;
 
     expect(mergeAppearance(parent, { density: 'comfort' })).toEqual({
       colorScheme: 'dark',
-      brand: 'brandA',
-      brandRole: undefined,
+      brand: 'cloudConsole',
+      platform: undefined,
       density: 'comfort',
       acrylic: undefined,
     });
@@ -18,10 +18,10 @@ describe('mergeAppearance', () => {
   it('не затирает унаследованную ось значением undefined', () => {
     const parent = { colorScheme: 'dark', density: 'compact' } as const;
 
-    const merged = mergeAppearance(parent, { colorScheme: undefined, brand: 'brandC' });
+    const merged = mergeAppearance(parent, { colorScheme: undefined, brand: 'hrBlue' });
 
     expect(merged.colorScheme).toBe('dark');
-    expect(merged.brand).toBe('brandC');
+    expect(merged.brand).toBe('hrBlue');
   });
 
   it('acrylic:false как override применяется (не падает в parent)', () => {

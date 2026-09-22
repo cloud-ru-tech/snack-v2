@@ -10,10 +10,10 @@ describe('getGlobalThemeStore', () => {
   it('setAppearance мёржит патч, getAppearance отражает', () => {
     const store = getGlobalThemeStore();
 
-    store.setAppearance({ colorScheme: 'light', brand: 'brandA', density: 'compact' });
+    store.setAppearance({ colorScheme: 'light', brand: 'cloudConsole', density: 'compact' });
     store.setAppearance({ density: 'comfort' });
 
-    expect(store.getAppearance()).toMatchObject({ colorScheme: 'light', brand: 'brandA', density: 'comfort' });
+    expect(store.getAppearance()).toMatchObject({ colorScheme: 'light', brand: 'cloudConsole', density: 'comfort' });
   });
 
   it('снапшот стабилен по ссылке без изменений и меняется при смене оси', () => {

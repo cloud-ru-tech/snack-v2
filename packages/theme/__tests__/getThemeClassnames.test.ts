@@ -3,10 +3,12 @@ import { describe, expect, it } from 'vitest';
 import { getThemeClassnames } from '../src/utils/getThemeClassnames';
 
 describe('getThemeClassnames', () => {
-  it('всегда эмитит базовые слои + sn-no по умолчанию', () => {
+  it('всегда эмитит базовые слои + sn-no и sn-webDesktop по умолчанию', () => {
     const classes = getThemeClassnames().split(' ');
 
-    expect(classes).toEqual(expect.arrayContaining(['sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no']));
+    expect(classes).toEqual(
+      expect.arrayContaining(['sn-base-styles', 'sn-figmaStyles', 'sn-components', 'sn-no', 'sn-webDesktop']),
+    );
     expect(classes).not.toContain('sn-yes');
     expect(classes.some(c => c === 'sn-light' || c === 'sn-dark')).toBe(false);
   });
@@ -14,12 +16,13 @@ describe('getThemeClassnames', () => {
   it('добавляет классы только для заданных осей', () => {
     const classes = getThemeClassnames({
       colorScheme: 'dark',
-      brand: 'brandC',
-      brandRole: 'alter2',
+      brand: 'hrGreen',
+      platform: 'webMobile',
       density: 'comfort',
     }).split(' ');
 
-    expect(classes).toEqual(expect.arrayContaining(['sn-dark', 'sn-brandC', 'sn-alter2', 'sn-comfort']));
+    expect(classes).toEqual(expect.arrayContaining(['sn-dark', 'sn-hrGreen', 'sn-webMobile', 'sn-comfort']));
+    expect(classes).not.toContain('sn-webDesktop');
   });
 
   it('acrylic=true → sn-yes, иначе sn-no', () => {

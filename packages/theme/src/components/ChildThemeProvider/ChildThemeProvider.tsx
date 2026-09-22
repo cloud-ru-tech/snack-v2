@@ -31,15 +31,15 @@ export type ChildThemeProviderProps = {
  */
 export function ChildThemeProvider({ value, rootRef, className, children }: ChildThemeProviderProps) {
   const { appearance: parent } = useThemeAppearance();
-  const { colorScheme, brand, brandRole, density, acrylic } = value;
+  const { colorScheme, brand, platform, density, acrylic } = value;
 
   const childStore = useMemo(
     () =>
       staticStore<ThemeAppearanceContextValue>({
-        appearance: mergeAppearance(parent, { colorScheme, brand, brandRole, density, acrylic }),
+        appearance: mergeAppearance(parent, { colorScheme, brand, platform, density, acrylic }),
         setAppearance: undefined,
       }),
-    [parent, colorScheme, brand, brandRole, density, acrylic],
+    [parent, colorScheme, brand, platform, density, acrylic],
   );
 
   return (

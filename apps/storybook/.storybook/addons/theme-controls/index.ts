@@ -1,7 +1,6 @@
 export {
   ADDON_ID,
   BRAND_OPTIONS,
-  BRAND_ROLE_OPTIONS,
   CHANNEL_SYNC_EVENT,
   GLOBAL_KEYS,
   INITIAL_GLOBALS,
@@ -10,4 +9,4 @@ export {
   THEME_OPTIONS,
   TOOL_ID,
 } from './src/constants';
-export type { Brand, BrandRole, Density, Theme } from './src/constants';
+export type { Brand, Density, Theme } from './src/constants';

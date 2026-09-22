@@ -4,10 +4,11 @@ import { LaptopSVG, MobilePhoneSVG } from '@ds/icons/interface/product';
 import { DaySVG, NightSVG, SettingsSVG } from '@ds/icons/interface/system';
 import { PortalContextProvider } from '@ds/portal-context';
 import { type Segment, SegmentControl } from '@ds/segment-control';
-import { BRAND, BRAND_ROLE, COLOR_SCHEME, DENSITY, getGlobalThemeStore, useThemeAppearance } from '@ds/theme';
+import { BRAND, COLOR_SCHEME, DENSITY, getGlobalThemeStore, PLATFORM, useThemeAppearance } from '@ds/theme';
 import { useEffect, useRef, useState } from 'react';
 
 import { ensureThemeStore, setThemeAppearance } from '../../lib/themeStore';
+import { DocsChromeScope } from './DocsChromeScope';
 import styles from './SettingsMenu.module.scss';
 
 // Стор оформления инициализируется из localStorage до первого рендера компонента.
@@ -17,8 +18,8 @@ ensureThemeStore();
 // в отличие от type-импорта (см. docs-dev-type-import-gotcha).
 type Theme = (typeof COLOR_SCHEME)[keyof typeof COLOR_SCHEME];
 type Brand = (typeof BRAND)[keyof typeof BRAND];
-type BrandRole = (typeof BRAND_ROLE)[keyof typeof BRAND_ROLE];
 type Density = (typeof DENSITY)[keyof typeof DENSITY];
+type Platform = (typeof PLATFORM)[keyof typeof PLATFORM];
 
 type AppearancePatch = Parameters<ReturnType<typeof getGlobalThemeStore>['setAppearance']>[0];
 
@@ -27,43 +28,59 @@ const THEME_ITEMS: Segment<Theme>[] = [
   { value: 'dark', label: 'Dark', icon: <NightSVG />, iconPosition: 'before' },
 ];
 
-const BRAND_ITEMS: Segment<Brand>[] = [
-  { value: 'brandA', label: 'A' },
-  { value: 'brandB', label: 'B' },
-  { value: 'brandC', label: 'C' },
-  { value: 'brandD', label: 'D' },
-  { value: 'brandE', label: 'E' },
-  { value: 'brandF', label: 'F' },
+// Бренд в @ds/theme — плоский список; в меню он разложен на семейство и цвет: у HR-портала и сайта
+// по пять цветовых вариантов, остальные бренды самостоятельные.
+type BrandFamily = 'cloudConsole' | 'giga-id' | 'gitverse' | 'snackUI' | 'hr' | 'site';
+
+const BRAND_COLORS = ['Blue', 'Graphite', 'Green', 'Purple', 'Yellow'] as const;
+type BrandColor = (typeof BRAND_COLORS)[number];
+
+const DEFAULT_BRAND: Brand = BRAND.CloudConsole;
+
+const BRAND_FAMILY_ITEMS: Segment<BrandFamily>[] = [
+  { value: 'cloudConsole', label: 'Console' },
+  { value: 'giga-id', label: 'Giga ID' },
+  { value: 'gitverse', label: 'GitVerse' },
+  { value: 'snackUI', label: 'Snack' },
+  { value: 'hr', label: 'HR' },
+  { value: 'site', label: 'Site' },
 ];
 
-function BrandRoleRing({ strokeWidth }: { strokeWidth: number }) {
-  return (
-    <svg width={14} height={14} viewBox='0 0 14 14' fill='none' aria-hidden>
-      <circle cx='7' cy='7' r='5' fill='none' stroke='currentColor' strokeWidth={strokeWidth} />
-    </svg>
-  );
+const BRAND_COLOR_ITEMS: Segment<BrandColor>[] = BRAND_COLORS.map(color => ({ value: color, label: color }));
+
+function isColoredFamily(family: BrandFamily): family is 'hr' | 'site' {
+  return family === 'hr' || family === 'site';
 }
 
-const BRAND_ROLE_ITEMS: Segment<BrandRole>[] = [
-  { value: 'main', label: 'Main', icon: <BrandRoleRing strokeWidth={2.5} />, iconPosition: 'before' },
-  { value: 'alter', label: 'Alter', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
-  { value: 'alter2', label: 'Alter 2', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
-  { value: 'alter3', label: 'Alter 3', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
-  { value: 'alter4', label: 'Alter 4', icon: <BrandRoleRing strokeWidth={1} />, iconPosition: 'before' },
+function parseBrand(brand: Brand): { family: BrandFamily; color: BrandColor } {
+  const colored = BRAND_COLORS.find(color => brand.endsWith(color));
+  if (colored) {
+    return { family: brand.startsWith('hr') ? 'hr' : 'site', color: colored };
+  }
+  return { family: brand as BrandFamily, color: BRAND_COLORS[0] };
+}
+
+function composeBrand(family: BrandFamily, color: BrandColor): Brand {
+  return (isColoredFamily(family) ? `${family}${color}` : family) as Brand;
+}
+
+const PLATFORM_ITEMS: Segment<Platform>[] = [
+  { value: 'webDesktop', label: 'Desktop', icon: <LaptopSVG />, iconPosition: 'before' },
+  { value: 'webMobile', label: 'Mobile', icon: <MobilePhoneSVG />, iconPosition: 'before' },
 ];
 
 const DENSITY_ITEMS: Segment<Density>[] = [
-  { value: 'compact', label: 'Compact', icon: <LaptopSVG />, iconPosition: 'before' },
-  { value: 'comfort', label: 'Comfort', icon: <MobilePhoneSVG />, iconPosition: 'before' },
-  { value: 'spacious', label: 'Spacious', icon: <LaptopSVG />, iconPosition: 'before' },
+  { value: 'compact', label: 'Compact' },
+  { value: 'comfort', label: 'Comfort' },
+  { value: 'spacious', label: 'Spacious' },
 ];
 
 type SyncPayload = {
   type: 'theme-sync';
   theme: Theme;
   brand: Brand;
-  brandRole: BrandRole;
   density: Density;
+  layoutType: 'desktop' | 'mobile';
 };
 
 function isStorybookFrame(frame: HTMLIFrameElement): boolean {
@@ -78,9 +95,10 @@ function buildSyncPayload(): SyncPayload {
   return {
     type: 'theme-sync',
     theme: (appearance.colorScheme as Theme | undefined) ?? 'light',
-    brand: (appearance.brand as Brand | undefined) ?? 'brandA',
-    brandRole: (appearance.brandRole as BrandRole | undefined) ?? 'main',
+    brand: (appearance.brand as Brand | undefined) ?? DEFAULT_BRAND,
     density: (appearance.density as Density | undefined) ?? 'compact',
+    // В Storybook платформа следует за глобалом layoutType (переключатель Layout).
+    layoutType: appearance.platform === 'webMobile' ? 'mobile' : 'desktop',
   };
 }
 
@@ -95,11 +113,13 @@ function broadcastToStorybookFrames() {
 type SettingsView = {
   theme: Theme;
   brand: Brand;
-  brandRole: BrandRole;
+  platform: Platform;
   density: Density;
 };
 
 function SettingsContent({ view, onChange }: { view: SettingsView; onChange(patch: AppearancePatch): void }) {
+  const brand = parseBrand(view.brand);
+
   return (
     <div className={styles.panel}>
       <div className={styles.row}>
@@ -117,23 +137,35 @@ function SettingsContent({ view, onChange }: { view: SettingsView; onChange(patc
         <SegmentControl
           size='s'
           width='full'
-          items={BRAND_ITEMS}
-          value={view.brand}
-          onChange={value => onChange({ brand: value })}
+          items={BRAND_FAMILY_ITEMS}
+          value={brand.family}
+          onChange={family => onChange({ brand: composeBrand(family, brand.color) })}
         />
       </div>
+      {isColoredFamily(brand.family) ? (
+        <div className={styles.row}>
+          <span className={styles.label}>Цвет</span>
+          <SegmentControl
+            size='s'
+            width='full'
+            items={BRAND_COLOR_ITEMS}
+            value={brand.color}
+            onChange={color => onChange({ brand: composeBrand(brand.family, color) })}
+          />
+        </div>
+      ) : null}
       <div className={styles.row}>
-        <span className={styles.label}>Brand role</span>
+        <span className={styles.label}>Платформа</span>
         <SegmentControl
           size='s'
           width='full'
-          items={BRAND_ROLE_ITEMS}
-          value={view.brandRole}
-          onChange={value => onChange({ brandRole: value })}
+          items={PLATFORM_ITEMS}
+          value={view.platform}
+          onChange={value => onChange({ platform: value })}
         />
       </div>
       <div className={styles.row}>
-        <span className={styles.label}>Платформа</span>
+        <span className={styles.label}>Плотность</span>
         <SegmentControl
           size='s'
           width='full'
@@ -152,8 +184,8 @@ export function SettingsMenu() {
   const { appearance } = useThemeAppearance();
   const view: SettingsView = {
     theme: (appearance.colorScheme as Theme | undefined) ?? 'light',
-    brand: (appearance.brand as Brand | undefined) ?? 'brandA',
-    brandRole: (appearance.brandRole as BrandRole | undefined) ?? 'main',
+    brand: (appearance.brand as Brand | undefined) ?? DEFAULT_BRAND,
+    platform: (appearance.platform as Platform | undefined) ?? 'webDesktop',
     density: (appearance.density as Density | undefined) ?? 'compact',
   };
 
@@ -180,27 +212,29 @@ export function SettingsMenu() {
   const portalRootRef = useRef<HTMLDivElement>(null);
 
   return (
-    <PortalContextProvider root={portalRootRef}>
-      <div ref={portalRootRef} className={styles.anchor}>
-        <Dropdown
-          open={open}
-          onOpenChange={setOpen}
-          trigger='click'
-          placement='bottom-end'
-          widthStrategy='auto'
-          triggerClassName={styles.trigger}
-          content={<SettingsContent view={view} onChange={update} />}
-        >
-          <Button
-            size='m'
-            view='outline'
-            appearance='neutral'
-            icon={<SettingsSVG />}
-            aria-label='Настройки темы и бренда'
-            title='Настройки темы и бренда'
-          />
-        </Dropdown>
-      </div>
-    </PortalContextProvider>
+    <DocsChromeScope>
+      <PortalContextProvider root={portalRootRef}>
+        <div ref={portalRootRef} className={styles.anchor}>
+          <Dropdown
+            open={open}
+            onOpenChange={setOpen}
+            trigger='click'
+            placement='bottom-end'
+            widthStrategy='auto'
+            triggerClassName={styles.trigger}
+            content={<SettingsContent view={view} onChange={update} />}
+          >
+            <Button
+              size='m'
+              view='outline'
+              appearance='neutral'
+              icon={<SettingsSVG />}
+              aria-label='Настройки темы и бренда'
+              title='Настройки темы и бренда'
+            />
+          </Dropdown>
+        </div>
+      </PortalContextProvider>
+    </DocsChromeScope>
   );
 }

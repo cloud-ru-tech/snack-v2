@@ -7,7 +7,7 @@ addons.register(ADDON_ID, () => {
   addons.add(TOOL_ID, {
     // В SB 10 `TOOL` — левая группа (меню + remount); `TOOLEXTRA` — правая, рядом с viewport / a11y.
     type: types.TOOL,
-    title: 'Тема / Бренд / Платформа',
+    title: 'Тема / Бренд / Плотность',
     match: ({ viewMode, tabId }: { tabId?: string; viewMode?: string }) =>
       Boolean(viewMode && /^(story|docs)$/.test(viewMode)) && (tabId == null || tabId === 'canvas'),
     render: () => <ThemeControlsToolbar />,

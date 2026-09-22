@@ -1,6 +1,7 @@
 import { Tree } from '@ds/tree';
 import { useEffect, useMemo, useState } from 'react';
 
+import { withDocsChrome } from './DocsChromeScope';
 import styles from './TocTree.module.scss';
 
 // Тип выводим из значения `Tree` (см. NavTree).
@@ -39,7 +40,7 @@ function collectSlugs(nodes: TocNode[], acc: string[] = []): string[] {
   return acc;
 }
 
-export function TocTree({ nodes }: { nodes: TocNode[] }) {
+function TocTreeContent({ nodes }: { nodes: TocNode[] }) {
   const data = useMemo(() => toTreeData(nodes), [nodes]);
   const slugs = useMemo(() => collectSlugs(nodes), [nodes]);
   // Секции раскрыты по умолчанию; шеврон позволяет свернуть.
@@ -79,3 +80,5 @@ export function TocTree({ nodes }: { nodes: TocNode[] }) {
     />
   );
 }
+
+export const TocTree = withDocsChrome(TocTreeContent);

@@ -32,7 +32,9 @@ export function Example({ title, description, code = '', codeHtml, language = 't
           {description && <span className={styles.desc}>{description}</span>}
         </figcaption>
       )}
-      <div className={styles.preview}>{children}</div>
+      <div className={styles.preview} data-docs-preview=''>
+        {children}
+      </div>
       <div className={styles.codeWrap}>
         <div className={styles.codeHeader}>
           <span className={styles.codeLang}>{language}</span>

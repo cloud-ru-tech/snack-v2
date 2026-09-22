@@ -28,7 +28,7 @@ export function CustomBrandColorHook() {
       <SegmentControl items={COLOR_ITEMS} value={color} onChange={value => setColor(String(value))} />
 
       <div id={SCOPE_ID}>
-        <RootThemeProvider value={{ colorScheme: 'light', brand: 'brandA', brandRole: 'main' }}>
+        <RootThemeProvider value={{ colorScheme: 'light', brand: 'cloudConsole' }}>
           <Block>
             <Flex gap='2m' align='center' wrap>
               <Button appearance='primary' label='Внутри scope' />

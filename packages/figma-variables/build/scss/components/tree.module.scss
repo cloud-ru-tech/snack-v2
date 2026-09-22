@@ -7,11 +7,11 @@
 
 $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-2});
 $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
-$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by16});
+$sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-24});
 $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-l});
 $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-l});
-$sn-tree-anatomy-size-l-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-s});
-$sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-l-treeItem-toggleButton-maxWidth: var(--sn-tree-anatomy-size-l-treeItem-toggleButton-maxWidth, #{st.$sn-density-icon-s});
+$sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-icon-s});
 $sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
 $sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-l-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-12});
 $sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-tree-anatomy-size-l-treeItem-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-nestingLevel-l-level-paddingRight});
@@ -21,29 +21,31 @@ $sn-tree-anatomy-size-l-treeItem-gap: var(--sn-tree-anatomy-size-l-treeItem-gap,
 $sn-tree-anatomy-size-l-treeItem-borderRadius: var(--sn-tree-anatomy-size-l-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-l});
 $sn-tree-anatomy-size-l-treeItem-paddingHorizontal: var(--sn-tree-anatomy-size-l-treeItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-l});
 $sn-tree-anatomy-size-l-treeItem-paddingVertical: var(--sn-tree-anatomy-size-l-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-l});
+$sn-tree-anatomy-size-l-treeItem-folderIcon-maxWidth: var(--sn-tree-anatomy-size-l-treeItem-folderIcon-maxWidth, #{st.$sn-density-icon-s});
 $sn-tree-anatomy-size-s-treeItem-borderRadius: var(--sn-tree-anatomy-size-s-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
 $sn-tree-anatomy-size-s-treeItem-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
 $sn-tree-anatomy-size-s-treeItem-gap: var(--sn-tree-anatomy-size-s-treeItem-gap, #{st.$sn-density-spacing-control-container-horizontal-s});
 $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
 $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
 $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
-$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by12});
+$sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-16});
 $sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-s});
 $sn-tree-anatomy-size-s-treeItem-paddingHorizontal: var(--sn-tree-anatomy-size-s-treeItem-paddingHorizontal, #{st.$sn-density-spacing-control-container-horizontal-s});
 $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingRight, #{st.$sn-density-nestingLevel-s-level-paddingRight});
 $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-s-level-paddingTop});
 $sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-tree-anatomy-size-s-treeItem-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-nestingLevel-s-paddingLeft});
 $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-s});
-$sn-tree-anatomy-size-s-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-xs});
-$sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-xs});
-$sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-8});
-$sn-tree-anatomy-size-m-treeItem-centeredWrapper-width: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-width, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-icon-xs});
+$sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight, #{st.$sn-density-nestingLevel-s-paddingLeft});
+$sn-tree-anatomy-size-s-treeItem-toggleButton-maxWidth: var(--sn-tree-anatomy-size-s-treeItem-toggleButton-maxWidth, #{st.$sn-density-icon-xs});
+$sn-tree-anatomy-size-s-treeItem-folderIcon-maxWidth: var(--sn-tree-anatomy-size-s-treeItem-folderIcon-maxWidth, #{st.$sn-density-icon-xs});
+$sn-tree-anatomy-size-m-treeItem-toggleButton-maxWidth: var(--sn-tree-anatomy-size-m-treeItem-toggleButton-maxWidth, #{st.$sn-density-icon-s});
 $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
-$sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-size-icon-s});
+$sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-toggleWrapper-minHeight, #{st.$sn-density-icon-s});
 $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight: var(--sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingRight, #{st.$sn-primitive-dimension-12});
 $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-paddingVertical, #{st.$sn-density-spacing-control-wrapper-vertical-m});
 $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
-$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-by14});
+$sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-minHeight, #{st.$sn-primitive-font-lineHeight-20});
 $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-headline-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
 $sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap: var(--sn-tree-anatomy-size-m-treeItem-contentWrapper-textWrapper-textContent-gap, #{st.$sn-primitive-dimension-0});
 $sn-tree-anatomy-size-m-treeItem-paddingVertical: var(--sn-tree-anatomy-size-m-treeItem-paddingVertical, #{st.$sn-density-spacing-control-container-vertical-m});
@@ -53,6 +55,7 @@ $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingRight:
 $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop: var(--sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-level-paddingTop, #{st.$sn-density-nestingLevel-m-level-paddingTop});
 $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft: var(--sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft, #{st.$sn-density-nestingLevel-m-paddingLeft});
 $sn-tree-anatomy-size-m-treeItem-borderRadius: var(--sn-tree-anatomy-size-m-treeItem-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
+$sn-tree-anatomy-size-m-treeItem-folderIcon-maxWidth: var(--sn-tree-anatomy-size-m-treeItem-folderIcon-maxWidth, #{st.$sn-density-icon-s});
 
 $tree: (
   "anatomy": (
@@ -74,8 +77,10 @@ $tree: (
               "padding-bottom": $sn-tree-anatomy-size-l-treeItem-contentWrapper-textWrapper-paddingVertical
             )
           ),
+          "toggleButton": (
+            "max-width": $sn-tree-anatomy-size-l-treeItem-toggleButton-maxWidth
+          ),
           "centeredWrapper": (
-            "width": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-width,
             "toggleWrapper": (
               "min-height": $sn-tree-anatomy-size-l-treeItem-centeredWrapper-toggleWrapper-minHeight
             ),
@@ -97,7 +102,10 @@ $tree: (
           "padding-left": $sn-tree-anatomy-size-l-treeItem-paddingHorizontal,
           "padding-right": $sn-tree-anatomy-size-l-treeItem-paddingHorizontal,
           "padding-top": $sn-tree-anatomy-size-l-treeItem-paddingVertical,
-          "padding-bottom": $sn-tree-anatomy-size-l-treeItem-paddingVertical
+          "padding-bottom": $sn-tree-anatomy-size-l-treeItem-paddingVertical,
+          "folderIcon": (
+            "max-width": $sn-tree-anatomy-size-l-treeItem-folderIcon-maxWidth
+          )
         )
       ),
       "s": (
@@ -135,18 +143,25 @@ $tree: (
           "centeredWrapper": (
             "padding-top": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical,
             "padding-bottom": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingVertical,
-            "width": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-width,
             "toggleWrapper": (
               "min-height": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-toggleWrapper-minHeight
             ),
             "padding-right": $sn-tree-anatomy-size-s-treeItem-centeredWrapper-paddingRight
+          ),
+          "toggleButton": (
+            "max-width": $sn-tree-anatomy-size-s-treeItem-toggleButton-maxWidth
+          ),
+          "folderIcon": (
+            "max-width": $sn-tree-anatomy-size-s-treeItem-folderIcon-maxWidth
           )
         )
       ),
       "m": (
         "treeItem": (
+          "toggleButton": (
+            "max-width": $sn-tree-anatomy-size-m-treeItem-toggleButton-maxWidth
+          ),
           "centeredWrapper": (
-            "width": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-width,
             "padding-top": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical,
             "padding-bottom": $sn-tree-anatomy-size-m-treeItem-centeredWrapper-paddingVertical,
             "toggleWrapper": (
@@ -183,7 +198,10 @@ $tree: (
               "padding-left": $sn-tree-anatomy-size-m-treeItem-nestingLevel-levelIndicator-paddingLeft
             )
           ),
-          "border-radius": $sn-tree-anatomy-size-m-treeItem-borderRadius
+          "border-radius": $sn-tree-anatomy-size-m-treeItem-borderRadius,
+          "folderIcon": (
+            "max-width": $sn-tree-anatomy-size-m-treeItem-folderIcon-maxWidth
+          )
         )
       )
     )

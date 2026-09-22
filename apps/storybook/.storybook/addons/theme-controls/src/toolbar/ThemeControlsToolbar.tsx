@@ -1,14 +1,14 @@
 import { CSSProperties, ReactNode, useCallback, useEffect, useRef } from 'react';
-import { Button, IconButton, Select } from 'storybook/internal/components';
+import { Button, IconButton, PopoverProvider, Select, TooltipLinkList } from 'storybook/internal/components';
 import { addons, useGlobals } from 'storybook/manager-api';
+import { useTheme } from 'storybook/theming';
 
 import { BRAND_COLOR } from '../config/brandColors';
-import { DAY_PATH, LAPTOP_PATH, MOBILE_PHONE_PATH, NIGHT_PATH } from '../config/svgPaths';
+import { DAY_PATH, NIGHT_PATH } from '../config/svgPaths';
 import {
   type Brand,
+  BRAND_GROUPS,
   BRAND_OPTIONS,
-  BRAND_ROLE_OPTIONS,
-  type BrandRole,
   CHANNEL_SYNC_EVENT,
   type Density,
   DENSITY_OPTIONS,
@@ -59,25 +59,26 @@ function BrandIcon({ brand }: { brand: Brand }) {
   return <BrandColorDot color={BRAND_COLOR[brand]} />;
 }
 
-function BrandRoleIcon({ variant }: { variant: BrandRole }) {
+// Три полосы с зазором по плотности: чем плотнее раскладка, тем ближе полосы.
+const DENSITY_GAP: Record<Density, number> = {
+  compact: 2,
+  comfort: 3,
+  spacious: 4,
+};
+
+function DensityIcon({ density }: { density: Density }) {
+  const gap = DENSITY_GAP[density];
+
   return (
     <span style={iconStyle} aria-hidden>
-      <svg width={iconSize} height={iconSize} viewBox='0 0 14 14' fill='none' style={{ display: 'block' }}>
-        <circle cx='7' cy='7' r='5' fill='none' stroke='currentColor' strokeWidth={variant === 'main' ? 2.5 : 1} />
+      <svg width={iconSize} height={iconSize} viewBox='0 0 14 14' fill='currentColor' style={{ display: 'block' }}>
+        {[-1, 0, 1].map(row => (
+          <rect key={row} x='2' y={6 + row * (gap + 2)} width='10' height='2' rx='1' />
+        ))}
       </svg>
     </span>
   );
 }
-
-function PlatformIcon({ density }: { density: Density }) {
-  return <SvgIcon d={density === 'comfort' ? MOBILE_PHONE_PATH : LAPTOP_PATH} />;
-}
-
-const DENSITY_TO_PATH: Record<Density, string> = {
-  compact: LAPTOP_PATH,
-  comfort: MOBILE_PHONE_PATH,
-  spacious: LAPTOP_PATH,
-};
 
 function LanguageIcon({ language }: { language: Language }) {
   return <span aria-hidden>{LANGUAGE_TO_EMOJI_MAP[language]}</span>;
@@ -189,28 +190,71 @@ const themeOptionsWithIcons: SelectOption[] = [
   { value: 'dark', title: THEME_OPTIONS[1].label, icon: <SvgIcon d={NIGHT_PATH} /> },
 ];
 
-const brandOptionsWithIcons: SelectOption[] = [
-  { value: 'brandA', title: BRAND_OPTIONS[0].label, icon: <BrandColorDot color={BRAND_COLOR.brandA} /> },
-  { value: 'brandB', title: BRAND_OPTIONS[1].label, icon: <BrandColorDot color={BRAND_COLOR.brandB} /> },
-  { value: 'brandC', title: BRAND_OPTIONS[2].label, icon: <BrandColorDot color={BRAND_COLOR.brandC} /> },
-  { value: 'brandD', title: BRAND_OPTIONS[3].label, icon: <BrandColorDot color={BRAND_COLOR.brandD} /> },
-  { value: 'brandE', title: BRAND_OPTIONS[4].label, icon: <BrandColorDot color={BRAND_COLOR.brandE} /> },
-  { value: 'brandF', title: BRAND_OPTIONS[5].label, icon: <BrandColorDot color={BRAND_COLOR.brandF} /> },
-];
+function ChevronGlyph() {
+  return (
+    <svg width={8} height={8} viewBox='0 0 8 8' fill='none' stroke='currentColor' aria-hidden style={{ flexShrink: 0 }}>
+      <path d='M1.5 3l2.5 2.5L6.5 3' strokeWidth={1.2} strokeLinecap='round' strokeLinejoin='round' />
+    </svg>
+  );
+}
 
-const brandRoleOptionsWithIcons: SelectOption[] = [
-  { value: 'main', title: BRAND_ROLE_OPTIONS[0].label, icon: <BrandRoleIcon variant='main' /> },
-  { value: 'alter', title: BRAND_ROLE_OPTIONS[1].label, icon: <BrandRoleIcon variant='alter' /> },
-  { value: 'alter2', title: BRAND_ROLE_OPTIONS[2].label, icon: <BrandRoleIcon variant='alter2' /> },
-  { value: 'alter3', title: BRAND_ROLE_OPTIONS[3].label, icon: <BrandRoleIcon variant='alter3' /> },
-  { value: 'alter4', title: BRAND_ROLE_OPTIONS[4].label, icon: <BrandRoleIcon variant='alter4' /> },
-];
+const brandTriggerLabelStyle: CSSProperties = { marginInline: 6, whiteSpace: 'nowrap' };
 
-const platformOptionsWithIcons: SelectOption[] = [
-  { value: 'compact', title: DENSITY_OPTIONS[0].label, icon: <SvgIcon d={DENSITY_TO_PATH.compact} /> },
-  { value: 'comfort', title: DENSITY_OPTIONS[1].label, icon: <SvgIcon d={DENSITY_TO_PATH.comfort} /> },
-  { value: 'spacious', title: DENSITY_OPTIONS[2].label, icon: <SvgIcon d={DENSITY_TO_PATH.spacious} /> },
-];
+/**
+ * Бренд: 14 пунктов плоским списком, поэтому семейства HR-портала и сайта
+ * сгруппированы (заголовок + цвета). У `Select` из storybook групп нет — кнопка того же размера с попапом.
+ */
+function BrandSelect({ brand, onChange }: { brand: Brand; onChange(brand: Brand): void }) {
+  const theme = useTheme();
+  const current = BRAND_OPTIONS.find(option => option.value === brand);
+
+  const groupLabelStyle: CSSProperties = {
+    padding: '8px 12px 4px',
+    fontSize: theme.typography.size.s1,
+    fontWeight: theme.typography.weight.bold,
+    color: theme.textMutedColor,
+    whiteSpace: 'nowrap',
+  };
+
+  return (
+    <PopoverProvider
+      ariaLabel='Бренд'
+      placement='bottom-start'
+      padding={0}
+      popover={({ onHide }) => (
+        <TooltipLinkList
+          links={BRAND_GROUPS.map((group, index) => [
+            ...(group.label
+              ? [{ id: `brand-group-${index}`, content: <div style={groupLabelStyle}>{group.label}</div> }]
+              : []),
+            ...group.brands.map(option => ({
+              id: option.value,
+              title: option.label,
+              icon: <BrandColorDot color={BRAND_COLOR[option.value]} />,
+              active: option.value === brand,
+              onClick: () => {
+                onChange(option.value);
+                onHide();
+              },
+            })),
+          ])}
+        />
+      )}
+    >
+      <Button size='small' padding='small' ariaLabel='Бренд' disableAllTooltips>
+        <BrandIcon brand={brand} />
+        <span style={brandTriggerLabelStyle}>{current?.label ?? brand}</span>
+        <ChevronGlyph />
+      </Button>
+    </PopoverProvider>
+  );
+}
+
+const densityOptionsWithIcons: SelectOption[] = DENSITY_OPTIONS.map(option => ({
+  value: option.value,
+  title: option.label,
+  icon: <DensityIcon density={option.value} />,
+}));
 
 const languageOptionsWithIcons: SelectOption[] = LANGUAGE_OPTIONS.map(option => ({
   value: option.value,
@@ -226,32 +270,27 @@ const wrapperStyle: CSSProperties = {
 };
 
 type ControlsPayload = {
+  layoutType?: string;
   theme?: Theme;
   brand?: Brand;
-  brandRole?: BrandRole;
   density?: Density;
   language?: Language;
 };
 
 /**
- * Контролы темы/бренда/платформы для тулбара Storybook (стиль как у Preview background).
+ * Контролы темы/бренда/плотности для тулбара Storybook (стиль как у Preview background).
  */
 export function ThemeControlsToolbar() {
   const [globals, updateGlobals] = useGlobals();
 
   const theme = (globals[GLOBAL_KEYS.THEME] as Theme) ?? 'light';
-  const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'brandA';
-  const brandRole = (globals[GLOBAL_KEYS.BRAND_ROLE] as BrandRole) ?? 'main';
+  const brand = (globals[GLOBAL_KEYS.BRAND] as Brand) ?? 'cloudConsole';
   const brandColor = (globals[GLOBAL_KEYS.BRAND_COLOR] as string) ?? '';
   const density = (globals[GLOBAL_KEYS.DENSITY] as Density) ?? 'compact';
   const language = (globals[GLOBAL_KEYS.LANGUAGE] as Language) ?? 'en-GB';
 
   const setTheme = useCallback((value: Theme) => updateGlobals({ [GLOBAL_KEYS.THEME]: value }), [updateGlobals]);
   const setBrand = useCallback((value: Brand) => updateGlobals({ [GLOBAL_KEYS.BRAND]: value }), [updateGlobals]);
-  const setBrandRole = useCallback(
-    (value: BrandRole) => updateGlobals({ [GLOBAL_KEYS.BRAND_ROLE]: value }),
-    [updateGlobals],
-  );
   const setBrandColor = useCallback(
     (value: string) => updateGlobals({ [GLOBAL_KEYS.BRAND_COLOR]: value }),
     [updateGlobals],
@@ -269,9 +308,9 @@ export function ThemeControlsToolbar() {
       const next: Record<string, string> = {};
       if (payload.theme) next[GLOBAL_KEYS.THEME] = payload.theme;
       if (payload.brand) next[GLOBAL_KEYS.BRAND] = payload.brand;
-      if (payload.brandRole) next[GLOBAL_KEYS.BRAND_ROLE] = payload.brandRole;
       if (payload.density) next[GLOBAL_KEYS.DENSITY] = payload.density;
       if (payload.language) next[GLOBAL_KEYS.LANGUAGE] = payload.language;
+      if (payload.layoutType) next.layoutType = payload.layoutType;
       if (Object.keys(next).length) updateGlobals(next);
     };
     channel.on(CHANNEL_SYNC_EVENT, handler);
@@ -279,7 +318,7 @@ export function ThemeControlsToolbar() {
   }, [updateGlobals]);
 
   return (
-    <div style={wrapperStyle} role='group' aria-label='Тема, бренд, платформа'>
+    <div style={wrapperStyle} role='group' aria-label='Тема, бренд, плотность'>
       <Select
         key={`theme-${theme}`}
         ariaLabel='Тема'
@@ -290,32 +329,13 @@ export function ThemeControlsToolbar() {
         size='small'
         padding='small'
       />
-      <Select
-        key={`brand-${brand}`}
-        ariaLabel='Бренд'
-        icon={<BrandIcon brand={brand} />}
-        options={brandOptionsWithIcons}
-        defaultOptions={brand}
-        onSelect={v => setBrand(String(v) as Brand)}
-        size='small'
-        padding='small'
-      />
+      <BrandSelect brand={brand} onChange={setBrand} />
       <BrandColorControl value={brandColor} brand={brand} onChange={setBrandColor} onReset={resetBrandColor} />
       <Select
-        key={`brandRole-${brandRole}`}
-        ariaLabel='Brand role'
-        icon={<BrandRoleIcon variant={brandRole} />}
-        options={brandRoleOptionsWithIcons}
-        defaultOptions={brandRole}
-        onSelect={v => setBrandRole(String(v) as BrandRole)}
-        size='small'
-        padding='small'
-      />
-      <Select
-        key={`platform-${density}`}
-        ariaLabel='Платформа'
-        icon={<PlatformIcon density={density} />}
-        options={platformOptionsWithIcons}
+        key={`density-${density}`}
+        ariaLabel='Плотность'
+        icon={<DensityIcon density={density} />}
+        options={densityOptionsWithIcons}
         defaultOptions={density}
         onSelect={v => setDensity(String(v) as Density)}
         size='small'

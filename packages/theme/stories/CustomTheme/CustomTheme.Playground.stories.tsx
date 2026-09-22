@@ -111,7 +111,7 @@ export const Playground: Story = {
 
     // Seed каскадит на бренд-тон 55, который наследуется вглубь превью.
     await waitFor(() => {
-      const accent = getComputedStyle(preview).getPropertyValue('--sn-brand-color-primary-55').trim();
+      const accent = getComputedStyle(preview).getPropertyValue('--sn-brand-color-primary-50').trim();
       expect(accent.toLowerCase()).toContain('#ff7a00');
     });
   },
@@ -173,7 +173,7 @@ export const ImperativeHook: Story = {
     await expect(preview).toBeVisible();
 
     await waitFor(() => {
-      const accent = getComputedStyle(preview).getPropertyValue('--sn-brand-color-primary-55').trim();
+      const accent = getComputedStyle(preview).getPropertyValue('--sn-brand-color-primary-50').trim();
       expect(accent.toLowerCase()).toContain('#e5006e');
     });
   },

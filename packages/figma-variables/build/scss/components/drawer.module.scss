@@ -40,8 +40,8 @@ $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopLeftRa
 $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
 $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomRightRadius, #{st.$sn-primitive-dimension-0});
 $sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius: var(--sn-drawer-anatomy-container-horizontal-positionBottom-container-borderBottomLeftRadius, #{st.$sn-primitive-dimension-0});
-$sn-drawer-anatomy-container-safeArea-paddingTop: var(--sn-drawer-anatomy-container-safeArea-paddingTop, #{st.$sn-density-spacing-interval-l});
-$sn-drawer-anatomy-container-safeArea-paddingBottom: var(--sn-drawer-anatomy-container-safeArea-paddingBottom, #{st.$sn-density-spacing-interval-s});
+$sn-drawer-anatomy-container-safeArea-paddingTop: var(--sn-drawer-anatomy-container-safeArea-paddingTop, #{st.$sn-primitive-dimension-24});
+$sn-drawer-anatomy-container-safeArea-paddingBottom: var(--sn-drawer-anatomy-container-safeArea-paddingBottom, #{st.$sn-primitive-dimension-8});
 $sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal: var(--sn-drawer-anatomy-container-bodyWrapper-paddingHorizontal, #{st.$sn-density-spacing-interval-l});
 $sn-drawer-anatomy-container-bodyWrapper-paddingBottom: var(--sn-drawer-anatomy-container-bodyWrapper-paddingBottom, #{st.$sn-density-spacing-interval-m});
 

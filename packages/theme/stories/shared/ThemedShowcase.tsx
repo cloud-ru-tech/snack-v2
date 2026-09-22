@@ -15,7 +15,7 @@ export type ThemedShowcaseProps = {
 /**
  * Кластер реальных компонентов DS, чьи цвета, фон и плотность приходят из токенов оформления
  * (`--sn-theme-color-*`). Используется в стори `@ds/theme`, чтобы смена осей
- * (colorScheme/brand/brandRole/density/acrylic) была видна на живом UI, а не на строке классов.
+ * (colorScheme/brand/platform/density/acrylic) была видна на живом UI, а не на строке классов.
  */
 export function ThemedShowcase({ caption, testId }: ThemedShowcaseProps) {
   return (

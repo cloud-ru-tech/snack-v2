@@ -25,6 +25,30 @@ $sn-alert-anatomy-size-s-container-centeredWrapper-height: var(--sn-alert-anatom
 $sn-alert-anatomy-size-s-container-actionWrapper-height: var(--sn-alert-anatomy-size-s-container-actionWrapper-height, #{$sn-alert-anatomy-size-s-container-centeredWrapper-height});
 $sn-alert-anatomy-size-s-container-paddingVertical: var(--sn-alert-anatomy-size-s-container-paddingVertical, #{st.$sn-primitive-dimension-8});
 $sn-alert-anatomy-size-s-container-paddingHorizontal: var(--sn-alert-anatomy-size-s-container-paddingHorizontal, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-s-container-gap: var(--sn-alert-anatomy-button-size-s-container-gap, #{st.$sn-primitive-dimension-2});
+$sn-alert-anatomy-button-size-s-container-minWidth: var(--sn-alert-anatomy-button-size-s-container-minWidth, #{st.$sn-primitive-dimension-72});
+$sn-alert-anatomy-button-size-s-container-minHeight: var(--sn-alert-anatomy-button-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-alert-anatomy-button-size-s-container-iconOnly-minWidth: var(--sn-alert-anatomy-button-size-s-container-iconOnly-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-alert-anatomy-button-size-s-container-labelOnly-paddingLeft: var(--sn-alert-anatomy-button-size-s-container-labelOnly-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-s-container-labelOnly-paddingRight: var(--sn-alert-anatomy-button-size-s-container-labelOnly-paddingRight, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-s-container-iconBefore-paddingLeft: var(--sn-alert-anatomy-button-size-s-container-iconBefore-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-alert-anatomy-button-size-s-container-iconBefore-paddingRight: var(--sn-alert-anatomy-button-size-s-container-iconBefore-paddingRight, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-s-container-iconAfter-paddingLeft: var(--sn-alert-anatomy-button-size-s-container-iconAfter-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-s-container-iconAfter-paddingRight: var(--sn-alert-anatomy-button-size-s-container-iconAfter-paddingRight, #{st.$sn-primitive-dimension-4});
+$sn-alert-anatomy-button-size-s-label-fontSize: var(--sn-alert-anatomy-button-size-s-label-fontSize, #{st.$sn-primitive-font-fontSize-12});
+$sn-alert-anatomy-button-size-s-label-lineHeight: var(--sn-alert-anatomy-button-size-s-label-lineHeight, #{st.$sn-primitive-font-lineHeight-16});
+$sn-alert-anatomy-button-size-m-container-gap: var(--sn-alert-anatomy-button-size-m-container-gap, #{st.$sn-primitive-dimension-4});
+$sn-alert-anatomy-button-size-m-container-minWidth: var(--sn-alert-anatomy-button-size-m-container-minWidth, #{st.$sn-primitive-dimension-96});
+$sn-alert-anatomy-button-size-m-container-minHeight: var(--sn-alert-anatomy-button-size-m-container-minHeight, #{st.$sn-primitive-dimension-32});
+$sn-alert-anatomy-button-size-m-container-iconOnly-minWidth: var(--sn-alert-anatomy-button-size-m-container-iconOnly-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-alert-anatomy-button-size-m-container-labelOnly-paddingLeft: var(--sn-alert-anatomy-button-size-m-container-labelOnly-paddingLeft, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-button-size-m-container-labelOnly-paddingRight: var(--sn-alert-anatomy-button-size-m-container-labelOnly-paddingRight, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-button-size-m-container-iconBefore-paddingLeft: var(--sn-alert-anatomy-button-size-m-container-iconBefore-paddingLeft, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-m-container-iconBefore-paddingRight: var(--sn-alert-anatomy-button-size-m-container-iconBefore-paddingRight, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-button-size-m-container-iconAfter-paddingLeft: var(--sn-alert-anatomy-button-size-m-container-iconAfter-paddingLeft, #{st.$sn-primitive-dimension-16});
+$sn-alert-anatomy-button-size-m-container-iconAfter-paddingRight: var(--sn-alert-anatomy-button-size-m-container-iconAfter-paddingRight, #{st.$sn-primitive-dimension-8});
+$sn-alert-anatomy-button-size-m-label-fontSize: var(--sn-alert-anatomy-button-size-m-label-fontSize, #{st.$sn-primitive-font-fontSize-14});
+$sn-alert-anatomy-button-size-m-label-lineHeight: var(--sn-alert-anatomy-button-size-m-label-lineHeight, #{st.$sn-primitive-font-lineHeight-20});
 
 $alert: (
   "anatomy": (
@@ -79,6 +103,62 @@ $alert: (
           ),
           "padding-left": $sn-alert-anatomy-size-s-container-paddingHorizontal,
           "padding-right": $sn-alert-anatomy-size-s-container-paddingHorizontal
+        )
+      )
+    ),
+    "button": (
+      "size": (
+        "s": (
+          "container": (
+            "gap": $sn-alert-anatomy-button-size-s-container-gap,
+            "min-width": $sn-alert-anatomy-button-size-s-container-minWidth,
+            "min-height": $sn-alert-anatomy-button-size-s-container-minHeight,
+            "iconOnly": (
+              "min-width": $sn-alert-anatomy-button-size-s-container-iconOnly-minWidth
+            ),
+            "labelOnly": (
+              "padding-left": $sn-alert-anatomy-button-size-s-container-labelOnly-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-s-container-labelOnly-paddingRight
+            ),
+            "iconBefore": (
+              "padding-left": $sn-alert-anatomy-button-size-s-container-iconBefore-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-s-container-iconBefore-paddingRight
+            ),
+            "iconAfter": (
+              "padding-left": $sn-alert-anatomy-button-size-s-container-iconAfter-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-s-container-iconAfter-paddingRight
+            )
+          ),
+          "label": (
+            "font-size": $sn-alert-anatomy-button-size-s-label-fontSize,
+            "line-height": $sn-alert-anatomy-button-size-s-label-lineHeight
+          )
+        ),
+        "m": (
+          "container": (
+            "gap": $sn-alert-anatomy-button-size-m-container-gap,
+            "min-width": $sn-alert-anatomy-button-size-m-container-minWidth,
+            "min-height": $sn-alert-anatomy-button-size-m-container-minHeight,
+            "iconOnly": (
+              "min-width": $sn-alert-anatomy-button-size-m-container-iconOnly-minWidth
+            ),
+            "labelOnly": (
+              "padding-left": $sn-alert-anatomy-button-size-m-container-labelOnly-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-m-container-labelOnly-paddingRight
+            ),
+            "iconBefore": (
+              "padding-left": $sn-alert-anatomy-button-size-m-container-iconBefore-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-m-container-iconBefore-paddingRight
+            ),
+            "iconAfter": (
+              "padding-left": $sn-alert-anatomy-button-size-m-container-iconAfter-paddingLeft,
+              "padding-right": $sn-alert-anatomy-button-size-m-container-iconAfter-paddingRight
+            )
+          ),
+          "label": (
+            "font-size": $sn-alert-anatomy-button-size-m-label-fontSize,
+            "line-height": $sn-alert-anatomy-button-size-m-label-lineHeight
+          )
         )
       )
     )

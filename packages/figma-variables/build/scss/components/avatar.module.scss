@@ -5,39 +5,74 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
+$sn-avatar-anatomy-size-xs-symbol-fontFamily: var(--sn-avatar-anatomy-size-xs-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-avatar-anatomy-size-xs-symbol-fontSize: var(--sn-avatar-anatomy-size-xs-symbol-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-avatar-anatomy-size-xs-symbol-lineHeight: var(--sn-avatar-anatomy-size-xs-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-avatar-anatomy-size-xs-symbol-fontWeight: var(--sn-avatar-anatomy-size-xs-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-avatar-anatomy-size-xs-symbol-letterSpacing: var(--sn-avatar-anatomy-size-xs-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-avatar-anatomy-size-xs-square: var(--sn-avatar-anatomy-size-xs-square, #{st.$sn-primitive-dimension-16});
 $sn-avatar-anatomy-size-xs-rounded-borderRadius: var(--sn-avatar-anatomy-size-xs-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-xs-squared-borderRadius: var(--sn-avatar-anatomy-size-xs-squared-borderRadius, #{st.$sn-primitive-dimension-2});
+$sn-avatar-anatomy-size-xs-squared-borderRadius: var(--sn-avatar-anatomy-size-xs-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-xs});
 $sn-avatar-anatomy-size-xs-borderWidth: var(--sn-avatar-anatomy-size-xs-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-xs-badge-padding: var(--sn-avatar-anatomy-size-xs-badge-padding, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-s-symbol-fontFamily: var(--sn-avatar-anatomy-size-s-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-avatar-anatomy-size-s-symbol-fontSize: var(--sn-avatar-anatomy-size-s-symbol-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-avatar-anatomy-size-s-symbol-lineHeight: var(--sn-avatar-anatomy-size-s-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-avatar-anatomy-size-s-symbol-fontWeight: var(--sn-avatar-anatomy-size-s-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-avatar-anatomy-size-s-symbol-letterSpacing: var(--sn-avatar-anatomy-size-s-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-avatar-anatomy-size-s-square: var(--sn-avatar-anatomy-size-s-square, #{st.$sn-primitive-dimension-24});
 $sn-avatar-anatomy-size-s-rounded-borderRadius: var(--sn-avatar-anatomy-size-s-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-s-squared-borderRadius: var(--sn-avatar-anatomy-size-s-squared-borderRadius, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-s-squared-borderRadius: var(--sn-avatar-anatomy-size-s-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-s});
 $sn-avatar-anatomy-size-s-borderWidth: var(--sn-avatar-anatomy-size-s-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-s-badge-padding: var(--sn-avatar-anatomy-size-s-badge-padding, #{st.$sn-primitive-dimension-4});
+$sn-avatar-anatomy-size-m-symbol-fontFamily: var(--sn-avatar-anatomy-size-m-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-avatar-anatomy-size-m-symbol-fontSize: var(--sn-avatar-anatomy-size-m-symbol-fontSize, #{st.$sn-primitive-font-fontSize-14});
+$sn-avatar-anatomy-size-m-symbol-lineHeight: var(--sn-avatar-anatomy-size-m-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-20});
+$sn-avatar-anatomy-size-m-symbol-fontWeight: var(--sn-avatar-anatomy-size-m-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-l});
+$sn-avatar-anatomy-size-m-symbol-letterSpacing: var(--sn-avatar-anatomy-size-m-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-avatar-anatomy-size-m-square: var(--sn-avatar-anatomy-size-m-square, #{st.$sn-primitive-dimension-32});
 $sn-avatar-anatomy-size-m-rounded-borderRadius: var(--sn-avatar-anatomy-size-m-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-m-squared-borderRadius: var(--sn-avatar-anatomy-size-m-squared-borderRadius, #{st.$sn-primitive-dimension-6});
+$sn-avatar-anatomy-size-m-squared-borderRadius: var(--sn-avatar-anatomy-size-m-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-m});
 $sn-avatar-anatomy-size-m-borderWidth: var(--sn-avatar-anatomy-size-m-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-m-badge-padding: var(--sn-avatar-anatomy-size-m-badge-padding, #{st.$sn-primitive-dimension-6});
+$sn-avatar-anatomy-size-l-symbol-fontFamily: var(--sn-avatar-anatomy-size-l-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-title});
+$sn-avatar-anatomy-size-l-symbol-fontSize: var(--sn-avatar-anatomy-size-l-symbol-fontSize, #{st.$sn-primitive-font-fontSize-16});
+$sn-avatar-anatomy-size-l-symbol-lineHeight: var(--sn-avatar-anatomy-size-l-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-24});
+$sn-avatar-anatomy-size-l-symbol-fontWeight: var(--sn-avatar-anatomy-size-l-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-title-m});
+$sn-avatar-anatomy-size-l-symbol-letterSpacing: var(--sn-avatar-anatomy-size-l-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-l});
 $sn-avatar-anatomy-size-l-square: var(--sn-avatar-anatomy-size-l-square, #{st.$sn-primitive-dimension-40});
 $sn-avatar-anatomy-size-l-rounded-borderRadius: var(--sn-avatar-anatomy-size-l-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-l-squared-borderRadius: var(--sn-avatar-anatomy-size-l-squared-borderRadius, #{st.$sn-primitive-dimension-8});
+$sn-avatar-anatomy-size-l-squared-borderRadius: var(--sn-avatar-anatomy-size-l-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-l});
 $sn-avatar-anatomy-size-l-borderWidth: var(--sn-avatar-anatomy-size-l-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-l-badge-padding: var(--sn-avatar-anatomy-size-l-badge-padding, #{st.$sn-primitive-dimension-8});
+$sn-avatar-anatomy-size-3xl-symbol-fontFamily: var(--sn-avatar-anatomy-size-3xl-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-headline});
+$sn-avatar-anatomy-size-3xl-symbol-fontSize: var(--sn-avatar-anatomy-size-3xl-symbol-fontSize, #{st.$sn-primitive-font-fontSize-28});
+$sn-avatar-anatomy-size-3xl-symbol-lineHeight: var(--sn-avatar-anatomy-size-3xl-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-36});
+$sn-avatar-anatomy-size-3xl-symbol-fontWeight: var(--sn-avatar-anatomy-size-3xl-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-headline-m});
+$sn-avatar-anatomy-size-3xl-symbol-letterSpacing: var(--sn-avatar-anatomy-size-3xl-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-xs});
 $sn-avatar-anatomy-size-3xl-square: var(--sn-avatar-anatomy-size-3xl-square, #{st.$sn-primitive-dimension-64});
 $sn-avatar-anatomy-size-3xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-3xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-3xl-squared-borderRadius: var(--sn-avatar-anatomy-size-3xl-squared-borderRadius, #{st.$sn-primitive-dimension-12});
+$sn-avatar-anatomy-size-3xl-squared-borderRadius: var(--sn-avatar-anatomy-size-3xl-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-3xl});
 $sn-avatar-anatomy-size-3xl-borderWidth: var(--sn-avatar-anatomy-size-3xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-3xl-badge-padding: var(--sn-avatar-anatomy-size-3xl-badge-padding, #{st.$sn-primitive-dimension-12});
+$sn-avatar-anatomy-size-6xl-symbol-fontFamily: var(--sn-avatar-anatomy-size-6xl-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-display});
+$sn-avatar-anatomy-size-6xl-symbol-fontSize: var(--sn-avatar-anatomy-size-6xl-symbol-fontSize, #{st.$sn-primitive-font-fontSize-40});
+$sn-avatar-anatomy-size-6xl-symbol-lineHeight: var(--sn-avatar-anatomy-size-6xl-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-48});
+$sn-avatar-anatomy-size-6xl-symbol-fontWeight: var(--sn-avatar-anatomy-size-6xl-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-display-s});
+$sn-avatar-anatomy-size-6xl-symbol-letterSpacing: var(--sn-avatar-anatomy-size-6xl-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-xs});
 $sn-avatar-anatomy-size-6xl-square: var(--sn-avatar-anatomy-size-6xl-square, #{st.$sn-primitive-dimension-88});
 $sn-avatar-anatomy-size-6xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-6xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-6xl-squared-borderRadius: var(--sn-avatar-anatomy-size-6xl-squared-borderRadius, #{st.$sn-primitive-dimension-16});
+$sn-avatar-anatomy-size-6xl-squared-borderRadius: var(--sn-avatar-anatomy-size-6xl-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-6xl});
 $sn-avatar-anatomy-size-6xl-borderWidth: var(--sn-avatar-anatomy-size-6xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-6xl-badge-padding: var(--sn-avatar-anatomy-size-6xl-badge-padding, #{st.$sn-primitive-dimension-16});
+$sn-avatar-anatomy-size-9xl-symbol-fontFamily: var(--sn-avatar-anatomy-size-9xl-symbol-fontFamily, #{st.$sn-brand-font-fontFamily-regular-display});
+$sn-avatar-anatomy-size-9xl-symbol-fontSize: var(--sn-avatar-anatomy-size-9xl-symbol-fontSize, #{st.$sn-primitive-font-fontSize-48});
+$sn-avatar-anatomy-size-9xl-symbol-lineHeight: var(--sn-avatar-anatomy-size-9xl-symbol-lineHeight, #{st.$sn-primitive-font-lineHeight-60});
+$sn-avatar-anatomy-size-9xl-symbol-fontWeight: var(--sn-avatar-anatomy-size-9xl-symbol-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-display-m});
+$sn-avatar-anatomy-size-9xl-symbol-letterSpacing: var(--sn-avatar-anatomy-size-9xl-symbol-letterSpacing, #{st.$sn-primitive-font-letterSpacing-xs});
 $sn-avatar-anatomy-size-9xl-square: var(--sn-avatar-anatomy-size-9xl-square, #{st.$sn-primitive-dimension-112});
 $sn-avatar-anatomy-size-9xl-rounded-borderRadius: var(--sn-avatar-anatomy-size-9xl-rounded-borderRadius, #{st.$sn-primitive-dimension-full});
-$sn-avatar-anatomy-size-9xl-squared-borderRadius: var(--sn-avatar-anatomy-size-9xl-squared-borderRadius, #{st.$sn-primitive-dimension-20});
+$sn-avatar-anatomy-size-9xl-squared-borderRadius: var(--sn-avatar-anatomy-size-9xl-squared-borderRadius, #{st.$sn-brand-anatomy-radius-avatar-9xl});
 $sn-avatar-anatomy-size-9xl-borderWidth: var(--sn-avatar-anatomy-size-9xl-borderWidth, #{st.$sn-primitive-strokeWeight-strokeThin});
 $sn-avatar-anatomy-size-9xl-badge-padding: var(--sn-avatar-anatomy-size-9xl-badge-padding, #{st.$sn-primitive-dimension-20});
 
@@ -45,6 +80,13 @@ $avatar: (
   "anatomy": (
     "size": (
       "xs": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-xs-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-xs-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-xs-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-xs-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-xs-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-xs-square,
         "height": $sn-avatar-anatomy-size-xs-square,
         "rounded": (
@@ -59,6 +101,13 @@ $avatar: (
         )
       ),
       "s": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-s-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-s-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-s-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-s-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-s-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-s-square,
         "height": $sn-avatar-anatomy-size-s-square,
         "rounded": (
@@ -73,6 +122,13 @@ $avatar: (
         )
       ),
       "m": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-m-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-m-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-m-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-m-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-m-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-m-square,
         "height": $sn-avatar-anatomy-size-m-square,
         "rounded": (
@@ -87,6 +143,13 @@ $avatar: (
         )
       ),
       "l": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-l-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-l-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-l-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-l-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-l-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-l-square,
         "height": $sn-avatar-anatomy-size-l-square,
         "rounded": (
@@ -101,6 +164,13 @@ $avatar: (
         )
       ),
       "3xl": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-3xl-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-3xl-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-3xl-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-3xl-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-3xl-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-3xl-square,
         "height": $sn-avatar-anatomy-size-3xl-square,
         "rounded": (
@@ -115,6 +185,13 @@ $avatar: (
         )
       ),
       "6xl": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-6xl-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-6xl-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-6xl-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-6xl-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-6xl-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-6xl-square,
         "height": $sn-avatar-anatomy-size-6xl-square,
         "rounded": (
@@ -129,6 +206,13 @@ $avatar: (
         )
       ),
       "9xl": (
+        "symbol": (
+          "font-family": $sn-avatar-anatomy-size-9xl-symbol-fontFamily,
+          "font-size": $sn-avatar-anatomy-size-9xl-symbol-fontSize,
+          "line-height": $sn-avatar-anatomy-size-9xl-symbol-lineHeight,
+          "font-weight": $sn-avatar-anatomy-size-9xl-symbol-fontWeight,
+          "letter-spacing": $sn-avatar-anatomy-size-9xl-symbol-letterSpacing
+        ),
         "width": $sn-avatar-anatomy-size-9xl-square,
         "height": $sn-avatar-anatomy-size-9xl-square,
         "rounded": (

@@ -223,7 +223,7 @@ export const FIGMA_NODES = {
   toolbar: {
     _: { ...SNACK, nodeId: '7231-2277' }, // toolbar → canvas toolbar
     'mobile-bulk-bottom-sheet': { ...SNACK, nodeId: '7788-21915' }, // toolbar → bulkActionsBottomSheet
-    'mobile-more-bulk-bottom-sheet': { ...SNACK, nodeId: '7546-10980' }, // toolbar → moreBulkActionsDropdownAsButtomSheet
+    'mobile-more-bulk-bottom-sheet': { ...SNACK, nodeId: '7546-10980' }, // toolbar → moreBulkActionsDropdownAsBottomSheet
   },
   timeline: { ...SNACK, nodeId: '8658-114' }, // timeline → timeline
   toaster: {

@@ -8,6 +8,7 @@ export const defaultBaseConfig: BaseConfig = {
   validate: 'warning',
   logLevel: 'info',
   excludeGroups: [],
+  excludeTokenSets: [],
   includeFallbackValues: true,
 };
 

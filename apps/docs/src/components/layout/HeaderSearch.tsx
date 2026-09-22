@@ -2,6 +2,7 @@ import { Dropdown } from '@ds/dropdown';
 import { Search } from '@ds/search';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { withDocsChrome } from './DocsChromeScope';
 import styles from './HeaderSearch.module.scss';
 
 type PagefindSubResult = {
@@ -35,7 +36,7 @@ type PagefindModule = {
 const MAX_RESULTS = 8;
 const DEBOUNCE_MS = 180;
 
-export function HeaderSearch() {
+function HeaderSearchContent() {
   const baseUrl = import.meta.env.BASE_URL;
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
@@ -158,3 +159,5 @@ export function HeaderSearch() {
     </Dropdown>
   );
 }
+
+export const HeaderSearch = withDocsChrome(HeaderSearchContent);

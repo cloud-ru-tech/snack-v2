@@ -22,7 +22,7 @@ type Registry = { [REGISTRY_KEY]?: GlobalThemeStore };
 // строка на `<html>` (см. providers-standard.md).
 const SERVER_VALUE: ThemeAppearanceContextValue = { appearance: {}, setAppearance: undefined };
 
-const APPEARANCE_KEYS: (keyof ThemeAppearance)[] = ['colorScheme', 'brand', 'brandRole', 'density', 'acrylic'];
+const APPEARANCE_KEYS: (keyof ThemeAppearance)[] = ['colorScheme', 'brand', 'platform', 'density', 'acrylic'];
 
 function isSameAppearance(a: ThemeAppearance, b: ThemeAppearance): boolean {
   return APPEARANCE_KEYS.every(key => a[key] === b[key]);

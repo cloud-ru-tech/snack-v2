@@ -3,18 +3,28 @@
  */
   
 .sn-counter {
+  --sn-counter-anatomy-size-xs-symbol-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-counter-anatomy-size-xs-symbol-fontSize: var(--sn-primitive-font-fontSize-11, 11px);
+  --sn-counter-anatomy-size-xs-symbol-lineHeight: var(--sn-primitive-font-lineHeight-14, 14px);
+  --sn-counter-anatomy-size-xs-symbol-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-s, 500);
+  --sn-counter-anatomy-size-xs-symbol-letterSpacing: var(--sn-primitive-font-letterSpacing-s, 0px);
   --sn-counter-anatomy-size-xs-minHeight: var(--sn-primitive-dimension-16, 16px);
   --sn-counter-anatomy-size-xs-minWidth: var(--sn-primitive-dimension-16, 16px);
   --sn-counter-anatomy-size-xs-container-padding: var(--sn-primitive-dimension-2, 2px);
-  --sn-counter-anatomy-size-xs-container-minHeight: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
-  --sn-counter-anatomy-size-xs-container-minWidth: var(--sn-density-typography-roleLabel-lineHeightS, 20px);
+  --sn-counter-anatomy-size-xs-container-minHeight: var(--sn-counter-anatomy-size-xs-symbol-lineHeight, var(--sn-primitive-font-lineHeight-14, 14px));
+  --sn-counter-anatomy-size-xs-container-minWidth: var(--sn-counter-anatomy-size-xs-symbol-lineHeight, var(--sn-primitive-font-lineHeight-14, 14px));
   --sn-counter-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-counter-xs, 10000px);
   --sn-counter-anatomy-size-xs-container-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-counter-anatomy-size-s-symbol-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-counter-anatomy-size-s-symbol-fontSize: var(--sn-primitive-font-fontSize-14, 14px);
+  --sn-counter-anatomy-size-s-symbol-lineHeight: var(--sn-primitive-font-lineHeight-20, 20px);
+  --sn-counter-anatomy-size-s-symbol-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-l, 550);
+  --sn-counter-anatomy-size-s-symbol-letterSpacing: var(--sn-primitive-font-letterSpacing-s, 0px);
   --sn-counter-anatomy-size-s-minHeight: var(--sn-primitive-dimension-24, 24px);
   --sn-counter-anatomy-size-s-minWidth: var(--sn-primitive-dimension-24, 24px);
   --sn-counter-anatomy-size-s-container-padding: var(--sn-primitive-dimension-4, 4px);
-  --sn-counter-anatomy-size-s-container-minHeight: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
-  --sn-counter-anatomy-size-s-container-minWidth: var(--sn-density-typography-roleLabel-lineHeightL, 28px);
+  --sn-counter-anatomy-size-s-container-minHeight: var(--sn-counter-anatomy-size-s-symbol-lineHeight, var(--sn-primitive-font-lineHeight-20, 20px));
+  --sn-counter-anatomy-size-s-container-minWidth: var(--sn-counter-anatomy-size-s-symbol-lineHeight, var(--sn-primitive-font-lineHeight-20, 20px));
   --sn-counter-anatomy-size-s-container-borderRadius: var(--sn-brand-anatomy-radius-counter-s, 10000px);
   --sn-counter-anatomy-size-s-container-borderWidth: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
 }

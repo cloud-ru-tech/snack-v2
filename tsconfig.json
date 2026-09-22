@@ -27,6 +27,9 @@
       "@ds/*/locale": [
         "./packages/*/src/locale"
       ],
+      "@ds/*/ssr": [
+        "./packages/*/src/ssr"
+      ],
       "@ds/icons/interface/*": [
         "./packages/icons/src/components/*"
       ],

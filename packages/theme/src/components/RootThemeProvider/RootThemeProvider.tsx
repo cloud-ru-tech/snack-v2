@@ -44,7 +44,7 @@ export type RootThemeProviderProps = {
 
 /**
  * Корневой провайдер оформления. Ставится один раз в корне приложения: задаёт контекст осей
- * (`colorScheme`/`brand`/`brandRole`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень
+ * (`colorScheme`/`brand`/`platform`/`density`/`acrylic`) и эмитит полный набор `sn-*` на корень
  * (`rootRef`) либо на собственный wrapper. Объект контекста — глобальный синглтон (`Symbol.for`),
  * поэтому провайдер работает даже при нескольких версиях пакета в разных микрофронтах, а потребитель
  * читает ближайший провайдер. Локальные переопределения осей в поддереве — через `ChildThemeProvider`.
@@ -61,7 +61,7 @@ export function RootThemeProvider({
   nonce,
   children,
 }: RootThemeProviderProps) {
-  const { colorScheme, brand, brandRole, density, acrylic } = value ?? {};
+  const { colorScheme, brand, platform, density, acrylic } = value ?? {};
 
   // Мемо по значениям осей (не по идентичности объекта `value`): иначе литерал `value={{…}}` у
   // потребителя пересоздавал бы стор на каждом рендере. Сеттер в static-режиме не нужен — значением
@@ -69,10 +69,10 @@ export function RootThemeProvider({
   const staticThemeStore = useMemo(
     () =>
       staticStore<ThemeAppearanceContextValue>({
-        appearance: { colorScheme, brand, brandRole, density, acrylic },
+        appearance: { colorScheme, brand, platform, density, acrylic },
         setAppearance: undefined,
       }),
-    [colorScheme, brand, brandRole, density, acrylic],
+    [colorScheme, brand, platform, density, acrylic],
   );
 
   return (

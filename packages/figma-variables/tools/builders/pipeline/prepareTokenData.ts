@@ -10,6 +10,11 @@ export async function prepareTokenData(adapter: TokenAdapter, config: BaseConfig
     tokenSets = tokenSets.filter(tokenSet => !excludeGroups.includes(tokenSet.group));
   }
 
+  const excludeTokenSets = config.excludeTokenSets ?? [];
+  if (excludeTokenSets.length > 0) {
+    tokenSets = tokenSets.filter(tokenSet => !excludeTokenSets.includes(tokenSet.path));
+  }
+
   const themes = await adapter.readThemes();
   const systemLayers = sortSystemLayers(getSystemLayers(tokenSets));
   const fallbackIncludePaths = buildFallbackIncludePaths(tokenSets);

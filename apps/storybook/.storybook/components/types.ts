@@ -1,7 +1,8 @@
+import type { LayoutType } from '@ds/adaptive';
 import { BUILTIN_LANGS } from '@ds/locale';
-import type { Brand, BrandRole, ColorScheme, Density } from '@ds/theme';
+import type { Brand, ColorScheme, Density } from '@ds/theme';
 
-export type { Brand, BrandRole, Density };
+export type { Brand, Density };
 // Storybook исторически зовёт цветовую схему Theme.
 export type Theme = ColorScheme;
 export type Language = (typeof BUILTIN_LANGS)[number];
@@ -11,7 +12,7 @@ export type Acrylic = 'enabled' | 'disabled';
 export type ThemeSyncData = {
   theme?: Theme;
   brand?: Brand;
-  brandRole?: BrandRole;
   density?: Density;
+  layoutType?: LayoutType;
   language?: Language;
 };

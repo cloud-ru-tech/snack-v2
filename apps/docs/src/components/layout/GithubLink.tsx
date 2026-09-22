@@ -2,8 +2,9 @@ import { Button } from '@ds/button';
 import { GitHubLogo } from '@ds/icons/logos';
 
 import { EXTERNAL_LINKS } from '../../config/external-links';
+import { withDocsChrome } from './DocsChromeScope';
 
-export function GithubLink() {
+function GithubLinkContent() {
   return (
     <Button
       as='a'
@@ -17,3 +18,5 @@ export function GithubLink() {
     />
   );
 }
+
+export const GithubLink = withDocsChrome(GithubLinkContent);

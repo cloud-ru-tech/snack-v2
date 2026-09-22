@@ -18,7 +18,7 @@
 }
 
 html {
-  font-family: var(--sn-primitive-fontFamily-brandA-sans, 'SB Sans Interface');
+  font-family: var(--sn-brand-font-fontFamily-regular-body, 'SB Sans Interface');
   font-size: 16px;
   color: var(--sn-theme-color-available-version-textMain);
 
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--sn-theme-color-neutral-decor);
     border-radius: var(--sn-primitive-dimension-4);
 
-    font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+    font-family: var(--sn-brand-font-fontFamily-mono-body, 'SB Sans Text Mono');
     font-size: 0.875em;
 
     background: var(--sn-theme-color-neutral-background1Level);
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--sn-theme-color-neutral-decor);
     border-radius: var(--sn-primitive-dimension-8);
 
-    font-family: var(--sn-primitive-fontFamily-brandA-mono, 'SB Sans Text Mono');
+    font-family: var(--sn-brand-font-fontFamily-mono-body, 'SB Sans Text Mono');
     font-size: 13px;
     line-height: 1.5;
 

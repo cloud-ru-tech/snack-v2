@@ -7,8 +7,10 @@
 
 $sn-scroll-anatomy-slider-size-s-square: var(--sn-scroll-anatomy-slider-size-s-square, #{st.$sn-primitive-dimension-4});
 $sn-scroll-anatomy-slider-size-s-borderRadius: var(--sn-scroll-anatomy-slider-size-s-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-scroll-anatomy-slider-size-s-strokeWeight: var(--sn-scroll-anatomy-slider-size-s-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-scroll-anatomy-slider-size-m-square: var(--sn-scroll-anatomy-slider-size-m-square, #{st.$sn-primitive-dimension-6});
 $sn-scroll-anatomy-slider-size-m-borderRadius: var(--sn-scroll-anatomy-slider-size-m-borderRadius, #{st.$sn-primitive-dimension-full});
+$sn-scroll-anatomy-slider-size-m-strokeWeight: var(--sn-scroll-anatomy-slider-size-m-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-scroll-anatomy-container-size-s-square: var(--sn-scroll-anatomy-container-size-s-square, #{st.$sn-primitive-dimension-8});
 $sn-scroll-anatomy-container-size-m-square: var(--sn-scroll-anatomy-container-size-m-square, #{st.$sn-primitive-dimension-16});
 
@@ -19,12 +21,14 @@ $scroll: (
         "s": (
           "width": $sn-scroll-anatomy-slider-size-s-square,
           "height": $sn-scroll-anatomy-slider-size-s-square,
-          "border-radius": $sn-scroll-anatomy-slider-size-s-borderRadius
+          "border-radius": $sn-scroll-anatomy-slider-size-s-borderRadius,
+          "border-width": $sn-scroll-anatomy-slider-size-s-strokeWeight
         ),
         "m": (
           "width": $sn-scroll-anatomy-slider-size-m-square,
           "height": $sn-scroll-anatomy-slider-size-m-square,
-          "border-radius": $sn-scroll-anatomy-slider-size-m-borderRadius
+          "border-radius": $sn-scroll-anatomy-slider-size-m-borderRadius,
+          "border-width": $sn-scroll-anatomy-slider-size-m-strokeWeight
         )
       )
     ),

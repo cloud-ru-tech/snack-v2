@@ -2,7 +2,7 @@
 
 `@ds/theme` — Провайдер оформления — оси (цветовая схема, бренд, плотность, акрил) живут в контексте, полный набор sn-* классов эмитится на DOM-границе.
 
-`@ds/theme` управляет оформлением дизайн-системы. **Оси оформления живут в React-контексте, а полный набор CSS-классов `sn-*` эмитится на DOM-границу.** `RootThemeProvider` ставится один раз в корне и держит оси (`colorScheme`, `brand`, `brandRole`, `density`, `acrylic`), эмитя из них полный набор `sn-*` на `rootRef` (обычно `<html>`). Локальные переопределения в поддереве делает `ChildThemeProvider`, а компонент, фиксирующий ось у себя, — хук `useThemeClassnames`.
+`@ds/theme` управляет оформлением дизайн-системы. **Оси оформления живут в React-контексте, а полный набор CSS-классов `sn-*` эмитится на DOM-границу.** `RootThemeProvider` ставится один раз в корне и держит оси (`colorScheme`, `brand`, `platform`, `density`, `acrylic`), эмитя из них полный набор `sn-*` на `rootRef` (обычно `<html>`). Локальные переопределения в поддереве делает `ChildThemeProvider`, а компонент, фиксирующий ось у себя, — хук `useThemeClassnames`.
 
 Кроме предустановленных брендов `@ds/theme` умеет собрать бренд-палитру из **одного seed-цвета** (white-label): из него генерируется полная шкала тонов `--sn-brand-color-primary-*`, и весь семантический слой каскадит из неё — см. секцию «Кастомный бренд-цвет».
 
@@ -51,10 +51,13 @@ import { BRAND, Brand, ChildThemeProvider } from '@ds/theme';
 import { Flex } from '@ds/uikit-product-flex';
 import { useState } from 'react';
 
-const BRAND_ITEMS = Object.values(BRAND).map(value => ({ value, label: value }));
+const BRAND_ITEMS = [BRAND.CloudConsole, BRAND.SnackUI, BRAND.Gitverse, BRAND.HrGreen, BRAND.SiteBlue].map(value => ({
+  value,
+  label: value,
+}));
 
 export function BrandSwitch() {
-  const [brand, setBrand] = useState<Brand>(BRAND.A);
+  const [brand, setBrand] = useState<Brand>(BRAND.CloudConsole);
 
   return (
     <Flex direction='column' gap='2m' align='flex-start'>
@@ -183,23 +186,23 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"`
-
-- `BrandRole` = `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"`
+- `Brand` = `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
 
 - `ColorScheme` = `"dark"` \| `"light"`
 
 - `Density` = `"comfort"` \| `"compact"` \| `"spacious"`
+
+- `Platform` = `"webDesktop"` \| `"webMobile"`
 
 **ThemeAppearance**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"` | — | Бренд — `sn-brandA` … |
-| `brandRole` | `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"` | — | Роль бренда (палитра) — `sn-main` … |
+| `brand` | `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
+| `platform` | `"webDesktop"` \| `"webMobile"` | — | Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive` <br/> тема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда. |
 
 **ThemeAppearanceStore**
 
@@ -222,35 +225,35 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"`
-
-- `BrandRole` = `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"`
+- `Brand` = `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
 
 - `ColorScheme` = `"dark"` \| `"light"`
 
 - `Density` = `"comfort"` \| `"compact"` \| `"spacious"`
+
+- `Platform` = `"webDesktop"` \| `"webMobile"`
 
 **ThemeAppearance**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"brandA"` \| `"brandB"` \| `"brandC"` \| `"brandD"` \| `"brandE"` \| `"brandF"` | — | Бренд — `sn-brandA` … |
-| `brandRole` | `"alter"` \| `"alter2"` \| `"alter3"` \| `"alter4"` \| `"main"` | — | Роль бренда (палитра) — `sn-main` … |
+| `brand` | `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
+| `platform` | `"webDesktop"` \| `"webMobile"` | — | Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive` <br/> тема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда. |
 
 ## Смотри также
 
 - [Оформление — тема, бренд, плотность](/patterns/theme) — полная модель подключения темы.
-- **Adaptive** — раскладка `layoutType` (источник `density` в приложении).
+- **Adaptive** — раскладка `layoutType`, согласованная с платформой темы.
 - **Locale** — рантайм локализации.
 - **PortalContext** — корневой DOM-узел для порталов.
 ## Кастомный бренд-цвет
 
-Помимо предустановленных брендов (`brandA` / `brandB` / `brandC` / `brandD` / `brandE` / `brandF`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
+Помимо предустановленных брендов (`cloudConsole`, `giga-id`, `gitverse`, `snackUI`, варианты `hr*` и `site*`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
 
-Палитра применяется **CSS-правилом на бренд-классы** (`.sn-brandA/B/C/D/E`), а не inline-переменными на одном элементе. Это принципиально: компоненты, переобъявляющие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
+Палитра применяется **CSS-правилом на бренд-классы** (`.sn-cloudConsole`, `.sn-hrBlue` …), а не inline-переменными на одном элементе. Это принципиально: компоненты, переобъявляющие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
 
 - **Декларативно** — проп `brandColor` у `RootThemeProvider`. Добавляет scoped-правило на бренд-классы поддерева провайдера (доходит до вложенных переобъявлений):
 
@@ -300,7 +303,7 @@ export function CustomBrandColor() {
 
       {/* brandColor генерирует палитру `--sn-brand-color-primary-*` из одного seed-цвета — акцент
           компонентов ниже перекрашивается вслед за выбором. */}
-      <RootThemeProvider value={{ colorScheme: 'light', brand: 'brandA', brandRole: 'main' }} brandColor={color}>
+      <RootThemeProvider value={{ colorScheme: 'light', brand: 'cloudConsole' }} brandColor={color}>
         <Block>
           <Flex gap='2m' align='center' wrap>
             <Button appearance='primary' label='Действие' />
@@ -349,7 +352,7 @@ export function CustomBrandColorHook() {
       <SegmentControl items={COLOR_ITEMS} value={color} onChange={value => setColor(String(value))} />
 
       <div id={SCOPE_ID}>
-        <RootThemeProvider value={{ colorScheme: 'light', brand: 'brandA', brandRole: 'main' }}>
+        <RootThemeProvider value={{ colorScheme: 'light', brand: 'cloudConsole' }}>
           <Block>
             <Flex gap='2m' align='center' wrap>
               <Button appearance='primary' label='Внутри scope' />

@@ -2,6 +2,8 @@ import { Button } from '@ds/button';
 import { BurgerSVG } from '@ds/icons/interface/product';
 import { useEffect, useState } from 'react';
 
+import { withDocsChrome } from './DocsChromeScope';
+
 function applyNav(open: boolean) {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('nav-overlay');
@@ -11,7 +13,7 @@ function applyNav(open: boolean) {
   document.body.style.overflow = open ? 'hidden' : '';
 }
 
-export function MobileNavToggle() {
+function MobileNavToggleContent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -57,3 +59,5 @@ export function MobileNavToggle() {
     />
   );
 }
+
+export const MobileNavToggle = withDocsChrome(MobileNavToggleContent);

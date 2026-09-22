@@ -1,4 +1,4 @@
-import { FILE_EXTENSIONS } from '../constants/index.js';
+import { BASE_LAYERS_CONFIG, FILE_EXTENSIONS } from '../constants/index.js';
 import type { AnyRecord, TokenSet } from '../types.js';
 import { compareSystemLayers, isComponentGroup, isStylesGroup, isSystemLayer } from './groupUtils.js';
 import { joinPath, normalizeTokenPath, splitTokenPath } from './pathUtils.js';
@@ -103,7 +103,7 @@ export function sortSystemLayers(tokenSets: TokenSet[]): TokenSet[] {
  * Уникальные группы системных слоёв в порядке номера (01_… → 99_…).
  *
  * `systemLayers` — это наборы токенов, а не слои: у слоя с несколькими модификациями
- * (02_density → compact/comfort/spacious) группа повторяется. Слайсы по BASE_LAYERS_CONFIG
+ * (03_density → compact/comfort/spacious) группа повторяется. Слайсы по BASE_LAYERS_CONFIG
  * должны считаться по слоям, поэтому дубликаты снимаем.
  */
 export function getSystemLayerGroups(systemLayers: TokenSet[]): string[] {
@@ -111,27 +111,22 @@ export function getSystemLayerGroups(systemLayers: TokenSet[]): string[] {
 }
 
 export function buildFallbackIncludePaths(tokenSets: TokenSet[]): string[] {
-  const systemLayers = sortSystemLayers(getSystemLayers(tokenSets));
+  const systemLayerGroups = getSystemLayerGroups(sortSystemLayers(getSystemLayers(tokenSets)));
   const fallback: TokenSet[] = [];
 
-  // Добавляем первые два слоя полностью
-  const [firstLayer, secondLayer] = systemLayers;
-
-  if (firstLayer) {
-    fallback.push(...getTokenSetsByGroup(tokenSets, firstLayer.group));
-  }
-  if (secondLayer) {
-    fallback.push(...getTokenSetsByGroup(tokenSets, secondLayer.group));
+  // Базовые слои добавляем полностью
+  for (const group of systemLayerGroups.slice(BASE_LAYERS_CONFIG.START_INDEX, BASE_LAYERS_CONFIG.END_INDEX)) {
+    fallback.push(...getTokenSetsByGroup(tokenSets, group));
   }
 
-  // Добавляем первые токены из оставшихся системных слоев
-  const remainingLayers = systemLayers.slice(2);
-  for (const layer of remainingLayers) {
-    fallback.push(...getFirstTokenSetByGroup(tokenSets, layer.group));
+  // Из остальных системных слоёв — только первый набор: несколько наборов одного слоя
+  // перезаписали бы друг друга, и fallback взял бы значения последнего (например, webMobile вместо webDesktop)
+  for (const group of systemLayerGroups.slice(BASE_LAYERS_CONFIG.END_INDEX)) {
+    fallback.push(...getFirstTokenSetByGroup(tokenSets, group));
   }
 
   // Добавляем токены из тем (группа начинается с цифры и содержит "theme")
-  // Это нужно для резолва ссылок, например, box-shadow в 99_styles ссылается на токены из 04_theme
+  // Это нужно для резолва ссылок, например, box-shadow в 99_styles ссылается на токены из 05_theme
   const themeTokenSets = tokenSets.filter(tokenSet => /^\d+.*theme/i.test(tokenSet.group));
   fallback.push(...themeTokenSets);
 

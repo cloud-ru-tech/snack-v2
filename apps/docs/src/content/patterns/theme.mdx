@@ -8,7 +8,7 @@ order: 3
 
 Дизайн-система разделяет оформление на два слоя:
 
-- **Оси — в React-контексте.** Значения `colorScheme`, `brand`, `brandRole`, `density`, `acrylic` живут в контексте `@ds/theme`, а не в пропах каждого компонента. Источник — один `RootThemeProvider` в корне приложения.
+- **Оси — в React-контексте.** Значения `colorScheme`, `brand`, `platform`, `density`, `acrylic` живут в контексте `@ds/theme`, а не в пропах каждого компонента. Источник — один `RootThemeProvider` в корне приложения.
 - **Классы — на DOM-границе.** Из осей контекста на границу провайдера эмитится **полный** набор CSS-классов `sn-*` из `@cloud-ru/figma-variables`. Контракт значения контекста (пять осей) не растёт с числом компонентов, поэтому он устойчив к версиям в **микрофронтах (MFE)** и безопасен для **SSR**.
 
 Поверх этого приложение может **переопределить любую ось в поддереве** (`ChildThemeProvider`), **зафиксировать ось в одном компоненте** (`useThemeClassnames`) и **управлять цветовой схемой light/dark** без моргания на загрузке (`useColorScheme` + SSR/bootstrap).
@@ -24,7 +24,7 @@ import { ChildThemeProvider, getGlobalThemeStore, RootThemeProvider, useColorSch
 function App({ children }: { children: ReactNode }) {
   const { colorScheme } = useColorScheme();
   return (
-    <RootThemeProvider value={{ colorScheme, brand: 'brandA', density: 'comfort' }} rootRef={htmlRef}>
+    <RootThemeProvider value={{ colorScheme, brand: 'cloudConsole', density: 'comfort' }} rootRef={htmlRef}>
       {children}
     </RootThemeProvider>
   );
@@ -35,7 +35,7 @@ function App({ children }: { children: ReactNode }) {
 getGlobalThemeStore().setAppearance({ colorScheme: 'dark' });
 
 // Часть дерева в другом бренде — относительное переопределение поверх контекста.
-<ChildThemeProvider value={{ brand: 'brandB' }}>{section}</ChildThemeProvider>;
+<ChildThemeProvider value={{ brand: 'snackUI' }}>{section}</ChildThemeProvider>;
 ```
 
 `rootRef` — внешний элемент (обычно `<html>`/`<body>`), на который ставится полный набор `sn-*`. Без него провайдер оборачивает children в собственный `<div>` с этим набором.
@@ -47,12 +47,38 @@ getGlobalThemeStore().setAppearance({ colorScheme: 'dark' });
 | Ось | Константа | Значения → класс |
 |---|---|---|
 | Цветовая схема | `COLOR_SCHEME` | `light` → `sn-light`, `dark` → `sn-dark` |
-| Бренд | `BRAND` | `brandA` / `brandB` / `brandC` / `brandD` / `brandE` / `brandF` → `sn-brandA` … |
-| Роль бренда (палитра) | `BRAND_ROLE` | `main` / `alter` / `alter2…4` → `sn-main` … |
+| Бренд | `BRAND` | `cloudConsole` / `giga-id` / `gitverse` / `snackUI` / `hrBlue` … `hrYellow` / `siteBlue` … `siteYellow` → `sn-cloudConsole` … |
+| Платформа | `PLATFORM` | `webDesktop` / `webMobile` → `sn-webDesktop` … |
 | Плотность | `DENSITY` | `comfort` / `compact` / `spacious` → `sn-comfort` … |
 | Акрил (blur-материал) | — (`boolean`) | `true` → `sn-yes`, `false` → `sn-no` |
 
-Базовые слои (`sn-base-styles`, `sn-figmaStyles`, `sn-components`) эмитятся всегда — вместе с осями они образуют полный набор на границе.
+Базовые слои (`sn-base-styles`, `sn-figmaStyles`, `sn-components`) и платформа эмитятся всегда — вместе с осями они образуют полный набор на границе.
+
+Бренды HR-портала и сайта заданы финальными цветовыми вариантами:
+
+- `hrBlue`, `hrGraphite`, `hrGreen`, `hrPurple`, `hrYellow` — HR-портал.
+- `siteBlue`, `siteGraphite`, `siteGreen`, `sitePurple`, `siteYellow` — сайт.
+
+Родительские слои `hrPortal` и `site` существуют только в Figma и в сборку токенов не попадают.
+
+### Платформа
+
+Платформа задаёт размеры, типографику и отступы, из которых плотность берёт свои значения, поэтому класс платформы всегда стоит рядом с классом плотности. Без значения ставится `webDesktop`.
+
+Тема не читает раскладку `@ds/adaptive` сама. Приложение передаёт согласованные значения в оба провайдера:
+
+```tsx
+import { AdaptiveProvider, isMobileLayout } from '@ds/adaptive'
+import { PLATFORM, RootThemeProvider } from '@ds/theme'
+
+const platform = isMobileLayout(layoutType) ? PLATFORM.WebMobile : PLATFORM.WebDesktop
+
+<AdaptiveProvider layoutType={layoutType}>
+  <RootThemeProvider value={{ colorScheme, brand, platform, density }}>{app}</RootThemeProvider>
+</AdaptiveProvider>;
+```
+
+`webMobile` соответствует только `layoutType: 'mobile'`: `tablet` / `desktopSmall` / `desktop` — `webDesktop`, как ветвление `isMobileLayout` в адаптивных компонентах.
 
 ## Как эмитятся классы
 
@@ -91,12 +117,12 @@ getGlobalThemeStore().setAppearance({ colorScheme: 'dark', density: 'compact' })
 В отличие от `RootThemeProvider` (абсолютное значение), `ChildThemeProvider` задаёт оформление **относительно**: читает ближайшего родителя и сливает поверх свои `value` (`Partial<ThemeAppearance>`). Незаданные оси наследуются, а не сбрасываются.
 
 ```tsx
-// Всё приложение — brandA / comfort; одна секция — brandB, остальные оси от родителя.
-<RootThemeProvider value={{ brand: 'brandA', density: 'comfort', colorScheme }}>
+// Всё приложение — cloudConsole / comfort; одна секция — snackUI, остальные оси от родителя.
+<RootThemeProvider value={{ brand: 'cloudConsole', density: 'comfort', colorScheme }}>
   <App />
 
-  <ChildThemeProvider value={{ brand: 'brandB' }}>
-    {/* brand=brandB, density=comfort и colorScheme унаследованы */}
+  <ChildThemeProvider value={{ brand: 'snackUI' }}>
+    {/* brand=snackUI, density=comfort и colorScheme унаследованы */}
     <PromoSection />
   </ChildThemeProvider>
 </RootThemeProvider>;
@@ -224,5 +250,5 @@ getThemeBootstrapScript({ storageKey: STORAGE_KEY });
 
 - [Theme](/components/theme) — справочник API пакета и живые примеры.
 - [Локализация — строки в пакетах](/patterns/localization) — та же двухслойная модель для строк.
-- [Adaptive](/components/adaptive) — раскладка `layoutType` (источник `density` в приложении).
+- [Adaptive](/components/adaptive) — раскладка `layoutType`, согласованная с платформой темы.
 - [PortalContext](/components/portal-context) — корневой DOM-узел для порталов.

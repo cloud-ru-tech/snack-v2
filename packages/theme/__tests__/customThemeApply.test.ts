@@ -8,8 +8,8 @@ import { useApplyCustomTheme } from '../src/hooks/useApplyCustomTheme';
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
-const BRAND_VAR = '--sn-brand-color-primary-55';
-const BRAND_SELECTOR = ':is(.sn-brandA,.sn-brandB,.sn-brandC,.sn-brandD,.sn-brandE,.sn-brandF)';
+const BRAND_VAR = '--sn-brand-color-primary-50';
+const BRAND_SELECTOR = `:is(${'.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow'})`;
 
 /** Разворачивает nullable без non-null assertion (`!` запрещён линтером). */
 function nn<T>(value: T | null | undefined): T {
@@ -52,7 +52,7 @@ describe('RootThemeProvider brandColor — scoped <style> на бренд-кла
   it('wrapper-режим: рендерит scoped-правило на бренд-классы + scope-атрибут (не inline)', () => {
     const container = mount(
       h(RootThemeProvider, {
-        value: { colorScheme: 'light', brand: 'brandA' },
+        value: { colorScheme: 'light', brand: 'cloudConsole' },
         brandColor: '#ff7a00',
         children: h('span', null, 'x'),
       }),
@@ -61,14 +61,14 @@ describe('RootThemeProvider brandColor — scoped <style> на бренд-кла
     const scopeId = wrapper.getAttribute('data-ds-brand-scope');
 
     expect(scopeId).toBeTruthy();
-    expect(wrapper.className).toContain('sn-brandA');
+    expect(wrapper.className).toContain('sn-cloudConsole');
 
     const css = nn(container.querySelector('style')).textContent ?? '';
     expect(css).toContain(BRAND_SELECTOR);
     expect(css).toContain(`[data-ds-brand-scope="${scopeId}"]`);
     expect(css).toContain(`${BRAND_VAR}:#ff7a00`);
-    expect(css).toContain('--sn-brand-color-primary-transparent:#ff7a0024');
-    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a0026');
+    expect(css).toContain('--sn-brand-color-primary-transparent:#ff7a001a');
+    expect(css).toContain('--sn-brand-color-state-activated-default-background:#ff7a001a');
     // Вариант A ушёл от inline-переменных.
     expect(wrapper.style.getPropertyValue(BRAND_VAR)).toBe('');
   });

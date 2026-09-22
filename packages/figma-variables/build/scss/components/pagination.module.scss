@@ -5,7 +5,7 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
-$sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-m});
+$sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-4});
 $sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-minWidth: var(--sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-minWidth, #{st.$sn-primitive-dimension-32});
 $sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-borderRadius, #{st.$sn-brand-anatomy-radius-button-m});
 $sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-height: var(--sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-height, #{st.$sn-primitive-dimension-32});
@@ -13,7 +13,7 @@ $sn-pagination-anatomy-size-m-paginationNumber-gap: var(--sn-pagination-anatomy-
 $sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-borderRadius, #{st.$sn-brand-anatomy-radius-button-s});
 $sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-minWidth: var(--sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-minWidth, #{st.$sn-primitive-dimension-24});
 $sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-height: var(--sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-height, #{st.$sn-primitive-dimension-24});
-$sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal, #{st.$sn-density-spacing-control-wrapper-horizontal-s});
+$sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-2});
 $sn-pagination-anatomy-size-s-paginationNumber-gap: var(--sn-pagination-anatomy-size-s-paginationNumber-gap, #{st.$sn-primitive-dimension-4});
 $sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-height: var(--sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-height, #{st.$sn-primitive-dimension-24});
 $sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-minWidth: var(--sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-minWidth, #{st.$sn-primitive-dimension-24});

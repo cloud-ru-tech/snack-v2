@@ -3,7 +3,7 @@
  */
   
 .sn-pagination {
-  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 8px);
+  --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-minWidth: var(--sn-primitive-dimension-32, 32px);
   --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-brand-anatomy-radius-button-m, 2px);
   --sn-pagination-anatomy-size-m-paginationNumber-itemPaginationNumber-height: var(--sn-primitive-dimension-32, 32px);
@@ -11,7 +11,7 @@
   --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-borderRadius: var(--sn-brand-anatomy-radius-button-s, 2px);
   --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-minWidth: var(--sn-primitive-dimension-24, 24px);
   --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-height: var(--sn-primitive-dimension-24, 24px);
-  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-s, 8px);
+  --sn-pagination-anatomy-size-s-paginationNumber-itemPaginationNumber-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
   --sn-pagination-anatomy-size-s-paginationNumber-gap: var(--sn-primitive-dimension-4, 4px);
   --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-height: var(--sn-primitive-dimension-24, 24px);
   --sn-pagination-anatomy-size-s-paginationSlider-itemPaginationSlider-minWidth: var(--sn-primitive-dimension-24, 24px);

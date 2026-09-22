@@ -9,7 +9,7 @@ export function mergeAppearance(parent: ThemeAppearance, overrides: Partial<Them
   return {
     colorScheme: overrides.colorScheme ?? parent.colorScheme,
     brand: overrides.brand ?? parent.brand,
-    brandRole: overrides.brandRole ?? parent.brandRole,
+    platform: overrides.platform ?? parent.platform,
     density: overrides.density ?? parent.density,
     acrylic: overrides.acrylic ?? parent.acrylic,
   };

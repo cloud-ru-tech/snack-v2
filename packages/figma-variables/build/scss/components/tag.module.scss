@@ -5,20 +5,11 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
-$sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-4});
-$sn-tag-anatomy-size-m-container-minHeight: var(--sn-tag-anatomy-size-m-container-minHeight, #{st.$sn-primitive-dimension-32});
-$sn-tag-anatomy-size-m-container-borderRadius: var(--sn-tag-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-tag-m});
-$sn-tag-anatomy-size-m-container-paddingHorizontal: var(--sn-tag-anatomy-size-m-container-paddingHorizontal, #{st.$sn-primitive-dimension-4});
-$sn-tag-anatomy-size-m-container-minWidth: var(--sn-tag-anatomy-size-m-container-minWidth, #{st.$sn-primitive-dimension-32});
-$sn-tag-anatomy-size-m-container-borderWidth: var(--sn-tag-anatomy-size-m-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
-$sn-tag-anatomy-size-m-tagRow-gap: var(--sn-tag-anatomy-size-m-tagRow-gap, #{st.$sn-primitive-dimension-4});
-$sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-2});
-$sn-tag-anatomy-size-s-container-paddingHorizontal: var(--sn-tag-anatomy-size-s-container-paddingHorizontal, #{st.$sn-primitive-dimension-4});
-$sn-tag-anatomy-size-s-container-borderRadius: var(--sn-tag-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-tag-s});
-$sn-tag-anatomy-size-s-container-minHeight: var(--sn-tag-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
-$sn-tag-anatomy-size-s-container-minWidth: var(--sn-tag-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
-$sn-tag-anatomy-size-s-container-borderWidth: var(--sn-tag-anatomy-size-s-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
-$sn-tag-anatomy-size-s-tagRow-gap: var(--sn-tag-anatomy-size-s-tagRow-gap, #{st.$sn-primitive-dimension-2});
+$sn-tag-anatomy-size-xs-text-fontFamily: var(--sn-tag-anatomy-size-xs-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-tag-anatomy-size-xs-text-fontSize: var(--sn-tag-anatomy-size-xs-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-tag-anatomy-size-xs-text-lineHeight: var(--sn-tag-anatomy-size-xs-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-tag-anatomy-size-xs-text-fontWeight: var(--sn-tag-anatomy-size-xs-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-tag-anatomy-size-xs-text-letterSpacing: var(--sn-tag-anatomy-size-xs-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
 $sn-tag-anatomy-size-xs-container-minHeight: var(--sn-tag-anatomy-size-xs-container-minHeight, #{st.$sn-primitive-dimension-16});
 $sn-tag-anatomy-size-xs-container-borderRadius: var(--sn-tag-anatomy-size-xs-container-borderRadius, #{st.$sn-brand-anatomy-radius-tag-xs});
 $sn-tag-anatomy-size-xs-container-paddingHorizontal: var(--sn-tag-anatomy-size-xs-container-paddingHorizontal, #{st.$sn-primitive-dimension-2});
@@ -26,45 +17,48 @@ $sn-tag-anatomy-size-xs-container-textWrapper-paddingHorizontal: var(--sn-tag-an
 $sn-tag-anatomy-size-xs-container-minWidth: var(--sn-tag-anatomy-size-xs-container-minWidth, #{st.$sn-primitive-dimension-16});
 $sn-tag-anatomy-size-xs-container-borderWidth: var(--sn-tag-anatomy-size-xs-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
 $sn-tag-anatomy-size-xs-tagRow-gap: var(--sn-tag-anatomy-size-xs-tagRow-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-xs});
+$sn-tag-anatomy-size-xs-buttonRemove-icon-square: var(--sn-tag-anatomy-size-xs-buttonRemove-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-tag-anatomy-size-xs-buttonRemove-icon-strokeWeight: var(--sn-tag-anatomy-size-xs-buttonRemove-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-tag-anatomy-size-s-text-fontFamily: var(--sn-tag-anatomy-size-s-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-tag-anatomy-size-s-text-fontSize: var(--sn-tag-anatomy-size-s-text-fontSize, #{st.$sn-primitive-font-fontSize-11});
+$sn-tag-anatomy-size-s-text-lineHeight: var(--sn-tag-anatomy-size-s-text-lineHeight, #{st.$sn-primitive-font-lineHeight-14});
+$sn-tag-anatomy-size-s-text-fontWeight: var(--sn-tag-anatomy-size-s-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-s});
+$sn-tag-anatomy-size-s-text-letterSpacing: var(--sn-tag-anatomy-size-s-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
+$sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal: var(--sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-2});
+$sn-tag-anatomy-size-s-container-paddingHorizontal: var(--sn-tag-anatomy-size-s-container-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-tag-anatomy-size-s-container-borderRadius: var(--sn-tag-anatomy-size-s-container-borderRadius, #{st.$sn-brand-anatomy-radius-tag-s});
+$sn-tag-anatomy-size-s-container-minHeight: var(--sn-tag-anatomy-size-s-container-minHeight, #{st.$sn-primitive-dimension-24});
+$sn-tag-anatomy-size-s-container-minWidth: var(--sn-tag-anatomy-size-s-container-minWidth, #{st.$sn-primitive-dimension-24});
+$sn-tag-anatomy-size-s-container-borderWidth: var(--sn-tag-anatomy-size-s-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-tag-anatomy-size-s-tagRow-gap: var(--sn-tag-anatomy-size-s-tagRow-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-xs});
+$sn-tag-anatomy-size-s-buttonRemove-icon-square: var(--sn-tag-anatomy-size-s-buttonRemove-icon-square, #{st.$sn-primitive-dimension-16});
+$sn-tag-anatomy-size-s-buttonRemove-icon-strokeWeight: var(--sn-tag-anatomy-size-s-buttonRemove-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeRegular});
+$sn-tag-anatomy-size-m-text-fontFamily: var(--sn-tag-anatomy-size-m-text-fontFamily, #{st.$sn-brand-font-fontFamily-regular-label});
+$sn-tag-anatomy-size-m-text-fontSize: var(--sn-tag-anatomy-size-m-text-fontSize, #{st.$sn-primitive-font-fontSize-12});
+$sn-tag-anatomy-size-m-text-lineHeight: var(--sn-tag-anatomy-size-m-text-lineHeight, #{st.$sn-primitive-font-lineHeight-16});
+$sn-tag-anatomy-size-m-text-fontWeight: var(--sn-tag-anatomy-size-m-text-fontWeight, #{st.$sn-theme-typography-fontWeight-regular-label-m});
+$sn-tag-anatomy-size-m-text-letterSpacing: var(--sn-tag-anatomy-size-m-text-letterSpacing, #{st.$sn-primitive-font-letterSpacing-s});
+$sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-tag-anatomy-size-m-container-minHeight: var(--sn-tag-anatomy-size-m-container-minHeight, #{st.$sn-primitive-dimension-32});
+$sn-tag-anatomy-size-m-container-borderRadius: var(--sn-tag-anatomy-size-m-container-borderRadius, #{st.$sn-brand-anatomy-radius-tag-m});
+$sn-tag-anatomy-size-m-container-paddingHorizontal: var(--sn-tag-anatomy-size-m-container-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-tag-anatomy-size-m-container-minWidth: var(--sn-tag-anatomy-size-m-container-minWidth, #{st.$sn-primitive-dimension-32});
+$sn-tag-anatomy-size-m-container-borderWidth: var(--sn-tag-anatomy-size-m-container-borderWidth, #{st.$sn-brand-anatomy-line-button-strokeWeight});
+$sn-tag-anatomy-size-m-tagRow-gap: var(--sn-tag-anatomy-size-m-tagRow-gap, #{st.$sn-density-spacing-control-wrapper-horizontal-xs});
+$sn-tag-anatomy-size-m-buttonRemove-icon-square: var(--sn-tag-anatomy-size-m-buttonRemove-icon-square, #{st.$sn-primitive-dimension-24});
+$sn-tag-anatomy-size-m-buttonRemove-icon-strokeWeight: var(--sn-tag-anatomy-size-m-buttonRemove-icon-strokeWeight, #{st.$sn-primitive-strokeWeight-strokeMedium});
 
 $tag: (
   "anatomy": (
     "size": (
-      "m": (
-        "container": (
-          "textWrapper": (
-            "padding-left": $sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal,
-            "padding-right": $sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal
-          ),
-          "min-height": $sn-tag-anatomy-size-m-container-minHeight,
-          "border-radius": $sn-tag-anatomy-size-m-container-borderRadius,
-          "padding-left": $sn-tag-anatomy-size-m-container-paddingHorizontal,
-          "padding-right": $sn-tag-anatomy-size-m-container-paddingHorizontal,
-          "min-width": $sn-tag-anatomy-size-m-container-minWidth,
-          "border-width": $sn-tag-anatomy-size-m-container-borderWidth
-        ),
-        "tagRow": (
-          "gap": $sn-tag-anatomy-size-m-tagRow-gap
-        )
-      ),
-      "s": (
-        "container": (
-          "textWrapper": (
-            "padding-left": $sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal,
-            "padding-right": $sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal
-          ),
-          "padding-left": $sn-tag-anatomy-size-s-container-paddingHorizontal,
-          "padding-right": $sn-tag-anatomy-size-s-container-paddingHorizontal,
-          "border-radius": $sn-tag-anatomy-size-s-container-borderRadius,
-          "min-height": $sn-tag-anatomy-size-s-container-minHeight,
-          "min-width": $sn-tag-anatomy-size-s-container-minWidth,
-          "border-width": $sn-tag-anatomy-size-s-container-borderWidth
-        ),
-        "tagRow": (
-          "gap": $sn-tag-anatomy-size-s-tagRow-gap
-        )
-      ),
       "xs": (
+        "text": (
+          "font-family": $sn-tag-anatomy-size-xs-text-fontFamily,
+          "font-size": $sn-tag-anatomy-size-xs-text-fontSize,
+          "line-height": $sn-tag-anatomy-size-xs-text-lineHeight,
+          "font-weight": $sn-tag-anatomy-size-xs-text-fontWeight,
+          "letter-spacing": $sn-tag-anatomy-size-xs-text-letterSpacing
+        ),
         "container": (
           "min-height": $sn-tag-anatomy-size-xs-container-minHeight,
           "border-radius": $sn-tag-anatomy-size-xs-container-borderRadius,
@@ -79,6 +73,75 @@ $tag: (
         ),
         "tagRow": (
           "gap": $sn-tag-anatomy-size-xs-tagRow-gap
+        ),
+        "buttonRemove": (
+          "icon": (
+            "width": $sn-tag-anatomy-size-xs-buttonRemove-icon-square,
+            "height": $sn-tag-anatomy-size-xs-buttonRemove-icon-square,
+            "border-width": $sn-tag-anatomy-size-xs-buttonRemove-icon-strokeWeight
+          )
+        )
+      ),
+      "s": (
+        "text": (
+          "font-family": $sn-tag-anatomy-size-s-text-fontFamily,
+          "font-size": $sn-tag-anatomy-size-s-text-fontSize,
+          "line-height": $sn-tag-anatomy-size-s-text-lineHeight,
+          "font-weight": $sn-tag-anatomy-size-s-text-fontWeight,
+          "letter-spacing": $sn-tag-anatomy-size-s-text-letterSpacing
+        ),
+        "container": (
+          "textWrapper": (
+            "padding-left": $sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal,
+            "padding-right": $sn-tag-anatomy-size-s-container-textWrapper-paddingHorizontal
+          ),
+          "padding-left": $sn-tag-anatomy-size-s-container-paddingHorizontal,
+          "padding-right": $sn-tag-anatomy-size-s-container-paddingHorizontal,
+          "border-radius": $sn-tag-anatomy-size-s-container-borderRadius,
+          "min-height": $sn-tag-anatomy-size-s-container-minHeight,
+          "min-width": $sn-tag-anatomy-size-s-container-minWidth,
+          "border-width": $sn-tag-anatomy-size-s-container-borderWidth
+        ),
+        "tagRow": (
+          "gap": $sn-tag-anatomy-size-s-tagRow-gap
+        ),
+        "buttonRemove": (
+          "icon": (
+            "width": $sn-tag-anatomy-size-s-buttonRemove-icon-square,
+            "height": $sn-tag-anatomy-size-s-buttonRemove-icon-square,
+            "border-width": $sn-tag-anatomy-size-s-buttonRemove-icon-strokeWeight
+          )
+        )
+      ),
+      "m": (
+        "text": (
+          "font-family": $sn-tag-anatomy-size-m-text-fontFamily,
+          "font-size": $sn-tag-anatomy-size-m-text-fontSize,
+          "line-height": $sn-tag-anatomy-size-m-text-lineHeight,
+          "font-weight": $sn-tag-anatomy-size-m-text-fontWeight,
+          "letter-spacing": $sn-tag-anatomy-size-m-text-letterSpacing
+        ),
+        "container": (
+          "textWrapper": (
+            "padding-left": $sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal,
+            "padding-right": $sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal
+          ),
+          "min-height": $sn-tag-anatomy-size-m-container-minHeight,
+          "border-radius": $sn-tag-anatomy-size-m-container-borderRadius,
+          "padding-left": $sn-tag-anatomy-size-m-container-paddingHorizontal,
+          "padding-right": $sn-tag-anatomy-size-m-container-paddingHorizontal,
+          "min-width": $sn-tag-anatomy-size-m-container-minWidth,
+          "border-width": $sn-tag-anatomy-size-m-container-borderWidth
+        ),
+        "tagRow": (
+          "gap": $sn-tag-anatomy-size-m-tagRow-gap
+        ),
+        "buttonRemove": (
+          "icon": (
+            "width": $sn-tag-anatomy-size-m-buttonRemove-icon-square,
+            "height": $sn-tag-anatomy-size-m-buttonRemove-icon-square,
+            "border-width": $sn-tag-anatomy-size-m-buttonRemove-icon-strokeWeight
+          )
         )
       )
     )

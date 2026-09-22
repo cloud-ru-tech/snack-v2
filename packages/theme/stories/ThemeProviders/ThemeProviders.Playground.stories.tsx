@@ -24,7 +24,7 @@ type Story = StoryObj;
 
 /** Акцентный тон бренда, унаследованный элементом из ближайшего провайдера. */
 function accentTone(element: Element): string {
-  return getComputedStyle(element).getPropertyValue('--sn-brand-color-primary-55').trim();
+  return getComputedStyle(element).getPropertyValue('--sn-brand-color-primary-50').trim();
 }
 
 function RootChildDemo() {
@@ -32,22 +32,22 @@ function RootChildDemo() {
   const { appearance } = useThemeAppearance();
 
   return (
-    <RootThemeProvider value={{ ...appearance, brand: 'brandA', brandRole: 'main', density: 'comfort' }}>
+    <RootThemeProvider value={{ ...appearance, brand: 'cloudConsole', density: 'comfort' }}>
       <div className={styles.stack}>
         <ThemedShowcase
           testId={TEST_IDS.rootRegion}
           caption={
             <>
-              Root — <code>brandA · comfort</code>
+              Root — <code>cloudConsole · comfort</code>
             </>
           }
         />
-        <ChildThemeProvider value={{ brand: 'brandC', density: 'spacious' }}>
+        <ChildThemeProvider value={{ brand: 'snackUI', density: 'spacious' }}>
           <ThemedShowcase
             testId={TEST_IDS.childRegion}
             caption={
               <>
-                Child — <code>brandC · spacious</code> (colorScheme наследуется)
+                Child — <code>snackUI · spacious</code> (colorScheme наследуется)
               </>
             }
           />
@@ -66,8 +66,8 @@ export const Playground: Story = {
         <DemoHint>
           <code>ChildThemeProvider</code> переопределяет оси в поддереве (здесь <code>brand</code> и{' '}
           <code>density</code>) поверх родителя; остальные оси (<code>colorScheme</code> из тулбар-аддона,{' '}
-          <code>brandRole</code>) наследуются. У вложенного showcase другой акцент и отступы — видно, что
-          переопределение работает.
+          <code>platform</code> из декоратора Storybook) наследуются. У вложенного showcase другой акцент и отступы —
+          видно, что переопределение работает.
         </DemoHint>
         <DemoActions block>
           <RootChildDemo />

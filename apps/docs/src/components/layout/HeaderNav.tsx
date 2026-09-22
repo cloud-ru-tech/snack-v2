@@ -1,8 +1,9 @@
 import { Button } from '@ds/button';
 
 import { withBase } from '../../lib/base-url';
+import { withDocsChrome } from './DocsChromeScope';
 
-export function HeaderNav() {
+function HeaderNavContent() {
   return (
     <nav className='header-nav' aria-label='Header navigation'>
       {/* <Button as='a' label='Components' href={withBase('/components/button')} appearance='neutral' view='outline' /> */}
@@ -17,3 +18,5 @@ export function HeaderNav() {
     </nav>
   );
 }
+
+export const HeaderNav = withDocsChrome(HeaderNavContent);

@@ -1,0 +1,36 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+  
+.sn-fieldDecorator {
+  --sn-fieldDecorator-size-s-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-s-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-s-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightM, 20px);
+  --sn-fieldDecorator-size-s-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-s-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightS, 16px);
+  --sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-fieldDecorator-size-s-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-fieldDecorator-size-s-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-fieldDecorator-size-s-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-fieldDecorator-size-l-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-l-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-l-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightL, 24px);
+  --sn-fieldDecorator-size-l-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-l-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightL, 24px);
+  --sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-fieldDecorator-size-l-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-fieldDecorator-size-l-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-fieldDecorator-size-l-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-fieldDecorator-size-m-labelWrapper-labelContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-m-labelWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-m-labelWrapper-questionTooltipWrapper-maxHeight: var(--sn-density-typography-roleLabel-lineHeightM, 20px);
+  --sn-fieldDecorator-size-m-hintWrapper-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-fieldDecorator-size-m-hintWrapper-hintContent-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-height: var(--sn-density-typography-roleLabel-lineHeightM, 20px);
+  --sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-square: var(--sn-primitive-dimension-16, 16px);
+  --sn-fieldDecorator-size-m-hintWrapper-hintContent-iconWrapper-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
+  --sn-fieldDecorator-size-m-gap: var(--sn-primitive-dimension-4, 4px);
+  --sn-fieldDecorator-size-m-slotDecorator-gap: var(--sn-primitive-dimension-4, 4px);
+}

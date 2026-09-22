@@ -7,12 +7,12 @@
   --sn-acrylic-colorEffect1Level: var(--sn-theme-effect-acrylic-color1Level, #929292);
   --sn-acrylic-colorEffect: var(--sn-theme-effect-acrylic-color, #1c1c1c);
   --sn-acrylic-effect: "false";
-  --sn-acrylic-kitService-modeName: "07_acrylic:";
-  --sn-acrylic-kitService-modificationName: "no";
-  --sn-acrylic-blurBackground1Level: 0;
+  --sn-acrylic-kitService-text-modeName: "07_acrylic-suspended:";
+  --sn-acrylic-kitService-text-modificationName: "no";
+  --sn-acrylic-blurBackground1Level: 0px;
   --sn-acrylic-opacityBackground: 1;
-  --sn-acrylic-blurBackground2Level: 0;
-  --sn-acrylic-blurBackground: 0;
+  --sn-acrylic-blurBackground2Level: 0px;
+  --sn-acrylic-blurBackground: 0px;
   --sn-acrylic-opacityBackground1Level: 1;
   --sn-acrylic-opacityBackground2Level: 1;
 }

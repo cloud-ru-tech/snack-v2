@@ -1,9 +1,10 @@
 import { Button } from '@ds/button';
 
 import { getStorybookBaseUrl } from '../../lib/storybook-url';
+import { withDocsChrome } from './DocsChromeScope';
 import { StorybookLogo } from './logo/StorybookLogo';
 
-export function StorybookLink() {
+function StorybookLinkContent() {
   return (
     <Button
       as='a'
@@ -17,3 +18,5 @@ export function StorybookLink() {
     />
   );
 }
+
+export const StorybookLink = withDocsChrome(StorybookLinkContent);

@@ -3,6 +3,7 @@ import { QuestionTooltip } from '@ds/tooltip';
 import { Tree } from '@ds/tree';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { withDocsChrome } from './DocsChromeScope';
 import styles from './NavTree.module.scss';
 
 // Тип выводим из значения `Tree`, а не импортом типа из @ds/*: vite SSR docs ломает value-импорт чистого типа.
@@ -148,7 +149,7 @@ function buildTreeData(nav: NavGroupData[], descriptions: Record<string, string>
   }));
 }
 
-export function NavTree({ nav, descriptions, currentPath }: NavTreeProps) {
+function NavTreeContent({ nav, descriptions, currentPath }: NavTreeProps) {
   const data = useMemo(() => buildTreeData(nav, descriptions), [nav, descriptions]);
   const expandIndex = useMemo(() => buildExpandIndex(nav), [nav]);
   // Нормализованный href → id узла (href со слешем) для `selected`.
@@ -231,3 +232,5 @@ export function NavTree({ nav, descriptions, currentPath }: NavTreeProps) {
     </nav>
   );
 }
+
+export const NavTree = withDocsChrome(NavTreeContent);

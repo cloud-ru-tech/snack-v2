@@ -113,8 +113,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: base.$sn-density-size-icon-m;
-  height: base.$sn-density-size-icon-m;
+  width: base.$sn-density-icon-m;
+  height: base.$sn-density-icon-m;
   border: none;
   border-radius: base.$sn-primitive-dimension-4;
 
@@ -178,7 +178,8 @@ body {
 // (хедер z-index: 50), поэтому Modal/Drawer/Popover/Tooltip перекрывают и хедер, и сайдбар.
 // Внутри контейнера оверлеи стекаются по DOM-порядку (их собственный z-index = 0), так что
 // тултип, открытый из модалки, остаётся над ней.
-#ds-portal-root {
+#ds-portal-root,
+#docs-chrome-portal-root {
   position: relative;
   z-index: l.$docs-z-portal;
 }
