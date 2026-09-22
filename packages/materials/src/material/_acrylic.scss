@@ -35,7 +35,7 @@ $levels: 'default', '1Level', '2Level';
     &[data-acrylic-appearance='#{$appearance}'] {
       @if $appearance == 'transparent' {
         @include m.with-acrylic-layers(
-          base.simple-var(base.$sn-acrylic, 'blurBackground1Level'),
+          base.simple-var(base.$sn-acrylic, 'backdropFilter1Level'),
           base.simple-var(base.$sn-acrylic, 'colorEffect1Level'),
           base.simple-var(base.$sn-acrylic, 'opacityBackground1Level'),
           transparent,
@@ -46,7 +46,7 @@ $levels: 'default', '1Level', '2Level';
 
       @if $appearance == 'decorTransparent' {
         @include m.with-acrylic-layers(
-          base.simple-var(base.$sn-acrylic, 'blurBackground1Level'),
+          base.simple-var(base.$sn-acrylic, 'backdropFilter1Level'),
           base.simple-var(base.$sn-acrylic, 'colorEffect1Level'),
           base.simple-var(base.$sn-acrylic, 'opacityBackground1Level'),
           base.simple-var(base.$sn-theme, 'color', 'neutral', 'decorTransparent'),
@@ -60,7 +60,7 @@ $levels: 'default', '1Level', '2Level';
           &[data-acrylic-level='#{$level}'] {
             @if $level == 'default' {
               @include m.with-acrylic-layers(
-                base.$sn-acrylic-blurBackground,
+                base.$sn-acrylic-backdropFilter,
                 base.$sn-acrylic-colorEffect,
                 base.$sn-acrylic-opacityBackground,
                 base.simple-var(base.$sn-theme, 'color', $appearance, 'background'),
@@ -71,7 +71,7 @@ $levels: 'default', '1Level', '2Level';
 
             @if $level != 'default' {
               @include m.with-acrylic-layers(
-                base.simple-var(base.$sn-acrylic, 'blurBackground#{$level}'),
+                base.simple-var(base.$sn-acrylic, 'backdropFilter#{$level}'),
                 base.simple-var(base.$sn-acrylic, 'colorEffect#{$level}'),
                 base.simple-var(base.$sn-acrylic, 'opacityBackground#{$level}'),
                 base.simple-var(base.$sn-theme, 'color', $appearance, 'background#{$level}'),
