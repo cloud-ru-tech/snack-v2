@@ -4,7 +4,7 @@ import StyleDictionary, { type Config } from 'style-dictionary';
 import { getStyleDictionaryLogConfig } from '../config/getStyleDictionaryLogConfig.js';
 import { createExcludeGroupsFilter } from '../filters/ExcludeGroupsFilter.js';
 import { createGroupFilter } from '../filters/GroupFilter.js';
-import { FilterName, FormatName, type TokenSet } from '../types.js';
+import { FilterName, FormatName, type TokenSet, PreprocessorName } from '../types.js';
 import { collectThemeIncludes } from '../utils/themeIncludes.js';
 import { toFilePaths } from '../utils/tokenSets.js';
 
@@ -79,7 +79,7 @@ export async function getSCSSConfig({
   return {
     source,
     include,
-    preprocessors: ['tokens-studio'],
+    preprocessors: ['tokens-studio', PreprocessorName.AcrylicBackdropFilter],
     log: getStyleDictionaryLogConfig(),
     platforms: {
       css: {

@@ -2156,6 +2156,9 @@ export const TYPOGRAPHY_BY_SIZE: Record<string, string> = {
 };
 
 export const THEME_CSS_VAR_NAMES: string[] = [
+  '--sn-acrylic-backdropFilter',
+  '--sn-acrylic-backdropFilter1Level',
+  '--sn-acrylic-backdropFilter2Level',
   '--sn-acrylic-blurBackground',
   '--sn-acrylic-blurBackground1Level',
   '--sn-acrylic-blurBackground2Level',
@@ -3663,6 +3666,9 @@ export const THEME_CSS_VAR_NAMES: string[] = [
 ];
 
 export const CSS_VAR_TO_JS_PATH: Record<string, string> = {
+  '--sn-acrylic-backdropFilter': 'sn.acrylic.backdropFilter',
+  '--sn-acrylic-backdropFilter1Level': 'sn.acrylic.backdropFilter1Level',
+  '--sn-acrylic-backdropFilter2Level': 'sn.acrylic.backdropFilter2Level',
   '--sn-acrylic-blurBackground': 'sn.acrylic.blurBackground',
   '--sn-acrylic-blurBackground1Level': 'sn.acrylic.blurBackground1Level',
   '--sn-acrylic-blurBackground2Level': 'sn.acrylic.blurBackground2Level',
@@ -7937,6 +7943,9 @@ export const CSS_VAR_TO_SCSS_MODULE: Record<string, string> = {
   'sn-acrylic-blurBackground': 'base',
   'sn-acrylic-opacityBackground1Level': 'base',
   'sn-acrylic-opacityBackground2Level': 'base',
+  'sn-acrylic-backdropFilter1Level': 'base',
+  'sn-acrylic-backdropFilter2Level': 'base',
+  'sn-acrylic-backdropFilter': 'base',
   'sn-boxShadow-elevation-level1': 'base',
   'sn-boxShadow-elevation-level2': 'base',
   'sn-boxShadow-elevation-level3': 'base',

@@ -2060,7 +2060,10 @@ export const themeVars = {
       blurBackground2Level: 'var(--sn-acrylic-blurBackground2Level, 0px)',
       blurBackground: 'var(--sn-acrylic-blurBackground, 0px)',
       opacityBackground1Level: 'var(--sn-acrylic-opacityBackground1Level, 1)',
-      opacityBackground2Level: 'var(--sn-acrylic-opacityBackground2Level, 1)'
+      opacityBackground2Level: 'var(--sn-acrylic-opacityBackground2Level, 1)',
+      backdropFilter1Level: 'var(--sn-acrylic-backdropFilter1Level, none)',
+      backdropFilter2Level: 'var(--sn-acrylic-backdropFilter2Level, none)',
+      backdropFilter: 'var(--sn-acrylic-backdropFilter, none)'
     },
     boxShadow: {
       elevation: {

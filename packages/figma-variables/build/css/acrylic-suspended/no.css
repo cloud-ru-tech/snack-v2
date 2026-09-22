@@ -15,4 +15,7 @@
   --sn-acrylic-blurBackground: 0px;
   --sn-acrylic-opacityBackground1Level: 1;
   --sn-acrylic-opacityBackground2Level: 1;
+  --sn-acrylic-backdropFilter1Level: none;
+  --sn-acrylic-backdropFilter2Level: none;
+  --sn-acrylic-backdropFilter: none;
 }

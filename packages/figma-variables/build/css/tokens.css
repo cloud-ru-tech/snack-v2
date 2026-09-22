@@ -7301,6 +7301,9 @@
   --sn-acrylic-blurBackground: 0px;
   --sn-acrylic-opacityBackground1Level: 1;
   --sn-acrylic-opacityBackground2Level: 1;
+  --sn-acrylic-backdropFilter1Level: none;
+  --sn-acrylic-backdropFilter2Level: none;
+  --sn-acrylic-backdropFilter: none;
 }
 
 /* Source: build/css/acrylic-suspended/yes.css */
@@ -7317,6 +7320,9 @@
   --sn-acrylic-blurBackground: var(--sn-theme-effect-acrylic-blur, 50px);
   --sn-acrylic-opacityBackground1Level: var(--sn-theme-effect-acrylic-opacity1Level, 0.7);
   --sn-acrylic-opacityBackground2Level: var(--sn-theme-effect-acrylic-opacity2Level, 0.7);
+  --sn-acrylic-backdropFilter1Level: blur(calc(var(--sn-acrylic-blurBackground1Level) / 2));
+  --sn-acrylic-backdropFilter2Level: blur(calc(var(--sn-acrylic-blurBackground2Level) / 2));
+  --sn-acrylic-backdropFilter: blur(calc(var(--sn-acrylic-blurBackground) / 2));
 }
 
 /* Source: build/css/styles/styles.css */

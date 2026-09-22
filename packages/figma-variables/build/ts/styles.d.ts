@@ -2060,6 +2060,9 @@ export declare const themeVars: {
             blurBackground: string;
             opacityBackground1Level: string;
             opacityBackground2Level: string;
+            backdropFilter1Level: string;
+            backdropFilter2Level: string;
+            backdropFilter: string;
         };
         boxShadow: {
             elevation: {

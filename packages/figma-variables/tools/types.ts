@@ -64,6 +64,10 @@ export type TokenSet = {
   content?: AnyRecord;
 };
 
+export enum PreprocessorName {
+  AcrylicBackdropFilter = 'custom/acrylic-backdrop-filter',
+}
+
 export enum TransformName {
   CustomPx = 'custom/px',
   CustomCssVariable = 'custom/css/variable',

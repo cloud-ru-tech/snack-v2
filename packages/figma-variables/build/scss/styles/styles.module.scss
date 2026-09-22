@@ -2132,7 +2132,10 @@ $base-styles: (
       "blurBackground2Level": var(--sn-acrylic-blurBackground2Level, 0px),
       "blurBackground": var(--sn-acrylic-blurBackground, 0px),
       "opacityBackground1Level": var(--sn-acrylic-opacityBackground1Level, 1),
-      "opacityBackground2Level": var(--sn-acrylic-opacityBackground2Level, 1)
+      "opacityBackground2Level": var(--sn-acrylic-opacityBackground2Level, 1),
+      "backdropFilter1Level": var(--sn-acrylic-backdropFilter1Level, none),
+      "backdropFilter2Level": var(--sn-acrylic-backdropFilter2Level, none),
+      "backdropFilter": var(--sn-acrylic-backdropFilter, none)
     ),
     "boxShadow": (
       "elevation": (
@@ -4616,7 +4619,10 @@ $sn-acrylic: (
   "blurBackground2Level": var(--sn-acrylic-blurBackground2Level, 0px),
   "blurBackground": var(--sn-acrylic-blurBackground, 0px),
   "opacityBackground1Level": var(--sn-acrylic-opacityBackground1Level, 1),
-  "opacityBackground2Level": var(--sn-acrylic-opacityBackground2Level, 1)
+  "opacityBackground2Level": var(--sn-acrylic-opacityBackground2Level, 1),
+  "backdropFilter1Level": var(--sn-acrylic-backdropFilter1Level, none),
+  "backdropFilter2Level": var(--sn-acrylic-backdropFilter2Level, none),
+  "backdropFilter": var(--sn-acrylic-backdropFilter, none)
 );
 
 $sn-boxShadow: (
@@ -6266,6 +6272,9 @@ $sn-acrylic-blurBackground2Level: var(--sn-acrylic-blurBackground2Level, 0px);
 $sn-acrylic-blurBackground: var(--sn-acrylic-blurBackground, 0px);
 $sn-acrylic-opacityBackground1Level: var(--sn-acrylic-opacityBackground1Level, 1);
 $sn-acrylic-opacityBackground2Level: var(--sn-acrylic-opacityBackground2Level, 1);
+$sn-acrylic-backdropFilter1Level: var(--sn-acrylic-backdropFilter1Level, none);
+$sn-acrylic-backdropFilter2Level: var(--sn-acrylic-backdropFilter2Level, none);
+$sn-acrylic-backdropFilter: var(--sn-acrylic-backdropFilter, none);
 $sn-boxShadow-elevation-level1: var(--sn-boxShadow-elevation-level1, var(--sn-theme-effect-shadow-level1-layer1-positionX, 0) var(--sn-theme-effect-shadow-level1-layer1-positionY, 0) var(--sn-theme-effect-shadow-level1-layer1-blur, 4px) var(--sn-theme-effect-shadow-level1-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000014), var(--sn-theme-effect-shadow-level1-layer2-positionX, 0) var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px) var(--sn-theme-effect-shadow-level1-layer2-blur, 4px) var(--sn-theme-effect-shadow-level1-layer2-spread, 1px) var(--sn-theme-effect-shadow-layer2Color, #00000014));
 $sn-boxShadow-elevation-level2: var(--sn-boxShadow-elevation-level2, var(--sn-theme-effect-shadow-level2-layer1-positionX, 0) var(--sn-theme-effect-shadow-level2-layer1-positionY, 0) var(--sn-theme-effect-shadow-level2-layer1-blur, 4px) var(--sn-theme-effect-shadow-level2-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000014), var(--sn-theme-effect-shadow-level2-layer2-positionX, 0) var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px) var(--sn-theme-effect-shadow-level2-layer2-blur, 8px) var(--sn-theme-effect-shadow-level2-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000014));
 $sn-boxShadow-elevation-level3: var(--sn-boxShadow-elevation-level3, var(--sn-theme-effect-shadow-level3-layer1-positionX, 0) var(--sn-theme-effect-shadow-level3-layer1-positionY, 0) var(--sn-theme-effect-shadow-level3-layer1-blur, 8px) var(--sn-theme-effect-shadow-level3-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000014), var(--sn-theme-effect-shadow-level3-layer2-positionX, 0) var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px) var(--sn-theme-effect-shadow-level3-layer2-blur, 16px) var(--sn-theme-effect-shadow-level3-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000014));

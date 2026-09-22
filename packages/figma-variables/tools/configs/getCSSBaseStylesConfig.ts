@@ -1,7 +1,7 @@
 import StyleDictionary, { type Config } from 'style-dictionary';
 
 import { getStyleDictionaryLogConfig } from '../config/getStyleDictionaryLogConfig.js';
-import { FilterName, FormatName, type TokenSet, TransformName } from '../types.js';
+import { FilterName, FormatName, type TokenSet, TransformName, PreprocessorName } from '../types.js';
 import { toFilePaths } from '../utils/tokenSets.js';
 
 export function getCSSBaseStylesConfig(
@@ -76,7 +76,7 @@ export function getCSSBaseStylesConfig(
   const config = {
     source,
     include: fallbackIncludePaths,
-    preprocessors: ['tokens-studio'],
+    preprocessors: ['tokens-studio', PreprocessorName.AcrylicBackdropFilter],
     log: getStyleDictionaryLogConfig(),
     platforms: {
       css: {

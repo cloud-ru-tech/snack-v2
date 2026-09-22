@@ -80,6 +80,12 @@ export function getCssVarFallback({
     return normalized;
   }
 
+  // `none` приходит от производных `backdropFilter*`-токенов с нулевым размытием. Это CSS-ключевое
+  // слово: в кавычках оно перестанет применяться, поэтому возвращается как есть.
+  if (stringValue === 'none') {
+    return stringValue;
+  }
+
   // Quote only non-color strings that need it (e.g. text, strings with colons/semicolons)
   if (!isColor) {
     return `"${stringValue.replace(/"/g, '\\"')}"`;

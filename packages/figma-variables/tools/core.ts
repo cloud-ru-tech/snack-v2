@@ -13,6 +13,7 @@ import {
   SCSSComponentFormat,
   TSBaseStylesFormat,
 } from './formats/index.js';
+import { AcrylicBackdropFilterPreprocessor } from './preprocessors/index.js';
 import { ToCSSVariableTransform, ToPXTransform } from './transforms/index.js';
 import type { BaseConfig, BuildResult } from './types.js';
 import { logger } from './utils/logger.js';
@@ -30,6 +31,8 @@ function registerFormatsAndTransforms(): void {
   }
 
   register(StyleDictionary, {});
+
+  StyleDictionary.registerPreprocessor(AcrylicBackdropFilterPreprocessor);
 
   StyleDictionary.registerTransform(ToPXTransform);
   StyleDictionary.registerTransform(ToCSSVariableTransform);
