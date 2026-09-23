@@ -59,6 +59,9 @@
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'headline');
 
+    // Токен задаёт высоту строки заголовка, но при `truncate.title > 1` он растёт — держим её как минимум.
+    height: auto;
+    min-height: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'headline', 'height');
     padding-right: 0;
 
     &:not([data-with-before]) {
