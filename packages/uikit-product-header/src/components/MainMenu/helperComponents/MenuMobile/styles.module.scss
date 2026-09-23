@@ -4,6 +4,12 @@
 $menuHeaderHeight: base.$sn-primitive-dimension-40;
 $menuHeaderHeightWithDivider: calc(#{$menuHeaderHeight} + #{divider.$sn-divider-anatomy-container-height});
 
+// Обёртка провайдера плотности вокруг портала меню: собственного бокса у неё быть не должно,
+// иначе в строке шапки появляется лишний flex-элемент и лишний gap.
+.densityScope {
+  display: contents;
+}
+
 .menuHeader {
   height: $menuHeaderHeight;
   padding: 0 base.$sn-primitive-dimension-4;

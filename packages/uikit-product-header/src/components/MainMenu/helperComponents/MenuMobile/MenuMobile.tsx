@@ -1,4 +1,5 @@
 import { Divider } from '@ds/divider';
+import { ChildThemeProvider, DENSITY } from '@ds/theme';
 import { useValueControl } from '@ds/utils';
 import { useCallback, useMemo } from 'react';
 
@@ -61,54 +62,59 @@ export function MenuMobile({
   }, [setOpen]);
 
   return (
-    <MobileDrawerCustom
-      open={open}
-      onClose={handleClose}
-      position='bottom'
-      className={styles.drawerMobile}
-      swipeEnabled={false}
-      data-test-id={TEST_IDS.mainMenu.drawerMobile}
-      closeOnPopstate
-      snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
-      disableMotions={true}
-    >
-      <ScrollWithAnimatedStickyPanel
-        panel={
-          <>
-            <MenuHeaderBrand logo={logo} onClose={handleClose} className={styles.menuHeader} />
-            <Divider orientation='horizontal' />
-          </>
-        }
+    // Временная фиксация comfort (см. `HeaderLayout`): `MainMenu` используется и отдельно от
+    // `HeaderLayout`, поэтому объявляем плотность здесь же. Обёртка провайдера layout-прозрачная
+    // (`display: contents`) — меню рендерится порталом, лишний бокс в строке шапки не нужен.
+    <ChildThemeProvider value={{ density: DENSITY.Comfort }} className={styles.densityScope}>
+      <MobileDrawerCustom
+        open={open}
+        onClose={handleClose}
+        position='bottom'
+        className={styles.drawerMobile}
+        swipeEnabled={false}
+        data-test-id={TEST_IDS.mainMenu.drawerMobile}
+        closeOnPopstate
+        snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
+        disableMotions={true}
       >
-        <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
-          {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
-          {search && <Search {...search} ref={searchRef} isMobile />}
-          {!isSearching && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
+        <ScrollWithAnimatedStickyPanel
+          panel={
+            <>
+              <MenuHeaderBrand logo={logo} onClose={handleClose} className={styles.menuHeader} />
+              <Divider orientation='horizontal' />
+            </>
+          }
+        >
+          <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
+            {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
+            {search && <Search {...search} ref={searchRef} isMobile />}
+            {!isSearching && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
 
-          {hasSegments && (
-            <MainMenuDndContext>
-              <Content
-                isMobile
-                className={styles.rightContent}
-                searchValue={search && search.value}
-                rightTop={rightTop}
-                favorite={favorite}
-                segments={segments}
-                searchGroups={resultItems}
-                segmentPrefs={segmentPrefs}
-                activeSegmentId={activeSegmentId}
-                onActiveSegmentChange={onActiveSegmentChange}
-                onSegmentOrderChange={onSegmentOrderChange}
-                onSegmentExpandedChange={onSegmentExpandedChange}
-                onSegmentServiceClick={onSegmentServiceClick}
-                loading={loading}
-              />
-            </MainMenuDndContext>
-          )}
+            {hasSegments && (
+              <MainMenuDndContext>
+                <Content
+                  isMobile
+                  className={styles.rightContent}
+                  searchValue={search && search.value}
+                  rightTop={rightTop}
+                  favorite={favorite}
+                  segments={segments}
+                  searchGroups={resultItems}
+                  segmentPrefs={segmentPrefs}
+                  activeSegmentId={activeSegmentId}
+                  onActiveSegmentChange={onActiveSegmentChange}
+                  onSegmentOrderChange={onSegmentOrderChange}
+                  onSegmentExpandedChange={onSegmentExpandedChange}
+                  onSegmentServiceClick={onSegmentServiceClick}
+                  loading={loading}
+                />
+              </MainMenuDndContext>
+            )}
 
-          {!isSearching && hasBottomItems && <MenuBottom settingItems={settingItems} leftBottom={leftBottom} />}
-        </MountAnimation>
-      </ScrollWithAnimatedStickyPanel>
-    </MobileDrawerCustom>
+            {!isSearching && hasBottomItems && <MenuBottom settingItems={settingItems} leftBottom={leftBottom} />}
+          </MountAnimation>
+        </ScrollWithAnimatedStickyPanel>
+      </MobileDrawerCustom>
+    </ChildThemeProvider>
   );
 }

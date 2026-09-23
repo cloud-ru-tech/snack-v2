@@ -1,6 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/list.module' as list;
 
+// Обёртка провайдера плотности вокруг портала меню: собственного бокса у неё быть не должно,
+// иначе в строке шапки появляется лишний flex-элемент и лишний gap.
+.densityScope {
+  display: contents;
+}
+
 .drawerMobile {
   height: 100%;
   min-height: 0;

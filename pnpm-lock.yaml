@@ -2821,6 +2821,9 @@ importers:
       '@ds/search-private':
         specifier: workspace:^
         version: link:../search-private
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography

@@ -45,6 +45,7 @@
     "@ds/locale": "workspace:^",
     "@ds/scroll": "workspace:^",
     "@ds/search-private": "workspace:^",
+    "@ds/theme": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/uikit-product-card-predefined": "workspace:^",
     "@ds/uikit-product-title-clickable": "workspace:^",
