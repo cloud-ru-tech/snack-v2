@@ -32,6 +32,10 @@ export function TruncateStringMiddle({
   const truncatedTextElementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (hideTooltip) {
+      return;
+    }
+
     const setTruncate = throttle(() => {
       setTruncatedString(
         truncateStringMiddle({
@@ -45,14 +49,20 @@ export function TruncateStringMiddle({
 
     setTruncate();
 
-    const observer = new ResizeObserver(setTruncate);
+    let observer: ResizeObserver | undefined;
 
-    if (textElementRef.current) {
+    const rafId = requestAnimationFrame(() => {
+      if (!textElementRef.current) {
+        return;
+      }
+
+      observer = new ResizeObserver(setTruncate);
       observer.observe(textElementRef.current);
-    }
+    });
 
     return () => {
-      observer.disconnect();
+      cancelAnimationFrame(rafId);
+      observer?.disconnect();
     };
   }, [showTooltip, text, hideTooltip]);
 

@@ -40,25 +40,36 @@ export function TruncateStringEnd({
   }, []);
 
   useLayoutEffect(() => {
-    if (textElementRef.current) {
-      toggleShowTooltip();
+    if (hideTooltip || !textElementRef.current) {
+      return;
     }
-  }, [text, toggleShowTooltip]);
+
+    toggleShowTooltip();
+  }, [text, toggleShowTooltip, hideTooltip]);
 
   useEffect(() => {
+    if (hideTooltip) {
+      return;
+    }
+
     const throttledToggleShowTooltip = throttle(() => {
       toggleShowTooltip();
     }, 50);
 
-    const observer = new ResizeObserver(throttledToggleShowTooltip);
+    let observer: ResizeObserver | undefined;
 
-    if (textElementRef.current) {
-      toggleShowTooltip();
+    const rafId = requestAnimationFrame(() => {
+      if (!textElementRef.current) {
+        return;
+      }
+
+      observer = new ResizeObserver(throttledToggleShowTooltip);
       observer.observe(textElementRef.current);
-    }
+    });
 
     return () => {
-      observer.disconnect();
+      cancelAnimationFrame(rafId);
+      observer?.disconnect();
     };
   }, [showTooltip, hideTooltip, toggleShowTooltip]);
 
