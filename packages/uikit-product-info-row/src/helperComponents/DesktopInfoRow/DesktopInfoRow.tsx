@@ -3,13 +3,14 @@ import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 
+import sharedStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';
 import { DesktopInfoRowProps } from './types';
 import { LabelBlock, ValueColumn } from './utils/renderHelpers';
 
 export { NO_DATA_PLACEHOLDER } from './constants';
 
-/** Плейсхолдер области действий по макету Figma (декоративный; для кнопок используйте `rowActions`). */
+/** Декоративный плейсхолдер слота действий размером с кнопку `m` iconOnly; для кнопок используйте `rowActions`. */
 export function InfoRowActionPlaceholder({ className, ...rest }: ComponentPropsWithoutRef<'span'>) {
   return <span className={cn(styles.actionPlaceholder, className)} role='presentation' {...rest} />;
 }
@@ -51,7 +52,9 @@ export function DesktopInfoRow({
       data-column={column}
       data-max-width={maxWidth ? 'true' : undefined}
     >
-      {topDivider && <Divider variant={DIVIDER_VARIANT.Thin} />}
+      {topDivider && (
+        <Divider className={cn(sharedStyles.divider, sharedStyles.dividerTop)} variant={DIVIDER_VARIANT.Regular} />
+      )}
 
       <div className={cn(styles.infoRow, rowClassName)}>
         {isDouble ? (
@@ -98,7 +101,9 @@ export function DesktopInfoRow({
         )}
       </div>
 
-      {bottomDivider && <Divider variant={DIVIDER_VARIANT.Thin} />}
+      {bottomDivider && (
+        <Divider className={cn(sharedStyles.divider, sharedStyles.dividerBottom)} variant={DIVIDER_VARIANT.Regular} />
+      )}
     </div>
   );
 }

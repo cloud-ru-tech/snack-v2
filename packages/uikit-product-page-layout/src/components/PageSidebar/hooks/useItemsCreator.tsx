@@ -1,7 +1,6 @@
 import { ChevronLeftSVG } from '@ds/icons/interface/system';
 import { ITEM_TYPE, ItemProps } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
-import cn from 'classnames';
 import { MouseEvent, ReactNode, useMemo } from 'react';
 
 import { SIDEBAR_HEADER_TYPE, SIDEBAR_ITEM_TYPE } from '../../../constants';
@@ -32,9 +31,7 @@ export function useTopPinnedContent(
               // отдельный слот `afterContent` центрируется по-своему и ломает вертикальное
               // выравнивание кнопки с полем.
               content: (
-                <div
-                  className={cn(styles.pinnedHeaderSlot, hasSearch && searchOpened && styles.pinnedHeaderSlotSearch)}
-                >
+                <div className={styles.pinnedHeaderSlot}>
                   <div className={styles.pinnedHeaderContent}>
                     {
                       // При открытом поиске строка заголовка заменяется полем поиска (без наложения).

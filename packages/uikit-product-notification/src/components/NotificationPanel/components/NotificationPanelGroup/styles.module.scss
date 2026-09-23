@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
+  box-sizing: border-box;
 }
 
 .title {
@@ -11,7 +12,7 @@
 
   position: sticky;
   z-index: 1;
-  top: base.$sn-primitive-dimension-4;
+  top: 0;
 
   display: flex;
   justify-content: center;

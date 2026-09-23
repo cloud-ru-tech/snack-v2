@@ -1,4 +1,4 @@
-import { PromoTag, PromoTagProps } from '@ds/promo-tag';
+import { APPEARANCE, PromoTag, PromoTagProps, SIZE as SIZE_PROMO_TAG } from '@ds/promo-tag';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 
 import { priceSummaryLocale } from '../../../../locale';
@@ -25,7 +25,11 @@ export function HeaderBlock({
     <>
       {promoBadge && (
         <div className={styles.promoBadge}>
-          <PromoTag {...(typeof promoBadge === 'string' ? { label: promoBadge } : promoBadge)} />
+          <PromoTag
+            appearance={APPEARANCE.Green}
+            {...(typeof promoBadge === 'string' ? { label: promoBadge } : promoBadge)}
+            size={SIZE_PROMO_TAG.Xs}
+          />
         </div>
       )}
 

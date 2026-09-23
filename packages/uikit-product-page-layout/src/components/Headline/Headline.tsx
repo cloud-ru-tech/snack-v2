@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { TruncateString } from '@ds/truncate-string';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { extractSupportProps } from '@ds/utils';
@@ -15,6 +16,8 @@ export function Headline({
   truncateTitle,
   ...rest
 }: HeadlineProps) {
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
   const needsRender = Boolean(title || slotBeforeTitle || slotAfterTitle || subtitle || actions || moreActions);
 
   if (!needsRender) return null;
@@ -28,13 +31,16 @@ export function Headline({
             {truncateTitle ? <TruncateString variant='end' text={title} maxLines={1} /> : title}
           </Typography>
 
-          {slotAfterTitle && <div className={styles.statusWrapper}>{slotAfterTitle}</div>}
+          {slotAfterTitle && !isMobile && <div className={styles.statusWrapper}>{slotAfterTitle}</div>}
 
           {moreActions && <div className={styles.moreActions}>{moreActions}</div>}
         </div>
 
         {Boolean(actions) && <div className={styles.actions}>{actions}</div>}
       </div>
+
+      {/* На mobile статус переносится под заголовок (Figma headlineTitle mobile). */}
+      {slotAfterTitle && isMobile && <div className={styles.statusRow}>{slotAfterTitle}</div>}
 
       {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
     </div>

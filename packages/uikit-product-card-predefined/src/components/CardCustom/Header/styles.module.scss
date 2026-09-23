@@ -23,12 +23,8 @@
   }
 }
 
-[data-card-custom-image] + .titleLayout {
-  @each $size in shared.$sizes {
-    &[data-size='#{$size}'] {
-      padding-top: 0;
-    }
-  }
+[data-card-custom-image] + .titleLayout[data-size] {
+  padding-top: 0;
 }
 
 .contentLayout {

@@ -16,7 +16,8 @@ type ControlBlockProps = {
 };
 
 function ControlBlockComponent({ actions, actionsChildren, segmentControl, wide, state }: ControlBlockProps) {
-  const shouldShowControl = segmentControl || state === 'loading';
+  // В wide-загрузке у макета нет скелетона контрола — только кнопки справа.
+  const shouldShowControl = state === 'loading' ? !wide : Boolean(segmentControl);
 
   if (!shouldShowControl && !wide) {
     return null;
@@ -24,7 +25,7 @@ function ControlBlockComponent({ actions, actionsChildren, segmentControl, wide,
 
   const content =
     state === 'loading' ? (
-      <Skeleton loading width='100%' height='32px' borderRadius='8px' />
+      <Skeleton loading className={styles.skeletonControl} />
     ) : (
       segmentControl && <SegmentControl {...segmentControl} />
     );

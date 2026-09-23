@@ -5,12 +5,12 @@
  * Focus — `:focus-visible` на скрытом input + соседний `.content`.
  */
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/chip.module' as chip;
 @use '@ds/materials' as m;
 
 .root {
   position: relative;
 
+  box-sizing: border-box;
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -37,8 +37,6 @@
   }
 
   .labelLayout {
-    @include base.composite-var(chip.$chip, 'anatomy', 'size', 's', 'container', 'textWrapper');
-
     position: relative;
     z-index: 1;
 
@@ -54,8 +52,6 @@
   }
 
   .content {
-    @include base.composite-var(chip.$chip, 'anatomy', 'size', 's', 'container');
-
     cursor: pointer;
 
     position: relative;
@@ -69,8 +65,7 @@
     max-width: 100%;
     min-height: base.$sn-density-size-m;
     margin: 0;
-    // Макет ждёт `adaptive/spacing/control/container/horizontal/l` (8), но коллекции `adaptive`
-    // нет в @ds/figma-variables — наследуем chip size s (6), на 2px/сторону уже макета.
+    padding: 0 base.$sn-density-spacing-control-container-horizontal-l;
     border: none;
     border-radius: base.$sn-density-radius-2xs;
 

@@ -1,0 +1,4 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Предел ширины двухколоночной строки/группы (Figma `maxWidth` 900).
+$double-max-width: calc(18 * #{base.$sn-primitive-dimension-48} + #{base.$sn-primitive-dimension-36});

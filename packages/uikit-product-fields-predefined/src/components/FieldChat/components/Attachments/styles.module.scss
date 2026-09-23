@@ -9,7 +9,7 @@
 .attachments {
   display: flex;
   gap: base.$sn-primitive-dimension-8;
-  padding: base.$sn-primitive-dimension-1 0;
+  box-sizing: border-box;
 
   // Превью сохраняют свой размер и уезжают в горизонтальный скролл,
   // а не сжимаются под ширину контейнера.

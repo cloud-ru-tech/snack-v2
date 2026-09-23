@@ -32,6 +32,7 @@ export type ToggleCardProps = WithSupportProps<{
   /**
    * Ведущая эмблема. Передаются только параметры — сам `IconPredefined`
    * встроен в компонент; `size` эмблемы выводится из `size` карточки.
+   * По умолчанию `background: true` и `shape: 'squared'`, как в макете.
    */
   emblem?: Emblem;
   /** Промо-бейдж в правом верхнем углу карточки */

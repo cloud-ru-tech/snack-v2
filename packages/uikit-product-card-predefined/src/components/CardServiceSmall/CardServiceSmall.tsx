@@ -128,6 +128,7 @@ export function CardServiceSmall<T extends ElementType = 'div'>({
         innerRef={mergeRefs(innerRef, cardRef)}
         disabled={disabled}
         interactive
+        radius='s'
         checked={checked}
         view={outline ? 'outline' : undefined}
         className={styles.card}
@@ -137,7 +138,7 @@ export function CardServiceSmall<T extends ElementType = 'div'>({
       >
         <div className={styles.contentWrapper}>
           {IconComponent ? (
-            <IconComponent className={styles.icon} size={24} />
+            <IconComponent className={cn(styles.icon, styles.iconSvg)} />
           ) : (
             !isIconEmblem(emblem) && <div className={styles.icon}>{emblem}</div>
           )}

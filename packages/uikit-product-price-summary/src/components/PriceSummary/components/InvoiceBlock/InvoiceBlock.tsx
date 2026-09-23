@@ -1,4 +1,5 @@
 import { Accordion } from '@ds/accordion';
+import { SIZE, Typography, VARIANT } from '@ds/typography';
 import { useId } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
@@ -22,7 +23,11 @@ export function InvoiceBlock({ invoice, invoiceExpandedDefault }: InvoiceBlockPr
       <Accordion expandedDefault={invoiceExpandedDefault ? invoiceBlockId : undefined}>
         <Accordion.CollapseBlockTertiary
           id={invoiceBlockId}
-          title={t('orderDetails')}
+          afterTitle={
+            <Typography variant={VARIANT.body} size={SIZE.m} className={styles.title}>
+              {t('orderDetails')}
+            </Typography>
+          }
           data-test-id={TEST_IDS.orderDetails}
         >
           <div className={styles.accordionContent} data-test-id={TEST_IDS.orderDetailsContent}>

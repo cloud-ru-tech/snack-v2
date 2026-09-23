@@ -36,17 +36,12 @@ export function NoAccess({ serviceName, className, ...rest }: NoAccessProps) {
         </div>
       )}
 
-      <Block size={BLOCK_SIZE.L} className={styles.block}>
+      <Block size={BLOCK_SIZE.L} className={styles.block} contentClassName={styles.blockContent}>
         <InfoBlock
           size={INFO_SIZE.M}
           icon={{ icon: LockSVG }}
           title={t('noAccessTitle')}
-          content={
-            <div className={styles.description}>
-              <div className={styles.text}>{t('noAccessSubtitle')}</div>
-              <div className={styles.text}>{t('noAccessText')}</div>
-            </div>
-          }
+          content={t('noAccessDescription')}
         />
       </Block>
     </div>

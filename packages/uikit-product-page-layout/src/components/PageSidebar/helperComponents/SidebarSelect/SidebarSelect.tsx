@@ -78,7 +78,7 @@ function SidebarSelectBase({
 
         {selectedItem.item?.afterContent}
 
-        {isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}
+        <span className={styles.chevron}>{isOpen ? <ChevronUpSVG /> : <ChevronDownSVG />}</span>
       </div>
     </Droplist>
   );

@@ -55,7 +55,7 @@
 
 - `title` — обязательный заголовок карточки.
 - `description` — опциональное описание под заголовком.
-- `emblem` — ведущая эмблема. **`IconPredefined`** встроен в компонент — передаются только его параметры (`icon`, `appearance`, `decor`, `shape`) либо картинка (`src` / `alt`).
+- `emblem` — ведущая эмблема. **`IconPredefined`** встроен в компонент — передаются только его параметры (`icon`, `appearance`, `background`, `shape`; по умолчанию `background: true`, `shape: 'squared'`) либо картинка (`src` / `alt`).
 - `promoBadge` — промо-бейдж в правом верхнем углу (`string` или `{ text, appearance? }` для **`PromoTag`**).
 - `truncate` — максимум строк `title` и/или `description` (по умолчанию `title: 1`, `description: 2`).
 
@@ -204,7 +204,7 @@ export function Controlled() {
 | `data-test-id` | `string` | — |  |
 | `description` | `string` | — | Основной текст под заголовком |
 | `disabled` | `boolean` | `false` | Заблокированное состояние: интерактив отключён |
-| `emblem` | `Emblem` \| `EmblemIcon` \| `EmblemPicture` | — | Ведущая эмблема. Передаются только параметры — сам `IconPredefined` <br/> встроен в компонент; `size` эмблемы выводится из `size` карточки. |
+| `emblem` | `Emblem` \| `EmblemIcon` \| `EmblemPicture` | — | Ведущая эмблема. Передаются только параметры — сам `IconPredefined` <br/> встроен в компонент; `size` эмблемы выводится из `size` карточки. <br/> По умолчанию `background: true` и `shape: 'squared'`, как в макете. |
 | `promoBadge` | `PromoTagOwnProps` \| `PromoTagProps` | — | Промо-бейдж в правом верхнем углу карточки |
 | `size` | `"l"` \| `"m"` \| `"s"` | `m` | Размер карточки — масштабирует padding, gap, типографику и `radius` контейнера `@ds/card` |
 | `title` | `string` | — | Заголовок карточки |

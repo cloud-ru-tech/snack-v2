@@ -75,7 +75,7 @@ export function PriceSummarySmall({
             <Button
               as='a'
               view='function'
-              size='m'
+              size='s'
               label={docsLink.label || t('costLink')}
               href={docsLink.href}
               target='_blank'

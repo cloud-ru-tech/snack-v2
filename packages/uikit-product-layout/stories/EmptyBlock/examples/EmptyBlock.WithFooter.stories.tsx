@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { ButtonGroup } from '@ds/button';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
@@ -19,6 +20,21 @@ export default meta;
 
 type Story = StoryObj<EmptyBlockProps>;
 
+function FooterActions() {
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
+
+  // На mobile кнопки в столбик на всю ширину, как в mobile-мастере Figma.
+  return (
+    <ButtonGroup
+      primaryAction={{ label: 'Создать' }}
+      secondaryAction={{ label: 'Импортировать' }}
+      vertical={isMobile}
+      filled={isMobile}
+    />
+  );
+}
+
 export const WithFooter: Story = {
   tags: ['dev', 'test'],
   render: () => (
@@ -32,7 +48,7 @@ export const WithFooter: Story = {
             icon={{ icon: PlaceholderSVG }}
             title='Нет данных'
             content='Создайте первую запись, чтобы начать работу'
-            footer={<ButtonGroup primaryAction={{ label: 'Создать' }} secondaryAction={{ label: 'Импортировать' }} />}
+            footer={<FooterActions />}
           />
         </DemoActions>
       </DemoPanel>

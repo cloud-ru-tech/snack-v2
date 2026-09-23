@@ -4,11 +4,21 @@ import { Item, ItemId } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
-import { ClipboardEventHandler, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  ClipboardEventHandler,
+  cloneElement,
+  CSSProperties,
+  forwardRef,
+  isValidElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useIMask } from 'react-imask';
 
 import { TEST_IDS } from '../../constants';
-import { PLACEHOLDER_CHAR, REFOCUS_AFTER_COUNTRY_DELAY_MS } from './constants';
+import { PLACEHOLDER_CHAR, REFOCUS_AFTER_COUNTRY_DELAY_MS, SELECTOR_FLAG_STYLE } from './constants';
 import { useCountries } from './hooks';
 import styles from './styles.module.scss';
 import { CountrySettings, FieldPhoneOptionsProps, MaskOptions } from './types';
@@ -223,6 +233,9 @@ export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function
   };
 
   const showClear = showClearButton && Boolean(unmaskedValue);
+  const selectorFlag = isValidElement<{ style?: CSSProperties }>(country?.beforeContent)
+    ? cloneElement(country.beforeContent, { style: SELECTOR_FLAG_STYLE })
+    : country?.beforeContent;
 
   return (
     <FieldCombo
@@ -242,7 +255,7 @@ export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function
         isOnlyOneCountryAvailable
           ? undefined
           : {
-              action: country?.beforeContent,
+              action: selectorFlag,
               'data-test-id': TEST_IDS.fieldPhoneCountrySelect,
               droplist: {
                 items,

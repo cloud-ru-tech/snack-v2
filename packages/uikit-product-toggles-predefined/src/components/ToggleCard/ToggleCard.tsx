@@ -80,7 +80,12 @@ export function ToggleCard({
             {isEmblemPicture(emblem) ? (
               <img className={styles.picture} src={emblem.src} alt={emblem.alt} data-size={sizeToEmblemSize(size)} />
             ) : (
-              <IconPredefined {...emblem} size={sizeToEmblemSize(size)} background={emblem.background ?? false} />
+              <IconPredefined
+                {...emblem}
+                size={sizeToEmblemSize(size)}
+                background={emblem.background ?? true}
+                shape={emblem.shape ?? 'squared'}
+              />
             )}
           </span>
         )}

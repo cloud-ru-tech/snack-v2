@@ -10,6 +10,8 @@ $card-size: calc(6 * #{base.$sn-primitive-dimension-64} - #{base.$sn-primitive-d
   display: grid;
   grid-template-columns: minmax(0, 1fr) $card-size;
   column-gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
   height: $card-size;
 
   // На bottomSheet карточка растёт по контенту, а прокручивается тело sheet'а целиком: сам sheet

@@ -1,16 +1,12 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-$container-gaps: (
-  's': base.$sn-primitive-dimension-8,
-  'm': base.$sn-primitive-dimension-8,
-  'l': base.$sn-primitive-dimension-12,
-);
-
 .fieldCode {
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
+
+  box-sizing: border-box;
 
   // align-items: stretch перебивает center — без него дети остаются по ширине контента.
   &[data-stretch-cells] {
@@ -29,23 +25,15 @@ $container-gaps: (
 
 .codeContainer {
   display: flex;
+  gap: base.$sn-primitive-dimension-8;
   justify-content: safe center;
 
   &[data-stretch-cells] {
     width: 100%;
   }
-
-  @each $size, $gap in $container-gaps {
-    &[data-size='#{$size}'] {
-      gap: $gap;
-    }
-  }
 }
 
+// Разрыв между группами ячеек — 12 по макету: gap 8 + 4.
 .cellSpacing {
-  @each $size, $margin-right in $container-gaps {
-    &[data-size='#{$size}'] {
-      margin-right: $margin-right;
-    }
-  }
+  margin-right: base.$sn-primitive-dimension-4;
 }

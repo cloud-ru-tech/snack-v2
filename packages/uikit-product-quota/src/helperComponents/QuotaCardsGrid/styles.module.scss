@@ -1,10 +1,10 @@
 .wrapper {
   width: 100%;
   height: auto;
-  max-height: 382px;
+  max-height: 382px; // нет токена
 
   &[data-accordion='true'] {
-    max-height: 400px;
+    max-height: 400px; // нет токена
   }
 
   /* Mobile (full-height BottomSheet): без фикс-cap — карточки заполняют тело листа и скроллятся им. */

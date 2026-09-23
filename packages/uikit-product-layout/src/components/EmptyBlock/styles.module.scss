@@ -6,13 +6,13 @@
   flex-grow: 1;
   box-sizing: border-box;
   width: 100%;
+}
 
-  > :last-child {
-    display: flex;
-    flex: 1 1 auto;
-    width: 100%;
-    min-width: 0;
-  }
+.content {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
 }
 
 .inner {
@@ -21,7 +21,14 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   width: 100%;
+  padding: base.$sn-primitive-dimension-40;
+
+  // В mobile-мастере Figma у `composition` нет паддинга.
+  .emptyBlock[data-mobile='true'] & {
+    padding: 0;
+  }
 }
 
 .infoBlock {

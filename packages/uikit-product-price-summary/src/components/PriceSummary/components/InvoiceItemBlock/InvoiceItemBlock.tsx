@@ -37,7 +37,7 @@ export function InvoiceItemBlock({ item, index, showCoveredByGrantLabel }: Invoi
         <CoveredByGrantLabel covered={item.coveredByGrant} />
       )}
 
-      <div className={styles.itemGrid} data-discount={Boolean(item.discount)}>
+      <div className={styles.itemGrid}>
         {'label' in item && item.label !== undefined && (
           <>
             <div className={styles.labelCell} data-secondary={isSecondary}>

@@ -1,5 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
+// Синхронно с ADAPTIVE_BREAKPOINT из @ds/adaptive: SCSS-токена брейкпоинтов нет, @container не принимает var().
 $breakpoint-mobile: 767px;
 $breakpoint-tablet: 1023px;
 $gear-wheel-rotation-period: 10s;
@@ -71,6 +72,11 @@ $gear-wheel-rotation-period: 10s;
   align-items: flex-start;
 
   width: 100%;
+
+  // Тег в DOM идёт после заголовка, а в mobile-макете стоит над ним.
+  @container (max-width: #{$breakpoint-mobile}) {
+    flex-direction: column-reverse;
+  }
 }
 
 .title {
@@ -166,6 +172,11 @@ $gear-wheel-rotation-period: 10s;
   // SVG ужимается под размеры .img, сохраняя пропорции (viewBox 863×520).
   min-height: 0;
   max-height: 100%;
+
+  // Обводка 2px экрана при любом масштабе viewBox, как в макете.
+  path {
+    vector-effect: non-scaling-stroke;
+  }
 }
 
 @keyframes rotating {

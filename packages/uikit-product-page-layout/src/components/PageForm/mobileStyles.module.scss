@@ -8,12 +8,12 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: base.$sn-primitive-dimension-16;
+  gap: base.$sn-density-spacing-interval-l;
 
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  padding: base.$sn-primitive-dimension-16;
+  padding: base.$sn-density-spacing-interval-l;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
@@ -34,12 +34,11 @@
 
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-8;
 
   box-sizing: border-box;
-  // Бока и низ подтягиваем к кромкам контейнера; сверху margin'а нет — зазор до рамки задаёт gap.
-  margin: 0 calc(0px - base.$sn-primitive-dimension-16) calc(0px - base.$sn-primitive-dimension-16);
-  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
+  // Бока и низ прижаты к кромкам контейнера, чтобы разделитель шёл во всю ширину.
+  margin: 0 calc(0px - base.$sn-density-spacing-interval-l) calc(0px - base.$sn-density-spacing-interval-l);
+  padding: base.$sn-primitive-dimension-8 base.$sn-density-spacing-interval-l base.$sn-density-spacing-interval-l;
   border-top: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decorTransparent;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
@@ -50,8 +49,6 @@
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
   justify-content: space-between;
-
-  min-height: base.$sn-primitive-dimension-40;
 }
 
 .priceSummaryText {
@@ -60,8 +57,12 @@
 
 .priceSummaryRight {
   cursor: pointer;
+
   display: flex;
+  gap: base.$sn-primitive-dimension-4;
   align-items: center;
+
+  color: base.$sn-theme-color-neutral-text;
 }
 
 .header {
@@ -72,12 +73,12 @@
 
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-16;
+  gap: base.$sn-density-spacing-interval-l;
 
   box-sizing: border-box;
   // Верх/бока подтягиваем к кромкам контейнера, чтобы разделитель шёл во всю ширину.
-  margin: calc(0px - base.$sn-primitive-dimension-16) calc(0px - base.$sn-primitive-dimension-16) 0;
-  padding: base.$sn-primitive-dimension-16;
+  margin: calc(0px - base.$sn-density-spacing-interval-l) calc(0px - base.$sn-density-spacing-interval-l) 0;
+  padding: base.$sn-density-spacing-interval-l;
   border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
 
   background-color: base.$sn-theme-color-neutral-background1Level;

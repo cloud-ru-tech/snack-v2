@@ -9,6 +9,7 @@ $instantAnimation: left 0.15s ease-in-out;
 $delayedAnimation: left 0.15s 0.35s ease-in-out;
 
 .wrapper {
+  box-sizing: border-box;
   width: $width;
 
   &[data-collapsed] {
@@ -71,10 +72,16 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
 
     // Правило сравнивает этот селектор с `.body:hover` выше, хотя это разные элементы
     // (`.content` и `.body`) и каскад между ними невозможен.
+    // Всплывающая панель: отступ 4 слева/сверху/снизу, ширина та же 256 (выступает за .body на 4).
     // stylelint-disable-next-line no-descending-specificity
     &[data-collapsed] {
-      margin: base.$sn-primitive-dimension-4;
+      flex-shrink: 0;
+
+      width: $width;
+      margin: base.$sn-primitive-dimension-4 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4;
       border-right: none;
+      border-radius: base.$sn-density-radius-2xs;
+
       box-shadow: base.$sn-boxShadow-elevation-level3;
     }
   }
@@ -118,16 +125,13 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
   align-items: center;
 
   min-height: calc(base.$sn-primitive-dimension-44 - base.$sn-primitive-strokeWeight-strokeRegular);
+
+  // Вместе с паддингом строки @ds/list (4) даёт отступ шапки 8, как в мастере.
+  padding-inline: base.$sn-primitive-dimension-4;
 }
 
 .pinnedHeaderContent {
   display: flex;
   flex-grow: 1;
   min-width: 0;
-}
-
-// Инсет под focus-outline поля: строка списка держит overflow: hidden и обрезала бы
-// рамку по краям. Только для поиска — иконка заголовка остаётся выровнена с навигацией.
-.pinnedHeaderSlotSearch {
-  padding-inline: base.$sn-primitive-dimension-4;
 }

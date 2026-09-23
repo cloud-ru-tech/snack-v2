@@ -3,4 +3,5 @@
   // Из таб-порядка точки убирает `disabled` (см. TourSteps.tsx).
   pointer-events: none;
   display: flex;
+  box-sizing: border-box;
 }

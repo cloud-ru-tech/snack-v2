@@ -103,10 +103,11 @@ export const FieldSelectCreate = forwardRef<HTMLInputElement, FieldSelectCreateP
           disabled={isNone || selectProps.disabled}
           placeholder={selectProps.placeholder ?? t('FieldSelectCreate.placeholder')}
           {...selectDataStates}
+          footerDivider
           footer={
             // В состоянии ошибки показываем только «Обновить» из errorDataState — без футера «Создать» (по макету).
             selectProps.dataError ? undefined : (
-              <SelectFooter onClick={onOpen} createButtonLabel={createButtonLabel} canCreate={canCreate} />
+              <SelectFooter onClick={onOpen} createButtonLabel={createButtonLabel} canCreate={canCreate} size={size} />
             )
           }
         />,

@@ -3,6 +3,8 @@
 .root {
   display: flex;
   flex-direction: column;
+
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
 }
@@ -45,7 +47,7 @@
 .main {
   box-sizing: border-box;
   width: 100%;
-  padding-top: base.$sn-primitive-dimension-16;
+  padding-top: base.$sn-density-spacing-interval-l;
 }
 
 .titleWrapper {
@@ -76,6 +78,7 @@
   margin: 0;
   padding: 0;
 
+  color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: break-word;
 }
 
@@ -94,4 +97,6 @@
 
   width: base.$sn-primitive-dimension-24;
   height: base.$sn-primitive-dimension-24;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
 }

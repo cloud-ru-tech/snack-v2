@@ -24,7 +24,7 @@
   }
 
   &:focus-visible {
-    border-radius: base.$sn-primitive-dimension-4;
+    border-radius: base.$sn-density-radius-2xs;
     outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
     outline-offset: base.$sn-primitive-strokeWeight-strokeSemiBold;
   }
@@ -87,18 +87,11 @@
 
   width: base.$sn-primitive-dimension-20;
   height: base.$sn-primitive-dimension-20;
-  border-radius: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-density-radius-2xs;
 
   color: base.$sn-theme-color-available-version-textTertiary;
 
-  @include m.with-material('acrylic', #{acrylic});
-}
-
-.acrylic {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  background-color: base.$sn-theme-color-neutral-decorTransparent;
 }
 
 .stateLayer {

@@ -4,6 +4,7 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  box-sizing: border-box;
 
   // Позиционирование hover-поверхности живёт только здесь; карточка-потребитель задаёт отступы
   // от своего угла через `--card-actions-surface-inset-*`.

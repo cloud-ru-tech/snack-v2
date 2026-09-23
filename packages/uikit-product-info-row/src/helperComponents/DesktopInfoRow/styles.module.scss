@@ -1,13 +1,17 @@
+@use '@ds/figma-variables/build/scss/components/button.module' as button;
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '../shared/dimensions';
 
 $label-width: calc(2 * #{base.$sn-primitive-dimension-100});
 $label-content-gap: base.$sn-primitive-dimension-24;
 $pair-gap: base.$sn-primitive-dimension-48;
 $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive-dimension-48});
+$row-width: calc(#{$label-width} + #{$label-content-gap} + #{$content-max});
 
 .wrapper {
+  position: relative;
   box-sizing: border-box;
-  width: min(100%, calc(#{$label-width} + #{$label-content-gap} + #{$content-max}));
+  width: min(100%, #{$row-width});
   min-height: base.$sn-primitive-dimension-40;
 
   &[data-width='full'] {
@@ -22,13 +26,14 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
     );
   }
 
+  // Figma `maxWidth=true`: строка тянется на контейнер до 720 (одна колонка) / 900 (две).
   &[data-max-width='true'] {
-    width: min(100%, calc(#{$label-width} + #{$label-content-gap} + 2 * #{$content-max}));
+    width: 100%;
+    max-width: $row-width;
   }
 
   &[data-column='2'][data-max-width='true'] {
-    width: 100%;
-    max-width: 100%;
+    max-width: dimensions.$double-max-width;
   }
 }
 
@@ -142,14 +147,14 @@ $content-max: calc(7 * #{base.$sn-primitive-dimension-64} + #{base.$sn-primitive
   align-items: center;
 }
 
-/** Плейсхолдер слота действий в макете Figma (вместо финальной кнопки). */
+// Габариты слота `+ slotFirstActionButton` в Figma — кнопка `m` iconOnly.
 .actionPlaceholder {
   flex-shrink: 0;
 
   box-sizing: border-box;
-  width: calc(3 * #{base.$sn-primitive-dimension-16} + #{base.$sn-primitive-dimension-8});
-  height: base.$sn-primitive-dimension-40;
-  border-radius: base.$sn-primitive-dimension-12;
+  width: button.$sn-button-anatomy-size-m-container-iconOnly-minWidth;
+  height: button.$sn-button-anatomy-size-m-container-minHeight;
+  border-radius: button.$sn-button-anatomy-size-m-container-borderRadius;
 
   background-color: base.$sn-theme-color-neutral-decor;
 }

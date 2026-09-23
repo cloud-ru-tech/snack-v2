@@ -3,6 +3,8 @@
 .headline {
   display: flex;
   flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  box-sizing: border-box;
 }
 
 .headlineLayout {
@@ -55,7 +57,11 @@
   justify-content: flex-end;
 }
 
+.statusRow {
+  display: flex;
+  align-items: center;
+}
+
 .subtitle {
-  margin-top: base.$sn-primitive-dimension-4;
   color: base.$sn-theme-color-available-version-textMain;
 }

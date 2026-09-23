@@ -37,7 +37,7 @@ function getProgressAppearance(percent: number) {
   if (percent >= QUOTA_USAGE_PROGRESS.MEDIUM) {
     return 'yellow';
   }
-  return 'green';
+  return 'primary';
 }
 
 export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefresh, ...props }: QuotaWidgetCardProps) {
@@ -46,10 +46,12 @@ export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefr
   if (noData) {
     return (
       <div className={styles.card} data-no-data {...props}>
+        <Typography variant='body' size='m' className={styles.noDataTitle}>
+          {quota.name}
+        </Typography>
         <InfoBlock
           size='s'
           align='vertical'
-          title={quota.name}
           content={t('errorText')}
           footer={
             onRefresh ? (
@@ -72,7 +74,7 @@ export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefr
   if (loading) {
     return (
       <div className={styles.card} data-loading {...props}>
-        <SkeletonText loading lines={1} variant='body' size='m' />
+        <SkeletonText loading lines={1} variant='body' size='m' width='50%' />
         <SkeletonText loading lines={1} variant='body' size='m' />
         <SkeletonText loading lines={1} variant='body' size='l' />
       </div>
@@ -116,7 +118,8 @@ export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefr
               <span className={styles.label}>{row.label}</span>
 
               <span className={styles.value}>
-                {formatNumber(row.value)} <span className={styles.unit}>{quota.unitDisplayName}</span>
+                <span>{formatNumber(row.value)}</span>
+                <span className={styles.unit}>{quota.unitDisplayName}</span>
               </span>
             </div>
           ))}

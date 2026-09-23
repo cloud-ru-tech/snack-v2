@@ -28,7 +28,7 @@ function ContentComponent({ children, state, wide, loadingState, errorState }: C
       if (loadingState?.showSkeleton) {
         return (
           <div className={styles.skeletonContent}>
-            <Skeleton loading width='100%' height='80px' borderRadius='8px' />
+            <Skeleton loading className={styles.skeleton} />
           </div>
         );
       }

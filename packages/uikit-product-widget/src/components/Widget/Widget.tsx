@@ -1,4 +1,5 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { Skeleton } from '@ds/skeleton';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { extractSupportProps, useDynamicList } from '@ds/utils';
@@ -9,6 +10,8 @@ import { BUTTON_TYPE, TEST_IDS, WIDGET_STATE } from '../../constants';
 import { Actions, ActionView, Content, ControlBlock, isVisibleAction } from '../../helperComponents';
 import { WidgetProps } from '../../types';
 import styles from './styles.module.scss';
+
+const ACRYLIC = backgroundPredefinedFillToAcrylic(BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level);
 
 function WidgetComponent({
   header,
@@ -48,18 +51,16 @@ function WidgetComponent({
       data-state={state}
       ref={containerRef}
       data-wide={wide || undefined}
+      data-acrylic-appearance={ACRYLIC.appearance}
+      data-acrylic-level={ACRYLIC.level}
       {...extractSupportProps(rest)}
     >
-      <div
-        className={styles.widgetHeader}
-        data-mobile={!wide || undefined}
-        data-loading={state === WIDGET_STATE.Loading || undefined}
-        data-test-id={TEST_IDS.header}
-      >
+      <span className={styles.acrylic} aria-hidden />
+      <div className={styles.widgetHeader} data-mobile={!wide || undefined} data-test-id={TEST_IDS.header}>
         <div className={styles.headerMain}>
           {state === WIDGET_STATE.Loading ? (
             <div className={styles.skeletonHeader}>
-              <Skeleton loading width={wide ? '96px' : '100%'} height='32px' borderRadius='4px' />
+              <Skeleton loading className={styles.skeletonTitle} />
             </div>
           ) : (
             <TitleClickable {...header} className={cn(styles.titleClickable, header.className)} />
@@ -93,7 +94,7 @@ function WidgetComponent({
         state !== WIDGET_STATE.Error &&
         visibleItemsWithoutKebab.map((action, index) =>
           state === WIDGET_STATE.Loading ? (
-            <Skeleton key={index} loading height='32px' borderRadius='8px' />
+            <Skeleton key={index} loading className={styles.skeletonButton} />
           ) : (
             <ActionView
               {...action}

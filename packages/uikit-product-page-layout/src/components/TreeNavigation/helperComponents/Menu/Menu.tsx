@@ -46,8 +46,9 @@ export function Menu({
           </Typography>
           {enableShrinkMenuButton && (
             <Button
-              view={VIEW.Simple}
+              view={VIEW.Function}
               appearance={APPEARANCE.Neutral}
+              size='s'
               label={isExpanded ? t('TreeNavigation.collapseAll') : t('TreeNavigation.expandAll')}
               icon={isExpanded ? <HorizontalMenuCloseSVG /> : <HorizontalMenuOpenSVG />}
               onClick={isExpanded ? handleCollapseAll : handleExpandAll}

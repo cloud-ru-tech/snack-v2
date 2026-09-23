@@ -1,35 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-.mobileActionsWrapper {
-  scrollbar-width: none;
-
-  overflow-y: auto;
-  display: flex;
-  flex-shrink: 0;
-  gap: base.$sn-primitive-dimension-8;
-  justify-content: stretch;
-
-  width: 100%;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.button {
-  white-space: nowrap;
-
-  &[data-full-width]:not([data-variant='icon-only']) {
-    flex-shrink: 0;
-    width: auto;
-  }
-
-  &[data-variant='icon-only'] {
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-}
-
 .actionsWrapper {
   display: flex;
   flex-shrink: 0;
@@ -46,9 +16,18 @@
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
   width: 100%;
-}
 
-.skeletonActionFull {
-  flex: 1;
-  min-width: 0;
+  .skeletonAction,
+  .skeletonIconAction {
+    height: base.$sn-primitive-dimension-32;
+    border-radius: base.$sn-density-radius-2xs;
+  }
+
+  .skeletonAction {
+    width: base.$sn-primitive-dimension-96;
+  }
+
+  .skeletonIconAction {
+    width: base.$sn-primitive-dimension-32;
+  }
 }

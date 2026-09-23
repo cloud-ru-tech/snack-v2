@@ -55,7 +55,7 @@ export function FieldChat({ handleSubmit: handleSubmitProp, value, attachment, a
   };
 
   return (
-    <div className={styles.fieldChat} data-layout-type={layoutType}>
+    <div className={styles.fieldChat}>
       {isMobile && <Attachments files={files} isMobile={isMobile} />}
 
       <FieldTextArea

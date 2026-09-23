@@ -11,13 +11,8 @@
   gap: base.$sn-primitive-dimension-16;
 
   box-sizing: border-box;
-  // Исключение из запрета на px-литералы, токена под это ограничение не будет. Предел
-  // держит длинный текст от растягивания подсказки на весь экран, а выразить его нечем:
-  // в `popover.$popover → anatomy → container` нет max-width (он заведён только у тултипа),
-  // шкала `sn-primitive-dimension-*` заканчивается на 136. Значение из легаси-пакета.
-  // `min(...)` — фолбэк для узкого вьюпорта: подсказка не бывает шире экрана, иначе
-  // движку некуда её поставить и она уезжает за край (сузить её он не умеет).
-  max-width: min(480px, calc(100vw - 2 * 16px));
+  // 480 — нет токена (max-width у popover не заведён); min() не даёт подсказке выйти за край узкого экрана.
+  max-width: min(480px, calc(100vw - 2 * #{base.$sn-primitive-dimension-16}));
 
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: break-word;

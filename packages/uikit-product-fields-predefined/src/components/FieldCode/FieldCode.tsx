@@ -103,12 +103,7 @@ export const FieldCode = forwardRef<FieldCodeRef, FieldCodeProps>(function Field
         size={size}
         error={resolvedError}
       >
-        <div
-          ref={codeContainerRef}
-          className={styles.codeContainer}
-          data-size={size}
-          data-stretch-cells={stretchCells || undefined}
-        >
+        <div ref={codeContainerRef} className={styles.codeContainer} data-stretch-cells={stretchCells || undefined}>
           {code.map((char, index) => (
             <Cell
               ref={inputRef => {

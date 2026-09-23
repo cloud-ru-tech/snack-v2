@@ -9,14 +9,14 @@
 
   box-sizing: border-box;
   width: 100%;
-  // Предельная ширина контентной области экрана — layout-константа без DS-токена.
-  max-width: 1200px;
+  // Предельная ширина контентной области экрана (1200); отдельного токена нет.
+  max-width: calc(25 * #{base.$sn-primitive-dimension-48});
   min-height: 100%;
 }
 
 .wrapper[data-mobile='true'] {
-  // Узкая мобильная раскладка — layout-константа без DS-токена.
-  max-width: 360px;
+  // Узкая мобильная раскладка (360); отдельного токена нет.
+  max-width: calc(3 * #{base.$sn-primitive-dimension-120});
 }
 
 .block {
@@ -34,14 +34,16 @@
   color: base.$sn-theme-color-available-version-textMain;
 }
 
-.description {
-  // Предельная ширина текстового блока для читаемости — layout-константа без DS-токена.
-  max-width: 500px;
-  margin-top: base.$sn-primitive-dimension-8;
-}
+.blockContent {
+  display: flex;
+  justify-content: center;
+  padding: base.$sn-primitive-dimension-40;
 
-.text {
-  display: block;
-  text-align: center;
-  white-space: break-spaces;
+  // Описание в мастере — один текст с переносом после первого предложения (`{{newline}}`).
+  white-space: pre-line;
+
+  // В mobile-мастере Figma у `composition` нет паддинга.
+  .wrapper[data-mobile='true'] & {
+    padding: 0;
+  }
 }

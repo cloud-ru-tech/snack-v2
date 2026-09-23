@@ -99,7 +99,14 @@ export function PriceSummary({
             <InvoiceBlock invoice={invoice} invoiceExpandedDefault={invoiceExpandedDefault} />
           )}
 
-          {docsLink?.href && <Link label={docsLink.label || t('docsLink')} href={docsLink.href} target='_blank' />}
+          {docsLink?.href && (
+            <Link
+              label={docsLink.label || t('docsLink')}
+              href={docsLink.href}
+              target='_blank'
+              className={styles.docsLink}
+            />
+          )}
         </ContentBlock>
       </div>
     </div>

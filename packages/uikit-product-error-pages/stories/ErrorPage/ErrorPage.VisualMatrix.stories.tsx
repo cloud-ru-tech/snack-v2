@@ -30,14 +30,20 @@ const logoVariants = [LOGO_VARIANT.Cloud, LOGO_VARIANT.Custom, LOGO_VARIANT.None
 const cell = (node: ReactNode) => <div className={styles.matrixCell}>{node}</div>;
 
 const containerWidths = [
-  { label: 'desktop / 1248', className: styles.matrixCell },
-  { label: 'tablet / 834', className: styles.matrixCellTablet },
-  { label: 'mobile / 360', className: styles.matrixCellMobile },
+  { label: 'desktop / 1248', className: styles.matrixCell, errorType: ERROR_TYPE.FrontendError },
+  { label: 'tablet / 834', className: styles.matrixCellTablet, errorType: ERROR_TYPE.FrontendError },
+  { label: 'mobile / 360', className: styles.matrixCellMobile, errorType: ERROR_TYPE.FrontendError },
+  // Тег кода статуса есть только у pageNotFound: на узком контейнере он встаёт над заголовком.
+  { label: 'mobile / 360 + statusCode', className: styles.matrixCellMobile, errorType: ERROR_TYPE.PageNotFound },
 ] as const;
 
-const renderByContainerWidth = ({ label, className }: (typeof containerWidths)[number]) => (
+const renderByContainerWidth = ({ label, className, errorType }: (typeof containerWidths)[number]) => (
   <div className={className}>
-    <ErrorPage data-test-id={TEST_IDS.matrix('frontend', label.split(' ')[0])} logoVariant={LOGO_VARIANT.Cloud} />
+    <ErrorPage
+      data-test-id={TEST_IDS.matrix(errorType, label.split(' ')[0])}
+      errorType={errorType}
+      logoVariant={LOGO_VARIANT.Cloud}
+    />
   </div>
 );
 
@@ -94,7 +100,7 @@ export const VisualMatrix: Story = {
         }))}
       />
       <StoryTable
-        sectionTitle='Container width (errorType = FrontendError, logo = Cloud)'
+        sectionTitle='Container width (logo = Cloud)'
         firstColumnHeader='ширина контейнера'
         columnHeaders={['sample']}
         rows={containerWidths.map(width => ({

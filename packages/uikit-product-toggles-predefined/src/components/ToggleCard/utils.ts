@@ -15,7 +15,7 @@ export function sizeToEmblemSize(size: Size): IconSize {
       return ICON_SIZE['5XL'];
     case SIZE.M:
     default:
-      return ICON_SIZE.L;
+      return ICON_SIZE.M;
   }
 }
 

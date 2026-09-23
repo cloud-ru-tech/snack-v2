@@ -29,6 +29,7 @@ $gaps: (
 
 .root {
   display: flex;
+  box-sizing: border-box;
 
   @each $value in $directions {
     &[data-direction='#{$value}'] {

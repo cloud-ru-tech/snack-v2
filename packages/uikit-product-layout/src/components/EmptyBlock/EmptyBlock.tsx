@@ -65,14 +65,20 @@ export function EmptyBlock({
   const isMobile = isMobileLayout(layoutType);
 
   return (
-    <Block size={BLOCK_SIZE.L} className={cn(styles.emptyBlock, className)} {...extractSupportProps(rest)}>
+    <Block
+      size={BLOCK_SIZE.L}
+      className={cn(styles.emptyBlock, className)}
+      contentClassName={styles.content}
+      data-mobile={isMobile || undefined}
+      {...extractSupportProps(rest)}
+    >
       <div className={styles.inner}>
         <InfoBlock
           className={styles.infoBlock}
           title={title}
           content={content}
           icon={icon}
-          size={isMobile ? INFO_SIZE.M : INFO_SIZE.L}
+          size={INFO_SIZE.L}
           align={resolvedAlign}
           footer={footer}
         />

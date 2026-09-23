@@ -1,7 +1,5 @@
-.popover {
-  max-height: 80%;
-
-  & > div {
-    overflow: auto;
-  }
+// Скролл на своей обёртке контента, а не на внутренней разметке Popover; 80vh — доля экрана, токена нет.
+.content {
+  overflow: auto;
+  max-height: 80vh;
 }

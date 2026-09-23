@@ -6,6 +6,11 @@
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
 
+  .skeletonControl {
+    height: base.$sn-primitive-dimension-32;
+    border-radius: base.$sn-density-radius-2xs;
+  }
+
   &[data-mobile] {
     width: 100%;
 

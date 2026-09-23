@@ -4,10 +4,7 @@
   display: inline-flex;
 }
 
-.tooltip {
-  max-width: tooltip.$sn-tooltip-anatomy-container-maxWidth;
-}
-
+// У @ds/link нет API для цвета inversion/textMain — красим внутренний слой контента.
 .supportLink div {
   color: tooltip.$sn-theme-color-available-inversion-textMain;
 }

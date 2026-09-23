@@ -52,7 +52,7 @@ export const InteractionTest: Story = {
       const root = canvas.getByTestId(TEST_IDS.priceSummary);
       const orderDetails = within(root).getByTestId(TEST_IDS.orderDetails);
 
-      await userEvent.click(within(orderDetails).getByTestId(ACCORDION_TEST_IDS.title));
+      await userEvent.click(within(orderDetails).getByTestId(ACCORDION_TEST_IDS.afterTitle));
       await waitFor(() => expect(within(root).getByTestId(TEST_IDS.orderDetailsContent)).toBeVisible());
     });
 

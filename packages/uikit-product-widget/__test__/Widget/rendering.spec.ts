@@ -22,10 +22,9 @@ test.describe('Widget — rendering', () => {
   });
 
   test.describe('states', () => {
-    test('loading sets data-state and header data-loading', async ({ gotoStory, getByTestId }) => {
+    test('loading sets data-state', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ state: WIDGET_STATE.Loading }));
       await expect(getByTestId(WIDGET_TEST_ID)).toHaveAttribute('data-state', WIDGET_STATE.Loading);
-      await expect(getByTestId(TEST_IDS.header)).toHaveAttribute('data-loading', 'true');
     });
 
     test('error sets data-state and renders retry button', async ({ gotoStory, getByTestId }) => {

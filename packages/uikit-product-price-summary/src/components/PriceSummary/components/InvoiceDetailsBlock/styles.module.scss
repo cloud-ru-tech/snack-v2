@@ -1,9 +1,22 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
+// Рамка в Figma внутренняя: отступ контента считается от внешней кромки.
+$border-width: base.$sn-primitive-strokeWeight-strokeRegular;
+
 .main {
-  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8;
-  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-neutral-decor;
+  box-sizing: border-box;
+  padding: calc(#{base.$sn-primitive-dimension-8} - #{$border-width}) calc(#{base.$sn-primitive-dimension-8} - #{$border-width})
+    calc(#{base.$sn-primitive-dimension-4} - #{$border-width});
+  border: $border-width dashed base.$sn-theme-color-neutral-decor;
   border-radius: base.$sn-brand-anatomy-radius-block-m;
+}
+
+// Разделитель шапки даёт по 4 с каждой стороны, до 8 из Figma добирают gap и padding.
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  padding-bottom: base.$sn-primitive-dimension-4;
 }
 
 .header {
@@ -15,4 +28,5 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-bottom: base.$sn-primitive-dimension-8;
 }

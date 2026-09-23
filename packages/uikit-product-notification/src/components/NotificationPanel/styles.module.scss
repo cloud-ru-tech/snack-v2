@@ -1,6 +1,7 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .panel {
+  box-sizing: border-box;
   background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
@@ -26,7 +27,11 @@
     padding-top: base.$sn-primitive-dimension-12;
   }
 
-  // Сегменты в мобильном мастере растянуты на всю ширину sheet'а.
+  &[data-mobile] {
+    padding-inline: base.$sn-primitive-dimension-12;
+  }
+
+  // Сегменты в мобильном мастере растянуты на всю ширину слота.
   &[data-mobile] > * {
     flex: 1 1 auto;
     min-width: 0;

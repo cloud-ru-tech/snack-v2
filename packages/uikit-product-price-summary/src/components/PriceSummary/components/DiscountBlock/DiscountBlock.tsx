@@ -15,13 +15,13 @@ export function DiscountBlock({ value }: DiscountBlockProps) {
   const { t } = priceSummaryLocale.useTranslations();
 
   return (
-    <>
-      <div className={styles.discountGrid}>
+    <div className={styles.discount}>
+      <div className={styles.basePriceGrid}>
         <Typography variant={VARIANT.body} size={SIZE.s} as='div'>
           {t('basePrice')}
         </Typography>
 
-        <Typography variant={VARIANT.label} size={SIZE.m} as='div' className={styles.priceCell}>
+        <Typography variant={VARIANT.body} size={SIZE.s} as='div' className={styles.priceCell}>
           {formatCurrency(value.price)}
         </Typography>
       </div>
@@ -37,6 +37,6 @@ export function DiscountBlock({ value }: DiscountBlockProps) {
           </Fragment>
         ))}
       </div>
-    </>
+    </div>
   );
 }

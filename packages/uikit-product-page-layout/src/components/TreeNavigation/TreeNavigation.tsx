@@ -64,7 +64,7 @@ export function TreeNavigation({
               >
                 <div className={styles.innerElement}>
                   <Button
-                    view={VIEW.Simple}
+                    view={VIEW.Function}
                     appearance={APPEARANCE.Neutral}
                     size={SIZE.S}
                     aria-label={open ? t('TreeNavigation.closeMenu') : t('TreeNavigation.openMenu')}

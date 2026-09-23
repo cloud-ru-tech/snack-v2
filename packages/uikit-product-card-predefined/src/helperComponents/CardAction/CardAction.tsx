@@ -15,11 +15,11 @@ type CardActionProps = {
 export function CardAction({ actionLabel, className }: CardActionProps): ReactElement {
   return (
     <div className={cn(styles.root, className)}>
-      <Typography as='span' variant='label' size='l'>
+      <Typography as='span' variant='label' size='m'>
         {actionLabel}
       </Typography>
 
-      <ArrowRightSVG size={24} />
+      <ArrowRightSVG className={styles.icon} />
     </div>
   );
 }

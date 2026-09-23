@@ -27,7 +27,7 @@
       "emblem": {
         "type": "Emblem",
         "required": false,
-        "description": "Ведущая эмблема. Передаются только параметры — сам `IconPredefined`\nвстроен в компонент; `size` эмблемы выводится из `size` карточки.",
+        "description": "Ведущая эмблема. Передаются только параметры — сам `IconPredefined`\nвстроен в компонент; `size` эмблемы выводится из `size` карточки.\nПо умолчанию `background: true` и `shape: 'squared'`, как в макете.",
         "typeRefs": [
           "Emblem",
           "EmblemIcon",

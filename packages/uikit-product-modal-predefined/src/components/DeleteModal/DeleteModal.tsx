@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
 import { ModalCustom, WIDTH } from '@ds/modal';
 import { QuestionTooltip } from '@ds/tooltip';
 import { useRef } from 'react';
@@ -7,8 +7,8 @@ import { CONFIRM_TEXT_VARIANT, TEST_IDS } from '../../constants';
 import { InputConfirm } from '../../helperComponents';
 import { useTextFieldValidation } from '../../hooks';
 import { modalPredefinedLocale } from '../../locale';
+import styles from '../../shared/styles.module.scss';
 import { DeleteModalProps } from '../../types';
-import styles from './styles.module.scss';
 
 export function DeleteModal({
   open,
@@ -91,6 +91,7 @@ export function DeleteModal({
       <ModalCustom.Footer>
         <div className={styles.footer}>
           <Button
+            size={SIZE.L}
             view={VIEW.Outline}
             appearance={APPEARANCE.Neutral}
             label={t('deleteModal.cancel')}
@@ -98,6 +99,7 @@ export function DeleteModal({
             data-test-id={TEST_IDS.cancelButton}
           />
           <Button
+            size={SIZE.L}
             view={VIEW.Filled}
             appearance={APPEARANCE.Critical}
             label={t('deleteModal.approve')}

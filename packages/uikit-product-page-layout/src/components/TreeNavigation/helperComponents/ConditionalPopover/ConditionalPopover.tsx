@@ -15,10 +15,9 @@ export function ConditionalPopover({ tip, withPopover, isOpen, onOpenChange, chi
   if (withPopover) {
     return (
       <Popover
-        className={styles.popover}
         open={isOpen}
         onOpenChange={nextOpen => onOpenChange(nextOpen)}
-        content={tip}
+        content={<div className={styles.content}>{tip}</div>}
         trigger={TRIGGER.Click}
         placement={PLACEMENT.BottomStart}
       >

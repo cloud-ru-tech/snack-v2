@@ -4,9 +4,12 @@ $duration: var(--snack-notification-stack-animation-duration);
 
 .container {
   position: relative;
+
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
 }
 
 .header {

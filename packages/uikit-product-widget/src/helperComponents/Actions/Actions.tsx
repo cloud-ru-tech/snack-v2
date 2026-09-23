@@ -21,19 +21,8 @@ function ActionsSkeleton({ wide }: Pick<ActionsProps, 'wide'>) {
   return (
     <div className={styles.actionsWrapper} data-wide={wide || undefined}>
       <div className={styles.skeletonActions}>
-        {wide ? (
-          <>
-            <Skeleton loading width='96px' height='32px' borderRadius='8px' />
-            <Skeleton loading width='32px' height='32px' borderRadius='8px' />
-          </>
-        ) : (
-          <>
-            <div className={styles.skeletonActionFull}>
-              <Skeleton loading width='100%' height='32px' borderRadius='8px' />
-            </div>
-            <Skeleton loading width='32px' height='32px' borderRadius='8px' />
-          </>
-        )}
+        {wide && <Skeleton loading className={styles.skeletonAction} />}
+        <Skeleton loading className={styles.skeletonIconAction} />
       </div>
     </div>
   );

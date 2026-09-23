@@ -42,7 +42,7 @@ export function PeriodDropdown({ period, onPeriodChanged = () => {}, periodOptio
 
       {actions.length > 0 && (
         <ButtonDropdown
-          size='s'
+          size='m'
           label={formatPeriod(period)}
           items={actions}
           closeDroplistOnItemClick

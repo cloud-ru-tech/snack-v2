@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, VIEW } from '@ds/button';
+import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
 import { ModalCustom, WIDTH } from '@ds/modal';
 import { QuestionTooltip } from '@ds/tooltip';
 import { useRef } from 'react';
@@ -7,8 +7,8 @@ import { TEST_IDS } from '../../constants';
 import { InputConfirm } from '../../helperComponents';
 import { useTextFieldValidation } from '../../hooks';
 import { modalPredefinedLocale } from '../../locale';
+import styles from '../../shared/styles.module.scss';
 import { RecallModalProps } from '../../types';
-import styles from './styles.module.scss';
 
 export function RecallModal({
   open,
@@ -86,6 +86,7 @@ export function RecallModal({
       <ModalCustom.Footer>
         <div className={styles.footer}>
           <Button
+            size={SIZE.L}
             view={VIEW.Outline}
             appearance={APPEARANCE.Neutral}
             label={t('recallModal.cancel')}
@@ -93,6 +94,7 @@ export function RecallModal({
             data-test-id={TEST_IDS.cancelButton}
           />
           <Button
+            size={SIZE.L}
             view={VIEW.Filled}
             appearance={APPEARANCE.Critical}
             label={t('recallModal.approve')}

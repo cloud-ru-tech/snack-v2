@@ -7,7 +7,7 @@ $text-appearance-colors: (
 );
 
 $icon-appearance-colors: (
-  'default': base.$sn-theme-color-neutral-accent,
+  'default': base.$sn-theme-color-available-version-textTertiary,
   'userError': base.$sn-theme-color-red-accent,
   'warning': base.$sn-theme-color-yellow-accent,
   'systemError': base.$sn-theme-color-available-version-textDisabled,
@@ -27,7 +27,7 @@ $icon-appearance-colors: (
 
 .hint {
   display: flex;
-  gap: base.$sn-primitive-dimension-2;
+  gap: base.$sn-primitive-dimension-4;
   align-items: center;
   color: base.$sn-theme-color-available-version-textTertiary;
 

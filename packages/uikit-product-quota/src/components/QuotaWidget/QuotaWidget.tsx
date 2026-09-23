@@ -66,6 +66,8 @@ export function QuotaWidget({
     <Dropdown
       {...props}
       placement='bottom-end'
+      // Desktop: отступы даёт `.content`; mobile: отступ тела даёт BottomSheet.
+      bodyPadding={isMobile}
       // Mobile: лист на всю высоту экрана (число `1` = full-height snap; safe-area даёт сам BottomSheet).
       snapPoints={[1]}
       title={isMobile ? <QuotaMobileHeader projectName={projectName} /> : undefined}

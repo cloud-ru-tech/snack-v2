@@ -13,6 +13,7 @@ $icon-size: base.$sn-density-icon-s;
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   width: $function-badge-size;
   height: $function-badge-size;
   border: 0;

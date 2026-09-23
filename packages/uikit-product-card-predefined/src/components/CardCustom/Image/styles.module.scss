@@ -3,9 +3,8 @@
 
 $modes: 'little', 'middle', 'background';
 
-// Высоты little/middle-режимов заданы в Figma-мастере фиксированными px; в наборе
-// `@ds/figma-variables` нет dimension-токена под 144/240 (максимум — 136).
-$image-little-height: 144px;
+$image-little-height: base.$sn-primitive-dimension-144;
+// Нет токена: шкала primitive-dimension заканчивается на 152.
 $image-middle-height: 240px;
 
 // mask-image использует только альфа-канал стопов: RGB роли не играет, важна

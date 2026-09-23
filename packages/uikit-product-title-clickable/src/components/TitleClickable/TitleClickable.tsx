@@ -42,14 +42,7 @@ export function TitleClickable<T extends ElementType = 'a'>({
       </TitleClickableContent>
 
       {showArrow && (
-        <span
-          data-test-id={TEST_IDS.chevron}
-          className={styles.chevron}
-          data-acrylic-appearance='decorTransparent'
-          data-acrylic-level='1Level'
-          aria-hidden
-        >
-          <span className={styles.acrylic} aria-hidden />
+        <span data-test-id={TEST_IDS.chevron} className={styles.chevron} aria-hidden>
           <span className={styles.stateLayer} data-state='emptyNeutralOnBackground' aria-hidden />
           <ArrowIcon size={16} className={styles.chevronIcon} />
         </span>

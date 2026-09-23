@@ -183,10 +183,13 @@
 
 // Сетка карточек info-страницы и каталога. auto-fit + minmax: на узком контейнере
 // (mobile ≈360px) колонки схлопываются в одну, на широком — две и более.
+// Шаг 12: отступ страницы от кнопок до контента на compact ужался до 6px (mobile), и прежние
+// 16px между карточками читались разреженно. Density-интервалы сюда не подходят — `interval-l`
+// на desktop даёт 24px, то есть шире исходного.
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: base.$sn-primitive-dimension-16;
+  gap: base.$sn-primitive-dimension-12;
 }
 
 // Карточка сервиса в каталоге: иконка + текст + действие.

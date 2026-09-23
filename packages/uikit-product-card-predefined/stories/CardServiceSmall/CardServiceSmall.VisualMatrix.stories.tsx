@@ -126,7 +126,7 @@ export const VisualMatrix: Story = {
                   promoBadge={{
                     label: 'Promo Tag',
                     appearance: APPEARANCE.Primary,
-                    role: ROLE_APPEARANCE.Accent,
+                    roleAppearance: ROLE_APPEARANCE.Decor,
                     size: SIZE.Xs,
                   }}
                 />,

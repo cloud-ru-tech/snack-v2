@@ -983,7 +983,7 @@
   "InfoRowActionPlaceholder": {
     "displayName": "InfoRowActionPlaceholder",
     "propsTypeName": "ComponentPropsWithoutRef",
-    "description": "Плейсхолдер области действий по макету Figma (декоративный; для кнопок используйте `rowActions`).",
+    "description": "Декоративный плейсхолдер слота действий размером с кнопку `m` iconOnly; для кнопок используйте `rowActions`.",
     "props": {},
     "relatedTypes": {}
   },

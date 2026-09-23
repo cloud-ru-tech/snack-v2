@@ -2,7 +2,18 @@
 @use '@ds/figma-variables/build/scss/components/card.module' as card;
 @use '@ds/materials' as m;
 
+.acrylic {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  border-radius: inherit;
+}
+
 .widget {
+  isolation: isolate;
   position: relative;
 
   display: flex;
@@ -12,12 +23,10 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: base.$sn-primitive-dimension-16;
+  padding: base.$sn-density-spacing-interval-m;
   border-radius: card.$sn-card-anatomy-radius-l-container-borderRadius;
 
   color: base.$sn-theme-color-available-version-textMain;
-
-  background: base.$sn-theme-color-neutral-background1Level;
 
   @include m.with-material('acrylic', #{acrylic});
 
@@ -36,11 +45,8 @@
 
   &[data-mobile] {
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  &[data-loading] {
     gap: base.$sn-primitive-dimension-12;
+    align-items: flex-start;
   }
 }
 
@@ -76,6 +82,21 @@
   flex: 1;
   width: 100%;
   min-width: 0;
+
+  .skeletonTitle {
+    width: 100%;
+    height: base.$sn-primitive-dimension-24;
+    border-radius: base.$sn-density-radius-2xs;
+  }
+}
+
+.widget[data-wide] .skeletonTitle {
+  width: base.$sn-primitive-dimension-96;
+}
+
+.widget .skeletonButton {
+  height: base.$sn-primitive-dimension-32;
+  border-radius: base.$sn-density-radius-2xs;
 }
 
 .button {

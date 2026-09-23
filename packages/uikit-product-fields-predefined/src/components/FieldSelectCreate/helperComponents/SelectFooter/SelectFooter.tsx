@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, ICON_POSITION, VIEW } from '@ds/button';
+import { APPEARANCE, Button, ICON_POSITION, Size, VIEW } from '@ds/button';
 import { PlusSVG } from '@ds/icons/interface/system';
 import { Tooltip } from '@ds/tooltip';
 
@@ -10,10 +10,11 @@ type SelectFooterProps = {
   onClick(): void;
   createButtonLabel: string;
   canCreate: boolean;
+  size: Size;
 };
 
 /** Персистентный футер дроплиста с кнопкой «Создать» (недоступна и с tooltip при нехватке прав). */
-export function SelectFooter({ onClick, createButtonLabel, canCreate }: SelectFooterProps) {
+export function SelectFooter({ onClick, createButtonLabel, canCreate, size }: SelectFooterProps) {
   const { t } = fieldsPredefinedLocale.useTranslations();
 
   const button = (
@@ -24,6 +25,7 @@ export function SelectFooter({ onClick, createButtonLabel, canCreate }: SelectFo
       icon={<PlusSVG />}
       iconPosition={ICON_POSITION.Before}
       onClick={onClick}
+      size={size}
       disabled={!canCreate}
       data-test-id={TEST_IDS.fieldSelectCreateFooterButton}
     />

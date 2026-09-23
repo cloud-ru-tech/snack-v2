@@ -10,6 +10,7 @@ import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import { POSITION } from '../../constants';
+import sharedStyles from '../shared/styles.module.scss';
 import styles from './styles.module.scss';
 import { MobileInfoRowProps, MobileRowActionButton } from './types';
 
@@ -55,7 +56,9 @@ export function MobileInfoRow({
 
   return (
     <div {...extractSupportProps(rest)} className={cn(styles.wrapper, className)}>
-      {topDivider && position !== POSITION.First && <Divider variant={DIVIDER_VARIANT.Regular} />}
+      {topDivider && position !== POSITION.First && (
+        <Divider className={cn(sharedStyles.divider, sharedStyles.dividerTop)} variant={DIVIDER_VARIANT.Regular} />
+      )}
 
       <div className={styles.infoRow} data-position={position}>
         <div className={styles.labelLayout}>
@@ -89,7 +92,9 @@ export function MobileInfoRow({
         </div>
       </div>
 
-      {bottomDivider && position !== POSITION.Last && <Divider variant={DIVIDER_VARIANT.Regular} />}
+      {bottomDivider && position !== POSITION.Last && (
+        <Divider className={cn(sharedStyles.divider, sharedStyles.dividerBottom)} variant={DIVIDER_VARIANT.Regular} />
+      )}
     </div>
   );
 }

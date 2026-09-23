@@ -25,3 +25,8 @@
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
 }
+
+// @ds/link наследует шрифт от контейнера.
+.docsLink {
+  @include base.composite-var(base.$sn-regular-body-m);
+}

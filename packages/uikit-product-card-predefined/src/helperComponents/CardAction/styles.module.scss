@@ -5,7 +5,14 @@
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
 
+  box-sizing: border-box;
   height: base.$sn-primitive-dimension-32;
 
   color: base.$sn-theme-color-primary-text;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
 }

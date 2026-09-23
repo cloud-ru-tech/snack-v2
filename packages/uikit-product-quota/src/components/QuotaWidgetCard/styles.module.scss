@@ -21,7 +21,7 @@
   /* Ширину карточки задаёт трек грида: desktop 2 колонки, mobile 1 колонка — на всю ширину.
      Своей ширины у карточки нет, только нижняя граница (в Figma-мастере карточка 288px).
      `min()` снимает эту границу, когда контейнер уже неё, — узкий лист не переполняется. */
-  min-width: min(256px, 100%);
+  min-width: min(256px, 100%); // нет токена
   max-width: 100%;
   padding: base.$sn-primitive-dimension-8;
   border-radius: card.$sn-card-anatomy-radius-s-container-borderRadius;
@@ -57,6 +57,10 @@
   color: base.$sn-theme-color-available-version-textTertiary;
 }
 
+.noDataTitle {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
 .progressBar {
   width: 100%;
 }
@@ -86,6 +90,8 @@
 .value {
   @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 'l');
 
+  display: flex;
+  column-gap: base.$sn-primitive-dimension-2;
   color: base.$sn-theme-color-available-version-textMain;
   white-space: nowrap;
 }

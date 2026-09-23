@@ -1,0 +1,15 @@
+// Разделители лежат поверх вертикального паддинга строки, как в Figma (`absolute`), и не добавляют высоту.
+// Двойной класс перебивает `position: relative` корня @ds/divider независимо от порядка CSS.
+.divider.divider {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.dividerTop {
+  top: 0;
+}
+
+.dividerBottom {
+  bottom: 0;
+}

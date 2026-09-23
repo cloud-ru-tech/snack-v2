@@ -27,20 +27,20 @@ export function InvoiceDetailsBlock({ invoice }: InvoiceDetailsBlockProps) {
       {showBlockLabel && <CoveredByGrantLabel covered={firstValue} />}
 
       {invoice.title && (
-        <>
+        <div className={styles.head}>
           <div className={styles.header}>
-            <Typography variant={VARIANT.label} size={SIZE.m}>
+            <Typography variant={VARIANT.label} size={SIZE.s}>
               {invoice.title}
             </Typography>
             {invoice.quantity && (
-              <Typography variant={VARIANT.label} size={SIZE.m}>
+              <Typography variant={VARIANT.label} size={SIZE.s}>
                 {formatQuantity(invoice.quantity)}
               </Typography>
             )}
           </div>
 
           <Divider />
-        </>
+        </div>
       )}
 
       {invoice.items.map((item, index) => (

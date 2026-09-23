@@ -5,6 +5,10 @@
   flex-direction: column;
   row-gap: base.$sn-primitive-dimension-4;
   align-items: stretch;
+
+  box-sizing: border-box;
+  width: 200px; // нет токена
+  max-width: 100%;
 }
 
 .lists {
@@ -26,5 +30,7 @@
 }
 
 .rowValue {
-  text-align: right;
+  display: flex;
+  flex-shrink: 0;
+  column-gap: base.$sn-primitive-dimension-2;
 }

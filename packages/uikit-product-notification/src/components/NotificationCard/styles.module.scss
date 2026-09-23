@@ -48,14 +48,26 @@ $appearance-unread-bg: (
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
 
+  box-sizing: border-box;
   padding: base.$sn-primitive-dimension-12;
-  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
   border-radius: base.$sn-density-radius-2xs;
 
   background-color: transparent;
   outline: none;
 
   @include m.has-state-layer-as-child(#{stateLayer});
+
+  // Рамка в мастере — наложение поверх бокса: не сдвигает контент и абсолютные слоты.
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+    border-radius: inherit;
+  }
 
   &[data-clickable] {
     cursor: pointer;
@@ -105,6 +117,10 @@ $appearance-unread-bg: (
   flex: 1 1 auto;
   min-width: 0;
   color: base.$sn-theme-color-available-version-textMain;
+
+  .notificationCard[data-appearance='error'] & {
+    color: base.$sn-theme-color-red-text;
+  }
 }
 
 .notificationCardContent {
@@ -129,9 +145,7 @@ $appearance-unread-bg: (
 .notificationCardDate {
   display: flex;
   flex: 1 1 auto;
-  // Figma: `sn/notification/anatomy/notificationCard/date/gap` — алиас на
-  // `sn.primitive.dimension.4`. Коллекция `notification` пока не выгружена в
-  // `@ds/figma-variables`, поэтому ссылаемся на примитив напрямую.
+  // `notification/anatomy/*` ссылается на удалённую коллекцию — берём примитив с тем же значением.
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
   justify-content: flex-end;

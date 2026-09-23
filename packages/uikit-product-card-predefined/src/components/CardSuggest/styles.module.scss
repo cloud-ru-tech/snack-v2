@@ -1,4 +1,16 @@
+@use 'sass:map';
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$content-spacing: (
+  'm': (
+    'gap': base.$sn-primitive-dimension-8,
+    'padding': base.$sn-primitive-dimension-16,
+  ),
+  's': (
+    'gap': base.$sn-primitive-dimension-4,
+    'padding': base.$sn-primitive-dimension-8,
+  ),
+);
 
 .content {
   position: relative;
@@ -29,17 +41,12 @@
   box-sizing: border-box;
   text-decoration: none;
 
-  &[data-size='m'] {
-    .content {
-      gap: base.$sn-primitive-dimension-8;
-      padding: base.$sn-primitive-dimension-16;
-    }
-  }
-
-  &[data-size='s'] {
-    .content {
-      gap: base.$sn-primitive-dimension-4;
-      padding: base.$sn-primitive-dimension-8;
+  @each $size, $spacing in $content-spacing {
+    &[data-size='#{$size}'] {
+      .content {
+        gap: map.get($spacing, 'gap');
+        padding: map.get($spacing, 'padding');
+      }
     }
   }
 }

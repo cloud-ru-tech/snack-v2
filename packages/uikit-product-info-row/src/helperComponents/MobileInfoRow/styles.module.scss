@@ -1,6 +1,7 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 .wrapper {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
 }
@@ -8,19 +9,19 @@
 .infoRow {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-6;
+  gap: base.$sn-primitive-dimension-4;
   width: 100%;
 
   &[data-position='inner'] {
-    padding: base.$sn-primitive-dimension-16 0;
+    padding: base.$sn-primitive-dimension-12 0;
   }
 
   &[data-position='first'] {
-    padding-bottom: base.$sn-primitive-dimension-16;
+    padding-bottom: base.$sn-primitive-dimension-12;
   }
 
   &[data-position='last'] {
-    padding-top: base.$sn-primitive-dimension-16;
+    padding-top: base.$sn-primitive-dimension-12;
   }
 }
 
@@ -28,7 +29,7 @@
   position: relative;
 
   display: flex;
-  gap: base.$sn-primitive-dimension-6;
+  gap: base.$sn-primitive-dimension-4;
   align-items: center;
   justify-content: flex-start;
 
@@ -38,7 +39,7 @@
 }
 
 .label {
-  @include base.composite-var(base.$sn-thin-label-m);
+  @include base.composite-var(base.$sn-thin-label-l);
 
   color: base.$sn-theme-color-available-version-textSecondary;
 }
@@ -49,7 +50,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-16;
+  gap: base.$sn-primitive-dimension-12;
 }
 
 .content {
@@ -63,7 +64,7 @@
   min-width: 0;
   height: 100%;
 
-  @include base.composite-var(base.$sn-regular-body-s);
+  @include base.composite-var(base.$sn-regular-body-m);
 
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: anywhere;
@@ -71,6 +72,6 @@
 
 .rowActions {
   display: flex;
-  gap: base.$sn-primitive-dimension-12;
+  gap: base.$sn-primitive-dimension-8;
   align-items: center;
 }

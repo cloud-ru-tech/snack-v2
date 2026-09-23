@@ -1,4 +1,4 @@
-import { PromoTag, ROLE_APPEARANCE } from '@ds/promo-tag';
+import { APPEARANCE, PromoTag, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
 import { QuestionTooltip } from '@ds/tooltip';
 import cn from 'classnames';
 
@@ -16,8 +16,9 @@ export function CoveredByGrantLabel({ covered, className }: CoveredByGrantLabelP
   return (
     <div className={cn(styles.coveredByGrant, className)}>
       <PromoTag
-        appearance={covered ? 'green' : 'neutral'}
+        appearance={covered ? APPEARANCE.Primary : APPEARANCE.Neutral}
         roleAppearance={ROLE_APPEARANCE.Decor}
+        size={SIZE.Xs}
         label={covered ? t('coveredByGrant') : t('notCoveredByGrant')}
       />
       <QuestionTooltip

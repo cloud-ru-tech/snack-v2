@@ -99,18 +99,17 @@ $radius-to-badge-padding-right: (
 }
 
 .picture {
-  // `data-size` уже приведён к размеру эмблемы (m/l/5xl) в компоненте — ключуемся
-  // прямо по нему, без второго маппинга card→emblem. `rounded`-сегмент даёт
-  // border-radius (круглый бейдж, как у дефолтного IconPredefined), иначе
-  // картинка осталась бы прямоугольной и overflow:hidden ничего не обрезал бы.
+  // `data-size` уже приведён к размеру эмблемы (m/5xl) в компоненте — селектор идёт
+  // прямо по нему, без второго маппинга card→emblem. `squared`-сегмент даёт
+  // border-radius той же формы, что у эмблемы-иконки по умолчанию.
   overflow: hidden;
   box-sizing: border-box;
   object-fit: cover;
 
-  @each $size in ('m', 'l', '5xl') {
+  @each $size in ('m', '5xl') {
     &[data-size='#{$size}'] {
       @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size);
-      @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size, 'rounded');
+      @include base.composite-var(iconPredefined.$iconPredefined, 'anatomy', 'size', $size, 'squared');
     }
   }
 }

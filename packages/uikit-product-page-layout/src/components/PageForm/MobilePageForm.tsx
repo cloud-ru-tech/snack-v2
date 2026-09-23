@@ -1,5 +1,5 @@
 import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
-import { APPEARANCE, Button, BUTTON_GROUP_ACTION_SLOT, ButtonGroup, VIEW } from '@ds/button';
+import { APPEARANCE, Button, BUTTON_GROUP_ACTION_SLOT, ButtonGroup, ICON_POSITION, VIEW } from '@ds/button';
 import { Dropdown } from '@ds/dropdown';
 import { ChevronRightSVG, KebabSVG } from '@ds/icons/interface/system';
 import { Droplist } from '@ds/list';
@@ -75,7 +75,7 @@ function MobilePageFormBase({
                   },
                 }))}
               >
-                <Button view={VIEW.Function} appearance={APPEARANCE.Neutral} icon={<KebabSVG />} size='m' />
+                <Button view={VIEW.Function} appearance={APPEARANCE.Neutral} icon={<KebabSVG />} size='s' />
               </Droplist>
             ) : undefined
           }
@@ -112,21 +112,31 @@ function MobilePageFormBase({
                 content={<div className={styles.modalContent}>{priceSummary.content}</div>}
                 data-test-id={TEST_IDS.pageForm.priceSummarySheet}
               >
-                <div className={styles.priceSummaryRight} data-test-id={TEST_IDS.pageForm.priceSummaryTrigger}>
-                  <Typography variant={VARIANT.label} size={SIZE.l} className={styles.priceSummaryTotal}>
-                    {priceSummary.total}
-                  </Typography>
-                  {priceSummary.content && (
-                    <Button view={VIEW.Function} appearance={APPEARANCE.Neutral} size='m' icon={<ChevronRightSVG />} />
-                  )}
-                </div>
+                {typeof priceSummary.total === 'string' ? (
+                  <Button
+                    view={VIEW.Function}
+                    appearance={APPEARANCE.Neutral}
+                    size='s'
+                    label={priceSummary.total}
+                    icon={priceSummary.content ? <ChevronRightSVG /> : undefined}
+                    iconPosition={ICON_POSITION.After}
+                    data-test-id={TEST_IDS.pageForm.priceSummaryTrigger}
+                  />
+                ) : (
+                  <div className={styles.priceSummaryRight} data-test-id={TEST_IDS.pageForm.priceSummaryTrigger}>
+                    <Typography variant={VARIANT.label} size={SIZE.s}>
+                      {priceSummary.total}
+                    </Typography>
+                    {priceSummary.content && <ChevronRightSVG size={16} />}
+                  </div>
+                )}
               </Dropdown>
             </div>
           )}
 
           {footer && (
             <ButtonGroup
-              size='l'
+              size='m'
               filled
               // 2 кнопки — в ряд (делят ширину); 3 — в столбик (правило футеров).
               vertical={

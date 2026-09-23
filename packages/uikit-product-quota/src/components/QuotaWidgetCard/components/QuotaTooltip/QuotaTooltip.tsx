@@ -29,7 +29,8 @@ export function QuotaTooltip({ quota }: QuotaTooltipProps) {
           <div className={styles.row} key={row.label}>
             <span className={styles.rowLabel}>{row.label}</span>
             <span className={styles.rowValue}>
-              {formatNumber(row.value)} {quota.unitDisplayName}
+              <span>{formatNumber(row.value)}</span>
+              <span>{quota.unitDisplayName}</span>
             </span>
           </div>
         ))}

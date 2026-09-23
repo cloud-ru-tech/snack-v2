@@ -28,7 +28,7 @@ const longDescription =
 const promoBadge = {
   label: 'Новинка',
   appearance: APPEARANCE.Primary,
-  role: ROLE_APPEARANCE.Accent,
+  roleAppearance: ROLE_APPEARANCE.Accent,
   size: SIZE.Xs,
 };
 

@@ -21,6 +21,7 @@
 
 .wrapper {
   position: relative;
+  box-sizing: border-box;
 
   &:hover,
   &:focus-within {
@@ -51,6 +52,11 @@
 .icon {
   flex-shrink: 0;
   color: base.$sn-theme-color-available-version-textMain;
+}
+
+.iconSvg {
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
 }
 
 .contentLayout {

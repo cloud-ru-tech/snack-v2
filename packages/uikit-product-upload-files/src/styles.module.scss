@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-density-spacing-interval-s;
+
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -18,6 +20,7 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -25,6 +28,8 @@
   display: flex;
   flex-direction: column;
   gap: base.$sn-density-spacing-interval-xs;
+
+  box-sizing: border-box;
   width: 100%;
 
   // Увеличиваем с 16 до 24. Селектор намеренно специфичнее
