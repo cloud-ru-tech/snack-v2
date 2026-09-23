@@ -23,6 +23,12 @@
         "type": "QuotaItem[]",
         "required": true,
         "description": "Список квот для отображения"
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {}
@@ -101,6 +107,12 @@
         "type": "QuotaItem[]",
         "required": true,
         "description": "Список квот для отображения"
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {}
@@ -229,6 +241,12 @@
         "type": "string",
         "required": true,
         "description": "Ссылка на страницу квот по проекту"
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {
@@ -589,6 +607,18 @@
       "loading": {
         "type": "boolean",
         "required": true
+      },
+      "rowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк сетки, заполняемых заглушками."
+      },
+      "singleColumn": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Сетка в одну колонку: строка = одна карточка вместо двух."
       }
     },
     "relatedTypes": {}
@@ -676,6 +706,12 @@
         "type": "string",
         "required": true,
         "description": "Ссылка на страницу квот по проекту"
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {
@@ -777,6 +813,12 @@
         "typeRefs": [
           "QuotaItem"
         ]
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {

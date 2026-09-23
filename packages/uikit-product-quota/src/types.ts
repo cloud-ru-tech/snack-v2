@@ -18,6 +18,15 @@ export type QuotaWidgetPropsBase = {
   disableSorting?: boolean;
   /** Флаг загрузки квот */
   loading: boolean;
+  /**
+   * Количество строк-заглушек, пока идёт загрузка.
+   *
+   * Строка — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,
+   * в одну (mobile, аккордеон `QuotaWidgetMini`) — одну.
+   *
+   * @default 4
+   */
+  skeletonRowCount?: number;
   /** Флаг ошибки при загрузке квот */
   error: boolean;
   /** Колбек на обновление списка квот при ошибке */

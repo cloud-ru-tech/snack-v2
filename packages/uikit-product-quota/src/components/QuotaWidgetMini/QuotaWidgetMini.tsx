@@ -24,6 +24,7 @@ export function QuotaWidgetMini({
   quotas,
   disableSorting,
   loading,
+  skeletonRowCount,
   error,
   onRefresh,
   projectName,
@@ -70,6 +71,7 @@ export function QuotaWidgetMini({
               quotas={quotas}
               disableSorting={disableSorting}
               loading={loading}
+              skeletonRowCount={skeletonRowCount}
               error={error}
               onRefresh={onRefresh}
             />

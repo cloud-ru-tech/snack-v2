@@ -219,6 +219,12 @@
         ],
         "description": "Размер\nРазмер триггера; для `xs` применяется кнопка `s`."
       },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
+      },
       "target": {
         "type": "HTMLAttributeAnchorTarget",
         "required": false
@@ -2377,6 +2383,12 @@
         "type": "string",
         "required": true,
         "description": "Ссылка на страницу квот по проекту"
+      },
+      "skeletonRowCount": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
       }
     },
     "relatedTypes": {
@@ -4968,6 +4980,11 @@
             "typeRefs": [
               "QuotaItem"
             ]
+          },
+          "skeletonRowCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
           }
         },
         "own": false
@@ -6030,6 +6047,11 @@
             "typeRefs": [
               "QuotaItem"
             ]
+          },
+          "skeletonRowCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
           }
         },
         "own": false
@@ -7709,6 +7731,11 @@
             "typeRefs": [
               "QuotaItem"
             ]
+          },
+          "skeletonRowCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
           }
         },
         "own": false
@@ -8882,6 +8909,11 @@
             "typeRefs": [
               "QuotaItem"
             ]
+          },
+          "skeletonRowCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
           }
         },
         "own": false
@@ -10520,6 +10552,11 @@
             "typeRefs": [
               "QuotaItem"
             ]
+          },
+          "skeletonRowCount": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
           }
         },
         "own": false

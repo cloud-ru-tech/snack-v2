@@ -28,6 +28,7 @@ export function QuotaWidget({
   quotas,
   disableSorting,
   loading,
+  skeletonRowCount,
   error,
   onRefresh,
   projectName,
@@ -79,6 +80,7 @@ export function QuotaWidget({
           quotas={quotas}
           disableSorting={disableSorting}
           loading={loading}
+          skeletonRowCount={skeletonRowCount}
           error={error}
           onRefresh={onRefresh}
           projectName={projectName}

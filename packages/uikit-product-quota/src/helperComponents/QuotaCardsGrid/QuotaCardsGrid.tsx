@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 type QuotaCardsGridProps = Pick<
   QuotaWidgetPropsBase,
-  'quotas' | 'disableSorting' | 'loading' | 'error' | 'onRefresh'
+  'quotas' | 'disableSorting' | 'loading' | 'error' | 'onRefresh' | 'skeletonRowCount'
 > & {
   isAccordion?: boolean;
 };
@@ -20,6 +20,7 @@ export function QuotaCardsGrid({
   onRefresh,
   disableSorting = false,
   isAccordion = false,
+  skeletonRowCount,
 }: QuotaCardsGridProps) {
   // На мобилке bottom-sheet-виджет full-height: снимаем фикс-cap высоты (`max-height`), карточки
   // скроллятся телом листа. Для аккордеона (`QuotaWidgetMini`) это НЕ применяем — у него свой cap.
@@ -36,6 +37,7 @@ export function QuotaCardsGrid({
     loading,
     disableSorting,
     isAccordion,
+    skeletonRowCount,
   };
 
   if (error) {

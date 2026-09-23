@@ -20,11 +20,11 @@ function sortQuotas(quotas: QuotaItem[]): QuotaItem[] {
   });
 }
 
-type GridProps = Pick<QuotaWidgetPropsBase, 'quotas' | 'loading' | 'disableSorting'> & {
+type GridProps = Pick<QuotaWidgetPropsBase, 'quotas' | 'loading' | 'disableSorting' | 'skeletonRowCount'> & {
   isAccordion?: boolean;
 };
 
-export function Grid({ quotas, loading, disableSorting = false, isAccordion = false }: GridProps) {
+export function Grid({ quotas, loading, disableSorting = false, isAccordion = false, skeletonRowCount }: GridProps) {
   const sortedQuotas = disableSorting ? quotas : sortQuotas(quotas);
 
   // На мобилке — строго одна колонка на всю ширину (BottomSheet-раскладка узкая, 2 колонки не влезают).
@@ -33,7 +33,7 @@ export function Grid({ quotas, loading, disableSorting = false, isAccordion = fa
 
   return (
     <div className={styles.grid} data-single={isSingleColumn}>
-      <QuotaWidgetCardsSkeleton loading={loading}>
+      <QuotaWidgetCardsSkeleton loading={loading} rowCount={skeletonRowCount} singleColumn={isSingleColumn}>
         {sortedQuotas.map(quota => (
           <QuotaWidgetCard
             key={quota.name}

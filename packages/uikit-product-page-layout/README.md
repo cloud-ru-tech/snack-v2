@@ -578,6 +578,7 @@ import {
 | `quotas` | `QuotaItem[]` | — | Список квот для отображения |
 | `quotasUrl` | `string` | — | Ссылка на страницу квот по проекту |
 | `size` | `"l"` \| `"m"` \| `"s"` \| `"xs"` | — | Размер <br/> Размер триггера; для `xs` применяется кнопка `s`. |
+| `skeletonRowCount` | `number` | `4` | Количество строк-заглушек, пока идёт загрузка. <br/> Строка — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки, <br/> в одну (mobile, аккордеон `QuotaWidgetMini`) — одну. |
 | `target` | `HTMLAttributeAnchorTarget` | — |  |
 | `tooltip` | `TooltipProps` | — |  |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
@@ -622,6 +623,7 @@ import {
 | `projectName` | `string` | — | Название проекта, по которому отображаются квоты |
 | `quotas` | `QuotaItem` | — | Список квот для отображения |
 | `quotasUrl` | `string` | — | Ссылка на страницу квот по проекту |
+| `skeletonRowCount` | `number` | `4` | Количество строк-заглушек, пока идёт загрузка. <br/> Строка — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки, <br/> в одну (mobile, аккордеон `QuotaWidgetMini`) — одну. |
 
 ## ConditionalPopover
 
