@@ -23,6 +23,7 @@ type FieldSelectDecoratorProps = Omit<FieldDecoratorProps, 'children' | 'validat
 type DroplistPassthrough = Pick<
   DroplistProps,
   | 'footer'
+  | 'footerDivider'
   | 'footerActiveElementsRefs'
   | 'loading'
   | 'noDataState'

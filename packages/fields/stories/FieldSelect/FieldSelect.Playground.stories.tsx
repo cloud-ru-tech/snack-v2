@@ -53,6 +53,8 @@ const meta: Meta<StoryProps> = {
     defaultValue: 'm',
     items: options,
     iconBefore: 'search',
+    footer: 'none',
+    footerDivider: true,
     'data-test-id': TEST_IDS.fieldSelect,
   },
   argTypes: {
@@ -71,6 +73,12 @@ const meta: Meta<StoryProps> = {
       options: ['none', 'search'],
       mapping: { none: undefined, search: <SearchSVG /> },
     },
+    footer: {
+      control: 'select',
+      options: ['none', 'text'],
+      mapping: { none: undefined, text: 'Показаны все размеры' },
+    },
+    footerDivider: { if: { arg: 'footer', neq: 'none' } },
     // controlled-партнёры и slot/passthrough-пропы скрыты из панели (uncontrolled Playground живёт на defaultValue).
     value: { table: { disable: true } },
     onChange: { table: { disable: true } },

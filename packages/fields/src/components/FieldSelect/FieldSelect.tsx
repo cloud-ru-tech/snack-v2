@@ -92,6 +92,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     enableFuzzySearch = true,
     selectedOptionFormatter,
     footer,
+    footerDivider,
     footerActiveElementsRefs,
     loading,
     noDataState,
@@ -704,6 +705,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         selection={droplistSelection}
         closeDroplistOnItemClick={closeDroplistOnItemClick}
         footer={footer}
+        footerDivider={footerDivider}
         footerActiveElementsRefs={footerActiveElementsRefs}
         loading={loading}
         noDataState={noDataState}
