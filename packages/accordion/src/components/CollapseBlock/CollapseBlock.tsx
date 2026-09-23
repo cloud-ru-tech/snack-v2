@@ -21,9 +21,12 @@ export type CollapseBlockProps = PropsWithChildren<
   WithSupportProps<{
     /** Уникальный идентификатор блока в группе переключателей */
     id: string;
-    /** Начальное состояние раскрытия (uncontrolled) */
+    /** Заголовок блока */
     title?: string;
-    /** Контент справа от заголовка */
+    /**
+     * Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`,
+     * поэтому без `title` в слот можно передать собственный заголовок.
+     */
     afterTitle?: ReactNode;
     /** Подзаголовок под строкой заголовка */
     subTitle?: ReactNode;
@@ -79,7 +82,9 @@ export function CollapseBlock({
 
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
   const titleId = useId();
+  const afterTitleId = useId();
   const contentId = useId();
+  const chevronLabelledBy = [title && titleId, afterTitle && afterTitleId].filter(Boolean).join(' ') || undefined;
 
   return (
     <div
@@ -126,7 +131,7 @@ export function CollapseBlock({
               </Typography>
             )}
             {afterTitle && (
-              <div data-test-id={TEST_IDS.afterTitle} className={styles.afterTitle}>
+              <div id={afterTitleId} data-test-id={TEST_IDS.afterTitle} className={styles.afterTitle}>
                 {afterTitle}
               </div>
             )}
@@ -142,7 +147,7 @@ export function CollapseBlock({
             <ChevronButton
               expanded={isOpen}
               contentId={contentId}
-              titleId={title ? titleId : undefined}
+              labelledBy={chevronLabelledBy}
               data-test-id={TEST_IDS.chevron}
             />
           </div>

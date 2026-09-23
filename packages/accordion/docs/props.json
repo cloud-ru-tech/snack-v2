@@ -53,10 +53,10 @@
         "required": true,
         "description": "Раскрыт ли блок: шеврон вверх / вниз"
       },
-      "titleId": {
+      "labelledBy": {
         "type": "string",
         "required": false,
-        "description": "id заголовка блока — имя кнопки"
+        "description": "id элементов, из текста которых складывается имя кнопки (через пробел, как в `aria-labelledby`)"
       }
     },
     "relatedTypes": {}
@@ -69,7 +69,7 @@
       "afterTitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`,\nпоэтому без `title` в слот можно передать собственный заголовок."
       },
       "backgroundPredefined": {
         "type": "enum",
@@ -157,7 +157,7 @@
       "title": {
         "type": "string",
         "required": false,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
+        "description": "Заголовок блока"
       },
       "view": {
         "type": "enum",
@@ -227,7 +227,7 @@
       "afterTitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`,\nпоэтому без `title` в слот можно передать собственный заголовок."
       },
       "backgroundPredefined": {
         "type": "enum",
@@ -298,7 +298,7 @@
       "title": {
         "type": "string",
         "required": false,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
+        "description": "Заголовок блока"
       },
       "view": {
         "type": "enum",
@@ -358,7 +358,7 @@
       "afterTitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`,\nпоэтому без `title` в слот можно передать собственный заголовок."
       },
       "backgroundPredefined": {
         "type": "enum",
@@ -429,7 +429,7 @@
       "title": {
         "type": "string",
         "required": false,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
+        "description": "Заголовок блока"
       },
       "view": {
         "type": "enum",
@@ -489,7 +489,7 @@
       "afterTitle": {
         "type": "ReactNode",
         "required": false,
-        "description": "Контент справа от заголовка"
+        "description": "Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`,\nпоэтому без `title` в слот можно передать собственный заголовок."
       },
       "chevronPosition": {
         "type": "enum",
@@ -539,7 +539,7 @@
       "title": {
         "type": "string",
         "required": false,
-        "description": "Начальное состояние раскрытия (uncontrolled)"
+        "description": "Заголовок блока"
       }
     },
     "relatedTypes": {

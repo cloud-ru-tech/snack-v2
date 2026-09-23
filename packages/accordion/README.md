@@ -305,7 +305,7 @@ export function NestedLevels() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
+| `afterTitle` | `ReactNode` | — | Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`, <br/> поэтому без `title` в слот можно передать собственный заголовок. |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | `neutralBackground1Level` | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevronPosition` | `"after"` \| `"before"` | `after` | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
@@ -316,7 +316,7 @@ export function NestedLevels() {
 | `keepMounted` | `boolean` | `false` | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | `true` | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
-| `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
+| `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 ##### Related types
@@ -355,7 +355,7 @@ export function AfterTitle() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
+| `afterTitle` | `ReactNode` | — | Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`, <br/> поэтому без `title` в слот можно передать собственный заголовок. |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
@@ -365,7 +365,7 @@ export function AfterTitle() {
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
-| `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
+| `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 #### Related types
@@ -412,7 +412,7 @@ export function ChevronBefore() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
+| `afterTitle` | `ReactNode` | — | Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`, <br/> поэтому без `title` в слот можно передать собственный заголовок. |
 | `backgroundPredefined` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Слой backgroundPredefined + acrylic (см. `BACKGROUND_PREDEFINED_FILL` в `@ds/materials`). <br/> По умолчанию `material/neutralBackground1Level`. |
 | `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
@@ -422,7 +422,7 @@ export function ChevronBefore() {
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
-| `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
+| `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
 
 #### Related types
@@ -468,7 +468,7 @@ export function NestedLevels() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `afterTitle` | `ReactNode` | — | Контент справа от заголовка |
+| `afterTitle` | `ReactNode` | — | Контент справа от заголовка. Текст слота входит в доступное имя кнопки-шеврона вместе с `title`, <br/> поэтому без `title` в слот можно передать собственный заголовок. |
 | `chevronPosition` | `"after"` \| `"before"` | — | Положение шеврона-раскрытия относительно текста (`before` \| `after`) |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | Дополнительный класс корневого элемента |
@@ -477,7 +477,7 @@ export function NestedLevels() {
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
-| `title` | `string` | — | Начальное состояние раскрытия (uncontrolled) |
+| `title` | `string` | — | Заголовок блока |
 
 #### Related types
 

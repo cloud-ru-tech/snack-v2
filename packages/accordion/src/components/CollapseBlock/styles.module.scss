@@ -186,11 +186,14 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
         padding-top: 0;
         padding-bottom: 0;
       }
+    }
+  }
 
-      // Нижний отступ карточки уже на `.wrapper` — тело его не дублирует.
-      &[data-expanded] {
-        padding-bottom: 0;
-      }
+  // Нижний отступ карточки уже на `.wrapper` — тело его не дублирует. У Tertiary подложки нет,
+  // отступ тела остаётся из токена `bodyContent`. Прямые потомки — чтобы правило не задело вложенный Tertiary.
+  @each $component in $bottomPaddingHack {
+    [data-component='#{$component}'] > .collapse > &[data-expanded] {
+      padding-bottom: 0;
     }
   }
 
