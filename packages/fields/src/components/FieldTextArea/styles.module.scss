@@ -64,8 +64,8 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
     color: base.$sn-theme-color-available-version-textTertiary;
   }
 
-  // DS-типографика + min-height multiLine из field-токенов per-size.
-  // Без этого textarea наследует Nunito Sans 16/24 от Storybook root и не имеет минимальной высоты.
+  // DS-типографика per-size (без неё textarea наследует шрифт Storybook root).
+  // Минимальную высоту держит контейнер оболочки: одна строка, у resizable — multiLine-токен.
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       // Резерв справа под колонку clear/copy-кнопок (квадрат centeredWrapper) + скроллбар
@@ -91,7 +91,6 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         'padding-right'
       );
 
-      min-height: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'multiLine', 'min-height');
       padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
 
       @include base.composite-var(base.$sn-regular, 'body', $size);

@@ -31,6 +31,8 @@ export type FieldShellProps = WithSupportProps<{
   header?: ReactNode;
   /** Ряд элементов под контентом (действия, счётчик) */
   footer?: ReactNode;
+  /** Многострочное поле с ручным изменением высоты — поднимает минимальную высоту контейнера */
+  resizable?: boolean;
   /** CSS-класс оболочки (fieldWrapper) */
   className?: string;
   /** Inline-стиль оболочки (например, CSS-переменные высоты) */
@@ -58,6 +60,7 @@ export function FieldShell({
   hover,
   header,
   footer,
+  resizable,
   className,
   style,
   onMouseEnter,
@@ -75,6 +78,7 @@ export function FieldShell({
       data-withbackground={background || undefined}
       data-focusvisible={focusVisible || undefined}
       data-hover={!readOnly && hover ? true : undefined}
+      data-resizable={resizable || undefined}
       style={style}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

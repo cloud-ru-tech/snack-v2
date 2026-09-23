@@ -3018,6 +3018,11 @@
         "required": false,
         "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
       },
+      "footerDivider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
+      },
       "formatSelected": {
         "type": "((selected: { id: ItemId; label: string; }[]) => string)",
         "required": false,
@@ -4557,6 +4562,11 @@
         "type": "boolean",
         "required": false,
         "description": "Только для чтения"
+      },
+      "resizable": {
+        "type": "boolean",
+        "required": false,
+        "description": "Многострочное поле с ручным изменением высоты — поднимает минимальную высоту контейнера"
       },
       "size": {
         "type": "enum",

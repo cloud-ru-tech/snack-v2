@@ -255,6 +255,20 @@ $sizes: 's', 'm', 'l';
         padding: $paddingTop $paddingRight $paddingBottom $paddingLeft;
       }
 
+      // В мастере `multiLine/minHeight` стоит только у варианта `resizable=true`, остальные
+      // живут на высоте одной строки.
+      &[data-resizable] .fieldContainer {
+        min-height: base.simple-var(
+          field.$field,
+          'anatomy',
+          'size',
+          $size,
+          'fieldContainer',
+          'multiLine',
+          'min-height'
+        );
+      }
+
       .inputArea {
         padding-right: $inputPaddingRight;
         padding-left: $inputPaddingLeft;

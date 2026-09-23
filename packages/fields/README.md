@@ -455,6 +455,7 @@ export function Select() {
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
 | `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
+| `footerDivider` | `boolean` | — | Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу) |
 | `formatSelected` | `((selected: { id: ItemId; label: string; }[]) => string)` | `— список лейблов через `, `` | Форматтер строки выбранных значений (используется, если `chips=false`). |
 | `hint` | `string` | — | Подсказка |
 | `iconBefore` | `ReactNode` | — | Иконка перед текстом |

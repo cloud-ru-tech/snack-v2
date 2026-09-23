@@ -314,6 +314,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
       hover={hover}
       header={header}
       footer={footer}
+      resizable={isResizable}
       style={{ '--field-textarea-min-rows': minRows, '--field-textarea-max-rows': maxRows } as CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
