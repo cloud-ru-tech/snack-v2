@@ -165,11 +165,7 @@ export function CollapseBlock({
         >
           <div></div>
           {/* gap here */}
-          {isMounted ? (
-            <div data-test-id={TEST_IDS.content} className={styles.content}>
-              {children}
-            </div>
-          ) : null}
+          {isMounted ? <div data-test-id={TEST_IDS.content}>{children}</div> : null}
         </div>
       </div>
     </div>

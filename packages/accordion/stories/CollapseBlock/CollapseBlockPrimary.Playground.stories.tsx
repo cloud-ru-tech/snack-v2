@@ -19,7 +19,7 @@ const meta: Meta<PlaygroundArgs> = {
     title: 'CollapseBlock',
     showAfterTitleSlot: true,
     subTitle: 'CollapseBlock subtitle',
-    children: <span className={styles.content}>CollapseBlock content</span>,
+    children: <div className={styles.content}>CollapseBlock content</div>,
     view: 'simple',
     chevronPosition: 'after',
     showChevron: true,
