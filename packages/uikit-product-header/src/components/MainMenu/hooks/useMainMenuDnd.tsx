@@ -5,7 +5,6 @@ import {
   DragOverlay,
   DragStartEvent,
   KeyboardSensor,
-  MeasuringStrategy,
   Modifier,
   PointerSensor,
   useSensor,
@@ -181,9 +180,6 @@ export function MainMenuDndContext({
         onDragEnd={onDragEnd}
         onDragCancel={onDragCancel}
         modifiers={modifiers}
-        measuring={{
-          droppable: { strategy: MeasuringStrategy.Always },
-        }}
       >
         {children}
 
