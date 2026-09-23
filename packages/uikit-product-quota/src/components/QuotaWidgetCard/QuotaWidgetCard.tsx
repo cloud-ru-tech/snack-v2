@@ -37,7 +37,9 @@ function getProgressAppearance(percent: number) {
   if (percent >= QUOTA_USAGE_PROGRESS.MEDIUM) {
     return 'yellow';
   }
-  return 'primary';
+  // В Figma нижний порог собран с `appearance=primary` (#389f74) — это ошибка мастера,
+  // дизайн правит её у себя. Здесь остаётся `green` (#41b954), как в предыдущих релизах.
+  return 'green';
 }
 
 export function QuotaWidgetCard({ quota, noData = false, loading = false, onRefresh, ...props }: QuotaWidgetCardProps) {
