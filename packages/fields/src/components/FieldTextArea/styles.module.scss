@@ -20,6 +20,13 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   @each $size in $sizes {
     [data-size='#{$size}'] & {
       --field-textarea-row-height: #{base.simple-var(base.$sn-regular, 'body', $size, 'line-height')};
+
+      // Полоса скролла в мастере прижата к правому краю поля и накрывает его боковой паддинг
+      // (`resizeWrapper` — absolute, anchor right). Скролл рисуется по краю контейнера-хоста,
+      // поэтому хост выводим за паддинг отрицательным отступом.
+      margin-right: calc(
+        -1 * #{base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right')}
+      );
     }
   }
 }
@@ -68,9 +75,8 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   // Минимальную высоту держит контейнер оболочки: одна строка, у resizable — multiLine-токен.
   @each $size in $sizes {
     [data-size='#{$size}'] & {
-      // Резерв справа под колонку clear/copy-кнопок (квадрат centeredWrapper) + скроллбар
-      // + горизонтальный паддинг inputWrapper (отступ слота кнопок от скроллбара по Figma):
-      // кнопки позиционируются абсолютно поверх скролл-области (см. .postfixColumn).
+      // Резерв справа под колонку clear/copy-кнопок: в мастере текст упирается в неё, а полоса
+      // скролла идёт поверх. Кнопки позиционируются абсолютно (см. `.postfixColumn`).
       $button-slot: base.simple-var(
         field.$field,
         'anatomy',
@@ -78,20 +84,13 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
         $size,
         'fieldContainer',
         'centeredWrapper',
-        'height'
+        'width'
       );
-      $input-line-padding: base.simple-var(
-        field.$field,
-        'anatomy',
-        'size',
-        $size,
-        'fieldContainer',
-        'contentWrapper',
-        'inputWrapper',
-        'padding-right'
-      );
+      // Хост скролла вынесен за правый паддинг поля (см. `.scrollContainer`), поэтому резерв
+      // текста добирает его обратно. Паддинг строки уже даёт `.inputArea`, второй раз не считаем.
+      $container-padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right');
 
-      padding-right: calc(#{$button-slot} + #{$scrollbar-width} + #{$input-line-padding});
+      padding-right: calc(#{$button-slot} + #{$container-padding});
 
       @include base.composite-var(base.$sn-regular, 'body', $size);
     }
@@ -193,7 +192,10 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
       --sn-button-anatomy-size-#{$button-size}-container-iconOnly-minWidth: #{$slot-width};
 
       top: calc(#{$vertical-padding} + (#{$line-height} - #{$square}) / 2);
-      right: calc(#{$scrollbar-width} + #{$input-line-padding});
+
+      // Правый край кнопки совпадает с внутренней границей поля (Figma): колонку уже кнопки
+      // на половину её выступа, поэтому компенсируем его.
+      right: calc((#{$slot-width} - #{$square}) / 2);
       grid-auto-rows: $square;
       width: $square;
     }
