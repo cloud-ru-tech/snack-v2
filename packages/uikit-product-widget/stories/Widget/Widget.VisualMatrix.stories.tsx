@@ -68,6 +68,18 @@ function renderWidget(state: WidgetState, wide: boolean) {
   );
 }
 
+// Два блока в теле: зазор между ними задаёт сам виджет (`+ slotBody` в мастере, 12).
+function renderWidgetWithBodyBlocks(wide: boolean) {
+  return (
+    <div className={wide ? styles.wide : styles.narrow}>
+      <Widget header={{ title: 'Cloud servers', href: '#' }} wide={wide} actions={demoActions}>
+        <div className={styles.bodyBlock}>Compute: 8 instances</div>
+        <div className={styles.bodyBlock}>Storage: 2 volumes</div>
+      </Widget>
+    </div>
+  );
+}
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -81,6 +93,18 @@ export const VisualMatrix: Story = {
           variantLabel: state,
           cells: [renderWidget(state, false), renderWidget(state, true)],
         }))}
+      />
+
+      <StoryTable
+        sectionTitle='Body blocks'
+        firstColumnHeader='body'
+        columnHeaders={['wide=false', 'wide=true']}
+        rows={[
+          {
+            variantLabel: 'two blocks',
+            cells: [renderWidgetWithBodyBlocks(false), renderWidgetWithBodyBlocks(true)],
+          },
+        ]}
       />
 
       <StoryTable

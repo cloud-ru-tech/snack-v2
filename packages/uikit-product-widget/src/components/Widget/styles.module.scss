@@ -72,7 +72,13 @@
 }
 
 .widgetContent {
+  // Зазор между блоками контента задаёт сам виджет: в мастере он стоит на слоте тела.
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+
   min-height: 0;
+
   color: base.$sn-theme-color-available-version-textMain;
 
   @include base.composite-var(base.$sn-regular-body-s);
