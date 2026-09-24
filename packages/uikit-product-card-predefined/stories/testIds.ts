@@ -7,5 +7,7 @@ export const TEST_IDS = {
   cardServiceSmall: SRC_TEST_IDS.cardServiceSmall,
   cardServiceLight: SRC_TEST_IDS.cardServiceLight,
   cardServiceInfo: SRC_TEST_IDS.cardServiceInfo,
+  cardNavigation: SRC_TEST_IDS.cardNavigation,
+  cardNavigationFavorite: SRC_TEST_IDS.cardNavigationFavorite,
   cardSuggest: SRC_TEST_IDS.cardSuggest,
 } as const;

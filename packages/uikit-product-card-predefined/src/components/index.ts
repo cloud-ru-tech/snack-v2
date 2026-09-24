@@ -5,3 +5,4 @@ export * from './CardServiceInfo';
 export * from './CardServiceSmall';
 export * from './CardSuggest';
 export * from './CardCustom';
+export * from './CardNavigation';

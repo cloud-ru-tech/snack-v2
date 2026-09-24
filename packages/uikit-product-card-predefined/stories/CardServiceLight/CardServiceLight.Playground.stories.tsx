@@ -5,6 +5,8 @@ import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
+import { PROMO_TAG_ARG_TYPE } from '../constants/promoTagArgType';
+
 type StoryProps = CardServiceLightProps & {
   showExpandButton?: boolean;
   showTooltip?: boolean;
@@ -24,6 +26,7 @@ const meta: Meta<StoryProps> = {
     onKeyDown: { table: { disable: true } },
     expandable: { table: { disable: true } },
     tooltip: { table: { disable: true } },
+    promoTag: PROMO_TAG_ARG_TYPE,
     showExpandButton: {
       name: '[Stories]: show expand button',
       control: 'boolean',

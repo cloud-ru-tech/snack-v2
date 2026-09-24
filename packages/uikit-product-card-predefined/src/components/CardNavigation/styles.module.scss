@@ -1,0 +1,247 @@
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+@use '@ds/figma-variables/build/scss/components/card.module' as card;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+$actions-counts: 1, 2;
+
+// Резерв места под действия равен ширине icon-only кнопки — при смене плотности совпадает с реальной кнопкой.
+@mixin actions-reserve {
+  $width: base.simple-var(btn.$button, 'anatomy', 'size', 'm', 'container', 'iconOnly', 'min-width');
+
+  @each $count in $actions-counts {
+    &[data-visible-actions='#{$count}'] {
+      .titleRow {
+        padding-right: calc(#{$count} * #{$width});
+      }
+    }
+  }
+}
+
+.acrylic {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.outlineBorder {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
+  border-style: solid;
+  border-width: card.$sn-card-anatomy-radius-s-container-borderWidth;
+  border-radius: inherit;
+}
+
+// `actionsVisibility='always'` (мобильный вид) оставляет панель в потоке: чтобы она, как и
+// `.container`, не рисовалась под `.stateLayer`, ей нужна позиция.
+.cardActions[data-actions-visibility='always'] {
+  position: relative;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: base.$sn-density-size-m;
+  padding: 0 base.$sn-primitive-dimension-4;
+  border-radius: inherit;
+
+  .root[data-detailed] & {
+    gap: base.$sn-primitive-dimension-4;
+    align-items: flex-start;
+    min-height: 0;
+    padding: base.$sn-density-spacing-interval-s;
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: base.$sn-density-radius-3xs;
+
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+
+  background-color: transparent;
+
+  &[data-disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .stateLayer {
+      visibility: hidden;
+    }
+  }
+
+  // `.cardActions` — сосед `.container`, а не его потомок: `position: absolute` в
+  // `CardActionsSurface` считает inset от `.root`, а не от паддинга `.container`. В подробном виде
+  // нужен тот же инсет, что был в CardServiceInfo::.actions — без него панель садится вплотную
+  // к краю карточки, а не с отступом, как в компактном виде (там инсет = 0 совпадает с паддингом `.container`).
+  &[data-detailed] .cardActions {
+    --card-actions-surface-inset-top: #{base.$sn-primitive-dimension-4};
+    --card-actions-surface-inset-right: #{base.$sn-primitive-dimension-4};
+  }
+
+  // Компактный вид: в Figma панель стоит внутри container с gap 8 и без правого отступа: 4 от container + 4 здесь.
+  &:not([data-detailed]) .cardActions {
+    margin-left: base.$sn-primitive-dimension-4;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-primary-accent solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+
+  // Компактный вид: при hover/focus панель действий встаёт в строку и сдвигает заголовок.
+  &:not([data-detailed], [data-disabled]):hover,
+  &:not([data-detailed], [data-disabled]):focus-visible,
+  &:not([data-detailed], [data-disabled])[data-tooltip-open],
+  &:not([data-detailed], [data-disabled]):has(*:focus-visible) {
+    .cardActions {
+      position: relative;
+      visibility: visible;
+    }
+  }
+
+  @include m.has-state-layer-as-child('stateLayer');
+
+  // Подробный вид: рамка, подложка и описание; hover показывается цветом рамки, а не state layer.
+  &[data-detailed] {
+    isolation: isolate;
+
+    overflow: hidden;
+    align-items: flex-start;
+
+    min-width: 0;
+    border-radius: card.$sn-card-anatomy-radius-s-container-borderRadius;
+
+    outline: none;
+
+    .stateLayer {
+      display: none;
+    }
+
+    // Гаснет только контент: подложка и рамка остаются в полную силу.
+    &[data-disabled] {
+      opacity: 1;
+
+      .container {
+        opacity: base.$sn-theme-effect-opacity-disabled;
+      }
+    }
+
+    &:focus-visible::after {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      border: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-primary-accent;
+      border-radius: inherit;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:has(*:focus-visible) {
+      .cardActions {
+        visibility: visible;
+      }
+
+      &[data-actions-visibility='hover'] {
+        @include actions-reserve;
+      }
+    }
+
+    // В Figma панель вынесена из потока и не растит строку заголовка; место под неё резервирует actions-reserve.
+    &[data-actions-visibility='always'] {
+      @include actions-reserve;
+
+      .cardActions {
+        position: absolute;
+        top: var(--card-actions-surface-inset-top);
+        right: var(--card-actions-surface-inset-right);
+      }
+    }
+
+    @media (hover: hover) {
+      &:not([data-disabled]):hover .outlineBorder {
+        border-color: base.$sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor;
+      }
+    }
+
+    @include m.with-material('acrylic', 'acrylic');
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.textContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+
+  text-align: left;
+}
+
+.titleRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: base.$sn-primitive-dimension-24;
+}
+
+.title {
+  overflow: hidden;
+  display: block;
+  flex-shrink: 1;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  width: 100%;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

@@ -5,6 +5,8 @@ import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
+import { PROMO_TAG_ARG_TYPE } from '../constants/promoTagArgType';
+
 type StoryProps = CardServiceInfoProps & {
   showExpandButton?: boolean;
 };
@@ -18,14 +20,12 @@ const meta: Meta<StoryProps> = {
     description: 'Краткое описание сервиса для подробного режима карточки.',
     icon: <PlaceholderSVG size={24} />,
     'data-test-id': 'card-service-info',
-    promoTag: {
-      variant: 'preview',
-    },
   },
   argTypes: {
     onClick: { table: { disable: true } },
     onKeyDown: { table: { disable: true } },
     expandable: { table: { disable: true } },
+    promoTag: PROMO_TAG_ARG_TYPE,
     showExpandButton: {
       name: '[Stories]: show expand button',
       control: 'boolean',
@@ -47,7 +47,7 @@ const meta: Meta<StoryProps> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CardServiceInfo>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
