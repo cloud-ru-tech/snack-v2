@@ -28,3 +28,6 @@ export const BAR_AUTO_HIDE_DELAY_MS = 100;
  * Значение отступа до края контейнера при котором считается что контейнер проскролен до конца вниз или вправо, в пикселях.
  */
 export const AUTOSCROLL_ENABLE_LIMIT = 2;
+
+export const CONTENT_UPDATE_DEBOUNCE_MS = 50;
+export const CONTENT_UPDATE_MAX_WAIT_MS = 300;

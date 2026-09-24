@@ -11,6 +11,8 @@ import {
   AUTOSCROLL_TO,
   BAR_AUTO_HIDE_DELAY_MS,
   BAR_HIDE_STRATEGY,
+  CONTENT_UPDATE_DEBOUNCE_MS,
+  CONTENT_UPDATE_MAX_WAIT_MS,
   RESIZE,
   SIZE,
 } from './constants';
@@ -179,7 +181,7 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
   }, [injectStateLayers]);
 
   const onScroll = useCallback(
-    (event?: Event) => {
+    (_: OverlayScrollbars, event: Event) => {
       onScrollProp?.(event);
 
       if (autoscrollTo) {
@@ -217,6 +219,14 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
       options={{
         paddingAbsolute,
         overflow,
+        update: {
+          debounce: {
+            mutation: [CONTENT_UPDATE_DEBOUNCE_MS, CONTENT_UPDATE_MAX_WAIT_MS],
+            resize: [CONTENT_UPDATE_DEBOUNCE_MS, CONTENT_UPDATE_MAX_WAIT_MS],
+            event: [CONTENT_UPDATE_DEBOUNCE_MS, CONTENT_UPDATE_MAX_WAIT_MS],
+            env: [CONTENT_UPDATE_DEBOUNCE_MS, CONTENT_UPDATE_MAX_WAIT_MS],
+          },
+        },
         scrollbars: {
           autoHide: barHideStrategy,
           autoHideDelay: BAR_AUTO_HIDE_DELAY_MS,
@@ -225,9 +235,7 @@ export const Scroll = forwardRef<HTMLElement, ScrollProps>(function Scroll(
       }}
       events={{
         initialized: onInitialized,
-        scroll: (_instance, event) => {
-          onScroll(event);
-        },
+        scroll: onScroll,
         updated: () => {
           injectStateLayers();
           onContentSizeChanged();
