@@ -1,5 +1,5 @@
 import { useUncontrolledProp } from '@ds/utils';
-import { PropsWithChildren, useCallback } from 'react';
+import { PropsWithChildren, useCallback, useMemo } from 'react';
 
 import { SELECTION_MODE } from '../../constants';
 import { ToggleGroupContext } from '../../context';
@@ -65,7 +65,9 @@ export function ToggleGroup({
     [selectionMode, setValue],
   );
 
-  return (
-    <ToggleGroupContext.Provider value={{ value, onChange, selectionMode }}>{children}</ToggleGroupContext.Provider>
-  );
+  // Значение провайдера стабильно, пока не меняется состояние: иначе каждый рендер группы
+  // перерисовывает всех потребителей контекста (например, все блоки аккордеона).
+  const contextValue = useMemo(() => ({ value, onChange, selectionMode }), [value, onChange, selectionMode]);
+
+  return <ToggleGroupContext.Provider value={contextValue}>{children}</ToggleGroupContext.Provider>;
 }
