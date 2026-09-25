@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.19 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9085:** pin comfort density on mobile header surfaces ([2d23010](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/2d230100ae078bfa26fbe4a4d3cd643187eee00b))
+
 ## 0.1.18 (2026-09-21)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy

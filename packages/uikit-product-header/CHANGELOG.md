@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.1 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** migrate components to renamed token keys ([fd8237d](https://github.com/cloud-ru-tech/snack-v2/commit/fd8237d04c95b5474955c946d9db7bedb3821c97))
+- **FF-9085:** pin comfort density on mobile header surfaces ([2d23010](https://github.com/cloud-ru-tech/snack-v2/commit/2d230100ae078bfa26fbe4a4d3cd643187eee00b))
+
 # 1.5.0 (2026-09-21)
 
 ### Features

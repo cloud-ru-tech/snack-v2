@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-09-25)
+
+### BREAKING CHANGES
+
+- **FF-9083:** rebuild tokens and theme with platform axis and named brands ([52d7dd9](https://github.com/cloud-ru-tech/snack-v2/commit/52d7dd969c9dd2fbdabbe961caf63948ac26a520))
+
 # 1.1.0 (2026-08-27)
 
 ### Features

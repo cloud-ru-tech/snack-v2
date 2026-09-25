@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.1 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** align component sizes, typography and focus rings with Snack UI Kit tokens ([9307f2e](https://github.com/cloud-ru-tech/snack-v2/commit/9307f2e80ef14c139340283af248ba7a14de8a11))
+- **FF-9083:** migrate components to renamed token keys ([fd8237d](https://github.com/cloud-ru-tech/snack-v2/commit/fd8237d04c95b5474955c946d9db7bedb3821c97))
+
 # 2.2.0 (2026-09-21)
 
 ### Features

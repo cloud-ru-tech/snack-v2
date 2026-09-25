@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.3.0 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** align component sizes, typography and focus rings with Snack UI Kit tokens ([9307f2e](https://github.com/cloud-ru-tech/snack-v2/commit/9307f2e80ef14c139340283af248ba7a14de8a11))
+- **FF-9085:** align FieldTextArea min-height with Snack master ([693638d](https://github.com/cloud-ru-tech/snack-v2/commit/693638d709c7092e2073e8b0d89f5bf96ff1885c))
+- **FF-9085:** align FieldTextArea scrollbar and action buttons with Snack master ([129ef97](https://github.com/cloud-ru-tech/snack-v2/commit/129ef976234176eed2fb20fbe5df5723fad52300))
+
+### Features
+
+- **FF-9085:** add footerDivider passthrough to FieldSelect ([37fee84](https://github.com/cloud-ru-tech/snack-v2/commit/37fee84d1fa6e7594d3d8043d245d0879ef3b009))
+
 ## 2.2.6 (2026-09-21)
 
 **Note:** Version bump only for package @ds/fields

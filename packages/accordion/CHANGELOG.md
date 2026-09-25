@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9085:** render accordion demo content as block to drop inherited line box ([a5c3b97](https://github.com/cloud-ru-tech/snack-v2/commit/a5c3b97d195f65f585c38b413fc7afcdbe0b4645))
+- **FF-9085:** restore tertiary body padding and chevron label in accordion ([4dc4eec](https://github.com/cloud-ru-tech/snack-v2/commit/4dc4eecfbc3d0709324a694a8083f647000c445a))
+
+### Features
+
+- **FF-9083:** align buttons with Snack UI Kit and extend mobile touch target ([bad5a26](https://github.com/cloud-ru-tech/snack-v2/commit/bad5a268c1d8328a361199b64399fa23380e6da8))
+
 ## 1.0.7 (2026-09-18)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** grow window header with multiline title ([ed1deb3](https://github.com/cloud-ru-tech/snack-v2/commit/ed1deb3de668eb89a4cccd4888a4d316eb6fdfbf))
+- **FF-9083:** inherit app density on mobile sheet surfaces ([c34b253](https://github.com/cloud-ru-tech/snack-v2/commit/c34b253e4153e5dd636efe921711d60305fa1b07))
+
 ## 1.1.2 (2026-09-18)
 
 **Note:** Version bump only for package @ds/popup-private

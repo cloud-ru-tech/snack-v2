@@ -1,6 +1,6 @@
 {
   "name": "@ds/search-private",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Базовый input для поиска без иконок и плейсхолдеров — фундамент для публичного `@ds/search` и доменных search-компонентов.",
   "repository": {
     "type": "git",

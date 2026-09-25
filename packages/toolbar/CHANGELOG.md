@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.23 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** inherit app density on mobile sheet surfaces ([c34b253](https://github.com/cloud-ru-tech/snack-v2/commit/c34b253e4153e5dd636efe921711d60305fa1b07))
+
 ## 1.0.22 (2026-09-21)
 
 **Note:** Version bump only for package @ds/toolbar

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.4 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** migrate components to renamed token keys ([fd8237d](https://github.com/cloud-ru-tech/snack-v2/commit/fd8237d04c95b5474955c946d9db7bedb3821c97))
+
 ## 2.0.3 (2026-09-18)
 
 **Note:** Version bump only for package @ds/ai-reasoning

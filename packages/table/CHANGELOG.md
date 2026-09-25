@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-25)
+
+### Bug Fixes
+
+- **FF-9083:** inherit app density on mobile sheet surfaces ([c34b253](https://github.com/cloud-ru-tech/snack-v2/commit/c34b253e4153e5dd636efe921711d60305fa1b07))
+
+### Features
+
+- **FF-9083:** align buttons with Snack UI Kit and extend mobile touch target ([bad5a26](https://github.com/cloud-ru-tech/snack-v2/commit/bad5a268c1d8328a361199b64399fa23380e6da8))
+
 ## 1.0.23 (2026-09-21)
 
 **Note:** Version bump only for package @ds/table
