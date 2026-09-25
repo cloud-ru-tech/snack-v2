@@ -29,6 +29,18 @@ $appearances: 'neutral', 'invertNeutral', 'primary', 'red', 'orange', 'blue', 'v
 
   @include m.has-content-with-text-opacity(#{content});
 
+  &:where(button) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    font: inherit;
+    text-align: inherit;
+
+    appearance: none;
+    background: transparent;
+  }
+
   &[data-inside-text] {
     display: inline;
 

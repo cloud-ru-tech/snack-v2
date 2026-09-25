@@ -5,6 +5,8 @@
 // дизайн-параметрами компонента и не имеют токенного эквивалента; всё, что
 // маппится на dimension/strokeWeight/radius токены, уже переписано.
 
+$appearances: 'primary', 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'pink';
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +30,12 @@
   // Демо-радиус: anatomy-radius-block-* в DS = 4px, а тут нужен крупнее для
   // визуального читаемого скругления карточки-обёртки. Не дизайн-параметр.
   border-radius: base.$sn-primitive-dimension-8;
-  background: base.$sn-theme-color-neutral-accent;
+
+  @each $appearance in $appearances {
+    &[data-appearance='#{$appearance}'] {
+      background: base.simple-var(base.$sn-theme, 'color', $appearance, 'accent');
+    }
+  }
 }
 
 .narrow {

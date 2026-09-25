@@ -11,6 +11,7 @@ const meta: Meta<typeof Link> = {
   component: Link,
   parameters: { layout: 'fullscreen' },
   args: {
+    as: 'a',
     label: 'Link',
     appearance: APPEARANCE.Primary,
     roleAppearance: ROLE_APPEARANCE.Regular,
@@ -21,6 +22,12 @@ const meta: Meta<typeof Link> = {
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
+    as: {
+      control: 'select',
+      options: ['a', 'button'],
+      description: 'HTML-тег для рендеринга',
+      table: { defaultValue: { summary: 'a' } },
+    },
     label: { control: 'text', description: 'Текст ссылки' },
     appearance: {
       control: 'select',

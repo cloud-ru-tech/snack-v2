@@ -13,8 +13,12 @@ test.describe('Link — polymorphism', () => {
   test('as="button" renders as button', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ as: 'button', type: 'button' }));
 
-    const tag = await getByTestId(TEST_IDS.root).evaluate(el => el.tagName.toLowerCase());
+    const link = getByTestId(TEST_IDS.root);
+    const tag = await link.evaluate(el => el.tagName.toLowerCase());
     expect(tag).toBe('button');
+    await expect(link).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(link).toHaveCSS('border-width', '0px');
+    await expect(link).toHaveCSS('padding', '0px');
   });
 
   test('target="_blank" sets rel containing noopener', async ({ gotoStory, getByTestId }) => {

@@ -27,6 +27,10 @@ const keyAppearances = [
 ] as const;
 
 const underlinedStates = [false, true] as const;
+const elementVariants = [
+  { as: 'a', href: '#' },
+  { as: 'button', type: 'button' },
+] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
@@ -36,12 +40,20 @@ export const VisualMatrix: Story = {
       <StoryTable
         sectionTitle='Appearance × Underlined (roleAppearance=regular)'
         firstColumnHeader='Appearance'
-        columnHeaders={['underlined=false', 'underlined=true']}
+        columnHeaders={elementVariants.flatMap(({ as }) => underlinedStates.map(u => `as=${as}, underlined=${u}`))}
         rows={keyAppearances.map(appearance => ({
           variantLabel: appearance,
-          cells: underlinedStates.map(u => (
-            <Link key={String(u)} appearance={appearance} underlined={u} label='Link text' href='#' />
-          )),
+          cells: elementVariants.flatMap(elementProps =>
+            underlinedStates.map(u => (
+              <Link
+                key={`${elementProps.as}-${u}`}
+                {...elementProps}
+                appearance={appearance}
+                underlined={u}
+                label='Link text'
+              />
+            )),
+          ),
         }))}
       />
 
@@ -79,14 +91,20 @@ export const VisualMatrix: Story = {
         sectionTitle='Role appearance × Appearance'
         firstColumnHeader='Role appearance'
         columnHeaders={keyAppearances.map(a => a)}
-        rows={[ROLE_APPEARANCE.Regular, ROLE_APPEARANCE.OnAccent].map(roleAppearance => ({
-          variantLabel: roleAppearance,
-          cells: keyAppearances.map(appearance => (
-            <div key={appearance} className={roleAppearance === ROLE_APPEARANCE.OnAccent ? styles.onAccent : undefined}>
-              <Link roleAppearance={roleAppearance} appearance={appearance} label='Link text' href='#' />
-            </div>
-          )),
-        }))}
+        rows={elementVariants.flatMap(elementProps =>
+          [ROLE_APPEARANCE.Regular, ROLE_APPEARANCE.OnAccent].map(roleAppearance => ({
+            variantLabel: `${roleAppearance}, as=${elementProps.as}`,
+            cells: keyAppearances.map(appearance => (
+              <div
+                key={appearance}
+                className={roleAppearance === ROLE_APPEARANCE.OnAccent ? styles.onAccent : undefined}
+                data-appearance={appearance}
+              >
+                <Link {...elementProps} roleAppearance={roleAppearance} appearance={appearance} label='Link text' />
+              </div>
+            )),
+          })),
+        )}
       />
     </div>
   ),
