@@ -393,7 +393,7 @@
       "persist": {
         "type": "ToolbarPersistConfig<TState>",
         "required": false,
-        "description": "Конфиг для сохранения состояния в localStorage и queryParams. <br>\nПоле id должно быть уникальным для каждого инстанса компонента. <br>",
+        "description": "Конфиг сохранения состояния в URL, localStorage и sessionStorage. <br>\nПоле id должно быть уникальным для каждого инстанса компонента. <br>",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -1168,6 +1168,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {

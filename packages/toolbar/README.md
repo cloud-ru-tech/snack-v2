@@ -208,7 +208,7 @@ export function WithDataView() {
 | `onCheck` | `(() => void)` | — | Колбек смены значения чекбокса |
 | `onRefresh` | `(() => void)` | — | Колбек обновления |
 | `outline` | `boolean` | `true` | Внешний бордер |
-| `persist` | `ToolbarPersistConfig` | — | Конфиг для сохранения состояния в localStorage и queryParams. <br> <br/> Поле id должно быть уникальным для каждого инстанса компонента. <br> |
+| `persist` | `ToolbarPersistConfig` | — | Конфиг сохранения состояния в URL, localStorage и sessionStorage. <br> <br/> Поле id должно быть уникальным для каждого инстанса компонента. <br> |
 | `search` | `SearchProps` | — | Параметры отвечают за строку поиска <br> <br/> <strong>value</strong>: Значение строки поиска <br> <br/> <strong>onChange</strong>: Колбэк смены значения <br> <br/> <strong>onSubmit</strong>: Колбэк на подтверждение поиска по строке <br/> <strong>placeholder</strong>: Плейсхолдер <br> <br/> <strong>loading</strong>: Состояние загрузки <br> |
 | `selectedCount` | `number` | — | Количество выбранных элементов (для подписи Selected: N) |
 | `showBulkCheckbox` | `boolean` | `true` | Показывать чекбокс слева (Figma: showBulkCheckbox) |
@@ -317,12 +317,14 @@ export function WithDataView() {
 | `parser` | `((value: string) => PersistedFilterState<T>) \| undefined` | — | Custom-парсер queryParams для преобразования в данные состояния |
 | `serializer` | `((value: PersistedFilterState<T>) => string) \| undefined` | — | Custom-сериализация состояния перед сохранением в queryParams |
 | `state` | `PersistedFilterState` | — | Состояние для сохранения |
+| `storages` | `DataPersistStorage` | — | Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение. <br/> Чтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается. <br/> Для всех вариантов необходимы id и filterQueryKey. |
 | `validateData` | `((value: unknown) => value is PersistedFilterState<T>) \| undefined` | — | Валидатор сохраненных |
 
 ## Смотри также
 
 - **`Search`** — поле поиска внутри тулбара (`background={false}`).
 - **`SegmentControl`** — типичный контент слота `dataView`.
+
 ## Адаптивность
 
 `Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
@@ -402,3 +404,36 @@ export function MobileLayout() {
   ```
 
 Подробнее о модели адаптивности — [Адаптивность — паттерн](/patterns/adaptive).
+
+## Хранилища состояния
+
+`persist.storages` задаёт хранилища общего объекта: фильтров, поиска, пагинации и сортировки.
+Для сохранения и восстановления необходимы одновременно `id` и `filterQueryKey`, даже если URL отключён.
+
+```tsx
+persist={{
+  id: 'orders',
+  filterQueryKey: 'ordersState',
+  storages: ['queryParams', 'sessionStorage'],
+}}
+```
+
+| Значение `storages` | Результат |
+| --- | --- |
+| Не задано | URL и localStorage — прежнее поведение |
+| `['queryParams']` | Только URL |
+| `['localStorage']` | Только localStorage |
+| `['sessionStorage']` | Только sessionStorage |
+| `['queryParams', 'sessionStorage']` | URL и sessionStorage |
+| `[]` | Сохранение и восстановление отключены |
+
+При восстановлении используется первый валидный объект целиком: URL → sessionStorage → localStorage.
+Отключённые источники не читаются и не изменяются. Порядок списка не влияет на приоритет, повторы игнорируются.
+Если данных нет или они невалидны, сохраняется исходное состояние компонента.
+
+localStorage и sessionStorage используют ключ `${id}_filter` и JSON.
+Пользовательские `parser` и `serializer` применяются только к URL, ключ которого задаёт `filterQueryKey`.
+Ошибка одного источника не препятствует работе остальных.
+Сброс фильтров или поиска записывает обновлённое состояние; старые и отключённые хранилища не очищаются.
+
+Конфигурация задаётся при монтировании. Переключение хранилищ после монтирования не поддерживается.

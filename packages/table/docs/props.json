@@ -330,9 +330,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -890,6 +890,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {
@@ -1817,9 +1825,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -2264,6 +2272,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {
@@ -2759,9 +2775,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -3425,9 +3441,9 @@
             "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
           },
           "savedState": {
-            "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean; }) | undefined",
+            "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean; }) | undefined",
             "required": false,
-            "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+            "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
             "typeRefs": [
               "ToolbarPersistConfig"
             ]
@@ -3734,6 +3750,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {
@@ -4112,9 +4136,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -4620,6 +4644,14 @@
               "PersistedFilterState"
             ]
           },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
+            ]
+          },
           "validateData": {
             "type": "((value: unknown) => value is PersistedFilterState<T>) | undefined",
             "required": false,
@@ -4994,9 +5026,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -5543,6 +5575,14 @@
               "PersistedFilterState"
             ]
           },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
+            ]
+          },
           "validateData": {
             "type": "((value: unknown) => value is PersistedFilterState<T>) | undefined",
             "required": false,
@@ -5990,9 +6030,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -6491,6 +6531,14 @@
               "PersistedFilterState"
             ]
           },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
+            ]
+          },
           "validateData": {
             "type": "((value: unknown) => value is PersistedFilterState<T>) | undefined",
             "required": false,
@@ -6886,9 +6934,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -7359,6 +7407,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {
@@ -8333,9 +8389,9 @@
         "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
       },
       "savedState": {
-        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
+        "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения состояния в localStorage и queryParams.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -8833,6 +8889,14 @@
             "description": "Состояние для сохранения",
             "typeRefs": [
               "PersistedFilterState"
+            ]
+          },
+          "storages": {
+            "type": "DataPersistStorage[] | undefined",
+            "required": false,
+            "description": "Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.\nЧтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.\nДля всех вариантов необходимы id и filterQueryKey.",
+            "typeRefs": [
+              "DataPersistStorage"
             ]
           },
           "validateData": {

@@ -306,10 +306,12 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
   /** Определение, какие строки должны быть закреплены в таблице */
   rowPinning?: Pick<RowPinningState, 'top'>;
   /**
-   * Конфиг сохранения состояния в localStorage и queryParams.
+   * Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.
+   * По умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.
+   * Для сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.
    * `id` должен быть уникальным для разных таблиц в рамках приложения.
    */
-  savedState?: Pick<ToolbarPersistConfig<TFilters>, 'serializer' | 'parser'> & {
+  savedState?: Pick<ToolbarPersistConfig<TFilters>, 'serializer' | 'parser' | 'storages'> & {
     id: string;
     filterQueryKey?: string;
     resize?: boolean;

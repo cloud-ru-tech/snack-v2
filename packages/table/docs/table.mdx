@@ -423,3 +423,38 @@ const MobileTable = withLayoutType(Table, 'mobile');
 - [ServerTable](/components/table/server-table) — постраничные данные с бэкенда.
 - [Pagination](/components/pagination) — отдельный компонент пагинации.
 - [InfoBlock](/components/info-block) — основа пустых состояний таблицы.
+
+## Хранилища состояния
+
+`savedState.storages` задаёт хранилища общего объекта: фильтров, поиска, пагинации и сортировки.
+Для сохранения и восстановления необходимы одновременно `id` и `filterQueryKey`, даже если URL отключён.
+
+```tsx
+savedState={{
+  id: 'orders',
+  filterQueryKey: 'ordersState',
+  storages: ['queryParams', 'sessionStorage'],
+}}
+```
+
+| Значение `storages` | Результат |
+| --- | --- |
+| Не задано | URL и localStorage — прежнее поведение |
+| `['queryParams']` | Только URL |
+| `['localStorage']` | Только localStorage |
+| `['sessionStorage']` | Только sessionStorage |
+| `['queryParams', 'sessionStorage']` | URL и sessionStorage |
+| `[]` | Сохранение и восстановление отключены |
+
+При восстановлении используется первый валидный объект целиком: URL → sessionStorage → localStorage.
+Отключённые источники не читаются и не изменяются. Порядок списка не влияет на приоритет, повторы игнорируются.
+Если данных нет или они невалидны, сохраняется исходное состояние компонента.
+
+localStorage и sessionStorage используют ключ `${id}_filter` и JSON.
+Пользовательские `parser` и `serializer` применяются только к URL, ключ которого задаёт `filterQueryKey`.
+Ошибка одного источника не препятствует работе остальных.
+Сброс фильтров или поиска записывает обновлённое состояние; старые и отключённые хранилища не очищаются.
+
+Конфигурация задаётся при монтировании. Переключение хранилищ после монтирования не поддерживается.
+
+Настройка не влияет на сохранение ширины, порядка и видимости колонок.

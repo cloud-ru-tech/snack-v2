@@ -1,5 +1,5 @@
 import { ChipChoiceRowProps, FiltersState } from '@ds/chips';
-import { WithSupportProps } from '@ds/utils';
+import { DataPersistStorage, WithSupportProps } from '@ds/utils';
 import { ReactNode } from 'react';
 
 import { RequestPayloadParams } from '@cloud-ru/ft-request-payload-transform';
@@ -72,6 +72,11 @@ export type PersistedFilterState<T extends FiltersState> = {
 };
 
 export type ToolbarPersistConfig<T extends FiltersState> = {
+  /** Хранилища общего состояния. По умолчанию queryParams и localStorage; [] отключает сохранение.
+   * Чтение: URL → sessionStorage → localStorage. Изменение после монтирования не поддерживается.
+   * Для всех вариантов необходимы id и filterQueryKey.
+   */
+  storages?: DataPersistStorage[];
   /** Уникальный id для текущего инстанса компонента */
   id?: string;
   /** Ключ для queryParams */
@@ -92,7 +97,7 @@ export type ToolbarProps<TState extends FiltersState = Record<string, unknown>> 
   DefaultToolbarProps | CheckedToolbarProps
 > & {
   filterRow?: FilterRow<TState>;
-  /** Конфиг для сохранения состояния в localStorage и queryParams. <br>
+  /** Конфиг сохранения состояния в URL, localStorage и sessionStorage. <br>
    *  Поле id должно быть уникальным для каждого инстанса компонента. <br>
    *  */
   persist?: ToolbarPersistConfig<TState>;

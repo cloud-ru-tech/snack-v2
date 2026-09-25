@@ -62,6 +62,7 @@ export function usePersistState<TState extends FiltersState = Record<string, unk
     };
 
     return {
+      storages: persist.storages,
       queryKey: persist.filterQueryKey,
       localStorageKey: `${persist.id}_filter`,
       validateData: combinedValidate as unknown as (value: unknown) => value is PersistedFilterState<TState>,

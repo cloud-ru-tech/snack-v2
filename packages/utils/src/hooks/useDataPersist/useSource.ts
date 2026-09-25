@@ -12,7 +12,11 @@ export const useSource = <T>({ source }: StateProps<T>) => {
       if (!source) {
         return;
       }
-      source.setData(data);
+      try {
+        source.setData(data);
+      } catch {
+        // Ошибка одного хранилища не должна прерывать запись в остальные.
+      }
     },
     [source],
   );

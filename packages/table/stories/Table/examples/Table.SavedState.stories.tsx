@@ -50,3 +50,22 @@ export const SavedState: Story = {
     await expect(within(canvasElement).getByTestId(TEST_IDS.table.root)).toBeVisible();
   },
 };
+
+export const SessionState: Story = {
+  tags: ['test', 'dev'],
+  args: { suppressToolbar: false },
+  render: ({ suppressToolbar }) => (
+    <Table
+      data={SAMPLE_USERS}
+      columnDefinitions={columns}
+      suppressToolbar={suppressToolbar}
+      savedState={{
+        id: 'table-session-state',
+        filterQueryKey: 'tableState',
+        storages: ['sessionStorage'],
+        resize: false,
+      }}
+      data-test-id={TEST_IDS.table.root}
+    />
+  ),
+};

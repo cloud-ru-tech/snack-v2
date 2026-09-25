@@ -976,7 +976,7 @@ export function FullWidth() {
 | `rowSelection` | `RowAppearance` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `RowVirtualizer` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
 | `rowVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=10, estimateSize=40). |
-| `savedState` | `ToolbarPersistConfig` | — | Конфиг сохранения состояния в localStorage и queryParams. <br/> `id` должен быть уникальным для разных таблиц в рамках приложения. |
+| `savedState` | `ToolbarPersistConfig` | — | Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах. <br/> По умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния. <br/> Для сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается. <br/> `id` должен быть уникальным для разных таблиц в рамках приложения. |
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state?: string; placeholder?: string \| undefined; loading?: boolean \| undefined; onChange?(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |
@@ -1062,6 +1062,7 @@ export function FullWidth() {
 - **ServerTable** — постраничные данные с бэкенда.
 - **Pagination** — отдельный компонент пагинации.
 - **InfoBlock** — основа пустых состояний таблицы.
+
 ### Адаптивность
 
 `Table` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста **`@ds/adaptive`** — отдельного пропа `layoutType` нет.
@@ -1132,6 +1133,41 @@ const MobileTable = withLayoutType(Table, 'mobile');
 ```
 
 Подробнее о модели раскладки — в **`@ds/adaptive`**.
+
+### Хранилища состояния
+
+`savedState.storages` задаёт хранилища общего объекта: фильтров, поиска, пагинации и сортировки.
+Для сохранения и восстановления необходимы одновременно `id` и `filterQueryKey`, даже если URL отключён.
+
+```tsx
+savedState={{
+  id: 'orders',
+  filterQueryKey: 'ordersState',
+  storages: ['queryParams', 'sessionStorage'],
+}}
+```
+
+| Значение `storages` | Результат |
+| --- | --- |
+| Не задано | URL и localStorage — прежнее поведение |
+| `['queryParams']` | Только URL |
+| `['localStorage']` | Только localStorage |
+| `['sessionStorage']` | Только sessionStorage |
+| `['queryParams', 'sessionStorage']` | URL и sessionStorage |
+| `[]` | Сохранение и восстановление отключены |
+
+При восстановлении используется первый валидный объект целиком: URL → sessionStorage → localStorage.
+Отключённые источники не читаются и не изменяются. Порядок списка не влияет на приоритет, повторы игнорируются.
+Если данных нет или они невалидны, сохраняется исходное состояние компонента.
+
+localStorage и sessionStorage используют ключ `${id}_filter` и JSON.
+Пользовательские `parser` и `serializer` применяются только к URL, ключ которого задаёт `filterQueryKey`.
+Ошибка одного источника не препятствует работе остальных.
+Сброс фильтров или поиска записывает обновлённое состояние; старые и отключённые хранилища не очищаются.
+
+Конфигурация задаётся при монтировании. Переключение хранилищ после монтирования не поддерживается.
+
+Настройка не влияет на сохранение ширины, порядка и видимости колонок.
 
 ## ServerTable
 
@@ -1398,7 +1434,7 @@ export function ServerDriven() {
 | `rowSelection` | `RowAppearance` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `RowVirtualizer` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
 | `rowVirtualizerOptions` | `Partial<VirtualizerOptions<HTMLElement, Element>>` | — | Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`). <br/> Переопределяют дефолты (overscan=10, estimateSize=40). |
-| `savedState` | `ToolbarPersistConfig` | — | Конфиг сохранения состояния в localStorage и queryParams. <br/> `id` должен быть уникальным для разных таблиц в рамках приложения. |
+| `savedState` | `ToolbarPersistConfig` | — | Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах. <br/> По умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния. <br/> Для сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается. <br/> `id` должен быть уникальным для разных таблиц в рамках приложения. |
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `search` | `{ initialState?: string; state: string; placeholder?: string; loading?: boolean \| undefined; onChange(value: string): void; } \| undefined` | — | Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`. |

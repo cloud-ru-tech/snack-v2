@@ -163,6 +163,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
 
     return {
       id: savedState.id,
+      storages: savedState.storages,
       filterQueryKey: savedState.filterQueryKey,
       validateData: validatePersistedState,
       state: {
@@ -199,6 +200,7 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
     savedState?.id,
     savedState?.parser,
     savedState?.serializer,
+    savedState?.storages,
     setFilter,
     setFilterVisibility,
     sorting,
