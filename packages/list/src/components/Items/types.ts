@@ -92,6 +92,12 @@ export type NextListItem = BaseItemWithoutNonGroup &
 
     /** Сторона, с которой раскрывается вложенный список относительно элемента */
     placement?: 'right-start' | 'left-start' | 'left' | 'right' | 'left-end' | 'right-end';
+
+    /**
+     * Только desktop: CSS-класс всплывающего окна вложенного списка. Окно рендерится в портале
+     * и не наследует классы родительского списка — например, класс плотности темы.
+     */
+    listClassName?: string;
   };
 
 type CommonGroupItem = {

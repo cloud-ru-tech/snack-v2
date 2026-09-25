@@ -76,10 +76,6 @@ $sizes: 's', 'm', 'l';
   }
 }
 
-.afterContent {
-  color: base.$sn-theme-color-available-version-textSecondary;
-}
-
 .groupIndicator {
   // По умолчанию шеврон — индикатор состояния, а не кнопка: раскрытие переключает клик по
   // всей строке, поэтому клики шеврон не перехватывает. Своих hover/pressed/focus-состояний
@@ -184,12 +180,10 @@ $level: var(--level, 0);
         padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
       }
 
-      // afterContent — слот произвольного контента (иконка, counter, tag). Иконка центрируется
-      // по icon-сетке, но не-иконочный контент (counter/badge) не зажимается в квадрат: min-* вместо
-      // фиксированного width/height.
+      // Высота фиксирована, как у Figma `centeredWrapper`: контент выше иконки не растягивает строку.
       .afterContent {
         min-width: base.simple-var(icons.$iconSizeMap, $size);
-        min-height: base.simple-var(icons.$iconSizeMap, $size);
+        height: base.simple-var(icons.$iconSizeMap, $size);
         padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
         padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
 

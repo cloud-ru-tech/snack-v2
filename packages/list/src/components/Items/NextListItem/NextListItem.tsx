@@ -26,6 +26,7 @@ export function NextListItem({
   dataFiltered = false,
   focusId = id,
   untouchableScrollbars = false,
+  listClassName,
   ...option
 }: NextListItemProps) {
   const { flattenItems, focusFlattenItems, virtualized } = useNewListContext();
@@ -109,6 +110,7 @@ export function NextListItem({
       outsideClick={handleOutsideClick}
       fallbackPlacements={FALLBACK_PLACEMENTS}
       bodyPadding={false}
+      className={listClassName}
       content={
         <ListPrivate
           onKeyDown={handleListKeyDown}

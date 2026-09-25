@@ -1,5 +1,13 @@
 import { Button } from '@ds/button';
-import { ChevronRightSVG, FileSVG, FolderSVG, HomeSVG, SettingsSVG, StarSVG } from '@ds/icons/interface/system';
+import {
+  ChevronRightSVG,
+  FileSVG,
+  FolderSVG,
+  HomeSVG,
+  KebabSVG,
+  SettingsSVG,
+  StarSVG,
+} from '@ds/icons/interface/system';
 import { ItemProps as Item, List, SIZE } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -226,7 +234,7 @@ export const VisualMatrix: Story = {
       <StoryTable
         sectionTitle='Size × Slot composition (beforeContent / afterContent)'
         firstColumnHeader='Size'
-        columnHeaders={['icon before', 'icon after', 'both', 'caption + both']}
+        columnHeaders={['icon before', 'icon after', 'both', 'caption + both', 'button after']}
         rows={keySizes.map(size => ({
           variantLabel: size.toUpperCase(),
           cells: [
@@ -290,6 +298,15 @@ export const VisualMatrix: Story = {
                   content: { label: 'Favourites', caption: '∞', description: 'Pinned items' },
                 },
               ],
+              size,
+            }),
+            renderList({
+              items: ['Main', 'Staging', 'Production'].map(label => ({
+                id: label,
+                beforeContent: <FolderSVG />,
+                afterContent: <Button view='function' appearance='neutral' size='s' icon={<KebabSVG />} />,
+                content: { label },
+              })),
               size,
             }),
           ],

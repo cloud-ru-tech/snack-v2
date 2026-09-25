@@ -71,6 +71,7 @@ export function buildLevelItems(
         delete base.dataError;
         delete base.dataFiltered;
         delete base.placement;
+        delete base.listClassName;
         delete base.scroll;
         delete base.scrollRef;
 

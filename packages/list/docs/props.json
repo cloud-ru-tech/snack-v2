@@ -3166,6 +3166,11 @@
         "type": "ItemId[]",
         "required": true
       },
+      "listClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Только desktop: CSS-класс всплывающего окна вложенного списка. Окно рендерится в портале\nи не наследует классы родительского списка — например, класс плотности темы."
+      },
       "loading": {
         "type": "boolean",
         "required": false,
@@ -4938,6 +4943,11 @@
       "items": {
         "type": "Item[]",
         "required": true
+      },
+      "listClassName": {
+        "type": "string",
+        "required": false,
+        "description": "Только desktop: CSS-класс всплывающего окна вложенного списка. Окно рендерится в портале\nи не наследует классы родительского списка — например, класс плотности темы."
       },
       "loading": {
         "type": "boolean",
