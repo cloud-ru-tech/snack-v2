@@ -35,14 +35,17 @@ $appearance-to-token: (
 }
 
 // Рамка в макете одна для всех appearance — нейтральный волосок
-// `available/borderColor`, а не тонировка под цвет алерта.
+// `available/borderColor`, а не тонировка под цвет алерта. Рисуется внутри бокса, как в макете.
 .root[data-outline] {
   outline-color: base.$sn-theme-color-available-borderColor;
   outline-style: solid;
 
   @each $size in $sizes {
     &[data-size='#{$size}'] {
-      outline-width: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'border-width');
+      $border-width: base.simple-var(alert.$alert, 'anatomy', 'size', $size, 'container', 'border-width');
+
+      outline-width: $border-width;
+      outline-offset: calc(-1 * #{$border-width});
     }
   }
 }
