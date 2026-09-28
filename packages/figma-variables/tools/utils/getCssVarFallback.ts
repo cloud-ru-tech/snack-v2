@@ -2,6 +2,7 @@ import type { TransformedToken } from 'style-dictionary';
 
 import { VARIABLES_WITHOUT_PX } from '../types.js';
 import { isColorToken, isColorValue, normalizeOpacityForCss, toKebabCase } from './index.js';
+import { isLegacyAcrylicZeroBlur } from './legacyAcrylicZeroBlur.js';
 import { transformDimensionToPx } from './transformDimensionToPx.js';
 
 const CSS_LENGTH_UNITS = /^-?\d+(\.\d+)?(px|em|rem|%|vh|vw|cm|mm|in|pt|pc)\s*$/i;
@@ -31,6 +32,10 @@ export function getCssVarFallback({
   variableName: string;
 }): string | number {
   const kebabName = toKebabCase(variableName);
+
+  if (isLegacyAcrylicZeroBlur(token)) {
+    return 0;
+  }
 
   if (isNumeric(token.$value) && !VARIABLES_WITHOUT_PX.some(variable => kebabName.includes(variable))) {
     const transformed = transformDimensionToPx({

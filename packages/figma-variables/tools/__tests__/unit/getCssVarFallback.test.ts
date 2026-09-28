@@ -17,6 +17,31 @@ describe('getCssVarFallback', () => {
     expect(result).toBe(1);
   });
 
+  it('keeps zero acrylic blur unitless for legacy materials', () => {
+    for (const $value of [0, '0px']) {
+      const token = {
+        $type: 'number',
+        $value,
+        path: ['sn', 'acrylic', 'blurBackground1Level'],
+        original: { $value: 0 },
+      };
+      const result = getCssVarFallback({
+        token: token as Parameters<typeof getCssVarFallback>[0]['token'],
+        variableName: 'sn-acrylic-blurBackground1Level',
+      });
+      expect(result).toBe(0);
+    }
+  });
+
+  it('adds px to non-zero acrylic blur', () => {
+    const token = { $type: 'number', $value: 50, path: ['sn', 'acrylic', 'blurBackground'], original: { $value: 50 } };
+    const result = getCssVarFallback({
+      token: token as Parameters<typeof getCssVarFallback>[0]['token'],
+      variableName: 'sn-acrylic-blurBackground',
+    });
+    expect(result).toBe('50px');
+  });
+
   it('should return 0.8 for opacity 80', () => {
     const token = {
       $type: 'number',

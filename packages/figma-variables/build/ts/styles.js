@@ -2055,10 +2055,10 @@ export const themeVars = {
           modificationName: 'var(--sn-acrylic-kitService-text-modificationName, \"no\")'
         }
       },
-      blurBackground1Level: 'var(--sn-acrylic-blurBackground1Level, 0px)',
+      blurBackground1Level: 'var(--sn-acrylic-blurBackground1Level, 0)',
       opacityBackground: 'var(--sn-acrylic-opacityBackground, 1)',
-      blurBackground2Level: 'var(--sn-acrylic-blurBackground2Level, 0px)',
-      blurBackground: 'var(--sn-acrylic-blurBackground, 0px)',
+      blurBackground2Level: 'var(--sn-acrylic-blurBackground2Level, 0)',
+      blurBackground: 'var(--sn-acrylic-blurBackground, 0)',
       opacityBackground1Level: 'var(--sn-acrylic-opacityBackground1Level, 1)',
       opacityBackground2Level: 'var(--sn-acrylic-opacityBackground2Level, 1)',
       backdropFilter1Level: 'var(--sn-acrylic-backdropFilter1Level, none)',
