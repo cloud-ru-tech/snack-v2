@@ -55,6 +55,8 @@ export function Tooltip({
       hoverDelayOpen={hoverDelayOpen}
       hoverDelayClose={hoverDelayClose}
       fallbackPlacements={DEFAULT_FALLBACK_PLACEMENTS}
+      // Тултип не должен гасить Esc: иначе дроплист, в триггере которого он висит, не закроется
+      escapeKeyBubbles
       triggerClassName={cn(styles.triggerClassName, triggerClassName)}
       popoverContent={
         <div className={styles.tooltipContainer} data-disable-max-width={disableMaxWidth} role='tooltip'>
