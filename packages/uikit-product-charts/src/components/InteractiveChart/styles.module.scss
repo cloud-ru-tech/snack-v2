@@ -1,0 +1,45 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../shared/mixins' as chart;
+
+.root {
+  @include chart.chart-palette;
+
+  min-height: var(--min-height);
+}
+
+// Разметку внутри рисует uPlot, стилизуем его классы. Ширина — по canvas, а не по родителю.
+.plot {
+  width: fit-content;
+
+  :global(.uplot) {
+    @include chart.chart-surface;
+    @include base.composite-var(base.$sn-regular-body-s);
+
+    padding: base.$sn-primitive-dimension-16 0;
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  :global(.u-title) {
+    @include base.composite-var(base.$sn-regular-title-l);
+
+    padding-left: base.$sn-density-spacing-interval-m;
+    text-align: start;
+  }
+
+  // Перекрестие курсора
+  :global(.u-cursor-x),
+  :global(.u-cursor-y) {
+    border-color: base.$sn-theme-color-neutral-decor;
+  }
+
+  // Область выделения для zoom
+  :global(.u-select) {
+    background-color: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  :global(.u-legend .u-series .u-marker) {
+    width: base.$sn-primitive-dimension-16;
+    height: base.$sn-primitive-dimension-16;
+    border-radius: base.$sn-primitive-dimension-full;
+  }
+}

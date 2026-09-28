@@ -1,0 +1,114 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../shared/mixins' as chart;
+
+.root {
+  @include chart.chart-surface;
+
+  // Цвета шкалы и контрастного текста читаются из JS (d3 и расчёт контраста), см. HEAT_MAP_COLOR_VARS.
+  --heat-map-range-start: #{base.$sn-theme-color-primary-decor};
+  --heat-map-range-end: #{base.$sn-theme-color-primary-accent};
+  // Текст в ячейках не зависит от темы: выбирается по яркости фона ячейки.
+  --heat-map-text-light: #{base.$sn-brand-color-text-inversion-main};
+  --heat-map-text-dark: #{base.$sn-brand-color-text-version-main};
+
+  // Значения для inline-стилей react-grid-heatmap (см. getStyles).
+  --heat-map-label: #{base.$sn-theme-color-available-version-textSecondary};
+  --heat-map-cell-padding: #{base.$sn-primitive-dimension-4};
+  --heat-map-cell-radius: #{base.$sn-density-radius-2xs};
+  --heat-map-cell-border: #{base.$sn-theme-color-neutral-background1Level};
+  --heat-map-ticks-height: #{base.$sn-primitive-dimension-20};
+  --heat-map-ticks-offset: #{base.$sn-primitive-dimension-12};
+  --heat-map-y-ticks-width: #{base.$sn-primitive-dimension-24};
+  --heat-map-y-ticks-offset: #{base.$sn-primitive-dimension-8};
+
+  display: flex;
+  flex-direction: column;
+  height: var(--height);
+  padding: base.$sn-density-spacing-block-m-padding;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-title-l);
+
+  margin: 0 0 base.$sn-density-spacing-interval-m;
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.gridWrapper {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  position: relative;
+  container-type: size;
+  flex: 1;
+  min-height: 0;
+
+  &[data-grid] {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.cell {
+  display: contents;
+}
+
+.cellValue {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  overflow: hidden;
+  margin: 0;
+  color: var(--color, inherit);
+  text-overflow: ellipsis;
+}
+
+.xAxisLabel {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  display: flex;
+  justify-content: center;
+  margin-top: base.$sn-primitive-dimension-8;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.yAxisLabel {
+  @include base.composite-var(base.$sn-regular-label-s);
+
+  transform: rotate(180deg);
+
+  margin-right: base.$sn-primitive-dimension-16;
+
+  writing-mode: vertical-rl;
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-align: center;
+
+  // Выравнивание по ячейкам: пропускаем строку подписей делений оси X.
+  &[data-x-axis-position='top'] {
+    margin-top: calc(var(--heat-map-ticks-height) + var(--heat-map-ticks-offset));
+  }
+
+  &[data-x-axis-position='bottom'] {
+    margin-bottom: calc(var(--heat-map-ticks-height) + var(--heat-map-ticks-offset));
+  }
+}
+
+.legend {
+  margin-top: base.$sn-density-spacing-interval-m;
+}
+
+.gradient {
+  height: base.$sn-primitive-dimension-20;
+  margin: base.$sn-density-spacing-interval-m 0 base.$sn-primitive-dimension-8;
+  border-radius: base.$sn-density-radius-2xs;
+  background: var(--gradient);
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tick {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

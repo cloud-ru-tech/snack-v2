@@ -139,9 +139,10 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
     {
       id: 'data-display',
       label: 'Data display',
-      description: 'Продуктовые блоки данных и виджеты: инфо-строки, цена, квоты, виджеты, промо-теги.',
+      description: 'Продуктовые блоки данных и виджеты: инфо-строки, графики, цена, квоты, виджеты, промо-теги.',
       packages: [
         'uikit-product-avatar-detail',
+        'uikit-product-charts',
         'uikit-product-info-row',
         'uikit-product-price-summary',
         'uikit-product-quota',

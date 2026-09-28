@@ -1,0 +1,93 @@
+---
+title: HeatMapChart
+package: '@ds/uikit-product-charts'
+description: Тепловая карта матрицы значений — цвет ячейки по линейной шкале domain, подписи осей, градиентная легенда и кастомный рендер ячейки.
+order: 3
+---
+
+import { CustomCell } from '../demos/examples/CustomCell'
+import CustomCellSrc from '../demos/examples/CustomCell.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import chartsDoc from './props.json'
+
+# HeatMapChart
+
+Тепловая карта матрицы `data` (строки × столбцы). Цвет ячейки вычисляется линейной шкалой по диапазону `options.domain`, цвет текста в ячейке подбирается по контрасту с фоном. Под сеткой — градиентная легенда с пятью делениями.
+
+Высота карточки задаётся `options.height` в px (по умолчанию 700); строки сетки делят свободную высоту поровну.
+
+## Когда использовать
+
+- Распределение значения по двум категориальным осям: загрузка по дням и часам, метрика по узлам кластера.
+- Поиск аномалий и пиков в большой матрице, где точные значения вторичны.
+- Динамика одного-двух рядов во времени:
+  - используйте [`InteractiveChart`](/components/uikit-product-charts/interactive-chart).
+
+- ✅ Задавайте `domain` по реальному диапазону метрики (например, `[0, 100]` для процентов).
+- ❌ Вычислять `domain` из текущих данных, если карты нужно сравнивать между собой — шкала будет разной.
+- ✅ Передавайте `ticks` для обеих осей — без подписей строки и столбцы не читаются.
+- ❌ Передавать `ticks`, длина которых не совпадает с числом столбцов или строк `data`.
+- ✅ Форматируйте значения через `formatter` (единицы, округление).
+- ❌ Округлять значения в `data` ради отображения — `domain` и цвет считаются по исходным значениям.
+- ✅ Отключайте легенду (`legend.show: false`), только если шкала объяснена рядом с картой.
+- ❌ Выводить длинный текст в ячейку через `cellRender` — ячейка не растёт по контенту.
+
+## Анатомия
+
+- Заголовок `options.title`.
+- Подпись оси X `axes.xAxis.label` — над или под сеткой, вместе с делениями.
+- Подпись оси Y `axes.yAxis.label` — слева, повёрнута вертикально.
+- Сетка ячеек с делениями `axes.xAxis.ticks` / `axes.yAxis.ticks`.
+- Легенда — градиентная полоса от начала до конца шкалы и пять делений по `domain`.
+
+### X axis position (default `bottom`)
+
+`axes.xAxis.position` определяет, с какой стороны сетки выводятся деления и подпись оси X; значение выставляется на корень атрибутом `data-x-axis-position`. Значения — константа `X_AXIS_POSITION` (также доступна как статика `HeatMapChart.xAxisPositions`):
+
+- `bottom` — под сеткой, как в обычном графике.
+- `top` — над сеткой. Подходит для высокой карты: подписи столбцов видны без прокрутки.
+
+### Legend (default `show: true`)
+
+`legend.show` включает градиентную легенду под сеткой:
+
+- `true` — полоса цветовой шкалы и пять делений по `domain`.
+- `false` — легенда скрыта, сетка занимает освободившуюся высоту.
+
+### Ячейка
+
+По умолчанию ячейка показывает значение, отформатированное `formatter`. `cellRender(x, y, value)` заменяет содержимое ячейки целиком, фон ячейки по-прежнему задаётся шкалой. Inline-стили подписей и ячеек переопределяются через `options.styles`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-charts
+```
+
+```ts
+import { HeatMapChart } from '@ds/uikit-product-charts'
+```
+
+## Примеры использования
+
+<Example
+  title='Кастомная ячейка'
+  description='formatter добавляет единицы, cellRender выделяет значения от 80%, ось X сверху'
+  code={CustomCellSrc}
+>
+  <CustomCell client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={chartsDoc.HeatMapChart} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-charts-heatmapchart--playground' height={560} />
+
+## Смотри также
+
+- [InteractiveChart](/components/uikit-product-charts/interactive-chart) — временные ряды и распределения.

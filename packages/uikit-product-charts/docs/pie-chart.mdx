@@ -1,0 +1,103 @@
+---
+title: PieChart
+package: '@ds/uikit-product-charts'
+description: Круговая диаграмма долей с основной и агрегированной легендами и колбэками клика по сегментам и пунктам легенд.
+order: 2
+---
+
+import { ClickableSegments } from '../demos/examples/ClickableSegments'
+import ClickableSegmentsSrc from '../demos/examples/ClickableSegments.tsx?raw'
+import { AggregatedLegend } from '../demos/examples/AggregatedLegend'
+import AggregatedLegendSrc from '../demos/examples/AggregatedLegend.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import chartsDoc from './props.json'
+
+# PieChart
+
+Кольцевая диаграмма долей: каждый элемент `data` — сегмент с подписью, значением и необязательным цветом. При наведении сегмент выдвигается, а в центре диаграммы появляются его подпись (обрезается до 15 символов) и значение. Слева от диаграммы — основная легенда со всеми сегментами, справа — необязательная агрегированная легенда, например сводка по группам.
+
+Размер задаётся `options.width` / `options.height` в px; без них диаграмма занимает 100% родителя.
+
+## Когда использовать
+
+- Доли целого по небольшому числу категорий: расходы по сервисам, распределение ресурсов по проектам.
+- Сводка с переходом к деталям: клик по сегменту или пункту легенды открывает страницу категории.
+- Больше 8–10 категорий:
+  - объедините мелкие в «Прочее» или используйте [`InteractiveChart`](/components/uikit-product-charts/interactive-chart) со столбцами.
+- Одна величина относительно лимита:
+  - используйте [`BagelChart`](/components/uikit-product-charts/bagel-chart).
+
+- ✅ Сортируйте `data` по убыванию `value` — крупные доли идут первыми и получают первые цвета палитры.
+- ❌ Передавать сегменты с нулевым или отрицательным `value`.
+- ✅ Передавайте `id` у сегментов и пунктов легенд, если по клику нужна навигация.
+- ❌ Опираться на `label` как на идентификатор — подписи могут совпадать и меняться с локализацией.
+- ✅ Задавайте `color` у сегмента только когда цвет несёт смысл (например, статус).
+- ❌ Переопределять `color` у всех сегментов ради декора — палитра по умолчанию согласована с темой.
+- ✅ Выбирайте `typographySize` под плотность экрана: `s` — для виджета, `l` — для отдельной страницы.
+- ❌ Уменьшать `width` / `height` так, что легенды обрезаются — легенды прокручиваются, но заголовок и диаграмма должны оставаться видимыми.
+
+## Анатомия
+
+- Заголовок `options.title`.
+- Диаграмма — сегменты с зазором между ними; в центре при наведении — подпись и значение сегмента.
+- Основная легенда (слева) — заголовок `options.legendTitle` и пункты по сегментам с цветовым маркером. Клик по подписи пункта вызывает `onLegendItemClick`.
+- Агрегированная легенда (справа) — `aggregatedLegend.title` и пункты `aggregatedLegend.data` без цветового маркера. Клик по подписи пункта вызывает `aggregatedLegend.onAggregatedLegendItemClick`.
+
+Клик по сегменту (по нажатию кнопки мыши) вызывает `onPieSegmentClick` с элементом `data`.
+
+Обе легенды прокручиваются, если не помещаются по высоте.
+
+### Typography size (default `l`)
+
+`options.typographySize` задаёт размер шрифта заголовка и легенд, выставляется на корень атрибутом `data-size`:
+
+- `s` — компактный виджет на дашборде.
+- `m` — карточка в сетке.
+- `l` — отдельная страница или крупный блок.
+
+### Цвет сегмента
+
+По умолчанию сегмент получает цвет палитры по индексу (16 цветов, по кругу). Поле `color` у элемента `data` переопределяет цвет — принимается любое CSS-значение, включая `var(--…)`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-charts
+```
+
+```ts
+import { PieChart } from '@ds/uikit-product-charts'
+```
+
+## Примеры использования
+
+<Example
+  title='Клик по сегменту и легенде'
+  description='onPieSegmentClick и onLegendItemClick сохраняют выбранную категорию'
+  code={ClickableSegmentsSrc}
+>
+  <ClickableSegments client:visible />
+</Example>
+
+<Example
+  title='Агрегированная легенда'
+  description='Сводка по группам справа от основной легенды, typographySize m'
+  code={AggregatedLegendSrc}
+>
+  <AggregatedLegend client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={chartsDoc.PieChart} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-charts-piechart--playground' height={480} />
+
+## Смотри также
+
+- [BagelChart](/components/uikit-product-charts/bagel-chart) — одна величина относительно лимита.
+- [InteractiveChart](/components/uikit-product-charts/interactive-chart) — столбцы и линии для большого числа категорий.

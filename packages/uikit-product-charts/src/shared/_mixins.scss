@@ -1,0 +1,42 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Оттенок палитры серий → оттенок темы (legacy `crimson` собирался из `pink`).
+$hues: (
+  'green': 'green',
+  'blue': 'blue',
+  'violet': 'violet',
+  'crimson': 'pink',
+);
+
+// Ступень серии → токен оттенка. Ступени 3–4 — светлее, для второстепенных серий.
+$steps: (
+  1: 'accent',
+  2: 'text',
+  3: 'decor',
+  4: 'background',
+);
+
+// Цвета графиков как custom properties: SVG берёт их через `var()`, canvas (uPlot) и d3 — через
+// `getComputedStyle` (см. `shared/colors.ts`). Имена синхронны с `SERIES_COLORS` / `OTHER_COLORS`.
+@mixin chart-palette {
+  @each $name, $hue in $hues {
+    @each $step, $token in $steps {
+      --chart-#{$name}#{$step}: #{base.simple-var(base.$sn-theme, 'color', $hue, $token)};
+    }
+  }
+
+  --chart-shadowColor: #{base.$sn-theme-color-neutral-accent};
+  --chart-lineColor: #{base.$sn-theme-color-neutral-onAccent};
+  --chart-tooltipBackgroundColor: #{base.$sn-theme-color-invertNeutral-background};
+  --chart-tooltipColor: #{base.$sn-theme-color-invertNeutral-text};
+  --chart-columnHighlightColor: #{base.$sn-theme-color-neutral-decor};
+  --chart-axisColor: #{base.$sn-theme-color-neutral-decor};
+  --chart-labelColor: #{base.$sn-theme-color-available-version-textSecondary};
+}
+
+// Карточка-подложка графика.
+@mixin chart-surface {
+  box-sizing: border-box;
+  border-radius: base.$sn-density-radius-xs;
+  background-color: base.$sn-theme-color-neutral-background1Level;
+}

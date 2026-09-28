@@ -1,0 +1,61 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 's', 'm', 'l';
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  padding-right: base.$sn-primitive-dimension-8;
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.divider {
+  margin: base.$sn-primitive-dimension-16 0;
+}
+
+.item {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+// Link не имеет своего размера и наследует типографику контейнера.
+.itemTitle {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(base.$sn-regular, 'body', $size);
+    }
+  }
+}
+
+.link {
+  min-width: 0;
+}
+
+.value {
+  flex-shrink: 0;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var(base.$sn-regular, 'label', $size);
+    }
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+
+  width: base.$sn-primitive-dimension-8;
+  height: base.$sn-primitive-dimension-8;
+  margin-right: base.$sn-primitive-dimension-12;
+  border-radius: base.$sn-primitive-dimension-full;
+
+  background-color: var(--color);
+}

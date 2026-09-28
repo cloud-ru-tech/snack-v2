@@ -1,0 +1,15 @@
+// PieChart занимает 100% родителя: демо-контейнеры задают ему размер.
+.chart {
+  width: 720px;
+  height: 360px;
+}
+
+.chartCompact {
+  width: 540px;
+  height: 280px;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}

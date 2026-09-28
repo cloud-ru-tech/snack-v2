@@ -1,0 +1,91 @@
+---
+title: BagelChart
+package: '@ds/uikit-product-charts'
+description: Кольцо заполненности — показывает занятое значение относительно общего объёма, цвет сегмента зависит от уровня заполненности.
+order: 1
+---
+
+import { BagelChartDemo } from '../demos/BagelChartDemo'
+import { QuotaUsage } from '../demos/examples/QuotaUsage'
+import QuotaUsageSrc from '../demos/examples/QuotaUsage.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import chartsDoc from './props.json'
+
+# BagelChart
+
+Кольцевой индикатор «занято из общего объёма»: сегмент кольца пропорционален `value / total`, в центре — отформатированные `value` и `total` (формат чисел — по текущему языку из `@ds/locale`). Над кольцом выводится необязательный заголовок `title`.
+
+У кольца нет собственной ширины — оно заполняет ширину контейнера, минимальная ширина задана токеном.
+
+## Демо
+
+<BagelChartDemo client:visible />
+
+## Когда использовать
+
+- Одна величина относительно лимита: квота, заполненность хранилища, занятые ядра.
+- Компактная сводка на дашборде, где важен уровень, а не точное значение.
+- Несколько величин с разными единицами:
+  - используйте несколько `BagelChart` рядом, по одному на величину.
+- Доли нескольких категорий в целом:
+  - используйте [`PieChart`](/components/uikit-product-charts/pie-chart).
+
+- ✅ Задавайте ширину контейнера кольца явно.
+- ❌ Растягивать кольцо на всю ширину широкой колонки — подписи в центре масштабируются вместе с ним.
+- ✅ Передавайте в `title` название ресурса с единицами измерения.
+- ❌ Дублировать в `title` значения `value` и `total` — они уже выводятся в центре кольца.
+- ✅ Держите `value` и `total` в одних единицах.
+- ❌ Передавать `value` больше 9 999 999 или `total` больше 999 999 999 — числа не помещаются в центр кольца, в dev-режиме выводится предупреждение.
+- ✅ Показывайте рядом с кольцом текстовое значение, если цвет уровня важен для решения пользователя.
+- ❌ Полагаться только на цвет сегмента как на носитель смысла.
+
+## Анатомия
+
+- Заголовок `title` — над кольцом, необязательный.
+- Кольцо — трек нейтрального цвета и сегмент заполненности, начинается сверху и идёт по часовой стрелке.
+- Подписи в центре — `value` (крупно) и `total` (под ним).
+
+### Уровень заполненности
+
+Цвет сегмента выбирается автоматически по доле `value / total` и выставляется на корень атрибутом `data-level`:
+
+- `low` — до 50% включительно, зелёный.
+- `medium` — больше 50% и до 75% включительно, жёлтый.
+- `high` — больше 75%, красный.
+
+Отдельного пропа для цвета нет: уровень выводится только из данных.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-charts
+```
+
+```ts
+import { BagelChart } from '@ds/uikit-product-charts'
+```
+
+## Примеры использования
+
+<Example
+  title='Квоты проекта'
+  description='Три кольца с уровнями low, medium и high'
+  code={QuotaUsageSrc}
+>
+  <QuotaUsage client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={chartsDoc.BagelChart} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-charts-bagelchart--playground' height={420} />
+
+## Смотри также
+
+- [PieChart](/components/uikit-product-charts/pie-chart) — доли нескольких категорий.
+- [ProgressBar](/components/progress-bar) — линейный индикатор заполненности.

@@ -1,0 +1,118 @@
+---
+title: InteractiveChart
+package: '@ds/uikit-product-charts'
+description: Интерактивный график на uPlot с zoom и перемещением — линии, столбцы, точки и box plot; серии в цветах палитры собираются хуком useLayer.
+order: 4
+---
+
+import { MultiSeries } from '../demos/examples/MultiSeries'
+import MultiSeriesSrc from '../demos/examples/MultiSeries.tsx?raw'
+import { BoxPlot } from '../demos/examples/BoxPlot'
+import BoxPlotSrc from '../demos/examples/BoxPlot.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import chartsDoc from './props.json'
+
+# InteractiveChart
+
+Обёртка над [uPlot](https://github.com/leeoniya/uPlot): компонент берёт базовую конфигурацию по `type`, подставляет в неё цвета текущей темы и глубоко сливает поверх неё `options`. Данные передаются в формате uPlot (`AlignedData`): первый массив — значения оси X, остальные — серии.
+
+Серии описываются в `options.series`: первая запись относится к оси X (обычно `{}`), остальные совпадают по порядку с массивами данных. Хук `useLayer` собирает серию в цветах палитры `SERIES_COLORS` — цвет читается с корня графика при отрисовке, поэтому серия следует теме того графика, в котором нарисована.
+
+Размер по умолчанию — 800×600 px, меняется через `options.width` / `options.height`. График рисуется на canvas и требует браузерного окружения.
+
+## Когда использовать
+
+- Временные ряды и метрики мониторинга, где нужно приблизить участок графика.
+- Сравнение нескольких серий на одних осях.
+- Статистическое распределение по группам — `type='boxPlot'`.
+- Доли целого:
+  - используйте [`PieChart`](/components/uikit-product-charts/pie-chart).
+- Матрица значений по двум категориальным осям:
+  - используйте [`HeatMapChart`](/components/uikit-product-charts/heat-map-chart).
+
+- ✅ Мемоизируйте `options` (`useMemo`) — новая ссылка на `options` пересоздаёт график.
+- ❌ Собирать `options` литералом прямо в JSX на каждый рендер.
+- ✅ Задавайте цвета серий через `useLayer` и `SERIES_COLORS`.
+- ❌ Передавать в `stroke` / `fill` серии фиксированные цвета — они не переключаются вместе с темой.
+- ✅ Подписывайте оси и серии через `options.axes[i].label` и `label` в `useLayer` — базовые конфигурации подписей не содержат.
+- ❌ Выводить больше 5–6 серий на одном графике — линии сливаются.
+- ✅ Для box plot передавайте ровно шесть массивов: `[x, min, q1, median, q3, max]`.
+- ❌ Переопределять `options.series` у box plot — порядок серий задаёт формат данных и подписи в тултипе.
+
+## Анатомия
+
+- Область графика (canvas uPlot) с осями X и Y и сеткой.
+- Серии — линии, столбцы или точки в цветах палитры.
+- Легенда uPlot под графиком; у `boxPlot` она работает как тултип рядом с курсором.
+
+### Type (default `default`)
+
+`type` выбирает базовую конфигурацию, значение выставляется на корень атрибутом `data-type`. Значения — константа `PLOT_TYPES`:
+
+- `default` — оси X/Y без временной шкалы. Выделение области мышью приближает её, колесо мыши масштабирует, зажатая средняя кнопка перемещает график по X, двойной клик сбрасывает масштаб.
+- `boxPlot` — «ящик с усами» по группам: усы min–max, тело q1–q3 и линия медианы. Колонка под курсором подсвечивается, значения выводятся в тултипе. Масштабирование отключено.
+
+### Draw style
+
+`drawStyle` в `useLayer` — способ отрисовки серии, константа `DRAW_STYLES`:
+
+- `line` — линия, форма задаётся `lineInterpolation`. Без `lineInterpolation` серия рисуется только точками.
+- `bars` — узкие столбцы по центру точки X.
+- `barsLeft` / `barsRight` — столбцы на всю ширину шага по оси X (гистограмма); различаются стороной, к которой столбец прижат относительно точки X.
+- `points` — точки без соединяющей линии.
+
+### Line interpolation
+
+`lineInterpolation` в `useLayer` — форма линии для `drawStyle='line'`, константа `LINE_INTERPOLATIONS`. Для остальных `drawStyle` игнорируется:
+
+- `linear` — прямые отрезки между точками.
+- `spline` — сглаженная кривая.
+- `stepAfter` — ступенька: значение держится до следующей точки.
+- `stepBefore` — ступенька: значение меняется сразу после предыдущей точки.
+
+### Цвет серии
+
+`color` в `useLayer` — одно из 16 значений `SERIES_COLORS`: четыре оттенка (`green`, `blue`, `violet`, `crimson`) × четыре ступени насыщенности (`1`–`4`). Порядок значений в константе — рекомендуемый порядок назначения цветов сериям: сначала первая ступень всех оттенков, затем вторая и так далее. Заливка под серией — тот же цвет с прозрачностью.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-charts
+```
+
+```ts
+import { InteractiveChart, useLayer } from '@ds/uikit-product-charts'
+```
+
+## Примеры использования
+
+<Example
+  title='Несколько серий'
+  description='Три слоя useLayer: spline, stepAfter и столбцы'
+  code={MultiSeriesSrc}
+>
+  <MultiSeries client:visible />
+</Example>
+
+<Example
+  title='Box plot'
+  description="type='boxPlot', данные [x, min, q1, median, q3, max]; наведите курсор на группу"
+  code={BoxPlotSrc}
+>
+  <BoxPlot client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={chartsDoc.InteractiveChart} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-charts-interactivechart--playground' height={680} />
+
+## Смотри также
+
+- [HeatMapChart](/components/uikit-product-charts/heat-map-chart) — матрица значений.
+- [PieChart](/components/uikit-product-charts/pie-chart) — доли целого.

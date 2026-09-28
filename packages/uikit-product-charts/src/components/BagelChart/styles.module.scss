@@ -1,0 +1,46 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$levels: (
+  'low': 'green',
+  'medium': 'yellow',
+  'high': 'red',
+);
+
+.root {
+  --bagel-track: #{base.$sn-theme-color-neutral-decor};
+
+  min-width: base.$sn-primitive-dimension-100;
+
+  @each $level, $hue in $levels {
+    &[data-level='#{$level}'] {
+      --bagel-segment: #{base.simple-var(base.$sn-theme, 'color', $hue, 'accent')};
+    }
+  }
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-title-m);
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  justify-content: center;
+
+  margin-bottom: base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+// Подписи внутри SVG: координаты и размер шрифта — в единицах viewBox 100×100 react-minimal-pie-chart.
+.value {
+  @include base.composite-var(base.$sn-regular-title-m);
+
+  text-anchor: middle;
+  fill: base.$sn-theme-color-available-version-textMain;
+}
+
+.total {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  text-anchor: middle;
+  fill: base.$sn-theme-color-available-version-textSecondary;
+}

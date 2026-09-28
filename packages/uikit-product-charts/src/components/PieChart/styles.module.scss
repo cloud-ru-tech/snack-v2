@@ -1,0 +1,59 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '../../shared/mixins' as chart;
+
+.root {
+  @include chart.chart-palette;
+  @include chart.chart-surface;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-m;
+
+  width: var(--width, 100%);
+  height: var(--height, 100%);
+  padding: base.$sn-density-spacing-block-m-padding;
+}
+
+.title {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  gap: base.$sn-density-spacing-interval-m;
+  justify-content: space-between;
+
+  min-height: 0;
+}
+
+.legendWrapper {
+  min-width: 25%;
+  max-width: 33%;
+}
+
+.pieWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+// Подписи в центре диаграммы: размеры в единицах viewBox 100×100, не в px страницы.
+.svgText {
+  font-size: 5px;
+  white-space: nowrap;
+
+  visibility: hidden;
+
+  text-anchor: middle;
+  fill: base.$sn-theme-color-available-version-textMain;
+
+  &[data-hovered] {
+    visibility: visible;
+  }
+
+  &[data-bolder] {
+    font-weight: base.$sn-primitive-font-fontWeightValue-700;
+  }
+}

@@ -330,6 +330,9 @@
     },
     {
       "path": "./ai-field-request/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-charts/tsconfig.cjs.json"
     }
   ]
 }

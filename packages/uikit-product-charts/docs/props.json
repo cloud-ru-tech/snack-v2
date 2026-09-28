@@ -1,0 +1,211 @@
+{
+  "BagelChart": {
+    "displayName": "BagelChart",
+    "propsTypeName": "BagelChartProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "title": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Заголовок над кольцом"
+      },
+      "total": {
+        "type": "number",
+        "required": true,
+        "description": "Общий объём, от которого считается заполненность"
+      },
+      "value": {
+        "type": "number",
+        "required": true,
+        "description": "Занятое значение. Определяет длину сегмента и его цвет: до 50% — зелёный, до 75% — жёлтый, выше — красный"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "HeatMapChart": {
+    "displayName": "HeatMapChart",
+    "propsTypeName": "WithSupportProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data": {
+        "type": "number[][]",
+        "required": true,
+        "description": "Матрица значений: строки × столбцы"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "options": {
+        "type": "HeatMapChartOptions",
+        "required": true,
+        "description": "Настройки отображения"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "InteractiveChart": {
+    "displayName": "InteractiveChart",
+    "propsTypeName": "WithSupportProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data": {
+        "type": "AlignedData",
+        "required": true,
+        "description": "Данные в формате uPlot: первый массив — значения оси X, остальные — серии"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "options": {
+        "type": "Partial<Options>",
+        "required": false,
+        "description": "Опции uPlot, которые глубоко сливаются поверх базовой конфигурации `type`"
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "boxPlot",
+          "default"
+        ],
+        "defaultValue": "default",
+        "description": "Базовая конфигурация графика"
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Legend": {
+    "displayName": "Legend",
+    "propsTypeName": null,
+    "props": {
+      "data": {
+        "type": "T[]",
+        "required": true
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": true
+      },
+      "itemTestId": {
+        "type": "string",
+        "required": true
+      },
+      "onItemClick": {
+        "type": "((item: T) => void)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Pie": {
+    "displayName": "Pie",
+    "propsTypeName": null,
+    "props": {
+      "data": {
+        "type": "PieDataItem[]",
+        "required": true
+      },
+      "hoveredIndex": {
+        "type": "number",
+        "required": false
+      },
+      "innerRadius": {
+        "type": "number",
+        "required": true
+      },
+      "label": {
+        "type": "LabelRenderFunction<PieDataItem>",
+        "required": true
+      },
+      "onSegmentHover": {
+        "type": "(index: number | undefined) => void",
+        "required": true
+      },
+      "onSegmentMouseDown": {
+        "type": "(index: number) => void",
+        "required": true
+      },
+      "radius": {
+        "type": "number",
+        "required": true
+      },
+      "segmentsShift": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PieChart": {
+    "displayName": "PieChart",
+    "propsTypeName": "WithSupportProps",
+    "props": {
+      "aggregatedLegend": {
+        "type": "PieChartAggregatedLegend",
+        "required": false,
+        "description": "Дополнительная легенда справа от диаграммы — например, сводка по группам"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня"
+      },
+      "data": {
+        "type": "PieChartDataItem[]",
+        "required": true,
+        "description": "Сегменты диаграммы"
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onLegendItemClick": {
+        "type": "((item: PieChartLegendItem) => void)",
+        "required": false,
+        "description": "Колбэк клика по пункту основной легенды"
+      },
+      "onPieSegmentClick": {
+        "type": "((item: PieChartDataItem) => void)",
+        "required": false,
+        "description": "Колбэк клика по сегменту"
+      },
+      "options": {
+        "type": "PieChartOptions",
+        "required": true,
+        "description": "Настройки отображения"
+      }
+    },
+    "relatedTypes": {}
+  }
+}

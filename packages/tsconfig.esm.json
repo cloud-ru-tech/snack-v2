@@ -335,6 +335,9 @@
     },
     {
       "path": "./ai-field-request/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-charts/tsconfig.esm.json"
     }
   ]
 }

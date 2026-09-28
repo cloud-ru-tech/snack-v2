@@ -1,0 +1,62 @@
+{
+  "name": "@ds/uikit-product-charts",
+  "version": "1.0.0",
+  "description": "Продуктовые графики: кольцо заполненности BagelChart, круговая диаграмма PieChart с легендами, тепловая карта HeatMapChart и интерактивный график InteractiveChart на uPlot.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-charts"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-charts",
+  "license": "Apache-2.0",
+  "author": "Nikita Ershov <niershov@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/divider": "workspace:^",
+    "@ds/link": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "color": "^4.2.3",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "lodash.merge": "^4.6.2",
+    "react-grid-heatmap": "^1.2.0",
+    "react-minimal-pie-chart": "^8.4.0",
+    "uplot": "^1.6.31",
+    "uplot-react": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/color": "4.2.1",
+    "@types/d3-scale": "4.0.9",
+    "@types/d3-shape": "3.2.0",
+    "@types/lodash.merge": "4.6.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,38 @@
+---
+title: Charts
+package: '@ds/uikit-product-charts'
+description: Продуктовые графики — кольцо заполненности BagelChart, круговая диаграмма PieChart с легендами, тепловая карта HeatMapChart и интерактивный график InteractiveChart на uPlot.
+order: 0
+---
+
+# Charts
+
+Пакет `@ds/uikit-product-charts` содержит четыре независимых графика для продуктовых страниц и дашбордов. Цвета берутся из токенов темы и перечитываются при её смене, поэтому графики корректно выглядят в светлой и тёмной теме.
+
+- [BagelChart](/components/uikit-product-charts/bagel-chart) — кольцо заполненности «занято из общего объёма» с цветом по уровню: до 50% — зелёный, до 75% — жёлтый, выше — красный.
+- [PieChart](/components/uikit-product-charts/pie-chart) — круговая диаграмма долей с основной и агрегированной легендами и колбэками клика по сегментам и пунктам легенд.
+- [HeatMapChart](/components/uikit-product-charts/heat-map-chart) — тепловая карта матрицы значений с подписями осей, градиентной легендой и кастомным рендером ячейки.
+- [InteractiveChart](/components/uikit-product-charts/interactive-chart) — график на [uPlot](https://github.com/leeoniya/uPlot) с zoom и перемещением: линии, столбцы, точки и box plot. Серии в цветах палитры `SERIES_COLORS` собираются хуком `useLayer`.
+
+Как выбрать график:
+
+- Одна величина относительно лимита (квота, заполненность диска):
+  - `BagelChart`.
+- Доли целого, до 8–10 категорий:
+  - `PieChart`.
+- Распределение значения по двум категориальным осям (день × час, узел × метрика):
+  - `HeatMapChart`.
+- Временные ряды, сравнение нескольких серий, статистическое распределение:
+  - `InteractiveChart`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-charts
+```
+
+```ts
+import { BagelChart, HeatMapChart, InteractiveChart, PieChart, useLayer } from '@ds/uikit-product-charts'
+```
+
+Константы осей и палитры экспортируются из того же entry: `SERIES_COLORS`, `PLOT_TYPES`, `DRAW_STYLES`, `LINE_INTERPOLATIONS`, `X_AXIS_POSITION`. Селекторы внутренних слотов для e2e-тестов — `TEST_IDS`.

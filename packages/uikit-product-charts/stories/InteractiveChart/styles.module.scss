@@ -1,0 +1,4 @@
+// uPlot рисует canvas фиксированного размера из options.width/height — контейнер только ограничивает переполнение.
+.chart {
+  overflow: auto;
+}
