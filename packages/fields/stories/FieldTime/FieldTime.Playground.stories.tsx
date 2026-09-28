@@ -1,3 +1,4 @@
+import { TIME_PICKER_FOOTER_MODE } from '@ds/calendar';
 import { FieldTime, SIZE, TEST_IDS, VALIDATION_STATE } from '@ds/fields';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -24,6 +25,7 @@ const meta: Meta<typeof FieldTime> = {
     showClearButton: true,
     showCopyButton: true,
     showSeconds: true,
+    footerMode: TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
     closeOnApply: true,
     // Стартовое значение для uncontrolled-режима — поле сразу заполнено, и переключение showSeconds
     // видимо меняет маску (чч:мм:сс ↔ чч:мм).
@@ -31,6 +33,7 @@ const meta: Meta<typeof FieldTime> = {
     'data-test-id': TEST_IDS.fieldTime,
   },
   argTypes: {
+    footerMode: { control: 'radio', options: Object.values(TIME_PICKER_FOOTER_MODE) },
     size: { control: 'radio', options: Object.values(SIZE) },
     validationState: { control: 'select', options: Object.values(VALIDATION_STATE) },
     labelTooltip: {

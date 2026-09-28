@@ -8,7 +8,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { DEFAULT_LOCALE } from '../../components/TimePicker/constants';
 import styles from '../../components/TimePickerDropdown/styles.module.scss';
 import { TimePickerDropdownProps } from '../../components/TimePickerDropdown/TimePickerDropdown';
-import { SIZE } from '../../constants';
+import { SIZE, TIME_PICKER_FOOTER_MODE } from '../../constants';
 import { useTimePickerValueBridge } from '../../hooks';
 import { BuildCellPropsFunction } from '../../types';
 import { getLocale, getTestIdBuilder } from '../../utils';
@@ -33,6 +33,7 @@ export function DesktopTimePickerDropdown({
   today: todayProp,
   children,
   closeOnApply = false,
+  footerMode = TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
   onApply,
   onCurrent,
   open: openProp,
@@ -175,7 +176,11 @@ export function DesktopTimePickerDropdown({
   // отдельный от `content` регион.
   const footer = (
     <CalendarContext.Provider value={calendarContextValue}>
-      <Footer onApply={handleApply} onCurrent={onCurrent} />
+      <Footer
+        onApply={handleApply}
+        onCurrent={onCurrent}
+        showCurrent={footerMode === TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply}
+      />
     </CalendarContext.Provider>
   );
 

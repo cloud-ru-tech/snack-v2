@@ -1836,6 +1836,15 @@
         "type": "string",
         "required": false
       },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "description": "Режим футера. По умолчанию — current-time-and-apply"
+      },
       "icon": {
         "type": "ReactNode",
         "required": false,
@@ -2117,6 +2126,15 @@
         "type": "RefObject<HTMLElement>[]",
         "required": false,
         "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
+      },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "description": "Режим футера. По умолчанию — current-time-and-apply"
       },
       "icon": {
         "type": "ReactNode",

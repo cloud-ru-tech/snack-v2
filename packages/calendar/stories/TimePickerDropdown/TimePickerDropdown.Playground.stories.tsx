@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
 import calendarReadme from '../../README.md?raw';
-import { SIZE, TimePickerDropdown, TimePickerDropdownProps } from '../../src';
+import { SIZE, TIME_PICKER_FOOTER_MODE, TimePickerDropdown, TimePickerDropdownProps } from '../../src';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<TimePickerDropdownProps> = {
@@ -46,6 +46,7 @@ export const Playground: Story = {
     showSeconds: true,
     trigger: 'click',
     closeOnApply: true,
+    footerMode: TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
     placement: 'bottom-start',
     'data-test-id': TEST_IDS.timePickerDropdown,
   },
@@ -70,6 +71,10 @@ export const Playground: Story = {
       options: ['top-start', 'top', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'left', 'right'],
     },
     closeOnApply: { control: 'boolean' },
+    footerMode: {
+      control: 'radio',
+      options: Object.values(TIME_PICKER_FOOTER_MODE),
+    },
   },
   render: Template,
   play: async ({ canvasElement }) => {

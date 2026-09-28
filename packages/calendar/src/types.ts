@@ -1,7 +1,7 @@
 import { ValueOf } from '@ds/utils';
 import { KeyboardEventHandler } from 'react';
 
-import { CALENDAR_MODE, RANGE_POSITION, SIZE, VIEW_MODE } from './constants';
+import { CALENDAR_MODE, RANGE_POSITION, SIZE, TIME_PICKER_FOOTER_MODE, VIEW_MODE } from './constants';
 
 export type RangePosition = ValueOf<typeof RANGE_POSITION>;
 
@@ -53,6 +53,8 @@ export type FocusDirection = 'prev' | 'next';
 
 export type BuildCellProps = { isDisabled?: boolean; isHoliday?: boolean };
 export type BuildCellPropsFunction = (date: Date, viewMode: ViewMode) => BuildCellProps;
+
+export type TimePickerFooterMode = ValueOf<typeof TIME_PICKER_FOOTER_MODE>;
 
 export type TimeValue = {
   hours?: number;

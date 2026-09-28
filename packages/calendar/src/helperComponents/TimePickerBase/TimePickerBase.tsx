@@ -102,7 +102,7 @@ export function TimePickerBase({ className, fixedWidth }: TimePickerBaseProps) {
             if (showSeconds) {
               secondsKeyboardNavigationRef.current?.focusItem(getDefaultItemId(seconds ?? 0));
             } else {
-              currentButtonRef.current?.focus();
+              (currentButtonRef.current ?? applyButtonRef.current)?.focus();
             }
           }
           break;
@@ -138,7 +138,7 @@ export function TimePickerBase({ className, fixedWidth }: TimePickerBaseProps) {
           if (event.shiftKey) {
             minutesKeyboardNavigationRef.current?.focusItem(getDefaultItemId(minutes ?? 0));
           } else {
-            currentButtonRef.current?.focus();
+            (currentButtonRef.current ?? applyButtonRef.current)?.focus();
           }
           break;
         case 'Enter':

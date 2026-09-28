@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 
 import { DesktopTimePickerDropdown } from '../../helperComponents/DesktopTimePickerDropdown';
 import { MobileTimePickerDropdown } from '../../helperComponents/MobileTimePickerDropdown';
+import { TimePickerFooterMode } from '../../types';
 import { TimePickerProps } from '../TimePicker';
 
 type DropdownBridgeProps = Pick<
@@ -35,6 +36,8 @@ export type TimePickerDropdownProps = WithSupportProps<
     DropdownBridgeProps & {
       /** Контент триггера открытия dropdown */
       children?: ReactNode;
+      /** Режим футера. По умолчанию — current-time-and-apply */
+      footerMode?: TimePickerFooterMode;
       /** Закрыть dropdown после нажатия кнопки Apply */
       closeOnApply?: boolean;
       /** Колбек по нажатию Apply */

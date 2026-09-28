@@ -22,6 +22,7 @@ export type FooterProps = {
    * где обвязку даёт сам Dropdown.
    */
   inline?: boolean;
+  showCurrent?: boolean;
 };
 
 /**
@@ -30,7 +31,7 @@ export type FooterProps = {
  * modal / drawer / bottom-sheet (Figma `popupDropdownFooter`). Читает состояние из
  * `CalendarContext`, поэтому рендерится только внутри провайдера контекста.
  */
-export function Footer({ onApply, onCurrent, inline = false }: FooterProps) {
+export function Footer({ onApply, onCurrent, inline = false, showCurrent = true }: FooterProps) {
   const {
     viewMode,
     mode,
@@ -80,6 +81,10 @@ export function Footer({ onApply, onCurrent, inline = false }: FooterProps) {
   };
 
   const handleApplyKeyDown: KeyboardEventHandler = event => {
+    if (event.key === 'Tab' && event.shiftKey && !showCurrent) {
+      handleCurrentKeyDown(event);
+    }
+
     if (event.key === 'Tab' && !event.shiftKey) {
       onFocusLeave?.('next');
     }
@@ -132,15 +137,19 @@ export function Footer({ onApply, onCurrent, inline = false }: FooterProps) {
         onClick: handleApplySelection,
         onKeyDown: handleApplyKeyDown,
       }}
-      additionalButton={{
-        label: t('current'),
-        // `popupDropdownFooter` держит третью кнопку на `function`, а не на дефолтном
-        // из `FooterActions` `simple`: у `simple` остаётся горизонтальный паддинг.
-        view: VIEW.Function,
-        innerRef: currentButtonRef as RefObject<HTMLButtonElement>,
-        onClick: handleCurrentClick,
-        onKeyDown: handleCurrentKeyDown,
-      }}
+      additionalButton={
+        showCurrent
+          ? {
+              label: t('current'),
+              // `popupDropdownFooter` держит третью кнопку на `function`, а не на дефолтном
+              // из `FooterActions` `simple`: у `simple` остаётся горизонтальный паддинг.
+              view: VIEW.Function,
+              innerRef: currentButtonRef as RefObject<HTMLButtonElement>,
+              onClick: handleCurrentClick,
+              onKeyDown: handleCurrentKeyDown,
+            }
+          : undefined
+      }
       testIds={{
         approve: getTestId('apply-button') ?? '',
         additional: getTestId('current-button') ?? '',

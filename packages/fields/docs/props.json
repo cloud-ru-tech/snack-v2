@@ -6927,6 +6927,18 @@
         "required": false,
         "description": "CSS-класс оболочки поля"
       },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "description": "Режим футера. По умолчанию — current-time-and-apply",
+        "typeRefs": [
+          "TimePickerFooterMode"
+        ]
+      },
       "hint": {
         "type": "string",
         "required": false,
@@ -7320,6 +7332,14 @@
         "values": [
           "s",
           "xs"
+        ],
+        "own": false
+      },
+      "TimePickerFooterMode": {
+        "kind": "union",
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
         ],
         "own": false
       },

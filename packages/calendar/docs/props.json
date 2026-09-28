@@ -975,6 +975,16 @@
         "defaultValue": "false",
         "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
       },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "defaultValue": "current-time-and-apply",
+        "description": "Режим футера. По умолчанию — current-time-and-apply"
+      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -1126,6 +1136,11 @@
         "type": "(() => void)",
         "required": false,
         "description": "Колбек по клику на Current"
+      },
+      "showCurrent": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
       }
     },
     "relatedTypes": {}
@@ -1763,6 +1778,16 @@
         "defaultValue": "true",
         "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
       },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "defaultValue": "current-time-and-apply",
+        "description": "Режим футера. По умолчанию — current-time-and-apply"
+      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -2214,6 +2239,18 @@
         "defaultValue": "true",
         "description": "Отключает предустановленный размер, заставляя компонент подстраиваться к размеру контейнра: (width: 100%, height: 100%)."
       },
+      "footerMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
+        ],
+        "description": "Режим футера. По умолчанию — current-time-and-apply",
+        "typeRefs": [
+          "TimePickerFooterMode"
+        ]
+      },
       "hoverDelayClose": {
         "type": "number",
         "required": false,
@@ -2386,6 +2423,14 @@
           "l",
           "m",
           "s"
+        ],
+        "own": true
+      },
+      "TimePickerFooterMode": {
+        "kind": "union",
+        "values": [
+          "apply-only",
+          "current-time-and-apply"
         ],
         "own": true
       },

@@ -1,4 +1,4 @@
-import { TimePickerDropdown, TimeValue } from '@ds/calendar';
+import { TimePickerDropdown, TimePickerFooterMode, TimeValue } from '@ds/calendar';
 import { FieldDecorator, FieldDecoratorProps, SIZE, VALIDATION_STATE } from '@ds/field-decorator';
 import { WatchSVG } from '@ds/icons/interface/system';
 import { INPUT_MODE, InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
@@ -39,6 +39,8 @@ type FieldTimeOwnProps = {
    * @default true
    */
   showSeconds?: boolean;
+  /** Режим футера. По умолчанию — current-time-and-apply */
+  footerMode?: TimePickerFooterMode;
   /**
    * Закрыть picker после Apply.
    * @default true
@@ -107,6 +109,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     open: openProp,
     onOpenChange,
     showSeconds = true,
+    footerMode,
     closeOnApply = true,
     showClearButton: showClearButtonProp = true,
     onClearButtonClick,
@@ -383,6 +386,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
         value={value}
         onChangeValue={emitChange}
         showSeconds={showSeconds}
+        footerMode={footerMode}
         closeOnApply={closeOnApply}
         open={open && !disabled && !readOnly}
         onOpenChange={handleOpenChange}

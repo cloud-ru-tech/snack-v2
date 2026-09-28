@@ -1,3 +1,4 @@
+import { TIME_PICKER_FOOTER_MODE } from '@ds/calendar';
 import { ChipChoice } from '@ds/chips';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
@@ -42,9 +43,11 @@ const meta: Meta<typeof ChipChoice.Time> = {
     ...CHIP_CHOICE_COMMON_ARGS,
     label: 'Time',
     showSeconds: true,
+    footerMode: TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
     'data-test-id': TEST_IDS.chipChoice.root,
   },
   argTypes: {
+    footerMode: { control: 'radio', options: Object.values(TIME_PICKER_FOOTER_MODE) },
     ...CHIP_CHOICE_COMMON_ARG_TYPES,
   },
 };

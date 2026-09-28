@@ -14,6 +14,11 @@ export const CALENDAR_MODE = {
   YearRange: 'year-range',
 } as const;
 
+export const TIME_PICKER_FOOTER_MODE = {
+  CurrentTimeAndApply: 'current-time-and-apply',
+  ApplyOnly: 'apply-only',
+} as const;
+
 export const RANGE_POSITION = {
   Out: 'out',
   Start: 'start',

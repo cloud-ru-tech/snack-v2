@@ -855,6 +855,7 @@ export function TimeBasic() {
 | `disabled` | `boolean` | — | Поле выключено <br/> Отключено |
 | `error` | `string` | — | Ошибка (приоритетнее `hint`; форсит `validationState=error`) |
 | `fieldClassName` | `string` | — | CSS-класс оболочки поля |
+| `footerMode` | `"apply-only"` \| `"current-time-and-apply"` | — | Режим футера. По умолчанию — current-time-and-apply |
 | `hint` | `string` | — | Подсказка |
 | `id` | `string` | — | HTML id |
 | `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент |

@@ -1,6 +1,7 @@
+import { MOBILE_VIEWPORT } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { SIZE } from '../../src/constants';
+import { SIZE, TIME_PICKER_FOOTER_MODE } from '../../src/constants';
 import {
   buildTimePickerDropdownOptions,
   TEST_IDS,
@@ -44,6 +45,48 @@ test.describe('TimePickerDropdown — rendering', () => {
       await expect(getByTestId(TEST_IDS.timePickerDropdownContent)).toBeVisible();
       await expect(page.getByTestId(TIME_PICKER_DROPDOWN_LIST_TEST_IDS.seconds(0))).toHaveCount(0);
     });
+  });
+
+  test.describe('footerMode', () => {
+    for (const layoutType of ['desktop', 'mobile'] as const) {
+      for (const footerMode of [
+        undefined,
+        TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
+        TIME_PICKER_FOOTER_MODE.ApplyOnly,
+      ]) {
+        const shouldCurrentBeVisible = footerMode !== TIME_PICKER_FOOTER_MODE.ApplyOnly;
+
+        test(`${layoutType}: footerMode=${footerMode} ${shouldCurrentBeVisible ? 'shows' : 'omits'} Current`, async ({
+          gotoStory,
+          getByTestId,
+          page,
+        }) => {
+          const isMobile = layoutType === 'mobile';
+          if (isMobile) {
+            await page.setViewportSize(MOBILE_VIEWPORT);
+          }
+
+          await gotoStory(
+            buildTimePickerDropdownOptions({ footerMode }, TIME_PICKER_DROPDOWN_STORIES.playground, { layoutType }),
+          );
+          await getByTestId(TEST_IDS.timePickerDropdownTrigger).click();
+
+          const applyButton = getByTestId(
+            isMobile ? TEST_IDS.timePickerMobileApply : `apply-button-${TEST_IDS.timePickerDropdown}`,
+          );
+          const currentButton = getByTestId(
+            isMobile ? TEST_IDS.timePickerMobileCurrent : `current-button-${TEST_IDS.timePickerDropdown}`,
+          );
+
+          await expect(applyButton).toBeVisible();
+          if (shouldCurrentBeVisible) {
+            await expect(currentButton).toBeVisible();
+          } else {
+            await expect(currentButton).toBeHidden();
+          }
+        });
+      }
+    }
   });
 
   test.describe('props propagation', () => {

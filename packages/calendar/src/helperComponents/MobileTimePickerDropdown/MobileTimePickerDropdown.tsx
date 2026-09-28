@@ -3,7 +3,7 @@ import { extractSupportProps, useLayoutEffect, useUncontrolledProp, useValueCont
 import { useCallback, useMemo, useRef } from 'react';
 
 import { TimePickerDropdownProps } from '../../components/TimePickerDropdown/TimePickerDropdown';
-import { SIZE, TEST_IDS } from '../../constants';
+import { SIZE, TEST_IDS, TIME_PICKER_FOOTER_MODE } from '../../constants';
 import { useDateAndTime, useOpenTrigger, useTimeDrumHandlers } from '../../hooks';
 import { calendarLocale } from '../../locale';
 import { TimeValue } from '../../types';
@@ -22,6 +22,7 @@ export function MobileTimePickerDropdown({
   showSeconds = true,
   today: todayProp,
   closeOnApply = false,
+  footerMode = TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply,
   onApply,
   onCurrent,
   open: openProp,
@@ -105,7 +106,11 @@ export function MobileTimePickerDropdown({
         title={t('time')}
         closeOnPopstate={closeOnPopstate}
         approveButton={{ label: t('apply'), disabled: !isTimeFilled(), onClick: handleApply }}
-        additionalButton={{ label: t('current'), view: 'function', onClick: handleCurrent }}
+        additionalButton={
+          footerMode === TIME_PICKER_FOOTER_MODE.CurrentTimeAndApply
+            ? { label: t('current'), view: 'function', onClick: handleCurrent }
+            : undefined
+        }
         footerTestIds={{ approve: TEST_IDS.timePickerMobileApply, additional: TEST_IDS.timePickerMobileCurrent }}
         content={
           <TimePickerDrum

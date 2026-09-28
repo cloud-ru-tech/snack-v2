@@ -1104,6 +1104,7 @@ export function ChoiceTimeSeconds() {
 | `defaultValue` | `TimeValue` | — | Значение по-умолчанию для uncontrolled. |
 | `disabled` | `boolean` | — | Отключён |
 | `dropDownClassName` | `string` | — |  |
+| `footerMode` | `"apply-only"` \| `"current-time-and-apply"` | — | Режим футера. По умолчанию — current-time-and-apply |
 | `icon` | `ReactNode` | — | Иконка |
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки |
