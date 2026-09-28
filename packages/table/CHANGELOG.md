@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-09-28)
+
+### Features
+
+- **FF-9021:** add state storage prop ([ea2b24f](https://github.com/cloud-ru-tech/snack-v2/commit/ea2b24fc1c7525aa92074c7821b809937b69a22e))
+
 # 1.1.0 (2026-09-25)
 
 ### Bug Fixes

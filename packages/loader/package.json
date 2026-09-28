@@ -1,6 +1,6 @@
 {
   "name": "@ds/loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Индикаторы загрузки — Spinner (круговой прогресс) и Sun (лучевой индикатор).",
   "repository": {
     "type": "git",
