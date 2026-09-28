@@ -31,12 +31,12 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.grid}>
       <StoryTable
-        sectionTitle='typographySize (legendTitle + aggregatedLegend)'
+        sectionTitle='typographySize'
         firstColumnHeader='typographySize'
         cellAlign='start'
-        columnHeaders={['PieChart']}
+        columnHeaders={['legendTitle + aggregatedLegend']}
         rows={SIZES.map(size => ({
-          variantLabel: size,
+          variantLabel: `typographySize=${size}`,
           cells: [
             <div key={size} className={styles.chart}>
               <PieChart

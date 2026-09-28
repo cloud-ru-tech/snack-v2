@@ -17,6 +17,8 @@ const meta: Meta<typeof BagelChart> = {
     total: 128,
     'data-test-id': TEST_IDS.bagelChart.root,
   },
+  // `title: ReactNode` docgen выводит в object-контрол; для демо достаточно строки.
+  argTypes: { title: { control: 'text' } },
 };
 
 export default meta;

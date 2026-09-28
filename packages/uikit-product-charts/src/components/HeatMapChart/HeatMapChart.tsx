@@ -2,7 +2,7 @@ import { Divider } from '@ds/divider';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { scaleLinear } from 'd3-scale';
-import { ReactNode, useCallback, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { HeatMapGrid } from 'react-grid-heatmap';
 
 import { TEST_IDS, X_AXIS_POSITION } from '../../constants';
@@ -47,26 +47,21 @@ export function HeatMapChart({ data, options, className, ...rest }: WithSupportP
 
   const renderCell = useCallback(
     (x: number, y: number, value: number) => {
-      const content: ReactNode = cellRender ? (
-        cellRender(x, y, value)
-      ) : (
-        <h5
-          className={styles.cellValue}
-          title={String(value)}
-          style={{
-            '--color':
-              colors && colorScale
-                ? getContrastColor({ lightColor: colors.lightText, darkColor: colors.darkText, rgb: colorScale(value) })
-                : undefined,
-          }}
-        >
-          {formatValue(value)}
-        </h5>
-      );
+      // Контрастный цвет ставится на обёртку, чтобы его наследовал и кастомный `cellRender`.
+      const color =
+        colors && colorScale
+          ? getContrastColor({ lightColor: colors.lightText, darkColor: colors.darkText, rgb: colorScale(value) })
+          : undefined;
 
       return (
-        <span className={styles.cell} data-test-id={TEST_IDS.heatMapChart.cell}>
-          {content}
+        <span className={styles.cell} data-test-id={TEST_IDS.heatMapChart.cell} style={{ '--color': color }}>
+          {cellRender ? (
+            cellRender(x, y, value)
+          ) : (
+            <h5 className={styles.cellValue} title={String(value)}>
+              {formatValue(value)}
+            </h5>
+          )}
         </span>
       );
     },

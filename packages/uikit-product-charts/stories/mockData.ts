@@ -37,6 +37,13 @@ export const LINE_DATA: uPlot.AlignedData = [
   xValues.map(x => Math.round(40 + 20 * Math.cos(x / 7))),
 ];
 
+// Редкие точки с резкими перепадами: на плотной гладкой серии linear и spline неразличимы.
+export const SPARSE_LINE_DATA: uPlot.AlignedData = [
+  [0, 1, 2, 3, 4, 5, 6, 7],
+  [20, 70, 35, 85, 30, 60, 15, 50],
+  [55, 25, 50, 20, 65, 35, 45, 10],
+];
+
 // Box plot: [x, min, q1, median, q3, max].
 export const BOX_PLOT_DATA: uPlot.AlignedData = [
   [1, 2, 3, 4, 5, 6],

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
 
-import { LINE_DATA } from '../mockData';
+import { SPARSE_LINE_DATA } from '../mockData';
 import { LayeredChart, LayeredChartProps } from './LayeredChart';
 
 const meta: Meta<typeof InteractiveChart> = {
@@ -15,7 +15,7 @@ const meta: Meta<typeof InteractiveChart> = {
 export default meta;
 type Story = StoryObj<typeof InteractiveChart>;
 
-const BASE = { width: 360, height: 220, data: LINE_DATA };
+const BASE = { width: 360, height: 220, data: SPARSE_LINE_DATA };
 
 const DRAW_VARIANTS: { label: string; props: Pick<LayeredChartProps, 'drawStyle' | 'lineInterpolation'> }[] = [
   { label: 'line / linear', props: { drawStyle: DRAW_STYLES.Line, lineInterpolation: LINE_INTERPOLATIONS.Linear } },

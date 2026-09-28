@@ -50,6 +50,7 @@
 
 .cell {
   display: contents;
+  color: var(--color, inherit);
 }
 
 .cellValue {
@@ -57,7 +58,6 @@
 
   overflow: hidden;
   margin: 0;
-  color: var(--color, inherit);
   text-overflow: ellipsis;
 }
 

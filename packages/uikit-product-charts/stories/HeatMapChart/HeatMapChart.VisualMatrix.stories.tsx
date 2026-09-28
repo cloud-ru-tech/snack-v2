@@ -17,6 +17,11 @@ type Story = StoryObj<typeof HeatMapChart>;
 
 const POSITIONS = Object.values(X_AXIS_POSITION);
 
+// Кастомное содержимое должно наследовать контрастный цвет текста ячейки.
+function renderCustomCell(_x: number, _y: number, value: number) {
+  return <strong className={styles.customCell}>{value}%</strong>;
+}
+
 const VARIANTS: { label: string; options: Omit<HeatMapChartOptions, 'domain'> }[] = [
   {
     label: 'axes + legend',
@@ -29,6 +34,10 @@ const VARIANTS: { label: string; options: Omit<HeatMapChartOptions, 'domain'> }[
   {
     label: 'no title, no legend',
     options: { height: 280, legend: { show: false } },
+  },
+  {
+    label: 'cellRender',
+    options: { height: 280, legend: { show: false }, cellRender: renderCustomCell },
   },
 ];
 
