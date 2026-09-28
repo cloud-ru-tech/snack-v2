@@ -95,6 +95,12 @@
         "required": false,
         "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
       },
+      "escapeKeyBubbles": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Пропускать ли `Esc` дальше после закрытия поповера. Без этого открытый поповер гасит\nвсплытие `Esc`, и внешний поповер (например, дроплист, чей триггер несёт тултип) не закроется."
+      },
       "fallbackPlacements": {
         "type": "Placement[]",
         "required": false,

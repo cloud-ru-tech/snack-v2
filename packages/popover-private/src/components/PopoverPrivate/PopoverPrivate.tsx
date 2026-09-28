@@ -133,6 +133,12 @@ export type PopoverPrivateProps = WithSupportProps<
      */
     closeOnEscapeKey?: boolean;
     /**
+     * Пропускать ли `Esc` дальше после закрытия поповера. Без этого открытый поповер гасит
+     * всплытие `Esc`, и внешний поповер (например, дроплист, чей триггер несёт тултип) не закроется.
+     * @default false
+     */
+    escapeKeyBubbles?: boolean;
+    /**
      * Вызывается ли попоповер по нажатию клавиш Enter/Space (при trigger = `click`)
      * @default true
      */
@@ -196,6 +202,7 @@ function PopoverPrivateComponent({
   widthStrategy = POPOVER_WIDTH_STRATEGY.Auto,
   heightStrategy = POPOVER_HEIGHT_STRATEGY.Auto,
   closeOnEscapeKey = true,
+  escapeKeyBubbles = false,
   triggerClickByKeys = true,
   fallbackPlacements = DEFAULT_FALLBACK_PLACEMENTS,
   arrowContainerClassName,
@@ -287,6 +294,7 @@ function PopoverPrivateComponent({
     outsidePress: outsideClick,
     ancestorScroll: false,
     escapeKey: closeOnEscapeKey,
+    bubbles: { escapeKey: escapeKeyBubbles },
   });
   const hover = useHover(context, {
     enabled: useHoverTrigger,
