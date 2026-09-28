@@ -719,6 +719,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         limitedScrollHeight={limitedScrollHeight}
         untouchableScrollbars={untouchableScrollbars}
         closeOnPopstate={closeOnPopstate}
+        data-test-id={TEST_IDS.fieldSelectList}
       >
         {trigger}
       </Droplist>

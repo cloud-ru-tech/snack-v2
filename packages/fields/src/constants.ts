@@ -44,6 +44,7 @@ export const TEST_IDS = {
   fieldSelectChips: 'field-select__chips',
   fieldSelectInput: 'field-select__input',
   fieldSelectClear: 'field-select__clear',
+  fieldSelectList: 'field-select__list',
   fieldSelectCopy: 'field-select__copy',
   fieldDate: 'field-date',
   fieldDateInput: 'field-date__input',
