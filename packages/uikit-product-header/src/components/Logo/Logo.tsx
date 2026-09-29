@@ -1,7 +1,5 @@
-import { HomeFilledSVG } from '@ds/icons/interface/product';
-import { CloudLogo } from '@ds/icons/logos';
+import { CloudLogo, CloudLogoHome } from '@ds/icons/logos';
 import { PromoTag } from '@ds/promo-tag';
-import { useThemeClassnames } from '@ds/theme';
 import { TooltipProps } from '@ds/tooltip';
 import { extractDataTestProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -23,7 +21,6 @@ export type LogoProps = WithSupportProps<{
 
 export function Logo({ path, loading, mode, href, onClick, className, tooltip, ...rest }: LogoProps) {
   const [error, setError] = useState<boolean>(false);
-  const logoThemeClassName = useThemeClassnames({ brand: 'hrGreen' });
 
   useEffect(() => {
     setError(false);
@@ -51,8 +48,8 @@ export function Logo({ path, loading, mode, href, onClick, className, tooltip, .
     return (
       <span className={styles.logoWrap} data-with-mode={showMode || undefined}>
         <span className={styles.iconStack}>
-          <CloudLogo size={24} className={cn(styles.icon, logoThemeClassName, styles.iconDefault)} />
-          <HomeFilledSVG size={24} className={cn(styles.icon, logoThemeClassName, styles.iconHover)} />
+          <CloudLogo size={24} className={cn(styles.icon, styles.iconDefault)} />
+          <CloudLogoHome size={24} className={cn(styles.icon, styles.iconHover)} />
         </span>
 
         {showMode && (
@@ -60,7 +57,7 @@ export function Logo({ path, loading, mode, href, onClick, className, tooltip, .
         )}
       </span>
     );
-  }, [error, mode, path, logoThemeClassName]);
+  }, [error, mode, path]);
 
   return (
     <HeaderButton
