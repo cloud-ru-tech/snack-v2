@@ -133,18 +133,22 @@ export function MenuDesktop({
               </div>
 
               <div className={styles.leftBottomItems} data-test-id={TEST_IDS.leftBottomItems}>
-                {settingItems?.items.map(item => (
-                  <CardServiceLight
-                    {...(item.href ? { href: item.href, as: 'a' } : { as: 'button', type: 'button' })}
-                    key={item.id}
-                    title={item.label}
-                    icon={getLinkEmblem(item)}
-                    onClick={wrappedSettingClick(item)}
-                    disabled={item.disabled}
-                    className={styles.leftBottomCard}
-                    data-test-id={TEST_IDS.setting(item.id)}
-                  />
-                ))}
+                {settingItems?.items.length ? (
+                  <div className={styles.leftBottomCards}>
+                    {settingItems.items.map(item => (
+                      <CardServiceLight
+                        {...(item.href ? { href: item.href, as: 'a' } : { as: 'button', type: 'button' })}
+                        key={item.id}
+                        title={item.label}
+                        icon={getLinkEmblem(item)}
+                        onClick={wrappedSettingClick(item)}
+                        disabled={item.disabled}
+                        className={styles.leftBottomCard}
+                        data-test-id={TEST_IDS.setting(item.id)}
+                      />
+                    ))}
+                  </div>
+                ) : null}
 
                 {sidebarBottomSlot}
               </div>

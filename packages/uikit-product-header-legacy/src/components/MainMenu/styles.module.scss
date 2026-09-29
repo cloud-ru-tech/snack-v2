@@ -3,6 +3,7 @@
   animation: shake-animation 300ms ease 1;
 }
 
+// Амплитуда встряски 5/3px: примитивов 5 и 3 нет.
 @keyframes shake-animation {
   0% {
     transform: translate(0, 0);

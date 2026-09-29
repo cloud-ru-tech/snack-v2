@@ -1,6 +1,6 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/list.module' as list;
 
+// Нет токена ширины левой колонки меню.
 $left-column-width: 256px;
 
 .drawer {
@@ -66,10 +66,6 @@ $left-column-width: 256px;
   width: 100%;
   padding-right: base.$sn-primitive-dimension-16;
   padding-left: base.$sn-primitive-dimension-16;
-
-  & > div {
-    gap: base.$sn-primitive-dimension-4;
-  }
 }
 
 .item {
@@ -88,14 +84,19 @@ $left-column-width: 256px;
 
 .leftBottomDivider {
   width: 100%;
-  padding: list.$sn-list-anatomy-size-s-listItem-paddingVertical list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
 }
 
 .leftBottomItems {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-4;
+  gap: base.$sn-primitive-dimension-16;
   padding: 0 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
+}
+
+.leftBottomCards {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
 }
 
 .leftBottomCard {
@@ -121,7 +122,7 @@ $left-column-width: 256px;
 .searchWrap {
   flex-shrink: 0;
   box-sizing: border-box;
-  padding: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16 0 base.$sn-primitive-dimension-12;
+  padding: base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16 0;
   background-color: base.$sn-theme-color-neutral-background;
 }
 
@@ -129,7 +130,7 @@ $left-column-width: 256px;
   flex: 1 1 auto;
   box-sizing: border-box;
   min-height: 0;
-  padding: 0 base.$sn-primitive-dimension-16 0 base.$sn-primitive-dimension-12;
+  padding: 0 base.$sn-primitive-dimension-16;
 
   // Без search сверху оставляем тот же верхний отступ, что был у колонки.
   &:only-child {

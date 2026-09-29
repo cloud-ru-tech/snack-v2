@@ -6,6 +6,7 @@
   flex-direction: column;
   align-self: stretch;
 
+  box-sizing: border-box;
   width: 100%;
   padding: base.$sn-primitive-dimension-4;
 }

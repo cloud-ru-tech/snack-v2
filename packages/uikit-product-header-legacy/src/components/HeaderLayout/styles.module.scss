@@ -1,10 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-.header {
-  box-sizing: border-box;
-  background-color: base.$sn-theme-color-neutral-background;
-}
-
 .top {
   display: flex;
   gap: base.$sn-primitive-dimension-8;
@@ -42,4 +37,21 @@
   align-items: center;
 
   height: 100%;
+}
+
+.header {
+  box-sizing: border-box;
+  background-color: base.$sn-theme-color-neutral-background;
+
+  &[data-mobile] {
+    .top {
+      gap: base.$sn-primitive-dimension-4;
+      padding: 0 base.$sn-primitive-dimension-4;
+    }
+
+    .left,
+    .right {
+      gap: base.$sn-primitive-dimension-4;
+    }
+  }
 }

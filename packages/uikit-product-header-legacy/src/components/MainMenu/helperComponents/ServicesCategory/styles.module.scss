@@ -28,21 +28,53 @@
 
   background-color: base.$sn-theme-color-neutral-background1Level;
 
+  // Подсветка по мастеру `11860:40514`: градиентная обводка (псевдоэлемент под контентом) и
+  // градиентный фон внутри неё. В Figma цвета без переменных, тёмная тема — как в @ds/uikit-product-header.
   &[data-highlight] {
-    // Figma highlight: accent border + gradient overlay over background1Level.
-    // Точной пары токенов под градиент нет — color-mix от theme tokens.
+    --highlight-border-color-from: hsl(155deg 48% 42% / 100%);
+    --highlight-border-color-to: hsl(155deg 48% 42% / 32%);
+    --highlight-background-color-from: hsl(0deg 0% 99% / 20%);
+    --highlight-background-color-to: hsl(152deg 39% 79% / 12%);
+    --highlight-background-color: hsl(0deg 0% 99% / 100%);
+
+    isolation: isolate;
     background-color: transparent;
-    background-image:
-      linear-gradient(
+
+    &::before,
+    &::after {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      z-index: -1;
+    }
+
+    &::before {
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0.64;
+      background-image: linear-gradient(
         90deg,
-        color-mix(in srgb, base.$sn-theme-color-neutral-background1Level 20%, transparent) 2.29%,
-        color-mix(in srgb, base.$sn-theme-color-primary-decor 12%, transparent) 97.84%
-      ),
-      linear-gradient(
-        base.$sn-theme-color-neutral-background1Level,
-        base.$sn-theme-color-neutral-background1Level
+        var(--highlight-border-color-from) 0%,
+        var(--highlight-border-color-to) 50%,
+        var(--highlight-border-color-from) 100%
       );
-    box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-primary-accent;
+    }
+
+    &::after {
+      inset: base.$sn-primitive-strokeWeight-strokeRegular;
+      border-radius: calc(#{base.$sn-density-radius-2xs} - #{base.$sn-primitive-strokeWeight-strokeRegular});
+      background:
+        linear-gradient(90deg, var(--highlight-background-color-from) 2.29%, var(--highlight-background-color-to) 97.84%),
+        var(--highlight-background-color);
+    }
+
+    :global(.sn-dark) & {
+      --highlight-border-color-from: hsl(153deg 30% 55% / 100%);
+      --highlight-border-color-to: hsl(157deg 51% 19% / 100%);
+      --highlight-background-color-from: hsl(240deg 14% 16% / 100%);
+      --highlight-background-color-to: hsl(157deg 51% 19% / 20%);
+      --highlight-background-color: hsl(240deg 14% 16% / 100%);
+    }
   }
 }
 
@@ -72,9 +104,10 @@
     }
   }
 
-  // Mobile MainMenu: всегда одна колонка (drawer width/s), без auto-fit → 2 колонки.
+  // Mobile MainMenu: всегда одна колонка (drawer width/s), карточки впритык, как в `navigationOldDrawerMobile`.
   &[data-mobile] {
     grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
   // Иначе grid-элементы не сжимаются ниже intrinsic width и текст карточек не обрезается.

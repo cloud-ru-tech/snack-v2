@@ -1,11 +1,4 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/list.module' as list;
-
-// Обёртка провайдера плотности вокруг портала меню: собственного бокса у неё быть не должно,
-// иначе в строке шапки появляется лишний flex-элемент и лишний gap.
-.densityScope {
-  display: contents;
-}
 
 .drawerMobile {
   height: 100%;
@@ -26,11 +19,6 @@
 
   box-sizing: border-box;
   min-height: 100%;
-  padding: 0 base.$sn-primitive-dimension-16 base.$sn-primitive-dimension-16;
-}
-
-.header {
-  padding-top: base.$sn-primitive-dimension-12;
 }
 
 .leftTop {
@@ -58,7 +46,7 @@
 .searchItem {
   position: sticky;
   z-index: 1;
-  top: -0.5px;
+  top: -0.5px; // нет токена
 
   display: flex;
   flex-direction: column;
@@ -90,13 +78,13 @@
 
 .bottomDivider {
   width: 100%;
-  padding: list.$sn-list-anatomy-size-s-listItem-paddingVertical list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
+  padding: base.$sn-primitive-dimension-2 0;
 }
 
 .bottomItems {
   display: flex;
   flex-direction: column;
-  gap: base.$sn-primitive-dimension-4;
+  gap: 0;
 }
 
 .bottomCard {
