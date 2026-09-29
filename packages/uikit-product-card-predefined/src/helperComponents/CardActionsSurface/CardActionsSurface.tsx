@@ -4,7 +4,7 @@ import { CollapseVerticalSVG, ExpandVerticalSVG, StarFilledSVG, StarSVG } from '
 import { Tooltip, TooltipProps, TRIGGER } from '@ds/tooltip';
 import { preventEventDefault, preventEventDefaultAndPropagation } from '@ds/utils';
 import cn from 'classnames';
-import { MouseEvent, ReactElement, RefObject, useCallback, useState } from 'react';
+import { MouseEvent, ReactElement, RefObject, useCallback, useRef, useState } from 'react';
 
 import { TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
 import { cardPredefinedLocale } from '../../locale';
@@ -52,22 +52,28 @@ export function CardActionsSurface({
   const { t } = cardPredefinedLocale.useTranslations();
 
   const [visibleTooltip, setVisibleTooltip] = useState<TooltipType | undefined>(undefined);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const tooltipTrigger =
+    tooltip?.trigger ??
+    (actionsVisibility === VISIBILITY_STRATEGY.always ? TRIGGER.Click : TRIGGER.HoverAndFocusVisible);
 
   const getHandleTooltipOpenChange = useCallback(
     (tooltipType: TooltipType) => (isOpen: boolean) => {
+      // Отложенное открытие floating-ui срабатывает и после ухода курсора с панели — его пропускаем.
+      if (isOpen && tooltipTrigger !== TRIGGER.Click && !rootRef.current?.matches(':hover, :focus-within')) {
+        return;
+      }
+
       setVisibleTooltip(isOpen ? tooltipType : undefined);
       onTooltipOpenChange?.(isOpen);
     },
-    [onTooltipOpenChange],
+    [onTooltipOpenChange, tooltipTrigger],
   );
 
   if (!tooltip && !favorite && !expandable) {
     return null;
   }
-
-  const tooltipTrigger =
-    tooltip?.trigger ??
-    (actionsVisibility === VISIBILITY_STRATEGY.always ? TRIGGER.Click : TRIGGER.HoverAndFocusVisible);
 
   const handleExpandButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     preventEventDefaultAndPropagation(e);
@@ -79,12 +85,24 @@ export function CardActionsSurface({
     favorite?.onChange?.(!favorite.checked);
   };
 
+  // safePolygon держит подсказку открытой и над соседней карточкой — закрываем при уходе с панели.
+  const handleMouseLeave = () => {
+    if (!visibleTooltip || tooltipTrigger === TRIGGER.Click) {
+      return;
+    }
+
+    setVisibleTooltip(undefined);
+    onTooltipOpenChange?.(false);
+  };
+
   const { buttonRef: tooltipButtonRef, 'data-test-id': tooltipTestId, ...tooltipProps } = tooltip ?? {};
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
+      ref={rootRef}
       onClick={preventEventDefaultAndPropagation}
+      onMouseLeave={handleMouseLeave}
       className={cn(styles.root, className)}
       data-actions-visibility={actionsVisibility}
     >
