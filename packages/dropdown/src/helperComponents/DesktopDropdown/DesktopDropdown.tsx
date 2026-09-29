@@ -28,6 +28,7 @@ export function DesktopDropdown({
   triggerRef,
   widthStrategy = 'gte',
   triggerClassName,
+  disableSpanWrapper,
   ...rest
 }: DropdownProps) {
   if (!children && !triggerRef) {
@@ -73,6 +74,7 @@ export function DesktopDropdown({
       hasArrow={false}
       widthStrategy={widthStrategy}
       triggerClassName={cn(styles.defaultTriggerClassName, triggerClassName)}
+      disableSpanWrapper={disableSpanWrapper}
       {...excludeSupportProps(rest)}
     >
       {children}

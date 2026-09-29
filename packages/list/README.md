@@ -953,6 +953,7 @@ export function DroplistWithHeader() {
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — | Загрузка данных завершилась ошибкой: показывается `errorDataState` |
 | `dataFiltered` | `boolean` | — | Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState` |
+| `disableSpanWrapper` | `boolean` | — | Отключает для `isValidElement` внешнюю обертку триггера <br/> Пригодится для элементов с `position: absolute` <br/> Работает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты <br/> и компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` — <br/> без ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение. |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |

@@ -147,7 +147,14 @@ type DroplistOwnProps = {
   children: ReactNode | ((params: { onKeyDown?: (e: KeyboardEvent<HTMLElement>) => void }) => ReactNode);
 } & Pick<
   DropdownProps,
-  'trigger' | 'placement' | 'widthStrategy' | 'open' | 'onOpenChange' | 'triggerClassName' | 'closeOnPopstate'
+  | 'trigger'
+  | 'placement'
+  | 'widthStrategy'
+  | 'open'
+  | 'onOpenChange'
+  | 'triggerClassName'
+  | 'disableSpanWrapper'
+  | 'closeOnPopstate'
 >;
 
 /** Props списка, которые дроплист пробрасывает в `List` (навигацией управляет он сам). */
@@ -202,7 +209,7 @@ export type DroplistImplProps = DesktopDroplistProps & DroplistMobileSlots;
  */
 export type MobileDroplistProps = Omit<
   DesktopDroplistProps,
-  'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName'
+  'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName' | 'disableSpanWrapper'
 > &
   Pick<BottomSheetProps, 'snapPoints' | 'withDividers'> &
   DroplistMobileSlots;

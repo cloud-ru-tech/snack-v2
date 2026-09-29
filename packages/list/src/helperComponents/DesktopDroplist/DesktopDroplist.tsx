@@ -43,6 +43,7 @@ export function DesktopDroplist({
   onOpenChange,
   collapse = {},
   triggerClassName,
+  disableSpanWrapper,
   selection,
   contentRender,
   size = DEFAULT_SIZE,
@@ -290,6 +291,7 @@ export function DesktopDroplist({
                 container={container}
                 outsideClick
                 triggerClassName={triggerClassName}
+                disableSpanWrapper={disableSpanWrapper}
                 fallbackPlacements={DEFAULT_FALLBACK_PLACEMENTS}
                 trigger={trigger}
                 placement={placement}
