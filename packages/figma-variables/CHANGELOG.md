@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.1 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** keep zero acrylic blur unitless for legacy materials ([5251aa2](https://github.com/cloud-ru-tech/snack-v2/commit/5251aa2bfc02b446c5bf19b6694db05896d63b72))
+
 # 2.0.0 (2026-09-25)
 
 ### Bug Fixes

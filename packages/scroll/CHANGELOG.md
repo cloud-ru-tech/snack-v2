@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.5 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9192:** debounce Scroll update events ([0543187](https://github.com/cloud-ru-tech/snack-v2/commit/0543187336f70f92699085726d126eb0c153925c))
+
 ## 1.0.4 (2026-09-28)
 
 **Note:** Version bump only for package @ds/scroll

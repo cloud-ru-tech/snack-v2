@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-09-29)
+
+### Features
+
+- **FF-9088:** add CloudLogoHome logo with baked-in brand color ([d0873b6](https://github.com/cloud-ru-tech/snack-v2/commit/d0873b6dc61aa2567a2e7281ad0e6208f02a2827))
+
 ## 1.2.2 (2026-09-28)
 
 **Note:** Version bump only for package @ds/icons

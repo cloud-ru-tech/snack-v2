@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** align header and service cards with compact density ([e1248e8](https://github.com/cloud-ru-tech/snack-v2/commit/e1248e8ca5d1462df2a5a46b080cc19bb51cf59d))
+- **FF-9088:** close card action tooltip when pointer leaves actions ([c62d55c](https://github.com/cloud-ru-tech/snack-v2/commit/c62d55cc43a3d703df4faec350083174fddee389))
+
+### Features
+
+- **FF-9192:** add CardNavigation ([8315509](https://github.com/cloud-ru-tech/snack-v2/commit/8315509d5aae9666466ab7bde03b30b2cc7ac8dc))
+
+### BREAKING CHANGES
+
+- **FF-9088:** remove actionsSize from card actions ([bfad613](https://github.com/cloud-ru-tech/snack-v2/commit/bfad613905acd6e7ac0b78db4b62eb4e45d96c29))
+
 ## 3.1.6 (2026-09-28)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

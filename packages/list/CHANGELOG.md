@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.3 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** keep list item height when afterContent is taller than icon ([4f88e9f](https://github.com/cloud-ru-tech/snack-v2/commit/4f88e9f01810573c4f7ee99b4ec098e8b5772461))
+
 ## 2.2.2 (2026-09-28)
 
 **Note:** Version bump only for package @ds/list

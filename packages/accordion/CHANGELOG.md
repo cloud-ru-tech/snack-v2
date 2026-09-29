@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** let accordion body shrink to accordion width ([a47a7c2](https://github.com/cloud-ru-tech/snack-v2/commit/a47a7c28554c1e843062985fdd60e71c39f1a2c5))
+- **FF-9192:** slightly optimize first render ([3f30bf8](https://github.com/cloud-ru-tech/snack-v2/commit/3f30bf8975dad8a828f62ad285539e75ae7d93a8))
+
 ## 1.1.1 (2026-09-28)
 
 **Note:** Version bump only for package @ds/accordion

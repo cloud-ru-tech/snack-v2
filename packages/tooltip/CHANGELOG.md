@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.8 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** let tooltip pass Escape through to parent droplist ([0490e5c](https://github.com/cloud-ru-tech/snack-v2/commit/0490e5cbffaf893059a7dd3c6e09df43f7d9866e))
+
 ## 1.0.7 (2026-09-28)
 
 **Note:** Version bump only for package @ds/tooltip

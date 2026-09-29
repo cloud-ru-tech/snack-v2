@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.2 (2026-09-29)
+
+### Bug Fixes
+
+- **MKP-4069:** add missing dti on field select ([77f8af0](https://github.com/cloud-ru-tech/snack-v2/commit/77f8af0015f7f5fdeaa244e2054bc4f3ee8b4a7e))
+
 ## 2.3.1 (2026-09-28)
 
 **Note:** Version bump only for package @ds/fields

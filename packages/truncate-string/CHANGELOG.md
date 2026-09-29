@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.8 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9192:** skip resizeObserver init if hideTooltip passed, added RAF for resize measuring ([56d48b2](https://github.com/cloud-ru-tech/snack-v2/commit/56d48b2d5724ffbe5185e7fd1442220c0e477158))
+
 ## 1.0.7 (2026-09-28)
 
 **Note:** Version bump only for package @ds/truncate-string

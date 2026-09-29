@@ -1,6 +1,6 @@
 {
   "name": "@ds/toaster",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Система всплывающих уведомлений с тремя типами контента и императивным API.",
   "repository": {
     "type": "git",

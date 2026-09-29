@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.22 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** align header-legacy with compact density ([d8b2edf](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/d8b2edf0dc9e6ab44cad1fe5a9f9a9370a7ea84a))
+
 ## 0.1.21 (2026-09-28)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy

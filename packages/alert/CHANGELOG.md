@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** draw alert outline inside the box ([72cde2e](https://github.com/cloud-ru-tech/snack-v2/commit/72cde2e42f750070e629817414db0c7610a715a8))
+
 ## 1.1.1 (2026-09-28)
 
 **Note:** Version bump only for package @ds/alert

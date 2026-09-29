@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9088:** align header and service cards with compact density ([e1248e8](https://github.com/cloud-ru-tech/snack-v2/commit/e1248e8ca5d1462df2a5a46b080cc19bb51cf59d))
+- **FF-9088:** use CloudLogoHome in header logo instead of hrGreen brand ([0e73236](https://github.com/cloud-ru-tech/snack-v2/commit/0e73236d3650a2cf2aa3a6a5cbce3efb20aa5472))
+- **FF-9192:** disable dnd measuring on first render ([bcdd411](https://github.com/cloud-ru-tech/snack-v2/commit/bcdd411d3dcd3b32824850399a16e0ac6e2579d7))
+
+### Features
+
+- **FF-9192:** rendering optimizations ([24f6d5b](https://github.com/cloud-ru-tech/snack-v2/commit/24f6d5b02925732340871a2e9bf14a6664533579))
+
+### BREAKING CHANGES
+
+- **FF-9088:** split UserMenu items into top, organization and bottom groups ([91d8a37](https://github.com/cloud-ru-tech/snack-v2/commit/91d8a3717db7bb9e40cc82b21ca33e760cd904a7))
+- **FF-9088:** remove actionsSize from card actions ([bfad613](https://github.com/cloud-ru-tech/snack-v2/commit/bfad613905acd6e7ac0b78db4b62eb4e45d96c29))
+
 ## 1.5.3 (2026-09-28)
 
 **Note:** Version bump only for package @ds/uikit-product-header

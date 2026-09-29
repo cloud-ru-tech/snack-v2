@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.7 (2026-09-29)
+
+### Bug Fixes
+
+- **FF-9192:** memoize context provider value ([99391f1](https://github.com/cloud-ru-tech/snack-v2/commit/99391f125ca3c9a38ee7e1925a933bc211f880f7))
+
 ## 1.1.6 (2026-09-28)
 
 **Note:** Version bump only for package @ds/toggles
