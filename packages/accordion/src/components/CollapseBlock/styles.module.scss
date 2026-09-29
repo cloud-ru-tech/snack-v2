@@ -201,6 +201,8 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
   display: flex;
   flex-direction: column;
 
+  // Элемент grid `.collapse`: без min-width: 0 колонка растягивается по неразрывному содержимому.
+  min-width: 0;
   min-height: 0;
 
   transition:
