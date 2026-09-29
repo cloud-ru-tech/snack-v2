@@ -1,7 +1,7 @@
 import { Tooltip, TooltipProps } from '@ds/tooltip';
-import { extractSupportProps, throttle, useLayoutEffect, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, throttle, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { isEllipsisActive } from '../../helpers';
 import styles from './styles.module.scss';
@@ -35,25 +35,14 @@ export function TruncateStringEnd({
   const textElementRef = useRef<HTMLElement | null>(null);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const toggleShowTooltip = useCallback(() => {
-    setShowTooltip(isEllipsisActive(textElementRef.current));
-  }, []);
-
-  useLayoutEffect(() => {
-    if (hideTooltip || !textElementRef.current) {
-      return;
-    }
-
-    toggleShowTooltip();
-  }, [text, toggleShowTooltip, hideTooltip]);
-
+  // Замер только из ResizeObserver: синхронный замер в layout-эффекте форсил reflow на каждый экземпляр.
   useEffect(() => {
     if (hideTooltip) {
       return;
     }
 
     const throttledToggleShowTooltip = throttle(() => {
-      toggleShowTooltip();
+      setShowTooltip(isEllipsisActive(textElementRef.current));
     }, 50);
 
     let observer: ResizeObserver | undefined;
@@ -70,8 +59,9 @@ export function TruncateStringEnd({
     return () => {
       cancelAnimationFrame(rafId);
       observer?.disconnect();
+      throttledToggleShowTooltip.cancel();
     };
-  }, [showTooltip, hideTooltip, toggleShowTooltip]);
+  }, [text, maxLines, showTooltip, hideTooltip]);
 
   const textElement = (
     <span
