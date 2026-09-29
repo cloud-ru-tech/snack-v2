@@ -13,6 +13,7 @@ export { default as CiliumLogo } from './CiliumLogo';
 export { default as ClickhouseLogo } from './ClickhouseLogo';
 export { default as CloudFullLogo } from './CloudFullLogo';
 export { default as CloudLogoDev } from './CloudLogoDev';
+export { default as CloudLogoHome } from './CloudLogoHome';
 export { default as CloudLogoHybrid } from './CloudLogoHybrid';
 export { default as CloudLogo } from './CloudLogo';
 export { default as CloudLogoStage } from './CloudLogoStage';

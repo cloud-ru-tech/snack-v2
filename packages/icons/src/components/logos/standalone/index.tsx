@@ -33,6 +33,8 @@ export { default as CloudFullLogoLightSVG } from './CloudFullLogoLight';
 export { default as CloudLogoDarkSVG } from './CloudLogoDark';
 export { default as CloudLogoDevDarkSVG } from './CloudLogoDevDark';
 export { default as CloudLogoDevLightSVG } from './CloudLogoDevLight';
+export { default as CloudLogoHomeDarkSVG } from './CloudLogoHomeDark';
+export { default as CloudLogoHomeLightSVG } from './CloudLogoHomeLight';
 export { default as CloudLogoHybridDarkSVG } from './CloudLogoHybridDark';
 export { default as CloudLogoHybridLightSVG } from './CloudLogoHybridLight';
 export { default as CloudLogoLightSVG } from './CloudLogoLight';
