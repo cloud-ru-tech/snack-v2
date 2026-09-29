@@ -7,22 +7,16 @@
   align-items: center;
 }
 
-.pinnedItems {
-  display: flex;
-  flex-wrap: wrap;
-  gap: base.$sn-primitive-dimension-4;
-  align-items: center;
-
-  min-width: 0;
+.addButton {
+  margin-left: base.$sn-primitive-dimension-8;
 }
 
-.controlWrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: base.$sn-primitive-dimension-8;
-  align-items: center;
-
-  padding-left: base.$sn-primitive-dimension-8;
+.clearButton {
+  margin-left: base.$sn-primitive-dimension-8;
+  
+  .addButton + & {
+    margin-left: base.$sn-primitive-dimension-4;
+  }
 }
 
 .divider {
@@ -30,8 +24,4 @@
     align-self: stretch;
     height: auto;
   }
-}
-
-.inlineFlex {
-  display: inline-flex;
 }

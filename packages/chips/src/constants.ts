@@ -40,6 +40,7 @@ export const CHIP_CHOICE_TEST_IDS = {
 } as const;
 
 export const CHIP_CHOICE_ROW_TEST_IDS = {
+  divider: 'chip-choice-row__divider',
   addButton: 'chip-choice-row__add-button',
   addButtonTooltip: 'chip-choice-row__add-button-tooltip',
   addButtonOption: 'chip-choice-row__add-button-option',

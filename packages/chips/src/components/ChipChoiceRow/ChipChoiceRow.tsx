@@ -1,15 +1,14 @@
 import { Button } from '@ds/button';
 import { Divider } from '@ds/divider';
-import { CrossSVG, PlusSVG } from '@ds/icons/interface/system';
-import { Droplist, DroplistProps } from '@ds/list';
-import { Tooltip } from '@ds/tooltip';
+import { CrossSVG } from '@ds/icons/interface/system';
+import { DroplistProps } from '@ds/list';
 import { extractSupportProps, useUncontrolledProp, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { useCallback, useMemo, useState } from 'react';
 
 import { CHIP_CHOICE_ROW_TEST_IDS, SIZE } from '../../constants';
 import { chipsLocale } from '../../locale';
-import { ForwardedChipChoice } from './components';
+import { AddButton, ForwardedChipChoice } from './components';
 import { MAP_ROW_SIZE_TO_BUTTON_SIZE } from './constants';
 import { areValuesEqual } from './helpers';
 import styles from './styles.module.scss';
@@ -185,28 +184,24 @@ export function ChipChoiceRow<TState extends FiltersState>({
     [addListValue, handleChipOpen, nonPinnedFilters, setAddListValue],
   );
 
-  const canAddChips = addSelectorOptions.length > 0;
-
   const showClearButton = showClearButtonProp && hasAnyFilter;
   const showPinnedFiltersDivider = showAddButton || showClearButton || visibleFilters.length > 0;
 
   return (
     <div className={cn(styles.chipChoiceRow, className)} data-size={size} {...extractSupportProps(rest)}>
-      {pinnedFilters.length > 0 && (
-        <div className={styles.pinnedItems}>
-          {pinnedFilters.map(filter => (
-            <ForwardedChipChoice
-              key={filter.id}
-              {...filter}
-              value={state[filter.id] as never}
-              size={size}
-              onChange={(value: FilterValue) => handleChange(filter.id, value)}
-              onClearButtonClick={handleClearPinnedFilter(filter.id)}
-            />
-          ))}
+      {pinnedFilters.map(filter => (
+        <ForwardedChipChoice
+          key={filter.id}
+          {...filter}
+          value={state[filter.id] as never}
+          size={size}
+          onChange={(value: FilterValue) => handleChange(filter.id, value)}
+          onClearButtonClick={handleClearPinnedFilter(filter.id)}
+        />
+      ))}
 
-          {showPinnedFiltersDivider && <Divider orientation='vertical' className={styles.divider} />}
-        </div>
+      {pinnedFilters.length > 0 && showPinnedFiltersDivider && (
+        <Divider orientation='vertical' className={styles.divider} data-test-id={CHIP_CHOICE_ROW_TEST_IDS.divider} />
       )}
 
       {visibleFilters.map(filter => (
@@ -222,50 +217,23 @@ export function ChipChoiceRow<TState extends FiltersState>({
         />
       ))}
 
-      <div className={styles.controlWrapper}>
-        {showAddButton && (
-          <Tooltip
-            tip={t('addButtonDisabledTip')}
-            open={canAddChips ? false : undefined}
-            placement='bottom'
-            data-test-id={CHIP_CHOICE_ROW_TEST_IDS.addButtonTooltip}
-            triggerClassName={styles.inlineFlex}
-          >
-            <Droplist
-              open={canAddChips && addListOpen}
-              onOpenChange={setAddListOpen}
-              items={addSelectorOptions}
-              size={size}
-              triggerClassName={styles.inlineFlex}
-              trigger='clickAndFocusVisible'
-            >
-              <Button
-                view='function'
-                appearance='neutral'
-                disabled={!canAddChips}
-                label={t('add')}
-                icon={<PlusSVG />}
-                iconPosition='before'
-                size={MAP_ROW_SIZE_TO_BUTTON_SIZE[size]}
-                data-test-id={CHIP_CHOICE_ROW_TEST_IDS.addButton}
-              />
-            </Droplist>
-          </Tooltip>
-        )}
+      {showAddButton && (
+        <AddButton open={addListOpen} onOpenChange={setAddListOpen} items={addSelectorOptions} size={size} />
+      )}
 
-        {showClearButton && (
-          <Button
-            view='function'
-            appearance='neutral'
-            onClick={handleFiltersClear}
-            label={t('clear')}
-            icon={<CrossSVG />}
-            iconPosition='before'
-            size={MAP_ROW_SIZE_TO_BUTTON_SIZE[size]}
-            data-test-id={CHIP_CHOICE_ROW_TEST_IDS.clearButton}
-          />
-        )}
-      </div>
+      {showClearButton && (
+        <Button
+          view='function'
+          appearance='neutral'
+          onClick={handleFiltersClear}
+          label={t('clear')}
+          icon={<CrossSVG />}
+          iconPosition='before'
+          size={MAP_ROW_SIZE_TO_BUTTON_SIZE[size]}
+          data-test-id={CHIP_CHOICE_ROW_TEST_IDS.clearButton}
+          className={styles.clearButton}
+        />
+      )}
     </div>
   );
 }

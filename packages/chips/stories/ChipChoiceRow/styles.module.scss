@@ -4,3 +4,7 @@
   display: grid;
   gap: base.$sn-primitive-dimension-24;
 }
+
+.dividerWrappingRow > :first-child {
+  width: 100%;
+}

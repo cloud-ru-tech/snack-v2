@@ -1,4 +1,32 @@
 {
+  "AddButton": {
+    "displayName": "AddButton",
+    "propsTypeName": null,
+    "props": {
+      "items": {
+        "type": "Item[]",
+        "required": true
+      },
+      "onOpenChange": {
+        "type": "((isOpen: boolean) => void) | undefined",
+        "required": true
+      },
+      "open": {
+        "type": "boolean | undefined",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
   "ButtonClearValue": {
     "displayName": "ButtonClearValue",
     "propsTypeName": null,
