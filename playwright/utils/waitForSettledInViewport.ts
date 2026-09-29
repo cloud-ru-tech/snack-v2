@@ -7,7 +7,7 @@ import { waitForStableBbox } from './waitForStableBbox';
  *
  * Для выезжающих поверхностей (bottom-sheet, drawer) одного `waitForStableBbox`
  * мало: между монтированием и стартом выезда есть фаза покоя — элемент уже
- * `visible`, но стоит за нижней границей экрана. Два подряд идущих замера bbox
+ * `visible`, но стоит за краем экрана (снизу у bottom-sheet, сбоку у drawer). Два подряд идущих замера bbox
  * попадают в эту паузу, «стабильность» срабатывает раньше времени, и снимок
  * ловит пустой экран (на медленной машине воспроизводится стабильно).
  *
@@ -25,7 +25,14 @@ export async function waitForSettledInViewport(
     const box = await locator.boundingBox();
     const viewport = page.viewportSize();
 
-    if (box != null && viewport != null && box.y < viewport.height && box.y + box.height > 0) {
+    if (
+      box != null &&
+      viewport != null &&
+      box.y < viewport.height &&
+      box.y + box.height > 0 &&
+      box.x < viewport.width &&
+      box.x + box.width > 0
+    ) {
       break;
     }
 

@@ -22,6 +22,8 @@ const VARIANTS = ['single', 'multiple', 'date', 'daterange', 'time', 'custom'] a
 // прямой импорт из @ds/calendar/@ds/chips тянет CSS-modules и ломает playwright-compile.
 // CalendarDropdown строит id ячейки как `item-<data-test-id>`; ChipChoiceDate передаёт `chip-choice__droplist`.
 const DAY_ITEM_TEST_ID = `item-${CHIP_CHOICE_TEST_IDS.droplist}`;
+// Якорь для ожидания автоскролла: `.first()` по ячейке дня — это месяц выше вьюпорта, он туда не въезжает.
+const TODAY_CELL = `[data-current]:not([data-another]) > [data-test-id="${DAY_ITEM_TEST_ID}"]`;
 const MOBILE_APPLY_TEST_ID = 'calendar-mobile-apply';
 
 test.describe('ChipChoice — visual regression', () => {
@@ -102,7 +104,7 @@ test.describe('ChipChoice — visual regression', () => {
     await expect(getByTestId(CHIP_CHOICE_TEST_IDS.droplist)).toBeVisible();
     // Календарь после открытия автоскроллится к текущему месяцу (JS-скролл, не CSS — `animations:disabled`
     // его не замораживает). Ждём стабилизации bbox ячейки дня, иначе клики/снимок ловят кадр прокрутки.
-    await waitForSettledInViewport(getByTestId(DAY_ITEM_TEST_ID).first());
+    await waitForSettledInViewport(page.locator(TODAY_CELL));
     await frame('2. open');
 
     // 3. Выбор начала диапазона (10 июля) — подсветка старта (Apply ещё неактивен, выбран один конец).

@@ -16,6 +16,8 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
+import { devices } from '@playwright/test';
+
 import { UIKIT_URL } from '../constants/common';
 import { expect, test } from '../fixtures';
 
@@ -25,12 +27,9 @@ const FILTER = process.env.STORIES_FILTER || '';
 const FILTER_RE = FILTER ? new RegExp(FILTER) : null;
 
 /**
- * Сколько ждём `storyFinished`. Прежние 5s гонялись наперегонки с самим storybook:
- * после play он уходит в фазу `completing`, где `waitForAnimations` ждёт живые анимации
- * и отпускает только по своему внутреннему 5s-таймауту (у table/markdown анимация ручки
- * overlayscrollbars не завершается никогда) — то есть бюджет был меньше нижней границы.
- * 30s: на раннере CI тяжёлые story (table, uikit-product-fields-predefined) не укладывались в 20s,
- * локально на статике те же story занимают 6–7s.
+ * Сколько ждём `storyFinished`. Ожидание анимаций в фазе `completing` снято маркером тест-раннера
+ * (см. `test.use` ниже), остаётся рендер и play: тяжёлые story (table, tree) на раннере CI занимают 15–25s,
+ * локально 1–5s.
  */
 const STORY_FINISHED_TIMEOUT = 30000;
 
@@ -61,6 +60,10 @@ function loadStories(): StoryEntry[] {
 const stories = loadStories();
 
 test.describe.parallel('story coverage harvest', () => {
+  // Маркер тест-раннера: Storybook тогда ставит анимации на паузу, а не ждёт их до 5s. Scroll-driven анимации
+  // ручки overlayscrollbars не завершаются никогда, и каждая story со скроллом теряла на этом 5s.
+  test.use({ userAgent: `${devices['Desktop Chrome'].userAgent} StorybookTestRunner` });
+
   test.skip(!COVERAGE_ENABLED, 'Set COVERAGE=true to harvest coverage from stories');
 
   for (const story of stories) {
@@ -74,7 +77,7 @@ test.describe.parallel('story coverage harvest', () => {
       // рендера, он же несёт статус: рендер-исключение и unhandled error в нём видно.
       await page.addInitScript(() => {
         type Channel = { on(event: string, listener: (payload: unknown) => void): void };
-        const state = window as unknown as { __HARVEST__?: { done: boolean; failure?: string } };
+        const state = window as unknown as { __HARVEST__?: { done: boolean; failure?: string; phase?: string } };
         state.__HARVEST__ = { done: false };
 
         function firstLine(payload: unknown): string {
@@ -93,6 +96,9 @@ test.describe.parallel('story coverage harvest', () => {
           get: () => channel,
           set(next: Channel | undefined) {
             channel = next;
+            next?.on('storyRenderPhaseChanged', payload => {
+              if (state.__HARVEST__) state.__HARVEST__.phase = (payload as { newPhase?: string } | undefined)?.newPhase;
+            });
             next?.on('storyThrewException', payload => fail(`story threw: ${firstLine(payload)}`));
             next?.on('storyErrored', payload => fail(`story errored: ${firstLine(payload)}`));
             next?.on('storyFinished', payload => {
@@ -104,6 +110,11 @@ test.describe.parallel('story coverage harvest', () => {
         });
       });
 
+      let crashed = false;
+      page.on('crash', () => {
+        crashed = true;
+      });
+
       await page.goto(`${BASE}/iframe.html?id=${story.id}&viewMode=story`, { waitUntil: 'domcontentloaded' });
 
       const result = await page
@@ -112,10 +123,24 @@ test.describe.parallel('story coverage harvest', () => {
             const state = (window as unknown as { __HARVEST__?: { done: boolean; failure?: string } }).__HARVEST__;
             return state?.done || state?.failure ? state : null;
           },
+          // Второй аргумент — `arg` функции; без него опции уходят туда, и работает actionTimeout (10s).
+          undefined,
           { timeout: STORY_FINISHED_TIMEOUT },
         )
         .then(handle => handle.jsonValue())
-        .catch(() => null);
+        // Причину обрыва не глотаем: таймаут, упавшая вкладка и закрытая страница лечатся по-разному.
+        .catch(async (error: Error) => {
+          if (crashed) return { done: false, failure: 'вкладка упала (page crash)' };
+          if (error.name !== 'TimeoutError')
+            return { done: false, failure: `ожидание оборвалось: ${error.message.split('\n')[0]}` };
+          const phase = await page
+            .evaluate(() => (window as unknown as { __HARVEST__?: { phase?: string } }).__HARVEST__?.phase)
+            .catch(() => undefined);
+          return {
+            done: false,
+            failure: `story не дорендерилась за ${STORY_FINISHED_TIMEOUT / 1000}s (фаза: ${phase ?? '—'})`,
+          };
+        });
       await page.waitForLoadState('networkidle', { timeout: 1500 }).catch(() => {});
 
       // Ассерт держит две вещи: story дорендерилась и не упала на рендере. Провалившуюся
@@ -123,10 +148,7 @@ test.describe.parallel('story coverage harvest', () => {
       // и упавшая play доводит рендер до `finished` со статусом `success`. Гейт для play —
       // `pnpm test:stories` (vitest browser), дублировать его тут нечем: харвестер грузит
       // iframe напрямую, и часть сценариев на таймерах здесь просто не успевает.
-      expect(
-        result?.failure ?? (result ? null : `story не дорендерилась за ${STORY_FINISHED_TIMEOUT / 1000}s`),
-        `story ${story.id}`,
-      ).toBeNull();
+      expect(result.failure ?? null, `story ${story.id}`).toBeNull();
     });
   }
 });
