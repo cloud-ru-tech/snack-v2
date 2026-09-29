@@ -1,9 +1,11 @@
 import { Avatar } from '@ds/avatar';
 import { BaseItemProps, Droplist, DroplistProps } from '@ds/list';
 import { useValueControl } from '@ds/utils';
+import cn from 'classnames';
 import { useMemo } from 'react';
 
 import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../constants';
+import { useDesktopComfortClassName } from '../../hooks/useDesktopComfortClassName';
 import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
 import { HeaderButton } from '../HeaderButton';
@@ -22,7 +24,14 @@ export type UserMenuProps = {
 
   theme?: ThemeProps;
 
-  items?: DroplistProps['items'];
+  /** Пункты после темы. На desktop закреплены сверху вместе с профилем и темой */
+  topItems?: DroplistProps['items'];
+
+  /** Список организаций. На desktop — единственная прокручиваемая часть меню */
+  organizationItems?: DroplistProps['items'];
+
+  /** Пункты перед «Выйти из аккаунта». На desktop закреплены снизу */
+  bottomItems?: DroplistProps['items'];
 
   settingItems?: BaseItemProps[];
 
@@ -40,7 +49,9 @@ export function UserMenu({
   open: openProp,
   setOpen: setOpenProp,
   onLogout,
-  items,
+  topItems,
+  organizationItems,
+  bottomItems,
   settingItems,
   theme,
   onClick,
@@ -48,16 +59,19 @@ export function UserMenu({
 }: UserMenuProps) {
   const { t } = headerLocale.useTranslations();
   const isMobile = useMobileLayout();
+  const comfortClassName = useDesktopComfortClassName();
 
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 
   const { fullName = '', inviteCount } = profile;
 
-  const userMenuItems = useUserMenuItems({
+  const { pinTop, items: menuItems, pinBottom } = useUserMenuItems({
     isMobile,
     profile,
     theme,
-    items,
+    topItems,
+    organizationItems,
+    bottomItems,
     settingItems,
     onClose: () => {
       setOpen(false);
@@ -78,6 +92,7 @@ export function UserMenu({
           Number(inviteCount)
             ? {
                 value: Number(inviteCount),
+                appearance: 'primary',
               }
             : undefined
         }
@@ -95,10 +110,13 @@ export function UserMenu({
       onOpenChange={setOpen}
       size='m'
       selection={SELECTION_STUB}
-      items={userMenuItems}
+      pinTop={pinTop}
+      items={menuItems}
+      pinBottom={pinBottom}
+      scroll={!isMobile}
       trigger='click'
       placement='bottom-end'
-      className={styles.userMenuDroplist}
+      className={cn(styles.userMenuDroplist, comfortClassName)}
       closeOnPopstate
       data-test-id={TEST_IDS.userMenu.root}
       label={t('user')}

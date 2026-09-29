@@ -3,6 +3,7 @@ import { SettingsSVG } from '@ds/icons/interface/system';
 import { BaseItemProps } from '@ds/list';
 import { useMemo } from 'react';
 
+import styles from '../styles.module.scss';
 import { UserProfileProps } from '../types';
 
 export function useProfileItem({
@@ -22,7 +23,7 @@ export function useProfileItem({
       },
       onClick,
       beforeContent: <Avatar appearance='red' size='s' name={fullName} showTwoSymbols />,
-      afterContent: <SettingsSVG />,
+      afterContent: <SettingsSVG className={styles.profileSettingsIcon} />,
       itemWrapRender,
 
       id: 'header__user-menu__button',

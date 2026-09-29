@@ -656,7 +656,7 @@ export function Basic() {
       profile={{ fullName: 'Ivan Petrov', email: 'ipetrov@cloud.ru', inviteCount: 1 }}
       theme={{ value: 'light' }}
       settingItems={SETTING_ITEMS}
-      items={[{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }]}
+      topItems={[{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }]}
       data-test-id='header-user-menu-basic'
     />
   );
@@ -693,14 +693,16 @@ export function ControlledTheme() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — |  |
+| `bottomItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты перед «Выйти из аккаунта». На desktop закреплены снизу |
 | `onClick` | `(() => void)` | — |  |
 | `onLogout` | `(() => void)` | — |  |
 | `open` | `boolean` | — |  |
+| `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню |
 | `profile` | `UserProfileProps` | `{}` |  |
 | `setOpen` | `((open: boolean) => void)` | — |  |
 | `settingItems` | `BaseItemProps` | — |  |
 | `theme` | `ThemeProps` | — |  |
+| `topItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты после темы. На desktop закреплены сверху вместе с профилем и темой |
 | `triggerTooltip` | `string` | — |  |
 
 ##### Related types

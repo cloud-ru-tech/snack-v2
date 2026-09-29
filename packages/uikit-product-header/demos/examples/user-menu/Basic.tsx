@@ -8,7 +8,7 @@ export function Basic() {
       profile={{ fullName: 'Ivan Petrov', email: 'ipetrov@cloud.ru', inviteCount: 1 }}
       theme={{ value: 'light' }}
       settingItems={SETTING_ITEMS}
-      items={[{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }]}
+      topItems={[{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }]}
       data-test-id='header-user-menu-basic'
     />
   );

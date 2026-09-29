@@ -1,4 +1,6 @@
-import { PlaceholderSVG } from '@ds/icons/interface/system';
+import { Avatar } from '@ds/avatar';
+import { PlaceholderSVG, PlusSVG } from '@ds/icons/interface/system';
+import { ListProps } from '@ds/list';
 
 import { InnerLink, LinksGroup, MainMenuSettingsItem } from '../src';
 
@@ -729,6 +731,46 @@ export const SETTING_ITEMS = ADMINISTRATIVE_SECTIONS.flatMap(({ items }) => item
   onClick: EMPTY_ON_CLICK,
   href: EMPTY_HREF,
 }));
+
+const ORGANIZATION_NAMES = [
+  'Frontend Factory',
+  'Bare Metal Test',
+  'Enterprise for Evolution',
+  'Evolution Bare Metal',
+  'ML Inference Lab',
+  'S3 Evolution Demo',
+  'VM Migration Test',
+  'Demo EvoStack',
+  'Referral Test',
+  'Cloud Internal',
+];
+
+/** Группа организаций меню пользователя: на desktop прокручивается между закреплёнными частями. */
+export const USER_MENU_ORGANIZATION_ITEMS: ListProps['items'] = [
+  {
+    type: 'group',
+    label: 'Организации',
+    groupVariant: 'subtitleTertiary',
+    items: ORGANIZATION_NAMES.map((name, index) => ({
+      id: `organization-${index}`,
+      content: { label: name },
+      beforeContent: <Avatar appearance='red' name={name} shape='squared' showTwoSymbols size='s' />,
+      checked: index === 0,
+      onClick: EMPTY_ON_CLICK,
+    })),
+  },
+];
+
+/** Пункты перед выходом: на desktop закреплены снизу. */
+export const USER_MENU_BOTTOM_ITEMS: ListProps['items'] = [
+  {
+    id: 'add-organization',
+    content: { label: 'Добавить организацию' },
+    beforeContent: <PlusSVG />,
+    onClick: EMPTY_ON_CLICK,
+  },
+  { type: 'group', divider: true, items: [] },
+];
 
 /** Плоский список левой колонки MainMenu (с divider между блоками), не связан с сегментами. */
 export const MAIN_MENU_SIDEBAR_ITEMS: MainMenuSettingsItem[] = [

@@ -1,6 +1,7 @@
 import { BaseItemProps, GroupItemProps, isBaseItemProps, ListProps } from '@ds/list';
 import { MouseEvent, useMemo } from 'react';
 
+import { EMPTY_ARRAY } from '../../../utils/emptyArray';
 import { shouldBeOpenedInNewTab } from '../../../utils/shouldBeOpenedInNewTab';
 import { ThemeProps, UserProfileProps } from '../types';
 import { useLogoutItem } from './useLogoutItem';
@@ -12,7 +13,11 @@ type UseMenuItems = {
 
   theme?: ThemeProps;
 
-  items?: ListProps['items'];
+  topItems?: ListProps['items'];
+
+  organizationItems?: ListProps['items'];
+
+  bottomItems?: ListProps['items'];
 
   settingItems?: BaseItemProps[];
 
@@ -22,6 +27,8 @@ type UseMenuItems = {
 
   isMobile?: boolean;
 };
+
+type UserMenuSections = Required<Pick<ListProps, 'pinTop' | 'items' | 'pinBottom'>>;
 
 const DIVIDER_ITEM: GroupItemProps = {
   type: 'group',
@@ -33,45 +40,58 @@ export function useUserMenuItems({
   profile,
   theme,
   onLogout,
-  items: itemsProp = [],
+  topItems = EMPTY_ARRAY,
+  organizationItems = EMPTY_ARRAY,
+  bottomItems = EMPTY_ARRAY,
   isMobile,
   onClose,
-  settingItems = [],
-}: UseMenuItems) {
+  settingItems = EMPTY_ARRAY,
+}: UseMenuItems): UserMenuSections {
   const profileItem = useProfileItem(profile);
   const themeItem = useThemeItem({ ...(theme || {}), isMobile, onClose });
   const logoutItem = useLogoutItem({ onLogout });
 
-  const items = useMemo(() => {
-    let items: ListProps['items'] = [profileItem];
+  return useMemo(() => {
+    const withClose = (list: ListProps['items']): ListProps['items'] =>
+      list.map(item => {
+        if (isBaseItemProps(item)) {
+          return {
+            ...item,
+            onClick: (e: MouseEvent<HTMLElement>) => {
+              item.onClick?.(e);
+
+              if (!shouldBeOpenedInNewTab(e)) {
+                onClose?.();
+              }
+            },
+          };
+        }
+        return item;
+      });
+
+    let pinTop: ListProps['items'] = [profileItem];
 
     if (themeItem) {
-      items = items.concat([DIVIDER_ITEM, themeItem]);
+      pinTop = pinTop.concat([DIVIDER_ITEM, themeItem]);
     }
 
-    items = items.concat(itemsProp);
-    items = items.concat(logoutItem);
+    pinTop = pinTop.concat(topItems);
+
+    let pinBottom = bottomItems.concat(logoutItem);
 
     if (isMobile && Boolean(settingItems?.length)) {
-      items = items.concat([DIVIDER_ITEM, ...settingItems]);
+      pinBottom = pinBottom.concat([DIVIDER_ITEM, ...settingItems]);
     }
 
-    return items.map(item => {
-      if (isBaseItemProps(item)) {
-        return {
-          ...item,
-          onClick: (e: MouseEvent<HTMLElement>) => {
-            item.onClick?.(e);
+    // В шторке прокручивается всё меню, закреплять части незачем; разделитель над организациями добавляем сами
+    if (isMobile) {
+      return {
+        pinTop: [],
+        items: withClose([...pinTop, DIVIDER_ITEM, ...organizationItems, ...pinBottom]),
+        pinBottom: [],
+      };
+    }
 
-            if (!shouldBeOpenedInNewTab(e)) {
-              onClose?.();
-            }
-          },
-        };
-      }
-      return item;
-    });
-  }, [isMobile, itemsProp, logoutItem, onClose, profileItem, settingItems, themeItem]);
-
-  return items;
+    return { pinTop: withClose(pinTop), items: withClose(organizationItems), pinBottom: withClose(pinBottom) };
+  }, [bottomItems, isMobile, logoutItem, onClose, organizationItems, profileItem, settingItems, themeItem, topItems]);
 }

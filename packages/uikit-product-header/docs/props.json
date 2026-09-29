@@ -4015,9 +4015,10 @@
     "displayName": "UserMenu",
     "propsTypeName": "UserMenuProps",
     "props": {
-      "items": {
+      "bottomItems": {
         "type": "Item[]",
         "required": false,
+        "description": "Пункты перед «Выйти из аккаунта». На desktop закреплены снизу",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
           "CommonGroupItem",
@@ -4036,6 +4037,17 @@
       "open": {
         "type": "boolean",
         "required": false
+      },
+      "organizationItems": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Список организаций. На desktop — единственная прокручиваемая часть меню",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "DroplistProps",
+          "ScrollProps"
+        ]
       },
       "profile": {
         "type": "UserProfileProps",
@@ -4061,6 +4073,17 @@
         "required": false,
         "typeRefs": [
           "ThemeProps"
+        ]
+      },
+      "topItems": {
+        "type": "Item[]",
+        "required": false,
+        "description": "Пункты после темы. На desktop закреплены сверху вместе с профилем и темой",
+        "typeRefs": [
+          "BaseItemWithoutNonGroup",
+          "CommonGroupItem",
+          "DroplistProps",
+          "ScrollProps"
         ]
       },
       "triggerTooltip": {

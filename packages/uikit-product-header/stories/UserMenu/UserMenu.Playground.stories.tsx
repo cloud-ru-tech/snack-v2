@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import { SETTING_ITEMS } from '../demoData';
+import { SETTING_ITEMS, USER_MENU_BOTTOM_ITEMS, USER_MENU_ORGANIZATION_ITEMS } from '../demoData';
 import { TEST_IDS } from '../testIds';
 
 const meta: Meta<typeof UserMenu> = {
@@ -23,7 +23,9 @@ const meta: Meta<typeof UserMenu> = {
       value: 'light',
     },
     settingItems: SETTING_ITEMS,
-    items: [{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }],
+    topItems: [{ content: { label: 'Option 1' } }, { content: { label: 'Option 2' } }],
+    organizationItems: USER_MENU_ORGANIZATION_ITEMS,
+    bottomItems: USER_MENU_BOTTOM_ITEMS,
   },
 };
 
