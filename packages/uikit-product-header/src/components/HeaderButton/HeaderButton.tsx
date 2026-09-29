@@ -1,7 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { useThemeClassnames } from '@ds/theme';
 import { TooltipProps, WithTooltip } from '@ds/tooltip';
-import cn from 'classnames';
 import { ElementType } from 'react';
 
 import styles from './styles.module.scss';
@@ -26,8 +24,6 @@ export function HeaderButton<T extends ElementType = 'button'>({
   className,
   ...rest
 }: HeaderButtonProps<T>) {
-  const compactThemeClassName = useThemeClassnames({ density: 'compact' });
-
   return (
     // FIXME: typescript ломается, если не указать tip явно
     //  пока не разбирался почему так
@@ -50,7 +46,7 @@ export function HeaderButton<T extends ElementType = 'button'>({
         size='m'
         appearance='neutral'
         view='simple'
-        className={cn(styles.headerButton, compactThemeClassName, className)}
+        className={className}
       />
     </WithTooltip>
   );

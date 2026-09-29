@@ -1,7 +1,9 @@
+import { useMemo } from 'react';
+
 import { InnerLink } from '../../../../../types';
-import { isSubCategoryCard } from '../../../../../utils/innerLink';
 import { DraggableServiceCard, ServiceCardProps } from '../../../../ServiceCard';
 import styles from '../styles.module.scss';
+import { splitIntoBlocks } from '../utils';
 import { SubCategory } from './SubCategory';
 
 export type SortableGroupCardsProps = Pick<
@@ -24,21 +26,17 @@ export function SortableGroupCards({
   groupFavoritesEnabled,
   onServiceClick,
 }: SortableGroupCardsProps) {
+  const blocks = useMemo(() => splitIntoBlocks(items), [items]);
+
   return (
-    <div className={styles.groupBody} data-mobile={isMobile || undefined}>
-      {items.map(service => {
-        if (service.hidden) {
-          return null;
-        }
-
-        const key = String(groupId) + service.id;
-
-        if (isSubCategoryCard(service)) {
+    <div className={styles.groupBlocks}>
+      {blocks.map(block => {
+        if (block.type === 'subcategory') {
           return (
             <SubCategory
-              key={key}
+              key={String(groupId) + block.service.id}
               groupId={groupId}
-              service={service}
+              service={block.service}
               showDescription={showDescription}
               isMobile={isMobile}
               dragDisabled={!enableServiceDrag}
@@ -50,16 +48,25 @@ export function SortableGroupCards({
         }
 
         return (
-          <DraggableServiceCard
-            key={key}
-            groupId={groupId}
-            service={service}
-            favorite={favorite}
-            isMobile={isMobile}
-            onServiceClick={onServiceClick}
-            showDescription={showDescription}
-            dragDisabled={!enableServiceDrag}
-          />
+          <div
+            key={String(groupId) + block.services[0].id}
+            className={styles.groupBody}
+            data-mobile={isMobile || undefined}
+            data-show-description={showDescription || undefined}
+          >
+            {block.services.map(service => (
+              <DraggableServiceCard
+                key={String(groupId) + service.id}
+                groupId={groupId}
+                service={service}
+                favorite={favorite}
+                isMobile={isMobile}
+                onServiceClick={onServiceClick}
+                showDescription={showDescription}
+                dragDisabled={!enableServiceDrag}
+              />
+            ))}
+          </div>
         );
       })}
     </div>

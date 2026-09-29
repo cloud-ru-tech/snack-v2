@@ -15,3 +15,10 @@ export const MAP_LOGO_MODE_TO_APPEARANCE: Record<Exclude<HeaderLogoMode, 'prod'>
   [HEADER_LOGO_MODE.Stage]: 'orange',
   [HEADER_LOGO_MODE.Hybrid]: 'violet',
 } as const;
+
+/** Подпись тега режима, как в макете `logoEvo` */
+export const MAP_LOGO_MODE_TO_LABEL: Record<Exclude<HeaderLogoMode, 'prod'>, string> = {
+  [HEADER_LOGO_MODE.Develop]: 'dev',
+  [HEADER_LOGO_MODE.Stage]: 'stage',
+  [HEADER_LOGO_MODE.Hybrid]: 'hybrid',
+} as const;

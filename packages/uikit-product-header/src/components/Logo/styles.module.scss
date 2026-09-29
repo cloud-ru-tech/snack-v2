@@ -10,6 +10,12 @@
   display: flex;
   gap: base.$sn-primitive-dimension-4;
   align-items: center;
+
+  // Без тега логотип и так стоит с отступом 4 в квадратной кнопке; с тегом кнопка
+  // становится шире, и отступы задаёт макет `buttonEvoLogo`.
+  &[data-with-mode] {
+    padding: 0 base.$sn-primitive-dimension-4;
+  }
 }
 
 // Стек из двух иконок (бренд-логотип + hover-хинт «домой»), сложенных друг на друга.
@@ -39,6 +45,7 @@
 .logo {
   position: relative;
   flex-shrink: 0;
+  box-sizing: border-box;
 
   &:active:not([data-disabled]) {
     .iconDefault {

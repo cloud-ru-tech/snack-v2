@@ -11,17 +11,12 @@ test.describe('CardServiceLight — rendering', () => {
     await expect(getByTestId(COMPONENT_TEST_IDS.cardServiceLightFavorite)).toBeVisible();
   });
 
-  test('desktop container has no data-mobile', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions());
-    await expect(getByTestId(TEST_IDS.cardServiceLight).locator('[data-mobile]')).toHaveCount(0);
-  });
-
-  test('mobile container sets data-mobile', async ({ page, gotoStory, getByTestId }) => {
+  // Мобильной ветки у карточки нет: мастер `cardServiceLightMobile` из макета удалён, а размеры
+  // на mobile даёт платформа темы. Тест сторожит, чтобы ветка по раскладке не вернулась.
+  test('mobile layout renders the same container', async ({ page, gotoStory, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions(undefined, CARD_SERVICE_LIGHT_STORIES.playground, { layoutType: 'mobile' }));
-    await expect(getByTestId(TEST_IDS.cardServiceLight).locator('[data-mobile]')).toHaveAttribute(
-      'data-mobile',
-      'true',
-    );
+    await expect(getByTestId(TEST_IDS.cardServiceLight)).toBeVisible();
+    await expect(getByTestId(TEST_IDS.cardServiceLight).locator('[data-mobile]')).toHaveCount(0);
   });
 });

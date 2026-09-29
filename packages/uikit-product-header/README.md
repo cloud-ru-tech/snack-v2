@@ -821,5 +821,4 @@ export function Basic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `isMobile` | `boolean` | — |  |
 | `items` | `BreadcrumbsProps` \| `Item` | — |  |

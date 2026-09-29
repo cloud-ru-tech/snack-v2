@@ -71,6 +71,33 @@ export const SERVICE_GROUPS: LinksGroup[] = [
         href: EMPTY_HREF,
         icon: PlaceholderSVG,
         aliases: ['compute', 'вычисления', 'вычислительные сервисы'],
+        // Подкатегория: блок с заголовком и своими карточками, как `services subcategory=true` в макете
+        items: [
+          {
+            id: 'virtual-machines',
+            label: 'Виртуальные машины',
+            onClick: EMPTY_ON_CLICK,
+            href: EMPTY_HREF,
+            icon: PlaceholderSVG,
+            aliases: ['vm', 'виртуалки'],
+          },
+          {
+            id: 'images',
+            label: 'Образы',
+            onClick: EMPTY_ON_CLICK,
+            href: EMPTY_HREF,
+            icon: PlaceholderSVG,
+            aliases: ['images'],
+          },
+          {
+            id: 'placement-groups',
+            label: 'Группы размещения',
+            onClick: EMPTY_ON_CLICK,
+            href: EMPTY_HREF,
+            icon: PlaceholderSVG,
+            aliases: ['placement groups'],
+          },
+        ],
       },
       {
         id: 'sshKeys',

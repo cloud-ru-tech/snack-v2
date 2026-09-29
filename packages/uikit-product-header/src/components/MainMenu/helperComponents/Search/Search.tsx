@@ -19,7 +19,7 @@ export const Search = forwardRef<HTMLInputElement, SearchComponentProps>(
         <SearchSnack
           ref={ref}
           size='m'
-          outline={!isMobile}
+          outline={false}
           placeholder={t('searchByServices')}
           value={value}
           onChange={onChange}

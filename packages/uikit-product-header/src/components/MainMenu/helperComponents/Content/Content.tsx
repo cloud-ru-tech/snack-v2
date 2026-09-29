@@ -7,6 +7,7 @@ import cn from 'classnames';
 import { MouseEvent, ReactNode, useCallback, useDeferredValue, useMemo } from 'react';
 
 import { headerLocale } from '../../../../locale';
+import { EMPTY_ARRAY } from '../../../../utils/emptyArray';
 import { shouldBeOpenedInNewTab } from '../../../../utils/shouldBeOpenedInNewTab';
 import {
   FavoriteProps,
@@ -102,7 +103,7 @@ export function Content({
   search,
   rightTop,
   segments,
-  searchGroups = [],
+  searchGroups = EMPTY_ARRAY,
   segmentPrefs,
   activeSegmentId,
   onActiveSegmentChange,

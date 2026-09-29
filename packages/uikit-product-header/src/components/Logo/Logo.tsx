@@ -8,7 +8,7 @@ import cn from 'classnames';
 import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
 
 import { HeaderButton } from '../HeaderButton';
-import { HEADER_LOGO_MODE, HeaderLogoMode, MAP_LOGO_MODE_TO_APPEARANCE } from './constants';
+import { HEADER_LOGO_MODE, HeaderLogoMode, MAP_LOGO_MODE_TO_APPEARANCE, MAP_LOGO_MODE_TO_LABEL } from './constants';
 import styles from './styles.module.scss';
 
 export type LogoProps = WithSupportProps<{
@@ -46,15 +46,17 @@ export function Logo({ path, loading, mode, href, onClick, className, tooltip, .
       );
     }
 
+    const showMode = mode && mode !== HEADER_LOGO_MODE.Prod;
+
     return (
-      <span className={styles.logoWrap}>
+      <span className={styles.logoWrap} data-with-mode={showMode || undefined}>
         <span className={styles.iconStack}>
           <CloudLogo size={24} className={cn(styles.icon, logoThemeClassName, styles.iconDefault)} />
           <HomeFilledSVG size={24} className={cn(styles.icon, logoThemeClassName, styles.iconHover)} />
         </span>
 
-        {mode && mode !== HEADER_LOGO_MODE.Prod && (
-          <PromoTag as='span' label={mode} size='xs' appearance={MAP_LOGO_MODE_TO_APPEARANCE[mode]} />
+        {showMode && (
+          <PromoTag label={MAP_LOGO_MODE_TO_LABEL[mode]} size='xs' appearance={MAP_LOGO_MODE_TO_APPEARANCE[mode]} />
         )}
       </span>
     );

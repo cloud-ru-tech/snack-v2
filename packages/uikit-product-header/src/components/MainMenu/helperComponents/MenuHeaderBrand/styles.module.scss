@@ -8,10 +8,26 @@
   box-sizing: border-box;
 
   background-color: base.$sn-theme-color-neutral-background;
+
+  &[data-mobile] {
+    gap: 0;
+  }
 }
 
 .closeButton {
   flex-grow: 1;
   flex-shrink: 1;
   justify-content: flex-start;
+
+  // В макете шеврон `textTertiary`, текст `textSecondary`, а не `neutral/text` кнопки;
+  // удвоенный класс перебивает цвета `Button` для simple/neutral.
+  &.closeButton[data-view='simple'][data-appearance='neutral'] {
+    [data-text-opacity] {
+      color: base.$sn-theme-color-available-version-textSecondary;
+    }
+
+    [aria-hidden][data-text-opacity] {
+      color: base.$sn-theme-color-available-version-textTertiary;
+    }
+  }
 }

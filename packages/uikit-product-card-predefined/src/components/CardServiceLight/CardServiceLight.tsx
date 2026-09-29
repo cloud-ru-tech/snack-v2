@@ -1,4 +1,3 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { PolymorphicRef } from '@ds/card';
 import { useThemeClassnames } from '@ds/theme';
 import { TooltipProps } from '@ds/tooltip';
@@ -85,8 +84,6 @@ export function CardServiceLight<T extends ElementType = 'button'>({
   'data-test-id': dataTestId,
   ...rest
 }: CardServiceLightProps<T>): ReactElement | null {
-  const { layoutType } = useAdaptiveLayout();
-  const isMobile = isMobileLayout(layoutType);
   const Component: ElementType = as ?? 'button';
   const cardRef = useRef<HTMLElement>(null);
   const tooltipTriggerRef = useRef<HTMLButtonElement>(null);
@@ -179,7 +176,7 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       {...polymorphicProps}
     >
       <span className={styles.stateLayer} data-state='emptyNeutralOnBackground' aria-hidden />
-      <div className={styles.container} data-mobile={isMobile || undefined}>
+      <div className={styles.container}>
         {icon && <div className={styles.icon}>{icon}</div>}
 
         <div className={styles.content}>
@@ -206,7 +203,7 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       </div>
 
       <CardActionsSurface
-        actionsSize={isMobile ? 's' : 'm'}
+        actionsSize='m'
         actionsVisibility={actionsVisibility}
         className={styles.cardActions}
         onTooltipOpenChange={setIsTooltipOpen}

@@ -36,7 +36,7 @@
 
   // NOTE: cелектор такой потому, что не получается достучаться до нужной дивки и переопределить стили без !important
   [data-test-id='header__drawer-menu'][data-small][data-position][data-width] {
-    // NOTE: ширина по макету 263px, но у дровера еще зашит паддинг. Не стал его обнулять
+    // NOTE: ширина по макету 263px (нет токена), но у дровера еще зашит паддинг. Не стал его обнулять
     // по умолчанию box-sizing: content-box; и из-за этого max-width определяется некорректно
     box-sizing: border-box;
     width: 100%;
@@ -74,13 +74,15 @@
   flex-direction: column;
   gap: base.$sn-primitive-dimension-4;
 
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
   padding: base.$sn-primitive-dimension-16;
 }
 
 .menu {
-  --snack-menu-header-height: 40px;
+  --snack-menu-header-height: #{base.$sn-primitive-dimension-40};
+  // Нет токена ширины левой колонки меню.
   --snack-menu-left-width: 263px;
 
   position: relative;

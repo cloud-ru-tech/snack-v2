@@ -8,6 +8,7 @@ import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, useMemo } from 'react';
 
+import { useDesktopComfortClassName } from '../../../../hooks/useDesktopComfortClassName';
 import { headerLocale } from '../../../../locale';
 import { FavoriteProps, InnerLink, LinksGroup } from '../../types';
 import { resolveInnerLinksByIds } from '../../utils';
@@ -30,6 +31,7 @@ export type FavoritesProps = {
 export function Favorites({ favorite, allServiceGroups, headerClassName, isMobile }: FavoritesProps) {
   const { t } = headerLocale.useTranslations();
   const loading = favorite.loading;
+  const comfortClassName = useDesktopComfortClassName();
 
   const [segment, setSegment] = useValueControl<FavoritesSegment>({
     value: favorite.segment,
@@ -146,9 +148,9 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
         />
 
         {favorite.actions && (
-          <Droplist size='m' {...favorite.actions} closeDroplistOnItemClick>
+          <Droplist size='m' {...favorite.actions} className={comfortClassName} closeDroplistOnItemClick>
             <Button
-              view='function'
+              view='simple'
               size='m'
               appearance='neutral'
               icon={<KebabSVG size={24} />}

@@ -1,5 +1,10 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
+$card-gap: base.$sn-primitive-dimension-0;
+// Высота карточки из плотности: 32 на desktop, 40 на mobile.
+$card-height: base.$sn-density-size-m;
+$list-padding-bottom: base.$sn-primitive-dimension-8;
+
 .root {
   display: flex;
   flex-direction: column;
@@ -59,23 +64,22 @@
 
 .listScrollInner {
   height: 100%;
-  // 12 карточек + gap + padding-top + padding-bottom от .list
-  max-height: calc(
-    (#{base.$sn-primitive-dimension-32} * 12) + #{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-8}
-  );
+  // Шаг карточки (высота + зазор) × 12 видимых + нижний паддинг `.list`.
+  max-height: calc((#{$card-height} + #{$card-gap}) * 12 + #{$list-padding-bottom});
 
   &[data-mobile] {
-    max-height: calc(
-      (#{base.$sn-primitive-dimension-40} * 6) + #{base.$sn-primitive-dimension-4} + #{base.$sn-primitive-dimension-8}
-    );
+    max-height: calc((#{$card-height} + #{$card-gap}) * 6 + #{$list-padding-bottom});
   }
 }
 
 .list {
   display: flex;
   flex-direction: column;
+  // Карточки избранного стоят вплотную, как в списке сервисов.
+  gap: $card-gap;
   align-items: stretch;
 
+  box-sizing: border-box;
   width: 100%;
   padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8;
 }
@@ -102,6 +106,7 @@
   gap: base.$sn-primitive-dimension-4;
   align-items: stretch;
 
+  box-sizing: border-box;
   width: 100%;
   padding: base.$sn-primitive-dimension-8;
 }

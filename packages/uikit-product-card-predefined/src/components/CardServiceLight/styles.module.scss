@@ -10,6 +10,9 @@
 // `position: static`: чтобы он, как и `.container`, не рисовался под `.stateLayer`, тоже нужен
 // позиционированный брат.
 .cardActions {
+  // В Figma панель стоит внутри container с gap 8 и без правого отступа: 4 от container + 4 здесь.
+  margin-left: base.$sn-primitive-dimension-4;
+
   &[data-actions-visibility='always'] {
     position: relative;
   }
@@ -23,8 +26,8 @@
   display: flex;
   align-items: center;
 
+  box-sizing: border-box;
   width: 100%;
-  min-width: 228px;
   padding: 0;
   border: none;
   border-radius: base.$sn-density-radius-3xs;
@@ -47,7 +50,7 @@
 
   &:focus-visible {
     outline: base.$sn-theme-color-primary-accent solid base.$sn-primitive-strokeWeight-strokeSemiBold;
-    outline-offset: 0;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
   }
 
   &:not([data-disabled]):hover,
@@ -73,13 +76,9 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: base.$sn-primitive-dimension-32;
-  padding: base.$sn-primitive-dimension-4;
+  min-height: base.$sn-density-size-m;
+  padding: 0 base.$sn-primitive-dimension-4;
   border-radius: inherit;
-
-  &[data-mobile] {
-    min-height: base.$sn-primitive-dimension-40;
-  }
 }
 
 .icon {

@@ -2,7 +2,6 @@ import { Button } from '@ds/button';
 import { Card } from '@ds/card';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
-import { useThemeClassnames } from '@ds/theme';
 import { Typography } from '@ds/typography';
 import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -38,7 +37,6 @@ export function MenuBanner({
   ...rest
 }: MenuBannerProps): ReactElement {
   const { t } = headerLocale.useTranslations();
-  const compactThemeClassname = useThemeClassnames({ density: 'compact' });
 
   const handleClose: MouseEventHandler<HTMLButtonElement> = useCallback(
     e => {
@@ -90,11 +88,11 @@ export function MenuBanner({
 
         {onClose && (
           <Button
-            className={cn(styles.closeButton, compactThemeClassname)}
+            className={styles.closeButton}
             view='elevated'
             appearance='neutral'
             size='s'
-            icon={<CrossSVG size={16} />}
+            icon={<CrossSVG />}
             onClick={handleClose}
             aria-label={t('close')}
             data-test-id={MENU_BANNER_TEST_IDS.close}

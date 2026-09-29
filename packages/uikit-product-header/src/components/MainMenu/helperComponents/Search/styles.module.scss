@@ -3,9 +3,9 @@
 .searchWrap {
   &:not([data-mobile]) {
     flex: 1 1 auto;
-
-    // NOTE: у Search уже есть свои паддинги внутри компонента, поэтому здесь паддинги на 2px меньше
-    padding: base.$sn-primitive-dimension-2 base.$sn-primitive-dimension-10;
+    box-sizing: border-box;
+    margin: 0 base.$sn-primitive-dimension-4;
+    padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-12;
   }
 }
 

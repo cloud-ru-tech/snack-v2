@@ -5,17 +5,16 @@ import styles from './styles.module.scss';
 
 type PathBreadcrumbsProps = {
   items: BreadcrumbsProps['items'];
-  isMobile?: boolean;
 };
 
-export function PathBreadcrumbs({ isMobile, items }: PathBreadcrumbsProps) {
+export function PathBreadcrumbs({ items }: PathBreadcrumbsProps) {
   return (
     <Breadcrumbs
       items={items}
       className={styles.breadcrumbs}
       inactiveLastItem={items.length > 1}
       separator='/'
-      size={isMobile ? 'xs' : 's'}
+      size='xs'
       data-test-id={TEST_IDS.breadcrumbs.root}
     />
   );

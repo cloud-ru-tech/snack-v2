@@ -83,7 +83,12 @@ export function SubCategory({
           onServiceClick={onServiceClick}
         />
 
-        <div className={baseGroupStyles.groupBody} data-subcategory-body='expanded' data-mobile={isMobile || undefined}>
+        <div
+          className={baseGroupStyles.groupBody}
+          data-subcategory-body='expanded'
+          data-mobile={isMobile || undefined}
+          data-show-description={showDescription || undefined}
+        >
           {nestedItems.map(nestedService => (
             <DraggableServiceCard
               key={nestedGroupId + nestedService.id}
@@ -124,7 +129,12 @@ export function SubCategory({
             />
           }
         >
-          <div className={baseGroupStyles.groupBody} data-subcategory-body data-mobile={isMobile || undefined}>
+          <div
+            className={baseGroupStyles.groupBody}
+            data-subcategory-body
+            data-mobile={isMobile || undefined}
+            data-show-description={showDescription || undefined}
+          >
             {nestedItems.map(nestedService => (
               <DraggableServiceCard
                 key={nestedGroupId + nestedService.id}

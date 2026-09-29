@@ -2584,6 +2584,10 @@
         "type": "string",
         "required": false
       },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
+      },
       "logo": {
         "type": "ReactNode",
         "required": false
@@ -3439,10 +3443,6 @@
     "displayName": "PathBreadcrumbs",
     "propsTypeName": "PathBreadcrumbsProps",
     "props": {
-      "isMobile": {
-        "type": "boolean",
-        "required": false
-      },
       "items": {
         "type": "Item[]",
         "required": true,

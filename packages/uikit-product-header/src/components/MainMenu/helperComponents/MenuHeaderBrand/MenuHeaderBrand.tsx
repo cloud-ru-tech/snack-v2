@@ -11,13 +11,14 @@ export type MenuHeaderBrandProps = {
   logo?: ReactNode;
   onClose(): void;
   className?: string;
+  isMobile?: boolean;
 };
 
-export function MenuHeaderBrand({ logo, onClose, className }: MenuHeaderBrandProps) {
+export function MenuHeaderBrand({ logo, onClose, className, isMobile }: MenuHeaderBrandProps) {
   const { t } = headerLocale.useTranslations();
 
   return (
-    <div className={cn(styles.container, className)}>
+    <div className={cn(styles.container, className)} data-mobile={isMobile || undefined}>
       {logo}
       <Divider orientation='vertical' />
 

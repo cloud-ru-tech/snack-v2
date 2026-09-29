@@ -23,6 +23,13 @@ $actions-counts: 1, 2;
 .actions {
   --card-actions-surface-inset-top: #{base.$sn-primitive-dimension-4};
   --card-actions-surface-inset-right: #{base.$sn-primitive-dimension-4};
+
+  // В Figma панель вынесена из потока и не растит строку заголовка; место под неё резервирует actions-reserve.
+  &[data-actions-visibility='always'] {
+    position: absolute;
+    top: var(--card-actions-surface-inset-top);
+    right: var(--card-actions-surface-inset-right);
+  }
 }
 
 .titleContainer {

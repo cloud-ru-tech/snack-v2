@@ -54,7 +54,7 @@ $map-block-color-decor: (
 
   @media (hover: hover) {
     &:hover {
-      background-color: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
+      background-color: base.$sn-theme-color-neutral-decorTransparent;
 
       .headerActions {
         pointer-events: auto;
@@ -68,15 +68,6 @@ $map-block-color-decor: (
   flex: 1 0 0;
   min-width: 0;
   color: base.$sn-theme-color-available-version-textMain;
-
-  &:hover,
-  &:focus-visible,
-  &:has(:focus-visible) {
-    .headerActions {
-      pointer-events: auto;
-      opacity: 1;
-    }
-  }
 }
 
 .group {
@@ -86,6 +77,7 @@ $map-block-color-decor: (
   display: flex;
   flex-direction: column;
 
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
   padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8
@@ -152,10 +144,26 @@ $map-block-color-decor: (
   }
 }
 
+// Как `+ slotContent` в макете: блоки подкатегорий и блоки обычных карточек столбцом с зазором 4.
+.groupBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+}
+
 .groupBody {
   display: grid;
   grid-template-columns: repeat(3, minmax(auto, 1fr));
   gap: base.$sn-primitive-dimension-4;
+
+  &:not([data-subcategory-body]) {
+    padding: base.$sn-primitive-dimension-4;
+  }
+
+  // Карточки без описания в мастере стоят впритык.
+  &:not([data-show-description]) {
+    gap: 0;
+  }
 
   &:not([data-mobile]) {
     // Drawer десктопного меню ресайзится пользователем (см. MenuDesktop.resizable),
@@ -168,6 +176,7 @@ $map-block-color-decor: (
   }
 
   &[data-mobile] {
+    // Нет токена минимальной ширины карточки.
     grid-template-columns: repeat(1, minmax(200px, 1fr));
   }
 
@@ -181,7 +190,7 @@ $map-block-color-decor: (
 }
 
 .decoration {
-  --highlight-border-width: 1px;
+  --highlight-border-width: #{base.$sn-primitive-strokeWeight-strokeRegular};
 
   position: absolute;
   top: 0;

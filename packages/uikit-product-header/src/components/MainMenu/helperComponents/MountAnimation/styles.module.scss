@@ -1,5 +1,7 @@
-$slide-x: -12px;
-$slide-y: 4px;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$slide-x: calc(-1 * #{base.$sn-primitive-dimension-12});
+$slide-y: base.$sn-primitive-dimension-4;
 
 .wrapper {
   will-change: transform, opacity;
