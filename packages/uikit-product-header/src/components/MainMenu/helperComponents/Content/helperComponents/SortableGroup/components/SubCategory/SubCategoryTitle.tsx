@@ -73,7 +73,6 @@ export function SubCategoryTitle({
           <CardActionsSurface
             className={styles.subcategoryTitleActions}
             actionsVisibility='always'
-            actionsSize={isMobile ? 's' : 'm'}
             tooltip={
               hasTooltip
                 ? {

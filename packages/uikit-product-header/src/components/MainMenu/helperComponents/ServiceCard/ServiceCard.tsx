@@ -58,7 +58,7 @@ export function ServiceCard({
   };
 
   const card = showDescription ? (
-    <CardServiceInfo {...commonProps} description={service.description ?? ''} actionsSize={isMobile ? 's' : 'm'} />
+    <CardServiceInfo {...commonProps} description={service.description ?? ''} />
   ) : (
     <CardServiceLight
       {...commonProps}

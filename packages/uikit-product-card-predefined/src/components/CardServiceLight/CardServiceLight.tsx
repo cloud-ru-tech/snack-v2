@@ -203,7 +203,6 @@ export function CardServiceLight<T extends ElementType = 'button'>({
       </div>
 
       <CardActionsSurface
-        actionsSize='m'
         actionsVisibility={actionsVisibility}
         className={styles.cardActions}
         onTooltipOpenChange={setIsTooltipOpen}

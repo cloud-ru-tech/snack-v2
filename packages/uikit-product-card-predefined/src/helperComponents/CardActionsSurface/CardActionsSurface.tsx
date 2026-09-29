@@ -8,7 +8,7 @@ import { MouseEvent, ReactElement, RefObject, useCallback, useState } from 'reac
 
 import { TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
 import { cardPredefinedLocale } from '../../locale';
-import { CardSize, FavoriteProps, VisibilityStrategy } from '../../types';
+import { FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
 
 type TooltipType = 'info' | 'favorite' | 'expandable';
@@ -35,8 +35,6 @@ export type CardActionsSurfaceProps = {
     onClick(): void;
     buttonRef?: RefObject<HTMLButtonElement>;
   };
-  /** Размер кнопок действий, для мобильного вида предполагается использовать `s` */
-  actionsSize?: CardSize;
   /** CSS-класс корневого элемента */
   className?: string;
   /** Callback, вызываемый при открытии тултипа */
@@ -48,7 +46,6 @@ export function CardActionsSurface({
   tooltip,
   favorite,
   expandable,
-  actionsSize = 'm',
   className,
   onTooltipOpenChange,
 }: CardActionsSurfaceProps): ReactElement | null {
@@ -107,7 +104,7 @@ export function CardActionsSurface({
             as='span'
             role='button'
             aria-label={t('actions.info')}
-            size={actionsSize}
+            size='m'
             appearance='neutral'
             view='simple'
             icon={<InfoOutlineSVG />}
@@ -132,7 +129,7 @@ export function CardActionsSurface({
             as='span'
             role='button'
             aria-pressed={Boolean(favorite.checked)}
-            size={actionsSize}
+            size='m'
             appearance='neutral'
             view='simple'
             icon={favorite.checked ? <StarFilledSVG /> : <StarSVG />}
@@ -159,7 +156,7 @@ export function CardActionsSurface({
             as='span'
             role='button'
             aria-expanded={expandable.value}
-            size={actionsSize}
+            size='m'
             appearance='neutral'
             view='simple'
             icon={expandable.value ? <CollapseVerticalSVG /> : <ExpandVerticalSVG />}

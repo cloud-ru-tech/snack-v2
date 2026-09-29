@@ -583,7 +583,6 @@ export function PolymorphicLink() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actionsSize` | `"m"` \| `"s"` | `m` | Размер кнопок действий, для мобильного вида предполагается использовать `s` |
 | `actionsVisibility` | `"always"` \| `"hover"` | `'hover'` | Формат отображения дополнительных действий: всегда или при наведении и фокусе |
 | `as` | `ElementType` | — | Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д. |
 | `className` | `string` | — | CSS-класс корневого элемента |
@@ -600,8 +599,6 @@ export function PolymorphicLink() {
 ##### Related types
 
 - `CardPromoTagProps` = `PromoTagPredefinedProps & { as?: never; innerRef?: never; }`
-
-- `CardSize` = `"m"` \| `"s"`
 
 **FavoriteProps**
 

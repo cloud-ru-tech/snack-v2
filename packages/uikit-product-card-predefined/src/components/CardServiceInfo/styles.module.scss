@@ -1,21 +1,15 @@
 @use '@ds/figma-variables/build/scss/components/button.module' as btn;
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
-$actions-sizes: 's', 'm';
 $actions-counts: 1, 2;
 
-// Резерв места под действия равен ширине icon-only кнопки того же размера — иначе при
-// `actionsSize='s'` отступ был бы избыточным, а при смене плотности не совпал бы с реальной кнопкой.
+// Резерв места под действия равен ширине icon-only кнопки — при смене плотности совпадает с реальной кнопкой.
 @mixin actions-reserve {
-  @each $size in $actions-sizes {
-    $width: base.simple-var(btn.$button, 'anatomy', 'size', $size, 'container', 'iconOnly', 'min-width');
+  $width: base.simple-var(btn.$button, 'anatomy', 'size', 'm', 'container', 'iconOnly', 'min-width');
 
-    &[data-actions-size='#{$size}'] {
-      @each $count in $actions-counts {
-        &[data-visible-actions='#{$count}'] {
-          padding-right: calc(#{$count} * #{$width});
-        }
-      }
+  @each $count in $actions-counts {
+    &[data-visible-actions='#{$count}'] {
+      padding-right: calc(#{$count} * #{$width});
     }
   }
 }

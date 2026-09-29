@@ -10,14 +10,13 @@ import { ComponentPropsWithoutRef, ElementType, KeyboardEventHandler, ReactEleme
 import { TEST_IDS, VISIBILITY_STRATEGY } from '../../constants';
 import {
   CardActionsSurface,
-  CardActionsSurfaceProps,
   CardPromoTag,
   createCardActionsKeyDownHandler,
 } from '../../helperComponents';
 import { CardPromoTagProps, FavoriteProps, VisibilityStrategy } from '../../types';
 import styles from './styles.module.scss';
 
-type BaseCardServiceInfoProps = Pick<CardActionsSurfaceProps, 'actionsSize'> & {
+type BaseCardServiceInfoProps = {
   /** Иконка сервиса */
   icon?: ReactElement;
   /** Заголовок карточки */
@@ -65,7 +64,6 @@ export function CardServiceInfo<T extends ElementType = 'button'>({
   promoTag,
   actionsVisibility: actionsVisibilityProp,
   favorite,
-  actionsSize = 'm',
   className,
   disabled,
   expandable,
@@ -134,7 +132,6 @@ export function CardServiceInfo<T extends ElementType = 'button'>({
             <div
               className={styles.titleContainer}
               data-actions-visibility={actionsVisibility}
-              data-actions-size={actionsSize}
               data-visible-actions={visibleActions.length}
             >
               <Typography
@@ -159,7 +156,6 @@ export function CardServiceInfo<T extends ElementType = 'button'>({
             </div>
 
             <CardActionsSurface
-              actionsSize={actionsSize}
               actionsVisibility={actionsVisibility}
               className={styles.actions}
               favorite={
