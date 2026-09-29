@@ -10,6 +10,7 @@ export type HeaderButtonProps<T extends ElementType = 'button'> = Omit<
 > & {
   /** Настройки тултипа. `placement` и `disableSpanWrapper` зафиксированы под анатомию хедера */
   tooltip?: Omit<TooltipProps, 'placement'>;
+  /** Мобильная раскладка — тултип не показывается (на mobile нет hover). */
   isMobile?: boolean;
 };
 
@@ -41,13 +42,7 @@ export function HeaderButton<T extends ElementType = 'button'>({
             }
       }
     >
-      <Button<T>
-        {...(rest as ButtonProps<T>)}
-        size='m'
-        appearance='neutral'
-        view='simple'
-        className={className}
-      />
+      <Button<T> {...(rest as ButtonProps<T>)} size='m' appearance='neutral' view='simple' className={className} />
     </WithTooltip>
   );
 }

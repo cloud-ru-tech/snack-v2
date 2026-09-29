@@ -2,57 +2,71 @@ import { Typography } from '@ds/typography';
 import { CardActionsSurface, createCardActionsKeyDownHandler } from '@ds/uikit-product-card-predefined';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { stopEventPropagation } from '@ds/utils';
-import { MouseEvent, useRef } from 'react';
+import { memo, MouseEvent, useCallback, useMemo, useRef } from 'react';
 
 import { getLinkEmblem } from '../../../../../../utils';
-import { DraggableServiceCard, DraggableServiceCardProps } from '../../../../../ServiceCard';
+import { GridServiceCard, GridServiceCardProps } from '../../../../../ServiceCard';
+import { useCardsContext } from '../../../../cardsContext';
 import { TEST_IDS } from '../../../../constants';
 import styles from './styles.module.scss';
 
 export type SubCategoryTitleProps = {
+  /** Id группы-предка. */
   groupId: string;
-} & Pick<
-  DraggableServiceCardProps,
-  'expandable' | 'service' | 'onServiceClick' | 'favorite' | 'showDescription' | 'isMobile' | 'dragDisabled'
->;
 
-export function SubCategoryTitle({
-  groupId,
-  service,
-  showDescription: showDescriptionProp,
-  isMobile,
-  dragDisabled,
-  favorite,
-  onServiceClick,
-  expandable,
-}: SubCategoryTitleProps) {
+  /** Кнопка избранного показывается только если для группы избранное включено. */
+  groupFavoritesEnabled?: boolean;
+} & Pick<GridServiceCardProps, 'expandable' | 'service'>;
+
+function SubCategoryTitleBase({ groupId, service, groupFavoritesEnabled, expandable }: SubCategoryTitleProps) {
+  const {
+    isMobile,
+    showDescription: showDescriptionProp,
+    dragEnabled,
+    favoriteIds,
+    onFavoriteChange,
+    onServiceClick,
+  } = useCardsContext();
+
   const titleRef = useRef<HTMLAnchorElement>(null);
   const tooltipTriggerRef = useRef<HTMLButtonElement>(null);
   const favoriteRef = useRef<HTMLButtonElement>(null);
 
-  const handleServiceClick = (event: MouseEvent<HTMLElement>) => {
-    stopEventPropagation(event);
-    onServiceClick?.(service, event);
-  };
+  const { id, description, icon } = service;
 
-  const titleTestId = `${TEST_IDS.subcategoryTitle}-${service.id}`;
+  const handleServiceClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      stopEventPropagation(event);
+      onServiceClick?.(service, event);
+    },
+    [onServiceClick, service],
+  );
 
-  const isFavorite = Boolean(favorite?.value.includes(service.id));
-  const showDescription = showDescriptionProp && Boolean(service.description);
-  const hasTooltip = !showDescription && service.description;
+  const titleTestId = `${TEST_IDS.subcategoryTitle}-${id}`;
 
-  const handleKeyDown = createCardActionsKeyDownHandler({
-    cardRef: titleRef,
-    items: [
-      hasTooltip ? { ref: tooltipTriggerRef } : null,
-      favorite
-        ? {
-            ref: favoriteRef,
-            onActivate: () => favorite.onChange(service.id)(!isFavorite),
-          }
-        : null,
-    ],
-  });
+  const cardFavoriteChange = groupFavoritesEnabled && favoriteIds ? onFavoriteChange : undefined;
+  const isFavorite = Boolean(favoriteIds?.has(id));
+  const showDescription = showDescriptionProp && Boolean(description);
+  const hasTooltip = !showDescription && Boolean(description);
+
+  const handleKeyDown = useMemo(
+    () =>
+      createCardActionsKeyDownHandler({
+        cardRef: titleRef,
+        items: [
+          hasTooltip ? { ref: tooltipTriggerRef } : null,
+          cardFavoriteChange
+            ? {
+                ref: favoriteRef,
+                onActivate: () => cardFavoriteChange(id)(!isFavorite),
+              }
+            : null,
+        ],
+      }),
+    [hasTooltip, cardFavoriteChange, id, isFavorite],
+  );
+
+  const emblem = useMemo(() => getLinkEmblem({ icon }), [icon]);
 
   if (expandable?.value) {
     return (
@@ -65,7 +79,7 @@ export function SubCategoryTitle({
             onClick={handleServiceClick}
             innerRef={titleRef}
             title={service.label}
-            icon={getLinkEmblem(service)}
+            icon={emblem}
             className={styles.subcategoryTitleClickable}
             data-test-id={titleTestId}
           />
@@ -76,7 +90,7 @@ export function SubCategoryTitle({
             tooltip={
               hasTooltip
                 ? {
-                    tip: service.description,
+                    tip: description,
                     buttonRef: tooltipTriggerRef,
                     trigger: isMobile ? 'click' : 'hoverAndFocusVisible',
                     'data-test-id': `${titleTestId}-tooltip`,
@@ -84,11 +98,11 @@ export function SubCategoryTitle({
                 : undefined
             }
             favorite={
-              favorite
+              cardFavoriteChange
                 ? {
                     enabled: true,
                     checked: isFavorite,
-                    onChange: favorite.onChange(service.id),
+                    onChange: (checked: boolean) => cardFavoriteChange(id)(checked),
                     buttonRef: favoriteRef,
                     'data-test-id': `${titleTestId}-favorite`,
                   }
@@ -107,7 +121,7 @@ export function SubCategoryTitle({
             className={styles.subcategoryDescription}
             data-test-id={`${titleTestId}-description`}
           >
-            {service.description}
+            {description}
           </Typography>
         )}
       </div>
@@ -123,16 +137,19 @@ export function SubCategoryTitle({
       onPointerDown={stopEventPropagation}
       onClick={stopEventPropagation}
     >
-      <DraggableServiceCard
+      <GridServiceCard
         groupId={groupId}
         service={service}
-        favorite={favorite}
+        favoriteChecked={isFavorite}
+        onFavoriteChange={cardFavoriteChange}
         isMobile={isMobile}
         onServiceClick={onServiceClick}
         showDescription={showDescriptionProp}
-        dragDisabled={dragDisabled}
+        dragEnabled={dragEnabled}
         expandable={expandable}
       />
     </div>
   );
 }
+
+export const SubCategoryTitle = memo(SubCategoryTitleBase);

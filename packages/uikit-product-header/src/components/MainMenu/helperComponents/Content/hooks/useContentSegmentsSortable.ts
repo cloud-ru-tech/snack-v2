@@ -5,8 +5,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { LinksGroup, MainMenuSegment, MainMenuSegmentPrefs } from '../../../types';
 
 function mergeIdsPreservingOrder(prevIds: string[], nextIds: string[]) {
-  const kept = prevIds.filter(id => nextIds.includes(id));
-  const added = nextIds.filter(id => !prevIds.includes(id));
+  const nextIdSet = new Set(nextIds);
+  const prevIdSet = new Set(prevIds);
+  const kept = prevIds.filter(id => nextIdSet.has(id));
+  const added = nextIds.filter(id => !prevIdSet.has(id));
 
   if (added.length === 0 && kept.length === prevIds.length) {
     return prevIds;

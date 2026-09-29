@@ -1,34 +1,31 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist } from '@ds/list';
-import { Scroll } from '@ds/scroll';
 import { SegmentControl, WIDTH } from '@ds/segment-control';
-import { CardServiceLight } from '@ds/uikit-product-card-predefined';
-import { useValueControl } from '@ds/utils';
+import { useEventHandler, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, useMemo } from 'react';
 
 import { useDesktopComfortClassName } from '../../../../hooks/useDesktopComfortClassName';
 import { headerLocale } from '../../../../locale';
-import { FavoriteProps, InnerLink, LinksGroup } from '../../types';
+import { FavoriteProps, InnerLink } from '../../types';
 import { resolveInnerLinksByIds } from '../../utils';
-import { EmptyState, FavoritesItemsSkeleton, FavoritesSortable } from './components';
+import { Content, FavoritesItemsSkeleton } from './components';
 import { FAVORITES_SEGMENT, FAVORITES_TEST_IDS, FavoritesSegment } from './constants';
 import styles from './styles.module.scss';
-import { getCommonCardProps } from './utils';
 
 export type FavoritesProps = {
   /** Список избранных сервисов */
   favorite: FavoriteProps;
-  /** Группы сервисов для разрешения id в карточки */
-  allServiceGroups: LinksGroup[];
+  /** Сервисы каталога по id для разрешения id в карточки */
+  servicesById: ReadonlyMap<string, InnerLink>;
   /** CSS-класс строки заголовка (segment + кнопка настроек) */
   headerClassName?: string;
   /** Флаг мобильной раскладки */
   isMobile?: boolean;
 };
 
-export function Favorites({ favorite, allServiceGroups, headerClassName, isMobile }: FavoritesProps) {
+export function Favorites({ favorite, servicesById, headerClassName, isMobile }: FavoritesProps) {
   const { t } = headerLocale.useTranslations();
   const loading = favorite.loading;
   const comfortClassName = useDesktopComfortClassName();
@@ -48,91 +45,28 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
   );
 
   const favoriteItems = useMemo(
-    () => resolveInnerLinksByIds(favorite.value, allServiceGroups),
-    [favorite.value, allServiceGroups],
+    () => resolveInnerLinksByIds(favorite.value, servicesById),
+    [favorite.value, servicesById],
   );
 
   const recentItems = useMemo(
-    () => resolveInnerLinksByIds(favorite.recentServices ?? [], allServiceGroups),
-    [favorite.recentServices, allServiceGroups],
+    () => resolveInnerLinksByIds(favorite.recentServices ?? [], servicesById),
+    [favorite.recentServices, servicesById],
   );
 
   const resolvedSegment = segment ?? FAVORITES_SEGMENT.Favorites;
-  const isFavoritesSegment = resolvedSegment === FAVORITES_SEGMENT.Favorites;
-  const isEmpty = (isFavoritesSegment ? favoriteItems : recentItems).length === 0;
 
-  const handleRecentServiceClick = (service: InnerLink) => (event: MouseEvent<HTMLElement>) => {
+  // Стабильные по ссылке колбэки: иначе `memo` карточек и списков-по-сегменту ломается
+  // при каждом рендере `Favorites` — см. `FavoritesReorderList`/`RecentList`/`FavoritesList`.
+  const handleRecentServiceClick = useEventHandler((service: InnerLink) => (event: MouseEvent<HTMLElement>) => {
     favorite.onRecentServiceClick?.(service.id, event);
     service.onClick(event);
-  };
+  });
 
-  const handleFavoriteServiceClick = (service: InnerLink) => (event: MouseEvent<HTMLElement>) => {
+  const handleFavoriteServiceClick = useEventHandler((service: InnerLink) => (event: MouseEvent<HTMLElement>) => {
     favorite.onFavoriteServiceClick?.(service.id, event);
     service.onClick(event);
-  };
-
-  const recentCards = recentItems.map(service => (
-    <CardServiceLight
-      key={service.id}
-      as='a'
-      className={styles.card}
-      actionsVisibility={isMobile ? 'always' : 'hover'}
-      favorite={{
-        enabled: true,
-        checked: favorite.value.includes(service.id),
-        onChange: favorite.onChange(service.id),
-      }}
-      {...getCommonCardProps(service, handleRecentServiceClick(service))}
-    />
-  ));
-
-  const content = (() => {
-    if (loading) {
-      return <FavoritesItemsSkeleton />;
-    }
-
-    /* Drag&drop реордер и приём карточек из сетки — только на desktop (требует
-      <DndContext>-предка). На mobile нет reorder-жеста, добавление/удаление
-      избранного идёт через звёздочку на карточке. */
-    return isMobile ? (
-      <div className={styles.listScroll}>
-        <Scroll className={styles.listScrollInner} data-mobile={isMobile || undefined} overflow={{ x: 'hidden' }}>
-          <div className={styles.list} data-test-id={FAVORITES_TEST_IDS.list}>
-            {isEmpty && <EmptyState isFavoritesSegment={isFavoritesSegment} isMobile />}
-
-            {!isEmpty &&
-              isFavoritesSegment &&
-              favoriteItems.map(service => (
-                <CardServiceLight
-                  key={service.id}
-                  as='a'
-                  className={styles.card}
-                  actionsVisibility='always'
-                  favorite={{
-                    enabled: true,
-                    checked: true,
-                    onChange: favorite.onChange(service.id),
-                  }}
-                  {...getCommonCardProps(service, handleFavoriteServiceClick(service))}
-                />
-              ))}
-
-            {!isEmpty && !isFavoritesSegment && recentCards}
-          </div>
-        </Scroll>
-      </div>
-    ) : (
-      <FavoritesSortable
-        favorite={favorite}
-        favoriteItems={favoriteItems}
-        segment={resolvedSegment}
-        setSegment={setSegment}
-        isEmpty={isEmpty}
-        recentCards={recentCards}
-        onFavoriteServiceClick={handleFavoriteServiceClick}
-      />
-    );
-  })();
+  });
 
   return (
     <div className={styles.root} data-test-id={FAVORITES_TEST_IDS.root}>
@@ -140,7 +74,7 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
         <SegmentControl
           size='m'
           width={WIDTH.Full}
-          value={loading ? undefined : segment}
+          value={segment}
           onChange={setSegment}
           className={styles.segmentControl}
           data-test-id={FAVORITES_TEST_IDS.segmentControl}
@@ -161,7 +95,21 @@ export function Favorites({ favorite, allServiceGroups, headerClassName, isMobil
         )}
       </div>
 
-      {content}
+      {loading ? (
+        <FavoritesItemsSkeleton />
+      ) : (
+        <Content
+          isMobile={isMobile}
+          favoriteIds={favorite.value}
+          onFavoriteChange={favorite.onChange}
+          favoriteItems={favoriteItems}
+          recentItems={recentItems}
+          segment={resolvedSegment}
+          setSegment={setSegment}
+          onFavoriteServiceClick={handleFavoriteServiceClick}
+          onRecentServiceClick={handleRecentServiceClick}
+        />
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Skeleton, SkeletonContext, SkeletonText } from '@ds/skeleton';
 import styles from '../styles.module.scss';
 
 type SortableGroupSkeletonProps = {
+  /** Мобильная раскладка. */
   isMobile?: boolean;
 };
 

@@ -9,7 +9,13 @@
   border-radius: base.$sn-density-radius-3xs;
 }
 
-.draggableCard {
+.draggableCard,
+.staticCard {
   display: flex;
   min-width: 0;
+}
+
+// Та же позиция, что задаёт `DragGhost` у перетаскиваемой карточки: раскладка не должна зависеть от dnd.
+.staticCard {
+  position: relative;
 }

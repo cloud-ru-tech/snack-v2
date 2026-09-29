@@ -17,10 +17,9 @@ import { createContext, ReactNode, useCallback, useContext, useMemo, useState } 
 import { createPortal } from 'react-dom';
 
 import { ServiceCard } from '../helperComponents/ServiceCard';
-import { FavoriteProps, LinksGroup } from '../types';
+import { FavoriteProps, InnerLink } from '../types';
 import {
   favoriteListCollisionDetection,
-  flatLinksGroups,
   getDragReferenceY,
   isServiceDragId,
   isServiceSourceDragId,
@@ -35,6 +34,8 @@ const restrictGroupDragToVerticalAxis: Modifier = args => {
 
   return restrictToVerticalAxis(args);
 };
+
+const MODIFIERS = [restrictGroupDragToVerticalAxis];
 
 type MainMenuDndOverlayContextValue = {
   setGroupDragOverlay(overlay: ReactNode): void;
@@ -53,19 +54,19 @@ export function useMainMenuDndOverlay() {
 }
 
 type UseMainMenuDndProps = {
+  /** Избранное. Без пропа DnD карточек в избранное отключён. */
   favorite?: FavoriteProps;
 
-  /** Все группы карточек из сегментов (для резолва сервисов при DnD в избранное). */
-  groups: LinksGroup[];
+  /** Все сервисы каталога по id (для резолва при DnD в избранное). */
+  servicesById: ReadonlyMap<string, InnerLink>;
 
+  /** Показывать описания сервисов в превью карточки при перетаскивании. */
   showDescription: boolean;
 };
 
-export function useMainMenuDnd({ favorite, groups, showDescription }: UseMainMenuDndProps) {
+export function useMainMenuDnd({ favorite, servicesById, showDescription }: UseMainMenuDndProps) {
   const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
   const [groupDragOverlay, setGroupDragOverlay] = useState<ReactNode>(null);
-
-  const servicesById = useMemo(() => new Map(flatLinksGroups(groups).map(service => [service.id, service])), [groups]);
 
   const activeService = activeServiceId ? servicesById.get(activeServiceId) : undefined;
 
@@ -136,7 +137,7 @@ export function useMainMenuDnd({ favorite, groups, showDescription }: UseMainMen
 
   return {
     sensors,
-    modifiers: [restrictGroupDragToVerticalAxis],
+    modifiers: MODIFIERS,
     collisionDetection: favoriteListCollisionDetection,
     onDragStart: handleDragStart,
     onDragEnd: handleDragEnd,

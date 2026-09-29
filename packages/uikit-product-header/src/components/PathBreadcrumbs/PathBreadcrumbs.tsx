@@ -4,6 +4,7 @@ import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
 type PathBreadcrumbsProps = {
+  /** Пункты хлебных крошек. */
   items: BreadcrumbsProps['items'];
 };
 

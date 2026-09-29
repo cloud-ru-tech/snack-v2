@@ -1,13 +1,13 @@
 import { Divider } from '@ds/divider';
 import { DrawerCustom } from '@ds/drawer';
 import { Scroll } from '@ds/scroll';
-import { useValueControl } from '@ds/utils';
 import { useCallback, useEffect, useMemo } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
 import { MainMenuDndContext, useMainMenuDnd } from '../../hooks/useMainMenuDnd';
 import { useMenuItems } from '../../hooks/useMenuItems';
 import { MainMenuProps } from '../../types';
+import { buildServicesById } from '../../utils';
 import { Content } from '../Content';
 import { Favorites } from '../Favorites';
 import { MenuBottom } from '../MenuBottom';
@@ -18,8 +18,8 @@ import { MENU_WIDTH_MAX, MENU_WIDTH_MIN } from './constants';
 import styles from './styles.module.scss';
 
 export function MenuDesktop({
-  open: openProp,
-  setOpen: setOpenProp,
+  open = false,
+  setOpen,
   settingItems,
   platformGroups,
   segments,
@@ -41,8 +41,6 @@ export function MenuDesktop({
   draggerTooltip,
   loading,
 }: MainMenuProps) {
-  const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
-
   const { scrollRef, searchRef, resultItems } = useMenuItems({
     segments,
     search,
@@ -70,19 +68,25 @@ export function MenuDesktop({
   // сегменты используются, `loading` держит панель смонтированной на время ответа бэка — иначе
   // `Content` не успевает показать свой skeleton (он монтируется только когда данные уже пришли),
   // и между "ничего" и карточками на кадр проскакивает пустое состояние «нет данных».
-  const isNeedRightBlock = segments !== undefined && (loading || segments.some(segment => segment.items.length > 0));
+  const isNeedRightBlock = useMemo(
+    () => segments !== undefined && (loading || segments.some(segment => segment.items.length > 0)),
+    [segments, loading],
+  );
+
   const hasBottomItems = Boolean(settingItems?.length) || Boolean(leftBottom);
 
   const allServiceGroups = useMemo(() => segments?.flatMap(segment => segment.items) ?? [], [segments]);
 
+  const servicesById = useMemo(() => buildServicesById(allServiceGroups), [allServiceGroups]);
+
   const mainMenuDnd = useMainMenuDnd({
     favorite,
-    groups: allServiceGroups,
+    servicesById,
     showDescription: preferences?.showDescription.value ?? false,
   });
 
   const handleCloseDrawer = useCallback(() => {
-    setOpen(false);
+    setOpen?.(false);
   }, [setOpen]);
 
   const menu = (
@@ -102,7 +106,7 @@ export function MenuDesktop({
       <div className={styles.menuBody}>
         <MountAnimation className={styles.left} data-test-id={TEST_IDS.mainMenu.left} type='slide-right'>
           {leftTop && <div className={styles.leftTop}>{leftTop}</div>}
-          {isNeedRightBlock && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} />}
+          {isNeedRightBlock && favorite && <Favorites favorite={favorite} servicesById={servicesById} />}
 
           {hasBottomItems && <MenuBottom settingItems={settingItems} leftBottom={leftBottom} />}
         </MountAnimation>
@@ -113,7 +117,9 @@ export function MenuDesktop({
               <Divider orientation='vertical' />
             </MountAnimation>
 
-            <MountAnimation type='fade-slide-up-right' className={styles.right} data-test-id={TEST_IDS.mainMenu.right}>
+            {/* Анимация появления перенесена с панели на группы (см. `SortableGroup`, `appear`): transform
+                на обёртке с сотнями карточек делает её отдельным слоем и рвёт анимацию тяжёлым маунтом. */}
+            <div className={styles.right} data-test-id={TEST_IDS.mainMenu.right}>
               <Scroll
                 paddingAbsolute
                 className={styles.scroll}
@@ -138,7 +144,7 @@ export function MenuDesktop({
                   loading={loading}
                 />
               </Scroll>
-            </MountAnimation>
+            </div>
           </>
         )}
       </div>

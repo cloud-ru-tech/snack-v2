@@ -8,8 +8,11 @@ import { HeaderButton } from '../../../HeaderButton';
 import styles from './styles.module.scss';
 
 export type MenuHeaderBrandProps = {
+  /** Логотип в шапке меню. */
   logo?: ReactNode;
+  /** Колбэк клика по кнопке закрытия меню. */
   onClose(): void;
+  /** CSS-класс корневого элемента. */
   className?: string;
   isMobile?: boolean;
 };

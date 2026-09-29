@@ -98,6 +98,20 @@ $list-padding-bottom: base.$sn-primitive-dimension-8;
 .sortableCard {
   cursor: grab;
   min-width: 0;
+
+  // `DropIndicator` центрируется на границе между карточками сдвигом в половину своей толщины —
+  // это верно только когда соседи стоят вплотную. У `.list` есть `gap: $card-gap` между
+  // карточками, поэтому без компенсации линия ложится на край целевой карточки со сдвигом
+  // в половину зазора вместо середины промежутка между соседями. `:not([data-at-edge])` —
+  // у крайних карточек другая раскладка индикатора (см. `$edge-offset` в `@ds/drag-and-drop`),
+  // её не трогаем.
+  > [data-orientation='horizontal'][data-placement='before']:not([data-at-edge]) {
+    transform: translateY(calc(-50% - #{$card-gap} / 2));
+  }
+
+  > [data-orientation='horizontal'][data-placement='after']:not([data-at-edge]) {
+    transform: translateY(calc(50% + #{$card-gap} / 2));
+  }
 }
 
 .skeleton {

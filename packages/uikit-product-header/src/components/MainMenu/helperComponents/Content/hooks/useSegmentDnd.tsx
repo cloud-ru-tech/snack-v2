@@ -2,8 +2,9 @@ import { DragEndEvent, DragStartEvent, useDndMonitor } from '@dnd-kit/core';
 import { useCallback } from 'react';
 
 import { useMainMenuDndOverlay } from '../../../hooks/useMainMenuDnd';
-import { FavoriteProps, LinksGroup } from '../../../types';
+import { LinksGroup } from '../../../types';
 import { isServiceDragId, resolveGroupBlockColor } from '../../../utils';
+import { CardsContextValue } from '../cardsContext';
 import { SortableGroupDragPreview } from '../helperComponents/SortableGroup';
 
 type UseSegmentDndProps = {
@@ -16,9 +17,7 @@ type UseSegmentDndProps = {
   showDescription: boolean;
 
   showGroupsColors?: boolean;
-
-  favorite?: FavoriteProps;
-};
+} & Pick<CardsContextValue, 'favoriteIds' | 'onFavoriteChange'>;
 
 /**
  * DnD групп внутри активного сегмента: drag overlay группы поверх `useContentSegmentsSortable`.
@@ -30,7 +29,8 @@ export function useSegmentDnd({
   onSortableDragEnd,
   showDescription,
   showGroupsColors,
-  favorite,
+  favoriteIds,
+  onFavoriteChange,
 }: UseSegmentDndProps) {
   const { setGroupDragOverlay } = useMainMenuDndOverlay();
 
@@ -48,14 +48,15 @@ export function useSegmentDnd({
               isExpanded={expandedIds.includes(activeGroup.id)}
               blockColor={resolveGroupBlockColor(activeGroup.blockColor, showGroupsColors)}
               showDescription={showDescription}
-              favorite={activeGroup.favoritesEnabled ? favorite : undefined}
+              favoriteIds={activeGroup.favoritesEnabled ? favoriteIds : undefined}
+              onFavoriteChange={onFavoriteChange}
               highlight={activeGroup.highlight}
             />,
           );
         }
       }
     },
-    [expandedIds, favorite, setGroupDragOverlay, showDescription, showGroupsColors, visibleGroups],
+    [expandedIds, favoriteIds, onFavoriteChange, setGroupDragOverlay, showDescription, showGroupsColors, visibleGroups],
   );
 
   const handleDragEnd = useCallback(

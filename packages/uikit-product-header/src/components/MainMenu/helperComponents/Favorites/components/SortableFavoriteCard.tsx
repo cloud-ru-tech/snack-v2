@@ -1,18 +1,23 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { DRAG_MODE, DragGhost, DropIndicator, PLACEMENT } from '@ds/drag-and-drop';
-import { CardServiceLight, CardServiceLightProps } from '@ds/uikit-product-card-predefined';
+import { CardNavigation, CardNavigationProps } from '@ds/uikit-product-card-predefined';
+import { memo } from 'react';
 
 import { getServiceFavoriteDragId } from '../../../utils/dnd';
 import styles from '../styles.module.scss';
 
 export type SortableFavoriteCardProps = {
+  /** Id сервиса (используется для drag-идентификатора карточки). */
   serviceId: string;
+  /** Показывать индикатор вставки перед карточкой (drag поверх избранного). */
   showInsertIndicatorBefore?: boolean;
+  /** Показывать индикатор вставки после карточки (drag поверх избранного). */
   showInsertIndicatorAfter?: boolean;
+  /** Карточка первая в списке — влияет на позиционирование индикатора вставки. */
   isFirst?: boolean;
 } & Pick<
-  CardServiceLightProps<'a'>,
+  CardNavigationProps<'a'>,
   | 'href'
   | 'className'
   | 'tabIndex'
@@ -26,7 +31,7 @@ export type SortableFavoriteCardProps = {
   | 'data-test-id'
 >;
 
-export function SortableFavoriteCard({
+function SortableFavoriteCardBase({
   serviceId,
   className,
   showInsertIndicatorBefore,
@@ -62,9 +67,11 @@ export function SortableFavoriteCard({
     >
       {showInsertIndicatorBefore && <DropIndicator placement={PLACEMENT.Before} atEdge={isFirst} />}
 
-      <CardServiceLight as='a' {...cardProps} className={className ?? styles.card} tabIndex={tabIndex} />
+      <CardNavigation as='a' {...cardProps} className={className ?? styles.card} tabIndex={tabIndex} />
 
       {showInsertIndicatorAfter && <DropIndicator placement={PLACEMENT.After} atEdge />}
     </DragGhost>
   );
 }
+
+export const SortableFavoriteCard = memo(SortableFavoriteCardBase);

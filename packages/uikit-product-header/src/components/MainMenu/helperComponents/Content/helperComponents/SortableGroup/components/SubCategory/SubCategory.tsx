@@ -1,34 +1,63 @@
 import { Accordion } from '@ds/accordion';
-import { useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 
+import { noop } from '../../../../../../../../utils/noop';
+import { InnerLink } from '../../../../../../types';
 import { getNestedServiceGroupId, getSubCategoryId } from '../../../../../../utils/innerLink';
-import { DraggableServiceCard, ServiceCardProps } from '../../../../../ServiceCard';
+import { GridServiceCard } from '../../../../../ServiceCard';
+import { useCardsContext } from '../../../../cardsContext';
 import { TEST_IDS } from '../../../../constants';
 import baseGroupStyles from '../../styles.module.scss';
 import styles from './styles.module.scss';
 import { SubCategoryTitle } from './SubCategoryTitle';
 
-const noop = () => {};
+const TITLE_ONLY_EXPANDABLE = { value: true, onClick: noop };
 
-export type SubCategoryProps = Pick<
-  ServiceCardProps,
-  'service' | 'onServiceClick' | 'favorite' | 'showDescription' | 'isMobile'
-> & {
+type SubCategoryBodyProps = {
+  nestedGroupId: string;
+  items: InnerLink[];
+  variant: 'expanded' | 'expandable';
+};
+
+const SubCategoryBody = memo(function SubCategoryBody({ nestedGroupId, items, variant }: SubCategoryBodyProps) {
+  const { isMobile, showDescription, dragEnabled, favoriteIds, onFavoriteChange, onServiceClick } = useCardsContext();
+
+  const cardFavoriteChange = favoriteIds ? onFavoriteChange : undefined;
+
+  return (
+    <div
+      className={baseGroupStyles.groupBody}
+      data-subcategory-body={variant === 'expanded' ? 'expanded' : true}
+      data-mobile={isMobile || undefined}
+      data-show-description={showDescription || undefined}
+    >
+      {items.map(nestedService => (
+        <GridServiceCard
+          key={nestedGroupId + nestedService.id}
+          groupId={nestedGroupId}
+          service={nestedService}
+          favoriteChecked={favoriteIds?.has(nestedService.id)}
+          onFavoriteChange={cardFavoriteChange}
+          isMobile={isMobile}
+          onServiceClick={onServiceClick}
+          showDescription={showDescription}
+          dragEnabled={dragEnabled}
+        />
+      ))}
+    </div>
+  );
+});
+
+export type SubCategoryProps = {
+  /** Id группы-предка. */
   groupId: string;
-  dragDisabled?: boolean;
+  /** Карточка подкатегории (с непустым {@link InnerLink.items}). */
+  service: InnerLink;
+  /** Разрешено ли добавление карточек группы в избранное. */
   groupFavoritesEnabled?: boolean;
 };
 
-export function SubCategory({
-  groupId,
-  service,
-  showDescription,
-  isMobile,
-  dragDisabled,
-  favorite,
-  onServiceClick,
-  groupFavoritesEnabled,
-}: SubCategoryProps) {
+function SubCategoryBase({ groupId, service, groupFavoritesEnabled }: SubCategoryProps) {
   const subcategoryId = getSubCategoryId(groupId, service.id);
   const nestedGroupId = getNestedServiceGroupId(groupId, service.id);
   const nestedItems = useMemo(() => service.items?.filter(item => !item.hidden) ?? [], [service.items]);
@@ -47,109 +76,56 @@ export function SubCategory({
     }
   }, [isExpanded, subcategoryId, isExpandableEnabled]);
 
+  const expandable = useMemo(
+    () => ({ value: Boolean(isExpanded), onClick: handleExpandedChange }),
+    [isExpanded, handleExpandedChange],
+  );
+
+  const testId = `${TEST_IDS.subcategory}-${service.id}`;
+
+  const title = (
+    <SubCategoryTitle
+      groupId={groupId}
+      service={service}
+      expandable={viewMode === 'group-title-only' ? TITLE_ONLY_EXPANDABLE : expandable}
+      groupFavoritesEnabled={groupFavoritesEnabled}
+    />
+  );
+
   // 'group-title-only' — только заголовок подкатегории, без раскрываемого тела и кнопки
   // переключения: карточка ведёт себя как обычная ссылка (см. isSubCategoryCard в utils/innerLink).
   if (viewMode === 'group-title-only') {
     return (
-      <div className={styles.subcategory} data-title-only data-test-id={`${TEST_IDS.subcategory}-${service.id}`}>
-        <SubCategoryTitle
-          groupId={groupId}
-          service={service}
-          expandable={{ value: true, onClick: noop }}
-          showDescription={showDescription}
-          isMobile={isMobile}
-          dragDisabled={dragDisabled}
-          favorite={groupFavoritesEnabled ? favorite : undefined}
-          onServiceClick={onServiceClick}
-        />
+      <div className={styles.subcategory} data-title-only data-test-id={testId}>
+        {title}
       </div>
     );
   }
 
   if (viewMode === 'expanded') {
     return (
-      <div className={styles.subcategory} data-test-id={`${TEST_IDS.subcategory}-${service.id}`}>
-        <SubCategoryTitle
-          groupId={groupId}
-          service={service}
-          expandable={{
-            value: Boolean(isExpanded),
-            onClick: handleExpandedChange,
-          }}
-          showDescription={showDescription}
-          isMobile={isMobile}
-          dragDisabled={dragDisabled}
-          favorite={groupFavoritesEnabled ? favorite : undefined}
-          onServiceClick={onServiceClick}
-        />
+      <div className={styles.subcategory} data-test-id={testId}>
+        {title}
 
-        <div
-          className={baseGroupStyles.groupBody}
-          data-subcategory-body='expanded'
-          data-mobile={isMobile || undefined}
-          data-show-description={showDescription || undefined}
-        >
-          {nestedItems.map(nestedService => (
-            <DraggableServiceCard
-              key={nestedGroupId + nestedService.id}
-              groupId={nestedGroupId}
-              service={nestedService}
-              favorite={favorite}
-              isMobile={isMobile}
-              onServiceClick={onServiceClick}
-              showDescription={showDescription}
-              dragDisabled={dragDisabled}
-            />
-          ))}
-        </div>
+        <SubCategoryBody nestedGroupId={nestedGroupId} items={nestedItems} variant='expanded' />
       </div>
     );
   }
 
   return (
-    <div className={styles.subcategory} data-test-id={`${TEST_IDS.subcategory}-${service.id}`}>
+    <div className={styles.subcategory} data-test-id={testId}>
       <Accordion selectionMode='single' expanded={isExpanded} onExpandedChange={handleExpandedChange}>
         <Accordion.CollapseBlockTertiary
           id={subcategoryId}
           showChevron={false}
           className={styles.subcategoryAccordion}
-          afterTitle={
-            <SubCategoryTitle
-              groupId={groupId}
-              service={service}
-              expandable={{
-                value: Boolean(isExpanded),
-                onClick: handleExpandedChange,
-              }}
-              showDescription={showDescription}
-              isMobile={isMobile}
-              dragDisabled={dragDisabled}
-              favorite={groupFavoritesEnabled ? favorite : undefined}
-              onServiceClick={onServiceClick}
-            />
-          }
+          afterTitle={title}
         >
-          <div
-            className={baseGroupStyles.groupBody}
-            data-subcategory-body
-            data-mobile={isMobile || undefined}
-            data-show-description={showDescription || undefined}
-          >
-            {nestedItems.map(nestedService => (
-              <DraggableServiceCard
-                key={nestedGroupId + nestedService.id}
-                groupId={nestedGroupId}
-                service={nestedService}
-                favorite={favorite}
-                isMobile={isMobile}
-                onServiceClick={onServiceClick}
-                showDescription={showDescription}
-                dragDisabled={dragDisabled}
-              />
-            ))}
-          </div>
+          <SubCategoryBody nestedGroupId={nestedGroupId} items={nestedItems} variant='expandable' />
         </Accordion.CollapseBlockTertiary>
       </Accordion>
     </div>
   );
 }
+
+export const SubCategory = memo(SubCategoryBase);

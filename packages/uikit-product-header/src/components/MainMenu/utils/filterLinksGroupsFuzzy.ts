@@ -85,17 +85,15 @@ function isGroupLabelMatch(matchKey: string | undefined): boolean {
   );
 }
 
-export function filterLinksGroupsFuzzy(searchValue: string, links: LinksGroup[]): LinksGroup[] {
+function searchLinksGroups(
+  searchValue: string,
+  links: LinksGroup[],
+  itemsMap: ItemsMap,
+  linksFuse: Fuse<LinksGroup>,
+): LinksGroup[] {
   if (!searchValue) {
     return links;
   }
-
-  const itemsMap = createItemsMap(links);
-  const linksFuse = new Fuse(links, {
-    keys: Object.values(SEARCH_GROUPS_ACCESSOR),
-    includeMatches: true,
-    threshold: FUZZY_SEARCH_THRESHOLD,
-  });
 
   let fuseSearchResults = linksFuse.search(searchValue);
 
@@ -211,4 +209,27 @@ export function filterLinksGroupsFuzzy(searchValue: string, links: LinksGroup[])
 
     return accResult;
   }, [] as LinksGroup[]);
+}
+
+/**
+ * Строит поисковый индекс по группам один раз. Индексация каталога не зависит от строки поиска,
+ * поэтому вызывать `search` на каждый ввод дешевле, чем пересоздавать `Fuse` на каждый символ.
+ */
+export function createLinksGroupsSearcher(links: LinksGroup[]) {
+  const itemsMap = createItemsMap(links);
+  const linksFuse = new Fuse(links, {
+    keys: Object.values(SEARCH_GROUPS_ACCESSOR),
+    includeMatches: true,
+    threshold: FUZZY_SEARCH_THRESHOLD,
+  });
+
+  return (searchValue: string): LinksGroup[] => searchLinksGroups(searchValue, links, itemsMap, linksFuse);
+}
+
+export function filterLinksGroupsFuzzy(searchValue: string, links: LinksGroup[]): LinksGroup[] {
+  if (!searchValue) {
+    return links;
+  }
+
+  return createLinksGroupsSearcher(links)(searchValue);
 }

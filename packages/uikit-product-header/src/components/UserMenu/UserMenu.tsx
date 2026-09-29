@@ -20,8 +20,10 @@ import { ThemeProps, UserProfileProps } from './types';
 const SELECTION_STUB: DroplistProps['selection'] = { mode: 'single', value: '__empty_stub__', onChange: () => {} };
 
 export type UserMenuProps = {
+  /** Профиль пользователя (имя, email, счётчик приглашений). */
   profile?: UserProfileProps;
 
+  /** Переключатель темы в меню. Без пропа не отображается. */
   theme?: ThemeProps;
 
   /** Пункты после темы. На desktop закреплены сверху вместе с профилем и темой */
@@ -33,14 +35,24 @@ export type UserMenuProps = {
   /** Пункты перед «Выйти из аккаунта». На desktop закреплены снизу */
   bottomItems?: DroplistProps['items'];
 
+  /** Пункты настроек в нижней части меню. */
   settingItems?: BaseItemProps[];
 
+  /** Колбэк клика по пункту «Выйти». */
   onLogout?(): void;
 
+  /**
+   * Открыто ли меню.
+   *
+   * Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку).
+   */
   open?: boolean;
+  /** Колбэк открытия/закрытия меню. */
   setOpen?(open: boolean): void;
+  /** Текст подсказки для кнопки-триггера. */
   triggerTooltip?: string;
 
+  /** Колбэк клика по кнопке-триггеру. */
   onClick?(): void;
 };
 
@@ -65,7 +77,11 @@ export function UserMenu({
 
   const { fullName = '', inviteCount } = profile;
 
-  const { pinTop, items: menuItems, pinBottom } = useUserMenuItems({
+  const {
+    pinTop,
+    items: menuItems,
+    pinBottom,
+  } = useUserMenuItems({
     isMobile,
     profile,
     theme,

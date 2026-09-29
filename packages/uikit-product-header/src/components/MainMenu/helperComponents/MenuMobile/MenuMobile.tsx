@@ -1,5 +1,4 @@
 import { Divider } from '@ds/divider';
-import { useValueControl } from '@ds/utils';
 import { useCallback, useMemo } from 'react';
 
 import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../../../constants';
@@ -7,6 +6,7 @@ import { MobileDrawerCustom } from '../../../../mobileOverlays';
 import { MainMenuDndContext } from '../../hooks/useMainMenuDnd';
 import { useMenuItems } from '../../hooks/useMenuItems';
 import { MainMenuProps } from '../../types';
+import { buildServicesById } from '../../utils';
 import { Content } from '../Content';
 import { Favorites } from '../Favorites';
 import { MenuBottom } from '../MenuBottom';
@@ -17,8 +17,8 @@ import { Search } from '../Search';
 import styles from './styles.module.scss';
 
 export function MenuMobile({
-  open: openProp,
-  setOpen: setOpenProp,
+  open = false,
+  setOpen,
   settingItems,
   platformGroups,
   segments,
@@ -36,8 +36,6 @@ export function MenuMobile({
   leftBottom,
   loading,
 }: MainMenuProps) {
-  const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
-
   // `segments !== undefined` — сигнал «каталог вообще используется» (консьюмер без сегментов
   // никогда не передаёт проп, и `loading` в этом случае к правой панели не относится). Пока
   // сегменты используются, `loading` держит панель смонтированной на время ответа бэка — иначе
@@ -54,10 +52,10 @@ export function MenuMobile({
     platformGroups,
   });
 
-  const allServiceGroups = useMemo(() => segments?.flatMap(segment => segment.items) ?? [], [segments]);
+  const servicesById = useMemo(() => buildServicesById(segments?.flatMap(segment => segment.items)), [segments]);
 
   const handleClose = useCallback(() => {
-    setOpen(false);
+    setOpen?.(false);
   }, [setOpen]);
 
   return (
@@ -81,15 +79,14 @@ export function MenuMobile({
         }
       >
         <MountAnimation className={styles.scrollMobile} type='fade-slide-up'>
-          {leftTop && <div className={styles.rightContent}>{leftTop}</div>}
+          {leftTop}
           {search && <Search {...search} ref={searchRef} isMobile />}
-          {!isSearching && favorite && <Favorites favorite={favorite} allServiceGroups={allServiceGroups} isMobile />}
+          {!isSearching && favorite && <Favorites favorite={favorite} servicesById={servicesById} isMobile />}
 
           {hasSegments && (
             <MainMenuDndContext>
               <Content
                 isMobile
-                className={styles.rightContent}
                 searchValue={search && search.value}
                 rightTop={rightTop}
                 favorite={favorite}

@@ -10,12 +10,19 @@ import { HEADER_LOGO_MODE, HeaderLogoMode, MAP_LOGO_MODE_TO_APPEARANCE, MAP_LOGO
 import styles from './styles.module.scss';
 
 export type LogoProps = WithSupportProps<{
+  /** Флаг загрузки — логотип показывается в состоянии загрузки кнопки. */
   loading?: boolean;
+  /** Путь до кастомного изображения логотипа. Без пропа (или при ошибке загрузки) — дефолтная иконка. */
   path?: string;
+  /** Режим окружения — отображается промо-тегом рядом с дефолтной иконкой (не для `'prod'`). */
   mode?: HeaderLogoMode;
+  /** Ссылка логотипа. */
   href: string;
+  /** Колбэк клика по логотипу. */
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+  /** CSS-класс корневого элемента. */
   className?: string;
+  /** Настройки тултипа логотипа. */
   tooltip?: TooltipProps;
 }>;
 

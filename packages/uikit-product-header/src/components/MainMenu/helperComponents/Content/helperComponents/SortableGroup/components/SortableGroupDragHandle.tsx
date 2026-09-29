@@ -6,7 +6,9 @@ import { headerLocale } from '../../../../../../../locale';
 import styles from '../styles.module.scss';
 
 export type SortableGroupDragHandleProps = {
+  /** ARIA-атрибуты `dnd-kit` draggable-элемента. */
   attributes?: DraggableAttributes;
+  /** Обработчики событий `dnd-kit` для инициации перетаскивания. */
   listeners?: DraggableSyntheticListeners;
 };
 

@@ -1,11 +1,11 @@
-import { CardServiceLightProps } from '@ds/uikit-product-card-predefined';
+import { CardNavigationProps } from '@ds/uikit-product-card-predefined';
 import { MouseEventHandler } from 'react';
 
 import { InnerLink } from '../../types';
 import { getLinkEmblem } from '../../utils';
 
 type FavoriteCardData = Pick<
-  CardServiceLightProps<'a'>,
+  CardNavigationProps<'a'>,
   'title' | 'icon' | 'href' | 'onClick' | 'promoTag' | 'tooltip' | 'data-test-id'
 >;
 

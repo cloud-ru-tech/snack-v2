@@ -11,7 +11,11 @@ export type MountAnimationProps = PropsWithChildren<
   }>
 >;
 
-export function MountAnimation({ children, type = 'slide-right', className, ...props }: MountAnimationProps) {
+export function MountAnimation({ children, type, className, ...props }: MountAnimationProps) {
+  if (type === undefined) {
+    return children;
+  }
+
   return (
     <div className={cn(styles.wrapper, className)} {...extractSupportProps(props)} data-animation-type={type}>
       {children}

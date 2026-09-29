@@ -98,13 +98,13 @@ export function PartialSlots() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `breadcrumbs` | `ReactNode` | — |  |
-| `className` | `string` | — |  |
+| `breadcrumbs` | `ReactNode` | — | Слот хлебных крошек. На mobile переносится под основную строку хедера. |
+| `className` | `string` | — | CSS-класс корневого элемента. |
 | `data-test-id` | `string` | — |  |
-| `logo` | `ReactNode` | — |  |
-| `menu` | `ReactNode` | — |  |
-| `select` | `ReactNode` | — |  |
-| `toolbar` | `ReactNode` | — |  |
+| `logo` | `ReactNode` | — | Слот логотипа (крайний левый). |
+| `menu` | `ReactNode` | — | Слот главного меню (слева, после логотипа). |
+| `select` | `ReactNode` | — | Слот селектора (например, выбор облака/организации), после меню. |
+| `toolbar` | `ReactNode` | — | Слот тулбара — правая часть хедера. |
 
 ## MainMenu
 
@@ -292,27 +292,27 @@ function LocalMainMenu() {
 |------|------|---------|-------------|
 | `activeSegmentId` | `string` | — | Активный сегмент правой панели (значение SegmentControl, см. {@link MainMenuSegment.id}). <br/> Не передано — неуправляемое состояние (дефолт — первый сегмент с видимыми карточками). |
 | `defaultWidth` | `number` | — | Ширина дровера, с которой открывается меню (desktop only) |
-| `disabled` | `boolean` | — |  |
+| `disabled` | `boolean` | — | Кнопка открытия меню недоступна для клика. |
 | `draggerTooltip` | `string` | — | Текст подсказки для драггера (desktop only) |
-| `favorite` | `FavoriteProps` | — |  |
-| `leftBottom` | `ReactNode` | — |  |
-| `leftTop` | `ReactNode` | — |  |
+| `favorite` | `FavoriteProps` | — | Избранное. Без пропа группа-предок карточек драга из избранного не активируется. <br/> Избранное. Без пропа секция «Избранное» не отображается. |
+| `leftBottom` | `ReactNode` | — | Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile). |
+| `leftTop` | `ReactNode` | — | Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile). |
 | `loading` | `boolean` | — | Флаг загрузки данных |
-| `logo` | `ReactNode` | — |  |
+| `logo` | `ReactNode` | — | Логотип в шапке меню. |
 | `onActiveSegmentChange` | `((segmentId: string) => void)` | — | Колбэк смены активного сегмента правой панели. |
 | `onSegmentExpandedChange` | `((segmentId: string, expandedGroupIds: string[]) => void)` | — | Колбэк при изменении набора раскрытых групп сегмента <br/> (без id синтетической группы избранного). |
 | `onSegmentOrderChange` | `((segmentId: string, orderedGroupIds: string[]) => void)` | — | Колбэк после DnD групп в сегменте (без id синтетической группы избранного). |
 | `onSegmentServiceClick` | `((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)` | — | Колбэк клика по карточке сервиса в сегменте. |
 | `onWidthChangeEnd` | `((width: number) => void)` | — | Вызывается при окончании изменения ширины дровера (desktop only) |
-| `open` | `boolean` | — |  |
+| `open` | `boolean` | — | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
 | `platformGroups` | `LinksGroup` | — | Платформенные группы (например «Облачные продукты», «Другие продукты»). <br/> Без поиска в сетке карточек **не отображаются**. <br/> С поиском: попадают в результаты при совпадении; порядок — <br/> после совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`. <br/> Обычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`). |
 | `preferences` | `MainMenuPreferencesProps` | — | Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп. <br/> Не передано — кнопка настроек в тулбаре не отображается. |
 | `rightTop` | `ReactNode` | — | Слот над тулбаром правой колонки (например, баннеры) |
-| `search` | `SearchProps` | — |  |
+| `search` | `SearchProps` | — | Поиск по сервисам. Без пропа поисковая строка не отображается. |
 | `searchGroups` | `LinksGroup` | — | Результаты поиска (уже смерженные); в обычном режиме не используются. |
 | `segmentPrefs` | `MainMenuSegmentPrefs` | — | Пользовательские prefs сегментов (порядок / раскрытие групп). <br/> Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля. |
 | `segments` | `MainMenuSegment` | — | Сегменты правой панели (сетка карточек) — только каталог. <br/> При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`. <br/> Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только <br/> первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются. <br/> При `segments.length > 1` показывается SegmentControl (скрывается во время поиска). <br/> Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже. |
-| `setOpen` | `((open: boolean) => void)` | — |  |
+| `setOpen` | `((open: boolean) => void)` | — | Колбэк открытия/закрытия меню. |
 | `settingItems` | `InnerLink` \| `MainMenuSettingsItem` | — | Пункты левой колонки (desktop) / нижней части списка (mobile). <br/> Плоский список (`dividerBefore` для разделителей). <br/> Не связан с сегментами правой панели и не меняется при сортировке групп в сегментах. |
 
 ##### Related types
@@ -339,17 +339,17 @@ function LocalMainMenu() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `aliases` | `string[]` | — | Синонимы для fuzzy-поиска. |
-| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
+| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
-| `disabled` | `boolean \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — | Карточка недоступна для клика/drag и визуально приглушена. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
-| `hidden` | `boolean \| undefined` | — |  |
-| `href` | `string \| undefined` | — |  |
+| `hidden` | `boolean \| undefined` | — | Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `href` | `string \| undefined` | — | Ссылка карточки (рендерится как `<a>`). |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
 | `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
 | `items` | `InnerLink` | — | Вложенные сервисы подкатегории. <br/> При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка <br/> с кнопкой раскрытия, в развёрнутом — заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> и сетка вложенных сервисов. |
 | `label` | `string` | — | Заголовок карточки. |
-| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — | Колбэк клика по карточке. |
 | `viewMode` | `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"` | — | Режим отображения карточки. default='expandable'. <br/> - `'expandable'` — подкатегория при наличии реальных <br/> {@link <br/> items <br/> } <br/> : заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном и сетка вложенных сервисов (раскрытие/схлопывание — <br/> см. <br/> {@link <br/> expandableEnabled <br/> } <br/> ). Без `items` — обычная карточка сервиса. <br/> - `'group-title-only'` — заголовок подкатегории ( <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном) без <br/> раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка. <br/> Полезно для группы, чьи вложенные сервисы показываются на отдельной странице. <br/> - `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы. |
 
 - `InnerLinkViewMode` = `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"`
@@ -361,13 +361,13 @@ function LocalMainMenu() {
 | `aliases` | `string[] \| undefined` | — | Синонимы заголовка группы для fuzzy-поиска. |
 | `blockColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Цвет блока группы. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточек группы в избранное. |
-| `hidden` | `boolean \| undefined` | — |  |
-| `highlight` | `boolean \| undefined` | — | Визуальное выделение группы |
-| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — |  |
+| `hidden` | `boolean \| undefined` | — | Группа скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `highlight` | `boolean \| undefined` | — | Визуальное выделение группы. |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка группы. |
 | `id` | `string` | — | Уникальный идентификатор группы (якорь скролла, поиск по id). |
 | `items` | `InnerLink` | — | Карточки сервисов или ссылок внутри группы. |
 | `label` | `LinksGroupTitle` \| `TitleClickable` \| `TitleStatic` | — | Заголовок группы в сетке карточек и в боковой навигации. |
-| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по заголовку группы. |
 
 - `LinksGroupBlockColor` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
@@ -404,38 +404,38 @@ function LocalMainMenu() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `divider` | `"after"` \| `"before"` | — |  |
-| `hidden` | `boolean \| undefined` | — |  |
-| `href` | `string \| undefined` | — |  |
+| `divider` | `"after"` \| `"before"` | — | Разделитель до/после пункта. |
+| `hidden` | `boolean \| undefined` | — | Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `href` | `string \| undefined` | — | Ссылка карточки (рендерится как `<a>`). |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
 | `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
 | `label` | `string` | — | Заголовок карточки. |
-| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — | Колбэк клика по карточке. |
 
 **MainMenuToggleProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `onChange` | `(value: boolean) => void` | — |  |
-| `value` | `boolean` | — |  |
+| `onChange` | `(value: boolean) => void` | — | Колбэк изменения значения переключателя. |
+| `value` | `boolean` | — | Текущее значение переключателя. |
 
 **SearchProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `onBlur` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки потери фокуса |
-| `onChange` | `(value: string) => void` | — |  |
+| `onChange` | `(value: string) => void` | — | Колбэк изменения значения поисковой строки. |
 | `onFocus` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки получения фокуса |
-| `onSearchNoResult` | `((value: string) => void) \| undefined` | — |  |
-| `value` | `string` | — |  |
+| `onSearchNoResult` | `((value: string) => void) \| undefined` | — | Колбэк вызывается, когда поиск по текущему значению не дал результатов. |
+| `value` | `string` | — | Текущее значение поисковой строки. |
 
 **TitleClickable**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `href` | `string \| undefined` | — |  |
-| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
-| `text` | `string` | — |  |
+| `href` | `string \| undefined` | — | Ссылка заголовка (рендерится как `<a>`). |
+| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по заголовку. |
+| `text` | `string` | — | Текст заголовка. |
 
 **TitleStatic**
 
@@ -443,7 +443,7 @@ function LocalMainMenu() {
 |------|------|---------|-------------|
 | `href` | `undefined` | — |  |
 | `onClick` | `undefined` | — |  |
-| `text` | `string` | — |  |
+| `text` | `string` | — | Текст заголовка. |
 
 ### Смотри также
 
@@ -466,27 +466,27 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 |------|------|---------|-------------|
 | `activeSegmentId` | `string` | — | Активный сегмент правой панели (значение SegmentControl, см. {@link MainMenuSegment.id}). <br/> Не передано — неуправляемое состояние (дефолт — первый сегмент с видимыми карточками). |
 | `defaultWidth` | `number` | — | Ширина дровера, с которой открывается меню (desktop only) |
-| `disabled` | `boolean` | — |  |
+| `disabled` | `boolean` | — | Кнопка открытия меню недоступна для клика. |
 | `draggerTooltip` | `string` | — | Текст подсказки для драггера (desktop only) |
-| `favorite` | `FavoriteProps` | — |  |
-| `leftBottom` | `ReactNode` | — |  |
-| `leftTop` | `ReactNode` | — |  |
+| `favorite` | `FavoriteProps` | — | Избранное. Без пропа группа-предок карточек драга из избранного не активируется. <br/> Избранное. Без пропа секция «Избранное» не отображается. |
+| `leftBottom` | `ReactNode` | — | Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile). |
+| `leftTop` | `ReactNode` | — | Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile). |
 | `loading` | `boolean` | — | Флаг загрузки данных |
-| `logo` | `ReactNode` | — |  |
+| `logo` | `ReactNode` | — | Логотип в шапке меню. |
 | `onActiveSegmentChange` | `((segmentId: string) => void)` | — | Колбэк смены активного сегмента правой панели. |
 | `onSegmentExpandedChange` | `((segmentId: string, expandedGroupIds: string[]) => void)` | — | Колбэк при изменении набора раскрытых групп сегмента <br/> (без id синтетической группы избранного). |
 | `onSegmentOrderChange` | `((segmentId: string, orderedGroupIds: string[]) => void)` | — | Колбэк после DnD групп в сегменте (без id синтетической группы избранного). |
 | `onSegmentServiceClick` | `((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)` | — | Колбэк клика по карточке сервиса в сегменте. |
 | `onWidthChangeEnd` | `((width: number) => void)` | — | Вызывается при окончании изменения ширины дровера (desktop only) |
-| `open` | `boolean` | — |  |
+| `open` | `boolean` | `false` | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
 | `platformGroups` | `LinksGroup` | — | Платформенные группы (например «Облачные продукты», «Другие продукты»). <br/> Без поиска в сетке карточек **не отображаются**. <br/> С поиском: попадают в результаты при совпадении; порядок — <br/> после совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`. <br/> Обычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`). |
 | `preferences` | `MainMenuPreferencesProps` | — | Настройки меню (модалка по кнопке в тулбаре): описания карточек, цвета групп. <br/> Не передано — кнопка настроек в тулбаре не отображается. |
 | `rightTop` | `ReactNode` | — | Слот над тулбаром правой колонки (например, баннеры) |
-| `search` | `SearchProps` | — |  |
+| `search` | `SearchProps` | — | Поиск по сервисам. Без пропа поисковая строка не отображается. |
 | `searchGroups` | `LinksGroup` | — | Результаты поиска (уже смерженные); в обычном режиме не используются. |
 | `segmentPrefs` | `MainMenuSegmentPrefs` | — | Пользовательские prefs сегментов (порядок / раскрытие групп). <br/> Нет записи для сегмента или omit `order` / `expanded` → uncontrolled для этого поля. |
 | `segments` | `MainMenuSegment` | — | Сегменты правой панели (сетка карточек) — только каталог. <br/> При поиске: совпадения из сегментов без `pinBottomOnSearch` → `platformGroups` → сегменты с `pinBottomOnSearch`. <br/> Если один и тот же {@link InnerLink.id} совпал сразу в нескольких сегментах — остаётся только <br/> первое по этому приоритету вхождение, остальные (и опустевшие после этого группы) не показываются. <br/> При `segments.length > 1` показывается SegmentControl (скрывается во время поиска). <br/> Порядок и раскрытие групп — через `segmentPrefs` и колбэки ниже. |
-| `setOpen` | `((open: boolean) => void)` | — |  |
+| `setOpen` | `((open: boolean) => void)` | — | Колбэк открытия/закрытия меню. |
 | `settingItems` | `InnerLink` \| `MainMenuSettingsItem` | — | Пункты левой колонки (desktop) / нижней части списка (mobile). <br/> Плоский список (`dividerBefore` для разделителей). <br/> Не связан с сегментами правой панели и не меняется при сортировке групп в сегментах. |
 
 ##### Related types
@@ -513,17 +513,17 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `aliases` | `string[]` | — | Синонимы для fuzzy-поиска. |
-| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — |  |
+| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
-| `disabled` | `boolean \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — | Карточка недоступна для клика/drag и визуально приглушена. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
-| `hidden` | `boolean \| undefined` | — |  |
-| `href` | `string \| undefined` | — |  |
+| `hidden` | `boolean \| undefined` | — | Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `href` | `string \| undefined` | — | Ссылка карточки (рендерится как `<a>`). |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
 | `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
 | `items` | `InnerLink` | — | Вложенные сервисы подкатегории. <br/> При наличии карточка раскрывается аккордеоном: в свёрнутом виде — обычная карточка <br/> с кнопкой раскрытия, в развёрнутом — заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> и сетка вложенных сервисов. |
 | `label` | `string` | — | Заголовок карточки. |
-| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — | Колбэк клика по карточке. |
 | `viewMode` | `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"` | — | Режим отображения карточки. default='expandable'. <br/> - `'expandable'` — подкатегория при наличии реальных <br/> {@link <br/> items <br/> } <br/> : заголовок <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном и сетка вложенных сервисов (раскрытие/схлопывание — <br/> см. <br/> {@link <br/> expandableEnabled <br/> } <br/> ). Без `items` — обычная карточка сервиса. <br/> - `'group-title-only'` — заголовок подкатегории ( <br/> {@link <br/> TitleClickable <br/> } <br/> с шевроном) без <br/> раскрываемого тела, даже если `items` заданы: карточка ведёт себя как обычная ссылка. <br/> Полезно для группы, чьи вложенные сервисы показываются на отдельной странице. <br/> - `'flat-link'` — всегда обычная карточка сервиса, даже если `items` заданы. |
 
 - `InnerLinkViewMode` = `"expandable"` \| `"expanded"` \| `"flat-link"` \| `"group-title-only"`
@@ -535,13 +535,13 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `aliases` | `string[] \| undefined` | — | Синонимы заголовка группы для fuzzy-поиска. |
 | `blockColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Цвет блока группы. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточек группы в избранное. |
-| `hidden` | `boolean \| undefined` | — |  |
-| `highlight` | `boolean \| undefined` | — | Визуальное выделение группы |
-| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — |  |
+| `hidden` | `boolean \| undefined` | — | Группа скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `highlight` | `boolean \| undefined` | — | Визуальное выделение группы. |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка группы. |
 | `id` | `string` | — | Уникальный идентификатор группы (якорь скролла, поиск по id). |
 | `items` | `InnerLink` | — | Карточки сервисов или ссылок внутри группы. |
 | `label` | `LinksGroupTitle` \| `TitleClickable` \| `TitleStatic` | — | Заголовок группы в сетке карточек и в боковой навигации. |
-| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по заголовку группы. |
 
 - `LinksGroupBlockColor` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
@@ -578,38 +578,38 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `divider` | `"after"` \| `"before"` | — |  |
-| `hidden` | `boolean \| undefined` | — |  |
-| `href` | `string \| undefined` | — |  |
+| `divider` | `"after"` \| `"before"` | — | Разделитель до/после пункта. |
+| `hidden` | `boolean \| undefined` | — | Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска). |
+| `href` | `string \| undefined` | — | Ссылка карточки (рендерится как `<a>`). |
 | `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка карточки. |
 | `id` | `string` | — | Уникальный идентификатор карточки (также используется в избранном и при поиске). <br/> Один и тот же сервис может быть представлен в разных сегментах с разной <br/> детализацией (простая карточка в общем каталоге и раскрытая с вложенными <br/> сервисами версия в другом сегменте) — в этом случае обеим версиям задаётся <br/> общий `id`. При поиске из совпадений с одинаковым `id` в разных сегментах <br/> остаётся только первое по приоритету сегментов (см. <br/> {@link <br/> MainMenuProps.segments <br/> } <br/> ). |
 | `label` | `string` | — | Заголовок карточки. |
-| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — |  |
+| `onClick` | `(e?: MouseEvent<HTMLElement>) => void` | — | Колбэк клика по карточке. |
 
 **MainMenuToggleProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `onChange` | `(value: boolean) => void` | — |  |
-| `value` | `boolean` | — |  |
+| `onChange` | `(value: boolean) => void` | — | Колбэк изменения значения переключателя. |
+| `value` | `boolean` | — | Текущее значение переключателя. |
 
 **SearchProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `onBlur` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки потери фокуса |
-| `onChange` | `(value: string) => void` | — |  |
+| `onChange` | `(value: string) => void` | — | Колбэк изменения значения поисковой строки. |
 | `onFocus` | `FocusEventHandler<HTMLInputElement> \| undefined` | — | Колбек обработки получения фокуса |
-| `onSearchNoResult` | `((value: string) => void) \| undefined` | — |  |
-| `value` | `string` | — |  |
+| `onSearchNoResult` | `((value: string) => void) \| undefined` | — | Колбэк вызывается, когда поиск по текущему значению не дал результатов. |
+| `value` | `string` | — | Текущее значение поисковой строки. |
 
 **TitleClickable**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `href` | `string \| undefined` | — |  |
-| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
-| `text` | `string` | — |  |
+| `href` | `string \| undefined` | — | Ссылка заголовка (рендерится как `<a>`). |
+| `onClick` | `((e?: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по заголовку. |
+| `text` | `string` | — | Текст заголовка. |
 
 **TitleStatic**
 
@@ -617,7 +617,7 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 |------|------|---------|-------------|
 | `href` | `undefined` | — |  |
 | `onClick` | `undefined` | — |  |
-| `text` | `string` | — |  |
+| `text` | `string` | — | Текст заголовка. |
 
 ### Адаптивность
 
@@ -694,16 +694,16 @@ export function ControlledTheme() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `bottomItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты перед «Выйти из аккаунта». На desktop закреплены снизу |
-| `onClick` | `(() => void)` | — |  |
-| `onLogout` | `(() => void)` | — |  |
-| `open` | `boolean` | — |  |
+| `onClick` | `(() => void)` | — | Колбэк клика по кнопке-триггеру. |
+| `onLogout` | `(() => void)` | — | Колбэк клика по пункту «Выйти». |
+| `open` | `boolean` | — | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
 | `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню |
-| `profile` | `UserProfileProps` | `{}` |  |
-| `setOpen` | `((open: boolean) => void)` | — |  |
-| `settingItems` | `BaseItemProps` | — |  |
-| `theme` | `ThemeProps` | — |  |
+| `profile` | `UserProfileProps` | `{}` | Профиль пользователя (имя, email, счётчик приглашений). |
+| `setOpen` | `((open: boolean) => void)` | — | Колбэк открытия/закрытия меню. |
+| `settingItems` | `BaseItemProps` | — | Пункты настроек в нижней части меню. |
+| `theme` | `ThemeProps` | — | Переключатель темы в меню. Без пропа не отображается. |
 | `topItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты после темы. На desktop закреплены сверху вместе с профилем и темой |
-| `triggerTooltip` | `string` | — |  |
+| `triggerTooltip` | `string` | — | Текст подсказки для кнопки-триггера. |
 
 ##### Related types
 
@@ -713,18 +713,18 @@ export function ControlledTheme() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `onChange` | `((themeMode: ThemeMode) => void) \| undefined` | — |  |
-| `value` | `"dark"` \| `"light"` \| `"system"` | — |  |
+| `onChange` | `((themeMode: ThemeMode) => void) \| undefined` | — | Колбэк изменения режима темы. |
+| `value` | `"dark"` \| `"light"` \| `"system"` | — | Текущий режим темы. Без пропа переключатель темы в меню не отображается. |
 
 **UserProfileProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `email` | `string \| undefined` | — |  |
-| `fullName` | `string \| undefined` | — |  |
-| `inviteCount` | `number \| undefined` | — |  |
-| `itemWrapRender` | `((node: ReactNode) => ReactNode) \| undefined` | — |  |
-| `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+| `email` | `string \| undefined` | — | Email пользователя. |
+| `fullName` | `string \| undefined` | — | Полное имя пользователя. Отображается в аватаре (первые буквы) и в пункте профиля меню. |
+| `inviteCount` | `number \| undefined` | — | Число активных приглашений — отображается счётчиком на кнопке-триггере меню. |
+| `itemWrapRender` | `((node: ReactNode) => ReactNode) \| undefined` | — | Оборачивает содержимое пункта профиля — например, ссылкой или дополнительной разметкой. |
+| `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика по пункту профиля. |
 
 ## Logo
 
@@ -775,14 +775,14 @@ export function WithMode() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `className` | `string` | — |  |
+| `className` | `string` | — | CSS-класс корневого элемента. |
 | `data-test-id` | `string` | — |  |
-| `href` | `string` | — |  |
-| `loading` | `boolean` | — |  |
-| `mode` | `"develop"` \| `"hybrid"` \| `"prod"` \| `"stage"` | — |  |
-| `onClick` | `MouseEventHandler<HTMLAnchorElement>` | — |  |
-| `path` | `string` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
+| `href` | `string` | — | Ссылка логотипа. |
+| `loading` | `boolean` | — | Флаг загрузки — логотип показывается в состоянии загрузки кнопки. |
+| `mode` | `"develop"` \| `"hybrid"` \| `"prod"` \| `"stage"` | — | Режим окружения — отображается промо-тегом рядом с дефолтной иконкой (не для `'prod'`). |
+| `onClick` | `MouseEventHandler<HTMLAnchorElement>` | — | Колбэк клика по логотипу. |
+| `path` | `string` | — | Путь до кастомного изображения логотипа. Без пропа (или при ошибке загрузки) — дефолтная иконка. |
+| `tooltip` | `TooltipProps` | — | Настройки тултипа логотипа. |
 
 ##### Related types
 
@@ -823,4 +823,4 @@ export function Basic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `BreadcrumbsProps` \| `Item` | — |  |
+| `items` | `BreadcrumbsProps` \| `Item` | — | Пункты хлебных крошек. |

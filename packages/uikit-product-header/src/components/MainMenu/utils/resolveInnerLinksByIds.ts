@@ -1,12 +1,9 @@
-import { InnerLink, LinksGroup } from '../types';
-import { flatLinksGroups } from './flatLinksGroups';
+import { InnerLink } from '../types';
 
-export function resolveInnerLinksByIds(ids: string[], groups: LinksGroup[]): InnerLink[] {
+export function resolveInnerLinksByIds(ids: string[], servicesById: ReadonlyMap<string, InnerLink>): InnerLink[] {
   if (!ids.length) {
     return [];
   }
 
-  const itemsById = new Map(flatLinksGroups(groups).map(item => [item.id, item]));
-
-  return ids.map(id => itemsById.get(id)).filter((item): item is InnerLink => Boolean(item));
+  return ids.map(id => servicesById.get(id)).filter((item): item is InnerLink => Boolean(item));
 }

@@ -2,7 +2,7 @@ import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
-import { MouseEventHandler } from 'react';
+import { memo, MouseEventHandler, useCallback } from 'react';
 
 import { LinksGroup, LinksGroupTitle } from '../../../../../types';
 import { getLinkEmblem } from '../../../../../utils';
@@ -16,7 +16,7 @@ export type SortableGroupHeaderProps = Pick<LinksGroup, 'icon'> & {
   isMobile?: boolean;
 } & SortableGroupDragHandleProps;
 
-export function SortableGroupHeader({
+function SortableGroupHeaderBase({
   label,
   icon,
   isExpanded,
@@ -25,11 +25,14 @@ export function SortableGroupHeader({
   listeners,
   isMobile,
 }: SortableGroupHeaderProps) {
-  const handleLabelClick: MouseEventHandler<HTMLElement> = e => {
-    e.stopPropagation();
+  const handleLabelClick: MouseEventHandler<HTMLElement> = useCallback(
+    e => {
+      e.stopPropagation();
 
-    label?.onClick?.(e);
-  };
+      label?.onClick?.(e);
+    },
+    [label],
+  );
 
   return (
     <div className={styles.header} data-expanded={isExpanded || undefined}>
@@ -69,3 +72,5 @@ export function SortableGroupHeader({
     </div>
   );
 }
+
+export const SortableGroupHeader = memo(SortableGroupHeaderBase);

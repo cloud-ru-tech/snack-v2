@@ -71,6 +71,14 @@ $map-block-color-decor: (
 }
 
 .group {
+  // Группы вне окна прокрутки не участвуют в layout и paint: при сотнях карточек это удешевляет
+  // первый показ, тоггл описания и ресайз
+  content-visibility: auto;
+  // `auto` в `contain-intrinsic-size` запоминает реальную
+  // высоту после первого показа; до него используется оценка.
+  // Высота задана токеном 128 как "средний" размер категории (3 ряда карточек)
+  contain-intrinsic-size: auto base.$sn-primitive-dimension-128;
+
   position: relative;
 
   overflow-x: clip;
@@ -85,6 +93,17 @@ $map-block-color-decor: (
   border-radius: $group-border-radius;
 
   background-color: base.$sn-theme-color-neutral-background1Level;
+
+  // Появление групп при монтировании: заменяет анимацию всей панели. Группы, добавляемые порциями
+  // (см. `useProgressiveCount`), тоже появляются плавно. `backwards` — анимация влияет только на
+  // старт, итоговые opacity/transform (в т.ч. при drag) она не задевает.
+  &[data-appear] {
+    animation: group-appear 0.24s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
 
   &[data-drag-preview] {
     cursor: grabbing;
@@ -295,4 +314,12 @@ $map-block-color-decor: (
 
 .skeletonService {
   padding: base.$sn-primitive-dimension-4;
+}
+
+@keyframes group-appear {
+  from {
+    // Смещение как у прежней анимации панели: влево на 12 и вниз на 4.
+    transform: translate(calc(-1 * #{base.$sn-primitive-dimension-12}), base.$sn-primitive-dimension-4);
+    opacity: 0;
+  }
 }

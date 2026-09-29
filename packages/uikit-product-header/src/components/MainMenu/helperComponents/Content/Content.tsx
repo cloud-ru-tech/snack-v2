@@ -2,12 +2,13 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { Accordion } from '@ds/accordion';
 import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
-import { useValueControl } from '@ds/utils';
+import { useEventHandler, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, ReactNode, useCallback, useDeferredValue, useMemo } from 'react';
 
 import { headerLocale } from '../../../../locale';
 import { EMPTY_ARRAY } from '../../../../utils/emptyArray';
+import { noop } from '../../../../utils/noop';
 import { shouldBeOpenedInNewTab } from '../../../../utils/shouldBeOpenedInNewTab';
 import {
   FavoriteProps,
@@ -18,10 +19,13 @@ import {
   MainMenuSegmentPrefs,
 } from '../../types';
 import { getLinksGroupVisibleItemsCount, resolveGroupBlockColor } from '../../utils';
+import { MountAnimation } from '../MountAnimation';
+import { CardsContext, CardsContextValue } from './cardsContext';
 import { TEST_IDS } from './constants';
 import { ContentToolbar } from './helperComponents/ContentToolbar';
 import { SortableGroup, SortableGroupSkeleton } from './helperComponents/SortableGroup';
 import { useContentSegmentsSortable } from './hooks/useContentSegmentsSortable';
+import { useProgressiveCount } from './hooks/useProgressiveCount';
 import { useSegmentDnd } from './hooks/useSegmentDnd';
 import styles from './styles.module.scss';
 
@@ -73,6 +77,7 @@ export type ContentProps = {
    */
   onSegmentServiceClick?(service: InnerLink, e?: MouseEvent<HTMLElement>): void;
 
+  /** Избранное. Без пропа группа-предок карточек драга из избранного не активируется. */
   favorite?: FavoriteProps;
 
   /**
@@ -82,17 +87,22 @@ export type ContentProps = {
    */
   preferences?: MainMenuPreferencesProps;
 
+  /** Текущее значение поисковой строки — переключает контент между каталогом и результатами поиска. */
   searchValue?: string;
 
+  /** Слот поисковой строки — рендерится над контентом. */
   search?: ReactNode;
 
   /** Слот над тулбаром правой колонки (например, баннеры) */
   rightTop?: ReactNode;
 
+  /** Слот под сеткой карточек. */
   footer?: ReactNode;
 
+  /** Мобильная раскладка. */
   isMobile?: boolean;
 
+  /** CSS-класс корневого элемента. */
   className?: string;
   /** Флаг загрузки данных */
   loading?: boolean;
@@ -134,22 +144,26 @@ export function Content({
   const isSearching = Boolean(searchValue);
   const enableServiceDrag = Boolean(favorite) && !isMobile && !isSearching;
 
-  const handleLinkClick = useCallback(
-    (service: InnerLink, e?: MouseEvent<HTMLElement>) => {
-      if (service.disabled) {
-        e?.preventDefault();
-        return;
-      }
+  // Ссылки на обработчики стабильны: иначе `memo` карточек ломается при каждом рендере потребителя.
+  const handleLinkClick = useEventHandler((service: InnerLink, e?: MouseEvent<HTMLElement>) => {
+    if (service.disabled) {
+      e?.preventDefault();
+      return;
+    }
 
-      if (!shouldBeOpenedInNewTab(e)) {
-        e?.preventDefault();
-      }
+    if (!shouldBeOpenedInNewTab(e)) {
+      e?.preventDefault();
+    }
 
-      onSegmentServiceClick?.(service, e);
-      service.onClick?.(e);
-    },
-    [onSegmentServiceClick],
-  );
+    onSegmentServiceClick?.(service, e);
+    service.onClick?.(e);
+  });
+
+  const handleFavoriteChange = useEventHandler((productId: string) => (favorite ? favorite.onChange(productId) : noop));
+
+  const favoriteValue = favorite?.value;
+  const favoriteIds = useMemo(() => (favoriteValue ? new Set(favoriteValue) : undefined), [favoriteValue]);
+  const showGroupsColors = preferences?.showGroupsColors?.value;
 
   const {
     orderedGroups,
@@ -178,22 +192,45 @@ export function Content({
     expandedIds,
     onSortableDragEnd: handleSortableDragEnd,
     showDescription,
-    showGroupsColors: preferences?.showGroupsColors?.value,
-    favorite,
+    showGroupsColors,
+    favoriteIds,
+    onFavoriteChange: handleFavoriteChange,
   });
 
-  const allGroupsExpanded = visibleGroups.length > 0 && visibleGroups.every(({ id }) => expandedIds.includes(id));
+  // Первый экран монтируется сразу, остальные группы дорисовываются порциями (см. `useProgressiveCount`).
+  const renderedGroupsCount = useProgressiveCount(visibleGroups.length, `${segmentId}|${isSearching}`, !loading);
+  const renderedGroups = useMemo(
+    () => (renderedGroupsCount < visibleGroups.length ? visibleGroups.slice(0, renderedGroupsCount) : visibleGroups),
+    [visibleGroups, renderedGroupsCount],
+  );
+
+  const expandedIdsSet = useMemo(() => new Set(expandedIds), [expandedIds]);
+  const visibleGroupIds = useMemo(() => visibleGroups.map(({ id }) => id), [visibleGroups]);
+
+  const allGroupsExpanded = visibleGroups.length > 0 && visibleGroupIds.every(id => expandedIdsSet.has(id));
 
   const handleToggleAllGroupsExpanded = useCallback(() => {
-    const visibleIds = visibleGroups.map(({ id }) => id);
-
     if (allGroupsExpanded) {
-      onExpandedChange(expandedIds.filter(id => !visibleIds.includes(id)));
+      const visibleIdsSet = new Set(visibleGroupIds);
+
+      onExpandedChange(expandedIds.filter(id => !visibleIdsSet.has(id)));
       return;
     }
 
-    onExpandedChange([...new Set([...expandedIds, ...visibleIds])]);
-  }, [allGroupsExpanded, expandedIds, onExpandedChange, visibleGroups]);
+    onExpandedChange([...new Set([...expandedIds, ...visibleGroupIds])]);
+  }, [allGroupsExpanded, expandedIds, onExpandedChange, visibleGroupIds]);
+
+  const cardsContext = useMemo<CardsContextValue>(
+    () => ({
+      showDescription,
+      isMobile,
+      dragEnabled: enableServiceDrag,
+      favoriteIds,
+      onFavoriteChange: favoriteIds ? handleFavoriteChange : undefined,
+      onServiceClick: handleLinkClick,
+    }),
+    [showDescription, isMobile, enableServiceDrag, favoriteIds, handleFavoriteChange, handleLinkClick],
+  );
 
   const segmentItems = useMemo(
     () =>
@@ -207,6 +244,8 @@ export function Content({
 
   const hasCards = visibleGroups.length > 0;
 
+  const mountAnimationType = isMobile ? undefined : 'fade-slide-up-right';
+
   const cards = (() => {
     if (loading) {
       return Array.from({ length: 5 }).map((_, index) => <SortableGroupSkeleton key={index} isMobile={isMobile} />);
@@ -214,27 +253,27 @@ export function Content({
 
     if (hasCards) {
       return (
-        <SortableContext items={visibleGroups.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
-          <Accordion selectionMode='multiple' expanded={expandedIds} onExpandedChange={onExpandedChange}>
-            {visibleGroups.map(({ id, label, icon, items, favoritesEnabled, blockColor, highlight }) => (
-              <SortableGroup
-                key={id}
-                id={id}
-                icon={icon}
-                label={label}
-                items={items}
-                isExpanded={expandedIds.includes(id)}
-                blockColor={resolveGroupBlockColor(blockColor, preferences?.showGroupsColors?.value)}
-                showDescription={showDescription}
-                isMobile={isMobile}
-                enableServiceDrag={enableServiceDrag}
-                favorite={favorite}
-                groupFavoritesEnabled={favoritesEnabled}
-                onServiceClick={handleLinkClick}
-                highlight={highlight}
-              />
-            ))}
-          </Accordion>
+        <SortableContext items={visibleGroupIds} strategy={verticalListSortingStrategy}>
+          <CardsContext.Provider value={cardsContext}>
+            <Accordion selectionMode='multiple' expanded={expandedIds} onExpandedChange={onExpandedChange}>
+              {renderedGroups.map(({ id, label, icon, items, favoritesEnabled, blockColor, highlight }) => (
+                <SortableGroup
+                  key={id}
+                  id={id}
+                  icon={icon}
+                  label={label}
+                  items={items}
+                  isExpanded={expandedIdsSet.has(id)}
+                  blockColor={resolveGroupBlockColor(blockColor, showGroupsColors)}
+                  isMobile={isMobile}
+                  enableServiceDrag={enableServiceDrag}
+                  groupFavoritesEnabled={favoritesEnabled}
+                  appear={!isMobile}
+                  highlight={highlight}
+                />
+              ))}
+            </Accordion>
+          </CardsContext.Provider>
         </SortableContext>
       );
     }
@@ -258,21 +297,27 @@ export function Content({
     <>
       {search}
 
-      <div className={cn(styles.content, className)} data-empty={(!loading && !hasCards) || undefined}>
+      <div
+        className={cn(styles.content, className)}
+        data-mobile={isMobile || undefined}
+        data-empty={(!loading && !hasCards) || undefined}
+      >
         {!isSearching && (
           <>
-            <ContentToolbar
-              segment={segmentId}
-              onSegmentChange={setSegmentId}
-              segmentItems={segmentItems}
-              allGroupsExpanded={allGroupsExpanded}
-              onToggleAllGroupsExpanded={handleToggleAllGroupsExpanded}
-              preferences={preferences}
-              isMobile={isMobile}
-              loading={loading}
-            />
+            <MountAnimation type={mountAnimationType} className={styles.top}>
+              <ContentToolbar
+                segment={segmentId}
+                onSegmentChange={setSegmentId}
+                segmentItems={segmentItems}
+                allGroupsExpanded={allGroupsExpanded}
+                onToggleAllGroupsExpanded={handleToggleAllGroupsExpanded}
+                preferences={preferences}
+                isMobile={isMobile}
+                loading={loading}
+              />
 
-            {rightTop}
+              {rightTop}
+            </MountAnimation>
           </>
         )}
 

@@ -70,13 +70,6 @@
 .rightContent {
   container-type: inline-size;
   overflow-x: clip;
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-4;
-
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
   padding: base.$sn-primitive-dimension-16;
 }
 

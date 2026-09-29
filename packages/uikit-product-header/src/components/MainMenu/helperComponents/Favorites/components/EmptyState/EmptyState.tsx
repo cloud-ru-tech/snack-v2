@@ -1,4 +1,5 @@
 import { Typography } from '@ds/typography';
+import { memo } from 'react';
 
 import { headerLocale } from '../../../../../../locale';
 import { FAVORITES_TEST_IDS } from '../../constants';
@@ -7,11 +8,13 @@ import { EmptyRecentSVG } from './EmptyRecentSVG';
 import styles from './styles.module.scss';
 
 type EmptyStateProps = {
+  /** Пустое состояние сегмента «Избранное» (иначе — «Недавнее»). */
   isFavoritesSegment: boolean;
+  /** Мобильная раскладка. */
   isMobile?: boolean;
 };
 
-export function EmptyState({ isFavoritesSegment, isMobile }: EmptyStateProps) {
+function EmptyStateBase({ isFavoritesSegment, isMobile }: EmptyStateProps) {
   const { t } = headerLocale.useTranslations();
 
   return (
@@ -34,3 +37,5 @@ export function EmptyState({ isFavoritesSegment, isMobile }: EmptyStateProps) {
     </div>
   );
 }
+
+export const EmptyState = memo(EmptyStateBase);

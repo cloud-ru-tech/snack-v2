@@ -8,7 +8,9 @@ import { getLinkEmblem } from '../../utils';
 import styles from './styles.module.scss';
 
 type MenuBottomProps = {
+  /** Пункты настроек, отображаемые в нижней части меню. */
   settingItems?: MainMenuSettingsItem[];
+  /** Слот под пунктами настроек. */
   leftBottom: ReactNode;
 };
 

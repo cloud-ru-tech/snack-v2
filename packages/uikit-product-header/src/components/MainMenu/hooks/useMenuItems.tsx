@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 import { LinksGroup, MainMenuProps } from '../types';
-import { dedupeSearchGroups, filterLinksGroupsFuzzy, getLinksGroupVisibleItemsCount, pinGroupToBottom } from '../utils';
+import {
+  createLinksGroupsSearcher,
+  dedupeSearchGroups,
+  getLinksGroupVisibleItemsCount,
+  pinGroupToBottom,
+} from '../utils';
 
 type UseMenuItemsProps = Pick<MainMenuProps, 'segments' | 'search' | 'platformGroups'>;
 
@@ -18,13 +23,35 @@ export function useMenuItems({ search, segments, platformGroups = [] }: UseMenuI
   const regularSegments = useMemo(() => segments?.filter(segment => !segment.pinBottomOnSearch) ?? [], [segments]);
   const pinnedSegments = useMemo(() => segments?.filter(segment => segment.pinBottomOnSearch) ?? [], [segments]);
 
+  const isSearching = Boolean(searchValue);
+
+  // Индексы строятся при первом вводе и живут, пока поиск активен и каталог не сменился: индексация
+  // не зависит от строки поиска, поэтому пересоздавать `Fuse` на каждый символ не нужно. Пока поиска
+  // нет, индексы не строятся — открытие меню их не оплачивает.
+  const regularSearchers = useMemo(
+    () =>
+      isSearching ? regularSegments.map(segment => createLinksGroupsSearcher(getVisibleGroups(segment.items))) : [],
+    [isSearching, regularSegments],
+  );
+
+  const pinnedSearchers = useMemo(
+    () =>
+      isSearching ? pinnedSegments.map(segment => createLinksGroupsSearcher(getVisibleGroups(segment.items))) : [],
+    [isSearching, pinnedSegments],
+  );
+
+  const platformSearcher = useMemo(
+    () => (isSearching && platformGroups.length > 0 ? createLinksGroupsSearcher(platformGroups) : undefined),
+    [isSearching, platformGroups],
+  );
+
   const regularGroups = useMemo(
     () => regularSegments.flatMap(segment => getVisibleGroups(segment.items)),
     [regularSegments],
   );
 
-  const pinnedGroups = useMemo(
-    () => pinnedSegments.flatMap(segment => getVisibleGroups(segment.items)),
+  const pinnedGroupIds = useMemo(
+    () => pinnedSegments.flatMap(segment => getVisibleGroups(segment.items)).map(({ id }) => id),
     [pinnedSegments],
   );
 
@@ -33,17 +60,14 @@ export function useMenuItems({ search, segments, platformGroups = [] }: UseMenuI
       return regularGroups;
     }
 
-    const searchIn = (groups: LinksGroup[]) => filterLinksGroupsFuzzy(searchValue, groups);
-
-    const regularResults = regularSegments.flatMap(segment => searchIn(getVisibleGroups(segment.items)));
-    const platformResults = platformGroups.length > 0 ? searchIn(platformGroups) : [];
-    const pinnedResults = pinnedSegments.flatMap(segment => searchIn(getVisibleGroups(segment.items)));
+    const regularResults = regularSearchers.flatMap(search => search(searchValue));
+    const platformResults = platformSearcher ? platformSearcher(searchValue) : [];
+    const pinnedResults = pinnedSearchers.flatMap(search => search(searchValue));
 
     const combined = dedupeSearchGroups([...regularResults, ...platformResults, ...pinnedResults]);
-    const pinnedGroupIds = pinnedGroups.map(({ id }) => id);
 
     return pinnedGroupIds.length > 0 ? pinGroupToBottom(combined, pinnedGroupIds) : combined;
-  }, [searchValue, regularSegments, regularGroups, platformGroups, pinnedSegments, pinnedGroups]);
+  }, [searchValue, regularGroups, regularSearchers, platformSearcher, pinnedSearchers, pinnedGroupIds]);
 
   useEffect(() => {
     if (searchValue && !resultItems.length) {

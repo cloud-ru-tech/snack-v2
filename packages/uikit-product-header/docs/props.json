@@ -25,19 +25,23 @@
       },
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "favorite": {
         "type": "FavoriteProps",
-        "required": false
+        "required": false,
+        "description": "Избранное. Без пропа группа-предок карточек драга из избранного не активируется."
       },
       "footer": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот под сеткой карточек."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
       },
       "loading": {
         "type": "boolean",
@@ -76,7 +80,8 @@
       },
       "search": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот поисковой строки — рендерится над контентом."
       },
       "searchGroups": {
         "type": "LinksGroup[]",
@@ -86,7 +91,8 @@
       },
       "searchValue": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "Текущее значение поисковой строки — переключает контент между каталогом и результатами поиска."
       },
       "segmentPrefs": {
         "type": "MainMenuSegmentPrefs[]",
@@ -107,11 +113,13 @@
     "props": {
       "allGroupsExpanded": {
         "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Все группы сегмента раскрыты — определяет иконку кнопки свернуть/развернуть все."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка — кнопка свернуть/развернуть все скрывается."
       },
       "loading": {
         "type": "boolean",
@@ -120,11 +128,13 @@
       },
       "onSegmentChange": {
         "type": "(segment: string) => void",
-        "required": true
+        "required": true,
+        "description": "Колбэк смены активного сегмента."
       },
       "onToggleAllGroupsExpanded": {
         "type": "() => void",
-        "required": true
+        "required": true,
+        "description": "Колбэк клика по кнопке свернуть/развернуть все группы."
       },
       "preferences": {
         "type": "MainMenuPreferencesProps",
@@ -133,11 +143,13 @@
       },
       "segment": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Значение активного сегмента SegmentControl."
       },
       "segmentItems": {
         "type": "ContentToolbarSegmentItem[]",
-        "required": false
+        "required": false,
+        "description": "Пункты SegmentControl. Без пунктов (или с одним) SegmentControl не отображается."
       }
     },
     "relatedTypes": {}
@@ -148,24 +160,23 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
-      },
-      "dragDisabled": {
-        "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "dragPreview": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Карточка рендерится как превью в `DragOverlay` (без тултипа и описания)."
       },
       "expandable": {
         "type": "{ value: boolean; onClick(): void; }",
         "required": false,
         "description": "Настройки кнопки раскрытия"
       },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+      "favoriteChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "В избранном ли сервис. Учитывается только вместе с `onFavoriteChange`."
       },
       "groupId": {
         "type": "string",
@@ -173,23 +184,33 @@
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
+      },
+      "onFavoriteChange": {
+        "type": "((productId: string) => (addingValue: boolean, position?: number) => void)",
+        "required": false,
+        "description": "Переключение избранного (стабильная по ссылке функция). Не передано — кнопка избранного\nне показывается."
       },
       "onServiceClick": {
         "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по карточке."
       },
       "service": {
         "type": "InnerLink",
-        "required": true
+        "required": true,
+        "description": "Карточка сервиса."
       },
       "showDescription": {
         "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Показывать описание сервиса вместо тултипа."
       },
       "tabIndex": {
         "type": "number",
-        "required": false
+        "required": false,
+        "description": "`tabIndex` корневого элемента."
       }
     },
     "relatedTypes": {}
@@ -222,11 +243,13 @@
     "props": {
       "isFavoritesSegment": {
         "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Пустое состояние сегмента «Избранное» (иначе — «Недавнее»)."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
       }
     },
     "relatedTypes": {}
@@ -235,14 +258,6 @@
     "displayName": "Favorites",
     "propsTypeName": "FavoritesProps",
     "props": {
-      "allServiceGroups": {
-        "type": "LinksGroup[]",
-        "required": true,
-        "description": "Группы сервисов для разрешения id в карточки",
-        "typeRefs": [
-          "LinksGroup"
-        ]
-      },
       "favorite": {
         "type": "FavoriteProps",
         "required": true,
@@ -260,6 +275,14 @@
         "type": "boolean",
         "required": false,
         "description": "Флаг мобильной раскладки"
+      },
+      "servicesById": {
+        "type": "ReadonlyMap<string, InnerLink>",
+        "required": true,
+        "description": "Сервисы каталога по id для разрешения id в карточки",
+        "typeRefs": [
+          "InnerLink"
+        ]
       }
     },
     "relatedTypes": {
@@ -369,6 +392,97 @@
         },
         "own": false
       },
+      "CardServiceLightProps": {
+        "kind": "interface",
+        "props": {
+          "actionsVisibility": {
+            "type": "VisibilityStrategy | undefined",
+            "required": false,
+            "values": [
+              "always",
+              "hover"
+            ],
+            "description": "Формат отображения дополнительных действий: всегда или при наведении и фокусе",
+            "typeRefs": [
+              "VisibilityStrategy"
+            ]
+          },
+          "as": {
+            "type": "T | undefined",
+            "required": false,
+            "description": "Полиморфный элемент: `'button'`, `'a'`, `{Link}` и т.д."
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс корневого элемента"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Support prop для тестов"
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Неактивное состояние"
+          },
+          "expandable": {
+            "type": "{ value: boolean; onClick(): void; } | undefined",
+            "required": false,
+            "description": "Настройки кнопки раскрытия"
+          },
+          "favorite": {
+            "type": "FavoriteProps | undefined",
+            "required": false,
+            "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке.",
+            "typeRefs": [
+              "FavoriteProps (@ds/uikit-product-card-predefined)"
+            ]
+          },
+          "icon": {
+            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
+            "required": false,
+            "description": "Иконка сервиса"
+          },
+          "innerRef": {
+            "type": "PolymorphicRef<T> | undefined",
+            "required": false,
+            "description": "Ref на реальный DOM-элемент / инстанс",
+            "typeRefs": [
+              "PolymorphicRef"
+            ]
+          },
+          "promoTag": {
+            "type": "CardPromoTagProps | undefined",
+            "required": false,
+            "description": "Настройки promo tag. При отсутствии не отображается",
+            "typeRefs": [
+              "CardPromoTagProps",
+              "PromoTagPredefinedBaseProps"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Заголовок карточки"
+          },
+          "tooltip": {
+            "type": "Omit<TooltipProps, \"size\" | \"trigger\"> | undefined",
+            "required": false,
+            "description": "Подсказка с иконкой «?» рядом с заголовком",
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "truncate": {
+            "type": "{ title?: number; } | undefined",
+            "required": false,
+            "description": "Настройки обрезки текста заголовка"
+          }
+        },
+        "own": false
+      },
       "FavoriteProps": {
         "kind": "interface",
         "props": {
@@ -454,6 +568,7 @@
           "badge": {
             "type": "CardPromoTagProps | undefined",
             "required": false,
+            "description": "Промо-тег карточки.",
             "typeRefs": [
               "CardServiceLightProps",
               "PromoTagPredefinedBaseProps"
@@ -466,7 +581,8 @@
           },
           "disabled": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка недоступна для клика/drag и визуально приглушена."
           },
           "favoritesEnabled": {
             "type": "boolean | undefined",
@@ -475,11 +591,13 @@
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка карточки (рендерится как `<a>`)."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
@@ -506,7 +624,8 @@
           },
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк клика по карточке."
           },
           "viewMode": {
             "type": "InnerLinkViewMode | undefined",
@@ -525,175 +644,134 @@
         },
         "own": true
       },
-      "LinksGroup": {
-        "kind": "interface",
-        "props": {
-          "aliases": {
-            "type": "string[] | undefined",
-            "required": false,
-            "description": "Синонимы заголовка группы для fuzzy-поиска."
-          },
-          "blockColor": {
-            "type": "LinksGroupBlockColor | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Цвет блока группы.",
-            "typeRefs": [
-              "LinksGroupBlockColor"
-            ]
-          },
-          "favoritesEnabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Разрешено ли добавление карточек группы в избранное."
-          },
-          "hidden": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "highlight": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Визуальное выделение группы"
-          },
-          "icon": {
-            "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-            "required": false
-          },
-          "id": {
-            "type": "string",
-            "required": true,
-            "description": "Уникальный идентификатор группы (якорь скролла, поиск по id)."
-          },
-          "items": {
-            "type": "InnerLink[]",
-            "required": true,
-            "description": "Карточки сервисов или ссылок внутри группы.",
-            "typeRefs": [
-              "InnerLink"
-            ]
-          },
-          "label": {
-            "type": "TitleStatic | TitleClickable",
-            "required": true,
-            "description": "Заголовок группы в сетке карточек и в боковой навигации.",
-            "typeRefs": [
-              "LinksGroupTitle",
-              "TitleClickable",
-              "TitleStatic"
-            ]
-          },
-          "onClick": {
-            "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
-          }
-        },
-        "own": true
-      },
-      "LinksGroupBlockColor": {
+      "InnerLinkViewMode": {
         "kind": "union",
         "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
+          "expandable",
+          "expanded",
+          "flat-link",
+          "group-title-only"
         ],
         "own": true
       },
-      "LinksGroupTitle": {
+      "PromoTagPredefinedBaseProps": {
         "kind": "alias",
-        "type": "TitleStatic | TitleClickable",
-        "own": true
-      },
-      "TitleClickable": {
-        "kind": "interface",
-        "props": {
-          "href": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "onClick": {
-            "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
-          },
-          "text": {
-            "type": "string",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "TitleStatic": {
-        "kind": "interface",
-        "props": {
-          "href": {
-            "type": "undefined",
-            "required": false
-          },
-          "onClick": {
-            "type": "undefined",
-            "required": false
-          },
-          "text": {
-            "type": "string",
-            "required": true
-          }
-        },
-        "own": true
+        "type": "{ [x: string]: any; [x: number]: any; [x: symbol]: any; }",
+        "own": false
       }
     }
   },
-  "FavoritesSortable": {
-    "displayName": "FavoritesSortable",
+  "FavoritesList": {
+    "displayName": "FavoritesList",
     "propsTypeName": null,
-    "description": "Desktop-обёртка тела списка: реордер drag&drop + приём карточек из общей\nсетки. Требует `<DndContext>`-предка, поэтому `useFavoritesDnd` вызывается\nтолько здесь — на mobile этот компонент не рендерится вовсе (см. `Favorites`).",
     "props": {
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": true
-      },
-      "favoriteItems": {
+      "items": {
         "type": "InnerLink[]",
-        "required": true
-      },
-      "isEmpty": {
-        "type": "boolean",
-        "required": true
-      },
-      "onFavoriteServiceClick": {
-        "type": "(service: InnerLink) => (event: MouseEvent<HTMLElement, MouseEvent>) => void",
-        "required": true
-      },
-      "recentCards": {
-        "type": "ReactNode",
-        "required": true
-      },
-      "segment": {
-        "type": "enum",
         "required": true,
-        "values": [
-          "favorites",
-          "recent"
-        ]
+        "description": "Карточки избранных сервисов."
       },
-      "setSegment": {
-        "type": "(segment: FavoritesSegment) => void",
+      "onFavoriteChange": {
+        "type": "(productId: string) => (addingValue: boolean, position?: number | undefined) => void",
+        "required": true,
+        "description": "Колбэк переключения избранного (`FavoriteProps['onChange']`)."
+      },
+      "onServiceClick": {
+        "type": "(service: InnerLink) => (event: MouseEvent<HTMLElement, MouseEvent>) => void",
+        "required": true,
+        "description": "Колбэк клика по карточке."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FavoritesReorderList": {
+    "displayName": "FavoritesReorderList",
+    "propsTypeName": null,
+    "props": {
+      "favoriteIds": {
+        "type": "string[]",
+        "required": true,
+        "description": "Id избранных сервисов (`FavoriteProps['value']`)."
+      },
+      "items": {
+        "type": "InnerLink[]",
+        "required": true,
+        "description": "Карточки избранных сервисов."
+      },
+      "onFavoriteChange": {
+        "type": "(productId: string) => (addingValue: boolean, position?: number | undefined) => void",
+        "required": true,
+        "description": "Колбэк переключения избранного (`FavoriteProps['onChange']`)."
+      },
+      "onServiceClick": {
+        "type": "(service: InnerLink) => (event: MouseEvent<HTMLElement, MouseEvent>) => void",
+        "required": true,
+        "description": "Колбэк клика по карточке."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "GridServiceCard": {
+    "displayName": "GridServiceCard",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "dragEnabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Карточку можно перетаскивать. Иначе рендерится без `useDraggable`: на mobile, при поиске и\nбез избранного сотни карточек не регистрируются в `DndContext` впустую."
+      },
+      "dragPreview": {
+        "type": "boolean",
+        "required": false,
+        "description": "Карточка рендерится как превью в `DragOverlay` (без тултипа и описания)."
+      },
+      "expandable": {
+        "type": "{ value: boolean; onClick(): void; }",
+        "required": false,
+        "description": "Настройки кнопки раскрытия"
+      },
+      "favoriteChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "В избранном ли сервис. Учитывается только вместе с `onFavoriteChange`."
+      },
+      "groupId": {
+        "type": "string",
         "required": true
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false,
+        "description": "Мобильная раскладка."
+      },
+      "onFavoriteChange": {
+        "type": "((productId: string) => (addingValue: boolean, position?: number) => void)",
+        "required": false,
+        "description": "Переключение избранного (стабильная по ссылке функция). Не передано — кнопка избранного\nне показывается."
+      },
+      "onServiceClick": {
+        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по карточке."
+      },
+      "service": {
+        "type": "InnerLink",
+        "required": true,
+        "description": "Карточка сервиса."
+      },
+      "showDescription": {
+        "type": "boolean",
+        "required": true,
+        "description": "Показывать описание сервиса вместо тултипа."
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "description": "`tabIndex` корневого элемента."
       }
     },
     "relatedTypes": {}
@@ -758,7 +836,8 @@
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка — тултип не показывается (на mobile нет hover)."
       },
       "label": {
         "type": "any",
@@ -1092,11 +1171,13 @@
     "props": {
       "breadcrumbs": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот хлебных крошек. На mobile переносится под основную строку хедера."
       },
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "data-test-id": {
         "type": "string",
@@ -1104,19 +1185,23 @@
       },
       "logo": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот логотипа (крайний левый)."
       },
       "menu": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот главного меню (слева, после логотипа)."
       },
       "select": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот селектора (например, выбор облака/организации), после меню."
       },
       "toolbar": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот тулбара — правая часть хедера."
       }
     },
     "relatedTypes": {}
@@ -1127,7 +1212,8 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "data-test-id": {
         "type": "string",
@@ -1135,11 +1221,13 @@
       },
       "href": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Ссылка логотипа."
       },
       "loading": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Флаг загрузки — логотип показывается в состоянии загрузки кнопки."
       },
       "mode": {
         "type": "enum",
@@ -1150,21 +1238,25 @@
           "prod",
           "stage"
         ],
+        "description": "Режим окружения — отображается промо-тегом рядом с дефолтной иконкой (не для `'prod'`).",
         "typeRefs": [
           "HeaderLogoMode"
         ]
       },
       "onClick": {
         "type": "MouseEventHandler<HTMLAnchorElement>",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по логотипу."
       },
       "path": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "Путь до кастомного изображения логотипа. Без пропа (или при ошибке загрузки) — дефолтная иконка."
       },
       "tooltip": {
         "type": "TooltipProps",
         "required": false,
+        "description": "Настройки тултипа логотипа.",
         "typeRefs": [
           "TooltipProps"
         ]
@@ -1359,7 +1451,8 @@
       },
       "disabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Кнопка открытия меню недоступна для клика."
       },
       "draggerTooltip": {
         "type": "string",
@@ -1369,17 +1462,20 @@
       "favorite": {
         "type": "FavoriteProps",
         "required": false,
+        "description": "Избранное. Без пропа группа-предок карточек драга из избранного не активируется.\nИзбранное. Без пропа секция «Избранное» не отображается.",
         "typeRefs": [
           "FavoriteProps"
         ]
       },
       "leftBottom": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile)."
       },
       "leftTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile)."
       },
       "loading": {
         "type": "boolean",
@@ -1388,7 +1484,8 @@
       },
       "logo": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Логотип в шапке меню."
       },
       "onActiveSegmentChange": {
         "type": "((segmentId: string) => void)",
@@ -1417,7 +1514,8 @@
       },
       "open": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Открыто ли меню.\n\nНе передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку)."
       },
       "platformGroups": {
         "type": "LinksGroup[]",
@@ -1443,6 +1541,7 @@
       "search": {
         "type": "SearchProps",
         "required": false,
+        "description": "Поиск по сервисам. Без пропа поисковая строка не отображается.",
         "typeRefs": [
           "SearchProps"
         ]
@@ -1473,7 +1572,8 @@
       },
       "setOpen": {
         "type": "((open: boolean) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк открытия/закрытия меню."
       },
       "settingItems": {
         "type": "MainMenuSettingsItem[]",
@@ -1768,6 +1868,7 @@
           "badge": {
             "type": "CardPromoTagProps | undefined",
             "required": false,
+            "description": "Промо-тег карточки.",
             "typeRefs": [
               "CardServiceLightProps",
               "PromoTagPredefinedBaseProps"
@@ -1780,7 +1881,8 @@
           },
           "disabled": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка недоступна для клика/drag и визуально приглушена."
           },
           "favoritesEnabled": {
             "type": "boolean | undefined",
@@ -1789,11 +1891,13 @@
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка карточки (рендерится как `<a>`)."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
@@ -1820,7 +1924,8 @@
           },
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк клика по карточке."
           },
           "viewMode": {
             "type": "InnerLinkViewMode | undefined",
@@ -1883,16 +1988,18 @@
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Группа скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "highlight": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Визуальное выделение группы"
+            "description": "Визуальное выделение группы."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-            "required": false
+            "required": false,
+            "description": "Иконка группы."
           },
           "id": {
             "type": "string",
@@ -1919,7 +2026,8 @@
           },
           "onClick": {
             "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк клика по заголовку группы."
           }
         },
         "own": true
@@ -2040,15 +2148,18 @@
             "values": [
               "after",
               "before"
-            ]
+            ],
+            "description": "Разделитель до/после пункта."
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка карточки (рендерится как `<a>`)."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
@@ -2067,7 +2178,8 @@
           },
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк клика по карточке."
           }
         },
         "own": true
@@ -2077,11 +2189,13 @@
         "props": {
           "onChange": {
             "type": "(value: boolean) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк изменения значения переключателя."
           },
           "value": {
             "type": "boolean",
-            "required": true
+            "required": true,
+            "description": "Текущее значение переключателя."
           }
         },
         "own": true
@@ -2101,7 +2215,8 @@
           },
           "onChange": {
             "type": "(value: string) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк изменения значения поисковой строки."
           },
           "onFocus": {
             "type": "FocusEventHandler<HTMLInputElement> | undefined",
@@ -2110,11 +2225,13 @@
           },
           "onSearchNoResult": {
             "type": "((value: string) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк вызывается, когда поиск по текущему значению не дал результатов."
           },
           "value": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текущее значение поисковой строки."
           }
         },
         "own": true
@@ -2124,15 +2241,18 @@
         "props": {
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка заголовка (рендерится как `<a>`)."
           },
           "onClick": {
             "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк клика по заголовку."
           },
           "text": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текст заголовка."
           }
         },
         "own": true
@@ -2150,7 +2270,8 @@
           },
           "text": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текст заголовка."
           }
         },
         "own": true
@@ -2447,11 +2568,13 @@
     "props": {
       "leftBottom": {
         "type": "ReactNode",
-        "required": true
+        "required": true,
+        "description": "Слот под пунктами настроек."
       },
       "settingItems": {
         "type": "MainMenuSettingsItem[]",
-        "required": false
+        "required": false,
+        "description": "Пункты настроек, отображаемые в нижней части меню."
       }
     },
     "relatedTypes": {}
@@ -2473,7 +2596,8 @@
       },
       "disabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Кнопка открытия меню недоступна для клика."
       },
       "draggerTooltip": {
         "type": "string",
@@ -2482,15 +2606,18 @@
       },
       "favorite": {
         "type": "FavoriteProps",
-        "required": false
+        "required": false,
+        "description": "Избранное. Без пропа группа-предок карточек драга из избранного не активируется.\nИзбранное. Без пропа секция «Избранное» не отображается."
       },
       "leftBottom": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile)."
       },
       "leftTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile)."
       },
       "loading": {
         "type": "boolean",
@@ -2499,7 +2626,8 @@
       },
       "logo": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Логотип в шапке меню."
       },
       "onActiveSegmentChange": {
         "type": "((segmentId: string) => void)",
@@ -2528,7 +2656,9 @@
       },
       "open": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "defaultValue": "false",
+        "description": "Открыто ли меню.\n\nНе передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку)."
       },
       "platformGroups": {
         "type": "LinksGroup[]",
@@ -2547,7 +2677,8 @@
       },
       "search": {
         "type": "SearchProps",
-        "required": false
+        "required": false,
+        "description": "Поиск по сервисам. Без пропа поисковая строка не отображается."
       },
       "searchGroups": {
         "type": "LinksGroup[]",
@@ -2566,7 +2697,8 @@
       },
       "setOpen": {
         "type": "((open: boolean) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк открытия/закрытия меню."
       },
       "settingItems": {
         "type": "MainMenuSettingsItem[]",
@@ -2582,7 +2714,8 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "isMobile": {
         "type": "boolean",
@@ -2590,11 +2723,13 @@
       },
       "logo": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Логотип в шапке меню."
       },
       "onClose": {
         "type": "() => void",
-        "required": true
+        "required": true,
+        "description": "Колбэк клика по кнопке закрытия меню."
       }
     },
     "relatedTypes": {}
@@ -2615,7 +2750,8 @@
       },
       "disabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Кнопка открытия меню недоступна для клика."
       },
       "draggerTooltip": {
         "type": "string",
@@ -2625,17 +2761,20 @@
       "favorite": {
         "type": "FavoriteProps",
         "required": false,
+        "description": "Избранное. Без пропа группа-предок карточек драга из избранного не активируется.\nИзбранное. Без пропа секция «Избранное» не отображается.",
         "typeRefs": [
           "FavoriteProps"
         ]
       },
       "leftBottom": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile)."
       },
       "leftTop": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile)."
       },
       "loading": {
         "type": "boolean",
@@ -2644,7 +2783,8 @@
       },
       "logo": {
         "type": "ReactNode",
-        "required": false
+        "required": false,
+        "description": "Логотип в шапке меню."
       },
       "onActiveSegmentChange": {
         "type": "((segmentId: string) => void)",
@@ -2673,7 +2813,9 @@
       },
       "open": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "defaultValue": "false",
+        "description": "Открыто ли меню.\n\nНе передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку)."
       },
       "platformGroups": {
         "type": "LinksGroup[]",
@@ -2699,6 +2841,7 @@
       "search": {
         "type": "SearchProps",
         "required": false,
+        "description": "Поиск по сервисам. Без пропа поисковая строка не отображается.",
         "typeRefs": [
           "SearchProps"
         ]
@@ -2729,7 +2872,8 @@
       },
       "setOpen": {
         "type": "((open: boolean) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк открытия/закрытия меню."
       },
       "settingItems": {
         "type": "MainMenuSettingsItem[]",
@@ -3024,6 +3168,7 @@
           "badge": {
             "type": "CardPromoTagProps | undefined",
             "required": false,
+            "description": "Промо-тег карточки.",
             "typeRefs": [
               "CardServiceLightProps",
               "PromoTagPredefinedBaseProps"
@@ -3036,7 +3181,8 @@
           },
           "disabled": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка недоступна для клика/drag и визуально приглушена."
           },
           "favoritesEnabled": {
             "type": "boolean | undefined",
@@ -3045,11 +3191,13 @@
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка карточки (рендерится как `<a>`)."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
@@ -3076,7 +3224,8 @@
           },
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк клика по карточке."
           },
           "viewMode": {
             "type": "InnerLinkViewMode | undefined",
@@ -3139,16 +3288,18 @@
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Группа скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "highlight": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Визуальное выделение группы"
+            "description": "Визуальное выделение группы."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-            "required": false
+            "required": false,
+            "description": "Иконка группы."
           },
           "id": {
             "type": "string",
@@ -3175,7 +3326,8 @@
           },
           "onClick": {
             "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк клика по заголовку группы."
           }
         },
         "own": true
@@ -3296,15 +3448,18 @@
             "values": [
               "after",
               "before"
-            ]
+            ],
+            "description": "Разделитель до/после пункта."
           },
           "hidden": {
             "type": "boolean | undefined",
-            "required": false
+            "required": false,
+            "description": "Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска)."
           },
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка карточки (рендерится как `<a>`)."
           },
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
@@ -3323,7 +3478,8 @@
           },
           "onClick": {
             "type": "(e?: MouseEvent<HTMLElement>) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк клика по карточке."
           }
         },
         "own": true
@@ -3333,11 +3489,13 @@
         "props": {
           "onChange": {
             "type": "(value: boolean) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк изменения значения переключателя."
           },
           "value": {
             "type": "boolean",
-            "required": true
+            "required": true,
+            "description": "Текущее значение переключателя."
           }
         },
         "own": true
@@ -3357,7 +3515,8 @@
           },
           "onChange": {
             "type": "(value: string) => void",
-            "required": true
+            "required": true,
+            "description": "Колбэк изменения значения поисковой строки."
           },
           "onFocus": {
             "type": "FocusEventHandler<HTMLInputElement> | undefined",
@@ -3366,11 +3525,13 @@
           },
           "onSearchNoResult": {
             "type": "((value: string) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк вызывается, когда поиск по текущему значению не дал результатов."
           },
           "value": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текущее значение поисковой строки."
           }
         },
         "own": true
@@ -3380,15 +3541,18 @@
         "props": {
           "href": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Ссылка заголовка (рендерится как `<a>`)."
           },
           "onClick": {
             "type": "((e?: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк клика по заголовку."
           },
           "text": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текст заголовка."
           }
         },
         "own": true
@@ -3406,7 +3570,8 @@
           },
           "text": {
             "type": "string",
-            "required": true
+            "required": true,
+            "description": "Текст заголовка."
           }
         },
         "own": true
@@ -3433,8 +3598,7 @@
           "fade-slide-up",
           "fade-slide-up-right",
           "slide-right"
-        ],
-        "defaultValue": "slide-right"
+        ]
       }
     },
     "relatedTypes": {}
@@ -3446,6 +3610,7 @@
       "items": {
         "type": "Item[]",
         "required": true,
+        "description": "Пункты хлебных крошек.",
         "typeRefs": [
           "BreadcrumbsProps",
           "Item"
@@ -3543,6 +3708,38 @@
       }
     }
   },
+  "RecentList": {
+    "displayName": "RecentList",
+    "propsTypeName": null,
+    "props": {
+      "favoriteIds": {
+        "type": "string[]",
+        "required": true,
+        "description": "Id избранных сервисов — для звёздочки «в избранном» на карточках недавнего (`FavoriteProps['value']`)."
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false,
+        "description": "Мобильная раскладка."
+      },
+      "items": {
+        "type": "InnerLink[]",
+        "required": true,
+        "description": "Карточки сегмента «Недавнее»."
+      },
+      "onFavoriteChange": {
+        "type": "(productId: string) => (addingValue: boolean, position?: number | undefined) => void",
+        "required": true,
+        "description": "Колбэк переключения избранного (`FavoriteProps['onChange']`)."
+      },
+      "onServiceClick": {
+        "type": "(service: InnerLink) => (event: MouseEvent<HTMLElement, MouseEvent>) => void",
+        "required": true,
+        "description": "Колбэк клика по карточке."
+      }
+    },
+    "relatedTypes": {}
+  },
   "ScrollWithAnimatedStickyPanel": {
     "displayName": "ScrollWithAnimatedStickyPanel",
     "propsTypeName": null,
@@ -3570,7 +3767,8 @@
       },
       "onChange": {
         "type": "(value: string) => void",
-        "required": true
+        "required": true,
+        "description": "Колбэк изменения значения поисковой строки."
       },
       "onFocus": {
         "type": "FocusEventHandler<HTMLInputElement>",
@@ -3579,11 +3777,13 @@
       },
       "onSearchNoResult": {
         "type": "((value: string) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк вызывается, когда поиск по текущему значению не дал результатов."
       },
       "value": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Текущее значение поисковой строки."
       }
     },
     "relatedTypes": {}
@@ -3594,40 +3794,53 @@
     "props": {
       "className": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "CSS-класс корневого элемента."
       },
       "dragPreview": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Карточка рендерится как превью в `DragOverlay` (без тултипа и описания)."
       },
       "expandable": {
         "type": "{ value: boolean; onClick(): void; }",
         "required": false,
         "description": "Настройки кнопки раскрытия"
       },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+      "favoriteChecked": {
+        "type": "boolean",
+        "required": false,
+        "description": "В избранном ли сервис. Учитывается только вместе с `onFavoriteChange`."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
+      },
+      "onFavoriteChange": {
+        "type": "((productId: string) => (addingValue: boolean, position?: number) => void)",
+        "required": false,
+        "description": "Переключение избранного (стабильная по ссылке функция). Не передано — кнопка избранного\nне показывается."
       },
       "onServiceClick": {
         "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по карточке."
       },
       "service": {
         "type": "InnerLink",
-        "required": true
+        "required": true,
+        "description": "Карточка сервиса."
       },
       "showDescription": {
         "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Показывать описание сервиса вместо тултипа."
       },
       "tabIndex": {
         "type": "number",
-        "required": false
+        "required": false,
+        "description": "`tabIndex` корневого элемента."
       }
     },
     "relatedTypes": {}
@@ -3654,7 +3867,7 @@
       "favorite": {
         "type": "FavoriteProps",
         "required": false,
-        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → tooltip (если есть) → Favorite; ArrowLeft — в обратном порядке."
+        "description": "Настройки кнопки «Избранное».\nKeyboard: ArrowRight на карточке → promo tag → tooltip (если есть) → Favorite → expand; ArrowLeft — в обратном порядке."
       },
       "icon": {
         "type": "ReactElement<any, string | JSXElementConstructor<any>>",
@@ -3663,7 +3876,8 @@
       },
       "isFirst": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Карточка первая в списке — влияет на позиционирование индикатора вставки."
       },
       "promoTag": {
         "type": "CardPromoTagProps",
@@ -3672,15 +3886,18 @@
       },
       "serviceId": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Id сервиса (используется для drag-идентификатора карточки)."
       },
       "showInsertIndicatorAfter": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Показывать индикатор вставки после карточки (drag поверх избранного)."
       },
       "showInsertIndicatorBefore": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Показывать индикатор вставки перед карточкой (drag поверх избранного)."
       },
       "title": {
         "type": "string",
@@ -3690,7 +3907,7 @@
       "tooltip": {
         "type": "Omit<TooltipProps, \"size\" | \"trigger\">",
         "required": false,
-        "description": "Подсказка с иконкой «?» рядом с заголовком"
+        "description": "Подсказка с иконкой «?» рядом с заголовком. Показывается только в компактном виде"
       }
     },
     "relatedTypes": {}
@@ -3699,6 +3916,11 @@
     "displayName": "SortableGroup",
     "propsTypeName": null,
     "props": {
+      "appear": {
+        "type": "boolean",
+        "required": false,
+        "description": "Группа появляется с fade-in при монтировании (на desktop; на mobile анимирует контейнер)."
+      },
       "blockColor": {
         "type": "enum",
         "required": false,
@@ -3712,56 +3934,53 @@
           "red",
           "violet",
           "yellow"
-        ]
+        ],
+        "description": "Цвет блока группы."
       },
       "enableServiceDrag": {
         "type": "boolean",
-        "required": false
-      },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+        "required": false,
+        "description": "Группу можно перетаскивать (иначе рендерится без `useSortable`)."
       },
       "groupFavoritesEnabled": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "true"
+        "description": "Разрешено ли добавление карточек группы в избранное."
       },
       "highlight": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Визуальное выделение группы."
       },
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-        "required": false
+        "required": false,
+        "description": "Иконка группы."
       },
       "id": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Id группы."
       },
       "isExpanded": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Раскрыта ли группа."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
       },
       "items": {
         "type": "InnerLink[]",
-        "required": true
+        "required": true,
+        "description": "Карточки сервисов или ссылок внутри группы."
       },
       "label": {
         "type": "LinksGroupTitle",
-        "required": true
-      },
-      "onServiceClick": {
-        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
-      },
-      "showDescription": {
-        "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Заголовок группы."
       }
     },
     "relatedTypes": {}
@@ -3770,37 +3989,20 @@
     "displayName": "SortableGroupCards",
     "propsTypeName": null,
     "props": {
-      "enableServiceDrag": {
-        "type": "boolean",
-        "required": false
-      },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
-      },
       "groupFavoritesEnabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Разрешено ли добавление карточек группы в избранное."
       },
       "groupId": {
         "type": "string",
-        "required": true
-      },
-      "isMobile": {
-        "type": "boolean",
-        "required": false
+        "required": true,
+        "description": "Id группы-предка."
       },
       "items": {
         "type": "InnerLink[]",
-        "required": true
-      },
-      "onServiceClick": {
-        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
-      },
-      "showDescription": {
-        "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Карточки сервисов группы."
       }
     },
     "relatedTypes": {}
@@ -3811,11 +4013,13 @@
     "props": {
       "attributes": {
         "type": "DraggableAttributes",
-        "required": false
+        "required": false,
+        "description": "ARIA-атрибуты `dnd-kit` draggable-элемента."
       },
       "listeners": {
         "type": "DraggableSyntheticListeners",
-        "required": false
+        "required": false,
+        "description": "Обработчики событий `dnd-kit` для инициации перетаскивания."
       }
     },
     "relatedTypes": {}
@@ -3823,7 +4027,13 @@
   "SortableGroupDragPreview": {
     "displayName": "SortableGroupDragPreview",
     "propsTypeName": null,
+    "description": "Превью группы в `DragOverlay`. Рендерится вне `Content`, поэтому свой `CardsContext` собирает\nсам: без drag-обвязки карточек и без обработчика клика.",
     "props": {
+      "appear": {
+        "type": "boolean",
+        "required": false,
+        "description": "Группа появляется с fade-in при монтировании (на desktop; на mobile анимирует контейнер)."
+      },
       "blockColor": {
         "type": "enum",
         "required": false,
@@ -3837,47 +4047,58 @@
           "red",
           "violet",
           "yellow"
-        ]
+        ],
+        "description": "Цвет блока группы."
       },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+      "favoriteIds": {
+        "type": "ReadonlySet<string>",
+        "required": false,
+        "description": "Id избранных сервисов. Не передано — избранное для карточек недоступно."
       },
       "groupFavoritesEnabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Разрешено ли добавление карточек группы в избранное."
       },
       "highlight": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Визуальное выделение группы."
       },
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-        "required": false
+        "required": false,
+        "description": "Иконка группы."
       },
       "id": {
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Id группы."
       },
       "isExpanded": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Раскрыта ли группа."
       },
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
       },
       "items": {
         "type": "InnerLink[]",
-        "required": true
+        "required": true,
+        "description": "Карточки сервисов или ссылок внутри группы."
       },
       "label": {
         "type": "LinksGroupTitle",
-        "required": true
+        "required": true,
+        "description": "Заголовок группы."
       },
-      "onServiceClick": {
-        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+      "onFavoriteChange": {
+        "type": "((productId: string) => (addingValue: boolean, position?: number) => void)",
+        "required": false,
+        "description": "Стабильная по ссылке обёртка над `favorite.onChange`."
       },
       "showDescription": {
         "type": "boolean",
@@ -3892,7 +4113,8 @@
     "props": {
       "attributes": {
         "type": "DraggableAttributes",
-        "required": false
+        "required": false,
+        "description": "ARIA-атрибуты `dnd-kit` draggable-элемента."
       },
       "enableServiceDrag": {
         "type": "boolean",
@@ -3900,7 +4122,8 @@
       },
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-        "required": false
+        "required": false,
+        "description": "Иконка группы."
       },
       "isExpanded": {
         "type": "boolean",
@@ -3916,7 +4139,8 @@
       },
       "listeners": {
         "type": "DraggableSyntheticListeners",
-        "required": false
+        "required": false,
+        "description": "Обработчики событий `dnd-kit` для инициации перетаскивания."
       }
     },
     "relatedTypes": {}
@@ -3927,7 +4151,8 @@
     "props": {
       "isMobile": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Мобильная раскладка."
       }
     },
     "relatedTypes": {}
@@ -3936,37 +4161,20 @@
     "displayName": "SubCategory",
     "propsTypeName": null,
     "props": {
-      "dragDisabled": {
-        "type": "boolean",
-        "required": false
-      },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
-      },
       "groupFavoritesEnabled": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Разрешено ли добавление карточек группы в избранное."
       },
       "groupId": {
         "type": "string",
-        "required": true
-      },
-      "isMobile": {
-        "type": "boolean",
-        "required": false
-      },
-      "onServiceClick": {
-        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+        "required": true,
+        "description": "Id группы-предка."
       },
       "service": {
         "type": "InnerLink",
-        "required": true
-      },
-      "showDescription": {
-        "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Карточка подкатегории (с непустым {@link InnerLink.items})."
       }
     },
     "relatedTypes": {}
@@ -3975,38 +4183,25 @@
     "displayName": "SubCategoryTitle",
     "propsTypeName": null,
     "props": {
-      "dragDisabled": {
-        "type": "boolean",
-        "required": false
-      },
       "expandable": {
         "type": "{ value: boolean; onClick(): void; }",
         "required": false,
         "description": "Настройки кнопки раскрытия"
       },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+      "groupFavoritesEnabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Кнопка избранного показывается только если для группы избранное включено."
       },
       "groupId": {
         "type": "string",
-        "required": true
-      },
-      "isMobile": {
-        "type": "boolean",
-        "required": false
-      },
-      "onServiceClick": {
-        "type": "((service: InnerLink, event: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+        "required": true,
+        "description": "Id группы-предка."
       },
       "service": {
         "type": "InnerLink",
-        "required": true
-      },
-      "showDescription": {
-        "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Карточка сервиса."
       }
     },
     "relatedTypes": {}
@@ -4028,15 +4223,18 @@
       },
       "onClick": {
         "type": "(() => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по кнопке-триггеру."
       },
       "onLogout": {
         "type": "(() => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по пункту «Выйти»."
       },
       "open": {
         "type": "boolean",
-        "required": false
+        "required": false,
+        "description": "Открыто ли меню.\n\nНе передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку)."
       },
       "organizationItems": {
         "type": "Item[]",
@@ -4053,17 +4251,20 @@
         "type": "UserProfileProps",
         "required": false,
         "defaultValue": "{}",
+        "description": "Профиль пользователя (имя, email, счётчик приглашений).",
         "typeRefs": [
           "UserProfileProps"
         ]
       },
       "setOpen": {
         "type": "((open: boolean) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк открытия/закрытия меню."
       },
       "settingItems": {
         "type": "BaseItem[]",
         "required": false,
+        "description": "Пункты настроек в нижней части меню.",
         "typeRefs": [
           "BaseItemProps"
         ]
@@ -4071,6 +4272,7 @@
       "theme": {
         "type": "ThemeProps",
         "required": false,
+        "description": "Переключатель темы в меню. Без пропа не отображается.",
         "typeRefs": [
           "ThemeProps"
         ]
@@ -4088,7 +4290,8 @@
       },
       "triggerTooltip": {
         "type": "string",
-        "required": false
+        "required": false,
+        "description": "Текст подсказки для кнопки-триггера."
       }
     },
     "relatedTypes": {
@@ -5027,7 +5230,8 @@
         "props": {
           "onChange": {
             "type": "((themeMode: ThemeMode) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк изменения режима темы."
           },
           "value": {
             "type": "ThemeMode | undefined",
@@ -5037,6 +5241,7 @@
               "light",
               "system"
             ],
+            "description": "Текущий режим темы. Без пропа переключатель темы в меню не отображается.",
             "typeRefs": [
               "ThemeMode"
             ]
@@ -5067,23 +5272,28 @@
         "props": {
           "email": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Email пользователя."
           },
           "fullName": {
             "type": "string | undefined",
-            "required": false
+            "required": false,
+            "description": "Полное имя пользователя. Отображается в аватаре (первые буквы) и в пункте профиля меню."
           },
           "inviteCount": {
             "type": "number | undefined",
-            "required": false
+            "required": false,
+            "description": "Число активных приглашений — отображается счётчиком на кнопке-триггере меню."
           },
           "itemWrapRender": {
             "type": "((node: ReactNode) => ReactNode) | undefined",
-            "required": false
+            "required": false,
+            "description": "Оборачивает содержимое пункта профиля — например, ссылкой или дополнительной разметкой."
           },
           "onClick": {
             "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false
+            "required": false,
+            "description": "Колбэк клика по пункту профиля."
           }
         },
         "own": true
@@ -5114,29 +5324,18 @@
     "props": {},
     "relatedTypes": {}
   },
-  "useFavoritesDnd": {
-    "displayName": "useFavoritesDnd",
+  "useFavoritesReorder": {
+    "displayName": "useFavoritesReorder",
     "propsTypeName": null,
-    "description": "Оркестрирует drag&drop избранного: приём карточек сервисов из общей сетки\n(droppable), реордер внутри списка (insert-индикатор) и drag-превью.\n\nТребует `<DndContext>`-предка (см. `MainMenuDndContext`) — доступно только\nна desktop-раскладке, на mobile избранное рендерится без drag&drop.",
+    "description": "Оркестрирует drag&drop сегмента «Избранное»: приём карточек сервисов из общей сетки\n(droppable), реордер внутри списка (insert-индикатор) и drag-превью.\n\nМонтируется только вместе с {@link FavoritesReorderList }, то есть пока активен сегмент\n«Избранное» — переключение на этот сегмент при старте drag из каталога обеспечивает\n{@link useFavoritesAutoSwitch }, смонтированный отдельно и постоянно. Из-за этого хук может\nподключиться уже посреди drag (сегмент только что переключился) — начальное состояние в\nэтом случае читается из текущего активного drag через `useDndContext`, а не только из\nбудущих событий монитора.\n\nТребует `<DndContext>`-предка (см. `MainMenuDndContext`) — доступно только на desktop-раскладке,\nна mobile избранное рендерится без drag&drop.",
     "props": {
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": true
+      "favoriteIds": {
+        "type": "string[]",
+        "required": true,
+        "description": "Id избранных сервисов (`FavoriteProps['value']`)."
       },
       "favoriteItems": {
         "type": "InnerLink[]",
-        "required": true
-      },
-      "segment": {
-        "type": "enum",
-        "required": true,
-        "values": [
-          "favorites",
-          "recent"
-        ]
-      },
-      "setSegment": {
-        "type": "(segment: FavoritesSegment) => void",
         "required": true
       }
     },
@@ -5159,16 +5358,18 @@
     "props": {
       "favorite": {
         "type": "FavoriteProps",
-        "required": false
+        "required": false,
+        "description": "Избранное. Без пропа DnD карточек в избранное отключён."
       },
-      "groups": {
-        "type": "LinksGroup[]",
+      "servicesById": {
+        "type": "ReadonlyMap<string, InnerLink>",
         "required": true,
-        "description": "Все группы карточек из сегментов (для резолва сервисов при DnD в избранное)."
+        "description": "Все сервисы каталога по id (для резолва при DnD в избранное)."
       },
       "showDescription": {
         "type": "boolean",
-        "required": true
+        "required": true,
+        "description": "Показывать описания сервисов в превью карточки при перетаскивании."
       }
     },
     "relatedTypes": {}
@@ -5185,7 +5386,8 @@
       },
       "search": {
         "type": "SearchProps",
-        "required": false
+        "required": false,
+        "description": "Поиск по сервисам. Без пропа поисковая строка не отображается."
       },
       "segments": {
         "type": "MainMenuSegment[]",
@@ -5202,24 +5404,29 @@
       "email": {
         "type": "string",
         "required": false,
-        "defaultValue": ""
+        "defaultValue": "",
+        "description": "Email пользователя."
       },
       "fullName": {
         "type": "string",
         "required": false,
-        "defaultValue": ""
+        "defaultValue": "",
+        "description": "Полное имя пользователя. Отображается в аватаре (первые буквы) и в пункте профиля меню."
       },
       "inviteCount": {
         "type": "number",
-        "required": false
+        "required": false,
+        "description": "Число активных приглашений — отображается счётчиком на кнопке-триггере меню."
       },
       "itemWrapRender": {
         "type": "((node: ReactNode) => ReactNode)",
-        "required": false
+        "required": false,
+        "description": "Оборачивает содержимое пункта профиля — например, ссылкой или дополнительной разметкой."
       },
       "onClick": {
         "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк клика по пункту профиля."
       }
     },
     "relatedTypes": {}
@@ -5233,9 +5440,15 @@
         "type": "string[]",
         "required": true
       },
-      "favorite": {
-        "type": "FavoriteProps",
-        "required": false
+      "favoriteIds": {
+        "type": "ReadonlySet<string>",
+        "required": false,
+        "description": "Id избранных сервисов. Не передано — избранное для карточек недоступно."
+      },
+      "onFavoriteChange": {
+        "type": "((productId: string) => (addingValue: boolean, position?: number) => void)",
+        "required": false,
+        "description": "Стабильная по ссылке обёртка над `favorite.onChange`."
       },
       "onSortableDragEnd": {
         "type": "(event: DragEndEvent) => void",
@@ -5266,7 +5479,8 @@
       },
       "onChange": {
         "type": "((themeMode: ThemeMode) => void)",
-        "required": false
+        "required": false,
+        "description": "Колбэк изменения режима темы."
       },
       "onClose": {
         "type": "(() => void)",
@@ -5279,7 +5493,8 @@
           "dark",
           "light",
           "system"
-        ]
+        ],
+        "description": "Текущий режим темы. Без пропа переключатель темы в меню не отображается."
       }
     },
     "relatedTypes": {}

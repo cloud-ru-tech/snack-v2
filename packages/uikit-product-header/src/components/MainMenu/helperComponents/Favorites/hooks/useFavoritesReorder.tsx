@@ -1,8 +1,8 @@
-import { useDndMonitor, useDroppable } from '@dnd-kit/core';
+import { useDndContext, useDndMonitor, useDroppable } from '@dnd-kit/core';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useMainMenuDndOverlay } from '../../../hooks/useMainMenuDnd';
-import { FavoriteProps, InnerLink } from '../../../types';
+import { InnerLink } from '../../../types';
 import {
   FAVORITES_DROP_ID,
   getServiceFavoriteDragId,
@@ -11,38 +11,48 @@ import {
   parseServiceDragId,
 } from '../../../utils';
 import { ServiceCard } from '../../ServiceCard';
-import { FAVORITES_SEGMENT, FavoritesSegment } from '../constants';
 import { useFavoritesInsertIndicator } from './useFavoritesInsertIndicator';
 
-type UseFavoritesDndParams = {
-  favorite: FavoriteProps;
+type UseFavoritesReorderParams = {
+  /** Id избранных сервисов (`FavoriteProps['value']`). */
+  favoriteIds: string[];
   favoriteItems: InnerLink[];
-  segment: FavoritesSegment;
-  setSegment(segment: FavoritesSegment): void;
 };
 
 /**
- * Оркестрирует drag&drop избранного: приём карточек сервисов из общей сетки
+ * Оркестрирует drag&drop сегмента «Избранное»: приём карточек сервисов из общей сетки
  * (droppable), реордер внутри списка (insert-индикатор) и drag-превью.
  *
- * Требует `<DndContext>`-предка (см. `MainMenuDndContext`) — доступно только
- * на desktop-раскладке, на mobile избранное рендерится без drag&drop.
+ * Монтируется только вместе с {@link FavoritesReorderList}, то есть пока активен сегмент
+ * «Избранное» — переключение на этот сегмент при старте drag из каталога обеспечивает
+ * {@link useFavoritesAutoSwitch}, смонтированный отдельно и постоянно. Из-за этого хук может
+ * подключиться уже посреди drag (сегмент только что переключился) — начальное состояние в
+ * этом случае читается из текущего активного drag через `useDndContext`, а не только из
+ * будущих событий монитора.
+ *
+ * Требует `<DndContext>`-предка (см. `MainMenuDndContext`) — доступно только на desktop-раскладке,
+ * на mobile избранное рендерится без drag&drop.
  */
-export function useFavoritesDnd({ favorite, favoriteItems, segment, setSegment }: UseFavoritesDndParams) {
+export function useFavoritesReorder({ favoriteIds, favoriteItems }: UseFavoritesReorderParams) {
   const { setGroupDragOverlay } = useMainMenuDndOverlay();
+  const { active: activeOnMount } = useDndContext();
 
-  const [activeFavoriteId, setActiveFavoriteId] = useState<string | null>(null);
-  const [isFavoriteReorderDrag, setIsFavoriteReorderDrag] = useState(false);
-  const [isDraggingToFavorites, setDraggingToFavorites] = useState(false);
+  const [activeFavoriteId, setActiveFavoriteId] = useState<string | null>(() =>
+    activeOnMount && isServiceFavoriteDragId(activeOnMount.id) ? parseServiceDragId(activeOnMount.id) : null,
+  );
+  const [isFavoriteReorderDrag, setIsFavoriteReorderDrag] = useState(() =>
+    Boolean(activeOnMount && isServiceFavoriteDragId(activeOnMount.id)),
+  );
+  const [isDraggingToFavorites, setDraggingToFavorites] = useState(() =>
+    Boolean(activeOnMount && isServiceSourceDragId(activeOnMount.id)),
+  );
 
   const listEndRef = useRef<HTMLDivElement>(null);
   const shouldScrollToEndRef = useRef(false);
 
-  const isFavoritesSegment = segment === FAVORITES_SEGMENT.Favorites;
+  const favoriteSortableIds = useMemo(() => favoriteIds.map(getServiceFavoriteDragId), [favoriteIds]);
 
-  const favoriteSortableIds = useMemo(() => favorite.value.map(getServiceFavoriteDragId), [favorite.value]);
-
-  const insertIndex = useFavoritesInsertIndicator(favorite.value);
+  const insertIndex = useFavoritesInsertIndicator(favoriteIds);
   const isInsertingToEnd = favoriteItems.length > 0 && insertIndex === favoriteItems.length;
   const isInsertingNew = isDraggingToFavorites && !favoriteItems.length;
   const insertIndexRef = useRef(insertIndex);
@@ -53,20 +63,12 @@ export function useFavoritesDnd({ favorite, favoriteItems, segment, setSegment }
   const { setNodeRef, isOver } = useDroppable({
     id: FAVORITES_DROP_ID,
     // Only needed for an empty list; with cards, card droppables own the hit-testing.
-    disabled: !isFavoritesSegment || isFavoriteReorderDrag || favoriteItems.length > 0,
+    disabled: isFavoriteReorderDrag || favoriteItems.length > 0,
   });
 
   useDndMonitor({
     onDragStart({ active }) {
-      // Форсим сегмент только для карточки из каталога: избранное уже показывается на
-      // сегменте Favorites, и его же карточки только там и рендерятся — при реордере внутри
-      // списка `setSegment` вызывался бы с тем же значением. `useValueControl` не сравнивает
-      // значение с текущим и всё равно зовёт `onSegmentChange` — лишний колбэк на каждый drag.
       if (isServiceSourceDragId(active.id)) {
-        if (segment !== FAVORITES_SEGMENT.Favorites) {
-          setSegment(FAVORITES_SEGMENT.Favorites);
-        }
-
         setDraggingToFavorites(true);
       }
 
@@ -76,7 +78,7 @@ export function useFavoritesDnd({ favorite, favoriteItems, segment, setSegment }
       }
     },
     onDragEnd() {
-      shouldScrollToEndRef.current = isDraggingToFavorites && insertIndexRef.current === favorite.value.length;
+      shouldScrollToEndRef.current = isDraggingToFavorites && insertIndexRef.current === favoriteIds.length;
 
       setActiveFavoriteId(null);
       setIsFavoriteReorderDrag(false);
@@ -113,7 +115,7 @@ export function useFavoritesDnd({ favorite, favoriteItems, segment, setSegment }
     });
 
     return () => cancelAnimationFrame(frameId);
-  }, [favorite.value]);
+  }, [favoriteIds]);
 
   const showDropOver = ((isOver || isDraggingToFavorites) && !isFavoriteReorderDrag) || undefined;
   const showInsertNew = (isInsertingNew && isOver) || undefined;

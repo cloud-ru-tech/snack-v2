@@ -1,6 +1,6 @@
 import { MainMenuSVG } from '@ds/icons/interface/product';
 import { useValueControl } from '@ds/utils';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import { useMobileLayout } from '../../hooks/useMobileLayout';
@@ -39,9 +39,16 @@ export function MainMenu({
 
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 
+  const searchValue = search?.value;
+  const onSearchChange = search?.onChange;
+
   useEffect(() => {
-    if (!open && search?.value) search?.onChange('');
-  }, [open, search]);
+    if (!open && searchValue) onSearchChange?.('');
+  }, [open, searchValue, onSearchChange]);
+
+  const handleOpen = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
 
   const isMobile = useMobileLayout();
 
@@ -54,9 +61,7 @@ export function MainMenu({
         isMobile={isMobile}
         disabled={disabled}
         icon={<MainMenuSVG />}
-        onClick={() => {
-          setOpen(true);
-        }}
+        onClick={handleOpen}
         data-test-id={TEST_IDS.mainMenu.drawerButton}
       />
 

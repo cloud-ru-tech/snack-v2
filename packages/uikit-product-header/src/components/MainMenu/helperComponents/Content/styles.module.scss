@@ -1,4 +1,17 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
 .content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  width: 100%;
+  min-width: 0;
+
+  &[data-mobile] {
+    gap: base.$sn-primitive-dimension-8;
+  }
+
   &[data-empty] {
     height: 100%;
 
@@ -6,6 +19,12 @@
       flex: 1 1 auto;
     }
   }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
 }
 
 .noData {

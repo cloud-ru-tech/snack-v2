@@ -33,10 +33,15 @@ export type InnerLink = {
   label: string;
   /** Краткое описание сервиса — отображается при включённом переключателе «Описание». */
   description?: string;
+  /** Колбэк клика по карточке. */
   onClick(e?: MouseEvent<HTMLElement>): void;
+  /** Ссылка карточки (рендерится как `<a>`). */
   href?: string;
+  /** Карточка недоступна для клика/drag и визуально приглушена. */
   disabled?: boolean;
+  /** Карточка скрыта (не рендерится, но остаётся в данных — например, для поиска). */
   hidden?: boolean;
+  /** Промо-тег карточки. */
   badge?: CardServiceLightProps['promoTag'];
   /** Разрешено ли добавление карточки в избранное. default=true - разрешено */
   favoritesEnabled?: boolean;
@@ -66,14 +71,18 @@ export type InnerLink = {
 };
 
 type TitleStatic = {
+  /** Текст заголовка. */
   text: string;
   onClick?: never;
   href?: never;
 };
 
 type TitleClickable = {
+  /** Текст заголовка. */
   text: string;
+  /** Ссылка заголовка (рендерится как `<a>`). */
   href?: string;
+  /** Колбэк клика по заголовку. */
   onClick?(e?: MouseEvent<HTMLElement>): void;
 };
 
@@ -93,6 +102,7 @@ export type LinksGroup = {
   id: string;
   /** Заголовок группы в сетке карточек и в боковой навигации. */
   label: LinksGroupTitle;
+  /** Иконка группы. */
   icon?: JSXElementConstructor<{
     size?: number;
     className?: string;
@@ -101,7 +111,9 @@ export type LinksGroup = {
    * Синонимы заголовка группы для fuzzy-поиска.
    */
   aliases?: string[];
+  /** Колбэк клика по заголовку группы. */
   onClick?(e?: MouseEvent<HTMLElement>): void;
+  /** Группа скрыта (не рендерится, но остаётся в данных — например, для поиска). */
   hidden?: boolean;
   /**
    * Разрешено ли добавление карточек группы в избранное.
@@ -113,7 +125,7 @@ export type LinksGroup = {
   items: InnerLink[];
   /** Цвет блока группы. */
   blockColor?: LinksGroupBlockColor;
-  /** Визуальное выделение группы */
+  /** Визуальное выделение группы. */
   highlight?: boolean;
 };
 
@@ -160,8 +172,11 @@ export type MainMenuSegmentPrefs = {
 };
 
 export type SearchProps = Pick<SearchPropsSnack, 'onBlur' | 'onFocus'> & {
+  /** Текущее значение поисковой строки. */
   value: string;
+  /** Колбэк изменения значения поисковой строки. */
   onChange(value: string): void;
+  /** Колбэк вызывается, когда поиск по текущему значению не дал результатов. */
   onSearchNoResult?(value: string): void;
 };
 
@@ -207,7 +222,9 @@ export type FavoriteProps = {
 };
 
 export type MainMenuToggleProps = {
+  /** Текущее значение переключателя. */
   value: boolean;
+  /** Колбэк изменения значения переключателя. */
   onChange(value: boolean): void;
 };
 
@@ -236,6 +253,7 @@ export type MainMenuPreferencesProps = {
 };
 
 export type MainMenuSettingsItem = Pick<InnerLink, 'id' | 'label' | 'icon' | 'onClick' | 'href' | 'hidden'> & {
+  /** Разделитель до/после пункта. */
   divider?: 'before' | 'after';
 };
 
@@ -254,12 +272,22 @@ export type MainMenuProps = Pick<
   | 'loading'
   | 'rightTop'
 > & {
+  /** Кнопка открытия меню недоступна для клика. */
   disabled?: boolean;
+  /**
+   * Открыто ли меню.
+   *
+   * Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку).
+   */
   open?: boolean;
+  /** Колбэк открытия/закрытия меню. */
   setOpen?(open: boolean): void;
 
+  /** Логотип в шапке меню. */
   logo?: ReactNode;
+  /** Слот над поиском в левой колонке (desktop) / над поиском в списке (mobile). */
   leftTop?: ReactNode;
+  /** Слот под пунктами настроек в левой колонке (desktop) / в конце списка (mobile). */
   leftBottom?: ReactNode;
 
   /**
@@ -280,8 +308,10 @@ export type MainMenuProps = Pick<
    */
   platformGroups?: LinksGroup[];
 
+  /** Избранное. Без пропа секция «Избранное» не отображается. */
   favorite?: FavoriteProps;
 
+  /** Поиск по сервисам. Без пропа поисковая строка не отображается. */
   search?: SearchProps;
 
   /**

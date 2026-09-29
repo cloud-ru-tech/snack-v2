@@ -8,11 +8,17 @@ import { useMobileLayout } from '../../hooks/useMobileLayout';
 import styles from './styles.module.scss';
 
 export type HeaderLayoutProps = WithSupportProps<{
+  /** CSS-класс корневого элемента. */
   className?: string;
+  /** Слот главного меню (слева, после логотипа). */
   menu?: ReactNode;
+  /** Слот логотипа (крайний левый). */
   logo?: ReactNode;
+  /** Слот селектора (например, выбор облака/организации), после меню. */
   select?: ReactNode;
+  /** Слот хлебных крошек. На mobile переносится под основную строку хедера. */
   breadcrumbs?: ReactNode;
+  /** Слот тулбара — правая часть хедера. */
   toolbar?: ReactNode;
 }>;
 

@@ -387,6 +387,7 @@ export const SERVICE_GROUPS: LinksGroup[] = [
         onClick: EMPTY_ON_CLICK,
         href: EMPTY_HREF,
         icon: PlaceholderSVG,
+        badge: { variant: 'preview' as const },
         aliases: ['open search'],
       },
       {

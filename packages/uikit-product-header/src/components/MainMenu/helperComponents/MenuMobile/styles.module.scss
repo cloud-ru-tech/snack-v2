@@ -8,13 +8,6 @@ $menuHeaderHeightWithDivider: calc(#{$menuHeaderHeight} + #{divider.$sn-divider-
   height: $menuHeaderHeight;
 }
 
-.rightContent {
-  display: flex;
-  flex-direction: column;
-  gap: base.$sn-primitive-dimension-8;
-  min-width: 0;
-}
-
 .drawerMobile {
   // NOTE: по умолчанию у BottomSheet другой цвет бэкграунда
   /* stylelint-disable-next-line declaration-no-important */

@@ -1,31 +1,26 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 import { InnerLink } from '../../../../../types';
-import { DraggableServiceCard, ServiceCardProps } from '../../../../ServiceCard';
+import { GridServiceCard } from '../../../../ServiceCard';
+import { useCardsContext } from '../../../cardsContext';
 import styles from '../styles.module.scss';
 import { splitIntoBlocks } from '../utils';
 import { SubCategory } from './SubCategory';
 
-export type SortableGroupCardsProps = Pick<
-  ServiceCardProps,
-  'showDescription' | 'isMobile' | 'favorite' | 'onServiceClick'
-> & {
+export type SortableGroupCardsProps = {
+  /** Id группы-предка. */
   groupId: string;
+  /** Карточки сервисов группы. */
   items: InnerLink[];
-  enableServiceDrag?: boolean;
+  /** Разрешено ли добавление карточек группы в избранное. */
   groupFavoritesEnabled?: boolean;
 };
 
-export function SortableGroupCards({
-  groupId,
-  items,
-  showDescription,
-  isMobile,
-  enableServiceDrag,
-  favorite,
-  groupFavoritesEnabled,
-  onServiceClick,
-}: SortableGroupCardsProps) {
+function SortableGroupCardsBase({ groupId, items, groupFavoritesEnabled }: SortableGroupCardsProps) {
+  const { isMobile, showDescription, dragEnabled, favoriteIds, onFavoriteChange, onServiceClick } = useCardsContext();
+
+  const cardFavoriteChange = favoriteIds ? onFavoriteChange : undefined;
+
   const blocks = useMemo(() => splitIntoBlocks(items), [items]);
 
   return (
@@ -37,12 +32,7 @@ export function SortableGroupCards({
               key={String(groupId) + block.service.id}
               groupId={groupId}
               service={block.service}
-              showDescription={showDescription}
-              isMobile={isMobile}
-              dragDisabled={!enableServiceDrag}
-              favorite={favorite}
               groupFavoritesEnabled={groupFavoritesEnabled}
-              onServiceClick={onServiceClick}
             />
           );
         }
@@ -55,15 +45,16 @@ export function SortableGroupCards({
             data-show-description={showDescription || undefined}
           >
             {block.services.map(service => (
-              <DraggableServiceCard
+              <GridServiceCard
                 key={String(groupId) + service.id}
                 groupId={groupId}
                 service={service}
-                favorite={favorite}
+                favoriteChecked={favoriteIds?.has(service.id)}
+                onFavoriteChange={cardFavoriteChange}
                 isMobile={isMobile}
                 onServiceClick={onServiceClick}
                 showDescription={showDescription}
-                dragDisabled={!enableServiceDrag}
+                dragEnabled={dragEnabled}
               />
             ))}
           </div>
@@ -72,3 +63,5 @@ export function SortableGroupCards({
     </div>
   );
 }
+
+export const SortableGroupCards = memo(SortableGroupCardsBase);

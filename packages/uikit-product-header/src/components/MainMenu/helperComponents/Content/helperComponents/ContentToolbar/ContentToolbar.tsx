@@ -13,25 +13,34 @@ import { TEST_IDS } from '../../constants';
 import styles from './styles.module.scss';
 
 export type ContentToolbarSegmentItem = {
+  /** Значение сегмента (id). */
   value: string;
+  /** Подпись сегмента. */
   label: string;
+  /** Иконка сегмента. */
   icon?: ReactNode;
 };
 
 export type ContentToolbarProps = {
+  /** Значение активного сегмента SegmentControl. */
   segment: string;
 
+  /** Колбэк смены активного сегмента. */
   onSegmentChange(segment: string): void;
 
+  /** Пункты SegmentControl. Без пунктов (или с одним) SegmentControl не отображается. */
   segmentItems?: ContentToolbarSegmentItem[];
 
+  /** Все группы сегмента раскрыты — определяет иконку кнопки свернуть/развернуть все. */
   allGroupsExpanded: boolean;
 
+  /** Колбэк клика по кнопке свернуть/развернуть все группы. */
   onToggleAllGroupsExpanded(): void;
 
   /** Настройки меню (модалка по кнопке). Не передано — кнопка настроек не отображается. */
   preferences?: MainMenuPreferencesProps;
 
+  /** Мобильная раскладка — кнопка свернуть/развернуть все скрывается. */
   isMobile?: boolean;
 
   /** Флаг загрузки данных — сегменты подгружаются с бэка, поэтому SegmentControl тоже уходит в скелетон. */
