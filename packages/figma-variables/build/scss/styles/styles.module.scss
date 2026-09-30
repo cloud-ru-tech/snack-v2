@@ -1487,19 +1487,19 @@ $base-styles: (
           "dark": (
             "regular": (
               "display": (
-                "s": var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-                "m": var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
-                "l": var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-650, 650))
+                "s": var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+                "m": var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-650, 650)),
+                "l": var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-700, 700))
               ),
               "headline": (
-                "s": var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-                "m": var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-550, 550)),
-                "l": var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-550, 550))
+                "s": var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+                "m": var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
+                "l": var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-600, 600))
               ),
               "title": (
-                "s": var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-                "m": var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-550, 550)),
-                "l": var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-550, 550))
+                "s": var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+                "m": var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
+                "l": var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-600, 600))
               ),
               "label": (
                 "s": var(--sn-brand-font-fontWeight-dark-regular-label-s, var(--sn-primitive-font-fontWeightValue-500, 500)),
@@ -1507,9 +1507,9 @@ $base-styles: (
                 "l": var(--sn-brand-font-fontWeight-dark-regular-label-l, var(--sn-primitive-font-fontWeightValue-550, 550))
               ),
               "body": (
-                "s": var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-350, 350)),
-                "m": var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-350, 350)),
-                "l": var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-350, 350))
+                "s": var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-400, 400)),
+                "m": var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-400, 400)),
+                "l": var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-400, 400))
               )
             ),
             "thin": (
@@ -3972,19 +3972,19 @@ $sn-brand: (
       "dark": (
         "regular": (
           "display": (
-            "s": var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-            "m": var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
-            "l": var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-650, 650))
+            "s": var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+            "m": var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-650, 650)),
+            "l": var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-700, 700))
           ),
           "headline": (
-            "s": var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-            "m": var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-550, 550)),
-            "l": var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-550, 550))
+            "s": var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+            "m": var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
+            "l": var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-600, 600))
           ),
           "title": (
-            "s": var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-550, 550)),
-            "m": var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-550, 550)),
-            "l": var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-550, 550))
+            "s": var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-600, 600)),
+            "m": var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-600, 600)),
+            "l": var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-600, 600))
           ),
           "label": (
             "s": var(--sn-brand-font-fontWeight-dark-regular-label-s, var(--sn-primitive-font-fontWeightValue-500, 500)),
@@ -3992,9 +3992,9 @@ $sn-brand: (
             "l": var(--sn-brand-font-fontWeight-dark-regular-label-l, var(--sn-primitive-font-fontWeightValue-550, 550))
           ),
           "body": (
-            "s": var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-350, 350)),
-            "m": var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-350, 350)),
-            "l": var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-350, 350))
+            "s": var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-400, 400)),
+            "m": var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-400, 400)),
+            "l": var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-400, 400))
           )
         ),
         "thin": (
@@ -5947,21 +5947,21 @@ $sn-brand-font-fontWeight-light-thin-label-l: var(--sn-brand-font-fontWeight-lig
 $sn-brand-font-fontWeight-light-thin-body-s: var(--sn-brand-font-fontWeight-light-thin-body-s, var(--sn-primitive-font-fontWeightValue-300, 300));
 $sn-brand-font-fontWeight-light-thin-body-m: var(--sn-brand-font-fontWeight-light-thin-body-m, var(--sn-primitive-font-fontWeightValue-300, 300));
 $sn-brand-font-fontWeight-light-thin-body-l: var(--sn-brand-font-fontWeight-light-thin-body-l, var(--sn-primitive-font-fontWeightValue-300, 300));
-$sn-brand-font-fontWeight-dark-regular-display-s: var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-display-m: var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-600, 600));
-$sn-brand-font-fontWeight-dark-regular-display-l: var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-650, 650));
-$sn-brand-font-fontWeight-dark-regular-headline-s: var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-headline-m: var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-headline-l: var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-title-s: var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-title-m: var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-title-l: var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-550, 550));
+$sn-brand-font-fontWeight-dark-regular-display-s: var(--sn-brand-font-fontWeight-dark-regular-display-s, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-display-m: var(--sn-brand-font-fontWeight-dark-regular-display-m, var(--sn-primitive-font-fontWeightValue-650, 650));
+$sn-brand-font-fontWeight-dark-regular-display-l: var(--sn-brand-font-fontWeight-dark-regular-display-l, var(--sn-primitive-font-fontWeightValue-700, 700));
+$sn-brand-font-fontWeight-dark-regular-headline-s: var(--sn-brand-font-fontWeight-dark-regular-headline-s, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-headline-m: var(--sn-brand-font-fontWeight-dark-regular-headline-m, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-headline-l: var(--sn-brand-font-fontWeight-dark-regular-headline-l, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-title-s: var(--sn-brand-font-fontWeight-dark-regular-title-s, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-title-m: var(--sn-brand-font-fontWeight-dark-regular-title-m, var(--sn-primitive-font-fontWeightValue-600, 600));
+$sn-brand-font-fontWeight-dark-regular-title-l: var(--sn-brand-font-fontWeight-dark-regular-title-l, var(--sn-primitive-font-fontWeightValue-600, 600));
 $sn-brand-font-fontWeight-dark-regular-label-s: var(--sn-brand-font-fontWeight-dark-regular-label-s, var(--sn-primitive-font-fontWeightValue-500, 500));
 $sn-brand-font-fontWeight-dark-regular-label-m: var(--sn-brand-font-fontWeight-dark-regular-label-m, var(--sn-primitive-font-fontWeightValue-550, 550));
 $sn-brand-font-fontWeight-dark-regular-label-l: var(--sn-brand-font-fontWeight-dark-regular-label-l, var(--sn-primitive-font-fontWeightValue-550, 550));
-$sn-brand-font-fontWeight-dark-regular-body-s: var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-350, 350));
-$sn-brand-font-fontWeight-dark-regular-body-m: var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-350, 350));
-$sn-brand-font-fontWeight-dark-regular-body-l: var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-350, 350));
+$sn-brand-font-fontWeight-dark-regular-body-s: var(--sn-brand-font-fontWeight-dark-regular-body-s, var(--sn-primitive-font-fontWeightValue-400, 400));
+$sn-brand-font-fontWeight-dark-regular-body-m: var(--sn-brand-font-fontWeight-dark-regular-body-m, var(--sn-primitive-font-fontWeightValue-400, 400));
+$sn-brand-font-fontWeight-dark-regular-body-l: var(--sn-brand-font-fontWeight-dark-regular-body-l, var(--sn-primitive-font-fontWeightValue-400, 400));
 $sn-brand-font-fontWeight-dark-thin-display-s: var(--sn-brand-font-fontWeight-dark-thin-display-s, var(--sn-primitive-font-fontWeightValue-550, 550));
 $sn-brand-font-fontWeight-dark-thin-display-m: var(--sn-brand-font-fontWeight-dark-thin-display-m, var(--sn-primitive-font-fontWeightValue-550, 550));
 $sn-brand-font-fontWeight-dark-thin-display-l: var(--sn-brand-font-fontWeight-dark-thin-display-l, var(--sn-primitive-font-fontWeightValue-550, 550));
