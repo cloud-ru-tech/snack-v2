@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-30)
+
+### Features
+
+- **FF-8984:** add footerMode prop ([66fa2ce](https://github.com/cloud-ru-tech/snack-v2/commit/66fa2cefc77b12ebca3da54680fa5f3cb93cfff6))
+
 ## 1.0.22 (2026-09-29)
 
 **Note:** Version bump only for package @ds/calendar
