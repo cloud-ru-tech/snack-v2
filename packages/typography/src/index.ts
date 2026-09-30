@@ -1,3 +1,4 @@
+// Коммент, чтобы выпустить версию пакета: v1
 export { Typography } from './Typography';
 export type { TypographyProps } from './Typography';
 export { DEFAULT_SIZE, DEFAULT_VARIANT, DEFAULT_WEIGHT, SIZE, VARIANT, WEIGHT } from './constants';
