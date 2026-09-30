@@ -87,6 +87,34 @@ export const VisualMatrix: Story = {
           },
         ]}
       />
+      <StoryTable
+        sectionTitle='Content'
+        firstColumnHeader='Layout'
+        columnHeaders={sizes.map(s => s.toUpperCase())}
+        rows={[
+          {
+            variantLabel: 'stacked',
+            cells: sizes.map(size => (
+              <div key={size} className={styles.cell}>
+                <FieldDecorator size={size} label='Заголовок' hint='Подсказка'>
+                  <input className={styles.input} placeholder='Первое поле' />
+                  <input className={styles.input} placeholder='Второе поле' />
+                </FieldDecorator>
+              </div>
+            )),
+          },
+          {
+            variantLabel: 'stretch',
+            cells: sizes.map(size => (
+              <div key={size} className={styles.cell}>
+                <FieldDecorator className={styles.stretch} size={size} label='Заголовок' hint='Подсказка'>
+                  <input className={styles.input} placeholder='Значение' />
+                </FieldDecorator>
+              </div>
+            )),
+          },
+        ]}
+      />
     </div>
   ),
 };
