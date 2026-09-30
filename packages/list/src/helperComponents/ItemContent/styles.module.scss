@@ -26,18 +26,25 @@ $description-size-map: (
 .headline {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .label {
   overflow: hidden;
-  flex: 1;
+  flex: 1 1 50%;
+
+  min-width: 0;
+  max-width: max-content;
+
   color: base.$sn-theme-color-available-version-textMain;
 }
 
 .caption {
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  flex: 1 1 50%;
+
+  min-width: 0;
+  max-width: max-content;
 
   color: base.$sn-theme-color-available-version-textTertiary;
   text-overflow: ellipsis;

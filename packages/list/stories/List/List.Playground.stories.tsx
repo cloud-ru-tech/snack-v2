@@ -3,37 +3,56 @@ import { ItemProps as Item, List, ListProps, SIZE } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
-import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
+import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoResizable, DemoTitle } from '#storybook/components';
 
 import { ERROR_DATA_STATE, NO_DATA_STATE, NO_RESULTS_STATE, STORY_EMPTY_STATE, STORY_SELECTION } from '../constants';
 import { TEST_IDS } from '../testIds';
 import { StoryEmptyState, StorySelection } from '../types';
-import styles from './stories.module.scss';
 
 const ICONS = [HomeSVG, FileSVG, StarSVG, SettingsSVG, FolderSVG];
 
-// 100 элементов: scroll / virtualized / limitedScrollHeight дают показательный диапазон прокрутки.
-const demoItems: Item[] = Array.from({ length: 100 }, (_, i) => {
-  const Icon = ICONS[i % ICONS.length];
+const LONG_LABEL = 'Very long item title that does not fit on one line and is truncated with an ellipsis';
+const LONG_CAPTION = 'Very long caption on the right that also does not fit and is truncated with an ellipsis';
 
-  return {
-    id: `item-${i}`,
-    beforeContent: <Icon />,
-    content: {
-      label: `Item ${i + 1}`,
-      content: `Description for row ${i + 1}`,
-      caption: i % 3 === 0 ? `${i + 1} items` : undefined,
-    },
-    afterContent: <ChevronRightSVG />,
-    disabled: i === 4,
-  };
-});
+function demoLabelAndCaption(index: number, textTruncation: boolean = false): { label: string; caption: string } {
+  const label = `Item ${index + 1}`;
+  const caption = `${index + 1} items`;
+
+  if (textTruncation) {
+    if (index === 0) return { label: LONG_LABEL, caption };
+    if (index === 1) return { label, caption: LONG_CAPTION };
+    if (index === 2) return { label: LONG_LABEL, caption: LONG_CAPTION };
+  }
+
+  return { label, caption };
+}
+
+// 100 элементов: scroll / virtualized / limitedScrollHeight дают показательный диапазон прокрутки.
+const getDemoItems = (count: number, textTruncation: boolean = false): Item[] =>
+  Array.from({ length: count }, (_, i) => {
+    const Icon = ICONS[i % ICONS.length];
+
+    return {
+      id: `item-${i}`,
+      beforeContent: <Icon />,
+      content: {
+        ...demoLabelAndCaption(i, textTruncation),
+        content: `Description for row ${i + 1}`,
+      },
+      afterContent: <ChevronRightSVG />,
+      disabled: i === 4,
+    };
+  });
+
+const demoItems = getDemoItems(100);
+const truncationDemoItems = getDemoItems(10, true);
 
 type StoryProps = ListProps & {
   selectionMode?: StorySelection;
   emptyState?: StoryEmptyState;
   showHeader: boolean;
   showFooter: boolean;
+  textTruncation?: boolean;
 };
 
 function buildSelection(mode?: StorySelection): ListProps['selection'] {
@@ -56,22 +75,25 @@ function PlaygroundRender({
   scroll,
   virtualized,
   limitedScrollHeight,
+  textTruncation,
   ...args
 }: StoryProps) {
   const isEmpty = emptyState !== undefined;
   // Виртуализатор берёт scroll-элемент только при `scroll`; без него рендерит пустой контейнер.
   const isScroll = scroll || virtualized;
 
+  const items = textTruncation ? truncationDemoItems : demoItems;
+
   return (
     <DemoPage>
-      <DemoPanel width='narrow'>
+      <DemoPanel width='wide'>
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Список: размер, маркер, selection, scroll, состояния loading / empty.</DemoHint>
         <DemoActions align='center'>
-          <div className={styles.listFrame}>
+          <DemoResizable axis='horizontal'>
             <List
               {...args}
-              items={isEmpty ? [] : demoItems}
+              items={isEmpty ? [] : items}
               scroll={isScroll}
               virtualized={virtualized}
               limitedScrollHeight={limitedScrollHeight || virtualized}
@@ -86,7 +108,7 @@ function PlaygroundRender({
               noResultsState={NO_RESULTS_STATE}
               errorDataState={ERROR_DATA_STATE}
             />
-          </div>
+          </DemoResizable>
         </DemoActions>
       </DemoPanel>
     </DemoPage>
@@ -122,6 +144,7 @@ const meta: Meta<StoryProps> = {
     emptyState: undefined,
     showHeader: false,
     showFooter: false,
+    textTruncation: false,
   },
   argTypes: {
     size: { control: 'radio', options: Object.values(SIZE) },
@@ -136,6 +159,7 @@ const meta: Meta<StoryProps> = {
     marker: { if: { arg: 'selectionMode', eq: 'single' } },
     showHeader: { name: '[Stories]: showHeader', control: 'boolean' },
     showFooter: { name: '[Stories]: showFooter', control: 'boolean' },
+    textTruncation: { name: '[Stories]: show text truncation', control: 'boolean' },
     // Управляется через [Stories]: emptyState — прячем «сырые» флаги.
     dataError: { table: { disable: true } },
     dataFiltered: { table: { disable: true } },
