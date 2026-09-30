@@ -17,3 +17,5 @@ export * from './constants';
 
 export { setNonce } from '@ds/scroll';
 export * from './locale';
+
+export { SNAP_POINTS_PRESET } from '@ds/bottom-sheet';

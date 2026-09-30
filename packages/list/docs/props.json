@@ -898,6 +898,12 @@
         "typeRefs": [
           "PopoverWidthStrategy"
         ]
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {
@@ -3026,6 +3032,12 @@
       "virtualized": {
         "type": "boolean",
         "required": false
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {}

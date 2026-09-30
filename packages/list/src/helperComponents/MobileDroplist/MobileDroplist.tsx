@@ -1,4 +1,4 @@
-import { BottomSheet } from '@ds/bottom-sheet';
+import { BottomSheet, SNAP_POINTS_PRESET } from '@ds/bottom-sheet';
 import { usePortalContext } from '@ds/portal-context';
 import { useValueControl } from '@ds/utils';
 import { cloneElement, isValidElement, MouseEvent, useMemo, useRef, useState } from 'react';
@@ -42,6 +42,7 @@ export function MobileDroplist({
   // `onItemsReorder` — только на корне: drill-down `next-list` ортогонален дереву `SimpleItem`.
   footer,
   onItemsReorder,
+  withDividers,
   ...rest
 }: MobileDroplistProps) {
   const portalContext = usePortalContext();
@@ -221,14 +222,14 @@ export function MobileDroplist({
             // Dismiss (backdrop / swipe / Esc): на корне — закрыть весь droplist; глубже — вернуться на уровень вверх,
             // как ждёт пользователь на mobile (а не закрывать всю цепочку разом).
             onClose={isRoot ? handleClose : popLevel}
-            withDividers
+            withDividers={withDividers}
             title={title}
             onBackButtonClick={handleBack}
             actionButton={isRoot ? actionButton : undefined}
             slotAfterTitle={isRoot ? slotAfterTitle : undefined}
             content={content}
             footer={isRoot ? footer : undefined}
-            snapPoints={expanded ? [1] : snapPoints}
+            snapPoints={expanded ? SNAP_POINTS_PRESET.full : snapPoints}
             closeOnPopstate={closeOnPopstate ?? true}
           />
         );

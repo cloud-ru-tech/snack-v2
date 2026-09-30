@@ -183,7 +183,9 @@ type DroplistMobileSlots = {
  * (список size `l` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
  * применяются только на mobile.
  */
-export type DroplistProps = BaseDroplistProps & DroplistMobileSlots & Pick<BottomSheetProps, 'snapPoints'>;
+export type DroplistProps = BaseDroplistProps &
+  DroplistMobileSlots &
+  Pick<BottomSheetProps, 'snapPoints' | 'withDividers'>;
 
 /**
  * Props адаптивного `ReorderableDroplist`: props `ReorderableList` + popover/mobile-обвязка
@@ -202,7 +204,7 @@ export type MobileDroplistProps = Omit<
   DesktopDroplistProps,
   'trigger' | 'placement' | 'widthStrategy' | 'triggerElemRef' | 'listRef' | 'triggerClassName'
 > &
-  Pick<BottomSheetProps, 'snapPoints'> &
+  Pick<BottomSheetProps, 'snapPoints' | 'withDividers'> &
   DroplistMobileSlots;
 
 export type ListPrivateProps = Omit<
