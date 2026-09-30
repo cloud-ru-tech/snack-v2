@@ -1,4 +1,7 @@
 // Общий overlay-chrome (media / footer-ориентация / слот-`data-test-id`) вынесен в `@ds/popup-private`.
+
+import { SnapPoint } from './types';
+
 // Реэкспортируем под теми же именами — внешний контракт `@ds/bottom-sheet` не меняется.
 export { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND, TEST_IDS } from '@ds/popup-private';
 
@@ -12,3 +15,13 @@ export { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND, TEST_IDS } from '@ds/popup-priv
  * <BottomSheet content={<div {...{ [NO_DRAG_ATTRIBUTE]: '' }}><ColorPicker … /></div>} />
  */
 export const NO_DRAG_ATTRIBUTE = 'data-bottom-sheet-no-drag';
+
+/**
+ * Пресеты snap-points для различных сценариев использования.
+ */
+export const SNAP_POINTS_PRESET: Record<string, SnapPoint[]> = {
+  quarter: [0.25],
+  half: [0.5],
+  threeQuarters: [0.75],
+  full: [1],
+};
