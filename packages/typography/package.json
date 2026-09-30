@@ -1,6 +1,6 @@
 {
   "name": "@ds/typography",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Универсальный текстовый компонент с едиными токенами стиля — variant / size / weight — и автовыбором семантического тега.",
   "repository": {
     "type": "git",

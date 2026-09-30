@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-09-30)
+
+### Bug Fixes
+
+- **FF-9172:** console theme dark font weights ([38d1e53](https://github.com/cloud-ru-tech/snack-v2/commit/38d1e53fd2e8030d0e84afb8e1d289f1ccec752e))
+- **FF-9172:** site theme updates ([32e5d86](https://github.com/cloud-ru-tech/snack-v2/commit/32e5d86a51a0e257bb7662f1b6200d35642d463e))
+
+### Features
+
+- **FF-9172:** new agents-space theme ([5f35072](https://github.com/cloud-ru-tech/snack-v2/commit/5f350722503dc48b153a2887868fe543d65859ba))
+
 ## 2.0.1 (2026-09-29)
 
 ### Bug Fixes

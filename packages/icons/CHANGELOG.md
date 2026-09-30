@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2026-09-30)
+
+### Features
+
+- **FF-9172:** add missing interface icons and logos from Figma ([847829a](https://github.com/cloud-ru-tech/snack-v2/commit/847829a326249f30453842c514de240ae78a43cd))
+
 # 1.3.0 (2026-09-29)
 
 ### Features
