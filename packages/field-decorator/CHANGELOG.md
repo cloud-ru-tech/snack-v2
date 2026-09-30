@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-09-30)
+
+### Features
+
+- **SAEVO-1836:** stretch FieldDecorator content slot and show it in the visual matrix ([685efba](https://github.com/cloud-ru-tech/snack-v2/commit/685efbaafccc870a88f671b64ad43c2a2a294e15))
+
 ## 1.0.10 (2026-09-29)
 
 **Note:** Version bump only for package @ds/field-decorator
