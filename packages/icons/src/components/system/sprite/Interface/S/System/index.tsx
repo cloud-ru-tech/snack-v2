@@ -67,6 +67,7 @@ export { default as TrashSVG } from './Trash';
 export { default as UnPinnedSVG } from './UnPinned';
 export { default as UpdateSVG } from './Update';
 export { default as UploadSVG } from './Upload';
+export { default as UrlSVG } from './Url';
 export { default as WarningSVG } from './Warning';
 export { default as WatchSVG } from './Watch';
 export { default as EyeSVG } from './Eye';

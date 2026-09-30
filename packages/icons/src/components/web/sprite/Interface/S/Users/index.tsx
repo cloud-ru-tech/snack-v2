@@ -1,3 +1,4 @@
+export { default as IntruderSVG } from './Intruder';
 export { default as LineManagerSVG } from './LineManager';
 export { default as LocalUserSVG } from './LocalUser';
 export { default as ProductManagerSVG } from './ProductManager';

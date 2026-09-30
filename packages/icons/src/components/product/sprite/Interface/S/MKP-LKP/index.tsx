@@ -6,6 +6,7 @@ export { default as DiscountSVG } from './Discount';
 export { default as FederationSVG } from './Federation';
 export { default as LogFileSVG } from './LogFile';
 export { default as PasswordLockSVG } from './PasswordLock';
+export { default as PromoCodeSVG } from './PromoCode';
 export { default as RubleSVG } from './Ruble';
 export { default as SatelliteSVG } from './Satellite';
 export { default as Step1SVG } from './Step1';

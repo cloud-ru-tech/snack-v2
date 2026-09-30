@@ -11,6 +11,7 @@ export { default as DatbriksSVG } from './Datbriks';
 export { default as DeepSeekSVG } from './DeepSeek';
 export { default as ElasticSearchSVG } from './ElasticSearch';
 export { default as ExchangeSVG } from './Exchange';
+export { default as GigaIdSVG } from './GigaId';
 export { default as GitSVG } from './Git';
 export { default as GitabSVG } from './Gitab';
 export { default as GoSVG } from './Go';

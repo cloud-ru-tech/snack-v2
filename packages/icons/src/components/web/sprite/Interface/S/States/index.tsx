@@ -2,6 +2,7 @@ export { default as AlertBackupSVG } from './AlertBackup';
 export { default as AlertSquareSVG } from './AlertSquare';
 export { default as ArrowsRoundSVG } from './ArrowsRound';
 export { default as BackupCheckSVG } from './BackupCheck';
+export { default as DeleteSVG } from './Delete';
 export { default as ExitSVG } from './Exit';
 export { default as ExportSVG } from './Export';
 export { default as FailedCrossSVG } from './FailedCross';
