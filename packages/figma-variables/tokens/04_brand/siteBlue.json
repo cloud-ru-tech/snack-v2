@@ -1880,7 +1880,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "text",
-              "$value": "SB Sans Text"
+              "$value": "SB Sans Display"
             },
             "label": {
               "$extensions": {
@@ -1954,7 +1954,7 @@
                 "com.figma.hiddenFromPublishing": false
               },
               "$type": "text",
-              "$value": "SB Sans Text"
+              "$value": "SB Sans Display"
             },
             "label": {
               "$extensions": {
@@ -1988,14 +1988,17 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.600}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "l": {
                   "$extensions": {
+                    "com.figma.scopes": [
+                      "FONT_WEIGHT"
+                    ],
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.700}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 }
               },
               "headline": {
@@ -2217,21 +2220,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.550}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.650}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 }
               },
               "headline": {
@@ -2240,21 +2243,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 }
               },
               "title": {
