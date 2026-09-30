@@ -2,11 +2,14 @@
 @use '@ds/figma-variables/build/scss/components/breadcrumbs.module' as breadcrumbs;
 
 $sizes: 'xs', 's';
+$focusBorderWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
 
 .wrapper {
   overflow: hidden;
+  // Компенсация запаса под фокус-рамку.
+  margin: calc(-1 * $focusBorderWidth);
   // Запас под фокус-рамку: она рисуется снаружи крошки, а `overflow: hidden` её срезает.
-  padding: base.$sn-primitive-strokeWeight-strokeSemiBold;
+  padding: $focusBorderWidth;
 
   &[data-hidden='true'] {
     pointer-events: none;
