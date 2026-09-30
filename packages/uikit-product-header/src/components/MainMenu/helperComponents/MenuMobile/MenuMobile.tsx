@@ -1,7 +1,8 @@
 import { Divider } from '@ds/divider';
+import { SNAP_POINTS_PRESET } from '@ds/list';
 import { useCallback, useMemo } from 'react';
 
-import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../../../constants';
+import { TEST_IDS } from '../../../../constants';
 import { MobileDrawerCustom } from '../../../../mobileOverlays';
 import { MainMenuDndContext } from '../../hooks/useMainMenuDnd';
 import { useMenuItems } from '../../hooks/useMenuItems';
@@ -67,7 +68,7 @@ export function MenuMobile({
       swipeEnabled={false}
       data-test-id={TEST_IDS.mainMenu.drawerMobile}
       closeOnPopstate
-      snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
+      snapPoints={SNAP_POINTS_PRESET.full}
       disableMotions={true}
     >
       <ScrollWithAnimatedStickyPanel

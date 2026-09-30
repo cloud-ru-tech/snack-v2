@@ -26,6 +26,3 @@ export const TEST_IDS = {
     root: 'header__breadcrumbs',
   },
 } as const;
-
-// Только mobile: в мастере bottomSheet панель открывается на всю высоту экрана.
-export const BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS = [1];

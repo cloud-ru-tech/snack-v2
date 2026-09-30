@@ -79,12 +79,12 @@ export function useUserMenuItems({
 
     let pinBottom = bottomItems.concat(logoutItem);
 
-    if (isMobile && Boolean(settingItems?.length)) {
-      pinBottom = pinBottom.concat([DIVIDER_ITEM, ...settingItems]);
-    }
-
     // В шторке прокручивается всё меню, закреплять части незачем; разделитель над организациями добавляем сами
     if (isMobile) {
+      if (settingItems?.length) {
+        pinBottom = [...bottomItems, ...settingItems, DIVIDER_ITEM, logoutItem];
+      }
+
       return {
         pinTop: [],
         items: withClose([...pinTop, DIVIDER_ITEM, ...organizationItems, ...pinBottom]),

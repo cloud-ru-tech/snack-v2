@@ -52,7 +52,7 @@ export function HeaderLayout({ menu, logo, select, breadcrumbs, toolbar, classNa
           {!isMobile && breadcrumbs && (
             <>
               <Divider orientation='vertical' />
-              {breadcrumbs}
+              <div className={styles.breadcrums}>{breadcrumbs}</div>
             </>
           )}
         </div>
@@ -61,9 +61,9 @@ export function HeaderLayout({ menu, logo, select, breadcrumbs, toolbar, classNa
       </div>
       <Divider orientation='horizontal' />
 
-      {isMobile && Boolean(breadcrumbs) && (
+      {isMobile && breadcrumbs && (
         <>
-          <div className={styles.bottom}>{breadcrumbs}</div>
+          <div className={styles.breadcrums}>{breadcrumbs}</div>
           <Divider orientation='horizontal' />
         </>
       )}

@@ -1,10 +1,10 @@
 import { Avatar } from '@ds/avatar';
-import { BaseItemProps, Droplist, DroplistProps } from '@ds/list';
+import { BaseItemProps, Droplist, DroplistProps, SNAP_POINTS_PRESET } from '@ds/list';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import { BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS, TEST_IDS } from '../../constants';
+import { TEST_IDS } from '../../constants';
 import { useDesktopComfortClassName } from '../../hooks/useDesktopComfortClassName';
 import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
@@ -77,6 +77,10 @@ export function UserMenu({
 
   const { fullName = '', inviteCount } = profile;
 
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
   const {
     pinTop,
     items: menuItems,
@@ -89,9 +93,7 @@ export function UserMenu({
     organizationItems,
     bottomItems,
     settingItems,
-    onClose: () => {
-      setOpen(false);
-    },
+    onClose: handleClose,
     onLogout,
   });
 
@@ -136,7 +138,9 @@ export function UserMenu({
       closeOnPopstate
       data-test-id={TEST_IDS.userMenu.root}
       label={t('user')}
-      snapPoints={BOTTOM_SHEET_FULLSCREEN_SNAP_POINTS}
+      snapPoints={SNAP_POINTS_PRESET.full}
+      withDividers={false}
+      triggerClassName={styles.userMenuDroplistTrigger}
     >
       {trigger}
     </Droplist>

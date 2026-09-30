@@ -1,5 +1,5 @@
 import { Divider } from '@ds/divider';
-import { CardServiceLight } from '@ds/uikit-product-card-predefined';
+import { CardNavigation } from '@ds/uikit-product-card-predefined';
 import { Fragment, ReactNode } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
@@ -23,7 +23,7 @@ export function MenuBottom({ settingItems, leftBottom }: MenuBottomProps) {
             <Fragment key={item.id}>
               {item.divider === 'before' && <Divider orientation='horizontal' className={styles.bottomDivider} />}
 
-              <CardServiceLight
+              <CardNavigation
                 {...(item.href ? { href: item.href, as: 'a' } : { as: 'button', type: 'button' })}
                 title={item.label}
                 icon={getLinkEmblem(item)}

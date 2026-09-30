@@ -7,6 +7,11 @@ type ScrollWithAnimatedStickyPanelProps = PropsWithChildren<{
   panel: ReactNode;
 }>;
 
+// Упругая прокрутка у верхней границы (touch-скролл на мобильных не "упирается" жёстко в 0 —
+// контент можно немного "оттянуть" дальше) даёт scrollTop, не совпадающий с реальным положением
+// контента в этот момент. Диапазон запаса — единицы пикселей; двух хватает с большим запасом.
+const TOP_OVERSCROLL_EPSILON_PX = 2;
+
 export function ScrollWithAnimatedStickyPanel({ panel, children }: ScrollWithAnimatedStickyPanelProps) {
   const [positions, setPositions] = useState({ panelTopShift: 0, containerScroll: 0 });
   const [panelHeight, setPanelHeight] = useState(0);
@@ -23,6 +28,14 @@ export function ScrollWithAnimatedStickyPanel({ panel, children }: ScrollWithAni
 
     setPanelHeight(panelHeight);
 
+    // У верхней границы панель всегда полностью видна — не доверяем накопленному diff. Иначе
+    // "лишний" ход упругой прокрутки у самого верха читается как скролл вниз и на возврате к
+    // началу списка панель может остаться скрытой, хотя пользователь как раз скроллит наверх.
+    if (target.scrollTop <= TOP_OVERSCROLL_EPSILON_PX) {
+      setPositions({ panelTopShift: 0, containerScroll: target.scrollTop });
+      return;
+    }
+
     setPositions(prev => {
       const diff = prev.containerScroll - target.scrollTop;
 
@@ -33,21 +46,19 @@ export function ScrollWithAnimatedStickyPanel({ panel, children }: ScrollWithAni
     });
   }, []);
 
+  const setPanelRef = useCallback((element: HTMLDivElement | null) => {
+    if (element) {
+      setPanelHeight(element.offsetHeight);
+      panelRef.current = element;
+    }
+  }, []);
+
   return (
     <div className={styles.container} style={{ '--snack-autohide-panel-height': `${panelHeight}px` }}>
       <Scroll barHideStrategy='never' overflow={{ x: 'hidden' }} onScroll={handleScroll}>
         {children}
       </Scroll>
-      <div
-        className={styles.panel}
-        ref={element => {
-          if (element) {
-            setPanelHeight(element.offsetHeight);
-            panelRef.current = element;
-          }
-        }}
-        style={{ top: positions.panelTopShift }}
-      >
+      <div className={styles.panel} ref={setPanelRef} style={{ top: positions.panelTopShift }}>
         {panel}
       </div>
     </div>

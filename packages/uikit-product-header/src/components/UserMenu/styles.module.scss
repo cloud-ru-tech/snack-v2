@@ -1,10 +1,21 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
+.userMenuDroplistTrigger {
+  display: inline-flex;
+}
+
 .userMenuDroplist {
-  width: 256px; // нет токена ширины дропдауна
+  width: 304px; // нет токена ширины дропдауна
 }
 
 // Одного цвета с «⋮» у организаций, а не `textTertiary` слота `afterContent`.
 .profileSettingsIcon {
   color: base.$sn-theme-color-neutral-text;
+}
+
+.logoutItem {
+  span,
+  svg {
+    color: base.$sn-theme-color-red-text;
+  }
 }

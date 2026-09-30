@@ -10,13 +10,8 @@
   padding: 0 base.$sn-primitive-dimension-4;
 }
 
-.bottom {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-
-  box-sizing: border-box;
-  height: base.$sn-primitive-dimension-24;
+.breadcrums {
+  padding: 0 base.$sn-primitive-dimension-8;
 }
 
 .left {
