@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.5 (2026-09-30)
+
+### Bug Fixes
+
+- **FF-9053:** list items texts truncation ([0236f41](https://github.com/cloud-ru-tech/snack-v2/commit/0236f415065264298f45b9ac27fba3669006d447))
+
 ## 2.2.4 (2026-09-29)
 
 **Note:** Version bump only for package @ds/list
