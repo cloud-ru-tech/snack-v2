@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.4 (2026-09-30)
+
+### Bug Fixes
+
+- **FF-9155:** change scroll size from m to s ([431a4a9](https://github.com/cloud-ru-tech/snack-v2/commit/431a4a95b3197270cd47c48715e22fc8f01b4388))
+
 ## 1.2.3 (2026-09-30)
 
 **Note:** Version bump only for package @ds/table
