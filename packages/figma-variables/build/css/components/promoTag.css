@@ -3,7 +3,7 @@
  */
   
 .sn-promoTag {
-  --sn-promoTag-anatomy-size-xs-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-promoTag-anatomy-size-xs-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-promoTag-anatomy-size-xs-text-fontSize: var(--sn-primitive-font-fontSize-11, 11px);
   --sn-promoTag-anatomy-size-xs-text-lineHeight: var(--sn-primitive-font-lineHeight-14, 14px);
   --sn-promoTag-anatomy-size-xs-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-s, 500);
@@ -15,7 +15,7 @@
   --sn-promoTag-anatomy-size-xs-container-borderRadius: var(--sn-brand-anatomy-radius-promoTag-xs, 2px);
   --sn-promoTag-anatomy-size-xs-element-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-promoTag-anatomy-size-xs-element-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-promoTag-anatomy-size-s-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-promoTag-anatomy-size-s-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-promoTag-anatomy-size-s-text-fontSize: var(--sn-primitive-font-fontSize-11, 11px);
   --sn-promoTag-anatomy-size-s-text-lineHeight: var(--sn-primitive-font-lineHeight-14, 14px);
   --sn-promoTag-anatomy-size-s-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-s, 500);
@@ -27,10 +27,10 @@
   --sn-promoTag-anatomy-size-s-container-textWrapper-padding: var(--sn-primitive-dimension-2, 2px);
   --sn-promoTag-anatomy-size-s-element-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-promoTag-anatomy-size-s-element-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-promoTag-anatomy-size-m-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-promoTag-anatomy-size-m-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-promoTag-anatomy-size-m-text-fontSize: var(--sn-primitive-font-fontSize-12, 12px);
   --sn-promoTag-anatomy-size-m-text-lineHeight: var(--sn-primitive-font-lineHeight-16, 16px);
-  --sn-promoTag-anatomy-size-m-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-m, 550);
+  --sn-promoTag-anatomy-size-m-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-m, 500);
   --sn-promoTag-anatomy-size-m-text-letterSpacing: var(--sn-primitive-font-letterSpacing-s, 0px);
   --sn-promoTag-anatomy-size-m-container-textWrapper-padding: var(--sn-primitive-dimension-4, 4px);
   --sn-promoTag-anatomy-size-m-container-padding: var(--sn-primitive-dimension-4, 4px);

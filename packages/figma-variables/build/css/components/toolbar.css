@@ -4,7 +4,7 @@
   
 .sn-toolbar {
   --sn-toolbar-anatomy-container-tool-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-brand-anatomy-radius-toolbar-xs, 4px);
+  --sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-brand-anatomy-radius-toolbar-xs, 2px);
   --sn-toolbar-anatomy-container-tool-bulkAction-gap: var(--sn-primitive-dimension-8, 8px);
   --sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-primitive-dimension-4, 4px);
   --sn-toolbar-anatomy-container-tool-search-minHeight: var(--sn-density-size-m, 40px);

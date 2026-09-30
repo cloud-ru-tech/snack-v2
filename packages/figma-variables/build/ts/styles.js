@@ -924,34 +924,34 @@ export const themeVars = {
     brand: {
       color: {
         primary: {
-          '10': 'var(--sn-brand-color-primary-10, #243e35)',
-          '20': 'var(--sn-brand-color-primary-20, #2b483c)',
-          '30': 'var(--sn-brand-color-primary-30, #2c5e49)',
-          '40': 'var(--sn-brand-color-primary-40, #22775b)',
-          '50': 'var(--sn-brand-color-primary-50, #389f74)',
-          '60': 'var(--sn-brand-color-primary-60, #5ebb91)',
-          '70': 'var(--sn-brand-color-primary-70, #85ceaa)',
-          '80': 'var(--sn-brand-color-primary-80, #caeadb)',
-          '90': 'var(--sn-brand-color-primary-90, #edf7f1)',
-          '95': 'var(--sn-brand-color-primary-95, #f5fdf8)',
-          '99': 'var(--sn-brand-color-primary-99, #fbfffc)',
-          '05': 'var(--sn-brand-color-primary-05, #21372f)',
-          transparent: 'var(--sn-brand-color-primary-transparent, #389f741a)',
-          onAccentLight: 'var(--sn-brand-color-primary-onAccentLight, #fbfffc)',
-          onAccentDark: 'var(--sn-brand-color-primary-onAccentDark, #21372f)'
+          '10': 'var(--sn-brand-color-primary-10, #242424)',
+          '20': 'var(--sn-brand-color-primary-20, #2c2c2c)',
+          '30': 'var(--sn-brand-color-primary-30, #3d3d3d)',
+          '40': 'var(--sn-brand-color-primary-40, #0d0d0d)',
+          '50': 'var(--sn-brand-color-primary-50, #222222)',
+          '60': 'var(--sn-brand-color-primary-60, #ffffff)',
+          '70': 'var(--sn-brand-color-primary-70, #ffffff)',
+          '80': 'var(--sn-brand-color-primary-80, #dcdcdc)',
+          '90': 'var(--sn-brand-color-primary-90, #f2f2f2)',
+          '95': 'var(--sn-brand-color-primary-95, #f8f8f8)',
+          '99': 'var(--sn-brand-color-primary-99, #ffffff)',
+          '05': 'var(--sn-brand-color-primary-05, #1c1c1c)',
+          transparent: 'var(--sn-brand-color-primary-transparent, #80808024)',
+          onAccentLight: 'var(--sn-brand-color-primary-onAccentLight, #ffffff)',
+          onAccentDark: 'var(--sn-brand-color-primary-onAccentDark, #111111)'
         },
         text: {
           version: {
-            disabled: 'var(--sn-brand-color-text-version-disabled, #41424e59)',
-            tertiary: 'var(--sn-brand-color-text-version-tertiary, #41424e8c)',
-            secondary: 'var(--sn-brand-color-text-version-secondary, #41424ecc)',
-            main: 'var(--sn-brand-color-text-version-main, #41424e)'
+            disabled: 'var(--sn-brand-color-text-version-disabled, #00000061)',
+            tertiary: 'var(--sn-brand-color-text-version-tertiary, #00000094)',
+            secondary: 'var(--sn-brand-color-text-version-secondary, #000000c7)',
+            main: 'var(--sn-brand-color-text-version-main, #000000)'
           },
           inversion: {
-            main: 'var(--sn-brand-color-text-inversion-main, #e6e8ef)',
-            secondary: 'var(--sn-brand-color-text-inversion-secondary, #eff0f5d1)',
-            tertiary: 'var(--sn-brand-color-text-inversion-tertiary, #f2f3f899)',
-            disabled: 'var(--sn-brand-color-text-inversion-disabled, #f8f9fb66)'
+            main: 'var(--sn-brand-color-text-inversion-main, #ffffff)',
+            secondary: 'var(--sn-brand-color-text-inversion-secondary, #ffffffc7)',
+            tertiary: 'var(--sn-brand-color-text-inversion-tertiary, #ffffff99)',
+            disabled: 'var(--sn-brand-color-text-inversion-disabled, #ffffff66)'
           }
         },
         overlay: {
@@ -965,49 +965,49 @@ export const themeVars = {
         state: {
           activated: {
             default: {
-              background: 'var(--sn-brand-color-state-activated-default-background, #389f741a)'
+              background: 'var(--sn-brand-color-state-activated-default-background, #80808029)'
             },
             hovered: {
-              background: 'var(--sn-brand-color-state-activated-hovered-background, #389f7433)'
+              background: 'var(--sn-brand-color-state-activated-hovered-background, #8080803d)'
             },
             pressed: {
-              background: 'var(--sn-brand-color-state-activated-pressed-background, #389f744d)'
+              background: 'var(--sn-brand-color-state-activated-pressed-background, #80808057)'
             }
           },
           neutralBorder: {
             forLightMode: {
               default: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #9fa6c64d)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-default-borderColor, #00000024)'
               },
               pressed: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #9fa6c6cc)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-pressed-borderColor, #00000057)'
               },
               hovered: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #9fa6c6a6)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forLightMode-hovered-borderColor, #0000003d)'
               }
             },
             forDarkMode: {
               default: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #bcc3dc1a)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-default-borderColor, #ffffff24)'
               },
               pressed: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #bcc3dc3d)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-pressed-borderColor, #ffffff57)'
               },
               hovered: {
-                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #bcc3dc2b)'
+                borderColor: 'var(--sn-brand-color-state-neutralBorder-forDarkMode-hovered-borderColor, #ffffff3d)'
               }
             }
           },
           neutral: {
             forLightMode: {
               default: {
-                background: 'var(--sn-brand-color-state-neutral-forLightMode-default-background, #787b8a00)'
+                background: 'var(--sn-brand-color-state-neutral-forLightMode-default-background, #00000000)'
               },
               hovered: {
-                background: 'var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #bcc3dc26)'
+                background: 'var(--sn-brand-color-state-neutral-forLightMode-hovered-background, #00000014)'
               },
               pressed: {
-                background: 'var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #bcc3dc4d)'
+                background: 'var(--sn-brand-color-state-neutral-forLightMode-pressed-background, #0000001f)'
               }
             },
             forDarkMode: {
@@ -1024,33 +1024,33 @@ export const themeVars = {
           }
         },
         neutral: {
-          '10': 'var(--sn-brand-color-neutral-10, #2c2c3a)',
-          '20': 'var(--sn-brand-color-neutral-20, #333342)',
-          '30': 'var(--sn-brand-color-neutral-30, #4c4e5c)',
-          '40': 'var(--sn-brand-color-neutral-40, #81869c)',
-          '50': 'var(--sn-brand-color-neutral-50, #8b8fa7)',
-          '60': 'var(--sn-brand-color-neutral-60, #959bb1)',
-          '70': 'var(--sn-brand-color-neutral-70, #a6aabf)',
-          '80': 'var(--sn-brand-color-neutral-80, #e3e5ed)',
-          '90': 'var(--sn-brand-color-neutral-90, #eeeff3)',
-          '95': 'var(--sn-brand-color-neutral-95, #fdfdfd)',
+          '10': 'var(--sn-brand-color-neutral-10, #1e1e1e)',
+          '20': 'var(--sn-brand-color-neutral-20, #252525)',
+          '30': 'var(--sn-brand-color-neutral-30, #333333)',
+          '40': 'var(--sn-brand-color-neutral-40, #4a4a4a)',
+          '50': 'var(--sn-brand-color-neutral-50, #222222)',
+          '60': 'var(--sn-brand-color-neutral-60, #fcfcfc)',
+          '70': 'var(--sn-brand-color-neutral-70, #d6d6d6)',
+          '80': 'var(--sn-brand-color-neutral-80, #e2e2e2)',
+          '90': 'var(--sn-brand-color-neutral-90, #f4f4f4)',
+          '95': 'var(--sn-brand-color-neutral-95, #ffffff)',
           '99': 'var(--sn-brand-color-neutral-99, #ffffff)',
-          '05': 'var(--sn-brand-color-neutral-05, #262631)',
+          '05': 'var(--sn-brand-color-neutral-05, #0e0e0e)',
           transparent: {
-            forLightMode: 'var(--sn-brand-color-neutral-transparent-forLightMode, #7c83b614)',
-            forDarkMode: 'var(--sn-brand-color-neutral-transparent-forDarkMode, #a7abbe14)'
+            forLightMode: 'var(--sn-brand-color-neutral-transparent-forLightMode, #8892aa14)',
+            forDarkMode: 'var(--sn-brand-color-neutral-transparent-forDarkMode, #8f939614)'
           },
           transparentInverted: {
-            forLightMode: 'var(--sn-brand-color-neutral-transparentInverted-forLightMode, #a6aabf0f)',
-            forDarkMode: 'var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #8b8fa70f)'
+            forLightMode: 'var(--sn-brand-color-neutral-transparentInverted-forLightMode, #9094980f)',
+            forDarkMode: 'var(--sn-brand-color-neutral-transparentInverted-forDarkMode, #9194a80f)'
           }
         }
       },
       effect: {
         shadow: {
           light: {
-            layer1Color: 'var(--sn-brand-effect-shadow-light-layer1Color, #00000014)',
-            layer2Color: 'var(--sn-brand-effect-shadow-light-layer2Color, #00000014)',
+            layer1Color: 'var(--sn-brand-effect-shadow-light-layer1Color, #22222214)',
+            layer2Color: 'var(--sn-brand-effect-shadow-light-layer2Color, #22222214)',
             level1: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-light-level1-layer1-positionX, 0px)',
@@ -1123,76 +1123,76 @@ export const themeVars = {
             }
           },
           dark: {
-            layer1Color: 'var(--sn-brand-effect-shadow-dark-layer1Color, #00000040)',
-            layer2Color: 'var(--sn-brand-effect-shadow-dark-layer2Color, #00000026)',
+            layer1Color: 'var(--sn-brand-effect-shadow-dark-layer1Color, #22222240)',
+            layer2Color: 'var(--sn-brand-effect-shadow-dark-layer2Color, #22222240)',
             level1: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer1-positionY, 0px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level1-layer1-blur, 4px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level1-layer1-blur, 1px)',
                 spread: 'var(--sn-brand-effect-shadow-dark-level1-layer1-spread, 0px)'
               },
               layer2: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionX, 0px)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionY, 2px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level1-layer2-blur, 4px)',
-                spread: 'var(--sn-brand-effect-shadow-dark-level1-layer2-spread, 1px)'
+                positionY: 'var(--sn-brand-effect-shadow-dark-level1-layer2-positionY, 0px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level1-layer2-blur, 1px)',
+                spread: 'var(--sn-brand-effect-shadow-dark-level1-layer2-spread, 0px)'
               }
             },
             level2: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer1-positionY, 0px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level2-layer1-blur, 4px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level2-layer1-blur, 1px)',
                 spread: 'var(--sn-brand-effect-shadow-dark-level2-layer1-spread, 0px)'
               },
               layer2: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionX, 0px)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionY, 4px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level2-layer2-blur, 8px)',
-                spread: 'var(--sn-brand-effect-shadow-dark-level2-layer2-spread, 2px)'
+                positionY: 'var(--sn-brand-effect-shadow-dark-level2-layer2-positionY, 0px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level2-layer2-blur, 1px)',
+                spread: 'var(--sn-brand-effect-shadow-dark-level2-layer2-spread, 0px)'
               }
             },
             level3: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer1-positionY, 0px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level3-layer1-blur, 8px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level3-layer1-blur, 1px)',
                 spread: 'var(--sn-brand-effect-shadow-dark-level3-layer1-spread, 0px)'
               },
               layer2: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionX, 0px)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionY, 8px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level3-layer2-blur, 16px)',
-                spread: 'var(--sn-brand-effect-shadow-dark-level3-layer2-spread, 2px)'
+                positionY: 'var(--sn-brand-effect-shadow-dark-level3-layer2-positionY, 0px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level3-layer2-blur, 1px)',
+                spread: 'var(--sn-brand-effect-shadow-dark-level3-layer2-spread, 0px)'
               }
             },
             level4: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer1-positionY, 0px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level4-layer1-blur, 8px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level4-layer1-blur, 1px)',
                 spread: 'var(--sn-brand-effect-shadow-dark-level4-layer1-spread, 0px)'
               },
               layer2: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionX, 0px)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionY, 16px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level4-layer2-blur, 16px)',
-                spread: 'var(--sn-brand-effect-shadow-dark-level4-layer2-spread, 4px)'
+                positionY: 'var(--sn-brand-effect-shadow-dark-level4-layer2-positionY, 0px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level4-layer2-blur, 1px)',
+                spread: 'var(--sn-brand-effect-shadow-dark-level4-layer2-spread, 0px)'
               }
             },
             level5: {
               layer1: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionX, 0px)',
                 positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer1-positionY, 0px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level5-layer1-blur, 16px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level5-layer1-blur, 1px)',
                 spread: 'var(--sn-brand-effect-shadow-dark-level5-layer1-spread, 0px)'
               },
               layer2: {
                 positionX: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionX, 0px)',
-                positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionY, 24px)',
-                blur: 'var(--sn-brand-effect-shadow-dark-level5-layer2-blur, 16px)',
-                spread: 'var(--sn-brand-effect-shadow-dark-level5-layer2-spread, 4px)'
+                positionY: 'var(--sn-brand-effect-shadow-dark-level5-layer2-positionY, 0px)',
+                blur: 'var(--sn-brand-effect-shadow-dark-level5-layer2-blur, 1px)',
+                spread: 'var(--sn-brand-effect-shadow-dark-level5-layer2-spread, 0px)'
               }
             }
           }
@@ -1278,18 +1278,18 @@ export const themeVars = {
           '05': 'var(--sn-brand-palette-violet-05, #292334)'
         },
         gray: {
-          '10': 'var(--sn-brand-palette-gray-10, #2c2c3a)',
-          '20': 'var(--sn-brand-palette-gray-20, #333342)',
-          '30': 'var(--sn-brand-palette-gray-30, #4c4e5c)',
-          '40': 'var(--sn-brand-palette-gray-40, #81869c)',
-          '50': 'var(--sn-brand-palette-gray-50, #8b8fa7)',
-          '60': 'var(--sn-brand-palette-gray-60, #959bb1)',
-          '70': 'var(--sn-brand-palette-gray-70, #a6aabf)',
-          '80': 'var(--sn-brand-palette-gray-80, #e3e5ed)',
-          '90': 'var(--sn-brand-palette-gray-90, #eeeff3)',
-          '95': 'var(--sn-brand-palette-gray-95, #fdfdfd)',
+          '10': 'var(--sn-brand-palette-gray-10, #1e1e1e)',
+          '20': 'var(--sn-brand-palette-gray-20, #252525)',
+          '30': 'var(--sn-brand-palette-gray-30, #333333)',
+          '40': 'var(--sn-brand-palette-gray-40, #4a4a4a)',
+          '50': 'var(--sn-brand-palette-gray-50, #222222)',
+          '60': 'var(--sn-brand-palette-gray-60, #fcfcfc)',
+          '70': 'var(--sn-brand-palette-gray-70, #d6d6d6)',
+          '80': 'var(--sn-brand-palette-gray-80, #e2e2e2)',
+          '90': 'var(--sn-brand-palette-gray-90, #f4f4f4)',
+          '95': 'var(--sn-brand-palette-gray-95, #ffffff)',
           '99': 'var(--sn-brand-palette-gray-99, #ffffff)',
-          '05': 'var(--sn-brand-palette-gray-05, #262631)'
+          '05': 'var(--sn-brand-palette-gray-05, #0e0e0e)'
         },
         red: {
           '10': 'var(--sn-brand-palette-red-10, #481d1f)',
@@ -1322,7 +1322,7 @@ export const themeVars = {
       },
       kitService: {
         text: {
-          modificationName: 'var(--sn-brand-kitService-text-modificationName, \"cloudConsole\")',
+          modificationName: 'var(--sn-brand-kitService-text-modificationName, \"agents-space\")',
           modeName: 'var(--sn-brand-kitService-text-modeName, \"04_brand:\")'
         }
       },
@@ -1334,11 +1334,11 @@ export const themeVars = {
       font: {
         fontFamily: {
           regular: {
-            display: 'var(--sn-brand-font-fontFamily-regular-display, \"SB Sans Interface\")',
-            headline: 'var(--sn-brand-font-fontFamily-regular-headline, \"SB Sans Interface\")',
-            title: 'var(--sn-brand-font-fontFamily-regular-title, \"SB Sans Interface\")',
-            label: 'var(--sn-brand-font-fontFamily-regular-label, \"SB Sans Interface\")',
-            body: 'var(--sn-brand-font-fontFamily-regular-body, \"SB Sans Interface\")'
+            display: 'var(--sn-brand-font-fontFamily-regular-display, \"SB Sans Display\")',
+            headline: 'var(--sn-brand-font-fontFamily-regular-headline, \"SB Sans Display\")',
+            title: 'var(--sn-brand-font-fontFamily-regular-title, \"SB Sans Text\")',
+            label: 'var(--sn-brand-font-fontFamily-regular-label, \"SB Sans Text\")',
+            body: 'var(--sn-brand-font-fontFamily-regular-body, \"SB Sans Text\")'
           },
           mono: {
             display: 'var(--sn-brand-font-fontFamily-mono-display, \"SB Sans Text Mono\")',
@@ -1348,35 +1348,35 @@ export const themeVars = {
             body: 'var(--sn-brand-font-fontFamily-mono-body, \"SB Sans Text Mono\")'
           },
           thin: {
-            display: 'var(--sn-brand-font-fontFamily-thin-display, \"SB Sans Interface\")',
-            headline: 'var(--sn-brand-font-fontFamily-thin-headline, \"SB Sans Interface\")',
-            title: 'var(--sn-brand-font-fontFamily-thin-title, \"SB Sans Interface\")',
-            label: 'var(--sn-brand-font-fontFamily-thin-label, \"SB Sans Interface\")',
-            body: 'var(--sn-brand-font-fontFamily-thin-body, \"SB Sans Interface\")'
+            display: 'var(--sn-brand-font-fontFamily-thin-display, \"SB Sans Display\")',
+            headline: 'var(--sn-brand-font-fontFamily-thin-headline, \"SB Sans Display\")',
+            title: 'var(--sn-brand-font-fontFamily-thin-title, \"SB Sans Text\")',
+            label: 'var(--sn-brand-font-fontFamily-thin-label, \"SB Sans Text\")',
+            body: 'var(--sn-brand-font-fontFamily-thin-body, \"SB Sans Text\")'
           }
         },
         fontWeight: {
           light: {
             regular: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-light-regular-display-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-light-regular-display-m, 650)',
+                s: 'var(--sn-brand-font-fontWeight-light-regular-display-s, 500)',
+                m: 'var(--sn-brand-font-fontWeight-light-regular-display-m, 600)',
                 l: 'var(--sn-brand-font-fontWeight-light-regular-display-l, 700)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-light-regular-headline-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-light-regular-headline-m, 600)',
-                l: 'var(--sn-brand-font-fontWeight-light-regular-headline-l, 600)'
+                s: 'var(--sn-brand-font-fontWeight-light-regular-headline-s, 500)',
+                m: 'var(--sn-brand-font-fontWeight-light-regular-headline-m, 500)',
+                l: 'var(--sn-brand-font-fontWeight-light-regular-headline-l, 500)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-light-regular-title-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-light-regular-title-m, 600)',
-                l: 'var(--sn-brand-font-fontWeight-light-regular-title-l, 600)'
+                s: 'var(--sn-brand-font-fontWeight-light-regular-title-s, 500)',
+                m: 'var(--sn-brand-font-fontWeight-light-regular-title-m, 500)',
+                l: 'var(--sn-brand-font-fontWeight-light-regular-title-l, 500)'
               },
               label: {
                 s: 'var(--sn-brand-font-fontWeight-light-regular-label-s, 500)',
-                m: 'var(--sn-brand-font-fontWeight-light-regular-label-m, 550)',
-                l: 'var(--sn-brand-font-fontWeight-light-regular-label-l, 550)'
+                m: 'var(--sn-brand-font-fontWeight-light-regular-label-m, 500)',
+                l: 'var(--sn-brand-font-fontWeight-light-regular-label-l, 500)'
               },
               body: {
                 s: 'var(--sn-brand-font-fontWeight-light-regular-body-s, 400)',
@@ -1386,85 +1386,85 @@ export const themeVars = {
             },
             thin: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-light-thin-display-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-light-thin-display-m, 600)',
-                l: 'var(--sn-brand-font-fontWeight-light-thin-display-l, 600)'
+                s: 'var(--sn-brand-font-fontWeight-light-thin-display-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-light-thin-display-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-light-thin-display-l, 400)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-light-thin-headline-s, 500)',
-                m: 'var(--sn-brand-font-fontWeight-light-thin-headline-m, 500)',
-                l: 'var(--sn-brand-font-fontWeight-light-thin-headline-l, 550)'
+                s: 'var(--sn-brand-font-fontWeight-light-thin-headline-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-light-thin-headline-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-light-thin-headline-l, 400)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-light-thin-title-s, 500)',
-                m: 'var(--sn-brand-font-fontWeight-light-thin-title-m, 500)',
-                l: 'var(--sn-brand-font-fontWeight-light-thin-title-l, 500)'
+                s: 'var(--sn-brand-font-fontWeight-light-thin-title-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-light-thin-title-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-light-thin-title-l, 400)'
               },
               label: {
-                s: 'var(--sn-brand-font-fontWeight-light-thin-label-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-light-thin-label-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-light-thin-label-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-light-thin-label-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-light-thin-label-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-light-thin-label-l, 400)'
               },
               body: {
-                s: 'var(--sn-brand-font-fontWeight-light-thin-body-s, 300)',
-                m: 'var(--sn-brand-font-fontWeight-light-thin-body-m, 300)',
-                l: 'var(--sn-brand-font-fontWeight-light-thin-body-l, 300)'
+                s: 'var(--sn-brand-font-fontWeight-light-thin-body-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-light-thin-body-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-light-thin-body-l, 400)'
               }
             }
           },
           dark: {
             regular: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-display-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-display-m, 650)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-display-l, 700)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-display-s, 450)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-display-m, 550)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-display-l, 650)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-headline-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-headline-m, 600)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-headline-l, 600)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-headline-s, 450)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-headline-m, 450)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-headline-l, 450)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-title-s, 600)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-title-m, 600)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-title-l, 600)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-title-s, 450)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-title-m, 450)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-title-l, 450)'
               },
               label: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-label-s, 500)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-label-m, 550)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-label-l, 550)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-label-s, 450)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-label-m, 450)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-label-l, 450)'
               },
               body: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-body-s, 400)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-body-m, 400)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-body-l, 400)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-body-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-body-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-body-l, 350)'
               }
             },
             thin: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-display-s, 550)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-display-m, 550)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-display-l, 550)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-display-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-display-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-display-l, 350)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-headline-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-headline-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-headline-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-headline-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-headline-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-headline-l, 350)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-title-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-title-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-title-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-title-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-title-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-title-l, 350)'
               },
               label: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-label-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-label-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-label-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-label-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-label-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-label-l, 350)'
               },
               body: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-body-s, 250)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-body-m, 250)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-body-l, 250)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-body-s, 350)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-body-m, 350)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-body-l, 350)'
               }
             }
           }
@@ -1503,11 +1503,11 @@ export const themeVars = {
             m: 'var(--sn-brand-anatomy-radius-promoTag-m, 2px)'
           },
           card: {
-            s: 'var(--sn-brand-anatomy-radius-card-s, 2px)',
-            m: 'var(--sn-brand-anatomy-radius-card-m, 2px)',
+            s: 'var(--sn-brand-anatomy-radius-card-s, 4px)',
+            m: 'var(--sn-brand-anatomy-radius-card-m, 4px)',
             l: 'var(--sn-brand-anatomy-radius-card-l, 4px)',
             toggles: {
-              xs: 'var(--sn-brand-anatomy-radius-card-toggles-xs, 2px)'
+              xs: 'var(--sn-brand-anatomy-radius-card-toggles-xs, 0px)'
             }
           },
           counter: {
@@ -1536,38 +1536,38 @@ export const themeVars = {
             xl: 'var(--sn-brand-anatomy-radius-popover-xl, 4px)'
           },
           tooltip: {
-            xs: 'var(--sn-brand-anatomy-radius-tooltip-xs, 4px)'
+            xs: 'var(--sn-brand-anatomy-radius-tooltip-xs, 2px)'
           },
           dropdown: {
-            s: 'var(--sn-brand-anatomy-radius-dropdown-s, 4px)'
+            s: 'var(--sn-brand-anatomy-radius-dropdown-s, 2px)'
           },
           window: {
             m: 'var(--sn-brand-anatomy-radius-window-m, 4px)',
             buttonClosed: {
-              m: 'var(--sn-brand-anatomy-radius-window-buttonClosed-m, 10000px)'
+              m: 'var(--sn-brand-anatomy-radius-window-buttonClosed-m, 0px)'
             }
           },
           toaster: {
             m: 'var(--sn-brand-anatomy-radius-toaster-m, 4px)'
           },
           toolbar: {
-            xs: 'var(--sn-brand-anatomy-radius-toolbar-xs, 4px)'
+            xs: 'var(--sn-brand-anatomy-radius-toolbar-xs, 2px)'
           },
           alert: {
-            m: 'var(--sn-brand-anatomy-radius-alert-m, 4px)',
-            s: 'var(--sn-brand-anatomy-radius-alert-s, 4px)'
+            m: 'var(--sn-brand-anatomy-radius-alert-m, 2px)',
+            s: 'var(--sn-brand-anatomy-radius-alert-s, 2px)'
           },
           status: {
-            xs: 'var(--sn-brand-anatomy-radius-status-xs, 2px)',
-            s: 'var(--sn-brand-anatomy-radius-status-s, 2px)'
+            xs: 'var(--sn-brand-anatomy-radius-status-xs, 0px)',
+            s: 'var(--sn-brand-anatomy-radius-status-s, 0px)'
           },
           table: {
             m: 'var(--sn-brand-anatomy-radius-table-m, 4px)'
           },
           listItem: {
-            s: 'var(--sn-brand-anatomy-radius-listItem-s, 0px)',
-            m: 'var(--sn-brand-anatomy-radius-listItem-m, 0px)',
-            l: 'var(--sn-brand-anatomy-radius-listItem-l, 0px)'
+            s: 'var(--sn-brand-anatomy-radius-listItem-s, 2px)',
+            m: 'var(--sn-brand-anatomy-radius-listItem-m, 2px)',
+            l: 'var(--sn-brand-anatomy-radius-listItem-l, 2px)'
           },
           avatar: {
             xs: 'var(--sn-brand-anatomy-radius-avatar-xs, 2px)',
@@ -1668,24 +1668,24 @@ export const themeVars = {
     theme: {
       color: {
         primary: {
-          background: 'var(--sn-theme-color-primary-background, #21372f)',
-          background1Level: 'var(--sn-theme-color-primary-background1Level, #243e35)',
-          background2Level: 'var(--sn-theme-color-primary-background2Level, #2b483c)',
-          decor: 'var(--sn-theme-color-primary-decor, #2c5e49)',
-          onAccent: 'var(--sn-theme-color-primary-onAccent, #21372f)',
-          accent: 'var(--sn-theme-color-primary-accent, #5ebb91)',
-          text: 'var(--sn-theme-color-primary-text, #85ceaa)',
-          decorTransparent: 'var(--sn-theme-color-primary-decorTransparent, #389f741a)'
+          background: 'var(--sn-theme-color-primary-background, #1c1c1c)',
+          background1Level: 'var(--sn-theme-color-primary-background1Level, #242424)',
+          background2Level: 'var(--sn-theme-color-primary-background2Level, #2c2c2c)',
+          decor: 'var(--sn-theme-color-primary-decor, #3d3d3d)',
+          onAccent: 'var(--sn-theme-color-primary-onAccent, #111111)',
+          accent: 'var(--sn-theme-color-primary-accent, #ffffff)',
+          text: 'var(--sn-theme-color-primary-text, #ffffff)',
+          decorTransparent: 'var(--sn-theme-color-primary-decorTransparent, #80808024)'
         },
         neutral: {
-          background: 'var(--sn-theme-color-neutral-background, #262631)',
-          background1Level: 'var(--sn-theme-color-neutral-background1Level, #2c2c3a)',
-          background2Level: 'var(--sn-theme-color-neutral-background2Level, #333342)',
-          decor: 'var(--sn-theme-color-neutral-decor, #4c4e5c)',
-          onAccent: 'var(--sn-theme-color-neutral-onAccent, #262631)',
-          accent: 'var(--sn-theme-color-neutral-accent, #959bb1)',
-          text: 'var(--sn-theme-color-neutral-text, #a6aabf)',
-          decorTransparent: 'var(--sn-theme-color-neutral-decorTransparent, #a7abbe14)'
+          background: 'var(--sn-theme-color-neutral-background, #0e0e0e)',
+          background1Level: 'var(--sn-theme-color-neutral-background1Level, #1e1e1e)',
+          background2Level: 'var(--sn-theme-color-neutral-background2Level, #252525)',
+          decor: 'var(--sn-theme-color-neutral-decor, #333333)',
+          onAccent: 'var(--sn-theme-color-neutral-onAccent, #0e0e0e)',
+          accent: 'var(--sn-theme-color-neutral-accent, #fcfcfc)',
+          text: 'var(--sn-theme-color-neutral-text, #d6d6d6)',
+          decorTransparent: 'var(--sn-theme-color-neutral-decorTransparent, #8f939614)'
         },
         red: {
           background: 'var(--sn-theme-color-red-background, #3b1a1c)',
@@ -1758,31 +1758,31 @@ export const themeVars = {
           decorTransparent: 'var(--sn-theme-color-pink-decorTransparent, #e87ba229)'
         },
         invertNeutral: {
-          background: 'var(--sn-theme-color-invertNeutral-background, #eeeff3)',
-          decor: 'var(--sn-theme-color-invertNeutral-decor, #e3e5ed)',
+          background: 'var(--sn-theme-color-invertNeutral-background, #f4f4f4)',
+          decor: 'var(--sn-theme-color-invertNeutral-decor, #e2e2e2)',
           onAccent: 'var(--sn-theme-color-invertNeutral-onAccent, #ffffff)',
-          accent: 'var(--sn-theme-color-invertNeutral-accent, #8b8fa7)',
-          background1Level: 'var(--sn-theme-color-invertNeutral-background1Level, #fdfdfd)',
+          accent: 'var(--sn-theme-color-invertNeutral-accent, #222222)',
+          background1Level: 'var(--sn-theme-color-invertNeutral-background1Level, #ffffff)',
           background2Level: 'var(--sn-theme-color-invertNeutral-background2Level, #ffffff)',
-          text: 'var(--sn-theme-color-invertNeutral-text, #81869c)',
-          decorTransparent: 'var(--sn-theme-color-invertNeutral-decorTransparent, #8b8fa70f)'
+          text: 'var(--sn-theme-color-invertNeutral-text, #4a4a4a)',
+          decorTransparent: 'var(--sn-theme-color-invertNeutral-decorTransparent, #9194a80f)'
         },
         available: {
           complementary: 'var(--sn-theme-color-available-complementary, #ffffff)',
           onComplementary: 'var(--sn-theme-color-available-onComplementary, #000000)',
           version: {
-            textMain: 'var(--sn-theme-color-available-version-textMain, #e6e8ef)',
-            textSecondary: 'var(--sn-theme-color-available-version-textSecondary, #eff0f5d1)',
-            textTertiary: 'var(--sn-theme-color-available-version-textTertiary, #f2f3f899)',
-            textDisabled: 'var(--sn-theme-color-available-version-textDisabled, #f8f9fb66)'
+            textMain: 'var(--sn-theme-color-available-version-textMain, #ffffff)',
+            textSecondary: 'var(--sn-theme-color-available-version-textSecondary, #ffffffc7)',
+            textTertiary: 'var(--sn-theme-color-available-version-textTertiary, #ffffff99)',
+            textDisabled: 'var(--sn-theme-color-available-version-textDisabled, #ffffff66)'
           },
           inversion: {
-            textDisabled: 'var(--sn-theme-color-available-inversion-textDisabled, #41424e59)',
-            textTertiary: 'var(--sn-theme-color-available-inversion-textTertiary, #41424e8c)',
-            textSecondary: 'var(--sn-theme-color-available-inversion-textSecondary, #41424ecc)',
-            textMain: 'var(--sn-theme-color-available-inversion-textMain, #41424e)'
+            textDisabled: 'var(--sn-theme-color-available-inversion-textDisabled, #00000061)',
+            textTertiary: 'var(--sn-theme-color-available-inversion-textTertiary, #00000094)',
+            textSecondary: 'var(--sn-theme-color-available-inversion-textSecondary, #000000c7)',
+            textMain: 'var(--sn-theme-color-available-inversion-textMain, #000000)'
           },
-          borderColor: 'var(--sn-theme-color-available-borderColor, #bcc3dc1a)'
+          borderColor: 'var(--sn-theme-color-available-borderColor, #ffffff24)'
         },
         blackout: 'var(--sn-theme-color-blackout, #00000052)',
         forGradient: {
@@ -1814,25 +1814,25 @@ export const themeVars = {
               },
               border: {
                 default: {
-                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, #bcc3dc1a)'
+                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-default-borderColor, #ffffff24)'
                 },
                 hovered: {
-                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, #bcc3dc2b)'
+                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-hovered-borderColor, #ffffff3d)'
                 },
                 pressed: {
-                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, #bcc3dc3d)'
+                  borderColor: 'var(--sn-theme-color-material-stateLayer-neutral-border-pressed-borderColor, #ffffff57)'
                 }
               }
             },
             activated: {
               default: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-default-filled, #389f741a)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-default-filled, #80808029)'
               },
               hovered: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-hovered-filled, #389f7433)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-hovered-filled, #8080803d)'
               },
               pressed: {
-                filled: 'var(--sn-theme-color-material-stateLayer-activated-pressed-filled, #389f744d)'
+                filled: 'var(--sn-theme-color-material-stateLayer-activated-pressed-filled, #80808057)'
               }
             },
             versionOnColor: {
@@ -1890,76 +1890,76 @@ export const themeVars = {
       },
       effect: {
         shadow: {
-          layer1Color: 'var(--sn-theme-effect-shadow-layer1Color, #00000040)',
-          layer2Color: 'var(--sn-theme-effect-shadow-layer2Color, #00000026)',
+          layer1Color: 'var(--sn-theme-effect-shadow-layer1Color, #22222240)',
+          layer2Color: 'var(--sn-theme-effect-shadow-layer2Color, #22222240)',
           level1: {
             layer1: {
               positionX: 'var(--sn-theme-effect-shadow-level1-layer1-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level1-layer1-positionY, 0px)',
-              blur: 'var(--sn-theme-effect-shadow-level1-layer1-blur, 4px)',
+              blur: 'var(--sn-theme-effect-shadow-level1-layer1-blur, 1px)',
               spread: 'var(--sn-theme-effect-shadow-level1-layer1-spread, 0px)'
             },
             layer2: {
               positionX: 'var(--sn-theme-effect-shadow-level1-layer2-positionX, 0px)',
-              positionY: 'var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px)',
-              blur: 'var(--sn-theme-effect-shadow-level1-layer2-blur, 4px)',
-              spread: 'var(--sn-theme-effect-shadow-level1-layer2-spread, 1px)'
+              positionY: 'var(--sn-theme-effect-shadow-level1-layer2-positionY, 0px)',
+              blur: 'var(--sn-theme-effect-shadow-level1-layer2-blur, 1px)',
+              spread: 'var(--sn-theme-effect-shadow-level1-layer2-spread, 0px)'
             }
           },
           level2: {
             layer1: {
               positionX: 'var(--sn-theme-effect-shadow-level2-layer1-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level2-layer1-positionY, 0px)',
-              blur: 'var(--sn-theme-effect-shadow-level2-layer1-blur, 4px)',
+              blur: 'var(--sn-theme-effect-shadow-level2-layer1-blur, 1px)',
               spread: 'var(--sn-theme-effect-shadow-level2-layer1-spread, 0px)'
             },
             layer2: {
               positionX: 'var(--sn-theme-effect-shadow-level2-layer2-positionX, 0px)',
-              positionY: 'var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px)',
-              blur: 'var(--sn-theme-effect-shadow-level2-layer2-blur, 8px)',
-              spread: 'var(--sn-theme-effect-shadow-level2-layer2-spread, 2px)'
+              positionY: 'var(--sn-theme-effect-shadow-level2-layer2-positionY, 0px)',
+              blur: 'var(--sn-theme-effect-shadow-level2-layer2-blur, 1px)',
+              spread: 'var(--sn-theme-effect-shadow-level2-layer2-spread, 0px)'
             }
           },
           level3: {
             layer1: {
               positionX: 'var(--sn-theme-effect-shadow-level3-layer1-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level3-layer1-positionY, 0px)',
-              blur: 'var(--sn-theme-effect-shadow-level3-layer1-blur, 8px)',
+              blur: 'var(--sn-theme-effect-shadow-level3-layer1-blur, 1px)',
               spread: 'var(--sn-theme-effect-shadow-level3-layer1-spread, 0px)'
             },
             layer2: {
               positionX: 'var(--sn-theme-effect-shadow-level3-layer2-positionX, 0px)',
-              positionY: 'var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px)',
-              blur: 'var(--sn-theme-effect-shadow-level3-layer2-blur, 16px)',
-              spread: 'var(--sn-theme-effect-shadow-level3-layer2-spread, 2px)'
+              positionY: 'var(--sn-theme-effect-shadow-level3-layer2-positionY, 0px)',
+              blur: 'var(--sn-theme-effect-shadow-level3-layer2-blur, 1px)',
+              spread: 'var(--sn-theme-effect-shadow-level3-layer2-spread, 0px)'
             }
           },
           level4: {
             layer1: {
               positionX: 'var(--sn-theme-effect-shadow-level4-layer1-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level4-layer1-positionY, 0px)',
-              blur: 'var(--sn-theme-effect-shadow-level4-layer1-blur, 8px)',
+              blur: 'var(--sn-theme-effect-shadow-level4-layer1-blur, 1px)',
               spread: 'var(--sn-theme-effect-shadow-level4-layer1-spread, 0px)'
             },
             layer2: {
               positionX: 'var(--sn-theme-effect-shadow-level4-layer2-positionX, 0px)',
-              positionY: 'var(--sn-theme-effect-shadow-level4-layer2-positionY, 16px)',
-              blur: 'var(--sn-theme-effect-shadow-level4-layer2-blur, 16px)',
-              spread: 'var(--sn-theme-effect-shadow-level4-layer2-spread, 4px)'
+              positionY: 'var(--sn-theme-effect-shadow-level4-layer2-positionY, 0px)',
+              blur: 'var(--sn-theme-effect-shadow-level4-layer2-blur, 1px)',
+              spread: 'var(--sn-theme-effect-shadow-level4-layer2-spread, 0px)'
             }
           },
           level5: {
             layer1: {
               positionX: 'var(--sn-theme-effect-shadow-level5-layer1-positionX, 0px)',
               positionY: 'var(--sn-theme-effect-shadow-level5-layer1-positionY, 0px)',
-              blur: 'var(--sn-theme-effect-shadow-level5-layer1-blur, 16px)',
+              blur: 'var(--sn-theme-effect-shadow-level5-layer1-blur, 1px)',
               spread: 'var(--sn-theme-effect-shadow-level5-layer1-spread, 0px)'
             },
             layer2: {
               positionX: 'var(--sn-theme-effect-shadow-level5-layer2-positionX, 0px)',
-              positionY: 'var(--sn-theme-effect-shadow-level5-layer2-positionY, 24px)',
-              blur: 'var(--sn-theme-effect-shadow-level5-layer2-blur, 16px)',
-              spread: 'var(--sn-theme-effect-shadow-level5-layer2-spread, 4px)'
+              positionY: 'var(--sn-theme-effect-shadow-level5-layer2-positionY, 0px)',
+              blur: 'var(--sn-theme-effect-shadow-level5-layer2-blur, 1px)',
+              spread: 'var(--sn-theme-effect-shadow-level5-layer2-spread, 0px)'
             }
           }
         },
@@ -1989,56 +1989,56 @@ export const themeVars = {
         fontWeight: {
           regular: {
             display: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-display-s, 600)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-display-m, 650)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-display-l, 700)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-display-s, 450)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-display-m, 550)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-display-l, 650)'
             },
             headline: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-headline-s, 600)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-headline-m, 600)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-headline-l, 600)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-headline-s, 450)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-headline-m, 450)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-headline-l, 450)'
             },
             title: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-title-s, 600)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-title-m, 600)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-title-l, 600)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-title-s, 450)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-title-m, 450)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-title-l, 450)'
             },
             label: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-label-s, 500)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-label-m, 550)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-label-l, 550)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-label-s, 450)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-label-m, 450)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-label-l, 450)'
             },
             body: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-body-s, 400)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-body-m, 400)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-body-l, 400)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-body-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-body-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-body-l, 350)'
             }
           },
           thin: {
             display: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-display-s, 550)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-display-m, 550)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-display-l, 550)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-display-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-display-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-display-l, 350)'
             },
             headline: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-headline-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-headline-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-headline-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-headline-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-headline-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-headline-l, 350)'
             },
             title: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-title-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-title-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-title-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-title-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-title-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-title-l, 350)'
             },
             label: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-label-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-label-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-label-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-label-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-label-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-label-l, 350)'
             },
             body: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-body-s, 250)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-body-m, 250)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-body-l, 250)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-body-s, 350)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-body-m, 350)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-body-l, 350)'
             }
           }
         }
@@ -2067,11 +2067,11 @@ export const themeVars = {
     },
     boxShadow: {
       elevation: {
-        level1: 'var(--sn-boxShadow-elevation-level1, var(--sn-theme-effect-shadow-level1-layer1-positionX, 0) var(--sn-theme-effect-shadow-level1-layer1-positionY, 0) var(--sn-theme-effect-shadow-level1-layer1-blur, 4px) var(--sn-theme-effect-shadow-level1-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level1-layer2-positionX, 0) var(--sn-theme-effect-shadow-level1-layer2-positionY, 2px) var(--sn-theme-effect-shadow-level1-layer2-blur, 4px) var(--sn-theme-effect-shadow-level1-layer2-spread, 1px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level2: 'var(--sn-boxShadow-elevation-level2, var(--sn-theme-effect-shadow-level2-layer1-positionX, 0) var(--sn-theme-effect-shadow-level2-layer1-positionY, 0) var(--sn-theme-effect-shadow-level2-layer1-blur, 4px) var(--sn-theme-effect-shadow-level2-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level2-layer2-positionX, 0) var(--sn-theme-effect-shadow-level2-layer2-positionY, 4px) var(--sn-theme-effect-shadow-level2-layer2-blur, 8px) var(--sn-theme-effect-shadow-level2-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level3: 'var(--sn-boxShadow-elevation-level3, var(--sn-theme-effect-shadow-level3-layer1-positionX, 0) var(--sn-theme-effect-shadow-level3-layer1-positionY, 0) var(--sn-theme-effect-shadow-level3-layer1-blur, 8px) var(--sn-theme-effect-shadow-level3-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level3-layer2-positionX, 0) var(--sn-theme-effect-shadow-level3-layer2-positionY, 8px) var(--sn-theme-effect-shadow-level3-layer2-blur, 16px) var(--sn-theme-effect-shadow-level3-layer2-spread, 2px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level4: 'var(--sn-boxShadow-elevation-level4, var(--sn-theme-effect-shadow-level4-layer1-positionX, 0) var(--sn-theme-effect-shadow-level4-layer1-positionY, 0) var(--sn-theme-effect-shadow-level4-layer1-blur, 8px) var(--sn-theme-effect-shadow-level4-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level4-layer2-positionX, 0) var(--sn-theme-effect-shadow-level4-layer2-positionY, 16px) var(--sn-theme-effect-shadow-level4-layer2-blur, 16px) var(--sn-theme-effect-shadow-level4-layer2-spread, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))',
-        level5: 'var(--sn-boxShadow-elevation-level5, var(--sn-theme-effect-shadow-level5-layer1-positionX, 0) var(--sn-theme-effect-shadow-level5-layer1-positionY, 0) var(--sn-theme-effect-shadow-level5-layer1-blur, 16px) var(--sn-theme-effect-shadow-level5-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #00000040), var(--sn-theme-effect-shadow-level5-layer2-positionX, 0) var(--sn-theme-effect-shadow-level5-layer2-positionY, 24px) var(--sn-theme-effect-shadow-level5-layer2-blur, 16px) var(--sn-theme-effect-shadow-level5-layer2-spread, 4px) var(--sn-theme-effect-shadow-layer2Color, #00000026))'
+        level1: 'var(--sn-boxShadow-elevation-level1, var(--sn-theme-effect-shadow-level1-layer1-positionX, 0) var(--sn-theme-effect-shadow-level1-layer1-positionY, 0) var(--sn-theme-effect-shadow-level1-layer1-blur, 1px) var(--sn-theme-effect-shadow-level1-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #22222240), var(--sn-theme-effect-shadow-level1-layer2-positionX, 0) var(--sn-theme-effect-shadow-level1-layer2-positionY, 0) var(--sn-theme-effect-shadow-level1-layer2-blur, 1px) var(--sn-theme-effect-shadow-level1-layer2-spread, 0) var(--sn-theme-effect-shadow-layer2Color, #22222240))',
+        level2: 'var(--sn-boxShadow-elevation-level2, var(--sn-theme-effect-shadow-level2-layer1-positionX, 0) var(--sn-theme-effect-shadow-level2-layer1-positionY, 0) var(--sn-theme-effect-shadow-level2-layer1-blur, 1px) var(--sn-theme-effect-shadow-level2-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #22222240), var(--sn-theme-effect-shadow-level2-layer2-positionX, 0) var(--sn-theme-effect-shadow-level2-layer2-positionY, 0) var(--sn-theme-effect-shadow-level2-layer2-blur, 1px) var(--sn-theme-effect-shadow-level2-layer2-spread, 0) var(--sn-theme-effect-shadow-layer2Color, #22222240))',
+        level3: 'var(--sn-boxShadow-elevation-level3, var(--sn-theme-effect-shadow-level3-layer1-positionX, 0) var(--sn-theme-effect-shadow-level3-layer1-positionY, 0) var(--sn-theme-effect-shadow-level3-layer1-blur, 1px) var(--sn-theme-effect-shadow-level3-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #22222240), var(--sn-theme-effect-shadow-level3-layer2-positionX, 0) var(--sn-theme-effect-shadow-level3-layer2-positionY, 0) var(--sn-theme-effect-shadow-level3-layer2-blur, 1px) var(--sn-theme-effect-shadow-level3-layer2-spread, 0) var(--sn-theme-effect-shadow-layer2Color, #22222240))',
+        level4: 'var(--sn-boxShadow-elevation-level4, var(--sn-theme-effect-shadow-level4-layer1-positionX, 0) var(--sn-theme-effect-shadow-level4-layer1-positionY, 0) var(--sn-theme-effect-shadow-level4-layer1-blur, 1px) var(--sn-theme-effect-shadow-level4-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #22222240), var(--sn-theme-effect-shadow-level4-layer2-positionX, 0) var(--sn-theme-effect-shadow-level4-layer2-positionY, 0) var(--sn-theme-effect-shadow-level4-layer2-blur, 1px) var(--sn-theme-effect-shadow-level4-layer2-spread, 0) var(--sn-theme-effect-shadow-layer2Color, #22222240))',
+        level5: 'var(--sn-boxShadow-elevation-level5, var(--sn-theme-effect-shadow-level5-layer1-positionX, 0) var(--sn-theme-effect-shadow-level5-layer1-positionY, 0) var(--sn-theme-effect-shadow-level5-layer1-blur, 1px) var(--sn-theme-effect-shadow-level5-layer1-spread, 0) var(--sn-theme-effect-shadow-layer1Color, #22222240), var(--sn-theme-effect-shadow-level5-layer2-positionX, 0) var(--sn-theme-effect-shadow-level5-layer2-positionY, 0) var(--sn-theme-effect-shadow-level5-layer2-blur, 1px) var(--sn-theme-effect-shadow-level5-layer2-spread, 0) var(--sn-theme-effect-shadow-layer2Color, #22222240))'
       }
     },
     color: {
@@ -2090,24 +2090,24 @@ export const themeVars = {
     regular: {
       display: {
         s: {
-          'font-family': 'var(--sn-regular-display-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-display-s-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-display-s-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-display-s-fontWeight, 450)',
           'line-height': 'var(--sn-regular-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-regular-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-regular-display-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-display-s-paragraphSpacing, 20)'
         },
         m: {
-          'font-family': 'var(--sn-regular-display-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-display-m-fontWeight, 650)',
+          'font-family': 'var(--sn-regular-display-m-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-display-m-fontWeight, 550)',
           'line-height': 'var(--sn-regular-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-regular-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-regular-display-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-display-m-paragraphSpacing, 24)'
         },
         l: {
-          'font-family': 'var(--sn-regular-display-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-display-l-fontWeight, 700)',
+          'font-family': 'var(--sn-regular-display-l-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-display-l-fontWeight, 650)',
           'line-height': 'var(--sn-regular-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-regular-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-regular-display-l-letterSpacing, -0.5)',
@@ -2116,24 +2116,24 @@ export const themeVars = {
       },
       headline: {
         s: {
-          'font-family': 'var(--sn-regular-headline-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-headline-s-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-headline-s-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-headline-s-fontWeight, 450)',
           'line-height': 'var(--sn-regular-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-regular-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-regular-headline-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-headline-s-paragraphSpacing, 12)'
         },
         m: {
-          'font-family': 'var(--sn-regular-headline-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-headline-m-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-headline-m-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-headline-m-fontWeight, 450)',
           'line-height': 'var(--sn-regular-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-regular-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-regular-headline-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-regular-headline-m-paragraphSpacing, 14)'
         },
         l: {
-          'font-family': 'var(--sn-regular-headline-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-headline-l-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-headline-l-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-regular-headline-l-fontWeight, 450)',
           'line-height': 'var(--sn-regular-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-regular-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-regular-headline-l-letterSpacing, -0.5)',
@@ -2142,24 +2142,24 @@ export const themeVars = {
       },
       title: {
         s: {
-          'font-family': 'var(--sn-regular-title-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-title-s-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-title-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-title-s-fontWeight, 450)',
           'line-height': 'var(--sn-regular-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-regular-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-title-s-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-regular-title-s-paragraphSpacing, 7)'
         },
         m: {
-          'font-family': 'var(--sn-regular-title-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-title-m-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-title-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-title-m-fontWeight, 450)',
           'line-height': 'var(--sn-regular-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-regular-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-title-m-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-regular-title-m-paragraphSpacing, 8)'
         },
         l: {
-          'font-family': 'var(--sn-regular-title-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-title-l-fontWeight, 600)',
+          'font-family': 'var(--sn-regular-title-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-title-l-fontWeight, 450)',
           'line-height': 'var(--sn-regular-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-regular-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-regular-title-l-letterSpacing, 0.15)',
@@ -2168,24 +2168,24 @@ export const themeVars = {
       },
       label: {
         s: {
-          'font-family': 'var(--sn-regular-label-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-label-s-fontWeight, 500)',
+          'font-family': 'var(--sn-regular-label-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-label-s-fontWeight, 450)',
           'line-height': 'var(--sn-regular-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-regular-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-regular-label-s-letterSpacing, 0)',
           'paragraph-spacing': 'var(--sn-regular-label-s-paragraphSpacing, 5)'
         },
         m: {
-          'font-family': 'var(--sn-regular-label-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-label-m-fontWeight, 550)',
+          'font-family': 'var(--sn-regular-label-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-label-m-fontWeight, 450)',
           'line-height': 'var(--sn-regular-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-regular-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-label-m-letterSpacing, 0)',
           'paragraph-spacing': 'var(--sn-regular-label-m-paragraphSpacing, 6)'
         },
         l: {
-          'font-family': 'var(--sn-regular-label-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-label-l-fontWeight, 550)',
+          'font-family': 'var(--sn-regular-label-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-label-l-fontWeight, 450)',
           'line-height': 'var(--sn-regular-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-regular-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-label-l-letterSpacing, 0)',
@@ -2194,24 +2194,24 @@ export const themeVars = {
       },
       body: {
         s: {
-          'font-family': 'var(--sn-regular-body-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-body-s-fontWeight, 400)',
+          'font-family': 'var(--sn-regular-body-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-body-s-fontWeight, 350)',
           'line-height': 'var(--sn-regular-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-regular-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-body-s-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-regular-body-s-paragraphSpacing, 6)'
         },
         m: {
-          'font-family': 'var(--sn-regular-body-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-body-m-fontWeight, 400)',
+          'font-family': 'var(--sn-regular-body-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-body-m-fontWeight, 350)',
           'line-height': 'var(--sn-regular-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-regular-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-body-m-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-regular-body-m-paragraphSpacing, 7)'
         },
         l: {
-          'font-family': 'var(--sn-regular-body-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-regular-body-l-fontWeight, 400)',
+          'font-family': 'var(--sn-regular-body-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-regular-body-l-fontWeight, 350)',
           'line-height': 'var(--sn-regular-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-regular-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-regular-body-l-letterSpacing, 0.1)',
@@ -2222,24 +2222,24 @@ export const themeVars = {
     thin: {
       display: {
         s: {
-          'font-family': 'var(--sn-thin-display-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-display-s-fontWeight, 550)',
+          'font-family': 'var(--sn-thin-display-s-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-display-s-fontWeight, 350)',
           'line-height': 'var(--sn-thin-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-thin-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-thin-display-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-display-s-paragraphSpacing, 20)'
         },
         m: {
-          'font-family': 'var(--sn-thin-display-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-display-m-fontWeight, 550)',
+          'font-family': 'var(--sn-thin-display-m-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-display-m-fontWeight, 350)',
           'line-height': 'var(--sn-thin-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-thin-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-thin-display-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-display-m-paragraphSpacing, 24)'
         },
         l: {
-          'font-family': 'var(--sn-thin-display-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-display-l-fontWeight, 550)',
+          'font-family': 'var(--sn-thin-display-l-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-display-l-fontWeight, 350)',
           'line-height': 'var(--sn-thin-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-thin-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-thin-display-l-letterSpacing, -0.5)',
@@ -2248,24 +2248,24 @@ export const themeVars = {
       },
       headline: {
         s: {
-          'font-family': 'var(--sn-thin-headline-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-headline-s-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-headline-s-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-headline-s-fontWeight, 350)',
           'line-height': 'var(--sn-thin-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-thin-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-thin-headline-s-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-headline-s-paragraphSpacing, 12)'
         },
         m: {
-          'font-family': 'var(--sn-thin-headline-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-headline-m-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-headline-m-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-headline-m-fontWeight, 350)',
           'line-height': 'var(--sn-thin-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-thin-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-thin-headline-m-letterSpacing, -0.5)',
           'paragraph-spacing': 'var(--sn-thin-headline-m-paragraphSpacing, 14)'
         },
         l: {
-          'font-family': 'var(--sn-thin-headline-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-headline-l-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-headline-l-fontFamily, SB Sans Display)',
+          'font-weight': 'var(--sn-thin-headline-l-fontWeight, 350)',
           'line-height': 'var(--sn-thin-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-thin-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-thin-headline-l-letterSpacing, -0.5)',
@@ -2274,24 +2274,24 @@ export const themeVars = {
       },
       title: {
         s: {
-          'font-family': 'var(--sn-thin-title-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-title-s-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-title-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-title-s-fontWeight, 350)',
           'line-height': 'var(--sn-thin-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-thin-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-title-s-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-thin-title-s-paragraphSpacing, 7)'
         },
         m: {
-          'font-family': 'var(--sn-thin-title-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-title-m-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-title-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-title-m-fontWeight, 350)',
           'line-height': 'var(--sn-thin-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-thin-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-title-m-letterSpacing, 0.15)',
           'paragraph-spacing': 'var(--sn-thin-title-m-paragraphSpacing, 8)'
         },
         l: {
-          'font-family': 'var(--sn-thin-title-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-title-l-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-title-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-title-l-fontWeight, 350)',
           'line-height': 'var(--sn-thin-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-thin-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-thin-title-l-letterSpacing, 0.15)',
@@ -2300,24 +2300,24 @@ export const themeVars = {
       },
       label: {
         s: {
-          'font-family': 'var(--sn-thin-label-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-label-s-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-label-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-label-s-fontWeight, 350)',
           'line-height': 'var(--sn-thin-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-thin-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-thin-label-s-letterSpacing, 0)',
           'paragraph-spacing': 'var(--sn-thin-label-s-paragraphSpacing, 5)'
         },
         m: {
-          'font-family': 'var(--sn-thin-label-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-label-m-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-label-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-label-m-fontWeight, 350)',
           'line-height': 'var(--sn-thin-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-thin-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-label-m-letterSpacing, 0)',
           'paragraph-spacing': 'var(--sn-thin-label-m-paragraphSpacing, 6)'
         },
         l: {
-          'font-family': 'var(--sn-thin-label-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-label-l-fontWeight, 450)',
+          'font-family': 'var(--sn-thin-label-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-label-l-fontWeight, 350)',
           'line-height': 'var(--sn-thin-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-thin-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-label-l-letterSpacing, 0)',
@@ -2326,24 +2326,24 @@ export const themeVars = {
       },
       body: {
         s: {
-          'font-family': 'var(--sn-thin-body-s-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-body-s-fontWeight, 250)',
+          'font-family': 'var(--sn-thin-body-s-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-body-s-fontWeight, 350)',
           'line-height': 'var(--sn-thin-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-thin-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-body-s-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-thin-body-s-paragraphSpacing, 6)'
         },
         m: {
-          'font-family': 'var(--sn-thin-body-m-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-body-m-fontWeight, 250)',
+          'font-family': 'var(--sn-thin-body-m-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-body-m-fontWeight, 350)',
           'line-height': 'var(--sn-thin-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-thin-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-body-m-letterSpacing, 0.1)',
           'paragraph-spacing': 'var(--sn-thin-body-m-paragraphSpacing, 7)'
         },
         l: {
-          'font-family': 'var(--sn-thin-body-l-fontFamily, SB Sans Interface)',
-          'font-weight': 'var(--sn-thin-body-l-fontWeight, 250)',
+          'font-family': 'var(--sn-thin-body-l-fontFamily, SB Sans Text)',
+          'font-weight': 'var(--sn-thin-body-l-fontWeight, 350)',
           'line-height': 'var(--sn-thin-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-thin-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-thin-body-l-letterSpacing, 0.1)',
@@ -2355,7 +2355,7 @@ export const themeVars = {
       display: {
         s: {
           'font-family': 'var(--sn-mono-display-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-s-fontWeight, 550)',
+          'font-weight': 'var(--sn-mono-display-s-fontWeight, 350)',
           'line-height': 'var(--sn-mono-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-mono-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-mono-display-s-letterSpacing, -0.5)',
@@ -2363,7 +2363,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-display-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-m-fontWeight, 650)',
+          'font-weight': 'var(--sn-mono-display-m-fontWeight, 550)',
           'line-height': 'var(--sn-mono-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-mono-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-mono-display-m-letterSpacing, -0.5)',
@@ -2371,7 +2371,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-display-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-l-fontWeight, 700)',
+          'font-weight': 'var(--sn-mono-display-l-fontWeight, 650)',
           'line-height': 'var(--sn-mono-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-mono-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-mono-display-l-letterSpacing, -0.5)',
@@ -2381,7 +2381,7 @@ export const themeVars = {
       headline: {
         s: {
           'font-family': 'var(--sn-mono-headline-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-s-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-headline-s-fontWeight, 450)',
           'line-height': 'var(--sn-mono-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-mono-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-mono-headline-s-letterSpacing, -0.5)',
@@ -2389,7 +2389,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-headline-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-m-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-headline-m-fontWeight, 450)',
           'line-height': 'var(--sn-mono-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-mono-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-mono-headline-m-letterSpacing, -0.5)',
@@ -2397,7 +2397,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-headline-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-l-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-headline-l-fontWeight, 450)',
           'line-height': 'var(--sn-mono-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-mono-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-mono-headline-l-letterSpacing, -0.5)',
@@ -2407,7 +2407,7 @@ export const themeVars = {
       title: {
         s: {
           'font-family': 'var(--sn-mono-title-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-s-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-title-s-fontWeight, 450)',
           'line-height': 'var(--sn-mono-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-mono-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-title-s-letterSpacing, 0.15)',
@@ -2415,7 +2415,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-title-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-m-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-title-m-fontWeight, 450)',
           'line-height': 'var(--sn-mono-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-mono-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-title-m-letterSpacing, 0.15)',
@@ -2423,7 +2423,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-title-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-l-fontWeight, 600)',
+          'font-weight': 'var(--sn-mono-title-l-fontWeight, 450)',
           'line-height': 'var(--sn-mono-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-mono-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-mono-title-l-letterSpacing, 0.15)',
@@ -2433,7 +2433,7 @@ export const themeVars = {
       label: {
         s: {
           'font-family': 'var(--sn-mono-label-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-s-fontWeight, 500)',
+          'font-weight': 'var(--sn-mono-label-s-fontWeight, 450)',
           'line-height': 'var(--sn-mono-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-mono-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-mono-label-s-letterSpacing, 0)',
@@ -2441,7 +2441,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-label-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-m-fontWeight, 550)',
+          'font-weight': 'var(--sn-mono-label-m-fontWeight, 450)',
           'line-height': 'var(--sn-mono-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-mono-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-label-m-letterSpacing, 0)',
@@ -2449,7 +2449,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-label-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-l-fontWeight, 550)',
+          'font-weight': 'var(--sn-mono-label-l-fontWeight, 450)',
           'line-height': 'var(--sn-mono-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-mono-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-label-l-letterSpacing, 0)',
@@ -2459,7 +2459,7 @@ export const themeVars = {
       body: {
         s: {
           'font-family': 'var(--sn-mono-body-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-s-fontWeight, 400)',
+          'font-weight': 'var(--sn-mono-body-s-fontWeight, 350)',
           'line-height': 'var(--sn-mono-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-mono-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-body-s-letterSpacing, 0.1)',
@@ -2467,7 +2467,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-body-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-m-fontWeight, 400)',
+          'font-weight': 'var(--sn-mono-body-m-fontWeight, 350)',
           'line-height': 'var(--sn-mono-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-mono-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-body-m-letterSpacing, 0.1)',
@@ -2475,7 +2475,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-body-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-l-fontWeight, 400)',
+          'font-weight': 'var(--sn-mono-body-l-fontWeight, 350)',
           'line-height': 'var(--sn-mono-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-mono-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-mono-body-l-letterSpacing, 0.1)',

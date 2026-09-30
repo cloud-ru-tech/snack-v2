@@ -3,7 +3,7 @@
  */
   
 .sn-tag {
-  --sn-tag-anatomy-size-xs-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-tag-anatomy-size-xs-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-tag-anatomy-size-xs-text-fontSize: var(--sn-primitive-font-fontSize-11, 11px);
   --sn-tag-anatomy-size-xs-text-lineHeight: var(--sn-primitive-font-lineHeight-14, 14px);
   --sn-tag-anatomy-size-xs-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-s, 500);
@@ -17,7 +17,7 @@
   --sn-tag-anatomy-size-xs-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px);
   --sn-tag-anatomy-size-xs-buttonRemove-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-tag-anatomy-size-xs-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-tag-anatomy-size-s-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-tag-anatomy-size-s-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-tag-anatomy-size-s-text-fontSize: var(--sn-primitive-font-fontSize-11, 11px);
   --sn-tag-anatomy-size-s-text-lineHeight: var(--sn-primitive-font-lineHeight-14, 14px);
   --sn-tag-anatomy-size-s-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-s, 500);
@@ -31,10 +31,10 @@
   --sn-tag-anatomy-size-s-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px);
   --sn-tag-anatomy-size-s-buttonRemove-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-tag-anatomy-size-s-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
-  --sn-tag-anatomy-size-m-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Interface);
+  --sn-tag-anatomy-size-m-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
   --sn-tag-anatomy-size-m-text-fontSize: var(--sn-primitive-font-fontSize-12, 12px);
   --sn-tag-anatomy-size-m-text-lineHeight: var(--sn-primitive-font-lineHeight-16, 16px);
-  --sn-tag-anatomy-size-m-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-m, 550);
+  --sn-tag-anatomy-size-m-text-fontWeight: var(--sn-theme-typography-fontWeight-regular-label-m, 500);
   --sn-tag-anatomy-size-m-text-letterSpacing: var(--sn-primitive-font-letterSpacing-s, 0px);
   --sn-tag-anatomy-size-m-container-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-tag-anatomy-size-m-container-minHeight: var(--sn-primitive-dimension-32, 32px);

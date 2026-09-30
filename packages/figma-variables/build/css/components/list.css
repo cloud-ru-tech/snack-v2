@@ -19,7 +19,7 @@
   --sn-list-anatomy-size-s-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 2px);
   --sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-s, 2px);
   --sn-list-anatomy-size-s-listItem-centeredWrapper-height: var(--sn-density-typography-roleBody-lineHeightS, 20px);
-  --sn-list-anatomy-size-s-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 0px);
+  --sn-list-anatomy-size-s-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 2px);
   --sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft: var(--sn-density-nestingLevel-s-paddingLeft, 12px);
   --sn-list-anatomy-size-s-subtitle-paddingTop: var(--sn-primitive-dimension-8, 8px);
   --sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal: var(--sn-density-spacing-control-wrapper-horizontal-m, 4px);
@@ -32,7 +32,7 @@
   --sn-list-anatomy-size-m-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 4px);
   --sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-m, 4px);
   --sn-list-anatomy-size-m-listItem-centeredWrapper-height: var(--sn-density-typography-roleBody-lineHeightM, 24px);
-  --sn-list-anatomy-size-m-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 0px);
+  --sn-list-anatomy-size-m-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-s, 2px);
   --sn-list-anatomy-size-m-listItem-markerWrapper-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
   --sn-list-anatomy-size-m-listItem-markerWrapper-borderTopRightRadius: var(--sn-primitive-dimension-2, 2px);
   --sn-list-anatomy-size-m-listItem-markerWrapper-borderBottomRightRadius: var(--sn-primitive-dimension-2, 2px);
@@ -51,7 +51,7 @@
   --sn-list-anatomy-size-l-listItem-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 6px);
   --sn-list-anatomy-size-l-listItem-centeredWrapper-paddingVertical: var(--sn-density-spacing-control-container-vertical-l, 6px);
   --sn-list-anatomy-size-l-listItem-centeredWrapper-height: var(--sn-density-typography-roleBody-lineHeightL, 28px);
-  --sn-list-anatomy-size-l-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-l, 0px);
+  --sn-list-anatomy-size-l-listItem-borderRadius: var(--sn-brand-anatomy-radius-listItem-l, 2px);
   --sn-list-anatomy-size-l-listItem-markerWrapper-borderTopLeftRadius: var(--sn-primitive-dimension-0, 0px);
   --sn-list-anatomy-size-l-listItem-markerWrapper-borderTopRightRadius: var(--sn-primitive-dimension-2, 2px);
   --sn-list-anatomy-size-l-listItem-markerWrapper-borderBottomRightRadius: var(--sn-primitive-dimension-2, 2px);

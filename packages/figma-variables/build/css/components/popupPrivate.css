@@ -5,7 +5,7 @@
 .sn-popupPrivate {
   --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minWidth: var(--sn-primitive-dimension-32, 32px);
   --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-minHeight: var(--sn-primitive-dimension-32, 32px);
-  --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius: var(--sn-brand-anatomy-radius-window-buttonClosed-m, 10000px);
+  --sn-popupPrivate-anatomy-window-badgeButtonClosed-buttonClosed-borderRadius: var(--sn-brand-anatomy-radius-window-buttonClosed-m, 0px);
   --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingLeft: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingLeft, 0px);
   --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingRight: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingRight, 48px);
   --sn-popupPrivate-anatomy-window-badgeButtonClosed-paddingTop: var(--sn-brand-anatomy-spacing-window-badgeButtonClosed-paddingTop, 48px);
