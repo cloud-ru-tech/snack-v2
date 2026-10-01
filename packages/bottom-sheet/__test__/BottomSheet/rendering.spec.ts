@@ -114,15 +114,18 @@ test.describe('BottomSheet — rendering & props propagation', () => {
   });
 
   test('data-full-height is set only when the active snap is full viewport', async ({ gotoStory, getByTestId }) => {
-    // snap=1 (full) → data-full-height (включает safeAreaTop notch-компенсацию)
+    // snap=1 (full) → data-full-height (только тогда включается верхний safe-area отступ)
     await gotoStory(buildStoryOptions({ snapPointsPreset: 'half-full', defaultSnapIndex: 1 }));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
     await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-full-height', 'true');
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-safe-area-top', 'true');
 
     await gotoStory(buildStoryOptions({ snapPointsPreset: 'half-full', defaultSnapIndex: 0 }));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
     await expect(getByTestId(TEST_IDS.root)).not.toHaveAttribute('data-full-height');
+    await expect(getByTestId(TEST_IDS.root)).not.toHaveAttribute('data-safe-area-top');
+    await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('data-safe-area-bottom', 'true');
   });
 
   test('bodyPadding=false removes horizontal and top padding (bottom survives)', async ({ gotoStory, getByTestId }) => {

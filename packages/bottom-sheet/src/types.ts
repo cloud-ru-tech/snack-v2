@@ -89,13 +89,18 @@ export type BottomSheetCustomProps = WithSupportProps<
      */
     closeOnPopstate?: boolean;
     /**
-     * Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом
-     * на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop)
-     * inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный.
-     * Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch).
+     * Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`,
+     * на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда
+     * sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch.
      * @default true
      */
-    safeArea?: boolean;
+    safeAreaTop?: boolean;
+    /**
+     * Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен
+     * `safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset.
+     * @default true
+     */
+    safeAreaBottom?: boolean;
     /**
      * Отключить анимации открытия / закрытия и перехода между snap-точками.
      * @default false

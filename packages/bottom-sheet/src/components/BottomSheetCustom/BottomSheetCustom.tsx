@@ -52,7 +52,8 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     showBackdrop = true,
     lockScroll = true,
     swipeEnabled = true,
-    safeArea = true,
+    safeAreaTop = true,
+    safeAreaBottom = true,
     snapPoints,
     defaultSnapIndex,
     snapIndex,
@@ -188,7 +189,8 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
             // aria-modal только для модального sheet'а: non-modal оставляет фон доступным AT.
             aria-modal={isModal ? 'true' : undefined}
             data-test-id={TEST_IDS.root}
-            data-safe-area={safeArea || undefined}
+            data-safe-area-top={(safeAreaTop && isFullHeight) || undefined}
+            data-safe-area-bottom={safeAreaBottom || undefined}
             data-snap-index={activeSnapIndex}
             // Пустой массив ведёт себя как single fit-content — атрибут не выставляем.
             data-snap-points={snapPoints && snapPoints.length > 0 ? snapPoints.length : undefined}

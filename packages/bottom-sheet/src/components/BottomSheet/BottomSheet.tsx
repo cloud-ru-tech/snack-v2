@@ -1,5 +1,4 @@
 import { FooterActions, PopupMedia } from '@ds/popup-private';
-import cn from 'classnames';
 import { isValidElement, ReactNode, useId } from 'react';
 
 import { TEST_IDS } from '../../constants';
@@ -11,7 +10,7 @@ function isMediaProps(value: BottomSheetMediaProps | ReactNode): value is Bottom
   return typeof value === 'object' && value !== null && !isValidElement(value) && 'src' in value && 'alt' in value;
 }
 
-/** Обёртка `@ds/bottom-sheet` с готовой анатомией: media + header + body + footer + safeArea + dividers. */
+/** Обёртка `@ds/bottom-sheet` с готовой анатомией: media + header + body + footer + safe-area + dividers. */
 export function BottomSheet({
   title,
   slotAfterTitle,
@@ -30,7 +29,7 @@ export function BottomSheet({
   footerTestIds,
   withDividers = true,
   swipeEnabled = true,
-  // safeArea уходит в `...rest` → BottomSheetCustom (env-паддинг на `.content`).
+  // safeAreaTop/safeAreaBottom уходят в `...rest` → BottomSheetCustom (env-паддинг на `.content`).
   className,
   ...rest
 }: BottomSheetProps) {
@@ -38,7 +37,6 @@ export function BottomSheet({
     title || onBackButtonClick || actionButton || slotAfterTitle || subtitle || slotSecondTitle,
   );
   const hasMedia = media != null;
-  const hasFullWidthMediaImage = hasMedia && isMediaProps(media) && (media.kind ?? 'image') === 'image';
 
   // aria-labelledby связывает заголовок с dialog'ом; без title имя задаёт потребитель через aria-label.
   const titleId = useId();
@@ -85,7 +83,7 @@ export function BottomSheet({
             </div>
           ))}
 
-        <div className={cn(styles.contentBlock, hasFullWidthMediaImage && styles.contentBlockNoTopPadding)}>
+        <div className={styles.contentBlock}>
           {hasHeader && (
             <BottomSheetCustom.Header
               title={title}

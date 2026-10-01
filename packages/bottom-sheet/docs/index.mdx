@@ -112,11 +112,14 @@ mobile-вьюпорте и всегда идут в столбик.
 Тонкие линии между topBar↔body и body↔footer. Разграничивают закреплённые шапку и подвал от
 прокручиваемого под ними содержимого. Передайте `withDividers={false}`, чтобы убрать обе линии.
 
-### SafeArea (default `safeArea=true`)
-Блоки сверху/снизу, резервирующие место под iOS notch / home-indicator и Android nav-bar через
-`env(safe-area-inset-*)` (с 32px-фолбэком для embedded webview, который не отдаёт inset'ы). Figma-артборд
-эти блоки скрывает; на реальном устройстве они нужны, чтобы футер не уходил под home-indicator. Передайте
-`safeArea={false}`, если рамку safe-area обеспечивает окружение (например, нативная оболочка webview).
+### SafeArea (default `safeAreaTop=true`, `safeAreaBottom=true`)
+Отступы, резервирующие место под iOS notch / home-indicator и Android nav-bar. Размер — 32px из
+токена `safeArea`; если `env(safe-area-inset-*)` устройства больше, берётся он.
+
+- `safeAreaBottom` — снизу: футер не уходит под home-indicator.
+- `safeAreaTop` — сверху, только когда sheet раскрыт на весь вьюпорт (`snapPoints` = `1` / `100dvh`).
+
+Передайте `false`, если рамку safe-area с этой стороны обеспечивает окружение (например, нативная оболочка webview).
 
 ### Snap points (default `undefined` → height auto)
 По дефолту sheet `height: auto` (один snap по высоте контента). Когда задан `snapPoints`-массив, sheet поддерживает несколько фиксированных позиций (iOS-detents-аналог):

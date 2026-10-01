@@ -71,6 +71,8 @@ function MobileDemo() {
         <DemoHint>
           Bottom-sheet привязан к safe-area телефонной рамки через <code>container</code> + containing block (
           <code>transform: translateZ(0)</code>). Sheet и backdrop живут внутри рамки, а не на всём вьюпорте Storybook.
+          Отступы под notch и home-indicator здесь эмулирует сама рамка, поэтому у компонента <code>safeAreaTop</code> и{' '}
+          <code>safeAreaBottom</code> выключены.
         </DemoHint>
 
         <div className={styles.controlsRow}>
@@ -144,7 +146,8 @@ function MobileDemo() {
             container={frameRef.current ?? undefined}
             snapPoints={SNAP_POINT_PRESETS[snapPreset]}
             defaultSnapIndex={0}
-            safeArea={false}
+            safeAreaTop={false}
+            safeAreaBottom={false}
             title='Bottom-sheet'
             slotSecondTitle={
               withSubtitle ? <div data-test-id={TEST_IDS.exampleContent}>SearchBar / SegmentControl</div> : undefined

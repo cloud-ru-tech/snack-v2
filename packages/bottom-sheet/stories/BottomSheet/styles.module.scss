@@ -120,16 +120,15 @@
   background: #1a1a1a;
 }
 
-// Safe-area: абсолютно-позиционированная зона с padding'ами для notch'а сверху
-// и home-indicator снизу. `transform: translateZ(0)` создаёт containing block
+// Safe-area: абсолютно-позиционированная зона с отступами (inset) для notch'а сверху
+// и home-indicator снизу — эмулирует safe-area вместо safeAreaTop/safeAreaBottom sheet'а. `transform: translateZ(0)` создаёт containing block
 // для `position: fixed` bottom-sheet'а внутри.
 .phoneSafeArea {
   position: absolute;
   inset: base.$sn-primitive-dimension-44 0 base.$sn-primitive-dimension-32 0;
   transform: translateZ(0);
 
-  // contain: layout style — изолирует bottom-sheet'овский overflow scroll
-  // от containing block phone-frame'а.
+  // Обрезает sheet по границам safe-area, пока он уезжает за низ при закрытии.
   overflow: hidden;
 }
 

@@ -1,5 +1,4 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/bottomSheet.module' as bottomSheet;
 
 .root {
   display: flex;
@@ -26,13 +25,5 @@
 
   box-sizing: border-box;
   min-height: 0;
-  // Верхний зазор контента: коллекция bottomSheet больше не несёт `content.padding-top`
-  // (chrome уехал в popupPrivate). Верхний отступ шапки теперь owns PopupHeader
-  // (popupPrivate `bottomSheet.header.padding-top`); здесь остаётся frame-паддинг `container.padding-top`.
-  padding-top: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'padding-top');
-}
-
-.contentBlockNoTopPadding {
-  padding-top: 0;
 }
 

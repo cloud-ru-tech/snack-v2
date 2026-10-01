@@ -63,11 +63,14 @@ mobile-вьюпорте и всегда идут в столбик.
 Тонкие линии между topBar↔body и body↔footer. Разграничивают закреплённые шапку и подвал от
 прокручиваемого под ними содержимого. Передайте `withDividers={false}`, чтобы убрать обе линии.
 
-### SafeArea (default `safeArea=true`)
-Блоки сверху/снизу, резервирующие место под iOS notch / home-indicator и Android nav-bar через
-`env(safe-area-inset-*)` (с 32px-фолбэком для embedded webview, который не отдаёт inset'ы). Figma-артборд
-эти блоки скрывает; на реальном устройстве они нужны, чтобы футер не уходил под home-indicator. Передайте
-`safeArea={false}`, если рамку safe-area обеспечивает окружение (например, нативная оболочка webview).
+### SafeArea (default `safeAreaTop=true`, `safeAreaBottom=true`)
+Отступы, резервирующие место под iOS notch / home-indicator и Android nav-bar. Размер — 32px из
+токена `safeArea`; если `env(safe-area-inset-*)` устройства больше, берётся он.
+
+- `safeAreaBottom` — снизу: футер не уходит под home-indicator.
+- `safeAreaTop` — сверху, только когда sheet раскрыт на весь вьюпорт (`snapPoints` = `1` / `100dvh`).
+
+Передайте `false`, если рамку safe-area с этой стороны обеспечивает окружение (например, нативная оболочка webview).
 
 ### Snap points (default `undefined` → height auto)
 По дефолту sheet `height: auto` (один snap по высоте контента). Когда задан `snapPoints`-массив, sheet поддерживает несколько фиксированных позиций (iOS-detents-аналог):
@@ -682,7 +685,8 @@ export function NonModal() {
 | `onSnapIndexChange` | `((snapIndex: number) => void)` | — | Callback изменения активного snap'а (пересечение swipe-границы или click по UI). <br/> Не вызывается при программной смене controlled `snapIndex`. |
 | `open` | `boolean` | — | Управление состоянием показан / не показан. |
 | `rootClassName` | `string` | — | CSS-класс корневого элемента portal'а. |
-| `safeArea` | `boolean` | `true` | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
+| `safeAreaBottom` | `boolean` | `true` | Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен <br/> `safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset. |
+| `safeAreaTop` | `boolean` | `true` | Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`, <br/> на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда <br/> sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch. |
 | `showBackdrop` | `boolean` | `true` | Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside <br/> не закрывает sheet (нет backdrop-узла, по которому ловится клик). |
 | `slotAfterTitle` | `ReactNode` | — | Slot справа от title (внутри той же строки) — типично `QuestionTooltip`, status badge. |
 | `slotSecondTitle` | `ReactNode` | — | Slot под подзаголовком — типично `SearchBar`, `SegmentControl`, `Filter`. |
@@ -941,7 +945,8 @@ export function CustomDisableMotions() {
 | `onSnapIndexChange` | `((snapIndex: number) => void)` | — | Callback изменения активного snap'а (пересечение swipe-границы или click по UI). <br/> Не вызывается при программной смене controlled `snapIndex`. |
 | `open` | `boolean` | — | Управление состоянием показан / не показан. |
 | `rootClassName` | `string` | — | CSS-класс корневого элемента portal'а. |
-| `safeArea` | `boolean` | `true` | Резервировать ли место под iOS notch / home-indicator и Android nav-bar. Реализовано паддингом <br/> на `.content` через `env(safe-area-inset-*)`: на устройстве без выреза/индикатора (и на desktop) <br/> inset = 0, поэтому никакого «лишнего» отступа не появляется; на notched-устройстве — ровно нужный. <br/> Верхний отступ добавляется только когда sheet раскрыт на полный вьюпорт (его верх под notch). |
+| `safeAreaBottom` | `boolean` | `true` | Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен <br/> `safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset. |
+| `safeAreaTop` | `boolean` | `true` | Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`, <br/> на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда <br/> sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch. |
 | `showBackdrop` | `boolean` | `true` | Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside <br/> не закрывает sheet (нет backdrop-узла, по которому ловится клик). |
 | `snapIndex` | `number` | — | Controlled-индекс активного snap'а. Если задан, sheet всегда находится на этом snap'е; <br/> swipe-up/down вызывают `onSnapIndexChange`, но не меняют позицию сами — consumer должен <br/> передать новое значение. |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |

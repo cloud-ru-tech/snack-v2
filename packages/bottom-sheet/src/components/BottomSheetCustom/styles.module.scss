@@ -45,10 +45,10 @@
   display: flex;
   flex-direction: column;
 
-  // Верхний зазор для не-full snap'ов: видна подложка (tap-to-dismiss) + уважение notch (min 32px).
+  // Верхний зазор для не-full snap'ов: видна подложка (tap-to-dismiss) + уважение notch.
   max-height: calc(
     100% - max(
-        #{base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'safeArea', 'padding-top')},
+        #{base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'safeArea', 'overlay', 'padding')},
         env(safe-area-inset-top)
       )
   );
@@ -83,7 +83,6 @@
   width: 100%;
   min-height: 0;
   max-height: 100%;
-  padding-top: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'padding-top');
   border-top-left-radius: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'border-top-left-radius');
   border-top-right-radius: base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'container', 'border-top-right-radius');
 
@@ -116,14 +115,20 @@
     border-top-right-radius: 0;
   }
 
-  // Safe-area: env-паддинг прямо на `.content`. Нижний — всегда (home-indicator), верхний —
-  // только при full-height (верх уходит под notch). Без выреза `env(...)` = 0.
-  &[data-safe-area] {
-    padding-bottom: env(safe-area-inset-bottom);
+  // Safe-area: токен из макета как минимум, на устройстве с вырезом — env, если он больше.
+  // Верхний выставляется только при full-height (верх уходит под notch), см. `data-safe-area-top`.
+  &[data-safe-area-bottom] {
+    padding-bottom: max(
+      #{base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'safeArea', 'bottom', 'min-height')},
+      env(safe-area-inset-bottom)
+    );
   }
 
-  &[data-safe-area][data-full-height] {
-    padding-top: env(safe-area-inset-top);
+  &[data-safe-area-top] {
+    padding-top: max(
+      #{base.simple-var(bottomSheet.$bottomSheet, 'anatomy', 'safeArea', 'top', 'min-height')},
+      env(safe-area-inset-top)
+    );
   }
 }
 
