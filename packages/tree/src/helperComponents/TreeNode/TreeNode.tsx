@@ -178,7 +178,14 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
       }
     };
 
-    const handleBlurActions = () => {
+    const handleBlurActions = (event: FocusEvent<HTMLElement>) => {
+      const nextTarget = event.relatedTarget;
+
+      // Фокус уходит на саму строку (возврат после закрытия дроплиста) — строку не блюрим.
+      if (nextTarget instanceof Node && contentRef.current?.contains(nextTarget)) {
+        return;
+      }
+
       if (isDroplistTriggerFocused && !isDroplistOpen) {
         setFocusDroplistTrigger(false);
 

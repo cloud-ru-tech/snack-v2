@@ -322,7 +322,7 @@
         "required": true
       },
       "onBlurActions": {
-        "type": "() => void",
+        "type": "(event: FocusEvent<HTMLElement, Element>) => void",
         "required": true
       },
       "setDroplistOpen": {

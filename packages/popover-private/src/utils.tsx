@@ -8,10 +8,13 @@ import {
   HTMLProps,
   isValidElement,
   MouseEvent,
+  MutableRefObject,
   ReactElement,
   ReactNode,
+  Ref,
   RefObject,
   TouchEvent,
+  version,
 } from 'react';
 import { isForwardRef, isMemo, isValidElementType } from 'react-is';
 
@@ -83,8 +86,43 @@ type GetPopoverContentProps = {
 };
 
 type TriggerRefProp =
-  | { ref: (node: ReferenceType | null) => void }
-  | { innerRef: (node: ReferenceType | null) => void };
+  { ref: (node: ReferenceType | null) => void } | { innerRef: (node: ReferenceType | null) => void };
+
+const IS_REACT_19_OR_NEWER = Number(version.split('.')[0]) >= 19;
+
+// React 19 перенёс `ref` в `props`, а чтение `element.ref` там выдаёт dev-warning.
+function getElementRef(element: ReactElement): Ref<ReferenceType> | undefined {
+  if (IS_REACT_19_OR_NEWER) {
+    return (element.props as { ref?: Ref<ReferenceType> }).ref;
+  }
+
+  return (element as ReactElement & { ref?: Ref<ReferenceType> }).ref;
+}
+
+function assignRef<T>(ref: Ref<T> | undefined, node: T | null): void {
+  if (typeof ref === 'function') {
+    ref(node);
+    return;
+  }
+
+  if (ref) {
+    (ref as MutableRefObject<T | null>).current = node;
+  }
+}
+
+function mergeTriggerRefs(
+  originalRef: Ref<ReferenceType> | undefined,
+  setReference: (node: ReferenceType | null) => void,
+): (node: ReferenceType | null) => void {
+  if (!originalRef) {
+    return setReference;
+  }
+
+  return node => {
+    assignRef(originalRef, node);
+    setReference(node);
+  };
+}
 
 /**
  * Каким пропом отдать триггеру reference-ноду:
@@ -106,13 +144,15 @@ function resolveTriggerRefProp(
   const elementNode: unknown = element;
 
   if (typeof elementType === 'string' || isForwardRef(element)) {
-    return { ref: setReference };
+    return { ref: mergeTriggerRefs(getElementRef(element), setReference) };
   }
 
   const componentType = isMemo(elementNode) ? (elementType as { type: unknown }).type : elementType;
 
   if (supportsInnerRef(componentType)) {
-    return { innerRef: setReference };
+    const { innerRef } = (elementNode as { props: { innerRef?: Ref<ReferenceType> } }).props;
+
+    return { innerRef: mergeTriggerRefs(innerRef, setReference) };
   }
 
   return null;
@@ -144,7 +184,12 @@ export const getPopoverTriggerJSX = ({
   disableSpanWrapper,
 }: GetPopoverContentProps): ReactNode => {
   if (isValidElement(children)) {
-    if (isForwardRef(children) || isValidElementType(children) || disableSpanWrapper) {
+    if (
+      isForwardRef(children) ||
+      isValidElementType(children) ||
+      supportsInnerRef((children as ReactElement)?.type || children) ||
+      disableSpanWrapper
+    ) {
       // 🔴 Проброс reference-элемента во floating-ui по правильной конвенции. Обычные `@ds`-компоненты
       // (напр. `Button`) — plain function-компоненты и берут DOM-ноду через проп `innerRef`, а НЕ React
       // `ref` (их нельзя ref-ать: React-ворнинг «Function components cannot be given refs»). Если такому

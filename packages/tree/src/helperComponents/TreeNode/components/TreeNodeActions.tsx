@@ -1,7 +1,7 @@
 import { Button } from '@ds/button';
 import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist, ItemProps } from '@ds/list';
-import { Dispatch, KeyboardEventHandler, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, FocusEvent, KeyboardEventHandler, SetStateAction, useEffect, useRef } from 'react';
 
 import { TEST_IDS } from '../../../constants';
 import { Size, TreeNodeProps } from '../../../types';
@@ -15,7 +15,7 @@ type TreeNodeActionsProps = {
   node: Omit<TreeNodeProps, 'href'>;
   isDroplistTriggerFocused: boolean;
   focusNode(): void;
-  onBlurActions(): void;
+  onBlurActions(event: FocusEvent<HTMLElement>): void;
   size: Size;
 };
 
@@ -32,12 +32,20 @@ export function TreeNodeActions({
   const droplistActions = getNodeActions(node);
 
   const localRef = useRef<HTMLButtonElement>(null);
+  const returnFocusTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     if (localRef.current && isDroplistTriggerFocused) {
       localRef.current.focus();
     }
   }, [isDroplistTriggerFocused, localRef]);
+
+  useEffect(
+    () => () => {
+      clearTimeout(returnFocusTimerRef.current);
+    },
+    [],
+  );
 
   const handleKeyDown: KeyboardEventHandler<HTMLElement> = e => {
     switch (e.key) {
@@ -71,6 +79,8 @@ export function TreeNodeActions({
         return;
       }
       case 'ArrowUp': {
+        // onOpenChange уже поставил возврат фокуса на строку — здесь фокус остаётся на kebab.
+        clearTimeout(returnFocusTimerRef.current);
         setDroplistOpen(false);
         localRef.current?.focus();
 
@@ -99,14 +109,17 @@ export function TreeNodeActions({
         open={isDroplistOpen}
         onOpenChange={open => {
           setDroplistOpen(open);
-          // Закрытие дроплиста (по клику в пункт, ESC, outside-click) должно
-          // вернуть фокус на строку и снять `isDroplistTriggerFocused` —
-          // иначе kebab остаётся в visible-hover-состоянии. Tab и ArrowLeft
-          // уже делают это сами; для пути через `closeDroplistOnItemClick`
-          // ресет навешиваем здесь.
-          if (!open) {
-            focusNode();
+
+          if (open) {
+            return;
           }
+
+          // Droplist возвращает фокус на триггер после onOpenChange: синхронно
+          // при выборе пункта и через setTimeout(0) при Escape. Возврат на строку
+          // ставим следующим тиком, чтобы он шёл после обоих. Tab и ArrowLeft
+          // фокусируют строку сами и до onOpenChange не доходят.
+          clearTimeout(returnFocusTimerRef.current);
+          returnFocusTimerRef.current = setTimeout(focusNode);
         }}
         items={droplistActions}
         closeDroplistOnItemClick
