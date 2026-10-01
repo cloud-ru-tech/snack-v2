@@ -3922,7 +3922,7 @@
       "organizationItems": {
         "type": "Item[]",
         "required": false,
-        "description": "Список организаций. На desktop — единственная прокручиваемая часть меню",
+        "description": "Список организаций. На desktop — единственная прокручиваемая часть меню.\n\nНе передан или пуст — меню отображается единым списком без закреплённых частей.",
         "typeRefs": [
           "BaseItemWithoutNonGroup",
           "CommonGroupItem",

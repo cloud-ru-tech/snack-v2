@@ -697,7 +697,7 @@ export function ControlledTheme() {
 | `onClick` | `(() => void)` | — | Колбэк клика по кнопке-триггеру. |
 | `onLogout` | `(() => void)` | — | Колбэк клика по пункту «Выйти». |
 | `open` | `boolean` | — | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
-| `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню |
+| `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню. <br/> Не передан или пуст — меню отображается единым списком без закреплённых частей. |
 | `profile` | `UserProfileProps` | `{}` | Профиль пользователя (имя, email, счётчик приглашений). |
 | `setOpen` | `((open: boolean) => void)` | — | Колбэк открытия/закрытия меню. |
 | `settingItems` | `BaseItemProps` | — | Пункты настроек в нижней части меню. |

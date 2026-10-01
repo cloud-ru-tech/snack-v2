@@ -92,6 +92,11 @@ export function useUserMenuItems({
       };
     }
 
+    // Без организаций прокручивать нечего: пустой `items` показал бы заглушку «Нет данных»
+    if (!organizationItems.length) {
+      return { pinTop: [], items: withClose([...pinTop, DIVIDER_ITEM, ...pinBottom]), pinBottom: [] };
+    }
+
     return { pinTop: withClose(pinTop), items: withClose(organizationItems), pinBottom: withClose(pinBottom) };
   }, [bottomItems, isMobile, logoutItem, onClose, organizationItems, profileItem, settingItems, themeItem, topItems]);
 }
