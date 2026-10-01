@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.6.6 (2026-10-01)
+
+### Bug Fixes
+
+- **FF-9223:** pass missing withDividers prop in MobileDroplist ([6b6dcc4](https://github.com/cloud-ru-tech/snack-v2/commit/6b6dcc4152eadfc45af5d7473d005a3e39948bfd))
+
 ## 1.6.5 (2026-09-30)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout

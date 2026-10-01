@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.4 (2026-10-01)
+
+### Bug Fixes
+
+- **FF-9223:** paint in red logout button and pin to bottom on mobile, correct hiding for mobile header, remove tooltip on mobile ([20f5b0c](https://github.com/cloud-ru-tech/snack-v2/commit/20f5b0c8e3a13216057169657c9d2b6283a17275))
+
 ## 2.0.3 (2026-09-30)
 
 **Note:** Version bump only for package @ds/uikit-product-header

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-10-01)
+
+### Features
+
+- **FF-9223:** add SNAP_POINTS_PRESET constant ([939b55b](https://github.com/cloud-ru-tech/snack-v2/commit/939b55bb810568f381897e9cff73e4a0a74eb478))
+
 ## 1.1.7 (2026-09-30)
 
 **Note:** Version bump only for package @ds/bottom-sheet

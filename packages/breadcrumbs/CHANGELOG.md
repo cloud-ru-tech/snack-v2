@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.24 (2026-10-01)
+
+### Bug Fixes
+
+- **FF-8962:** compensate for the padding by using a negative margin ([d46d86d](https://github.com/cloud-ru-tech/snack-v2/commit/d46d86d71661dc671dc9b7f123036812e4b3941f))
+
 ## 1.0.23 (2026-09-30)
 
 **Note:** Version bump only for package @ds/breadcrumbs
