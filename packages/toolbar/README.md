@@ -197,14 +197,14 @@ export function WithDataView() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. |
-| `bulkActions` | `BulkActionsProps` | — | Список массовых действий |
+| `bulkActions` | `BulkAction` | — | Список массовых действий |
 | `checked` | `boolean` | — | Значение чекбокса |
 | `className` | `string` | — | Класснейм |
 | `data-test-id` | `string` | — |  |
 | `dataView` | `DataViewBaseProps` \| `ToolbarDataViewProps` | — | Переключатель вида данных — SegmentControl (showDataView в Figma) |
 | `filterRow` | `FilterRow` | — |  |
 | `indeterminate` | `boolean` | — | Состояние частичного выбора |
-| `moreActions` | `MoreActionsProps` | — | Элементы выпадающего списка кнопки с действиями |
+| `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
 | `onCheck` | `(() => void)` | — | Колбек смены значения чекбокса |
 | `onRefresh` | `(() => void)` | — | Колбек обновления |
 | `outline` | `boolean` | `true` | Внешний бордер |
@@ -236,27 +236,14 @@ export function WithDataView() {
 | `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
 | `label` | `string` | — |  |
 | `onClick` | `(() => void) \| undefined` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
-
-**BulkActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `actions` | `BulkAction` | — | Список массовых действий |
-| `checked` | `boolean \| undefined` | — | Значение чекбокса |
-| `data-test-id` | `string \| undefined` | — |  |
-| `indeterminate` | `boolean \| undefined` | — | Состояние частичного выбора |
-| `onCheck` | `(() => void) \| undefined` | — | Колбек смены значения чекбокса |
-| `selectedCount` | `number \| undefined` | — | Количество выбранных элементов (для подписи Selected: N) |
-| `showBulkCheckbox` | `boolean \| undefined` | — | Показывать чекбокс слева (Figma: showBulkCheckbox) |
-| `totalCount` | `number \| undefined` | — | Общее количество элементов (для подписи Selected: N of M) |
+| `tooltip` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 
 **DataViewBaseProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `defaultValue` | `"compact"` \| `"list"` | — |  |
-| `items` | `DataViewValue` \| `Segment` \| `SegmentControlProps` | — |  |
+| `items` | `Segment` | — |  |
 | `onChange` | `((value: DataViewValue) => void) \| undefined` | — |  |
 | `value` | `"compact"` \| `"list"` | — |  |
 
@@ -279,13 +266,6 @@ export function WithDataView() {
 | `value` | `TState \| undefined` | — | Состояние фильтров |
 | `visibleFilters` | `string[] \| undefined` | — | Состояние для видимых фильтров |
 
-**MoreActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data-test-id` | `string \| undefined` | — |  |
-| `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
-
 **SearchProps**
 
 | Prop | Type | Default | Description |
@@ -302,7 +282,7 @@ export function WithDataView() {
 |------|------|---------|-------------|
 | `data-test-id` | `string \| undefined` | — |  |
 | `defaultValue` | `"compact"` \| `"list"` | — |  |
-| `items` | `DataViewValue` \| `Segment` \| `SegmentControlProps` | — |  |
+| `items` | `Segment` | — |  |
 | `onChange` | `((value: DataViewValue) => void) \| undefined` | — |  |
 | `show` | `boolean \| undefined` | — | Показать переключатель вида. Если `dataView` не передан — равносильно `show: false` |
 | `value` | `"compact"` \| `"list"` | — |  |

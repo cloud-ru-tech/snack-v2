@@ -983,7 +983,7 @@ export function FieldChatWithAttachments() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `allowMoreThanMaxLength` | `boolean` | `true` | Разрешить ввод свыше `maxLength` символов (счётчик продолжит расти). |
-| `attachment` | `AttachmentSquareProps` \| `FileUploadProps` \| `NativeInputProps` | — | Прикрепление файлов |
+| `attachment` | `FileUploadProps` \| `NativeInputProps` | — | Прикрепление файлов |
 | `autoFocus` | `boolean` | — | Автофокус. На mobile выключается адаптивно (см. `layoutPresets`) |
 | `background` | `boolean` | `true` | Фон поля (acrylic) |
 | `caption` | `string` | — | Вторичная подпись справа |

@@ -147,7 +147,7 @@ export function WithInvoice() {
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — |  |
 | `discount` | `DiscountDetails` | — | Блок базовой цены и скидок. |
-| `docsLink` | `LinkProps` | — | Ссылка «Подробнее о расчёте». |
+| `docsLink` | `{ href?: string; label?: string; } \| undefined` | — | Ссылка «Подробнее о расчёте». |
 | `hint` | `string` | — |  |
 | `hintAppearance` | `"default"` \| `"systemError"` \| `"userError"` \| `"warning"` | — |  |
 | `hintLink` | `{ href?: string; label: string; }` | — |  |
@@ -189,7 +189,7 @@ export function WithInvoice() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `percent` | `number \| undefined` | — | Процент скидки для бейджа `−N%`. |
-| `tooltip` | `QuestionTooltipProps` | — | Контент тултипа-пояснения к скидке. |
+| `tooltip` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент тултипа-пояснения к скидке. |
 | `value` | `number` | — | Сумма скидки в валюте (в UI выводится со знаком «−»). |
 
 **InvoiceDetails**
@@ -401,7 +401,7 @@ export function SmallError() {
 | `className` | `string` | — | Дополнительный класс корневого контейнера. |
 | `data-test-id` | `string` | — |  |
 | `dataError` | `boolean` | — |  |
-| `docsLink` | `LinkProps` | — | Function-ссылка внизу блока. |
+| `docsLink` | `{ href?: string; label?: string; } \| undefined` | — | Function-ссылка внизу блока. |
 | `hintTooltipText` | `ReactNode` | — | Контент подсказки для иконки рядом с итоговой суммой. |
 | `loading` | `boolean` | — |  |
 | `onRetry` | `(() => void)` | — |  |

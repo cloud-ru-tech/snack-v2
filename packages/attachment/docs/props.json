@@ -66,10 +66,7 @@
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
         "required": false,
-        "description": "Иконка для файла\n@defaultIcon FileSVG",
-        "typeRefs": [
-          "IconPredefinedProps"
-        ]
+        "description": "Иконка для файла\n@defaultIcon FileSVG"
       },
       "loading": {
         "type": "boolean",
@@ -126,101 +123,10 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине",
-        "typeRefs": [
-          "TruncateStringProps"
-        ]
+        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине"
       }
     },
     "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": false
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/icon-predefined)"
-            ]
-          }
-        },
-        "own": false
-      },
       "Size": {
         "kind": "union",
         "values": [
@@ -228,22 +134,6 @@
           "s"
         ],
         "own": true
-      },
-      "Size (@ds/icon-predefined)": {
-        "kind": "union",
-        "values": [
-          "3xl",
-          "5xl",
-          "l",
-          "m",
-          "s"
-        ],
-        "own": false
-      },
-      "TruncateStringProps": {
-        "kind": "alias",
-        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
-        "own": false
       }
     }
   },
@@ -289,10 +179,7 @@
       "icon": {
         "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
         "required": false,
-        "description": "Иконка для файла\n@defaultIcon FileSVG",
-        "typeRefs": [
-          "IconPredefinedProps"
-        ]
+        "description": "Иконка для файла\n@defaultIcon FileSVG"
       },
       "loading": {
         "type": "boolean",
@@ -345,101 +232,10 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине",
-        "typeRefs": [
-          "TruncateStringProps"
-        ]
+        "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине"
       }
     },
     "relatedTypes": {
-      "Appearance": {
-        "kind": "union",
-        "values": [
-          "blue",
-          "green",
-          "neutral",
-          "orange",
-          "pink",
-          "primary",
-          "red",
-          "violet",
-          "yellow"
-        ],
-        "own": false
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/icon-predefined)"
-            ]
-          }
-        },
-        "own": false
-      },
       "Size": {
         "kind": "union",
         "values": [
@@ -447,22 +243,6 @@
           "s"
         ],
         "own": true
-      },
-      "Size (@ds/icon-predefined)": {
-        "kind": "union",
-        "values": [
-          "3xl",
-          "5xl",
-          "l",
-          "m",
-          "s"
-        ],
-        "own": false
-      },
-      "TruncateStringProps": {
-        "kind": "alias",
-        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
-        "own": false
       }
     }
   },

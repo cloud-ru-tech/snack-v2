@@ -220,7 +220,7 @@ export function Disabled() {
 |------|------|---------|-------------|
 | `displayExtension` | `string \| undefined` | — | Отображаемое расширение файла для пользователя (например `PDF`) |
 | `extention` | `string` | — | Расширение файла (например `.pdf` или `*` для всех типов файлов) |
-| `icon` | `IconPredefinedProps` | — | Иконка, отображаемая для файлов этого типа во вложениях |
+| `icon` | `JSXElementConstructor<{ size?: number; className?: string; }> \| undefined` | — | Иконка, отображаемая для файлов этого типа во вложениях |
 
 - `UploadFn` = `(file: File, ctx: { signal: AbortSignal; }) => Promise<TResult>`
 

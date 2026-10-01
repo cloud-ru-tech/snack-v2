@@ -445,8 +445,8 @@ export function Select() {
 | `closeDroplistOnItemClick` | `boolean` | `true false` | Закрывать дроплист после клика на айтем. |
 | `closeOnPopstate` | `boolean` | — | Закрывать ли поповер при переходе по истории браузера |
 | `data-test-id` | `string` | — | Тестовый id корня |
-| `dataError` | `DroplistProps` | — | Флаг «ошибка загрузки данных» — при `true` дроплист рендерит `errorDataState` <br/> вместо списка (для асинхронной подгрузки с провалившимся запросом). |
-| `dataFiltered` | `DroplistProps` | — | Флаг «список отфильтрован» — при `true` и пустом результате дроплист рендерит <br/> `noResultsState`. По умолчанию выводится из строки поиска (`searchable` + ввод). |
+| `dataError` | `boolean` | — | Флаг «ошибка загрузки данных» — при `true` дроплист рендерит `errorDataState` <br/> вместо списка (для асинхронной подгрузки с провалившимся запросом). |
+| `dataFiltered` | `boolean` | — | Флаг «список отфильтрован» — при `true` и пустом результате дроплист рендерит <br/> `noResultsState`. По умолчанию выводится из строки поиска (`searchable` + ввод). |
 | `defaultValue` | `ItemId` | — | Неуправляемое значение по умолчанию. Пустая строка трактуется как «значение не выбрано». <br/> Неуправляемые значения по умолчанию |
 | `disabled` | `boolean` | — | Поле выключено <br/> Деактивировано |
 | `enableFuzzySearch` | `boolean` | `true` | Включить нечёткий поиск: символы запроса должны встречаться в лейбле в том же порядке <br/> (например, `lge` найдёт `Large`). Если `false` — простой substring-match. |
@@ -477,8 +477,8 @@ export function Select() {
 | `onCopyButtonClick` | `(() => void)` | — | Колбек после копирования значения в буфер |
 | `onFocus` | `((event: FocusEvent<HTMLInputElement, Element>) => void)` | — | Колбек фокуса input |
 | `onKeyDown` | `((event: KeyboardEvent<HTMLInputElement>) => void)` | — | Колбек нажатия клавиши на input (вызывается после внутренней обработки навигации) |
-| `onOpenChange` | `DroplistProps` | — | Колбек смены открытия |
-| `open` | `DroplistProps` | — | Управляемое открытие дроплиста |
+| `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек смены открытия |
+| `open` | `boolean` | — | Управляемое открытие дроплиста |
 | `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `FieldSelectItem` \| `ScrollProps` | — | Пресет-айтемы снизу (формат `@ds/list`) |
 | `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `FieldSelectItem` \| `ScrollProps` | — | Пресет-айтемы сверху (формат `@ds/list`) |
 | `placeholder` | `string` | — | Placeholder в триггере, когда нет выбранного значения |

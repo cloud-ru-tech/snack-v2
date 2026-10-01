@@ -970,7 +970,7 @@ export function DroplistWithHeader() {
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onBackButtonClick` | `(() => void)` | — | Только mobile (`BottomSheet`): callback back-кнопки. |
 | `onOpenChange` | `((isOpen: boolean) => void)` | — | Колбек отображения компонента. Срабатывает при изменении состояния open. |
-| `onScroll` | `OriginalScrollProps` | — | Колбек на скролл прокручиваемого списка |
+| `onScroll` | `((event?: Event) => void)` | — | Колбек на скролл прокручиваемого списка |
 | `open` | `boolean` | — | Управляет состоянием показан/не показан. |
 | `pinBottom` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные снизу |
 | `pinTop` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Элементы списка, закрепленные сверху |
@@ -1026,6 +1026,8 @@ export function DroplistWithHeader() {
 | `toggleOn` | `"expandIcon"` \| `"item"` | — | Что переключает раскрытие вложенного списка: <br/> <br> - `item` — клик по всей строке (по умолчанию), <br/> <br> - `expandIcon` — только клик по шеврону; клик по строке остаётся потребителю <br/> (например, когда `itemWrapRender` оборачивает строку в ссылку). <br/> Клавиатура (`Enter` / `Space` / `ArrowRight` на строке) раскрывает группу в обоих режимах. |
 | `value` | `ItemId` | — |  |
 
+- `CollapseToggleOn` = `"expandIcon"` \| `"item"`
+
 **CommonGroupItem**
 
 | Prop | Type | Default | Description |
@@ -1035,7 +1037,7 @@ export function DroplistWithHeader() {
 | `groupVariant` | `"subtitle"` \| `"subtitleTertiary"` | — | Визуальный стиль заголовка группы |
 | `hidden` | `boolean \| undefined` | — | Скрыть группу из списка |
 | `label` | `string \| undefined` | — | Заголовок группы |
-| `truncate` | `TruncateStringProps` | — | Настройки усечения длинного заголовка группы |
+| `truncate` | `{ variant?: TruncateStringProps["variant"]; } \| undefined` | — | Настройки усечения длинного заголовка группы |
 
 **EmptyStateProps**
 
@@ -1049,12 +1051,28 @@ export function DroplistWithHeader() {
 
 - `Item` = `BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem`
 
+**ItemContent**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `caption` | `string \| undefined` | — |  |
+| `className` | `string \| undefined` | — |  |
+| `data-test-id` | `string \| undefined` | — |  |
+| `description` | `string \| undefined` | — |  |
+| `disabled` | `boolean \| undefined` | — |  |
+| `label` | `string \| number` | — |  |
+| `truncate` | `TruncateProps` | — |  |
+
+- `ItemId` = `string | number`
+
+- `OnChangeHandler` = `(value: T) => void`
+
 **ScrollProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | — | Управление скрытием скролл баров: <br/> <br> - `Never` - показывать всегда <br/> <br> - `Leave` - скрывать когда курсор покидает компонент <br/> <br> - `Scroll` - показывать только когда происходит скроллинг <br/> <br> - `Move` - показывать при движении курсора над компонентом |
-| `onScroll` | `OriginalScrollProps` | — | Колбек на скролл прокручиваемого списка |
+| `onScroll` | `((event?: Event) => void) \| undefined` | — | Колбек на скролл прокручиваемого списка |
 | `scroll` | `boolean \| undefined` | — | Включить ли скролл для основной части списка |
 | `scrollContainerRef` | `Ref<HTMLElement> \| undefined` | — | Ссылка на контейнер, который скроллится |
 | `scrollRef` | `Ref<HTMLElement> \| undefined` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |

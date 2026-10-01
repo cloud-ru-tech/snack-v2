@@ -31,7 +31,7 @@
         ],
         "description": "Размер баннера.",
         "typeRefs": [
-          "AiFieldBannerProps"
+          "Size"
         ]
       },
       "variant": {
@@ -58,91 +58,11 @@
       }
     },
     "relatedTypes": {
-      "AiFieldBannerProps": {
-        "kind": "interface",
-        "props": {
-          "actionLabel": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Подпись кнопки действия справа. Кнопка не рендерится, если не задана."
-          },
-          "bottomContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Дополнительный слот под основной строкой. Не рендерится, если не задан."
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Доп. класс корня."
-          },
-          "content": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Текст или контент основной строки. Не рендерится, если не задан."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка слева от текста"
-          },
-          "onActionClick": {
-            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
-            "required": false,
-            "description": "Обработчик клика по кнопке действия."
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s"
-            ],
-            "description": "Размер: без `bottomContent` — `s` 400×48, `m` 400×60; с ним — `s` 400×72, `m` 400×84.",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "agentic",
-              "critical",
-              "help",
-              "information",
-              "security",
-              "warning"
-            ],
-            "description": "Семантический вариант баннера (ось `Variant` в Figma). По умолчанию `information`.",
-            "typeRefs": [
-              "Variant"
-            ]
-          }
-        },
-        "own": false
-      },
       "Size": {
         "kind": "union",
         "values": [
           "m",
           "s"
-        ],
-        "own": false
-      },
-      "Variant": {
-        "kind": "union",
-        "values": [
-          "agentic",
-          "critical",
-          "help",
-          "information",
-          "security",
-          "warning"
         ],
         "own": false
       }

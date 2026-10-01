@@ -382,8 +382,7 @@
         "required": true,
         "description": "Триггер поповера (подробнее в TooltipProps)",
         "typeRefs": [
-          "ChildrenFunction",
-          "TooltipProps"
+          "ChildrenFunction"
         ]
       },
       "tooltip": {

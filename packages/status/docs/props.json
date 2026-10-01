@@ -78,10 +78,7 @@
           "end",
           "middle"
         ],
-        "description": "Вариант обрезания подписи, не поместившейся в контейнер.",
-        "typeRefs": [
-          "TruncateStringProps"
-        ]
+        "description": "Вариант обрезания подписи, не поместившейся в контейнер."
       }
     },
     "relatedTypes": {
@@ -106,11 +103,6 @@
           "xs"
         ],
         "own": true
-      },
-      "TruncateStringProps": {
-        "kind": "alias",
-        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
-        "own": false
       }
     }
   },

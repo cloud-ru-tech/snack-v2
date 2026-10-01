@@ -95,7 +95,11 @@ export function Alternate() {
 
 ##### Related types
 
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
 - `ContentPosition` = `"left"` \| `"right"`
+
+- `Style` = `"dashed"` \| `"solid"`
 
 **TimelineItem**
 
@@ -112,31 +116,7 @@ export function Alternate() {
 | `opposite` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент в противоположной колонке |
 | `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
 
-**TrackItemProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `alternateMode` | `boolean \| undefined` | — | Перемешать положение контента |
-| `content` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент |
-| `contentPosition` | `"left"` \| `"right"` | — | Положение контента |
-| `data-test-id` | `string \| undefined` | — | Стабильный идентификатор для e2e/tests |
-| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
-| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
-| `key` | `string \| undefined` | — | Уникальный ключ |
-| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
-| `opposite` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Контент в противоположной колонке |
-| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
-| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
-
-**TrackProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
-| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
-| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
-| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
-| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
+- `Variant` = `"default"` \| `"subEvent"`
 
 ## TrackItem
 
@@ -192,29 +172,12 @@ export function Alternate() {
 
 ##### Related types
 
+- `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
+
 - `ContentPosition` = `"left"` \| `"right"`
 
 - `Position` = `"center"` \| `"end"` \| `"start"`
 
-**TrackDotProps**
+- `Style` = `"dashed"` \| `"solid"`
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
-| `variant` | `"default"` \| `"subEvent"` | — | Вид маркера |
-
-**TrackLineProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `style` | `"dashed"` \| `"solid"` | — |  |
-
-**TrackProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `dotAppearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Семантический цвет маркера |
-| `dotVariant` | `"default"` \| `"subEvent"` | — | Вид маркера |
-| `lineStyle` | `"dashed"` \| `"solid"` | — | Стиль нижней линии |
-| `position` | `"center"` \| `"end"` \| `"start"` | — | Положение элемента в ленте: первый, промежуточный или последний |
-| `showLines` | `boolean \| undefined` | — | Показывать вертикальные сегменты |
+- `Variant` = `"default"` \| `"subEvent"`

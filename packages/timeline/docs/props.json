@@ -23,7 +23,7 @@
         "defaultValue": "right",
         "description": "Положение контента",
         "typeRefs": [
-          "TrackItemProps"
+          "ContentPosition"
         ]
       },
       "data-test-id": {
@@ -45,11 +45,34 @@
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
       "ContentPosition": {
         "kind": "union",
         "values": [
           "left",
           "right"
+        ],
+        "own": true
+      },
+      "Style": {
+        "kind": "union",
+        "values": [
+          "dashed",
+          "solid"
         ],
         "own": true
       },
@@ -99,7 +122,7 @@
             ],
             "description": "Семантический цвет маркера",
             "typeRefs": [
-              "TrackProps"
+              "Appearance"
             ]
           },
           "dotVariant": {
@@ -111,7 +134,7 @@
             ],
             "description": "Вид маркера",
             "typeRefs": [
-              "TrackProps"
+              "Variant"
             ]
           },
           "key": {
@@ -128,7 +151,7 @@
             ],
             "description": "Стиль нижней линии",
             "typeRefs": [
-              "TrackProps"
+              "Style"
             ]
           },
           "opposite": {
@@ -144,175 +167,12 @@
         },
         "own": true
       },
-      "TrackItemProps": {
-        "kind": "interface",
-        "props": {
-          "alternateMode": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Перемешать положение контента"
-          },
-          "content": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Контент"
-          },
-          "contentPosition": {
-            "type": "ContentPosition | undefined",
-            "required": false,
-            "values": [
-              "left",
-              "right"
-            ],
-            "description": "Положение контента",
-            "typeRefs": [
-              "ContentPosition"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Стабильный идентификатор для e2e/tests"
-          },
-          "dotAppearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Семантический цвет маркера",
-            "typeRefs": [
-              "TrackProps"
-            ]
-          },
-          "dotVariant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "default",
-              "subEvent"
-            ],
-            "description": "Вид маркера",
-            "typeRefs": [
-              "TrackProps"
-            ]
-          },
-          "key": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Уникальный ключ"
-          },
-          "lineStyle": {
-            "type": "Style | undefined",
-            "required": false,
-            "values": [
-              "dashed",
-              "solid"
-            ],
-            "description": "Стиль нижней линии",
-            "typeRefs": [
-              "TrackProps"
-            ]
-          },
-          "opposite": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Контент в противоположной колонке"
-          },
-          "position": {
-            "type": "\"center\" | \"end\" | \"start\"",
-            "required": true,
-            "values": [
-              "center",
-              "end",
-              "start"
-            ],
-            "description": "Положение элемента в ленте: первый, промежуточный или последний",
-            "typeRefs": [
-              "TrackProps"
-            ]
-          },
-          "showLines": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать вертикальные сегменты"
-          }
-        },
-        "own": true
-      },
-      "TrackProps": {
-        "kind": "interface",
-        "props": {
-          "dotAppearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Семантический цвет маркера",
-            "typeRefs": [
-              "TrackDotProps"
-            ]
-          },
-          "dotVariant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "default",
-              "subEvent"
-            ],
-            "description": "Вид маркера",
-            "typeRefs": [
-              "TrackDotProps"
-            ]
-          },
-          "lineStyle": {
-            "type": "Style | undefined",
-            "required": false,
-            "values": [
-              "dashed",
-              "solid"
-            ],
-            "description": "Стиль нижней линии",
-            "typeRefs": [
-              "TrackLineProps"
-            ]
-          },
-          "position": {
-            "type": "\"center\" | \"end\" | \"start\"",
-            "required": true,
-            "values": [
-              "center",
-              "end",
-              "start"
-            ],
-            "description": "Положение элемента в ленте: первый, промежуточный или последний",
-            "typeRefs": [
-              "Position"
-            ]
-          },
-          "showLines": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать вертикальные сегменты"
-          }
-        },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "default",
+          "subEvent"
+        ],
         "own": true
       }
     }
@@ -337,7 +197,7 @@
         ],
         "description": "Семантический цвет маркера",
         "typeRefs": [
-          "TrackDotProps"
+          "Appearance"
         ]
       },
       "dotVariant": {
@@ -350,7 +210,7 @@
         "defaultValue": "default",
         "description": "Вид маркера",
         "typeRefs": [
-          "TrackDotProps"
+          "Variant"
         ]
       },
       "lineStyle": {
@@ -362,7 +222,7 @@
         ],
         "description": "Стиль нижней линии",
         "typeRefs": [
-          "TrackLineProps"
+          "Style"
         ]
       },
       "position": {
@@ -416,60 +276,6 @@
           "dashed",
           "solid"
         ],
-        "own": true
-      },
-      "TrackDotProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Семантический цвет маркера",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "default",
-              "subEvent"
-            ],
-            "description": "Вид маркера",
-            "typeRefs": [
-              "Variant"
-            ]
-          }
-        },
-        "own": true
-      },
-      "TrackLineProps": {
-        "kind": "interface",
-        "props": {
-          "style": {
-            "type": "Style | undefined",
-            "required": false,
-            "values": [
-              "dashed",
-              "solid"
-            ],
-            "typeRefs": [
-              "Style"
-            ]
-          }
-        },
         "own": true
       },
       "Variant": {
@@ -564,7 +370,7 @@
         ],
         "description": "Семантический цвет маркера",
         "typeRefs": [
-          "TrackProps"
+          "Appearance"
         ]
       },
       "dotVariant": {
@@ -576,7 +382,7 @@
         ],
         "description": "Вид маркера",
         "typeRefs": [
-          "TrackProps"
+          "Variant"
         ]
       },
       "key": {
@@ -593,7 +399,7 @@
         ],
         "description": "Стиль нижней линии",
         "typeRefs": [
-          "TrackProps"
+          "Style"
         ]
       },
       "opposite": {
@@ -611,7 +417,7 @@
         ],
         "description": "Положение элемента в ленте: первый, промежуточный или последний",
         "typeRefs": [
-          "TrackProps"
+          "Position"
         ]
       },
       "showLines": {
@@ -621,6 +427,21 @@
       }
     },
     "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "blue",
+          "green",
+          "neutral",
+          "orange",
+          "pink",
+          "primary",
+          "red",
+          "violet",
+          "yellow"
+        ],
+        "own": true
+      },
       "ContentPosition": {
         "kind": "union",
         "values": [
@@ -638,125 +459,20 @@
         ],
         "own": true
       },
-      "TrackDotProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Семантический цвет маркера",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "variant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "default",
-              "subEvent"
-            ],
-            "description": "Вид маркера",
-            "typeRefs": [
-              "Variant"
-            ]
-          }
-        },
+      "Style": {
+        "kind": "union",
+        "values": [
+          "dashed",
+          "solid"
+        ],
         "own": true
       },
-      "TrackLineProps": {
-        "kind": "interface",
-        "props": {
-          "style": {
-            "type": "Style | undefined",
-            "required": false,
-            "values": [
-              "dashed",
-              "solid"
-            ],
-            "typeRefs": [
-              "Style"
-            ]
-          }
-        },
-        "own": true
-      },
-      "TrackProps": {
-        "kind": "interface",
-        "props": {
-          "dotAppearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Семантический цвет маркера",
-            "typeRefs": [
-              "TrackDotProps"
-            ]
-          },
-          "dotVariant": {
-            "type": "Variant | undefined",
-            "required": false,
-            "values": [
-              "default",
-              "subEvent"
-            ],
-            "description": "Вид маркера",
-            "typeRefs": [
-              "TrackDotProps"
-            ]
-          },
-          "lineStyle": {
-            "type": "Style | undefined",
-            "required": false,
-            "values": [
-              "dashed",
-              "solid"
-            ],
-            "description": "Стиль нижней линии",
-            "typeRefs": [
-              "TrackLineProps"
-            ]
-          },
-          "position": {
-            "type": "\"center\" | \"end\" | \"start\"",
-            "required": true,
-            "values": [
-              "center",
-              "end",
-              "start"
-            ],
-            "description": "Положение элемента в ленте: первый, промежуточный или последний",
-            "typeRefs": [
-              "Position"
-            ]
-          },
-          "showLines": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать вертикальные сегменты"
-          }
-        },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "default",
+          "subEvent"
+        ],
         "own": true
       }
     }

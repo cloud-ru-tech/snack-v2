@@ -143,7 +143,7 @@ export function Disabled() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — | CSS-класс |
-| `counter` | `CounterProps` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `counter` | `Appearance` \| `RoleAppearance` | — | Счетчик, отображающийся внутри кнопки переключения |
 | `data-test-id` | `string` | — |  |
 | `disabled` | `boolean` | `false` | Деактивирована ли вкладка |
 | `label` | `string` | — | Заголовок вкладки |
@@ -241,7 +241,7 @@ export function Vertical() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | CSS-класс |
-| `counter` | `CounterProps` | — | Счетчик, отображающийся внутри кнопки переключения |
+| `counter` | `Appearance` \| `RoleAppearance` | — | Счетчик, отображающийся внутри кнопки переключения |
 | `data-test-id` | `string \| undefined` | — |  |
 | `disabled` | `boolean \| undefined` | — | Деактивирована ли вкладка |
 | `label` | `string` | — | Заголовок вкладки |

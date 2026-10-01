@@ -136,79 +136,6 @@
       }
     },
     "relatedTypes": {
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          }
-        },
-        "own": false
-      },
       "UploadFileItem": {
         "kind": "interface",
         "props": {
@@ -263,10 +190,7 @@
           "icon": {
             "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
             "required": false,
-            "description": "Иконка, отображаемая для файлов этого типа во вложениях",
-            "typeRefs": [
-              "IconPredefinedProps"
-            ]
+            "description": "Иконка, отображаемая для файлов этого типа во вложениях"
           }
         },
         "own": true

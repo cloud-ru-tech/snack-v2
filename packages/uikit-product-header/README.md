@@ -339,7 +339,7 @@ function LocalMainMenu() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `aliases` | `string[]` | — | Синонимы для fuzzy-поиска. |
-| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
+| `badge` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — | Карточка недоступна для клика/drag и визуально приглушена. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
@@ -513,7 +513,7 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `aliases` | `string[]` | — | Синонимы для fuzzy-поиска. |
-| `badge` | `CardServiceLightProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
+| `badge` | `CardPromoTagProps` \| `PromoTagPredefinedBaseProps` | — | Промо-тег карточки. |
 | `description` | `string \| undefined` | — | Краткое описание сервиса — отображается при включённом переключателе «Описание». |
 | `disabled` | `boolean \| undefined` | — | Карточка недоступна для клика/drag и визуально приглушена. |
 | `favoritesEnabled` | `boolean \| undefined` | — | Разрешено ли добавление карточки в избранное. default=true - разрешено |
@@ -693,16 +693,16 @@ export function ControlledTheme() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `bottomItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты перед «Выйти из аккаунта». На desktop закреплены снизу |
+| `bottomItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Пункты перед «Выйти из аккаунта». На desktop закреплены снизу |
 | `onClick` | `(() => void)` | — | Колбэк клика по кнопке-триггеру. |
 | `onLogout` | `(() => void)` | — | Колбэк клика по пункту «Выйти». |
 | `open` | `boolean` | — | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
-| `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню |
+| `organizationItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Список организаций. На desktop — единственная прокручиваемая часть меню |
 | `profile` | `UserProfileProps` | `{}` | Профиль пользователя (имя, email, счётчик приглашений). |
 | `setOpen` | `((open: boolean) => void)` | — | Колбэк открытия/закрытия меню. |
 | `settingItems` | `BaseItemProps` | — | Пункты настроек в нижней части меню. |
 | `theme` | `ThemeProps` | — | Переключатель темы в меню. Без пропа не отображается. |
-| `topItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `DroplistProps` \| `ScrollProps` | — | Пункты после темы. На desktop закреплены сверху вместе с профилем и темой |
+| `topItems` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Пункты после темы. На desktop закреплены сверху вместе с профилем и темой |
 | `triggerTooltip` | `string` | — | Текст подсказки для кнопки-триггера. |
 
 ##### Related types
@@ -823,4 +823,4 @@ export function Basic() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `BreadcrumbsProps` \| `Item` | — | Пункты хлебных крошек. |
+| `items` | `Item` | — | Пункты хлебных крошек. |

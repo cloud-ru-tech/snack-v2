@@ -102,7 +102,6 @@
         "required": false,
         "description": "Прикрепление файлов",
         "typeRefs": [
-          "AttachmentSquareProps",
           "FileUploadProps",
           "NativeInputProps"
         ]
@@ -294,108 +293,6 @@
         "type": "string | string[] | undefined",
         "own": false
       },
-      "AttachmentSquareProps": {
-        "kind": "interface",
-        "props": {
-          "checked": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние «выбран» (множественный выбор)"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс корня"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "description": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Описание"
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Заблокировано"
-          },
-          "error": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Сообщение об ошибке"
-          },
-          "file": {
-            "type": "File | undefined",
-            "required": false,
-            "description": "Файл"
-          },
-          "icon": {
-            "type": "JSXElementConstructor<{ size?: number; className?: string; }> | undefined",
-            "required": false,
-            "description": "Иконка для файла",
-            "typeRefs": [
-              "IconPredefinedProps"
-            ]
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управление состоянием загрузки"
-          },
-          "onClick": {
-            "type": "((event: MouseEvent<HTMLDivElement>) => void) | undefined",
-            "required": false,
-            "description": "Клик по карточке"
-          },
-          "onDelete": {
-            "type": "((file?: File | undefined) => void) | undefined",
-            "required": false,
-            "description": "Колбек на клик по кнопке удаления"
-          },
-          "onDownload": {
-            "type": "((file?: File | undefined) => void) | undefined",
-            "required": false,
-            "description": "Колбек на клик по кнопке скачивания"
-          },
-          "onRetry": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбек на клик по кнопке повторения"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/attachment)"
-            ]
-          },
-          "title": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Заголовок"
-          },
-          "truncateVariant": {
-            "type": "\"end\" | \"middle\" | undefined",
-            "required": false,
-            "values": [
-              "end",
-              "middle"
-            ],
-            "description": "Вариант обрезания строки:\n<br> - `end` — с конца;\n<br> - `middle` — по середине",
-            "typeRefs": [
-              "TruncateStringProps"
-            ]
-          }
-        },
-        "own": false
-      },
       "ChildrenFunction": {
         "kind": "alias",
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
@@ -500,79 +397,6 @@
             "type": "(files: File[]) => void",
             "required": true,
             "description": "Колбек с принятыми файлами (прошедшими проверку `maxSize` и `accept`)."
-          }
-        },
-        "own": false
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/icon-predefined)"
-            ]
           }
         },
         "own": false
@@ -759,14 +583,6 @@
         ],
         "own": false
       },
-      "Size (@ds/attachment)": {
-        "kind": "union",
-        "values": [
-          "m",
-          "s"
-        ],
-        "own": false
-      },
       "Trigger": {
         "kind": "union",
         "values": [
@@ -778,11 +594,6 @@
           "hoverAndFocus",
           "hoverAndFocusVisible"
         ],
-        "own": false
-      },
-      "TruncateStringProps": {
-        "kind": "alias",
-        "type": "({ variant?: typeof VARIANT.End; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; maxLines?: number; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; }) | ({ variant: typeof VARIANT.Middle; } & { 'data-test-id'?: string; } & AriaAttributes & { className?: string; tooltipClassName?: string; hideTooltip?: boolean; placement?: TooltipProps[\"placement\"]; text: string; trigger?: TooltipProps[\"trigger\"]; })",
         "own": false
       },
       "UploadMode": {
@@ -2761,16 +2572,13 @@
             ],
             "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "OriginalScrollProps"
+              "BarHideStrategy"
             ]
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек на скролл прокручиваемого списка",
-            "typeRefs": [
-              "OriginalScrollProps"
-            ]
+            "description": "Колбек на скролл прокручиваемого списка"
           },
           "scroll": {
             "type": "boolean | undefined",
@@ -3802,16 +3610,13 @@
             ],
             "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "OriginalScrollProps"
+              "BarHideStrategy"
             ]
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек на скролл прокручиваемого списка",
-            "typeRefs": [
-              "OriginalScrollProps"
-            ]
+            "description": "Колбек на скролл прокручиваемого списка"
           },
           "scroll": {
             "type": "boolean | undefined",
@@ -4831,16 +4636,13 @@
             ],
             "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "OriginalScrollProps"
+              "BarHideStrategy"
             ]
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек на скролл прокручиваемого списка",
-            "typeRefs": [
-              "OriginalScrollProps"
-            ]
+            "description": "Колбек на скролл прокручиваемого списка"
           },
           "scroll": {
             "type": "boolean | undefined",
@@ -6212,16 +6014,13 @@
             ],
             "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "OriginalScrollProps"
+              "BarHideStrategy"
             ]
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек на скролл прокручиваемого списка",
-            "typeRefs": [
-              "OriginalScrollProps"
-            ]
+            "description": "Колбек на скролл прокручиваемого списка"
           },
           "scroll": {
             "type": "boolean | undefined",

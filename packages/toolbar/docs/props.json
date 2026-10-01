@@ -328,7 +328,7 @@
         "required": false,
         "description": "Список массовых действий",
         "typeRefs": [
-          "BulkActionsProps"
+          "BulkAction"
         ]
       },
       "checked": {
@@ -371,7 +371,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "MoreActionsProps"
+          "Action"
         ]
       },
       "onCheck": {
@@ -500,10 +500,7 @@
               "end",
               "middle"
             ],
-            "description": "Вариант обрезания строки",
-            "typeRefs": [
-              "TruncateStringProps"
-            ]
+            "description": "Вариант обрезания строки"
           }
         },
         "own": false
@@ -533,61 +530,29 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
       },
-      "BulkActionsProps": {
+      "ChipChoiceDateWithSeconds": {
         "kind": "interface",
         "props": {
-          "actions": {
-            "type": "BulkAction[] | undefined",
+          "mode": {
+            "type": "\"date-time\" | undefined",
             "required": false,
-            "description": "Список массовых действий",
-            "typeRefs": [
-              "BulkAction"
-            ]
+            "values": [
+              "date-time"
+            ],
+            "description": "Режим выбора даты и времени"
           },
-          "checked": {
+          "showSeconds": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Значение чекбокса"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "indeterminate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние частичного выбора"
-          },
-          "onCheck": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбек смены значения чекбокса"
-          },
-          "selectedCount": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Количество выбранных элементов (для подписи Selected: N)"
-          },
-          "showBulkCheckbox": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать чекбокс слева (Figma: showBulkCheckbox)"
-          },
-          "totalCount": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Общее количество элементов (для подписи Selected: N of M)"
+            "description": "Показывать секунды в выборе и отображении времени"
           }
         },
-        "own": true
+        "own": false
       },
       "DataViewBaseProps": {
         "kind": "interface",
@@ -607,9 +572,7 @@
             "type": "Segment<DataViewValue>[] | undefined",
             "required": false,
             "typeRefs": [
-              "DataViewValue",
-              "Segment",
-              "SegmentControlProps"
+              "Segment"
             ]
           },
           "onChange": {
@@ -787,23 +750,42 @@
         },
         "own": true
       },
-      "MoreActionsProps": {
+      "ItemContent": {
         "kind": "interface",
         "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
           "data-test-id": {
             "type": "string | undefined",
             "required": false
           },
-          "moreActions": {
-            "type": "Action[]",
-            "required": true,
-            "description": "Элементы выпадающего списка кнопки с действиями",
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
             "typeRefs": [
-              "Action"
+              "TruncateProps"
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "PublicListContextType": {
         "kind": "interface",
@@ -828,7 +810,7 @@
             ],
             "description": "Размер списка",
             "typeRefs": [
-              "Size (@ds/list)"
+              "Size"
             ]
           },
           "virtualized": {
@@ -852,16 +834,13 @@
             ],
             "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
             "typeRefs": [
-              "OriginalScrollProps"
+              "BarHideStrategy"
             ]
           },
           "onScroll": {
             "type": "((event?: Event) => void) | undefined",
             "required": false,
-            "description": "Колбек на скролл прокручиваемого списка",
-            "typeRefs": [
-              "OriginalScrollProps"
-            ]
+            "description": "Колбек на скролл прокручиваемого списка"
           },
           "scroll": {
             "type": "boolean | undefined",
@@ -960,79 +939,6 @@
         },
         "own": false
       },
-      "SegmentControlProps": {
-        "kind": "interface",
-        "props": {
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс контейнера."
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "defaultValue": {
-            "type": "Value | undefined",
-            "required": false,
-            "description": "ID выбранного по умолчанию сегмента (uncontrolled)."
-          },
-          "items": {
-            "type": "SegmentType<Value>[]",
-            "required": true,
-            "description": "Набор сегментов.",
-            "typeRefs": [
-              "Segment"
-            ]
-          },
-          "name": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Имя поля (hidden input для формы)."
-          },
-          "onChange": {
-            "type": "((value: Value) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены выбранного сегмента."
-          },
-          "outline": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Обводка."
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер компонента.",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "value": {
-            "type": "Value | undefined",
-            "required": false,
-            "description": "Value выбранного сегмента."
-          },
-          "width": {
-            "type": "Width | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "full"
-            ],
-            "description": "Управление шириной компонента.",
-            "typeRefs": [
-              "Width"
-            ]
-          }
-        },
-        "own": false
-      },
       "SelectionMultipleState": {
         "kind": "interface",
         "props": {
@@ -1060,6 +966,42 @@
           },
           "value": {
             "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionSingleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"single\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId | undefined",
             "required": false,
             "description": "Controlled состояние",
             "typeRefs": [
@@ -1106,9 +1048,7 @@
             "type": "Segment<DataViewValue>[] | undefined",
             "required": false,
             "typeRefs": [
-              "DataViewValue",
-              "Segment",
-              "SegmentControlProps"
+              "Segment"
             ]
           },
           "onChange": {

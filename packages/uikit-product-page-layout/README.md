@@ -104,23 +104,16 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `maxVisibleActionsItems` | `ActionsProps` | — |  |
+| `maxVisibleActionsItems` | `number` | — |  |
 | `title` | `string` | — | Заголовок страницы |
 
 ##### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
-
-**ActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
-| `maxVisibleItems` | `number \| undefined` | — |  |
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
 
 **ButtonDroplistProps**
 
@@ -169,13 +162,13 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
 | `autoHeight` | `boolean` | — |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
 | `limitContentMaxWidth` | `boolean` | — |  |
-| `maxVisibleActionsItems` | `ActionsProps` | — |  |
+| `maxVisibleActionsItems` | `number` | — |  |
 | `sidebar` | `PageSidebarProps` | — |  |
 | `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
 | `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
@@ -185,12 +178,7 @@ import {
 
 ##### Related types
 
-**ActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
-| `maxVisibleItems` | `number \| undefined` | — |  |
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
 
 **ButtonDroplistProps**
 
@@ -221,7 +209,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — |  |
-| `collapse` | `CollapseState` \| `ListProps` | — |  |
+| `collapse` | `CollapseState` | — |  |
 | `data-test-id` | `string \| undefined` | — |  |
 | `defaultOpen` | `boolean \| undefined` | — |  |
 | `documentation` | `Documentation` | — | Зарезервировано, в текущей реализации не используется. |
@@ -300,7 +288,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `ModalCustomProps` | — |  |
+| `sideBlock` | `SnapPoint` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
@@ -404,7 +392,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — |  |
-| `collapse` | `CollapseState` \| `ListProps` | — |  |
+| `collapse` | `CollapseState` | — |  |
 | `data-test-id` | `string` | — |  |
 | `defaultOpen` | `boolean` | — |  |
 | `documentation` | `Documentation` | — | Зарезервировано, в текущей реализации не используется. |
@@ -667,7 +655,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `ModalCustomProps` | — |  |
+| `sideBlock` | `SnapPoint` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
@@ -715,7 +703,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — |  |
-| `collapse` | `CollapseState` \| `ListProps` | — |  |
+| `collapse` | `CollapseState` | — |  |
 | `data-test-id` | `string \| undefined` | — |  |
 | `defaultOpen` | `boolean \| undefined` | — |  |
 | `documentation` | `Documentation` | — | Зарезервировано, в текущей реализации не используется. |
@@ -768,7 +756,7 @@ import {
 
 #### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
 
 **ButtonDroplistProps**
 
@@ -790,23 +778,16 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `maxVisibleActionsItems` | `ActionsProps` | — |  |
+| `maxVisibleActionsItems` | `number` | — |  |
 | `title` | `string` | — | Заголовок страницы |
 
 #### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; triggerClassName?: string | undefined; closeOnPopstate?: boolean | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
-
-**ActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
-| `maxVisibleItems` | `number \| undefined` | — |  |
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
 
 **ButtonDroplistProps**
 
@@ -833,7 +814,7 @@ import {
 | `data-test-id` | `string` | — |  |
 | `footer` | `ButtonPrimaryVariant` \| `ButtonProps` \| `ButtonSecondaryVariant` \| `TooltipProps` | — |  |
 | `priceSummary` | `{ total: ReactNode; content?: ReactNode; }` | — |  |
-| `sideBlock` | `ModalCustomProps` | — |  |
+| `sideBlock` | `SnapPoint` | — |  |
 | `stepper` | `ReactNode` | — |  |
 | `stickyFooter` | `boolean` | — | Закрепляет футер внизу формы при прокрутке контента. |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
@@ -851,11 +832,11 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `ActionsProps` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
-| `maxVisibleActionsItems` | `ActionsProps` | — |  |
+| `maxVisibleActionsItems` | `number` | — |  |
 | `sidebar` | `SidebarSelectProps` | — |  |
 | `slotAfterTitle` | `ReactNode` | — | Слот после заголовка (например, статус) |
 | `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
@@ -864,12 +845,7 @@ import {
 
 #### Related types
 
-**ActionsProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
-| `maxVisibleItems` | `number \| undefined` | — |  |
+- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
 
 **ButtonDroplistProps**
 
@@ -905,7 +881,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — |  |
-| `collapse` | `CollapseState` \| `DroplistProps` | — |  |
+| `collapse` | `CollapseState` | — |  |
 | `data-test-id` | `string \| undefined` | — |  |
 | `footerItems` | `SidebarItem` \| `SidebarItemBase` | — |  |
 | `hasSearch` | `boolean \| undefined` | — |  |
@@ -927,7 +903,7 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | — |  |
-| `collapse` | `CollapseState` \| `DroplistProps` | — |  |
+| `collapse` | `CollapseState` | — |  |
 | `data-test-id` | `string` | — |  |
 | `footerItems` | `SidebarItem` \| `SidebarItemBase` | — |  |
 | `hasSearch` | `boolean` | — |  |

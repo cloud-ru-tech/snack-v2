@@ -958,7 +958,7 @@ export function FullWidth() {
 | `manualFiltering` | `boolean` | `false` |  |
 | `manualPagination` | `boolean` | `false` |  |
 | `manualSorting` | `boolean` | `false` |  |
-| `moreActions` | `ToolbarProps` | — | Элементы выпадающего списка кнопки с действиями |
+| `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onExport` | `(() => void)` | — | Колбэк экспорта данных. Рендерит иконку в тулбаре перед настройками колонок. |
@@ -1002,7 +1002,7 @@ export function FullWidth() {
 | `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
 | `label` | `string` | — |  |
 | `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
+| `tooltip` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 
 - `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 
@@ -1416,7 +1416,7 @@ export function ServerDriven() {
 | `manualFiltering` | `boolean` | `true` |  |
 | `manualPagination` | `boolean` | `true` |  |
 | `manualSorting` | `boolean` | `true` |  |
-| `moreActions` | `ToolbarProps` | — | Элементы выпадающего списка кнопки с действиями |
+| `moreActions` | `Action` | — | Элементы выпадающего списка кнопки с действиями |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `offset` | `number` | `0` | Смещение |
@@ -1460,7 +1460,7 @@ export function ServerDriven() {
 | `icon` | `((props: { className?: string; }, deprecatedLegacyContext?: any) => ReactNode) \| (new (props: { className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)` | — |  |
 | `label` | `string` | — |  |
 | `onClick` | `((selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void) => void) \| undefined` | — |  |
-| `tooltip` | `TooltipProps` | — |  |
+| `tooltip` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 
 - `ColumnDefinition` = `NormalColumnDefinition<TData> | PinnedColumnDefinition<TData> | FilterableColumnDefinition<TData>`
 

@@ -222,7 +222,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -434,6 +434,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "AdminTableSearchConfig": {
         "kind": "interface",
         "props": {
@@ -455,7 +491,7 @@
             "type": "(Omit<BulkAction, \"onClick\"> & { onClick?(selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void): void; })[] | undefined",
             "required": false,
             "typeRefs": [
-              "ClientTableProps"
+              "BulkAction"
             ]
           },
           "initialState": {
@@ -906,11 +942,6 @@
             "description": "Валидатор сохраненных"
           }
         },
-        "own": false
-      },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
         "own": false
       },
       "TreeColumnDefinitionProps": {
@@ -1717,7 +1748,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -1904,6 +1935,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BulkAction": {
         "kind": "interface",
         "props": {
@@ -1929,10 +1996,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -2290,11 +2354,6 @@
         },
         "own": false
       },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
-        "own": false
-      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -2649,7 +2708,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -2794,10 +2853,7 @@
       },
       "search": {
         "type": "{ initialState?: string | undefined; state: string; placeholder?: string | undefined; loading?: boolean | undefined; onChange(value: string): void; }",
-        "required": true,
-        "typeRefs": [
-          "ServerTableProps"
-        ]
+        "required": true
       },
       "selection": {
         "type": "AdminTableSelectionConfig",
@@ -2890,6 +2946,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "AdminTableSelectionConfig": {
         "kind": "interface",
         "props": {
@@ -2897,7 +2989,7 @@
             "type": "(Omit<BulkAction, \"onClick\"> & { onClick?(selectionState: RowSelectionState, resetRowSelection: (defaultState?: boolean) => void): void; })[] | undefined",
             "required": false,
             "typeRefs": [
-              "ClientTableProps"
+              "BulkAction"
             ]
           },
           "initialState": {
@@ -3098,6 +3190,14 @@
         },
         "own": true
       },
+      "RowAppearance": {
+        "kind": "union",
+        "values": [
+          "disabled",
+          "hide-toggler"
+        ],
+        "own": true
+      },
       "RowClickHandler": {
         "kind": "alias",
         "type": "(e: MouseEvent<HTMLDivElement>, row: RowInfo<TData>) => void",
@@ -3106,424 +3206,6 @@
       "RowVirtualizer": {
         "kind": "alias",
         "type": "Virtualizer<HTMLElement, Element> | null",
-        "own": true
-      },
-      "ServerTableProps": {
-        "kind": "interface",
-        "props": {
-          "autoResetPageIndex": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Автоматический сброс пагинации к первой странице при изменении данных/фильтров/сортировки"
-          },
-          "bulkActions": {
-            "type": "BulkAction[] | undefined",
-            "required": false,
-            "description": "Список действий для массовых операций",
-            "typeRefs": [
-              "BulkAction"
-            ]
-          },
-          "cardColumns": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Желаемое число колонок карточного вида (`view='cards'`).\nНа широком контейнере рисуется ровно столько колонок; при сужении сетка\nсхлопывается до меньшего числа (порог — `cardMinWidth`). Без пропа число\nколонок определяется только шириной контейнера и `cardMinWidth` (auto-fill)."
-          },
-          "cardMinWidth": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Минимальная ширина карточки в `view='cards'`, px. Порог, ниже которого\nколонки схлопываются. Карточка ужимается до ширины контейнера, если он уже."
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "columnDefinitions": {
-            "type": "ColumnDefinition<TData>[]",
-            "required": true,
-            "description": "Определение внешнего вида и функционала колонок",
-            "typeRefs": [
-              "ColumnDefinition",
-              "Except"
-            ]
-          },
-          "columnFilters": {
-            "type": "(Omit<ChipChoiceRowProps<TFilters>, \"data-test-id\" | \"size\"> & { open?: boolean; initialOpen?: boolean; onOpenChange?(isOpen: boolean): void; } & { initialOpen?: boolean; }) | undefined",
-            "required": false,
-            "description": "Фильтры",
-            "typeRefs": [
-              "FilterRow"
-            ]
-          },
-          "columnVirtualizerInstanceRef": {
-            "type": "MutableRefObject<ColumnVirtualizer> | undefined",
-            "required": false,
-            "description": "Ref на инстанс column-virtualizer'а для управления прокруткой снаружи",
-            "typeRefs": [
-              "ColumnVirtualizer"
-            ]
-          },
-          "columnVirtualizerOptions": {
-            "type": "Partial<VirtualizerOptions<HTMLElement, Element>> | undefined",
-            "required": false,
-            "description": "Дополнительные параметры column-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=3)."
-          },
-          "columnsSettings": {
-            "type": "{ enableDrag?: boolean; enableSettingsMenu?: boolean; } | undefined",
-            "required": false,
-            "description": "Настройки колонок: `enableDrag` — переупорядочивание (заголовки таблицы и строки в меню настроек);\n`enableSettingsMenu` — меню показа колонок."
-          },
-          "copyPinnedRows": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Параметр отвечает за сохранение закрепленных строк в теле таблицы"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, показывающий что произошла ошибка запроса при пустых данных"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, показывающий что данные были отфильтрованы при пустых данных"
-          },
-          "defaultView": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "cards",
-              "table"
-            ],
-            "description": "Начальный режим отображения (uncontrolled).\nЕсли не задан — дефолт по раскладке: `table` на desktop, `cards` на mobile (`TABLE_LAYOUT_PRESETS`).",
-            "typeRefs": [
-              "View"
-            ]
-          },
-          "enableColumnVirtualization": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включает виртуализацию колонок (windowing по горизонтали).\nРекомендуется при > 30 видимых колонок. Несовместимо с `view='cards'`.\nPinned-колонки (left/right) всегда отрисовываются вне зависимости от настройки."
-          },
-          "enableFuzzySearch": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить нечеткий поиск"
-          },
-          "enableRowVirtualization": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включает виртуализацию строк (windowing по вертикали).\nРекомендуется при > 200 строк. Несовместимо с `view='cards'` — при картах игнорируется.\n\n🔴 Требует `size` у колонок: виртуализованные строки позиционируются абсолютно и не участвуют в\nрасчёте внутренней ширины, поэтому колонка без `size` делит ширину контейнера поровну с\nостальными вместо растягивания по содержимому."
-          },
-          "enableSelectPinned": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Параметр отвечает за чекбокс выбора закрепленных строк"
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "expanding": {
-            "type": "{ getSubRows: (element: TData) => TData[] | undefined; expandingColumnDefinition: TreeColumnDefinitionProps<TData>; initialState?: ExpandedState; state?: ExpandedState; onChange?(state: ExpandedState): void; } | undefined",
-            "required": false,
-            "description": "Общие настройки раскрывающихся (tree) строк: `getSubRows`, `expandingColumnDefinition`,\n`initialState`, `state`, `onChange`.",
-            "typeRefs": [
-              "TreeColumnDefinitionProps"
-            ]
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Растягивать таблицу на всю ширину контейнера.\nПри `false` ширина определяется суммой колонок (лучше всего, когда у всех колонок задан `size` / `width`).\nЯвный проп = desktop-значение; на mobile всегда `true` (`TABLE_LAYOUT_PRESETS`)."
-          },
-          "getRowBackgroundColor": {
-            "type": "((data: TData) => TableRowColor | undefined) | undefined",
-            "required": false,
-            "description": "Функция определения цвета фона строки по её данным.\nРаботает только в `view='table'` — карточки (`view='cards'`) не тонируются.",
-            "typeRefs": [
-              "TableRowColor"
-            ]
-          },
-          "getRowId": {
-            "type": "((originalRow: TData, index: number, parent?: Row<TData> | undefined) => string) | undefined",
-            "required": false,
-            "description": "Функция получения уникального идентификатора строки"
-          },
-          "hasMore": {
-            "type": "undefined",
-            "required": false
-          },
-          "headerRowBackgroundColor": {
-            "type": "TableRowColor | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Accent-тон фона строки заголовков колонок (`tableHeadLine`).\nРаботает только в `view='table'`.",
-            "typeRefs": [
-              "TableRowColor"
-            ]
-          },
-          "headlineId": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Id колонки, чей рендер используется как заголовок карточки в режиме `view='cards'`.\nИмеет смысл только при `view='cards'`."
-          },
-          "infiniteLoading": {
-            "type": "undefined",
-            "required": false
-          },
-          "items": {
-            "type": "TData[] | undefined",
-            "required": false,
-            "description": "Данные для отрисовки"
-          },
-          "keepPinnedRows": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Параметр отвечает за отображение закрепленных строк на всех страницах таблицы"
-          },
-          "layoutPresets": {
-            "type": "Partial<Record<LayoutType, Partial<TableLayoutDefaults>>> | undefined",
-            "required": false,
-            "description": "Override дефолтов адаптива для этого инстанса (`mergePresets` поверх `TABLE_LAYOUT_PRESETS`).\n`stickyControls` в пресете tier'а заменяет DS-объект целиком — указывайте все нужные поля.\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
-            "typeRefs": [
-              "LayoutPresets",
-              "TableLayoutDefaults"
-            ]
-          },
-          "limit": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Кол-во строк на страницу"
-          },
-          "loadMoreTrigger": {
-            "type": "undefined",
-            "required": false
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "manualFiltering": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "manualPagination": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "manualSorting": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "moreActions": {
-            "type": "Action[] | undefined",
-            "required": false,
-            "description": "Элементы выпадающего списка кнопки с действиями",
-            "typeRefs": [
-              "ToolbarProps"
-            ]
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Смещение"
-          },
-          "onChangePage": {
-            "type": "(offset: number, limit: number) => void",
-            "required": true
-          },
-          "onExport": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбэк экспорта данных. Рендерит иконку в тулбаре перед настройками колонок."
-          },
-          "onLoadMore": {
-            "type": "undefined",
-            "required": false
-          },
-          "onRefresh": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбэк обновления данных"
-          },
-          "onRowClick": {
-            "type": "RowClickHandler<TData> | undefined",
-            "required": false,
-            "description": "Колбэк клика по строке",
-            "typeRefs": [
-              "RowClickHandler"
-            ]
-          },
-          "onViewChange": {
-            "type": "((view: View) => void) | undefined",
-            "required": false,
-            "description": "Колбэк на смену режима отображения"
-          },
-          "outline": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Внешний бордер для тулбара и таблицы"
-          },
-          "pagination": {
-            "type": "{ options?: number[]; optionsLabel?: string; } | undefined",
-            "required": false,
-            "description": "Параметры пагинации: `options`, `optionsLabel`"
-          },
-          "renderCard": {
-            "type": "((context: RenderCardContext<TData>) => ReactNode) | undefined",
-            "required": false,
-            "description": "Кастомный рендер карточки в `view='cards'`. Получает контекст с tanstack\n`row` / `table` и `defaultRender` (готовый элемент дефолтной карточки —\nможно обернуть). Возврат заменяет дефолтную карточку."
-          },
-          "rowAutoHeight": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "rowPinning": {
-            "type": "Pick<RowPinningState, \"top\"> | undefined",
-            "required": false,
-            "description": "Определение, какие строки должны быть закреплены в таблице"
-          },
-          "rowSelection": {
-            "type": "{ initialState?: RowSelectionState; state?: RowSelectionState; enable?: boolean | ((row: Row<TData>) => boolean) | undefined; multiRow?: boolean; onChange?(state: RowSelectionState): void; appearance?: RowAppearance; } | undefined",
-            "required": false,
-            "description": "Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`.",
-            "typeRefs": [
-              "RowAppearance"
-            ]
-          },
-          "rowVirtualizerInstanceRef": {
-            "type": "MutableRefObject<RowVirtualizer> | undefined",
-            "required": false,
-            "description": "Ref на инстанс row-virtualizer'а для управления прокруткой снаружи",
-            "typeRefs": [
-              "RowVirtualizer"
-            ]
-          },
-          "rowVirtualizerOptions": {
-            "type": "Partial<VirtualizerOptions<HTMLElement, Element>> | undefined",
-            "required": false,
-            "description": "Дополнительные параметры row-virtualizer'а (`@tanstack/react-virtual`).\nПереопределяют дефолты (overscan=10, estimateSize=40)."
-          },
-          "savedState": {
-            "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean; }) | undefined",
-            "required": false,
-            "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
-            "typeRefs": [
-              "ToolbarPersistConfig"
-            ]
-          },
-          "scrollContainerRef": {
-            "type": "RefObject<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на контейнер, который скроллится"
-          },
-          "scrollRef": {
-            "type": "Ref<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
-          },
-          "search": {
-            "type": "{ initialState?: string; state: string; placeholder?: string; loading?: boolean; onChange(value: string): void; } | undefined",
-            "required": false,
-            "description": "Параметры глобального поиска: `initialState`, `state`, `placeholder`, `loading`, `onChange`."
-          },
-          "showDataView": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать переключатель вида (таблица/карточки) в тулбаре.\nУправляет только видимостью тоггла; сам вид задаётся `view` / `defaultView`.\nПо умолчанию тоггла нет — таблица показывает один вид (`defaultView` либо\nадаптивный дефолт). Включите `showDataView`, чтобы дать пользователю\nпереключать table/cards."
-          },
-          "sorting": {
-            "type": "{ initialState?: SortingState; state?: SortingState; onChange?(state: SortingState): void; } | undefined",
-            "required": false,
-            "description": "Параметры отвечают за возможность сортировки:\n`initialState` — начальное состояние; `state` — управляемое снаружи; `onChange` — колбэк на изменение."
-          },
-          "stickyControls": {
-            "type": "StickyControls | undefined",
-            "required": false,
-            "description": "Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу\nviewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту.\nПри `enabled: false` все блоки идут сплошным потоком без sticky.\n\nДефолты: desktop — `enabled: false` (offsets не применяются);\nmobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`);\n`backgroundPredefined` — `neutralBackground1Level` на всех раскладках.\n\nЯвный проп = desktop-значение; mobile-override — `layoutPresets.mobile`.",
-            "typeRefs": [
-              "StickyControls"
-            ]
-          },
-          "suppressHeader": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки"
-          },
-          "suppressPagination": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение пагинации"
-          },
-          "suppressSearch": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение поиска"
-          },
-          "suppressToolbar": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение тулбара"
-          },
-          "toolbarAfter": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Дополнительный слот в `Toolbar` после строки поиска"
-          },
-          "total": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Общее кол-во строк"
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "cards",
-              "table"
-            ],
-            "description": "Режим отображения таблицы (controlled).\n`table` — классическая сетка; `cards` — карточки (заголовок берётся из колонки `headlineId`).\nПереключатель вида в тулбаре включается отдельным пропом `showDataView`.",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
         "own": true
       },
       "SimpleColumnDef": {
@@ -3766,11 +3448,6 @@
             "description": "Валидатор сохраненных"
           }
         },
-        "own": false
-      },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
         "own": false
       },
       "TreeColumnDefinitionProps": {
@@ -4024,7 +3701,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -4223,6 +3900,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BulkAction": {
         "kind": "interface",
         "props": {
@@ -4248,10 +3961,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -4660,11 +4370,6 @@
         },
         "own": false
       },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
-        "own": false
-      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -4924,7 +4629,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -5113,6 +4818,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BaseChipProps": {
         "kind": "interface",
         "props": {
@@ -5153,10 +4894,7 @@
               "end",
               "middle"
             ],
-            "description": "Вариант обрезания строки",
-            "typeRefs": [
-              "TruncateStringProps"
-            ]
+            "description": "Вариант обрезания строки"
           }
         },
         "own": false
@@ -5186,10 +4924,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -5591,11 +5326,6 @@
         },
         "own": false
       },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
-        "own": false
-      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -5921,7 +5651,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -6123,6 +5853,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BulkAction": {
         "kind": "interface",
         "props": {
@@ -6148,10 +5914,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -6547,11 +6310,6 @@
         },
         "own": false
       },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
-        "own": false
-      },
       "TreeColumnDefinitionProps": {
         "kind": "alias",
         "type": "TreeColumnDef | TreeColumnDefWithDescription<TData>",
@@ -6828,7 +6586,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -7028,6 +6786,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BaseChipProps": {
         "kind": "interface",
         "props": {
@@ -7068,10 +6862,7 @@
               "end",
               "middle"
             ],
-            "description": "Вариант обрезания строки",
-            "typeRefs": [
-              "TruncateStringProps"
-            ]
+            "description": "Вариант обрезания строки"
           }
         },
         "own": false
@@ -7101,10 +6892,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -7423,11 +7211,6 @@
             "description": "Валидатор сохраненных"
           }
         },
-        "own": false
-      },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
         "own": false
       },
       "TreeColumnDefinitionProps": {
@@ -8282,7 +8065,7 @@
         "required": false,
         "description": "Элементы выпадающего списка кнопки с действиями",
         "typeRefs": [
-          "ToolbarProps"
+          "Action"
         ]
       },
       "noDataState": {
@@ -8491,6 +8274,42 @@
       }
     },
     "relatedTypes": {
+      "Action": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "ReactNode | ItemContentProps",
+            "required": false,
+            "description": "Основной контент айтема",
+            "typeRefs": [
+              "ItemContent"
+            ]
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Флаг неактивности элемента"
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false
+          },
+          "onClick": {
+            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбек обработки клика"
+          },
+          "tagLabel": {
+            "type": "string | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "BulkAction": {
         "kind": "interface",
         "props": {
@@ -8516,10 +8335,7 @@
           },
           "tooltip": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
+            "required": false
           }
         },
         "own": true
@@ -8905,11 +8721,6 @@
             "description": "Валидатор сохраненных"
           }
         },
-        "own": false
-      },
-      "ToolbarProps": {
-        "kind": "alias",
-        "type": "WithSupportProps<DefaultToolbarProps | CheckedToolbarProps> & { filterRow?: FilterRow<TState>; persist?: ToolbarPersistConfig<TState>; }",
         "own": false
       },
       "TreeTablePrimaryColumn": {

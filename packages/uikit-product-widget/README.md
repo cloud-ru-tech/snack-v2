@@ -261,7 +261,7 @@ export function ErrorState() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `errorDescription` | `string \| undefined` | — | Описание ошибки. |
-| `errorIcon` | `InfoBlockProps` | — | Иконка InfoBlock. |
+| `errorIcon` | `IconPredefinedProps` | — | Иконка InfoBlock. |
 | `errorTitle` | `string \| undefined` | — | Заголовок ошибки. |
 | `onClickUpdate` | `(event: MouseEvent<HTMLElement, MouseEvent>) => void` | — | Клик по кнопке повтора. |
 | `updateButtonLabel` | `string \| undefined` | — | Текст кнопки повтора. |
