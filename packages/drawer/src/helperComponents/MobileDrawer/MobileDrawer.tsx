@@ -33,7 +33,8 @@ export function MobileDrawer({
   snapPoints,
   snapIndex,
   onSnapIndexChange,
-  safeArea,
+  safeAreaTop,
+  safeAreaBottom,
   withDividers = false,
   ...rest
 }: DrawerProps) {
@@ -71,7 +72,8 @@ export function MobileDrawer({
       snapPoints={snapPoints}
       snapIndex={snapIndex}
       onSnapIndexChange={onSnapIndexChange}
-      safeArea={safeArea}
+      safeAreaTop={safeAreaTop}
+      safeAreaBottom={safeAreaBottom}
       {...extractSupportProps(rest)}
     />
   );

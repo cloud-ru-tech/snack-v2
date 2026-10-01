@@ -74,4 +74,4 @@ export type DrawerCustomProps = WithSupportProps<
   }>
 > &
   // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).
-  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeArea'>;
+  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeAreaTop' | 'safeAreaBottom'>;

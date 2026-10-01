@@ -49,7 +49,7 @@ export type ModalCustomProps = WithSupportProps<{
   closeOnPopstate?: boolean;
 }> &
   // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).
-  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeArea' | 'showBackdrop'>;
+  Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeAreaTop' | 'safeAreaBottom' | 'showBackdrop'>;
 
 /** Desktop-frame модалки: портал + overlay + close-button + width/mode/heightAuto. Surface='modal'. */
 function ModalFrame({
@@ -202,7 +202,8 @@ export function ModalCustom(props: ModalCustomProps) {
       closeOnPopstate,
       snapPoints,
       swipeEnabled,
-      safeArea,
+      safeAreaTop,
+      safeAreaBottom,
       showBackdrop,
       ...rest
     } = props;
@@ -216,7 +217,8 @@ export function ModalCustom(props: ModalCustomProps) {
         closeOnPopstate={closeOnPopstate}
         snapPoints={snapPoints}
         swipeEnabled={swipeEnabled}
-        safeArea={safeArea}
+        safeAreaTop={safeAreaTop}
+        safeAreaBottom={safeAreaBottom}
         showBackdrop={showBackdrop}
         {...extractSupportProps(rest)}
       >
