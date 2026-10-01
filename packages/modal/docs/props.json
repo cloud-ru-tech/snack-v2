@@ -730,13 +730,13 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен\n`safeArea.paddingBottom` (32px), на устройстве с большим `env(safe-area-inset-bottom)` — значение inset."
+        "description": "Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен\n`safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset."
       },
       "safeAreaTop": {
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.paddingTop` (32px),\nна устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда\nsheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch."
+        "description": "Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`,\nна устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда\nsheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch."
       },
       "showBackdrop": {
         "type": "boolean",
