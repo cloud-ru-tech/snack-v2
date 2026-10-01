@@ -9,7 +9,7 @@ import { useApplyCustomTheme } from '../src/hooks/useApplyCustomTheme';
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
 const BRAND_VAR = '--sn-brand-color-primary-50';
-const BRAND_SELECTOR = `:is(${'.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow'})`;
+const BRAND_SELECTOR = `:is(${'.sn-agents-space,.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow'})`;
 
 /** Разворачивает nullable без non-null assertion (`!` запрещён линтером). */
 function nn<T>(value: T | null | undefined): T {

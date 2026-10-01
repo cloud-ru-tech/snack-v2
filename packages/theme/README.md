@@ -186,7 +186,7 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
+- `Brand` = `"agents-space"` \| `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
 
 - `ColorScheme` = `"dark"` \| `"light"`
 
@@ -199,7 +199,7 @@ export function LocalDensity() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
+| `brand` | `"agents-space"` \| `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
 | `platform` | `"webDesktop"` \| `"webMobile"` | — | Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive` <br/> тема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда. |
@@ -225,7 +225,7 @@ export function LocalDensity() {
 
 #### Related types
 
-- `Brand` = `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
+- `Brand` = `"agents-space"` \| `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"`
 
 - `ColorScheme` = `"dark"` \| `"light"`
 
@@ -238,7 +238,7 @@ export function LocalDensity() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `acrylic` | `boolean \| undefined` | — | Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`. |
-| `brand` | `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
+| `brand` | `"agents-space"` \| `"cloudConsole"` \| `"giga-id"` \| `"gitverse"` \| `"hrBlue"` \| `"hrGraphite"` \| `"hrGreen"` \| `"hrPurple"` \| `"hrYellow"` \| `"siteBlue"` \| `"siteGraphite"` \| `"siteGreen"` \| `"sitePurple"` \| `"siteYellow"` \| `"snackUI"` | — | Бренд — `sn-cloudConsole` / `sn-hrBlue` … |
 | `colorScheme` | `"dark"` \| `"light"` | — | Цветовая схема — `sn-light` / `sn-dark`. |
 | `density` | `"comfort"` \| `"compact"` \| `"spacious"` | — | Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`. |
 | `platform` | `"webDesktop"` \| `"webMobile"` | — | Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive` <br/> тема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда. |
@@ -251,7 +251,7 @@ export function LocalDensity() {
 - **PortalContext** — корневой DOM-узел для порталов.
 ## Кастомный бренд-цвет
 
-Помимо предустановленных брендов (`cloudConsole`, `giga-id`, `gitverse`, `snackUI`, варианты `hr*` и `site*`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
+Помимо предустановленных брендов (`agents-space`, `cloudConsole`, `giga-id`, `gitverse`, `snackUI`, варианты `hr*` и `site*`) `@ds/theme` собирает бренд-палитру из одного seed-цвета — для white-label под клиента. Из seed генерируется полная шкала тонов `--sn-brand-color-primary-*` (OKLCH: светлота и насыщенность берутся из опорной шкалы, hue поворачивается к seed) плюс activated-тинты; семантический слой `--sn-theme-color-primary-*` каскадит из неё. Поэтому один цвет перекрашивает акцент во всех компонентах — и в светлой, и в тёмной схеме.
 
 Палитра применяется **CSS-правилом на бренд-классы** (`.sn-cloudConsole`, `.sn-hrBlue` …), а не inline-переменными на одном элементе. Это принципиально: компоненты, переобъявляющие полный набор `sn-*` на своих внутренних обёртках (Table, Stepper и т.п. через `useThemeClassnames`), заново объявляют бренд-палитру из класса — inline-переменные предка в таких поддеревьях перекрываются, а правило на том же бренд-классе — нет. Два способа применить:
 

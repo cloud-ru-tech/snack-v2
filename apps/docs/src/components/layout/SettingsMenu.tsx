@@ -30,7 +30,7 @@ const THEME_ITEMS: Segment<Theme>[] = [
 
 // Бренд в @ds/theme — плоский список; в меню он разложен на семейство и цвет: у HR-портала и сайта
 // по пять цветовых вариантов, остальные бренды самостоятельные.
-type BrandFamily = 'cloudConsole' | 'giga-id' | 'gitverse' | 'snackUI' | 'hr' | 'site';
+type BrandFamily = 'agents-space' | 'cloudConsole' | 'giga-id' | 'gitverse' | 'snackUI' | 'hr' | 'site';
 
 const BRAND_COLORS = ['Blue', 'Graphite', 'Green', 'Purple', 'Yellow'] as const;
 type BrandColor = (typeof BRAND_COLORS)[number];
@@ -38,6 +38,7 @@ type BrandColor = (typeof BRAND_COLORS)[number];
 const DEFAULT_BRAND: Brand = BRAND.CloudConsole;
 
 const BRAND_FAMILY_ITEMS: Segment<BrandFamily>[] = [
+  { value: 'agents-space', label: 'Agents Space' },
   { value: 'cloudConsole', label: 'Console' },
   { value: 'giga-id', label: 'Giga ID' },
   { value: 'gitverse', label: 'GitVerse' },

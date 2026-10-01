@@ -23,7 +23,7 @@ function nn<T>(value: T | null | undefined): T {
 
 const sum = (channels: number[]): number => channels.reduce((acc, channel) => acc + channel, 0);
 const BRAND_LIST =
-  '.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow';
+  '.sn-agents-space,.sn-cloudConsole,.sn-giga-id,.sn-gitverse,.sn-snackUI,.sn-hrBlue,.sn-hrGraphite,.sn-hrGreen,.sn-hrPurple,.sn-hrYellow,.sn-siteBlue,.sn-siteGraphite,.sn-siteGreen,.sn-sitePurple,.sn-siteYellow';
 
 describe('customTheme / hex', () => {
   it('парсит #rrggbb, #rgb, с alpha и без #', () => {

@@ -31,6 +31,7 @@
       "Brand": {
         "kind": "union",
         "values": [
+          "agents-space",
           "cloudConsole",
           "giga-id",
           "gitverse",
@@ -85,6 +86,7 @@
             "type": "Brand | undefined",
             "required": false,
             "values": [
+              "agents-space",
               "cloudConsole",
               "giga-id",
               "gitverse",
@@ -197,6 +199,7 @@
       "Brand": {
         "kind": "union",
         "values": [
+          "agents-space",
           "cloudConsole",
           "giga-id",
           "gitverse",
@@ -251,6 +254,7 @@
             "type": "Brand | undefined",
             "required": false,
             "values": [
+              "agents-space",
               "cloudConsole",
               "giga-id",
               "gitverse",

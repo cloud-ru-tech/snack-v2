@@ -29,6 +29,7 @@ export const THEME_OPTIONS = [
 
 // Семейства HR-портала и сайта — финальные цветовые варианты: родительские слои hrPortal/site нужны только в Figma.
 export const BRAND_OPTIONS = [
+  { value: 'agents-space', label: 'Agents Space' },
   { value: 'cloudConsole', label: 'Cloud Console' },
   { value: 'giga-id', label: 'Giga ID' },
   { value: 'gitverse', label: 'GitVerse' },
@@ -55,6 +56,7 @@ type BrandGroup = {
 export const BRAND_GROUPS: ReadonlyArray<BrandGroup> = [
   {
     brands: [
+      { value: 'agents-space', label: 'Agents Space' },
       { value: 'cloudConsole', label: 'Cloud Console' },
       { value: 'giga-id', label: 'Giga ID' },
       { value: 'gitverse', label: 'GitVerse' },

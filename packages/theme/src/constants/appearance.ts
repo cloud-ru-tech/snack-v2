@@ -22,6 +22,7 @@ export const PLATFORM = {
  * вариантами: родительские слои `hrPortal`/`site` нужны только в Figma.
  */
 export const BRAND = {
+  AgentsSpace: 'agents-space',
   CloudConsole: 'cloudConsole',
   GigaId: 'giga-id',
   Gitverse: 'gitverse',

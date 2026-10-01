@@ -5,6 +5,7 @@ import type { Brand } from '../constants';
  * В manager iframe бренд-классы `.sn-*` недоступны — используем захардкоженные значения.
  */
 export const BRAND_COLOR: Record<Brand, string> = {
+  'agents-space': '#222222',
   cloudConsole: '#389f74',
   'giga-id': '#393a45',
   gitverse: '#5558fa',
