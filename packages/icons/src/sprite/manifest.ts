@@ -405,6 +405,7 @@ export const SPRITE_SYMBOL_IDS = {
     'snack-uikit-services-arenadata-streaming',
     'snack-uikit-services-artifact-registry',
     'snack-uikit-services-auto-scaling',
+    'snack-uikit-services-autoscaling-groups',
     'snack-uikit-services-avability-groups',
     'snack-uikit-services-backup',
     'snack-uikit-services-bare-metal',

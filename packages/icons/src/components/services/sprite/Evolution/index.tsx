@@ -4,6 +4,7 @@ export { default as AirflowSVG } from './Airflow';
 export { default as AlertsSVG } from './Alerts';
 export { default as ArenadataDbSVG } from './ArenadataDb';
 export { default as ArtifactRegistrySVG } from './ArtifactRegistry';
+export { default as AutoscalingGroupsSVG } from './AutoscalingGroups';
 export { default as AvabilityGroupsSVG } from './AvabilityGroups';
 export { default as BackupSVG } from './Backup';
 export { default as CertificateManagerSVG } from './CertificateManager';
