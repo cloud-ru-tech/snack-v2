@@ -4,6 +4,10 @@
 $width: 256px;
 // Ширина hover-ловушки слева от свёрнутого сайдбара.
 $catcherWidth: base.$sn-primitive-dimension-4;
+// Отступ всплывающей панели от краёв экрана в свёрнутом режиме.
+$panelMargin: base.$sn-primitive-dimension-4;
+// Панель сдвинута вправо на отступ и на столько же выступает за .body.
+$panelOverhang: calc(2 * $panelMargin);
 // Тайминги slide-анимации — анимационные литералы, токенов нет.
 $instantAnimation: left 0.15s ease-in-out;
 $delayedAnimation: left 0.15s 0.35s ease-in-out;
@@ -32,13 +36,13 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
     }
 
     &[data-collapsed] {
-      left: calc(-1 * $width);
+      left: calc(-1 * ($width + $panelOverhang));
 
       &::before {
         content: ' ';
 
         position: absolute;
-        right: calc(-1 * $catcherWidth);
+        right: calc(-1 * ($catcherWidth + $panelOverhang));
 
         width: $catcherWidth;
         height: 100%;
@@ -78,7 +82,7 @@ $delayedAnimation: left 0.15s 0.35s ease-in-out;
       flex-shrink: 0;
 
       width: $width;
-      margin: base.$sn-primitive-dimension-4 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4;
+      margin: $panelMargin 0 $panelMargin $panelMargin;
       border-right: none;
       border-radius: base.$sn-density-radius-2xs;
 
