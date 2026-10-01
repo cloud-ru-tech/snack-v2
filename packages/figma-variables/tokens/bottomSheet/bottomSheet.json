@@ -3,25 +3,41 @@
     "bottomSheet": {
       "anatomy": {
         "safeArea": {
-          "paddingBottom": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "number",
-            "$value": "{sn.primitive.dimension.32}"
+          "bottom": {
+            "minHeight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
           },
-          "paddingTop": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "number",
-            "$value": "{sn.primitive.dimension.32}"
+          "top": {
+            "minHeight": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.0}"
+            }
+          },
+          "overlay": {
+            "padding": {
+              "$extensions": {
+                "com.figma.scopes": [
+                  "ALL_SCOPES"
+                ],
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": "{sn.primitive.dimension.16}"
+            }
           }
         },
         "badgeHandle": {
@@ -134,16 +150,6 @@
             },
             "$type": "number",
             "$value": "{sn.brand.anatomy.radius.window.m}"
-          },
-          "paddingTop": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "number",
-            "$value": "{sn.primitive.dimension.0}"
           }
         }
       }

@@ -76,9 +76,9 @@
     "markdown/markdown",
     "pagination/pagination",
     "block/block",
-    "bottomSheet/bottomSheet",
     "table/table",
     "fieldDecorator/fieldDecorator",
-    "popupPrivate/popupPrivate"
+    "popupPrivate/popupPrivate",
+    "bottomSheet/bottomSheet"
   ]
 }
