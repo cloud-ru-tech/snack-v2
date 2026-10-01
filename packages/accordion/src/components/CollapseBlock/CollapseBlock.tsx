@@ -7,7 +7,7 @@ import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { PropsWithChildren, ReactNode, useId } from 'react';
+import { MouseEvent, PropsWithChildren, ReactNode, useId } from 'react';
 
 import { ANIMATION_DURATION, CHEVRON_POSITION, TEST_IDS, VIEW } from '../../constants';
 import { ChevronButton } from '../../helperComponents';
@@ -16,6 +16,8 @@ import { useCollapseState } from './hooks';
 import styles from './styles.module.scss';
 
 type Component = 'accordionPrimary' | 'accordionSecondary' | 'accordionTertiary';
+
+const stopPropagation = (e: MouseEvent) => e.stopPropagation();
 
 export type CollapseBlockProps = PropsWithChildren<
   WithSupportProps<{
@@ -131,13 +133,20 @@ export function CollapseBlock({
               </Typography>
             )}
             {afterTitle && (
-              <div id={afterTitleId} data-test-id={TEST_IDS.afterTitle} className={styles.afterTitle}>
+              /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+              <div
+                id={afterTitleId}
+                data-test-id={TEST_IDS.afterTitle}
+                className={styles.afterTitle}
+                onClick={stopPropagation}
+              >
                 {afterTitle}
               </div>
             )}
           </div>
           {subTitle && (
-            <div className={styles.subTitle} data-test-id={TEST_IDS.subTitle}>
+            /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+            <div className={styles.subTitle} data-test-id={TEST_IDS.subTitle} onClick={stopPropagation}>
               {subTitle}
             </div>
           )}
