@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.5 (2026-10-01)
+
+### Bug Fixes
+
+- **FF-9223:** breadcrumbs padding ([c1b2957](https://github.com/cloud-ru-tech/snack-v2/commit/c1b29572f80d28d4fbd676e70f80277a428221a9))
+
 ## 2.0.4 (2026-10-01)
 
 ### Bug Fixes
