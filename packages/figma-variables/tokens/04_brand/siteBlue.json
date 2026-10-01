@@ -1460,7 +1460,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "#f4f4f4"
+            "$value": "#eeeff3"
           },
           "95": {
             "$extensions": {
@@ -2266,21 +2266,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 }
               },
               "label": {
@@ -2289,21 +2289,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.450}"
+                  "$value": "{sn.primitive.font.fontWeightValue.500}"
                 }
               },
               "body": {
@@ -2312,21 +2312,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               }
             },
@@ -2337,21 +2337,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               },
               "headline": {
@@ -2360,21 +2360,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               },
               "title": {
@@ -2383,21 +2383,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               },
               "label": {
@@ -2406,21 +2406,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               },
               "body": {
@@ -2429,21 +2429,21 @@
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "m": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 },
                 "l": {
                   "$extensions": {
                     "com.figma.hiddenFromPublishing": false
                   },
                   "$type": "number",
-                  "$value": "{sn.primitive.font.fontWeightValue.350}"
+                  "$value": "{sn.primitive.font.fontWeightValue.400}"
                 }
               }
             }
