@@ -88,10 +88,11 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
 
   const showClearButton = Boolean(showClearButtonProp && value);
 
+  const focusInput = () => localRef.current?.focus();
+
   const onClear = () => {
     onValueChange('');
-
-    localRef.current?.focus();
+    focusInput();
   };
 
   const clearButtonSettings = useClearButton({
@@ -136,7 +137,8 @@ export const SearchPrivate = forwardRef<HTMLInputElement, SearchPrivateProps>(fu
       data-size={size}
       data-disabled={disabled || undefined}
     >
-      <span className={cn(styles.prefix, styles.centerWrapper)}>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <span className={cn(styles.prefix, styles.centerWrapper)} onClick={focusInput}>
         {!disabled && loading ? (
           <Sun data-test-id={PRIVATE_SEARCH_TEST_IDS.iconSun} size={LOADER_SIZE_MAP[size]} />
         ) : (
