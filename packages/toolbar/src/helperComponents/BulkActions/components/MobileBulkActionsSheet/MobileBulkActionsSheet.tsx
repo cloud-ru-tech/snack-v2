@@ -76,7 +76,8 @@ export function MobileBulkActionsSheet({
       swipeEnabled={false}
       lockScroll={false}
       closeOnPopstate={false}
-      safeArea={false}
+      safeAreaTop={false}
+      safeAreaBottom={false}
       withDividers={false}
       data-test-id={TEST_IDS.mobileBulkActionsSheet}
     />
