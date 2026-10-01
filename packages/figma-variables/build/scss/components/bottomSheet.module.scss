@@ -5,8 +5,9 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
-$sn-bottomSheet-anatomy-safeArea-paddingBottom: var(--sn-bottomSheet-anatomy-safeArea-paddingBottom, #{st.$sn-primitive-dimension-32});
-$sn-bottomSheet-anatomy-safeArea-paddingTop: var(--sn-bottomSheet-anatomy-safeArea-paddingTop, #{st.$sn-primitive-dimension-32});
+$sn-bottomSheet-anatomy-safeArea-bottom-minHeight: var(--sn-bottomSheet-anatomy-safeArea-bottom-minHeight, #{st.$sn-primitive-dimension-16});
+$sn-bottomSheet-anatomy-safeArea-top-minHeight: var(--sn-bottomSheet-anatomy-safeArea-top-minHeight, #{st.$sn-primitive-dimension-0});
+$sn-bottomSheet-anatomy-safeArea-overlay-padding: var(--sn-bottomSheet-anatomy-safeArea-overlay-padding, #{st.$sn-primitive-dimension-16});
 $sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius: var(--sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius, #{st.$sn-primitive-dimension-full});
 $sn-bottomSheet-anatomy-badgeHandle-handle-width: var(--sn-bottomSheet-anatomy-badgeHandle-handle-width, #{st.$sn-primitive-dimension-32});
 $sn-bottomSheet-anatomy-badgeHandle-handle-minHeight: var(--sn-bottomSheet-anatomy-badgeHandle-handle-minHeight, #{st.$sn-primitive-dimension-4});
@@ -16,13 +17,19 @@ $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingBottom: var(--sn-bo
 $sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop: var(--sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop, #{st.$sn-density-spacing-interval-m});
 $sn-bottomSheet-anatomy-container-borderTopRightRadius: var(--sn-bottomSheet-anatomy-container-borderTopRightRadius, #{st.$sn-brand-anatomy-radius-window-m});
 $sn-bottomSheet-anatomy-container-borderTopLeftRadius: var(--sn-bottomSheet-anatomy-container-borderTopLeftRadius, #{st.$sn-brand-anatomy-radius-window-m});
-$sn-bottomSheet-anatomy-container-paddingTop: var(--sn-bottomSheet-anatomy-container-paddingTop, #{st.$sn-primitive-dimension-0});
 
 $bottomSheet: (
   "anatomy": (
     "safeArea": (
-      "padding-bottom": $sn-bottomSheet-anatomy-safeArea-paddingBottom,
-      "padding-top": $sn-bottomSheet-anatomy-safeArea-paddingTop
+      "bottom": (
+        "min-height": $sn-bottomSheet-anatomy-safeArea-bottom-minHeight
+      ),
+      "top": (
+        "min-height": $sn-bottomSheet-anatomy-safeArea-top-minHeight
+      ),
+      "overlay": (
+        "padding": $sn-bottomSheet-anatomy-safeArea-overlay-padding
+      )
     ),
     "badgeHandle": (
       "handle": (
@@ -42,8 +49,7 @@ $bottomSheet: (
         )
       ),
       "border-top-right-radius": $sn-bottomSheet-anatomy-container-borderTopRightRadius,
-      "border-top-left-radius": $sn-bottomSheet-anatomy-container-borderTopLeftRadius,
-      "padding-top": $sn-bottomSheet-anatomy-container-paddingTop
+      "border-top-left-radius": $sn-bottomSheet-anatomy-container-borderTopLeftRadius
     )
   )
 );

@@ -3,8 +3,9 @@
  */
   
 .sn-bottomSheet {
-  --sn-bottomSheet-anatomy-safeArea-paddingBottom: var(--sn-primitive-dimension-32, 32px);
-  --sn-bottomSheet-anatomy-safeArea-paddingTop: var(--sn-primitive-dimension-32, 32px);
+  --sn-bottomSheet-anatomy-safeArea-bottom-minHeight: var(--sn-primitive-dimension-16, 16px);
+  --sn-bottomSheet-anatomy-safeArea-top-minHeight: var(--sn-primitive-dimension-0, 0px);
+  --sn-bottomSheet-anatomy-safeArea-overlay-padding: var(--sn-primitive-dimension-16, 16px);
   --sn-bottomSheet-anatomy-badgeHandle-handle-borderRadius: var(--sn-primitive-dimension-full, 10000px);
   --sn-bottomSheet-anatomy-badgeHandle-handle-width: var(--sn-primitive-dimension-32, 32px);
   --sn-bottomSheet-anatomy-badgeHandle-handle-minHeight: var(--sn-primitive-dimension-4, 4px);
@@ -14,5 +15,4 @@
   --sn-bottomSheet-anatomy-container-content-bodyWrapper-paddingTop: var(--sn-density-spacing-interval-m, 24px);
   --sn-bottomSheet-anatomy-container-borderTopRightRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
   --sn-bottomSheet-anatomy-container-borderTopLeftRadius: var(--sn-brand-anatomy-radius-window-m, 4px);
-  --sn-bottomSheet-anatomy-container-paddingTop: var(--sn-primitive-dimension-0, 0px);
 }
