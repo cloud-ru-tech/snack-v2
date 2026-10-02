@@ -24,6 +24,22 @@
       visibility: visible;
     }
   }
+
+  &[data-mobile] {
+    .closeButton {
+      position: relative;
+      top: auto;
+      right: auto;
+
+      flex-shrink: 0;
+
+      visibility: visible;
+    }
+
+    .contentRow[data-closable] {
+      padding-right: base.$sn-primitive-dimension-4;
+    }
+  }
 }
 
 .contentRow {

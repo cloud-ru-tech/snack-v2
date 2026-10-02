@@ -7,6 +7,7 @@ import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { AnchorHTMLAttributes, MouseEventHandler, ReactElement, ReactNode, useCallback } from 'react';
 
+import { useMobileLayout } from '../../../../hooks/useMobileLayout';
 import { headerLocale } from '../../../../locale';
 import { MENU_BANNER_TEST_IDS } from './constants';
 import styles from './styles.module.scss';
@@ -37,6 +38,7 @@ export function MenuBanner({
   ...rest
 }: MenuBannerProps): ReactElement {
   const { t } = headerLocale.useTranslations();
+  const isMobile = useMobileLayout();
 
   const handleClose: MouseEventHandler<HTMLButtonElement> = useCallback(
     e => {
@@ -54,10 +56,11 @@ export function MenuBanner({
       radius='l'
       view='simple'
       className={cn(styles.root, className)}
+      data-mobile={isMobile || undefined}
       data-test-id={dataTestId ?? MENU_BANNER_TEST_IDS.root}
       {...rest}
     >
-      <div className={styles.contentRow}>
+      <div className={styles.contentRow} data-closable={Boolean(onClose) || undefined}>
         <span className={styles.titleWrapper}>
           <Typography
             as='span'
