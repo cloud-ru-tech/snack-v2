@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.6 (2026-10-02)
+
+### Bug Fixes
+
+- **FF-9218:** stop click propagation in collapse block ([c9e3892](https://github.com/cloud-ru-tech/snack-v2/commit/c9e389265fa46f809fdd3d20d3a7922e27cf3a4a))
+
 ## 1.1.5 (2026-10-01)
 
 **Note:** Version bump only for package @ds/accordion

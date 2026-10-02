@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.39 (2026-10-02)
+
+**Note:** Version bump only for package @ds/uikit-product-modal-predefined
+
 ## 1.0.38 (2026-10-01)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined
