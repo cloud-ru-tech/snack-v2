@@ -72,13 +72,13 @@
     "toaster/toaster",
     "hotSpot/hotSpot",
     "timeline/timeline",
-    "tabs/tabs",
     "markdown/markdown",
     "pagination/pagination",
     "block/block",
     "table/table",
     "fieldDecorator/fieldDecorator",
     "popupPrivate/popupPrivate",
-    "bottomSheet/bottomSheet"
+    "bottomSheet/bottomSheet",
+    "tabs/tabs"
   ]
 }
