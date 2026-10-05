@@ -1,5 +1,5 @@
 import { Dropdown } from '@ds/dropdown';
-import { focusWithoutScroll, preventScrollOnVerticalArrows, useValueControl } from '@ds/utils';
+import { focusWithoutScroll, isBrowser, preventScrollOnVerticalArrows, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { cloneElement, isValidElement, KeyboardEvent, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
@@ -221,7 +221,12 @@ export function DesktopDroplist({
   const closeDroplist = useCallback(() => {
     setOpen(false);
     resetActiveItemId();
-    (triggerElemRefProp ?? triggerElemRef).current?.focus();
+
+    if (isBrowser()) {
+      requestAnimationFrame(() => {
+        (triggerElemRefProp ?? triggerElemRef).current?.focus();
+      });
+    }
   }, [setOpen, resetActiveItemId, triggerElemRefProp]);
 
   const openListContextValue = useMemo(

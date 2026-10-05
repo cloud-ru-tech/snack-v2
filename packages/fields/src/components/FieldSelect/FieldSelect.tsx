@@ -12,7 +12,6 @@ import {
   KeyboardEvent,
   MouseEvent,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -257,7 +256,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const syncedLabelRef = useRef(selectedLabel);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typing || !resetSearchOnOptionSelection || syncedLabelRef.current === selectedLabel) {
       return;
     }
