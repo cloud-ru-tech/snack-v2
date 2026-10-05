@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.5.0 (2026-10-05)
+
+### Features
+
+- **FF-9204:** add disableSpanWrapper prop ([2f4bc67](https://github.com/cloud-ru-tech/snack-v2/commit/2f4bc675bb984f18c788913dd8f5136cd4be3ed9))
+
 ## 2.4.6 (2026-10-02)
 
 **Note:** Version bump only for package @ds/fields

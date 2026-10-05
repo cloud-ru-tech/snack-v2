@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.7 (2026-10-05)
+
+**Note:** Version bump only for package @ds/uikit-product-card-predefined
+
 ## 4.0.6 (2026-10-02)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

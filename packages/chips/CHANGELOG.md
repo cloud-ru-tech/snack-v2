@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.6 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9204:** flex wrapping ([406b09d](https://github.com/cloud-ru-tech/snack-v2/commit/406b09d3bb30b6dee3d82bea4064923d8104472f))
+
 ## 1.1.5 (2026-10-02)
 
 **Note:** Version bump only for package @ds/chips
