@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-10-05)
+
+### BREAKING CHANGES
+
+- **FF-9172:** drawer and modal pass safeAreaTop/safeAreaBottom instead of safeArea ([7977458](https://github.com/cloud-ru-tech/snack-v2/commit/7977458009499c8981885354c1e4aacd98f13ac8))
+
 ## 1.2.8 (2026-10-01)
 
 **Note:** Version bump only for package @ds/drawer

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.1 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9172:** gen-props resolves indexed access to the field type ([baf31c4](https://github.com/cloud-ru-tech/snack-v2/commit/baf31c4053e76c81d681c9c19a6622f009f40413))
+
 # 2.5.0 (2026-10-05)
 
 ### Features

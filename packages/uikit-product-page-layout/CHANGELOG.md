@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.2 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9172:** gen-props resolves indexed access to the field type ([baf31c4](https://github.com/cloud-ru-tech/snack-v2/commit/baf31c4053e76c81d681c9c19a6622f009f40413))
+- **FF-9172:** hide collapsed PageSidebar panel fully off-canvas ([2b06a20](https://github.com/cloud-ru-tech/snack-v2/commit/2b06a20b1a1762029736f577ac841853104e1dea))
+
 ## 1.7.1 (2026-10-05)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.5.0 (2026-10-05)
+
+### Features
+
+- **FF-9172:** add AutoscalingGroups service icon ([45e234a](https://github.com/cloud-ru-tech/snack-v2/commit/45e234a166a67b75635c570a1cb157bfb172d166))
+
 # 1.4.0 (2026-09-30)
 
 ### Features

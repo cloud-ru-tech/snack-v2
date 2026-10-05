@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9172:** allow header breadcrumbs wrapper to shrink ([12a0633](https://github.com/cloud-ru-tech/snack-v2/commit/12a0633f85980128a14af6c467f9cfd7566e395e))
+- **FF-9172:** gen-props resolves indexed access to the field type ([baf31c4](https://github.com/cloud-ru-tech/snack-v2/commit/baf31c4053e76c81d681c9c19a6622f009f40413))
+- **FF-9172:** keep menu banner close button in flow and always visible on mobile ([ad48053](https://github.com/cloud-ru-tech/snack-v2/commit/ad480531898d9ab8f75f2aba2a066afe233e04da))
+- **FF-9172:** render user menu as single list when no organizations passed ([363ca6a](https://github.com/cloud-ru-tech/snack-v2/commit/363ca6abfc44575c45fd2687e6aa4bf1608ed70f))
+
 ## 2.1.1 (2026-10-05)
 
 **Note:** Version bump only for package @ds/uikit-product-header

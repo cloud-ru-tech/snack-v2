@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9172:** fix bottomSheet paddings ([aeb238a](https://github.com/cloud-ru-tech/snack-v2/commit/aeb238abd0345ceb06ea3c165c66e01fc21aaf7c))
+- **FF-9172:** rebuild tokens after bottomSheet and site theme updates ([f1beab6](https://github.com/cloud-ru-tech/snack-v2/commit/f1beab603a7eb2ed0dbecbbd1fc2b324caa64cbe))
+- **FF-9172:** site theme updates ([4e1589b](https://github.com/cloud-ru-tech/snack-v2/commit/4e1589b6a25ae1de6a611770444303ae94e78265))
+
 # 2.1.0 (2026-09-30)
 
 ### Bug Fixes

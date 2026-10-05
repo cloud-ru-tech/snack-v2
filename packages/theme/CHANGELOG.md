@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-10-05)
+
+### Features
+
+- **FF-9172:** add agents-space brand to theme, docs and storybook ([b710534](https://github.com/cloud-ru-tech/snack-v2/commit/b7105349d61df7f93b92718e2f884b76be3e05f6))
+
 # 2.0.0 (2026-09-25)
 
 ### BREAKING CHANGES

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.8 (2026-10-05)
+
+### Bug Fixes
+
+- **FF-9172:** keep card promo tag from shrinking next to truncated title ([033d0e7](https://github.com/cloud-ru-tech/snack-v2/commit/033d0e7831fa647ad0c1296e18c54531f36d26e6))
+
 ## 4.0.7 (2026-10-05)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined
