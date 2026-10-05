@@ -17,7 +17,11 @@ import styles from './styles.module.scss';
 
 type Component = 'accordionPrimary' | 'accordionSecondary' | 'accordionTertiary';
 
-const stopPropagation = (e: MouseEvent) => e.stopPropagation();
+const getStopPropagationHandler = (stopPropagation: boolean) => (e: MouseEvent) => {
+  if (stopPropagation) {
+    e.stopPropagation();
+  }
+};
 
 export type CollapseBlockProps = PropsWithChildren<
   WithSupportProps<{
@@ -49,6 +53,11 @@ export type CollapseBlockProps = PropsWithChildren<
     component: Component;
     /** Оставлять ли контент в DOM при сворачивании */
     keepMounted?: boolean;
+    /**
+     * Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока
+     * @default false
+     */
+    stopSlotsClickPropagation?: boolean;
   }>
 >;
 
@@ -74,6 +83,7 @@ export function CollapseBlock({
   keepMounted = false,
   component,
   showChevron = true,
+  stopSlotsClickPropagation = false,
   'data-test-id': dataTestId,
   ...rest
 }: CollapseBlockProps) {
@@ -138,7 +148,7 @@ export function CollapseBlock({
                 id={afterTitleId}
                 data-test-id={TEST_IDS.afterTitle}
                 className={styles.afterTitle}
-                onClick={stopPropagation}
+                onClick={getStopPropagationHandler(stopSlotsClickPropagation)}
               >
                 {afterTitle}
               </div>
@@ -146,7 +156,11 @@ export function CollapseBlock({
           </div>
           {subTitle && (
             /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-            <div className={styles.subTitle} data-test-id={TEST_IDS.subTitle} onClick={stopPropagation}>
+            <div
+              className={styles.subTitle}
+              data-test-id={TEST_IDS.subTitle}
+              onClick={getStopPropagationHandler(stopSlotsClickPropagation)}
+            >
               {subTitle}
             </div>
           )}

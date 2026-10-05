@@ -149,6 +149,12 @@
         "defaultValue": "true",
         "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
       },
+      "stopSlotsClickPropagation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -290,6 +296,12 @@
         "required": false,
         "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
       },
+      "stopSlotsClickPropagation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -421,6 +433,12 @@
         "required": false,
         "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
       },
+      "stopSlotsClickPropagation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока"
+      },
       "subTitle": {
         "type": "ReactNode",
         "required": false,
@@ -530,6 +548,12 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`)"
+      },
+      "stopSlotsClickPropagation": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока"
       },
       "subTitle": {
         "type": "ReactNode",

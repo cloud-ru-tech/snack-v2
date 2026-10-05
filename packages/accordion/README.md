@@ -315,6 +315,7 @@ export function NestedLevels() {
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | `false` | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | `true` | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
+| `stopSlotsClickPropagation` | `boolean` | `false` | Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | `simple` | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -364,6 +365,7 @@ export function AfterTitle() {
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
+| `stopSlotsClickPropagation` | `boolean` | `false` | Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -421,6 +423,7 @@ export function ChevronBefore() {
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
+| `stopSlotsClickPropagation` | `boolean` | `false` | Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Заголовок блока |
 | `view` | `"elevated"` \| `"outline"` \| `"simple"` | — | Визуальный вариант обложки (`simple`, `outline`, `elevated`) |
@@ -476,6 +479,7 @@ export function NestedLevels() {
 | `id` | `string` | — | Уникальный идентификатор блока в группе переключателей |
 | `keepMounted` | `boolean` | — | Оставлять ли контент в DOM при сворачивании |
 | `showChevron` | `boolean` | — | Показывать ли шеврон-раскрытия рядом с заголовком (по умолчанию `true`) |
+| `stopSlotsClickPropagation` | `boolean` | `false` | Клики в слотах afterTitle и subTitle не тригерять расскрытие/закрытие блока |
 | `subTitle` | `ReactNode` | — | Подзаголовок под строкой заголовка |
 | `title` | `string` | — | Заголовок блока |
 
