@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-10-05)
+
+### Features
+
+- **FF-9218:** add stopSlotsClickPropagation prop ([0284a62](https://github.com/cloud-ru-tech/snack-v2/commit/0284a62cd9bbc2193627f627e3d366cd84dcf989))
+
 ## 1.1.6 (2026-10-02)
 
 ### Bug Fixes
