@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.3 (2026-10-06)
+
+**Note:** Version bump only for package @ds/uikit-product-page-layout
+
 ## 1.7.2 (2026-10-05)
 
 ### Bug Fixes

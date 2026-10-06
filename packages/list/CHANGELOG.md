@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.2 (2026-10-06)
+
+### Bug Fixes
+
+- **FF-9095:** fieldSelect text selection ([083a3b9](https://github.com/cloud-ru-tech/snack-v2/commit/083a3b9e97c87430a0ab1f41365f1060a097cdb0))
+
 ## 2.3.1 (2026-10-05)
 
 ### Bug Fixes
