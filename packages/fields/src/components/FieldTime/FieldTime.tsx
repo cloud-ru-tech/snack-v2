@@ -167,6 +167,14 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
     [onChange, valueProp],
   );
 
+  const handlePickerChange = useCallback(
+    (next: TimeValue) => {
+      setInputValue(timeToMaskString(next, showSeconds));
+      emitChange(next);
+    },
+    [emitChange, showSeconds],
+  );
+
   const handleOpenChange = useCallback(
     (next: boolean) => {
       if (openProp === undefined) setOpenLocal(next);
@@ -384,7 +392,7 @@ export const FieldTime = forwardRef<HTMLInputElement, FieldTimeProps>(function F
         data-test-id={`${dataTestId}__picker`}
         size={size}
         value={value}
-        onChangeValue={emitChange}
+        onChangeValue={handlePickerChange}
         showSeconds={showSeconds}
         footerMode={footerMode}
         closeOnApply={closeOnApply}

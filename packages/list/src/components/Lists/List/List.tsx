@@ -5,19 +5,22 @@ import { ForwardedRef, forwardRef, KeyboardEvent, useCallback, useMemo, useRef }
 
 import { DEFAULT_SIZE } from '../../../constants';
 import { HiddenTabButton } from '../../../helperComponents';
+import { Item } from '../../Items';
 import { CollapseContext, FocusListContext, NewListContextProvider, SelectionProvider } from '../contexts';
 import { useListItemsModel, useNewKeyboardNavigation } from '../hooks';
 import { ListPrivate } from '../ListPrivate';
 import styles from '../styles.module.scss';
 import { ListImplProps, ListProps, ReorderableListProps } from '../types';
 
+const EMPTY_ITEMS: Item[] = [];
+
 const ListImpl = forwardRef(
   (
     {
-      items: itemsProp = [],
+      items: itemsProp = EMPTY_ITEMS,
       search,
-      pinBottom: pinBottomProp = [],
-      pinTop: pinTopProp = [],
+      pinBottom: pinBottomProp = EMPTY_ITEMS,
+      pinTop: pinTopProp = EMPTY_ITEMS,
       footerActiveElementsRefs,
       onKeyDown,
       tabIndex = 0,

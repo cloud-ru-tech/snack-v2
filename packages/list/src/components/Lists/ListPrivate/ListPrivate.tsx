@@ -17,7 +17,7 @@ import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrate
 import { Spinner } from '@ds/loader';
 import { usePortalContext } from '@ds/portal-context';
 import { Scroll } from '@ds/scroll';
-import { extractSupportProps, isBrowser, useLayoutEffect } from '@ds/utils';
+import { extractSupportProps, isBrowser, isNil, useLayoutEffect } from '@ds/utils';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import cn from 'classnames';
 import mergeRefs from 'merge-refs';
@@ -174,6 +174,7 @@ export const ListPrivate = forwardRef(
     const portalRoot = usePortalContext();
 
     const innerScrollRef = useRef<HTMLElement | null>(null);
+    const lastCenteredItemRef = useRef<{ id: ItemId; container: HTMLElement } | null>(null);
     // `@ds/scroll` (OverlayScrollbars) разрешает свой ref в viewport-элемент только после
     // инициализации инстанса. До этого `innerScrollRef.current` === null, и виртуализатор
     // не получает scroll-элемент → рендерит пустой контейнер. Флаг поднимается из
@@ -198,12 +199,12 @@ export const ListPrivate = forwardRef(
         selectedItem: undefined,
       };
 
-      if (!scrollToSelectedItem || !value) {
+      if (!scrollToSelectedItem || isNil(value)) {
         return result;
       }
 
       const selectedItem = isSelectionSingle ? flattenItems[value] : flattenItems[value[0]];
-      if (!selectedItem?.id) {
+      if (!selectedItem || isNil(selectedItem.id)) {
         return result;
       }
 
@@ -330,7 +331,8 @@ export const ListPrivate = forwardRef(
     // ведут эффекты выше через виртуализатор, поэтому здесь только `!virtualized`. Хелпер тот
     // же `centerItemInScrollContainer` — обычному листу отдельный виртуализатор не нужен.
     useEffect(() => {
-      if (virtualized || !scroll || !scrollToSelectedItem || !scrollElementReady) {
+      if (virtualized || !scroll || !scrollToSelectedItem || !scrollElementReady || !selectedItem) {
+        lastCenteredItemRef.current = null;
         return;
       }
 
@@ -340,7 +342,15 @@ export const ListPrivate = forwardRef(
         return;
       }
 
+      if (
+        lastCenteredItemRef.current?.id === selectedItem.originalId &&
+        lastCenteredItemRef.current.container === container
+      ) {
+        return;
+      }
+
       centerItemInScrollContainer(container, item);
+      lastCenteredItemRef.current = { id: selectedItem.originalId, container };
     }, [virtualized, scroll, scrollToSelectedItem, scrollElementReady, selectedItem]);
 
     const loadingJSX = useMemo(
