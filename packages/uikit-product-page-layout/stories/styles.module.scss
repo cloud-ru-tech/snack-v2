@@ -33,12 +33,18 @@
   background-color: base.$sn-theme-color-neutral-background;
 }
 
+// Ручка ресайза меню Storybook перекрывает hover-зону свёрнутого сайдбара; padding не сдвинет absolute-сайдбар.
+.sidebarGutter {
+  left: base.$sn-primitive-dimension-8;
+}
+
 // Device-фреймы для VisualMatrix: положенный (контекст для absolute-сайдбара) и клиппящий
 // контейнер фикс. размера. Ширина/высота — preview-литералы под «экран», токена нет.
 // desktop ≥ 1248px (контент 992 + сайдбар 256), чтобы страница влезала без переполнения.
 .deviceDesktop {
   position: relative;
 
+  contain: layout;
   overflow: hidden;
 
   box-sizing: border-box;
@@ -123,6 +129,7 @@
   // position: relative + overflow: hidden — контекст для absolute-сайдбара и клип off-canvas-слайда.
   position: relative;
 
+  contain: layout;
   overflow: hidden;
 
   box-sizing: border-box;

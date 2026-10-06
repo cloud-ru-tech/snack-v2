@@ -1,3 +1,4 @@
+import { isMobileLayout, LayoutType } from '@ds/adaptive';
 import { PageServices, PageServicesProps } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -9,6 +10,7 @@ import {
   SIDEBAR_HEADER_BACK,
   SIDEBAR_SERVICE_ITEMS,
 } from '../demoData';
+import { withSidebarGutter } from '../sidebarGutter';
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
@@ -61,8 +63,14 @@ type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],
-  render: ({ showActions, showSidebar, showSlotAfterTitle, ...args }) => (
-    <div className={styles.fullPage}>
+  render: ({ showActions, showSidebar, showSlotAfterTitle, ...args }, { globals }) => (
+    <div
+      className={
+        withSidebarGutter && !isMobileLayout(globals.layoutType as LayoutType)
+          ? `${styles.fullPage} ${styles.sidebarGutter}`
+          : styles.fullPage
+      }
+    >
       <PageServices
         {...args}
         actions={showActions ? args.actions : undefined}

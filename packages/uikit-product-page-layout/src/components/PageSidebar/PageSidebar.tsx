@@ -71,6 +71,8 @@ function PrivateSideBar({
     [open, setOpenState],
   );
 
+  const handleTogglerClick = useCallback(() => toggleOpen(), [toggleOpen]);
+
   const { filteredList, searchValue, searchCollapseState } = useSearchFilter(items);
   const list = useItemsContent(filteredList, onSelect);
   const footerList = useItemsContent(footerItems);
@@ -116,18 +118,16 @@ function PrivateSideBar({
               barHideStrategy='leave'
             />
           </div>
-          {open && (
-            <div className={styles.toggler}>
-              <Button
-                view={VIEW.Elevated}
-                appearance={APPEARANCE.Neutral}
-                icon={<VerticalMenuCloseSVG />}
-                className={styles.button}
-                data-test-id={TEST_IDS.sidebarToggle.collapse}
-                onClick={() => toggleOpen(false)}
-              />
-            </div>
-          )}
+          <div className={styles.toggler}>
+            <Button
+              view={VIEW.Elevated}
+              appearance={APPEARANCE.Neutral}
+              icon={open ? <VerticalMenuCloseSVG /> : <VerticalMenuOpenSVG />}
+              className={styles.button}
+              data-test-id={TEST_IDS.sidebarToggle.collapse}
+              onClick={handleTogglerClick}
+            />
+          </div>
         </div>
       </div>
     </div>

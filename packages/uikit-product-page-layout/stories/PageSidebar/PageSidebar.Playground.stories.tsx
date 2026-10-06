@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
 import { SIDEBAR_FOOTER_ITEMS, SIDEBAR_HEADER_TITLE, SIDEBAR_ITEMS } from '../demoData';
+import { withSidebarGutter } from '../sidebarGutter';
 import styles from '../styles.module.scss';
 import { TEST_IDS } from '../testIds';
 
@@ -37,7 +38,7 @@ type Story = StoryObj<typeof PageSidebar>;
 export const Playground: Story = {
   tags: ['dev', 'test'],
   render: args => (
-    <div className={styles.sidebarHost}>
+    <div className={withSidebarGutter ? `${styles.sidebarHost} ${styles.sidebarGutter}` : styles.sidebarHost}>
       <PageSidebar {...args} />
     </div>
   ),
