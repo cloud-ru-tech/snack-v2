@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.4 (2026-10-06)
+
+### Bug Fixes
+
+- **FF-9172:** keep PageSidebar toggle button on the hover panel and make collapsed sidebar reachable in stories ([78fa8ca](https://github.com/cloud-ru-tech/snack-v2/commit/78fa8cad8a6c07cf2c1a6e7fd2e16dc655f62abd))
+
 ## 1.7.3 (2026-10-06)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout
