@@ -19,6 +19,10 @@ const buildStoryOptionsBase = createBuildStoryOptions({
   testId: TEST_IDS.deleteModal,
 });
 
-export function buildStoryOptions(props?: Record<string, unknown>, story: string = DELETE_MODAL_STORIES.playground) {
-  return buildStoryOptionsBase(props ?? {}, story);
+export function buildStoryOptions(
+  props?: Record<string, unknown>,
+  story: string = DELETE_MODAL_STORIES.playground,
+  globals?: Record<string, unknown>,
+) {
+  return buildStoryOptionsBase(props ?? {}, story, globals);
 }

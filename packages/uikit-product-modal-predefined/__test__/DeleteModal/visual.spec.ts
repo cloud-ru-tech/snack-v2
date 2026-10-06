@@ -1,10 +1,14 @@
-import { MATCH_SNAPSHOT_DEFAULT_OPTS, SCREENSHOT_DEFAULT_OPTS } from '#playwright-tooling/constants/common';
+import {
+  MATCH_SNAPSHOT_DEFAULT_OPTS,
+  MOBILE_VIEWPORT,
+  SCREENSHOT_DEFAULT_OPTS,
+} from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { composeScreenshots } from '#playwright-tooling/utils';
+import { composeScreenshots, waitForSettledInViewport } from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../src/constants';
-import { buildStoryOptions, DELETE_MODAL_STORIES, VM_TRIGGER_TEST_ID } from './helpers';
+import { buildStoryOptions, DELETE_MODAL_STORIES, STORY_TEST_IDS, VM_TRIGGER_TEST_ID } from './helpers';
 
 test.describe('DeleteModal — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -31,5 +35,19 @@ test.describe('DeleteModal — visual regression', () => {
 
     const composite = await composeScreenshots(cells, { layout: 'col' });
     expect(composite).toMatchSnapshot('states.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
+  test('open-mobile (bottom sheet surface)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, DELETE_MODAL_STORIES.playground, { layoutType: 'mobile' }));
+    await waitForFonts();
+    await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+    const sheet = getByTestId(TEST_IDS.deleteModal);
+    await expect(sheet).toBeVisible();
+    await waitForSettledInViewport(sheet);
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
   });
 });
