@@ -86,6 +86,18 @@
 
 // Тот же desktop-фрейм, но с фикс. высотой и своим скроллом: без него прилипший футер
 // не прилипает и разделитель над ним не показывается.
+.deviceFormFixed {
+  position: relative;
+
+  box-sizing: border-box;
+  width: 1280px;
+  height: 640px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-primitive-dimension-8;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
 .deviceFormScroll {
   position: relative;
 

@@ -81,6 +81,18 @@ export const VisualMatrix: Story = {
             ],
           },
           {
+            variantLabel: 'short content',
+            cells: [
+              <div key='short' className={styles.deviceFormFixed}>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
+                  <PageForm title='Создание инстанса' footer={footer}>
+                    <FormFields />
+                  </PageForm>
+                </LayoutScope>
+              </div>,
+            ],
+          },
+          {
             variantLabel: 'plain form',
             cells: [
               <div key='reg' className={styles.deviceForm}>
