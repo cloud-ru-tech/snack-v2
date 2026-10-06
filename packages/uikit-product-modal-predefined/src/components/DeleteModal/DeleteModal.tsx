@@ -1,4 +1,4 @@
-import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
+import { APPEARANCE } from '@ds/button';
 import { ModalCustom, WIDTH } from '@ds/modal';
 import { QuestionTooltip } from '@ds/tooltip';
 import { useRef } from 'react';
@@ -88,27 +88,15 @@ export function DeleteModal({
           </div>
         }
       />
-      <ModalCustom.Footer>
-        <div className={styles.footer}>
-          <Button
-            size={SIZE.L}
-            view={VIEW.Outline}
-            appearance={APPEARANCE.Neutral}
-            label={t('deleteModal.cancel')}
-            onClick={handleClose}
-            data-test-id={TEST_IDS.cancelButton}
-          />
-          <Button
-            size={SIZE.L}
-            view={VIEW.Filled}
-            appearance={APPEARANCE.Critical}
-            label={t('deleteModal.approve')}
-            loading={deleting}
-            onClick={handleApproveClick}
-            data-test-id={TEST_IDS.approveButton}
-          />
-        </div>
-      </ModalCustom.Footer>
+      <ModalCustom.Footer
+        cancelButton={{ label: t('deleteModal.cancel'), onClick: handleClose }}
+        approveButton={{
+          label: t('deleteModal.approve'),
+          appearance: APPEARANCE.Critical,
+          loading: deleting,
+          onClick: handleApproveClick,
+        }}
+      />
     </ModalCustom>
   );
 }
