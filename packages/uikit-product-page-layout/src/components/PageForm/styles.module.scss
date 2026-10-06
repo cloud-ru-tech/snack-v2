@@ -17,6 +17,8 @@ $card-padding: block.$sn-block-anatomy-l-padding;
 
 // Подложку, радиус и box-sizing несёт сам Block; здесь только габариты карточки.
 .form {
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
   // 800px — фиксированная ширина карточки формы, токена нет.
   width: 800px;
