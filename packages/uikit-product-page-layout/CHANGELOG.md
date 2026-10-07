@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.5 (2026-10-07)
+
+### Bug Fixes
+
+- **FF-8797:** make PageForm card a flex column to keep the footer at the bottom ([8d4880e](https://github.com/cloud-ru-tech/snack-v2/commit/8d4880ec4b59afab50336fe4df0f1543673a8a8a))
+
 ## 1.7.4 (2026-10-06)
 
 ### Bug Fixes

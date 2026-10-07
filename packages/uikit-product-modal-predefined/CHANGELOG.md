@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.43 (2026-10-07)
+
+### Bug Fixes
+
+- **FF-8797:** render DeleteModal and RecallModal actions through ModalCustom footer slots ([4c3467e](https://github.com/cloud-ru-tech/snack-v2/commit/4c3467e63dbf8ddbecbd0a87ae29bc9fc5e9a3d4))
+
 ## 1.0.42 (2026-10-06)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined
