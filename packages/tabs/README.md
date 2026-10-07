@@ -43,10 +43,10 @@ import { Tabs } from '@ds/tabs'
 ### Анатомия
 
 #### Orientation
-`horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
+Проп `orientation` компонента `Tabs` задаёт ориентацию: `horizontal` — табы в строку (дефолт), `vertical` — колонкой (для боковых навигаций).
 
-#### Size
-`m` — дефолт, `l` — для крупных лейаутов и посадочных страниц.
+#### Variant
+`primary` — по умолчанию, `secondary` — для навигации внутри контента.
 
 ### Примеры использования
 
@@ -79,7 +79,12 @@ export function Uncontrolled() {
 | `className` | `string` | — | Дополнительный класс на корневой контейнер |
 | `defaultValue` | `string` | — | Выбранная вкладка по умолчанию |
 | `onChange` | `((id: T) => void)` | — | Колбек выбора вкладки |
+| `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация вкладок |
 | `value` | `string` | — | Текущая вкладка |
+
+##### Related types
+
+- `Orientation` = `"horizontal"` \| `"vertical"`
 
 ## Tab
 
@@ -94,8 +99,8 @@ export function Uncontrolled() {
 
 ### Анатомия
 
-#### Size
-Высота таба: `m` — дефолт, `l` — для крупных лейаутов. Наследуется от `TabBar`.
+#### Variant
+Вариант таба: `primary` — по умолчанию, `secondary` — для навигации внутри контента. Наследуется от `TabBar`.
 
 #### Marker position
 Положение активного маркера: `before` — перед содержимым, `after` — после. Наследуется от `TabBar`.
@@ -111,7 +116,7 @@ export function WithCounter() {
   return (
     <Tabs defaultValue='inbox'>
       <Tabs.TabBar>
-        <Tabs.Tab value='inbox' label='Входящие' counter={{ label: 12 }} />
+        <Tabs.Tab value='inbox' label='Входящие' counter={{ value: 12 }} />
         <Tabs.Tab value='archive' label='Архив' />
       </Tabs.TabBar>
     </Tabs>
@@ -152,42 +157,44 @@ export function Disabled() {
 
 ## TabBar
 
-Панель табов — задаёт размер, ориентацию, позицию маркера и слот справа (slotActionButton) для дополнительных действий.
+Панель табов — задаёт вариант, ориентацию, позицию маркера и слот справа (afterContent) для дополнительных действий.
 
 Панель переключателей табов. Задаёт:
 
-- `size` — `l` (верхнеуровневый) или `m` (внутри контента).
-- `orientation` — `horizontal` (по умолчанию) или `vertical`.
+- `variant` — `primary` (по умолчанию, верхнеуровневый) или `secondary` (внутри контента).
+- Ориентация задаётся через `Tabs.orientation`: `horizontal` (по умолчанию) или `vertical`.
 - `markerPosition` — позиция активного маркера (`before` / `after`).
-- `slotActionButton` — слот справа от табов для дополнительных действий.
+- `afterContent` — действие справа от горизонтального списка или снизу от вертикального. При отсутствии содержимого вся обёртка скрыта; разделитель проходит вдоль всей панели.
+
+При переполнении появляются кнопки прокрутки: слева/справа для горизонтальной панели и сверху/снизу для вертикальной. У достигнутого края кнопка скрывается. Для вертикальной прокрутки контейнеру `Tabs` нужна ограниченная высота, например родитель с `height: 240px`.
 
 ### Когда использовать
 
 - Внутри `Tabs` как единственный контейнер списка кнопок-табов.
-- Если нужно разместить дополнительные действия справа от табов (через слот `slotActionButton`).
+- Если нужно разместить дополнительные действия справа от табов (через слот `afterContent`).
 
 ### Анатомия
 
 #### Orientation
 `horizontal` — бар в строку, `vertical` — колонкой.
 
-#### Size
-`m` — дефолт, `l` — для крупных лейаутов.
+#### Variant
+`primary` — по умолчанию, `secondary` — для навигации внутри контента.
 
 #### Marker position
 Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.
 
 ### Примеры использования
 
-#### Size L — верхнеуровневый
+#### Primary — верхнеуровневый
 
 ```tsx
-import { SIZE, Tabs } from '@ds/tabs';
+import { Tabs, VARIANT } from '@ds/tabs';
 
-export function SizeL() {
+export function Primary() {
   return (
     <Tabs defaultValue='a'>
-      <Tabs.TabBar size={SIZE.L}>
+      <Tabs.TabBar variant={VARIANT.Primary}>
         <Tabs.Tab value='a' label='Первая' />
         <Tabs.Tab value='b' label='Вторая' />
       </Tabs.TabBar>
@@ -203,8 +210,8 @@ import { ORIENTATION, Tabs } from '@ds/tabs';
 
 export function Vertical() {
   return (
-    <Tabs defaultValue='a'>
-      <Tabs.TabBar orientation={ORIENTATION.Vertical}>
+    <Tabs defaultValue='a' orientation={ORIENTATION.Vertical}>
+      <Tabs.TabBar>
         <Tabs.Tab value='a' label='Профиль' />
         <Tabs.Tab value='b' label='Безопасность' />
       </Tabs.TabBar>
@@ -219,22 +226,17 @@ export function Vertical() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `afterContent` | `ReactNode` | — | Слот действия: контент после списка табов — справа при горизонтальной <br/> ориентации, снизу при вертикальной. Разделитель проходит вдоль всей панели. |
 | `children` | `TabProps` | — | Контент (элементы Tabs.Tab) |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
-| `disableDivider` | `boolean` | `false` | Скрыть разделитель под/рядом с панелью табов |
+| `divider` | `boolean` | `true` | Показывать разделитель под/рядом с панелью табов |
 | `markerPosition` | `"after"` \| `"before"` | `after` | Позиция маркера относительно таб-бара. <br/> Значения ориентационно-нейтральны, в Figma та же ось названа сторонами: <br/> `before` = Figma `top` (horizontal) / `left` (vertical), <br/> `after` = Figma `bottom` (horizontal) / `right` (vertical). |
-| `orientation` | `"horizontal"` \| `"vertical"` | `horizontal` | Ориентация |
-| `size` | `"l"` \| `"m"` | `l` | Размер панели табов: L — верхнеуровневый, M — на уровне контента |
-| `slotActionButton` | `ReactNode` | — | Слот действия: контент после списка табов — справа при горизонтальной <br/> ориентации, снизу при вертикальной. Разделитель под ним не продолжается. |
+| `variant` | `"primary"` \| `"secondary"` | `primary` | Вариант панели: primary — верхнеуровневый, secondary — на уровне контента |
 
 ##### Related types
 
 - `MarkerPosition` = `"after"` \| `"before"`
-
-- `Orientation` = `"horizontal"` \| `"vertical"`
-
-- `Size` = `"l"` \| `"m"`
 
 **TabProps**
 
@@ -247,6 +249,8 @@ export function Vertical() {
 | `label` | `string` | — | Заголовок вкладки |
 | `onClick` | `((event: MouseEvent<HTMLButtonElement>) => void) \| undefined` | — | Колбек клика по кнопке переключения |
 | `value` | `string` | — | Value вкладки |
+
+- `Variant` = `"primary"` \| `"secondary"`
 
 ## TabContent
 

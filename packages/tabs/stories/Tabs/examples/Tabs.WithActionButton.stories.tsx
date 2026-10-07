@@ -1,5 +1,5 @@
 import { APPEARANCE, Button, SIZE as BUTTON_SIZE, VIEW } from '@ds/button';
-import { ORIENTATION, Orientation, SIZE, Size, Tabs, TabsProps } from '@ds/tabs';
+import { ORIENTATION, Tabs, TabsProps, VARIANT, Variant } from '@ds/tabs';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -15,31 +15,29 @@ const TAB_ITEMS = [
 
 // Оси story поверх пропсов `Tabs`: `component: Tabs` требует, чтобы тип args был его надмножеством.
 type StoryProps = TabsProps & {
-  orientation: Orientation;
-  tabSize: Size;
+  tabVariant: Variant;
 };
 
-function WithActionButtonRender({ orientation, tabSize }: StoryProps) {
+function WithActionButtonRender({ orientation, tabVariant }: StoryProps) {
   return (
     <DemoPage>
       <DemoPanel width='wide'>
         <DemoTitle>WithActionButton</DemoTitle>
         <DemoHint>
-          Слот действия рядом со списком вкладок. В вертикальной раскладке правый край кнопки совпадает с линией списка
-          — слот тянется на его ширину.
+          Слот действия рядом со списком вкладок. В вертикальной раскладке обёртка занимает ширину панели с отступами
+          выбранного типа; разделитель проходит вдоль всей панели.
         </DemoHint>
         <DemoActions align='start'>
-          <Tabs defaultValue='overview'>
+          <Tabs defaultValue='overview' orientation={orientation}>
             <Tabs.TabBar
-              orientation={orientation}
-              size={tabSize}
+              variant={tabVariant}
               data-test-id={TEST_IDS.tabBar.root}
-              slotActionButton={
+              afterContent={
                 <Button
                   label='Создать'
                   appearance={APPEARANCE.Primary}
                   view={VIEW.Filled}
-                  size={BUTTON_SIZE.S}
+                  size={tabVariant === VARIANT.Secondary ? BUTTON_SIZE.M : BUTTON_SIZE.L}
                   data-test-id={TEST_IDS.actionButton}
                 />
               }
@@ -77,11 +75,11 @@ const meta: Meta<StoryProps> = {
   render: args => <WithActionButtonRender {...args} />,
   args: {
     orientation: ORIENTATION.Vertical,
-    tabSize: SIZE.M,
+    tabVariant: VARIANT.Secondary,
   },
   argTypes: {
-    orientation: { name: '[Stories]: orientation', control: 'radio', options: Object.values(ORIENTATION) },
-    tabSize: { name: '[Stories]: size', control: 'radio', options: Object.values(SIZE) },
+    orientation: { control: 'radio', options: Object.values(ORIENTATION) },
+    tabVariant: { name: '[Stories]: variant', control: 'radio', options: Object.values(VARIANT) },
   },
 };
 

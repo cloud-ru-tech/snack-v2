@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react';
 
+import { ORIENTATION } from './constants';
 import { TabBarContextValue, TabsContextValue } from './types';
 
 export const TabsContext = createContext<TabsContextValue>({
+  orientation: ORIENTATION.Horizontal,
   setSelectedTab: function () {},
 });
 

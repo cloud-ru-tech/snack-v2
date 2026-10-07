@@ -37,6 +37,7 @@
     "@ds/counter": "workspace:^",
     "@ds/divider": "workspace:^",
     "@ds/icons": "workspace:^",
+    "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:",

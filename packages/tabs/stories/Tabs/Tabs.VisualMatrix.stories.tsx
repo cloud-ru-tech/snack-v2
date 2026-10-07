@@ -1,5 +1,5 @@
 import { APPEARANCE, Button } from '@ds/button';
-import { ORIENTATION, Orientation, SIZE, Tabs } from '@ds/tabs';
+import { MARKER_POSITION, ORIENTATION, Orientation, Tabs, VARIANT } from '@ds/tabs';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -21,11 +21,11 @@ const items = [
   { value: 'c', label: 'Gamma' },
 ];
 
-function HorizontalBar({ size }: { size: 'l' | 'm' }) {
+function HorizontalBar({ variant }: { variant: 'primary' | 'secondary' }) {
   return (
     <div className={styles.wide}>
       <Tabs defaultValue='a'>
-        <Tabs.TabBar size={size}>
+        <Tabs.TabBar variant={variant}>
           {items.map(i => (
             <Tabs.Tab key={i.value} {...i} />
           ))}
@@ -35,11 +35,11 @@ function HorizontalBar({ size }: { size: 'l' | 'm' }) {
   );
 }
 
-function VerticalBar({ size }: { size: 'l' | 'm' }) {
+function VerticalBar({ variant }: { variant: 'primary' | 'secondary' }) {
   return (
     <div className={styles.wide}>
-      <Tabs defaultValue='a'>
-        <Tabs.TabBar size={size} orientation={ORIENTATION.Vertical}>
+      <Tabs defaultValue='a' orientation={ORIENTATION.Vertical}>
+        <Tabs.TabBar variant={variant}>
           {items.map(i => (
             <Tabs.Tab key={i.value} {...i} />
           ))}
@@ -49,14 +49,15 @@ function VerticalBar({ size }: { size: 'l' | 'm' }) {
   );
 }
 
-function BarWithAction({ size, orientation }: { size: 'l' | 'm'; orientation: Orientation }) {
+function BarWithAction({ variant, orientation }: { variant: 'primary' | 'secondary'; orientation: Orientation }) {
   return (
     <div className={styles.wide}>
-      <Tabs defaultValue='a'>
+      <Tabs defaultValue='a' orientation={orientation}>
         <Tabs.TabBar
-          size={size}
-          orientation={orientation}
-          slotActionButton={<Button size={size} label='Создать' appearance={APPEARANCE.Primary} />}
+          variant={variant}
+          afterContent={
+            <Button size={variant === VARIANT.Primary ? 'l' : 'm'} label='Создать' appearance={APPEARANCE.Primary} />
+          }
         >
           {items.map(i => (
             <Tabs.Tab key={i.value} {...i} />
@@ -73,26 +74,62 @@ export const VisualMatrix: Story = {
   render: () => (
     <div className={styles.matrix}>
       <StoryTable
-        sectionTitle='Size × Orientation'
-        firstColumnHeader='Size'
+        sectionTitle='Variant × Orientation'
+        firstColumnHeader='Variant'
         columnHeaders={['horizontal', 'vertical']}
-        rows={([SIZE.L, SIZE.M] as const).map(size => ({
-          variantLabel: size,
-          cells: [<HorizontalBar key={`h-${size}`} size={size} />, <VerticalBar key={`v-${size}`} size={size} />],
+        rows={([VARIANT.Primary, VARIANT.Secondary] as const).map(variant => ({
+          variantLabel: variant,
+          cells: [
+            <HorizontalBar key={`h-${variant}`} variant={variant} />,
+            <VerticalBar key={`v-${variant}`} variant={variant} />,
+          ],
         }))}
       />
 
       <StoryTable
-        sectionTitle='Action slot (slotActionButton) × Orientation'
-        firstColumnHeader='Size'
+        sectionTitle='Action slot (afterContent) × Orientation'
+        firstColumnHeader='Variant'
         columnHeaders={['horizontal', 'vertical']}
-        rows={([SIZE.L, SIZE.M] as const).map(size => ({
-          variantLabel: size,
+        rows={([VARIANT.Primary, VARIANT.Secondary] as const).map(variant => ({
+          variantLabel: variant,
           cells: [
-            <BarWithAction key={`ha-${size}`} size={size} orientation={ORIENTATION.Horizontal} />,
-            <BarWithAction key={`va-${size}`} size={size} orientation={ORIENTATION.Vertical} />,
+            <BarWithAction key={`ha-${variant}`} variant={variant} orientation={ORIENTATION.Horizontal} />,
+            <BarWithAction key={`va-${variant}`} variant={variant} orientation={ORIENTATION.Vertical} />,
           ],
         }))}
+      />
+
+      <StoryTable
+        sectionTitle='Variant × Marker position × Divider × Action'
+        firstColumnHeader='Variant'
+        columnHeaders={['horizontal', 'vertical']}
+        rows={Object.values(VARIANT).flatMap(variant =>
+          Object.values(MARKER_POSITION).flatMap(markerPosition =>
+            [true, false].flatMap(divider =>
+              [false, true].map(showAction => ({
+                variantLabel: `${variant} / ${markerPosition} / divider ${divider} / action ${showAction}`,
+                cells: Object.values(ORIENTATION).map(orientation => (
+                  <Tabs key={orientation} defaultValue='a' orientation={orientation}>
+                    <Tabs.TabBar
+                      variant={variant}
+                      markerPosition={markerPosition}
+                      divider={divider}
+                      afterContent={
+                        showAction ? (
+                          <Button size={variant === VARIANT.Primary ? 'l' : 'm'} label='Создать' />
+                        ) : undefined
+                      }
+                    >
+                      {items.map(item => (
+                        <Tabs.Tab key={item.value} {...item} counter={{ value: 12 }} />
+                      ))}
+                    </Tabs.TabBar>
+                  </Tabs>
+                )),
+              })),
+            ),
+          ),
+        )}
       />
 
       <StoryTable
@@ -106,7 +143,7 @@ export const VisualMatrix: Story = {
               <div key='counter' className={styles.wide}>
                 <Tabs defaultValue='a'>
                   <Tabs.TabBar>
-                    <Tabs.Tab value='a' label='Входящие' counter={{ label: 12 }} />
+                    <Tabs.Tab value='a' label='Входящие' counter={{ value: 12 }} />
                     <Tabs.Tab value='b' label='Архив' />
                   </Tabs.TabBar>
                 </Tabs>

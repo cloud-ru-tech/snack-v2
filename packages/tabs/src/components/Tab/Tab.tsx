@@ -1,12 +1,13 @@
 import { Counter, CounterProps } from '@ds/counter';
+import { TruncateString } from '@ds/truncate-string';
 import { Typography, TypographyProps } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { FocusEvent, KeyboardEvent, MouseEvent, useCallback, useEffect, useRef } from 'react';
 
-import { SIZE } from '../../constants';
+import { ORIENTATION, VARIANT } from '../../constants';
 import { useTabBarContext, useTabsContext } from '../../context';
-import { Size } from '../../types';
+import { Variant } from '../../types';
 import { getTabContentId } from '../../utils';
 import styles from './styles.module.scss';
 
@@ -22,7 +23,7 @@ export type TabProps = WithSupportProps<{
   /** Счетчик, отображающийся внутри кнопки переключения */
   counter?: {
     /** Значение счетчика */
-    label: number;
+    value: number;
     /** Внешний вид */
     appearance?: CounterProps['appearance'];
     /** Роль, в которой применяется `appearance` счётчика */
@@ -32,11 +33,11 @@ export type TabProps = WithSupportProps<{
   onClick?(event: MouseEvent<HTMLButtonElement>): void;
 }>;
 
-const MAP_SIZE_TO_PROPS: Record<
-  Size,
+const MAP_VARIANT_TO_PROPS: Record<
+  Variant,
   { typographyProps: Pick<TypographyProps, 'variant' | 'size'>; counterProps: Pick<CounterProps, 'size'> }
 > = {
-  [SIZE.L]: {
+  [VARIANT.Primary]: {
     typographyProps: {
       variant: 'title',
       size: 'm',
@@ -45,7 +46,7 @@ const MAP_SIZE_TO_PROPS: Record<
       size: 's',
     },
   },
-  [SIZE.M]: {
+  [VARIANT.Secondary]: {
     typographyProps: {
       variant: 'title',
       size: 's',
@@ -58,7 +59,7 @@ const MAP_SIZE_TO_PROPS: Record<
 
 export function Tab({ label, value, disabled = false, className, onClick, counter, ...otherProps }: TabProps) {
   const ref = useRef<HTMLButtonElement>(null);
-  const { onSelect, size, orientation, focusedTab, onFocus } = useTabBarContext();
+  const { onSelect, variant, orientation, focusedTab, onFocus } = useTabBarContext();
   const { selectedTab, setSelectedTab } = useTabsContext();
   const selected = value === selectedTab;
 
@@ -107,11 +108,11 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
     [onFocus, value],
   );
 
-  if (!size) {
+  if (!variant) {
     return null;
   }
 
-  const { typographyProps, counterProps } = MAP_SIZE_TO_PROPS[size];
+  const { typographyProps, counterProps } = MAP_VARIANT_TO_PROPS[variant];
 
   return (
     <button
@@ -127,19 +128,20 @@ export function Tab({ label, value, disabled = false, className, onClick, counte
       aria-controls={getTabContentId(value)}
       aria-selected={selected}
       data-selected={selected || undefined}
-      data-size={size}
+      data-variant={variant}
       data-orientation={orientation}
       onClick={handleClick}
       onFocus={onFocusHandler}
       onKeyDown={clickByEnterOrSpaceKey}
     >
       <Typography className={styles.container} as='div' {...typographyProps}>
-        {label}
+        {orientation === ORIENTATION.Vertical ? <TruncateString text={label} className={styles.label} /> : label}
         {counter && (
           <Counter
+            className={styles.counter}
             appearance={counter.appearance}
             roleAppearance={counter.roleAppearance}
-            value={counter.label}
+            value={counter.value}
             data-test-id={`tabs__tab-counter-${value}`}
             {...counterProps}
           />

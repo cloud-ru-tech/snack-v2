@@ -14,9 +14,9 @@ import {
 } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
-import { MARKER_POSITION, ORIENTATION, SIZE } from '../../constants';
+import { MARKER_POSITION, ORIENTATION, VARIANT } from '../../constants';
 import { TabBarContext, useTabsContext } from '../../context';
-import { MarkerPosition, Orientation, Size } from '../../types';
+import { MarkerPosition, Orientation, Variant } from '../../types';
 import { ScrollButton } from '../ScrollButton';
 import { TabProps } from '../Tab';
 import { useFocusControl, useScrollContainer } from './hooks';
@@ -32,11 +32,9 @@ export type TabBarProps = WithSupportProps<{
   children: ReactElement<TabProps>[];
   /**
    * Слот действия: контент после списка табов — справа при горизонтальной
-   * ориентации, снизу при вертикальной. Разделитель под ним не продолжается.
+   * ориентации, снизу при вертикальной. Разделитель проходит вдоль всей панели.
    */
-  slotActionButton?: ReactNode;
-  /** Ориентация */
-  orientation?: Orientation;
+  afterContent?: ReactNode;
   /**
    * Позиция маркера относительно таб-бара.
    *
@@ -45,10 +43,10 @@ export type TabBarProps = WithSupportProps<{
    * `after`  = Figma `bottom` (horizontal) / `right` (vertical).
    */
   markerPosition?: MarkerPosition;
-  /** Размер панели табов: L — верхнеуровневый, M — на уровне контента */
-  size?: Size;
-  /** Скрыть разделитель под/рядом с панелью табов */
-  disableDivider?: boolean;
+  /** Вариант панели: primary — верхнеуровневый, secondary — на уровне контента */
+  variant?: Variant;
+  /** Показывать разделитель под/рядом с панелью табов */
+  divider?: boolean;
   /** CSS-класс */
   className?: string;
 }>;
@@ -63,16 +61,19 @@ type MarkerScrollPosition = {
 export function TabBar({
   children,
   className,
-  size = SIZE.L,
-  orientation = ORIENTATION.Horizontal,
+  variant = VARIANT.Primary,
   markerPosition = MARKER_POSITION.After,
-  slotActionButton,
-  disableDivider = false,
+  afterContent,
+  divider = true,
   ...otherProps
 }: TabBarProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const { selectedTab, setSelectedTab } = useTabsContext();
-  const { hasOverflow, scrollLeft, scrollRight, scrollTop, scrollBottom } = useScrollContainer(scrollContainerRef);
+  const tabsRowRef = useRef<HTMLDivElement>(null);
+  const { selectedTab, setSelectedTab, orientation } = useTabsContext();
+  const { hasOverflow, scrollLeft, scrollRight, scrollTop, scrollBottom } = useScrollContainer({
+    container: scrollContainerRef,
+    tabsRow: tabsRowRef,
+  });
   const selectedRef = useRef<HTMLButtonElement | null>(null);
   const [markerScrollPosition, setMarkerScrollPosition] = useState<MarkerScrollPosition>({});
   const [focusedTab, setFocusedTab] = useState<string | undefined>();
@@ -124,7 +125,7 @@ export function TabBar({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [children, size, updateMarkPosition]);
+  }, [children, variant, updateMarkPosition]);
 
   const scrollContainerToElement = useCallback(
     (element: HTMLElement) => {
@@ -193,17 +194,15 @@ export function TabBar({
       className={cn(styles.tabBar, className)}
       role='tablist'
       data-orientation={orientation}
-      data-size={size}
+      data-variant={variant}
       {...extractSupportProps(otherProps)}
     >
-      {/* Область списка: слот табов, кнопки прокрутки и линия. Слот действия (`slotActionButton`)
-          лежит снаружи — по макету линия под ним не продолжается. */}
+      {divider && (
+        <div className={styles.divider} data-position={markerPosition}>
+          <Divider variant='regular' orientation={orientation} />
+        </div>
+      )}
       <div className={styles.tabListWrapper} data-orientation={orientation}>
-        {!disableDivider && (
-          <div className={styles.divider} data-position={markerPosition}>
-            <Divider variant='regular' orientation={orientation} />
-          </div>
-        )}
         <div className={styles.tabBarScrollZone} data-orientation={orientation}>
           <div className={styles.tabBarMain} data-testid='tabs__bar-wrap' data-orientation={orientation}>
             <ScrollContainer
@@ -212,18 +211,20 @@ export function TabBar({
             >
               <div
                 className={styles.tabsRow}
-                data-size={size}
+                data-variant={variant}
                 data-orientation={orientation}
                 onKeyDown={handleKeyDown}
                 role='presentation'
+                ref={tabsRowRef}
               >
                 <TabBarContext.Provider
                   value={{
                     onSelect: onSelectHandler,
-                    size,
+                    variant,
                     orientation,
                     focusedTab,
                     onFocus: onFocusHandler,
+                    markerPosition,
                   }}
                 >
                   {children}
@@ -240,28 +241,28 @@ export function TabBar({
           </div>
 
           {orientation === ORIENTATION.Horizontal && hasOverflow.left && (
-            <ScrollButton direction='left' onClick={scrollLeft} orientation={orientation} size={size} />
+            <ScrollButton direction='left' onClick={scrollLeft} orientation={orientation} variant={variant} />
           )}
           {orientation === ORIENTATION.Horizontal && hasOverflow.right && (
-            <ScrollButton direction='right' onClick={scrollRight} orientation={orientation} size={size} />
+            <ScrollButton direction='right' onClick={scrollRight} orientation={orientation} variant={variant} />
           )}
           {orientation === ORIENTATION.Vertical && hasOverflow.top && (
-            <ScrollButton direction='top' onClick={scrollTop} orientation={orientation} size={size} />
+            <ScrollButton direction='top' onClick={scrollTop} orientation={orientation} variant={variant} />
           )}
           {orientation === ORIENTATION.Vertical && hasOverflow.bottom && (
-            <ScrollButton direction='bottom' onClick={scrollBottom} orientation={orientation} size={size} />
+            <ScrollButton direction='bottom' onClick={scrollBottom} orientation={orientation} variant={variant} />
           )}
         </div>
       </div>
 
-      {slotActionButton && (
+      {afterContent && (
         <div
           data-test-id='tabs__bar__after'
           data-orientation={orientation}
-          data-size={size}
-          className={styles.tabBarAfter}
+          data-variant={variant}
+          className={styles.actionWrapper}
         >
-          {slotActionButton}
+          {afterContent}
         </div>
       )}
     </div>

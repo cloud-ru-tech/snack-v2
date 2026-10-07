@@ -2205,6 +2205,9 @@ importers:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography

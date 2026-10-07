@@ -2,7 +2,7 @@
 @use '@ds/figma-variables/build/scss/components/tabs.module' as tabs;
 
 $orientations: 'vertical', 'horizontal';
-$sizes: 'l', 'm';
+$variant: 'primary', 'secondary';
 
 .tabBar {
   position: relative;
@@ -12,6 +12,8 @@ $sizes: 'l', 'm';
   &[data-orientation='vertical'] {
     flex-direction: column;
     align-items: stretch;
+
+    min-width: 0;
     height: 100%;
     min-height: 0;
   }
@@ -21,20 +23,18 @@ $sizes: 'l', 'm';
     align-items: center;
   }
 
-  // Зазор между областью списка и слотом действия (`slotActionButton`)
-  @each $size in $sizes {
-    &[data-size='#{$size}'][data-orientation='horizontal'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', $size, 'tabsHorizontal', 'actionSlot', 'gap');
+  // Зазор между областью списка и слотом действия (`afterContent`)
+  @each $currentVariant in $variant {
+    &[data-variant='#{$currentVariant}'][data-orientation='horizontal'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', $currentVariant, 'tabsHorizontal', 'gap');
     }
 
-    &[data-size='#{$size}'][data-orientation='vertical'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', $size, 'tabsVertical', 'actionSlot', 'gap');
+    &[data-variant='#{$currentVariant}'][data-orientation='vertical'] {
+      gap: base.simple-var(tabs.$tabs, 'anatomy', $currentVariant, 'tabsVertical', 'gap');
     }
   }
 }
 
-// Область списка: слот табов, кнопки прокрутки и линия. Линия под слотом действия
-// не продолжается, поэтому её носитель — эта обёртка, а не вся панель.
 .tabListWrapper {
   position: relative;
 
@@ -133,30 +133,31 @@ $sizes: 'l', 'm';
 
   white-space: nowrap;
 
-  &[data-size='l'] {
+  &[data-variant='primary'] {
     &[data-orientation='horizontal'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'gap');
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'primary', 'tabsHorizontal', 'tabListWrapper', 'slot', 'gap');
     }
 
     &[data-orientation='vertical'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'gap');
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'primary', 'tabsVertical', 'tabListWrapper', 'slot', 'gap');
     }
   }
 
-  &[data-size='m'] {
+  &[data-variant='secondary'] {
     &[data-orientation='horizontal'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'gap');
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'secondary', 'tabsHorizontal', 'tabListWrapper', 'slot', 'gap');
     }
 
     &[data-orientation='vertical'] {
-      gap: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'gap');
+      gap: base.simple-var(tabs.$tabs, 'anatomy', 'secondary', 'tabsVertical', 'tabListWrapper', 'slot', 'gap');
     }
   }
 
   &[data-orientation='vertical'] {
     flex-direction: column;
     // Ряд тянется на ширину списка: строки табов занимают её целиком, как в макете.
-    width: auto;
+    width: 100%;
+    min-width: 0;
     min-height: min-content;
   }
 
@@ -176,14 +177,30 @@ $sizes: 'l', 'm';
 
   &[data-orientation='horizontal'] {
     bottom: 0;
-    height: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'selected', 'height');
-    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsHorizontal', 'selected', 'border-radius');
+    height: base.simple-var(tabs.$tabs, 'anatomy', 'primary', 'tabsHorizontal', 'tabContainer', 'marker', 'height');
+    border-radius: base.simple-var(
+      tabs.$tabs,
+      'anatomy',
+      'primary',
+      'tabsHorizontal',
+      'tabContainer',
+      'marker',
+      'border-radius'
+    );
   }
 
   &[data-orientation='vertical'] {
     right: 0;
-    width: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'selected', 'height');
-    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'l', 'tabsVertical', 'selected', 'border-radius');
+    width: base.simple-var(tabs.$tabs, 'anatomy', 'primary', 'tabsVertical', 'tabContainer', 'marker', 'height');
+    border-radius: base.simple-var(
+      tabs.$tabs,
+      'anatomy',
+      'primary',
+      'tabsVertical',
+      'tabContainer',
+      'marker',
+      'border-radius'
+    );
   }
 
   &[data-position='before'] {
@@ -197,15 +214,31 @@ $sizes: 'l', 'm';
   }
 }
 
-.tabsRow[data-size='m'] .marker {
+.tabsRow[data-variant='secondary'] .marker {
   &[data-orientation='horizontal'] {
-    height: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'selected', 'height');
-    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsHorizontal', 'selected', 'border-radius');
+    height: base.simple-var(tabs.$tabs, 'anatomy', 'secondary', 'tabsHorizontal', 'tabContainer', 'marker', 'height');
+    border-radius: base.simple-var(
+      tabs.$tabs,
+      'anatomy',
+      'secondary',
+      'tabsHorizontal',
+      'tabContainer',
+      'marker',
+      'border-radius'
+    );
   }
 
   &[data-orientation='vertical'] {
-    width: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'selected', 'height');
-    border-radius: base.simple-var(tabs.$tabs, 'anatomy', 'size', 'm', 'tabsVertical', 'selected', 'border-radius');
+    width: base.simple-var(tabs.$tabs, 'anatomy', 'secondary', 'tabsVertical', 'tabContainer', 'marker', 'height');
+    border-radius: base.simple-var(
+      tabs.$tabs,
+      'anatomy',
+      'secondary',
+      'tabsVertical',
+      'tabContainer',
+      'marker',
+      'border-radius'
+    );
   }
 }
 
@@ -231,11 +264,17 @@ $sizes: 'l', 'm';
   height: 100%;
 }
 
-.tabBarAfter {
+.actionWrapper {
+  flex-shrink: 0;
+  box-sizing: border-box;
+
   &[data-orientation='vertical'] {
-    &[data-size='l'],
-    &[data-size='m'] {
-      min-height: auto;
+    width: 100%;
+
+    @each $currentVariant in $variant {
+      &[data-variant='#{$currentVariant}'] {
+        @include base.composite-var(tabs.$tabs, 'anatomy', $currentVariant, 'tabsVertical', 'actionWrapper');
+      }
     }
   }
 }

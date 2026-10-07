@@ -2,7 +2,7 @@ import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronLeftSVG, ChevronRightSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { ReactElement } from 'react';
 
-import { Direction, Orientation, Size } from '../../types';
+import { Direction, Orientation, Variant } from '../../types';
 import styles from './styles.module.scss';
 
 const MAP_DIRECTION_TO_ICON: Record<Direction, ReactElement> = {
@@ -13,18 +13,18 @@ const MAP_DIRECTION_TO_ICON: Record<Direction, ReactElement> = {
 };
 
 export type ScrollButtonProps = {
-  size: Size;
+  variant: Variant;
   direction: Direction;
   orientation: Orientation;
   onClick(): void;
 };
 
-export function ScrollButton({ size, onClick, direction, orientation }: ScrollButtonProps) {
+export function ScrollButton({ variant, onClick, direction, orientation }: ScrollButtonProps) {
   return (
     <div
       className={styles.scrollButton}
       data-direction={direction}
-      data-size={size}
+      data-variant={variant}
       data-orientation={orientation}
       data-test-id={`tabs__scroll-button-${direction}`}
     >

@@ -31,15 +31,15 @@
           "Orientation"
         ]
       },
-      "size": {
+      "variant": {
         "type": "enum",
         "required": true,
         "values": [
-          "l",
-          "m"
+          "primary",
+          "secondary"
         ],
         "typeRefs": [
-          "Size"
+          "Variant"
         ]
       }
     },
@@ -62,11 +62,11 @@
         ],
         "own": true
       },
-      "Size": {
+      "Variant": {
         "kind": "union",
         "values": [
-          "l",
-          "m"
+          "primary",
+          "secondary"
         ],
         "own": true
       }
@@ -82,7 +82,7 @@
         "description": "CSS-класс"
       },
       "counter": {
-        "type": "{ label: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
+        "type": "{ value: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
         "required": false,
         "description": "Счетчик, отображающийся внутри кнопки переключения",
         "typeRefs": [
@@ -146,6 +146,11 @@
     "displayName": "TabBar",
     "propsTypeName": "TabBarProps",
     "props": {
+      "afterContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель проходит вдоль всей панели."
+      },
       "children": {
         "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
         "required": true,
@@ -163,11 +168,11 @@
         "type": "string",
         "required": false
       },
-      "disableDivider": {
+      "divider": {
         "type": "boolean",
         "required": false,
-        "defaultValue": "false",
-        "description": "Скрыть разделитель под/рядом с панелью табов"
+        "defaultValue": "true",
+        "description": "Показывать разделитель под/рядом с панелью табов"
       },
       "markerPosition": {
         "type": "enum",
@@ -182,36 +187,18 @@
           "MarkerPosition"
         ]
       },
-      "orientation": {
+      "variant": {
         "type": "enum",
         "required": false,
         "values": [
-          "horizontal",
-          "vertical"
+          "primary",
+          "secondary"
         ],
-        "defaultValue": "horizontal",
-        "description": "Ориентация",
+        "defaultValue": "primary",
+        "description": "Вариант панели: primary — верхнеуровневый, secondary — на уровне контента",
         "typeRefs": [
-          "Orientation"
+          "Variant"
         ]
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "l",
-          "m"
-        ],
-        "defaultValue": "l",
-        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента",
-        "typeRefs": [
-          "Size"
-        ]
-      },
-      "slotActionButton": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель под ним не продолжается."
       }
     },
     "relatedTypes": {
@@ -238,14 +225,6 @@
         ],
         "own": true
       },
-      "Orientation": {
-        "kind": "union",
-        "values": [
-          "horizontal",
-          "vertical"
-        ],
-        "own": true
-      },
       "RoleAppearance": {
         "kind": "union",
         "values": [
@@ -253,14 +232,6 @@
           "decor"
         ],
         "own": false
-      },
-      "Size": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m"
-        ],
-        "own": true
       },
       "TabProps": {
         "kind": "interface",
@@ -271,7 +242,7 @@
             "description": "CSS-класс"
           },
           "counter": {
-            "type": "{ label: number; appearance?: CounterProps[\"appearance\"]; roleAppearance?: CounterProps[\"roleAppearance\"]; } | undefined",
+            "type": "{ value: number; appearance?: CounterProps[\"appearance\"]; roleAppearance?: CounterProps[\"roleAppearance\"]; } | undefined",
             "required": false,
             "description": "Счетчик, отображающийся внутри кнопки переключения",
             "typeRefs": [
@@ -304,6 +275,14 @@
             "description": "Value вкладки"
           }
         },
+        "own": true
+      },
+      "Variant": {
+        "kind": "union",
+        "values": [
+          "primary",
+          "secondary"
+        ],
         "own": true
       }
     }
@@ -355,13 +334,35 @@
         "required": false,
         "description": "Колбек выбора вкладки"
       },
+      "orientation": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal",
+        "description": "Ориентация вкладок",
+        "typeRefs": [
+          "Orientation"
+        ]
+      },
       "value": {
         "type": "string",
         "required": false,
         "description": "Текущая вкладка"
       }
     },
-    "relatedTypes": {}
+    "relatedTypes": {
+      "Orientation": {
+        "kind": "union",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "own": true
+      }
+    }
   },
   "Tabs.Tab": {
     "displayName": "Tabs.Tab",
@@ -373,7 +374,7 @@
         "description": "CSS-класс"
       },
       "counter": {
-        "type": "{ label: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
+        "type": "{ value: number; appearance?: Appearance; roleAppearance?: RoleAppearance; } | undefined",
         "required": false,
         "description": "Счетчик, отображающийся внутри кнопки переключения"
       },
@@ -408,6 +409,11 @@
     "displayName": "Tabs.TabBar",
     "propsTypeName": null,
     "props": {
+      "afterContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель проходит вдоль всей панели."
+      },
       "children": {
         "type": "ReactElement<TabProps, string | JSXElementConstructor<any>>[]",
         "required": true,
@@ -422,10 +428,10 @@
         "type": "string",
         "required": false
       },
-      "disableDivider": {
+      "divider": {
         "type": "boolean",
         "required": false,
-        "description": "Скрыть разделитель под/рядом с панелью табов"
+        "description": "Показывать разделитель под/рядом с панелью табов"
       },
       "markerPosition": {
         "type": "enum",
@@ -436,28 +442,14 @@
         ],
         "description": "Позиция маркера относительно таб-бара.\n\nЗначения ориентационно-нейтральны, в Figma та же ось названа сторонами:\n`before` = Figma `top` (horizontal) / `left` (vertical),\n`after`  = Figma `bottom` (horizontal) / `right` (vertical)."
       },
-      "orientation": {
+      "variant": {
         "type": "enum",
         "required": false,
         "values": [
-          "horizontal",
-          "vertical"
+          "primary",
+          "secondary"
         ],
-        "description": "Ориентация"
-      },
-      "size": {
-        "type": "enum",
-        "required": false,
-        "values": [
-          "l",
-          "m"
-        ],
-        "description": "Размер панели табов: L — верхнеуровневый, M — на уровне контента"
-      },
-      "slotActionButton": {
-        "type": "ReactNode",
-        "required": false,
-        "description": "Слот действия: контент после списка табов — справа при горизонтальной\nориентации, снизу при вертикальной. Разделитель под ним не продолжается."
+        "description": "Вариант панели: primary — верхнеуровневый, secondary — на уровне контента"
       }
     },
     "relatedTypes": {}

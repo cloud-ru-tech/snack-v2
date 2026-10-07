@@ -8,13 +8,11 @@
   justify-content: center;
 
   // Паддинг только с той стороны, которой кнопка смотрит наружу, — как в макете.
-  @each $size in ('m', 'l') {
-    $padding: base.simple-var(tabs.$tabs, 'anatomy', 'size', $size, 'control', 'forward', 'padding');
-
-    &[data-size='#{$size}'] {
-      @each $direction, $side in ('left': 'left', 'right': 'right', 'top': 'top', 'bottom': 'bottom') {
+  @each $variant in ('secondary', 'primary') {
+    &[data-variant='#{$variant}'] {
+      @each $direction, $control in ('left': 'back', 'right': 'forward', 'top': 'back', 'bottom': 'forward') {
         &[data-direction='#{$direction}'] {
-          padding-#{$side}: $padding;
+          padding-#{$direction}: base.simple-var(tabs.$tabs, 'anatomy', $variant, 'control', $control, 'padding');
         }
       }
     }

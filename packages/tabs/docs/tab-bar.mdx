@@ -1,12 +1,12 @@
 ---
 title: TabBar
 package: '@ds/tabs'
-description: Панель табов — задаёт размер, ориентацию, позицию маркера и слот справа (slotActionButton) для дополнительных действий.
+description: Панель табов — задаёт вариант, ориентацию, позицию маркера и слот справа (afterContent) для дополнительных действий.
 order: 3
 ---
 
-import { SizeL } from '../demos/examples/SizeL'
-import SizeLSrc from '../demos/examples/SizeL.tsx?raw'
+import { Primary } from '../demos/examples/Primary'
+import PrimarySrc from '../demos/examples/Primary.tsx?raw'
 import { Vertical } from '../demos/examples/Vertical'
 import VerticalSrc from '../demos/examples/Vertical.tsx?raw'
 import { Example } from '#docs/components/Example'
@@ -20,15 +20,17 @@ import { figmaNode } from '#docs/lib/figma'
 
 Панель переключателей табов. Задаёт:
 
-- `size` — `l` (верхнеуровневый) или `m` (внутри контента).
-- `orientation` — `horizontal` (по умолчанию) или `vertical`.
+- `variant` — `primary` (по умолчанию, верхнеуровневый) или `secondary` (внутри контента).
+- Ориентация задаётся через `Tabs.orientation`: `horizontal` (по умолчанию) или `vertical`.
 - `markerPosition` — позиция активного маркера (`before` / `after`).
-- `slotActionButton` — слот справа от табов для дополнительных действий.
+- `afterContent` — действие справа от горизонтального списка или снизу от вертикального. При отсутствии содержимого вся обёртка скрыта; разделитель проходит вдоль всей панели.
+
+При переполнении появляются кнопки прокрутки: слева/справа для горизонтальной панели и сверху/снизу для вертикальной. У достигнутого края кнопка скрывается. Для вертикальной прокрутки контейнеру `Tabs` нужна ограниченная высота, например родитель с `height: 240px`.
 
 ## Когда использовать
 
 - Внутри `Tabs` как единственный контейнер списка кнопок-табов.
-- Если нужно разместить дополнительные действия справа от табов (через слот `slotActionButton`).
+- Если нужно разместить дополнительные действия справа от табов (через слот `afterContent`).
 
 ## Установка
 
@@ -39,13 +41,13 @@ pnpm add @ds/tabs
 ```ts
 import { Tabs } from '@ds/tabs'
 
-<Tabs.Bar />
+<Tabs.TabBar />
 ```
 
 ## Примеры использования
 
-<Example title='Size L — верхнеуровневый' code={SizeLSrc}>
-  <SizeL client:only="react" />
+<Example title='Primary — верхнеуровневый' code={PrimarySrc}>
+  <Primary client:only="react" />
 </Example>
 
 <Example title='Vertical orientation' code={VerticalSrc}>
@@ -65,8 +67,8 @@ import { Tabs } from '@ds/tabs'
 ### Orientation
 `horizontal` — бар в строку, `vertical` — колонкой.
 
-### Size
-`m` — дефолт, `l` — для крупных лейаутов.
+### Variant
+`primary` — по умолчанию, `secondary` — для навигации внутри контента.
 
 ### Marker position
 Положение активного маркера относительно содержимого таба: `before` — перед, `after` — после.

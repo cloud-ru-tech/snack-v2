@@ -94,7 +94,7 @@ const TAB_ITEMS = [
 function TabsDemo() {
   return (
     <Tabs defaultValue='1'>
-      <Tabs.TabBar slotActionButton={<Button view='filled' label='Кнопка' icon={<PlusSVG />} onClick={noop} />}>
+      <Tabs.TabBar afterContent={<Button view='filled' label='Кнопка' icon={<PlusSVG />} onClick={noop} />}>
         {TAB_ITEMS.map(item => (
           <Tabs.Tab key={item.value} value={item.value} label={item.label} />
         ))}

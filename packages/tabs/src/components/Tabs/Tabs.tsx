@@ -1,6 +1,6 @@
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
-import { Children, isValidElement, ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { ORIENTATION } from '../../constants';
 import { TabsContext } from '../../context';
@@ -20,36 +20,35 @@ export type TabsProps<T extends string = string> = {
   children?: ReactNode;
   /** Дополнительный класс на корневой контейнер */
   className?: string;
+  /** Ориентация вкладок */
+  orientation?: Orientation;
 };
 
-function getOrientationFromChildren(children: ReactNode): Orientation {
-  const array = Children.toArray(children);
-
-  const tabBar = array.find(
-    (child): child is ReactElement<{ orientation?: string }> => isValidElement(child) && child.type === TabBarComponent,
-  );
-
-  return tabBar?.props?.orientation === ORIENTATION.Vertical ? ORIENTATION.Vertical : ORIENTATION.Horizontal;
-}
-
-export function Tabs<T extends string = string>({ children, onChange, value, defaultValue, className }: TabsProps<T>) {
+export function Tabs<T extends string = string>({
+  children,
+  onChange,
+  value,
+  defaultValue,
+  className,
+  orientation = ORIENTATION.Horizontal,
+}: TabsProps<T>) {
   const [selectedTab, setSelectedTab] = useValueControl({
     value,
     defaultValue,
     onChange: onChange as TabsProps<T>['onChange'],
   });
 
-  const orientation = getOrientationFromChildren(children);
   const isVertical = orientation === ORIENTATION.Vertical;
 
   return (
     <TabsContext.Provider
       value={{
+        orientation,
         selectedTab,
         setSelectedTab,
       }}
     >
-      <div className={cn(styles.root, isVertical && styles.rootVertical, className)}>{children}</div>
+      <div className={cn(styles.root, className, { [styles.rootVertical]: isVertical })}>{children}</div>
     </TabsContext.Provider>
   );
 }

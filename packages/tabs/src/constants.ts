@@ -8,9 +8,9 @@ export const MARKER_POSITION = {
   After: 'after',
 } as const;
 
-export const SIZE = {
-  L: 'l',
-  M: 'm',
+export const VARIANT = {
+  Primary: 'primary',
+  Secondary: 'secondary',
 } as const;
 
 /**

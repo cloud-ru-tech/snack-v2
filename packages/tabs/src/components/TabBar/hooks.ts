@@ -22,7 +22,12 @@ const defaultOverflowState: OverflowState = {
   right: false,
 };
 
-export function useScrollContainer(container: RefObject<HTMLElement | null>): ScrollContainerControl {
+type UseScrollContainerProps = {
+  container: RefObject<HTMLElement | null>;
+  tabsRow: RefObject<HTMLElement | null>;
+};
+
+export function useScrollContainer({ container, tabsRow }: UseScrollContainerProps): ScrollContainerControl {
   const [hasOverflow, setHasOverflow] = useState<OverflowState>(defaultOverflowState);
 
   useLayoutEffect(() => {
@@ -65,6 +70,8 @@ export function useScrollContainer(container: RefObject<HTMLElement | null>): Sc
 
     const resizeObserver = new ResizeObserver(recheck);
     resizeObserver.observe(element);
+    // Размер содержимого меняется при переключении типа и плотности без изменения viewport.
+    if (tabsRow.current) resizeObserver.observe(tabsRow.current);
     element.addEventListener('scroll', recheck);
     element.addEventListener('wheel', onWheel);
 
@@ -80,7 +87,7 @@ export function useScrollContainer(container: RefObject<HTMLElement | null>): Sc
       element.removeEventListener('scroll', recheck);
       element.removeEventListener('wheel', onWheel);
     };
-  }, [container]);
+  }, [container, tabsRow]);
 
   const [scrollLeft, scrollRight, scrollTop, scrollBottom] = useMemo(() => {
     function scroll(direction: Direction) {
