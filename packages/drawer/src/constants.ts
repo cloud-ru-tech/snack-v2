@@ -29,3 +29,9 @@ export const POSITION = {
   Top: 'top',
   Bottom: 'bottom',
 } as const;
+
+/** Значение `resizable.max`: растягивать до ширины окна за вычетом двойного отступа обёртки. */
+export const RESIZABLE_MAX_FULL = 'full';
+
+/** Горизонтальный отступ `content-wrapper`. */
+export const FULL_WIDTH_OFFSET = 24;

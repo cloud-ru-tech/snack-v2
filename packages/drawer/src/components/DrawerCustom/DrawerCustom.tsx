@@ -54,6 +54,7 @@ function DrawerFrame(props: DrawerCustomProps) {
     checkElement,
     width: userWidth,
     resizable: drawerResizable,
+    isResizing,
   } = useDrawerResize({
     resizable,
     position,
@@ -112,6 +113,7 @@ function DrawerFrame(props: DrawerCustomProps) {
       }}
       size={isPredefinedWidth ? 'null' : width}
       {...extractSupportProps(rest)}
+      data-resizing={isResizing || undefined}
       data-content-wrapper
       data-position={position}
       data-width={isPredefinedWidth ? width : undefined}

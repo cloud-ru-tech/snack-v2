@@ -448,7 +448,7 @@ export function CustomComposition() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
 | `push` | `boolean \| PushConfig` | — | Смещение при открытии "вложенного" компонента |
-| `resizable` | `{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) \| undefined; onResizeEnd?: ((width: number) => void) \| undefined; draggerTooltip?: string \| undefined; } \| undefined` | `'s'` | Ширина (только при position: "left" \| "right") |
+| `resizable` | `ResizableMax` | `'s'` | Ширина (только при position: "left" \| "right") |
 | `rootClassName` | `string` | — | CSS-класс для корневого элемента |
 | `safeAreaBottom` | `boolean` | `true` | Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен <br/> `safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset. |
 | `safeAreaTop` | `boolean` | `true` | Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`, <br/> на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда <br/> sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch. |
@@ -477,7 +477,7 @@ export function CustomComposition() {
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
 | `position` | `"bottom"` \| `"left"` \| `"right"` \| `"top"` | — | Расположение |
 | `push` | `boolean \| PushConfig \| undefined` | — | Смещение при открытии "вложенного" компонента |
-| `resizable` | `{ min: number; max?: number; default?: number; onResize?: (width: number) => void; onResizeEnd?: (width: number) => void; draggerTooltip?: string; } \| undefined` | — | Ширина (только при position: "left" \| "right") |
+| `resizable` | `ResizableMax` | — | Ширина (только при position: "left" \| "right") |
 | `rootClassName` | `string \| undefined` | — | CSS-класс для корневого элемента |
 | `safeAreaBottom` | `boolean \| undefined` | — | Нижний safe-area отступ под iOS home-indicator и Android nav-bar. Размер — токен <br/> `safeArea.bottom.minHeight`, на устройстве с большим `env(safe-area-inset-bottom)` — значение inset. |
 | `safeAreaTop` | `boolean \| undefined` | — | Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`, <br/> на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда <br/> sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch. |
@@ -488,5 +488,7 @@ export function CustomComposition() {
 | `width` | `Width` | — | Ширина (только при position: "left" \| "right") |
 
 - `Position` = `"bottom"` \| `"left"` \| `"right"` \| `"top"`
+
+- `ResizableMax` = `number | "full"`
 
 - `Width` = `"l"` \| `"m"` \| `"s"`

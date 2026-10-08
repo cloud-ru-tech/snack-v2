@@ -938,10 +938,13 @@
         "description": "Смещение при открытии \"вложенного\" компонента"
       },
       "resizable": {
-        "type": "{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
+        "type": "{ min: number; max?: ResizableMax; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
         "required": false,
         "defaultValue": "'s'",
-        "description": "Ширина (только при position: \"left\" | \"right\")"
+        "description": "Ширина (только при position: \"left\" | \"right\")",
+        "typeRefs": [
+          "ResizableMax"
+        ]
       },
       "rootClassName": {
         "type": "string",
@@ -1076,9 +1079,12 @@
             "description": "Смещение при открытии \"вложенного\" компонента"
           },
           "resizable": {
-            "type": "{ min: number; max?: number; default?: number; onResize?: (width: number) => void; onResizeEnd?: (width: number) => void; draggerTooltip?: string; } | undefined",
+            "type": "{ min: number; max?: ResizableMax; default?: number; onResize?: (width: number) => void; onResizeEnd?: (width: number) => void; draggerTooltip?: string; } | undefined",
             "required": false,
-            "description": "Ширина (только при position: \"left\" | \"right\")"
+            "description": "Ширина (только при position: \"left\" | \"right\")",
+            "typeRefs": [
+              "ResizableMax"
+            ]
           },
           "rootClassName": {
             "type": "string | undefined",
@@ -1137,6 +1143,11 @@
           "right",
           "top"
         ],
+        "own": true
+      },
+      "ResizableMax": {
+        "kind": "alias",
+        "type": "number | \"full\"",
         "own": true
       },
       "SnapPoint": {
@@ -1506,7 +1517,7 @@
         "description": "Расположение"
       },
       "resizable": {
-        "type": "{ min: number; max?: number; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
+        "type": "{ min: number; max?: ResizableMax; default?: number; onResize?: ((width: number) => void) | undefined; onResizeEnd?: ((width: number) => void) | undefined; draggerTooltip?: string | undefined; } | undefined",
         "required": false,
         "defaultValue": "'s'",
         "description": "Ширина (только при position: \"left\" | \"right\")"

@@ -3,6 +3,7 @@ import { isBrowser } from '@ds/utils';
 import { DrawerProps } from '@rc-component/drawer';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
+import { RESIZABLE_MAX_FULL } from '../../../constants';
 import styles from '../styles.module.scss';
 import { DrawerCustomProps } from '../types';
 
@@ -19,7 +20,11 @@ type UseDrawerResizeResult = {
   resizable: DrawerProps['resizable'];
   /** Ширина ползунка в пикселях */
   width?: number;
+  /** Флаг, указывающий, что дровер в процессе ресайза */
+  isResizing: boolean;
 };
+
+const getFullMaxWidth = () => (isBrowser() ? Math.max(0, document.documentElement.clientWidth) : Infinity);
 
 export function useDrawerResize({ position, resizable: resizableProp }: UseDrawerResizeParams): UseDrawerResizeResult {
   const targetRef = useRef<HTMLElement | null>(null);
@@ -56,31 +61,43 @@ export function useDrawerResize({ position, resizable: resizableProp }: UseDrawe
     </Tooltip>
   ) : null;
 
+  const { onResize, onResizeEnd, max, min } = resizableProp ?? {};
+  const resizeEnabled = Boolean(resizableProp);
+  // Сколько стартовой ширины, которую держит rc-drawer, не помещается в окно: оно могло сузиться, пока дровер
+  // был закрыт или открыт. CSS обрезает панель визуально, а rc-drawer считает ресайз от «виртуальной» ширины.
+  const excessRef = useRef(0);
+
   const resizable = useMemo(
     () =>
-      resizableProp
+      resizeEnabled
         ? ({
-            onResize: value => {
-              if (value < (resizableProp?.min || 0)) return;
-              if (value > (resizableProp?.max || Infinity)) return;
+            onResize: rawValue => {
+              // Смещение мыши rc-drawer прибавляет к устаревшей стартовой ширине: вычитаем лишнее.
+              const limit = max === RESIZABLE_MAX_FULL ? getFullMaxWidth() : max;
+              const value = Math.min(rawValue - excessRef.current, limit ?? Infinity);
+
+              if (value < (min || 0)) return;
 
               setWidth(value);
 
-              resizableProp?.onResize?.(value);
+              onResize?.(value);
             },
             onResizeEnd: () => {
               setOpen(false);
               setMuted(false);
 
-              resizableProp?.onResizeEnd?.(width ?? 0);
+              onResizeEnd?.(width ?? 0);
             },
-            onResizeStart: () => {
+            // rc-drawer передаёт во время выполнения реальную стартовую ширину (в типах аргумента нет).
+            onResizeStart: (startSize?: number) => {
+              excessRef.current =
+                max === RESIZABLE_MAX_FULL && startSize !== undefined ? Math.max(0, startSize - getFullMaxWidth()) : 0;
               setMuted(true);
             },
           } satisfies DrawerProps['resizable'])
         : undefined,
-    [resizableProp, width],
+    [width, max, min, onResize, onResizeEnd, resizeEnabled],
   );
 
-  return { tooltip, checkElement, resizable, width };
+  return { tooltip, checkElement, resizable, width, isResizing: muted };
 }

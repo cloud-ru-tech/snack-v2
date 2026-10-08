@@ -175,6 +175,12 @@ $panelMotions: (
         // Ширина в макете — это ширина самой панели; горизонтальный паддинг обёртки
         // (зона перетаскивания) лежит снаружи и не должен её сужать.
         box-sizing: content-box;
+
+        // `max-width: 100%` у обёртки считается по контенту, а паддинг (зона перетаскивания и отступ
+        // до края) лежит снаружи — вычитаем его, иначе панель упирается в край экрана.
+        max-width: calc(
+          100% - #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingLeft} - #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight}
+        );
         height: 100%;
 
         @each $width in $widthSizes {
@@ -204,6 +210,12 @@ $panelMotions: (
 
       &[data-position='bottom'][data-height-auto] {
         inset: auto 0 0;
+      }
+
+      &[data-resizing] {
+        * {
+          pointer-events: none;
+        }
       }
 
       @each $placement, $offscreen in $panelMotions {

@@ -3,7 +3,7 @@ import { WithSupportProps } from '@ds/utils';
 import { DrawerProps as RcDrawerProps } from '@rc-component/drawer';
 import { PropsWithChildren, ReactElement } from 'react';
 
-import { Position, Width } from '../../types';
+import { Position, ResizableMax, Width } from '../../types';
 
 export type DrawerCustomProps = WithSupportProps<
   PropsWithChildren<{
@@ -60,8 +60,11 @@ export type DrawerCustomProps = WithSupportProps<
     resizable?: {
       /** Минимальная доступная ширина */
       min: number;
-      /** Максимальная доступная ширина */
-      max?: number;
+      /**
+       * Максимальная доступная ширина: число в px либо `'full'` — вся ширина окна за вычетом 48px
+       * (двойной отступ обёртки).
+       */
+      max?: ResizableMax;
       /** Ширина по умолчанию */
       default?: number;
       /** Колбэк на изменение размера */
