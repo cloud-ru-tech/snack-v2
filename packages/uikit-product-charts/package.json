@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-charts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Продуктовые графики: кольцо заполненности BagelChart, круговая диаграмма PieChart с легендами, тепловая карта HeatMapChart и интерактивный график InteractiveChart на uPlot.",
   "repository": {
     "type": "git",
