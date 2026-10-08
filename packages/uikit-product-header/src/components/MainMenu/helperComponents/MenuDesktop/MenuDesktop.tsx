@@ -14,7 +14,7 @@ import { MenuBottom } from '../MenuBottom';
 import { MenuHeaderBrand } from '../MenuHeaderBrand';
 import { MountAnimation } from '../MountAnimation';
 import { Search } from '../Search';
-import { MENU_WIDTH_MAX, MENU_WIDTH_MIN } from './constants';
+import { MENU_WIDTH_DEFAULT, MENU_WIDTH_MIN } from './constants';
 import styles from './styles.module.scss';
 
 export function MenuDesktop({
@@ -28,6 +28,7 @@ export function MenuDesktop({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onToggleAllGroupsExpanded,
   onSegmentServiceClick,
   favorite,
   search,
@@ -36,7 +37,7 @@ export function MenuDesktop({
   rightTop,
   leftTop,
   leftBottom,
-  defaultWidth = MENU_WIDTH_MAX,
+  defaultWidth = MENU_WIDTH_DEFAULT,
   onWidthChangeEnd,
   draggerTooltip,
   loading,
@@ -140,6 +141,7 @@ export function MenuDesktop({
                   onSegmentOrderChange={onSegmentOrderChange}
                   onSegmentExpandedChange={onSegmentExpandedChange}
                   onSegmentServiceClick={onSegmentServiceClick}
+                  onToggleAllGroupsExpanded={onToggleAllGroupsExpanded}
                   preferences={preferences}
                   loading={loading}
                 />
@@ -167,8 +169,8 @@ export function MenuDesktop({
         isNeedRightBlock
           ? {
               min: MENU_WIDTH_MIN,
-              max: MENU_WIDTH_MAX,
-              default: Math.min(Math.max(defaultWidth, MENU_WIDTH_MIN), MENU_WIDTH_MAX),
+              max: 'full',
+              default: defaultWidth,
               onResizeEnd: onWidthChangeEnd,
               draggerTooltip,
             }

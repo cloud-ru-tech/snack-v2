@@ -303,6 +303,7 @@ function LocalMainMenu() {
 | `onSegmentExpandedChange` | `((segmentId: string, expandedGroupIds: string[]) => void)` | — | Колбэк при изменении набора раскрытых групп сегмента <br/> (без id синтетической группы избранного). |
 | `onSegmentOrderChange` | `((segmentId: string, orderedGroupIds: string[]) => void)` | — | Колбэк после DnD групп в сегменте (без id синтетической группы избранного). |
 | `onSegmentServiceClick` | `((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)` | — | Колбэк клика по карточке сервиса в сегменте. |
+| `onToggleAllGroupsExpanded` | `((action: "collapseAll" \| "expandAll") => void)` | — | Колбэк смены всех групп раскрытых. |
 | `onWidthChangeEnd` | `((width: number) => void)` | — | Вызывается при окончании изменения ширины дровера (desktop only) |
 | `open` | `boolean` | — | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
 | `platformGroups` | `LinksGroup` | — | Платформенные группы (например «Облачные продукты», «Другие продукты»). <br/> Без поиска в сетке карточек **не отображаются**. <br/> С поиском: попадают в результаты при совпадении; порядок — <br/> после совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`. <br/> Обычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`). |
@@ -477,6 +478,7 @@ import { MainMenu, MenuMobile } from '@ds/uikit-product-header';
 | `onSegmentExpandedChange` | `((segmentId: string, expandedGroupIds: string[]) => void)` | — | Колбэк при изменении набора раскрытых групп сегмента <br/> (без id синтетической группы избранного). |
 | `onSegmentOrderChange` | `((segmentId: string, orderedGroupIds: string[]) => void)` | — | Колбэк после DnD групп в сегменте (без id синтетической группы избранного). |
 | `onSegmentServiceClick` | `((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)` | — | Колбэк клика по карточке сервиса в сегменте. |
+| `onToggleAllGroupsExpanded` | `((action: "collapseAll" \| "expandAll") => void)` | — | Колбэк смены всех групп раскрытых. |
 | `onWidthChangeEnd` | `((width: number) => void)` | — | Вызывается при окончании изменения ширины дровера (desktop only) |
 | `open` | `boolean` | `false` | Открыто ли меню. <br/> Не передано — состояние открытия неуправляемое (меню само переключает себя по клику на кнопку). |
 | `platformGroups` | `LinksGroup` | — | Платформенные группы (например «Облачные продукты», «Другие продукты»). <br/> Без поиска в сетке карточек **не отображаются**. <br/> С поиском: попадают в результаты при совпадении; порядок — <br/> после совпадений из сегментов без `pinBottomOnSearch`, перед сегментами с `pinBottomOnSearch`. <br/> Обычно `favoritesEnabled: false`; карточки могут быть без `icon` (Avatar по `label`). |

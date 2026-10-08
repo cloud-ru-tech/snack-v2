@@ -2,6 +2,8 @@
 @use '@ds/figma-variables/build/scss/components/divider.module' as divider;
 @use '@ds/figma-variables/build/scss/components/drawer.module' as drawer;
 
+$drawer-sidebar-width: 263px;
+
 .drawer {
   border-radius: drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopLeftRadius
     drawer.$sn-drawer-anatomy-container-vertical-positionLeft-container-borderTopRightRadius
@@ -40,7 +42,9 @@
     // по умолчанию box-sizing: content-box; и из-за этого max-width определяется некорректно
     box-sizing: border-box;
     width: 100%;
-    max-width: calc(263px + #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight});
+    max-width: calc(
+      #{$drawer-sidebar-width} + #{drawer.$sn-drawer-anatomy-container-vertical-positionLeft-paddingRight}
+    );
 
     .left {
       width: 100%;
@@ -76,7 +80,7 @@
 .menu {
   --snack-menu-header-height: #{base.$sn-primitive-dimension-40};
   // Нет токена ширины левой колонки меню.
-  --snack-menu-left-width: 263px;
+  --snack-menu-left-width: #{$drawer-sidebar-width};
 
   position: relative;
   height: 100vh;

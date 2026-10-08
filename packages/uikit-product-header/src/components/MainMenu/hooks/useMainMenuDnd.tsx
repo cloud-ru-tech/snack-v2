@@ -13,10 +13,11 @@ import {
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { usePortalContext } from '@ds/portal-context';
-import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ServiceCard } from '../helperComponents/ServiceCard';
+import styles from '../styles.module.scss';
 import { FavoriteProps, InnerLink } from '../types';
 import {
   favoriteListCollisionDetection,
@@ -163,6 +164,16 @@ export function MainMenuDndContext({
   overlayContextValue,
 }: Partial<MainMenuDndContextProps>) {
   const portalContextRef = usePortalContext();
+  const isDragging = Boolean(dragOverlay);
+
+  useEffect(() => {
+    if (!isDragging) return;
+
+    /* Для предотвращения случайных взаимодействий с любыми другими элементами при перетаскивании */
+    document.body.classList.add(styles.dragging);
+
+    return () => document.body.classList.remove(styles.dragging);
+  }, [isDragging]);
 
   // `DragOverlay` рендерит `position: fixed` без собственного портала. Drawer-обёртка
   // (`.snack-rc-drawer-content-wrapper`) держит `will-change: transform`, а это, как и

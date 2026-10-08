@@ -68,6 +68,11 @@
         "required": false,
         "description": "Колбэк клика по карточке сервиса в сегменте."
       },
+      "onToggleAllGroupsExpanded": {
+        "type": "((action: \"collapseAll\" | \"expandAll\") => void)",
+        "required": false,
+        "description": "Колбэк смены всех групп раскрытых."
+      },
       "preferences": {
         "type": "MainMenuPreferencesProps",
         "required": false,
@@ -1421,6 +1426,11 @@
         "required": false,
         "description": "Колбэк клика по карточке сервиса в сегменте."
       },
+      "onToggleAllGroupsExpanded": {
+        "type": "((action: \"collapseAll\" | \"expandAll\") => void)",
+        "required": false,
+        "description": "Колбэк смены всех групп раскрытых."
+      },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
         "required": false,
@@ -2477,6 +2487,11 @@
         "required": false,
         "description": "Колбэк клика по карточке сервиса в сегменте."
       },
+      "onToggleAllGroupsExpanded": {
+        "type": "((action: \"collapseAll\" | \"expandAll\") => void)",
+        "required": false,
+        "description": "Колбэк смены всех групп раскрытых."
+      },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
         "required": false,
@@ -2633,6 +2648,11 @@
         "type": "((service: InnerLink, e?: MouseEvent<HTMLElement, MouseEvent>) => void)",
         "required": false,
         "description": "Колбэк клика по карточке сервиса в сегменте."
+      },
+      "onToggleAllGroupsExpanded": {
+        "type": "((action: \"collapseAll\" | \"expandAll\") => void)",
+        "required": false,
+        "description": "Колбэк смены всех групп раскрытых."
       },
       "onWidthChangeEnd": {
         "type": "((width: number) => void)",
@@ -3686,23 +3706,6 @@
         "type": "InnerLink[]",
         "required": true,
         "description": "Карточки сервисов группы."
-      }
-    },
-    "relatedTypes": {}
-  },
-  "SortableGroupDragHandle": {
-    "displayName": "SortableGroupDragHandle",
-    "propsTypeName": null,
-    "props": {
-      "attributes": {
-        "type": "DraggableAttributes",
-        "required": false,
-        "description": "ARIA-атрибуты `dnd-kit` draggable-элемента."
-      },
-      "listeners": {
-        "type": "DraggableSyntheticListeners",
-        "required": false,
-        "description": "Обработчики событий `dnd-kit` для инициации перетаскивания."
       }
     },
     "relatedTypes": {}

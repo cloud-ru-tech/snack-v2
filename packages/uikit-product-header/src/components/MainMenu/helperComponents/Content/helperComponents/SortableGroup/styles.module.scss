@@ -17,6 +17,11 @@ $map-block-color-decor: (
   'pink': base.$sn-theme-color-pink-decor,
 );
 
+@mixin header-actions-visible {
+  pointer-events: auto;
+  opacity: 1;
+}
+
 .headerActions {
   pointer-events: none;
 
@@ -29,7 +34,7 @@ $map-block-color-decor: (
   outline: none;
 
   &[data-always-visible] {
-    opacity: 1;
+    @include header-actions-visible;
   }
 }
 
@@ -47,8 +52,7 @@ $map-block-color-decor: (
   &:focus-visible,
   &:has(:focus-visible) {
     .headerActions {
-      pointer-events: auto;
-      opacity: 1;
+      @include header-actions-visible;
     }
   }
 
@@ -57,8 +61,7 @@ $map-block-color-decor: (
       background-color: base.$sn-theme-color-neutral-decorTransparent;
 
       .headerActions {
-        pointer-events: auto;
-        opacity: 1;
+        @include header-actions-visible;
       }
     }
   }
@@ -106,22 +109,31 @@ $map-block-color-decor: (
   }
 
   &[data-drag-preview] {
-    cursor: grabbing;
-
     .header {
-      cursor: grabbing;
       background-color: base.$sn-theme-color-neutral-decorTransparent;
 
       .headerActions {
-        pointer-events: auto;
-        opacity: 1;
+        @include header-actions-visible;
+      }
+    }
+  }
+
+  &:has(:focus-visible) {
+    .headerActions {
+      @include header-actions-visible;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      .headerActions {
+        @include header-actions-visible;
       }
     }
   }
 }
 
 .groupDragPreview {
-  cursor: grabbing;
   container-type: inline-size;
   border-radius: $group-border-radius;
 }
@@ -172,7 +184,6 @@ $map-block-color-decor: (
 
 .groupBody {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 1fr));
   gap: base.$sn-primitive-dimension-4;
 
   &:not([data-subcategory-body]) {
@@ -184,14 +195,11 @@ $map-block-color-decor: (
     gap: 0;
   }
 
+  // Drawer десктопного меню ресайзится пользователем (см. MenuDesktop.resizable), поэтому число
+  // колонок выводится из ширины контейнера автоматически: сколько карточек минимальной ширины влезает.
+  // Нет токена минимальной ширины карточки.
   &:not([data-mobile]) {
-    // Drawer десктопного меню ресайзится пользователем (см. MenuDesktop.resizable),
-    // поэтому колонки реагируют на реальную ширину контейнера (container query
-    // от `.rightContent`), а не на ширину viewport.
-    // Перестраиваться должно при ширине дровера 1024px, поэтому width тут указан с вычетом
-    @container (width <= 728px) {
-      grid-template-columns: repeat(2, minmax(auto, 1fr));
-    }
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 
   &[data-mobile] {

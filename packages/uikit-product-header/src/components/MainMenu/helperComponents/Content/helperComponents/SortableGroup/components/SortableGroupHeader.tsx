@@ -1,3 +1,4 @@
+import { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
 import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { Typography } from '@ds/typography';
@@ -7,14 +8,18 @@ import { memo, MouseEventHandler, useCallback } from 'react';
 import { LinksGroup, LinksGroupTitle } from '../../../../../types';
 import { getLinkEmblem } from '../../../../../utils';
 import styles from '../styles.module.scss';
-import { SortableGroupDragHandle, SortableGroupDragHandleProps } from './SortableGroupDragHandle';
+import { SortableGroupDragHandle } from './SortableGroupDragHandle';
 
 export type SortableGroupHeaderProps = Pick<LinksGroup, 'icon'> & {
   label: LinksGroupTitle;
   isExpanded?: boolean;
   enableServiceDrag?: boolean;
   isMobile?: boolean;
-} & SortableGroupDragHandleProps;
+  /** ARIA-атрибуты `dnd-kit` draggable-элемента. */
+  attributes?: DraggableAttributes;
+  /** Обработчики событий `dnd-kit` для инициации перетаскивания. */
+  listeners?: DraggableSyntheticListeners;
+};
 
 function SortableGroupHeaderBase({
   label,
@@ -35,7 +40,7 @@ function SortableGroupHeaderBase({
   );
 
   return (
-    <div className={styles.header} data-expanded={isExpanded || undefined}>
+    <div className={styles.header} data-expanded={isExpanded || undefined} {...attributes} {...listeners} tabIndex={-1}>
       <Typography
         variant='title'
         size='m'
@@ -56,7 +61,7 @@ function SortableGroupHeaderBase({
 
       {(enableServiceDrag || !isMobile) && (
         <div className={styles.headerActions} data-always-visible={isMobile || undefined}>
-          {enableServiceDrag && <SortableGroupDragHandle attributes={attributes} listeners={listeners} />}
+          {enableServiceDrag && <SortableGroupDragHandle />}
 
           {!isMobile && (
             <Button

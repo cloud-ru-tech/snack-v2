@@ -73,6 +73,11 @@ export type ContentProps = {
   onSegmentExpandedChange?(segmentId: string, expandedGroupIds: string[]): void;
 
   /**
+   * Колбэк смены всех групп раскрытых.
+   */
+  onToggleAllGroupsExpanded?(action: 'collapseAll' | 'expandAll'): void;
+
+  /**
    * Колбэк клика по карточке сервиса в сегменте.
    */
   onSegmentServiceClick?(service: InnerLink, e?: MouseEvent<HTMLElement>): void;
@@ -120,6 +125,7 @@ export function Content({
   onSegmentOrderChange,
   onSegmentExpandedChange,
   onSegmentServiceClick,
+  onToggleAllGroupsExpanded,
   className,
   footer,
   favorite,
@@ -210,6 +216,8 @@ export function Content({
   const allGroupsExpanded = visibleGroups.length > 0 && visibleGroupIds.every(id => expandedIdsSet.has(id));
 
   const handleToggleAllGroupsExpanded = useCallback(() => {
+    onToggleAllGroupsExpanded?.(allGroupsExpanded ? 'collapseAll' : 'expandAll');
+
     if (allGroupsExpanded) {
       const visibleIdsSet = new Set(visibleGroupIds);
 
@@ -218,7 +226,7 @@ export function Content({
     }
 
     onExpandedChange([...new Set([...expandedIds, ...visibleGroupIds])]);
-  }, [allGroupsExpanded, expandedIds, onExpandedChange, visibleGroupIds]);
+  }, [allGroupsExpanded, expandedIds, onExpandedChange, visibleGroupIds, onToggleAllGroupsExpanded]);
 
   const cardsContext = useMemo<CardsContextValue>(
     () => ({
@@ -316,7 +324,9 @@ export function Content({
                 loading={loading}
               />
 
-              {rightTop}
+              <div className={styles.rightTop} data-mobile={isMobile || undefined}>
+                {rightTop}
+              </div>
             </MountAnimation>
           </>
         )}

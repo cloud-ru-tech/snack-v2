@@ -25,6 +25,7 @@ export function MainMenu({
   onActiveSegmentChange,
   onSegmentOrderChange,
   onSegmentExpandedChange,
+  onToggleAllGroupsExpanded,
   onSegmentServiceClick,
   favorite,
   search,
@@ -74,6 +75,7 @@ export function MainMenu({
         onSegmentOrderChange={onSegmentOrderChange}
         onSegmentExpandedChange={onSegmentExpandedChange}
         onSegmentServiceClick={onSegmentServiceClick}
+        onToggleAllGroupsExpanded={onToggleAllGroupsExpanded}
         platformGroups={platformGroups}
         search={search}
         logo={logo}

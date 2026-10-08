@@ -1,4 +1,4 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { Alert } from '@ds/alert';
 import { Divider } from '@ds/divider';
 import { ConfigurationSVG, ViewTileSVG } from '@ds/icons/interface/product';
 import { KuberLogo, NginxLogo, NodejsLogo } from '@ds/icons/logos';
@@ -102,8 +102,7 @@ function MainMenuPlaygroundContent({
   const [showGroupsColors, setShowGroupsColors] = useState(true);
   const [showMarketplaceBanner, setShowMarketplaceBanner] = useState(true);
   const [showReferralBanner, setShowReferralBanner] = useState(true);
-
-  const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
+  const [activeSegmentId, setActiveSegmentId] = useState<string | undefined>(ALL_SERVICES_SEGMENT_ID);
 
   const serviceGroupsItems = useMemo(
     () =>
@@ -221,6 +220,8 @@ function MainMenuPlaygroundContent({
             loading={loading}
             disabled={disabled}
             segments={showSegmentsWithCards ? segments : []}
+            activeSegmentId={activeSegmentId}
+            onActiveSegmentChange={setActiveSegmentId}
             segmentPrefs={segmentPrefs}
             onSegmentOrderChange={handleSegmentOrderChange}
             onSegmentExpandedChange={handleSegmentExpandedChange}
@@ -235,36 +236,48 @@ function MainMenuPlaygroundContent({
               </>
             }
             rightTop={
-              showRightTop && (showMarketplaceBanner || showReferralBanner) ? (
-                <div className={styles.banners} data-mobile={isMobile || undefined}>
-                  {showMarketplaceBanner && (
-                    <MenuBanner
-                      className={styles.banner}
-                      href='https://cloud.ru/marketplace'
-                      title='Маркетплейс'
-                      promoTag={{ label: '120+ сервисов' }}
-                      afterTitle={
-                        <>
-                          <NodejsLogo size={16} className={styles.bannerLogo} />
-                          <KuberLogo size={16} className={styles.bannerLogo} />
-                          <NginxLogo size={16} className={styles.bannerLogo} />
-                        </>
-                      }
-                      onClose={() => setShowMarketplaceBanner(false)}
-                      onClick={fn()}
+              showRightTop ? (
+                <>
+                  {activeSegmentId === ALL_SERVICES_SEGMENT_ID ? (
+                    <>
+                      {showMarketplaceBanner && (
+                        <MenuBanner
+                          className={styles.banner}
+                          href='https://cloud.ru/marketplace'
+                          title='Маркетплейс'
+                          promoTag={{ label: '120+ сервисов' }}
+                          afterTitle={
+                            <>
+                              <NodejsLogo size={16} className={styles.bannerLogo} />
+                              <KuberLogo size={16} className={styles.bannerLogo} />
+                              <NginxLogo size={16} className={styles.bannerLogo} />
+                            </>
+                          }
+                          onClose={() => setShowMarketplaceBanner(false)}
+                          onClick={fn()}
+                        />
+                      )}
+
+                      {showReferralBanner && (
+                        <MenuBanner
+                          className={styles.banner}
+                          href='https://cloud.ru/referral'
+                          title='Реферальная программа'
+                          promoTag={{ label: '15%' }}
+                          onClose={() => setShowReferralBanner(false)}
+                          onClick={fn()}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <Alert
+                      outline
+                      size='s'
+                      appearance='neutral'
+                      content='Администрирование облака: финансы, доступ, безопасность и мониторинг.'
                     />
                   )}
-                  {showReferralBanner && (
-                    <MenuBanner
-                      className={styles.banner}
-                      href='https://cloud.ru/referral'
-                      title='Реферальная программа'
-                      promoTag={{ label: '15%' }}
-                      onClose={() => setShowReferralBanner(false)}
-                      onClick={fn()}
-                    />
-                  )}
-                </div>
+                </>
               ) : undefined
             }
             favorite={

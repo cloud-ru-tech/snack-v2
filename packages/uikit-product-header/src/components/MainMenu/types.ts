@@ -266,6 +266,7 @@ export type MainMenuProps = Pick<
   | 'onActiveSegmentChange'
   | 'onSegmentOrderChange'
   | 'onSegmentExpandedChange'
+  | 'onToggleAllGroupsExpanded'
   | 'onSegmentServiceClick'
   | 'favorite'
   | 'preferences'

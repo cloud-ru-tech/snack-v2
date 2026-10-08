@@ -1,24 +1,14 @@
-import { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
 import { DragDropSVG } from '@ds/icons/interface/system';
 import { stopEventPropagation } from '@ds/utils';
 
 import { headerLocale } from '../../../../../../../locale';
 import styles from '../styles.module.scss';
 
-export type SortableGroupDragHandleProps = {
-  /** ARIA-атрибуты `dnd-kit` draggable-элемента. */
-  attributes?: DraggableAttributes;
-  /** Обработчики событий `dnd-kit` для инициации перетаскивания. */
-  listeners?: DraggableSyntheticListeners;
-};
-
-export function SortableGroupDragHandle({ attributes, listeners }: SortableGroupDragHandleProps) {
+export function SortableGroupDragHandle() {
   const { t } = headerLocale.useTranslations();
 
   return (
     <button
-      {...attributes}
-      {...listeners}
       type='button'
       className={styles.dragHandle}
       aria-label={t('dragGroup')}

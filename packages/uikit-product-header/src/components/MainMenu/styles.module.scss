@@ -1,0 +1,10 @@
+// Класс ставится на `body` на время drag: превью в `DragOverlay` с `pointer-events: none`,
+// поэтому курсор определяется элементами под ним, и `!important` перебивает их собственные.
+.dragging,
+.dragging * {
+  cursor: grabbing !important;
+}
+
+.dragging * {
+  pointer-events: none !important;
+}
