@@ -1,4 +1,4 @@
-import { FieldPhone } from '@ds/uikit-product-fields-predefined';
+import { ALL_COUNTRY_CODES, FieldPhone } from '@ds/uikit-product-fields-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
 
@@ -14,7 +14,11 @@ const meta: Meta<typeof FieldPhone> = {
     label: 'Телефон',
     size: 'm',
     searchPlaceholder: 'Поиск страны',
+    options: { includedCountries: ALL_COUNTRY_CODES },
     'data-test-id': TEST_IDS.fieldPhone,
+  },
+  argTypes: {
+    options: { table: { disable: true } },
   },
   render: function Render(args) {
     return (

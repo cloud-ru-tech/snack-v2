@@ -80,6 +80,9 @@
       "path": "./materials/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-button-giga/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.cjs.json"
     },
     {
@@ -143,16 +146,7 @@
       "path": "./skeleton/tsconfig.cjs.json"
     },
     {
-      "path": "./status/tsconfig.cjs.json"
-    },
-    {
-      "path": "./avatar/tsconfig.cjs.json"
-    },
-    {
       "path": "./stepper/tsconfig.cjs.json"
-    },
-    {
-      "path": "./tabs/tsconfig.cjs.json"
     },
     {
       "path": "./timeline/tsconfig.cjs.json"
@@ -171,6 +165,9 @@
     },
     {
       "path": "./accordion/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-field-request/tsconfig.cjs.json"
     },
     {
       "path": "./alert/tsconfig.cjs.json"
@@ -203,6 +200,9 @@
       "path": "./list/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-suggestion-panel/tsconfig.cjs.json"
+    },
+    {
       "path": "./breadcrumbs/tsconfig.cjs.json"
     },
     {
@@ -222,6 +222,15 @@
     },
     {
       "path": "./color-picker/tsconfig.cjs.json"
+    },
+    {
+      "path": "./status/tsconfig.cjs.json"
+    },
+    {
+      "path": "./avatar/tsconfig.cjs.json"
+    },
+    {
+      "path": "./tabs/tsconfig.cjs.json"
     },
     {
       "path": "./tag/tsconfig.cjs.json"
@@ -255,6 +264,9 @@
     },
     {
       "path": "./uikit-product-button-predefined/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-charts/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-config-selector/tsconfig.cjs.json"
@@ -308,6 +320,9 @@
       "path": "./uikit-product-header/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-header-legacy/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-quota/tsconfig.cjs.json"
     },
     {
@@ -324,21 +339,6 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
-    },
-    {
-      "path": "./uikit-product-header-legacy/tsconfig.cjs.json"
-    },
-    {
-      "path": "./ai-field-request/tsconfig.cjs.json"
-    },
-    {
-      "path": "./uikit-product-charts/tsconfig.cjs.json"
-    },
-    {
-      "path": "./ai-button-giga/tsconfig.cjs.json"
-    },
-    {
-      "path": "./ai-suggestion-panel/tsconfig.cjs.json"
     }
   ]
 }

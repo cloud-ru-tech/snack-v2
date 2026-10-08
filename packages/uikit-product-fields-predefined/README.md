@@ -206,13 +206,16 @@ export function FieldMaskControlled() {
 
 Маска ввода определяется выбранной страной (`country.mask`) и меняется при смене страны. Префикс с кодом страны добавляется к итоговому значению.
 
-#### options — настройка списка стран
+#### options — список стран
 
-Проп `options` (`CountrySettings`) ограничивает или переопределяет список (взаимоисключающие поля):
+Проп `options` (`CountrySettings`) обязателен, поля взаимоисключающие:
 
-- `includedCountries` — оставить только перечисленные страны.
-- `excludedCountries` — исключить перечисленные из встроенного списка.
-- `overriddenOptions` — полностью заменить список собственными опциями.
+- `includedCountries` — страны селектора (`RUSSIA_COUNTRY_CODE`, `BELARUS_COUNTRY_CODE`, …) в порядке передачи.
+- `overriddenOptions` — собственные элементы списка вместо встроенных стран.
+
+В бандл попадают флаги только переданных стран. Весь встроенный перечень — `ALL_COUNTRY_CODES`: с ним в бандл попадают все флаги (около 500 КБ в gzip), поэтому список стоит передавать явно.
+
+Миграция с 2.x: поле без `options` — `options={{ includedCountries: ALL_COUNTRY_CODES }}`; `excludedCountries` — `includedCountries: ALL_COUNTRY_CODES.filter(...)`.
 
 #### Size (default `m`)
 
@@ -222,11 +225,11 @@ export function FieldMaskControlled() {
 
 #### Базовый
 
-Телефон с полным списком стран и поиском.
+Телефон с полным списком стран (ALL_COUNTRY_CODES) и поиском.
 
 ```tsx
 import { PortalContextProvider } from '@ds/portal-context';
-import { FieldPhone } from '@ds/uikit-product-fields-predefined';
+import { ALL_COUNTRY_CODES, FieldPhone } from '@ds/uikit-product-fields-predefined';
 import { useRef, useState } from 'react';
 
 export function FieldPhoneBasic() {
@@ -236,7 +239,13 @@ export function FieldPhoneBasic() {
   return (
     <PortalContextProvider root={hostRef}>
       <div ref={hostRef} style={{ position: 'relative', width: 320 }}>
-        <FieldPhone label='Телефон' value={value} onChange={setValue} searchPlaceholder='Поиск страны' />
+        <FieldPhone
+          label='Телефон'
+          value={value}
+          onChange={setValue}
+          searchPlaceholder='Поиск страны'
+          options={{ includedCountries: ALL_COUNTRY_CODES }}
+        />
       </div>
     </PortalContextProvider>
   );
@@ -325,7 +334,7 @@ export function FieldPhoneCountrySettings() {
 | `onKeyDown` | `KeyboardEventHandler<HTMLInputElement>` | — | Колбек обработки начала нажатия клавиши клавиатуры |
 | `onMouseDown` | `MouseEventHandler<HTMLInputElement>` | — | Колбек обработки нажатия кнопки мыши |
 | `onPaste` | `ClipboardEventHandler<HTMLInputElement>` | — | Колбек обработки вставки значения |
-| `options` | `CountrySettings` | — | Конфигурация для изменения стандартного списка стран |
+| `options` | `CountrySettings` | — | Список стран селектора: встроенные страны (`includedCountries`) или собственные элементы (`overriddenOptions`) |
 | `outline` | `boolean` | `true` | Разделитель между основным полем и слотами `elementBefore` / `elementAfter` |
 | `pattern` | `string` | — | Регулярное выражение валидного инпута |
 | `readonly` | `boolean` | `false` | Только для чтения <br/> Является ли поле доступным только для чтения |
@@ -345,7 +354,7 @@ export function FieldPhoneCountrySettings() {
 
 ##### Related types
 
-- `CountrySettings` = `({ overriddenOptions: FieldPhoneOptionsProps[]; } & { includedCountries?: undefined; excludedCountries?: undefined; }) | ({ includedCountries: Country[]; } & { overriddenOptions?: undefined; excludedCountries?: undefined; }) | ({ excludedCountries: Country[]; } & { overriddenOptions?: undefined; includedCountries?: undefined; })`
+- `CountrySettings` = `({ includedCountries: readonly Country[]; } & { overriddenOptions?: undefined; }) | ({ overriddenOptions: FieldPhoneOptionsProps[]; } & { includedCountries?: undefined; })`
 
 ### Адаптивность
 

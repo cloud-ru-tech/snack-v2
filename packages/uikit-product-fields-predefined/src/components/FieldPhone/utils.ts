@@ -3,8 +3,6 @@ import { parsePhoneNumber } from 'awesome-phonenumber';
 import { ABKHAZIA_COUNTRY_CODE, RUSSIA_COUNTRY_CODE } from './countries';
 import { FieldPhoneOptionsProps } from './types';
 
-export const uniqueSet = <T, K extends keyof T>(arr: T[], key: K): Set<T[K]> => new Set(arr.map(obj => obj[key]));
-
 /* Приходит +79878887879/+7987****875, на основании mask возвращается +7 987-888-78-79/+7 987-***-*8-75 */
 export const formatPhoneNumber = <T extends { caption: string; mask: string }>(
   phone: string,

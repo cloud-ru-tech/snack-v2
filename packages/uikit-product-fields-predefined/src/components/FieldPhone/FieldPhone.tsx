@@ -41,8 +41,8 @@ export type FieldPhoneProps = Omit<
   /** Плейсхолдер поля поиска в выпадающем списке стран */
   searchPlaceholder?: string;
   onChangeCountry?(country: FieldPhoneOptionsProps): void;
-  /** Конфигурация для изменения стандартного списка стран */
-  options?: CountrySettings;
+  /** Список стран селектора: встроенные страны (`includedCountries`) или собственные элементы (`overriddenOptions`) */
+  options: CountrySettings;
 };
 
 export const FieldPhone = forwardRef<HTMLInputElement, FieldPhoneProps>(function FieldPhone(

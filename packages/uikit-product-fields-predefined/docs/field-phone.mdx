@@ -39,13 +39,16 @@ import fieldsDoc from './props.json'
 
 Маска ввода определяется выбранной страной (`country.mask`) и меняется при смене страны. Префикс с кодом страны добавляется к итоговому значению.
 
-### options — настройка списка стран
+### options — список стран
 
-Проп `options` (`CountrySettings`) ограничивает или переопределяет список (взаимоисключающие поля):
+Проп `options` (`CountrySettings`) обязателен, поля взаимоисключающие:
 
-- `includedCountries` — оставить только перечисленные страны.
-- `excludedCountries` — исключить перечисленные из встроенного списка.
-- `overriddenOptions` — полностью заменить список собственными опциями.
+- `includedCountries` — страны селектора (`RUSSIA_COUNTRY_CODE`, `BELARUS_COUNTRY_CODE`, …) в порядке передачи.
+- `overriddenOptions` — собственные элементы списка вместо встроенных стран.
+
+В бандл попадают флаги только переданных стран. Весь встроенный перечень — `ALL_COUNTRY_CODES`: с ним в бандл попадают все флаги (около 500 КБ в gzip), поэтому список стоит передавать явно.
+
+Миграция с 2.x: поле без `options` — `options={{ includedCountries: ALL_COUNTRY_CODES }}`; `excludedCountries` — `includedCountries: ALL_COUNTRY_CODES.filter(...)`.
 
 ### Size (default `m`)
 
@@ -53,7 +56,7 @@ import fieldsDoc from './props.json'
 
 ## Примеры использования
 
-<Example title='Базовый' description='Телефон с полным списком стран и поиском.' code={FieldPhoneBasicSrc}>
+<Example title='Базовый' description='Телефон с полным списком стран (ALL_COUNTRY_CODES) и поиском.' code={FieldPhoneBasicSrc}>
   <FieldPhoneBasic client:visible />
 </Example>
 

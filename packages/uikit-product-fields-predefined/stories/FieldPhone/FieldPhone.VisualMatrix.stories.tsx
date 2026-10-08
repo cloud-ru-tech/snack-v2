@@ -1,5 +1,5 @@
 import { SIZE } from '@ds/fields';
-import { FieldPhone, RUSSIA_COUNTRY_CODE } from '@ds/uikit-product-fields-predefined';
+import { ALL_COUNTRY_CODES, FieldPhone, RUSSIA_COUNTRY_CODE } from '@ds/uikit-product-fields-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -27,7 +27,14 @@ export const VisualMatrix: Story = {
         columnHeaders={['']}
         rows={sizes.map(size => ({
           variantLabel: size,
-          cells: [<FieldPhone key={`multi-${size}`} size={size} label='Телефон' />],
+          cells: [
+            <FieldPhone
+              key={`multi-${size}`}
+              size={size}
+              label='Телефон'
+              options={{ includedCountries: ALL_COUNTRY_CODES }}
+            />,
+          ],
         }))}
       />
 

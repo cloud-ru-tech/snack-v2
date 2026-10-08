@@ -85,6 +85,9 @@
       "path": "./materials/tsconfig.esm.json"
     },
     {
+      "path": "./ai-button-giga/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-suggestion/tsconfig.esm.json"
     },
     {
@@ -148,16 +151,7 @@
       "path": "./skeleton/tsconfig.esm.json"
     },
     {
-      "path": "./status/tsconfig.esm.json"
-    },
-    {
-      "path": "./avatar/tsconfig.esm.json"
-    },
-    {
       "path": "./stepper/tsconfig.esm.json"
-    },
-    {
-      "path": "./tabs/tsconfig.esm.json"
     },
     {
       "path": "./timeline/tsconfig.esm.json"
@@ -176,6 +170,9 @@
     },
     {
       "path": "./accordion/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-field-request/tsconfig.esm.json"
     },
     {
       "path": "./alert/tsconfig.esm.json"
@@ -208,6 +205,9 @@
       "path": "./list/tsconfig.esm.json"
     },
     {
+      "path": "./ai-suggestion-panel/tsconfig.esm.json"
+    },
+    {
       "path": "./breadcrumbs/tsconfig.esm.json"
     },
     {
@@ -227,6 +227,15 @@
     },
     {
       "path": "./color-picker/tsconfig.esm.json"
+    },
+    {
+      "path": "./status/tsconfig.esm.json"
+    },
+    {
+      "path": "./avatar/tsconfig.esm.json"
+    },
+    {
+      "path": "./tabs/tsconfig.esm.json"
     },
     {
       "path": "./tag/tsconfig.esm.json"
@@ -260,6 +269,9 @@
     },
     {
       "path": "./uikit-product-button-predefined/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-charts/tsconfig.esm.json"
     },
     {
       "path": "./uikit-product-config-selector/tsconfig.esm.json"
@@ -313,6 +325,9 @@
       "path": "./uikit-product-header/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-header-legacy/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-quota/tsconfig.esm.json"
     },
     {
@@ -329,21 +344,6 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.esm.json"
-    },
-    {
-      "path": "./uikit-product-header-legacy/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-field-request/tsconfig.esm.json"
-    },
-    {
-      "path": "./uikit-product-charts/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-button-giga/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-suggestion-panel/tsconfig.esm.json"
     }
   ]
 }

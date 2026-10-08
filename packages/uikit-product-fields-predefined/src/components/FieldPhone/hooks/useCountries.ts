@@ -1,40 +1,25 @@
 import { useMemo } from 'react';
 
-import { ALL_COUNTRY_CODES } from '../countries';
-import { Country, CountrySettings, FieldPhoneOptionsProps } from '../types';
-import { uniqueSet } from '../utils';
+import { CountrySettings, FieldPhoneOptionsProps } from '../types';
 import { useMapCountryToOptions } from './useMapCountryToOptions';
 
-export function useCountries(optionsSettings?: CountrySettings): FieldPhoneOptionsProps[] {
+function getOptionsKey({ includedCountries, overriddenOptions }: CountrySettings): string {
+  if (overriddenOptions) {
+    return overriddenOptions
+      .map(({ id, iso2, mask, content }) => [id, iso2, mask, content.label, content.caption].join(':'))
+      .join();
+  }
+
+  return includedCountries.map(({ value }) => value).join();
+}
+
+export function useCountries(optionsSettings: CountrySettings): FieldPhoneOptionsProps[] {
   const mapCountryToOption = useMapCountryToOptions();
+  const optionsKey = getOptionsKey(optionsSettings);
 
-  const filterCountries = useMemo(() => {
-    if (!optionsSettings) {
-      return () => true;
-    }
-
-    const { includedCountries, excludedCountries } = optionsSettings;
-    const uniqueKey = 'value' satisfies keyof Country;
-
-    if (includedCountries) {
-      const includedSet = uniqueSet(includedCountries, uniqueKey);
-      return (country: Country) => includedSet.has(country[uniqueKey]);
-    }
-    if (excludedCountries) {
-      const excludedSet = uniqueSet(excludedCountries, uniqueKey);
-      return (country: Country) => !excludedSet.has(country[uniqueKey]);
-    }
-    return () => true;
-  }, [optionsSettings]);
-
-  return useMemo(() => {
-    if (optionsSettings?.overriddenOptions) return optionsSettings.overriddenOptions;
-
-    return ALL_COUNTRY_CODES.reduce<FieldPhoneOptionsProps[]>((result, country) => {
-      if (filterCountries(country)) {
-        result.push(mapCountryToOption(country));
-      }
-      return result;
-    }, []);
-  }, [optionsSettings, filterCountries, mapCountryToOption]);
+  return useMemo(
+    () => optionsSettings.overriddenOptions ?? optionsSettings.includedCountries.map(mapCountryToOption),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [optionsKey, mapCountryToOption],
+  );
 }

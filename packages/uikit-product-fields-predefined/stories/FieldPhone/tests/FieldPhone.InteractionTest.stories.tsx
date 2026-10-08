@@ -1,5 +1,5 @@
 import { TEST_IDS as FIELD_TEST_IDS } from '@ds/fields';
-import { FieldPhone } from '@ds/uikit-product-fields-predefined';
+import { ALL_COUNTRY_CODES, FieldPhone } from '@ds/uikit-product-fields-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
@@ -11,7 +11,12 @@ const meta: Meta<typeof FieldPhone> = {
   title: 'Uikit Product/FieldsPredefined/FieldPhone/Tests/Interaction',
   component: FieldPhone,
   parameters: { layout: 'fullscreen', controls: { disable: true } },
-  args: { label: 'Телефон', onChange: fn(), 'data-test-id': TEST_IDS.fieldPhone },
+  args: {
+    label: 'Телефон',
+    onChange: fn(),
+    options: { includedCountries: ALL_COUNTRY_CODES },
+    'data-test-id': TEST_IDS.fieldPhone,
+  },
 };
 
 export default meta;

@@ -4954,8 +4954,8 @@
       },
       "options": {
         "type": "CountrySettings",
-        "required": false,
-        "description": "Конфигурация для изменения стандартного списка стран",
+        "required": true,
+        "description": "Список стран селектора: встроенные страны (`includedCountries`) или собственные элементы (`overriddenOptions`)",
         "typeRefs": [
           "CountrySettings"
         ]
@@ -5083,7 +5083,7 @@
       },
       "CountrySettings": {
         "kind": "alias",
-        "type": "({ overriddenOptions: FieldPhoneOptionsProps[]; } & { includedCountries?: undefined; excludedCountries?: undefined; }) | ({ includedCountries: Country[]; } & { overriddenOptions?: undefined; excludedCountries?: undefined; }) | ({ excludedCountries: Country[]; } & { overriddenOptions?: undefined; includedCountries?: undefined; })",
+        "type": "({ includedCountries: readonly Country[]; } & { overriddenOptions?: undefined; }) | ({ overriddenOptions: FieldPhoneOptionsProps[]; } & { includedCountries?: undefined; })",
         "own": true
       },
       "FieldLayoutPresets": {
