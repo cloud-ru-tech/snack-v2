@@ -1,11 +1,17 @@
+export { default as AiAssistantsSalesDepartmentSVG } from './AiAssistantsSalesDepartment';
 export { default as AiConciergeSVG } from './AiConcierge';
+export { default as AiConstructionMonitoringSVG } from './AiConstructionMonitoring';
 export { default as AiInConstructionSVG } from './AiInConstruction';
+export { default as AvatarGovernmentSVG } from './AvatarGovernment';
+export { default as AvatarInformationDeskSVG } from './AvatarInformationDesk';
 export { default as CloudFolderSVG } from './CloudFolder';
 export { default as CorporateChatWithAiSVG } from './CorporateChatWithAi';
 export { default as CreatingCorporateAiAgentsSVG } from './CreatingCorporateAiAgents';
+export { default as DataxMetaSVG } from './DataxMeta';
 export { default as EnterpriseKnowledgeBaseSVG } from './EnterpriseKnowledgeBase';
 export { default as EnterpriseSystemCloudSVG } from './EnterpriseSystemCloud';
 export { default as FaultTolerantCloudSVG } from './FaultTolerantCloud';
+export { default as LowcodeEtlSVG } from './LowcodeEtl';
 export { default as SmartSearchBasedOnDataSVG } from './SmartSearchBasedOnData';
 export { default as WebApplicationCloudSVG } from './WebApplicationCloud';
 export { default as WorkSafetyGuideSVG } from './WorkSafetyGuide';

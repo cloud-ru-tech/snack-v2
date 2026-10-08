@@ -4,6 +4,6 @@ const ChevronRightSVG = createSpriteIcon({
   symbolId: 'snack-uikit-system-chevron-right',
   testId: '-chevron-right',
   fallback:
-    '<path d="M9.980 7.000 L 9.461 7.520 11.700 9.760 L 13.940 12.000 11.710 14.230 L 9.480 16.461 10.010 16.990 L 10.541 17.520 13.300 14.760 L 16.060 12.000 13.300 9.240 C 11.782 7.722,10.531 6.480,10.520 6.480 C 10.508 6.480,10.265 6.714,9.980 7.000 " stroke="none" fill-rule="evenodd"></path>',
+    '<path d="M10.490 8.010 L 9.960 8.540 11.690 10.270 L 13.420 12.000 11.690 13.730 L 9.960 15.461 10.500 16.000 L 11.041 16.539 13.310 14.270 L 15.580 12.000 13.320 9.740 C 12.077 8.497,11.051 7.480,11.040 7.480 C 11.029 7.480,10.781 7.718,10.490 8.010 " stroke="none" fill-rule="evenodd"></path>',
 });
 export default ChevronRightSVG;
