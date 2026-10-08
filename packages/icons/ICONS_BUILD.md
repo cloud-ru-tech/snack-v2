@@ -1,4 +1,4 @@
-# Сборка иконок @design-system/icons
+# Сборка иконок @ds/icons
 
 Документ описывает пайплайн сборки иконок: от исходных SVG до React-компонентов и спрайтов. Предназначен для разработчиков и агентов, которые меняют или отлаживают этот процесс.
 
@@ -26,7 +26,7 @@
 
 ## 2. Порядок сборки (build:icons)
 
-Вызов: из папки `packages/icons` — `pnpm run build:icons` (или `npm run build:icons`). Из корня монорепо — `pnpm --filter @design-system/icons run build:icons`.
+Вызов: из папки `packages/icons` — `pnpm run build:icons` (или `npm run build:icons`). Из корня монорепо — `pnpm --filter @ds/icons run build:icons`.
 
 1. **fixIcons**  
    `rimraf svgs-fixed && tsx scripts/pipeline/fixIcons.ts`
