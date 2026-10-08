@@ -17,10 +17,10 @@ CLI-пакет `@ds/figma-selected-block` по CSS выделенного сло
 | Режим | Требует | Что умеет |
 |-------|---------|-----------|
 | **CSS-in** (основной в этом репо) | Figma MCP (`get_variable_defs` / `get_design_context`) | Точный SCSS по фактическим `var(--sn-*)` выделенного слоя. Типографика схлопывается в один `composite-var`. |
-| **REST-in** (`--url`) | `FIGMA_TOKEN` env (лежит в `.env` репо) | Сам ходит в Figma REST, синтезирует CSS из paddings/gap/radius/border + ДЕТЕЙ. **Схлопывает anatomy в `composite-var` автоматически** (обходит все leaf'ы). Для `fills` / theme-цветов эвристика молчит — добирать через MCP. |
+| **REST-in** (`--url`) | Figma токен в macOS Keychain (`figma-token`) | Сам ходит в Figma REST, синтезирует CSS из paddings/gap/radius/border + ДЕТЕЙ. **Схлопывает anatomy в `composite-var` автоматически** (обходит все leaf'ы). Для `fills` / theme-цветов эвристика молчит — добирать через MCP. |
 
 Порядок выбора:
-1. Токен из `.env` есть → **REST-in первым** (`set -a && source .env && set +a && pnpm figma:selected-block --url ... --component <name> --variant size=<...>`). Получишь composite-var-мистеры одним вызовом.
+1. Токен в Keychain есть → **REST-in первым** (`FIGMA_TOKEN="$(security find-generic-password -s figma-token -w 2>/dev/null)" pnpm figma:selected-block --url ... --component <name> --variant size=<...>`). Получишь composite-var-мистеры одним вызовом.
 2. Нужны конкретные цвета/state-layer/типографика выделенного слоя → дополнить через **CSS-in** на узкой ноде.
 
 ## Алгоритм (CSS-in)
@@ -91,7 +91,7 @@ flex-direction: row;
 - **Tailwind-экранирование** (`var(--sn\/button\/...)`) появляется только в className из `get_design_context`. В чистом CSS Inspect такого нет. Если всё же работаешь с className — замени `\/` на `-`, регистр leaf'ов не трогай.
 - **Fallback-значения** (`var(--sn-..., #FBFFFC)`, `, 12px`) — оставляй; CLI их корректно игнорирует.
 - **Пустой mixinsCount**: не ошибка — значит леаф на пути не полный. Если хочешь composite-var — добери в CSS все leaf'ы (см. `tokens/<component>.scss` пакета `@ds/figma-variables`) или переключись в REST-in.
-- **Без FIGMA_TOKEN не пытайся `--url`** — CLI упадёт с `error: Figma token not provided`.
+- **Без Figma токена в Keychain не пытайся `--url`** — CLI упадёт с `error: Figma token not provided`. Подскажи пользователю сохранить токен: `security add-generic-password -U -a "$USER" -s figma-token -w "<TOKEN>"`, где `<TOKEN>` — personal access token. Токен в чате не запрашивать.
 
 ## Связанные правила
 

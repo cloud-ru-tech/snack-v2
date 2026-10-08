@@ -87,11 +87,17 @@ figmaNode('<multi-pkg>', '<sub>')   // sub-узел субкомпонента
 
 ### REST — без квоты MCP
 
-`FIGMA_TOKEN` лежит в корневом `.env`. REST не расходует лимит MCP и не зависит от открытого файла:
+Figma токен лежит в macOS Keychain под именем `figma-token`. REST не расходует лимит MCP и не зависит от открытого файла:
 
 ```bash
-curl -s -H "X-Figma-Token: $FIGMA_TOKEN" \
+curl -s -H "X-Figma-Token: $(security find-generic-password -s figma-token -w 2>/dev/null)" \
   "https://api.figma.com/v1/files/<fileKey>/nodes?ids=<id1>,<id2>&depth=7" -o nodes.json
+```
+
+Если токена в Keychain нет, пользователь сохраняет его сам, подставив personal access token вместо `<TOKEN>`. Токен не запрашивать в чате и не подставлять в команды:
+
+```bash
+security add-generic-password -U -a "$USER" -s figma-token -w "<TOKEN>"
 ```
 
 - Паддинги, `itemSpacing`, sizing, min/max, `clipsContent`, `boundVariables` — по каждой ноде. `depth` меньше 6 не доходит до вложенных обёрток, и вывод «обёрток нет» будет ложным.

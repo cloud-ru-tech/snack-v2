@@ -78,7 +78,7 @@ argument-hint: <pkg-name> <figma-url> [<figma-url> ...] [--note "..."]
     - Отсутствующие токены в `@ds/figma-variables` (→ hardcode + комментарий).
     - Слои в Figma, которые не маппятся ни на один из паттернов `stateLayer/material/focusedFrame` — требуют ручного решения.
     - Опечатки в variant-именах Figma — в API используем корректное имя, в `constants.ts` приписываем комментарий `// Figma variant: <axis>=<typo> (typo, корректное — <fixed>)`.
-    - Visual regression flakiness, отсутствие `FIGMA_TOKEN` (→ CSS-in режим CLI вместо `--url`).
+    - Visual regression flakiness, отсутствие Figma токена в Keychain (→ CSS-in режим CLI вместо `--url`).
 12. **Success criteria** — чеклист `[ ]`:
     - `typecheck` / `lint` / `stylelint` / `build:pkg <pkg>` зелёные.
     - `test:stories`, `test:e2e:chrome packages/<pkg>` зелёные, visual baselines ручно-отсмотрены.

@@ -78,7 +78,7 @@ argument-hint: <pkg-name> [figma-url ...] [--ref <pkg> ...] [--note "..."]
 11. **Риски** — точки с неочевидными проблемами:
     - Ось в легаси, которой нет в Figma (или наоборот) — явно перечислить, указать решение.
     - Цвета/spacing/typography в легаси, расходящиеся с Figma-токенами — список «что именно будет пересмотрено».
-    - Отсутствующие зависимости, async edge-cases, visual-regression flakiness, отсутствие `FIGMA_TOKEN` (→ CSS-in режим CLI вместо `--url`).
+    - Отсутствующие зависимости, async edge-cases, visual-regression flakiness, отсутствие Figma токена в Keychain (→ CSS-in режим CLI вместо `--url`).
 12. **Success criteria** — чеклист `[ ]`:
     - `typecheck` / `lint` / `stylelint` / `build:packages` зелёные.
     - `test:stories`, `test:e2e:chrome` зелёные, visual baselines ручно-отсмотрены.

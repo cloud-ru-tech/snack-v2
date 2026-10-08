@@ -71,8 +71,8 @@ grep -rn "z-index\|isolation" packages/<pkg>/src --include="*.scss"
 | `get_metadata` | x/y/width/height ноды и слотов, структура вариантов | Геометрия/оси — всегда первый заход |
 | `get_variable_defs` | Применённые токены ноды/символа | Токены цветов/типографики/анатомии |
 | `get_design_context` (forceCode) | Фактическая раскладка (padding-box, translate, gap) | Когда позиционирование слота неочевидно из metadata |
-| `figma-selected-block --url` (REST-in, `FIGMA_TOKEN` из `.env`) | Авто-собирает **anatomy-геометрию** (padding/gap/radius/border + дети) одним вызовом, схлопывает в `composite-var` | Быстро снять весь скелет анатомии для сверки — см. [figma-selected-block](./figma-selected-block.md) |
-| REST-аннотации Dev Mode (поле `annotations`, `FIGMA_TOKEN`) | Аннотации дизайнера с точными размерами/пояснениями («Фокус теперь внутри») | Явные указания раскладки от дизайна; MCP их **не** отдаёт |
+| `figma-selected-block --url` (REST-in, Figma токен из Keychain) | Авто-собирает **anatomy-геометрию** (padding/gap/radius/border + дети) одним вызовом, схлопывает в `composite-var` | Быстро снять весь скелет анатомии для сверки — см. [figma-selected-block](./figma-selected-block.md) |
+| REST-аннотации Dev Mode (поле `annotations`, Figma токен из Keychain) | Аннотации дизайнера с точными размерами/пояснениями («Фокус теперь внутри») | Явные указания раскладки от дизайна; MCP их **не** отдаёт |
 
 **По умолчанию remote MCP** (по `nodeId` + `fileKey`, без Figma Desktop), local — когда remote недоступен. `get_design_context` с `forceCode:true` отдаёт применённые токены (`var(--sn/...)`) + раскладку, ре-чек гоняется без участия пользователя. `get_metadata` — только структура и x/y/w/h. Значения из офлайн-дампов (REST `?version=`, `.fig`) подтверждать live-MCP (пример card: офлайн дал бы `strokeMedium`=2, live — реальный `checkbox/framing/borderWidth`=1.5).
 
