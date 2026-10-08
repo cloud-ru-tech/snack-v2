@@ -67,6 +67,8 @@
 
 Итог: в svgs-fixed все иконки окрашиваются через `currentColor` и используют дизайн-токен для толщины обводки.
 
+Группы с `colorMode: 'preserve'` (`flags`, `logos`) через oslllo-svg-fixer не проходят: SVG копируется с сохранением цветов. Если у группы задан `GROUP_CONFIG.floatPrecision`, перед записью файл прогоняется через SVGO (`preset-default`, `multipass`) с этой точностью координат. Для `flags` точность — 2 знака: при размере 24×18 разницы на глаз нет, а флаги с гербами (Peru, Guatemala) становятся в 2–2.5 раза легче.
+
 ---
 
 ## 4. SVGR: sprite и standalone

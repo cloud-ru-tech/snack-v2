@@ -17,6 +17,8 @@ export type GroupConfig = {
    *  ограничена только высота — логотипы-wordmark по дизайну шире 24px (например,
    *  `BootcampFullLogo` рендерится 180×24), реальное ограничение DS — только высота строки. */
   sizeCheck?: 'square' | 'height-only';
+  /** Только для colorMode: 'preserve': точность координат svgo-оптимизации в fixIcons. Без поля SVG копируется как есть. */
+  floatPrecision?: number;
 };
 
 export const GROUP_CONFIG: Record<string, GroupConfig> = {
@@ -28,7 +30,7 @@ export const GROUP_CONFIG: Record<string, GroupConfig> = {
   // аудит всех 336+171 исходных файлов показал ноль не-чёрно-белых цветов в обеих группах — это
   // чёрная line-art графика, как и интерфейсный набор иконок. currentColor здесь корректен —
   // иконки адаптируются под тему вместо того, чтобы оставаться зафиксированными чёрными.
-  flags: { colorMode: 'preserve', needsSprite: false },
+  flags: { colorMode: 'preserve', needsSprite: false, floatPrecision: 2 },
   logos: { colorMode: 'preserve', needsSprite: false, themed: true, sizeCheck: 'height-only' },
   services: { colorMode: 'currentColor', needsSprite: true },
   extensions: { colorMode: 'currentColor', needsSprite: true },

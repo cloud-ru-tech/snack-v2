@@ -3,8 +3,9 @@ import fs from 'fs';
 // @ts-ignore
 import SVGFixer, { FixerOptions } from 'oslllo-svg-fixer';
 import path from 'path';
+import { optimize } from 'svgo';
 import { getGroupFixedPath, getGroupSourcePath, getIconGroups } from '../shared/iconGroups';
-import { getGroupConfig } from '../shared/groupConfig';
+import { getGroupConfig, GroupConfig } from '../shared/groupConfig';
 
 const FIXER_OPTION: FixerOptions = {
   throwIfDestinationDoesNotExist: false,
@@ -35,10 +36,19 @@ function stripForeignObjectXmlns(svgContent: string): string {
   return svgContent.replace(/(<div\b[^>]*?)\s+xmlns=(["'])http:\/\/www\.w3\.org\/1999\/xhtml\2/g, '$1');
 }
 
+/** svgo с пониженной точностью координат и слиянием соседних path с одинаковыми атрибутами. */
+function optimizePreservedSvg(svgContent: string, floatPrecision: number): string {
+  return optimize(svgContent, {
+    multipass: true,
+    floatPrecision,
+    plugins: [{ name: 'preset-default', params: { overrides: { convertPathData: { floatPrecision } } } }],
+  }).data;
+}
+
 async function fixIconsFile(
   sourcePath: string,
   destDir: string,
-  colorMode: 'currentColor' | 'preserve',
+  { colorMode, floatPrecision }: GroupConfig,
 ): Promise<void> {
   const destFile = path.join(destDir, path.basename(sourcePath));
 
@@ -48,8 +58,12 @@ async function fixIconsFile(
   // многоцветный контент (флаги, брендовые логотипы, цветные service/extension-иконки). Ассеты
   // в preserve-режиме уже валидный SVG, экспортированный из Figma, — им достаточно прямого копирования.
   if (colorMode === 'preserve') {
-    const content = fs.readFileSync(sourcePath, 'utf-8');
-    fs.writeFileSync(destFile, stripForeignObjectXmlns(content), 'utf-8');
+    const content = stripForeignObjectXmlns(fs.readFileSync(sourcePath, 'utf-8'));
+    fs.writeFileSync(
+      destFile,
+      floatPrecision === undefined ? content : optimizePreservedSvg(content, floatPrecision),
+      'utf-8',
+    );
     // eslint-disable-next-line no-console
     console.log(sourcePath, '- скопирован (preserve)');
     return;
@@ -72,7 +86,7 @@ async function processFiles(
   sourceRoot: string,
   destRoot: string,
   relPath: string,
-  colorMode: 'currentColor' | 'preserve',
+  groupConfig: GroupConfig,
 ): Promise<void> {
   const fullSource = path.join(sourceRoot, relPath);
   const entries = fs.readdirSync(fullSource, { withFileTypes: true });
@@ -80,11 +94,11 @@ async function processFiles(
   for (const e of entries) {
     const childRel = relPath ? path.join(relPath, e.name) : e.name;
     if (e.isDirectory()) {
-      await processFiles(sourceRoot, destRoot, childRel, colorMode);
+      await processFiles(sourceRoot, destRoot, childRel, groupConfig);
     } else if (e.isFile() && e.name.endsWith('.svg')) {
       const destDir = path.join(destRoot, path.dirname(childRel));
       fs.mkdirSync(destDir, { recursive: true });
-      await fixIconsFile(path.join(fullSource, e.name), destDir, colorMode);
+      await fixIconsFile(path.join(fullSource, e.name), destDir, groupConfig);
     }
   }
 }
@@ -95,8 +109,7 @@ async function main(): Promise<void> {
     const source = getGroupSourcePath(group);
     const dest = getGroupFixedPath(group);
     fs.mkdirSync(dest, { recursive: true });
-    const { colorMode } = getGroupConfig(group);
-    await processFiles(source, dest, '', colorMode);
+    await processFiles(source, dest, '', getGroupConfig(group));
   }
 }
 
