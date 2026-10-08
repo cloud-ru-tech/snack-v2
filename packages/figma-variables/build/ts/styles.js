@@ -1415,56 +1415,56 @@ export const themeVars = {
           dark: {
             regular: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-display-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-display-m, 550)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-display-l, 650)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-display-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-display-m, 500)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-display-l, 600)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-headline-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-headline-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-headline-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-headline-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-headline-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-headline-l, 400)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-title-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-title-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-title-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-title-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-title-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-title-l, 400)'
               },
               label: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-label-s, 450)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-label-m, 450)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-label-l, 450)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-label-s, 400)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-label-m, 400)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-label-l, 400)'
               },
               body: {
-                s: 'var(--sn-brand-font-fontWeight-dark-regular-body-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-regular-body-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-regular-body-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-regular-body-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-regular-body-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-regular-body-l, 300)'
               }
             },
             thin: {
               display: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-display-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-display-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-display-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-display-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-display-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-display-l, 300)'
               },
               headline: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-headline-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-headline-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-headline-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-headline-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-headline-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-headline-l, 300)'
               },
               title: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-title-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-title-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-title-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-title-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-title-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-title-l, 300)'
               },
               label: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-label-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-label-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-label-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-label-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-label-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-label-l, 300)'
               },
               body: {
-                s: 'var(--sn-brand-font-fontWeight-dark-thin-body-s, 350)',
-                m: 'var(--sn-brand-font-fontWeight-dark-thin-body-m, 350)',
-                l: 'var(--sn-brand-font-fontWeight-dark-thin-body-l, 350)'
+                s: 'var(--sn-brand-font-fontWeight-dark-thin-body-s, 300)',
+                m: 'var(--sn-brand-font-fontWeight-dark-thin-body-m, 300)',
+                l: 'var(--sn-brand-font-fontWeight-dark-thin-body-l, 300)'
               }
             }
           }
@@ -1989,56 +1989,56 @@ export const themeVars = {
         fontWeight: {
           regular: {
             display: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-display-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-display-m, 550)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-display-l, 650)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-display-s, 400)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-display-m, 500)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-display-l, 600)'
             },
             headline: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-headline-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-headline-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-headline-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-headline-s, 400)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-headline-m, 400)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-headline-l, 400)'
             },
             title: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-title-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-title-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-title-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-title-s, 400)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-title-m, 400)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-title-l, 400)'
             },
             label: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-label-s, 450)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-label-m, 450)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-label-l, 450)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-label-s, 400)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-label-m, 400)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-label-l, 400)'
             },
             body: {
-              s: 'var(--sn-theme-typography-fontWeight-regular-body-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-regular-body-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-regular-body-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-regular-body-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-regular-body-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-regular-body-l, 300)'
             }
           },
           thin: {
             display: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-display-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-display-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-display-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-display-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-display-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-display-l, 300)'
             },
             headline: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-headline-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-headline-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-headline-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-headline-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-headline-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-headline-l, 300)'
             },
             title: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-title-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-title-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-title-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-title-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-title-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-title-l, 300)'
             },
             label: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-label-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-label-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-label-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-label-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-label-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-label-l, 300)'
             },
             body: {
-              s: 'var(--sn-theme-typography-fontWeight-thin-body-s, 350)',
-              m: 'var(--sn-theme-typography-fontWeight-thin-body-m, 350)',
-              l: 'var(--sn-theme-typography-fontWeight-thin-body-l, 350)'
+              s: 'var(--sn-theme-typography-fontWeight-thin-body-s, 300)',
+              m: 'var(--sn-theme-typography-fontWeight-thin-body-m, 300)',
+              l: 'var(--sn-theme-typography-fontWeight-thin-body-l, 300)'
             }
           }
         }
@@ -2091,7 +2091,7 @@ export const themeVars = {
       display: {
         s: {
           'font-family': 'var(--sn-regular-display-s-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-display-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-display-s-fontWeight, 400)',
           'line-height': 'var(--sn-regular-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-regular-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-regular-display-s-letterSpacing, -0.5)',
@@ -2099,7 +2099,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-regular-display-m-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-display-m-fontWeight, 550)',
+          'font-weight': 'var(--sn-regular-display-m-fontWeight, 500)',
           'line-height': 'var(--sn-regular-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-regular-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-regular-display-m-letterSpacing, -0.5)',
@@ -2107,7 +2107,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-regular-display-l-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-display-l-fontWeight, 650)',
+          'font-weight': 'var(--sn-regular-display-l-fontWeight, 600)',
           'line-height': 'var(--sn-regular-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-regular-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-regular-display-l-letterSpacing, -0.5)',
@@ -2117,7 +2117,7 @@ export const themeVars = {
       headline: {
         s: {
           'font-family': 'var(--sn-regular-headline-s-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-headline-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-headline-s-fontWeight, 400)',
           'line-height': 'var(--sn-regular-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-regular-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-regular-headline-s-letterSpacing, -0.5)',
@@ -2125,7 +2125,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-regular-headline-m-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-headline-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-headline-m-fontWeight, 400)',
           'line-height': 'var(--sn-regular-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-regular-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-regular-headline-m-letterSpacing, -0.5)',
@@ -2133,7 +2133,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-regular-headline-l-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-regular-headline-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-headline-l-fontWeight, 400)',
           'line-height': 'var(--sn-regular-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-regular-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-regular-headline-l-letterSpacing, -0.5)',
@@ -2143,7 +2143,7 @@ export const themeVars = {
       title: {
         s: {
           'font-family': 'var(--sn-regular-title-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-title-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-title-s-fontWeight, 400)',
           'line-height': 'var(--sn-regular-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-regular-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-title-s-letterSpacing, 0.15)',
@@ -2151,7 +2151,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-regular-title-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-title-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-title-m-fontWeight, 400)',
           'line-height': 'var(--sn-regular-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-regular-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-title-m-letterSpacing, 0.15)',
@@ -2159,7 +2159,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-regular-title-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-title-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-title-l-fontWeight, 400)',
           'line-height': 'var(--sn-regular-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-regular-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-regular-title-l-letterSpacing, 0.15)',
@@ -2169,7 +2169,7 @@ export const themeVars = {
       label: {
         s: {
           'font-family': 'var(--sn-regular-label-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-label-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-label-s-fontWeight, 400)',
           'line-height': 'var(--sn-regular-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-regular-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-regular-label-s-letterSpacing, 0)',
@@ -2177,7 +2177,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-regular-label-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-label-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-label-m-fontWeight, 400)',
           'line-height': 'var(--sn-regular-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-regular-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-label-m-letterSpacing, 0)',
@@ -2185,7 +2185,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-regular-label-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-label-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-regular-label-l-fontWeight, 400)',
           'line-height': 'var(--sn-regular-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-regular-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-label-l-letterSpacing, 0)',
@@ -2195,7 +2195,7 @@ export const themeVars = {
       body: {
         s: {
           'font-family': 'var(--sn-regular-body-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-body-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-regular-body-s-fontWeight, 300)',
           'line-height': 'var(--sn-regular-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-regular-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-regular-body-s-letterSpacing, 0.1)',
@@ -2203,7 +2203,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-regular-body-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-body-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-regular-body-m-fontWeight, 300)',
           'line-height': 'var(--sn-regular-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-regular-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-regular-body-m-letterSpacing, 0.1)',
@@ -2211,7 +2211,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-regular-body-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-regular-body-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-regular-body-l-fontWeight, 300)',
           'line-height': 'var(--sn-regular-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-regular-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-regular-body-l-letterSpacing, 0.1)',
@@ -2223,7 +2223,7 @@ export const themeVars = {
       display: {
         s: {
           'font-family': 'var(--sn-thin-display-s-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-display-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-display-s-fontWeight, 300)',
           'line-height': 'var(--sn-thin-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-thin-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-thin-display-s-letterSpacing, -0.5)',
@@ -2231,7 +2231,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-thin-display-m-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-display-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-display-m-fontWeight, 300)',
           'line-height': 'var(--sn-thin-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-thin-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-thin-display-m-letterSpacing, -0.5)',
@@ -2239,7 +2239,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-thin-display-l-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-display-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-display-l-fontWeight, 300)',
           'line-height': 'var(--sn-thin-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-thin-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-thin-display-l-letterSpacing, -0.5)',
@@ -2249,7 +2249,7 @@ export const themeVars = {
       headline: {
         s: {
           'font-family': 'var(--sn-thin-headline-s-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-headline-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-headline-s-fontWeight, 300)',
           'line-height': 'var(--sn-thin-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-thin-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-thin-headline-s-letterSpacing, -0.5)',
@@ -2257,7 +2257,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-thin-headline-m-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-headline-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-headline-m-fontWeight, 300)',
           'line-height': 'var(--sn-thin-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-thin-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-thin-headline-m-letterSpacing, -0.5)',
@@ -2265,7 +2265,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-thin-headline-l-fontFamily, SB Sans Display)',
-          'font-weight': 'var(--sn-thin-headline-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-headline-l-fontWeight, 300)',
           'line-height': 'var(--sn-thin-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-thin-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-thin-headline-l-letterSpacing, -0.5)',
@@ -2275,7 +2275,7 @@ export const themeVars = {
       title: {
         s: {
           'font-family': 'var(--sn-thin-title-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-title-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-title-s-fontWeight, 300)',
           'line-height': 'var(--sn-thin-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-thin-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-title-s-letterSpacing, 0.15)',
@@ -2283,7 +2283,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-thin-title-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-title-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-title-m-fontWeight, 300)',
           'line-height': 'var(--sn-thin-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-thin-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-title-m-letterSpacing, 0.15)',
@@ -2291,7 +2291,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-thin-title-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-title-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-title-l-fontWeight, 300)',
           'line-height': 'var(--sn-thin-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-thin-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-thin-title-l-letterSpacing, 0.15)',
@@ -2301,7 +2301,7 @@ export const themeVars = {
       label: {
         s: {
           'font-family': 'var(--sn-thin-label-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-label-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-label-s-fontWeight, 300)',
           'line-height': 'var(--sn-thin-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-thin-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-thin-label-s-letterSpacing, 0)',
@@ -2309,7 +2309,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-thin-label-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-label-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-label-m-fontWeight, 300)',
           'line-height': 'var(--sn-thin-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-thin-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-label-m-letterSpacing, 0)',
@@ -2317,7 +2317,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-thin-label-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-label-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-label-l-fontWeight, 300)',
           'line-height': 'var(--sn-thin-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-thin-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-label-l-letterSpacing, 0)',
@@ -2327,7 +2327,7 @@ export const themeVars = {
       body: {
         s: {
           'font-family': 'var(--sn-thin-body-s-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-body-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-body-s-fontWeight, 300)',
           'line-height': 'var(--sn-thin-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-thin-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-thin-body-s-letterSpacing, 0.1)',
@@ -2335,7 +2335,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-thin-body-m-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-body-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-body-m-fontWeight, 300)',
           'line-height': 'var(--sn-thin-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-thin-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-thin-body-m-letterSpacing, 0.1)',
@@ -2343,7 +2343,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-thin-body-l-fontFamily, SB Sans Text)',
-          'font-weight': 'var(--sn-thin-body-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-thin-body-l-fontWeight, 300)',
           'line-height': 'var(--sn-thin-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-thin-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-thin-body-l-letterSpacing, 0.1)',
@@ -2355,7 +2355,7 @@ export const themeVars = {
       display: {
         s: {
           'font-family': 'var(--sn-mono-display-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-mono-display-s-fontWeight, 300)',
           'line-height': 'var(--sn-mono-display-s-lineHeight, 48)',
           'font-size': 'var(--sn-mono-display-s-fontSize, 40)',
           'letter-spacing': 'var(--sn-mono-display-s-letterSpacing, -0.5)',
@@ -2363,7 +2363,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-display-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-m-fontWeight, 550)',
+          'font-weight': 'var(--sn-mono-display-m-fontWeight, 500)',
           'line-height': 'var(--sn-mono-display-m-lineHeight, 60)',
           'font-size': 'var(--sn-mono-display-m-fontSize, 48)',
           'letter-spacing': 'var(--sn-mono-display-m-letterSpacing, -0.5)',
@@ -2371,7 +2371,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-display-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-display-l-fontWeight, 650)',
+          'font-weight': 'var(--sn-mono-display-l-fontWeight, 600)',
           'line-height': 'var(--sn-mono-display-l-lineHeight, 64)',
           'font-size': 'var(--sn-mono-display-l-fontSize, 56)',
           'letter-spacing': 'var(--sn-mono-display-l-letterSpacing, -0.5)',
@@ -2381,7 +2381,7 @@ export const themeVars = {
       headline: {
         s: {
           'font-family': 'var(--sn-mono-headline-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-headline-s-fontWeight, 400)',
           'line-height': 'var(--sn-mono-headline-s-lineHeight, 32)',
           'font-size': 'var(--sn-mono-headline-s-fontSize, 24)',
           'letter-spacing': 'var(--sn-mono-headline-s-letterSpacing, -0.5)',
@@ -2389,7 +2389,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-headline-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-headline-m-fontWeight, 400)',
           'line-height': 'var(--sn-mono-headline-m-lineHeight, 36)',
           'font-size': 'var(--sn-mono-headline-m-fontSize, 28)',
           'letter-spacing': 'var(--sn-mono-headline-m-letterSpacing, -0.5)',
@@ -2397,7 +2397,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-headline-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-headline-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-headline-l-fontWeight, 400)',
           'line-height': 'var(--sn-mono-headline-l-lineHeight, 40)',
           'font-size': 'var(--sn-mono-headline-l-fontSize, 32)',
           'letter-spacing': 'var(--sn-mono-headline-l-letterSpacing, -0.5)',
@@ -2407,7 +2407,7 @@ export const themeVars = {
       title: {
         s: {
           'font-family': 'var(--sn-mono-title-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-title-s-fontWeight, 400)',
           'line-height': 'var(--sn-mono-title-s-lineHeight, 20)',
           'font-size': 'var(--sn-mono-title-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-title-s-letterSpacing, 0.15)',
@@ -2415,7 +2415,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-title-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-title-m-fontWeight, 400)',
           'line-height': 'var(--sn-mono-title-m-lineHeight, 24)',
           'font-size': 'var(--sn-mono-title-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-title-m-letterSpacing, 0.15)',
@@ -2423,7 +2423,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-title-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-title-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-title-l-fontWeight, 400)',
           'line-height': 'var(--sn-mono-title-l-lineHeight, 28)',
           'font-size': 'var(--sn-mono-title-l-fontSize, 20)',
           'letter-spacing': 'var(--sn-mono-title-l-letterSpacing, 0.15)',
@@ -2433,7 +2433,7 @@ export const themeVars = {
       label: {
         s: {
           'font-family': 'var(--sn-mono-label-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-s-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-label-s-fontWeight, 400)',
           'line-height': 'var(--sn-mono-label-s-lineHeight, 16)',
           'font-size': 'var(--sn-mono-label-s-fontSize, 12)',
           'letter-spacing': 'var(--sn-mono-label-s-letterSpacing, 0)',
@@ -2441,7 +2441,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-label-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-m-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-label-m-fontWeight, 400)',
           'line-height': 'var(--sn-mono-label-m-lineHeight, 20)',
           'font-size': 'var(--sn-mono-label-m-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-label-m-letterSpacing, 0)',
@@ -2449,7 +2449,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-label-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-label-l-fontWeight, 450)',
+          'font-weight': 'var(--sn-mono-label-l-fontWeight, 400)',
           'line-height': 'var(--sn-mono-label-l-lineHeight, 24)',
           'font-size': 'var(--sn-mono-label-l-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-label-l-letterSpacing, 0)',
@@ -2459,7 +2459,7 @@ export const themeVars = {
       body: {
         s: {
           'font-family': 'var(--sn-mono-body-s-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-s-fontWeight, 350)',
+          'font-weight': 'var(--sn-mono-body-s-fontWeight, 300)',
           'line-height': 'var(--sn-mono-body-s-lineHeight, 20)',
           'font-size': 'var(--sn-mono-body-s-fontSize, 14)',
           'letter-spacing': 'var(--sn-mono-body-s-letterSpacing, 0.1)',
@@ -2467,7 +2467,7 @@ export const themeVars = {
         },
         m: {
           'font-family': 'var(--sn-mono-body-m-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-m-fontWeight, 350)',
+          'font-weight': 'var(--sn-mono-body-m-fontWeight, 300)',
           'line-height': 'var(--sn-mono-body-m-lineHeight, 24)',
           'font-size': 'var(--sn-mono-body-m-fontSize, 16)',
           'letter-spacing': 'var(--sn-mono-body-m-letterSpacing, 0.1)',
@@ -2475,7 +2475,7 @@ export const themeVars = {
         },
         l: {
           'font-family': 'var(--sn-mono-body-l-fontFamily, SB Sans Text Mono)',
-          'font-weight': 'var(--sn-mono-body-l-fontWeight, 350)',
+          'font-weight': 'var(--sn-mono-body-l-fontWeight, 300)',
           'line-height': 'var(--sn-mono-body-l-lineHeight, 28)',
           'font-size': 'var(--sn-mono-body-l-fontSize, 18)',
           'letter-spacing': 'var(--sn-mono-body-l-letterSpacing, 0.1)',
