@@ -11,6 +11,20 @@ async function rowOrder(page: Page): Promise<string[]> {
     .evaluateAll(elements => elements.map(el => el.getAttribute('data-test-id') ?? ''));
 }
 
+/** scrollTop ближайшего прокручиваемого предка item'а (у scroll-контейнера списка нет test-id). */
+async function listScrollTop(page: Page, itemId: string, scrollTo?: number): Promise<number> {
+  return page.getByTestId(itemTestId(itemId)).evaluate((item, top) => {
+    let container = item.parentElement;
+    while (container && container.scrollHeight <= container.clientHeight) {
+      container = container.parentElement;
+    }
+    if (container && top !== undefined) {
+      container.scrollTo(0, top);
+    }
+    return container?.scrollTop ?? 0;
+  }, scrollTo);
+}
+
 test.describe('Droplist — interaction (real browser)', () => {
   test('drag&drop: reorder inside open popover completes on mouse release', async ({
     page,
@@ -77,5 +91,21 @@ test.describe('Droplist — interaction (real browser)', () => {
     await page.mouse.up();
 
     expect(Math.abs(overlayHeight - sourceHeight)).toBeLessThanOrEqual(4);
+  });
+
+  test('scrollToSelectedItem: parent rerender keeps the scroll position', async ({ page, gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions(undefined, DROPLIST_STORIES.scrollOnRerender));
+
+    await getByTestId(TEST_IDS.droplist.scrollOnRerenderTrigger).click();
+    await expect(getByTestId(itemTestId('item-1'))).toBeVisible();
+
+    const scrolledTo = await listScrollTop(page, 'item-1', 600);
+    expect(scrolledTo).toBeGreaterThan(0);
+
+    const rerenderCount = getByTestId(TEST_IDS.droplist.rerenderCount);
+    const countBefore = await rerenderCount.textContent();
+    await expect(rerenderCount).not.toHaveText(countBefore ?? '');
+
+    expect(await listScrollTop(page, 'item-1')).toBe(scrolledTo);
   });
 });

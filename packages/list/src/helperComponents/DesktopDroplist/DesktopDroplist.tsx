@@ -4,7 +4,7 @@ import cn from 'classnames';
 import mergeRefs from 'merge-refs';
 import { cloneElement, isValidElement, KeyboardEvent, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { SearchItem } from '../../components/Items';
+import { Item, SearchItem } from '../../components/Items';
 import {
   CollapseContext,
   FocusListContext,
@@ -22,6 +22,8 @@ import { ListPrivate } from '../../components/Lists/ListPrivate';
 import styles from '../../components/Lists/styles.module.scss';
 import { DesktopDroplistProps } from '../../components/Lists/types';
 
+const NO_ITEMS: Item[] = [];
+
 /**
  * Desktop-поверхность `Droplist`: анкорный popover (`Dropdown`) со списком. Internal — наружу
  * не реэкспортится; рендерится адаптивным `Droplist` на не-mobile раскладке. Так как вызывается
@@ -30,8 +32,8 @@ import { DesktopDroplistProps } from '../../components/Lists/types';
 export function DesktopDroplist({
   items: itemsProp,
   search,
-  pinBottom: pinBottomProp = [],
-  pinTop: pinTopProp = [],
+  pinBottom: pinBottomProp = NO_ITEMS,
+  pinTop: pinTopProp = NO_ITEMS,
   footerActiveElementsRefs,
   children,
   trigger,

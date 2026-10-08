@@ -22,6 +22,8 @@ export const TEST_IDS = {
     renderFnTrigger: 'droplist-renderfn-trigger',
     controlledTrigger: 'droplist-controlled-trigger',
     controlledClose: 'droplist-controlled-close',
+    scrollOnRerenderTrigger: 'droplist-scroll-on-rerender-trigger',
+    rerenderCount: 'droplist-rerender-count',
   },
   reorderableList: {
     root: 'reorderable-list',

@@ -21,6 +21,7 @@ export const DROPLIST_STORIES = {
   withHeader: { name: 'list-droplist-examples-withheader', story: 'with-header' },
   controlled: { name: 'list-droplist-examples-controlled', story: 'controlled' },
   renderFnTrigger: { name: 'list-droplist-examples-renderfntrigger', story: 'render-fn-trigger' },
+  scrollOnRerender: { name: 'list-droplist-tests-scrollonrerender', story: 'scroll-on-rerender' },
   // Reorder живёт на отдельном публичном компоненте — `Components/List/ReorderableDroplist`.
   reorderable: { name: 'list-reorderabledroplist', story: 'playground' },
 } as const satisfies Record<string, StoryRef>;
