@@ -17,11 +17,13 @@ export { FOOTER_ACTIONS_ORIENTATION, MEDIA_KIND, TEST_IDS } from '@ds/popup-priv
 export const NO_DRAG_ATTRIBUTE = 'data-bottom-sheet-no-drag';
 
 /**
- * Пресеты snap-points для различных сценариев использования.
+ * Пресеты `snapPoints` (доли высоты вьюпорта) для типовых сценариев.
  */
-export const SNAP_POINTS_PRESET: Record<string, SnapPoint[]> = {
+export const SNAP_POINTS_PRESET = {
   quarter: [0.25],
   half: [0.5],
   threeQuarters: [0.75],
   full: [1],
-};
+  /** Открывается на половину вьюпорта, drag вверх раскрывает на всю высоту. */
+  halfFull: [0.5, 1],
+} satisfies Record<string, SnapPoint[]>;

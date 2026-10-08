@@ -1,4 +1,4 @@
-import { BottomSheet } from '@ds/bottom-sheet';
+import { BottomSheet, SNAP_POINTS_PRESET } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
 import { ChevronDownSVG, FunctionSettingsSVG, WatchSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
@@ -452,7 +452,7 @@ export function MobileCalendar({
         open={open && !isTimeScreen}
         onClose={onClose}
         closeOnPopstate={closeOnPopstate}
-        snapPoints={[1]}
+        snapPoints={SNAP_POINTS_PRESET.full}
         bodyPadding={false}
         withDividers
         data-test-id={testId}

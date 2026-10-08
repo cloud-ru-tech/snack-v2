@@ -1,4 +1,4 @@
-import { BottomSheetCustom, BottomSheetCustomProps, SnapPoint } from '@ds/bottom-sheet';
+import { BottomSheetCustom, BottomSheetCustomProps, SNAP_POINTS_PRESET, SnapPoint } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { usePortalContext } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
@@ -12,10 +12,10 @@ import styles from './styles.module.scss';
 
 const SNAP_POINT_PRESETS: Record<string, SnapPoint[] | undefined> = {
   auto: undefined,
-  half: [0.5],
-  'half-full': [0.5, 1],
+  half: SNAP_POINTS_PRESET.half,
+  'half-full': SNAP_POINTS_PRESET.halfFull,
   'peek-half-full': [0.25, 0.5, 1],
-  'full-height': [1],
+  'full-height': SNAP_POINTS_PRESET.full,
 };
 
 type SnapPreset = keyof typeof SNAP_POINT_PRESETS;

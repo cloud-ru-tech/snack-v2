@@ -1,7 +1,7 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, ButtonProps } from '@ds/button';
 import { ChipToggle } from '@ds/chips';
-import { Drawer, DrawerProps, POSITION, WIDTH } from '@ds/drawer';
+import { Drawer, DrawerProps, POSITION, SNAP_POINTS_PRESET, WIDTH } from '@ds/drawer';
 import { DecorCheckedSVG } from '@ds/icons/interface/product';
 import { SegmentControl, SegmentControlProps } from '@ds/segment-control';
 import { SkeletonContextProvider, WithSkeleton } from '@ds/skeleton';
@@ -161,7 +161,7 @@ export function NotificationPanel({
       slotSecondTitle={filters}
       withDividers={isMobile}
       // Только mobile: в мастере bottomSheet панель открывается на всю высоту экрана.
-      snapPoints={[1]}
+      snapPoints={SNAP_POINTS_PRESET.full}
       contentRef={scrollContainerRef}
       content={
         <div className={styles.body} aria-busy={loading || undefined}>

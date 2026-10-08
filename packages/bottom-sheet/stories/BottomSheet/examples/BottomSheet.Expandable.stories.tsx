@@ -1,4 +1,4 @@
-import { BottomSheet } from '@ds/bottom-sheet';
+import { BottomSheet, SNAP_POINTS_PRESET } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { usePortalContext } from '@ds/portal-context';
 import { Meta, StoryObj } from '@storybook/react';
@@ -38,7 +38,7 @@ function ExpandableRender() {
         open={open}
         onClose={() => setOpen(false)}
         container={portalRoot.current || undefined}
-        snapPoints={[0.5, 1]}
+        snapPoints={SNAP_POINTS_PRESET.halfFull}
         defaultSnapIndex={0}
         title='Expandable bottom-sheet'
         content={

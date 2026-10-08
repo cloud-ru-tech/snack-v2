@@ -79,7 +79,7 @@ mobile-вьюпорте и всегда идут в столбик.
 <BottomSheet
   open={open}
   onClose={onClose}
-  snapPoints={[0.5, 1]}
+  snapPoints={SNAP_POINTS_PRESET.halfFull}
   defaultSnapIndex={0}
   title='Меню'
   content={<List />}
@@ -87,6 +87,14 @@ mobile-вьюпорте и всегда идут в столбик.
 ```
 
 **Формат** — `number ∈ (0, 1] | 'Npx' | 'N%' | 'Ndvh' | 'Nsvh' | 'Nlvh' | 'fit-content'`. Порядок массива — от меньшей позиции к большей. Drag вверх → следующий snap; drag вниз ниже первого snap'а — закрытие.
+
+Типовые наборы экспортируются константой `SNAP_POINTS_PRESET` (также реэкспортируется из `@ds/list`, `@ds/dropdown`, `@ds/drawer`, `@ds/modal`):
+
+- `quarter` — `[0.25]`.
+- `half` — `[0.5]`.
+- `threeQuarters` — `[0.75]`.
+- `full` — `[1]`, на всю высоту вьюпорта.
+- `halfFull` — `[0.5, 1]`, открывается на половину, drag вверх раскрывает на всю высоту.
 
 - **Controlled snap** — задайте `snapIndex` + `onSnapIndexChange`. В этом режиме swipe вызывает `onSnapIndexChange`, но позицию не двигает: потребитель сам передаёт новое значение обратно.
 - **`swipeEnabled` (default `true`)** — `false` отключает swipe-жесты; переключить snap можно только программно через `snapIndex`.
@@ -807,14 +815,14 @@ export function CustomComposition() {
 snapPoints={[0.5, 1]} + controlled snapIndex
 
 ```tsx
-import { BottomSheetCustom } from '@ds/bottom-sheet';
+import { BottomSheetCustom, SNAP_POINTS_PRESET } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
 import { useState } from 'react';
 
 import { MobilePreview } from '../MobilePreview';
 
 /**
- * Custom-слой полностью управляет snap-движком. `snapPoints={[0.5, 1]}` открывает sheet на
+ * Custom-слой полностью управляет snap-движком. `SNAP_POINTS_PRESET.halfFull` (`[0.5, 1]`) открывает sheet на
  * половину экрана; drag вверх (или контролируемый `snapIndex`) раскрывает до full-viewport.
  * Активный snap отслеживается через `onSnapIndexChange`.
  */
@@ -828,7 +836,7 @@ export function CustomSnapPoints() {
       <BottomSheetCustom
         open={open}
         onClose={() => setOpen(false)}
-        snapPoints={[0.5, 1]}
+        snapPoints={SNAP_POINTS_PRESET.halfFull}
         snapIndex={snapIndex}
         onSnapIndexChange={setSnapIndex}
         aria-label='Snap points sheet'

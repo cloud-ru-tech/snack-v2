@@ -1,11 +1,11 @@
-import { BottomSheetCustom } from '@ds/bottom-sheet';
+import { BottomSheetCustom, SNAP_POINTS_PRESET } from '@ds/bottom-sheet';
 import { Button } from '@ds/button';
 import { useState } from 'react';
 
 import { MobilePreview } from '../MobilePreview';
 
 /**
- * Custom-слой полностью управляет snap-движком. `snapPoints={[0.5, 1]}` открывает sheet на
+ * Custom-слой полностью управляет snap-движком. `SNAP_POINTS_PRESET.halfFull` (`[0.5, 1]`) открывает sheet на
  * половину экрана; drag вверх (или контролируемый `snapIndex`) раскрывает до full-viewport.
  * Активный snap отслеживается через `onSnapIndexChange`.
  */
@@ -19,7 +19,7 @@ export function CustomSnapPoints() {
       <BottomSheetCustom
         open={open}
         onClose={() => setOpen(false)}
-        snapPoints={[0.5, 1]}
+        snapPoints={SNAP_POINTS_PRESET.halfFull}
         snapIndex={snapIndex}
         onSnapIndexChange={setSnapIndex}
         aria-label='Snap points sheet'

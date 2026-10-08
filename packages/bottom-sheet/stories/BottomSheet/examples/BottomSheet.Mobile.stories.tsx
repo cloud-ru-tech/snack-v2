@@ -1,4 +1,4 @@
-import { BottomSheet, MEDIA_KIND, SnapPoint } from '@ds/bottom-sheet';
+import { BottomSheet, MEDIA_KIND, SNAP_POINTS_PRESET, SnapPoint } from '@ds/bottom-sheet';
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { SegmentControl } from '@ds/segment-control';
 import { Meta, StoryObj } from '@storybook/react';
@@ -34,8 +34,8 @@ const SNAP_PRESET_ITEMS = [
 
 const SNAP_POINT_PRESETS: Record<SnapPreset, SnapPoint[] | undefined> = {
   auto: undefined,
-  half: [0.5],
-  'half-full': [0.5, 1],
+  half: SNAP_POINTS_PRESET.half,
+  'half-full': SNAP_POINTS_PRESET.halfFull,
 };
 
 const PHONE_SIZE_CLASS: Record<PhoneSize, string> = {
