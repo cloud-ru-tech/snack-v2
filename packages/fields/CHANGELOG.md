@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.3 (2026-10-09)
+
+**Note:** Version bump only for package @ds/fields
+
 ## 2.5.2 (2026-10-06)
 
 ### Bug Fixes

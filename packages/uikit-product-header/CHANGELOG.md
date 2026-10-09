@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2026-10-09)
+
+### Bug Fixes
+
+- **FF-9241:** resize navigation menu, category drag by whole title, expose onToggleAllGroupsExpanded prop ([c6cc467](https://github.com/cloud-ru-tech/snack-v2/commit/c6cc467b7b44789f1c3b9022a9bf85478dafb815))
+
 ## 2.1.3 (2026-10-06)
 
 **Note:** Version bump only for package @ds/uikit-product-header

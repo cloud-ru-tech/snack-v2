@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-10-09)
+
+### Features
+
+- **FF-9241:** allow drawer to resize to full screen width ([60161a3](https://github.com/cloud-ru-tech/snack-v2/commit/60161a314fe1c4772e5445bf30f2560d60c96f60))
+
 # 2.0.0 (2026-10-05)
 
 ### BREAKING CHANGES

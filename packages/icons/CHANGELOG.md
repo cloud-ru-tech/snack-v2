@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.1 (2026-10-09)
+
+### Bug Fixes
+
+- **FF-9241:** upd subnets icon ([f82ed41](https://github.com/cloud-ru-tech/snack-v2/commit/f82ed410bc909ce90049cc08ee069c63f5d8e57f))
+
 # 1.5.0 (2026-10-05)
 
 ### Features
