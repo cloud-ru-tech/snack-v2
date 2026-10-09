@@ -1,4 +1,5 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
 
 .userMenuDroplistTrigger {
   display: inline-flex;
@@ -18,4 +19,44 @@
   svg {
     color: base.$sn-theme-color-red-text;
   }
+}
+
+// Desktop-only: классы вешаются из useProfileItem только при !isMobile.
+// Раскладка как у ContentWrapperCustom size/s, label — `regular-label-m` (weight 500).
+.userItemContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap;
+  align-items: flex-start;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.userItemHeadline {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  width: 100%;
+  min-height: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight;
+}
+
+.userItemLabel {
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @include base.composite-var(base.$sn-regular-label-m);
+}
+
+.userItemDescription {
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 }

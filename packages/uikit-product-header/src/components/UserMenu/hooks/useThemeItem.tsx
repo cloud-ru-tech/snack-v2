@@ -3,7 +3,6 @@ import { DroplistProps } from '@ds/list';
 import { useCallback, useMemo } from 'react';
 
 import { TEST_IDS } from '../../../constants';
-import { useDesktopComfortClassName } from '../../../hooks/useDesktopComfortClassName';
 import { headerLocale } from '../../../locale';
 import { THEME_MODE, ThemeMode, ThemeProps } from '../types';
 
@@ -14,7 +13,6 @@ export function useThemeItem({
   onClose,
 }: ThemeProps & { isMobile?: boolean; onClose?(): void }): DroplistProps['items'][0] {
   const { t } = headerLocale.useTranslations();
-  const comfortClassName = useDesktopComfortClassName();
 
   const handleClick = useCallback(
     (themeMode: ThemeMode) => () => {
@@ -67,8 +65,7 @@ export function useThemeItem({
       beforeContent: <ThemeContrastSVG />,
       'data-test-id': TEST_IDS.userMenu.themeMode,
       items: themeModeOptions,
-      listClassName: comfortClassName,
     }),
-    [comfortClassName, t, themeModeOptions],
+    [t, themeModeOptions],
   );
 }

@@ -47,7 +47,7 @@ export function useUserMenuItems({
   onClose,
   settingItems = EMPTY_ARRAY,
 }: UseMenuItems): UserMenuSections {
-  const profileItem = useProfileItem(profile);
+  const profileItem = useProfileItem({ ...profile, isMobile });
   const themeItem = useThemeItem({ ...(theme || {}), isMobile, onClose });
   const logoutItem = useLogoutItem({ onLogout });
 

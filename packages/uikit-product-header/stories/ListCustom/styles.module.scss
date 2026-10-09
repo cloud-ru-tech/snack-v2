@@ -1,0 +1,17 @@
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+  padding: base.$sn-primitive-dimension-16;
+}
+
+.listFrame {
+  overflow: hidden;
+  // Ширина демо-дропдауна как у UserMenu (отдельного токена нет).
+  width: 304px;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: list.$sn-list-anatomy-size-s-listItem-borderRadius;
+}

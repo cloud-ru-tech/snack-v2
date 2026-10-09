@@ -1,0 +1,175 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+
+// Figma contentWrapperCustom (17001:43602): gap/padding из primitive, типографика size/s.
+// layout=item — строка списка; layout=group — заголовок группы (listItemGroupCustom).
+
+.root {
+  display: flex;
+  flex: 1 0 0;
+  gap: base.$sn-primitive-dimension-6;
+  min-width: 0;
+}
+
+.centeredWrapper {
+  display: flex;
+  align-items: center;
+  color: base.$sn-theme-color-available-version-textTertiary;
+
+  svg {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
+.centeredWrapperAfter {
+  justify-content: flex-end;
+}
+
+.textWrapper {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+}
+
+.textContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 0;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight;
+}
+
+.label {
+  overflow: hidden;
+  flex: 1 1 50%;
+
+  min-width: 0;
+  max-width: max-content;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.caption {
+  overflow: hidden;
+  flex: 1 1 50%;
+
+  min-width: 0;
+  max-width: max-content;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+}
+
+.elementBeforeContent, .elementAfterContent {
+  display: flex;
+}
+
+.root[data-layout='item'] {
+  align-items: flex-start;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-4;
+
+  .centeredWrapper {
+    width: base.$sn-density-icon-s;
+    height: list.$sn-list-anatomy-size-s-listItem-centeredWrapper-height;
+  }
+
+  .elementBeforeContent, .elementAfterContent {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 24px; // TODO: raw value?
+  }
+
+  .headline {
+    gap: base.$sn-primitive-dimension-4;
+  }
+
+  .label {
+    @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+    display: flex;
+    align-items: center;
+  }
+
+  .caption {
+    @include base.composite-var(base.$base-styles, 'sn', 'thin', 'label', 's');
+  }
+
+  .description {
+    @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+  }
+}
+
+.root[data-layout='group'] {
+  align-items: center;
+  min-height: base.$sn-primitive-dimension-28;
+
+  .centeredWrapper {
+    width: base.$sn-density-icon-s;
+    height: base.$sn-density-icon-s;
+    padding-top: list.$sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical;
+    padding-bottom: list.$sn-list-anatomy-size-s-listItem-centeredWrapper-paddingVertical;
+  }
+
+  .elementBeforeContent, .elementAfterContent {
+    align-items: center;
+  }
+
+  .textWrapper {
+    gap: base.$sn-primitive-dimension-2;
+    align-items: center;
+    padding-top: list.$sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical;
+    padding-bottom: list.$sn-list-anatomy-size-s-listItem-contentWrapper-paddingVertical;
+  }
+
+  .headline {
+    gap: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-gap;
+
+    @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
+  }
+
+  .label[data-group-variant='subtitle'] {
+    color: base.$sn-theme-color-available-version-textMain;
+  }
+
+  .label[data-group-variant='subtitleTertiary'] {
+    color: base.$sn-theme-color-available-version-textTertiary;
+  }
+}
+
+.root[data-disabled] {
+  .textWrapper {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  .centeredWrapper {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.selectButton {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  margin-left: auto;
+}

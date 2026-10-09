@@ -1,0 +1,214 @@
+@use '@ds/materials' as m;
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Figma listItemCustom (17001:42063): selectionMode × checked × disabled на anatomy size/s.
+
+$level: var(--level, 0);
+$itemPaddingHorizontal: list.$sn-list-anatomy-size-s-listItem-paddingHorizontal;
+$itemGap: list.$sn-list-anatomy-size-s-listItem-gap;
+$nestingLevelStep: list.$sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft;
+
+.stateLayer {
+  visibility: initial;
+}
+
+.listItem {
+  cursor: pointer;
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: row;
+  gap: $itemGap;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: base.$sn-primitive-dimension-0 $itemPaddingHorizontal;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-align: start;
+
+  appearance: unset;
+  background-color: transparent;
+  outline: none;
+
+  &[data-level-one],
+  &[data-level-more-one] {
+    padding-left: calc(#{$itemPaddingHorizontal} + #{$level} * #{$nestingLevelStep} + #{$itemGap});
+  }
+
+  &:not([data-inactive], [data-disabled]) {
+    &[data-focused],
+    &:focus-visible {
+      outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+      outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+    }
+  }
+
+  &[data-non-pointer] {
+    cursor: inherit;
+  }
+}
+
+// Figma markerWrapper: absolute left strip, only when selectionMode=single && checked.
+.marker {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: list.$sn-list-anatomy-size-s-listItem-markerWrapper-width;
+  min-width: list.$sn-list-anatomy-size-s-listItem-markerWrapper-width;
+  max-width: list.$sn-list-anatomy-size-s-listItem-markerWrapper-width;
+  padding-top: list.$sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical;
+  padding-bottom: list.$sn-list-anatomy-size-s-listItem-markerWrapper-marker-paddingVertical;
+
+  &::before {
+    content: '';
+
+    flex: 1 0 0;
+
+    width: 100%;
+    min-width: base.$sn-primitive-dimension-0;
+    height: 100%;
+    border-top-right-radius: list.$sn-list-anatomy-size-s-listItem-markerWrapper-borderTopRightRadius;
+    border-bottom-right-radius: list.$sn-list-anatomy-size-s-listItem-markerWrapper-borderBottomRightRadius;
+
+    background-color: base.$sn-theme-color-primary-accent;
+  }
+
+  &[data-disabled] {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    &::before {
+      background-color: base.$sn-theme-color-neutral-accent;
+    }
+  }
+}
+
+.checkboxCenterWrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: base.$sn-primitive-dimension-8 0 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4;
+}
+
+.expandCenteredWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-4
+  base.$sn-primitive-dimension-0;
+}
+
+.groupIndicator {
+  pointer-events: none;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  fill: currentcolor;
+
+  svg {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  &[data-interactive] {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  &[data-open] {
+    border-radius: base.$sn-density-radius-s;
+    color: base.$sn-theme-color-available-version-textMain;
+    background: base.$sn-theme-color-neutral-decorTransparent;
+  }
+
+  &[data-disabled] {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.itemWrapper {
+  position: relative;
+  z-index: 0;
+
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: list.$sn-list-anatomy-size-s-listItem-borderRadius;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &[data-disabled],
+  &:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+    outline: none;
+
+    .listItem {
+      cursor: not-allowed;
+    }
+  }
+
+  &:not([data-inactive], [data-disabled]) {
+    &[data-open],
+    &[data-focused] {
+      .stateLayer[data-state='emptyNeutralOnBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
+      }
+
+      .stateLayer[data-state='activatedOnBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-activated-hovered-filled;
+      }
+    }
+
+    &:active {
+      .stateLayer[data-state='emptyNeutralOnBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-pressed-filled;
+      }
+
+      .stateLayer[data-state='activatedOnBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-activated-pressed-filled;
+      }
+    }
+  }
+
+  &[data-inactive] {
+    &:hover,
+    &:active {
+      .stateLayer[data-state='emptyNeutralOnBackground'],
+      .stateLayer[data-state='activatedOnBackground'] {
+        background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-defaultEmpty-filled;
+      }
+    }
+  }
+
+  &[data-checked][data-selection-mode='single']:not([data-disabled]) {
+    .listItem:focus-visible {
+      outline-color: base.$sn-theme-color-primary-accent;
+    }
+  }
+}

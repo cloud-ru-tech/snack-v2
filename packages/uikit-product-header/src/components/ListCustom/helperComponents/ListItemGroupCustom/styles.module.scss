@@ -1,0 +1,52 @@
+@use '@ds/figma-variables/build/scss/components/list.module' as list;
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Figma listItemGroupCustom (17001:43680): subtitle / subtitleTertiary / divider.
+
+$level: var(--level, 0);
+$groupPaddingHorizontal: base.$sn-primitive-dimension-8;
+$itemGap: list.$sn-list-anatomy-size-s-listItem-gap;
+$nestingLevelStep: list.$sn-list-anatomy-size-s-listItem-nestingLevel-paddingLeft;
+
+.root {
+  position: relative;
+
+  display: flex;
+  gap: $itemGap;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 100%;
+  padding: list.$sn-list-anatomy-size-s-subtitle-paddingTop $groupPaddingHorizontal
+    list.$sn-list-anatomy-size-s-listItem-paddingVertical;
+
+  &:focus-visible {
+    outline: base.$sn-theme-color-available-complementary solid base.$sn-primitive-strokeWeight-strokeSemiBold;
+    outline-offset: calc(0px - #{base.$sn-primitive-strokeWeight-strokeSemiBold});
+  }
+
+  &[data-level-one],
+  &[data-level-more-one] {
+    padding-left: calc(#{$groupPaddingHorizontal} + #{$level} * #{$nestingLevelStep} + #{$itemGap});
+  }
+}
+
+.dividerOnly {
+  display: flex;
+  align-items: flex-end;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: list.$sn-list-anatomy-size-s-listItem-paddingVertical $groupPaddingHorizontal;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  width: auto;
+  min-width: 0;
+}

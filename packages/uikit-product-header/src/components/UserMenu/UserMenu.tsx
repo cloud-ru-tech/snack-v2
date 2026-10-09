@@ -1,14 +1,13 @@
 import { Avatar } from '@ds/avatar';
 import { BaseItemProps, Droplist, DroplistProps, SNAP_POINTS_PRESET } from '@ds/list';
 import { useValueControl } from '@ds/utils';
-import cn from 'classnames';
 import { useCallback, useMemo } from 'react';
 
 import { TEST_IDS } from '../../constants';
-import { useDesktopComfortClassName } from '../../hooks/useDesktopComfortClassName';
 import { useMobileLayout } from '../../hooks/useMobileLayout';
 import { headerLocale } from '../../locale';
 import { HeaderButton } from '../HeaderButton';
+import { renderListItemCustom, renderListItemGroupCustom } from '../ListCustom';
 import { useUserMenuItems } from './hooks/useUserMenuItems';
 import styles from './styles.module.scss';
 import { ThemeProps, UserProfileProps } from './types';
@@ -75,7 +74,6 @@ export function UserMenu({
 }: UserMenuProps) {
   const { t } = headerLocale.useTranslations();
   const isMobile = useMobileLayout();
-  const comfortClassName = useDesktopComfortClassName();
 
   const [open = false, setOpen] = useValueControl<boolean>({ value: openProp, onChange: setOpenProp });
 
@@ -130,7 +128,7 @@ export function UserMenu({
     <Droplist
       open={open}
       onOpenChange={setOpen}
-      size='m'
+      size={isMobile ? 'm' : 's'}
       selection={SELECTION_STUB}
       pinTop={pinTop}
       items={menuItems}
@@ -138,13 +136,15 @@ export function UserMenu({
       scroll={!isMobile}
       trigger='click'
       placement='bottom-end'
-      className={cn(styles.userMenuDroplist, comfortClassName)}
+      className={styles.userMenuDroplist}
       closeOnPopstate
       data-test-id={TEST_IDS.userMenu.root}
       label={t('user')}
       snapPoints={SNAP_POINTS_PRESET.full}
       withDividers={false}
       triggerClassName={styles.userMenuDroplistTrigger}
+      itemRender={isMobile ? undefined : renderListItemCustom}
+      groupItemRender={isMobile ? undefined : renderListItemGroupCustom}
     >
       {trigger}
     </Droplist>

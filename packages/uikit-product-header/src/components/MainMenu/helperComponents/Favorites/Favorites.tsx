@@ -6,8 +6,8 @@ import { useEventHandler, useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import { MouseEvent, useMemo } from 'react';
 
-import { useDesktopComfortClassName } from '../../../../hooks/useDesktopComfortClassName';
 import { headerLocale } from '../../../../locale';
+import { renderListItemCustom, renderListItemGroupCustom } from '../../../ListCustom';
 import { FavoriteProps, InnerLink } from '../../types';
 import { resolveInnerLinksByIds } from '../../utils';
 import { Content, FavoritesItemsSkeleton } from './components';
@@ -28,7 +28,6 @@ export type FavoritesProps = {
 export function Favorites({ favorite, servicesById, headerClassName, isMobile }: FavoritesProps) {
   const { t } = headerLocale.useTranslations();
   const loading = favorite.loading;
-  const comfortClassName = useDesktopComfortClassName();
 
   const [segment, setSegment] = useValueControl<FavoritesSegment>({
     value: favorite.segment,
@@ -82,7 +81,13 @@ export function Favorites({ favorite, servicesById, headerClassName, isMobile }:
         />
 
         {favorite.actions && (
-          <Droplist size='m' {...favorite.actions} className={comfortClassName} closeDroplistOnItemClick>
+          <Droplist
+            {...favorite.actions}
+            size={isMobile ? 'm' : 's'}
+            closeDroplistOnItemClick
+            itemRender={isMobile ? undefined : renderListItemCustom}
+            groupItemRender={isMobile ? undefined : renderListItemGroupCustom}
+          >
             <Button
               view='simple'
               size='m'
