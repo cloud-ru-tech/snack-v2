@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.4 (2026-10-09)
+
+### Bug Fixes
+
+- **FF-9216:** value selection ([818fa8c](https://github.com/cloud-ru-tech/snack-v2/commit/818fa8ca8730ba81e31cd7f0ca2c7493652592e1))
+
 ## 2.5.3 (2026-10-09)
 
 **Note:** Version bump only for package @ds/fields
