@@ -43,8 +43,11 @@ $row-width: calc(#{$label-width} + #{$label-content-gap} + #{$content-max});
   align-items: center;
 
   width: 100%;
-  min-height: calc(#{base.$sn-primitive-dimension-32} + 2 * #{base.$sn-primitive-dimension-12});
   padding: base.$sn-primitive-dimension-12 0;
+
+  &[data-row-actions='true'] {
+    min-height: calc(#{base.$sn-primitive-dimension-32} + 2 * #{base.$sn-primitive-dimension-12});
+  }
 }
 
 .labelLayout {

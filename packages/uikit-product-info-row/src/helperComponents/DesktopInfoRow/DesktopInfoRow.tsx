@@ -43,6 +43,9 @@ export function DesktopInfoRow({
 }: DesktopInfoRowProps) {
   const isDouble = column === '2';
   const secondaryTruncate = secondaryLabelTruncate ?? labelTruncate;
+  const hasRowActions = Boolean(
+    rowActions || rowActionsSlot || (isDouble && (secondaryRowActions || secondaryRowActionsSlot)),
+  );
 
   return (
     <div
@@ -50,13 +53,13 @@ export function DesktopInfoRow({
       className={cn(styles.wrapper, className)}
       data-width={width}
       data-column={column}
-      data-max-width={maxWidth ? 'true' : undefined}
+      data-max-width={maxWidth || undefined}
     >
       {topDivider && (
         <Divider className={cn(sharedStyles.divider, sharedStyles.dividerTop)} variant={DIVIDER_VARIANT.Regular} />
       )}
 
-      <div className={cn(styles.infoRow, rowClassName)}>
+      <div className={cn(styles.infoRow, rowClassName)} data-row-actions={hasRowActions || undefined}>
         {isDouble ? (
           <div className={styles.columnsPair}>
             <div className={styles.pairItem}>
