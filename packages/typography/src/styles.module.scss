@@ -9,6 +9,7 @@ $sizes: 's', 'm', 'l';
   max-width: 100%;
   margin: 0;
   padding: 0;
+  border: none;
 
   overflow-wrap: break-word;
 
@@ -19,10 +20,6 @@ $sizes: 's', 'm', 'l';
           @each $size in $sizes {
             &[data-size='#{$size}'] {
               @include base.composite-var(base.$base-styles, 'sn', $weight, $variant, $size);
-
-              margin: 0;
-              padding: 0;
-              border: none;
             }
           }
         }
