@@ -8,4 +8,5 @@
   display: flex;
   flex-direction: column;
   row-gap: base.$sn-primitive-dimension-16;
+  overflow-wrap: anywhere;
 }
