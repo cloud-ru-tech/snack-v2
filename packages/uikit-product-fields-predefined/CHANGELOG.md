@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-10-09)
+
+### Features
+
+- **FF-9256:** sync icons with Figma, add solution page icons, rename AiAssistant1 to GearAi ([75eee33](https://github.com/cloud-ru-tech/snack-v2/commit/75eee33606c684624f381078b115592768f04089))
+
 ## 2.0.31 (2026-10-09)
 
 **Note:** Version bump only for package @ds/uikit-product-fields-predefined
