@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.10 (2026-10-09)
+
+### Bug Fixes
+
+- **FF-9034:** apply info-row min height only when row actions are present ([aa3aebe](https://github.com/cloud-ru-tech/snack-v2/commit/aa3aebe2dc59db26be3291abfc6abb317fc1fe74))
+
 ## 1.1.9 (2026-10-09)
 
 **Note:** Version bump only for package @ds/uikit-product-info-row

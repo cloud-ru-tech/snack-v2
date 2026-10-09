@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.47 (2026-10-09)
+
+### Bug Fixes
+
+- **FF-9034:** wrap long unbroken text in delete and recall modal content ([4817358](https://github.com/cloud-ru-tech/snack-v2/commit/481735860473aa77b5d063bbf7064800b5ce9351))
+
 ## 1.0.46 (2026-10-09)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined
