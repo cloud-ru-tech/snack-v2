@@ -129,6 +129,22 @@ $sizes: 's', 'm', 'l';
     width: 100%;
     height: 100%;
   }
+
+  // Цвет маркера на самом узле (а не через `.innerWrapper[data-checked]`), чтобы слот
+  // работал и внутри кастомной оболочки `itemRender`.
+  &[data-checked]::before {
+    background-color: base.$sn-theme-color-primary-accent;
+  }
+
+  &[data-checked][data-disabled] {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    &::before {
+      // В мастере выключенный маркер — сплошной `neutral/accent`, а не полупрозрачный
+      // текстовый токен: полоса остаётся читаемой на любом фоне.
+      background-color: base.$sn-theme-color-neutral-accent;
+    }
+  }
 }
 
 $level: var(--level, 0);
@@ -277,26 +293,10 @@ $level: var(--level, 0);
 
   &[data-has-checked],
   &[data-checked] {
-    .markerContainer::before {
-      background-color: base.$sn-theme-color-primary-accent;
-    }
-
     // В макете фокус выбранной строки красится в `primary/accent` в обоих режимах выбора,
     // а не только в одиночном.
     .droplistItem:focus-visible {
       outline-color: base.$sn-theme-color-primary-accent;
-    }
-
-    &[data-disabled] {
-      .markerContainer {
-        opacity: base.$sn-theme-effect-opacity-disabled;
-
-        &::before {
-          // В мастере выключенный маркер — сплошной `neutral/accent`, а не полупрозрачный
-          // текстовый токен: полоса остаётся читаемой на любом фоне.
-          background-color: base.$sn-theme-color-neutral-accent;
-        }
-      }
     }
   }
 }

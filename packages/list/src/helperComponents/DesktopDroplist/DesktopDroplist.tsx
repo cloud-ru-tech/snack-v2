@@ -46,6 +46,8 @@ export function DesktopDroplist({
   disableSpanWrapper,
   selection,
   contentRender,
+  itemRender,
+  groupItemRender,
   size = DEFAULT_SIZE,
   marker = true,
   closeDroplistOnItemClick = false,
@@ -247,6 +249,8 @@ export function DesktopDroplist({
       flattenItems={flattenItems}
       focusFlattenItems={focusFlattenItems}
       contentRender={contentRender}
+      itemRender={itemRender}
+      groupItemRender={groupItemRender}
       size={size}
       marker={marker}
       firstItemId={firstItemId}

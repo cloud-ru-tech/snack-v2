@@ -1,7 +1,7 @@
 import { FolderSVG, HomeSVG, StarSVG } from '@ds/icons/interface/system';
 import { ItemContentProps, ItemProps as Item, List, TEST_IDS as INTERNAL_TEST_IDS } from '@ds/list';
 import { Meta, StoryObj } from '@storybook/react';
-import { ReactNode, useState } from 'react';
+import { FocusEvent, KeyboardEvent, MouseEvent, ReactNode, RefObject, useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
@@ -45,6 +45,66 @@ function renderContent({ content }: { content?: ItemContentProps | ReactNode }):
   return <span data-test-id={CONTENT_RENDER_CUSTOM}>Custom · {option}</span>;
 }
 
+// itemRender подменяет оболочку строки; itemWrapRender по-прежнему оборачивает результат.
+const ITEM_RENDER_ROOT = 'list-item-render';
+const ITEM_RENDER_SHELL = 'list-item-render__shell';
+const ITEM_RENDER_WRAP = 'list-item-render__wrap';
+const itemRenderItems: Item[] = [
+  {
+    id: 'ir',
+    content: { label: 'Shell option' },
+    itemWrapRender: node => <div data-test-id={ITEM_RENDER_WRAP}>{node}</div>,
+  },
+];
+
+function renderItemShell({
+  contentNode,
+  'data-test-id': dataTestId,
+  tabIndex,
+  onClick,
+  onKeyDown,
+  onFocus,
+  itemRef,
+}: {
+  contentNode: ReactNode;
+  'data-test-id'?: string;
+  tabIndex: number;
+  onClick?(e: MouseEvent<HTMLElement>): void;
+  onKeyDown?(e: KeyboardEvent<HTMLElement>): void;
+  onFocus?(e: FocusEvent<HTMLElement>): void;
+  itemRef?: RefObject<HTMLElement>;
+}): ReactNode {
+  return (
+    <div data-test-id={ITEM_RENDER_SHELL}>
+      <li
+        data-test-id={dataTestId}
+        ref={itemRef as RefObject<HTMLLIElement>}
+        tabIndex={tabIndex}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        role='menuitem'
+      >
+        {contentNode}
+      </li>
+    </div>
+  );
+}
+
+const GROUP_RENDER_ROOT = 'list-group-render';
+const GROUP_RENDER_SHELL = 'list-group-render__shell';
+const groupRenderItems: Item[] = [
+  {
+    type: 'group',
+    label: 'Custom group',
+    items: [{ id: 'g1', content: { label: 'Inside group' } }],
+  },
+];
+
+function renderGroupShell({ label }: { label?: string }): ReactNode {
+  return <div data-test-id={GROUP_RENDER_SHELL}>{label}</div>;
+}
+
 const itemId = (id: string) => `${INTERNAL_TEST_IDS.baseItem}_${id}`;
 // SearchPrivate рендерит нативный input с этим data-test-id (из @ds/search-private).
 const SEARCH_INPUT_TEST_ID = 'search__field-input';
@@ -82,6 +142,17 @@ function InteractionScenario() {
               items={contentRenderItems}
               size='m'
               contentRender={renderContent}
+            />
+          </div>
+          <div className={styles.listFrame}>
+            <List data-test-id={ITEM_RENDER_ROOT} items={itemRenderItems} size='m' itemRender={renderItemShell} />
+          </div>
+          <div className={styles.listFrame}>
+            <List
+              data-test-id={GROUP_RENDER_ROOT}
+              items={groupRenderItems}
+              size='m'
+              groupItemRender={renderGroupShell}
             />
           </div>
         </DemoActions>
@@ -148,6 +219,21 @@ export const InteractionTest: Story = {
       const crRoot = canvas.getByTestId(CONTENT_RENDER_ROOT);
       await expect(within(crRoot).getByTestId(CONTENT_RENDER_CUSTOM)).toBeVisible();
       await expect(within(crRoot).queryByTestId(INTERNAL_TEST_IDS.baseItemLabel)).toBeNull();
+    });
+
+    await step('itemRender replaces the default row shell; itemWrapRender still wraps it', async () => {
+      const irRoot = canvas.getByTestId(ITEM_RENDER_ROOT);
+      const wrap = within(irRoot).getByTestId(ITEM_RENDER_WRAP);
+      const shell = within(irRoot).getByTestId(ITEM_RENDER_SHELL);
+      await expect(shell).toBeVisible();
+      await expect(wrap).toBeVisible();
+      await expect(wrap).toContainElement(shell);
+    });
+
+    await step('groupItemRender replaces the default group header', async () => {
+      const grRoot = canvas.getByTestId(GROUP_RENDER_ROOT);
+      await expect(within(grRoot).getByTestId(GROUP_RENDER_SHELL)).toBeVisible();
+      await expect(within(grRoot).getByTestId(GROUP_RENDER_SHELL)).toHaveTextContent('Custom group');
     });
 
     await step('search: typing filters items by content option', async () => {

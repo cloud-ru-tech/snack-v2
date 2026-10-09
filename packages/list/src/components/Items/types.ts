@@ -100,7 +100,7 @@ export type NextListItem = BaseItemWithoutNonGroup &
     listClassName?: string;
   };
 
-type CommonGroupItem = {
+export type CommonGroupItem = {
   /** Заголовок группы */
   label?: string;
   /** Слот иконки слева от label. */

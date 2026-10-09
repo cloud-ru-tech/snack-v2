@@ -180,6 +180,11 @@ export function MobileDroplist({
           noDataState: rest.noDataState,
           noResultsState: rest.noResultsState,
           errorDataState: rest.errorDataState,
+          // Оболочки строк/групп и contentRender нужны на каждом уровне drill-down, не только на корне.
+          contentRender: rest.contentRender,
+          itemRender: rest.itemRender,
+          groupItemRender: rest.groupItemRender,
+          marker: rest.marker,
           ...(isRoot ? rest : null),
           // Контролируемые scroll-пропсы идут после `...rest`, чтобы их не перебило значениями
           // с десктопа. В sheet'е список заполняет body и скроллится внутри себя (`sheetScroll`,

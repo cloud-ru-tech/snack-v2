@@ -1,9 +1,9 @@
 import { Checkbox, Switch } from '@ds/toggles';
-import { extractSupportProps } from '@ds/utils';
+import { extractSupportProps, ValueOf } from '@ds/utils';
 import cn from 'classnames';
 import { FocusEvent, KeyboardEvent, MouseEvent, ReactNode, RefObject } from 'react';
 
-import { DEFAULT_SIZE, TEST_IDS } from '../../../constants';
+import { DEFAULT_SIZE, MODE, TEST_IDS } from '../../../constants';
 import { ItemContent } from '../../../helperComponents';
 import {
   useCollapseLevelContext,
@@ -74,7 +74,14 @@ export function BaseItem({
 }: AllBaseItemProps) {
   const interactive = !inactive;
 
-  const { size = DEFAULT_SIZE, marker, contentRender, firstItemId, focusFlattenItems } = useNewListContext();
+  const {
+    size = DEFAULT_SIZE,
+    marker,
+    contentRender,
+    itemRender,
+    firstItemId,
+    focusFlattenItems,
+  } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
   const { closeDroplist, closeDroplistOnItemClick } = useOpenListContext();
   const { value, onChange, mode, isSelectionSingle, isSelectionMultiple } = useSelectionContext();
@@ -178,14 +185,20 @@ export function BaseItem({
   const props = extractSupportProps(rest);
 
   let contentNode: ReactNode;
+  let contentFromRender = Boolean(contentRender);
   if (content && isContentItem(content)) {
     contentNode = contentRender?.({ id, content, disabled }) ?? <ItemContent disabled={disabled} {...content} />;
   } else if (isPrimitiveContent(content)) {
     // Примитивный content — шорткат `{ label: content }`: рендерим через ItemContent,
     // чтобы строка получила размерную высоту, а не схлопывалась до высоты текста.
-    contentNode = <ItemContent disabled={disabled} label={content} />;
+    const primitiveContent = { label: content };
+    contentNode = contentRender?.({ id, content: primitiveContent, disabled }) ?? (
+      <ItemContent disabled={disabled} label={content} />
+    );
   } else {
-    contentNode = <div className={styles.content}> {content} </div>;
+    contentNode = contentRender?.({ id, content, disabled }) ?? <div className={styles.content}> {content} </div>;
+    // Неструктурный content оболочка не разберёт на label/caption — отдаём готовый узел.
+    contentFromRender = true;
   }
 
   const stateLayerState =
@@ -193,7 +206,110 @@ export function BaseItem({
       ? 'activatedOnBackground'
       : 'emptyNeutralOnBackground';
 
-  const itemJSX = (
+  const dataTestId = typeof props['data-test-id'] === 'string' ? props['data-test-id'] : `${TEST_IDS.baseItem}_${id}`;
+  const tabIndex = firstItemId && id === focusFlattenItems[firstItemId]?.originalId ? 0 : -1;
+
+  const dragHandleNode = dragHandle ? <div className={styles.dragHandle}>{dragHandle}</div> : undefined;
+
+  // Маркер/чекбокс/шеврон-обёртка нужны только дефолтной разметке; при `itemRender`
+  // оболочка рисует индикаторы сама по `selectionMode`.
+  const markerNode =
+    !itemRender && !switchProp && isSelectionSingle && marker && !isParentNode && interactive ? (
+      <div
+        className={styles.markerContainer}
+        data-test-id={TEST_IDS.baseItemMarker}
+        data-checked={isChecked || undefined}
+        data-disabled={disabled || undefined}
+      />
+    ) : undefined;
+
+  const checkboxNode =
+    !itemRender && !switchProp && isSelectionMultiple && interactive ? (
+      <div className={styles.checkbox}>
+        <Checkbox
+          size={TOGGLE_SIZE_MAP[size]}
+          disabled={disabled}
+          tabIndex={-1}
+          onChange={isParentNode ? handleCheckboxChange : undefined}
+          checked={isChecked}
+          data-test-id={TEST_IDS.baseItemCheckbox}
+          onClick={handleCheckboxClick}
+          indeterminate={indeterminate}
+        />
+      </div>
+    ) : undefined;
+
+  const switchControlNode =
+    switchProp && interactive ? (
+      <span className={styles.switchWrapper}>
+        <Switch
+          size={TOGGLE_SIZE_MAP[size]}
+          disabled={disabled}
+          checked={isChecked}
+          data-test-id={TEST_IDS.baseItemSwitch}
+          showIcon={showSwitchIcon}
+        />
+      </span>
+    ) : undefined;
+
+  const expandIconNode =
+    !itemRender && !switchProp && expandIcon ? (
+      // Интерактивный шеврон не получает роль и фокус намеренно: клавиатурный путь идёт
+      // через строку, у неё же живёт `aria-expanded`. Лишний таб-стоп сломал бы порядок
+      // фокуса списка, а озвучивать AT недостижимый с клавиатуры элемент незачем.
+      <span
+        className={styles.groupIndicator}
+        data-open={open || undefined}
+        data-interactive={Boolean(onExpandIconClick) || undefined}
+        data-test-id={TEST_IDS.groupIndicator}
+        onClick={onExpandIconClick && handleExpandIconClick}
+        aria-hidden
+      >
+        {expandIcon}
+      </span>
+    ) : undefined;
+
+  const isRowChecked = Boolean((isParentNode && (indeterminate || isChecked)) || (isChecked && !switchProp));
+
+  let selectionMode: ValueOf<typeof MODE> = MODE.None;
+  if (isSelectionMultiple) {
+    selectionMode = MODE.Multiple;
+  } else if (isSelectionSingle) {
+    selectionMode = MODE.Single;
+  }
+
+  const itemJSX = itemRender ? (
+    itemRender({
+      id,
+      content,
+      contentNode,
+      contentFromRender,
+      beforeContent,
+      afterContent,
+      dragHandle: dragHandleNode,
+      switchControl: switchControlNode,
+      // Сырой слот: обёртку centeredWrapper/groupIndicator рисует кастомная оболочка.
+      expandIcon: !switchProp && expandIcon ? expandIcon : undefined,
+      selectionMode,
+      disabled,
+      inactive,
+      checked: isRowChecked,
+      open,
+      isParentNode,
+      size,
+      level,
+      className,
+      itemRef: itemRef as RefObject<HTMLElement>,
+      tabIndex,
+      'data-test-id': dataTestId,
+      style: { '--level': level },
+      onClick: handleItemClick,
+      onMouseDown: handleItemMouseDown,
+      onKeyDown: handleItemKeyDown,
+      onFocus: handleItemFocus,
+      onExpandIconClick: onExpandIconClick ? handleExpandIconClick : undefined,
+    })
+  ) : (
     <div
       className={cn(commonStyles.itemWrapper, styles.innerWrapper, className)}
       data-size={size}
@@ -206,13 +322,13 @@ export function BaseItem({
       <li
         data-type='outside'
         role={'menuitem'}
-        data-test-id={props['data-test-id'] || `${TEST_IDS.baseItem}_${id}`}
+        data-test-id={dataTestId}
         ref={itemRef as RefObject<HTMLLIElement>}
         className={cn(commonStyles.listItem, styles.droplistItem)}
         data-size={size}
         onClick={handleItemClick}
         onMouseDown={handleItemMouseDown}
-        tabIndex={firstItemId && id === focusFlattenItems[firstItemId]?.originalId ? 0 : -1}
+        tabIndex={tabIndex}
         data-non-pointer={(inactive && !onClick) || undefined}
         data-variant={mode || undefined}
         data-open={open || undefined}
@@ -224,26 +340,11 @@ export function BaseItem({
         data-level-more-one={level > 1 || undefined}
         data-checked={(isParentNode && (indeterminate || isChecked)) || (isChecked && !switchProp) || undefined}
       >
-        {dragHandle && <div className={styles.dragHandle}>{dragHandle}</div>}
+        {dragHandleNode}
 
-        {!switchProp && isSelectionSingle && marker && !isParentNode && interactive && (
-          <div className={styles.markerContainer} data-test-id={TEST_IDS.baseItemMarker} />
-        )}
+        {markerNode}
 
-        {!switchProp && isSelectionMultiple && interactive && (
-          <div className={styles.checkbox}>
-            <Checkbox
-              size={TOGGLE_SIZE_MAP[size]}
-              disabled={disabled}
-              tabIndex={-1}
-              onChange={isParentNode ? handleCheckboxChange : undefined}
-              checked={isChecked}
-              data-test-id={TEST_IDS.baseItemCheckbox}
-              onClick={handleCheckboxClick}
-              indeterminate={indeterminate}
-            />
-          </div>
-        )}
+        {checkboxNode}
 
         {/* contentWrapper мастера: иконочные слоты и текст лежат в одном узле без gap —
             их разделяют только горизонтальные поля textContent. */}
@@ -253,33 +354,9 @@ export function BaseItem({
           {afterContent && <div className={styles.afterContent}>{afterContent}</div>}
         </div>
 
-        {switchProp && interactive && (
-          <span className={styles.switchWrapper}>
-            <Switch
-              size={TOGGLE_SIZE_MAP[size]}
-              disabled={disabled}
-              checked={isChecked}
-              data-test-id={TEST_IDS.baseItemSwitch}
-              showIcon={showSwitchIcon}
-            />
-          </span>
-        )}
+        {switchControlNode}
 
-        {!switchProp && expandIcon && (
-          // Интерактивный шеврон не получает роль и фокус намеренно: клавиатурный путь идёт
-          // через строку, у неё же живёт `aria-expanded`. Лишний таб-стоп сломал бы порядок
-          // фокуса списка, а озвучивать AT недостижимый с клавиатуры элемент незачем.
-          <span
-            className={styles.groupIndicator}
-            data-open={open || undefined}
-            data-interactive={Boolean(onExpandIconClick) || undefined}
-            data-test-id={TEST_IDS.groupIndicator}
-            onClick={onExpandIconClick && handleExpandIconClick}
-            aria-hidden
-          >
-            {expandIcon}
-          </span>
-        )}
+        {expandIconNode}
       </li>
     </div>
   );

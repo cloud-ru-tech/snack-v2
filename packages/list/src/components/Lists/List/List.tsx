@@ -28,6 +28,8 @@ const ListImpl = forwardRef(
       collapse = {},
       selection,
       contentRender,
+      itemRender,
+      groupItemRender,
       size = DEFAULT_SIZE,
       marker = true,
       keyboardNavigationRef,
@@ -104,6 +106,8 @@ const ListImpl = forwardRef(
         flattenItems={flattenItems}
         focusFlattenItems={focusFlattenItems}
         contentRender={contentRender}
+        itemRender={itemRender}
+        groupItemRender={groupItemRender}
         size={size}
         marker={marker}
         firstItemId={firstItemId}

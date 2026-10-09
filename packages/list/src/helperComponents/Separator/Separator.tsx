@@ -35,7 +35,7 @@ export function Separator({
   groupVariant = 'subtitleTertiary',
   selectButton,
 }: SeparatorProps) {
-  const { size = 'm' } = useNewListContext();
+  const { size = 'm', groupItemRender } = useNewListContext();
   const { level = 0 } = useCollapseLevelContext();
 
   const { t } = listLocale.useTranslations();
@@ -67,6 +67,24 @@ export function Separator({
       </span>
     );
   }, [selectButton, size, t]);
+
+  if (groupItemRender && (label || divider)) {
+    return (
+      <>
+        {groupItemRender({
+          label,
+          beforeContent,
+          truncate,
+          groupVariant,
+          divider,
+          selectButton,
+          selectButtonNode: selectButtonJSX,
+          size,
+          level,
+        })}
+      </>
+    );
+  }
 
   if (label) {
     return (
