@@ -173,16 +173,19 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
       );
 
       // Кнопка центрируется по первой строке текста: verticalPadding (отступ контента сверху)
-      // + центровка слота в line-height. Так 32px-кнопка верхним краем садится ровно на
-      // внутреннюю границу поля (Figma), а не выступает над ней.
+      // + центровка слота в line-height.
       $slot-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'width');
+      $icon-square: base.$sn-density-icon-s;
       $button-size: 'm';
 
       @if $size == 's' {
+        $icon-square: base.$sn-density-icon-xs;
         $button-size: 's';
       }
 
-      // Ширина кнопки — слот centeredWrapper из макета (16/24/24), высота остаётся высотой кнопки.
+      // Кнопка — иконный квадрат (16/24/24), как в `.postfixButtonsSlot` у FieldText: иначе кольцо
+      // фокуса вытягивается по высоте кнопки. В мастере кнопка выше слота (24×32 на m).
+      --sn-button-anatomy-size-#{$button-size}-container-minHeight: #{$icon-square};
       --sn-button-anatomy-size-#{$button-size}-container-iconOnly-minWidth: #{$slot-width};
 
       top: calc(#{$vertical-padding} + (#{$line-height} - #{$square}) / 2);
