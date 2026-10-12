@@ -602,11 +602,14 @@ export function ChoiceSingleManualApply() {
 | `disableFuzzySearch` | `boolean` | `false` | Отключает Fuzzy Search |
 | `disabled` | `boolean` | — | Отключён |
 | `dropDownClassName` | `string` | — |  |
+| `droplistSize` | `"l"` \| `"m"` \| `"s"` | — | Размер внутреннего `Droplist` с опциями. <br/> По умолчанию совпадает с `size` чипа. |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `filterFn` | `((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => boolean) \| undefined` | — | Функция фильтрации опций |
 | `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
+| `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode)` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
 | `icon` | `ReactNode` | — | Иконка |
+| `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
@@ -761,11 +764,14 @@ export function ChoiceMultipleSearchable() {
 | `disableFuzzySearch` | `boolean` | `false` | Отключает Fuzzy Search |
 | `disabled` | `boolean` | — | Отключён |
 | `dropDownClassName` | `string` | — |  |
+| `droplistSize` | `"l"` \| `"m"` \| `"s"` | — | Размер внутреннего `Droplist` с опциями. <br/> По умолчанию совпадает с `size` чипа. |
 | `errorDataState` | `EmptyStateProps` | — | Экран при ошибке запроса |
 | `filterFn` | `((option: { label: ItemId; value?: ItemId; contentRenderProps?: T; }) => boolean) \| undefined` | — | Функция фильтрации опций |
 | `footer` | `ReactNode ;` | — | Кастомизируемый элемент в конце списка |
 | `footerActiveElementsRefs` | `RefObject<HTMLElement>[]` | — | Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка |
+| `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode)` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
 | `icon` | `ReactNode` | — | Иконка |
+| `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |

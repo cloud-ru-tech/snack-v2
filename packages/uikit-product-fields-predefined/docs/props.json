@@ -2382,6 +2382,16 @@
             "required": false,
             "description": "Рендер функция основного контента айтема"
           },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
           "marker": {
             "type": "boolean | undefined",
             "required": false,
@@ -3420,6 +3430,16 @@
             "required": false,
             "description": "Рендер функция основного контента айтема"
           },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
           "marker": {
             "type": "boolean | undefined",
             "required": false,
@@ -4445,6 +4465,16 @@
             "type": "((props: ContentRenderProps) => ReactNode) | undefined",
             "required": false,
             "description": "Рендер функция основного контента айтема"
+          },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
           },
           "marker": {
             "type": "boolean | undefined",
@@ -5823,6 +5853,16 @@
             "type": "((props: ContentRenderProps) => ReactNode) | undefined",
             "required": false,
             "description": "Рендер функция основного контента айтема"
+          },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
           },
           "marker": {
             "type": "boolean | undefined",

@@ -159,6 +159,77 @@
     },
     "relatedTypes": {}
   },
+  "ContentWrapperCustom": {
+    "displayName": "ContentWrapperCustom",
+    "propsTypeName": null,
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "caption": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "contentNode": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Готовый узел вместо структурного текста; у группы обычно не задаётся"
+      },
+      "description": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "groupVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "subtitle",
+          "subtitleTertiary"
+        ],
+        "defaultValue": "subtitleTertiary",
+        "description": "Визуальный стиль заголовка группы"
+      },
+      "label": {
+        "type": "string | number",
+        "required": false
+      },
+      "layout": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "group",
+          "item"
+        ],
+        "defaultValue": "item",
+        "description": "Раскладка: строка списка или заголовок группы"
+      },
+      "selectButton": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот справа в групповом заголовке (bulk select)"
+      },
+      "truncate": {
+        "type": "TruncateProps",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
   "DraggableServiceCard": {
     "displayName": "DraggableServiceCard",
     "propsTypeName": null,
@@ -1124,6 +1195,321 @@
       }
     },
     "relatedTypes": {}
+  },
+  "ListItemCustom": {
+    "displayName": "ListItemCustom",
+    "propsTypeName": "ListItemCustomProps",
+    "description": "Кастомная оболочка строки `List`/`Droplist` (Figma `listItemCustom`).\nМаркер (single) и чекбокс (multiple) рисуются внутри по `selectionMode` / `checked` / `disabled`.",
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема",
+        "typeRefs": [
+          "ItemContent"
+        ]
+      },
+      "contentFromRender": {
+        "type": "boolean",
+        "required": false,
+        "description": "`true`, если `contentNode` собран через `contentRender` (или это неструктурный\n`content`). Тогда оболочка должна вставить `contentNode` как есть, а не\nпересобирать текст из полей `content`."
+      },
+      "contentNode": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Флаг неактивности элемента"
+      },
+      "dragHandle": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "expandIcon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Сырая иконка шеврона — обёртку рисует оболочка"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор",
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "inactive": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТакже элемент исключается из навигации с клавиатуры и не может быть выбран (selection)"
+      },
+      "isParentNode": {
+        "type": "boolean",
+        "required": false
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "level": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0"
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onExpandIconClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "multiple",
+          "none",
+          "single"
+        ],
+        "defaultValue": "none",
+        "typeRefs": [
+          "Mode"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "CSS-переменная `--level` и прочие инлайн-стили корня строки"
+      },
+      "switchControl": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "-1"
+      }
+    },
+    "relatedTypes": {
+      "ItemContent": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TruncateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": false
+      },
+      "Mode": {
+        "kind": "union",
+        "values": [
+          "multiple",
+          "none",
+          "single"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "TruncateProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "variant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ]
+          }
+        },
+        "own": false
+      }
+    }
+  },
+  "ListItemGroupCustom": {
+    "displayName": "ListItemGroupCustom",
+    "propsTypeName": "ListItemGroupCustomProps",
+    "description": "Кастомная оболочка заголовка группы `List`/`Droplist` (Figma `listItemGroupCustom`).\nПередаётся в `groupItemRender`: subtitle / subtitleTertiary / divider.",
+    "props": {
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот иконки слева от label."
+      },
+      "divider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать разделитель над группой"
+      },
+      "groupVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "subtitle",
+          "subtitleTertiary"
+        ],
+        "defaultValue": "subtitleTertiary",
+        "description": "Визуальный стиль заголовка группы"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок группы"
+      },
+      "level": {
+        "type": "number",
+        "required": true
+      },
+      "selectButton": {
+        "type": "{ onClick?(e: MouseEvent<HTMLElement, MouseEvent>): void; indeterminate?: boolean; checked?: boolean; itemRef?: ForwardedRef<...> | undefined; label?: string | undefined; } | undefined",
+        "required": false
+      },
+      "selectButtonNode": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Уже собранная кнопка массового выбора (если есть)."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "truncate": {
+        "type": "{ variant?: \"end\" | \"middle\"; }",
+        "required": false,
+        "description": "Настройки усечения длинного заголовка группы"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      }
+    }
   },
   "Logo": {
     "displayName": "Logo",
@@ -4415,6 +4801,316 @@
     "props": {},
     "relatedTypes": {}
   },
+  "renderListItemCustom": {
+    "displayName": "renderListItemCustom",
+    "propsTypeName": "ItemRenderProps",
+    "description": "Стабильные рендеры для `itemRender` / `groupItemRender` у `List`/`Droplist`.",
+    "props": {
+      "afterContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот после основного контента"
+      },
+      "beforeContent": {
+        "type": "ReactElement",
+        "required": false,
+        "description": "Слот до основного контента"
+      },
+      "checked": {
+        "type": "boolean",
+        "required": false,
+        "description": "Управляемое состояние выбранности айтема"
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс"
+      },
+      "content": {
+        "type": "ReactNode | ItemContentProps",
+        "required": false,
+        "description": "Основной контент айтема",
+        "typeRefs": [
+          "ItemContent"
+        ]
+      },
+      "contentFromRender": {
+        "type": "boolean",
+        "required": false,
+        "description": "`true`, если `contentNode` собран через `contentRender` (или это неструктурный\n`content`). Тогда оболочка должна вставить `contentNode` как есть, а не\nпересобирать текст из полей `content`."
+      },
+      "contentNode": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Уже собранный контент: результат `contentRender`, либо дефолтный `ItemContent`,\nлибо обёртка над произвольным `content`. Кастомная оболочка может использовать его\nкак есть или пересобрать разметку из `content`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг неактивности элемента"
+      },
+      "dragHandle": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "expandIcon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Сырая иконка шеврона — обёртку рисует оболочка"
+      },
+      "id": {
+        "type": "ItemId",
+        "required": false,
+        "description": "Уникальный идентификатор",
+        "typeRefs": [
+          "ItemId"
+        ]
+      },
+      "inactive": {
+        "type": "boolean",
+        "required": false,
+        "description": "Флаг отображения отключения реакции на любое css состояние (hover/focus и тд)\n<br>\nТакже элемент исключается из навигации с клавиатуры и не может быть выбран (selection)"
+      },
+      "isParentNode": {
+        "type": "boolean",
+        "required": false
+      },
+      "itemRef": {
+        "type": "RefObject<HTMLElement>",
+        "required": false,
+        "description": "Ссылка на DOM-элемент айтема"
+      },
+      "level": {
+        "type": "number",
+        "required": true
+      },
+      "onClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки клика"
+      },
+      "onExpandIconClick": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false
+      },
+      "onFocus": {
+        "type": "((e: FocusEvent<HTMLElement, Element>) => void)",
+        "required": false,
+        "description": "Колбек обработки фокуса"
+      },
+      "onKeyDown": {
+        "type": "((e: KeyboardEvent<HTMLElement>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия клавиши"
+      },
+      "onMouseDown": {
+        "type": "((e: MouseEvent<HTMLElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбек обработки нажатия кнопки мыши"
+      },
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "multiple",
+          "none",
+          "single"
+        ],
+        "description": "Режим выбора списка (`none` / `single` / `multiple`)",
+        "typeRefs": [
+          "Mode"
+        ]
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "style": {
+        "type": "CSSProperties",
+        "required": false,
+        "description": "CSS-переменная `--level` и прочие инлайн-стили корня строки"
+      },
+      "switchControl": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "tabIndex": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {
+      "ItemContent": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "description": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "string | number",
+            "required": true
+          },
+          "truncate": {
+            "type": "TruncateProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TruncateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "ItemId": {
+        "kind": "alias",
+        "type": "string | number",
+        "own": false
+      },
+      "Mode": {
+        "kind": "union",
+        "values": [
+          "multiple",
+          "none",
+          "single"
+        ],
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      },
+      "TruncateProps": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "label": {
+            "type": "number | undefined",
+            "required": false
+          },
+          "variant": {
+            "type": "\"end\" | \"middle\" | undefined",
+            "required": false,
+            "values": [
+              "end",
+              "middle"
+            ]
+          }
+        },
+        "own": false
+      }
+    }
+  },
+  "renderListItemGroupCustom": {
+    "displayName": "renderListItemGroupCustom",
+    "propsTypeName": "GroupItemRenderProps",
+    "props": {
+      "beforeContent": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот иконки слева от label."
+      },
+      "divider": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать разделитель над группой"
+      },
+      "groupVariant": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "subtitle",
+          "subtitleTertiary"
+        ],
+        "description": "Визуальный стиль заголовка группы"
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок группы"
+      },
+      "level": {
+        "type": "number",
+        "required": true
+      },
+      "selectButton": {
+        "type": "{ onClick?(e: MouseEvent<HTMLElement, MouseEvent>): void; indeterminate?: boolean; checked?: boolean; itemRef?: ForwardedRef<...> | undefined; label?: string | undefined; } | undefined",
+        "required": false
+      },
+      "selectButtonNode": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Уже собранная кнопка массового выбора (если есть)."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "truncate": {
+        "type": "{ variant?: \"end\" | \"middle\"; }",
+        "required": false,
+        "description": "Настройки усечения длинного заголовка группы"
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": false
+      }
+    }
+  },
   "useFavoritesReorder": {
     "displayName": "useFavoritesReorder",
     "propsTypeName": null,
@@ -4508,6 +5204,10 @@
         "type": "number",
         "required": false,
         "description": "Число активных приглашений — отображается счётчиком на кнопке-триггере меню."
+      },
+      "isMobile": {
+        "type": "boolean",
+        "required": false
       },
       "itemWrapRender": {
         "type": "((node: ReactNode) => ReactNode)",

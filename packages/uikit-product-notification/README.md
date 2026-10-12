@@ -196,7 +196,9 @@ export function DeployFailureCard() {
 | `data-test-id` | `string` | — |  |
 | `date` | `string` | — | Дата уведомления |
 | `description` | `ReactNode` | — | Описание уведомления — вторичный текст под заголовком |
+| `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode)` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
 | `id` | `string` | — | Идентификатор уведомления |
+| `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Лейбл перед заголовком |
 | `link` | `PickLinkProps` | — | Ссылка (рендерится как `<a href>` через `@ds/link`) |
 | `onClick` | `MouseEventHandler<HTMLDivElement>` | — | Колбэк клика по карточке. Делает карточку кликабельной (`role='button'`, фокус с клавиатуры). <br/> Активация по карточке срабатывает только при фокусе на самой карточке — вложенные кнопки, <br/> ссылка и меню действий активируются независимо. |
@@ -705,7 +707,7 @@ export function PanelScenario() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollEndRef` | `RefObject<HTMLDivElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `segments` | `SegmentControlProps` | — | Сегменты для фильтрации |
-| `settings` | `NotificationPanelSettingsProps` | — | Кнопка настроек и выпадающий список |
+| `settings` | `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `NotificationPanelSettingsProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Кнопка настроек и выпадающий список |
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `skeletonsAmount` | `number` | `2` | Количество скелетонов карточек для отображения при загрузке |
 | `title` | `string` | — | Заголовок панели |
@@ -729,6 +731,8 @@ export function PanelScenario() {
 |------|------|---------|-------------|
 | `actions` | `Action` | — | Дополнительные действия панели |
 | `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
+| `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode) \| undefined` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
+| `itemRender` | `((props: ItemRenderProps) => ReactNode) \| undefined` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `size` | `"m"` \| `"s"` | — |  |
 
 #### NotificationPanel.Stack
@@ -741,6 +745,8 @@ export function PanelScenario() {
 | `children` | `Iterable<ReactNode>` | — | Карточки в стопке, видна первая карточка, остальные схлопываются под нее. |
 | `data-test-id` | `string` | — |  |
 | `defaultOpen` | `boolean` | — | Состояние открыт/закрыт по умолчанию |
+| `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode)` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
+| `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `onOpenChanged` | `((open: boolean) => void)` | — | Колбек смены состояния открыт/закрыт |
 | `title` | `string` | — | Заголовок стопки карточек |
 | `unread` | `boolean` | — | Состояние непрочитанных карточек |

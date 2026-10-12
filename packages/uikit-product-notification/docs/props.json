@@ -11,9 +11,19 @@
         "type": "string",
         "required": false
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "icon": {
         "type": "ReactElement<any, string | JSXElementConstructor<any>>",
         "required": true
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "open": {
         "type": "boolean",
@@ -82,10 +92,20 @@
         "required": false,
         "description": "Описание уведомления — вторичный текст под заголовком"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "id": {
         "type": "string",
         "required": true,
         "description": "Идентификатор уведомления"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "label": {
         "type": "string",
@@ -445,6 +465,16 @@
         "required": false,
         "description": "Состояние открыт/закрыт по умолчанию"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+      },
       "onOpenChanged": {
         "type": "((open: boolean) => void)",
         "required": false,
@@ -636,7 +666,13 @@
         "required": false,
         "description": "Кнопка настроек и выпадающий список",
         "typeRefs": [
-          "NotificationPanelSettingsProps"
+          "DroplistListProps",
+          "DroplistMobileSlots",
+          "EmptyState",
+          "NotificationPanelSettingsProps",
+          "PublicListContextType",
+          "ScrollProps",
+          "SelectionState"
         ]
       },
       "showBlackout": {
@@ -701,12 +737,13 @@
         },
         "own": true
       },
-      "Appearance": {
+      "BarHideStrategy": {
         "kind": "union",
         "values": [
-          "critical",
-          "neutral",
-          "primary"
+          "leave",
+          "move",
+          "never",
+          "scroll"
         ],
         "own": false
       },
@@ -830,103 +867,108 @@
         },
         "own": false
       },
-      "ChildrenFunction": {
+      "DroplistListProps": {
         "kind": "alias",
-        "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
         "own": false
       },
-      "CounterProps": {
+      "DroplistMobileSlots": {
         "kind": "interface",
         "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance (@ds/counter)"
-            ]
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
           },
-          "className": {
+          "label": {
             "type": "string | undefined",
             "required": false,
-            "description": "Дополнительный CSS-класс"
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
           },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
             "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
           },
-          "plusLimit": {
-            "type": "number | undefined",
+          "slotAfterTitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
-            "description": "Порог сокращения значения для варианта `count-plus`"
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
+      "EmptyState": {
+        "kind": "interface",
+        "props": {
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
           },
-          "roleAppearance": {
-            "type": "RoleAppearance | undefined",
+          "dataFiltered": {
+            "type": "boolean | undefined",
             "required": false,
-            "values": [
-              "accent",
-              "decor"
-            ],
-            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
             "typeRefs": [
-              "RoleAppearance"
+              "EmptyStateProps"
             ]
           },
-          "size": {
-            "type": "Size | undefined",
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
             "required": false,
-            "values": [
-              "s",
-              "xs"
-            ],
-            "description": "Размер",
+            "description": "Экран при отсутствии данных",
             "typeRefs": [
-              "Size (@ds/counter)"
+              "EmptyStateProps"
             ]
           },
-          "value": {
-            "type": "number",
-            "required": true,
-            "description": "Значение"
-          },
-          "variant": {
-            "type": "Variant | undefined",
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
             "required": false,
-            "values": [
-              "count",
-              "count-k",
-              "count-plus"
-            ],
-            "description": "Вариант форматирования",
+            "description": "Экран при отсутствии результатов поиска или фильтров",
             "typeRefs": [
-              "Variant"
+              "EmptyStateProps"
             ]
           }
         },
         "own": false
       },
-      "IconPosition": {
-        "kind": "union",
-        "values": [
-          "after",
-          "before"
-        ],
+      "EmptyStateProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный класс"
+          },
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подзаголовок"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "footer": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Вложенный контент (например ButtonGroup)"
+          },
+          "icon": {
+            "type": "IconPredefinedProps | undefined",
+            "required": false,
+            "description": "Иконка",
+            "typeRefs": [
+              "IconPredefinedProps"
+            ]
+          }
+        },
         "own": false
       },
       "NotificationPanelSettingsProps": {
@@ -948,6 +990,16 @@
               "ButtonProps"
             ]
           },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
           "size": {
             "type": "\"s\" | \"m\" | undefined",
             "required": false,
@@ -959,29 +1011,6 @@
         },
         "own": true
       },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "own": false
-      },
-      "PolymorphicRef": {
-        "kind": "alias",
-        "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": false
-      },
       "Position": {
         "kind": "union",
         "values": [
@@ -990,6 +1019,94 @@
           "right",
           "top"
         ],
+        "own": false
+      },
+      "PublicListContextType": {
+        "kind": "interface",
+        "props": {
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка"
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
         "own": false
       },
       "Segment": {
@@ -1090,7 +1207,7 @@
             ],
             "description": "Размер компонента.",
             "typeRefs": [
-              "Size"
+              "Size (@ds/segment-control)"
             ]
           },
           "value": {
@@ -1113,6 +1230,93 @@
         },
         "own": false
       },
+      "SelectionMultipleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"multiple\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId[]> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает массив выбранных `ItemId[]`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId[] | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionSingleState": {
+        "kind": "interface",
+        "props": {
+          "defaultValue": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Начальное состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          },
+          "mode": {
+            "type": "\"single\"",
+            "required": true,
+            "description": "Режим выбора"
+          },
+          "onChange": {
+            "type": "OnChangeHandler<ItemId> | undefined",
+            "required": false,
+            "description": "Controlled обработчик изменения состояния — получает выбранный `ItemId`",
+            "typeRefs": [
+              "ItemId",
+              "OnChangeHandler"
+            ]
+          },
+          "value": {
+            "type": "ItemId | undefined",
+            "required": false,
+            "description": "Controlled состояние",
+            "typeRefs": [
+              "ItemId"
+            ]
+          }
+        },
+        "own": false
+      },
+      "SelectionState": {
+        "kind": "interface",
+        "props": {
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          }
+        },
+        "own": false
+      },
       "Size": {
         "kind": "union",
         "values": [
@@ -1122,7 +1326,7 @@
         ],
         "own": false
       },
-      "Size (@ds/button)": {
+      "Size (@ds/segment-control)": {
         "kind": "union",
         "values": [
           "l",
@@ -1255,45 +1459,12 @@
         },
         "own": false
       },
-      "Trigger": {
-        "kind": "union",
-        "values": [
-          "click",
-          "clickAndFocusVisible",
-          "focus",
-          "focusVisible",
-          "hover",
-          "hoverAndFocus",
-          "hoverAndFocusVisible"
-        ],
-        "own": false
-      },
-      "View": {
-        "kind": "union",
-        "values": [
-          "elevated",
-          "filled",
-          "function",
-          "outline",
-          "simple",
-          "tonal"
-        ],
-        "own": false
-      },
       "Width": {
         "kind": "union",
         "values": [
           "l",
           "m",
           "s"
-        ],
-        "own": false
-      },
-      "Width (@ds/segment-control)": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "full"
         ],
         "own": false
       }
@@ -1378,6 +1549,16 @@
         "type": "boolean",
         "required": false,
         "description": "Состояние открыт/закрыт по умолчанию"
+      },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "onOpenChanged": {
         "type": "((open: boolean) => void)",
@@ -1579,6 +1760,16 @@
         "typeRefs": [
           "ButtonProps"
         ]
+      },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "size": {
         "type": "enum",
@@ -1924,6 +2115,16 @@
       "button": {
         "type": "ButtonProps<ElementType>",
         "required": true
+      },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       }
     },
     "relatedTypes": {}

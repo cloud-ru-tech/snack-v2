@@ -357,6 +357,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "header": {
         "type": "ReactNode ;",
         "required": false,
@@ -366,6 +371,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "Item[] | ReorderItem[]",
@@ -660,6 +670,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "header": {
         "type": "ReactNode ;",
         "required": false,
@@ -669,6 +684,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "Item[]",
@@ -1664,6 +1684,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "hasListInFocusChain": {
         "type": "boolean",
         "required": false,
@@ -1679,6 +1704,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "Item[]",
@@ -2032,6 +2062,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "header": {
         "type": "ReactNode ;",
         "required": false,
@@ -2041,6 +2076,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "ItemId[]",
@@ -2275,6 +2315,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "header": {
         "type": "ReactNode ;",
         "required": false,
@@ -2284,6 +2329,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "Item[] | ReorderItem[]",
@@ -2446,6 +2496,16 @@
       "focusFlattenItems": {
         "type": "Record<string, FocusFlattenItem>",
         "required": true
+      },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "marker": {
         "type": "boolean",
@@ -2775,6 +2835,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "header": {
         "type": "ReactNode ;",
         "required": false,
@@ -2784,6 +2849,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "ReorderItem[]",
@@ -3626,6 +3696,11 @@
         "required": false,
         "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "hasListInFocusChain": {
         "type": "boolean",
         "required": false,
@@ -3641,6 +3716,11 @@
         "type": "boolean",
         "required": false,
         "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "items": {
         "type": "ReorderItem[]",

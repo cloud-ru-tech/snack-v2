@@ -714,6 +714,16 @@
         "type": "string",
         "required": false
       },
+      "droplistSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер внутреннего `Droplist` с опциями.\nПо умолчанию совпадает с `size` чипа."
+      },
       "errorDataState": {
         "type": "EmptyStateProps",
         "required": false,
@@ -734,10 +744,20 @@
         "required": false,
         "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "icon": {
         "type": "ReactNode",
         "required": false,
         "description": "Иконка"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "label": {
         "type": "string",
@@ -1327,6 +1347,16 @@
             "required": false,
             "description": "Рендер функция основного контента айтема"
           },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
           "marker": {
             "type": "boolean | undefined",
             "required": false,
@@ -1549,6 +1579,16 @@
         "type": "string",
         "required": false
       },
+      "droplistSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер внутреннего `Droplist` с опциями.\nПо умолчанию совпадает с `size` чипа."
+      },
       "errorDataState": {
         "type": "EmptyStateProps",
         "required": false,
@@ -1569,10 +1609,20 @@
         "required": false,
         "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "icon": {
         "type": "ReactNode",
         "required": false,
         "description": "Иконка"
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "label": {
         "type": "string",
@@ -2023,6 +2073,16 @@
         "type": "string",
         "required": false
       },
+      "droplistSize": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "description": "Размер внутреннего `Droplist` с опциями.\nПо умолчанию совпадает с `size` чипа."
+      },
       "errorDataState": {
         "type": "EmptyStateProps",
         "required": false,
@@ -2052,6 +2112,11 @@
         ],
         "description": "Режим футера. По умолчанию — current-time-and-apply"
       },
+      "groupItemRender": {
+        "type": "((props: GroupItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+      },
       "icon": {
         "type": "ReactNode",
         "required": false,
@@ -2060,6 +2125,11 @@
       "id": {
         "type": "string",
         "required": true
+      },
+      "itemRender": {
+        "type": "((props: ItemRenderProps) => ReactNode)",
+        "required": false,
+        "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
       },
       "label": {
         "type": "string",
