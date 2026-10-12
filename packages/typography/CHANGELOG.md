@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.2 (2026-10-12)
+
+### Bug Fixes
+
+- **FF-9284:** remove duplicated styles from typography ([a0fcbc2](https://github.com/cloud-ru-tech/snack-v2/commit/a0fcbc2cee9953e4cf65dfa5979da85a36aa8d7f))
+
 ## 1.0.1 (2026-09-30)
 
 ### Bug Fixes
