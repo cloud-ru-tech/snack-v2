@@ -20,14 +20,13 @@
 
 ## Анатомия
 
-### Slots
+### Содержимое
 
-- `icon` — иконка 24×24 слева от заголовка (Figma `simpleTitle`).
-- `title` — строка заголовка. Рендерится через `Typography variant='title' size='m'` с однострочным усечением.
-- `titleTag` — семантический тег заголовка (`'h2'`, `'h3'`, `'span'` и т.п.) для корректной структуры документа.
-- `children` — произвольная нода после заголовка. Имеет приоритет над `avatar`.
-- `avatar` — `Avatar` + двухстрочный label/subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан.
-- `showArrow` — управляет видимостью шеврона справа. Иконка справа автоматически меняется на `external link` при `target='_blank'`.
+- `content` — обязательный слот для TitleClickable.SimpleTitle, TitleClickable.UserTitle или произвольной React-ноды.
+- `TitleClickable.SimpleTitle` — обязательный `title`, необязательные `icon` и `titleTag`. Иконка занимает 24×24, текст использует `title/m` и усекается до одной строки.
+- `TitleClickable.UserTitle` — пропы Avatar на верхнем уровне и необязательный `subtitle`. Имя берётся из `name`, размер аватара по умолчанию `m` (32 px). Имя и подпись усекаются до одной строки.
+- Оба компонента можно использовать самостоятельно. `className`, `data-test-id` и `aria-*` относятся к их корневому контейнеру.
+- `showArrow` — видимость стрелки справа. При `target='_blank'` отображается иконка внешней ссылки.
 
 #### Иконка справа (auto)
 
@@ -36,7 +35,7 @@
 
 ### Width (default `auto`)
 
-- `auto` — компонент занимает по контенту, шеврон прижат к заголовку.
+- `auto` — компонент занимает место по контенту, шеврон прижат к заголовку.
 - `fullWidth` — растягивается на ширину контейнера, шеврон уезжает в правый край.
 
 ### Target (default `_self`)
@@ -60,32 +59,37 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 ## Примеры использования
 ### Простой заголовок
 
-Минимальный набор: href + title
+Минимальный набор: href + content
 
 ```tsx
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function Basic() {
-  return <TitleClickable href='#' title='Production environment' />;
+  return <TitleClickable href='#' content={<TitleClickable.SimpleTitle title='Production environment' />} />;
 }
 ```
 
 ### С иконкой
 
-Иконка слева от заголовка через проп `icon`
+Иконка слева от заголовка через проп icon у TitleClickable.SimpleTitle
 
 ```tsx
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function WithIcon() {
-  return <TitleClickable href='#' title='Production environment' icon={<PlaceholderSVG />} />;
+  return (
+    <TitleClickable
+      href='#'
+      content={<TitleClickable.SimpleTitle title='Production environment' icon={<PlaceholderSVG />} />}
+    />
+  );
 }
 ```
 
-### Произвольный контент в `children`
+### Произвольный контент в `content`
 
-Слот `children` принимает любую React-ноду после заголовка — версия, бейдж, статус и т.п.
+Слот content принимает произвольную React-ноду.
 
 ```tsx
 import { Typography } from '@ds/typography';
@@ -93,11 +97,14 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function WithCustomNode() {
   return (
-    <TitleClickable href='#' title='Section title'>
-      <Typography variant='label' size='s' as='span'>
-        Custom children
-      </Typography>
-    </TitleClickable>
+    <TitleClickable
+      href='#'
+      content={
+        <Typography variant='label' size='s' as='span'>
+          Custom content
+        </Typography>
+      }
+    />
   );
 }
 ```
@@ -111,7 +118,13 @@ import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function FullWidth() {
-  return <TitleClickable href='#' title='Раздел занимает всю ширину контейнера' icon={<PlaceholderSVG />} fullWidth />;
+  return (
+    <TitleClickable
+      href='#'
+      content={<TitleClickable.SimpleTitle title='Раздел занимает всю ширину контейнера' icon={<PlaceholderSVG />} />}
+      fullWidth
+    />
+  );
 }
 ```
 
@@ -123,7 +136,13 @@ target='_blank' → rel='noopener noreferrer' автоматически
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function External() {
-  return <TitleClickable href='https://example.com' target='_blank' title='Внешняя ссылка' />;
+  return (
+    <TitleClickable
+      href='https://example.com'
+      target='_blank'
+      content={<TitleClickable.SimpleTitle title='Внешняя ссылка' />}
+    />
+  );
 }
 ```
 
@@ -136,19 +155,31 @@ import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function HiddenArrow() {
-  return <TitleClickable href='#' title='Без шеврона' icon={<PlaceholderSVG />} showArrow={false} />;
+  return (
+    <TitleClickable
+      href='#'
+      content={<TitleClickable.SimpleTitle title='Без шеврона' icon={<PlaceholderSVG />} />}
+      showArrow={false}
+    />
+  );
 }
 ```
 
 ### С аватаром
 
-Проп `avatar` — Figma `userTitle`. Блок рендерится после заголовка
+TitleClickable.UserTitle в слоте content: аватар, имя и подпись.
 
 ```tsx
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function WithAvatar() {
-  return <TitleClickable href='#' fullWidth avatar={{ name: 'John Doe', subtitle: 'jdoe@example.com' }} />;
+  return (
+    <TitleClickable
+      href='#'
+      fullWidth
+      content={<TitleClickable.UserTitle name='John Doe' subtitle='jdoe@example.com' />}
+    />
+  );
 }
 ```
 
@@ -158,17 +189,66 @@ export function WithAvatar() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `as` | `ElementType` | — | Полиморфный тег корня — `'a'` по умолчанию, либо компонент-роутер (`Link` из react-router-dom). |
-| `avatar` | `AvatarProps` | — | Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан. |
-| `children` | `ReactNode` | — | Произвольная нода после заголовка. Имеет приоритет над `avatar`. |
 | `className` | `string` | — | CSS-класс |
+| `content` | `ReactNode` | — | Содержимое: TitleClickable.SimpleTitle, TitleClickable.UserTitle или произвольная React-нода. |
 | `data-test-id` | `string` | — |  |
 | `fullWidth` | `boolean` | — | Занимает ли всю ширину |
-| `icon` | `ReactNode` | — | Иконка слева от заголовка. |
 | `innerRef` | `PolymorphicRef` | — | Ref на корневой элемент. |
 | `showArrow` | `boolean` | `true` | Показывать иконку-стрелку справа. Иконка автоматически меняется на `external link` при `target='_blank'`. |
-| `title` | `string` | — | Заголовок |
-| `titleTag` | `ElementType` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
 
 #### Related types
 
 - `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
+
+## SimpleTitle
+
+```tsx
+import { TitleClickable } from '@ds/uikit-product-title-clickable';
+
+export function Basic() {
+  return <TitleClickable href='#' content={<TitleClickable.SimpleTitle title='Production environment' />} />;
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс корневого контейнера. |
+| `data-test-id` | `string` | — |  |
+| `icon` | `ReactNode` | — | Иконка слева, 24×24. |
+| `title` | `string` | — | Текст заголовка. |
+| `titleTag` | `ElementType` | — | Семантический тег заголовка. |
+
+## UserTitle
+
+```tsx
+import { TitleClickable } from '@ds/uikit-product-title-clickable';
+
+export function WithAvatar() {
+  return (
+    <TitleClickable
+      href='#'
+      fullWidth
+      content={<TitleClickable.UserTitle name='John Doe' subtitle='jdoe@example.com' />}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид (цвет) |
+| `badge` | `ReactNode` | — | Произвольный нод в слот значка (правый-нижний угол). Перекрывает `status`. |
+| `className` | `string` | — | CSS-класс |
+| `data-test-id` | `string` | — |  |
+| `innerRef` | `Ref<HTMLDivElement>` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `name` | `string` | — | Имя пользователя для генерации аббревиатуры |
+| `shape` | `"rounded"` \| `"squared"` | — | Форма: круглая или квадратная |
+| `showTwoSymbols` | `boolean` | — | Отображение двух заглавных символов имени вместо одного |
+| `size` | `"3xl"` \| `"6xl"` \| `"9xl"` \| `"l"` \| `"m"` \| `"s"` \| `"xs"` | `m` | Размер |
+| `src` | `string` | — | URL изображения аватара |
+| `status` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Appearance дефолтного `StatusIndicator` в правом-нижнем углу. Размер <br/> индикатора подбирается из `size` аватара автоматически. Полностью <br/> настроить значок можно через слот `badge`, который перекрывает `status`. |
+| `subtitle` | `string` | — | Подпись под именем пользователя. |

@@ -1,0 +1,36 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.userTitle {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+
+  min-width: 0;
+  max-width: 100%;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+  max-width: 100%;
+  max-height: base.$sn-primitive-dimension-32;
+}
+
+.line {
+  overflow: hidden;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.subtitle {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

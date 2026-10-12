@@ -47,14 +47,13 @@ import titleClickableDoc from './props.json'
 
 ## Анатомия
 
-### Slots
+### Содержимое
 
-- `icon` — иконка 24×24 слева от заголовка (Figma `simpleTitle`).
-- `title` — строка заголовка. Рендерится через `Typography variant='title' size='m'` с однострочным усечением.
-- `titleTag` — семантический тег заголовка (`'h2'`, `'h3'`, `'span'` и т.п.) для корректной структуры документа.
-- `children` — произвольная нода после заголовка. Имеет приоритет над `avatar`.
-- `avatar` — `Avatar` + двухстрочный label/subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан.
-- `showArrow` — управляет видимостью шеврона справа. Иконка справа автоматически меняется на `external link` при `target='_blank'`.
+- `content` — обязательный слот для TitleClickable.SimpleTitle, TitleClickable.UserTitle или произвольной React-ноды.
+- `TitleClickable.SimpleTitle` — обязательный `title`, необязательные `icon` и `titleTag`. Иконка занимает 24×24, текст использует `title/m` и усекается до одной строки.
+- `TitleClickable.UserTitle` — пропы Avatar на верхнем уровне и необязательный `subtitle`. Имя берётся из `name`, размер аватара по умолчанию `m` (32 px). Имя и подпись усекаются до одной строки.
+- Оба компонента можно использовать самостоятельно. `className`, `data-test-id` и `aria-*` относятся к их корневому контейнеру.
+- `showArrow` — видимость стрелки справа. При `target='_blank'` отображается иконка внешней ссылки.
 
 #### Иконка справа (auto)
 
@@ -63,7 +62,7 @@ import titleClickableDoc from './props.json'
 
 ### Width (default `auto`)
 
-- `auto` — компонент занимает по контенту, шеврон прижат к заголовку.
+- `auto` — компонент занимает место по контенту, шеврон прижат к заголовку.
 - `fullWidth` — растягивается на ширину контейнера, шеврон уезжает в правый край.
 
 ### Target (default `_self`)
@@ -87,7 +86,7 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 ## Примеры использования
 <Example
   title='Простой заголовок'
-  description='Минимальный набор: href + title'
+  description='Минимальный набор: href + content'
   code={BasicSrc}
 >
   <Basic client:visible />
@@ -95,15 +94,15 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 
 <Example
   title='С иконкой'
-  description='Иконка слева от заголовка через проп `icon`'
+  description='Иконка слева от заголовка через проп icon у TitleClickable.SimpleTitle'
   code={WithIconSrc}
 >
   <WithIcon client:visible />
 </Example>
 
 <Example
-  title='Произвольный контент в `children`'
-  description='Слот `children` принимает любую React-ноду после заголовка — версия, бейдж, статус и т.п.'
+  title='Произвольный контент в `content`'
+  description='Слот content принимает произвольную React-ноду.'
   code={WithCustomNodeSrc}
 >
   <WithCustomNode client:visible />
@@ -135,7 +134,7 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 
 <Example
   title='С аватаром'
-  description='Проп `avatar` — Figma `userTitle`. Блок рендерится после заголовка'
+  description='TitleClickable.UserTitle в слоте content: аватар, имя и подпись.'
   code={WithAvatarSrc}
 >
   <WithAvatar client:visible />
@@ -143,6 +142,8 @@ import { TitleClickable } from '@ds/uikit-product-title-clickable'
 
 ## Props
 <PropsTable data={titleClickableDoc.TitleClickable} />
+<PropsTable data={titleClickableDoc['TitleClickable.SimpleTitle']} />
+<PropsTable data={titleClickableDoc['TitleClickable.UserTitle']} />
 
 ## Storybook
 <StorybookEmbed storyId='uikit-product-titleclickable--playground' height={240} />

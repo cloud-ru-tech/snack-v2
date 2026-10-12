@@ -9,7 +9,9 @@
   align-items: center;
 
   box-sizing: border-box;
-  max-width: fit-content;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
   border: none;
 
   color: base.$sn-theme-color-available-version-textMain;
@@ -38,8 +40,8 @@
 
 .contentWrapper {
   display: flex;
-  gap: base.$sn-primitive-dimension-8;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
 
   min-width: 0;
   max-width: 100%;
@@ -47,34 +49,6 @@
   &[data-full-width] {
     flex: 1 0 0;
   }
-}
-
-.iconSlot {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-
-  width: base.$sn-primitive-dimension-24;
-  height: base.$sn-primitive-dimension-24;
-
-  color: base.$sn-theme-color-available-version-textTertiary;
-}
-
-.title {
-  overflow: hidden;
-  min-width: 0;
-}
-
-.avatarWrapper {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  max-width: 100%;
-}
-
-.avatarSubtitle {
-  color: base.$sn-theme-color-available-version-textTertiary;
 }
 
 .chevron {

@@ -5,8 +5,9 @@ import { ElementType } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import { TitleClickableProps } from '../../types';
+import { SimpleTitle as SimpleTitleComponent, SimpleTitleProps as SimpleTitleComponentProps } from '../SimpleTitle';
+import { UserTitle as UserTitleComponent, UserTitleProps as UserTitleComponentProps } from '../UserTitle';
 import styles from './styles.module.scss';
-import { TitleClickableContent } from './TitleClickableContent';
 
 export function TitleClickable<T extends ElementType = 'a'>({
   as: asProp,
@@ -14,11 +15,7 @@ export function TitleClickable<T extends ElementType = 'a'>({
   className,
   fullWidth,
   showArrow = true,
-  title,
-  icon,
-  children,
-  titleTag,
-  avatar,
+  content,
   ...rest
 }: TitleClickableProps<T>) {
   const Tag: ElementType = asProp ?? 'a';
@@ -37,9 +34,9 @@ export function TitleClickable<T extends ElementType = 'a'>({
       data-test-id={(restProps['data-test-id'] as string | undefined) ?? TEST_IDS.root}
       data-full-width={fullWidth || undefined}
     >
-      <TitleClickableContent title={title} icon={icon} avatar={avatar} titleTag={titleTag} fullWidth={fullWidth}>
-        {children}
-      </TitleClickableContent>
+      <div data-test-id={TEST_IDS.content} className={styles.contentWrapper} data-full-width={fullWidth || undefined}>
+        {content}
+      </div>
 
       {showArrow && (
         <span data-test-id={TEST_IDS.chevron} className={styles.chevron} aria-hidden>
@@ -49,6 +46,13 @@ export function TitleClickable<T extends ElementType = 'a'>({
       )}
     </Tag>
   );
+}
+
+export namespace TitleClickable {
+  export type SimpleTitleProps = SimpleTitleComponentProps;
+  export type UserTitleProps = UserTitleComponentProps;
+  export const SimpleTitle = SimpleTitleComponent;
+  export const UserTitle = UserTitleComponent;
 }
 
 withInnerRefSupport(TitleClickable);

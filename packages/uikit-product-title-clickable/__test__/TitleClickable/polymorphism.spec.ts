@@ -16,16 +16,17 @@ test.describe('TitleClickable — polymorphism', () => {
     test('target=_blank adds rel="noopener noreferrer"', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ href: '/test', target: '_blank' }));
 
-      const rel = await getByTestId(TEST_IDS.root).getAttribute('rel');
-      expect(rel).toContain('noopener');
-      expect(rel).toContain('noreferrer');
+      const root = getByTestId(TEST_IDS.root);
+      await expect(root).toHaveAttribute('target', '_blank');
+      await expect(root).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
     test('target!=_blank does not add rel', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ href: '/test', target: '_self' }));
 
-      const rel = await getByTestId(TEST_IDS.root).getAttribute('rel');
-      expect(rel).toBeNull();
+      await expect(getByTestId(TEST_IDS.root)).toHaveAttribute('target', '_self');
+
+      await expect(getByTestId(TEST_IDS.root)).not.toHaveAttribute('rel');
     });
   });
 
@@ -40,8 +41,7 @@ test.describe('TitleClickable — polymorphism', () => {
     test('does not add rel when as=button + target=_blank', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ as: 'button', href: undefined, target: '_blank' }));
 
-      const rel = await getByTestId(TEST_IDS.root).getAttribute('rel');
-      expect(rel).toBeNull();
+      await expect(getByTestId(TEST_IDS.root)).not.toHaveAttribute('rel');
     });
   });
 });

@@ -77,25 +77,6 @@ test.describe('TitleClickable — rendering', () => {
 
       await expect(getByTestId(STORY_TEST_IDS.customChildren).first()).toContainText('Custom children');
     });
-
-    test('custom children is rendered after title', async ({ gotoStory, page }) => {
-      await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
-
-      const customChildren = page.getByTestId(STORY_TEST_IDS.customChildren).first();
-      const content = page.getByTestId(TEST_IDS.content).filter({ has: customChildren });
-      const title = content.getByTestId(TEST_IDS.title);
-
-      await expect(title).toBeVisible();
-      await expect(customChildren).toBeVisible();
-
-      const isAfter = await title.evaluate(
-        (titleEl, childrenEl) =>
-          Boolean(childrenEl && titleEl.compareDocumentPosition(childrenEl) & Node.DOCUMENT_POSITION_FOLLOWING),
-        await customChildren.elementHandle(),
-      );
-
-      expect(isAfter).toBe(true);
-    });
   });
 
   test.describe('avatar slot in VisualMatrix', () => {
@@ -103,27 +84,48 @@ test.describe('TitleClickable — rendering', () => {
       await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
 
       await expect(page.getByTestId(TEST_IDS.avatar).first()).toBeVisible();
-      await expect(page.getByTestId(TEST_IDS.avatarLabel).first()).toContainText('John Doe');
-      await expect(page.getByTestId(TEST_IDS.avatarSubtitle).first()).toContainText('jdoe@example.com');
-    });
-
-    test('avatar is rendered after title', async ({ gotoStory, page }) => {
-      await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
-
-      const avatar = page.getByTestId(TEST_IDS.avatar).first();
-      const content = page.getByTestId(TEST_IDS.content).filter({ has: avatar });
-      const title = content.getByTestId(TEST_IDS.title);
-
-      await expect(title).toBeVisible();
-      await expect(avatar).toBeVisible();
-
-      const isAfter = await title.evaluate(
-        (titleEl, avatarEl) =>
-          Boolean(avatarEl && titleEl.compareDocumentPosition(avatarEl) & Node.DOCUMENT_POSITION_FOLLOWING),
-        await avatar.elementHandle(),
-      );
-
-      expect(isAfter).toBe(true);
+      await expect(page.getByTestId(TEST_IDS.avatarLabel).last()).toContainText('John Doe');
+      await expect(page.getByTestId(TEST_IDS.avatarSubtitle).last()).toContainText('jdoe@example.com');
     });
   });
+});
+
+test('UserTitle hides absent subtitle', async ({ gotoStory, page }) => {
+  await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
+  const user = page
+    .getByTestId(TEST_IDS.content)
+    .filter({ has: page.getByTestId(TEST_IDS.avatar) })
+    .first();
+  await expect(user.getByTestId(TEST_IDS.avatarSubtitle)).toHaveCount(0);
+});
+
+test('fullWidth keeps arrow on the right and long content inside container', async ({ gotoStory, page }) => {
+  await gotoStory(buildStoryOptions({ fullWidth: true, title: 'Long title '.repeat(30), showIcon: true }));
+  const root = page.getByTestId(TEST_IDS.root);
+  const rootBox = await root.boundingBox();
+  const arrowBox = await root.getByTestId(TEST_IDS.chevron).boundingBox();
+  expect(rootBox).not.toBeNull();
+  expect(arrowBox).not.toBeNull();
+  if (!rootBox || !arrowBox) throw new Error('Expected visible title and arrow');
+  expect(Math.abs(rootBox.x + rootBox.width - (arrowBox.x + arrowBox.width))).toBeLessThan(1);
+  expect(await root.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+});
+
+test('titleTag controls title semantics without setting a native title attribute', async ({ gotoStory, page }) => {
+  await gotoStory(buildStoryOptions({ title: 'Section', titleTag: 'h2' }));
+  await expect(page.getByRole('heading', { name: 'Section', level: 2 })).toBeVisible();
+  await expect(page.getByTestId(TEST_IDS.root)).not.toHaveAttribute('title');
+});
+
+test('standalone content owns its className and support props', async ({ gotoStory, page }) => {
+  await gotoStory(buildStoryOptions(undefined, TITLE_CLICKABLE_STORIES.visualMatrix));
+  const simple = page.getByTestId('standalone-simple');
+  const user = page.getByTestId('standalone-user');
+  await expect(simple).toHaveClass(/custom-simple/);
+  await expect(simple).toHaveAttribute('aria-label', 'Simple title');
+  await expect(user).toHaveClass(/custom-user/);
+  await expect(user).toHaveAttribute('aria-label', 'User title');
+  await expect(user.getByTestId(TEST_IDS.avatar)).not.toHaveAttribute('aria-label');
+  expect(await simple.evaluate(element => element.closest('a'))).toBeNull();
+  expect(await user.evaluate(element => element.closest('a'))).toBeNull();
 });

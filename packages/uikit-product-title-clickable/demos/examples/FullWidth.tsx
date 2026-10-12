@@ -2,5 +2,11 @@ import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 
 export function FullWidth() {
-  return <TitleClickable href='#' title='Раздел занимает всю ширину контейнера' icon={<PlaceholderSVG />} fullWidth />;
+  return (
+    <TitleClickable
+      href='#'
+      content={<TitleClickable.SimpleTitle title='Раздел занимает всю ширину контейнера' icon={<PlaceholderSVG />} />}
+      fullWidth
+    />
+  );
 }

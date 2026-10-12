@@ -16,14 +16,13 @@ const header = {
   href: '#project',
   target: '_blank',
   icon: <PlaceholderSVG />,
-  avatar: { name: 'John Doe', subtitle: 'Administrator' },
 } as const;
 
 export const HeaderCompatibility: Story = {
   tags: ['test', 'dev'],
   render: () => (
     <>
-      <Widget header={header} data-test-id='widget-avatar'>
+      <Widget header={header} data-test-id='widget-simple'>
         Body
       </Widget>
       <Widget

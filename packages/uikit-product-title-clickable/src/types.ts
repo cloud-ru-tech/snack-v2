@@ -1,20 +1,11 @@
-import { AvatarProps } from '@ds/avatar';
 import { WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 export type PolymorphicRef<T extends ElementType> = ComponentPropsWithRef<T>['ref'];
 
 type BaseTitleClickableProps = {
-  /** Заголовок */
-  title?: string;
-  /** Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) */
-  titleTag?: ElementType;
-  /** Произвольная нода после заголовка. Имеет приоритет над `avatar`. */
-  children?: ReactNode;
-  /** Иконка слева от заголовка. */
-  icon?: ReactNode;
-  /** Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан. */
-  avatar?: AvatarProps & { subtitle: string };
+  /** Содержимое: TitleClickable.SimpleTitle, TitleClickable.UserTitle или произвольная React-нода. */
+  content: ReactNode;
 
   /** Занимает ли всю ширину */
   fullWidth?: boolean;
@@ -31,5 +22,5 @@ export type TitleClickableProps<T extends ElementType = 'a'> = WithSupportProps<
     as?: T;
     /** Ref на корневой элемент. */
     innerRef?: PolymorphicRef<T>;
-  } & Omit<ComponentPropsWithoutRef<T>, keyof BaseTitleClickableProps | 'as' | 'ref'>
+  } & Omit<ComponentPropsWithoutRef<T>, keyof BaseTitleClickableProps | 'as' | 'ref' | 'children'>
 >;

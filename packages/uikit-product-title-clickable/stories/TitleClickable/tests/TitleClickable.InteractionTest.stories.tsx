@@ -19,7 +19,8 @@ export const InteractionTest: Story = {
   tags: ['test', 'dev'],
   args: {
     href: '#',
-    title: 'Click me',
+    innerRef: (element: HTMLAnchorElement | null) => element?.setAttribute('data-ref-attached', 'true'),
+    content: <TitleClickable.SimpleTitle title='Click me' />,
     onClick: fn(e => {
       e.preventDefault();
       e.stopPropagation();
@@ -46,6 +47,8 @@ export const InteractionTest: Story = {
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.root);
+
+    await expect(root).toHaveAttribute('data-ref-attached', 'true');
 
     await step('click: fires onClick once', async () => {
       await userEvent.click(root);
