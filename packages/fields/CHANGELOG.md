@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.7 (2026-10-12)
+
+### Bug Fixes
+
+- **FF-9034:** align readonly field value color and focus border with figma ([d970a74](https://github.com/cloud-ru-tech/snack-v2/commit/d970a747ae28483f8c4c924b11a92e713fe373bd))
+- **FF-9034:** make textarea action buttons square to match field text focus ring ([7e35b55](https://github.com/cloud-ru-tech/snack-v2/commit/7e35b5562d030923f4c7c9c73f1780469e3a5247))
+
 ## 2.5.6 (2026-10-12)
 
 **Note:** Version bump only for package @ds/fields
