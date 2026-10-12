@@ -65,12 +65,6 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
     visibility: hidden;
   }
 
-  // readonly текст приглушается так же, как .fieldInput в FieldText
-  // (общий shell, но textarea рендерит свой класс, не .fieldInput).
-  &:read-only {
-    color: base.$sn-theme-color-available-version-textTertiary;
-  }
-
   // DS-типографика per-size (без неё textarea наследует шрифт Storybook root).
   // Минимальную высоту держит контейнер оболочки: одна строка, у resizable — multiLine-токен.
   @each $size in $sizes {

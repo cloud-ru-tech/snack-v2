@@ -358,18 +358,19 @@ $sizes: 's', 'm', 'l';
           @include borderRadius($size);
         }
 
-        &:not([data-disabled='true'])[data-focusvisible='true'] {
-          .focusLayer {
-            display: initial;
-          }
+        &:not([data-disabled='true'])[data-focusvisible='true'] .focusLayer {
+          display: initial;
+        }
 
-          // Внутренний бордер поля по фокусу — accent (Figma: fieldWrapper stroke, 1px, full opacity).
-          // Дефолт → primary-accent; error/warning/success → цвет accent'а валидации
-          // (перекрытия — сразу после size-цикла, на равной специфичности по порядку источника).
-          & > .backgroundWrapper > .borderStateLayer[data-state='borderOnBackground'] {
-            border-color: base.$sn-theme-color-primary-accent;
-            border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
-          }
+        // Внутренний бордер поля по фокусу — accent (Figma: fieldWrapper stroke, 1px, full opacity).
+        // Дефолт → primary-accent; error/warning/success → цвет accent'а валидации
+        // (перекрытия — сразу после size-цикла, на равной специфичности по порядку источника).
+        // В readonly рамка по фокусу остаётся нейтральной (Figma: readonly=true, focused=true).
+        &:not([data-disabled='true'], [data-readonly='true'])[data-focusvisible='true']
+          > .backgroundWrapper
+          > .borderStateLayer[data-state='borderOnBackground'] {
+          border-color: base.$sn-theme-color-primary-accent;
+          border-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'width');
         }
       }
     }
@@ -394,10 +395,6 @@ $sizes: 's', 'm', 'l';
   &[data-readonly='true']:not([data-disabled='true']) {
     cursor: default;
 
-    .fieldInput {
-      color: base.$sn-theme-color-available-version-textTertiary;
-    }
-
     &:active {
       .borderStateLayer[data-state='borderOnBackground'] {
         border-color: base.$sn-theme-color-material-stateLayer-neutral-border-default-borderColor;
@@ -416,21 +413,21 @@ $sizes: 's', 'm', 'l';
   // Внутренний бордер по фокусу в состояниях валидации — accent валидации (Figma: focused-вариант,
   // fieldWrapper stroke = red/yellow/green-accent, 1px, full opacity). Идёт последним среди правил
   // `.borderStateLayer[data-state='borderOnBackground']` — перекрывает primary-accent из size-цикла по
-  // порядку источника и не нарушает no-descending-specificity. `:not([data-disabled])` держит
+  // порядку источника и не нарушает no-descending-specificity. `:not([data-disabled], [data-readonly])` держит
   // специфичность вровень с in-loop-правилом фокуса.
-  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='error']:not([data-disabled='true'])
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='error']:not([data-disabled='true'], [data-readonly='true'])
     > .backgroundWrapper
     > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-red-accent;
   }
 
-  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='warning']:not([data-disabled='true'])
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='warning']:not([data-disabled='true'], [data-readonly='true'])
     > .backgroundWrapper
     > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-yellow-accent;
   }
 
-  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='success']:not([data-disabled='true'])
+  &[data-withbackground='true'][data-focusvisible='true'][data-validation-state='success']:not([data-disabled='true'], [data-readonly='true'])
     > .backgroundWrapper
     > .borderStateLayer[data-state='borderOnBackground'] {
     border-color: base.$sn-theme-color-green-accent;
