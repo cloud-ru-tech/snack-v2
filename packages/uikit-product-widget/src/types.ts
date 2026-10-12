@@ -2,9 +2,9 @@ import { ButtonProps } from '@ds/button';
 import type { InfoBlockProps } from '@ds/info-block';
 import type { SegmentControlProps } from '@ds/segment-control';
 import { TooltipProps } from '@ds/tooltip';
-import { TitleClickableProps } from '@ds/uikit-product-title-clickable';
+import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { WithSupportProps } from '@ds/utils';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren, ReactNode } from 'react';
 
 import { BUTTON_TYPE } from './constants';
 
@@ -12,10 +12,7 @@ export type WidgetState = 'default' | 'loading' | 'error';
 
 export type WidgetLayoutType = 'desktop' | 'mobile';
 
-export type WidgetHeaderProps = Pick<
-  TitleClickableProps,
-  'title' | 'icon' | 'avatar' | 'href' | 'target' | 'onClick' | 'titleTag' | 'fullWidth' | 'children' | 'className'
->;
+export type WidgetHeaderProps = TitleClickable.SimpleTitleProps & PropsWithChildren<{ href: string }>;
 
 export type WidgetLoadingStateProps = {
   /** Кастомный контент для состояния загрузки. */
@@ -117,13 +114,7 @@ type DroplistAction = BaseAction &
   };
 
 export type Action =
-  | ButtonAction
-  | OutlineAction
-  | TonalAction
-  | FunctionAction
-  | SimpleAction
-  | KebabAction
-  | DroplistAction;
+  ButtonAction | OutlineAction | TonalAction | FunctionAction | SimpleAction | KebabAction | DroplistAction;
 
 export type WidgetAction = Action;
 

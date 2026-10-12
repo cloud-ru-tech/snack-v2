@@ -78,8 +78,7 @@ function SubCategoryTitleBase({ groupId, service, groupFavoritesEnabled, expanda
             href={service.href}
             onClick={handleServiceClick}
             innerRef={titleRef}
-            title={service.label}
-            icon={emblem}
+            content={<TitleClickable.SimpleTitle title={service.label} icon={emblem} />}
             className={styles.subcategoryTitleClickable}
             data-test-id={titleTestId}
           />

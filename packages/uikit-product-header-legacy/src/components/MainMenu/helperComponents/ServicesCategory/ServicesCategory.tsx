@@ -38,7 +38,7 @@ function CategoryTitle({
   if (href) {
     return (
       <TitleClickable
-        title={title}
+        content={<TitleClickable.SimpleTitle title={title} />}
         href={href}
         showArrow={showArrow}
         fullWidth={fullWidth}
@@ -53,7 +53,7 @@ function CategoryTitle({
       <TitleClickable
         as='button'
         type='button'
-        title={title}
+        content={<TitleClickable.SimpleTitle title={title} />}
         showArrow={showArrow}
         fullWidth={fullWidth}
         onClick={onTitleClick as MouseEventHandler<HTMLButtonElement>}

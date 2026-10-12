@@ -51,8 +51,7 @@ function SortableGroupHeaderBase({
           <TitleClickable
             {...(label.href ? { as: 'a', href: label.href } : { as: 'div' })}
             onClick={handleLabelClick}
-            title={label.text}
-            icon={getLinkEmblem({ icon })}
+            content={<TitleClickable.SimpleTitle title={label.text} icon={getLinkEmblem({ icon })} />}
           />
         ) : (
           label.text

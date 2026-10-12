@@ -26,6 +26,7 @@ function WidgetComponent({
   segmentControl,
   ...rest
 }: WidgetProps) {
+  const { title, icon, titleTag, children: headerChildren, ...headerProps } = header;
   const { layoutType: contextLayoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(contextLayoutType);
   const wide = wideProp && !isMobile;
@@ -63,7 +64,16 @@ function WidgetComponent({
               <Skeleton loading className={styles.skeletonTitle} />
             </div>
           ) : (
-            <TitleClickable {...header} className={cn(styles.titleClickable, header.className)} />
+            <TitleClickable
+              {...headerProps}
+              className={cn(styles.titleClickable, header.className)}
+              content={
+                <>
+                  <TitleClickable.SimpleTitle title={title} icon={icon} titleTag={titleTag} />
+                  {headerChildren}
+                </>
+              }
+            />
           )}
 
           {!wide && (

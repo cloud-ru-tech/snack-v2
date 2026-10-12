@@ -35,10 +35,11 @@ export function ProjectHeader({
       <div className={styles.projectWrapper}>
         <TitleClickable
           className={styles.titleLink}
-          title={t(widgetTitle, { project: projectName })}
+          content={
+            <TitleClickable.SimpleTitle title={t(widgetTitle, { project: projectName })} icon={<CloudFolderSVG />} />
+          }
           href={quotasUrl}
           target='_blank'
-          icon={<CloudFolderSVG />}
           onClick={onQuotasUrlClick}
         />
 

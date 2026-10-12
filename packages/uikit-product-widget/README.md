@@ -270,13 +270,13 @@ export function ErrorState() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `avatar` | `AvatarProps` | — | Аватар с subtitle (Figma `userTitle`). Рендерится после заголовка, если `children` не передан. |
-| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Произвольная нода после заголовка. Имеет приоритет над `avatar`. |
-| `className` | `string \| undefined` | — | CSS-класс |
-| `fullWidth` | `boolean \| undefined` | — | Занимает ли всю ширину |
-| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка слева от заголовка. |
-| `title` | `string \| undefined` | — | Заголовок |
-| `titleTag` | `ElementType \| undefined` | — | Тег заголовка для семантики (например `'h2'`, `'h3'`, `'span'`) |
+| `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `className` | `string \| undefined` | — | CSS-класс корневого контейнера. |
+| `data-test-id` | `string \| undefined` | — |  |
+| `href` | `string` | — |  |
+| `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка слева, 24×24. |
+| `title` | `string` | — | Текст заголовка. |
+| `titleTag` | `ElementType \| undefined` | — | Семантический тег заголовка. |
 
 **WidgetLoadingStateProps**
 
