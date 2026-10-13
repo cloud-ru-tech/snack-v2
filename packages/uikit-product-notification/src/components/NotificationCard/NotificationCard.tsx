@@ -1,6 +1,7 @@
 import { Button, ButtonProps } from '@ds/button';
 import { KebabSVG } from '@ds/icons/interface/system';
 import { Link, PickLinkProps } from '@ds/link';
+import { DroplistProps } from '@ds/list';
 import { StatusIndicator } from '@ds/status';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
@@ -17,40 +18,42 @@ import styles from './styles.module.scss';
 
 type NotificationButtonProps = Omit<ButtonProps, 'size' | 'appearance' | 'view' | 'data-test-id'>;
 
-export type NotificationCardProps = WithSupportProps<{
-  /** Идентификатор уведомления */
-  id: string;
-  /** Тип уведомления */
-  appearance?: Appearance;
-  /** Лейбл перед заголовком */
-  label?: string;
-  /** Управление состоянием прочитано/не прочитано */
-  unread?: boolean;
-  /** Заголовок уведомления */
-  title: string;
-  /** Описание уведомления — вторичный текст под заголовком */
-  description?: ReactNode;
-  /** Ссылка (рендерится как `<a href>` через `@ds/link`) */
-  link?: PickLinkProps<'a', 'label' | 'insideText' | 'truncateVariant'>;
-  /** Дата уведомления */
-  date: string;
-  /**
-   * Колбэк клика по карточке. Делает карточку кликабельной (`role='button'`, фокус с клавиатуры).
-   * Активация по карточке срабатывает только при фокусе на самой карточке — вложенные кнопки,
-   * ссылка и меню действий активируются независимо.
-   */
-  onClick?: MouseEventHandler<HTMLDivElement>;
-  /** Колбэк при попадании карточки в область видимости на 80% */
-  onVisible?(cardId: string): void;
-  /** Кнопка главного действия у карточки (рендерится как Button view='tonal') */
-  primaryButton?: NotificationButtonProps;
-  /** Кнопка второстепенного действия у карточки (рендерится как Button view='simple') */
-  secondaryButton?: NotificationButtonProps;
-  /** Дополнительные действия у карточки */
-  actions?: Action[];
-  /** CSS-класс */
-  className?: string;
-}>;
+export type NotificationCardProps = WithSupportProps<
+  {
+    /** Идентификатор уведомления */
+    id: string;
+    /** Тип уведомления */
+    appearance?: Appearance;
+    /** Лейбл перед заголовком */
+    label?: string;
+    /** Управление состоянием прочитано/не прочитано */
+    unread?: boolean;
+    /** Заголовок уведомления */
+    title: string;
+    /** Описание уведомления — вторичный текст под заголовком */
+    description?: ReactNode;
+    /** Ссылка (рендерится как `<a href>` через `@ds/link`) */
+    link?: PickLinkProps<'a', 'label' | 'insideText' | 'truncateVariant'>;
+    /** Дата уведомления */
+    date: string;
+    /**
+     * Колбэк клика по карточке. Делает карточку кликабельной (`role='button'`, фокус с клавиатуры).
+     * Активация по карточке срабатывает только при фокусе на самой карточке — вложенные кнопки,
+     * ссылка и меню действий активируются независимо.
+     */
+    onClick?: MouseEventHandler<HTMLDivElement>;
+    /** Колбэк при попадании карточки в область видимости на 80% */
+    onVisible?(cardId: string): void;
+    /** Кнопка главного действия у карточки (рендерится как Button view='tonal') */
+    primaryButton?: NotificationButtonProps;
+    /** Кнопка второстепенного действия у карточки (рендерится как Button view='simple') */
+    secondaryButton?: NotificationButtonProps;
+    /** Дополнительные действия у карточки */
+    actions?: Action[];
+    /** CSS-класс */
+    className?: string;
+  } & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>
+>;
 
 const VISIBILITY_THRESHOLD = 0.8;
 
@@ -70,6 +73,8 @@ export function NotificationCard({
   actions,
   onVisible,
   className,
+  itemRender,
+  groupItemRender,
   ...rest
 }: NotificationCardProps) {
   const icon = useMemo(() => getIcon(appearance), [appearance]);
@@ -165,6 +170,8 @@ export function NotificationCard({
           icon={<KebabSVG />}
           triggerAriaLabel='Действия с уведомлением'
           testIds={TEST_IDS.card.actions}
+          itemRender={itemRender}
+          groupItemRender={groupItemRender}
         />
       ) : null}
 

@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { Droplist } from '@ds/list';
+import { Droplist, DroplistProps } from '@ds/list';
 import { Tag } from '@ds/tag';
 import cn from 'classnames';
 import { Dispatch, ReactElement, SetStateAction } from 'react';
@@ -24,7 +24,7 @@ export type ActionsButtonProps = {
   triggerAriaLabel: string;
   testIds: ActionsButtonTestIds;
   className?: string;
-};
+} & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>;
 
 export function ActionsButton({
   actions,
@@ -34,6 +34,8 @@ export function ActionsButton({
   triggerAriaLabel,
   testIds,
   className,
+  itemRender,
+  groupItemRender,
 }: ActionsButtonProps) {
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -58,6 +60,8 @@ export function ActionsButton({
           'data-test-id': `${testIds.droplistAction}-${index}`,
         }))}
         triggerClassName={styles.inlineFlex}
+        itemRender={itemRender}
+        groupItemRender={groupItemRender}
       >
         <Button
           view='function'

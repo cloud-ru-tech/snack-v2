@@ -1,5 +1,6 @@
 import { Button, ButtonProps } from '@ds/button';
 import { SettingsSVG } from '@ds/icons/interface/system';
+import { DroplistProps } from '@ds/list';
 import { ElementType } from 'react';
 
 import { TEST_IDS } from '../../../../constants';
@@ -12,10 +13,16 @@ export type NotificationPanelSettingsProps = {
   /** Кнопка дополнительного действия панели */
   button?: Omit<ButtonProps<ElementType>, 'label' | 'size' | 'view' | 'data-test-id'>;
   size?: 's' | 'm';
-};
+} & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>;
 
 /** Кнопка настроек панели уведомлений (с выпадающим списком действий, если переданы). */
-export function NotificationPanelSettings({ actions, button, size = 'm' }: NotificationPanelSettingsProps) {
+export function NotificationPanelSettings({
+  actions,
+  button,
+  size = 'm',
+  itemRender,
+  groupItemRender,
+}: NotificationPanelSettingsProps) {
   const buttonProps: ButtonProps<ElementType> = {
     ...button,
     view: 'function',
@@ -30,5 +37,12 @@ export function NotificationPanelSettings({ actions, button, size = 'm' }: Notif
     return <Button {...buttonProps} />;
   }
 
-  return <NotificationPanelSettingsDroplist actions={actions} button={buttonProps} />;
+  return (
+    <NotificationPanelSettingsDroplist
+      actions={actions}
+      button={buttonProps}
+      itemRender={itemRender}
+      groupItemRender={groupItemRender}
+    />
+  );
 }

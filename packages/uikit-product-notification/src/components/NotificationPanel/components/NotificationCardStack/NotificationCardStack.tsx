@@ -1,5 +1,6 @@
 import { Button } from '@ds/button';
 import { ChevronDownSVG, ChevronUpSVG, KebabSVG } from '@ds/icons/interface/system';
+import { DroplistProps } from '@ds/list';
 import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import { extractSupportProps, WithSupportProps } from '@ds/utils';
@@ -15,20 +16,22 @@ import { cloneCard } from './utils';
 
 const ANIMATION_DURATION = 0.3;
 
-export type NotificationCardStackProps = WithSupportProps<{
-  /** Заголовок стопки карточек */
-  title: string;
-  /** Состояние открыт/закрыт по умолчанию */
-  defaultOpen?: boolean;
-  /** Колбек смены состояния открыт/закрыт */
-  onOpenChanged?(open: boolean): void;
-  /** Карточки в стопке, видна первая карточка, остальные схлопываются под нее. */
-  children: Iterable<ReactNode>;
-  /** Список действий в выпадающем меню */
-  actions?: Action[];
-  /** Состояние непрочитанных карточек */
-  unread?: boolean;
-}>;
+export type NotificationCardStackProps = WithSupportProps<
+  {
+    /** Заголовок стопки карточек */
+    title: string;
+    /** Состояние открыт/закрыт по умолчанию */
+    defaultOpen?: boolean;
+    /** Колбек смены состояния открыт/закрыт */
+    onOpenChanged?(open: boolean): void;
+    /** Карточки в стопке, видна первая карточка, остальные схлопываются под нее. */
+    children: Iterable<ReactNode>;
+    /** Список действий в выпадающем меню */
+    actions?: Action[];
+    /** Состояние непрочитанных карточек */
+    unread?: boolean;
+  } & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>
+>;
 
 export function NotificationCardStack({
   children,
@@ -37,6 +40,8 @@ export function NotificationCardStack({
   title,
   actions,
   unread,
+  itemRender,
+  groupItemRender,
   ...rest
 }: NotificationCardStackProps) {
   const [actionsOpen, setActionsOpen] = useState(false);
@@ -96,6 +101,8 @@ export function NotificationCardStack({
               icon={<KebabSVG />}
               triggerAriaLabel='Действия со стопкой'
               testIds={TEST_IDS.panel.cardStack.actions}
+              itemRender={itemRender}
+              groupItemRender={groupItemRender}
             />
           )}
 

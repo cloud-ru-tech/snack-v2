@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@ds/button';
-import { Droplist } from '@ds/list';
+import { Droplist, DroplistProps } from '@ds/list';
 import { Tag } from '@ds/tag';
 import { ElementType, useState } from 'react';
 
@@ -10,9 +10,14 @@ import styles from '../../styles.module.scss';
 type NotificationPanelSettingsDroplistProps = {
   actions: Action[];
   button: ButtonProps<ElementType>;
-};
+} & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>;
 
-export function NotificationPanelSettingsDroplist({ actions, button }: NotificationPanelSettingsDroplistProps) {
+export function NotificationPanelSettingsDroplist({
+  actions,
+  button,
+  itemRender,
+  groupItemRender,
+}: NotificationPanelSettingsDroplistProps) {
   const [isDroplistOpen, setDroplistOpen] = useState(false);
 
   return (
@@ -36,6 +41,8 @@ export function NotificationPanelSettingsDroplist({ actions, button }: Notificat
         afterContent: tagLabel ? <Tag label={tagLabel} /> : undefined,
         'data-test-id': `${TEST_IDS.panel.settings.droplistAction}-${index}`,
       }))}
+      itemRender={itemRender}
+      groupItemRender={groupItemRender}
     >
       <Button {...button} />
     </Droplist>
