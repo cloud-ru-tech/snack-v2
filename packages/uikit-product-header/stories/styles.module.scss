@@ -76,3 +76,11 @@
   width: 160px;
   height: base.$sn-primitive-dimension-40;
 }
+
+// Как cp/header OrganizationAfterContent — слот afterContent у организаций UserMenu.
+.organizationAfterContent {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}

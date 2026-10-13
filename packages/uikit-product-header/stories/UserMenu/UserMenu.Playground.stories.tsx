@@ -43,7 +43,11 @@ export const Playground: Story = {
       <DemoPage>
         <DemoPanel width='wide'>
           <DemoTitle>Playground</DemoTitle>
-          <DemoHint>Меню пользователя: профиль, тема, настройки и выход.</DemoHint>
+          <DemoHint>
+            Организации как в cp/header LocalUserMenu: content = string, itemWrapRender → &lt;a&gt; без
+            display:contents, afterContent = PromoTag + kebab. Первый пункт — сверхдлинное имя (truncate /
+            горизонтальный скролл).
+          </DemoHint>
           <DemoActions align='center'>
             <UserMenu {...args} theme={{ value: themeMode, onChange: setThemeMode }} />
           </DemoActions>

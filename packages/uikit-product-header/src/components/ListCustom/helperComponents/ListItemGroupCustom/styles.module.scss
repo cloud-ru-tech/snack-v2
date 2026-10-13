@@ -11,13 +11,15 @@ $nestingLevelStep: list.$sn-list-anatomy-size-s-listItem-nestingLevel-paddingLef
 .root {
   position: relative;
 
+  overflow: hidden;
   display: flex;
   gap: $itemGap;
   align-items: center;
 
   box-sizing: border-box;
   width: 100%;
-  min-width: 100%;
+  min-width: 0;
+  max-width: 100%;
   padding: list.$sn-list-anatomy-size-s-subtitle-paddingTop $groupPaddingHorizontal
     list.$sn-list-anatomy-size-s-listItem-paddingVertical;
 

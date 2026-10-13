@@ -1,11 +1,32 @@
 import { Avatar } from '@ds/avatar';
-import { PlaceholderSVG, PlusSVG } from '@ds/icons/interface/system';
+import { Button } from '@ds/button';
+import { KebabSVG, PlaceholderSVG, PlusSVG } from '@ds/icons/interface/system';
 import { ListProps } from '@ds/list';
+import { PromoTag } from '@ds/promo-tag';
+import { ReactNode } from 'react';
 
 import { InnerLink, LinksGroup, MainMenuSettingsItem } from '../src';
+import styles from './styles.module.scss';
 
 const EMPTY_ON_CLICK = () => {};
 const EMPTY_HREF = '#';
+
+/** Как в cp/header LocalUserMenu: itemWrapRender → Link без display:contents. */
+function wrapOrganizationLink(href: string) {
+  return function organizationLink(node: ReactNode) {
+    return <a href={href}>{node}</a>;
+  };
+}
+
+/** Упрощённый OrganizationAfterContent из cp/header (badge + kebab). */
+function OrganizationAfterContentDemo({ showBadge }: { showBadge?: boolean }) {
+  return (
+    <div className={styles.organizationAfterContent}>
+      {showBadge ? <PromoTag label='Новая' appearance='primary' size='xs' /> : null}
+      <Button view='function' appearance='neutral' size='s' icon={<KebabSVG />} onClick={EMPTY_ON_CLICK} />
+    </div>
+  );
+}
 
 export const SERVICE_GROUPS: LinksGroup[] = [
   {
@@ -734,6 +755,7 @@ export const SETTING_ITEMS = ADMINISTRATIVE_SECTIONS.flatMap(({ items }) => item
 }));
 
 const ORGANIZATION_NAMES = [
+  'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ"',
   'Frontend Factory',
   'Bare Metal Test',
   'Enterprise for Evolution',
@@ -752,12 +774,15 @@ export const USER_MENU_ORGANIZATION_ITEMS: ListProps['items'] = [
     type: 'group',
     label: 'Организации',
     groupVariant: 'subtitleTertiary',
+    // Как cp/header useUserMenu: primitive content, Link-wrap, afterContent (badge+kebab).
     items: ORGANIZATION_NAMES.map((name, index) => ({
       id: `organization-${index}`,
-      content: { label: name },
+      content: name,
       beforeContent: <Avatar appearance='red' name={name} shape='squared' showTwoSymbols size='s' />,
+      afterContent: <OrganizationAfterContentDemo showBadge={index === 0} />,
       checked: index === 0,
       onClick: EMPTY_ON_CLICK,
+      itemWrapRender: wrapOrganizationLink(`${EMPTY_HREF}organization-${index}`),
     })),
   },
 ];

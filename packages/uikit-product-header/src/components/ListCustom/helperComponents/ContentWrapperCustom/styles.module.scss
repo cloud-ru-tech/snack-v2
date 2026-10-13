@@ -6,13 +6,16 @@
 
 .root {
   display: flex;
-  flex: 1 0 0;
+  // shrink: иначе длинный label раздувает строку шире контейнера (UserMenu 304px)
+  // и TruncateString не получает конечную ширину — как у @ds/list contentWrapper.
+  flex: 1 1 0;
   gap: base.$sn-primitive-dimension-6;
   min-width: 0;
 }
 
 .centeredWrapper {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   color: base.$sn-theme-color-available-version-textTertiary;
 
@@ -29,19 +32,24 @@
 }
 
 .textWrapper {
+  overflow: hidden;
   display: flex;
-  flex: 1 0 0;
+  flex: 1 1 0;
   align-items: flex-start;
+
+  min-width: 0;
 }
 
 .textContent {
+  overflow: hidden;
   display: flex;
-  flex: 1 0 0;
+  flex: 1 1 0;
   flex-direction: column;
   gap: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-gap;
   align-items: flex-start;
   justify-content: center;
 
+  min-width: 0;
   padding: 0;
 }
 
@@ -52,6 +60,7 @@
   justify-content: space-between;
 
   width: 100%;
+  min-width: 0;
   min-height: list.$sn-list-anatomy-size-s-listItem-contentWrapper-textWrapper-textContent-headline-minHeight;
 }
 
@@ -89,15 +98,31 @@
   align-items: flex-start;
   padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-4;
 
+  // before — icon-сетка; after (badge + kebab) шире иконки — иначе слот
+  // width:icon-s и контент наезжает на truncate label.
   .centeredWrapper {
     width: base.$sn-density-icon-s;
     height: list.$sn-list-anatomy-size-s-listItem-centeredWrapper-height;
   }
 
-  .elementBeforeContent, .elementAfterContent {
+  .centeredWrapperAfter {
+    width: auto;
+    min-width: base.$sn-density-icon-s;
+    min-height: list.$sn-list-anatomy-size-s-listItem-centeredWrapper-height;
+  }
+
+  .elementBeforeContent {
     flex-direction: column;
     align-items: flex-start;
+    width: base.$sn-density-icon-s;
     height: 24px; // TODO: raw value?
+  }
+
+  .elementAfterContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
   }
 
   .headline {
