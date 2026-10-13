@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-10-13)
+
+### BREAKING CHANGES
+
+- **FF-9045:** tabs size prop to type ([0071b5c](https://github.com/cloud-ru-tech/snack-v2/commit/0071b5cb75b87c04f87020ddf5dbcaafdd3780d9))
+- **FF-9045:** tabs ([0dface0](https://github.com/cloud-ru-tech/snack-v2/commit/0dface0a31e674c7bda7de4f4ed4e62446688874))
+
 ## 2.1.1 (2026-10-05)
 
 ### Bug Fixes
