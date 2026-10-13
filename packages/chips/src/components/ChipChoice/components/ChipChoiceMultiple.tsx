@@ -32,6 +32,9 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
   widthStrategy = 'gte',
   disabled,
   loading,
+  itemRender,
+  groupItemRender,
+  droplistSize,
   ...rest
 }: ChipChoiceMultipleProps<T>) {
   const [value, setValue] = useValueControl<SelectionSingleValueType[]>({
@@ -181,7 +184,7 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
       widthStrategy={widthStrategy}
       label={label}
       listRef={listRef}
-      size={DROPLIST_SIZE_MAP[size]}
+      size={droplistSize ?? DROPLIST_SIZE_MAP[size]}
       data-test-id={CHIP_CHOICE_TEST_IDS.droplist}
       open={disabled || loading ? false : open}
       onOpenChange={handleOpenChange}
@@ -199,6 +202,8 @@ export function ChipChoiceMultiple<T extends ContentRenderProps = ContentRenderP
       footer={footerNode}
       footerDivider={footerDivider}
       footerActiveElementsRefs={footerActiveElementsRefs}
+      itemRender={itemRender}
+      groupItemRender={groupItemRender}
     >
       <ChipChoiceBase
         {...rest}

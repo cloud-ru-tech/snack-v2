@@ -26,11 +26,7 @@ export type Range = [Date, Date];
 
 /** Опция списка ChipChoice */
 export type FilterOption<T extends ContentRenderProps = ContentRenderProps> =
-  | BaseOption<T>
-  | AccordionOption<T>
-  | GroupOption<T>
-  | GroupSelectOption<T>
-  | NestListOption<T>;
+  BaseOption<T> | AccordionOption<T> | GroupOption<T> | GroupSelectOption<T> | NestListOption<T>;
 
 export type BaseOption<T extends ContentRenderProps = ContentRenderProps> = Omit<BaseItemProps, 'content' | 'id'> & {
   value: ItemId;
@@ -115,6 +111,11 @@ export type ChipChoiceSelectCommonProps<T extends ContentRenderProps = ContentRe
   onApprove?: () => void;
   /** Колбек кнопки отмены */
   onCancel?: () => void;
+  /**
+   * Размер внутреннего `Droplist` с опциями.
+   * По умолчанию совпадает с `size` чипа.
+   */
+  droplistSize?: DroplistProps['size'];
 } & Pick<
     DroplistProps,
     | 'selection'
@@ -130,6 +131,8 @@ export type ChipChoiceSelectCommonProps<T extends ContentRenderProps = ContentRe
     | 'loading'
     | 'scrollToSelectedItem'
     | 'virtualized'
+    | 'itemRender'
+    | 'groupItemRender'
   >;
 
 export type ChipChoiceSingleProps<T extends ContentRenderProps = ContentRenderProps> = ChipChoiceSelectCommonProps<T> &

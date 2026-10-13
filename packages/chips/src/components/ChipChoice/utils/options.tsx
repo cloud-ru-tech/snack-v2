@@ -21,7 +21,7 @@ export function transformOptionsToItems<T extends ContentRenderProps = ContentRe
         ) : (
           <ItemContent label={label} {...contentRenderProps} disabled={disabled} />
         ),
-        items: transformOptionsToItems<T>(options),
+        items: transformOptionsToItems<T>(options, contentRender),
       };
     }
 
@@ -30,7 +30,7 @@ export function transformOptionsToItems<T extends ContentRenderProps = ContentRe
 
       return {
         ...rest,
-        items: transformOptionsToItems<T>(options),
+        items: transformOptionsToItems<T>(options, contentRender),
       };
     }
 
@@ -39,7 +39,7 @@ export function transformOptionsToItems<T extends ContentRenderProps = ContentRe
 
       return {
         ...rest,
-        items: transformOptionsToItems(options),
+        items: transformOptionsToItems(options, contentRender),
       };
     }
 

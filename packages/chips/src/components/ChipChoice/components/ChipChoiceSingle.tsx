@@ -31,6 +31,9 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
   widthStrategy = 'gte',
   disabled,
   loading,
+  itemRender,
+  groupItemRender,
+  droplistSize,
   ...rest
 }: ChipChoiceSingleProps<T>) {
   const [value, setValue] = useValueControl<SelectionSingleValueType>({
@@ -155,7 +158,7 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
         mode: 'single',
       }}
       data-test-id={CHIP_CHOICE_TEST_IDS.droplist}
-      size={DROPLIST_SIZE_MAP[size]}
+      size={droplistSize ?? DROPLIST_SIZE_MAP[size]}
       trigger='click'
       triggerElemRef={chipRef}
       placement='bottom-start'
@@ -178,6 +181,8 @@ export function ChipChoiceSingle<T extends ContentRenderProps = ContentRenderPro
       footer={footerNode}
       footerDivider={footerDivider}
       footerActiveElementsRefs={footerActiveElementsRefs}
+      itemRender={itemRender}
+      groupItemRender={groupItemRender}
     >
       <ChipChoiceBase
         {...rest}
