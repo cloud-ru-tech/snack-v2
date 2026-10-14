@@ -326,11 +326,11 @@ test.describe('Table — visual regression', () => {
     await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.playground, MOBILE_GLOBALS));
     await waitForFonts();
 
-    // Mobile: слоты `after` уезжают в more-actions overflow. В cards-view порядок собранных
-    // слотов — [export, sorting, columnSettings] (sorting виден только на cards), значит column
-    // settings — afterOption__2 (toolbar перезаписывает собственный id слота на позиционный).
+    // Mobile: слоты `after` уезжают в more-actions overflow; sorting — в `pinnedAfter`, остаётся в строке
+    // тулбара. В `after` — [export, columnSettings], значит column settings — afterOption__1
+    // (toolbar ставит позиционный id).
     await getByTestId(TEST_IDS.toolbar.moreActionsButton).click();
-    await getByTestId(`${TEST_IDS.toolbar.afterOption}__2`).click();
+    await getByTestId(`${TEST_IDS.toolbar.afterOption}__1`).click();
 
     const sheet = getByTestId(COMPONENT.columnSettings.droplist);
     await expect(sheet).toBeVisible();

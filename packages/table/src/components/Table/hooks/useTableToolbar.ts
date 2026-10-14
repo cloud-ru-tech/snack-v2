@@ -81,7 +81,6 @@ type UseTableToolbarResult<TFilters extends FiltersState> = {
     value: ToolbarDataViewValue;
     onChange: (value: ToolbarDataViewValue) => void;
   };
-  showToolbarSorting: boolean;
   exportToolbarSlot: ExportToolbarSlotResult;
   sortingToolbarSlot: TableSortingToolbarSlotResult;
   columnsSettingsToolbarSlot: ColumnsSettingsToolbarSlotResult;
@@ -251,13 +250,12 @@ export function useTableToolbar<TData extends object, TFilters extends FiltersSt
     setColumnOrder,
   });
 
-  const hasMobileToolbarMounts = Boolean(sortingToolbarSlot.mobileMount || columnsSettingsToolbarSlot.mobileMount);
+  const hasMobileToolbarMounts = Boolean(columnsSettingsToolbarSlot.mobileMount);
 
   return {
     tableToolbarPersistConfig: tableToolbarPersistConfig as ToolbarPersistConfig<TFilters> | undefined,
     toolbarBulkProps,
     dataView,
-    showToolbarSorting,
     exportToolbarSlot,
     sortingToolbarSlot,
     columnsSettingsToolbarSlot,

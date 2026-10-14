@@ -124,7 +124,6 @@ export const TEST_IDS = {
     droplistTrigger: 'table__view-sort__droplistTrigger',
     droplist: 'table__view-sort__droplist',
     option: 'table__view-sort__option',
-    overflowTrigger: 'table__view-sort__overflow-trigger',
   },
 } as const;
 

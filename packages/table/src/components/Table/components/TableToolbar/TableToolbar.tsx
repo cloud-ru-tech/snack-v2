@@ -26,6 +26,7 @@ type TableToolbarProps<TFilters extends FiltersState> = {
     value: 'list' | 'compact';
     onChange: (value: 'list' | 'compact') => void;
   };
+  pinnedAfter?: ReactNode;
   after?: ReactNode;
   moreActions?: TableProps<object>['moreActions'];
   filterRow?: TableProps<object>['columnFilters'];
@@ -44,6 +45,7 @@ export function TableToolbar<TFilters extends FiltersState = Record<string, unkn
   showBulkCheckbox,
   outline,
   dataView,
+  pinnedAfter,
   after,
   moreActions,
   filterRow,
@@ -63,6 +65,7 @@ export function TableToolbar<TFilters extends FiltersState = Record<string, unkn
       showBulkCheckbox={showBulkCheckbox}
       outline={outline}
       dataView={dataView}
+      pinnedAfter={pinnedAfter}
       after={after}
       moreActions={moreActions}
       filterRow={filterRow}

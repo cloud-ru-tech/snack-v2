@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { ArrowDownSVG, ArrowUpSVG, UpdateSVG } from '@ds/icons/interface/system';
 import { DroplistProps, ITEM_TYPE, SelectionSingleState } from '@ds/list';
 import { Header, SortingState, Table } from '@tanstack/react-table';
@@ -45,6 +46,8 @@ export function useTableSorting<TData extends object>({
   areColumnsSettingsEnabled = false,
 }: UseTableSortingParams<TData>): UseTableSortingReturn {
   const { t } = tableLocale.useTranslations();
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
   const sorting = sortingProp ?? table.getState().sorting;
   const columnDefMap = useMemo(() => createColumnDefMap(columnDefinitions), [columnDefinitions]);
 
@@ -227,7 +230,7 @@ export function useTableSorting<TData extends object>({
 
     const mainGroup = {
       type: ITEM_TYPE.Group,
-      label: t('sort'),
+      label: isMobile ? undefined : t('sort'),
       items: groups,
     };
 
@@ -235,7 +238,7 @@ export function useTableSorting<TData extends object>({
       items: [mainGroup] as DroplistItems,
       pinBottom: clearItem,
     };
-  }, [groupSortableHeadersByPinned, createSortItem, sorting, handleClearSort, t]);
+  }, [groupSortableHeadersByPinned, createSortItem, sorting, handleClearSort, t, isMobile]);
 
   const handleSelectionChange = useCallback(
     (selectedId: string | number) => {

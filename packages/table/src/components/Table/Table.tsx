@@ -372,7 +372,6 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     tableToolbarPersistConfig,
     toolbarBulkProps,
     dataView,
-    showToolbarSorting,
     exportToolbarSlot,
     sortingToolbarSlot,
     columnsSettingsToolbarSlot,
@@ -603,7 +602,6 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     ],
   );
 
-
   const controlsAcrylic = useMemo(
     () => (isStickyControls ? getControlsAcrylicAttrs(stickyControlsBackgroundPredefined) : null),
     [isStickyControls, stickyControlsBackgroundPredefined],
@@ -658,12 +656,12 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
       showBulkCheckbox={toolbarBulkProps?.showBulkCheckbox}
       outline={outline}
       dataView={dataView}
+      pinnedAfter={sortingToolbarSlot.afterContent}
       after={
-        toolbarAfter || onExport || areColumnsSettingsEnabled || showToolbarSorting ? (
+        toolbarAfter || onExport || areColumnsSettingsEnabled ? (
           <>
             {toolbarAfter}
             {exportToolbarSlot.afterContent}
-            {sortingToolbarSlot.afterContent}
             {columnsSettingsToolbarSlot.afterContent}
           </>
         ) : undefined
@@ -737,10 +735,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
           >
             {!isCardsView ? <span className={styles.contentAcrylic} data-acrylic-background aria-hidden /> : null}
             {hasMobileToolbarMounts ? (
-              <div className={styles.mobileToolbarMounts}>
-                {sortingToolbarSlot.mobileMount}
-                {columnsSettingsToolbarSlot.mobileMount}
-              </div>
+              <div className={styles.mobileToolbarMounts}>{columnsSettingsToolbarSlot.mobileMount}</div>
             ) : null}
 
             {/* Накрывает и шапку, и тело: sticky-шапка рендерится вне скролла. */}

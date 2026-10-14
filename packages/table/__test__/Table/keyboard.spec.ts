@@ -43,10 +43,10 @@ test.describe('Table — keyboard', () => {
     // Mobile-дефолт вида — cards (TABLE_LAYOUT_PRESETS.mobile); column settings доступен и там.
     await gotoStory(buildStoryOptions({ layoutType: 'mobile' }, TABLE_STORIES.playground));
 
-    // Mobile: слоты `after` уезжают в more-actions overflow. На cards собранный порядок —
-    // [export, sorting, columnSettings], значит column settings — afterOption__2.
+    // Mobile: слоты `after` уезжают в more-actions overflow (sorting — в `pinnedAfter`, остаётся в строке
+    // тулбара): [export, columnSettings], значит column settings — afterOption__1.
     await getByTestId(TEST_IDS.toolbar.moreActionsButton).click();
-    await getByTestId(`${TEST_IDS.toolbar.afterOption}__2`).click();
+    await getByTestId(`${TEST_IDS.toolbar.afterOption}__1`).click();
 
     const columnSettings = getByTestId(COMPONENT.columnSettings.droplist);
     await expect(columnSettings).toBeVisible();

@@ -7764,6 +7764,10 @@
         "type": "ToolbarPersistConfig<TFilters>",
         "required": false
       },
+      "pinnedAfter": {
+        "type": "ReactNode",
+        "required": false
+      },
       "search": {
         "type": "{ value: string; onChange: (value: string) => void; loading?: boolean; placeholder?: string; } | undefined",
         "required": false
@@ -9170,29 +9174,6 @@
     },
     "relatedTypes": {}
   },
-  "renderTableSortingOverflowButton": {
-    "displayName": "renderTableSortingOverflowButton",
-    "propsTypeName": null,
-    "props": {
-      "ariaLabel": {
-        "type": "string",
-        "required": true
-      },
-      "currentSortDesc": {
-        "type": "boolean",
-        "required": false
-      },
-      "onClick": {
-        "type": "(event: MouseEvent<HTMLElement, MouseEvent>) => void",
-        "required": true
-      },
-      "selectedSortId": {
-        "type": "string",
-        "required": false
-      }
-    },
-    "relatedTypes": {}
-  },
   "renderToolbarAfterOverflowButton": {
     "displayName": "renderToolbarAfterOverflowButton",
     "propsTypeName": null,
@@ -9489,7 +9470,7 @@
   "useTableSortingToolbarSlot": {
     "displayName": "useTableSortingToolbarSlot",
     "propsTypeName": null,
-    "description": "Слот сортировки в тулбаре: `afterContent` — в `after`, `mobileMount` — BottomSheet вне строки тулбара.",
+    "description": "Слот сортировки в тулбаре: `afterContent` — в `pinnedAfter`, поэтому на mobile кнопка остаётся в строке\nтулбара. Список открывается в `BottomSheet` (surface-swap `Droplist`).",
     "props": {
       "areColumnsSettingsEnabled": {
         "type": "boolean",
