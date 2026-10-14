@@ -18,6 +18,7 @@ import { buildMobileOverflowActions } from './utils/buildMobileOverflowActions';
 export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   className,
   after,
+  pinnedAfter,
   dataView,
   outline = true,
   moreActions,
@@ -54,7 +55,7 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   const effectiveMoreActions = isMobile ? mobileOverflowActions : moreActions;
   const showMoreActionsMenu = Boolean(effectiveMoreActions?.length);
   const showRefreshButton = Boolean(onRefresh) && !isMobile;
-  const showAfterSlot = Boolean(after) && !isMobile;
+  const showAfterSlot = Boolean(pinnedAfter) || (!isMobile && Boolean(after));
   const hasLeftSideElements = showRefreshButton;
   const showDataView = Boolean(dataView?.show);
   const hasRightSideElements = Boolean(showAfterSlot || showDataView || showMoreActionsMenu || filterRowProps);
@@ -98,7 +99,8 @@ export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
 
               {showAfterSlot && (
                 <div data-test-id={TEST_IDS.after} className={styles.slot}>
-                  {after}
+                  {pinnedAfter}
+                  {!isMobile && after}
                 </div>
               )}
 

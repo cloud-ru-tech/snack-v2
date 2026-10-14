@@ -12,4 +12,5 @@ export const TEST_IDS = {
   adaptiveMobile: 'toolbar-adaptive-mobile',
   example: 'toolbar-example',
   mobileSelectionToggle: 'toolbar-mobile-selection-toggle',
+  pinnedAfter: 'toolbar-pinned-after',
 } as const;

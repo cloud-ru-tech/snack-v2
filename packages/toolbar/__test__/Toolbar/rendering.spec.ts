@@ -81,7 +81,7 @@ test.describe('Toolbar — rendering', () => {
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
     });
 
-    test('mobile hides refresh and after slots in toolbar row', async ({ gotoStory, getByTestId }) => {
+    test('mobile keeps only pinnedAfter in toolbar row', async ({ gotoStory, getByTestId }) => {
       await gotoStory(
         buildStoryOptions(
           {
@@ -95,7 +95,8 @@ test.describe('Toolbar — rendering', () => {
       );
 
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.refreshButton)).toBeHidden();
-      await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.after)).toBeHidden();
+      // `pinnedAfter` остаётся в строке, элементы `after` — в «⋯».
+      await expect(getByTestId(TEST_IDS.pinnedAfter)).toBeVisible();
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.moreActionsButton)).toBeVisible();
     });
   });
@@ -131,8 +132,9 @@ test.describe('Toolbar — rendering', () => {
           }
         }
 
+        // `pinnedAfter` (включён в Playground по умолчанию) виден на обеих раскладках.
         if ('showExtraSlot' in combo && combo.showExtraSlot) {
-          await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.after)).toBeHidden();
+          await expect(getByTestId(TEST_IDS.pinnedAfter)).toBeVisible();
         }
       });
     }

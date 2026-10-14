@@ -20,8 +20,13 @@ type OptionalProps = {
   /** Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>
    *  На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯»
    *  (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки
-   *  или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. */
+   *  или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. <br>
+   *  Чтобы кнопка оставалась в строке и на mobile, передайте её в `pinnedAfter`. */
   after?: ReactNode;
+  /** Закреплённые элементы слота `after`: рендерятся в строке панели на любой раскладке, перед `after`. <br>
+   *  Принимает то же, что `after`: один элемент, фрагмент или массив. На mobile в меню «⋯» не переносятся —
+   *  каждая кнопка сужает поле поиска, поэтому закрепляйте только ключевые действия. */
+  pinnedAfter?: ReactNode;
   /** Переключатель вида данных — SegmentControl (showDataView в Figma) */
   dataView?: ToolbarDataViewProps;
   /** Элементы выпадающего списка кнопки с действиями */

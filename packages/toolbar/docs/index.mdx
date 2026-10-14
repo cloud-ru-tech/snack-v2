@@ -15,6 +15,8 @@ import { MobileLayout } from '../demos/examples/MobileLayout';
 import MobileLayoutSrc from '../demos/examples/MobileLayout.tsx?raw';
 import { WithDataView } from '../demos/examples/WithDataView';
 import WithDataViewSrc from '../demos/examples/WithDataView.tsx?raw';
+import { PinnedAfter } from '../demos/examples/PinnedAfter';
+import PinnedAfterSrc from '../demos/examples/PinnedAfter.tsx?raw';
 import { Example } from '#docs/components/Example';
 import { PropsTable } from '#docs/components/PropsTable';
 import { StorybookEmbed } from '#docs/components/StorybookEmbed';
@@ -104,7 +106,7 @@ import { Toolbar } from '@ds/toolbar';
 `Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
 
 - **desktop** (по умолчанию) — overflow «⋯» открывается в `Droplist`, bulk-действия идут строкой под чипами фильтров.
-- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе).
+- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе). Кнопки слота `after` переносятся пунктами в меню «⋯»; элементы `pinnedAfter` остаются в строке панели (так `Table` держит отдельную кнопку сортировки).
 
 Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
@@ -114,6 +116,22 @@ import { Toolbar } from '@ds/toolbar';
   code={MobileLayoutSrc}
 >
   <MobileLayout client:only='react' />
+</Example>
+
+### Закреплённые кнопки — `pinnedAfter`
+
+На mobile элементы слота `after` переносятся пунктами в меню «⋯». Кнопки, которые должны оставаться в строке панели на любой раскладке, передаются в `pinnedAfter`:
+
+- принимает то же, что `after`: один элемент, фрагмент или массив;
+- рендерится в строке панели перед `after`;
+- ширину панели тулбар не проверяет — каждая закреплённая кнопка сужает поле поиска на mobile.
+
+<Example
+  title='Закреплённые кнопки на mobile'
+  description='«Скачать» и «Настройки» из pinnedAfter остаются в строке, кнопка из after уходит в «⋯»'
+  code={PinnedAfterSrc}
+>
+  <PinnedAfter client:only='react' />
 </Example>
 
 ### Как форсировать платформу

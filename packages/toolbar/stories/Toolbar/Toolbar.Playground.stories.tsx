@@ -1,5 +1,5 @@
 import { Button } from '@ds/button';
-import { CrossSVG, PlaceholderSVG } from '@ds/icons/interface/system';
+import { CrossSVG, DownloadSVG, PlaceholderSVG } from '@ds/icons/interface/system';
 import { TEST_IDS as TOOLBAR_TEST_IDS, Toolbar } from '@ds/toolbar';
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
@@ -69,6 +69,7 @@ type ToolbarPlaygroundArgs = {
   bulkIndeterminate: boolean;
   showBulkCheckbox: boolean;
   showExtraSlot: boolean;
+  showPinnedSlot: boolean;
   showDataView: boolean;
 };
 
@@ -88,6 +89,7 @@ function ToolbarPlayground({
   bulkIndeterminate,
   showBulkCheckbox,
   showExtraSlot,
+  showPinnedSlot,
   showDataView,
   onFilterOpenChange,
 }: ToolbarPlaygroundProps) {
@@ -124,6 +126,17 @@ function ToolbarPlayground({
           { content: { label: 'Настройки' }, onClick: () => undefined },
         ]
       : undefined,
+    pinnedAfter: showPinnedSlot ? (
+      <Button
+        view='function'
+        appearance='neutral'
+        icon={<DownloadSVG />}
+        size='m'
+        aria-label='Скачать'
+        data-test-id={TEST_IDS.pinnedAfter}
+        onClick={() => undefined}
+      />
+    ) : undefined,
     after: showExtraSlot ? (
       <Button
         view='function'
@@ -190,6 +203,7 @@ const meta: Meta<ToolbarPlaygroundArgs> = {
     bulkChecked: false,
     showBulkCheckbox: true,
     showExtraSlot: false,
+    showPinnedSlot: true,
     showDataView: false,
   },
   argTypes: {
@@ -233,6 +247,10 @@ const meta: Meta<ToolbarPlaygroundArgs> = {
       name: '[Stories]: showExtraSlot',
       control: 'boolean',
     },
+    showPinnedSlot: {
+      name: '[Stories]: showPinnedSlot',
+      control: 'boolean',
+    },
     showDataView: {
       name: '[Stories]: showDataView',
       control: 'boolean',
@@ -254,6 +272,11 @@ export const Playground: Story = {
 
     if (args.showDataView) {
       await expect(canvas.getByTestId(TOOLBAR_TEST_IDS.dataView)).toBeVisible();
+    }
+
+    // Кнопка из `pinnedAfter` видна в строке на обеих раскладках.
+    if (args.showPinnedSlot) {
+      await expect(canvas.getByTestId(TEST_IDS.pinnedAfter)).toBeVisible();
     }
 
     if (args.showMoreActions) {

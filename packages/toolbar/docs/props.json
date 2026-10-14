@@ -321,7 +321,7 @@
       "after": {
         "type": "ReactNode",
         "required": false,
-        "description": "Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>\nНа mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯»\n(`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки\nили элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`."
+        "description": "Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br>\nНа mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯»\n(`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки\nили элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. <br>\nЧтобы кнопка оставалась в строке и на mobile, передайте её в `pinnedAfter`."
       },
       "bulkActions": {
         "type": "BulkAction[]",
@@ -397,6 +397,11 @@
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
+      },
+      "pinnedAfter": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Закреплённые элементы слота `after`: рендерятся в строке панели на любой раскладке, перед `after`. <br>\nПринимает то же, что `after`: один элемент, фрагмент или массив. На mobile в меню «⋯» не переносятся —\nкаждая кнопка сужает поле поиска, поэтому закрепляйте только ключевые действия."
       },
       "search": {
         "type": "SearchProps",
