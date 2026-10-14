@@ -36,7 +36,7 @@ function mapFilterFromPayload<TFilters extends FiltersState = Record<string, unk
 }
 
 export function defaultParser<T extends FiltersState>(value: string): PersistedFilterState<T> {
-  const parsed = parseQueryParamsString(value);
+  const parsed = parseQueryParamsString(value, { decode: false });
 
   return {
     pagination: parsed?.pagination,

@@ -47,5 +47,5 @@ export function formatFilterStateToRequestPayload<T extends FiltersState>(value?
 }
 
 export function defaultSerializer<T extends FiltersState>(value: PersistedFilterState<T>) {
-  return formatFilterStateToRequestPayload(value).toString();
+  return formatFilterStateToRequestPayload(value).toString({ encode: false });
 }

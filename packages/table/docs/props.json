@@ -332,7 +332,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -1858,7 +1858,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -2836,7 +2836,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -3815,7 +3815,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -4733,7 +4733,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -5762,7 +5762,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -6694,7 +6694,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<TFilters>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]
@@ -8174,7 +8174,7 @@
       "savedState": {
         "type": "(Pick<ToolbarPersistConfig<Record<string, unknown>>, \"serializer\" | \"parser\" | \"storages\"> & { id: string; filterQueryKey?: string; resize?: boolean; columnSettings?: boolean | undefined; }) | undefined",
         "required": false,
-        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.",
+        "description": "Конфиг сохранения фильтров, поиска, пагинации и сортировки в выбранных хранилищах.\nПо умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.\nДля сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.\n`id` должен быть уникальным для разных таблиц в рамках приложения.\nЗначение `filterQueryKey` записывается в URL с однократным кодированием.",
         "typeRefs": [
           "ToolbarPersistConfig"
         ]

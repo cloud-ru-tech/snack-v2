@@ -310,6 +310,7 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
    * По умолчанию URL и localStorage; storages: [] отключает сохранение этого состояния.
    * Для сохранения необходимы id и filterQueryKey. Изменение storages после монтирования не поддерживается.
    * `id` должен быть уникальным для разных таблиц в рамках приложения.
+   * Значение `filterQueryKey` записывается в URL с однократным кодированием.
    */
   savedState?: Pick<ToolbarPersistConfig<TFilters>, 'serializer' | 'parser' | 'storages'> & {
     id: string;
