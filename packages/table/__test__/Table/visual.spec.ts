@@ -40,6 +40,7 @@ const FILTER_CHIP_ROLE_TEST_ID = 'table-filter-role';
 // - sorted-before-after.png — before/after ключевой XL-интеракции (sort);
 // - open-row-actions.png / open-column-settings.png — портальные droplist'ы,
 //   в StoryTable-ячейке VM их не открыть;
+// - open-mobile-sorting.png — mobile BottomSheet сортировки (портал, в VM нет).
 // - filters-row.png — filter-row тулбара (chips columnFilters), в VM нет.
 // - mobile-sticky-controls-offset.png — mobile sticky chrome при скролле страницы
 //   (toolbar/pagination с offsetTop/offsetBottom), в VM нет.
@@ -338,6 +339,24 @@ test.describe('Table — visual regression', () => {
 
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile-column-settings.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
+  });
+
+  // Mobile: sorting в BottomSheet; заголовок шита = единственная подпись (label группы на mobile снят).
+  test('open-mobile sorting bottom sheet', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions(undefined, TABLE_STORIES.playground, MOBILE_GLOBALS));
+    await waitForFonts();
+
+    await getByTestId(COMPONENT.viewSort.droplistTrigger).click();
+
+    const sheet = getByTestId(COMPONENT.viewSort.droplist);
+    await expect(sheet).toBeVisible();
+    await waitForSettledInViewport(sheet);
+
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile-sorting.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });
