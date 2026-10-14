@@ -333,6 +333,9 @@
     },
     {
       "path": "./uikit-product-charts/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-button-giga/tsconfig.cjs.json"
     }
   ]
 }

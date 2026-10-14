@@ -1,0 +1,17 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+@use '../shared/mixins' as giga;
+
+.root {
+  @include giga.compact-sizes;
+
+  @each $size, $token in giga.$sizes {
+    &[data-size='#{$size}'][data-variant='icon-only'] {
+      width: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'min-height');
+    }
+  }
+
+  &[data-size='l'][data-variant='icon-only'] {
+    width: base.$sn-primitive-dimension-48;
+  }
+}

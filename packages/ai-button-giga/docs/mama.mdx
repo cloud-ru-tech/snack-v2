@@ -1,0 +1,92 @@
+---
+title: AiButtonGigaMama
+package: '@ds/ai-button-giga'
+description: Увеличенная кнопка формы с центрированной группой глобуса и подписи.
+order: 3
+---
+
+import { AiButtonGigaMamaDemo } from '../demos/AiButtonGigaMamaDemo';
+import { MamaExample } from '../demos/examples/MamaExample';
+import exampleSource from '../demos/examples/MamaExample.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import doc from './props.json';
+
+# AiButtonGigaMama
+
+Увеличенная кнопка формы с центрированной группой глобуса и подписи.
+
+## Демо
+
+<AiButtonGigaMamaDemo client:visible />
+
+## Когда использовать
+
+Компонент показывает действие потребителя. Условия показа и результат нажатия задаёт приложение; кнопка не хранит результат и не выполняет запросов.
+
+## Анатомия
+
+### Appearance (default `primary`)
+
+- `primary` использует зелёную подпись из primary/text.
+- `neutral` использует подпись из neutral/text.
+
+Глобус остаётся цветным в обоих оформлениях и при недоступности. Общие правила состояний и согласованное расхождение контраста описаны [в обзоре пакета](./).
+
+### Ширина (default `304px`)
+
+Высота равна 72 px. Боковые отступы используют токен 16 px, обводка — 2 px, глобус — 24 px, зазор — 4 px. Ширина 304 px штатная: её можно изменить через style или className, например до 480 px. На узком родителе кнопка занимает не больше его доступной ширины.
+
+Короткая подпись имеет естественную ширину; группа подписи и глобуса центрируется. Длинная подпись обрезается многоточием в одну строку. Доступная ширина пересчитывается при изменении размера: W − 2×16 − 2×2 − 24 − 4. Она равна 240 px при 304 px и 416 px при 480 px.
+
+В Figma подпись занимает ширину содержимого (Hug) без maxWidth, maxHeight и maxLines по прямому решению владельца; однострочная обрезка является поведением кода.
+
+```tsx
+<AiButtonGigaMama label='Создать виртуальную машину' style={{ width: 480 }} />
+```
+
+### Loading и Disabled (default `false`)
+
+loading заменяет глобус индикатором, блокирует действие и задаёт aria-busy. При одновременных loading=true и disabled=true отображается загрузка: кнопка сохраняет фокус, повторное действие и отправление формы заблокированы. После выключения loading остающийся disabled нативно исключает кнопку из обхода клавиатуры. Флаги задаёт потребитель.
+
+## Установка
+
+```tsx
+import { AiButtonGigaMama } from '@ds/ai-button-giga';
+```
+
+## Примеры использования
+
+<Example
+  title='Действие и завершение загрузки'
+  description='Повторное действие блокируется до завершения загрузки.'
+  code={exampleSource}
+>
+  <MamaExample client:visible />
+</Example>
+
+## Правила использования
+
+- ✅ Передавайте понятную подпись или доступное имя через aria-label для кнопки без подписи.
+- ❌ Не оставляйте кнопку без доступного имени.
+- ✅ Управляйте loading и disabled по состоянию операции в приложении.
+- ❌ Не ожидайте, что кнопка самостоятельно выполнит запрос и завершит загрузку.
+- ✅ Выбирайте neutral через appearance и сохраняйте фирменный глобус.
+- ❌ Не перекрашивайте глобус в серый вместе с подписью.
+- ✅ Для отправления формы передавайте type=submit.
+- ❌ Не рассчитывайте, что обычная кнопка с type=button отправит форму.
+
+## Props
+
+<PropsTable data={doc.AiButtonGigaMama} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-buttongiga-mama--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-button-giga', 'mama')} />

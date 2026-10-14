@@ -168,7 +168,7 @@
     "propsTypeName": "QuotaWidgetProps",
     "props": {
       "buttonProps": {
-        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"size\" | \"appearance\" | \"fullWidth\">",
+        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"appearance\" | \"size\" | \"fullWidth\">",
         "required": false,
         "description": "Свойства кнопки открытия виджета",
         "typeRefs": [

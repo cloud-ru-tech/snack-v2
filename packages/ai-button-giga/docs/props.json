@@ -1,0 +1,331 @@
+{
+  "AiButtonGigaFunction": {
+    "displayName": "AiButtonGigaFunction",
+    "propsTypeName": "AiButtonGigaFunctionProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "description": "Оформление подписи: primary использует primary/text, neutral — neutral/text. Обводка есть у Outline и Mama.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневой кнопки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативно отключает кнопку, когда loading=false; глобус сохраняет цвет."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ссылка на корневой HTMLButtonElement."
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Однострочная подпись. Без подписи показывается квадратная кнопка с цветным глобусом."
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывает индикатор и блокирует действие, сохраняя фокус и ширину кнопки. Имеет приоритет над disabled."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер: xs = 24, s = 32, m = 40, l = 48 px по высоте. По умолчанию s.",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiButtonGigaMama": {
+    "displayName": "AiButtonGigaMama",
+    "propsTypeName": "AiButtonGigaMamaProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "description": "Оформление подписи: primary использует primary/text, neutral — neutral/text. Обводка есть у Outline и Mama.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневой кнопки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативно отключает кнопку, когда loading=false; глобус сохраняет цвет."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ссылка на корневой HTMLButtonElement."
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Подпись действия. Длинный текст обрезается многоточием с учётом ширины кнопки и отступов."
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывает индикатор и блокирует действие, сохраняя фокус и ширину кнопки. Имеет приоритет над disabled."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiButtonGigaOutline": {
+    "displayName": "AiButtonGigaOutline",
+    "propsTypeName": "AiButtonGigaOutlineProps",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "description": "Оформление подписи: primary использует primary/text, neutral — neutral/text. Обводка есть у Outline и Mama.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневой кнопки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Нативно отключает кнопку, когда loading=false; глобус сохраняет цвет."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Сменная иконка. По умолчанию — цветной глобус; null скрывает иконку."
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "description": "Положение иконки относительно подписи. По умолчанию before.",
+        "typeRefs": [
+          "IconPosition"
+        ]
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ссылка на корневой HTMLButtonElement."
+      },
+      "label": {
+        "type": "string",
+        "required": false,
+        "description": "Однострочная подпись. Без подписи показывается квадратная кнопка с иконкой."
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывает индикатор и блокирует действие, сохраняя фокус и ширину кнопки. Имеет приоритет над disabled."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер: xs = 24, s = 32, m = 40, l = 48 px по высоте. По умолчанию s.",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "own": true
+      },
+      "IconPosition": {
+        "kind": "union",
+        "values": [
+          "after",
+          "before"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
+  },
+  "GigaButton": {
+    "displayName": "GigaButton",
+    "propsTypeName": null,
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "neutral",
+          "primary"
+        ],
+        "defaultValue": "primary",
+        "description": "Оформление подписи: primary использует primary/text, neutral — neutral/text. Обводка есть у Outline и Mama."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный CSS-класс корневой кнопки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Нативно отключает кнопку, когда loading=false; глобус сохраняет цвет."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false
+      },
+      "iconPosition": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "after",
+          "before"
+        ],
+        "defaultValue": "before"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ссылка на корневой HTMLButtonElement."
+      },
+      "label": {
+        "type": "string",
+        "required": false
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Показывает индикатор и блокирует действие, сохраняя фокус и ширину кнопки. Имеет приоритет над disabled."
+      },
+      "rootTestId": {
+        "type": "string",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s",
+          "xs"
+        ]
+      },
+      "view": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "function",
+          "mama",
+          "outline"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  }
+}

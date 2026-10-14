@@ -1,0 +1,43 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '../shared/mixins' as giga;
+
+$backgrounds: (
+  'primary': 'background',
+  'neutral': 'background1Level',
+);
+
+.root {
+  --giga-border-width: #{base.$sn-primitive-strokeWeight-strokeSemiBold};
+  --giga-content-gap: #{base.$sn-primitive-dimension-4};
+  // Подложка занимает внутреннюю область рамки и повторяет её внутренний контур.
+  --giga-state-layer-radius: calc(#{base.$sn-density-radius-m} - var(--giga-border-width));
+
+  // Штатная ширина BGM-4.1. Токена 304 нет; потребитель может изменить width.
+  width: 304px;
+  max-width: 100%;
+  min-height: base.$sn-primitive-dimension-72;
+  padding-right: base.$sn-primitive-dimension-16;
+  padding-left: base.$sn-primitive-dimension-16;
+  border-width: var(--giga-border-width);
+  border-radius: base.$sn-density-radius-m;
+
+  &[data-disabled][data-appearance] {
+    background-color: base.$sn-theme-color-neutral-background;
+  }
+
+  [data-text-opacity] {
+    overflow: hidden;
+    flex-shrink: 1;
+    min-width: 0;
+    text-overflow: ellipsis;
+  }
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'title', 'm');
+  @include giga.branded-border;
+
+  @each $appearance, $background in $backgrounds {
+    &[data-appearance='#{$appearance}'] {
+      background-color: base.simple-var(base.$sn-theme, 'color', $appearance, $background);
+    }
+  }
+}

@@ -168,7 +168,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { ...; })",
+        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { ...; })",
         "required": true
       },
       "list": {
@@ -472,7 +472,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"

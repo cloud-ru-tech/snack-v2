@@ -1,0 +1,70 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+
+$sizes: (
+  'xs': 's',
+  's': 'm',
+  'm': 'l',
+  'l': 'l',
+);
+
+@mixin compact-sizes {
+  @each $size, $token in $sizes {
+    &[data-size='#{$size}'] {
+      --giga-content-gap: #{base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'gap')};
+
+      min-height: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'min-height');
+      border-radius: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'border-radius');
+
+      @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', $token);
+    }
+  }
+
+  &[data-size='xs'] {
+    // BGO-4.5 / BGF-4.5: вес label/s 500 выбирает Regular в браузере.
+    // Размеры 11/14 сохраняются; вес label/m выбирает Semibold, как в Figma.
+    font-weight: base.simple-var(base.$base-styles, 'sn', 'regular', 'label', 'm', 'font-weight');
+  }
+
+  &[data-size='l'] {
+    min-height: base.$sn-primitive-dimension-48;
+  }
+}
+
+@mixin branded-border {
+  border-color: transparent;
+  border-style: solid;
+
+  &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: calc(0px - var(--giga-border-width));
+
+    padding: var(--giga-border-width);
+    border-radius: inherit;
+
+    // Точная проекция GRADIENT_RADIAL из Figma. Параметры геометрии градиента
+    // не имеют токенов; матрица [0.54,0,0.14;0,0.54,0.38], позиции 0.15/0.65.
+    background: radial-gradient(
+      ellipse 92.5926% 92.5926% at 66.6667% 22.2222%,
+      base.$sn-theme-color-blue-accent 15%,
+      base.$sn-theme-color-green-accent 65%
+    );
+
+    mask:
+      linear-gradient(white 0 0) content-box,
+      linear-gradient(white 0 0);
+    mask-composite: exclude;
+  }
+
+  &[data-appearance='neutral'],
+  &[data-disabled] {
+    border-color: base.$sn-theme-color-neutral-decor;
+
+    &::before {
+      display: none;
+    }
+  }
+}

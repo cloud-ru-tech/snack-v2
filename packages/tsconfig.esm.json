@@ -338,6 +338,9 @@
     },
     {
       "path": "./uikit-product-charts/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-button-giga/tsconfig.esm.json"
     }
   ]
 }

@@ -196,7 +196,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'ai-primitives',
       label: 'Primitives',
       description: 'Базовые презентационные элементы для сборки AI-компонентов.',
-      packages: ['ai-tool', 'ai-button-chevron', 'ai-icon-giga'],
+      packages: ['ai-tool', 'ai-button-chevron', 'ai-button-giga', 'ai-icon-giga'],
     },
   ],
 };

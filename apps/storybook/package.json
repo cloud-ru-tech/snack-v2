@@ -13,6 +13,7 @@
     "@ds/accordion": "workspace:*",
     "@ds/adaptive": "workspace:*",
     "@ds/ai-button-chevron": "workspace:*",
+    "@ds/ai-button-giga": "workspace:*",
     "@ds/ai-card": "workspace:*",
     "@ds/ai-chain-of-thoughts": "workspace:*",
     "@ds/ai-field-banner": "workspace:*",

@@ -523,7 +523,7 @@
             "description": "Процент прогресса"
           },
           "status": {
-            "type": "\"error\" | \"loading\" | \"pause\" | \"uploaded\"",
+            "type": "\"loading\" | \"error\" | \"pause\" | \"uploaded\"",
             "required": true,
             "values": [
               "error",
@@ -655,7 +655,7 @@
             "description": "Процент прогресса"
           },
           "status": {
-            "type": "\"error\" | \"loading\" | \"pause\" | \"uploaded\"",
+            "type": "\"loading\" | \"error\" | \"pause\" | \"uploaded\"",
             "required": true,
             "values": [
               "error",

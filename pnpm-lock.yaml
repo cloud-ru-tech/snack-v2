@@ -339,6 +339,9 @@ importers:
       '@ds/ai-button-chevron':
         specifier: workspace:*
         version: link:../../packages/ai-button-chevron
+      '@ds/ai-button-giga':
+        specifier: workspace:*
+        version: link:../../packages/ai-button-giga
       '@ds/ai-card':
         specifier: workspace:*
         version: link:../../packages/ai-card
@@ -742,6 +745,27 @@ importers:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-button-giga:
+    dependencies:
+      '@ds/ai-icon-giga':
+        specifier: workspace:^
+        version: link:../ai-icon-giga
+      '@ds/figma-variables':
+        specifier: workspace:^
+        version: link:../figma-variables
+      '@ds/loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

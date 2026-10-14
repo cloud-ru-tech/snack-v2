@@ -1,0 +1,91 @@
+---
+title: AiButtonGigaFunction
+package: '@ds/ai-button-giga'
+description: Кнопка без постоянной обводки, с цветным глобусом и необязательной подписью.
+order: 2
+---
+
+import { AiButtonGigaFunctionDemo } from '../demos/AiButtonGigaFunctionDemo';
+import { FunctionExample } from '../demos/examples/FunctionExample';
+import exampleSource from '../demos/examples/FunctionExample.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import doc from './props.json';
+
+# AiButtonGigaFunction
+
+Кнопка без постоянной обводки, с цветным глобусом и необязательной подписью.
+
+## Демо
+
+<AiButtonGigaFunctionDemo client:visible />
+
+## Когда использовать
+
+Компонент показывает действие потребителя. Условия показа и результат нажатия задаёт приложение; кнопка не хранит результат и не выполняет запросов.
+
+## Анатомия
+
+### Appearance (default `primary`)
+
+- `primary` использует зелёную подпись из primary/text.
+- `neutral` использует подпись из neutral/text.
+
+Глобус остаётся цветным в обоих оформлениях и при недоступности. Общие правила состояний и согласованное расхождение контраста описаны [в обзоре пакета](./).
+
+### Size (default `s`)
+
+- `xs` имеет высоту 24 px и иконку 16 px.
+- `s` имеет высоту 32 px и иконку 24 px.
+- `m` имеет высоту 40 px и иконку 24 px.
+- `l` имеет высоту 48 px и иконку 24 px.
+
+Подпись использует семейство шрифта и размеры из токенов Snack. У `xs` размер и высота строки остаются 11/14 px из label/s, а вес берётся из label/m, как у `s`. В бренде Cloud Console значение 550 выбирает Semibold вместо Regular. У `m` и `l` вес берётся из label/l.
+
+Без label кнопка становится квадратной. Горизонтальные отступы у текстового варианта равны нулю. Подпись занимает одну строку без обрезки. Глобус заменить пользовательской иконкой нельзя.
+
+### Loading и Disabled (default `false`)
+
+loading заменяет глобус индикатором, блокирует действие и задаёт aria-busy. При одновременных loading=true и disabled=true отображается загрузка: кнопка сохраняет фокус, повторное действие и отправление формы заблокированы. После выключения loading остающийся disabled нативно исключает кнопку из обхода клавиатуры. Флаги задаёт потребитель.
+
+## Установка
+
+```tsx
+import { AiButtonGigaFunction } from '@ds/ai-button-giga';
+```
+
+## Примеры использования
+
+<Example
+  title='Действие и завершение загрузки'
+  description='Повторное действие блокируется до завершения загрузки.'
+  code={exampleSource}
+>
+  <FunctionExample client:visible />
+</Example>
+
+## Правила использования
+
+- ✅ Передавайте понятную подпись или доступное имя через aria-label для кнопки без подписи.
+- ❌ Не оставляйте кнопку без доступного имени.
+- ✅ Управляйте loading и disabled по состоянию операции в приложении.
+- ❌ Не ожидайте, что кнопка самостоятельно выполнит запрос и завершит загрузку.
+- ✅ Выбирайте neutral через appearance и сохраняйте фирменный глобус.
+- ❌ Не перекрашивайте глобус в серый вместе с подписью.
+- ✅ Для отправления формы передавайте type=submit.
+- ❌ Не рассчитывайте, что обычная кнопка с type=button отправит форму.
+
+## Props
+
+<PropsTable data={doc.AiButtonGigaFunction} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-buttongiga-function--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-button-giga', 'function')} />

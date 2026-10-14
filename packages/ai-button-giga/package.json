@@ -1,0 +1,46 @@
+{
+  "name": "@ds/ai-button-giga",
+  "version": "0.0.0",
+  "description": "Кнопки Гига-помощника: Outline, Function и Mama.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-button-giga"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-button-giga",
+  "license": "Apache-2.0",
+  "author": "Vladimir Usatov <vvusatov@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ds/ai-icon-giga": "workspace:^",
+    "@ds/figma-variables": "workspace:^",
+    "@ds/loader": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:"
+  }
+}

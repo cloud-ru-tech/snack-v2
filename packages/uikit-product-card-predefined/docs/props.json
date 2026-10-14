@@ -1897,7 +1897,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"icon\" | \"loading\">",
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
         "required": true,
         "description": "Параметры для основной кнопки"
       },
@@ -1911,7 +1911,7 @@
         "required": false
       },
       "secondaryButton": {
-        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"icon\" | \"loading\">",
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
         "required": false,
         "description": "Параметры для вторичной кнопки"
       }
@@ -1949,7 +1949,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"icon\" | \"loading\">",
+        "type": "Pick<ButtonProps, \"label\" | \"onClick\" | \"loading\" | \"icon\">",
         "required": false,
         "description": "Параметры для основной кнопки"
       },

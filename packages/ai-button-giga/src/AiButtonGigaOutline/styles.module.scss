@@ -1,0 +1,58 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+@use '../shared/mixins' as giga;
+
+$variants: (
+  'label-only': 'labelOnly',
+  'icon-before': 'iconBefore',
+  'icon-after': 'iconAfter',
+);
+
+.root {
+  flex-shrink: 0;
+
+  @include giga.compact-sizes;
+  @include giga.branded-border;
+
+  @each $size, $token in giga.$sizes {
+    &[data-size='#{$size}'] {
+      --giga-border-width: #{base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'border-width')};
+
+      min-width: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'min-width');
+      border-width: var(--giga-border-width);
+
+      @each $variant, $anatomy in $variants {
+        &[data-variant='#{$variant}'] {
+          @include base.composite-var(btn.$button, 'anatomy', 'size', $token, 'container', $anatomy);
+        }
+      }
+
+      &[data-variant='icon-only'] {
+        width: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'min-height');
+        min-width: base.simple-var(btn.$button, 'anatomy', 'size', $token, 'container', 'min-height');
+      }
+    }
+  }
+
+  &[data-size='l'] {
+    &[data-variant='icon-before'] {
+      padding-right: base.$sn-primitive-dimension-24;
+      padding-left: base.$sn-primitive-dimension-16;
+    }
+
+    &[data-variant='icon-after'] {
+      padding-right: base.$sn-primitive-dimension-16;
+      padding-left: base.$sn-primitive-dimension-24;
+    }
+
+    &[data-variant='label-only'] {
+      padding-right: base.$sn-primitive-dimension-24;
+      padding-left: base.$sn-primitive-dimension-24;
+    }
+
+    &[data-variant='icon-only'] {
+      width: base.$sn-primitive-dimension-48;
+      min-width: base.$sn-primitive-dimension-48;
+    }
+  }
+}

@@ -81,6 +81,13 @@ const LIST_STATES = {
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
   'ai-button-chevron': { ...AI_COMPONENTS, nodeId: '7247-7715' }, // ai-button-chevron → ButtonChevron
+  'ai-button-giga': {
+    _: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16104' },
+    outline: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16105' },
+    function: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16106' },
+    mama: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16107' },
+  }, // ai-button-giga → Button Giga в рабочей ветке Suggestion
+
   chips: {
     _: { ...SNACK, nodeId: '28137-1776436' }, // chips → chips - Matrix (canvas)
     'chip-assist': { ...SNACK, nodeId: '6437-16196' }, // chips/chip-assist → ChipAssist
