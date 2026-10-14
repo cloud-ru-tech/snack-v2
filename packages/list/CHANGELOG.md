@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.4.0 (2026-10-14)
+
+### Features
+
+- **FF-9250:** custom renderers for list ([ea652c4](https://github.com/cloud-ru-tech/snack-v2/commit/ea652c49727e1cb90d7602b42de94f3302191769))
+
 ## 2.3.6 (2026-10-12)
 
 **Note:** Version bump only for package @ds/list

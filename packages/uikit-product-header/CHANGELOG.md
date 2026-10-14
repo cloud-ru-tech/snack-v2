@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-10-14)
+
+### Bug Fixes
+
+- **FF-9250:** header hotfix ([6383ec5](https://github.com/cloud-ru-tech/snack-v2/commit/6383ec595c226abbbc328fa238dac5e2dd00f7ec))
+
+### Features
+
+- **FF-9250:** list custom items for header ([eab31c6](https://github.com/cloud-ru-tech/snack-v2/commit/eab31c625c0ed05756df46d5fa5bed8e8f472479))
+
 ## 2.1.7 (2026-10-12)
 
 **Note:** Version bump only for package @ds/uikit-product-header

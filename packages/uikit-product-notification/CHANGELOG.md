@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-10-14)
+
+### Features
+
+- **FF-9250:** pass itemRender and groupItemRender through uikit-product-notification ([95250c0](https://github.com/cloud-ru-tech/snack-v2/commit/95250c03f23c999cd40e6bedbbed67ad2a5c7ffa))
+
 ## 2.0.31 (2026-10-12)
 
 **Note:** Version bump only for package @ds/uikit-product-notification

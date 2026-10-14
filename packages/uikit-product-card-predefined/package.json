@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-card-predefined",
-  "version": "4.0.13",
+  "version": "4.0.14",
   "description": "Пресеты карточек Product UI Kit — CardBanner, CardService, CardServiceLight, CardServiceSmall, CardSuggest, CardCustom.",
   "repository": {
     "type": "git",

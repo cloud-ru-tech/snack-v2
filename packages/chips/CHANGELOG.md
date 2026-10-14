@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-10-14)
+
+### Features
+
+- **FF-9250:** pass itemRender and groupItemRender through ChipChoice ([55c0b2f](https://github.com/cloud-ru-tech/snack-v2/commit/55c0b2f390e77be2e5f68f0bb6764cc6de5b14d4))
+
 ## 1.1.12 (2026-10-12)
 
 **Note:** Version bump only for package @ds/chips
