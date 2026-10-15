@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-10-15)
+
+### BREAKING CHANGES
+
+- **CORESERV-12174:** remove double url-encoding of toolbar persisted state ([822573f](https://github.com/cloud-ru-tech/snack-v2/commit/822573f24e515126632d898d496a4f01fb24798a))
+
 ## 1.2.17 (2026-10-14)
 
 **Note:** Version bump only for package @ds/table
