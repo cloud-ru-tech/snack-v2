@@ -196,7 +196,7 @@ export function WithDataView() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. |
+| `after` | `ReactNode` | — | Дополнительный слот между поиском и переключателем вида (+ slotExtraButton в Figma). <br> <br/> На mobile-раскладке (из `AdaptiveProvider`) не рендерится в строке — кнопки переносятся в меню «⋯» <br/> (`Button` с `onClick` и `label` / `icon` / `aria-label`, одна обёртка вокруг кнопки <br/> или элемент с `data-toolbar-after-overflow`). Иначе — в `moreActions`. <br> <br/> Чтобы кнопка оставалась в строке и на mobile, передайте её в `pinnedAfter`. |
 | `bulkActions` | `BulkAction` | — | Список массовых действий |
 | `checked` | `boolean` | — | Значение чекбокса |
 | `className` | `string` | — | Класснейм |
@@ -209,6 +209,7 @@ export function WithDataView() {
 | `onRefresh` | `(() => void)` | — | Колбек обновления |
 | `outline` | `boolean` | `true` | Внешний бордер |
 | `persist` | `ToolbarPersistConfig` | — | Конфиг сохранения состояния в URL, localStorage и sessionStorage. <br> <br/> Поле id должно быть уникальным для каждого инстанса компонента. <br> |
+| `pinnedAfter` | `ReactNode` | — | Закреплённые элементы слота `after`: рендерятся в строке панели на любой раскладке, перед `after`. <br> <br/> Принимает то же, что `after`: один элемент, фрагмент или массив. На mobile в меню «⋯» не переносятся — <br/> каждая кнопка сужает поле поиска, поэтому закрепляйте только ключевые действия. |
 | `search` | `SearchProps` | — | Параметры отвечают за строку поиска <br> <br/> <strong>value</strong>: Значение строки поиска <br> <br/> <strong>onChange</strong>: Колбэк смены значения <br> <br/> <strong>onSubmit</strong>: Колбэк на подтверждение поиска по строке <br/> <strong>placeholder</strong>: Плейсхолдер <br> <br/> <strong>loading</strong>: Состояние загрузки <br> |
 | `selectedCount` | `number` | — | Количество выбранных элементов (для подписи Selected: N) |
 | `showBulkCheckbox` | `boolean` | `true` | Показывать чекбокс слева (Figma: showBulkCheckbox) |
@@ -310,7 +311,7 @@ export function WithDataView() {
 `Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
 
 - **desktop** (по умолчанию) — overflow «⋯» открывается в `Droplist`, bulk-действия идут строкой под чипами фильтров.
-- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе).
+- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе). Кнопки слота `after` переносятся пунктами в меню «⋯»; элементы `pinnedAfter` остаются в строке панели (так `Table` держит отдельную кнопку сортировки).
 
 Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
@@ -359,6 +360,70 @@ export function MobileLayout() {
         </AdaptiveProvider>
       </MobilePreview>
     </div>
+  );
+}
+```
+
+### Закреплённые кнопки — `pinnedAfter`
+
+На mobile элементы слота `after` переносятся пунктами в меню «⋯». Кнопки, которые должны оставаться в строке панели на любой раскладке, передаются в `pinnedAfter`:
+
+- принимает то же, что `after`: один элемент, фрагмент или массив;
+- рендерится в строке панели перед `after`;
+- ширину панели тулбар не проверяет — каждая закреплённая кнопка сужает поле поиска на mobile.
+
+### Закреплённые кнопки на mobile
+
+«Скачать» и «Настройки» из pinnedAfter остаются в строке, кнопка из after уходит в «⋯»
+
+```tsx
+import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';
+import { Button } from '@ds/button';
+import { DownloadSVG, PlaceholderSVG, SettingsSVG } from '@ds/icons/interface/system';
+import { Toolbar } from '@ds/toolbar';
+import { useState } from 'react';
+
+import { MobilePreview } from '../MobilePreview';
+
+export function PinnedAfter() {
+  const [search, setSearch] = useState('');
+
+  return (
+    <MobilePreview>
+      <AdaptiveProvider layoutType={LAYOUT_TYPE.Mobile}>
+        <Toolbar
+          search={{ value: search, onChange: setSearch, placeholder: 'Поиск' }}
+          moreActions={[{ content: { label: 'Экспорт' }, onClick: () => undefined }]}
+          pinnedAfter={[
+            <Button
+              key='download'
+              view='function'
+              size='m'
+              icon={<DownloadSVG />}
+              aria-label='Скачать'
+              onClick={() => undefined}
+            />,
+            <Button
+              key='settings'
+              view='function'
+              size='m'
+              icon={<SettingsSVG />}
+              aria-label='Настройки'
+              onClick={() => undefined}
+            />,
+          ]}
+          after={
+            <Button
+              view='function'
+              size='m'
+              icon={<PlaceholderSVG />}
+              label='Дополнительно'
+              onClick={() => undefined}
+            />
+          }
+        />
+      </AdaptiveProvider>
+    </MobilePreview>
   );
 }
 ```
