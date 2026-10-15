@@ -227,7 +227,8 @@ function PopoverPrivateComponent({
   const offsetValue = useOffset({ triggerClassName, offsetProp });
 
   const arrowOffset = getArrowOffset(arrowRef.current);
-  const { floatingStyles, refs, context, middlewareData, placement } = useFloating({
+
+  const { floatingStyles, refs, context, middlewareData, placement, isPositioned } = useFloating({
     nodeId,
     placement: placementProp,
     open: isOpen,
@@ -341,7 +342,7 @@ function PopoverPrivateComponent({
         role='presentation'
         {...extractSupportProps(rest)}
         className={cn(styles.floating, className, {
-          [styles.floatingHidden as string]: Boolean(middlewareData.hide?.referenceHidden),
+          [styles.floatingHidden as string]: !isPositioned || Boolean(middlewareData.hide?.referenceHidden),
         })}
         ref={refs.setFloating}
         // Ширина моста через зазор — см. `.floating::before` в стилях.
