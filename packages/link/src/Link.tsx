@@ -24,25 +24,24 @@ export function Link<T extends ElementType = 'a'>({
 }: LinkProps<T>) {
   const Component = as || 'a';
 
-  let fallbackProps;
+  const target = rest.target ?? TARGET.Blank;
 
-  if (Component === 'a') {
-    /**
-     * Обратно совместимые изменения с предыдущей версией.
-     */
-    fallbackProps = Object.assign(
-      {
-        target: rest?.target ?? TARGET.Blank,
-        href: rest.href ?? undefined,
-        download: rest.download,
-        onClick: rest.onClick,
-      },
-      extractSupportProps(rest),
-    );
-    fallbackProps.rel = fallbackProps.target === TARGET.Blank ? 'noopener noreferrer' : undefined;
-  } else {
-    fallbackProps = rest;
-  }
+  /**
+   * Обратно совместимые изменения с предыдущей версией.
+   */
+  const fallbackProps =
+    Component === 'a'
+      ? Object.assign(
+          {
+            target,
+            href: rest.href ?? undefined,
+            download: rest.download,
+            onClick: rest.onClick,
+            rel: target === TARGET.Blank ? 'noopener noreferrer' : undefined,
+          },
+          extractSupportProps(rest),
+        )
+      : rest;
 
   return (
     <Component
