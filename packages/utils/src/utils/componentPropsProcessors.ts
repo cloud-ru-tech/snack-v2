@@ -35,7 +35,7 @@ export type WithSupportProps<T> = {
  * @function helper
  */
 export function excludeSupportProps<T extends Record<string, unknown>>(props: T) {
-  return excludeProps(props, DATA_AND_ARIA_REGEXP);
+  return excludeProps(props, DATA_AND_ARIA_REGEXP) as Omit<T, `data-${string}` | `aria-${string}`>;
 }
 
 /**
@@ -43,7 +43,7 @@ export function excludeSupportProps<T extends Record<string, unknown>>(props: T)
  * @function helper
  */
 export function extractDataTestProps<T extends Record<string, unknown>>(props: T) {
-  return extractProps(props, DATA_TEST_REGEXP);
+  return extractProps(props, DATA_TEST_REGEXP) as Pick<T, `data-test-${string}`>;
 }
 
 /**
@@ -51,5 +51,5 @@ export function extractDataTestProps<T extends Record<string, unknown>>(props: T
  * @function helper
  */
 export function extractSupportProps<T extends Record<string, unknown>>(props: T) {
-  return extractProps(props, DATA_AND_ARIA_REGEXP);
+  return extractProps(props, DATA_AND_ARIA_REGEXP) as Pick<T, Extract<keyof T, `data-${string}` | `aria-${string}`>>;
 }
