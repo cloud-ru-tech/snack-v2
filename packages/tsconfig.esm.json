@@ -344,6 +344,9 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-code-diff/tsconfig.esm.json"
     }
   ]
 }

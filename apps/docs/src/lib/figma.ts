@@ -30,6 +30,10 @@ const AI_COMPONENTS = {
   fileKey: 'tCbbB5RUGyJeBRtjF3dt4d',
   fileName: 'AI-COMPONENTS',
 } as const;
+const HISTORY_LINE = {
+  fileKey: '4rFAtPzbWZo9wpI3NQ9zNm',
+  fileName: 'History-Line',
+} as const;
 const TOOL_ELEMENTS = { ...AI_COMPONENTS, nodeId: '7217-4865' } as const;
 const SUGGESTION = { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion' } as const;
 const HR_PORTAL = {
@@ -107,6 +111,7 @@ export const FIGMA_NODES = {
     _: { ...AI_COMPONENTS, nodeId: '7099-3584' }, // Chain Of Thoughts
     'ai-chain-of-thoughts-headline': { ...AI_COMPONENTS, nodeId: '7099-3365' }, // Chain Of Thoughts Headline
   },
+  'ai-code-diff': { ...HISTORY_LINE, nodeId: '14388-1655' }, // ai-code-diff → Code Diff
   'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
   'ai-reasoning': { ...AI_COMPONENTS, nodeId: '7250-14770' }, // ai-reasoning → Reasoning
   'ai-queue': { ...AI_COMPONENTS, nodeId: '7099-4119' }, // ai-queue → Queue
@@ -390,3 +395,4 @@ export function figmaDesignUrl({ fileKey, fileName, nodeId }: FigmaNodeRef): str
   });
   return `https://www.figma.com/design/${fileKey}/${fileName}?${params}`;
 }
+

@@ -1,0 +1,88 @@
+---
+title: AiCodeDiff
+package: '@ds/ai-code-diff'
+description: Количество добавленных и удаленных строк кода
+order: 1
+---
+
+import { AiCodeDiffDemo } from '../demos/AiCodeDiffDemo';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import doc from './props.json';
+
+import { Sizes } from '../demos/examples/Sizes';
+import SizesSrc from '../demos/examples/Sizes.tsx?raw';
+import { LongCounts } from '../demos/examples/LongCounts';
+import LongCountsSrc from '../demos/examples/LongCounts.tsx?raw';
+import { CustomSeparator } from '../demos/examples/CustomSeparator';
+import CustomSeparatorSrc from '../demos/examples/CustomSeparator.tsx?raw';
+
+# AiCodeDiff
+
+`AiCodeDiff` показывает сводку изменений: число добавленных и удалённых строк. Компонент не считает diff и не открывает просмотр кода — целые количества передаёт потребитель, знаки `+` и `-` ставит компонент.
+
+## Демо
+
+<AiCodeDiffDemo client:visible />
+
+## Когда использовать
+
+- Компактная сводка рядом с файлом, коммитом или строкой истории.
+- Нужны только два числа и разделитель, без тела diff.
+
+### Когда не нужен
+
+- Нужно показать сами строки кода:
+  - соберите просмотр отдельно, `AiCodeDiff` остаётся подписью.
+- Нужно сократить большие числа (`1.2k`) или показать дробное значение:
+  - `added` и `removed` — целые неотрицательные числа, компонент показывает их как есть.
+
+## Анатомия
+
+Горизонтальная строка из трёх текстов: добавленные строки, разделитель, удалённые строки. Ширина зависит от текста.
+
+### Size (default `m`)
+
+- `m` — типографика body 14/20.
+- `s` — типографика body 12/16.
+
+Цвета фиксированы: добавленные строки зелёные, удалённые красные, разделитель третичный.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-code-diff
+```
+
+```ts
+import { AiCodeDiff } from '@ds/ai-code-diff';
+```
+
+## Примеры использования
+
+<Example title='Размеры' description='m и s на одних и тех же строках' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+<Example title='Длинные значения' description='Крупные целые числа' code={LongCountsSrc}>
+  <LongCounts client:visible />
+</Example>
+
+<Example title='Свой разделитель' description='По умолчанию «/», его можно заменить' code={CustomSeparatorSrc}>
+  <CustomSeparator client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={doc.AiCodeDiff} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aicodediff--playground' height={240} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-code-diff')} />

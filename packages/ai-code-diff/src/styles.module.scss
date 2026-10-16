@@ -1,0 +1,33 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$sizes: 'm', 's';
+
+$typography: (
+  'm': base.$sn-regular-body-m,
+  's': base.$sn-regular-body-s,
+);
+
+.root {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  white-space: nowrap;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      @include base.composite-var($typography, $size);
+    }
+  }
+}
+
+.added {
+  color: base.$sn-theme-color-green-text;
+}
+
+.separator {
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.removed {
+  color: base.$sn-theme-color-red-accent;
+}

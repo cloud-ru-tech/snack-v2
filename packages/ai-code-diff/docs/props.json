@@ -1,0 +1,55 @@
+{
+  "AiCodeDiff": {
+    "displayName": "AiCodeDiff",
+    "propsTypeName": "AiCodeDiffProps",
+    "props": {
+      "added": {
+        "type": "number",
+        "required": true,
+        "description": "Количество добавленных строк. Целое неотрицательное число, знак `+` ставит компонент."
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "removed": {
+        "type": "number",
+        "required": true,
+        "description": "Количество удалённых строк. Целое неотрицательное число, знак `-` ставит компонент."
+      },
+      "separator": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "/",
+        "description": "Разделитель между added и removed."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Типографика.",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  }
+}

@@ -339,6 +339,9 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-code-diff/tsconfig.cjs.json"
     }
   ]
 }
