@@ -159,7 +159,7 @@ export function ToolCallTree() {
 | `data-test-id` | `string` | `ai-tool` |  |
 | `defaultOpen` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
 | `duration` | `number` | — | Длительность выполнения в секундах. Форматируется компонентом в д/ч/м/с <br/> (ведущие нулевые единицы опускаются, секунды показываются всегда). |
-| `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` в заголовке. |
+| `icon` | `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"` | — | Тип инструмента — глиф `AiToolIcon` в заголовке. |
 | `name` | `ReactNode` | — | Имя инструмента — моноширинная строка заголовка, обрезается ellipsis. |
 | `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
 | `open` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. |
@@ -169,7 +169,7 @@ export function ToolCallTree() {
 
 ##### Related types
 
-- `AiToolIconType` = `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"`
+- `AiToolIconType` = `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"`
 
 - `AiToolStatusState` = `"error"` \| `"loading"` \| `"pending"` \| `"success"`
 
@@ -249,7 +249,7 @@ export function ToolSimpleBadges() {
 | `data-test-id` | `string` | `ai-tool-simple` |  |
 | `defaultOpen` | `boolean` | `false` | Начальное раскрытое состояние (uncontrolled). |
 | `description` | `ReactNode` | — | Текстовое описание под заголовком в раскрытом состоянии. |
-| `icon` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — глиф `AiToolIcon` слева от заголовка. |
+| `icon` | `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"` | — | Тип инструмента — глиф `AiToolIcon` слева от заголовка. |
 | `name` | `ReactNode` | — | Имя инструмента — строка заголовка; в свёрнутом состоянии обрезается ellipsis. |
 | `onOpenChange` | `((open: boolean) => void)` | — | Переключение раскрытия. Получает новое значение `open`. |
 | `open` | `boolean` | — | Раскрытое состояние (controlled). Для uncontrolled-режима — `defaultOpen`. |
@@ -257,13 +257,13 @@ export function ToolSimpleBadges() {
 
 ##### Related types
 
-- `AiToolIconType` = `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"`
+- `AiToolIconType` = `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"`
 
 - `AiToolStatusState` = `"error"` \| `"loading"` \| `"pending"` \| `"success"`
 
 ## AiToolIcon
 
-Иконка типа инструмента (reasoning, search, read, act, security, wait), 16×16, цвет наследуется через currentColor.
+Иконка типа инструмента (reasoning, search, read, act, security, wait, edit, write), 16×16, цвет наследуется через currentColor.
 
 Иконка 16×16, обозначающая тип шага инструмента. Цвет наследуется через `currentColor` — по умолчанию приглушённый `textTertiary`.
 
@@ -282,6 +282,8 @@ export function ToolSimpleBadges() {
 - `act` — действие.
 - `security` — проверка безопасности.
 - `wait` — ожидание.
+- `edit` — правка, карандаш.
+- `write` — запись, документ с плюсом.
 
 ### Примеры использования
 
@@ -311,11 +313,11 @@ export function IconSet() {
 |------|------|---------|-------------|
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | `ai-tool-icon` |  |
-| `variant` | `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` | — | Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait). |
+| `variant` | `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"` | — | Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait / edit / write). |
 
 ##### Related types
 
-- `AiToolIconType` = `"act"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"`
+- `AiToolIconType` = `"act"` \| `"edit"` \| `"read"` \| `"reasoning"` \| `"search"` \| `"security"` \| `"wait"` \| `"write"`
 
 ## AiToolStatus
 

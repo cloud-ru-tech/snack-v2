@@ -1,18 +1,18 @@
 ---
 title: AiToolIcon
 package: '@ds/ai-tool'
-description: Иконка типа инструмента (reasoning, search, read, act, security, wait), 16×16, цвет наследуется через currentColor.
+description: Иконка типа инструмента (reasoning, search, read, act, security, wait, edit, write), 16×16, цвет наследуется через currentColor.
 order: 3
 ---
 
-import { IconSet } from '../demos/examples/IconSet'
-import IconSetSrc from '../demos/examples/IconSet.tsx?raw'
-import { Example } from '#docs/components/Example'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import aiToolDoc from './props.json'
+import { IconSet } from '../demos/examples/IconSet';
+import IconSetSrc from '../demos/examples/IconSet.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import aiToolDoc from './props.json';
 
 # AiToolIcon
 
@@ -33,6 +33,8 @@ import aiToolDoc from './props.json'
 - `act` — действие.
 - `security` — проверка безопасности.
 - `wait` — ожидание.
+- `edit` — правка, карандаш.
+- `write` — запись, документ с плюсом.
 
 ## Установка
 
@@ -41,7 +43,7 @@ pnpm add @ds/ai-tool
 ```
 
 ```ts
-import { AiToolIcon } from '@ds/ai-tool'
+import { AiToolIcon } from '@ds/ai-tool';
 ```
 
 ## Примеры использования

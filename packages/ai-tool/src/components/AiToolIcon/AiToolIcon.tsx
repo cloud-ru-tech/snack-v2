@@ -8,7 +8,7 @@ import { AI_TOOL_ICON_GLYPHS } from './icons';
 import styles from './styles.module.scss';
 
 export type AiToolIconOwnProps = {
-  /** Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait). */
+  /** Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait / edit / write). */
   variant: AiToolIconType;
   /** Доп. класс корня. */
   className?: string;

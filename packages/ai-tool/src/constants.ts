@@ -5,6 +5,8 @@ export const AI_TOOL_ICON_TYPE = {
   Act: 'act',
   Security: 'security',
   Wait: 'wait',
+  Edit: 'edit',
+  Write: 'write',
 } as const;
 
 export const AI_TOOL_STATUS_STATE = {

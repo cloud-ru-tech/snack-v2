@@ -46,11 +46,13 @@
         "required": true,
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
         "description": "Тип инструмента — глиф `AiToolIcon` в заголовке.",
         "typeRefs": [
@@ -104,11 +106,13 @@
         "kind": "union",
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
         "own": true
       },
@@ -448,13 +452,15 @@
         "required": true,
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
-        "description": "Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait).",
+        "description": "Тип инструмента — определяет глиф (reasoning / search / read / act / security / wait / edit / write).",
         "typeRefs": [
           "AiToolIconType"
         ]
@@ -465,11 +471,13 @@
         "kind": "union",
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
         "own": true
       }
@@ -650,11 +658,13 @@
         "required": true,
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
         "description": "Тип инструмента — глиф `AiToolIcon` слева от заголовка.",
         "typeRefs": [
@@ -697,11 +707,13 @@
         "kind": "union",
         "values": [
           "act",
+          "edit",
           "read",
           "reasoning",
           "search",
           "security",
-          "wait"
+          "wait",
+          "write"
         ],
         "own": true
       },

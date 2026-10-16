@@ -86,6 +86,25 @@ function WaitGlyph(props: GlyphProps): ReactElement {
   );
 }
 
+function EditGlyph(props: GlyphProps): ReactElement {
+  return (
+    <Svg {...props}>
+      <path d='M7.66667 13L13 13M5 13H3V11L11 3L13 5L5 13Z' stroke='currentColor' />
+    </Svg>
+  );
+}
+
+function WriteGlyph(props: GlyphProps): ReactElement {
+  return (
+    <Svg {...props}>
+      <path
+        d='M8 10.6668V6.66683M6 8.5835H10M12 12.6668H4V3.3335H9.71429L12 5.66683L12 12.6668Z'
+        stroke='currentColor'
+      />
+    </Svg>
+  );
+}
+
 export const AI_TOOL_ICON_GLYPHS: Record<AiToolIconType, (props: GlyphProps) => ReactElement> = {
   [AI_TOOL_ICON_TYPE.Reasoning]: ReasoningGlyph,
   [AI_TOOL_ICON_TYPE.Search]: SearchGlyph,
@@ -93,4 +112,6 @@ export const AI_TOOL_ICON_GLYPHS: Record<AiToolIconType, (props: GlyphProps) => 
   [AI_TOOL_ICON_TYPE.Act]: ActGlyph,
   [AI_TOOL_ICON_TYPE.Security]: SecurityGlyph,
   [AI_TOOL_ICON_TYPE.Wait]: WaitGlyph,
+  [AI_TOOL_ICON_TYPE.Edit]: EditGlyph,
+  [AI_TOOL_ICON_TYPE.Write]: WriteGlyph,
 };

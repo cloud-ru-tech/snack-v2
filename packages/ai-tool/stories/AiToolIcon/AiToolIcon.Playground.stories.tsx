@@ -23,7 +23,7 @@ const meta: Meta<typeof AiToolIcon> = {
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>
           Иконка типа инструмента — 16×16, цвет наследуется от текста. Переключайте variant, чтобы увидеть все типы:
-          reasoning, search, read, act, security, wait.
+          reasoning, search, read, act, security, wait, edit, write.
         </DemoHint>
         <DemoActions align='center'>
           <AiToolIcon {...args} />
