@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-10-16)
+
+### Features
+
+- **AIX-483:** add Giga assistant buttons ([bf58ab5](https://github.com/cloud-ru-tech/snack-v2/commit/bf58ab595a69745802edb47a63829d2d01a40892))
+
+### BREAKING CHANGES
+
+- **IAM-7099:** remove deprecated addOptionByEnter, allow custom options in FieldSelect via configurable triggers ([b698db6](https://github.com/cloud-ru-tech/snack-v2/commit/b698db6a2276ad901d3bc489e1be885e37f5db34))
+
 ## 2.1.3 (2026-10-14)
 
 **Note:** Version bump only for package @ds/uikit-product-fields-predefined
