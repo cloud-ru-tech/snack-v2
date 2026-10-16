@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.7.0 (2026-10-16)
+
+### Features
+
+- **PDS-4610:** add configurations and rater icons ([edcf17b](https://github.com/cloud-ru-tech/snack-v2/commit/edcf17b68e6ac79a4a23b1ddede43e9ce4180fdd))
+
 # 1.6.0 (2026-10-09)
 
 ### Features

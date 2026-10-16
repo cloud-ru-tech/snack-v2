@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-10-16)
+
+### Features
+
+- **AIX-483:** add Giga assistant buttons ([bf58ab5](https://github.com/cloud-ru-tech/snack-v2/commit/bf58ab595a69745802edb47a63829d2d01a40892))
+
 ## 1.0.16 (2026-10-09)
 
 **Note:** Version bump only for package @ds/toaster
