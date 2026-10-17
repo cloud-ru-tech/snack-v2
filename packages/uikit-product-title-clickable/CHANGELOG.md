@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-10-17)
+
+### BREAKING CHANGES
+
+- **FF-8949:** api recomposition to titleSimple and titleUser sub-components ([9f3cd79](https://github.com/cloud-ru-tech/snack-v2/commit/9f3cd79a07e1a47e59113aadc61c6c17fee4276e))
+
 ## 1.0.20 (2026-10-16)
 
 **Note:** Version bump only for package @ds/uikit-product-title-clickable

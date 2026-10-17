@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.7 (2026-10-17)
+
+**Note:** Version bump only for package @ds/field-decorator
+
 ## 1.1.6 (2026-10-16)
 
 **Note:** Version bump only for package @ds/field-decorator

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2026-10-17)
+
+### Dependencies
+
+- **FF-8949:** update title clickable ([fb85bb8](https://github.com/cloud-ru-tech/snack-v2/commit/fb85bb8d4fc936996778eec11f8647fb4412919f))
+
 # 1.2.0 (2026-10-16)
 
 ### Features

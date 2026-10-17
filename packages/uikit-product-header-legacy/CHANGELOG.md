@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.40 (2026-10-17)
+
+### Dependencies
+
+- **FF-8949:** update title clickable ([fb85bb8](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/fb85bb8d4fc936996778eec11f8647fb4412919f))
+
 ## 0.1.39 (2026-10-16)
 
 **Note:** Version bump only for package @ds/uikit-product-header-legacy

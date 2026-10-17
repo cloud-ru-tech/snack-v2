@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-10-17)
+
+### Features
+
+- **FF-8949:** improve typings for componentPropsProcessors ([d17bae0](https://github.com/cloud-ru-tech/snack-v2/commit/d17bae0eaf11e56e3e631fd52a4da5d4bb97f7f4))
+
 # 1.2.0 (2026-09-28)
 
 ### Features
