@@ -100,7 +100,7 @@ export function NotificationPanel({
 
   // Figma: `slotAfterHeadline` (window) / `slotAfterTitle` (bottomSheet) — кнопки прижаты вправо.
   const actions = (readAllButton || settings) && (
-    <span className={styles.headerActions}>
+    <span className={styles.headerActions} data-mobile={isMobile || undefined}>
       {readAllButton && (
         <WithTooltip tooltip={readAllTooltip}>
           <Button
@@ -126,7 +126,7 @@ export function NotificationPanel({
       {segments && (
         <SegmentControl
           {...segments}
-          size='s'
+          size={buttonSize}
           // В мобильном мастере сегменты делят всю ширину sheet'а.
           width={isMobile ? 'full' : segments.width}
           items={segments.items.map(item => ({
@@ -139,7 +139,7 @@ export function NotificationPanel({
 
       {!isMobile && chipToggle && (
         <ChipToggle
-          size='s'
+          size={buttonSize}
           disabled={loading}
           label={chipToggle.label}
           onChange={chipToggle.onChange}
@@ -155,7 +155,7 @@ export function NotificationPanel({
       position={position}
       width={width}
       className={cn(styles.panel, className)}
-      showButtonClosed={false}
+      showButtonClosed
       title={<span data-test-id={TEST_IDS.panel.title}>{title}</span>}
       slotAfterTitle={actions}
       slotSecondTitle={filters}
