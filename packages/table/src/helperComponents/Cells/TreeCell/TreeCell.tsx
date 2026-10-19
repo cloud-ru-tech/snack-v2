@@ -24,6 +24,11 @@ import { TreeLine } from './TreeLine';
 type BaseTreeColumnDef = {
   /** Имя ключа соответствующее полю в data */
   accessorKey: string;
+  /**
+   * Закрепить колонку слева. В Table по умолчанию true на desktop и false на mobile.
+   * При прямом вызове getTreeColumnDef по умолчанию true.
+   */
+  pinned?: boolean;
   /** Показывать линии-направляющие вложенности (вертикальные и горизонтальные) */
   showLines?: boolean;
   /** Иконка элемента-родителя в открытом состоянии */
@@ -144,6 +149,7 @@ export function renderTreeColumnLoadingHeader<TData>(
 
 /** Вспомогательная функция для создания ячейки со статусом */
 export function getTreeColumnDef<TData>({
+  pinned = true,
   showToggle = false,
   showLines = true,
   icon = <FileSVG size={24} />,
@@ -349,9 +355,8 @@ export function getTreeColumnDef<TData>({
     );
   };
 
-  return {
+  const columnDefinition = {
     id: TREE_CELL_ID,
-    pinned: COLUMN_PIN_POSITION.Left,
     accessorKey,
     noBodyCellPadding: true,
     noHeaderCellPadding: Boolean(enableSelection && showToggle),
@@ -365,5 +370,7 @@ export function getTreeColumnDef<TData>({
     enableSorting: false,
     header: renderTreeColumnHeader(header, { enableSelection, showToggle, masterSelection }),
     cell,
-  };
+  } satisfies ColumnDefinition<TData>;
+
+  return pinned ? { ...columnDefinition, pinned: COLUMN_PIN_POSITION.Left } : columnDefinition;
 }

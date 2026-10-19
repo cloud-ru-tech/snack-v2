@@ -9085,6 +9085,12 @@
         "required": false,
         "description": "Минимальный размер ячейки"
       },
+      "pinned": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Закрепить колонку слева. В Table по умолчанию true на desktop и false на mobile.\nПри прямом вызове getTreeColumnDef по умолчанию true."
+      },
       "rowSelectionAppearance": {
         "type": "enum",
         "required": false,

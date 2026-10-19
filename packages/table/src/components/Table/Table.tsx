@@ -134,7 +134,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   getRowId,
   enableFuzzySearch,
   savedState,
-  expanding,
+  expanding: expandingProp,
   bulkActions: bulkActionsProp,
   rowAutoHeight,
   columnsSettings: columnsSettingsProp,
@@ -159,6 +159,18 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
 }: TableProps<TData, TFilters>) {
   const { layoutType } = useAdaptiveLayout();
   const isMobile = isMobileLayout(layoutType);
+
+  const expanding = useMemo(
+    () =>
+      expandingProp && {
+        ...expandingProp,
+        expandingColumnDefinition: {
+          ...expandingProp.expandingColumnDefinition,
+          pinned: expandingProp.expandingColumnDefinition.pinned ?? !isMobile,
+        },
+      },
+    [expandingProp, isMobile],
+  );
 
   const {
     stickyControls,
