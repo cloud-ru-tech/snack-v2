@@ -372,6 +372,9 @@ importers:
       '@ds/ai-suggestion':
         specifier: workspace:*
         version: link:../../packages/ai-suggestion
+      '@ds/ai-suggestion-panel':
+        specifier: workspace:*
+        version: link:../../packages/ai-suggestion-panel
       '@ds/ai-tool':
         specifier: workspace:*
         version: link:../../packages/ai-tool
@@ -922,6 +925,45 @@ importers:
       framer-motion:
         specifier: ^12.42.2
         version: 12.43.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  packages/ai-suggestion-panel:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/ai-button-giga':
+        specifier: workspace:^
+        version: link:../ai-button-giga
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/link':
+        specifier: workspace:^
+        version: link:../link
+      '@ds/list':
+        specifier: workspace:^
+        version: link:../list
+      '@ds/loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@ds/typography':
+        specifier: workspace:^
+        version: link:../typography
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
 
   packages/ai-tool:
     dependencies:

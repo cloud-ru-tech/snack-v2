@@ -1,0 +1,17 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Ширины обёрток ограничивают место, чтобы показать перенос в «+N»; это не параметры дизайна.
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.wide {
+  width: 720px;
+}
+
+
+.tight {
+  width: 320px;
+}

@@ -31,6 +31,7 @@ const AI_COMPONENTS = {
   fileName: 'AI-COMPONENTS',
 } as const;
 const TOOL_ELEMENTS = { ...AI_COMPONENTS, nodeId: '7217-4865' } as const;
+const SUGGESTION = { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion' } as const;
 const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
@@ -115,6 +116,7 @@ export const FIGMA_NODES = {
     'ai-suggestion': { ...AI_COMPONENTS, nodeId: '6450-3666' },
     'ai-suggestion-parent': { ...AI_COMPONENTS, nodeId: '6467-21511' }, // Suggestion / Parent
   },
+  'ai-suggestion-panel': { ...SUGGESTION, nodeId: '13941-18275' }, // ai-suggestion-panel → Suggestion / Panel
   'ai-field-banner': { ...AI_COMPONENTS, nodeId: '7335-6317' }, // ai-field-banner → Field Banner
   'ai-tool': {
     _: { ...AI_COMPONENTS, nodeId: '7099-3606' }, // ai-tool → Tool (component set)

@@ -1,0 +1,101 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/divider.module' as divider;
+
+$sizes: 's', 'm';
+
+$panel-height: (
+  's': base.$sn-primitive-dimension-32,
+  'm': base.$sn-primitive-dimension-40,
+);
+
+// Ширина корня — та, в которую нужно уместить вопросы.
+.root {
+  position: relative;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.panel {
+  // Заливки крайних ячеек обрезаются по скруглению рамки.
+  overflow: clip;
+  display: flex;
+  flex: 0 0 auto;
+  gap: base.$sn-primitive-dimension-0;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-s;
+
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      height: base.simple-var($panel-height, $size);
+    }
+  }
+
+  // Рамка фокуса последней ячейки повторяет скругление полосы, иначе углы срезаются.
+  > :last-child {
+    border-start-end-radius: calc(#{base.$sn-density-radius-s} - #{base.$sn-primitive-strokeWeight-strokeRegular});
+    border-end-end-radius: calc(#{base.$sn-density-radius-s} - #{base.$sn-primitive-strokeWeight-strokeRegular});
+  }
+}
+
+// Разделитель рисуется рамкой, а не заливкой, как в `@ds/divider`: на дробном DPR браузер
+// округляет рамку и заливку по-разному, и разделитель выходил толще рамки полосы.
+.divider {
+  flex-shrink: 0;
+  border-inline-start: divider.$sn-divider-anatomy-container-line-regular-width solid
+    base.$sn-theme-color-available-borderColor;
+}
+
+// На сенсорных устройствах наведения нет, поэтому кнопка видна всегда. Место под неё занято
+// и в скрытом состоянии, чтобы ширина полосы не менялась.
+.close {
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .root > .close {
+    opacity: 0;
+  }
+
+  .root:hover > .close,
+  .root:focus-within > .close {
+    opacity: 1;
+  }
+}
+
+// Невидимая копия полосы со всеми вопросами — по ней меряются ширины.
+.measure {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+
+  visibility: hidden;
+}
+
+.measureRow {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  width: max-content;
+}
+
+.measureCell {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}

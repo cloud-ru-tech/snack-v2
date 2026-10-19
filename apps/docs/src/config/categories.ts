@@ -184,7 +184,15 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'ai-surfaces',
       label: 'Surfaces',
       description: 'AI-поверхности для взаимодействия: карточки, подсказки, баннеры полей.',
-      packages: ['ai-card', 'ai-suggestion', 'ai-field-banner', 'ai-field-notice', 'ai-field-request', 'ai-queue'],
+      packages: [
+        'ai-card',
+        'ai-suggestion',
+        'ai-suggestion-panel',
+        'ai-field-banner',
+        'ai-field-notice',
+        'ai-field-request',
+        'ai-queue',
+      ],
     },
     {
       id: 'ai-process',

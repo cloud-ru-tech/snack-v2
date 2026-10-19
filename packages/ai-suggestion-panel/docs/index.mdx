@@ -1,0 +1,137 @@
+---
+title: AiSuggestionPanel
+package: '@ds/ai-suggestion-panel'
+description: Полоса вопросов-подсказок к ассистенту — кнопка Giga, вопросы, «+N» со скрытыми вопросами и кнопка закрытия.
+order: 1
+---
+
+import { Basic } from '../demos/examples/Basic';
+import BasicSrc from '../demos/examples/Basic.tsx?raw';
+import { LoadingFlow } from '../demos/examples/LoadingFlow';
+import LoadingFlowSrc from '../demos/examples/LoadingFlow.tsx?raw';
+import { Sizes } from '../demos/examples/Sizes';
+import SizesSrc from '../demos/examples/Sizes.tsx?raw';
+import { WithClose } from '../demos/examples/WithClose';
+import WithCloseSrc from '../demos/examples/WithClose.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import aiSuggestionPanelDoc from './props.json';
+
+# AiSuggestionPanel
+
+Полоса коротких вопросов к ассистенту: пользователь задаёт вопрос одним нажатием, компонент сообщает, какой вопрос нажат. Полоса второстепенна на странице — цветной в ней только логотип Giga.
+
+## Когда использовать
+
+- Рядом с контекстом, по которому ассистент может ответить: алерт, ресурс, страница сервиса.
+- Когда вопросы известны заранее и их немного — до нескольких штук в одну строку.
+
+Когда **не** нужен:
+
+- Вопрос нужно ввести свободным текстом:
+  - используйте поле запроса `@ds/ai-field-request`.
+- Подсказка одна и стоит отдельно от полосы:
+  - используйте `AiSuggestionSimple` из `@ds/ai-suggestion`.
+
+Компонент не решает, когда показываться и скрываться, не отправляет вопрос ассистенту и не включает загрузку сам — это делает потребитель.
+
+## Анатомия
+
+Слева направо:
+
+- Кнопка Giga — открывает тултип со ссылкой на документацию ассистента, сообщает о нажатии через `onLogoClick`.
+- Вопросы — по одному сегменту на элемент `items`, между сегментами разделители.
+- «+N» — появляется, когда вопросы не помещаются по ширине: открывает список скрытых вопросов.
+- Кнопка закрытия — справа от рамки. Показывается, если передан `onClose`.
+
+### Size (default `s`)
+
+- `s` — высота 32.
+- `m` — высота 40.
+
+<Example title='Размеры' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+### Состояния вопроса
+
+- `disabled` — подпись блёклая, нажатие не обрабатывается.
+- `loading` — после подписи индикатор загрузки, повторное нажатие не обрабатывается.
+
+Hover, pressed и focus реализованы через CSS (`:hover`, `:active`, `:focus-visible`). Кнопка закрытия на устройствах с курсором появляется при наведении на полосу или фокусе внутри неё, на сенсорных устройствах видна всегда.
+
+### Перенос в «+N»
+
+Подпись вопроса занимает одну строку и не обрезается. Полоса не переносит сегменты и не прокручивает их: те, что не помещаются в ширину контейнера, уходят в список «+N». Хотя бы один вопрос остаётся в полосе всегда.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-suggestion-panel
+```
+
+```ts
+import { AiSuggestionPanel, SIZE } from '@ds/ai-suggestion-panel';
+```
+
+## Примеры использования
+
+<Example title='Базовый' description='Вопросы, которые не помещаются по ширине, уходят в «+N»' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Загрузка ответа' description='Нажатый вопрос переходит в loading, пока ассистент отвечает' code={LoadingFlowSrc}>
+  <LoadingFlow client:visible />
+</Example>
+
+<Example title='Кнопка закрытия' description='onClose только сообщает о нажатии — полосу скрывает потребитель' code={WithCloseSrc}>
+  <WithClose client:visible />
+</Example>
+
+## Адаптивность
+
+`AiSuggestionPanel` — адаптивный компонент класса preset-defaults: DOM один, по раскладке меняются только дефолты пропсов. Раскладку компонент читает из контекста [`@ds/adaptive`](/components/adaptive) — отдельного пропа `layoutType` нет.
+
+На mobile полоса размера `m` и повторяет макет мобильной раскладки: высота 40, подпись 14/20, кнопка Giga 40, кнопка закрытия 32.
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `size` | `s` | `m` |
+
+Источник mobile-дефолтов — экспортируемая константа `AI_SUGGESTION_PANEL_LAYOUT_PRESETS`.
+
+### Как переопределить
+
+Приоритет (от высшего к низшему): `layoutPresets[layout]` (инстанс) → DS-пресет `AI_SUGGESTION_PANEL_LAYOUT_PRESETS` → явный проп (= desktop-значение) → базовый дефолт.
+
+```tsx
+import { AiSuggestionPanel } from '@ds/ai-suggestion-panel'
+
+// Явный проп задаёт desktop-значение, на mobile полоса остаётся размера m
+<AiSuggestionPanel items={items} size='m' />
+
+// Оставить размер s на mobile
+<AiSuggestionPanel items={items} layoutPresets={{ mobile: { size: 's' } }} />
+```
+
+<StorybookEmbed storyId='ai-aisuggestionpanel--playground' globals={{ layoutType: 'mobile' }} height={360} />
+
+## Props
+
+<PropsTable data={aiSuggestionPanelDoc.AiSuggestionPanel} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aisuggestionpanel--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-suggestion-panel')} />
+
+## Смотри также
+
+- [`@ds/ai-suggestion`](/components/ai-suggestion) — отдельная подсказка-чип и раскрывающаяся группа.
+- [`@ds/ai-button-giga`](/components/ai-button-giga) — кнопка Giga, из которой собрана ячейка логотипа.

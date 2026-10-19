@@ -336,6 +336,9 @@
     },
     {
       "path": "./ai-button-giga/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-suggestion-panel/tsconfig.cjs.json"
     }
   ]
 }

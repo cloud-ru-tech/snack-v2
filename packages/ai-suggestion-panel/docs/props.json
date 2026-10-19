@@ -1,0 +1,296 @@
+{
+  "AI_SUGGESTION_PANEL_LAYOUT_PRESETS": {
+    "displayName": "AI_SUGGESTION_PANEL_LAYOUT_PRESETS",
+    "propsTypeName": null,
+    "description": "Дефолты по раскладке: на mobile полоса размера `m`. Исключение из правила «`size` в пресеты\nне кладётся» — макет мобильной раскладки задаёт именно PanelM.",
+    "props": {},
+    "relatedTypes": {}
+  },
+  "AiSuggestionPanel": {
+    "displayName": "AiSuggestionPanel",
+    "propsTypeName": "AiSuggestionPanelProps",
+    "description": "Полоса вопросов-подсказок к ассистенту: кнопка Giga, вопросы, «+N» со скрытыми вопросами и кнопка\nзакрытия. Вопросы, которые не помещаются по ширине, уходят в список «+N».",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "docsUrl": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "https://cloud.ru/docs/ai_assistant_cloudia/ug/index",
+        "description": "Ссылка «Документация» в тултипе кнопки Giga."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ссылка на корневой элемент."
+      },
+      "items": {
+        "type": "AiSuggestionPanelItem[]",
+        "required": true,
+        "description": "Вопросы полосы. Те, что не помещаются по ширине, компонент переносит в сегмент «+N»\nсо списком.",
+        "typeRefs": [
+          "AiSuggestionPanelItem"
+        ]
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<AiSuggestionPanelLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение пресетов раскладки (`mobile`, `desktop`, …) для `size`.",
+        "typeRefs": [
+          "AiSuggestionPanelLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие на кнопку закрытия. Без колбэка кнопка не показывается. Полосу компонент не скрывает."
+      },
+      "onItemClick": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Нажатие на вопрос — в полосе или в списке «+N»."
+      },
+      "onLogoClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие на кнопку Giga."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s"
+        ],
+        "description": "Размер полосы: `s` — высота 32, `m` — высота 40. По умолчанию `s`, на mobile-раскладке — `m`.\nЯвное значение задаёт desktop; mobile переопределяется через `layoutPresets.mobile`.",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiSuggestionPanelItem": {
+        "kind": "interface",
+        "props": {
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Неактивный вопрос: нажатие не обрабатывается."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст вопроса. Занимает одну строку и не обрезается."
+          },
+          "loading": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Вопрос отправляется ассистенту: после подписи показывается индикатор загрузки, повторное\nнажатие не обрабатывается. Состояние выставляет потребитель."
+          },
+          "value": {
+            "type": "string",
+            "required": true,
+            "description": "Идентификатор вопроса; приходит в `onItemClick`."
+          }
+        },
+        "own": true
+      },
+      "AiSuggestionPanelLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "\"s\" | \"m\"",
+            "required": true,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер полосы.",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": true
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s"
+        ],
+        "own": true
+      }
+    }
+  },
+  "LogoButton": {
+    "displayName": "LogoButton",
+    "propsTypeName": null,
+    "props": {
+      "docsUrl": {
+        "type": "string",
+        "required": true
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "LogoCell": {
+    "displayName": "LogoCell",
+    "propsTypeName": null,
+    "description": "Ячейка для ряда замера: та же кнопка, чтобы ширина совпадала на любой платформе.",
+    "props": {
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MoreSegment": {
+    "displayName": "MoreSegment",
+    "propsTypeName": null,
+    "props": {
+      "items": {
+        "type": "AiSuggestionPanelItem[]",
+        "required": true,
+        "description": "Вопросы, не поместившиеся в полосу."
+      },
+      "mobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "onItemClick": {
+        "type": "(value: string) => void",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Segment": {
+    "displayName": "Segment",
+    "propsTypeName": null,
+    "props": {
+      "aria-expanded": {
+        "type": "boolean",
+        "required": false
+      },
+      "aria-label": {
+        "type": "string",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "loading": {
+        "type": "boolean",
+        "required": false
+      },
+      "measure": {
+        "type": "boolean",
+        "required": false,
+        "description": "Копия для замера ширины: рендерится `<span>` без обработчиков."
+      },
+      "mobile": {
+        "type": "boolean",
+        "required": false
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false
+      },
+      "onKeyDown": {
+        "type": "KeyboardEventHandler<HTMLButtonElement>",
+        "required": false
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "«+N» с открытым списком."
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "m",
+          "s"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  }
+}
