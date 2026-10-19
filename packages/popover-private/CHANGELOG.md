@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2026-10-19)
+
+### Bug Fixes
+
+- **LK-8713:** fix popover render ([19705b5](https://github.com/cloud-ru-tech/snack-v2/commit/19705b55d1b7dbf4d443ef763202142c385afd9a))
+
 ## 1.1.2 (2026-10-17)
 
 **Note:** Version bump only for package @ds/popover-private

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.15 (2026-10-19)
+
+**Note:** Version bump only for package @ds/popup-private
+
 ## 1.1.14 (2026-10-17)
 
 **Note:** Version bump only for package @ds/popup-private

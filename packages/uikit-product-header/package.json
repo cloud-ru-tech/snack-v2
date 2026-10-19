@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-header",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Продуктовая шапка консоли — HeaderLayout, MainMenu, UserMenu, Logo, PathBreadcrumbs и PlatformLogo.",
   "repository": {
     "type": "git",
