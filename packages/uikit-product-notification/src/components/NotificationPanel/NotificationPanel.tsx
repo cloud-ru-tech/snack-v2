@@ -10,7 +10,7 @@ import { WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, RefObject, useMemo } from 'react';
 
-import { TEST_IDS } from '../../constants';
+import { TEST_IDS, TOOLTIP_HOVER_DELAY_OPEN } from '../../constants';
 import { NotificationCardSkeleton } from '../NotificationCard/NotificationCardSkeleton';
 import {
   NotificationCardStack,
@@ -102,7 +102,9 @@ export function NotificationPanel({
   const actions = (readAllButton || settings) && (
     <span className={styles.headerActions} data-mobile={isMobile || undefined}>
       {readAllButton && (
-        <WithTooltip tooltip={readAllTooltip}>
+        <WithTooltip
+          tooltip={readAllTooltip ? { hoverDelayOpen: TOOLTIP_HOVER_DELAY_OPEN, ...readAllTooltip } : undefined}
+        >
           <Button
             {...readAllButtonProps}
             icon={readAllButtonProps.icon || <DecorCheckedSVG />}

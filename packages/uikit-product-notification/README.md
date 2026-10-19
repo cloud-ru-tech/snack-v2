@@ -730,7 +730,7 @@ export function PanelScenario() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actions` | `Action` | — | Дополнительные действия панели |
-| `button` | `ButtonProps` | — | Кнопка дополнительного действия панели |
+| `button` | `ButtonProps` \| `TooltipProps` | — | Кнопка дополнительного действия панели |
 | `groupItemRender` | `((props: GroupItemRenderProps) => ReactNode) \| undefined` | — | Рендер-функция заголовка группы вместо дефолтной разметки `Separator`. <br/> Не задана — заголовок/разделитель рисуются как раньше. |
 | `itemRender` | `((props: ItemRenderProps) => ReactNode) \| undefined` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `size` | `"m"` \| `"s"` | — |  |

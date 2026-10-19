@@ -1,9 +1,10 @@
 import { Button, ButtonProps } from '@ds/button';
 import { SettingsSVG } from '@ds/icons/interface/system';
 import { DroplistProps } from '@ds/list';
+import { TooltipProps, WithTooltip } from '@ds/tooltip';
 import { ElementType } from 'react';
 
-import { TEST_IDS } from '../../../../constants';
+import { TEST_IDS, TOOLTIP_HOVER_DELAY_OPEN } from '../../../../constants';
 import { Action } from '../../../../types';
 import { NotificationPanelSettingsDroplist } from './NotificationPanelSettingsDroplist';
 
@@ -11,7 +12,7 @@ export type NotificationPanelSettingsProps = {
   /** Дополнительные действия панели */
   actions?: Action[];
   /** Кнопка дополнительного действия панели */
-  button?: Omit<ButtonProps<ElementType>, 'label' | 'size' | 'view' | 'data-test-id'>;
+  button?: Omit<ButtonProps<ElementType>, 'label' | 'size' | 'view' | 'data-test-id'> & { tooltip?: TooltipProps };
   size?: 's' | 'm';
 } & Pick<DroplistProps, 'itemRender' | 'groupItemRender'>;
 
@@ -34,7 +35,13 @@ export function NotificationPanelSettings({
   };
 
   if (!actions?.length) {
-    return <Button {...buttonProps} />;
+    return (
+      <WithTooltip
+        tooltip={buttonProps.tooltip ? { hoverDelayOpen: TOOLTIP_HOVER_DELAY_OPEN, ...buttonProps.tooltip } : undefined}
+      >
+        <Button {...buttonProps} />
+      </WithTooltip>
+    );
   }
 
   return (

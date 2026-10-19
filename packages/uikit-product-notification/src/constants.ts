@@ -56,3 +56,5 @@ export const TEST_IDS = {
     },
   },
 } as const;
+
+export const TOOLTIP_HOVER_DELAY_OPEN = 300;
