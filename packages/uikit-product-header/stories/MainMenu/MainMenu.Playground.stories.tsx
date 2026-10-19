@@ -4,6 +4,7 @@ import { ConfigurationSVG, ViewTileSVG } from '@ds/icons/interface/product';
 import { KuberLogo, NginxLogo, NodejsLogo } from '@ds/icons/logos';
 import { BaseItem } from '@ds/list';
 import {
+  FavoriteProps,
   LinksGroup,
   Logo,
   MainMenu,
@@ -13,7 +14,7 @@ import {
   MenuBanner,
 } from '@ds/uikit-product-header';
 import { Meta, StoryObj } from '@storybook/react';
-import { MouseEvent, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { expect, fn, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
@@ -104,20 +105,10 @@ function MainMenuPlaygroundContent({
   const [showReferralBanner, setShowReferralBanner] = useState(true);
   const [activeSegmentId, setActiveSegmentId] = useState<string | undefined>(ALL_SERVICES_SEGMENT_ID);
 
-  const serviceGroupsItems = useMemo(
-    () =>
-      serviceGroups.map(group => ({
-        ...group,
-        items: group.items.map(service => ({
-          ...service,
-          onClick: (event: MouseEvent<HTMLElement>) => {
-            event.preventDefault();
-            setRecentItems(prev => [service.id, ...prev.filter(id => id !== service.id)].slice(0, 5));
-          },
-        })),
-      })),
-    [serviceGroups],
-  );
+  const saveRecentItem = useCallback<NonNullable<FavoriteProps['onFavoriteServiceClick']>>((serviceId: string, e) => {
+    e?.preventDefault();
+    setRecentItems(prev => [serviceId, ...prev.filter(id => id !== serviceId)]);
+  }, []);
 
   const onFavoriteChange = (id: string) => (value: boolean, position?: number) => {
     setFavoriteItems(prev => {
@@ -139,13 +130,12 @@ function MainMenuPlaygroundContent({
     setFavoriteItems(orderedIds);
   }, []);
 
-  const handleFavoriteServiceClick = useCallback((serviceId: string) => {
-    setRecentItems(prev => [serviceId, ...prev.filter(id => id !== serviceId)].slice(0, 5));
-  }, []);
-
-  const handleRecentServiceClick = useCallback((serviceId: string) => {
-    setRecentItems(prev => [serviceId, ...prev.filter(id => id !== serviceId)].slice(0, 5));
-  }, []);
+  const handleSegmentServiceClick = useCallback<NonNullable<MainMenuProps['onSegmentServiceClick']>>(
+    (service, e) => {
+      saveRecentItem(service.id, e);
+    },
+    [saveRecentItem],
+  );
 
   const handleSegmentOrderChange = useCallback((segmentId: string, orderedGroupIds: string[]) => {
     setSegmentPrefs(prev => upsertSegmentPrefs(prev, segmentId, { order: orderedGroupIds }));
@@ -170,7 +160,7 @@ function MainMenuPlaygroundContent({
         id: ALL_SERVICES_SEGMENT_ID,
         label: 'Все сервисы',
         icon: <ViewTileSVG size={24} />,
-        items: serviceGroupsItems,
+        items: serviceGroups,
       },
     ];
 
@@ -185,7 +175,7 @@ function MainMenuPlaygroundContent({
     }
 
     return result;
-  }, [controlCenterGroups, serviceGroupsItems]);
+  }, [controlCenterGroups, serviceGroups]);
 
   const favoriteSettingsItems: BaseItem[] = [
     {
@@ -225,6 +215,7 @@ function MainMenuPlaygroundContent({
             segmentPrefs={segmentPrefs}
             onSegmentOrderChange={handleSegmentOrderChange}
             onSegmentExpandedChange={handleSegmentExpandedChange}
+            onSegmentServiceClick={handleSegmentServiceClick}
             platformGroups={PLATFORM_GROUPS}
             settingItems={MAIN_MENU_SIDEBAR_ITEMS}
             draggerTooltip='Потяните, чтобы изменить ширину'
@@ -287,8 +278,8 @@ function MainMenuPlaygroundContent({
                     onChange: onFavoriteChange,
                     onOrderChange: onFavoriteOrderChange,
                     recentServices: recentItems,
-                    onFavoriteServiceClick: handleFavoriteServiceClick,
-                    onRecentServiceClick: handleRecentServiceClick,
+                    onFavoriteServiceClick: saveRecentItem,
+                    onRecentServiceClick: saveRecentItem,
                     actions: {
                       items: favoriteSettingsItems,
                     },

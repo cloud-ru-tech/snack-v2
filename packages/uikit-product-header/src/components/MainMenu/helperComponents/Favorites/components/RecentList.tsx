@@ -34,7 +34,13 @@ function RecentListBase({ favoriteIds, onFavoriteChange, items, onServiceClick, 
 
   return (
     <div className={styles.listScroll}>
-      <Scroll className={styles.listScrollInner} data-mobile={isMobile || undefined} overflow={{ x: 'hidden' }}>
+      <Scroll
+        className={styles.listScrollInner}
+        data-segment='recent'
+        data-mobile={isMobile || undefined}
+        overflow={{ x: 'hidden' }}
+        barHideStrategy='never'
+      >
         <div className={styles.list} data-test-id={FAVORITES_TEST_IDS.list}>
           {isEmpty ? (
             <EmptyState isFavoritesSegment={false} isMobile={isMobile} />

@@ -63,11 +63,12 @@ $list-padding-bottom: base.$sn-primitive-dimension-8;
 }
 
 .listScrollInner {
-  height: 100%;
-  // Шаг карточки (высота + зазор) × 12 видимых + нижний паддинг `.list`.
-  max-height: calc((#{$card-height} + #{$card-gap}) * 12 + #{$list-padding-bottom});
+  &[data-segment='recent'] {
+    max-height: calc((#{$card-height} + #{$card-gap}) * 12 + #{$list-padding-bottom});
+  }
 
   &[data-mobile] {
+    // Шаг карточки (высота + зазор) × 6 видимых + нижний паддинг `.list`.
     max-height: calc((#{$card-height} + #{$card-gap}) * 6 + #{$list-padding-bottom});
   }
 }

@@ -30,7 +30,7 @@ function FavoritesListBase({ onFavoriteChange, items, onServiceClick }: Favorite
 
   return (
     <div className={styles.listScroll}>
-      <Scroll className={styles.listScrollInner} data-mobile overflow={{ x: 'hidden' }}>
+      <Scroll className={styles.listScrollInner} data-mobile overflow={{ x: 'hidden' }} barHideStrategy='never'>
         <div className={styles.list} data-test-id={FAVORITES_TEST_IDS.list}>
           {isEmpty ? (
             <EmptyState isFavoritesSegment isMobile />

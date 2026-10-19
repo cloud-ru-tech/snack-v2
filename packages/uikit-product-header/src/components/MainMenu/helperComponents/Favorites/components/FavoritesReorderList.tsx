@@ -41,7 +41,7 @@ function FavoritesReorderListBase({ favoriteIds, onFavoriteChange, items, onServ
     <div className={styles.listScroll} data-insert-new={showInsertNew}>
       <DropTarget active={Boolean(showDropOver)} className={styles.dropTarget} aria-hidden />
 
-      <Scroll className={styles.listScrollInner} overflow={{ x: 'hidden' }}>
+      <Scroll className={styles.listScrollInner} overflow={{ x: 'hidden' }} barHideStrategy='never'>
         <div ref={setNodeRef} className={styles.list} data-test-id={FAVORITES_TEST_IDS.list}>
           {isEmpty ? (
             <EmptyState isFavoritesSegment />
