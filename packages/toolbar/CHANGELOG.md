@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-10-19)
+
+### Features
+
+- **FF-9109:** add pinnedAfter slot to toolbar ([91119d2](https://github.com/cloud-ru-tech/snack-v2/commit/91119d283254a566ddb3ffa1c998ded1273fa112))
+
 ## 2.0.4 (2026-10-19)
 
 **Note:** Version bump only for package @ds/toolbar
