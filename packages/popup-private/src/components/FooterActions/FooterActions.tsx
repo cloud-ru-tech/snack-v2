@@ -29,7 +29,7 @@ export type FooterActionsProps = {
    * передают `size='l'` явно.
    */
   size?: Size;
-  /** Ориентация кнопок при ровно двух действиях. */
+  /** Ориентация кнопок в футере. */
   footerActionsOrientation?: FooterActionsOrientation;
   /** Идентификаторы слотов конкретного компонента (`bottom-sheet` / `modal` / `drawer`). */
   testIds: FooterActionsTestIds;
@@ -37,7 +37,7 @@ export type FooterActionsProps = {
   actionsClassName?: string;
   /**
    * Поверхность overlay'я — определяет раскладку кнопок:
-   * - `window` (desktop, дефолт): 1–2 кнопки компактно вправо, 3 — стопка (primary сверху).
+   * - `window` (desktop, дефолт): 3 кнопки вряд.
    * - `bottomSheet` (mobile): 1 → вправо, 2 → space-between, 3 → стопка с инверсией (primary внизу).
    */
   surface?: SurfaceTokenSegment;
@@ -65,14 +65,19 @@ export function FooterActions({
   }
 
   const isMobile = surface === 'bottomSheet';
-  const isVerticalActions = footerActionsOrientation === FOOTER_ACTIONS_ORIENTATION.Vertical || actionCount === 3;
+  const isVerticalActions =
+    footerActionsOrientation === FOOTER_ACTIONS_ORIENTATION.Vertical || (isMobile && actionCount === 3);
   const hasTertiary = Boolean(additionalButton);
 
   // Раскладка кнопок футера зависит от поверхности:
-  // - desktop (window): пара `cancel + approve` → компактно вправо (`compact`); пара с tertiary
-  //   (`additional + approve`) → space-between, tertiary слева / primary справа (Figma
-  //   `popupDropdownFooter` — календарные дропдауны); 3 → стопка, primary сверху (ButtonGroup default).
-  // - mobile (bottomSheet): 1 → вправо (`single`); 2 → space-between (`break`); 3 → стопка, инверсия (`stackInverted`).
+  // - desktop (window):
+  //     пара `cancel + approve` → компактно вправо (`compact`);
+  //     пара с tertiary (`additional + approve`) → space-between, tertiary слева / primary справа (Figma `popupDropdownFooter` — календарные дропдауны);
+  //     три кнопки → space-between, additional первая слева;
+  // - mobile (bottomSheet):
+  //     1 → вправо (`single`);
+  //     2 → space-between (`break`);
+  //     3 → стопка, инверсия (`stackInverted`).
   const useBreak = !isVerticalActions && actionCount === 2 && (isMobile || (!isMobile && hasTertiary));
   const isSingle = isMobile && actionCount === 1;
   const isCompact = !isMobile && !isVerticalActions && !useBreak;

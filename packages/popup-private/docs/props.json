@@ -41,7 +41,7 @@
           "vertical"
         ],
         "defaultValue": "horizontal",
-        "description": "Ориентация кнопок при ровно двух действиях.",
+        "description": "Ориентация кнопок в футере.",
         "typeRefs": [
           "FooterActionsOrientation"
         ]
@@ -67,7 +67,7 @@
           "window"
         ],
         "defaultValue": "window",
-        "description": "Поверхность overlay'я — определяет раскладку кнопок:\n- `window` (desktop, дефолт): 1–2 кнопки компактно вправо, 3 — стопка (primary сверху).\n- `bottomSheet` (mobile): 1 → вправо, 2 → space-between, 3 → стопка с инверсией (primary внизу).",
+        "description": "Поверхность overlay'я — определяет раскладку кнопок:\n- `window` (desktop, дефолт): 3 кнопки вряд.\n- `bottomSheet` (mobile): 1 → вправо, 2 → space-between, 3 → стопка с инверсией (primary внизу).",
         "typeRefs": [
           "SurfaceTokenSegment"
         ]
