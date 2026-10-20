@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-10-20)
+
+### Features
+
+- **FF-9112:** add tree column pinning prop ([45cb364](https://github.com/cloud-ru-tech/snack-v2/commit/45cb364c1822adc96d46ecda2879e9c8c7edf2d2))
+
 # 2.1.0 (2026-10-19)
 
 ### Bug Fixes
