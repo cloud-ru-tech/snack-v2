@@ -1,4 +1,4 @@
-export const NESTED_DRAWER_OPEN_LABEL = 'Open nested drawer';
+export const NESTED_DRAWER_OPEN_LABEL = 'Open nested';
 export const NESTED_DRAWER_CLOSE_LABEL = 'Close nested drawer';
 export const NESTED_DRAWER_TITLE = 'Nested drawer';
 export const NESTED_DRAWER_BODY = 'Nested drawer body';
