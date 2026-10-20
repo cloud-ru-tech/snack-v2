@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-suggestion-panel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Полоса вопросов-подсказок к ассистенту: кнопка Giga, вопросы, «+N» со скрытыми вопросами и кнопка закрытия.",
   "repository": {
     "type": "git",
