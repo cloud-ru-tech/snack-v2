@@ -1,6 +1,8 @@
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-recommended-scss', 'stylelint-config-clean-order'],
+  plugins: ['./stylelint-rules/no-unscoped-data-attribute.mjs'],
   rules: {
+    'ds/no-unscoped-data-attribute': true,
     'no-descending-specificity': true,
     'custom-property-pattern': null,
     'selector-class-pattern': null,

@@ -26,6 +26,7 @@ $function-badge-border-radius: base.$sn-brand-anatomy-radius-card-toggles-xs;
 // видимым даже после того, как курсор уходит с карточки.
 @at-root {
   @media (hover: hover) {
+    // stylelint-disable-next-line ds/no-unscoped-data-attribute -- `data-card` — маркер корня Card из @ds/card, класс недоступен
     [data-card]:hover [data-function-badge-wrapper],
     [data-card]:has(:focus-visible) [data-function-badge-wrapper],
     [data-card]:focus-visible [data-function-badge-wrapper] {

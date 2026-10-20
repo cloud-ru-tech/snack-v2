@@ -91,8 +91,9 @@ export default [
     },
   },
   {
-    // Локальные eslint-правила — Node-код: `node.parent` AST-узла ssr-safe-react принимает за глобальный `parent`.
-    files: ['eslint-rules/**/*.mjs'],
+    // Локальные eslint/stylelint-правила — Node-код: `node.parent` AST-узла ssr-safe-react принимает за глобальный
+    // `parent`; stylelint загружает плагин через default export.
+    files: ['eslint-rules/**/*.mjs', 'stylelint-rules/**/*.mjs'],
     rules: {
       '@cloud-ru/ssr-safe-react/domApi': 'off',
       'import/no-default-export': 'off',
