@@ -88,7 +88,7 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
 
 .titleContent {
   @each $component in $components {
-    [data-component='#{$component}'] & {
+    .wrapper[data-component='#{$component}'] > & {
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'titleContent');
 
       // Нижний отступ живёт на `.wrapper` — заголовок его не дублирует.
@@ -121,7 +121,7 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
 
 .chevronWrapper {
   @each $component in $components {
-    [data-component='#{$component}'] & {
+    .wrapper[data-component='#{$component}'] > .titleContent & {
       @include base.composite-var(
         accordion.$accordion,
         'anatomy',
@@ -143,7 +143,7 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
   align-items: center;
 
   @each $component in $components {
-    [data-component='#{$component}'] & {
+    .wrapper[data-component='#{$component}'] > .titleContent & {
       @include base.composite-var(
         accordion.$accordion,
         'anatomy',
@@ -174,7 +174,7 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
 
 .container {
   @each $component in $components {
-    [data-component='#{$component}'] & {
+    .wrapper[data-component='#{$component}'] > .collapse > & {
       box-sizing: border-box;
 
       @include base.composite-var(accordion.$accordion, 'anatomy', $component, 'container', 'bodyContent');
@@ -192,7 +192,7 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
   // Нижний отступ карточки уже на `.wrapper` — тело его не дублирует. У Tertiary подложки нет,
   // отступ тела остаётся из токена `bodyContent`. Прямые потомки — чтобы правило не задело вложенный Tertiary.
   @each $component in $bottomPaddingHack {
-    [data-component='#{$component}'] > .collapse > &[data-expanded] {
+    .wrapper[data-component='#{$component}'] > .collapse > &[data-expanded] {
       padding-bottom: 0;
     }
   }

@@ -26,7 +26,14 @@ export function HeaderRow({ rowAutoHeight, columnOrder, enableColumnsOrderSortBy
     <PinnedCells position={COLUMN_PIN_POSITION.Left}>
       {leftPinned.map(headerGroup =>
         headerGroup.headers.map(header =>
-          header.isPlaceholder ? null : <HeaderCell key={header.id} header={header} rowAutoHeight={rowAutoHeight} />,
+          header.isPlaceholder ? null : (
+            <HeaderCell
+              key={header.id}
+              header={header}
+              pinPosition={COLUMN_PIN_POSITION.Left}
+              rowAutoHeight={rowAutoHeight}
+            />
+          ),
         ),
       )}
     </PinnedCells>

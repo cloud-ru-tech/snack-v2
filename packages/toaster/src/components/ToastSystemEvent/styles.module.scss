@@ -56,7 +56,7 @@ $icon-colors: (
   }
 
   @each $appearance, $color in $icon-colors {
-    [data-appearance='#{$appearance}'] & {
+    .container[data-appearance='#{$appearance}'] & {
       color: $color;
     }
   }
@@ -87,7 +87,7 @@ $icon-colors: (
 
   color: base.$sn-theme-color-available-inversion-textSecondary;
 
-  [data-appearance='errorCritical'] & {
+  .container[data-appearance='errorCritical'] & {
     color: base.$sn-theme-color-red-onAccent;
   }
 }

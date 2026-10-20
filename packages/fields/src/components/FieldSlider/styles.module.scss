@@ -18,7 +18,7 @@ $sizes: 's', 'm', 'l';
   width: 100%;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .fieldSlider[data-size='#{$size}'] & {
       padding-right: base.simple-var(field.$field, 'anatomy', 'size', $size, 'sliderWrapper', 'lineWrapper', 'padding-right');
       padding-left: base.simple-var(field.$field, 'anatomy', 'size', $size, 'sliderWrapper', 'lineWrapper', 'padding-left');
     }

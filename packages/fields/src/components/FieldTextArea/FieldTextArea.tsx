@@ -304,7 +304,7 @@ export const FieldTextArea = forwardRef<HTMLTextAreaElement, FieldTextAreaProps>
   const shell = (
     <FieldShell
       data-test-id={TEST_IDS.fieldTextAreaShell}
-      className={fieldClassName}
+      className={cn(styles.field, fieldClassName)}
       size={size}
       validationState={effectiveValidationState}
       disabled={disabled}

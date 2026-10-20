@@ -32,7 +32,7 @@
   // линии с back/action-кнопкой.
   align-items: center;
 
-  [data-surface='bottomSheet'] & {
+  .root[data-surface='bottomSheet'] & {
     // `touch-action: none` гасит нативные жесты; tap'ы по кнопкам внутри продолжают работать.
     touch-action: none;
     // gap между wrapper-слотами появляется только при наличии кнопок (control=no → gap 0).
@@ -54,7 +54,7 @@
 
   // window: modal/drawer. Токен `headline-paddingHorizontal` симметричный, но в макете правый
   // отступ нулевой — headline упирается в правый край окна, отступ текста даёт inner-wrapper.
-  [data-surface='window'] & {
+  .root[data-surface='window'] & {
     align-self: stretch;
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'headline');
@@ -76,29 +76,29 @@
   box-sizing: border-box;
   min-width: 0;
 
-  [data-surface='bottomSheet'] & {
+  .root[data-surface='bottomSheet'] & {
     flex: 1 1 auto;
     gap: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'gap');
     min-height: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'min-height');
   }
 
-  [data-surface='window'] & {
+  .root[data-surface='window'] & {
     flex: 1 0 0;
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'headline', 'headlineWrapper');
   }
 }
 
-[data-surface='bottomSheet'] .headlineWrapper:not([data-with-before]) .headline {
+.root[data-surface='bottomSheet'] .headlineWrapper:not([data-with-before]) .headline {
   padding-left: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'padding-left');
 }
 
-[data-surface='bottomSheet'] .headlineWrapper:not([data-with-after]) .headline {
+.root[data-surface='bottomSheet'] .headlineWrapper:not([data-with-after]) .headline {
   padding-right: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'headline', 'headlineWrapper', 'padding-right');
 }
 
 // window: на стороне С кнопкой inner-wrapper не добавляет левый отступ (его даёт headline).
-[data-surface='window'] .headlineWrapper[data-with-before] .headline {
+.root[data-surface='window'] .headlineWrapper[data-with-before] .headline {
   padding-left: 0;
 }
 
@@ -129,12 +129,12 @@
   align-items: flex-start;
   box-sizing: border-box;
 
-  [data-surface='bottomSheet'] & {
+  .root[data-surface='bottomSheet'] & {
     padding-right: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'subHeadlineWrapper', 'padding-right');
     padding-left: base.simple-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'subHeadlineWrapper', 'padding-left');
   }
 
-  [data-surface='window'] & {
+  .root[data-surface='window'] & {
     align-self: stretch;
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'subHeadlineWrapper');
@@ -148,12 +148,12 @@
 .secondWrapper {
   box-sizing: border-box;
 
-  [data-surface='bottomSheet'] & {
+  .root[data-surface='bottomSheet'] & {
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'bottomSheet', 'header', 'secondWrapper');
   }
 
   // window: Figma-слот `slotSubHeadline` живёт в `subHeadlineWrapper` — те же токены, что у подзаголовка.
-  [data-surface='window'] & {
+  .root[data-surface='window'] & {
     align-self: stretch;
 
     @include base.composite-var(popupPrivate.$popupPrivate, 'anatomy', 'window', 'header', 'subHeadlineWrapper');

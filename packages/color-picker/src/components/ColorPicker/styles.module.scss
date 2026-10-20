@@ -104,7 +104,7 @@ $sizes: (
   box-sizing: border-box;
 
   @each $size, $tokenSize in $sizes {
-    [data-size='#{$size}'] > & {
+    .container[data-size='#{$size}'] > & {
       gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
     }
   }
@@ -116,7 +116,7 @@ $sizes: (
   box-sizing: border-box;
 
   @each $size, $tokenSize in $sizes {
-    [data-size='#{$size}'] > & {
+    .container[data-size='#{$size}'] > & {
       gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'parameter', 'gap');
     }
   }
@@ -127,7 +127,7 @@ $sizes: (
   grid-template-columns: repeat(3, 1fr);
 
   @each $size, $tokenSize in $sizes {
-    [data-size='#{$size}'] & {
+    .container[data-size='#{$size}'] & {
       gap: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'parameter', 'gap');
     }
   }
@@ -156,7 +156,7 @@ $sizes: (
   box-sizing: border-box;
 
   @each $size, $tokenSize in $sizes {
-    [data-size='#{$size}'] > & {
+    .container[data-size='#{$size}'] > & {
       padding-top: base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'colorPicker', 'gap');
     }
   }

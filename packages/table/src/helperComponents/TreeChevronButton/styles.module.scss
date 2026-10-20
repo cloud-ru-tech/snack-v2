@@ -67,7 +67,7 @@
     transition: transform 0.2s ease;
   }
 
-  [data-expanded] > .content > & svg {
+  .root[data-expanded] > .content > & svg {
     transform: rotate(90deg);
   }
 }

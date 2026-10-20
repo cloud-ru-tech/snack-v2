@@ -26,7 +26,7 @@ $sizes: 's', 'm', 'l';
   min-width: 0;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .trigger[data-size='#{$size}'] & {
       gap: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'contentWrapper', 'inputWrapper', 'gap');
     }
   }

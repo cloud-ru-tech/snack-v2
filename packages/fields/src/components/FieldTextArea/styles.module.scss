@@ -7,6 +7,10 @@ $sizes: 's', 'm', 'l';
 // Ширина вертикального скроллбара @ds/scroll (в компоненте он всегда size=s).
 $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size', 's', 'width');
 
+.field {
+  position: relative;
+}
+
 // Контейнер скролла (@ds/scroll) вокруг textarea: minRows/maxRows клампят его высоту
 // через CSS-переменные (выставляются компонентом на shell), autosize-textarea растёт внутри,
 // скроллбар — кастомный DS, не нативный. Resize-handle (CSS resize) живёт на этом контейнере.
@@ -18,7 +22,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
 
   // Высота строки = line-height DS-типографики body соответствующего size.
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .field[data-size='#{$size}'] & {
       --field-textarea-row-height: #{base.simple-var(base.$sn-regular, 'body', $size, 'line-height')};
 
       // Полоса скролла в мастере прижата к правому краю поля и накрывает его боковой паддинг
@@ -68,7 +72,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   // DS-типографика per-size (без неё textarea наследует шрифт Storybook root).
   // Минимальную высоту держит контейнер оболочки: одна строка, у resizable — multiLine-токен.
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .field[data-size='#{$size}'] & {
       // Резерв справа под колонку clear/copy-кнопок: в мастере текст упирается в неё, а полоса
       // скролла идёт поверх. Кнопки позиционируются абсолютно (см. `.postfixColumn`).
       $button-slot: base.simple-var(
@@ -100,7 +104,7 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   position: relative;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .field[data-size='#{$size}'] & {
       padding-top: base.simple-var(
         field.$field,
         'anatomy',
@@ -141,16 +145,8 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
   place-items: center center;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
-      $square: base.simple-var(
-        field.$field,
-        'anatomy',
-        'size',
-        $size,
-        'fieldContainer',
-        'centeredWrapper',
-        'height'
-      );
+    .field[data-size='#{$size}'] & {
+      $square: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'height');
       $input-line-padding: base.simple-var(
         field.$field,
         'anatomy',
@@ -174,7 +170,15 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
 
       // Кнопка центрируется по первой строке текста: verticalPadding (отступ контента сверху)
       // + центровка слота в line-height.
-      $slot-width: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'centeredWrapper', 'width');
+      $slot-width: base.simple-var(
+        field.$field,
+        'anatomy',
+        'size',
+        $size,
+        'fieldContainer',
+        'centeredWrapper',
+        'width'
+      );
       $icon-square: base.$sn-density-icon-s;
       $button-size: 'm';
 

@@ -3,6 +3,7 @@ import { Pagination } from '@ds/pagination';
 import { Table } from '@tanstack/react-table';
 import { useCallback, useMemo } from 'react';
 
+import { View } from '../../constants';
 import { tableLocale } from '../../locale';
 import styles from './styles.module.scss';
 
@@ -12,6 +13,8 @@ export type TablePaginationProps<TData> = {
   optionsLabel?: string;
   optionsRender?(value: number, idx: number): string | number;
   pageCount?: number;
+  /** Режим таблицы: в карточках пагинация занимает всю свободную ширину футера */
+  view?: View;
 };
 
 export function TablePagination<TData>({
@@ -19,6 +22,7 @@ export function TablePagination<TData>({
   options: optionsProp,
   optionsLabel: optionsLabelProp,
   optionsRender,
+  view,
 }: TablePaginationProps<TData>) {
   const { t } = tableLocale.useTranslations();
   const optionsLabel = optionsLabelProp ?? t('rowsOptionsLabel');
@@ -56,7 +60,7 @@ export function TablePagination<TData>({
   }
 
   return (
-    <div className={styles.footer}>
+    <div className={styles.footer} data-view={view}>
       {table.getPageCount() > 1 && (
         <Pagination
           total={table.getPageCount()}

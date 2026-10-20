@@ -46,7 +46,7 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   justify-content: center;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .container[data-size='#{$size}'] & {
       @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'container', 'centeredWrapper');
     }
   }
@@ -54,7 +54,7 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
 
 // Размер спиннера — токен статуса, а не `density.icon.xs` из @ds/loader. Специфичность выше `.spinner[data-size]` лоадера.
 @each $size in $sizes {
-  [data-size='#{$size}'] .centeredWrapper .spinner {
+  .container[data-size='#{$size}'] .centeredWrapper .spinner {
     width: base.simple-var(status.$status, 'anatomy', 'status', 'size', $size, 'loaderSpinner', 'width');
     height: base.simple-var(status.$status, 'anatomy', 'status', 'size', $size, 'loaderSpinner', 'height');
   }
@@ -66,13 +66,13 @@ $appearances: 'neutral', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
   min-width: 0;
 
   @each $size in $sizes {
-    [data-size='#{$size}'] & {
+    .container[data-size='#{$size}'] & {
       @include base.composite-var(status.$status, 'anatomy', 'status', 'size', $size, 'text');
     }
   }
 
   @each $appearance in $appearances {
-    [data-appearance='#{$appearance}'] & {
+    .container[data-appearance='#{$appearance}'] & {
       color: base.simple-var(base.$sn-theme, 'color', $appearance, 'text');
     }
   }

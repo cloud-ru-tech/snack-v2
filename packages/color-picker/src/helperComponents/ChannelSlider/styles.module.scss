@@ -78,7 +78,7 @@ $sizes: (
   }
 
   @each $size, $tokenSize in $sizes {
-    [data-size='#{$size}'] > & {
+    .track[data-size='#{$size}'] > & {
       --w: #{base.simple-var(cp.$colorPicker, 'anatomy', 'size', $tokenSize, 'handleColor', 'bg', 'width')};
 
       width: var(--w);

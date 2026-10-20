@@ -275,7 +275,7 @@ $map-block-color-decor: (
 
   background-color: transparent;
 
-  [data-is-highlighted] & {
+  .decoration[data-is-highlighted] & {
     inset: var(--highlight-border-width) var(--highlight-border-width) var(--highlight-border-width)
       var(--highlight-border-width);
     border-radius: calc(#{$group-border-radius} - var(--highlight-border-width));

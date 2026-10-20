@@ -51,7 +51,12 @@ const actionPresets: ReadonlyArray<{
 
 function WidthCell({ width, children }: { width: ToastUserActionAppearance | 'auto' | 'full'; children: ReactNode }) {
   return (
-    <div className={width === TOASTER_WIDTH.Full ? styles.widthFull : styles.widthAuto} data-width={width}>
+    // Эмулирует контейнер Toaster: ширину тост берёт из `data-width` на элементе с `data-toaster-container`.
+    <div
+      className={width === TOASTER_WIDTH.Full ? styles.widthFull : styles.widthAuto}
+      data-toaster-container
+      data-width={width}
+    >
       {children}
     </div>
   );

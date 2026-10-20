@@ -77,7 +77,8 @@
 
   background-color: transparent;
 
-  [data-test-id='table__pinned-cells'] &::after {
+  // Нижняя граница под закреплёнными колонками: `pinPosition` получают только ячейки внутри `PinnedCells`.
+  &[data-pin-position]::after {
     pointer-events: none;
     content: '';
 

@@ -24,7 +24,8 @@ $icon-colors: (
 
   // Ось width=full задаётся ToasterContainer'ом (он ставит `data-width='full'`
   // на корневой контейнер). Карточка растягивается через ancestor-селектор.
-  [data-width='full'] & {
+  // stylelint-disable-next-line ds/no-unscoped-data-attribute -- data-width ставит контейнер Toaster из другого модуля
+  [data-toaster-container][data-width='full'] & {
     display: flex;
     width: 100%;
   }
@@ -45,7 +46,7 @@ $icon-colors: (
   }
 
   @each $appearance, $color in $icon-colors {
-    [data-appearance='#{$appearance}'] & {
+    .container[data-appearance='#{$appearance}'] & {
       color: $color;
     }
   }

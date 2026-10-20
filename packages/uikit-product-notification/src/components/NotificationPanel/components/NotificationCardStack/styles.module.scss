@@ -84,7 +84,7 @@ $duration: var(--snack-notification-stack-animation-duration);
     scale $duration,
     opacity $duration;
 
-  [data-open] & {
+  .stack[data-open] & {
     translate: 0 0;
     scale: 1;
     opacity: 1;

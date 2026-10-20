@@ -32,7 +32,7 @@ $tail-slide-distance: calc(8 * #{base.$sn-primitive-dimension-52});
   // после того, как стопка уехала вверх.
   transition: bottom $halfDuration calc(#{$halfDuration} / 1.7) ease-out;
 
-  [data-open] & {
+  .container[data-open] & {
     bottom: calc(-1 * #{$tail-slide-distance});
     transition: bottom $halfDuration ease-out;
   }
@@ -77,7 +77,7 @@ $tail-slide-distance: calc(8 * #{base.$sn-primitive-dimension-52});
 
   // На раскрытии корешки разъезжаются на всю ширину и затухают (без задержки),
   // визуально «превращаясь» в выезжающие карточки стопки.
-  [data-open] & {
+  .container[data-open] & {
     right: 0;
     left: 0;
     opacity: 0;

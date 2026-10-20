@@ -710,6 +710,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
         optionsLabel={paginationProp?.optionsLabel}
         pageCount={pageCount}
         optionsRender={paginationProp?.optionsRender}
+        view={view}
       />
     );
 
