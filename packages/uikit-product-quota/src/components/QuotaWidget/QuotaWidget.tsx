@@ -34,7 +34,6 @@ export function QuotaWidget({
   projectName,
   quotasUrl,
   canEditQuota,
-  hideIncreaseQuotaButton,
   onIncreaseQuotaClick,
   onWidgetOpen,
   onQuotasUrlClick,
@@ -61,7 +60,7 @@ export function QuotaWidget({
 
   // На мобилке лист full-height: шапку и кнопку выносим в pinned-слоты BottomSheet
   // (`title` сверху, `footer` снизу), а карточки скроллятся в теле листа — как в макете.
-  const showMobileIncreaseButton = isMobile && canEditQuota && !error && !hideIncreaseQuotaButton;
+  const showMobileIncreaseButton = isMobile && canEditQuota && !error;
 
   return (
     <Dropdown
@@ -86,7 +85,6 @@ export function QuotaWidget({
           projectName={projectName}
           quotasUrl={quotasUrl}
           canEditQuota={canEditQuota}
-          hideIncreaseQuotaButton={hideIncreaseQuotaButton}
           onIncreaseQuotaClick={onIncreaseQuotaClick}
           onQuotasUrlClick={onQuotasUrlClick}
           hideMobileHeader={isMobile}

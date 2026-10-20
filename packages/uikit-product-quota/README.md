@@ -57,7 +57,7 @@ import { QuotaWidget, QuotaWidgetMini, QuotaWidgetCard } from '@ds/uikit-product
 
 - `projectName` — название проекта.
 - `quotasUrl` + `onQuotasUrlClick` — ссылка на страницу квот.
-- `canEditQuota` + `onIncreaseQuotaClick` — кнопка «Увеличить квоты»; скрывается `hideIncreaseQuotaButton`.
+- `canEditQuota` + `onIncreaseQuotaClick` — кнопка «Увеличить квоты».
 
 #### Список квот
 
@@ -174,7 +174,6 @@ export function QuotaWidgetError() {
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |
@@ -207,7 +206,6 @@ export function QuotaWidgetError() {
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `hideMobileHeader` | `boolean` | `false` | Не рендерить мобильную шапку (её выносят в pinned-`title` контейнера, напр. BottomSheet). <br/> На desktop не влияет. |
 | `hideMobileIncreaseButton` | `boolean` | `false` | Не рендерить мобильную кнопку расширения (её выносят в pinned-`footer` контейнера). <br/> На desktop не влияет. |
 | `loading` | `boolean` | — | Флаг загрузки квот |
@@ -264,7 +262,7 @@ export function QuotaWidgetError() {
 
 - Вертикальный список `QuotaWidgetCard`; исчерпанные квоты поднимаются в начало (`disableSorting` отключает).
 - `loading` — skeleton-карточки; `error` — блок ошибки с кнопкой повтора (`onRefresh`).
-- Кнопка «Увеличить квоты» (`canEditQuota`, `onIncreaseQuotaClick`, скрывается `hideIncreaseQuotaButton`).
+- Кнопка «Увеличить квоты» (`canEditQuota`, `onIncreaseQuotaClick`).
 
 ### Примеры использования
 
@@ -315,7 +313,6 @@ export function QuotaWidgetMiniExpanded() {
 | `defaultExpanded` | `boolean` | — | Флаг раскрытия аккордиона по умолчанию |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onRefresh` | `() => void` | — | Колбек на обновление списка квот при ошибке |

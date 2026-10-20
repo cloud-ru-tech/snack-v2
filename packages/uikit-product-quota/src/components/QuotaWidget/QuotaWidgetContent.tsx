@@ -46,7 +46,6 @@ export function QuotaWidgetContent({
   projectName,
   quotasUrl,
   canEditQuota,
-  hideIncreaseQuotaButton,
   onIncreaseQuotaClick,
   onQuotasUrlClick,
   hideMobileHeader = false,
@@ -58,7 +57,7 @@ export function QuotaWidgetContent({
   const contentTestId = props['data-test-id'] ?? TEST_IDS.quotaWidget.content;
 
   const showMobileIncreaseButton =
-    isMobile && !hideMobileIncreaseButton && canEditQuota && !error && !hideIncreaseQuotaButton;
+    isMobile && !hideMobileIncreaseButton && canEditQuota && !error;
 
   return (
     <div className={styles.content} data-mobile={isMobile} data-test-id={contentTestId}>
@@ -73,7 +72,6 @@ export function QuotaWidgetContent({
           canEditQuota={canEditQuota}
           error={error}
           onIncreaseQuotaClick={onIncreaseQuotaClick}
-          hideIncreaseQuotaButton={hideIncreaseQuotaButton}
           onQuotasUrlClick={onQuotasUrlClick}
         />
       )}

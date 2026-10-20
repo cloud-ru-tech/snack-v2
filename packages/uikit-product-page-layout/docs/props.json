@@ -91,11 +91,6 @@
         "required": false,
         "defaultValue": "false"
       },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
-      },
       "href": {
         "type": "string",
         "required": false
@@ -2195,11 +2190,6 @@
         "type": "boolean",
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
-      },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
       },
       "loading": {
         "type": "boolean",
@@ -4456,11 +4446,6 @@
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
           },
-          "hideIncreaseQuotaButton": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг скрытия кнопки увеличения квоты"
-          },
           "loading": {
             "type": "boolean",
             "required": true,
@@ -5519,11 +5504,6 @@
             "type": "boolean",
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
-          },
-          "hideIncreaseQuotaButton": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг скрытия кнопки увеличения квоты"
           },
           "loading": {
             "type": "boolean",
@@ -6743,11 +6723,6 @@
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
           },
-          "hideIncreaseQuotaButton": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг скрытия кнопки увеличения квоты"
-          },
           "loading": {
             "type": "boolean",
             "required": true,
@@ -7916,11 +7891,6 @@
             "type": "boolean",
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
-          },
-          "hideIncreaseQuotaButton": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг скрытия кнопки увеличения квоты"
           },
           "loading": {
             "type": "boolean",
@@ -9206,11 +9176,6 @@
             "type": "boolean",
             "required": true,
             "description": "Флаг ошибки при загрузке квот"
-          },
-          "hideIncreaseQuotaButton": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг скрытия кнопки увеличения квоты"
           },
           "loading": {
             "type": "boolean",

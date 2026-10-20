@@ -30,7 +30,6 @@ export function QuotaWidgetMini({
   projectName,
   canEditQuota,
   defaultExpanded,
-  hideIncreaseQuotaButton,
   onIncreaseQuotaClick,
   onWidgetOpen,
   'data-test-id': dataTestId,
@@ -76,7 +75,7 @@ export function QuotaWidgetMini({
               onRefresh={onRefresh}
             />
 
-            {!error && canEditQuota && !hideIncreaseQuotaButton && (
+            {!error && canEditQuota && (
               <Button
                 className={styles.button}
                 fullWidth

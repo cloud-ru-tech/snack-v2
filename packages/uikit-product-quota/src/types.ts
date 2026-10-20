@@ -35,8 +35,6 @@ export type QuotaWidgetPropsBase = {
   projectName: string;
   /** Флаг наличия прав на редактирование квот */
   canEditQuota: boolean;
-  /** Флаг скрытия кнопки увеличения квоты */
-  hideIncreaseQuotaButton?: boolean;
   /** Колбек нажатия на кнопку увеличения квот */
   onIncreaseQuotaClick?: () => void;
   /** Колбек открытия виджета квот */

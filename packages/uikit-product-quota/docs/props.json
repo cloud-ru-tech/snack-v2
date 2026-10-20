@@ -47,11 +47,6 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
-      },
       "onIncreaseQuotaClick": {
         "type": "(() => void)",
         "required": false,
@@ -193,11 +188,6 @@
         "type": "boolean",
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
-      },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
       },
       "loading": {
         "type": "boolean",
@@ -647,11 +637,6 @@
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
       },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
-      },
       "hideMobileHeader": {
         "type": "boolean",
         "required": false,
@@ -775,11 +760,6 @@
         "type": "boolean",
         "required": true,
         "description": "Флаг ошибки при загрузке квот"
-      },
-      "hideIncreaseQuotaButton": {
-        "type": "boolean",
-        "required": false,
-        "description": "Флаг скрытия кнопки увеличения квоты"
       },
       "loading": {
         "type": "boolean",

@@ -545,7 +545,6 @@ import {
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `fullWidth` | `boolean` | — | На всю ширину |
 | `hidden` | `boolean` | `false` |  |
-| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `href` | `string` | — |  |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
@@ -602,7 +601,6 @@ import {
 | `data-test-id` | `string` | — |  |
 | `disableSorting` | `boolean` | — | Флаг отключения сортировки квот |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
-| `hideIncreaseQuotaButton` | `boolean` | — | Флаг скрытия кнопки увеличения квоты |
 | `loading` | `boolean` | — | Флаг загрузки квот |
 | `onIncreaseQuotaClick` | `(() => void)` | — | Колбек нажатия на кнопку увеличения квот |
 | `onQuotasUrlClick` | `(() => void)` | — | Колбек клика по ссылке на страницу квот по проекту |

@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 type ProjectHeaderProps = Pick<
   QuotaWidgetPropsBase,
-  'projectName' | 'canEditQuota' | 'error' | 'hideIncreaseQuotaButton' | 'onIncreaseQuotaClick'
+  'projectName' | 'canEditQuota' | 'error' | 'onIncreaseQuotaClick'
 > & {
   quotasUrl: string;
   onQuotasUrlClick?: () => void;
@@ -23,7 +23,6 @@ export function ProjectHeader({
   canEditQuota,
   error,
   onIncreaseQuotaClick,
-  hideIncreaseQuotaButton,
   onQuotasUrlClick,
 }: ProjectHeaderProps) {
   const { t } = quotaLocale.useTranslations();
@@ -46,7 +45,7 @@ export function ProjectHeader({
         <p className={styles.subtitle}>{t('widgetSubtitle')}</p>
       </div>
 
-      {canEditQuota && !error && !hideIncreaseQuotaButton && (
+      {canEditQuota && !error && (
         <Button
           view='outline'
           appearance='neutral'
