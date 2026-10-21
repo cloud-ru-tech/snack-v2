@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.25 (2026-10-21)
+
+**Note:** Version bump only for package @ds/attachment
+
 ## 1.1.24 (2026-10-19)
 
 **Note:** Version bump only for package @ds/attachment

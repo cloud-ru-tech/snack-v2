@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.5 (2026-10-21)
+
+### Bug Fixes
+
+- **FF-9278:** show closeButton in NotificationPanel, upd segments and chip size on desktop ([a65e76c](https://github.com/cloud-ru-tech/snack-v2/commit/a65e76cba7303b2ed0a12a405b8436bd933ea501))
+- **FF-9279:** add tooltip for settings button in NotificationPanel ([be98ef3](https://github.com/cloud-ru-tech/snack-v2/commit/be98ef3d31528e7465598ca93556c5ff06642552))
+
 ## 2.1.4 (2026-10-19)
 
 **Note:** Version bump only for package @ds/uikit-product-notification

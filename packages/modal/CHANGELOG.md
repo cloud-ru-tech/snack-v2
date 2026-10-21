@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.7 (2026-10-21)
+
+**Note:** Version bump only for package @ds/modal
+
 ## 2.0.6 (2026-10-19)
 
 **Note:** Version bump only for package @ds/modal

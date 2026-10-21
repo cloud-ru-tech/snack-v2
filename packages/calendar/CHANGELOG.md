@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.18 (2026-10-21)
+
+**Note:** Version bump only for package @ds/calendar
+
 ## 1.1.17 (2026-10-19)
 
 **Note:** Version bump only for package @ds/calendar

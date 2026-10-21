@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.3.0 (2026-10-21)
+
+### Bug Fixes
+
+- **FF-9279:** allow favorites to stretch on desktop ([6fbd817](https://github.com/cloud-ru-tech/snack-v2/commit/6fbd8176799868a0ff08207af0bc3b9fbb65fea4))
+
+### Features
+
+- **FF-9305:** add search slot for header ([713e2a7](https://github.com/cloud-ru-tech/snack-v2/commit/713e2a72f90559ec5193ccb198217fdfdc09f18e))
+
 ## 2.2.4 (2026-10-19)
 
 **Note:** Version bump only for package @ds/uikit-product-header
