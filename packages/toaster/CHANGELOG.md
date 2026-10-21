@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2026-10-21)
+
+### Bug Fixes
+
+- **MKP-4119:** scope data-attribute selectors to component root ([4eb699f](https://github.com/cloud-ru-tech/snack-v2/commit/4eb699fb847e80d3b0f0a3ffc3d809cd9e553ffc))
+
 ## 1.1.2 (2026-10-19)
 
 **Note:** Version bump only for package @ds/toaster

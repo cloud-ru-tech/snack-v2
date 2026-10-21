@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.1 (2026-10-21)
+
+### Bug Fixes
+
+- **FF-9275:** apply proper font-weight values ([cd75e59](https://github.com/cloud-ru-tech/snack-v2/commit/cd75e597792440de78dd9aac4734261bdb403f98))
+
 # 3.0.0 (2026-10-13)
 
 ### BREAKING CHANGES
