@@ -103,6 +103,7 @@ export function PartialSlots() {
 | `data-test-id` | `string` | — |  |
 | `logo` | `ReactNode` | — | Слот логотипа (крайний левый). |
 | `menu` | `ReactNode` | — | Слот главного меню (слева, после логотипа). |
+| `search` | `ReactNode` | — | Слот поиска. |
 | `select` | `ReactNode` | — | Слот селектора (например, выбор облака/организации), после меню. |
 | `toolbar` | `ReactNode` | — | Слот тулбара — правая часть хедера. |
 

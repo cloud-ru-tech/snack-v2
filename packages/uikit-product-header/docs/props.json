@@ -1183,6 +1183,11 @@
         "required": false,
         "description": "Слот главного меню (слева, после логотипа)."
       },
+      "search": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот поиска."
+      },
       "select": {
         "type": "ReactNode",
         "required": false,

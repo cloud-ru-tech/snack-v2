@@ -54,12 +54,12 @@
 
 .plugProjectSelect {
   width: 176px;
-  height: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-32;
 }
 
 .plugBreadcrumbs {
   width: 300px;
-  height: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-32;
 }
 
 .plugBreadcrumbsMobile {
@@ -69,12 +69,17 @@
 
 .plugLogo,
 .plugMenu {
-  height: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-32;
 }
 
 .plugToolbar {
   width: 160px;
-  height: base.$sn-primitive-dimension-40;
+  height: base.$sn-primitive-dimension-32;
+}
+
+.plugSearch {
+  width: 90px;
+  height: base.$sn-primitive-dimension-32;
 }
 
 // Как cp/header OrganizationAfterContent — слот afterContent у организаций UserMenu.

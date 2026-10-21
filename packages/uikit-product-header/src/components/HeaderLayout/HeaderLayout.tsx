@@ -16,13 +16,24 @@ export type HeaderLayoutProps = WithSupportProps<{
   logo?: ReactNode;
   /** Слот селектора (например, выбор облака/организации), после меню. */
   select?: ReactNode;
+  /** Слот поиска. */
+  search?: ReactNode;
   /** Слот хлебных крошек. На mobile переносится под основную строку хедера. */
   breadcrumbs?: ReactNode;
   /** Слот тулбара — правая часть хедера. */
   toolbar?: ReactNode;
 }>;
 
-export function HeaderLayout({ menu, logo, select, breadcrumbs, toolbar, className, ...rest }: HeaderLayoutProps) {
+export function HeaderLayout({
+  menu,
+  logo,
+  select,
+  search,
+  breadcrumbs,
+  toolbar,
+  className,
+  ...rest
+}: HeaderLayoutProps) {
   const isMobile = useMobileLayout();
   return (
     <header
@@ -46,6 +57,13 @@ export function HeaderLayout({ menu, logo, select, breadcrumbs, toolbar, classNa
             <>
               <Divider orientation='vertical' />
               {select}
+            </>
+          )}
+
+          {search && (
+            <>
+              <Divider orientation='vertical' />
+              {search}
             </>
           )}
 

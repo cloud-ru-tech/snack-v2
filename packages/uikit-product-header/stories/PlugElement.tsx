@@ -29,6 +29,7 @@ export const DATA_TEST_ID = {
   breadcrumbsMobile: 'breadcrumbs-mobile',
   logo: 'logo',
   menu: 'menu',
+  search: 'search',
 };
 
 export function Banners() {
@@ -73,4 +74,8 @@ export function Menu() {
 
 export function Toolbar() {
   return <Plug label='Toolbar' className={styles.plugToolbar} data-test-id={DATA_TEST_ID.toolbar} />;
+}
+
+export function Search() {
+  return <Plug label='Search' className={styles.plugSearch} data-test-id={DATA_TEST_ID.search} />;
 }

@@ -5,7 +5,7 @@ import { expect, within } from 'storybook/test';
 
 import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storybook/components';
 
-import { Breadcrumbs, BreadcrumbsMobile, Menu, ProjectSelect, Toolbar } from '../PlugElement';
+import { Breadcrumbs, BreadcrumbsMobile, Menu, ProjectSelect, Search, Toolbar } from '../PlugElement';
 import { TEST_IDS } from '../testIds';
 
 type PlaygroundArgs = HeaderLayoutProps & {
@@ -13,6 +13,7 @@ type PlaygroundArgs = HeaderLayoutProps & {
   showLogo?: boolean;
   showSelect?: boolean;
   showBreadcrumbs?: boolean;
+  showSearch?: boolean;
   showToolbar?: boolean;
 };
 
@@ -27,6 +28,7 @@ const meta: Meta<PlaygroundArgs> = {
     showSelect: true,
     showBreadcrumbs: true,
     showToolbar: true,
+    showSearch: true,
     'data-test-id': TEST_IDS.headerLayout.root,
   },
   argTypes: {
@@ -35,11 +37,13 @@ const meta: Meta<PlaygroundArgs> = {
     showSelect: { name: '[Stories]: showSelect', control: 'boolean' },
     showBreadcrumbs: { name: '[Stories]: showBreadcrumbs', control: 'boolean' },
     showToolbar: { name: '[Stories]: showToolbar', control: 'boolean' },
+    showSearch: { name: '[Stories]: showSearch', control: 'boolean' },
     menu: { table: { disable: true } },
     logo: { table: { disable: true } },
     select: { table: { disable: true } },
     breadcrumbs: { table: { disable: true } },
     toolbar: { table: { disable: true } },
+    search: { table: { disable: true } },
   },
 };
 
@@ -52,6 +56,7 @@ function HeaderLayoutPlaygroundContent({
   showMenu,
   showSelect,
   showToolbar,
+  showSearch,
   ...args
 }: PlaygroundArgs) {
   const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
@@ -59,7 +64,7 @@ function HeaderLayoutPlaygroundContent({
 
   return (
     <DemoPage>
-      <DemoPanel width='wide'>
+      <DemoPanel width='fluid'>
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Слоты шапки: меню, логотип, селект, хлебные крошки и тулбар.</DemoHint>
         <DemoActions block>
@@ -70,6 +75,7 @@ function HeaderLayoutPlaygroundContent({
             select={showSelect ? <ProjectSelect /> : undefined}
             breadcrumbs={showBreadcrumbs ? breadcrumbs : undefined}
             toolbar={showToolbar ? <Toolbar /> : undefined}
+            search={showSearch ? <Search /> : undefined}
           />
         </DemoActions>
       </DemoPanel>
