@@ -7526,6 +7526,15 @@
       "table": {
         "type": "Table<TData>",
         "required": true
+      },
+      "view": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "cards",
+          "table"
+        ],
+        "description": "Режим таблицы: в карточках пагинация занимает всю свободную ширину футера"
       }
     },
     "relatedTypes": {}
