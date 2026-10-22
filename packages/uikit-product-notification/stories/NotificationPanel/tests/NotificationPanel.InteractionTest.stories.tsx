@@ -1,4 +1,5 @@
 import { Button } from '@ds/button';
+import { segmentTestId } from '@ds/segment-control';
 import { NotificationPanel, NotificationPanelProps } from '@ds/uikit-product-notification';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -9,16 +10,24 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 import { SAMPLE_CARDS } from '../fixtures';
 
+const SEGMENT = {
+  all: 'all',
+  unread: 'unread',
+  system: 'system',
+} as const;
+
 function InteractionRender(args: NotificationPanelProps) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <DemoPage>
       <DemoPanel>
         <DemoTitle>InteractionTest</DemoTitle>
         <DemoHint>
-          Открытие панели триггером, кнопки шапки, меню настроек и chip-фильтр. Закрытие по Escape проверяется в
-          Playwright (keyboard.spec.ts).
+          Открытие панели триггером, кнопки шапки, меню настроек, сегменты и chip-фильтр. Кнопка «Загрузка» внутри
+          панели включает loading: сегменты остаются доступными, скелетоны, readAll и chip блокируются. Закрытие по
+          Escape проверяется в Playwright (keyboard.spec.ts).
         </DemoHint>
         <DemoActions align='center'>
           <Button
@@ -30,7 +39,24 @@ function InteractionRender(args: NotificationPanelProps) {
           />
         </DemoActions>
       </DemoPanel>
-      <NotificationPanel {...args} open={open} onClose={() => setOpen(false)} />
+      <NotificationPanel
+        {...args}
+        open={open}
+        onClose={() => setOpen(false)}
+        loading={loading}
+        content={
+          <>
+            <Button
+              data-test-id={TEST_IDS.drawer.triggerLoading}
+              label='Загрузка'
+              view='outline'
+              appearance='neutral'
+              onClick={() => setLoading(true)}
+            />
+            {args.content}
+          </>
+        }
+      />
     </DemoPage>
   );
 }
@@ -52,10 +78,11 @@ const meta: Meta<typeof NotificationPanel> = {
     },
     segments: {
       items: [
-        { value: 'all', label: 'Все' },
-        { value: 'unread', label: 'Непрочитанные' },
+        { value: SEGMENT.all, label: 'Все' },
+        { value: SEGMENT.unread, label: 'Непрочитанные' },
+        { value: SEGMENT.system, label: 'Системные', disabled: true },
       ],
-      value: 'all',
+      value: SEGMENT.all,
       onChange: fn(),
     },
     chipToggle: { label: 'Только важные', checked: false, onChange: fn() },
@@ -91,6 +118,69 @@ export const InteractionTest: Story = {
     await step('click: chipToggle triggers onChange', async () => {
       await userEvent.click(body.getByTestId(TEST_IDS.panel.chipToggle));
       expect(args.chipToggle?.onChange).toHaveBeenCalled();
+    });
+
+    const onSegmentChange = args.segments?.onChange as ReturnType<typeof fn>;
+    const onReadAllClick = args.readAllButton?.onClick as ReturnType<typeof fn>;
+    const onChipChange = args.chipToggle?.onChange as ReturnType<typeof fn>;
+    const selected = body.getByTestId(segmentTestId(SEGMENT.all));
+    const unread = body.getByTestId(segmentTestId(SEGMENT.unread));
+    const disabledSegment = body.getByTestId(segmentTestId(SEGMENT.system));
+
+    await step('click: enabled segment triggers onChange', async () => {
+      await expect(selected).toHaveAttribute('aria-checked', 'true');
+      await expect(selected).not.toBeDisabled();
+      await expect(selected).not.toHaveAttribute('data-disabled');
+      await userEvent.click(unread);
+      expect(onSegmentChange).toHaveBeenCalledTimes(1);
+      expect(onSegmentChange).toHaveBeenCalledWith(SEGMENT.unread);
+    });
+
+    await step('disabled segment stays unavailable', async () => {
+      await expect(disabledSegment).toBeDisabled();
+      await expect(disabledSegment).toHaveAttribute('data-disabled', 'true');
+      await userEvent.click(disabledSegment, { pointerEventsCheck: 0 });
+      expect(onSegmentChange).not.toHaveBeenCalledWith(SEGMENT.system);
+      expect(onSegmentChange).toHaveBeenCalledTimes(1);
+    });
+
+    await step('loading: segments stay enabled, skeletons and filters stay blocked', async () => {
+      const readAllCalls = onReadAllClick.mock.calls.length;
+      const chipCalls = onChipChange.mock.calls.length;
+
+      await userEvent.click(body.getByTestId(TEST_IDS.drawer.triggerLoading));
+
+      const skeletons = await waitFor(() => body.getAllByTestId(TEST_IDS.card.skeleton));
+      expect(skeletons).toHaveLength(2);
+      const panelBody = skeletons[0]?.parentElement;
+      if (!panelBody) {
+        throw new Error('Тело панели не найдено');
+      }
+      expect(panelBody).toHaveAttribute('aria-busy', 'true');
+
+      await expect(selected).toHaveAttribute('aria-checked', 'true');
+      await expect(selected).not.toBeDisabled();
+      await expect(selected).not.toHaveAttribute('data-disabled');
+      await expect(unread).not.toBeDisabled();
+      await expect(unread).not.toHaveAttribute('data-disabled');
+      await userEvent.click(unread);
+      expect(onSegmentChange).toHaveBeenCalledTimes(2);
+      expect(onSegmentChange).toHaveBeenLastCalledWith(SEGMENT.unread);
+
+      await expect(disabledSegment).toBeDisabled();
+      await expect(disabledSegment).toHaveAttribute('data-disabled', 'true');
+      await userEvent.click(disabledSegment, { pointerEventsCheck: 0 });
+      expect(onSegmentChange).not.toHaveBeenCalledWith(SEGMENT.system);
+
+      const readAll = body.getByTestId(TEST_IDS.panel.readAll);
+      await expect(readAll).toBeDisabled();
+      await userEvent.click(readAll, { pointerEventsCheck: 0 });
+      expect(onReadAllClick).toHaveBeenCalledTimes(readAllCalls);
+
+      const chip = body.getByTestId(TEST_IDS.panel.chipToggle);
+      await expect(chip).toHaveAttribute('data-disabled', 'true');
+      await userEvent.click(chip, { pointerEventsCheck: 0 });
+      expect(onChipChange).toHaveBeenCalledTimes(chipCalls);
     });
     // Закрытие по Escape проверяется в Playwright (keyboard.spec.ts): rc-drawer
     // не получает keydown в синтетической среде storybook-test. См. test-environment-pitfalls.md.

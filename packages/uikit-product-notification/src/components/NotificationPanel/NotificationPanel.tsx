@@ -131,10 +131,6 @@ export function NotificationPanel({
           size={buttonSize}
           // В мобильном мастере сегменты делят всю ширину sheet'а.
           width={isMobile ? 'full' : segments.width}
-          items={segments.items.map(item => ({
-            ...item,
-            disabled: item.disabled || loading,
-          }))}
           data-test-id={TEST_IDS.panel.segments}
         />
       )}

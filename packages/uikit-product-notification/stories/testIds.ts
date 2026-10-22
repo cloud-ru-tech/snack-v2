@@ -9,5 +9,6 @@ export const TEST_IDS = {
   ...COMPONENT_TEST_IDS,
   drawer: {
     triggerOpen: 'notification-panel-drawer__trigger',
+    triggerLoading: 'notification-panel-drawer__trigger-loading',
   },
 } as const;
