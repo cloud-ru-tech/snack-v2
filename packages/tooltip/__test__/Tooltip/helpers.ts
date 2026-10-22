@@ -13,6 +13,7 @@ export const TOOLTIP_STORIES = {
   longTextNoMaxWidth: { name: 'tooltip-tooltip-tests-longtext', story: 'long-text-no-max-width' },
   stackedHover: { name: 'tooltip-tooltip-tests-stackedhover', story: 'stacked-hover' },
   noMaxWidthShort: { name: 'tooltip-tooltip-tests-longtext', story: 'no-max-width-short' },
+  inlineContent: { name: 'tooltip-tooltip-tests-inlinecontent', story: 'inline-content' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(

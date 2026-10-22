@@ -10,14 +10,9 @@
   @include base.composite-var(tooltip.$tooltip, 'anatomy', 'container');
   @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
 
-  display: flex;
-  flex-direction: column;
-
   box-sizing: border-box;
-
   color: base.$sn-theme-color-available-inversion-textMain;
   overflow-wrap: break-word;
-
   background: base.$sn-theme-color-invertNeutral-background2Level;
 
   &[data-disable-max-width='true'] {

@@ -28,6 +28,18 @@ test.describe('Tooltip — visual regression', () => {
     expect(png).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
+  test('inline content — text with link', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions(undefined, TOOLTIP_STORIES.inlineContent));
+    await waitForFonts();
+    const trigger = getByTestId(TEST_IDS.tooltip.triggerOpen);
+    await trigger.hover();
+    const content = page.getByRole('tooltip');
+    await expect(content).toBeVisible();
+    await expect(content.getByRole('link', { name: 'документации' })).toBeVisible();
+    const png = await screenshotRegion(page, [trigger, content], 24);
+    expect(png).toMatchSnapshot('inline-content.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
+  });
+
   test('text strategies — composite', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     const stories = [
       { label: 'default max-width (long text wraps)', story: TOOLTIP_STORIES.longTextDefault },
