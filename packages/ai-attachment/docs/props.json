@@ -1,0 +1,99 @@
+{
+  "AiAttachment": {
+    "displayName": "AiAttachment",
+    "propsTypeName": "AiAttachmentProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-attachment"
+      },
+      "fileName": {
+        "type": "string",
+        "required": false,
+        "description": "Имя файла — для `type='file'`."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Иконка типа файла. Подставляется снаружи (AT-7.3)."
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие на плитку."
+      },
+      "onRemove": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие на крестик."
+      },
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие на кнопку повтора в состоянии `error`."
+      },
+      "src": {
+        "type": "string",
+        "required": false,
+        "description": "Адрес превью картинки."
+      },
+      "state": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ],
+        "defaultValue": "default",
+        "description": "Состояние плитки. По умолчанию `default`.",
+        "typeRefs": [
+          "AttachmentState"
+        ]
+      },
+      "tooltip": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Подсказка при наведении (только desktop)."
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "file",
+          "image"
+        ],
+        "defaultValue": "image",
+        "description": "Тип плитки: картинка с превью или файл с именем. По умолчанию `image`.",
+        "typeRefs": [
+          "AttachmentType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AttachmentState": {
+        "kind": "union",
+        "values": [
+          "default",
+          "error",
+          "loading"
+        ],
+        "own": true
+      },
+      "AttachmentType": {
+        "kind": "union",
+        "values": [
+          "file",
+          "image"
+        ],
+        "own": true
+      }
+    }
+  }
+}

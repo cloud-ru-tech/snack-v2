@@ -1,0 +1,90 @@
+---
+title: AiButtonClose
+package: '@ds/ai-button-close'
+description: Кнопка-крестик для закрытия блока или удаления вложения в AI-компонентах.
+order: 3
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiButtonCloseDoc from './props.json'
+
+import { Variants } from '../demos/examples/Variants'
+import VariantsSrc from '../demos/examples/Variants.tsx?raw'
+import { Dismiss } from '../demos/examples/Dismiss'
+import DismissSrc from '../demos/examples/Dismiss.tsx?raw'
+import { CustomLabel } from '../demos/examples/CustomLabel'
+import CustomLabelSrc from '../demos/examples/CustomLabel.tsx?raw'
+
+# AiButtonClose
+
+`AiButtonClose` — кнопка-крестик из набора AI Components. Сообщает о нажатии через `onClick`; закрыть блок или удалить вложение решает потребитель.
+
+## Когда использовать
+
+- Крестик плитки вложения в поле ввода.
+- Крестик закрытия баннера над полем ввода.
+
+### Когда не нужен
+
+- Кнопка с текстом или иконкой другого действия:
+  - используйте `@ds/button`.
+- Стрелка прокрутки или листания:
+  - используйте `@ds/ai-button-controls`.
+
+## Анатомия
+
+Кнопка состоит из иконки крестика и, в наборах с подложкой, рамки с обводкой. Текста нет.
+
+### Size (default `s`)
+
+- `xs` — 16×16, только с подложкой. Крестик плитки вложения на desktop.
+- `s` — 24×24, с подложкой или без. С подложкой — крестик плитки вложения на mobile, без подложки — крестик баннера на desktop.
+- `m` — 32×32, без подложки. Крестик баннера на mobile.
+
+### Outline (default `false`)
+
+`outline` добавляет подложку с тонкой обводкой, она лежит внутри кнопки и не меняет её размер. У `xs` подложка есть всегда, у `m` её нет даже при `outline`; несуществующее в макете сочетание компонент выправляет сам.
+
+На устройствах с наведением крестик в покое окрашен вторичным цветом текста, при наведении — основным; подложка при наведении светлеет. На сенсорных экранах состояния наведения нет. Фокус с клавиатуры показывается акцентной обводкой.
+
+Доступное имя по умолчанию — «Закрыть» (`Close`) из локали пакета. Если крестик удаляет конкретный объект, передайте `aria-label` с его названием.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-button-close
+```
+
+```ts
+import { AiButtonClose } from '@ds/ai-button-close'
+```
+
+## Примеры использования
+
+<Example title='Наборы' description='Четыре набора из макета: outline xs, outline s, s, m' code={VariantsSrc}>
+  <Variants client:visible />
+</Example>
+
+<Example title='Закрытие блока' description='Крестик скрывает блок, состояние хранит родитель' code={DismissSrc}>
+  <Dismiss client:visible />
+</Example>
+
+<Example title='Доступное имя' description='aria-label с названием удаляемого файла' code={CustomLabelSrc}>
+  <CustomLabel client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiButtonCloseDoc.AiButtonClose} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aibuttonclose--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-button-close')} />

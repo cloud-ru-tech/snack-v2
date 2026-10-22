@@ -1,0 +1,11 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.content {
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.shortcut {
+  color: base.$sn-theme-color-available-inversion-textTertiary;
+}

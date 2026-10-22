@@ -336,9 +336,18 @@ importers:
       '@ds/adaptive':
         specifier: workspace:*
         version: link:../../packages/adaptive
+      '@ds/ai-attachment':
+        specifier: workspace:*
+        version: link:../../packages/ai-attachment
       '@ds/ai-button-chevron':
         specifier: workspace:*
         version: link:../../packages/ai-button-chevron
+      '@ds/ai-button-close':
+        specifier: workspace:*
+        version: link:../../packages/ai-button-close
+      '@ds/ai-button-controls':
+        specifier: workspace:*
+        version: link:../../packages/ai-button-controls
       '@ds/ai-button-giga':
         specifier: workspace:*
         version: link:../../packages/ai-button-giga
@@ -354,6 +363,9 @@ importers:
       '@ds/ai-field-banner':
         specifier: workspace:*
         version: link:../../packages/ai-field-banner
+      '@ds/ai-field-input':
+        specifier: workspace:*
+        version: link:../../packages/ai-field-input
       '@ds/ai-field-notice':
         specifier: workspace:*
         version: link:../../packages/ai-field-notice
@@ -749,11 +761,77 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/ai-attachment:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/ai-button-close':
+        specifier: workspace:^
+        version: link:../ai-button-close
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
   packages/ai-button-chevron:
     dependencies:
       '@ds/icons':
         specifier: workspace:^
         version: link:../icons
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-button-close:
+    dependencies:
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-button-controls:
+    dependencies:
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
@@ -823,12 +901,66 @@ importers:
 
   packages/ai-field-banner:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/ai-button-close':
+        specifier: workspace:^
+        version: link:../ai-button-close
       '@ds/alert':
         specifier: workspace:^
         version: link:../alert
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/ai-field-input:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/ai-button-controls':
+        specifier: workspace:^
+        version: link:../ai-button-controls
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/hot-spot':
+        specifier: workspace:^
+        version: link:../hot-spot
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/list':
+        specifier: workspace:^
+        version: link:../list
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
+      '@ds/scroll':
+        specifier: workspace:^
+        version: link:../scroll
+      '@ds/tag':
+        specifier: workspace:^
+        version: link:../tag
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      '@tiptap/pm':
+        specifier: ^3.31.3
+        version: 3.31.3
+      '@tiptap/react':
+        specifier: ^3.31.3
+        version: 3.31.3(@floating-ui/dom@1.8.0)(@tiptap/core@3.31.3(@tiptap/pm@3.31.3))(@tiptap/pm@3.31.3)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: 'catalog:'
         version: 2.5.1

@@ -70,6 +70,12 @@
       "path": "./ai-button-chevron/tsconfig.esm.json"
     },
     {
+      "path": "./ai-button-close/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-button-controls/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-chain-of-thoughts/tsconfig.esm.json"
     },
     {
@@ -172,6 +178,9 @@
       "path": "./accordion/tsconfig.esm.json"
     },
     {
+      "path": "./ai-attachment/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-field-request/tsconfig.esm.json"
     },
     {
@@ -239,6 +248,9 @@
     },
     {
       "path": "./tag/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-field-input/tsconfig.esm.json"
     },
     {
       "path": "./card/tsconfig.esm.json"

@@ -1,0 +1,72 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+$progressColors: (
+  'green': base.$sn-theme-color-green-accent,
+  'orange': base.$sn-theme-color-orange-accent,
+  'red': base.$sn-theme-color-red-accent,
+);
+
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: base.$sn-density-size-m;
+  height: base.$sn-density-size-m;
+  padding: base.$sn-primitive-dimension-0;
+  border: none;
+  border-radius: base.$sn-density-radius-3xs;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  &:active:not([data-disabled], [data-loading]) .stateLayer[data-state='emptyNeutralOnBackground'] {
+    background: base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
+  }
+
+  @each $progress, $color in $progressColors {
+    &[data-progress='#{$progress}'] .progress {
+      stroke: $color;
+    }
+  }
+}
+
+.indicator {
+  position: relative;
+  transform: rotate(-90deg);
+  width: base.$sn-density-icon-xs;
+  height: base.$sn-density-icon-xs;
+}
+
+.base,
+.progress {
+  fill: none;
+  stroke-width: base.$sn-primitive-strokeWeight-strokeSemiBold;
+}
+
+.base {
+  stroke: base.$sn-theme-color-neutral-decor;
+}
+
+.progress {
+  stroke-linecap: butt;
+}

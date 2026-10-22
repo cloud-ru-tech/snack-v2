@@ -1,0 +1,14 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: absolute;
+  bottom: calc(100% + #{base.$sn-primitive-dimension-8});
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  // Обёртка HotSpot — блок с высотой строки: без этого кнопка встаёт на базовую линию и под ней
+  // остаётся 7px, и отступ до поля вместо 8 становится 15 (IN-8.2).
+  line-height: 0;
+}
+

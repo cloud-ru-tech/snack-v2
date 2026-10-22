@@ -1,0 +1,53 @@
+{
+  "AiButtonControls": {
+    "displayName": "AiButtonControls",
+    "propsTypeName": "AiButtonControlsProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-button-controls"
+      },
+      "direction": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "down",
+          "left",
+          "right"
+        ],
+        "description": "Направление стрелки (ось Way в Figma).",
+        "typeRefs": [
+          "Direction"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Блокирует нажатие."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие на стрелку. Содержимое двигает потребитель."
+      }
+    },
+    "relatedTypes": {
+      "Direction": {
+        "kind": "union",
+        "values": [
+          "down",
+          "left",
+          "right"
+        ],
+        "own": true
+      }
+    }
+  }
+}

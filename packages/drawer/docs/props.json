@@ -691,7 +691,7 @@
             "description": "Управление состоянием показан/не показан."
           },
           "position": {
-            "type": "\"top\" | \"left\" | \"right\" | \"bottom\"",
+            "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
             "required": true,
             "values": [
               "bottom",
@@ -1060,7 +1060,7 @@
             "description": "Управление состоянием показан/не показан."
           },
           "position": {
-            "type": "\"top\" | \"left\" | \"right\" | \"bottom\"",
+            "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
             "required": true,
             "values": [
               "bottom",

@@ -33,6 +33,8 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/ai-button-close": "workspace:^",
     "@ds/alert": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"

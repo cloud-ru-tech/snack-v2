@@ -1,0 +1,50 @@
+{
+  "name": "@ds/ai-button-controls",
+  "version": "1.0.0",
+  "description": "Кнопка-стрелка для прокрутки и листания в AI-компонентах.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-button-controls"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-button-controls",
+  "license": "Apache-2.0",
+  "author": "Артем Сауляк <avsaulyak@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/icons": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

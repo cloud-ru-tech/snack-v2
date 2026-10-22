@@ -1,5 +1,5 @@
-import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 export function Ssh() {
-  return <AiFieldNotice size={SIZE.S} variant={VARIANT.Ssh} onActionClick={() => undefined} />;
+  return <AiFieldNotice variant={VARIANT.Ssh} onActionClick={() => undefined} />;
 }

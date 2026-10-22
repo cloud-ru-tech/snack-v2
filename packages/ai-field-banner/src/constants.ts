@@ -23,10 +23,10 @@ export const SIZE = {
 
 export const TEST_IDS = {
   root: 'ai-field-banner',
-  advice: 'ai-field-banner__advice',
   mainLine: 'ai-field-banner__main-line',
   icon: 'ai-field-banner__icon',
   content: 'ai-field-banner__content',
   action: 'ai-field-banner__action',
+  close: 'ai-field-banner__close',
   bottomContent: 'ai-field-banner__bottom-content',
 } as const;

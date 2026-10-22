@@ -1,4 +1,4 @@
-import { AiFieldBanner, SIZE, VARIANT as BANNER_VARIANT } from '@ds/ai-field-banner';
+import { AiFieldBanner, useAiFieldBannerSize, VARIANT as BANNER_VARIANT } from '@ds/ai-field-banner';
 import { AiQueue } from '@ds/ai-queue';
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
@@ -14,12 +14,14 @@ import styles from './styles.module.scss';
 export function AiFieldNotice(props: AiFieldNoticeProps): ReactElement {
   const {
     className,
-    size = SIZE.S,
+    size: sizeProp,
+    layoutPresets,
     variant,
     onActionClick,
     'data-test-id': dataTestId = TEST_IDS.root,
     ...rest
   } = props;
+  const size = useAiFieldBannerSize(sizeProp, layoutPresets);
 
   const isQueueVariant = variant === VARIANT.Queue;
   const vmName = variant === VARIANT.VmAgent ? props.vmName : undefined;
@@ -66,6 +68,7 @@ export function AiFieldNotice(props: AiFieldNoticeProps): ReactElement {
         <AiFieldBanner
           variant={BANNER_VARIANT.Information}
           size={size}
+          layoutPresets={layoutPresets}
           className={styles.queueBanner}
           bottomContent={
             <AiQueue {...queueRest} className={cn(styles.queue, queueClassName)} data-test-id={queueTestId} />
@@ -82,6 +85,7 @@ export function AiFieldNotice(props: AiFieldNoticeProps): ReactElement {
             actionLabel={resolvedBanner.actionLabel}
             onActionClick={onActionClick}
             size={size}
+            layoutPresets={layoutPresets}
             data-test-id={TEST_IDS.banner}
             onMouseEnter={isAnimatedDescription ? handleMainLineMouseEnter : undefined}
             onMouseLeave={isAnimatedDescription ? handleMainLineMouseLeave : undefined}

@@ -43,9 +43,9 @@
 <AiFieldNotice variant='queue' queue={{ steps, defaultOpen: true }} />
 ```
 
-### Size (default `s`)
+### Size (default `s` на desktop, `m` на mobile)
 
-Общий `size` на корне — передаётся в `AiFieldBanner` и внутренние части описания.
+Общий `size` на корне — передаётся в `AiFieldBanner` и внутренние части описания. Как размер выбирается на mobile — раздел «Адаптивность».
 
 - `s` — desktop (Mobile Off).
 - `m` — mobile (Mobile On).
@@ -79,10 +79,10 @@ import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice'
 Безопасный режим с ротирующим описанием
 
 ```tsx
-import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 export function Password() {
-  return <AiFieldNotice size={SIZE.S} variant={VARIANT.Password} onActionClick={() => undefined} />;
+  return <AiFieldNotice variant={VARIANT.Password} onActionClick={() => undefined} />;
 }
 ```
 
@@ -91,10 +91,10 @@ export function Password() {
 Безопасный режим для SSH-ключа
 
 ```tsx
-import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 export function Ssh() {
-  return <AiFieldNotice size={SIZE.S} variant={VARIANT.Ssh} onActionClick={() => undefined} />;
+  return <AiFieldNotice variant={VARIANT.Ssh} onActionClick={() => undefined} />;
 }
 ```
 
@@ -103,10 +103,10 @@ export function Ssh() {
 Чат с инженером
 
 ```tsx
-import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 export function Support() {
-  return <AiFieldNotice size={SIZE.S} variant={VARIANT.Support} onActionClick={() => undefined} />;
+  return <AiFieldNotice variant={VARIANT.Support} onActionClick={() => undefined} />;
 }
 ```
 
@@ -115,17 +115,11 @@ export function Support() {
 Режим управления ВМ с vmName и vmIp
 
 ```tsx
-import { AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 export function VmAgent() {
   return (
-    <AiFieldNotice
-      size={SIZE.S}
-      variant={VARIANT.VmAgent}
-      vmName='my-lovely-vm'
-      vmIp='93.7.94.11'
-      onActionClick={() => undefined}
-    />
+    <AiFieldNotice variant={VARIANT.VmAgent} vmName='my-lovely-vm' vmIp='93.7.94.11' onActionClick={() => undefined} />
   );
 }
 ```
@@ -135,7 +129,7 @@ export function VmAgent() {
 Очередь задач агента в information-баннере
 
 ```tsx
-import { AI_QUEUE_STEP_STATE, AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AI_QUEUE_STEP_STATE, AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 const steps = [
   { label: 'Step Description', state: AI_QUEUE_STEP_STATE.Done },
@@ -148,7 +142,6 @@ const steps = [
 export function Queue() {
   return (
     <AiFieldNotice
-      size={SIZE.S}
       variant={VARIANT.Queue}
       queue={{
         steps,
@@ -173,9 +166,10 @@ export function Queue() {
 |------|------|---------|-------------|
 | `className` | `string` | — | Доп. класс корня. |
 | `data-test-id` | `string` | — |  |
+| `layoutPresets` | `AiFieldBannerLayoutDefaults` \| `LayoutPresets` | — | Override mobile-дефолтов адаптива баннера для этого инстанса (deep-merge поверх `AI_FIELD_BANNER_LAYOUT_PRESETS`). |
 | `onActionClick` | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | — | Обработчик клика по кнопке действия. Не используется при `variant='queue'`. |
 | `queue` | `AiQueueProps` | — | Пропсы `AiQueue`. Только при `variant='queue'`. |
-| `size` | `"m"` \| `"s"` | — | Размер баннера. |
+| `size` | `"m"` \| `"s"` | — | Размер баннера на desktop. На mobile — пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`), изменить его — через `layoutPresets`. |
 | `variant` | `"password"` \| `"queue"` \| `"ssh"` \| `"support"` \| `"vmAgent"` | — | Предзашитый сценарий: password, ssh, vmAgent, support или queue. Набор пропсов зависит от значения. |
 | `vmIp` | `string` | — | IP-адрес виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`. |
 | `vmName` | `string` | — | Имя виртуальной машины для второго кадра описания. Только при `variant='vmAgent'`. |
@@ -184,3 +178,13 @@ export function Queue() {
 
 - [`@ds/ai-field-banner`](/packages/ai-field-banner) — базовый баннер под полем ввода.
 - [`@ds/ai-queue`](/packages/ai-queue) — очередь задач для `variant='queue'`.
+## Адаптивность
+
+Размер Notice зависит от раскладки `AdaptiveProvider`. Обычный проп `size` задаёт размер на desktop, а на mobile действует пресет `AI_FIELD_BANNER_LAYOUT_PRESETS`:
+
+| Раскладка | `size` без пропа | `size` с пропом |
+|---|---|---|
+| desktop | `s` (Field Banner) | значение пропа |
+| mobile | `m` (Field Banner Mobile) | `m` |
+
+Чтобы изменить размер на mobile, передайте `layoutPresets={{ mobile: { size: 's' } }}`. Пресет нужен потому, что макет задаёт отдельный мобильный баннер.

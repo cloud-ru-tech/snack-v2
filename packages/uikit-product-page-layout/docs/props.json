@@ -24,11 +24,11 @@
         "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "button": {
-        "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | (Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
+        "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | (Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
         "required": false
       },
       "buttonProps": {
-        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"appearance\" | \"size\" | \"fullWidth\">",
+        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"size\" | \"appearance\" | \"fullWidth\">",
         "required": false,
         "description": "Свойства кнопки открытия виджета"
       },
@@ -269,7 +269,7 @@
     "propsTypeName": "ButtonDroplistProps",
     "props": {
       "button": {
-        "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { ...; })",
+        "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { ...; })",
         "required": true,
         "typeRefs": [
           "ButtonProps"
@@ -1217,7 +1217,7 @@
     "propsTypeName": "ButtonKebabProps",
     "props": {
       "button": {
-        "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\">",
+        "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\">",
         "required": false,
         "typeRefs": [
           "ButtonProps"
@@ -2165,7 +2165,7 @@
     "propsTypeName": "ButtonQuotaProps",
     "props": {
       "buttonProps": {
-        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"appearance\" | \"size\" | \"fullWidth\">",
+        "type": "Pick<ButtonProps, \"className\" | \"view\" | \"label\" | \"disabled\" | \"size\" | \"appearance\" | \"fullWidth\">",
         "required": false,
         "description": "Свойства кнопки открытия виджета",
         "typeRefs": [
@@ -3531,7 +3531,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -3688,7 +3688,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -3714,7 +3714,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"
@@ -4590,7 +4590,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -4747,7 +4747,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -4773,7 +4773,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"
@@ -6167,7 +6167,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -6324,7 +6324,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -6350,7 +6350,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"
@@ -6977,7 +6977,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -7134,7 +7134,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -7160,7 +7160,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"
@@ -8583,7 +8583,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"size\" | \"icon\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -8740,7 +8740,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -8766,7 +8766,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"

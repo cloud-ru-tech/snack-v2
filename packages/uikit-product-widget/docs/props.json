@@ -22,7 +22,7 @@
         "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
       },
       "button": {
-        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\"> | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
+        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"label\"> | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<...> & { ...; })",
         "required": false
       },
       "className": {
@@ -168,7 +168,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { ...; })",
+        "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\" | undefined; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { ...; })",
         "required": true
       },
       "list": {
@@ -183,7 +183,7 @@
     "propsTypeName": null,
     "props": {
       "button": {
-        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\">",
+        "type": "Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"label\">",
         "required": false
       },
       "list": {
@@ -367,7 +367,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"appearance\" | \"icon\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
+            "type": "(Omit<ButtonProps<\"button\">, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
             "required": true,
             "typeRefs": [
               "ButtonProps"
@@ -387,7 +387,7 @@
         "kind": "interface",
         "props": {
           "button": {
-            "type": "Omit<ButtonProps<\"button\">, \"view\" | \"label\" | \"icon\"> | undefined",
+            "type": "Omit<ButtonProps<\"button\">, \"view\" | \"icon\" | \"label\"> | undefined",
             "required": false,
             "typeRefs": [
               "ButtonProps"

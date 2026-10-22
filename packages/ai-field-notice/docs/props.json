@@ -12,6 +12,15 @@
         "type": "string",
         "required": false
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<AiFieldBannerLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива баннера для этого инстанса (deep-merge поверх `AI_FIELD_BANNER_LAYOUT_PRESETS`).",
+        "typeRefs": [
+          "AiFieldBannerLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
       "onActionClick": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
@@ -29,7 +38,7 @@
           "m",
           "s"
         ],
-        "description": "Размер баннера.",
+        "description": "Размер баннера на desktop. На mobile — пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`), изменить его — через `layoutPresets`.",
         "typeRefs": [
           "Size"
         ]
@@ -58,6 +67,46 @@
       }
     },
     "relatedTypes": {
+      "AiFieldBannerLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер на desktop: `s` — Field Banner, `m` — Field Banner Mobile. Высота по содержимому: при одной строке `s` 40, `m` 48.\nНа mobile размер задаёт пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`); изменить его — через `layoutPresets`.",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "Size": {
         "kind": "union",
         "values": [

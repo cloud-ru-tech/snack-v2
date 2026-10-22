@@ -7,7 +7,6 @@ import type { PlaygroundStoryArgs } from './playgroundTypes';
 import { TEST_IDS } from './testIds';
 
 export const playgroundArgs: PlaygroundStoryArgs = {
-  size: SIZE.S,
   variant: VARIANT.Password,
   queue: {
     steps: FIXTURE_QUEUE_STEPS,
@@ -20,6 +19,7 @@ export const playgroundArgs: PlaygroundStoryArgs = {
 };
 
 export const playgroundArgTypes: Meta<PlaygroundStoryArgs>['argTypes'] = {
+  layoutPresets: { table: { disable: true } },
   size: {
     control: 'inline-radio',
     options: Object.values(SIZE),

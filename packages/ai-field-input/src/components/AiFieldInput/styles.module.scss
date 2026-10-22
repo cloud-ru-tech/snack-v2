@@ -1,0 +1,96 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+
+  // Пока открыт список по `/` и `@`, баннер держит место: высота компонента не меняется (AL-Д-7.3).
+  &[data-hidden] {
+    visibility: hidden;
+  }
+}
+
+.fieldArea {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.searchList {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+
+  padding-bottom: base.$sn-primitive-dimension-4;
+
+  outline: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  box-sizing: border-box;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-8;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+
+  &:focus-within {
+    border-color: base.$sn-theme-color-primary-accent;
+  }
+
+  .root[data-disabled] & {
+    border-color: base.$sn-theme-color-available-borderColor;
+    background: base.$sn-theme-color-neutral-background;
+  }
+}
+
+.footer {
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 0;
+  height: base.$sn-density-size-m;
+}
+
+.footerLeft,
+.footerRightSlot {
+  display: flex;
+  gap: base.$sn-primitive-dimension-0;
+  align-items: center;
+  min-width: 0;
+}
+
+.footerRight {
+  display: flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: center;
+}
+
+.disclaimer {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  min-height: base.$sn-density-typography-roleBody-lineHeightS;
+  color: base.$sn-theme-color-available-version-textTertiary;
+  text-align: center;
+}

@@ -33,10 +33,24 @@
         "required": false,
         "description": "Иконка слева от текста"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<AiFieldBannerLayoutDefaults>>>",
+        "required": false,
+        "description": "Override mobile-дефолтов адаптива для этого инстанса (deep-merge поверх `AI_FIELD_BANNER_LAYOUT_PRESETS`).\nEscape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`.",
+        "typeRefs": [
+          "AiFieldBannerLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
       "onActionClick": {
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
         "description": "Обработчик клика по кнопке действия."
+      },
+      "onClose": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие на крестик. Крестик показывается, только если обработчик передан; убрать баннер решает потребитель."
       },
       "size": {
         "type": "enum",
@@ -45,8 +59,7 @@
           "m",
           "s"
         ],
-        "defaultValue": "s",
-        "description": "Размер: без `bottomContent` — `s` 400×48, `m` 400×60; с ним — `s` 400×72, `m` 400×84.",
+        "description": "Размер на desktop: `s` — Field Banner, `m` — Field Banner Mobile. Высота по содержимому: при одной строке `s` 40, `m` 48.\nНа mobile размер задаёт пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`); изменить его — через `layoutPresets`.",
         "typeRefs": [
           "Size"
         ]
@@ -70,6 +83,46 @@
       }
     },
     "relatedTypes": {
+      "AiFieldBannerLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер на desktop: `s` — Field Banner, `m` — Field Banner Mobile. Высота по содержимому: при одной строке `s` 40, `m` 48.\nНа mobile размер задаёт пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`); изменить его — через `layoutPresets`.",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": true
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
+      },
       "Size": {
         "kind": "union",
         "values": [

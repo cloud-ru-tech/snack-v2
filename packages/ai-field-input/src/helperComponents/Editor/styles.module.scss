@@ -1,0 +1,143 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+// Поле растёт до десяти строк на desktop и до пяти на mobile, дальше прокрутка (ITC-5.1).
+$maxLines: 10;
+$maxLinesMobile: 5;
+
+.root {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  position: relative;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  &[data-disabled] {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+}
+
+.scroll {
+  max-height: calc(#{base.$sn-density-typography-roleBody-lineHeightM} * #{$maxLines});
+
+  .root[data-mobile] & {
+    max-height: calc(#{base.$sn-density-typography-roleBody-lineHeightM} * #{$maxLinesMobile});
+  }
+}
+
+.content {
+  padding-right: base.$sn-primitive-dimension-8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  outline: none;
+
+  p {
+    margin: 0;
+  }
+}
+
+.placeholder {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  color: base.$sn-theme-color-available-version-textDisabled;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Чип — строчный: неразрывна только рамка Body, текст за ним переносится как обычно.
+.chip {
+  display: inline;
+}
+
+.stateLayer {
+  visibility: initial;
+}
+
+.chipBody {
+  cursor: default;
+  user-select: none;
+
+  position: relative;
+
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-2;
+  border-radius: base.$sn-density-radius-3xs;
+
+  color: base.$sn-theme-color-green-text;
+  vertical-align: top;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}
+
+.chipIcon,
+.chipRemove {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: base.$sn-density-icon-xs;
+  height: base.$sn-density-icon-xs;
+}
+
+.chipRemove {
+  cursor: pointer;
+
+  display: none;
+
+  padding: base.$sn-primitive-dimension-0;
+  border: none;
+
+  color: inherit;
+
+  appearance: none;
+  background: transparent;
+}
+
+.chipBody:hover,
+.chipBody:active,
+.chipBody[data-pressed='true'] {
+  .chipIcon {
+    display: none;
+  }
+
+  .chipRemove {
+    display: flex;
+  }
+}
+
+.chipLabel {
+  position: relative;
+}
+
+// Выделенный клавишей чип показывает только Pressed (ITC-6.4): браузерную подсветку выделения прячем.
+.chip::selection,
+.chip *::selection {
+  background: transparent;
+}
+
+// Подсказка параметров за чипом скилла (ISM-5): виджет плагина ChipExtension, в текст не входит.
+.paramsHint {
+  pointer-events: none;
+  user-select: none;
+  margin-inline-start: base.$sn-primitive-dimension-2;
+  color: base.$sn-theme-color-available-version-textDisabled;
+}
+
+.searchMark {
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.searchPlaceholder {
+  pointer-events: none;
+  user-select: none;
+  color: base.$sn-theme-color-available-version-textDisabled;
+}

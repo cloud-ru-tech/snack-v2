@@ -13,19 +13,22 @@ const ICON_OPTIONS = {
   placeholder: <PlaceholderSVG />,
 } as const;
 
-const meta: Meta<typeof AiFieldBanner> = {
+type StoryProps = AiFieldBannerProps & { showClose: boolean };
+
+const meta: Meta<StoryProps> = {
   title: 'Ai/AiFieldBanner',
   component: AiFieldBanner,
   parameters: { layout: 'fullscreen' },
   args: {
     variant: VARIANT.Information,
-    size: SIZE.S,
     content: 'Description',
     actionLabel: 'Label text',
     icon: 'placeholder' as unknown as AiFieldBannerProps['icon'],
+    showClose: true,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
+    layoutPresets: { table: { disable: true } },
     variant: {
       control: 'select',
       options: VARIANT_ORDER,
@@ -46,14 +49,21 @@ const meta: Meta<typeof AiFieldBanner> = {
     },
     actionLabel: { control: 'text', description: 'Подпись кнопки действия.' },
     onActionClick: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    showClose: { name: '[Stories]: showClose', control: 'boolean' },
   },
-  render: (args: AiFieldBannerProps) => (
+  render: ({ showClose, ...args }: StoryProps) => (
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>Инлайн-баннер для поля ввода: тип, описание, действие и доп. слот.</DemoHint>
         <DemoActions align='start'>
-          <AiFieldBanner {...args} className={styles.bannerCell} onActionClick={fn()} />
+          <AiFieldBanner
+            {...args}
+            className={styles.bannerCell}
+            onActionClick={fn()}
+            onClose={showClose ? fn() : undefined}
+          />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
@@ -61,7 +71,7 @@ const meta: Meta<typeof AiFieldBanner> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof AiFieldBanner>;
+type Story = StoryObj<StoryProps>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

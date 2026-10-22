@@ -1,0 +1,86 @@
+---
+title: AiButtonControls
+package: '@ds/ai-button-controls'
+description: Кнопка-стрелка для прокрутки и листания в AI-компонентах.
+order: 4
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiButtonControlsDoc from './props.json'
+
+import { Directions } from '../demos/examples/Directions'
+import DirectionsSrc from '../demos/examples/Directions.tsx?raw'
+import { Carousel } from '../demos/examples/Carousel'
+import CarouselSrc from '../demos/examples/Carousel.tsx?raw'
+import { CustomLabel } from '../demos/examples/CustomLabel'
+import CustomLabelSrc from '../demos/examples/CustomLabel.tsx?raw'
+
+# AiButtonControls
+
+`AiButtonControls` — кнопка-стрелка 24×24 из набора AI Components. Сообщает о нажатии через `onClick`; что и на сколько прокрутить, решает потребитель.
+
+## Когда использовать
+
+- Кнопка прокрутки ленты сообщений к последнему ответу — направление `down`.
+- Листание ряда вложений в поле ввода на desktop — направления `left` и `right`.
+
+### Когда не нужен
+
+- Закрытие блока или удаление вложения:
+  - используйте `@ds/ai-button-close`.
+- Раскрытие и сворачивание блока:
+  - используйте `@ds/ai-button-chevron`.
+
+## Анатомия
+
+Кнопка состоит из подложки с тенью и иконки стрелки. Обводки и текста нет.
+
+### Direction
+
+- `left` — стрелка влево.
+- `right` — стрелка вправо.
+- `down` — стрелка вниз.
+
+На устройствах с наведением стрелка в покое окрашена вторичным цветом текста, при наведении — основным; подложка не меняется. На сенсорных экранах состояния наведения нет. Фокус с клавиатуры показывается акцентной обводкой.
+
+Доступное имя по умолчанию берётся из локали по направлению: «Прокрутить влево», «Прокрутить вправо», «Прокрутить вниз». Если кнопка ведёт к конкретному месту, передайте свой `aria-label`.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-button-controls
+```
+
+```ts
+import { AiButtonControls } from '@ds/ai-button-controls'
+```
+
+## Примеры использования
+
+<Example title='Направления' description='Left, Right и Down' code={DirectionsSrc}>
+  <Directions client:visible />
+</Example>
+
+<Example title='Листание' description='Стрелки листают ряд; на краях стрелка выключена' code={CarouselSrc}>
+  <Carousel client:visible />
+</Example>
+
+<Example title='Доступное имя' description='aria-label для кнопки прокрутки к последнему сообщению' code={CustomLabelSrc}>
+  <CustomLabel client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiButtonControlsDoc.AiButtonControls} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aibuttoncontrols--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-button-controls')} />

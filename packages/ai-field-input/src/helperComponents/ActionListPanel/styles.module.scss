@@ -1,0 +1,39 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Предел высоты задан в макете числом без переменной: AL-7.3 (десять строк по 32).
+$maxHeight: 320px;
+
+.root {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  max-height: $maxHeight;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-0;
+  border-radius: base.$sn-density-radius-2xs;
+
+  background: base.$sn-theme-color-neutral-background2Level;
+  box-shadow: base.$sn-boxShadow-elevation-level1;
+
+  &[data-padding] {
+    padding: base.$sn-primitive-dimension-8;
+  }
+}
+
+.scroll {
+  min-height: 0;
+}
+
+.empty {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-height: base.$sn-primitive-dimension-32;
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-8;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+}

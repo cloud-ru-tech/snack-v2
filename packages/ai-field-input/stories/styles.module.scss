@@ -1,0 +1,11 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.cell {
+  width: calc(#{base.$sn-primitive-dimension-88} * 5);
+  padding-top: base.$sn-primitive-dimension-32;
+}
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}

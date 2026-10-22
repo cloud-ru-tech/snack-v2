@@ -1,4 +1,3 @@
-import { TEST_IDS as BANNER_TEST_IDS } from '@ds/ai-field-banner';
 import { AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement, useState } from 'react';
@@ -98,6 +97,7 @@ export const BackdropBlur: Story = {
     const canvas = within(canvasElement);
     const root = canvas.getByTestId(TEST_IDS.root);
     await expect(root).toBeVisible();
-    await expect(within(root).getByTestId(BANNER_TEST_IDS.advice)).toBeVisible();
+    const banner = within(root).getByTestId(TEST_IDS.banner);
+    await expect(getComputedStyle(banner).backdropFilter).not.toBe('none');
   },
 };

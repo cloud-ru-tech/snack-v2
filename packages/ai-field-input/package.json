@@ -1,0 +1,61 @@
+{
+  "name": "@ds/ai-field-input",
+  "version": "1.0.0",
+  "description": "Поле ввода сообщения для чата с агентом: текст с чипами скиллов и упоминаний, вложения, футер действий.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/ai-field-input"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/ai-field-input",
+  "license": "Apache-2.0",
+  "author": "Артем Сауляк <avsaulyak@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/ai-button-controls": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/hot-spot": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/scroll": "workspace:^",
+    "@ds/tag": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "@tiptap/pm": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

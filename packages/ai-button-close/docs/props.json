@@ -1,0 +1,60 @@
+{
+  "AiButtonClose": {
+    "displayName": "AiButtonClose",
+    "propsTypeName": "AiButtonCloseProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-button-close"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Блокирует нажатие."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие на крестик. Что происходит после нажатия, решает потребитель."
+      },
+      "outline": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Подложка с обводкой. У `xs` включена всегда, у `m` не применяется. По умолчанию `false`."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "defaultValue": "s",
+        "description": "Размер: `xs` 16×16, `s` 24×24, `m` 32×32. По умолчанию `s`.",
+        "typeRefs": [
+          "Size"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "Size": {
+        "kind": "union",
+        "values": [
+          "m",
+          "s",
+          "xs"
+        ],
+        "own": true
+      }
+    }
+  }
+}

@@ -52,4 +52,29 @@ test.describe('AiFieldBanner — rendering', () => {
     );
     await expect(getByTestId(TEST_IDS.bottomContent)).toHaveText('Extra');
   });
+
+  test('close button follows onClose; single-line height matches FB-6.3', async ({
+    gotoStory,
+    getByTestId,
+    setStoryArgs,
+  }) => {
+    await gotoStory(buildStoryOptions());
+    const root = getByTestId(TEST_IDS.root);
+    await expect(getByTestId(TEST_IDS.close)).toBeVisible();
+
+    await test.step('size s → 40px', async () => {
+      await setStoryArgs({ size: 's' });
+      await expect.poll(async () => (await root.boundingBox())?.height).toBe(40);
+    });
+
+    await test.step('size m → 48px', async () => {
+      await setStoryArgs({ size: 'm' });
+      await expect.poll(async () => (await root.boundingBox())?.height).toBe(48);
+    });
+
+    await test.step('no onClose → no close button', async () => {
+      await setStoryArgs({ showClose: false });
+      await expect(getByTestId(TEST_IDS.close)).toHaveCount(0);
+    });
+  });
 });

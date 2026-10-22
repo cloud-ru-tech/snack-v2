@@ -20,10 +20,13 @@ type Story = StoryObj<typeof AiFieldBanner>;
 const variants = VARIANT_ORDER;
 const sizes = Object.values(SIZE);
 
+const handleClose = () => undefined;
+
 const defaultProps = {
   content: 'Description',
   actionLabel: 'Label text',
   variant: VARIANT.Information,
+  onClose: handleClose,
 } as const;
 
 const longDescription =

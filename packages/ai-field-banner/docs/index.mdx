@@ -18,6 +18,8 @@ import { Variants } from '../demos/examples/Variants'
 import VariantsSrc from '../demos/examples/Variants.tsx?raw'
 import { Mobile } from '../demos/examples/Mobile'
 import MobileSrc from '../demos/examples/Mobile.tsx?raw'
+import { Dismiss } from '../demos/examples/Dismiss'
+import DismissSrc from '../demos/examples/Dismiss.tsx?raw'
 import { WithBottomContent } from '../demos/examples/WithBottomContent'
 import WithBottomContentSrc from '../demos/examples/WithBottomContent.tsx?raw'
 
@@ -25,7 +27,7 @@ import WithBottomContentSrc from '../demos/examples/WithBottomContent.tsx?raw'
 
 `AiFieldBanner` — компактный баннер под полем ввода из набора AI Components. Показывает подсказку, предупреждение или контекст действия с опциональной иконкой, кнопкой справа и дополнительным слотом снизу.
 
-Мастер-ширина баннера — 400px. Размеры по Figma: `s` — 400×72, `m` — 400×84.
+Ширину задаёт родитель (400px в макете — пример). Высота подстраивается под содержимое: при одной строке текста `s` — 40px, `m` — 48px; с нижним слотом 16px — 64px и 72px.
 
 ## Когда использовать
 
@@ -42,18 +44,23 @@ import WithBottomContentSrc from '../demos/examples/WithBottomContent.tsx?raw'
 
 ### Variant
 
-Семантика фона (проп `variant`): `information`, `security`, `help`, `agentic`, `warning`, `critical`. Иконка не подставляется автоматически — передайте `icon` явно.
+Семантика фона (проп `variant`):
 
-### Size
+- `information`, `security`, `help`, `agentic` — полупрозрачная подложка с размытием фона;
+- `warning`, `critical` — непрозрачная подложка, иконка окрашена акцентом варианта.
 
-Размер (Figma: Mobile Off → `s`, Mobile On → `m`).
+Иконка не подставляется автоматически — передайте `icon` явно. У всех вариантов обводка по периметру и одинаковое скругление.
 
-- `s` — 400×72, компактная типографика и иконка.
-- `m` — 400×84, увеличенные иконка, текст и кнопка действия.
+### Size (default `s` на desktop, `m` на mobile)
+
+Размер (Figma: Mobile Off → `s`, Mobile On → `m`). Как размер выбирается на mobile — раздел «Адаптивность».
+
+- `s` — Field Banner: иконка 16, текст `body/s`, кнопка действия и крестик 24, промежутки 4.
+- `m` — Field Banner Mobile: иконка 24, текст `body/m`, кнопка действия и крестик 32, промежутки 8.
 
 ### Content
 
-Основной текст основной строки. Поддерживает перенос на несколько строк (`overflow-wrap`). Слот скрыт, если не задан.
+Текст основной строки. Длинный текст переносится на две строки, дальше обрезается многоточием.
 
 ### Icon
 
@@ -70,9 +77,26 @@ import { PlaceholderSVG } from '@ds/icons'
 
 Текстовая кнопка справа рендерится через `AlertButton` из `@ds/alert` и использует его state layer (`:hover`, `:focus-visible`, `:active`). Рендерится только при `actionLabel`. `onActionClick` — обработчик клика.
 
+### Close
+
+Крестик справа от кнопки действия (`AiButtonClose`: `s` для размера `s`, `m` для `m`). Показывается, когда передан `onClose`; убрать баннер решает потребитель. Крестик не зависит от варианта и не заменяет кнопку действия.
+
 ### Bottom content
 
 `bottomContent` под основной строкой — произвольный контент. Слот скрыт, если не задан.
+
+## Адаптивность
+
+Размер баннера зависит от раскладки `AdaptiveProvider`. Обычный проп `size` задаёт размер на desktop, а на mobile действует пресет `AI_FIELD_BANNER_LAYOUT_PRESETS`:
+
+| Раскладка | `size` без пропа | `size` с пропом |
+|---|---|---|
+| desktop | `s` (Field Banner) | значение пропа |
+| mobile | `m` (Field Banner Mobile) | `m` |
+
+Чтобы изменить размер на mobile, передайте `layoutPresets={{ mobile: { size: 's' } }}`. Пресет нужен потому, что макет задаёт отдельный мобильный баннер.
+
+<StorybookEmbed storyId='ai-aifieldbanner--playground' globals={{ layoutType: 'mobile' }} height={360} />
 
 ## Установка
 
@@ -94,7 +118,11 @@ import { AiFieldBanner, SIZE, VARIANT } from '@ds/ai-field-banner'
   <Variants client:visible />
 </Example>
 
-<Example title='Mobile' description='Размер `m` (400×84)' code={MobileSrc}>
+<Example title='Закрытие' description='Крестик скрывает баннер, состояние хранит родитель' code={DismissSrc}>
+  <Dismiss client:visible />
+</Example>
+
+<Example title='Mobile' description='Размер `m` — Field Banner Mobile' code={MobileSrc}>
   <Mobile client:visible />
 </Example>
 

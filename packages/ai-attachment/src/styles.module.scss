@@ -1,0 +1,132 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  width: base.$sn-primitive-dimension-88;
+  height: base.$sn-primitive-dimension-88;
+
+  outline: none;
+
+  &[data-interactive] {
+    cursor: pointer;
+  }
+}
+
+.wrapper {
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-end;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-density-radius-2xs;
+
+  // Обводка поверх заливки, как в макете: превью занимает контейнер целиком, без зазора у скруглений.
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    // В макете — sn/theme/color/material/stateLayer/regular/default/borderColor (#0000001a), в @ds/figma-variables его нет.
+    // Временно токен с тем же значением; заменить, когда переменная появится.
+    border: base.$sn-primitive-strokeWeight-strokeThin solid base.$sn-theme-color-material-stateLayer-versionOnColor-hovered-filled;
+    border-radius: inherit;
+  }
+
+  .root[data-type='image'] & {
+    padding: base.$sn-primitive-dimension-0;
+  }
+
+  .root[data-state='loading'] & {
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  .root[data-state='error'] &::after {
+    border-color: base.$sn-theme-color-red-accent;
+  }
+}
+
+.preview {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.typeIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  width: base.$sn-density-icon-s;
+  height: base.$sn-density-icon-s;
+
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.fileName {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 's');
+
+  position: relative;
+
+  overflow: hidden;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  text-align: center;
+
+  .root[data-state='error'] & {
+    color: base.$sn-theme-color-red-text;
+  }
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  color: base.$sn-theme-color-available-version-textMain;
+}
+
+.close {
+  position: absolute;
+  top: base.$sn-primitive-dimension-4;
+  right: base.$sn-primitive-dimension-4;
+  display: flex;
+
+  .root:not([data-mobile]) & {
+    visibility: hidden;
+  }
+
+  .root:not([data-mobile]):hover &,
+  .root:not([data-mobile]):focus-within & {
+    visibility: visible;
+  }
+}
+
+.root:focus-visible .wrapper {
+  outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+  outline-offset: 0;
+}

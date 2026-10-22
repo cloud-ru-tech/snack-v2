@@ -7,6 +7,7 @@ export const TEST_IDS = {
   icon: COMPONENT_TEST_IDS.icon,
   content: COMPONENT_TEST_IDS.content,
   action: COMPONENT_TEST_IDS.action,
+  close: COMPONENT_TEST_IDS.close,
   bottomContent: COMPONENT_TEST_IDS.bottomContent,
 } as const;
 

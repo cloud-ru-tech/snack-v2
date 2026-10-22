@@ -1,0 +1,92 @@
+---
+title: AiAttachment
+package: '@ds/ai-attachment'
+description: Плитка вложения 88×88 для AI-компонентов — картинка с превью или файл с именем, загрузка и ошибка.
+order: 5
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiAttachmentDoc from './props.json'
+
+import { States } from '../demos/examples/States'
+import StatesSrc from '../demos/examples/States.tsx?raw'
+import { RemoveAndRetry } from '../demos/examples/RemoveAndRetry'
+import RemoveAndRetrySrc from '../demos/examples/RemoveAndRetry.tsx?raw'
+import { Clickable } from '../demos/examples/Clickable'
+import ClickableSrc from '../demos/examples/Clickable.tsx?raw'
+
+# AiAttachment
+
+`AiAttachment` — плитка одного вложения фиксированного размера 88×88. Показывает картинку с превью или файл с именем и сообщает о трёх событиях отдельно: нажатие крестика (`onRemove`), повтора загрузки (`onRetry`) и самой плитки (`onClick`). Лимиты количества и размера файлов плитка не хранит: превышение потребитель показывает состоянием `error`.
+
+## Когда использовать
+
+- Ряд вложений в поле ввода сообщения (`@ds/ai-field-input`).
+- Вложения в сообщениях ленты и других местах, где нужен единый вид файла.
+
+### Когда не нужен
+
+- Карточка файла с названием, описанием и скачиванием:
+  - используйте `@ds/attachment`.
+
+## Анатомия
+
+Плитка состоит из контейнера, крестика в правом верхнем углу и, по состоянию, индикатора загрузки или кнопки повтора в центре.
+
+### Type (default `image`)
+
+- `image` — превью картинки заливкой контейнера, без имени.
+- `file` — иконка типа (`icon`, по умолчанию файл) и имя, обрезанное посередине.
+
+### State (default `default`)
+
+- `default` — непрозрачный контейнер.
+- `loading` — полупрозрачный контейнер и индикатор загрузки.
+- `error` — красная обводка и кнопка повтора; у файла имя окрашено красным.
+
+### Раскладка
+
+Плитка закреплена на платформе webDesktop на обеих раскладках: размер 88×88 не меняется.
+
+- Desktop — крестик `xs` появляется сразу при наведении или фокусе, подсказка (`tooltip`) — через 300 мс после наведения.
+- Mobile — крестик `s` виден всегда, подсказки нет.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-attachment
+```
+
+```ts
+import { AiAttachment } from '@ds/ai-attachment'
+```
+
+## Примеры использования
+
+<Example title='Состояния' description='Default, Loading и Error' code={StatesSrc}>
+  <States client:visible />
+</Example>
+
+<Example title='Удаление и повтор' description='Крестик удаляет плитку, повтор снимает ошибку' code={RemoveAndRetrySrc}>
+  <RemoveAndRetry client:visible />
+</Example>
+
+<Example title='Нажатие на плитку' description='Плитка с onClick доступна с клавиатуры' code={ClickableSrc}>
+  <Clickable client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={aiAttachmentDoc.AiAttachment} />
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aiattachment--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-attachment')} />

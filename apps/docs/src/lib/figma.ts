@@ -36,6 +36,10 @@ const HISTORY_LINE = {
 } as const;
 const TOOL_ELEMENTS = { ...AI_COMPONENTS, nodeId: '7217-4865' } as const;
 const SUGGESTION = { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion' } as const;
+const INPUT_SPEC = {
+  fileKey: 'UrThvQIUarqTZr59TD8ZF9',
+  fileName: 'Input-Specification',
+} as const;
 const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
@@ -85,6 +89,7 @@ const LIST_STATES = {
 // Формат комментариев: `// <pkg-or-sub> → <figma-node-name>`.
 export const FIGMA_NODES = {
   accordion: { ...SNACK, nodeId: '6045-114' }, // accordion → accordion
+  'ai-attachment': { ...INPUT_SPEC, nodeId: '11037-21756' }, // ai-attachment → Attachment
   'ai-button-chevron': { ...AI_COMPONENTS, nodeId: '7247-7715' }, // ai-button-chevron → ButtonChevron
   'ai-button-giga': {
     _: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16104' },
@@ -93,6 +98,9 @@ export const FIGMA_NODES = {
     mama: { fileKey: 'xyt50YombioBmxXoep8dCA', fileName: 'Suggestion', nodeId: '13566-16107' },
   }, // ai-button-giga → Button Giga в рабочей ветке Suggestion
 
+  'ai-button-close': { ...INPUT_SPEC, nodeId: '11068-15848' }, // ai-button-close → Button Close
+  'ai-button-controls': { ...INPUT_SPEC, nodeId: '11073-21939' }, // ai-button-controls → ButtonControls
+  'ai-field-input': { ...INPUT_SPEC, nodeId: '11147-31864' }, // ai-field-input → Input
   chips: {
     _: { ...SNACK, nodeId: '28137-1776436' }, // chips → chips - Matrix (canvas)
     'chip-assist': { ...SNACK, nodeId: '6437-16196' }, // chips/chip-assist → ChipAssist

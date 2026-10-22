@@ -65,6 +65,12 @@
       "path": "./ai-button-chevron/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-button-close/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-button-controls/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-chain-of-thoughts/tsconfig.cjs.json"
     },
     {
@@ -167,6 +173,9 @@
       "path": "./accordion/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-attachment/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-field-request/tsconfig.cjs.json"
     },
     {
@@ -234,6 +243,9 @@
     },
     {
       "path": "./tag/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-field-input/tsconfig.cjs.json"
     },
     {
       "path": "./card/tsconfig.cjs.json"

@@ -1,4 +1,4 @@
-import { AI_QUEUE_STEP_STATE, AiFieldNotice, SIZE, VARIANT } from '@ds/ai-field-notice';
+import { AI_QUEUE_STEP_STATE, AiFieldNotice, VARIANT } from '@ds/ai-field-notice';
 
 const steps = [
   { label: 'Step Description', state: AI_QUEUE_STEP_STATE.Done },
@@ -11,7 +11,6 @@ const steps = [
 export function Queue() {
   return (
     <AiFieldNotice
-      size={SIZE.S}
       variant={VARIANT.Queue}
       queue={{
         steps,

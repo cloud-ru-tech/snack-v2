@@ -1,25 +1,29 @@
+@use 'sass:list';
 @use 'sass:map';
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 
 $sizes: 's', 'm';
-$variants: 'information', 'security', 'critical', 'help', 'warning', 'agentic';
 
-$variant-background-token: (
-  'information': 'decorTransparent',
-  'security': 'decorTransparent',
-  'critical': 'decor',
-  'help': 'decorTransparent',
-  'warning': 'decor',
-  'agentic': 'decorTransparent',
+// Подложка по вариантам (FB-9.3, FB-9.4): цвет темы и токен заливки; размытие фона — только у полупрозрачных.
+$variant-background: (
+  'information': ('neutral', 'decorTransparent', true),
+  'security': ('blue', 'decorTransparent', true),
+  'help': ('green', 'decorTransparent', true),
+  'agentic': ('orange', 'decorTransparent', true),
+  'warning': ('yellow', 'background', false),
+  'critical': ('red', 'background', false),
 );
 
-$variant-theme-color: (
-  'information': 'neutral',
-  'security': 'blue',
-  'critical': 'red',
-  'help': 'primary',
-  'warning': 'yellow',
-  'agentic': 'orange',
+// Цвет иконки (FB-4.3): у Warning и Critical — акцент варианта, у остальных — textTertiary.
+$variant-icon-color: (
+  'warning': base.$sn-theme-color-yellow-accent,
+  'critical': base.$sn-theme-color-red-accent,
+);
+
+// Промежутки основной строки и отступ текста справа (FB-6.5): s — Field Banner, m — Field Banner Mobile.
+$main-line-gap: (
+  's': base.$sn-primitive-dimension-4,
+  'm': base.$sn-primitive-dimension-8,
 );
 
 $description-typography: (
@@ -27,95 +31,51 @@ $description-typography: (
   'm': base.$sn-regular-body-m,
 );
 
-$size-top-border-radius: (
-  's': base.$sn-density-radius-2xs,
-  'm': base.$sn-density-radius-3xs,
+$icon-sizes: (
+  's': base.$sn-primitive-dimension-16,
+  'm': base.$sn-primitive-dimension-24,
 );
 
-.advice {
-  pointer-events: none;
-  position: absolute;
-  inset: 0 0 calc(-1 * #{base.$sn-primitive-dimension-12}) 0;
-  backdrop-filter: blur(base.$sn-primitive-dimension-32);
-
-  @each $size in $sizes {
-    &[data-size='#{$size}'] {
-      border-radius: map.get($size-top-border-radius, $size) map.get($size-top-border-radius, $size) 0 0;
-    }
-  }
-
-  @each $variant in $variants {
-    &[data-variant='#{$variant}'] {
-      $token: map.get($variant-background-token, $variant);
-      $color: map.get($variant-theme-color, $variant);
-
-      background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
-    }
-  }
-}
-
 .root {
-  position: relative;
-
   display: flex;
   flex-direction: column;
   gap: base.$sn-primitive-dimension-8;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   box-sizing: border-box;
   width: 100%;
+  min-height: base.$sn-primitive-dimension-28;
+  padding: base.$sn-primitive-dimension-8;
+  border-radius: base.$sn-density-radius-2xs;
+  // Обводка внутри корня и не участвует в расчёте размеров (FB-9.2).
+  box-shadow: inset 0 0 0 base.$sn-primitive-strokeWeight-strokeRegular base.$sn-theme-color-available-borderColor;
 
-  &[data-size='s'] {
-    min-height: base.$sn-primitive-dimension-48;
-    padding: base.$sn-primitive-dimension-4 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8
-      base.$sn-primitive-dimension-8;
-    border-radius: map.get($size-top-border-radius, 's') map.get($size-top-border-radius, 's') 0 0;
-  }
+  @each $variant, $config in $variant-background {
+    $color: list.nth($config, 1);
+    $token: list.nth($config, 2);
+    $blur: list.nth($config, 3);
 
-  &[data-size='m'] {
-    min-height: base.$sn-primitive-dimension-60;
-    padding: base.$sn-primitive-dimension-8;
-    border-radius: map.get($size-top-border-radius, 'm') map.get($size-top-border-radius, 'm') 0 0;
-  }
-
-  &[data-size='s'][data-bottom-content] {
-    min-height: base.$sn-primitive-dimension-72;
-  }
-
-  &[data-size='m'][data-bottom-content] {
-    min-height: base.$sn-primitive-dimension-84;
-  }
-
-  @each $variant in $variants {
     &[data-variant='#{$variant}'] {
-      $token: map.get($variant-background-token, $variant);
-      $color: map.get($variant-theme-color, $variant);
-
       background-color: base.simple-var(base.$sn-theme, 'color', $color, $token);
+
+      @if $blur {
+        backdrop-filter: blur(base.$sn-primitive-dimension-32);
+      }
     }
   }
 }
 
 .mainLine {
-  position: relative;
-  z-index: 1;
-
   display: flex;
-  gap: base.$sn-primitive-dimension-8;
   align-items: center;
-
   width: 100%;
   min-width: 0;
-}
 
-.content {
-  display: flex;
-  flex: 1 1 0;
-  gap: base.$sn-primitive-dimension-8;
-  align-items: center;
-
-  min-width: 0;
+  @each $size in $sizes {
+    &[data-size='#{$size}'] {
+      gap: map.get($main-line-gap, $size);
+    }
+  }
 }
 
 .icon {
@@ -126,17 +86,26 @@ $size-top-border-radius: (
 
   color: base.$sn-theme-color-available-version-textTertiary;
 
-  @each $size, $icon-size in ('s': base.$sn-primitive-dimension-16, 'm': base.$sn-primitive-dimension-24) {
+  @each $size in $sizes {
     &[data-size='#{$size}'] > svg {
-      width: $icon-size !important;
-      height: $icon-size !important;
+      width: map.get($icon-sizes, $size) !important;
+      height: map.get($icon-sizes, $size) !important;
+    }
+  }
+
+  @each $variant, $color in $variant-icon-color {
+    .root[data-variant='#{$variant}'] & {
+      color: $color;
     }
   }
 }
 
 .description {
   overflow: hidden;
+  display: -webkit-box;
   flex: 1 1 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 
   min-width: 0;
 
@@ -146,22 +115,17 @@ $size-top-border-radius: (
   @each $size in $sizes {
     &[data-size='#{$size}'] {
       @include base.composite-var($description-typography, $size);
+
+      padding-right: map.get($main-line-gap, $size);
     }
   }
-}
-
-.bottomContent {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding-bottom: base.$sn-primitive-dimension-4;
-}
-
-.root[data-content-only='true'] .bottomContent {
-  padding-bottom: 0;
 }
 
 .action {
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.bottomContent {
+  width: 100%;
 }

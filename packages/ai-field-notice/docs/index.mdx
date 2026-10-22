@@ -66,9 +66,9 @@ import QueueSrc from '../demos/examples/Queue.tsx?raw'
 <AiFieldNotice variant='queue' queue={{ steps, defaultOpen: true }} />
 ```
 
-### Size (default `s`)
+### Size (default `s` на desktop, `m` на mobile)
 
-Общий `size` на корне — передаётся в `AiFieldBanner` и внутренние части описания.
+Общий `size` на корне — передаётся в `AiFieldBanner` и внутренние части описания. Как размер выбирается на mobile — раздел «Адаптивность».
 
 - `s` — desktop (Mobile Off).
 - `m` — mobile (Mobile On).
@@ -84,6 +84,19 @@ import QueueSrc from '../demos/examples/Queue.tsx?raw'
 Для `password` и `ssh` — `AiFieldNoticeAnimatedDescription`: автосмена кадров до финального промпта («Введите пароль» / «Введите SSH-ключ»), затем при hover на баннер — кадр «Гига не получит ваши данные».
 
 Для `vmAgent` — ротация между заголовком и блоком `vmName` / `vmIp` без hover-кадра.
+
+## Адаптивность
+
+Размер Notice зависит от раскладки `AdaptiveProvider`. Обычный проп `size` задаёт размер на desktop, а на mobile действует пресет `AI_FIELD_BANNER_LAYOUT_PRESETS`:
+
+| Раскладка | `size` без пропа | `size` с пропом |
+|---|---|---|
+| desktop | `s` (Field Banner) | значение пропа |
+| mobile | `m` (Field Banner Mobile) | `m` |
+
+Чтобы изменить размер на mobile, передайте `layoutPresets={{ mobile: { size: 's' } }}`. Пресет нужен потому, что макет задаёт отдельный мобильный баннер.
+
+<StorybookEmbed storyId='ai-aifieldnotice--playground' globals={{ layoutType: 'mobile' }} height={360} />
 
 ## Установка
 

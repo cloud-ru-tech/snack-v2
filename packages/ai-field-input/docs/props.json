@@ -1,0 +1,1384 @@
+{
+  "ActionListPanel": {
+    "displayName": "ActionListPanel",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input-action-list"
+      },
+      "emptyLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Строка вместо пустого списка."
+      },
+      "focusEditorOnSelect": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "После выбора строки фокус возвращается в поле. По умолчанию `true`."
+      },
+      "forwardTyping": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Набранные в списке буквы уходят в поле. По умолчанию `true`."
+      },
+      "items": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": true,
+        "description": "Строки и группы строк."
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие Escape."
+      },
+      "padding": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отступ 8 со всех сторон; без него — только сверху и снизу. По умолчанию `false`."
+      },
+      "registerInField": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Список поиска поля: управляется клавишами из редактора."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiFieldInput": {
+    "displayName": "AiFieldInput",
+    "propsTypeName": "AiFieldInputProps",
+    "props": {
+      "attachments": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Плитки вложений (`AiAttachment` из `@ds/ai-attachment`). Ряд не рендерится, если слот пуст."
+      },
+      "attachmentsScrollStep": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "92",
+        "description": "Шаг сдвига ряда вложений стрелкой, px. По умолчанию — одна плитка с зазором (92)."
+      },
+      "banner": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот над полем: `AiFieldBanner` или `AiFieldNotice`. Пока открыт список по `/` или `@`, на месте баннера стоит список."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input"
+      },
+      "defaultValue": {
+        "type": "AiFieldInputValue",
+        "required": false,
+        "description": "Начальное содержимое (uncontrolled).",
+        "typeRefs": [
+          "AiFieldInputValue"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Выключенное поле: ввод недоступен, кнопки футера выключены, ряд вложений скрыт."
+      },
+      "disclaimer": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст под полем. По умолчанию — дисклеймер из локали; `null` скрывает текст, отступ сохраняется."
+      },
+      "footerLeftActions": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот левых действий футера."
+      },
+      "footerRightActions": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот дополнительных правых действий футера (перед кнопкой отправки)."
+      },
+      "mentions": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": false,
+        "description": "Строки списка по `@`: ресурсы и сущности. Не заданы — список по `@` не открывается.",
+        "typeRefs": [
+          "AiFieldInputActionListGroup",
+          "AiFieldInputActionListItem"
+        ]
+      },
+      "onActionSelect": {
+        "type": "((item: AiFieldInputActionListItem, trigger: SearchTrigger) => void)",
+        "required": false,
+        "description": "Выбор строки списка по `/` или `@`: строка уже стоит в поле чипом."
+      },
+      "onChange": {
+        "type": "((value: AiFieldInputValue) => void)",
+        "required": false,
+        "description": "Изменение содержимого."
+      },
+      "onSubmit": {
+        "type": "((value: AiFieldInputValue) => void)",
+        "required": false,
+        "description": "Отправка: Enter без Shift, когда поиск по `/` или `@` не активен, или нажатие кнопки в состоянии `active`. Пока кнопка в `loading` или `stop`, не вызывается."
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false,
+        "description": "Подсказка в пустом поле."
+      },
+      "scrollButton": {
+        "type": "AiFieldInputScrollButton",
+        "required": false,
+        "description": "Кнопка прокрутки к последнему сообщению над полем. Не задана — кнопки нет.",
+        "typeRefs": [
+          "AiFieldInputScrollButton"
+        ]
+      },
+      "searchPlaceholder": {
+        "type": "AiFieldInputSearchPlaceholder",
+        "required": false,
+        "description": "Подсказки в поиске после `/` и `@`. Не заданный ключ — текст из локали («Введите название» / «Type a name»).",
+        "typeRefs": [
+          "AiFieldInputSearchPlaceholder"
+        ]
+      },
+      "send": {
+        "type": "AiFieldInputSend",
+        "required": false,
+        "description": "Кнопка отправки: состояние и нажатие.",
+        "typeRefs": [
+          "AiFieldInputSend"
+        ]
+      },
+      "skills": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": false,
+        "description": "Строки списка по `/`: команды и скиллы. Не заданы — список по `/` не открывается.",
+        "typeRefs": [
+          "AiFieldInputActionListGroup",
+          "AiFieldInputActionListItem"
+        ]
+      },
+      "value": {
+        "type": "AiFieldInputValue",
+        "required": false,
+        "description": "Содержимое поля (controlled).",
+        "typeRefs": [
+          "AiFieldInputValue"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "ActionListItemType": {
+        "kind": "union",
+        "values": [
+          "back",
+          "default",
+          "drillDown"
+        ],
+        "own": true
+      },
+      "AiFieldInputActionListGroup": {
+        "kind": "interface",
+        "props": {
+          "divider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель над группой."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор группы."
+          },
+          "items": {
+            "type": "AiFieldInputActionListItem[]",
+            "required": true,
+            "description": "Строки группы.",
+            "typeRefs": [
+              "AiFieldInputActionListItem"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок группы."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputActionListItem": {
+        "kind": "interface",
+        "props": {
+          "backLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подпись строки возврата на следующем уровне. По умолчанию «Назад» из локали."
+          },
+          "caption": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание справа от имени."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка слева."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор строки."
+          },
+          "items": {
+            "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[] | undefined",
+            "required": false,
+            "description": "Строки следующего уровня у строки `drillDown`. Список поля ввода (`skills`, `mentions`) открывает их\nпо выбору строки и ставит первой строку возврата.",
+            "typeRefs": [
+              "AiFieldInputActionListGroup",
+              "AiFieldInputActionListItem"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Имя строки."
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Выбор строки кликом или Enter."
+          },
+          "paramsPlaceholder": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только для скиллов (`skills`): подсказка параметров, которая встаёт сразу за выбранным чипом,\nпока за ним ничего не набрано (ISM-5). Не задана — подсказки нет.\nПустая строка — подсказка по умолчанию из локали."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш в теге справа (строка `default`)."
+          },
+          "tooltip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подсказка при наведении."
+          },
+          "type": {
+            "type": "ActionListItemType | undefined",
+            "required": false,
+            "values": [
+              "back",
+              "default",
+              "drillDown"
+            ],
+            "description": "Вид строки: выбор, переход на следующий уровень или возврат. По умолчанию `default`.",
+            "typeRefs": [
+              "ActionListItemType"
+            ]
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputScrollButton": {
+        "kind": "interface",
+        "props": {
+          "indicator": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Точка «внизу есть непрочитанное сообщение» (ISC-2)."
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Нажатие. Прокрутку выполняет потребитель."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputSearchPlaceholder": {
+        "kind": "interface",
+        "props": {
+          "mention": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подсказка после `@` — поиск упоминаний."
+          },
+          "skill": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подсказка после `/` — поиск скиллов и команд."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputSend": {
+        "kind": "interface",
+        "props": {
+          "onClick": {
+            "type": "((state: SendState, value: AiFieldInputValue) => void) | undefined",
+            "required": false,
+            "description": "Нажатие на кнопку отправки: текущее состояние и содержимое поля. В состоянии `active` поле само вызывает `onSubmit`."
+          },
+          "state": {
+            "type": "SendState | undefined",
+            "required": false,
+            "values": [
+              "active",
+              "disabled",
+              "loading",
+              "stop"
+            ],
+            "description": "Состояние кнопки отправки. Не задано — выводится из содержимого: пусто `disabled`, иначе `active`.",
+            "typeRefs": [
+              "SendState"
+            ]
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputValue": {
+        "kind": "alias",
+        "type": "AiFieldInputSegment[]",
+        "own": true
+      },
+      "SendState": {
+        "kind": "union",
+        "values": [
+          "active",
+          "disabled",
+          "loading",
+          "stop"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputActionList": {
+    "displayName": "AiFieldInputActionList",
+    "propsTypeName": "AiFieldInputActionListProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "items": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": true,
+        "description": "Строки и группы строк.",
+        "typeRefs": [
+          "AiFieldInputActionListGroup",
+          "AiFieldInputActionListItem"
+        ]
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие Escape."
+      },
+      "padding": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отступ 8 со всех сторон; без него — только сверху и снизу. По умолчанию `false`."
+      }
+    },
+    "relatedTypes": {
+      "ActionListItemType": {
+        "kind": "union",
+        "values": [
+          "back",
+          "default",
+          "drillDown"
+        ],
+        "own": true
+      },
+      "AiFieldInputActionListGroup": {
+        "kind": "interface",
+        "props": {
+          "divider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разделитель над группой."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор группы."
+          },
+          "items": {
+            "type": "AiFieldInputActionListItem[]",
+            "required": true,
+            "description": "Строки группы.",
+            "typeRefs": [
+              "AiFieldInputActionListItem"
+            ]
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок группы."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputActionListItem": {
+        "kind": "interface",
+        "props": {
+          "backLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подпись строки возврата на следующем уровне. По умолчанию «Назад» из локали."
+          },
+          "caption": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание справа от имени."
+          },
+          "icon": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Иконка слева."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор строки."
+          },
+          "items": {
+            "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[] | undefined",
+            "required": false,
+            "description": "Строки следующего уровня у строки `drillDown`. Список поля ввода (`skills`, `mentions`) открывает их\nпо выбору строки и ставит первой строку возврата.",
+            "typeRefs": [
+              "AiFieldInputActionListGroup",
+              "AiFieldInputActionListItem"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Имя строки."
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Выбор строки кликом или Enter."
+          },
+          "paramsPlaceholder": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только для скиллов (`skills`): подсказка параметров, которая встаёт сразу за выбранным чипом,\nпока за ним ничего не набрано (ISM-5). Не задана — подсказки нет.\nПустая строка — подсказка по умолчанию из локали."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш в теге справа (строка `default`)."
+          },
+          "tooltip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Подсказка при наведении."
+          },
+          "type": {
+            "type": "ActionListItemType | undefined",
+            "required": false,
+            "values": [
+              "back",
+              "default",
+              "drillDown"
+            ],
+            "description": "Вид строки: выбор, переход на следующий уровень или возврат. По умолчанию `default`.",
+            "typeRefs": [
+              "ActionListItemType"
+            ]
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputContextButton": {
+    "displayName": "AiFieldInputContextButton",
+    "propsTypeName": "AiFieldInputContextButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__context"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "progress": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "green",
+          "orange",
+          "red"
+        ],
+        "description": "Цвет дуги. Не задан — по порогам: до 70 green, до 90 orange, выше red.",
+        "typeRefs": [
+          "ContextProgress"
+        ]
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "required": true,
+        "description": "Доля заполнения контекста, 0–100. Задаёт угол дуги."
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      },
+      "ContextProgress": {
+        "kind": "union",
+        "values": [
+          "green",
+          "orange",
+          "red"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputEffortButton": {
+    "displayName": "AiFieldInputEffortButton",
+    "propsTypeName": "AiFieldInputEffortButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__effort"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`.",
+        "typeRefs": [
+          "AiFieldInputFooterMenuItem"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текущий уровень усилий. Длиннее 100px обрезается многоточием."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputFooterMenuItem": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание под названием."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор пункта."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Название пункта."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputModelButton": {
+    "displayName": "AiFieldInputModelButton",
+    "propsTypeName": "AiFieldInputModelButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__model"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`.",
+        "typeRefs": [
+          "AiFieldInputFooterMenuItem"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Имя текущей модели. Длиннее 180px обрезается многоточием."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Поиск по названию в списке моделей. На mobile с поиском шторка раскрывается на весь экран,\nбез него — по высоте списка. По умолчанию `false`."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputFooterMenuItem": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание под названием."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор пункта."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Название пункта."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputPlusButton": {
+    "displayName": "AiFieldInputPlusButton",
+    "propsTypeName": "AiFieldInputPlusButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__plus"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`.",
+        "typeRefs": [
+          "AiFieldInputFooterMenuItem"
+        ]
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputFooterMenuItem": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание под названием."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор пункта."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Название пункта."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputSendButton": {
+    "displayName": "AiFieldInputSendButton",
+    "propsTypeName": "AiFieldInputSendButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__send"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "state": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "active",
+          "disabled",
+          "loading",
+          "stop"
+        ],
+        "description": "Состояние кнопки отправки.",
+        "typeRefs": [
+          "SendState"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "SendState": {
+        "kind": "union",
+        "values": [
+          "active",
+          "disabled",
+          "loading",
+          "stop"
+        ],
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputSettingsButton": {
+    "displayName": "AiFieldInputSettingsButton",
+    "propsTypeName": "AiFieldInputSettingsButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__settings"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`.",
+        "typeRefs": [
+          "AiFieldInputFooterMenuItem"
+        ]
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      },
+      "AiFieldInputFooterMenuItem": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Описание под названием."
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Уникальный идентификатор пункта."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Название пункта."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "AiFieldInputVoiceButton": {
+    "displayName": "AiFieldInputVoiceButton",
+    "propsTypeName": "AiFieldInputVoiceButtonProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-field-input__voice"
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении.",
+        "typeRefs": [
+          "AiFieldInputFooterButtonTooltip"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "AiFieldInputFooterButtonTooltip": {
+        "kind": "interface",
+        "props": {
+          "content": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Текст подсказки."
+          },
+          "shortcut": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Сочетание клавиш справа от текста."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "Attachments": {
+    "displayName": "Attachments",
+    "propsTypeName": null,
+    "props": {
+      "scrollStep": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ChipView": {
+    "displayName": "ChipView",
+    "propsTypeName": null,
+    "props": {},
+    "relatedTypes": {}
+  },
+  "Editor": {
+    "displayName": "Editor",
+    "propsTypeName": null,
+    "props": {
+      "disabled": {
+        "type": "boolean",
+        "required": true
+      },
+      "handleRef": {
+        "type": "MutableRefObject<EditorHandle | null>",
+        "required": true
+      },
+      "onChange": {
+        "type": "(value: AiFieldInputValue) => void",
+        "required": true
+      },
+      "onSubmit": {
+        "type": "(value: AiFieldInputValue) => void",
+        "required": true
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false
+      },
+      "searchPlaceholder": {
+        "type": "AiFieldInputSearchPlaceholder",
+        "required": false
+      },
+      "searchTriggers": {
+        "type": "SearchTrigger[]",
+        "required": true
+      },
+      "value": {
+        "type": "AiFieldInputValue",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterIconButton": {
+    "displayName": "FooterIconButton",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "icon": {
+        "type": "ReactNode",
+        "required": true
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterMenu": {
+    "displayName": "FooterMenu",
+    "propsTypeName": null,
+    "props": {
+      "disabled": {
+        "type": "boolean",
+        "required": true
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false
+      },
+      "triggerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterTextButton": {
+    "displayName": "FooterTextButton",
+    "propsTypeName": null,
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Доп. класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Выключенная кнопка. Внутри выключенного поля выключается автоматически."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement>",
+        "required": false,
+        "description": "Ref на кнопку."
+      },
+      "items": {
+        "type": "AiFieldInputFooterMenuItem[]",
+        "required": false,
+        "description": "Пункты выпадающего списка: на desktop — над кнопкой, на mobile — в шторке снизу.\nБез пунктов кнопка только сообщает о нажатии через `onClick`."
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Нажатие."
+      },
+      "onSelect": {
+        "type": "((id: string) => void)",
+        "required": false,
+        "description": "Выбор пункта выпадающего списка."
+      },
+      "searchable": {
+        "type": "boolean",
+        "required": false
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false,
+        "description": "Подсказка при наведении."
+      },
+      "width": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "effort",
+          "model"
+        ]
+      }
+    },
+    "relatedTypes": {}
+  },
+  "FooterTooltip": {
+    "displayName": "FooterTooltip",
+    "propsTypeName": null,
+    "props": {
+      "hidden": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "tooltip": {
+        "type": "AiFieldInputFooterButtonTooltip",
+        "required": false
+      },
+      "triggerRef": {
+        "type": "RefObject<HTMLButtonElement>",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "MobileActionListSheet": {
+    "displayName": "MobileActionListSheet",
+    "propsTypeName": null,
+    "props": {
+      "items": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": true
+      },
+      "onClose": {
+        "type": "() => void",
+        "required": true
+      },
+      "onPick": {
+        "type": "(item: AiFieldInputActionListItem) => void",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ScrollButton": {
+    "displayName": "ScrollButton",
+    "propsTypeName": null,
+    "props": {
+      "indicator": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Точка «внизу есть непрочитанное сообщение» (ISC-2)."
+      },
+      "onClick": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Нажатие. Прокрутку выполняет потребитель."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SearchActionList": {
+    "displayName": "SearchActionList",
+    "propsTypeName": null,
+    "props": {
+      "detached": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Открыт без знака в тексте: буквы в поле не уходят."
+      },
+      "items": {
+        "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
+        "required": true
+      },
+      "onClose": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onLevelChange": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Переход на уровень или назад."
+      },
+      "onSelect": {
+        "type": "(item: AiFieldInputActionListItem) => void",
+        "required": true
+      },
+      "query": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

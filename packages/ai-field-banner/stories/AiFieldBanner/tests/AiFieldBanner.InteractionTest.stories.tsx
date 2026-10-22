@@ -1,11 +1,15 @@
 import { AiFieldBanner } from '@ds/ai-field-banner';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { DemoActions, DemoPage, DemoPanel } from '#storybook/components';
 
 import styles from '../stories.module.scss';
 import { TEST_IDS } from '../testIds';
+
+const onActionClick = fn();
+const onClose = fn();
 
 const meta: Meta<typeof AiFieldBanner> = {
   title: 'Ai/AiFieldBanner/Tests/Interaction',
@@ -29,11 +33,30 @@ export const InteractionTest: Story = {
             icon={<PlaceholderSVG />}
             className={styles.bannerCell}
             data-test-id={TEST_IDS.root}
+            onActionClick={onActionClick}
+            onClose={onClose}
           />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
   ),
+  play: async ({ canvasElement, step }) => {
+    onActionClick.mockClear();
+    onClose.mockClear();
+    const canvas = within(canvasElement);
+
+    await step('action: fires onActionClick only', async () => {
+      await userEvent.click(canvas.getByTestId(TEST_IDS.action));
+      expect(onActionClick).toHaveBeenCalledTimes(1);
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    await step('close: fires onClose only', async () => {
+      await userEvent.click(canvas.getByTestId(TEST_IDS.close));
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onActionClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const WithoutIcon: Story = {

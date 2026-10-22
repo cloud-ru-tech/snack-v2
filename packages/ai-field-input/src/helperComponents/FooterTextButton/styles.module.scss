@@ -1,0 +1,68 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/figma-variables/build/scss/components/button.module' as btn;
+@use '@ds/materials' as m;
+
+// Предел ширины кнопки модели задан в макете числом без переменной: IFM-3.2.
+$maxWidths: (
+  'model': 180px,
+  'effort': base.$sn-primitive-dimension-100,
+);
+
+.stateLayer {
+  visibility: initial;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: base.$sn-primitive-dimension-2;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: base.$sn-density-size-m;
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-8;
+  border: none;
+  border-radius: base.simple-var(btn.$button, 'anatomy', 'size', 'm', 'container', 'border-radius');
+
+  color: base.$sn-theme-color-neutral-text;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+
+  @each $width, $value in $maxWidths {
+    &[data-width='#{$width}'] {
+      max-width: $value;
+    }
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeSemiBold solid base.$sn-theme-color-available-complementary;
+    outline-offset: 0;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    color: base.$sn-theme-color-available-version-textMain;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+}
+
+.label {
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'label', 'm');
+
+  position: relative;
+
+  overflow: hidden;
+
+  min-width: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

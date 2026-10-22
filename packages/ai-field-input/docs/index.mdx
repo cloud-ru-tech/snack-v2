@@ -1,0 +1,191 @@
+---
+title: AiFieldInput
+package: '@ds/ai-field-input'
+description: Поле ввода сообщения для чата с агентом — текст с чипами скиллов и упоминаний, вложения и футер действий.
+order: 7
+---
+
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import aiFieldInputDoc from './props.json'
+
+import { Basic } from '../demos/examples/Basic'
+import BasicSrc from '../demos/examples/Basic.tsx?raw'
+import { SlashCommands } from '../demos/examples/SlashCommands'
+import SlashCommandsSrc from '../demos/examples/SlashCommands.tsx?raw'
+import { Attachments } from '../demos/examples/Attachments'
+import AttachmentsSrc from '../demos/examples/Attachments.tsx?raw'
+import { FooterActions } from '../demos/examples/FooterActions'
+import FooterActionsSrc from '../demos/examples/FooterActions.tsx?raw'
+import { Disabled } from '../demos/examples/Disabled'
+import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+
+# AiFieldInput
+
+`AiFieldInput` — поле ввода сообщения в чате с агентом и в любом разговоре, которому нужны вложения и ряд действий. Поле принимает текст с чипами скиллов, команд и упоминаний, показывает приложенные файлы и собирает действия перед отправкой. Что произойдёт после отправки, решает потребитель.
+
+## Когда использовать
+
+- Ввод сообщения в чате с агентом.
+- Ввод ответа в разговоре, где нужны вложения, вызов скиллов по `/` и упоминания по `@`.
+
+### Когда не нужен
+
+- Однострочный ввод без вложений и действий:
+  - используйте `FieldText` из `@ds/fields`.
+- Многострочный текст без чипов и футера:
+  - используйте `FieldTextArea` из `@ds/fields`.
+
+## Анатомия
+
+Поле собрано сверху вниз из четырёх частей:
+
+- кнопка прокрутки к последнему сообщению (`scrollButton`) — над полем, с точкой непрочитанного;
+- слот баннера (`banner`) — `AiFieldBanner` или `AiFieldNotice`; пока открыт список по `/` или `@`, баннер скрыт, но держит своё место; на мобильной раскладке баннер берёт размер `m` из своего пресета адаптивности;
+- рамка поля — ряд вложений (`attachments`, плитки `AiAttachment` из `@ds/ai-attachment`), текстовая область и футер;
+- дисклеймер (`disclaimer`) — текст под рамкой.
+
+Футер состоит из двух слотов (`footerLeftActions`, `footerRightActions`) и кнопки отправки, которая стоит справа всегда. Кнопки футера экспортируются отдельно: `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton`, `AiFieldInputEffortButton`, `AiFieldInputContextButton`, `AiFieldInputVoiceButton`, `AiFieldInputSendButton`. У `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton` и `AiFieldInputEffortButton` есть встроенный выпадающий список:
+
+- `items` — пункты `{ id, label, description? }`;
+- `onSelect` — выбор пункта, получает `id`.
+
+На desktop список открывается над кнопкой, на mobile — в шторке снизу. Пока список открыт, кнопка остаётся в состоянии Pressed. Поиск по названию в списке моделей включается пропом `searchable` у `AiFieldInputModelButton`, по умолчанию его нет. На mobile с поиском шторка раскрывается на весь экран, без него — по высоте списка. Выбранный пункт в списке не отмечается: текущее значение показывает подпись кнопки (`label`). Без `items` кнопка только сообщает о нажатии через `onClick`.
+
+### Значение
+
+Содержимое поля — массив сегментов `AiFieldInputValue`:
+
+- `text` — текст, `\n` — перенос строки;
+- `skill` — чип скилла или команды. Параметры — обычный текст сообщения за чипом; пока за чипом в строке ничего нет, в нём видна подсказка `paramsPlaceholder` (её задаёт строка списка `skills`);
+- `mention` — чип упоминания;
+- `search` — знак `/` или `@` с набранным запросом, пока значение не выбрано.
+
+Ввод `/` или `@` создаёт сегмент `search`, если для этого знака передан список (`skills` или `mentions`) и знак стоит в начале строки, после пробела или сразу за чипом; внутри слова (`e@mail`) поиск не открывается. Подсказку в поиске задаёт `searchPlaceholder` — отдельно для `/` (`skill`) и `@` (`mention`); не заданный ключ берёт текст из локали. Подсказка видна, пока запрос пуст и сразу за знаком нет текста.
+
+Строки списка передаются пропсами:
+
+- `skills` — команды и скиллы, открываются по `/`;
+- `mentions` — ресурсы и сущности, открываются по `@`.
+
+Поле само показывает список над полем и фильтрует строки по набранному тексту. Список стоит поверх содержимого выше поля и не меняет высоту компонента: баннер на это время скрыт, но держит место. Если совпадений нет — строка «Ничего не найдено». Выбор строки заменяет сегмент `search` на чип `skill` или `mention`, вызывает `onActionSelect` и возвращает баннер. Пока список открыт, кнопка прокрутки скрыта.
+
+Строка `drillDown` с вложенными `items` открывает следующий уровень: первой стоит строка возврата («Назад» или `backLabel`), при переходе на уровень и обратно набранный запрос стирается, и фильтрация начинается заново. Список закрывают `Escape` и клик вне списка и текста поля, в том числе по кнопкам футера, — набранный текст остаётся в поле обычным текстом. Клик внутри текста список не закрывает.
+
+Список можно открыть и без знака в тексте — например, пунктом «Добавить скилл» в меню кнопки добавления. Для этого компоненты в слотах поля берут хук `useAiFieldInputActions` и вызывают `openActionList('/')` (или `'@'` для упоминаний):
+
+```tsx
+function PlusButton() {
+  const { openActionList } = useAiFieldInputActions();
+
+  return (
+    <AiFieldInputPlusButton
+      items={[{ id: 'skills', label: 'Добавить скилл' }]}
+      onSelect={id => id === 'skills' && openActionList(SEARCH_TRIGGER.Skill)}
+    />
+  );
+}
+```
+
+В таком режиме поле не меняется, фокус встаёт на панель списка, и набранные буквы ничего не делают. Как и при поиске по `/`, строки сначала не выделены: стрелка вниз выделяет первую, стрелка вверх — последнюю, Enter выбирает первую. Выбранная строка встаёт чипом туда, где стоял курсор, или в конец текста, если поле ещё не фокусировали. После выбора или закрытия (`Escape`, клик вне списка) фокус возвращается в поле.
+
+Баннер — обычный слот: крестик появляется, если передать `onClose` в `AiFieldBanner`; по нему потребитель убирает баннер из пропа `banner`.
+
+### Клавиатура
+
+- `Enter` — отправка (`onSubmit`); при открытом поиске — выбор первой строки списка.
+- `Shift+Enter` — перенос строки.
+- `↓` / `↑` при открытом поиске — переход в список.
+- `Esc` при открытом поиске — закрытие списка, знак и запрос остаются текстом.
+- `Backspace` сразу за чипом выделяет его (Pressed), повторный — удаляет. `Delete` сразу перед чипом — так же. Ввод при выделенном чипе снимает выделение и печатает за чипом.
+
+### Состояния
+
+- Default — рамка с нейтральной обводкой.
+- Focus — акцентная обводка рамки.
+- Disabled (`disabled`) — ввод недоступен, ряд вложений скрыт, кнопки футера выключены, кнопка контекста остаётся активной.
+
+### Кнопка отправки (default — по содержимому)
+
+- `disabled` — пустое поле.
+- `active` — в поле есть содержимое.
+- `loading` — сообщение отправляется.
+- `stop` — агент генерирует ответ, нажатие останавливает генерацию.
+
+Состояния `loading` и `stop` задаёт потребитель через `send.state`. Нажатие на кнопку в состоянии `active` вызывает `onSubmit` так же, как Enter; `send.onClick` получает состояние и содержимое поля. Пока кнопка в `loading` или `stop`, Enter не отправляет.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-field-input @ds/ai-attachment
+```
+
+`@ds/ai-attachment` нужен для плиток вложений, сам пакет поля от него не зависит.
+
+```ts
+import { AiFieldInput } from '@ds/ai-field-input'
+```
+
+## Примеры использования
+
+<Example title='Базовое поле' description='Enter отправляет, Shift+Enter переносит строку' code={BasicSrc}>
+  <Basic client:visible />
+</Example>
+
+<Example title='Скиллы и упоминания' description='«/» и «@» открывают список над полем, крестик закрывает баннер' code={SlashCommandsSrc}>
+  <SlashCommands client:visible />
+</Example>
+
+<Example title='Вложения' description='Удаление и повтор загрузки; на desktop ряд листается стрелками' code={AttachmentsSrc}>
+  <Attachments client:visible />
+</Example>
+
+<Example title='Футер' description='Кнопки из макета, выбор модели и уровня усилий, переключение отправки в остановку' code={FooterActionsSrc}>
+  <FooterActions client:visible />
+</Example>
+
+<Example title='Выключенное поле' description='Ввод и кнопки футера недоступны' code={DisabledSrc}>
+  <Disabled client:visible />
+</Example>
+
+## Адаптивность
+
+Раскладка берётся из `AdaptiveProvider` (`@ds/adaptive`), пропа раскладки нет.
+
+| Часть | Desktop | Mobile |
+|-------|---------|--------|
+| Ряд вложений | стрелки при переполнении, полоса скрыта | свайп, полоса видна при листании |
+| Крестик плитки | `xs` с подложкой, при наведении или фокусе | `s` с подложкой, виден всегда |
+| Подсказка плитки | при наведении | нет |
+| Высота текста | до 10 строк, дальше прокрутка | до 5 строк, дальше прокрутка |
+| Списки кнопок футера | выпадающий список над кнопкой | шторка снизу по высоте списка; со `searchable` у кнопки модели — на весь экран |
+| `/` и `@` в тексте | открывают список над полем | печатаются как обычный текст |
+| `openActionList` из пункта меню кнопки | список над полем | список заменяет пункты в той же шторке; первая строка — возврат «Назад» |
+| `openActionList` из своей кнопки | список над полем | список в отдельной шторке |
+
+Размер баннера в слоте выбирает потребитель.
+
+На mobile скиллы и упоминания добавляются только через `openActionList`, например из пунктов меню кнопки добавления. Строки с переходом открывают следующий уровень в той же шторке, первой строкой уровня стоит возврат («Назад» или `backLabel`). Высота шторки подстраивается под список. Выбор строки закрывает шторку, ставит чип и курсор за ним.
+
+## Props
+
+### AiFieldInput
+
+<PropsTable data={aiFieldInputDoc.AiFieldInput} />
+
+### AiFieldInputActionList
+
+<PropsTable data={aiFieldInputDoc.AiFieldInputActionList} />
+
+Плитки вложений — `AiAttachment` из `@ds/ai-attachment`.
+
+## Storybook
+
+<StorybookEmbed storyId='ai-aifieldinput--playground' height={560} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-field-input')} />

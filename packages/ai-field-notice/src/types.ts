@@ -23,8 +23,10 @@ export type AiFieldNoticeDescriptionListItem = ReactNode | AiFieldNoticeDescript
 export type AiFieldNoticeDescriptionContent = ReactNode | readonly AiFieldNoticeDescriptionListItem[];
 
 type AiFieldNoticeCommonProps = {
-  /** Размер баннера. */
+  /** Размер баннера на desktop. На mobile — пресет `AI_FIELD_BANNER_LAYOUT_PRESETS` (`m`), изменить его — через `layoutPresets`. */
   size?: AiFieldBannerProps['size'];
+  /** Override mobile-дефолтов адаптива баннера для этого инстанса (deep-merge поверх `AI_FIELD_BANNER_LAYOUT_PRESETS`). */
+  layoutPresets?: AiFieldBannerProps['layoutPresets'];
   /** Обработчик клика по кнопке действия. Не используется при `variant='queue'`. */
   onActionClick?(event: MouseEvent<HTMLButtonElement>): void;
   /** Доп. класс корня. */
