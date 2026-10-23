@@ -374,7 +374,15 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
           <Divider orientation='vertical' variant='regular' />
         </div>
       </div>
-      <div className={fieldStyles.fieldContainer}>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div
+        className={fieldStyles.fieldContainer}
+        onClick={() => {
+          if (!disabled && !readOnly && localRef.current) {
+            localRef.current.focus();
+          }
+        }}
+      >
         <div className={fieldStyles.contentWrapper}>
           <div className={cn(fieldStyles.inputLine, styles.inputLine)}>
             {prefix && <span className={fieldStyles.prefix}>{prefix}</span>}
