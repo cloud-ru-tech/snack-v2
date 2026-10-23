@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.7 (2026-10-23)
+
+### Bug Fixes
+
+- **FF-9165:** remove disabled from notification segments ([2962066](https://github.com/cloud-ru-tech/snack-v2/commit/296206621cd2d09c52fcd8ecb5fd65b41d90baf5))
+
 ## 2.1.6 (2026-10-21)
 
 ### Bug Fixes
