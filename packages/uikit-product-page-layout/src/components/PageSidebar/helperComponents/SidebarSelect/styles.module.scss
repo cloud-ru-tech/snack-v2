@@ -1,31 +1,30 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
-@use '@ds/figma-variables/build/scss/components/list.module' as list;
 
-// Триггер повторяет анатомию listItem size m из @ds/list (Figma mobileSidebar).
 .wrapper {
   @include base.composite-var(base.$sn-regular-body-m);
 
   cursor: pointer;
 
   display: flex;
-  gap: list.$sn-list-anatomy-size-m-listItem-gap;
+  gap: base.$sn-primitive-dimension-4;
   align-items: center;
 
   box-sizing: border-box;
-  padding: list.$sn-list-anatomy-size-m-listItem-paddingVertical list.$sn-list-anatomy-size-m-listItem-paddingHorizontal;
+  min-height: base.$sn-primitive-dimension-40;
+  padding: 0 base.$sn-primitive-dimension-8 0 base.$sn-primitive-dimension-10;
+  border-radius: base.$sn-density-radius-2xs;
 
   color: base.$sn-theme-color-available-version-textMain;
+
+  background-color: base.$sn-theme-color-neutral-background1Level;
 }
 
 .triggerText {
   flex-grow: 1;
-  padding: list.$sn-list-anatomy-size-m-listItem-contentWrapper-paddingVertical
-    list.$sn-list-anatomy-size-m-listItem-contentWrapper-textWrapper-textContent-paddingHorizontal;
 }
 
 .chevron {
   display: flex;
   flex-shrink: 0;
-  padding-block: list.$sn-list-anatomy-size-m-listItem-centeredWrapper-paddingVertical;
   color: base.$sn-theme-color-available-version-textTertiary;
 }

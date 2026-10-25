@@ -32,13 +32,19 @@ export function MobilePageServices({
 }: MobilePageServicesProps) {
   return (
     <div className={cn(styles.wrapper, className)} {...extractSupportProps(rest)}>
-      {/* Триггер-селект «Информация» — full-bleed строка с разделителем снизу (Figma 3334:63034). */}
-      {sidebar && <SidebarSelect {...sidebar} className={styles.sidebarSelect} />}
-
       <div className={styles.body}>
-        <Headline title={title} slotBeforeTitle={slotBeforeTitle} slotAfterTitle={slotAfterTitle} subtitle={subtitle} />
+        <div className={styles.headlineWrapper}>
+          <Headline
+            title={title}
+            slotBeforeTitle={slotBeforeTitle}
+            slotAfterTitle={slotAfterTitle}
+            subtitle={subtitle}
+          />
 
-        {actions.length > 0 && <MobileActions items={actions} maxVisibleItems={maxVisibleActionsItems} />}
+          {sidebar && <SidebarSelect {...sidebar} />}
+
+          {actions.length > 0 && <MobileActions items={actions} maxVisibleItems={maxVisibleActionsItems} />}
+        </div>
 
         <div className={styles.childWrapper}>{children}</div>
       </div>

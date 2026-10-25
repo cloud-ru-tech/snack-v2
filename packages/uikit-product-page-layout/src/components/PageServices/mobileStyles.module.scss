@@ -9,11 +9,6 @@
   min-height: 100%;
 }
 
-.sidebarSelect {
-  border-bottom: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
-}
-
-// Тело страницы: контент с отступом 16 (compact density), селект выше — full-bleed.
 .body {
   display: flex;
   flex-direction: column;
@@ -22,6 +17,15 @@
 
   box-sizing: border-box;
   padding: base.$sn-density-spacing-interval-l;
+
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+.headlineWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+  width: 100%;
 }
 
 .childWrapper {
