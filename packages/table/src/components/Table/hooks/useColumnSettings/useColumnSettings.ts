@@ -1,7 +1,7 @@
 import { FiltersState } from '@ds/chips';
 import { GroupSelectItemProps } from '@ds/list';
 import { isBrowser } from '@ds/utils';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { MasterSelectionOptions } from '../../../../helpers';
 import { tableLocale } from '../../../../locale';
@@ -10,7 +10,6 @@ import { TableProps } from '../../../types';
 import { getColumnIdentifier, getTableColumnsDefinitions, PinnedGroupsState } from '../../utils';
 import {
   getEnabledColumnsInitialState,
-  isColumnEnabledInitially,
   isFilterableColumn,
   prepareColumnsSettings,
   prepareReorderableColumnsSettings,
@@ -64,17 +63,19 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
     getEnabledColumnsInitialState(configurableColumns, savedState, localStorageKey),
   );
 
-  useEffect(() => {
-    setEnabledColumns(prev => {
-      const currentIds = configurableColumns.map(getColumnIdentifier);
-      const kept = prev.filter(id => currentIds.includes(id));
-      const added = currentIds
-        .filter(id => !kept.includes(id))
-        .filter(id => {
-          const colDef = configurableColumns.find(col => getColumnIdentifier(col) === id);
+  const knownColumnIdsRef = useRef(configurableColumns.map(getColumnIdentifier));
 
-          return colDef ? isColumnEnabledInitially(colDef) : false;
-        });
+  useEffect(() => {
+    const currentIds = configurableColumns.map(getColumnIdentifier);
+    const knownIds = knownColumnIdsRef.current;
+    knownColumnIdsRef.current = currentIds;
+
+    const newColumns = configurableColumns.filter(col => !knownIds.includes(getColumnIdentifier(col)));
+    const addedIds = newColumns.length ? getEnabledColumnsInitialState(newColumns, savedState, localStorageKey) : [];
+
+    setEnabledColumns(prev => {
+      const kept = prev.filter(id => currentIds.includes(id));
+      const added = addedIds.filter(id => !kept.includes(id));
       const reconciled = [...kept, ...added];
 
       if (reconciled.length === prev.length && reconciled.every((id, i) => id === prev[i])) {
@@ -83,7 +84,7 @@ export function useColumnSettings<TData extends object, TFilters extends Filters
 
       return reconciled;
     });
-  }, [configurableColumns]);
+  }, [configurableColumns, localStorageKey, savedState]);
 
   const setEnabledColumnsOuter = useCallback(
     (value: string[]) => {
