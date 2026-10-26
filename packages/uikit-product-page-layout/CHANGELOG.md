@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-10-26)
+
+### BREAKING CHANGES
+
+- **LK-8763:** removed hideIncreaseQuotaButton prop ([cabbb61](https://github.com/cloud-ru-tech/snack-v2/commit/cabbb6148505166185db0c28447b231a0fa8e047))
+
 ## 1.8.5 (2026-10-21)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout
