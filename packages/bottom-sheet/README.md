@@ -707,7 +707,7 @@ export function NonModal() {
 
 #### Related types
 
-- `SnapPoint` = `number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | "fit-content"`
+- `SnapPoint` = `number | "fit-content" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh``
 
 ## Смотри также
 
@@ -962,7 +962,7 @@ export function CustomDisableMotions() {
 
 ##### Related types
 
-- `SnapPoint` = `number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | "fit-content"`
+- `SnapPoint` = `number | "fit-content" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh``
 
 ### Смотри также
 

@@ -808,7 +808,7 @@
       },
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
         "own": false
       },
       "Width": {
@@ -1152,7 +1152,7 @@
       },
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
         "own": false
       },
       "Width": {

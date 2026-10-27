@@ -347,6 +347,9 @@
     },
     {
       "path": "./ai-code-diff/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-history-line/tsconfig.esm.json"
     }
   ]
 }

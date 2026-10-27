@@ -1,0 +1,30 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-10;
+
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-available-borderColor;
+  border-radius: base.$sn-density-radius-s;
+
+  background: base.$sn-theme-color-neutral-background;
+}
+
+.message {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: anywhere;
+}
+
+.metadata {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-8;
+  align-items: baseline;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}

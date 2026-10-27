@@ -248,7 +248,7 @@
       },
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
         "own": true
       }
     }
@@ -361,7 +361,7 @@
     "relatedTypes": {
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
+        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
         "own": true
       }
     }

@@ -112,6 +112,13 @@ export const FIGMA_NODES = {
     'ai-chain-of-thoughts-headline': { ...AI_COMPONENTS, nodeId: '7099-3365' }, // Chain Of Thoughts Headline
   },
   'ai-code-diff': { ...HISTORY_LINE, nodeId: '14388-1655' }, // ai-code-diff → Code Diff
+  'ai-history-line': {
+    _: { ...HISTORY_LINE, nodeId: '14381-3849' },
+    'ai-history-line': { ...HISTORY_LINE, nodeId: '14381-3849' },
+    request: { ...HISTORY_LINE, nodeId: '14396-5777' },
+    accordion: { ...HISTORY_LINE, nodeId: '14388-1627' },
+    checkpoint: { ...HISTORY_LINE, nodeId: '14396-5786' },
+  },
   'ai-icon-giga': { ...AI_COMPONENTS, nodeId: '7404-40182' }, // ai-icon-giga → Icon Giga
   'ai-reasoning': { ...AI_COMPONENTS, nodeId: '7250-14770' }, // ai-reasoning → Reasoning
   'ai-queue': { ...AI_COMPONENTS, nodeId: '7099-4119' }, // ai-queue → Queue
@@ -395,4 +402,3 @@ export function figmaDesignUrl({ fileKey, fileName, nodeId }: FigmaNodeRef): str
   });
   return `https://www.figma.com/design/${fileKey}/${fileName}?${params}`;
 }
-

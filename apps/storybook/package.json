@@ -20,6 +20,7 @@
     "@ds/ai-field-banner": "workspace:*",
     "@ds/ai-field-notice": "workspace:*",
     "@ds/ai-field-request": "workspace:*",
+    "@ds/ai-history-line": "workspace:*",
     "@ds/ai-icon-giga": "workspace:*",
     "@ds/ai-queue": "workspace:*",
     "@ds/ai-reasoning": "workspace:*",

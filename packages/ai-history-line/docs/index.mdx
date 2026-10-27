@@ -1,0 +1,56 @@
+---
+title: AiHistoryLine
+package: '@ds/ai-history-line'
+description: Вертикальная лента шагов AI-диалога — запросы пользователя, ответы агента, вызовы инструментов, чекпоинты
+order: 1
+---
+
+import { AiHistoryLineDemo } from '../demos/AiHistoryLineDemo'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import doc from './props.json'
+
+# AiHistoryLine
+
+Вертикальная лента шагов AI-диалога — запросы пользователя, ответы агента, вызовы инструментов, чекпоинты
+
+## Демо
+
+<AiHistoryLineDemo client:visible />
+
+## Когда использовать
+
+Вертикальная лента событий: запрос, ответ, группа вызовов, чекпоинт. Содержимое строки передаёт потребитель. Индикатор, степпер, запрос, аккордеон и чекпоинт можно поставить и отдельно от ленты. Карточка группы раскрывается сама. Уже показанную группу раскрывают снаружи через `open` и `onOpenChange`. Кольцо в ленте одно: его `id` задают `value` или `defaultValue`. Клик по индикатору с `id` переключает это кольцо. Запись адреса и прокрутку к строке делает потребитель в `onIndicatorClick`.
+
+## Анатомия
+
+- `AiHistoryLine` — список, `ul`.
+- `AiHistoryLine.Item` — строка: степпер, индикатор и слот тела.
+- `AiHistoryLine.Indicator` — колодец 24×24. `background={false}` убирает подложку у аватара. Кольцо задаёт `active`, своё состояние выбора компонент не хранит.
+- `AiHistoryLine.Stepper` — верхний и нижний коннекторы вокруг индикатора. Высоту верхней линии задаёт `offset`. `showLeadingConnector={false}` скрывает линию и сохраняет место. Нижняя линия есть при `showClosingConnector`. В ленте смещение считает строка: центр кружка совпадает с центром первой строки, у первой строки линия не видна.
+- `AiHistoryLine.AgentContent` — обёртка ответа агента: отступ сверху и расстояние между соседними блоками.
+- `AiHistoryLine.Request`, `AiHistoryLine.Accordion`, `AiHistoryLine.Checkpoint` — карточки. Аккордеон хранит раскрытие внутри себя, а `open` и `onOpenChange` передают его наружу.
+
+## Установка
+
+```bash
+pnpm add @ds/ai-history-line
+```
+
+```ts
+import { AiHistoryLine } from '@ds/ai-history-line'
+```
+
+## Props
+
+<PropsTable data={doc.AiHistoryLine} />
+
+## Storybook
+
+<StorybookEmbed storyId='components-aihistoryline-aihistoryline--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('ai-history-line')} />

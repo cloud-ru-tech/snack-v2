@@ -1,0 +1,422 @@
+{
+  "AiHistoryLine": {
+    "displayName": "AiHistoryLine",
+    "propsTypeName": "AiHistoryLineProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня. По умолчанию `ul`."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Элементы ленты."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "`id` индикатора, выбранного при первом рендере."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
+      },
+      "onIndicatorChange": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Сообщает `id` выбранного индикатора. Повторный клик по нему передаёт `undefined`."
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "`id` выбранного индикатора. Вместе с `onIndicatorChange` выбор управляемый."
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "AiHistoryLineAccordion": {
+    "displayName": "AiHistoryLineAccordion",
+    "propsTypeName": "AiHistoryLineAccordionProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Слот содержимого. Статус каждой строки задаёт сам ребёнок."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line-accordion"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Карточка раскрыта при первом рендере."
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "Идентификатор карточки."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корень карточки, не на кнопку."
+      },
+      "onOpenChange": {
+        "type": "((open: boolean) => void)",
+        "required": false,
+        "description": "Сообщает новое раскрытие после клика или клавиши."
+      },
+      "open": {
+        "type": "boolean",
+        "required": false,
+        "description": "Раскрытие уже показанной карточки. Вместе с `onOpenChange` состояние управляемое."
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Подпись кнопки раскрытия. Число вызовов и пометку об ошибке собирает продукт."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiHistoryLineAgentContent": {
+    "displayName": "AiHistoryLineAgentContent",
+    "propsTypeName": "AiHistoryLineAgentContentProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Блоки ответа. Расстояние задаётся между соседними блоками."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line-agent-content"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiHistoryLineCheckpoint": {
+    "displayName": "AiHistoryLineCheckpoint",
+    "propsTypeName": "AiHistoryLineCheckpointProps",
+    "props": {
+      "added": {
+        "type": "number",
+        "required": true,
+        "description": "Количество добавленных строк. Целое неотрицательное число, знак `+` ставит `AiCodeDiff`."
+      },
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня. По умолчанию `div`."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line-checkpoint"
+      },
+      "hash": {
+        "type": "string",
+        "required": true,
+        "description": "Короткий идентификатор коммита."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
+      },
+      "removed": {
+        "type": "number",
+        "required": true,
+        "description": "Количество удалённых строк. Целое неотрицательное число, знак `-` ставит `AiCodeDiff`."
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Текст коммита."
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "AiHistoryLineIndicator": {
+    "displayName": "AiHistoryLineIndicator",
+    "propsTypeName": "AiHistoryLineIndicatorProps",
+    "props": {
+      "active": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Кольцо выбора. Компонент его не переключает."
+      },
+      "background": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Подложка колодца. `false` убирает заливку и внутреннюю обводку, кольцо выбора остаётся."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое колодца 24×24: аватар или иконка."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line__indicator"
+      },
+      "href": {
+        "type": "string",
+        "required": false,
+        "description": "Делает индикатор ссылкой. Переход выполняет потребитель."
+      },
+      "indicatorLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Доступное имя кнопки или ссылки."
+      },
+      "innerRef": {
+        "type": "Ref<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement>",
+        "required": false,
+        "description": "Ref на корневой элемент."
+      },
+      "onClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+        "required": false,
+        "description": "Клик по индикатору. Без `href` рендерит кнопку."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "AiHistoryLineItem": {
+    "displayName": "AiHistoryLineItem",
+    "propsTypeName": "AiHistoryLineItemProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня. По умолчанию `li`."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Тело строки."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line__item"
+      },
+      "firstItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Первая строка. Верхний коннектор остаётся и держит смещение, линия не видна."
+      },
+      "href": {
+        "type": "string",
+        "required": false,
+        "description": "Делает индикатор ссылкой.\nПереход, запись адреса и прокрутка остаются на стороне потребителя."
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "Значение в группе активного индикатора. С `id` индикатор становится кнопкой выбора."
+      },
+      "indicator": {
+        "type": "ReactNode",
+        "required": true,
+        "description": "Узел в колодце 24×24. Иконку собирает потребитель."
+      },
+      "indicatorBackground": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Подложка индикатора. `false` для аватара: без заливки и внутренней обводки."
+      },
+      "indicatorLabel": {
+        "type": "string",
+        "required": false,
+        "description": "Доступное имя интерактивного индикатора.\nИмеет смысл у кнопки выбора (`id`) и у ссылки (`href`)."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
+      },
+      "lastItem": {
+        "type": "boolean",
+        "required": false,
+        "description": "Последняя строка. Нижний коннектор скрыт."
+      },
+      "onIndicatorClick": {
+        "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+        "required": false,
+        "description": "Дополнительный обработчик клика.\nСюда потребитель ставит запись хеша и прокрутку, если они нужны."
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "AiHistoryLineRequest": {
+    "displayName": "AiHistoryLineRequest",
+    "propsTypeName": "AiHistoryLineRequestProps",
+    "props": {
+      "as": {
+        "type": "ElementType",
+        "required": false,
+        "description": "Полиморфный тег корня. По умолчанию `div`."
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Текст запроса. Переносится по ширине, лимита строк нет."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line-request"
+      },
+      "duration": {
+        "type": "string",
+        "required": false,
+        "description": "Уже отформатированная длительность. Нет значения — скрыты и длительность, и разделитель."
+      },
+      "innerRef": {
+        "type": "any",
+        "required": false,
+        "description": "Ref на корневой элемент.",
+        "typeRefs": [
+          "PolymorphicRef"
+        ]
+      },
+      "timestamp": {
+        "type": "string",
+        "required": false,
+        "description": "Уже отформатированные дата и время."
+      }
+    },
+    "relatedTypes": {
+      "PolymorphicRef": {
+        "kind": "alias",
+        "type": "ComponentPropsWithRef<T>[\"ref\"]",
+        "own": false
+      }
+    }
+  },
+  "AiHistoryLineStepper": {
+    "displayName": "AiHistoryLineStepper",
+    "propsTypeName": "AiHistoryLineStepperProps",
+    "props": {
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Индикатор между коннекторами."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Дополнительный класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "ai-history-line__stepper"
+      },
+      "innerRef": {
+        "type": "Ref<HTMLDivElement>",
+        "required": false,
+        "description": "Ref на корневой элемент."
+      },
+      "offset": {
+        "type": "Height<string | number>",
+        "required": false,
+        "description": "Высота верхнего коннектора.\nЧисло — пиксели, строка — CSS-длина.\nНет значения и `0` — коннектор не рендерится."
+      },
+      "showClosingConnector": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать нижний коннектор."
+      },
+      "showLeadingConnector": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показать верхний коннектор. `false` — слот остаётся и держит `offset`, линия скрыта."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

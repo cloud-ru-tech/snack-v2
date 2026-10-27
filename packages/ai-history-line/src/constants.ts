@@ -1,0 +1,18 @@
+export const TEST_IDS = {
+  root: 'ai-history-line',
+  item: 'ai-history-line__item',
+  content: 'ai-history-line__content',
+  indicator: 'ai-history-line__indicator',
+  stepper: 'ai-history-line__stepper',
+  connector: 'ai-history-line__connector',
+  leadingConnector: 'ai-history-line__leading-connector',
+  agentContent: 'ai-history-line-agent-content',
+  request: 'ai-history-line-request',
+  requestMetadata: 'ai-history-line-request__metadata',
+  accordion: 'ai-history-line-accordion',
+  accordionHeader: 'ai-history-line-accordion__header',
+  accordionContent: 'ai-history-line-accordion__content',
+  checkpoint: 'ai-history-line-checkpoint',
+  checkpointHash: 'ai-history-line-checkpoint__hash',
+  checkpointTitle: 'ai-history-line-checkpoint__title',
+} as const;

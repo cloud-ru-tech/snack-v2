@@ -191,6 +191,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
         'ai-field-banner',
         'ai-field-notice',
         'ai-field-request',
+        'ai-history-line',
         'ai-queue',
       ],
     },

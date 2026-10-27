@@ -1,0 +1,61 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-10;
+
+  min-width: 0;
+  padding: base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-12;
+  border: base.$sn-primitive-strokeWeight-strokeRegular solid base.$sn-theme-color-neutral-decor;
+  border-radius: base.$sn-density-radius-s;
+
+  background: base.$sn-theme-color-neutral-background1Level;
+}
+
+.header {
+  cursor: pointer;
+
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 0;
+  border: 0;
+
+  color: inherit;
+  text-align: left;
+
+  background: none;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular-body-m);
+
+  flex: 1 1 auto;
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: anywhere;
+}
+
+.chevron {
+  flex-shrink: 0;
+  width: base.$sn-primitive-dimension-24;
+  height: base.$sn-primitive-dimension-24;
+  color: base.$sn-theme-color-available-version-textTertiary;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+
+  min-width: 0;
+  padding-bottom: base.$sn-primitive-dimension-8;
+
+  &[hidden] {
+    display: none;
+  }
+}

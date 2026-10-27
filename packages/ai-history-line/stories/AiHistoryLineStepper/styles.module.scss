@@ -1,0 +1,20 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.frame {
+  --ds-ai-history-line-indicator-offset: #{base.$sn-primitive-dimension-12};
+
+  display: flex;
+  height: 80px;
+}
+
+.chain {
+  --ds-ai-history-line-indicator-offset: #{base.$sn-primitive-dimension-12};
+
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+}
+
+.step {
+  flex: 1 1 0;
+}
