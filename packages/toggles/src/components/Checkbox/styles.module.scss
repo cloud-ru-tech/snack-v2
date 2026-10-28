@@ -43,6 +43,7 @@ $sizes: 'xs', 's';
 
     &[data-disabled="true"] {
       opacity: base.$sn-theme-effect-opacity-disabled;
+      background-color: base.$sn-theme-color-neutral-decor;
 
       // Акцентная заливка отмеченного состояния лежит на внешнем слое framing,
       // а не на внутреннем flag/surface.
@@ -59,13 +60,6 @@ $sizes: 'xs', 's';
       &[data-checked="true"] {
         border-color: base.$sn-theme-color-primary-accent;
         background-color: base.$sn-theme-color-primary-accent;
-      }
-
-      &[data-focusvisible="true"] {
-        $outlineWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
-
-        outline: $outlineWidth solid base.$sn-theme-color-available-complementary;
-        outline-offset: var(--focus-offset);
       }
     }
   }
@@ -87,6 +81,11 @@ $sizes: 'xs', 's';
 .icon {
   position: absolute;
   color: base.$sn-theme-color-primary-onAccent;
+}
+
+// Галочка disabled лежит на `neutral/accent`, поэтому берёт парный `neutral/onAccent`.
+.root[data-disabled="true"] .icon {
+  color: base.$sn-theme-color-neutral-onAccent;
 }
 
 .container {
@@ -114,14 +113,13 @@ $sizes: 'xs', 's';
         @include base.composite-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'container');
       }
 
+      // Кольцо фокуса снаружи контейнера с радиусом рамки (Figma `focusedFrame/regular/outside`).
+      &[data-focusvisible="true"] .container {
+        border-radius: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'border-radius');
+        outline: base.$sn-brand-anatomy-focusLine-control-strokeWeight solid base.$sn-theme-color-available-complementary;
+      }
+
       .framing {
-
-        // Кольцо фокуса по границе контейнера (Figma `focusedFrame/regular/outside`).
-        $containerWidth: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'container', 'min-width');
-        $framingWidth: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
-
-        --focus-offset: calc((#{$containerWidth} - #{$framingWidth}) / 2);
-
         width: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-width');
         height: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'checkbox', 'framing', 'min-height');
 

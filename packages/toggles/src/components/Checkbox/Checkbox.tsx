@@ -95,10 +95,11 @@ export function Checkbox({
       data-size={size}
       {...stateDataAttributes}
       data-indeterminate={indeterminate || undefined}
+      data-focusvisible={focusVisible || undefined}
       data-test-id={dataTestId || undefined}
     >
       <div className={styles.container}>
-        <div className={styles.framing} {...stateDataAttributes} data-focusvisible={focusVisible || undefined}>
+        <div className={styles.framing} {...stateDataAttributes}>
           <div
             className={styles.backgroundStateLayer}
             data-state={indeterminate || checked ? 'emptyDarkOnAccent' : 'emptyNeutralOnBackground'}

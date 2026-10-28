@@ -214,7 +214,7 @@ $iconRevealEasing: cubic-bezier(0.33, 1, 0.68, 1);
       &[data-focusvisible="true"] {
         .container {
           // Кольцо фокуса по границе контейнера (Figma `focusedFrame/regular/outside`).
-          $offsetWidth: base.$sn-primitive-strokeWeight-strokeSemiBold;
+          $offsetWidth: base.$sn-brand-anatomy-focusLine-control-strokeWeight;
 
           border-radius: base.simple-var(toggles.$toggles, 'anatomy', 'size', $size, 'switch', 'framing', 'border-radius');
           outline: $offsetWidth solid base.$sn-theme-color-available-complementary;
