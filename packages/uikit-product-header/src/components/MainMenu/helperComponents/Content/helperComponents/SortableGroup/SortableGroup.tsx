@@ -25,7 +25,7 @@ export type SortableGroupProps = Pick<LinksGroup, 'icon' | 'items'> & {
   isMobile?: boolean;
 
   /** Группу можно перетаскивать (иначе рендерится без `useSortable`). */
-  enableServiceDrag?: boolean;
+  enableGroupDrag?: boolean;
 
   /** Цвет блока группы. */
   blockColor?: LinksGroupBlockColor;
@@ -54,7 +54,7 @@ function GroupView({
   items,
   isExpanded,
   isMobile,
-  enableServiceDrag,
+  enableGroupDrag,
   groupFavoritesEnabled = true,
   blockColor,
   highlight,
@@ -104,7 +104,7 @@ function GroupView({
             label={label}
             icon={icon}
             isExpanded={isExpanded}
-            enableServiceDrag={enableServiceDrag}
+            enableGroupDrag={enableGroupDrag}
             attributes={attributes}
             listeners={listeners}
             isMobile={isMobile}
@@ -143,12 +143,12 @@ function DraggableGroup(props: SortableGroupProps) {
 
 function SortableGroupBase(props: SortableGroupProps) {
   // Без drag (mobile, поиск, нет избранного) группа не регистрируется в `SortableContext`.
-  return props.enableServiceDrag ? <DraggableGroup {...props} /> : <GroupView {...props} />;
+  return props.enableGroupDrag ? <DraggableGroup {...props} /> : <GroupView {...props} />;
 }
 
 export const SortableGroup = memo(SortableGroupBase);
 
-export type SortableGroupDragPreviewProps = Omit<SortableGroupProps, 'enableServiceDrag'> &
+export type SortableGroupDragPreviewProps = Omit<SortableGroupProps, 'enableGroupDrag'> &
   Pick<CardsContextValue, 'showDescription' | 'favoriteIds' | 'onFavoriteChange'>;
 
 /**
@@ -187,7 +187,7 @@ export function SortableGroupDragPreview({
           </div>
         </div>
         <div className={styles.groupDragPreviewHeader}>
-          <SortableGroupHeader label={label} isExpanded={isExpanded} isMobile={isMobile} enableServiceDrag />
+          <SortableGroupHeader label={label} isExpanded={isExpanded} isMobile={isMobile} enableGroupDrag />
         </div>
 
         {isExpanded && (

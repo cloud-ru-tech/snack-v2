@@ -138,8 +138,9 @@ export const DraggableServiceCard = memo(DraggableServiceCardBase);
 
 export type GridServiceCardProps = DraggableServiceCardProps & {
   /**
-   * Карточку можно перетаскивать. Иначе рендерится без `useDraggable`: на mobile, при поиске и
+   * Карточку можно перетаскивать. Иначе рендерится без `useDraggable`: на mobile и
    * без избранного сотни карточек не регистрируются в `DndContext` впустую.
+   * При поиске карточки по-прежнему можно перетащить в избранное.
    */
   dragEnabled?: boolean;
 };

@@ -712,7 +712,7 @@
       "dragEnabled": {
         "type": "boolean",
         "required": false,
-        "description": "Карточку можно перетаскивать. Иначе рендерится без `useDraggable`: на mobile, при поиске и\nбез избранного сотни карточек не регистрируются в `DndContext` впустую."
+        "description": "Карточку можно перетаскивать. Иначе рендерится без `useDraggable`: на mobile и\nбез избранного сотни карточек не регистрируются в `DndContext` впустую.\nПри поиске карточки по-прежнему можно перетащить в избранное."
       },
       "dragPreview": {
         "type": "boolean",
@@ -4031,7 +4031,7 @@
         ],
         "description": "Цвет блока группы."
       },
-      "enableServiceDrag": {
+      "enableGroupDrag": {
         "type": "boolean",
         "required": false,
         "description": "Группу можно перетаскивать (иначе рендерится без `useSortable`)."
@@ -4193,7 +4193,7 @@
         "required": false,
         "description": "ARIA-атрибуты `dnd-kit` draggable-элемента."
       },
-      "enableServiceDrag": {
+      "enableGroupDrag": {
         "type": "boolean",
         "required": false
       },

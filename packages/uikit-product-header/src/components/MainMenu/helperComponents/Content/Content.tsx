@@ -148,7 +148,10 @@ export function Content({
   });
 
   const isSearching = Boolean(searchValue);
-  const enableServiceDrag = Boolean(favorite) && !isMobile && !isSearching;
+  const enableServiceDrag = Boolean(favorite) && !isMobile;
+  // Порядок категорий в выдаче задаёт поиск, поэтому перетаскивание групп выключено.
+  // Карточки при этом можно перетащить в избранное.
+  const enableGroupDrag = enableServiceDrag && !isSearching;
 
   // Ссылки на обработчики стабильны: иначе `memo` карточек ломается при каждом рендере потребителя.
   const handleLinkClick = useEventHandler((service: InnerLink, e?: MouseEvent<HTMLElement>) => {
@@ -274,7 +277,7 @@ export function Content({
                   isExpanded={expandedIdsSet.has(id)}
                   blockColor={resolveGroupBlockColor(blockColor, showGroupsColors)}
                   isMobile={isMobile}
-                  enableServiceDrag={enableServiceDrag}
+                  enableGroupDrag={enableGroupDrag}
                   groupFavoritesEnabled={favoritesEnabled}
                   appear={!isMobile}
                   highlight={highlight}

@@ -13,7 +13,7 @@ import { SortableGroupDragHandle } from './SortableGroupDragHandle';
 export type SortableGroupHeaderProps = Pick<LinksGroup, 'icon'> & {
   label: LinksGroupTitle;
   isExpanded?: boolean;
-  enableServiceDrag?: boolean;
+  enableGroupDrag?: boolean;
   isMobile?: boolean;
   /** ARIA-атрибуты `dnd-kit` draggable-элемента. */
   attributes?: DraggableAttributes;
@@ -25,7 +25,7 @@ function SortableGroupHeaderBase({
   label,
   icon,
   isExpanded,
-  enableServiceDrag,
+  enableGroupDrag,
   attributes,
   listeners,
   isMobile,
@@ -58,9 +58,9 @@ function SortableGroupHeaderBase({
         )}
       </Typography>
 
-      {(enableServiceDrag || !isMobile) && (
+      {(enableGroupDrag || !isMobile) && (
         <div className={styles.headerActions} data-always-visible={isMobile || undefined}>
-          {enableServiceDrag && <SortableGroupDragHandle />}
+          {enableGroupDrag && <SortableGroupDragHandle />}
 
           {!isMobile && (
             <Button
