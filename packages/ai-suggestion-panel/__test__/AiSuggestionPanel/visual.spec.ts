@@ -87,6 +87,8 @@ test.describe('AiSuggestionPanel — visual regression', () => {
 
   // Крайние ячейки повторяют скругление полосы — рамка фокуса и заливки не должны обрезаться.
   test('size × state matrix (edge cells)', async ({ page, gotoStory, waitForFonts, getByTestId, setStoryArgs }) => {
+    // 32 ячейки, каждая ждёт стабилизации рамки: ~20с на обычном раннере, на загруженном — за 30с.
+    test.slow();
     const cells: ScreenshotCell[] = [];
 
     for (const size of ['s', 'm'] as const) {
