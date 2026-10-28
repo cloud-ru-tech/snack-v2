@@ -6,6 +6,7 @@ export * from './getStorybookUrl';
 export * from './pendingRequests';
 export * from './remountStory';
 export * from './setStoryArgs';
+export * from './waitForContentVisibility';
 export * from './waitForFonts';
 export * from './waitForImages';
 export * from './waitForSettledInViewport';

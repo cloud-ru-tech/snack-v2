@@ -5,7 +5,11 @@ import {
 } from '#playwright-tooling/constants/common';
 import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects';
 import { expect, test } from '#playwright-tooling/fixtures';
-import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
+import {
+  assertVisualMatrixSnapshot,
+  waitForContentVisibility,
+  waitForSettledInViewport,
+} from '#playwright-tooling/utils';
 
 import { TEST_IDS } from '../../stories/testIds';
 import { buildMainMenuStoryOptions, MAIN_MENU_STORIES } from './helpers';
@@ -31,6 +35,8 @@ test.describe('MainMenu — visual regression', () => {
     await waitForFonts();
     await getByTestId(TEST_IDS.mainMenu.drawerButton).click();
     await waitForSettledInViewport(getByTestId(TEST_IDS.mainMenu.right));
+    // Группы рендерятся с `content-visibility: auto`: bbox панели стабилен раньше, чем они отрисованы.
+    await waitForContentVisibility(page);
     // Поле поиска получает фокус при открытии (см. MenuDesktop) — курсор уводим,
     // чтобы не поймать hover на карточке под точкой клика.
     await page.mouse.move(0, 0);
@@ -57,8 +63,10 @@ test.describe('MainMenu — visual regression', () => {
     await waitForFonts();
     await getByTestId(TEST_IDS.mainMenu.drawerButton).click();
     await waitForSettledInViewport(getByTestId(TEST_IDS.mainMenu.right));
+    await waitForContentVisibility(page);
     await getByTestId(TEST_IDS.mainMenu.search).locator('input').fill('ml');
     await waitForSettledInViewport(getByTestId(TEST_IDS.mainMenu.right));
+    await waitForContentVisibility(page);
     await page.mouse.move(0, 0);
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-search.png',
