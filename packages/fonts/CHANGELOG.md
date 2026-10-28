@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-10-28)
+
+### Features
+
+- **FF-9312:** fonts update ([565b9a8](https://git.sbercloud.tech/sbercloud-ui/tokens-design-system/variables/storybook/commits/565b9a81999189fefa5de615ba14390d574729e6))
+
 ## 1.1.1 (2026-10-21)
 
 ### Bug Fixes

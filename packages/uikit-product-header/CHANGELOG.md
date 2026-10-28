@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.3 (2026-10-28)
+
+### Bug Fixes
+
+- **FF-9351:** allow drag cards when searching ([5bb997f](https://github.com/cloud-ru-tech/snack-v2/commit/5bb997fa573437c6c88f8aad0ce73f743e9a094d))
+
 ## 2.3.2 (2026-10-28)
 
 **Note:** Version bump only for package @ds/uikit-product-header
