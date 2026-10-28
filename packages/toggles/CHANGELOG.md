@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.14 (2026-10-28)
+
+### Bug Fixes
+
+- **FF-9332:** align toggles with figma ([37941ae](https://github.com/cloud-ru-tech/snack-v2/commit/37941aefa164ea88c28f8333d9a87c6b90853d12))
+
 ## 1.1.13 (2026-10-17)
 
 **Note:** Version bump only for package @ds/toggles

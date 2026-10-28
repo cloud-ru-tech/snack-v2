@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.2 (2026-10-28)
+
+**Note:** Version bump only for package @ds/uikit-product-header
+
 ## 2.3.1 (2026-10-21)
 
 ### Bug Fixes
