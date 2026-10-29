@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.4 (2026-10-29)
+
+### Bug Fixes
+
+- **LK-8858:** add test-id ([1e94fe5](https://github.com/cloud-ru-tech/snack-v2/commit/1e94fe52babaf57834427af684911de4d62c1361))
+
 ## 2.3.3 (2026-10-28)
 
 ### Bug Fixes

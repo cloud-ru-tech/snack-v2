@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.4 (2026-10-29)
+
+### Bug Fixes
+
+- **CLOUDOM-4328:** fixed saved state for table column settings ([e0a42a2](https://github.com/cloud-ru-tech/snack-v2/commit/e0a42a2125ad3aa60b081b9c9af606b57defabe5))
+
 ## 2.2.3 (2026-10-28)
 
 **Note:** Version bump only for package @ds/table
