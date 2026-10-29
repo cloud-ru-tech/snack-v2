@@ -66,14 +66,23 @@ export function ContentWrapperCustom({
           <div className={styles.textContent}>
             <div className={styles.headline}>
               <div className={styles.label} data-group-variant={layout === 'group' ? groupVariant : undefined}>
-                <TruncateString variant={truncate.variant} text={String(label)} maxLines={truncate.label} />
+                <TruncateString
+                  data-test-id='header-list-item__label'
+                  variant={truncate.variant}
+                  text={String(label)}
+                  maxLines={truncate.label}
+                />
               </div>
               {caption && layout === 'item' && <span className={styles.caption}>{caption}</span>}
             </div>
 
             {description && layout === 'item' && (
               <div className={styles.description}>
-                <TruncateString text={description} maxLines={truncate.description} />
+                <TruncateString
+                  data-test-id='header-list-item__description'
+                  text={description}
+                  maxLines={truncate.description}
+                />
               </div>
             )}
           </div>

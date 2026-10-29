@@ -30,9 +30,21 @@ export function useProfileItem({
       ) : (
         <div className={styles.userItemContent}>
           <div className={styles.userItemHeadline}>
-            <TruncateString className={styles.userItemLabel} text={fullName} maxLines={1} />
+            <TruncateString
+              className={styles.userItemLabel}
+              text={fullName}
+              maxLines={1}
+              data-test-id='header__user-menu__manage-profile__full-name'
+            />
           </div>
-          {email ? <TruncateString className={styles.userItemDescription} text={email} maxLines={1} /> : null}
+          {email ? (
+            <TruncateString
+              className={styles.userItemDescription}
+              text={email}
+              maxLines={1}
+              data-test-id='header__user-menu__manage-profile__email'
+            />
+          ) : null}
         </div>
       ),
       onClick,
