@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.11 (2026-10-30)
+
+**Note:** Version bump only for package @ds/ai-chain-of-thoughts
+
 ## 2.1.10 (2026-10-17)
 
 **Note:** Version bump only for package @ds/ai-chain-of-thoughts

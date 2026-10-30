@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2026-10-30)
+
+### BREAKING CHANGES
+
+- **FF-8816:** require country list in FieldPhone options ([9bb16a2](https://github.com/cloud-ru-tech/snack-v2/commit/9bb16a20948643bc05b4f24efba42b276dee7e9e))
+
 ## 3.0.6 (2026-10-28)
 
 **Note:** Version bump only for package @ds/uikit-product-fields-predefined

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.7 (2026-10-30)
+
+### Bug Fixes
+
+- **FF-8816:** keep droplist scroll position on parent rerender ([3676f67](https://github.com/cloud-ru-tech/snack-v2/commit/3676f67f7e2288e36a57389f1b2f0c07d71d4a6e))
+
 ## 3.0.6 (2026-10-28)
 
 **Note:** Version bump only for package @ds/list

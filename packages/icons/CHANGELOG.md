@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.2 (2026-10-30)
+
+### Bug Fixes
+
+- **FF-8816:** optimize flag svgs with svgo coordinate precision ([75c8ee9](https://github.com/cloud-ru-tech/snack-v2/commit/75c8ee9741815ecc4f4f0951ce76ca59870b06b3))
+
 ## 1.7.1 (2026-10-17)
 
 **Note:** Version bump only for package @ds/icons
