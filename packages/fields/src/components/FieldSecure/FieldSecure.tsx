@@ -146,25 +146,25 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
     [onChange, setValue],
   );
 
-  const ensureAsyncValue = useCallback(async (): Promise<boolean> => {
+  const ensureAsyncValue = useCallback(async (): Promise<{ success: true; value: string } | { success: false }> => {
     if (!asyncValueGetter || isAsyncLoaded) {
-      return true;
+      return { success: true, value };
     }
     setIsLoading(true);
     try {
       const next = await asyncValueGetter();
       setIsAsyncLoaded(true);
       emitChange(next);
-      return true;
+      return { success: true, value: next };
     } catch {
-      return false;
+      return { success: false };
     } finally {
       setIsLoading(false);
     }
-  }, [asyncValueGetter, emitChange, isAsyncLoaded]);
+  }, [asyncValueGetter, emitChange, isAsyncLoaded, value]);
 
   const toggleHidden = useCallback(() => {
-    ensureAsyncValue().then(success => {
+    ensureAsyncValue().then(({ success }) => {
       if (!success) {
         return;
       }
@@ -198,14 +198,14 @@ export const FieldSecure = forwardRef<HTMLInputElement, FieldSecureProps>(functi
 
   const onCopy = useCallback(
     () =>
-      ensureAsyncValue().then(async success => {
-        const copied = success && (await copyTextToClipboard(stringValue));
+      ensureAsyncValue().then(async result => {
+        const copied = result.success && (await copyTextToClipboard(result.value));
         if (copied) {
           onCopyButtonClick?.();
         }
         return copied;
       }),
-    [ensureAsyncValue, onCopyButtonClick, stringValue],
+    [ensureAsyncValue, onCopyButtonClick],
   );
 
   const copyButtonSettings = useCopyButton({
