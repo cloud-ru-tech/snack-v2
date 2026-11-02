@@ -104,7 +104,7 @@ export function CollapseBlock({
       className={cn(styles.wrapper, className)}
       data-acrylic-appearance={appearance}
       data-acrylic-level={level}
-      data-expanded={isOpen}
+      data-expanded={isOpen || undefined}
       data-completely-open={isCompletelyOpen || undefined}
       data-view={view}
       data-component={component}
@@ -112,6 +112,7 @@ export function CollapseBlock({
       style={{
         '--sn-collapse-block-animation-duration': `${ANIMATION_DURATION}ms`,
       }}
+      onClick={isOpen ? undefined : toggleOpen}
     >
       {component !== 'accordionTertiary' && (
         <>
@@ -127,7 +128,7 @@ export function CollapseBlock({
         data-expanded={isOpen || undefined}
         data-completely-close={isCompletelyClose || undefined}
         data-chevron-position={chevronPosition}
-        onClick={toggleOpen}
+        onClick={isOpen ? toggleOpen : undefined}
       >
         <div className={styles.titleWrapper}>
           <div className={styles.titleLine}>

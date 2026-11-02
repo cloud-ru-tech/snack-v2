@@ -38,10 +38,17 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
     }
   }
 
+  cursor: pointer;
+
   position: relative;
+
   display: block;
   flex-direction: column;
   align-self: stretch;
+
+  &[data-expanded] {
+    cursor: default;
+  }
 
   &[data-component='accordionPrimary'],
   &[data-component='accordionSecondary'] {

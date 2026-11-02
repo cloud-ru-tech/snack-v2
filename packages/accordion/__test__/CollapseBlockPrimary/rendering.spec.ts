@@ -26,7 +26,7 @@ test.describe('CollapseBlockPrimary — rendering', () => {
       await expect(getByTestId(TEST_IDS.title)).toBeVisible();
       await expect(getByTestId(TEST_IDS.chevron)).toBeVisible();
       await expect(root).toHaveAttribute('data-component', 'accordionPrimary');
-      await expect(root).toHaveAttribute('data-expanded', 'false');
+      await expect(root).not.toHaveAttribute('data-expanded');
     });
 
     await test.step('render: title text', async () => {

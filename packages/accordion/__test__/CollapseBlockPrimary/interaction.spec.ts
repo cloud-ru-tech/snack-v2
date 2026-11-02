@@ -7,7 +7,7 @@ test.describe('CollapseBlockPrimary — interaction', () => {
     await gotoStory(buildStoryOptions({ ...PLAYGROUND_DEFAULT_ARGS, children: 'Expanded content' }));
 
     const block = getByTestId(TEST_IDS.collapseBlock);
-    await expect(block).toHaveAttribute('data-expanded', 'false');
+    await expect(block).not.toHaveAttribute('data-expanded');
 
     await getByTestId(TEST_IDS.title).click();
 
@@ -25,7 +25,7 @@ test.describe('CollapseBlockPrimary — interaction', () => {
     await expect(block).toHaveAttribute('data-expanded', 'true');
 
     await title.click();
-    await expect(block).toHaveAttribute('data-expanded', 'false');
+    await expect(block).not.toHaveAttribute('data-expanded');
   });
 
   test('chevron icon is visible and clickable', async ({ gotoStory, getByTestId }) => {
