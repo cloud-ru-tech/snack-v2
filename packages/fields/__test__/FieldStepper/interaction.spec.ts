@@ -6,6 +6,17 @@ import { buildStoryOptions, TEST_IDS } from './helpers';
 // тултипа границы — надёжны только в реальном браузере: synthetic storybook-test не доводит
 // native blur/setTimeout до компонента, поэтому assertions живут здесь, а не в play.
 test.describe('FieldStepper — interaction (clamp on blur)', () => {
+  test('resets a single-digit value to zero on Backspace', async ({ gotoStory, getByTestId }) => {
+    await gotoStory(buildStoryOptions());
+
+    const input = getByTestId(TEST_IDS.fieldStepperInput);
+    await input.fill('5');
+    await input.press('End');
+    await input.press('Backspace');
+
+    await expect(input).toHaveValue('0');
+  });
+
   test('clamps a value above max down to max on blur', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
 
