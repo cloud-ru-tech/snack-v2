@@ -205,10 +205,10 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
 
   const handleInputChange = useCallback(
     (raw: string, event?: ChangeEvent<HTMLInputElement>) => {
-      if (raw === '' || raw === '-') {
+      if (raw === '-') {
         return;
       }
-      const parsed = Number(raw);
+      const parsed = raw === '' ? 0 : Number(raw);
       if (Number.isNaN(parsed)) {
         return;
       }
@@ -230,6 +230,8 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
 
   const handleBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
+      setFocusVisible(false);
+
       if (!allowMoreThanLimits) {
         if (typeof max === 'number' && value > max) {
           setValue(max);
