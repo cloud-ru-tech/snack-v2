@@ -194,6 +194,9 @@ export function useDragEngine({
   const onPointerDown = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
       if (!swipeEnabled || !isActive) return;
+      // События вложенного React-портала всплывают в родительский sheet, хотя его DOM
+      // не содержит цель жеста. Такой жест принадлежит только вложенной панели.
+      if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return;
       if (!event.isPrimary || pointerId.current !== null) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
       if (event.target instanceof Element && event.target.closest(NO_DRAG_SELECTOR)) return;
