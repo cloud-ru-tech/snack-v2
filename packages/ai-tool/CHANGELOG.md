@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-11-02)
+
+### Features
+
+- **AIX-487:** add Write and Edit icons to AiTool ([c2dd793](https://github.com/cloud-ru-tech/snack-v2/commit/c2dd793c91f28f38949d8f0b3460f52f2f3a4a06))
+
 ## 2.1.11 (2026-10-30)
 
 **Note:** Version bump only for package @ds/ai-tool

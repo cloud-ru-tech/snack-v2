@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-code-diff",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Количество добавленных и удаленных строк кода",
   "repository": {
     "type": "git",
