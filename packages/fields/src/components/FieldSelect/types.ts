@@ -123,6 +123,7 @@ type CommonSelectProps = FieldSelectDecoratorProps &
     widthStrategy?: DroplistProps['widthStrategy'];
     /**
      * Включить поиск/ввод в поле — пользователь печатает, список фильтруется по подстроке лейбла.
+     * `autocomplete` и создание опции по Enter также включают мобильный поиск.
      * @default true
      */
     searchable?: boolean;

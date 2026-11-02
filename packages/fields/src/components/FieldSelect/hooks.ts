@@ -133,7 +133,7 @@ export function useCustomOption({
   );
 
   const tryCommitFromKeyboard = useCallback(
-    (event: KeyboardEvent<HTMLInputElement>) => {
+    (event: Pick<KeyboardEvent, 'key'>) => {
       const trigger = getCustomOptionTriggerByKey(event.key);
 
       return trigger !== undefined && tryCommit(trigger);

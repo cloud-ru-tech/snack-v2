@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { ChevronDownSVG } from '@ds/icons/interface/system';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { Droplist, ItemId } from '@ds/list';
@@ -45,6 +46,7 @@ import {
   getMissingSelectedItems,
   getSelectedIds,
   isMultiple,
+  resolveAddCustomOptionTriggers,
   TAG_SIZE_MAP,
   WithIdContent,
 } from './utils';
@@ -122,6 +124,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const onMultipleChange = onChange as FieldSelectMultipleProps['onChange'];
 
   const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
+  const { layoutType } = useAdaptiveLayout();
 
   const inputRef = useRef<HTMLInputElement>(null);
   // Отдельный ref на реальный <input>: `inputRef.current` перезаписывается span-обёрткой PopoverPrivate.
@@ -186,6 +189,13 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   );
 
   const allItems = useMemo(() => [...(pinTop ?? []), ...items, ...(pinBottom ?? [])], [items, pinTop, pinBottom]);
+  const mobileSearchable = useMemo(
+    () =>
+      searchable ||
+      autocomplete ||
+      resolveAddCustomOptionTriggers({ allowCustomOption, addCustomOptionTriggers, multiple }).includes('enter'),
+    [searchable, autocomplete, allowCustomOption, addCustomOptionTriggers, multiple],
+  );
 
   const selectedIds = useMemo(
     () => getSelectedIds({ multiple, multipleValue, singleValue }),
@@ -799,6 +809,22 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       <Droplist
         items={filteredItems}
         label={label}
+        search={
+          isMobileLayout(layoutType) && mobileSearchable && !readOnly && !disabled
+            ? {
+                value: inputValue,
+                onChange: handleInputChange,
+                onKeyDown: event => {
+                  if (tryCommitFromKeyboard(event)) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                },
+                placeholder,
+                loading,
+              }
+            : undefined
+        }
         pinTop={filteredPinTop}
         pinBottom={filteredPinBottom}
         trigger='click'
