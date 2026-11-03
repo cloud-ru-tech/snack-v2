@@ -155,4 +155,24 @@ test.describe('Droplist — visual regression', () => {
       MATCH_SNAPSHOT_DEFAULT_OPTS,
     );
   });
+
+  test('mobile header and search share one divider', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(
+      buildStoryOptions({ showHeader: true, showSearch: true, headerDivider: true }, undefined, {
+        layoutType: 'mobile',
+      }),
+    );
+    await waitForFonts();
+    await getByTestId(TEST_IDS.droplist.triggerOpen).click();
+    const root = getByTestId(LIST_INTERNAL_TEST_IDS.mobileDroplistRoot);
+    await waitForSettledInViewport(root);
+    await expect(root.locator('[data-divider]')).toHaveCount(0);
+    await expect(root.getByTestId(LIST_INTERNAL_TEST_IDS.searchItem)).toBeVisible();
+    await page.mouse.move(0, 0);
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'mobile-header-search.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
+  });
 });

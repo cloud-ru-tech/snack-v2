@@ -41,7 +41,12 @@ export function SearchItem({ search, itemRef, onNavKeyDown, onFocus, inTopBar }:
   }
 
   return (
-    <div className={styles.searchItem} data-in-top-bar={inTopBar || undefined} data-test-id={TEST_IDS.searchItem}>
+    <div
+      className={styles.searchItem}
+      data-size={size}
+      data-in-top-bar={inTopBar || undefined}
+      data-test-id={TEST_IDS.searchItem}
+    >
       <SearchPrivate
         size={size}
         tabIndex={ITEM_PREFIXES.search === firstItemId ? 0 : -1}

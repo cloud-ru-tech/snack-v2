@@ -511,7 +511,11 @@ export const ListPrivate = forwardRef(
         {...extractSupportProps(props)}
       >
         {header && (
-          <div className={styles.header} data-divider={headerDivider || undefined} onFocus={stopPropagation}>
+          <div
+            className={styles.header}
+            data-divider={(headerDivider && !search) || undefined}
+            onFocus={stopPropagation}
+          >
             {header}
           </div>
         )}

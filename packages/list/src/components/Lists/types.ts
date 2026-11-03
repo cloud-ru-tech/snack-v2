@@ -187,7 +187,7 @@ type DroplistMobileSlots = {
 /**
  * Props адаптивного `Droplist` (дефолтный droplist): базовые props + mobile-слоты `BottomSheet`.
  * Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` рендерит `MobileDroplist`
- * (список size `l` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
+ * (список size `m` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
  * применяются только на mobile.
  */
 export type DroplistProps = BaseDroplistProps &

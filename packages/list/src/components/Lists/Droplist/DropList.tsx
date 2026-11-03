@@ -20,6 +20,7 @@ function DroplistImpl({
     return (
       <MobileDroplist
         {...rest}
+        size='m'
         label={label}
         actionButton={actionButton}
         slotAfterTitle={slotAfterTitle}
@@ -39,7 +40,7 @@ function DroplistImpl({
 
 /**
  * Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит
- * список (size `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).
+ * список (size `m`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).
  * Слоты `label` / `actionButton` / `slotAfterTitle` / `onBackButtonClick` применяются только на mobile.
  * Чтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный
  * `<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.

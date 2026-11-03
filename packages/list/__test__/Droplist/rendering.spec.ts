@@ -1,7 +1,7 @@
 import { MOBILE_VIEWPORT } from '#playwright-tooling/constants/common';
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, itemTestId, TEST_IDS } from './helpers';
+import { buildStoryOptions, itemTestId, LIST_INTERNAL_TEST_IDS, TEST_IDS } from './helpers';
 
 // Локальная копия `@ds/bottom-sheet` TEST_IDS.handle — маркер mobile-поверхности (swipe-handle
 // рендерит только BottomSheet). Кросс-пакетный импорт в spec ломает playwright-compile. Синхронизируй при изменении.
@@ -43,4 +43,25 @@ test.describe('Droplist — rendering', () => {
       await expect(getByTestId(BOTTOM_SHEET_HANDLE_TEST_ID)).toBeVisible();
     });
   });
+
+  for (const layoutType of ['desktop', 'mobile'] as const) {
+    for (const size of ['s', 'm', 'l'] as const) {
+      test(`${layoutType}: size=${size} applies to items and the whole search field`, async ({
+        page,
+        gotoStory,
+        getByTestId,
+      }) => {
+        if (layoutType === 'mobile') {
+          await page.setViewportSize(MOBILE_VIEWPORT);
+        }
+        await gotoStory(buildStoryOptions({ size, showSearch: true }, undefined, { layoutType }));
+        await getByTestId(TEST_IDS.droplist.triggerOpen).click();
+        const expectedSize = layoutType === 'mobile' ? 'm' : size;
+        const search = getByTestId(LIST_INTERNAL_TEST_IDS.searchItem);
+        await expect(getByTestId(itemTestId('overview'))).toHaveAttribute('data-size', expectedSize);
+        await expect(search).toHaveAttribute('data-size', expectedSize);
+        await expect(search.locator('[data-size]')).toHaveAttribute('data-size', expectedSize);
+      });
+    }
+  }
 });
