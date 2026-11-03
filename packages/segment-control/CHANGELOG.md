@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.20 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** remove z-index ([4ce37ec](https://github.com/cloud-ru-tech/snack-v2/commit/4ce37ecb3f5e5725f02263dafbe1778d17181f2b))
+
 ## 1.0.19 (2026-10-30)
 
 **Note:** Version bump only for package @ds/segment-control

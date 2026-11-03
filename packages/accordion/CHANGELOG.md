@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.11 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** collapse block click area ([a467ec9](https://github.com/cloud-ru-tech/snack-v2/commit/a467ec91e682d070ebded2dfa015cddffc57bf69))
+
 ## 1.2.10 (2026-10-30)
 
 **Note:** Version bump only for package @ds/accordion

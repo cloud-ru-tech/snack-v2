@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.21 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** use div for tooltip content ([a117d44](https://github.com/cloud-ru-tech/snack-v2/commit/a117d449099d2160add66a258d182b7d5cfbb29f))
+
 ## 1.0.20 (2026-10-30)
 
 **Note:** Version bump only for package @ds/uikit-product-promo-tag-predefined

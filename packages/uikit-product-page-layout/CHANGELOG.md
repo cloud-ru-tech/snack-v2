@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** use previous variant of mobile PageServices ([dff7b3c](https://github.com/cloud-ru-tech/snack-v2/commit/dff7b3ca72194b33cec863bdabf85d3ec59464d6))
+
+### Features
+
+- **AIX-487:** ai-history-line component ([8f9d550](https://github.com/cloud-ru-tech/snack-v2/commit/8f9d550beb53b91d945816e48b6a280c3ad677b8))
+
 ## 2.0.2 (2026-10-30)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout

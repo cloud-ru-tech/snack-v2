@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.9 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** add focus on input area click ([88e5eae](https://github.com/cloud-ru-tech/snack-v2/commit/88e5eae962eb608b4e65f972cfd28353632b9fc3))
+- **FF-9113:** clear focus state on blur ([e295f82](https://github.com/cloud-ru-tech/snack-v2/commit/e295f82a21b09f5fe58d58f5ebc01d8d52df2f85))
+- **FF-9113:** set one digit value to zero with backspace ([ed300f5](https://github.com/cloud-ru-tech/snack-v2/commit/ed300f52c4e9a128e927b38176301bc5ddec443e))
+
 ## 3.0.8 (2026-11-03)
 
 ### Bug Fixes

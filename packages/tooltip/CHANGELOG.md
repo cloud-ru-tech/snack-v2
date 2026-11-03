@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.18 (2026-11-03)
+
+### Bug Fixes
+
+- **FF-9113:** tooltip inline content ([9c9fcc3](https://github.com/cloud-ru-tech/snack-v2/commit/9c9fcc369af20caf5d10af3488a2be2f17fac91c))
+
 ## 1.0.17 (2026-10-30)
 
 **Note:** Version bump only for package @ds/tooltip
