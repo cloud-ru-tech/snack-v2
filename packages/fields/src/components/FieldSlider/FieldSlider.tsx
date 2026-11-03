@@ -290,6 +290,7 @@ export const FieldSlider = forwardRef<HTMLInputElement, FieldSliderProps>(functi
 
   const handleInputBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
+      setFocusVisible(false);
       snapAndCommit(inputValue);
       onBlur?.(event);
     },

@@ -382,6 +382,11 @@ export const FieldStepper = forwardRef<HTMLInputElement, FieldStepperProps>(func
             localRef.current.focus();
           }
         }}
+        onMouseDown={event => {
+          if (focusVisible) {
+            event.preventDefault();
+          }
+        }}
       >
         <div className={fieldStyles.contentWrapper}>
           <div className={cn(fieldStyles.inputLine, styles.inputLine)}>
