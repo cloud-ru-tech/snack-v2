@@ -118,7 +118,7 @@ export function PromoTagPredefined(props: PromoTagPredefinedProps) {
       placement={tooltip?.placement}
       open={tooltip?.open}
       onOpenChange={tooltip?.onOpenChange}
-      tip={<span data-test-id={TEST_IDS.tooltipContent}>{tip}</span>}
+      tip={<div data-test-id={TEST_IDS.tooltipContent}>{tip}</div>}
       trigger={tooltip?.trigger ?? TRIGGER.Hover}
       triggerClassName={styles.trigger}
       hoverDelayOpen={HOVER_DELAY_OPEN_MS}
