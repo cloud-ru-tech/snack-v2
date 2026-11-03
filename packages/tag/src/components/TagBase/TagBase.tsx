@@ -17,8 +17,10 @@ export function TagBase({
   className,
   tabIndex,
   innerRef,
+  changeRestrictTooltipState,
+  hideTruncateTooltip,
   ...rest
-}: TagBaseProps) {
+}: TagBaseProps & { changeRestrictTooltipState?: (state: boolean) => void; hideTruncateTooltip: boolean }) {
   const isRemovable = Boolean(onDelete);
 
   return (
@@ -31,13 +33,20 @@ export function TagBase({
       data-removable={isRemovable}
     >
       <span className={styles.textWrapper}>
-        <TruncateString className={styles.label} text={label} variant={truncateVariant} />
+        <TruncateString
+          className={styles.label}
+          text={label}
+          variant={truncateVariant}
+          hideTooltip={hideTruncateTooltip}
+        />
       </span>
       {isRemovable && (
         <button
           type='button'
           className={styles.tagButton}
           onClick={onDelete}
+          onMouseEnter={() => changeRestrictTooltipState?.(true)}
+          onMouseLeave={() => changeRestrictTooltipState?.(false)}
           data-test-id={TEST_IDS.tag.removeButton}
           tabIndex={tabIndex}
         >

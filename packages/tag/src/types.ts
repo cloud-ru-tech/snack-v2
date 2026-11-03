@@ -1,3 +1,4 @@
+import { TooltipProps } from '@ds/tooltip';
 import { TruncateStringProps } from '@ds/truncate-string';
 import { PolymorphicRef, ValueOf, WithSupportProps } from '@ds/utils';
 import { ComponentPropsWithoutRef, ElementType, MouseEvent, MouseEventHandler, Ref } from 'react';
@@ -14,11 +15,17 @@ export type LinkProps = {
   target?: HTMLAnchorElement['target'];
 };
 
+export type TagTooltipProps = {
+  /** Тултип над тегом */
+  tooltip?: TooltipProps;
+};
+
 export type TagRowItem = {
   id?: string;
   label: string;
   appearance?: Appearance;
-} & Partial<LinkProps>;
+} & Partial<LinkProps> &
+  TagTooltipProps;
 
 export type TagRowItemInner = Omit<TagRowItem, 'appearance'> & {
   appearance: Appearance;
@@ -62,7 +69,9 @@ export type TagLinkProps<T extends ElementType = 'a'> = WithSupportProps<
   } & Omit<ComponentPropsWithoutRef<T>, keyof CommonTagProps | 'as' | 'ref'>
 >;
 
-export type TagProps = TagBaseProps | TagLinkProps;
+export type TagWithTooltipProps = (TagBaseProps | TagLinkProps) & TagTooltipProps;
+
+export type TagProps = TagWithTooltipProps;
 
 export type TagRowProps = WithSupportProps<{
   items: TagRowItem[];

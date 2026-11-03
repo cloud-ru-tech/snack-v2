@@ -2337,6 +2337,9 @@ importers:
       '@ds/scroll':
         specifier: workspace:^
         version: link:../scroll
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string

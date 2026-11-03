@@ -34,6 +34,7 @@ type StoryProps = TagRowProps & {
   itemCount: number;
   removable: boolean;
   asLinks: boolean;
+  withTooltips: boolean;
 };
 
 function buildItems(count: number, asLinks: boolean): TagRowItem[] {
@@ -45,7 +46,7 @@ function buildItems(count: number, asLinks: boolean): TagRowItem[] {
   }));
 }
 
-function PlaygroundRender({ itemCount, removable, asLinks, ...rowProps }: StoryProps) {
+function PlaygroundRender({ itemCount, removable, asLinks, withTooltips, ...rowProps }: StoryProps) {
   const [items, setItems] = useState<TagRowItem[]>(() => buildItems(itemCount, asLinks));
 
   useEffect(() => {
@@ -60,12 +61,16 @@ function PlaygroundRender({ itemCount, removable, asLinks, ...rowProps }: StoryP
         <DemoTitle>Playground</DemoTitle>
         <DemoHint>
           Контролами регулируется число тегов, максимум строк (rowLimit → кнопка «+N»), закрытие тегов и режим
-          тегов-ссылок. Контейнер можно тянуть за нижний-правый угол — перенос строк и сворачивание в «+N»
-          пересчитываются вживую.
+          тегов-ссылок, а также тултипы. Контейнер можно тянуть за нижний-правый угол — перенос строк и сворачивание в
+          «+N» пересчитываются вживую.
         </DemoHint>
         <DemoActions align='center'>
           <DemoResizable width={480}>
-            <TagRow {...rowProps} items={items} onItemRemove={removable ? handleItemRemove : undefined} />
+            <TagRow
+              {...rowProps}
+              items={withTooltips ? items.map(item => ({ ...item, tooltip: { tip: item.label } })) : items}
+              onItemRemove={removable ? handleItemRemove : undefined}
+            />
           </DemoResizable>
         </DemoActions>
       </DemoPanel>
@@ -84,6 +89,7 @@ const meta: Meta<StoryProps> = {
     rowLimit: 1,
     removable: false,
     asLinks: false,
+    withTooltips: false,
     moreButtonLabel: '+',
     'data-test-id': TEST_IDS.tagRow.root,
   },
@@ -97,6 +103,7 @@ const meta: Meta<StoryProps> = {
     itemCount: { name: '[Stories]: itemCount', control: { type: 'range', min: 1, max: 20, step: 1 } },
     removable: { name: '[Stories]: removable', control: 'boolean' },
     asLinks: { name: '[Stories]: asLinks', control: 'boolean' },
+    withTooltips: { name: '[Stories]: withTooltips', control: 'boolean' },
     items: { table: { disable: true } },
     onItemRemove: { table: { disable: true } },
   },
