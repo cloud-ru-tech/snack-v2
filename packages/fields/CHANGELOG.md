@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.8 (2026-11-03)
+
+### Bug Fixes
+
+- **HCE-964:** reset FieldStepper value to zero when input is cleared ([922c640](https://github.com/cloud-ru-tech/snack-v2/commit/922c640577fa638ce3b733d004ba7441d5c9799b))
+
 ## 3.0.7 (2026-10-30)
 
 **Note:** Version bump only for package @ds/fields
