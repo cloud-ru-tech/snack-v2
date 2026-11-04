@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2026-11-04)
+
+### Bug Fixes
+
+- **FF-9117:** close top bottom-sheet when several are opened ([bab944e](https://github.com/cloud-ru-tech/snack-v2/commit/bab944e09d578721be39bf1669fddbcf2c06bd0a))
+
 # 2.1.0 (2026-11-03)
 
 ### Features

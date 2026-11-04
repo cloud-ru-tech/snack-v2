@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-widget",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Карточка продуктового виджета с кликабельным заголовком, SegmentControl, действиями и состояниями loading/error.",
   "repository": {
     "type": "git",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.11 (2026-11-04)
+
+### Bug Fixes
+
+- **FF-9117:** allow to copy for async secure field ([f03ea88](https://github.com/cloud-ru-tech/snack-v2/commit/f03ea8892905fe6cdeff27b2460749501d926124))
+- **FF-9117:** return search into mobile select ([d7a0df1](https://github.com/cloud-ru-tech/snack-v2/commit/d7a0df1c06d98e0691287d8f980346e78c93f9af))
+
 ## 3.0.10 (2026-11-04)
 
 **Note:** Version bump only for package @ds/fields
