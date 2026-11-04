@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-11-04)
+
+### Features
+
+- **FF-9112:** add tooltips for tagrow ([9c36e5e](https://github.com/cloud-ru-tech/snack-v2/commit/9c36e5e863c3ee8b1e485e4236e63867e32ef1e3))
+
 ## 1.1.21 (2026-11-03)
 
 **Note:** Version bump only for package @ds/tag
