@@ -540,6 +540,9 @@ importers:
       '@ds/site-card-vacancy':
         specifier: workspace:*
         version: link:../../packages/site-card-vacancy
+      '@ds/site-rich-text':
+        specifier: workspace:*
+        version: link:../../packages/site-rich-text
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -2271,6 +2274,18 @@ importers:
       classnames:
         specifier: 'catalog:'
         version: 2.5.1
+
+  packages/site-rich-text:
+    dependencies:
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+      isomorphic-dompurify:
+        specifier: ^2.35.0
+        version: 2.35.0
 
   packages/skeleton:
     dependencies:
@@ -9955,6 +9970,10 @@ packages:
   isexe@4.0.0:
     resolution: {integrity: sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw==}
     engines: {node: '>=20'}
+
+  isomorphic-dompurify@2.35.0:
+    resolution: {integrity: sha512-a9+LQqylQCU8f1zmsYmg2tfrbdY2YS/Hc+xntcq/mDI2MY3Q108nq8K23BWDIg6YGC5JsUMC15fj2ZMqCzt/+A==}
+    engines: {node: '>=20.19.5'}
 
   isomorphic-fetch@3.0.0:
     resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
@@ -20155,6 +20174,17 @@ snapshots:
   isexe@3.1.5: {}
 
   isexe@4.0.0: {}
+
+  isomorphic-dompurify@2.35.0:
+    dependencies:
+      dompurify: 3.4.11
+      jsdom: 27.4.0
+    transitivePeerDependencies:
+      - '@noble/hashes'
+      - bufferutil
+      - canvas
+      - supports-color
+      - utf-8-validate
 
   isomorphic-fetch@3.0.0(encoding@0.1.13):
     dependencies:

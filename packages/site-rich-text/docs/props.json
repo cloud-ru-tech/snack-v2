@@ -1,0 +1,54 @@
+{
+  "RichText": {
+    "displayName": "RichText",
+    "propsTypeName": "RichTextProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корневого элемента."
+      },
+      "content": {
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "",
+        "description": "Содержимое блока.\n\n- `string` — HTML-разметка. Перед вставкой очищается DOMPurify: удаляются скрипты, обработчики `on*`,\n  ссылки `javascript:`, стили, элементы форм, SVG и MathML.\n- `ReactNode` — рендерится как дочерние элементы."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "tag": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "div",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "span"
+        ],
+        "defaultValue": "div",
+        "description": "Тег корневого элемента. Задаёт только семантику: стили заголовков браузера по умолчанию сброшены,\nтипографику задаёт родитель или `className`.\n\nВ строчный элемент и заголовок передавайте только строчную разметку (`a`, `strong`, `em`, `br`):\nабзацы и списки внутри них недопустимы по HTML.",
+        "typeRefs": [
+          "RichTextTag"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "RichTextTag": {
+        "kind": "union",
+        "values": [
+          "div",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "span"
+        ],
+        "own": true
+      }
+    }
+  }
+}

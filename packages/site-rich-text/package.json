@@ -1,0 +1,43 @@
+{
+  "name": "@ds/site-rich-text",
+  "version": "1.0.0",
+  "description": "Блок форматированного текста для сайта: HTML-строка или ReactNode со стилями абзацев, ссылок, списков и изображений.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/site-rich-text"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/site-rich-text",
+  "license": "Apache-2.0",
+  "author": "Владислав Вещев",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "isomorphic-dompurify": "^2.35.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

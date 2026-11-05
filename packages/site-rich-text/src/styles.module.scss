@@ -1,0 +1,48 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Перебить стили браузера
+:where(.richText) {
+  margin: 0;
+  font: inherit;
+}
+
+.richText {
+  p {
+    margin: 0;
+  }
+
+  a {
+    pointer-events: visible;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    overflow-wrap: anywhere;
+
+    transition: color 0.3s ease-in-out;
+
+    // В v2 нет токена primary-accent-hovered из легаси; ближайший по роли — цвет primary-текста.
+    &:hover {
+      color: base.$sn-theme-color-primary-text;
+    }
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0 0 0 base.$sn-primitive-dimension-20;
+  }
+
+  img {
+    max-width: 100%;
+    margin-bottom: base.$sn-primitive-dimension-24;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

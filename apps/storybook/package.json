@@ -80,6 +80,7 @@
     "@ds/search-private": "workspace:*",
     "@ds/segment-control": "workspace:*",
     "@ds/site-card-vacancy": "workspace:*",
+    "@ds/site-rich-text": "workspace:*",
     "@ds/skeleton": "workspace:*",
     "@ds/slider": "workspace:*",
     "@ds/status": "workspace:*",

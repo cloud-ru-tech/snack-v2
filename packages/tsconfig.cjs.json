@@ -149,6 +149,9 @@
       "path": "./site-card-vacancy/tsconfig.cjs.json"
     },
     {
+      "path": "./site-rich-text/tsconfig.cjs.json"
+    },
+    {
       "path": "./skeleton/tsconfig.cjs.json"
     },
     {

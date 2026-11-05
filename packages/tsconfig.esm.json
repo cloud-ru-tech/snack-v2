@@ -154,6 +154,9 @@
       "path": "./site-card-vacancy/tsconfig.esm.json"
     },
     {
+      "path": "./site-rich-text/tsconfig.esm.json"
+    },
+    {
       "path": "./skeleton/tsconfig.esm.json"
     },
     {
