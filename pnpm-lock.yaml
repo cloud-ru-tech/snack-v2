@@ -543,6 +543,9 @@ importers:
       '@ds/site-rich-text':
         specifier: workspace:*
         version: link:../../packages/site-rich-text
+      '@ds/site-section-title':
+        specifier: workspace:*
+        version: link:../../packages/site-section-title
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -2286,6 +2289,21 @@ importers:
       isomorphic-dompurify:
         specifier: ^2.35.0
         version: 2.35.0
+
+  packages/site-section-title:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/site-rich-text':
+        specifier: workspace:^
+        version: link:../site-rich-text
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
 
   packages/skeleton:
     dependencies:

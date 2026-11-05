@@ -1,0 +1,135 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Типографика (начертание `thin`) и шаг между заголовком и описанием из Figma (sectionTitle) по раскладке и типу.
+$tablet: (
+  'title': ('headline', 'l'),
+  'description': ('title', 'l'),
+  'gap': base.$sn-primitive-dimension-8,
+);
+$mobile: (
+  'title': ('headline', 'm'),
+  'description': ('body', 'm'),
+  'gap': base.$sn-primitive-dimension-4,
+);
+$types: (
+  'descriptionRight': (
+    'desktop': (
+      'title': ('display', 'm'),
+      'description': ('headline', 'l'),
+      'gap': base.$sn-primitive-dimension-24,
+    ),
+    'tablet': $tablet,
+    'mobile': $mobile,
+  ),
+  'descriptionUnderTitle': (
+    'desktop': (
+      'title': ('display', 'm'),
+      'description': ('headline', 's'),
+      'gap': base.$sn-primitive-dimension-12,
+    ),
+    'tablet': $tablet,
+    'mobile': $mobile,
+  ),
+  'centered': (
+    'desktop': (
+      'title': ('display', 'm'),
+      'description': ('headline', 'l'),
+      'gap': base.$sn-primitive-dimension-12,
+    ),
+    'tablet': $tablet,
+    'mobile': $mobile,
+  ),
+  'small': (
+    'desktop': (
+      'title': ('display', 's'),
+      'description': ('title', 'l'),
+      'gap': base.$sn-primitive-dimension-12,
+    ),
+    'tablet': map.merge(
+      $tablet,
+      (
+        'description': ('title', 'm'),
+      )
+    ),
+    'mobile': $mobile,
+  ),
+);
+
+// Раскладка → набор значений в $types. desktopSmall использует значения desktop.
+$layouts: (
+  'desktop': 'desktop',
+  'desktopSmall': 'desktop',
+  'tablet': 'tablet',
+  'mobile': 'mobile',
+);
+
+@mixin typography($config, $slot) {
+  $role: base.simple-var($config, $slot);
+
+  @include base.composite-var(base.$sn-thin, list.nth($role, 1), list.nth($role, 2));
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+
+  &[data-type='centered'] {
+    align-items: center;
+    text-align: center;
+  }
+
+  &[data-type='descriptionRight'][data-layout-type='desktop'],
+  &[data-type='descriptionRight'][data-layout-type='desktopSmall'] {
+    flex-direction: row;
+  }
+
+  @each $type, $byLayout in $types {
+    @each $layout, $key in $layouts {
+      &[data-type='#{$type}'][data-layout-type='#{$layout}'] {
+        gap: base.simple-var($byLayout, $key, 'gap');
+      }
+    }
+  }
+}
+
+.title {
+  margin: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @each $type, $byLayout in $types {
+    @each $layout, $key in $layouts {
+      .sectionTitle[data-type='#{$type}'][data-layout-type='#{$layout}'] & {
+        @include typography(base.simple-var($byLayout, $key), 'title');
+      }
+    }
+  }
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @each $type, $byLayout in $types {
+    @each $layout, $key in $layouts {
+      .sectionTitle[data-type='#{$type}'][data-layout-type='#{$layout}'] & {
+        @include typography(base.simple-var($byLayout, $key), 'description');
+      }
+    }
+  }
+}
+
+// Figma: на desktop у descriptionRight заголовок и описание делят ширину поровну, но описание не шире 480
+// (токена такой ширины нет); на широком контейнере остаток отдаётся заголовку.
+.sectionTitle[data-type='descriptionRight'][data-layout-type='desktop'],
+.sectionTitle[data-type='descriptionRight'][data-layout-type='desktopSmall'] {
+  .title,
+  .description {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .description {
+    max-width: 480px;
+  }
+}

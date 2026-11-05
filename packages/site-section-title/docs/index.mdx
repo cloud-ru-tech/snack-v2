@@ -1,0 +1,110 @@
+---
+title: SectionTitle
+package: '@ds/site-section-title'
+description: Заголовочный блок секции сайта — заголовок и описание в четырёх раскладках.
+order: 0
+---
+
+import { DescriptionRight } from '../demos/examples/DescriptionRight'
+import DescriptionRightSrc from '../demos/examples/DescriptionRight.tsx?raw'
+import { Centered } from '../demos/examples/Centered'
+import CenteredSrc from '../demos/examples/Centered.tsx?raw'
+import { Small } from '../demos/examples/Small'
+import SmallSrc from '../demos/examples/Small.tsx?raw'
+import { HtmlTitle } from '../demos/examples/HtmlTitle'
+import HtmlTitleSrc from '../demos/examples/HtmlTitle.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import sectionTitleDoc from './props.json'
+
+# SectionTitle
+
+Заголовочный блок секции сайта: заголовок и описание. Типографика и положение описания зависят от `type` и раскладки. Используется в `@ds/site-section` и в секциях, собранных вручную.
+
+## Когда использовать
+
+- Заголовок секции лендинга или каталога.
+- Заголовок блока внутри страницы сайта, когда нужен единый ритм с секциями.
+
+Когда **не** нужен:
+
+- Заголовок внутри карточки или формы:
+  - используйте `Typography` из `@ds/typography`.
+
+## Анатомия
+
+- `title` — заголовок. Разметка вставляется прямо в тег заголовка, без вложенной обёртки, поэтому в строке допустима только строчная разметка (`a`, `strong`, `em`, `br`).
+- `description` — описание, может содержать абзацы и списки.
+
+Обе строки рендерятся через `@ds/site-rich-text`, который очищает HTML от XSS.
+
+### Type (default `descriptionRight`)
+
+- `descriptionRight` — на desktop описание справа, заголовок и описание делят ширину поровну; описание не шире 480 px.
+- `descriptionUnderTitle` — описание под заголовком.
+- `centered` — описание под заголовком, текст по центру.
+- `small` — уменьшенная типографика, описание под заголовком.
+
+На tablet и mobile описание всегда под заголовком.
+
+### Тег заголовка (default `h2`)
+
+`titleTag` — `h1`, `h2`, `h3` или `h4`. `h1` — для заголовка первой секции страницы.
+
+## Адаптивность
+
+Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`), пропа `layoutType` нет. Начертание везде `thin`.
+
+| Type | desktop: заголовок / описание / шаг | tablet | mobile |
+|---|---|---|---|
+| `descriptionRight` | `display/m` / `headline/l` / 24 | `headline/l` / `title/l` / 8 | `headline/m` / `body/m` / 4 |
+| `descriptionUnderTitle` | `display/m` / `headline/s` / 12 | `headline/l` / `title/l` / 8 | `headline/m` / `body/m` / 4 |
+| `centered` | `display/m` / `headline/l` / 12 | `headline/l` / `title/l` / 8 | `headline/m` / `body/m` / 4 |
+| `small` | `display/s` / `title/l` / 12 | `headline/l` / `title/m` / 8 | `headline/m` / `body/m` / 4 |
+
+`desktopSmall` использует значения desktop.
+
+<StorybookEmbed storyId='site-sectiontitle--visual-matrix' height={480} />
+
+## Установка
+
+```bash
+pnpm add @ds/site-section-title
+```
+
+```ts
+import { SectionTitle } from '@ds/site-section-title'
+```
+
+## Примеры использования
+
+<Example title='Описание справа' description="type='descriptionRight'" code={DescriptionRightSrc}>
+  <DescriptionRight client:visible />
+</Example>
+
+<Example title='По центру' description="type='centered'" code={CenteredSrc}>
+  <Centered client:visible />
+</Example>
+
+<Example title='Уменьшенный' description="type='small', titleTag='h3'" code={SmallSrc}>
+  <Small client:visible />
+</Example>
+
+<Example title='HTML-разметка в строках' description="type='descriptionUnderTitle'" code={HtmlTitleSrc}>
+  <HtmlTitle client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={sectionTitleDoc.SectionTitle} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-sectiontitle--playground' height={360} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-section-title')} />

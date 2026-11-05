@@ -40,6 +40,7 @@ const INPUT_SPEC = {
   fileKey: 'UrThvQIUarqTZr59TD8ZF9',
   fileName: 'Input-Specification',
 } as const;
+const SITE = { fileKey: 'pPmEDn55ttzYFGxTUBDNh7', fileName: '-LIB--SITE--Product-UI-Kit-Snack-v2' } as const;
 const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
   fileName: 'HR-Portal-Renovate',
@@ -357,6 +358,7 @@ export const FIGMA_NODES = {
     'tree-navigation': { ...PRODUCT, nodeId: '4302:20315' }, // pageLayoutTreeNavigation
   },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
+  'site-section-title': { ...SITE, nodeId: '2874-3271' }, // sectionTitle
   'uikit-product-notification': {
     _: { ...PRODUCT, nodeId: '2924:49' }, // canvas: notification
     'notification-card': { ...PRODUCT, nodeId: '2924:6367' }, // notificationCard (status variants)

@@ -1,0 +1,80 @@
+{
+  "SectionTitle": {
+    "displayName": "SectionTitle",
+    "propsTypeName": "SectionTitleProps",
+    "description": "Заголовочный блок секции сайта (Figma `sectionTitle`): заголовок и описание. Типографика зависит от раскладки.",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание. Строка может содержать HTML-разметку."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`)."
+      },
+      "titleTag": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4"
+        ],
+        "defaultValue": "h2",
+        "description": "Тег заголовка.",
+        "typeRefs": [
+          "SectionTitleTag"
+        ]
+      },
+      "type": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "centered",
+          "descriptionRight",
+          "descriptionUnderTitle",
+          "small"
+        ],
+        "defaultValue": "descriptionRight",
+        "description": "Раскладка блока.",
+        "typeRefs": [
+          "SectionTitleType"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "SectionTitleTag": {
+        "kind": "union",
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4"
+        ],
+        "own": true
+      },
+      "SectionTitleType": {
+        "kind": "union",
+        "values": [
+          "centered",
+          "descriptionRight",
+          "descriptionUnderTitle",
+          "small"
+        ],
+        "own": true
+      }
+    }
+  }
+}
