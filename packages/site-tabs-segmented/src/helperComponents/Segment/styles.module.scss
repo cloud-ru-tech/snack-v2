@@ -1,0 +1,124 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+@use '@ds/materials' as m;
+
+// Отступы и типографика вкладки из Figma (tabSegmentV2, orientation=horizontal) по размеру.
+$sizes: (
+  's': (
+    'padding-block': base.$sn-primitive-dimension-6,
+    'padding-inline': base.$sn-primitive-dimension-12,
+    'typography': 'm',
+  ),
+  'm': (
+    'padding-block': base.$sn-primitive-dimension-8,
+    'padding-inline': base.$sn-primitive-dimension-16,
+    'typography': 'l',
+  ),
+  'l': (
+    'padding-block': base.$sn-primitive-dimension-12,
+    'padding-inline': base.$sn-primitive-dimension-20,
+    'typography': 'l',
+  ),
+);
+
+$stroke: base.$sn-primitive-strokeWeight-strokeRegular;
+
+// Рамка фокуса `inside` на `::after`, сдвинутая внутрь ещё на толщину линии обводки: бокс `::after` включает
+// линии, а рамка должна идти сразу за ними.
+@mixin focus-frame-inside-lines($appearance) {
+  @include m.focus-frame-styles($appearance, 'inside');
+
+  outline-offset: calc(-1 * (#{base.$sn-primitive-strokeWeight-strokeSemiBold} + #{$stroke}));
+}
+
+.stateLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.label {
+  position: relative;
+  white-space: nowrap;
+}
+
+.segment {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  margin: 0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  background: transparent;
+  outline: 0;
+
+  @each $size, $config in $sizes {
+    &[data-size='#{$size}'] {
+      padding: base.simple-var($config, 'padding-block') base.simple-var($config, 'padding-inline');
+
+      @include base.composite-var(base.$sn-thin, 'body', base.simple-var($config, 'typography'));
+    }
+  }
+
+  // Обводка как в Figma (topBorder/leftBorder): право и низ внутри вкладки, верх и лево — на линию наружу,
+  // поэтому на стыке соседних вкладок и рядов линия одна. На габариты не влияет.
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: calc(#{$stroke} * -1) 0 0 calc(#{$stroke} * -1);
+
+    border: $stroke solid base.$sn-theme-color-neutral-accent;
+  }
+
+  // Выбранная вкладка залита, обводка — цвета заливки (Figma: value=true).
+  &[data-selected] {
+    color: base.$sn-theme-color-available-inversion-textMain;
+    background-color: base.$sn-theme-color-invertNeutral-background1Level;
+
+    &::after {
+      border-color: base.$sn-theme-color-invertNeutral-background1Level;
+    }
+  }
+
+  &[data-appearance='onAccent'][data-selected] {
+    color: base.$sn-theme-color-primary-onAccent;
+    background-color: base.$sn-theme-color-primary-accent;
+
+    &::after {
+      border-color: base.$sn-theme-color-primary-accent;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: base.$sn-theme-effect-opacity-disabled;
+  }
+
+  // Figma: рамка фокуса внутрь вкладки (focusedFrame/…/inside). Рамка — на `::after`: его бокс — ячейка вместе
+  // с линиями обводки со всех четырёх сторон, поэтому рамку можно поставить одинаково по периметру — сразу
+  // внутри линий. Для этого к штатному отступу `inside` добавлена толщина линии. Вкладка в фокусе поднимается
+  // над соседними: иначе их линии, которые идут по краю ячейки, перекрывают рамку справа и снизу.
+  &:focus-visible {
+    z-index: 1;
+
+    &::after {
+      @include focus-frame-inside-lines('regular');
+    }
+  }
+
+  // На тёмной заливке выбранной вкладки appearance=default рамка инверсная (regularInversion), иначе рамка
+  // цвета заливки не видна. У onAccent тема приколота к тёмной, поэтому regular там уже светлая.
+  &[data-appearance='default'][data-selected]:focus-visible::after {
+    @include focus-frame-inside-lines('regularInversion');
+  }
+
+  @include m.has-state-layer-as-child(#{stateLayer});
+}

@@ -82,6 +82,7 @@
     "@ds/site-card-vacancy": "workspace:*",
     "@ds/site-rich-text": "workspace:*",
     "@ds/site-section-title": "workspace:*",
+    "@ds/site-tabs-segmented": "workspace:*",
     "@ds/skeleton": "workspace:*",
     "@ds/slider": "workspace:*",
     "@ds/status": "workspace:*",

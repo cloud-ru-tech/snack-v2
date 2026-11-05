@@ -1,0 +1,27 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$stroke: base.$sn-primitive-strokeWeight-strokeRegular;
+
+// Обёртка провайдера темы несёт только классы `sn-*`; переменные наследуются по DOM, в раскладке её нет.
+.themeScope {
+  display: contents;
+}
+
+// Отступ сверху и слева — место под внешние линии обводки первого ряда, иначе прокрутка их обрежет.
+.tabsSegmented {
+  scrollbar-width: none;
+
+  overflow-x: auto;
+  display: flex;
+
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding-top: $stroke;
+  padding-left: $stroke;
+
+  &[data-wrap] {
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+}

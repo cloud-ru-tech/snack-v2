@@ -155,6 +155,9 @@
       "path": "./site-section-title/tsconfig.cjs.json"
     },
     {
+      "path": "./site-tabs-segmented/tsconfig.cjs.json"
+    },
+    {
       "path": "./skeleton/tsconfig.cjs.json"
     },
     {

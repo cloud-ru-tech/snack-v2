@@ -160,6 +160,9 @@
       "path": "./site-section-title/tsconfig.esm.json"
     },
     {
+      "path": "./site-tabs-segmented/tsconfig.esm.json"
+    },
+    {
       "path": "./skeleton/tsconfig.esm.json"
     },
     {

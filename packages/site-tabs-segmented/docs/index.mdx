@@ -1,0 +1,104 @@
+---
+title: TabsSegmented
+package: '@ds/site-tabs-segmented'
+description: Сегментированные вкладки для сайта — ряд подписей в общей обводке, выбранная вкладка залита.
+order: 0
+---
+
+import { Sizes } from '../demos/examples/Sizes'
+import SizesSrc from '../demos/examples/Sizes.tsx?raw'
+import { Controlled } from '../demos/examples/Controlled'
+import ControlledSrc from '../demos/examples/Controlled.tsx?raw'
+import { Wrap } from '../demos/examples/Wrap'
+import WrapSrc from '../demos/examples/Wrap.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import tabsSegmentedDoc from './props.json'
+
+# TabsSegmented
+
+Горизонтальные вкладки сайта: подписи стоят вплотную в общей обводке, выбранная вкладка залита. Используются в секциях сайта (`@ds/site-section`) и отдельно.
+
+## Когда использовать
+
+- Переключение 2–7 разделов контента на странице сайта.
+- Переключение периода или режима над списком или графиком.
+
+Когда **не** нужен:
+
+- Навигация внутри приложения консоли:
+  - используйте `Tabs` из `@ds/tabs`.
+- Выбор значения в форме:
+  - используйте `SegmentControl` из `@ds/segment-control`.
+
+## Анатомия
+
+Каждая вкладка — кнопка с подписью. Обводка общая: на стыке соседних вкладок и рядов линия одна. Выбранная вкладка залита, её обводка — цвета заливки.
+
+### Size (default `m`)
+
+- `s` — отступы 6 / 12, текст `thin/body/m`.
+- `m` — отступы 8 / 16, текст `thin/body/l`.
+- `l` — отступы 12 / 20, текст `thin/body/l`.
+
+<Example title='Размеры' description='s, m, l' code={SizesSrc}>
+  <Sizes client:visible />
+</Example>
+
+### Appearance (default `default`)
+
+- `default` — по теме страницы: на светлом фоне выбранная вкладка тёмная, на тёмном — светлая.
+- `onAccent` — для тёмного акцентного фона: ряд всегда в тёмной теме, выбранная вкладка залита акцентным цветом бренда.
+
+### Wrap (default `false`)
+
+- `false` — ряд в одну строку, при нехватке ширины прокручивается по горизонтали.
+- `true` — вкладки переносятся на новые строки.
+
+### Клавиатура
+
+- `Tab` — фокус на выбранную вкладку; в порядке Tab весь ряд — одна остановка.
+- `←` / `→` — фокус на соседнюю вкладку по кругу, недоступные пропускаются.
+- `Home` / `End` — фокус на первую / последнюю доступную вкладку.
+- `Enter` / `Space` — выбрать вкладку в фокусе.
+
+Имя ряда для экранных дикторов задаётся атрибутом `aria-label` или `aria-labelledby` — он передаётся на элемент `tablist`.
+
+## Установка
+
+```bash
+pnpm add @ds/site-tabs-segmented
+```
+
+```ts
+import { TabsSegmented } from '@ds/site-tabs-segmented'
+```
+
+## Примеры использования
+
+<Example title='Controlled' description='value и onChange, недоступная вкладка' code={ControlledSrc}>
+  <Controlled client:visible />
+</Example>
+
+<Example title='Перенос на новые строки' description='wrap' code={WrapSrc}>
+  <Wrap client:visible />
+</Example>
+
+Без `value` компонент хранит выбор сам, изначально выбрана вкладка из `defaultValue` или первая.
+
+## Props
+
+<PropsTable data={tabsSegmentedDoc.TabsSegmented} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-tabssegmented--playground' height={360} />
+
+<StorybookEmbed storyId='site-tabssegmented--visual-matrix' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-tabs-segmented')} />

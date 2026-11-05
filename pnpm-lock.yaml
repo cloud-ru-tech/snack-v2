@@ -546,6 +546,9 @@ importers:
       '@ds/site-section-title':
         specifier: workspace:*
         version: link:../../packages/site-section-title
+      '@ds/site-tabs-segmented':
+        specifier: workspace:*
+        version: link:../../packages/site-tabs-segmented
       '@ds/skeleton':
         specifier: workspace:*
         version: link:../../packages/skeleton
@@ -2298,6 +2301,21 @@ importers:
       '@ds/site-rich-text':
         specifier: workspace:^
         version: link:../site-rich-text
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/site-tabs-segmented:
+    dependencies:
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

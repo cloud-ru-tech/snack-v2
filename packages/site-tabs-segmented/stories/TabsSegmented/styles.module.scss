@@ -1,0 +1,16 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.backdrop {
+  padding: base.$sn-primitive-dimension-16;
+  background-color: base.$sn-theme-color-neutral-background;
+}
+
+// Узкий контейнер: на нём видно перенос (wrap) и прокрутку ряда без переноса.
+.narrow {
+  width: 360px;
+}

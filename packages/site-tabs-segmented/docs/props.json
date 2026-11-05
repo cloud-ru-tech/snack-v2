@@ -1,0 +1,198 @@
+{
+  "Segment": {
+    "displayName": "Segment",
+    "propsTypeName": null,
+    "description": "Вкладка ряда `TabsSegmented` (Figma `tabSegmentV2`).",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "default",
+          "onAccent"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс вкладки."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Вкладка недоступна для выбора."
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "Текст вкладки."
+      },
+      "onClick": {
+        "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
+        "required": false,
+        "description": "Колбэк клика по вкладке."
+      },
+      "onFocusSegment": {
+        "type": "(value: string) => void",
+        "required": true
+      },
+      "onSelect": {
+        "type": "(value: string) => void",
+        "required": true
+      },
+      "selected": {
+        "type": "boolean",
+        "required": true
+      },
+      "size": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ]
+      },
+      "tabbable": {
+        "type": "boolean",
+        "required": true
+      },
+      "value": {
+        "type": "string",
+        "required": true,
+        "description": "Значение вкладки."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TabsSegmented": {
+    "displayName": "TabsSegmented",
+    "propsTypeName": "TabsSegmentedProps",
+    "description": "Сегментированные вкладки (Figma `tabsSegmentedV2`, orientation=horizontal): ряд подписей в общей обводке.\nКлавиатура: в порядке Tab одна вкладка (выбранная), стрелки и Home/End переводят фокус, Enter/Space выбирают.",
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "default",
+          "onAccent"
+        ],
+        "defaultValue": "default",
+        "description": "Оформление.",
+        "typeRefs": [
+          "Appearance"
+        ]
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultValue": {
+        "type": "string",
+        "required": false,
+        "description": "Значение вкладки, выбранной изначально (uncontrolled). По умолчанию — первая вкладка."
+      },
+      "items": {
+        "type": "TabsSegmentedItem[]",
+        "required": true,
+        "description": "Вкладки.",
+        "typeRefs": [
+          "TabsSegmentedItem"
+        ]
+      },
+      "onChange": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбэк выбора вкладки."
+      },
+      "size": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "defaultValue": "m",
+        "description": "Размер.",
+        "typeRefs": [
+          "Size"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "required": false,
+        "description": "Значение выбранной вкладки (controlled)."
+      },
+      "wrap": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Переносить вкладки на новую строку. Без переноса ряд прокручивается по горизонтали."
+      }
+    },
+    "relatedTypes": {
+      "Appearance": {
+        "kind": "union",
+        "values": [
+          "default",
+          "onAccent"
+        ],
+        "own": true
+      },
+      "Size": {
+        "kind": "union",
+        "values": [
+          "l",
+          "m",
+          "s"
+        ],
+        "own": true
+      },
+      "TabsSegmentedItem": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс вкладки."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Вкладка недоступна для выбора."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст вкладки."
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк клика по вкладке."
+          },
+          "value": {
+            "type": "string",
+            "required": true,
+            "description": "Значение вкладки."
+          }
+        },
+        "own": true
+      }
+    }
+  }
+}

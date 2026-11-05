@@ -359,6 +359,7 @@ export const FIGMA_NODES = {
   },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
   'site-section-title': { ...SITE, nodeId: '2874-3271' }, // sectionTitle
+  'site-tabs-segmented': { ...SITE, nodeId: '4625-6531' }, // tabsSegmentedV2
   'uikit-product-notification': {
     _: { ...PRODUCT, nodeId: '2924:49' }, // canvas: notification
     'notification-card': { ...PRODUCT, nodeId: '2924:6367' }, // notificationCard (status variants)
