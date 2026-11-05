@@ -152,6 +152,9 @@
       "path": "./site-rich-text/tsconfig.cjs.json"
     },
     {
+      "path": "./site-section/tsconfig.cjs.json"
+    },
+    {
       "path": "./site-section-title/tsconfig.cjs.json"
     },
     {

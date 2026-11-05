@@ -543,6 +543,9 @@ importers:
       '@ds/site-rich-text':
         specifier: workspace:*
         version: link:../../packages/site-rich-text
+      '@ds/site-section':
+        specifier: workspace:*
+        version: link:../../packages/site-section
       '@ds/site-section-title':
         specifier: workspace:*
         version: link:../../packages/site-section-title
@@ -2292,6 +2295,42 @@ importers:
       isomorphic-dompurify:
         specifier: ^2.35.0
         version: 2.35.0
+
+  packages/site-section:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/fields':
+        specifier: workspace:^
+        version: link:../fields
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/materials':
+        specifier: workspace:^
+        version: link:../materials
+      '@ds/pagination':
+        specifier: workspace:^
+        version: link:../pagination
+      '@ds/site-section-title':
+        specifier: workspace:^
+        version: link:../site-section-title
+      '@ds/site-tabs-segmented':
+        specifier: workspace:^
+        version: link:../site-tabs-segmented
+      '@ds/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
 
   packages/site-section-title:
     dependencies:

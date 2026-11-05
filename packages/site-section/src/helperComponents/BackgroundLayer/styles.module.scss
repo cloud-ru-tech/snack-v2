@@ -1,0 +1,16 @@
+@use '@ds/materials' as m;
+
+.acrylic {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.backgroundLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  @include m.with-material('acrylic', #{acrylic});
+}

@@ -1,0 +1,34 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+// Ширины ячеек — ширины фреймов Figma (device=desktop/tablet/mobile), чтобы раскладка секции совпадала с макетом.
+.desktopCell {
+  width: 1440px;
+}
+
+.tabletCell {
+  width: 768px;
+}
+
+.mobileCell {
+  width: 360px;
+}
+
+// Шире максимального блока (1824), чтобы был виден внешний фон по бокам.
+.wideCell {
+  width: 2000px;
+}
+
+// Заглушка контента — аналог `◆ContentPlaceholder` из Figma.
+.contentPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: base.$sn-primitive-dimension-120;
+  border: base.$sn-primitive-strokeWeight-strokeRegular dashed base.$sn-theme-color-available-borderColor;
+}

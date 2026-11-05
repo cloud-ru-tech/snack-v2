@@ -1,0 +1,13 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.sectionFilter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-density-spacing-interval-l;
+}
+
+.filter {
+  flex: 1 1 0;
+  // Figma: minWidth 328 у поля фильтра — ширина, при которой ряд переносится. Токена такого размера нет.
+  min-width: min(328px, 100%);
+}

@@ -1,0 +1,122 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Отступы из Figma (sectionBasic → device=*, container=*): внешние (вокруг блока) и внутренние (внутри блока),
+// шаг между блоками. Совпадают не с platform-интервалами, поэтому заданы примитивами.
+$new-desktop: (
+  'outer-block': base.$sn-primitive-dimension-24,
+  'outer-inline': base.$sn-primitive-dimension-16,
+  'inner-block': base.$sn-primitive-dimension-48,
+  'inner-inline': base.$sn-primitive-dimension-32,
+  'gap': base.$sn-primitive-dimension-40,
+);
+$old-desktop: (
+  'outer-block': 0,
+  'outer-inline': base.$sn-primitive-dimension-16,
+  'inner-block': base.$sn-primitive-dimension-56,
+  'inner-inline': base.$sn-primitive-dimension-96,
+  'gap': base.$sn-primitive-dimension-40,
+);
+$containers: (
+  'new': (
+    // Figma: максимальная ширина блока. Токена такой ширины нет (view/page: 720/960/1280/full).
+    'max-width': 1824px,
+    'layouts': (
+      'desktop': $new-desktop,
+      'desktopSmall': $new-desktop,
+      'tablet': (
+        'outer-block': base.$sn-primitive-dimension-16,
+        'outer-inline': base.$sn-primitive-dimension-8,
+        'inner-block': base.$sn-primitive-dimension-24,
+        'inner-inline': base.$sn-primitive-dimension-16,
+        'gap': base.$sn-primitive-dimension-32,
+      ),
+      'mobile': (
+        'outer-block': base.$sn-primitive-dimension-16,
+        'outer-inline': 0,
+        'inner-block': base.$sn-primitive-dimension-24,
+        'inner-inline': base.$sn-primitive-dimension-16,
+        'gap': base.$sn-primitive-dimension-24,
+      ),
+    ),
+  ),
+  'old': (
+    // Figma: максимальная ширина блока, контент внутри — 1216. Токена такой ширины нет.
+    'max-width': 1408px,
+    'layouts': (
+      'desktop': $old-desktop,
+      'desktopSmall': $old-desktop,
+      'tablet': (
+        'outer-block': 0,
+        'outer-inline': base.$sn-primitive-dimension-16,
+        'inner-block': base.$sn-primitive-dimension-40,
+        'inner-inline': base.$sn-primitive-dimension-24,
+        'gap': base.$sn-primitive-dimension-32,
+      ),
+      'mobile': (
+        'outer-block': 0,
+        'outer-inline': 0,
+        'inner-block': base.$sn-primitive-dimension-32,
+        'inner-inline': base.$sn-primitive-dimension-16,
+        'gap': base.$sn-primitive-dimension-24,
+      ),
+    ),
+  ),
+);
+
+.sectionWrapper {
+  width: 100%;
+}
+
+// Внешний слой во всю ширину: обёртка провайдера темы `background.theme`.
+.background {
+  position: relative;
+  box-sizing: border-box;
+
+  @each $container, $config in $containers {
+    @each $layout, $spacing in base.simple-var($config, 'layouts') {
+      .sectionWrapper[data-container='#{$container}'][data-layout-type='#{$layout}'] & {
+        padding: base.simple-var($spacing, 'outer-block') base.simple-var($spacing, 'outer-inline');
+      }
+    }
+  }
+}
+
+.contentWrapper {
+  position: relative;
+  box-sizing: border-box;
+  margin-inline: auto;
+  border-radius: base.$sn-density-radius-2xs;
+
+  @each $container, $config in $containers {
+    .sectionWrapper[data-container='#{$container}'] & {
+      max-width: base.simple-var($config, 'max-width');
+    }
+
+    @each $layout, $spacing in base.simple-var($config, 'layouts') {
+      .sectionWrapper[data-container='#{$container}'][data-layout-type='#{$layout}'] & {
+        padding: base.simple-var($spacing, 'inner-block') base.simple-var($spacing, 'inner-inline');
+      }
+    }
+  }
+}
+
+// Цвет текста задаётся здесь, в теме блока: иначе текст содержимого наследует цвет страницы
+// и пропадает, когда тема блока отличается от темы страницы.
+.content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  @each $container, $config in $containers {
+    @each $layout, $spacing in base.simple-var($config, 'layouts') {
+      .sectionWrapper[data-container='#{$container}'][data-layout-type='#{$layout}'] & {
+        gap: base.simple-var($spacing, 'gap');
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@ds/site-section",
+  "version": "1.0.0",
+  "description": "Секции сайта. SectionBasic — базовая секция с заголовком, табами, фильтрами, произвольным контентом и футером с пагинацией и кнопкой «Показать еще».",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/site-section"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/site-section",
+  "license": "Apache-2.0",
+  "author": "Владислав Вещев",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/fields": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/materials": "workspace:^",
+    "@ds/pagination": "workspace:^",
+    "@ds/site-section-title": "workspace:^",
+    "@ds/site-tabs-segmented": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

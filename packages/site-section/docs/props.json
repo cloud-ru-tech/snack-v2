@@ -1,0 +1,971 @@
+{
+  "BackgroundLayer": {
+    "displayName": "BackgroundLayer",
+    "propsTypeName": null,
+    "description": "Слой-подложка секции (Figma `sectionBackground`): материал из `SECTION_BACKGROUND_FILL`, растянутый на родителя.",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "fill": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "description": "Подложка."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "BgLocal": {
+    "displayName": "BgLocal",
+    "propsTypeName": null,
+    "description": "Фон блока по ширине `container` (Figma `bgLocal`): подложка, картинка или акцентный цвет. Декоративный слой.",
+    "props": {
+      "background": {
+        "type": "SectionContainerBackground",
+        "required": true,
+        "description": "Фон блока."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SectionBasic": {
+    "displayName": "SectionBasic",
+    "propsTypeName": "SectionBasicProps",
+    "props": {
+      "background": {
+        "type": "SectionBackground",
+        "required": false,
+        "description": "Внешний слой фона во всю ширину экрана (Figma `sectionBackground`): тема и заливка.",
+        "typeRefs": [
+          "SectionBackground"
+        ]
+      },
+      "children": {
+        "type": "ReactNode",
+        "required": false,
+        "description": "Содержимое секции между фильтрами и футером."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "container": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "new",
+          "old"
+        ],
+        "description": "Ширина и отступы секции: `new` — целевой вид, `old` — совместимость со страницами до редизайна.\nВременная настройка на период редизайна, задаётся явно.",
+        "typeRefs": [
+          "SectionContainer"
+        ]
+      },
+      "containerBackground": {
+        "type": "SectionContainerBackground",
+        "required": false,
+        "defaultValue": "{ type: SECTION_CONTAINER_BACKGROUND_TYPE.Bg }",
+        "description": "Блок по ширине `container` (Figma `contentWrapper` + `bgLocal`): тема блока и всего содержимого и заливка —\nподложка, картинка или акцентный цвет. Тема не задана — тема внешнего слоя.",
+        "typeRefs": [
+          "SectionContainerBackground"
+        ]
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "defaultTabBarValue": {
+        "type": "string",
+        "required": false,
+        "description": "Изначально выбранная вкладка (uncontrolled)."
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание. Строка может содержать HTML-разметку."
+      },
+      "filterItems": {
+        "type": "FieldSelectProps[]",
+        "required": false,
+        "description": "Поля-фильтры под вкладками. Рендерятся как `FieldSelect` размера `l`.",
+        "typeRefs": [
+          "CustomOptionProps",
+          "DroplistListProps",
+          "DroplistMobileSlots",
+          "EmptyState",
+          "FieldSelectDecoratorProps",
+          "FieldSelectProps",
+          "PublicListContextType",
+          "ScrollProps",
+          "SelectionState"
+        ]
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-атрибут `id` секции — якорь для навигации по странице."
+      },
+      "moreButton": {
+        "type": "SectionMoreButton",
+        "required": false,
+        "description": "Кнопка «Показать еще» в футере.",
+        "typeRefs": [
+          "SectionMoreButton"
+        ]
+      },
+      "onTabBarChange": {
+        "type": "((value: string) => void)",
+        "required": false,
+        "description": "Колбэк выбора вкладки: значение `value` выбранного элемента `tabBarItems`."
+      },
+      "pagination": {
+        "type": "PaginationProps",
+        "required": false,
+        "description": "Пагинация в футере.",
+        "typeRefs": [
+          "PaginationProps"
+        ]
+      },
+      "tabBarItems": {
+        "type": "TabsSegmentedItem[]",
+        "required": false,
+        "description": "Вкладки под заголовком. Без `tabBarValue` / `defaultTabBarValue` изначально выбрана первая доступная.",
+        "typeRefs": [
+          "TabsSegmentedItem"
+        ]
+      },
+      "tabBarValue": {
+        "type": "string",
+        "required": false,
+        "description": "Выбранная вкладка (controlled), например из параметра URL `?tab=ai`."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`)."
+      },
+      "titleTag": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4"
+        ],
+        "description": "Тег заголовка.",
+        "typeRefs": [
+          "SectionTitleTag"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "CustomOptionProps": {
+        "kind": "interface",
+        "props": {
+          "addCustomOptionTriggers": {
+            "type": "CustomOptionTrigger[] | undefined",
+            "required": false,
+            "description": "События, по которым произвольный ввод фиксируется как выбранная опция.\nУчитывается только при `allowCustomOption={true}`.\nЕсли не задан — используются все триггеры режима (`single`: enter, blur; `multiple`: enter, blur, space, comma).\nТриггеры, недоступные в текущем `selection`, игнорируются."
+          },
+          "allowCustomOption": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Разрешить фиксировать произвольный ввод из строки поиска как выбранную опцию\n(значение, которого нет в `items`)."
+          }
+        },
+        "own": false
+      },
+      "DroplistListProps": {
+        "kind": "alias",
+        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
+        "own": false
+      },
+      "DroplistMobileSlots": {
+        "kind": "interface",
+        "props": {
+          "actionButton": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "onBackButtonClick": {
+            "type": "(() => void) | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
+          },
+          "slotAfterTitle": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": false,
+            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
+          }
+        },
+        "own": false
+      },
+      "EmptyState": {
+        "kind": "interface",
+        "props": {
+          "dataError": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
+          },
+          "dataFiltered": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
+          },
+          "errorDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при ошибке запроса",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noDataState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии данных",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          },
+          "noResultsState": {
+            "type": "EmptyStateProps | undefined",
+            "required": false,
+            "description": "Экран при отсутствии результатов поиска или фильтров",
+            "typeRefs": [
+              "EmptyStateProps"
+            ]
+          }
+        },
+        "own": false
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
+      },
+      "FieldSelectDecoratorProps": {
+        "kind": "interface",
+        "props": {
+          "caption": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Вторичная подпись справа"
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Поле выключено"
+          },
+          "error": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Ошибка (приоритетнее `hint`; форсит `validationState=error`)"
+          },
+          "hint": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Подсказка"
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент"
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Заголовок"
+          },
+          "labelFor": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "HTML-атрибут `for` для `<label>`"
+          },
+          "labelTooltip": {
+            "type": "QuestionTooltipProps | undefined",
+            "required": false,
+            "description": "Подсказка (question-tooltip) у заголовка",
+            "typeRefs": [
+              "QuestionTooltipProps"
+            ]
+          },
+          "length": {
+            "type": "FieldLength | undefined",
+            "required": false,
+            "description": "Счётчик длины `current/max`",
+            "typeRefs": [
+              "FieldLength"
+            ]
+          },
+          "readonly": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Только для чтения"
+          },
+          "required": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать знак обязательности `*`"
+          },
+          "showHintIcon": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображение статус-иконки у подсказки (по умолчанию `true`)"
+          }
+        },
+        "own": false
+      },
+      "FieldSelectProps": {
+        "kind": "alias",
+        "type": "FieldSelectSingleProps | FieldSelectMultipleProps",
+        "own": false
+      },
+      "PaginationProps": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS класснейм"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "hrefFormatter": {
+            "type": "((page: number) => string) | undefined",
+            "required": false,
+            "description": "Колбэк форматирования ссылки"
+          },
+          "maxLength": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимальное количество страниц/элементов, помещающихся до транкейта"
+          },
+          "onChange": {
+            "type": "(page: number, event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void",
+            "required": true,
+            "description": "Колбэк смены значения"
+          },
+          "page": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая страница"
+          },
+          "size": {
+            "type": "PaginationSize | undefined",
+            "required": false,
+            "values": [
+              "m",
+              "s"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "PaginationSize"
+            ]
+          },
+          "total": {
+            "type": "number",
+            "required": true,
+            "description": "Общее количество страниц"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "button",
+              "link"
+            ],
+            "description": "Варианты тега кнопок: <a/> или <button/>",
+            "typeRefs": [
+              "Variant"
+            ]
+          }
+        },
+        "own": false
+      },
+      "PublicListContextType": {
+        "kind": "interface",
+        "props": {
+          "contentRender": {
+            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер функция основного контента айтема"
+          },
+          "groupItemRender": {
+            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
+          },
+          "itemRender": {
+            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
+            "required": false,
+            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
+          },
+          "marker": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отображать ли маркер у выбранного элемента списка"
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          },
+          "virtualized": {
+            "type": "boolean | undefined",
+            "required": false
+          }
+        },
+        "own": false
+      },
+      "QuestionTooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "s",
+              "xs"
+            ],
+            "description": "Размер",
+            "typeRefs": [
+              "Size (@ds/tooltip)"
+            ]
+          },
+          "tabIndex": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Tab index для кнопки-триггера"
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "tooltipClassname": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс контейнера подсказки"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerLabel": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Доступное имя для иконки-триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
+      },
+      "ScrollProps": {
+        "kind": "interface",
+        "props": {
+          "barHideStrategy": {
+            "type": "BarHideStrategy | undefined",
+            "required": false,
+            "values": [
+              "leave",
+              "move",
+              "never",
+              "scroll"
+            ],
+            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
+            "typeRefs": [
+              "BarHideStrategy"
+            ]
+          },
+          "onScroll": {
+            "type": "((event?: Event) => void) | undefined",
+            "required": false,
+            "description": "Колбек на скролл прокручиваемого списка"
+          },
+          "scroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Включить ли скролл для основной части списка"
+          },
+          "scrollContainerRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на контейнер, который скроллится"
+          },
+          "scrollRef": {
+            "type": "Ref<HTMLElement> | undefined",
+            "required": false,
+            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
+          },
+          "untouchableScrollbars": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
+          }
+        },
+        "own": false
+      },
+      "SectionBackground": {
+        "kind": "interface",
+        "props": {
+          "fill": {
+            "type": "SectionBackgroundFill | undefined",
+            "required": false,
+            "values": [
+              "blueBackground",
+              "decorTransparent",
+              "greenBackground",
+              "neutralBackground",
+              "neutralBackground1Level",
+              "orangeBackground",
+              "pinkBackground",
+              "primaryBackground",
+              "redBackground",
+              "transparent",
+              "violetBackground",
+              "yellowBackground"
+            ],
+            "description": "Заливка. По умолчанию `neutralBackground`.",
+            "typeRefs": [
+              "SectionBackgroundFill"
+            ]
+          },
+          "theme": {
+            "type": "Partial<ThemeAppearance> | undefined",
+            "required": false,
+            "description": "Тема слоя. Не задана — тема страницы.",
+            "typeRefs": [
+              "ThemeAppearance"
+            ]
+          }
+        },
+        "own": true
+      },
+      "SectionBackgroundFill": {
+        "kind": "union",
+        "values": [
+          "blueBackground",
+          "decorTransparent",
+          "greenBackground",
+          "neutralBackground",
+          "neutralBackground1Level",
+          "orangeBackground",
+          "pinkBackground",
+          "primaryBackground",
+          "redBackground",
+          "transparent",
+          "violetBackground",
+          "yellowBackground"
+        ],
+        "own": true
+      },
+      "SectionContainer": {
+        "kind": "union",
+        "values": [
+          "new",
+          "old"
+        ],
+        "own": true
+      },
+      "SectionContainerBackground": {
+        "kind": "alias",
+        "type": "SectionContainerFill & { theme?: Partial<ThemeAppearance>; }",
+        "own": true
+      },
+      "SectionMoreButton": {
+        "kind": "interface",
+        "props": {
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Тестовый id кнопки. По умолчанию — `TEST_IDS.moreButton`."
+          },
+          "href": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Ссылка. Если задана, кнопка рендерится как `<a>`."
+          },
+          "label": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Текст кнопки. По умолчанию — «Показать еще» из локали пакета."
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк клика."
+          }
+        },
+        "own": true
+      },
+      "SectionTitleTag": {
+        "kind": "union",
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4"
+        ],
+        "own": false
+      },
+      "SelectionState": {
+        "kind": "interface",
+        "props": {
+          "selection": {
+            "type": "SelectionMultipleState | SelectionSingleState | undefined",
+            "required": false,
+            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
+            "typeRefs": [
+              "SelectionMultipleState",
+              "SelectionSingleState"
+            ]
+          }
+        },
+        "own": false
+      },
+      "TabsSegmentedItem": {
+        "kind": "interface",
+        "props": {
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс вкладки."
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disabled": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Вкладка недоступна для выбора."
+          },
+          "label": {
+            "type": "string",
+            "required": true,
+            "description": "Текст вкладки."
+          },
+          "onClick": {
+            "type": "((event: MouseEvent<HTMLButtonElement>) => void) | undefined",
+            "required": false,
+            "description": "Колбэк клика по вкладке."
+          },
+          "value": {
+            "type": "string",
+            "required": true,
+            "description": "Значение вкладки."
+          }
+        },
+        "own": false
+      },
+      "ThemeAppearance": {
+        "kind": "interface",
+        "props": {
+          "acrylic": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Акрил (blur-материал) — `sn-yes` при `true`, иначе `sn-no`."
+          },
+          "brand": {
+            "type": "Brand | undefined",
+            "required": false,
+            "values": [
+              "agents-space",
+              "cloudConsole",
+              "giga-id",
+              "gitverse",
+              "hrBlue",
+              "hrGraphite",
+              "hrGreen",
+              "hrPurple",
+              "hrYellow",
+              "siteBlue",
+              "siteGraphite",
+              "siteGreen",
+              "sitePurple",
+              "siteYellow",
+              "snackUI"
+            ],
+            "description": "Бренд — `sn-cloudConsole` / `sn-hrBlue` …",
+            "typeRefs": [
+              "Brand"
+            ]
+          },
+          "colorScheme": {
+            "type": "ColorScheme | undefined",
+            "required": false,
+            "values": [
+              "dark",
+              "light"
+            ],
+            "description": "Цветовая схема — `sn-light` / `sn-dark`.",
+            "typeRefs": [
+              "ColorScheme"
+            ]
+          },
+          "density": {
+            "type": "Density | undefined",
+            "required": false,
+            "values": [
+              "comfort",
+              "compact",
+              "spacious"
+            ],
+            "description": "Плотность — `sn-comfort` / `sn-compact` / `sn-spacious`.",
+            "typeRefs": [
+              "Density"
+            ]
+          },
+          "platform": {
+            "type": "Platform | undefined",
+            "required": false,
+            "values": [
+              "webDesktop",
+              "webMobile"
+            ],
+            "description": "Платформа — `sn-webDesktop` / `sn-webMobile`. Без значения — `webDesktop`. Раскладку `@ds/adaptive`\nтема не читает: потребитель передаёт согласованные значения и в `AdaptiveProvider`, и сюда.",
+            "typeRefs": [
+              "Platform"
+            ]
+          }
+        },
+        "own": false
+      }
+    }
+  },
+  "SectionFilter": {
+    "displayName": "SectionFilter",
+    "propsTypeName": null,
+    "description": "Ряд фильтров секции (Figma `sectionFilter`): поля делят ширину поровну и переносятся на новую строку.",
+    "props": {
+      "items": {
+        "type": "FieldSelectProps[]",
+        "required": true,
+        "description": "Настройки полей-фильтров. Размер поля фиксирован — `l`."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SectionFooter": {
+    "displayName": "SectionFooter",
+    "propsTypeName": null,
+    "description": "Футер секции (Figma `sectionFooter`): пагинация и кнопка «Показать еще» по центру.",
+    "props": {
+      "moreButton": {
+        "type": "SectionMoreButton",
+        "required": false,
+        "description": "Кнопка «Показать еще»."
+      },
+      "pagination": {
+        "type": "PaginationProps",
+        "required": false,
+        "description": "Настройки пагинации."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SectionWrapper": {
+    "displayName": "SectionWrapper",
+    "propsTypeName": null,
+    "description": "Каркас секции (Figma `sectionBasic`): внешний фон во всю ширину и блок по ширине `container` со своим фоном.\nУ каждого слоя своя тема, поэтому блок может быть тёмным на светлом фоне и наоборот. Темы ставятся\nобёртками провайдера (классы `sn-*` в разметке), поэтому они есть и в SSR-HTML.",
+    "props": {
+      "background": {
+        "type": "SectionBackground",
+        "required": false,
+        "description": "Внешний слой фона."
+      },
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "container": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "new",
+          "old"
+        ],
+        "description": "Ширина и отступы секции."
+      },
+      "containerBackground": {
+        "type": "SectionContainerBackground",
+        "required": true,
+        "description": "Блок по ширине `container`."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-атрибут `id` секции — якорь для навигации по странице."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

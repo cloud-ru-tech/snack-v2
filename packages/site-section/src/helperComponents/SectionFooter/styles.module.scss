@@ -1,0 +1,8 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.sectionFooter {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-density-spacing-interval-xl;
+  align-items: center;
+}

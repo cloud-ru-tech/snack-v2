@@ -157,6 +157,9 @@
       "path": "./site-rich-text/tsconfig.esm.json"
     },
     {
+      "path": "./site-section/tsconfig.esm.json"
+    },
+    {
       "path": "./site-section-title/tsconfig.esm.json"
     },
     {

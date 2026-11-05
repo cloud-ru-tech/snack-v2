@@ -1,0 +1,169 @@
+---
+title: SectionBasic
+package: '@ds/site-section'
+description: Базовая секция сайта — заголовок, вкладки, фильтры, произвольный контент и футер с пагинацией и кнопкой «Показать еще».
+order: 0
+---
+
+import { TitleAndContent } from '../demos/examples/TitleAndContent'
+import TitleAndContentSrc from '../demos/examples/TitleAndContent.tsx?raw'
+import { TabsAndFilters } from '../demos/examples/TabsAndFilters'
+import TabsAndFiltersSrc from '../demos/examples/TabsAndFilters.tsx?raw'
+import { ControlledTabs } from '../demos/examples/ControlledTabs'
+import ControlledTabsSrc from '../demos/examples/ControlledTabs.tsx?raw'
+import { Footer } from '../demos/examples/Footer'
+import FooterSrc from '../demos/examples/Footer.tsx?raw'
+import { ContainerTheme } from '../demos/examples/ContainerTheme'
+import ContainerThemeSrc from '../demos/examples/ContainerTheme.tsx?raw'
+import { AccentContainer } from '../demos/examples/AccentContainer'
+import AccentContainerSrc from '../demos/examples/AccentContainer.tsx?raw'
+import { BackgroundFill } from '../demos/examples/BackgroundFill'
+import BackgroundFillSrc from '../demos/examples/BackgroundFill.tsx?raw'
+import { OldContainer } from '../demos/examples/OldContainer'
+import OldContainerSrc from '../demos/examples/OldContainer.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import siteSectionDoc from './props.json'
+
+# SectionBasic
+
+Базовая секция страницы сайта. Задаёт фоны, отступы и вертикальный ритм, собирает типовые блоки по данным: заголовок, вкладки, фильтры и футер. Содержимое между фильтрами и футером передаётся через `children`.
+
+## Когда использовать
+
+- Типовой блок лендинга или каталога: заголовок, контент, «Показать еще».
+- Список с переключением вкладками и фильтрацией по полям.
+
+Когда **не** нужен:
+
+- Вёрстка внутри приложения консоли:
+  - используйте компоненты `@ds/uikit-product-*`.
+
+## Анатомия
+
+У секции два фона:
+
+- внешний — во всю ширину экрана;
+- блок — по ширине `container`, по центру внешнего фона. В блоке лежит всё содержимое.
+
+Блоки содержимого сверху вниз, каждый рендерится только при наличии данных:
+
+- Заголовок — `SectionTitle` из `@ds/site-section-title`, тип `descriptionRight`: `description` справа от `title` на desktop и под ним на tablet/mobile. Строки могут содержать HTML-разметку (рендерятся через `@ds/site-rich-text`, который очищает HTML от XSS).
+- Вкладки — `tabBarItems`, рендерятся как `TabsSegmented` из `@ds/site-tabs-segmented`. Выбор:
+  - без `tabBarValue` хранится внутри секции, изначально — `defaultTabBarValue` или первая доступная вкладка;
+  - с `tabBarValue` + `onTabBarChange` управляется снаружи, например из параметра URL `?tab=ai`.
+- Фильтры — `filterItems`, поля `FieldSelect` размера `l`. Делят ширину поровну и переносятся на новую строку.
+- Контент — `children`.
+- Футер — `pagination` и `moreButton`. Текст кнопки по умолчанию — «Показать еще» из локали пакета.
+
+### Container (обязательный)
+
+Временная настройка на период редизайна: задаётся явно в каждом месте использования.
+
+- `new` — целевой вид: блок до 1824 px, отступы меньше.
+- `old` — визуальная совместимость со страницами до редизайна: блок до 1408 px (контент 1216 px), отступы как в прежней секции.
+
+### Фоны
+
+У секции два слоя, у каждого своя тема и заливка:
+
+- `background` — внешний слой во всю ширину экрана (Figma `sectionBackground`):
+  - `theme` — тема слоя. Не задана — тема страницы.
+  - `fill` — заливка из `SECTION_BACKGROUND_FILL` (default `neutralBackground`).
+- `containerBackground` — блок по ширине `container`, в нём всё содержимое (Figma `contentWrapper` + `bgLocal`):
+  - `theme` — тема блока и содержимого. Не задана — тема внешнего слоя.
+  - `type` — вид заливки (default `bg`).
+
+`theme` принимает те же оси, что `ChildThemeProvider` из `@ds/theme` (`colorScheme`, `brand` и другие), поэтому блок может быть тёмным на светлом фоне и наоборот.
+
+Заливка блока по `type`:
+
+- `bg` — подложка из `SECTION_BACKGROUND_FILL`, поле `fill` (default `neutralBackground`).
+- `image` — картинка во весь блок, поле `src`. Картинка декоративная и кадрируется по размеру блока.
+- `accent` — акцентный цвет бренда.
+
+Значения `SECTION_BACKGROUND_FILL`:
+
+- `neutralBackground` — нейтральный фон страницы.
+- `neutralBackground1Level` — светлая нейтральная подложка.
+- `primaryBackground`, `redBackground`, `orangeBackground`, `yellowBackground`, `greenBackground`, `blueBackground`, `violetBackground`, `pinkBackground` — цветные подложки.
+- `transparent`, `decorTransparent` — прозрачные подложки.
+
+### Тег заголовка (default `h2`)
+
+`titleTag` — `h1`, `h2`, `h3` или `h4`.
+
+## Адаптивность
+
+Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`), пропа `layoutType` нет.
+
+Отступы по раскладке и `container` (внешние — вокруг блока, внутренние — внутри блока, по вертикали / по горизонтали):
+
+| Раскладка | `new`: внешние / внутренние | `old`: внешние / внутренние | Шаг между блоками |
+|---|---|---|---|
+| `desktop`, `desktopSmall` | 24 / 16 и 48 / 32 | 0 / 16 и 56 / 96 | 40 |
+| `tablet` | 16 / 8 и 24 / 16 | 0 / 16 и 40 / 24 | 32 |
+| `mobile` | 16 / 0 и 24 / 16 | 0 / 0 и 32 / 16 | 24 |
+
+Вкладки на desktop — размер `l`, на tablet и mobile — `m`. Типографика заголовка — в документации `@ds/site-section-title`.
+
+<StorybookEmbed storyId='site-sectionbasic--visual-matrix' height={480} />
+
+## Установка
+
+```bash
+pnpm add @ds/site-section
+```
+
+```ts
+import { SectionBasic } from '@ds/site-section'
+```
+
+## Примеры использования
+
+<Example title='Заголовок и контент' description='title, description и children' code={TitleAndContentSrc}>
+  <TitleAndContent client:visible />
+</Example>
+
+<Example title='Вкладки и фильтры' description='tabBarItems и filterItems' code={TabsAndFiltersSrc}>
+  <TabsAndFilters client:visible />
+</Example>
+
+<Example title='Вкладка из URL' description='tabBarValue и onTabBarChange' code={ControlledTabsSrc}>
+  <ControlledTabs client:visible />
+</Example>
+
+<Example title='Футер' description='pagination и moreButton' code={FooterSrc}>
+  <Footer client:visible />
+</Example>
+
+<Example title='Тёмный блок на светлом фоне' description='background.theme и containerBackground.theme' code={ContainerThemeSrc}>
+  <ContainerTheme client:visible />
+</Example>
+
+<Example title='Акцентный блок' description="containerBackground={{ type: 'accent' }}" code={AccentContainerSrc}>
+  <AccentContainer client:visible />
+</Example>
+
+<Example title='Заливки слоёв' description='background.fill и containerBackground.fill' code={BackgroundFillSrc}>
+  <BackgroundFill client:visible />
+</Example>
+
+<Example title='Совместимость со страницами до редизайна' description="container='old'" code={OldContainerSrc}>
+  <OldContainer client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={siteSectionDoc.SectionBasic} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-sectionbasic--playground' height={640} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-section')} />
