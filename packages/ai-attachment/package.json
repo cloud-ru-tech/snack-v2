@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-attachment",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Плитка вложения 88×88 для AI-компонентов: картинка с превью или файл с именем, загрузка и ошибка.",
   "repository": {
     "type": "git",
