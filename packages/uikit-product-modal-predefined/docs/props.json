@@ -54,7 +54,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -429,7 +429,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.",
         "typeRefs": [
           "ModalMode"
         ]

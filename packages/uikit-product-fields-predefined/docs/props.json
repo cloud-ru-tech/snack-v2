@@ -5751,7 +5751,7 @@
               "horizontal",
               "vertical"
             ],
-            "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+            "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop.",
             "typeRefs": [
               "FooterActionsOrientation"
             ]
@@ -5784,7 +5784,7 @@
               "forced",
               "regular"
             ],
-            "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+            "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.",
             "typeRefs": [
               "ModalMode"
             ]

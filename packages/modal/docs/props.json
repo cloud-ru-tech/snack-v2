@@ -55,8 +55,7 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop."
       },
       "heightAuto": {
         "type": "boolean",
@@ -89,7 +88,7 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой."
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп."
       },
       "onBackButtonClick": {
         "type": "(() => void)",
@@ -337,8 +336,8 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+        "defaultValue": "vertical",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop."
       },
       "heightAuto": {
         "type": "boolean",
@@ -370,7 +369,7 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой."
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп."
       },
       "onBackButtonClick": {
         "type": "(() => void)",
@@ -494,8 +493,7 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop.",
         "typeRefs": [
           "FooterActionsOrientation"
         ]
@@ -529,7 +527,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -706,7 +704,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.\nНа mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -756,7 +754,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "width": {
         "type": "enum",

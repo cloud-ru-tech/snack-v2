@@ -200,12 +200,12 @@ export function Forced() {
 | `content` | `ReactNode` | — | Содержимое body (альтернатива `children`). |
 | `data-test-id` | `string` | — |  |
 | `footer` | `ReactNode` | — | Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
-| `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | `'horizontal'` | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. |
+| `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | — | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. <br/> По умолчанию 'vertical' на mobile, 'horizontal' на desktop. |
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
 | `loading` | `boolean` | — | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
 | `loadingState` | `ReactNode` | — | Контент тела вместо спиннера при `loading` |
 | `media` | `ReactNode` | — | Медиа-контент |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
@@ -334,7 +334,7 @@ export function CustomComposition() {
 | `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |
@@ -342,7 +342,7 @@ export function CustomComposition() {
 | `safeAreaTop` | `boolean` | `true` | Верхний safe-area отступ под iOS notch / status-bar. Размер — токен `safeArea.top.minHeight`, <br/> на устройстве с большим `env(safe-area-inset-top)` — значение inset. Применяется, только когда <br/> sheet раскрыт на полный вьюпорт: у неполного sheet'а верх и так не заходит под notch. |
 | `showBackdrop` | `boolean` | `true` | Отображение тёмной подложки за sheet'ом. При `false` фон не затемняется и click-outside <br/> не закрывает sheet (нет backdrop-узла, по которому ловится клик). |
 | `snapPoints` | `SnapPoint` | — | Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` — <br/> sheet `height: auto` с одним snap'ом по высоте контента. <br/> Пример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает <br/> до full-viewport; drag вниз ниже `0.5` ведёт к закрытию. <br/> Контракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на <br/> стороне потребителя): <br/> - строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded; <br/> - значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут <br/> одну высоту → дубль-индекс будет недостижим свайпом); <br/> - `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива <br/> фиксированных позиций его «контентная» высота не определена. |
-| `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
+| `swipeEnabled` | `boolean` | `true` | Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point. <br/> В режиме `forced` свайп отключён независимо от значения свойства. <br/> При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом. |
 | `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |
 
 ##### Related types

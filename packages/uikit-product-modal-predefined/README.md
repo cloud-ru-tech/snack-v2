@@ -94,7 +94,7 @@ export function DeleteConfirmable() {
 | `data-test-id` | `string` | — |  |
 | `deleting` | `boolean` | — | Состояние загрузки кнопки удаления |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `objectType` | `string` | — | Тип удаляемого объекта, отображается в заголовке |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `onDelete` | `(onClose: () => void) => void` | — | Колбэк подтверждения удаления |
@@ -169,7 +169,7 @@ export function RecallConfirmable() {
 | `data-test-id` | `string` | — |  |
 | `hideConfirmCopyButton` | `boolean` | — | Скрыть кнопку копирования текста подтверждения |
 | `loading` | `boolean` | — | Состояние загрузки кнопки отзыва |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `onRecall` | `(onClose: () => void) => void` | — | Колбэк подтверждения отзыва |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
