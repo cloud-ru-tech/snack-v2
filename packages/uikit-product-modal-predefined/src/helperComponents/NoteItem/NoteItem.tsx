@@ -14,6 +14,7 @@ const FALLBACK_ICON_SIZE = 48;
 
 type NoteItemComponentProps = NoteItemProps & {
   surface?: Surface;
+  active?: boolean;
 };
 
 /**
@@ -93,9 +94,9 @@ function NoteItemMedia({ image, video }: Pick<NoteItemProps, 'image' | 'video'>)
   );
 }
 
-export function NoteItem({ title, description, image, video, surface = SURFACE.Modal }: NoteItemComponentProps) {
+export function NoteItem({ title, description, image, video, surface = SURFACE.Modal, active = true }: NoteItemComponentProps) {
   return (
-    <article className={styles.root} data-surface={surface} data-test-id={TEST_IDS.releaseNotesItem}>
+    <article className={styles.root} data-surface={surface} data-active={active} data-test-id={TEST_IDS.releaseNotesItem}>
       {/* `key` по источнику: карусель переиспользует слайд, а состояние загрузки относится к файлу. */}
       <NoteItemMedia key={`${video ?? ''}|${image.src}`} image={image} video={video} />
 

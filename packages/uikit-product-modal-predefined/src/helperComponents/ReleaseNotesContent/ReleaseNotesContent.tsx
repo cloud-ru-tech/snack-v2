@@ -3,13 +3,16 @@ import { Carousel } from '@ds/carousel';
 import { CrossSVG } from '@ds/icons/interface/system';
 import { InfoBlock } from '@ds/info-block';
 import { Typography } from '@ds/typography';
+import { useLayoutEffect } from '@ds/utils';
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 
-import { CONTENT_STATE, TEST_IDS } from '../../constants';
+import { CONTENT_STATE, SURFACE, TEST_IDS } from '../../constants';
 import { NoteItemProps, ReleaseNotesContentState, Surface } from '../../types';
 import { NoteItem, NoteItemSkeleton } from '../NoteItem';
 import styles from './styles.module.scss';
+
+const SLIDE_TRANSITION_MS = 400;
 
 export type ReleaseNotesContentProps = {
   /** Визуальное состояние */
@@ -62,6 +65,24 @@ export function ReleaseNotesContent({
 }: ReleaseNotesContentProps) {
   const total = items.length;
   const hasItems = total > 0;
+  const isMobileCarousel =
+    surface === SURFACE.BottomSheet && !loading && contentState === CONTENT_STATE.Data && hasItems;
+  const previousPageIndex = useRef(pageIndex);
+  const [outgoingPageIndex, setOutgoingPageIndex] = useState<number>();
+
+  useLayoutEffect(() => {
+    const previousPage = previousPageIndex.current;
+    previousPageIndex.current = pageIndex;
+
+    if (!isMobileCarousel || previousPage === pageIndex) {
+      setOutgoingPageIndex(undefined);
+      return;
+    }
+
+    setOutgoingPageIndex(previousPage);
+    const timeout = window.setTimeout(() => setOutgoingPageIndex(undefined), SLIDE_TRANSITION_MS);
+    return () => window.clearTimeout(timeout);
+  }, [isMobileCarousel, pageIndex]);
 
   if (loading) {
     return (
@@ -118,11 +139,17 @@ export function ReleaseNotesContent({
         arrows={false}
         pagination={false}
         swipe
+        transition={SLIDE_TRANSITION_MS / 1000}
         state={{ page: pageIndex, onChange: onPageChange }}
         className={styles.carousel}
       >
-        {items.map(item => (
-          <NoteItem key={`${item.title}-${item.image.src}`} {...item} surface={surface} />
+        {items.map((item, index) => (
+          <NoteItem
+            key={`${item.title}-${item.image.src}`}
+            {...item}
+            surface={surface}
+            active={index === pageIndex || index === outgoingPageIndex}
+          />
         ))}
       </Carousel>
     </div>

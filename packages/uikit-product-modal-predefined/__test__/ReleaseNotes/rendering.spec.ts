@@ -39,6 +39,33 @@ test.describe('ReleaseNotes — rendering', () => {
 
   // Размер окна не зависит ни от длины описания, ни от того, доехали ли данные и иллюстрация.
   test.describe('layout stability', () => {
+    test('mobile scroll height follows the current news item', async ({ page, gotoStory, getByTestId, setStoryArgs }) => {
+      await page.setViewportSize(MOBILE_VIEWPORT);
+      await gotoStory(buildStoryOptions({ contentState: 'data' }, undefined, { layoutType: 'mobile' }));
+      const image = { src: '/release-notes-missing-illustration.png', alt: 'News preview' };
+      await setStoryArgs({
+        items: [
+          { title: 'Long news', description: 'Long news content. '.repeat(200), image },
+          { title: 'Short news', description: 'Short news content.', image },
+        ],
+      });
+      await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+      await expect(page.getByRole('heading', { name: 'Long news', exact: true })).toBeVisible();
+      const body = getByTestId('bottom-sheet__body');
+      const longScrollHeight = await body.evaluate(element => element.scrollHeight);
+
+      await getByTestId(TEST_IDS.releaseNotesNextButton).click();
+      await expect(getByTestId(TEST_IDS.releaseNotesNextButton)).toBeDisabled();
+      const shortItem = getByTestId(TEST_IDS.releaseNotesItem).nth(1);
+      const shortItemHeight = (await shortItem.boundingBox())?.height ?? 0;
+      const bodyHeight = await body.evaluate(element => element.clientHeight);
+
+      await expect.poll(() => body.evaluate(element => element.scrollHeight)).toBeLessThanOrEqual(
+        Math.max(bodyHeight, shortItemHeight) + 64,
+      );
+      expect(await body.evaluate(element => element.scrollHeight)).toBeLessThan(longScrollHeight);
+    });
+
     test('modal keeps its height between loading and data states', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ contentState: 'data', loading: true }));
       await getByTestId(STORY_TEST_IDS.triggerOpen).click();

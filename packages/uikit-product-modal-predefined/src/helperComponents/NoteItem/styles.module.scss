@@ -21,6 +21,11 @@ $card-size: calc(6 * #{base.$sn-primitive-dimension-64} - #{base.$sn-primitive-d
     row-gap: base.$sn-primitive-dimension-16;
     height: auto;
   }
+
+  &[data-surface='bottomSheet'][data-active='false'] {
+    overflow: hidden;
+    height: 0;
+  }
 }
 
 .media {

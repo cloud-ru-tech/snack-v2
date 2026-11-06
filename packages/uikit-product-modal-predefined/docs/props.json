@@ -332,6 +332,11 @@
     "displayName": "NoteItem",
     "propsTypeName": null,
     "props": {
+      "active": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
       "description": {
         "type": "string",
         "required": true,
