@@ -1,5 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
+import { TEST_IDS as SHEET_TEST_IDS } from '../../../popup-private/src/constants';
 import { MODE } from '../../src/constants';
 import { buildStoryOptions, MODAL_TRIGGER_TEST_ID, TEST_IDS } from './helpers';
 
@@ -112,3 +113,40 @@ test.describe('Modal — interaction', () => {
     expect(scrollYAfter).toBe(scrollYBefore);
   });
 });
+
+for (const component of ['modal', 'modalCustom'] as const) {
+  for (const mode of [MODE.Aggressive, MODE.Forced]) {
+    test(`${component} passes ${mode} mode to the mobile sheet`, async ({ gotoStory, getByTestId, page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await gotoStory({
+        name: component === 'modal' ? 'modal' : 'modalcustom',
+        group: 'modal',
+        story: 'playground',
+        props: { mode, closeOnPopstate: true },
+        globals: { layoutType: 'mobile' },
+      });
+      await getByTestId(TEST_IDS[component].triggerOpen).click();
+      const root = getByTestId(TEST_IDS[component].root);
+      const backdrop = getByTestId(SHEET_TEST_IDS.backdrop);
+      await expect(root).toBeVisible();
+      await expect(backdrop).toHaveCSS('backdrop-filter', /blur\(/);
+      await backdrop.click({ position: { x: 10, y: 10 } });
+      await expect(root).toBeVisible();
+      await expect(getByTestId(SHEET_TEST_IDS.handle)).toHaveCount(mode === MODE.Forced ? 0 : 1);
+      if (mode === MODE.Forced) {
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(300);
+        await expect(root).toBeVisible();
+        await page.evaluate(() => {
+          window.history.pushState(null, '', window.location.href);
+          return new Promise<void>(resolve => {
+            window.addEventListener('popstate', () => resolve(), { once: true });
+            window.history.back();
+          });
+        });
+        await page.waitForTimeout(300);
+        await expect(root).toBeVisible();
+      }
+    });
+  }
+}

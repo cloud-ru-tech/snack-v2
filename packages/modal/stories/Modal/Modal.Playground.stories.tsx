@@ -170,9 +170,6 @@ const meta: Meta<PlaygroundStoryProps> = {
     mode: {
       control: 'radio',
       options: Object.values(MODE),
-      description:
-        'Regular: overlay + Esc + кнопка, затемнение без blur. Aggressive/Forced: blur подложки (макет Figma); Aggressive — только кнопка закрытия; Forced — без кнопки. Только desktop.',
-      if: { global: 'layoutType', neq: 'mobile' },
     },
     footer: { table: { disable: true } },
     media: { table: { disable: true } },

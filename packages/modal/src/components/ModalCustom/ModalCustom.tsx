@@ -30,6 +30,8 @@ export type ModalCustomProps = WithSupportProps<{
   onClose(): void;
   /**
    * Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.
+   * Aggressive и Forced размывают фон под подложкой.
+   * На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп.
    * @default MODE.Regular
    */
   mode?: ModalMode;
@@ -195,6 +197,7 @@ export function ModalCustom(props: ModalCustomProps) {
     const {
       open = false,
       onClose,
+      mode,
       children,
       className,
       rootClassName,
@@ -211,6 +214,7 @@ export function ModalCustom(props: ModalCustomProps) {
       <BottomSheetCustom
         open={open}
         onClose={onClose}
+        mode={mode}
         container={container}
         className={className}
         rootClassName={rootClassName}

@@ -205,7 +205,7 @@ export function Forced() {
 | `loading` | `boolean` | — | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
 | `loadingState` | `ReactNode` | — | Контент тела вместо спиннера при `loading` |
 | `media` | `ReactNode` | — | Медиа-контент |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
@@ -259,7 +259,8 @@ export function Forced() {
 
 | Пропы | desktop | mobile |
 |-------|---------|--------|
-| `mode`, `width`, `heightAuto`, `truncate` | используется | игнорируется |
+| `width`, `heightAuto`, `truncate` | используется | игнорируется |
+| `mode` | управляет закрытием и размытием фона | `aggressive` и `forced` включают размытие фона; `regular` — без размытия |
 | `title`, `subtitle`, `slotAfterTitle`, `onBackButtonClick`, `media`, `content`, `footer` | используется | используется |
 | `loading`, `loadingState`, `open`, `onClose`, `container`, `closeOnPopstate`, `className`, `rootClassName` | используется | используется |
 
@@ -333,7 +334,7 @@ export function CustomComposition() {
 | `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
-| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. |
+| `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |
 | `rootClassName` | `string` | — | CSS-класс корневого слоя портала |

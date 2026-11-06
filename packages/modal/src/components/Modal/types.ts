@@ -8,7 +8,9 @@ import { ModalCustomProps } from '../ModalCustom';
 /**
  * Адаптивный Modal: desktop — модальное окно, `mobile` — `BottomSheet`.
  *
- * Только desktop: `mode`, `width`, `heightAuto`, `truncate` (на mobile игнорируются).
+ * Только desktop: `width`, `heightAuto`, `truncate` (на mobile игнорируются).
+ * На mobile `mode` передаётся в `BottomSheet`: `aggressive` и `forced` размывают фон
+ * и запрещают закрытие кликом по подложке; `forced` также отключает свайп.
  */
 export type ModalProps = WithSupportProps<
   Pick<DialogHeaderProps, 'onBackButtonClick' | 'title' | 'slotAfterTitle' | 'subtitle' | 'truncate'> &

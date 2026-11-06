@@ -712,7 +712,7 @@ export function NonModal() {
 
 - `BottomSheetMode` = `"aggressive"` \| `"forced"` \| `"regular"`
 
-- `SnapPoint` = `number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | "fit-content"`
+- `SnapPoint` = `number | "fit-content" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh``
 
 ## Смотри также
 
@@ -970,7 +970,7 @@ export function CustomDisableMotions() {
 
 - `BottomSheetMode` = `"aggressive"` \| `"forced"` \| `"regular"`
 
-- `SnapPoint` = `number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | "fit-content"`
+- `SnapPoint` = `number | "fit-content" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh``
 
 ### Смотри также
 

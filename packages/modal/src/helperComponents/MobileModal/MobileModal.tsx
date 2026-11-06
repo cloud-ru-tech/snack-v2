@@ -4,7 +4,7 @@ import { extractSupportProps } from '@ds/utils';
 
 import styles from '../../components/Modal/styles.module.scss';
 import { ModalProps } from '../../components/Modal/types';
-import { TEST_IDS } from '../../constants';
+import { MODE, TEST_IDS } from '../../constants';
 
 /**
  * Mobile-поверхность Modal'а: контент в `BottomSheet`, слоты маппятся на API sheet'а
@@ -13,6 +13,7 @@ import { TEST_IDS } from '../../constants';
 export function MobileModal({
   open = false,
   onClose,
+  mode = MODE.Regular,
   title,
   subtitle,
   slotAfterTitle,
@@ -48,6 +49,7 @@ export function MobileModal({
       withDividers={false}
       open={open}
       onClose={onClose}
+      mode={mode}
       title={title}
       subtitle={subtitle}
       slotAfterTitle={slotAfterTitle}

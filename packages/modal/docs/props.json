@@ -89,7 +89,7 @@
           "regular"
         ],
         "defaultValue": "regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc."
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой."
       },
       "onBackButtonClick": {
         "type": "(() => void)",
@@ -369,8 +369,8 @@
           "forced",
           "regular"
         ],
-        "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc."
+        "defaultValue": "regular",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой."
       },
       "onBackButtonClick": {
         "type": "(() => void)",
@@ -529,7 +529,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.",
         "typeRefs": [
           "ModalMode"
         ]
@@ -706,7 +706,7 @@
           "regular"
         ],
         "defaultValue": "MODE.Regular",
-        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.",
+        "description": "Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc.\nAggressive и Forced размывают фон под подложкой.",
         "typeRefs": [
           "ModalMode"
         ]
