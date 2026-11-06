@@ -100,6 +100,25 @@ test.describe('BottomSheet — swipe / drag', () => {
     await expect(root).not.toBeVisible({ timeout: 2000 });
   });
 
+  test('aggressive allows swipe-down to close', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ mode: 'aggressive' }));
+    await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+    const root = getByTestId(TEST_IDS.root);
+    await expect(root).toBeVisible();
+    await dragSheet(page, root, { dy: 350 });
+    await expect(root).not.toBeVisible();
+  });
+
+  test('forced disables swipe even when swipeEnabled=true', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ mode: 'forced', swipeEnabled: true }));
+    await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+    const root = getByTestId(TEST_IDS.root);
+    await expect(root).toBeVisible();
+    await expect(getByTestId(TEST_IDS.handle)).toHaveCount(0);
+    await dragSheet(page, root, { dy: 350 });
+    await expect(root).toBeVisible();
+  });
+
   test('swipe-down closes expandable sheet (drag below smallest snap)', async ({ gotoStory, page, getByTestId }) => {
     await gotoStory(buildStoryOptions(undefined, BOTTOM_SHEET_STORIES.expandable));
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();

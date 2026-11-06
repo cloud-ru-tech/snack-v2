@@ -69,6 +69,26 @@ test.describe('BottomSheet — keyboard & focus', () => {
     await expect(root).not.toBeVisible();
   });
 
+  for (const closeWatcherAvailable of [true, false]) {
+    test(`forced stays open on Escape (CloseWatcher=${closeWatcherAvailable})`, async ({
+      gotoStory,
+      page,
+      getByTestId,
+    }) => {
+      if (!closeWatcherAvailable) {
+        await page.addInitScript(() => {
+          Reflect.deleteProperty(window, 'CloseWatcher');
+        });
+      }
+      await gotoStory(buildStoryOptions({ mode: 'forced' }));
+      await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+      await expectFocusWithin(page, TEST_IDS.root);
+      await page.keyboard.press('Escape');
+      await page.waitForTimeout(300);
+      await expect(getByTestId(TEST_IDS.root)).toBeVisible();
+    });
+  }
+
   test('restores focus to the trigger after close', async ({ gotoStory, page, getByTestId }) => {
     await gotoStory(buildStoryOptions());
     await getByTestId(STORY_TEST_IDS.triggerOpen).click(); // реальный клик фокусирует триггер

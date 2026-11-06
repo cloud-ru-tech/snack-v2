@@ -23,6 +23,10 @@
 
   transition: opacity 0.2s;
 
+  &[data-backdrop-blur] {
+    backdrop-filter: blur(base.$sn-theme-effect-backgroundBlur);
+  }
+
   .root[data-active] & {
     opacity: 1;
   }

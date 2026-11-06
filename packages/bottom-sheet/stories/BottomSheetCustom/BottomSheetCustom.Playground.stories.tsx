@@ -90,6 +90,7 @@ const meta: Meta<StoryProps> = {
   parameters: { layout: 'fullscreen' },
   args: {
     showBackdrop: true,
+    mode: 'regular',
     lockScroll: true,
     swipeEnabled: true,
     safeAreaTop: true,
@@ -99,6 +100,7 @@ const meta: Meta<StoryProps> = {
     'data-test-id': TEST_IDS.bottomSheetCustom.root,
   },
   argTypes: {
+    mode: { control: 'select', options: ['regular', 'aggressive', 'forced'] },
     open: { table: { disable: true } },
     onClose: { table: { disable: true } },
     onSnapIndexChange: { table: { disable: true } },

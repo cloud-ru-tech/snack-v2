@@ -107,6 +107,20 @@
           "PopupMediaProps"
         ]
       },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "'regular'",
+        "description": "Режим поведения: `regular` — стандартное закрытие; `aggressive` — размытие фона\nи запрет закрытия кликом по подложке; `forced` — дополнительно запрещает закрытие свайпом, Escape и переходом по истории браузера.\nРазмытие применяется только при `showBackdrop=true`.",
+        "typeRefs": [
+          "BottomSheetMode"
+        ]
+      },
       "onBackButtonClick": {
         "type": "(() => void)",
         "required": false,
@@ -182,7 +196,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "title": {
         "type": "ReactNode",
@@ -201,6 +215,15 @@
         "kind": "alias",
         "type": "Omit<ButtonProps<\"button\">, \"size\" | \"fullWidth\"> | Omit<ButtonProps<\"a\">, \"size\" | \"fullWidth\">",
         "own": false
+      },
+      "BottomSheetMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": true
       },
       "FooterActionsOrientation": {
         "kind": "union",
@@ -248,7 +271,7 @@
       },
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": true
       }
     }
@@ -299,6 +322,20 @@
         "required": false,
         "defaultValue": "true",
         "description": "Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница\nпод sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с\nкоторым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`."
+      },
+      "mode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "defaultValue": "'regular'",
+        "description": "Режим поведения: `regular` — стандартное закрытие; `aggressive` — размытие фона\nи запрет закрытия кликом по подложке; `forced` — дополнительно запрещает закрытие свайпом, Escape и переходом по истории браузера.\nРазмытие применяется только при `showBackdrop=true`.",
+        "typeRefs": [
+          "BottomSheetMode"
+        ]
       },
       "onClose": {
         "type": "() => void",
@@ -355,13 +392,22 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       }
     },
     "relatedTypes": {
+      "BottomSheetMode": {
+        "kind": "union",
+        "values": [
+          "aggressive",
+          "forced",
+          "regular"
+        ],
+        "own": true
+      },
       "SnapPoint": {
         "kind": "alias",
-        "type": "number | \"fit-content\" | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh`",
+        "type": "number | `${number}px` | `${number}%` | `${number}dvh` | `${number}svh` | `${number}lvh` | \"fit-content\"",
         "own": true
       }
     }

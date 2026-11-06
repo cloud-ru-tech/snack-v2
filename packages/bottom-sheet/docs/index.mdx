@@ -68,6 +68,8 @@ Drag-индикатор 32×4px сверху — визуальная подск
 ### Backdrop (default `showBackdrop=true`)
 Полупрозрачная подложка. Click по backdrop'у вызывает `onClose`. При `showBackdrop={false}` фон не затемняется и click-outside не закрывает sheet.
 
+`mode` задаёт поведение sheet: `regular` (по умолчанию) сохраняет стандартное закрытие; `aggressive` размывает фон и запрещает закрытие кликом по подложке; `forced` дополнительно запрещает закрытие свайпом, Escape и переходом по истории браузера независимо от `swipeEnabled` и `closeOnPopstate`. Размытие применяется только при `showBackdrop={true}`.
+
 ### Non-modal (default `lockScroll=true`)
 По умолчанию sheet — модальный: фон затемнён и заблокирован для скролла. Для non-modal сценария (sheet поверх контента, с которым продолжают работать) передайте `lockScroll={false}` (страница под sheet'ом скроллится) — обычно вместе с `showBackdrop={false}`.
 

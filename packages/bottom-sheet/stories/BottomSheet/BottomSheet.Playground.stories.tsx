@@ -152,6 +152,7 @@ export const Playground: Story = {
   args: {
     title: 'Bottom-sheet headline',
     showBackdrop: true,
+    mode: 'regular',
     withDividers: true,
     safeAreaTop: true,
     safeAreaBottom: true,
@@ -169,6 +170,7 @@ export const Playground: Story = {
     longContent: false,
   },
   argTypes: {
+    mode: { control: 'select', options: ['regular', 'aggressive', 'forced'] },
     open: { table: { disable: true } },
     onClose: { table: { disable: true } },
     onSnapIndexChange: { table: { disable: true } },

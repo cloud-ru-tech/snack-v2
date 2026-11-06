@@ -1,6 +1,10 @@
 import { BottomSheetActionButton, FooterActionsOrientation, PopupMediaProps } from '@ds/popup-private';
-import { WithSupportProps } from '@ds/utils';
+import { ValueOf, WithSupportProps } from '@ds/utils';
 import { PropsWithChildren, ReactNode } from 'react';
+
+import { MODE } from './constants';
+
+export type BottomSheetMode = ValueOf<typeof MODE>;
 
 // Общие chrome-типы вынесены в `@ds/popup-private`. Реэкспортируем под историческими именами
 // `@ds/bottom-sheet`, чтобы не ломать внешний контракт (isolatedModules → `export type`).
@@ -39,6 +43,13 @@ export type BottomSheetCustomProps = WithSupportProps<
      */
     showBackdrop?: boolean;
     /**
+     * Режим поведения: `regular` — стандартное закрытие; `aggressive` — размытие фона
+     * и запрет закрытия кликом по подложке; `forced` — дополнительно запрещает закрытие свайпом, Escape и переходом по истории браузера.
+     * Размытие применяется только при `showBackdrop=true`.
+     * @default 'regular'
+     */
+    mode?: BottomSheetMode;
+    /**
      * Блокировать ли скролл фона на время открытия (`react-remove-scroll`). При `false` страница
      * под sheet'ом остаётся прокручиваемой — для non-modal сценариев (sheet поверх контента, с
      * которым продолжают взаимодействовать). Обычно используется вместе с `showBackdrop={false}`.
@@ -47,6 +58,7 @@ export type BottomSheetCustomProps = WithSupportProps<
     lockScroll?: boolean;
     /**
      * Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.
+     * В режиме `forced` свайп отключён независимо от значения свойства.
      * При `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом.
      * @default true
      */

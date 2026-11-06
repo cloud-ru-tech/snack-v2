@@ -84,6 +84,20 @@ test.describe('BottomSheet — interaction (browser-specific)', () => {
     await expect(root).not.toBeVisible();
   });
 
+  for (const mode of ['aggressive', 'forced']) {
+    test(`${mode} blurs the backdrop and stays open on backdrop click`, async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions({ mode }));
+      await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+
+      const root = getByTestId(TEST_IDS.root);
+      const backdrop = getByTestId(TEST_IDS.backdrop);
+      await expect(root).toBeVisible();
+      await expect(backdrop).toHaveCSS('backdrop-filter', /blur\(/);
+      await backdrop.click({ position: { x: 10, y: 10 } });
+      await expect(root).toBeVisible();
+    });
+  }
+
   test('closes on history popstate (mobile back navigation)', async ({ gotoStory, page, getByTestId }) => {
     await gotoStory(buildStoryOptions());
     await getByTestId(STORY_TEST_IDS.triggerOpen).click();
@@ -96,6 +110,21 @@ test.describe('BottomSheet — interaction (browser-specific)', () => {
     await page.evaluate(() => window.history.pushState(null, '', window.location.href));
     await page.evaluate(() => window.history.back());
     await expect(root).not.toBeVisible();
+  });
+
+  test('forced stays open on popstate even when closeOnPopstate=true', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ mode: 'forced', closeOnPopstate: true }));
+    await getByTestId(STORY_TEST_IDS.triggerOpen).click();
+    await expect(getByTestId(TEST_IDS.root)).toBeVisible();
+    await page.evaluate(() => {
+      window.history.pushState(null, '', window.location.href);
+      return new Promise<void>(resolve => {
+        window.addEventListener('popstate', () => resolve(), { once: true });
+        window.history.back();
+      });
+    });
+    await page.waitForTimeout(300);
+    await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
   test('stays open on popstate when closeOnPopstate=false', async ({ gotoStory, page, getByTestId }) => {

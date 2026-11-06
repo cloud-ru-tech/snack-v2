@@ -14,7 +14,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 
-import { TEST_IDS } from '../../constants';
+import { MODE, TEST_IDS } from '../../constants';
 import { Handle } from '../../helperComponents';
 import {
   BottomSheetBodyProps,
@@ -50,6 +50,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     open,
     onClose,
     showBackdrop = true,
+    mode = MODE.Regular,
     lockScroll = true,
     swipeEnabled = true,
     safeAreaTop = true,
@@ -70,8 +71,16 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   // Sheet модальный, если затемняет фон или лочит скролл. Non-modal не прячет фон от AT,
   // не ловит фокус и закрывается по Esc при фокусе снаружи.
   const isModal = showBackdrop || lockScroll;
+  const backdropBlur = mode !== MODE.Regular;
+  const isSwipeEnabled = swipeEnabled && mode !== MODE.Forced;
 
-  useModalOpenState(open, onClose, { closeOnPopstate });
+  useModalOpenState(
+    open,
+    () => {
+      if (mode !== MODE.Forced) onClose();
+    },
+    { closeOnPopstate },
+  );
 
   // Возврат фокуса на триггер: запоминаем активный элемент при open=true, возвращаем при open=false.
   const restoreFocusRef = useRef<HTMLElement | null>(null);
@@ -106,7 +115,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   // Nested-safe для модального sheet'а: закрываем только если фокус внутри этой панели; для
   // non-modal фокус снаружи — закрываем безусловно.
   useEffect(() => {
-    if (!isActive || !isBrowser() || 'CloseWatcher' in window) return;
+    if (!isActive || mode === MODE.Forced || !isBrowser() || 'CloseWatcher' in window) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
@@ -120,7 +129,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     };
     document.addEventListener('keydown', handleKeyDown, true);
     return () => document.removeEventListener('keydown', handleKeyDown, true);
-  }, [isActive, isModal, onClose, focusTrapRef]);
+  }, [isActive, isModal, mode, onClose, focusTrapRef]);
 
   const {
     setContentNode,
@@ -133,7 +142,7 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
     snapIndex,
     onSnapIndexChange,
     onClose,
-    swipeEnabled,
+    swipeEnabled: isSwipeEnabled,
     isActive,
   });
 
@@ -150,8 +159,8 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
   );
 
   const handleBackdropClick = useCallback(() => {
-    if (showBackdrop) onClose();
-  }, [showBackdrop, onClose]);
+    if (showBackdrop && mode === MODE.Regular) onClose();
+  }, [showBackdrop, mode, onClose]);
 
   // Мобильная поверхность фиксирует только платформу webMobile, плотность наследуется от приложения.
   const themeClassName = useThemeClassnames({ platform: PLATFORM.WebMobile });
@@ -173,7 +182,13 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
         data-disable-motions={disableMotions || undefined}
       >
         {showBackdrop && (
-          <div className={styles.backdrop} data-test-id={TEST_IDS.backdrop} onClick={handleBackdropClick} aria-hidden />
+          <div
+            className={styles.backdrop}
+            data-backdrop-blur={backdropBlur || undefined}
+            data-test-id={TEST_IDS.backdrop}
+            onClick={handleBackdropClick}
+            aria-hidden
+          />
         )}
 
         <div
@@ -194,13 +209,13 @@ export function BottomSheetCustom(props: BottomSheetCustomProps) {
             data-snap-index={activeSnapIndex}
             // Пустой массив ведёт себя как single fit-content — атрибут не выставляем.
             data-snap-points={snapPoints && snapPoints.length > 0 ? snapPoints.length : undefined}
-            data-swipe-enabled={swipeEnabled || undefined}
+            data-swipe-enabled={isSwipeEnabled || undefined}
             data-dragging={isDragging || undefined}
             data-full-height={isFullHeight || undefined}
             {...supportProps}
-            {...(swipeEnabled ? dragHandlers : {})}
+            {...(isSwipeEnabled ? dragHandlers : {})}
           >
-            {swipeEnabled && <Handle />}
+            {isSwipeEnabled && <Handle />}
             <OverlaySurfaceProvider surface={OVERLAY_SURFACE.Sheet}>{children}</OverlaySurfaceProvider>
           </div>
         </div>

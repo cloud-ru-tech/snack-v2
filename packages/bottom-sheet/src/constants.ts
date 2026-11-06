@@ -27,3 +27,9 @@ export const SNAP_POINTS_PRESET = {
   /** Открывается на половину вьюпорта, drag вверх раскрывает на всю высоту. */
   halfFull: [0.5, 1],
 } satisfies Record<string, SnapPoint[]>;
+
+export const MODE = {
+  Regular: 'regular',
+  Aggressive: 'aggressive',
+  Forced: 'forced',
+} as const;
