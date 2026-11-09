@@ -1,4 +1,4 @@
-import { BottomSheet } from '@ds/bottom-sheet';
+import { BottomSheet, FOOTER_ACTIONS_ORIENTATION } from '@ds/bottom-sheet';
 import { extractSupportProps } from '@ds/utils';
 
 import { DrawerProps } from '../../components/Drawer/types';
@@ -20,7 +20,7 @@ export function MobileDrawer({
   approveButton,
   cancelButton,
   additionalButton,
-  footerActionsOrientation,
+  footerActionsOrientation = FOOTER_ACTIONS_ORIENTATION.Vertical,
   footer,
   className,
   rootClassName,

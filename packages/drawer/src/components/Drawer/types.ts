@@ -38,7 +38,7 @@ export type DrawerProps = WithSupportProps<
       additionalButton?: BottomSheetActionButton;
       /**
        * Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.
-       * @default 'horizontal'
+       * По умолчанию 'vertical' на mobile, 'horizontal' на desktop.
        */
       footerActionsOrientation?: FooterActionsOrientation;
       /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. */

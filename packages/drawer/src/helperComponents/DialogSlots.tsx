@@ -1,5 +1,6 @@
 import {
   BottomSheetActionButton,
+  FOOTER_ACTIONS_ORIENTATION,
   FooterActions,
   FooterActionsOrientation,
   OVERLAY_SURFACE,
@@ -27,7 +28,7 @@ export type DialogFooterProps = SheetFooterProps & {
   cancelButton?: BottomSheetActionButton;
   /** Дополнительная (третья) кнопка. */
   additionalButton?: BottomSheetActionButton;
-  /** Ориентация кнопок при ровно двух действиях. */
+  /** Ориентация двух кнопок. По умолчанию вертикальная на mobile и горизонтальная на desktop. */
   footerActionsOrientation?: FooterActionsOrientation;
 };
 
@@ -76,7 +77,10 @@ export function DialogFooter({
             approveButton={approveButton}
             cancelButton={cancelButton}
             additionalButton={additionalButton}
-            footerActionsOrientation={footerActionsOrientation}
+            footerActionsOrientation={
+              footerActionsOrientation ??
+              (isSheet ? FOOTER_ACTIONS_ORIENTATION.Vertical : FOOTER_ACTIONS_ORIENTATION.Horizontal)
+            }
             testIds={{
               approve: TEST_IDS.footerApprove,
               cancel: TEST_IDS.footerCancel,

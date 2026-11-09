@@ -1,4 +1,4 @@
-import { BottomSheet } from '@ds/bottom-sheet';
+import { BottomSheet, FOOTER_ACTIONS_ORIENTATION } from '@ds/bottom-sheet';
 import { Spinner } from '@ds/loader';
 import { extractSupportProps } from '@ds/utils';
 
@@ -23,7 +23,7 @@ export function MobileModal({
   approveButton,
   cancelButton,
   additionalButton,
-  footerActionsOrientation,
+  footerActionsOrientation = FOOTER_ACTIONS_ORIENTATION.Vertical,
   footer,
   loading = false,
   loadingState,

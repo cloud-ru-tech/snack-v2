@@ -66,8 +66,7 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop."
       },
       "heightAuto": {
         "type": "boolean",
@@ -174,7 +173,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "title": {
         "type": "ReactNode",
@@ -269,7 +268,7 @@
           "horizontal",
           "vertical"
         ],
-        "description": "Ориентация кнопок при ровно двух действиях."
+        "description": "Ориентация двух кнопок. По умолчанию вертикальная на mobile и горизонтальная на desktop."
       }
     },
     "relatedTypes": {}
@@ -416,8 +415,7 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop.",
         "typeRefs": [
           "FooterActionsOrientation"
         ]
@@ -536,7 +534,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "title": {
         "type": "ReactNode",
@@ -647,7 +645,7 @@
               "horizontal",
               "vertical"
             ],
-            "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.",
+            "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop.",
             "typeRefs": [
               "FooterActionsOrientation"
             ]
@@ -760,7 +758,7 @@
           "swipeEnabled": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
           },
           "title": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -987,7 +985,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "width": {
         "type": "string | number",
@@ -1122,7 +1120,7 @@
           "swipeEnabled": {
             "type": "boolean | undefined",
             "required": false,
-            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+            "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
           },
           "width": {
             "type": "string | number | undefined",
@@ -1233,7 +1231,7 @@
           "horizontal",
           "vertical"
         ],
-        "description": "Ориентация кнопок при ровно двух действиях."
+        "description": "Ориентация двух кнопок. По умолчанию вертикальная на mobile и горизонтальная на desktop."
       }
     },
     "relatedTypes": {}
@@ -1366,8 +1364,8 @@
           "horizontal",
           "vertical"
         ],
-        "defaultValue": "'horizontal'",
-        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`."
+        "defaultValue": "vertical",
+        "description": "Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`.\nПо умолчанию 'vertical' на mobile, 'horizontal' на desktop."
       },
       "heightAuto": {
         "type": "boolean",
@@ -1474,7 +1472,7 @@
         "type": "boolean",
         "required": false,
         "defaultValue": "true",
-        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
+        "description": "Включает swipe-down для закрытия / swipe-up для раскрытия на следующий snap-point.\nВ режиме `forced` свайп отключён независимо от значения свойства.\nПри `swipeEnabled=false` snap-point по-прежнему можно переключить через controlled `snapIndex` prop'ом."
       },
       "title": {
         "type": "ReactNode",

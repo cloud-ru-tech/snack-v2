@@ -214,7 +214,7 @@
           "horizontal",
           "vertical"
         ],
-        "description": "Ориентация кнопок при ровно двух действиях."
+        "description": "Ориентация двух кнопок. По умолчанию вертикальная на mobile и горизонтальная на desktop."
       }
     },
     "relatedTypes": {}
@@ -870,7 +870,7 @@
           "horizontal",
           "vertical"
         ],
-        "description": "Ориентация кнопок при ровно двух действиях."
+        "description": "Ориентация двух кнопок. По умолчанию вертикальная на mobile и горизонтальная на desktop."
       }
     },
     "relatedTypes": {}
