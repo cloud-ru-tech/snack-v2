@@ -206,6 +206,12 @@ export const SERVICE_ACTIONS: Action[] = [
     target: '_blank',
     'data-test-id': TEST_IDS.pageServices.linkAction,
   },
+  {
+    variant: 'outline',
+    appearance: BUTTON_APPEARANCE.Neutral,
+    label: 'Перезагрузить',
+    onClick: fn(),
+  },
 ];
 
 // ---------------------------------------------------------------------------

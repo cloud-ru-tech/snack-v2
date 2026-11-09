@@ -66,3 +66,34 @@ test.describe('PageServices — rendering', () => {
     expect(actionBox?.width).toBeCloseTo((rowBox?.width ?? 0) - (kebabBox?.width ?? 0) - MOBILE_ACTIONS_GAP, 0);
   });
 });
+
+test('dynamic actions move into the menu and return after resizing', async ({ page, gotoStory, getByTestId }) => {
+  await page.setViewportSize({ width: 600, height: 844 });
+  await gotoStory(buildStoryOptions({ maxVisibleActionsItems: 2 }, undefined, { layoutType: 'mobile' }));
+  const primary = getByTestId(TEST_IDS.pageServices.primaryAction);
+  const secondary = getByTestId(TEST_IDS.pageServices.linkAction);
+  const menu = getByTestId(INTERNAL_TEST_IDS.mobileActions.trigger);
+  await expect(primary).toBeVisible();
+  await expect(secondary).toBeVisible();
+  await expect(menu).toBeVisible();
+  expect((await primary.boundingBox())?.x).toBeGreaterThan((await secondary.boundingBox())?.x ?? 0);
+
+  await page.setViewportSize({ width: 260, height: 844 });
+  await expect(primary).toBeVisible();
+  await expect(secondary).toHaveCount(0);
+  await expect(menu).toBeVisible();
+  const row = getByTestId(INTERNAL_TEST_IDS.mobileActions.root);
+  expect(await row.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
+  const primaryBox = await primary.boundingBox();
+  const menuBox = await menu.boundingBox();
+  expect(menuBox?.x).toBeGreaterThan(primaryBox?.x ?? 0);
+  await menu.click();
+  await expect(page.getByText('Документация', { exact: true })).toBeVisible();
+  await expect(page.getByText('Перезагрузить', { exact: true })).toBeVisible();
+  await page.keyboard.press('Escape');
+
+  await page.setViewportSize({ width: 600, height: 844 });
+  await expect(secondary).toBeVisible();
+  await expect(menu).toBeVisible();
+  expect((await primary.boundingBox())?.x).toBeGreaterThan((await secondary.boundingBox())?.x ?? 0);
+});

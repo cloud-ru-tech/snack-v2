@@ -43,7 +43,17 @@ export function useDynamicList<T extends object>({
   const tryHidingItem = useEventHandler(() => {
     const container = parentContainerRef.current;
 
-    if (container && container.scrollWidth - container.offsetWidth > 0) {
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const hasOverflow =
+      container.scrollWidth > container.clientWidth ||
+      Array.from(container.children).some(child => {
+        const rect = child.getBoundingClientRect();
+        return rect.left < containerRect.left - 1 || rect.right > containerRect.right + 1;
+      });
+
+    if (hasOverflow) {
       const itemToHide = items[visibleItemsAmount - 1];
 
       if (itemToHide) {

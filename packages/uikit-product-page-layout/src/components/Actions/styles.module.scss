@@ -34,3 +34,7 @@
     flex: 0 0 auto;
   }
 }
+
+.mobileActionsWrapper .button[data-full-width]:not([data-variant='icon-only']) {
+  min-width: max-content;
+}
