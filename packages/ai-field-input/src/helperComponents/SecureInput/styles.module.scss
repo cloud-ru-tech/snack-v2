@@ -1,0 +1,35 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// Типографика и цвета совпадают с редактором: поле `secure` стоит на его месте.
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: base.$sn-density-typography-roleBody-lineHeightM;
+  margin: base.$sn-primitive-dimension-0;
+  padding: base.$sn-primitive-dimension-0 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-0
+    base.$sn-primitive-dimension-0;
+  border: none;
+
+  color: base.$sn-theme-color-available-version-textMain;
+
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &::placeholder {
+    color: base.$sn-theme-color-available-version-textDisabled;
+    opacity: 1;
+  }
+
+  // Своя кнопка показа у Edge: показ значения — «глаз» в футере поля.
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &:disabled {
+    color: base.$sn-theme-color-available-version-textDisabled;
+  }
+
+  @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', 'm');
+}

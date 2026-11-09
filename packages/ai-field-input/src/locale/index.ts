@@ -16,6 +16,9 @@ const AI_FIELD_INPUT_MESSAGES = defineMessages({
     menuSearch: 'Search',
     back: 'Back',
     nothingFound: 'Nothing found',
+    secureToggle: 'Show value',
+    secureShow: 'Show',
+    secureHide: 'Hide',
   },
   'ru-RU': {
     disclaimer: 'Агент может ошибаться. Рекомендуем проверять ответы',
@@ -32,6 +35,9 @@ const AI_FIELD_INPUT_MESSAGES = defineMessages({
     menuSearch: 'Поиск',
     back: 'Назад',
     nothingFound: 'Ничего не найдено',
+    secureToggle: 'Показать значение',
+    secureShow: 'Показать',
+    secureHide: 'Скрыть',
   },
 });
 

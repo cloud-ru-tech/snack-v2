@@ -947,6 +947,9 @@ importers:
       '@ds/button':
         specifier: workspace:^
         version: link:../button
+      '@ds/field-decorator':
+        specifier: workspace:^
+        version: link:../field-decorator
       '@ds/hot-spot':
         specifier: workspace:^
         version: link:../hot-spot

@@ -2,7 +2,7 @@ import { Node as PMNode } from '@tiptap/pm/model';
 import { TextSelection } from '@tiptap/pm/state';
 import { Editor } from '@tiptap/react';
 
-import { SEGMENT_TYPE } from '../../constants';
+import { SEGMENT_TYPE, TEST_IDS } from '../../constants';
 import { AiFieldInputMentionSegment, AiFieldInputSkillSegment, AiFieldInputValue } from '../../types';
 import { getChipMetaKey, NODE_NAME, segmentsToDoc } from '../../utils';
 import { ChipMeta } from './context';
@@ -78,4 +78,29 @@ export function insertChipAtCaret(
   const content = charBefore && !/\s/.test(charBefore) ? [{ type: 'text', text: ' ' }, node] : [node];
 
   editor.chain().focus().insertContentAt(position, content).run();
+}
+
+type EditorAttributesOptions = {
+  className: string;
+  placeholder?: string;
+  invalid: boolean;
+  describedBy?: string;
+};
+
+/** Атрибуты `contenteditable` редактора: роль, подсказка и состояние ошибки для скринридера. */
+export function buildEditorAttributes({
+  className,
+  placeholder,
+  invalid,
+  describedBy,
+}: EditorAttributesOptions): Record<string, string> {
+  return {
+    class: className,
+    role: 'textbox',
+    'aria-multiline': 'true',
+    'data-test-id': TEST_IDS.editor,
+    ...(placeholder ? { 'aria-placeholder': placeholder } : {}),
+    ...(invalid ? { 'aria-invalid': 'true' } : {}),
+    ...(describedBy ? { 'aria-describedby': describedBy } : {}),
+  };
 }

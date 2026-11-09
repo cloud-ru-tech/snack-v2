@@ -56,6 +56,14 @@
     border-color: base.$sn-theme-color-primary-accent;
   }
 
+  .root[data-error] & {
+    background: base.$sn-theme-color-red-background2Level;
+
+    &:focus-within {
+      border-color: base.$sn-theme-color-red-accent;
+    }
+  }
+
   .root[data-disabled] & {
     border-color: base.$sn-theme-color-available-borderColor;
     background: base.$sn-theme-color-neutral-background;

@@ -3,7 +3,7 @@ import { BAR_HIDE_STRATEGY, Scroll, SIZE as SCROLL_SIZE } from '@ds/scroll';
 import { EditorContent, useEditor } from '@tiptap/react';
 import { MutableRefObject, useEffect, useMemo, useRef } from 'react';
 
-import { SEARCH_TRIGGER, TEST_IDS } from '../../constants';
+import { SEARCH_TRIGGER } from '../../constants';
 import { EditorHandle, useAiFieldInputContext } from '../../context';
 import { aiFieldInputLocale } from '../../locale';
 import { AiFieldInputSearchPlaceholder, AiFieldInputValue, SearchTrigger } from '../../types';
@@ -24,7 +24,13 @@ import {
   TextNode,
 } from './extensions';
 import styles from './styles.module.scss';
-import { buildChipMeta, getSearchChipIndex, insertChipAtCaret, restoreCaretAfterReplace } from './utils';
+import {
+  buildChipMeta,
+  buildEditorAttributes,
+  getSearchChipIndex,
+  insertChipAtCaret,
+  restoreCaretAfterReplace,
+} from './utils';
 
 export type EditorProps = {
   value: AiFieldInputValue;
@@ -34,6 +40,10 @@ export type EditorProps = {
   searchPlaceholder?: AiFieldInputSearchPlaceholder;
   searchTriggers: SearchTrigger[];
   disabled: boolean;
+  /** Поле в состоянии ошибки: `aria-invalid`. */
+  invalid: boolean;
+  /** `id` строки ошибки для `aria-describedby`. */
+  describedBy?: string;
   handleRef: MutableRefObject<EditorHandle | null>;
 };
 
@@ -45,6 +55,8 @@ export function Editor({
   searchPlaceholder,
   searchTriggers,
   disabled,
+  invalid,
+  describedBy,
   handleRef,
 }: EditorProps) {
   const { t } = aiFieldInputLocale.useTranslations();
@@ -93,13 +105,7 @@ export function Editor({
       }),
     ],
     editorProps: {
-      attributes: {
-        class: styles.content,
-        role: 'textbox',
-        'aria-multiline': 'true',
-        'data-test-id': TEST_IDS.editor,
-        ...(placeholder ? { 'aria-placeholder': placeholder } : {}),
-      },
+      attributes: buildEditorAttributes({ className: styles.content, placeholder, invalid, describedBy }),
     },
     onFocus: () => {
       wasFocusedRef.current = true;
@@ -136,6 +142,15 @@ export function Editor({
       }
     });
   }, [editor, value]);
+
+  useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    editor.setOptions({
+      editorProps: {
+        attributes: buildEditorAttributes({ className: styles.content, placeholder, invalid, describedBy }),
+      },
+    });
+  }, [editor, placeholder, invalid, describedBy]);
 
   useEffect(() => {
     editor?.setEditable(!disabled);

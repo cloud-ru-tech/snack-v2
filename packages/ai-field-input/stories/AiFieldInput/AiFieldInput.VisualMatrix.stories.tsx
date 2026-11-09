@@ -54,7 +54,15 @@ export const VisualMatrix: Story = {
       { label: 'text', value: texts.valueText, props: { attachments: <Attachments /> } },
       { label: 'text + skill', value: texts.valueTextAndSkill },
       { label: 'skill', value: texts.valueSkill },
+      { label: 'secure', value: texts.valueSecret, props: { secure: true } },
       { label: 'disabled', value: [], props: { disabled: true, placeholder: texts.disabledPlaceholder } },
+      { label: 'error', value: texts.valueTextAndSkill, props: { error: texts.error } },
+      {
+        label: 'error + counter (secure)',
+        value: texts.valueSecret,
+        props: { secure: true, error: texts.errorLength, length: { current: 3002, max: 3000 } },
+      },
+      { label: 'error + disabled', value: [], props: { disabled: true, error: texts.error } },
     ];
 
     const actionListRows = [...texts.skills, { id: 'back', label: texts.back, type: ACTION_LIST_ITEM_TYPE.Back }];

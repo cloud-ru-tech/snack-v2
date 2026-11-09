@@ -1,4 +1,5 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { Hint, SIZE as HINT_SIZE } from '@ds/field-decorator';
 import { useValueControl } from '@ds/utils';
 import cn from 'classnames';
 import {
@@ -8,6 +9,7 @@ import {
   ReactElement,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -21,10 +23,25 @@ import {
   AiFieldInputContextValue,
   EditorHandle,
 } from '../../context';
-import { Attachments, Editor, MobileActionListSheet, ScrollButton, SearchActionList } from '../../helperComponents';
+import {
+  Attachments,
+  Editor,
+  MobileActionListSheet,
+  ScrollButton,
+  SearchActionList,
+  SecureInput,
+  SecureToggleButton,
+} from '../../helperComponents';
 import { aiFieldInputLocale } from '../../locale';
 import { AiFieldInputActionListItem, AiFieldInputProps, AiFieldInputValue, SearchTrigger } from '../../types';
-import { findSearchSegment, isValueEmpty, replaceSearchSegment, toChipSegment } from '../../utils';
+import {
+  findSearchSegment,
+  isValueEmpty,
+  replaceSearchSegment,
+  serializeSegments,
+  toChipSegment,
+  toSecureValue,
+} from '../../utils';
 import { AiFieldInputSendButton } from '../AiFieldInputSendButton';
 import styles from './styles.module.scss';
 
@@ -39,6 +56,9 @@ export function AiFieldInput({
   placeholder,
   searchPlaceholder,
   disabled = false,
+  secure = false,
+  error,
+  length,
   banner,
   skills,
   mentions,
@@ -55,6 +75,8 @@ export function AiFieldInput({
   ...rest
 }: AiFieldInputProps): ReactElement {
   const { t } = aiFieldInputLocale.useTranslations();
+  const errorId = useId();
+  const hasError = Boolean(error) && !disabled;
   const [value = EMPTY_VALUE, setValue] = useValueControl<AiFieldInputValue>({
     value: valueProp,
     defaultValue: defaultValue ?? EMPTY_VALUE,
@@ -75,6 +97,41 @@ export function AiFieldInput({
   const isMobile = isMobileLayout(layoutType);
   const actionListHostRef = useRef<ActionListHost | null>(null);
   const [mobileSheetTrigger, setMobileSheetTrigger] = useState<SearchTrigger | null>(null);
+  const [secureRevealed, setSecureRevealed] = useState(false);
+  const [prevSecure, setPrevSecure] = useState(secure);
+  // Секрет на момент выхода из `secure`. Пока родитель не прислал другое значение (controlled-режим может
+  // обновить `value` асинхронно или не обновить вовсе), редактор его не показывает.
+  const [secretOnExit, setSecretOnExit] = useState<AiFieldInputValue | null>(null);
+  const [secureEntered, setSecureEntered] = useState(false);
+
+  if (prevSecure !== secure) {
+    setPrevSecure(secure);
+    setSecureRevealed(false);
+    setSecretOnExit(!secure && value.length > 0 ? value : null);
+    setSecureEntered(secure);
+  } else if (secretOnExit !== null && value !== secretOnExit) {
+    setSecretOnExit(null);
+  }
+
+  const isSecretHidden = secretOnExit !== null && value === secretOnExit;
+  const secureValue = useMemo(() => toSecureValue(value), [value]);
+  const effectiveValue = secure ? secureValue : value;
+
+  const setValueRef = useRef(setValue);
+  setValueRef.current = setValue;
+
+  useEffect(() => {
+    if (secretOnExit) setValueRef.current(EMPTY_VALUE);
+  }, [secretOnExit]);
+
+  // Вход в `secure`: из значения убираются чипы, иначе снаружи осталось бы не то, что видно в поле.
+  useEffect(() => {
+    if (!secureEntered) return;
+    setSecureEntered(false);
+    if (serializeSegments(secureValue) !== serializeSegments(value)) setValueRef.current(secureValue);
+  }, [secureEntered, secureValue, value]);
+
+  const handleSecureToggle = useCallback(() => setSecureRevealed(prev => !prev), []);
 
   const hostActionList = useCallback((host: ActionListHost | null) => {
     actionListHostRef.current = host;
@@ -91,7 +148,7 @@ export function AiFieldInput({
 
   const openActionList = useCallback(
     (trigger: SearchTrigger) => {
-      if (disabled) return;
+      if (disabled || secure) return;
 
       if (isMobile) {
         const items = trigger === SEARCH_TRIGGER.Skill ? skills : mentions;
@@ -104,7 +161,7 @@ export function AiFieldInput({
       editorRef.current?.dismissSearch();
       setDetachedTrigger(trigger);
     },
-    [disabled, isMobile, skills, mentions],
+    [disabled, secure, isMobile, skills, mentions],
   );
   const closeDetachedList = useCallback(() => setDetachedTrigger(null), []);
   const focusDetachedPanel = useCallback(() => searchListRef.current?.focus(), []);
@@ -129,7 +186,7 @@ export function AiFieldInput({
     [disabled, registerActionList, getActionList, getEditor, openActionList, hostActionList, pickActionListItem],
   );
 
-  const sendState = send?.state ?? (isValueEmpty(value) ? SEND_STATE.Disabled : SEND_STATE.Active);
+  const sendState = send?.state ?? (isValueEmpty(effectiveValue) ? SEND_STATE.Disabled : SEND_STATE.Active);
   const resolvedSendState = disabled ? SEND_STATE.Disabled : sendState;
 
   const isBusy = resolvedSendState === SEND_STATE.Loading || resolvedSendState === SEND_STATE.Stop;
@@ -138,17 +195,19 @@ export function AiFieldInput({
     (current: AiFieldInputValue) => {
       if (disabled || isBusy || isValueEmpty(current)) return;
       onSubmit?.(current);
+      // Следующий секрет начинается скрытым.
+      if (secure) setSecureRevealed(false);
     },
-    [disabled, isBusy, onSubmit],
+    [disabled, isBusy, onSubmit, secure],
   );
 
   const handleSendClick = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      if (resolvedSendState === SEND_STATE.Active) handleSubmit(value);
-      send?.onClick?.(resolvedSendState, value);
+      if (resolvedSendState === SEND_STATE.Active) handleSubmit(effectiveValue);
+      send?.onClick?.(resolvedSendState, effectiveValue);
     },
-    [send, resolvedSendState, handleSubmit, value],
+    [send, resolvedSendState, handleSubmit, effectiveValue],
   );
 
   const search = useMemo(() => findSearchSegment(value), [value]);
@@ -156,12 +215,12 @@ export function AiFieldInput({
   const searchItems = listTrigger === SEARCH_TRIGGER.Skill ? skills : mentions;
   const searchTriggers = useMemo(
     () =>
-      isMobile
+      isMobile || secure
         ? []
         : ([skills && SEARCH_TRIGGER.Skill, mentions && SEARCH_TRIGGER.Mention].filter(Boolean) as SearchTrigger[]),
-    [isMobile, skills, mentions],
+    [isMobile, secure, skills, mentions],
   );
-  const isActionListOpen = Boolean(listTrigger && searchItems) && !disabled;
+  const isActionListOpen = Boolean(listTrigger && searchItems) && !disabled && !secure;
   const isDetached = !search && Boolean(detachedTrigger);
 
   const handleActionSelect = useCallback(
@@ -239,6 +298,7 @@ export function AiFieldInput({
         {...rest}
         className={cn(styles.root, className)}
         data-disabled={disabled || undefined}
+        data-error={hasError || undefined}
         data-test-id={dataTestId}
       >
         {scrollButton && !isActionListOpen && <ScrollButton {...scrollButton} />}
@@ -273,19 +333,35 @@ export function AiFieldInput({
           <div className={styles.field} data-test-id={TEST_IDS.field}>
             {hasAttachments && <Attachments scrollStep={attachmentsScrollStep}>{attachments}</Attachments>}
 
-            <Editor
-              value={value}
-              onChange={setValue}
-              onSubmit={handleSubmit}
-              placeholder={placeholder}
-              searchPlaceholder={searchPlaceholder}
-              searchTriggers={searchTriggers}
-              disabled={disabled}
-              handleRef={editorRef}
-            />
+            {secure ? (
+              <SecureInput
+                value={secureValue}
+                onChange={setValue}
+                onSubmit={handleSubmit}
+                placeholder={placeholder}
+                disabled={disabled}
+                invalid={hasError}
+                describedBy={hasError ? errorId : undefined}
+                masked={!secureRevealed}
+              />
+            ) : (
+              <Editor
+                value={isSecretHidden ? EMPTY_VALUE : value}
+                onChange={setValue}
+                onSubmit={handleSubmit}
+                placeholder={placeholder}
+                searchPlaceholder={searchPlaceholder}
+                searchTriggers={searchTriggers}
+                disabled={disabled}
+                invalid={hasError}
+                describedBy={hasError ? errorId : undefined}
+                handleRef={editorRef}
+              />
+            )}
 
             <div className={styles.footer} data-test-id={TEST_IDS.footer}>
               <div className={styles.footerLeft} data-test-id={TEST_IDS.footerLeft}>
+                {secure && <SecureToggleButton revealed={secureRevealed} onToggle={handleSecureToggle} />}
                 {footerLeftActions}
               </div>
               <div className={styles.footerRight}>
@@ -304,6 +380,12 @@ export function AiFieldInput({
             onPick={handleMobileSheetPick}
             onClose={closeMobileSheet}
           />
+        )}
+
+        {hasError && (
+          <div id={errorId}>
+            <Hint error={error} length={length} size={HINT_SIZE.S} data-test-id={TEST_IDS.error} />
+          </div>
         )}
 
         <div className={styles.disclaimer} data-test-id={TEST_IDS.disclaimer}>

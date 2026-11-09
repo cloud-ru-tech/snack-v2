@@ -32,6 +32,21 @@ test.describe('AiFieldInput — rendering', () => {
       await expect(getByTestId(TEST_IDS.disclaimer)).toBeEmpty();
     });
 
+    await test.step('error shows the hint and marks the editor invalid', async () => {
+      await setStoryArgs({ error: 'Error text', length: { current: 3002, max: 3000 } });
+      await expect(root).toHaveAttribute('data-error', 'true');
+      await expect(getByTestId(TEST_IDS.error)).toContainText('Error text');
+      await expect(getByTestId(TEST_IDS.error)).toContainText('3002/3000');
+      await expect(getByTestId(TEST_IDS.editor)).toHaveAttribute('aria-invalid', 'true');
+    });
+
+    await test.step('disabled field hides the error', async () => {
+      await setStoryArgs({ disabled: true });
+      await expect(root).not.toHaveAttribute('data-error');
+      await expect(getByTestId(TEST_IDS.error)).toHaveCount(0);
+      await setStoryArgs({ disabled: false, error: undefined, length: undefined });
+    });
+
     for (const sendState of ['loading', 'stop'] as const) {
       await test.step(`send state ${sendState}`, async () => {
         await setStoryArgs({ sendState });

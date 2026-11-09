@@ -1,6 +1,6 @@
 import { APPEARANCE, Button, SIZE, VIEW } from '@ds/button';
 import { withInnerRefSupport, WithSupportProps } from '@ds/utils';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 import { useAiFieldInputContext } from '../../context';
 import { AiFieldInputFooterButtonBaseProps, AiFieldInputFooterMenuProps } from '../../types';
@@ -11,6 +11,7 @@ export type FooterIconButtonProps = WithSupportProps<
     AiFieldInputFooterMenuProps & {
       icon: ReactNode;
       'aria-label': string;
+      onMouseDown?: MouseEventHandler<HTMLButtonElement>;
     }
 >;
 
@@ -19,6 +20,7 @@ export function FooterIconButton({
   disabled: disabledProp = false,
   tooltip,
   onClick,
+  onMouseDown,
   innerRef,
   className,
   items,
@@ -42,6 +44,7 @@ export function FooterIconButton({
           innerRef={ref}
           data-pressed={pressed || undefined}
           onClick={onClick}
+          onMouseDown={onMouseDown}
           onKeyDown={onKeyDown}
         />
       )}

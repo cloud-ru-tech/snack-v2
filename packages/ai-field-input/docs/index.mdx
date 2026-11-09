@@ -22,6 +22,10 @@ import { FooterActions } from '../demos/examples/FooterActions'
 import FooterActionsSrc from '../demos/examples/FooterActions.tsx?raw'
 import { Disabled } from '../demos/examples/Disabled'
 import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
+import { Secure } from '../demos/examples/Secure'
+import SecureSrc from '../demos/examples/Secure.tsx?raw'
+import { ErrorState } from '../demos/examples/ErrorState'
+import ErrorStateSrc from '../demos/examples/ErrorState.tsx?raw'
 
 # AiFieldInput
 
@@ -41,11 +45,12 @@ import DisabledSrc from '../demos/examples/Disabled.tsx?raw'
 
 ## Анатомия
 
-Поле собрано сверху вниз из четырёх частей:
+Поле собрано сверху вниз из четырёх частей, в состоянии ошибки — из пяти:
 
 - кнопка прокрутки к последнему сообщению (`scrollButton`) — над полем, с точкой непрочитанного;
 - слот баннера (`banner`) — `AiFieldBanner` или `AiFieldNotice`; пока открыт список по `/` или `@`, баннер скрыт, но держит своё место; на мобильной раскладке баннер берёт размер `m` из своего пресета адаптивности;
 - рамка поля — ряд вложений (`attachments`, плитки `AiAttachment` из `@ds/ai-attachment`), текстовая область и футер;
+- строка ошибки (`error`) — только в состоянии ошибки, между рамкой и дисклеймером;
 - дисклеймер (`disclaimer`) — текст под рамкой.
 
 Футер состоит из двух слотов (`footerLeftActions`, `footerRightActions`) и кнопки отправки, которая стоит справа всегда. Кнопки футера экспортируются отдельно: `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton`, `AiFieldInputEffortButton`, `AiFieldInputContextButton`, `AiFieldInputVoiceButton`, `AiFieldInputSendButton`. У `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton` и `AiFieldInputEffortButton` есть встроенный выпадающий список:
@@ -107,6 +112,8 @@ function PlusButton() {
 - Default — рамка с нейтральной обводкой.
 - Focus — акцентная обводка рамки.
 - Disabled (`disabled`) — ввод недоступен, ряд вложений скрыт, кнопки футера выключены, кнопка контекста остаётся активной.
+- Secure (`secure`) — ввод пароля, API-ключа или токена. Вместо редактора — однострочное поле пароля: значение скрыто, не копируется и не вырезается, длинное значение обрезается по ширине. Кнопка «глаз» в начале левого футера показывает и снова скрывает значение, каретка остаётся в поле. После отправки значение снова скрыто. Чипов нет, «/» и «@» вводятся как обычный текст. При включении `secure` чипы убираются из значения, текст остаётся. При выключении `secure` значение очищается; в controlled-режиме редактор не показывает секрет, пока родитель не пришлёт новое значение.
+- Error (`error`) — мягкая красная заливка рамки, в фокусе красная обводка, под рамкой строка ошибки с текстом из `error`. Счётчик `current/max` в строке ошибки задаёт `length` — для ошибок, связанных с длиной значения. Ошибка не блокирует ввод и отправку: доступностью кнопки отправки управляет `send`. Снимается снаружи — когда значение исправлено или отправлено снова. На выключенном поле ошибка не показывается. В режиме `secure` текст ошибки не повторяет значение.
 
 ### Кнопка отправки (default — по содержимому)
 
@@ -149,6 +156,14 @@ import { AiFieldInput } from '@ds/ai-field-input'
 
 <Example title='Выключенное поле' description='Ввод и кнопки футера недоступны' code={DisabledSrc}>
   <Disabled client:visible />
+</Example>
+
+<Example title='Ввод секрета' description='Текст скрыт точками, «глаз» в футере показывает его' code={SecureSrc}>
+  <Secure client:visible />
+</Example>
+
+<Example title='Ошибка' description='Превышен лимит длины: строка ошибки со счётчиком, отправка выключена продуктом' code={ErrorStateSrc}>
+  <ErrorState client:visible />
 </Example>
 
 ## Адаптивность

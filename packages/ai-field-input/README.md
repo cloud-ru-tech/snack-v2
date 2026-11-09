@@ -18,11 +18,12 @@
 
 ## Анатомия
 
-Поле собрано сверху вниз из четырёх частей:
+Поле собрано сверху вниз из четырёх частей, в состоянии ошибки — из пяти:
 
 - кнопка прокрутки к последнему сообщению (`scrollButton`) — над полем, с точкой непрочитанного;
 - слот баннера (`banner`) — `AiFieldBanner` или `AiFieldNotice`; пока открыт список по `/` или `@`, баннер скрыт, но держит своё место; на мобильной раскладке баннер берёт размер `m` из своего пресета адаптивности;
 - рамка поля — ряд вложений (`attachments`, плитки `AiAttachment` из `@ds/ai-attachment`), текстовая область и футер;
+- строка ошибки (`error`) — только в состоянии ошибки, между рамкой и дисклеймером;
 - дисклеймер (`disclaimer`) — текст под рамкой.
 
 Футер состоит из двух слотов (`footerLeftActions`, `footerRightActions`) и кнопки отправки, которая стоит справа всегда. Кнопки футера экспортируются отдельно: `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton`, `AiFieldInputEffortButton`, `AiFieldInputContextButton`, `AiFieldInputVoiceButton`, `AiFieldInputSendButton`. У `AiFieldInputPlusButton`, `AiFieldInputSettingsButton`, `AiFieldInputModelButton` и `AiFieldInputEffortButton` есть встроенный выпадающий список:
@@ -84,6 +85,8 @@ function PlusButton() {
 - Default — рамка с нейтральной обводкой.
 - Focus — акцентная обводка рамки.
 - Disabled (`disabled`) — ввод недоступен, ряд вложений скрыт, кнопки футера выключены, кнопка контекста остаётся активной.
+- Secure (`secure`) — ввод пароля, API-ключа или токена. Вместо редактора — однострочное поле пароля: значение скрыто, не копируется и не вырезается, длинное значение обрезается по ширине. Кнопка «глаз» в начале левого футера показывает и снова скрывает значение, каретка остаётся в поле. После отправки значение снова скрыто. Чипов нет, «/» и «@» вводятся как обычный текст. При включении `secure` чипы убираются из значения, текст остаётся. При выключении `secure` значение очищается; в controlled-режиме редактор не показывает секрет, пока родитель не пришлёт новое значение.
+- Error (`error`) — мягкая красная заливка рамки, в фокусе красная обводка, под рамкой строка ошибки с текстом из `error`. Счётчик `current/max` в строке ошибки задаёт `length` — для ошибок, связанных с длиной значения. Ошибка не блокирует ввод и отправку: доступностью кнопки отправки управляет `send`. Снимается снаружи — когда значение исправлено или отправлено снова. На выключенном поле ошибка не показывается. В режиме `secure` текст ошибки не повторяет значение.
 
 ### Кнопка отправки (default — по содержимому)
 
@@ -325,6 +328,68 @@ export function Disabled() {
 }
 ```
 
+### Ввод секрета
+
+Текст скрыт точками, «глаз» в футере показывает его
+
+```tsx
+import { AiFieldInput, AiFieldInputValue } from '@ds/ai-field-input';
+import { useState } from 'react';
+
+export function Secure() {
+  const [value, setValue] = useState<AiFieldInputValue>([]);
+  const [saved, setSaved] = useState(false);
+
+  return (
+    <AiFieldInput
+      secure
+      value={value}
+      onChange={setValue}
+      onSubmit={() => {
+        setSaved(true);
+        setValue([]);
+      }}
+      placeholder='Вставьте API-ключ'
+      disclaimer={saved ? 'Ключ отправлен' : undefined}
+    />
+  );
+}
+```
+
+### Ошибка
+
+Превышен лимит длины: строка ошибки со счётчиком, отправка выключена продуктом
+
+```tsx
+import { AiFieldInput, AiFieldInputValue } from '@ds/ai-field-input';
+import { useState } from 'react';
+
+const MAX_LENGTH = 40;
+
+function getLength(value: AiFieldInputValue) {
+  return value.reduce((sum, segment) => sum + ('text' in segment ? segment.text.length : 0), 0);
+}
+
+export function ErrorState() {
+  const [value, setValue] = useState<AiFieldInputValue>([
+    { type: 'text', text: 'Сообщение длиннее допустимого лимита символов' },
+  ]);
+  const length = getLength(value);
+  const tooLong = length > MAX_LENGTH;
+
+  return (
+    <AiFieldInput
+      value={value}
+      onChange={setValue}
+      onSubmit={() => setValue([])}
+      error={tooLong ? 'Сообщение слишком длинное' : undefined}
+      length={{ current: length, max: MAX_LENGTH }}
+      send={tooLong ? { state: 'disabled' } : undefined}
+    />
+  );
+}
+```
+
 ## Props
 
 ### AiFieldInput
@@ -341,8 +406,10 @@ export function Disabled() {
 | `defaultValue` | `AiFieldInputValue` | — | Начальное содержимое (uncontrolled). |
 | `disabled` | `boolean` | `false` | Выключенное поле: ввод недоступен, кнопки футера выключены, ряд вложений скрыт. |
 | `disclaimer` | `ReactNode` | — | Текст под полем. По умолчанию — дисклеймер из локали; `null` скрывает текст, отступ сохраняется. |
+| `error` | `string` | — | Текст ошибки. Непустой — поле в состоянии ошибки: красная заливка рамки, в фокусе красная обводка, <br/> под рамкой строка ошибки. Ввод и отправку не блокирует: доступностью отправки управляет `send`. <br/> На выключенном поле (`disabled`) ошибка не показывается. В режиме `secure` текст не должен повторять значение. |
 | `footerLeftActions` | `ReactNode` | — | Слот левых действий футера. |
 | `footerRightActions` | `ReactNode` | — | Слот дополнительных правых действий футера (перед кнопкой отправки). |
+| `length` | `FieldLength` | — | Счётчик `current/max` в строке ошибки, например `3002/3000`. Показывается только вместе с `error`, <br/> когда ошибка связана с длиной значения. |
 | `mentions` | `AiFieldInputActionListGroup` \| `AiFieldInputActionListItem` | — | Строки списка по `@`: ресурсы и сущности. Не заданы — список по `@` не открывается. |
 | `onActionSelect` | `((item: AiFieldInputActionListItem, trigger: SearchTrigger) => void)` | — | Выбор строки списка по `/` или `@`: строка уже стоит в поле чипом. |
 | `onChange` | `((value: AiFieldInputValue) => void)` | — | Изменение содержимого. |
@@ -350,6 +417,7 @@ export function Disabled() {
 | `placeholder` | `string` | — | Подсказка в пустом поле. |
 | `scrollButton` | `AiFieldInputScrollButton` | — | Кнопка прокрутки к последнему сообщению над полем. Не задана — кнопки нет. |
 | `searchPlaceholder` | `AiFieldInputSearchPlaceholder` | — | Подсказки в поиске после `/` и `@`. Не заданный ключ — текст из локали («Введите название» / «Type a name»). |
+| `secure` | `boolean` | `false` | Ввод чувствительных данных: пароля, API-ключа, токена. Вместо редактора — однострочное поле <br/> `type="password"`: значение скрыто, не копируется и не вырезается. В футере слева — кнопка «глаз», <br/> которая показывает и снова скрывает значение; после отправки значение снова скрыто. <br/> Чипов, проверки орфографии, автозамены и списков по `/` и `@` нет: эти знаки вводятся как обычный текст. <br/> При включении `secure` из значения убираются чипы, остаётся текст. При выключении значение очищается: <br/> пока родитель не пришлёт новое значение, редактор секрет не показывает. По умолчанию `false`. |
 | `send` | `AiFieldInputSend` | — | Кнопка отправки: состояние и нажатие. |
 | `skills` | `AiFieldInputActionListGroup` \| `AiFieldInputActionListItem` | — | Строки списка по `/`: команды и скиллы. Не заданы — список по `/` не открывается. |
 | `value` | `AiFieldInputValue` | — | Содержимое поля (controlled). |

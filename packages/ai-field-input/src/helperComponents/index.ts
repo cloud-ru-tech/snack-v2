@@ -8,3 +8,5 @@ export * from './FooterTooltip';
 export * from './MobileActionListSheet';
 export * from './ScrollButton';
 export * from './SearchActionList';
+export * from './SecureInput';
+export * from './SecureToggleButton';

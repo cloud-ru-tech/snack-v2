@@ -5,6 +5,8 @@ const AI_FIELD_INPUT_STORIES_MESSAGES = defineMessages({
   'en-GB': {
     placeholder: 'Ask anything',
     disabledPlaceholder: 'Sending messages is unavailable',
+    error: 'Failed to send the message. Try again',
+    errorLength: 'The message is too long',
     slashPlaceholder: 'Type / for skills or @ for mentions',
     searchSkill: 'Skill name',
     searchMention: 'Who to mention',
@@ -59,6 +61,8 @@ const AI_FIELD_INPUT_STORIES_MESSAGES = defineMessages({
   'ru-RU': {
     placeholder: 'Спросите что-нибудь',
     disabledPlaceholder: 'Отправка сообщений недоступна',
+    error: 'Не удалось отправить сообщение. Попробуйте ещё раз',
+    errorLength: 'Сообщение слишком длинное',
     slashPlaceholder: 'Введите / для скиллов или @ для упоминаний',
     searchSkill: 'Название скилла',
     searchMention: 'Кого упомянуть',

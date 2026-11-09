@@ -42,6 +42,7 @@
     "@ds/adaptive": "workspace:^",
     "@ds/ai-button-controls": "workspace:^",
     "@ds/button": "workspace:^",
+    "@ds/field-decorator": "workspace:^",
     "@ds/hot-spot": "workspace:^",
     "@ds/icons": "workspace:^",
     "@ds/list": "workspace:^",

@@ -144,6 +144,21 @@ export function isValueEmpty(value: AiFieldInputValue): boolean {
   return value.every(segment => segment.type === SEGMENT_TYPE.Text && segment.text.trim() === '');
 }
 
+/** Текст значения без чипов и поиска: так значение видит поле в режиме `secure`. */
+export function segmentsToText(value: AiFieldInputValue): string {
+  return value.map(segment => (segment.type === SEGMENT_TYPE.Text ? segment.text : '')).join('');
+}
+
+/** Значение из строки поля `secure`: один текстовый сегмент, пустая строка — пустое значение. */
+export function textToSegments(text: string): AiFieldInputValue {
+  return text ? [{ type: SEGMENT_TYPE.Text, text }] : [];
+}
+
+/** Значение режима `secure`: только текст, чипы и поиск отброшены. */
+export function toSecureValue(value: AiFieldInputValue): AiFieldInputValue {
+  return textToSegments(segmentsToText(value));
+}
+
 export function getChipMetaKey(type: string, id: string): string {
   return `${type}:${id}`;
 }

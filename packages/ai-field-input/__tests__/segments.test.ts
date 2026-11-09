@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
 import { AiFieldInputValue } from '../src/types';
-import { docToSegments, isValueEmpty, segmentsToDoc, serializeSegments } from '../src/utils/segments';
+import {
+  docToSegments,
+  isValueEmpty,
+  segmentsToDoc,
+  segmentsToText,
+  serializeSegments,
+  textToSegments,
+} from '../src/utils/segments';
 
 describe('segments ⇄ doc', () => {
   it('round-trips text, line breaks, skill, mention and search', () => {
@@ -52,5 +59,24 @@ describe('segments ⇄ doc', () => {
   it('treats whitespace-only text as empty', () => {
     expect(isValueEmpty([{ type: 'text', text: '  \n ' }])).toBe(true);
     expect(isValueEmpty([{ type: 'mention', id: 'a', label: 'A' }])).toBe(false);
+  });
+});
+
+describe('segments ⇄ text (secure)', () => {
+  it('keeps only text segments', () => {
+    const value: AiFieldInputValue = [
+      { type: 'text', text: 'sk-' },
+      { type: 'skill', id: 'a', label: 'a' },
+      { type: 'search', trigger: '@', query: 'x' },
+      { type: 'text', text: '42' },
+    ];
+
+    expect(segmentsToText(value)).toBe('sk-42');
+    expect(segmentsToText([])).toBe('');
+  });
+
+  it('wraps text into one segment, empty string into empty value', () => {
+    expect(textToSegments('a/b@c')).toEqual([{ type: 'text', text: 'a/b@c' }]);
+    expect(textToSegments('')).toEqual([]);
   });
 });

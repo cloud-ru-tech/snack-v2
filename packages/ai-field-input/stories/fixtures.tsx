@@ -23,11 +23,14 @@ import { aiFieldInputStoriesLocale } from './locale';
 type StoryTexts = {
   placeholder: string;
   disabledPlaceholder: string;
+  error: string;
+  errorLength: string;
   slashPlaceholder: string;
   searchPlaceholder: AiFieldInputSearchPlaceholder;
   valueText: AiFieldInputValue;
   valueTextAndSkill: AiFieldInputValue;
   valueSkill: AiFieldInputValue;
+  valueSecret: AiFieldInputValue;
   skills: AiFieldInputActionListItem[];
   mentions: AiFieldInputActionListItem[];
   back: string;
@@ -64,6 +67,8 @@ export function useStoryTexts(): StoryTexts {
   return {
     placeholder: t('placeholder'),
     disabledPlaceholder: t('disabledPlaceholder'),
+    error: t('error'),
+    errorLength: t('errorLength'),
     slashPlaceholder: t('slashPlaceholder'),
     searchPlaceholder: { skill: t('searchSkill'), mention: t('searchMention') },
     valueText: [{ type: 'text', text: t('longText') }],
@@ -74,6 +79,7 @@ export function useStoryTexts(): StoryTexts {
       { type: 'mention', id: 'team', label: t('team') },
     ],
     valueSkill: [{ type: 'skill', id: 'summarize', label: 'summarize', paramsPlaceholder: '' }],
+    valueSecret: [{ type: 'text', text: 'sk-demo-4f9a2c7e1b' }],
     skills: [
       { id: 'summarize', label: 'summarize', caption: t('summarizeCaption'), shortcut: '⌘ S', paramsPlaceholder: '' },
       {

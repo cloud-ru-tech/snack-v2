@@ -104,6 +104,11 @@
         "required": false,
         "description": "Текст под полем. По умолчанию — дисклеймер из локали; `null` скрывает текст, отступ сохраняется."
       },
+      "error": {
+        "type": "string",
+        "required": false,
+        "description": "Текст ошибки. Непустой — поле в состоянии ошибки: красная заливка рамки, в фокусе красная обводка,\nпод рамкой строка ошибки. Ввод и отправку не блокирует: доступностью отправки управляет `send`.\nНа выключенном поле (`disabled`) ошибка не показывается. В режиме `secure` текст не должен повторять значение."
+      },
       "footerLeftActions": {
         "type": "ReactNode",
         "required": false,
@@ -113,6 +118,14 @@
         "type": "ReactNode",
         "required": false,
         "description": "Слот дополнительных правых действий футера (перед кнопкой отправки)."
+      },
+      "length": {
+        "type": "FieldLength",
+        "required": false,
+        "description": "Счётчик `current/max` в строке ошибки, например `3002/3000`. Показывается только вместе с `error`,\nкогда ошибка связана с длиной значения.",
+        "typeRefs": [
+          "FieldLength"
+        ]
       },
       "mentions": {
         "type": "(AiFieldInputActionListItem | AiFieldInputActionListGroup)[]",
@@ -158,6 +171,12 @@
         "typeRefs": [
           "AiFieldInputSearchPlaceholder"
         ]
+      },
+      "secure": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Ввод чувствительных данных: пароля, API-ключа, токена. Вместо редактора — однострочное поле\n`type=\"password\"`: значение скрыто, не копируется и не вырезается. В футере слева — кнопка «глаз»,\nкоторая показывает и снова скрывает значение; после отправки значение снова скрыто.\nЧипов, проверки орфографии, автозамены и списков по `/` и `@` нет: эти знаки вводятся как обычный текст.\nПри включении `secure` из значения убираются чипы, остаётся текст. При выключении значение очищается:\nпока родитель не пришлёт новое значение, редактор секрет не показывает. По умолчанию `false`."
       },
       "send": {
         "type": "AiFieldInputSend",
@@ -358,6 +377,22 @@
         "kind": "alias",
         "type": "AiFieldInputSegment[]",
         "own": true
+      },
+      "FieldLength": {
+        "kind": "interface",
+        "props": {
+          "current": {
+            "type": "number",
+            "required": true,
+            "description": "Текущая длина текста"
+          },
+          "max": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Максимально допустимая длина"
+          }
+        },
+        "own": false
       },
       "SendState": {
         "kind": "union",
@@ -1107,6 +1142,11 @@
     "displayName": "Editor",
     "propsTypeName": null,
     "props": {
+      "describedBy": {
+        "type": "string",
+        "required": false,
+        "description": "`id` строки ошибки для `aria-describedby`."
+      },
       "disabled": {
         "type": "boolean",
         "required": true
@@ -1114,6 +1154,11 @@
       "handleRef": {
         "type": "MutableRefObject<EditorHandle | null>",
         "required": true
+      },
+      "invalid": {
+        "type": "boolean",
+        "required": true,
+        "description": "Поле в состоянии ошибки: `aria-invalid`."
       },
       "onChange": {
         "type": "(value: AiFieldInputValue) => void",
@@ -1179,6 +1224,10 @@
         "type": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)",
         "required": false,
         "description": "Нажатие."
+      },
+      "onMouseDown": {
+        "type": "MouseEventHandler<HTMLButtonElement>",
+        "required": false
       },
       "onSelect": {
         "type": "((id: string) => void)",
@@ -1377,6 +1426,66 @@
       "query": {
         "type": "string",
         "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SecureInput": {
+    "displayName": "SecureInput",
+    "propsTypeName": null,
+    "description": "Поле режима `secure`: нативный `<input>`. С `type=\"password\"` браузер сам скрывает значение, не даёт его\nскопировать или вырезать, а скринридер не зачитывает. Значение однострочное.",
+    "props": {
+      "describedBy": {
+        "type": "string",
+        "required": false,
+        "description": "`id` строки ошибки для `aria-describedby`."
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": true
+      },
+      "invalid": {
+        "type": "boolean",
+        "required": true,
+        "description": "Поле в состоянии ошибки: `aria-invalid`."
+      },
+      "masked": {
+        "type": "boolean",
+        "required": true,
+        "description": "Значение скрыто: `type=\"password\"`."
+      },
+      "onChange": {
+        "type": "(value: AiFieldInputValue) => void",
+        "required": true
+      },
+      "onSubmit": {
+        "type": "(value: AiFieldInputValue) => void",
+        "required": true
+      },
+      "placeholder": {
+        "type": "string",
+        "required": false
+      },
+      "value": {
+        "type": "AiFieldInputValue",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SecureToggleButton": {
+    "displayName": "SecureToggleButton",
+    "propsTypeName": null,
+    "description": "Кнопка «глаз» режима `secure`. Нажатие мышью не забирает фокус: каретка остаётся в поле.",
+    "props": {
+      "onToggle": {
+        "type": "() => void",
+        "required": true
+      },
+      "revealed": {
+        "type": "boolean",
+        "required": true,
+        "description": "Значение показано."
       }
     },
     "relatedTypes": {}
