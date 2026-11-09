@@ -1,7 +1,8 @@
 import { isMobileLayout, LayoutType } from '@ds/adaptive';
+import { Button } from '@ds/button';
 import { PageServices, PageServicesProps } from '@ds/uikit-product-page-layout';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import {
   RUNNING_STATUS,
@@ -81,5 +82,44 @@ export const Playground: Story = {
   ),
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(TEST_IDS.pageServices.root)).toBeVisible();
+  },
+};
+
+const handleCustomAction = fn();
+
+export const CustomActions: Story = {
+  ...Playground,
+  args: {
+    maxVisibleActionsItems: 2,
+    actions: [
+      ...SERVICE_ACTIONS.slice(0, 1),
+      {
+        variant: 'custom',
+        render: () => ({
+          default: <Button label='Создать снимок диска' view='outline' onClick={handleCustomAction} />,
+          asListItem: { content: { label: 'Создать снимок диска' }, onClick: handleCustomAction },
+        }),
+      },
+    ],
+  },
+};
+
+const renderHiddenAction = fn(() => ({
+  default: <Button label='Скрытое действие' />,
+  asListItem: { content: { label: 'Скрытое действие' } },
+}));
+
+export const HiddenCustomActions: Story = {
+  ...CustomActions,
+  args: {
+    ...CustomActions.args,
+    actions: [
+      { variant: 'custom', hidden: true, render: renderHiddenAction },
+      ...(CustomActions.args?.actions ?? []),
+      { variant: 'custom', hidden: true, render: renderHiddenAction },
+    ],
+  },
+  play: async () => {
+    await expect(renderHiddenAction).not.toHaveBeenCalled();
   },
 };

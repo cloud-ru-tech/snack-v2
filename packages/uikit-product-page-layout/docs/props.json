@@ -88,8 +88,7 @@
       },
       "hidden": {
         "type": "boolean",
-        "required": false,
-        "defaultValue": "false"
+        "required": false
       },
       "href": {
         "type": "string",
@@ -203,6 +202,11 @@
         "required": true,
         "description": "Ссылка на страницу квот по проекту"
       },
+      "render": {
+        "type": "() => { default: ReactNode; asListItem: Item; }",
+        "required": true,
+        "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+      },
       "size": {
         "type": "enum",
         "required": false,
@@ -237,6 +241,7 @@
         "type": "enum",
         "required": false,
         "values": [
+          "custom",
           "dropdown",
           "droplist",
           "filled",
@@ -3520,6 +3525,7 @@
           "ButtonDropdownDroplistConfig",
           "ButtonDroplistProps",
           "ButtonKebabProps",
+          "CustomAction",
           "QuotaWidgetPropsBase"
         ]
       },
@@ -3531,7 +3537,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "CustomAction | StandardAction",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -3895,6 +3901,32 @@
           }
         },
         "own": false
+      },
+      "CustomAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "render": {
+            "type": "() => { default: ReactNode; asListItem: Item; }",
+            "required": true,
+            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "variant": {
+            "type": "\"custom\"",
+            "required": true
+          }
+        },
+        "own": true
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -4546,6 +4578,130 @@
           }
         },
         "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
       }
     }
   },
@@ -4562,6 +4718,7 @@
           "ButtonDropdownDroplistConfig",
           "ButtonDroplistProps",
           "ButtonKebabProps",
+          "CustomAction",
           "QuotaWidgetPropsBase"
         ]
       },
@@ -4590,7 +4747,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "CustomAction | StandardAction",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -4954,6 +5111,32 @@
           }
         },
         "own": false
+      },
+      "CustomAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "render": {
+            "type": "() => { default: ReactNode; asListItem: Item; }",
+            "required": true,
+            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "variant": {
+            "type": "\"custom\"",
+            "required": true
+          }
+        },
+        "own": true
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -5602,6 +5785,130 @@
               "SelectionMultipleState",
               "SelectionSingleState"
             ]
+          }
+        },
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
           }
         },
         "own": false
@@ -6117,6 +6424,7 @@
           "ButtonDropdownDroplistConfig",
           "ButtonDroplistProps",
           "ButtonKebabProps",
+          "CustomAction",
           "QuotaWidgetPropsBase"
         ]
       },
@@ -6167,7 +6475,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "CustomAction | StandardAction",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -6568,75 +6876,35 @@
         },
         "own": false
       },
+      "CustomAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "render": {
+            "type": "() => { default: ReactNode; asListItem: Item; }",
+            "required": true,
+            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "variant": {
+            "type": "\"custom\"",
+            "required": true
+          }
+        },
+        "own": true
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
-        "own": false
-      },
-      "DroplistMobileSlots": {
-        "kind": "interface",
-        "props": {
-          "actionButton": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): заголовок шапки."
-          },
-          "onBackButtonClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
-          },
-          "slotAfterTitle": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
-          }
-        },
-        "own": false
-      },
-      "EmptyState": {
-        "kind": "interface",
-        "props": {
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          }
-        },
         "own": false
       },
       "Item": {
@@ -6932,6 +7200,130 @@
           }
         },
         "own": true
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
       }
     }
   },
@@ -6948,6 +7340,7 @@
           "ButtonDropdownDroplistConfig",
           "ButtonDroplistProps",
           "ButtonKebabProps",
+          "CustomAction",
           "QuotaWidgetPropsBase"
         ]
       },
@@ -6977,7 +7370,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "CustomAction | StandardAction",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -7341,6 +7734,32 @@
           }
         },
         "own": false
+      },
+      "CustomAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "render": {
+            "type": "() => { default: ReactNode; asListItem: Item; }",
+            "required": true,
+            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "variant": {
+            "type": "\"custom\"",
+            "required": true
+          }
+        },
+        "own": true
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -7989,6 +8408,130 @@
               "SelectionMultipleState",
               "SelectionSingleState"
             ]
+          }
+        },
+        "own": false
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
           }
         },
         "own": false
@@ -8520,6 +9063,7 @@
           "ButtonDropdownDroplistConfig",
           "ButtonDroplistProps",
           "ButtonKebabProps",
+          "CustomAction",
           "QuotaWidgetPropsBase"
         ]
       },
@@ -8583,7 +9127,7 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, \"view\" | \"icon\" | \"size\" | \"iconPosition\"> & { size?: \"xs\" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, \"size\" | \"className\" | \"fullWidth\" | \"label\" | \"appearance\" | \"disabled\" | \"view\">; }))",
+        "type": "CustomAction | StandardAction",
         "own": true
       },
       "BaseItemWithoutNonGroup": {
@@ -8984,6 +9528,32 @@
         },
         "own": false
       },
+      "CustomAction": {
+        "kind": "interface",
+        "props": {
+          "hidden": {
+            "type": "boolean | undefined",
+            "required": false
+          },
+          "render": {
+            "type": "() => { default: ReactNode; asListItem: Item; }",
+            "required": true,
+            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
+          },
+          "tooltip": {
+            "type": "TooltipProps | undefined",
+            "required": false,
+            "typeRefs": [
+              "TooltipProps"
+            ]
+          },
+          "variant": {
+            "type": "\"custom\"",
+            "required": true
+          }
+        },
+        "own": true
+      },
       "Documentation": {
         "kind": "interface",
         "props": {
@@ -9116,49 +9686,6 @@
         ],
         "own": false
       },
-      "PublicListContextType": {
-        "kind": "interface",
-        "props": {
-          "contentRender": {
-            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер функция основного контента айтема"
-          },
-          "groupItemRender": {
-            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
-          },
-          "itemRender": {
-            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
-          },
-          "marker": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отображать ли маркер у выбранного элемента списка"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер списка",
-            "typeRefs": [
-              "Size (@ds/list)"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false
-          }
-        },
-        "own": false
-      },
       "QuotaWidgetPropsBase": {
         "kind": "interface",
         "props": {
@@ -9263,21 +9790,6 @@
         },
         "own": false
       },
-      "SelectionState": {
-        "kind": "interface",
-        "props": {
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          }
-        },
-        "own": false
-      },
       "SidebarItem": {
         "kind": "alias",
         "type": "SidebarItemWithHref | SidebarItemWithItems",
@@ -9337,6 +9849,130 @@
           }
         },
         "own": true
+      },
+      "TooltipProps": {
+        "kind": "interface",
+        "props": {
+          "children": {
+            "type": "ReactNode | ChildrenFunction",
+            "required": false,
+            "description": "Триггер поповера (подробнее читайте ниже)",
+            "typeRefs": [
+              "ChildrenFunction"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "closeOnPopstate": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Закрывать ли поповер при переходе по истории браузера"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "disableMaxWidth": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключение ограничения ширины тултипа"
+          },
+          "disableSpanWrapper": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
+          },
+          "fallbackPlacements": {
+            "type": "Placement[] | undefined",
+            "required": false,
+            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "hoverDelayClose": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка закрытия по ховеру"
+          },
+          "hoverDelayOpen": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Задержка открытия по ховеру"
+          },
+          "offset": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
+          },
+          "onOpenChange": {
+            "type": "((isOpen: boolean) => void) | undefined",
+            "required": false,
+            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
+          },
+          "open": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Управляет состоянием показан/не показан."
+          },
+          "placement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение поповера относительно своего триггера (children).",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "tip": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true,
+            "description": "Содержимое тултипа (текст или разметка)"
+          },
+          "trigger": {
+            "type": "Trigger | undefined",
+            "required": false,
+            "values": [
+              "click",
+              "clickAndFocusVisible",
+              "focus",
+              "focusVisible",
+              "hover",
+              "hoverAndFocus",
+              "hoverAndFocusVisible"
+            ],
+            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
+            "typeRefs": [
+              "Trigger"
+            ]
+          },
+          "triggerClassName": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "CSS-класс триггера"
+          },
+          "triggerRef": {
+            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
+            "required": false,
+            "description": "Ref ссылка на триггер"
+          }
+        },
+        "own": false
       }
     }
   },

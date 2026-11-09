@@ -1,6 +1,8 @@
 import { ButtonProps } from '@ds/button';
+import { Item } from '@ds/list';
 import { TooltipProps } from '@ds/tooltip';
 import { ButtonDropdownProps } from '@ds/uikit-product-button-predefined';
+import { ReactNode } from 'react';
 
 import { ButtonDroplistProps } from './buttons/ButtonDroplist';
 import { ButtonKebabProps } from './buttons/ButtonKebab';
@@ -14,13 +16,18 @@ import { BUTTON_TYPE } from './constants';
 export type ActionButtonProps =
   (ButtonProps & { href?: never; target?: never }) | (Omit<ButtonProps<'a'>, 'as'> & { as: 'a' });
 
-/**
- * Action — один элемент панели действий. Дискриминированный union по `variant` (`BUTTON_TYPE`).
- * Простые кнопки (`filled`/`outline`/`tonal`/`function`/`simple`) маппятся на единый `Button` из
- * `@ds/button` с соответствующим `view`; составные (`dropdown`/`kebab`/`droplist`/`quota`) — на
- * предопределённые обёртки.
- */
-export type Action = {
+/** Кастомное действие с представлениями для панели и выпадающего меню. */
+export type CustomAction = {
+  variant: 'custom';
+  hidden?: boolean;
+  tooltip?: TooltipProps;
+  /** Вызывается при рендеринге; React hooks следует использовать внутри компонента default. */
+  render(): { default: ReactNode; asListItem: Item };
+};
+
+export type Action = CustomAction | StandardAction;
+
+type StandardAction = {
   tooltip?: TooltipProps;
   hidden?: boolean;
 } & (

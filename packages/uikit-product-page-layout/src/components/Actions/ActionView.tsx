@@ -16,16 +16,15 @@ type CommonProps = { className?: string; size?: Size; fullWidth?: boolean };
  * `@ds`-примитивы, которые берут раскладку из `AdaptiveProvider`. Раскладку фиксируют обёртки
  * `DesktopActions` / `MobileActions` (`withLayoutType`), поэтому отдельный проп `layoutType` не нужен.
  */
-export function ActionView({
-  variant,
-  tooltip,
-  hidden = false,
-  commonProps,
-  ...buttonProps
-}: Action & { commonProps: CommonProps }) {
-  if (hidden) {
-    return null;
+export function ActionView({ hidden, tooltip, commonProps, ...action }: Action & { commonProps: CommonProps }) {
+  if (hidden) return null;
+
+  if (action.variant === 'custom') {
+    const content = <div className={commonProps.className}>{action.render().default}</div>;
+    return tooltip ? <Tooltip {...tooltip}>{content}</Tooltip> : content;
   }
+
+  const { variant, ...buttonProps } = action;
 
   // disableSpanWrapper — кнопка остаётся ПРЯМЫМ flex-потомком контейнера действий: без него Tooltip
   // добавляет span-обёртку (`flex:0 1 auto`), и `fullWidth`-кнопка (`flex:1 1 0`) не растягивается на

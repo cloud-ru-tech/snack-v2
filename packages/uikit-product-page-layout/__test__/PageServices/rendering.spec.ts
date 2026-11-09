@@ -97,3 +97,55 @@ test('dynamic actions move into the menu and return after resizing', async ({ pa
   await expect(menu).toBeVisible();
   expect((await primary.boundingBox())?.x).toBeGreaterThan((await secondary.boundingBox())?.x ?? 0);
 });
+
+test('custom action moves between inline content and a menu item', async ({ page, gotoStory, getByTestId }) => {
+  await page.setViewportSize({ width: 700, height: 844 });
+  await gotoStory(
+    buildStoryOptions(
+      undefined,
+      { ...PAGE_SERVICES_STORIES.playground, story: 'custom-actions' },
+      { layoutType: 'mobile' },
+    ),
+  );
+  const row = getByTestId(INTERNAL_TEST_IDS.mobileActions.root);
+  const customButton = row.getByRole('button', { name: 'Создать снимок диска' });
+  await expect(customButton).toBeVisible();
+  await page.setViewportSize({ width: 260, height: 844 });
+  await expect(customButton).toHaveCount(0);
+  const trigger = getByTestId(INTERNAL_TEST_IDS.mobileActions.trigger);
+  await trigger.click();
+  const item = page.getByText('Создать снимок диска', { exact: true });
+  await expect(item).toBeVisible();
+  await item.click();
+  await expect(item).not.toBeVisible();
+  await page.setViewportSize({ width: 700, height: 844 });
+  await expect(customButton).toBeVisible();
+});
+
+for (const layoutType of PAGE_SERVICES_LAYOUTS) {
+  test(`hidden custom actions do not render or occupy slots in ${layoutType}`, async ({
+    page,
+    gotoStory,
+    getByTestId,
+  }) => {
+    await page.setViewportSize({ width: 700, height: 844 });
+    await gotoStory(
+      buildStoryOptions(
+        undefined,
+        { ...PAGE_SERVICES_STORIES.playground, story: 'hidden-custom-actions' },
+        { layoutType },
+      ),
+    );
+    await expect(page.getByRole('button', { name: 'Создать снимок диска' })).toBeVisible();
+    await expect(page.getByText('Скрытое действие', { exact: true })).toHaveCount(0);
+    const trigger = getByTestId(INTERNAL_TEST_IDS.mobileActions.trigger);
+    await expect(trigger).toHaveCount(0);
+
+    if (layoutType === 'mobile') {
+      await page.setViewportSize({ width: 260, height: 844 });
+      await trigger.click();
+      await expect(page.getByText('Создать снимок диска', { exact: true })).toBeVisible();
+      await expect(page.getByText('Скрытое действие', { exact: true })).toHaveCount(0);
+    }
+  });
+}

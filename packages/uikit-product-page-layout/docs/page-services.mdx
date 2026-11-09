@@ -46,6 +46,27 @@ pnpm add @ds/uikit-product-page-layout
 import { PageServices } from '@ds/uikit-product-page-layout'
 ```
 
+## Кастомные действия
+
+Элемент `variant: 'custom'` возвращает два представления: `default` для панели действий и `asListItem` (тип `Item` из `@ds/list`) для меню при нехватке места на мобильном экране. `hidden` скрывает действие. Функция `render` должна быть чистой; React hooks используются внутри компонента, возвращаемого в `default`.
+
+```tsx
+const actions: Action[] = [
+  {
+    variant: 'custom',
+    render: () => ({
+      default: <Button label='Создать снимок диска' onClick={createSnapshot} />,
+      asListItem: {
+        content: { label: 'Создать снимок диска' },
+        onClick: createSnapshot,
+      },
+    }),
+  },
+];
+```
+
+Свойство `hidden` поддерживается и для кастомных действий: скрытое действие не занимает место в панели, не попадает в меню, его `render` не вызывается.
+
 ## Props
 
 <PropsTable data={pageLayoutDoc.PageServices} />

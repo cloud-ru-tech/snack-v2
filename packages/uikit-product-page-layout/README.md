@@ -104,7 +104,7 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | — |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
@@ -113,7 +113,7 @@ import {
 
 ##### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `CustomAction | StandardAction`
 
 **ButtonDroplistProps**
 
@@ -128,6 +128,15 @@ import {
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
 | `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
+**CustomAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hidden` | `boolean \| undefined` | — |  |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
+| `tooltip` | `TooltipProps` | — |  |
+| `variant` | `"custom"` | — |  |
 
 ## PageServices
 
@@ -162,7 +171,7 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | — |  |
 | `autoHeight` | `boolean` | — |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
@@ -178,7 +187,7 @@ import {
 
 ##### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `CustomAction | StandardAction`
 
 **ButtonDroplistProps**
 
@@ -193,6 +202,15 @@ import {
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
 | `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
+**CustomAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hidden` | `boolean \| undefined` | — |  |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
+| `tooltip` | `TooltipProps` | — |  |
+| `variant` | `"custom"` | — |  |
 
 **Documentation**
 
@@ -237,6 +255,27 @@ import {
 | `id` | `string \| number` | — |  |
 | `label` | `string` | — |  |
 | `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — |  |
+
+### Кастомные действия
+
+Элемент `variant: 'custom'` возвращает два представления: `default` для панели действий и `asListItem` (тип `Item` из `@ds/list`) для меню при нехватке места на мобильном экране. `hidden` скрывает действие. Функция `render` должна быть чистой; React hooks используются внутри компонента, возвращаемого в `default`.
+
+```tsx
+const actions: Action[] = [
+  {
+    variant: 'custom',
+    render: () => ({
+      default: <Button label='Создать снимок диска' onClick={createSnapshot} />,
+      asListItem: {
+        content: { label: 'Создать снимок диска' },
+        onClick: createSnapshot,
+      },
+    }),
+  },
+];
+```
+
+Свойство `hidden` поддерживается и для кастомных действий: скрытое действие не занимает место в панели, не попадает в меню, его `render` не вызывается.
 
 ## PageForm
 
@@ -544,7 +583,7 @@ import {
 | `disabled` | `boolean` | — | Отключена |
 | `error` | `boolean` | — | Флаг ошибки при загрузке квот |
 | `fullWidth` | `boolean` | — | На всю ширину |
-| `hidden` | `boolean` | `false` |  |
+| `hidden` | `boolean` | — |  |
 | `href` | `string` | — |  |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
@@ -564,12 +603,13 @@ import {
 | `projectName` | `string` | — | Название проекта, по которому отображаются квоты |
 | `quotas` | `QuotaItem[]` | — | Список квот для отображения |
 | `quotasUrl` | `string` | — | Ссылка на страницу квот по проекту |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
 | `size` | `"l"` \| `"m"` \| `"s"` \| `"xs"` | — | Размер <br/> Размер триггера; для `xs` применяется кнопка `s`. |
 | `skeletonRowCount` | `number` | `4` | Количество строк-заглушек, пока идёт загрузка. <br/> Строка — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки, <br/> в одну (mobile, аккордеон `QuotaWidgetMini`) — одну. |
 | `target` | `HTMLAttributeAnchorTarget` | — |  |
 | `tooltip` | `TooltipProps` | — |  |
 | `triggerClassName` | `string` | — | CSS-класс триггера |
-| `variant` | `"dropdown"` \| `"droplist"` \| `"filled"` \| `"function"` \| `"kebab"` \| `"outline"` \| `"quota"` \| `"simple"` \| `"tonal"` | — |  |
+| `variant` | `"custom"` \| `"dropdown"` \| `"droplist"` \| `"filled"` \| `"function"` \| `"kebab"` \| `"outline"` \| `"quota"` \| `"simple"` \| `"tonal"` | — |  |
 | `view` | `"elevated"` \| `"filled"` \| `"function"` \| `"outline"` \| `"simple"` \| `"tonal"` | — | Вариант кнопки (Figma: filled, outline, function, simple, elevated) |
 
 ## ButtonDroplist
@@ -749,12 +789,12 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | — |  |
+| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | — |  |
 | `maxVisibleItems` | `number` | — |  |
 
 #### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `CustomAction | StandardAction`
 
 **ButtonDroplistProps**
 
@@ -770,13 +810,22 @@ import {
 | `button` | `ButtonProps` | — |  |
 | `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
+**CustomAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hidden` | `boolean \| undefined` | — |  |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
+| `tooltip` | `TooltipProps` | — |  |
+| `variant` | `"custom"` | — |  |
+
 ## MobilePageCatalog
 
 ### Props `MobilePageCatalogProps`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | `[]` |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
@@ -785,7 +834,7 @@ import {
 
 #### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `CustomAction | StandardAction`
 
 **ButtonDroplistProps**
 
@@ -800,6 +849,15 @@ import {
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
 | `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
+**CustomAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hidden` | `boolean \| undefined` | — |  |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
+| `tooltip` | `TooltipProps` | — |  |
+| `variant` | `"custom"` | — |  |
 
 ## MobilePageForm
 
@@ -830,7 +888,7 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `QuotaWidgetPropsBase` | `[]` |  |
+| `actions` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | `[]` |  |
 | `children` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `className` | `string` | — |  |
 | `data-test-id` | `string` | — |  |
@@ -843,7 +901,7 @@ import {
 
 #### Related types
 
-- `Action` = `{ tooltip?: TooltipProps; hidden?: boolean; } & (({ variant?: typeof BUTTON_TYPE.Filled; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Outline; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Tonal; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Function; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Simple; } & ActionButtonProps) | ({ variant: typeof BUTTON_TYPE.Dropdown; } & { 'data-test-id'?: string; } & AriaAttributes & Omit<ButtonProps, "view" | "icon" | "size" | "iconPosition"> & { size?: "xs" | NonNullable<Size | undefined>; className?: string; open?: boolean; onOpenChange?: (open: boolean) => void; } & { items: Item[]; closeOnPopstate?: boolean | undefined; triggerClassName?: string | undefined; placement?: Placement | undefined; closeDroplistOnItemClick?: boolean | undefined; }) | ({ variant: typeof BUTTON_TYPE.Kebab; } & ButtonKebabProps) | ({ variant: typeof BUTTON_TYPE.Droplist; } & ButtonDroplistProps) | ({ variant: typeof BUTTON_TYPE.Quota; } & { 'data-test-id'?: string; } & AriaAttributes & QuotaWidgetPropsBase & { quotasUrl: string; onQuotasUrlClick?: () => void; buttonProps?: Pick<ButtonProps, "size" | "className" | "fullWidth" | "label" | "appearance" | "disabled" | "view">; }))`
+- `Action` = `CustomAction | StandardAction`
 
 **ButtonDroplistProps**
 
@@ -858,6 +916,15 @@ import {
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
 | `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+
+**CustomAction**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hidden` | `boolean \| undefined` | — |  |
+| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
+| `tooltip` | `TooltipProps` | — |  |
+| `variant` | `"custom"` | — |  |
 
 - `SidebarItem` = `SidebarItemWithHref | SidebarItemWithItems`
 

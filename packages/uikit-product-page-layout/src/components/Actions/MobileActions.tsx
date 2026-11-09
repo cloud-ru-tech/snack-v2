@@ -5,7 +5,7 @@ import { Droplist, DroplistProps, Item } from '@ds/list';
 import { Tooltip } from '@ds/tooltip';
 import { quotaLocale, QuotaWidget } from '@ds/uikit-product-quota';
 import { useDynamicList } from '@ds/utils';
-import { MouseEvent, ReactNode, useRef, useState } from 'react';
+import { MouseEvent, ReactNode, useMemo, useRef, useState } from 'react';
 
 import { TEST_IDS } from '../../constants';
 import { ActionView } from './ActionView';
@@ -27,7 +27,12 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
-  const { visibleItems, hiddenItems } = useDynamicList({ parentContainerRef: containerRef, items, maxVisibleItems });
+  const availableItems = useMemo(() => items.filter(item => !item.hidden), [items]);
+  const { visibleItems, hiddenItems } = useDynamicList({
+    parentContainerRef: containerRef,
+    items: availableItems,
+    maxVisibleItems,
+  });
 
   const { t: tQuota } = quotaLocale.useTranslations();
 
@@ -39,6 +44,17 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
   const visibleItemsWithoutKebab = visibleItems.filter(item => item.variant !== BUTTON_TYPE.Kebab);
 
   const droplistItems = hiddenItemsWithKebab.reduce<Item[]>((acc, action) => {
+    if (action.variant === 'custom') {
+      const { asListItem } = action.render();
+      acc.push({
+        ...asListItem,
+        onClick: (event: MouseEvent<HTMLElement>) => {
+          setIsOpen(false);
+          if ('onClick' in asListItem) asListItem.onClick?.(event);
+        },
+      });
+      return acc;
+    }
     switch (action.variant) {
       case BUTTON_TYPE.Tonal:
       case BUTTON_TYPE.Simple:
