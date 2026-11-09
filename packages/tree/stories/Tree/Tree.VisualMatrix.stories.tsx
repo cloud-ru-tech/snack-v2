@@ -107,6 +107,31 @@ export const VisualMatrix: Story = {
       />
 
       <StoryTable
+        sectionTitle='Size × toggle × icon'
+        firstColumnHeader='Size'
+        columnHeaders={['Text', 'Icon', 'Toggle', 'Toggle + icon']}
+        rows={sizes.map(size => ({
+          variantLabel: size,
+          cells: [
+            { showToggle: false, showIcons: false },
+            { showToggle: false, showIcons: true },
+            { showToggle: true, showIcons: false },
+            { showToggle: true, showIcons: true },
+          ].map(({ showToggle, showIcons }) => (
+            <div key={`${showToggle}-${showIcons}`} className={styles.story}>
+              <Tree
+                data={SAMPLE_TREE}
+                size={size}
+                selectionMode={SELECTION_MODE.Single}
+                showToggle={showToggle}
+                showIcons={showIcons}
+              />
+            </div>
+          )),
+        }))}
+      />
+
+      <StoryTable
         sectionTitle='Container flags'
         firstColumnHeader='Tree'
         columnHeaders={['showLines: false', 'showIcons: false']}

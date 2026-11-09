@@ -15,6 +15,7 @@ test.describe('Tree — visual regression', () => {
   });
 
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
     await gotoStory(buildStoryOptions(TREE_STORIES.visualMatrix));
     await waitForFonts();
 

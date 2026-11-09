@@ -35,6 +35,7 @@ $line-width: var(--tree-line-width, #{base.$sn-density-icon-s});
   }
 
   &[data-horizontal] {
+    align-self: stretch;
     box-sizing: border-box;
 
     &::after {

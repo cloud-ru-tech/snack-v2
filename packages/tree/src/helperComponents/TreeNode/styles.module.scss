@@ -243,6 +243,10 @@ $icon-size-by-size: (
       @include base.composite-var(base.$base-styles, 'sn', 'regular', 'body', $size);
     }
 
+    .treeNodeTitle {
+      @include base.composite-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'contentWrapper', 'textWrapper');
+    }
+
     .treeNodeCheckboxWrap,
     .treeNodeExpandButtonWrapper {
       width: $centered-width;
