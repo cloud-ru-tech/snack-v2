@@ -33,9 +33,11 @@
   width: base.$sn-density-icon-s;
   height: base.$sn-density-icon-s;
 
-  // Иконки `@ds/icons` ставят размер инлайн-стилем — ограничиваем размером слота.
+  // Размер SVG ограничен размером слота, включая увеличение иконки на mobile.
   svg {
+    min-width: 100%;
     max-width: 100%;
+    min-height: 100%;
     max-height: 100%;
   }
 }
