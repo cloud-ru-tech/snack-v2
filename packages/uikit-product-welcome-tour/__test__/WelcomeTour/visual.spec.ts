@@ -27,6 +27,8 @@ test.describe('WelcomeTour — visual regression', () => {
   });
 
   test('visual matrix (composition × placement)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
+    // Матрица последовательно открывает и снимает 12 вариантов тура.
+    test.setTimeout(60_000);
     await gotoStory(buildStoryOptions(undefined, WELCOME_TOUR_STORIES.visualMatrix));
     await waitForFonts();
 
@@ -67,10 +69,7 @@ test.describe('WelcomeTour — visual regression', () => {
 
     // Оверлей во весь экран: кадр по `#storybook-root` захватил бы demo-обёртку под
     // затемнением, viewport-снимок режет ровно по экрану (visual-regression-standard.md).
-    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
-      'open.png',
-      MATCH_SNAPSHOT_DEFAULT_OPTS,
-    );
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot('open.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
   test('interaction states of the hint actions', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
