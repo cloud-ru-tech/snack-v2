@@ -11,6 +11,24 @@ test.describe('TagRow — rendering', () => {
     });
   });
 
+  test('does not reserve an overflow button when every tag fits', async ({ gotoStory, getByTestId, page }) => {
+    await gotoStory(buildStoryOptions({ itemCount: 2, rowLimit: 1 }));
+    const root = getByTestId(TEST_IDS.tagRow.root);
+    await expect(root.getByText('Frontend', { exact: true }).last()).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    await root.evaluate(element => {
+      const measurementRow = element.firstElementChild as HTMLElement;
+      const tags = [...measurementRow.children] as HTMLElement[];
+      const gap = parseFloat(getComputedStyle(measurementRow).columnGap) || 0;
+      element.style.width = `${tags.reduce((sum, tag) => sum + tag.offsetWidth, 0) + gap + 1}px`;
+    });
+
+    const visibleRow = root.locator('[data-test-id="tag-row__visible-row"]');
+    await expect(visibleRow.getByText('Frontend', { exact: true })).toBeVisible();
+    await expect(visibleRow.getByText('Backend', { exact: true })).toBeVisible();
+    await expect(visibleRow.locator('button')).toHaveCount(0);
+  });
+
   test.describe('props propagation', () => {
     for (const { size } of TAG_ROW_KEY_COMBOS) {
       test(`size=${size}`, async ({ gotoStory, getByTestId }) => {

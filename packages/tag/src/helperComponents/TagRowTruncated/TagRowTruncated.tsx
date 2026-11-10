@@ -78,44 +78,55 @@ function TagRowTruncatedInner({
 
     const moreButtonWidth = hiddenMoreButtonRef.current?.offsetWidth || 0;
 
-    let currentRowWidth = 0;
-    let currentRowCount = 1;
-    let currentRowVisibleTagAmount = 0;
+    const measuredTags = [...tagsMapRef.current].map(([item, element]) => ({
+      item,
+      width: element?.offsetWidth || 0,
+    }));
 
-    tagsMapRef.current.forEach((tagElement, tagRowItem) => {
-      const tagWidth = tagElement?.offsetWidth || 0;
-      const sumRowWidth = currentRowWidth + tagWidth + gapWidth;
+    let rowWidth = 0;
+    let rowCount = 1;
+    let rowItems = 0;
 
-      if (currentRowCount > rowLimit) {
-        newHiddenTags.push(tagRowItem);
+    const allTagsFit = measuredTags.every(({ width }) => {
+      const nextWidth = rowWidth + (rowItems ? gapWidth : 0) + width;
+      if (rowItems && nextWidth > maxWidth) {
+        rowCount++;
+        rowWidth = width;
+        rowItems = 1;
+      } else {
+        rowWidth = nextWidth;
+        rowItems++;
+      }
+      return rowCount <= rowLimit && width <= maxWidth;
+    });
+
+    rowWidth = 0;
+    rowCount = 1;
+    rowItems = 0;
+
+    measuredTags.forEach(({ item, width }) => {
+      if (allTagsFit) {
+        newVisibleTags.push(item);
         return;
       }
 
-      if (currentRowCount === rowLimit) {
-        if (sumRowWidth + moreButtonWidth > maxWidth) {
-          currentRowCount++;
-          currentRowVisibleTagAmount = 0;
-          newHiddenTags.push(tagRowItem);
-          return;
-        }
+      let nextWidth = rowWidth + (rowItems ? gapWidth : 0) + width;
+      if (rowCount < rowLimit && rowItems && nextWidth > maxWidth) {
+        rowCount++;
+        rowWidth = 0;
+        rowItems = 0;
+        nextWidth = width;
+      }
 
-        currentRowWidth = sumRowWidth;
-        newVisibleTags.push(tagRowItem);
-        currentRowVisibleTagAmount++;
+      if (rowCount > rowLimit || (rowCount === rowLimit && nextWidth + gapWidth + moreButtonWidth > maxWidth)) {
+        rowCount = rowLimit + 1;
+        newHiddenTags.push(item);
         return;
       }
 
-      if (sumRowWidth > maxWidth) {
-        currentRowWidth = currentRowVisibleTagAmount ? tagWidth + gapWidth : 0;
-        currentRowCount++;
-        currentRowVisibleTagAmount = 0;
-        newVisibleTags.push(tagRowItem);
-        return;
-      }
-
-      currentRowVisibleTagAmount++;
-      currentRowWidth = sumRowWidth;
-      newVisibleTags.push(tagRowItem);
+      rowWidth = nextWidth;
+      rowItems++;
+      newVisibleTags.push(item);
     });
 
     setVisibleTags(newVisibleTags);
