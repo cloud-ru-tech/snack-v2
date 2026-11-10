@@ -102,12 +102,16 @@ $sizes: ('s', 'm', 'l');
     cursor: default;
   }
 
-  // Гасит только `opacity` строки: цвет остаётся тем же, что в покое. `textDisabled`
-  // сам несёт альфу, и вместе с этой прозрачностью давал двойное гашение — 0.14
-  // вместо 0.40 у подписи (та же ошибка, что чинили в @ds/input-private).
   &[aria-disabled='true'] {
     cursor: not-allowed;
-    opacity: base.$sn-theme-effect-opacity-disabled;
+
+    .treeNodeTitle {
+      color: base.$sn-theme-color-available-version-textDisabled;
+    }
+
+    .treeNodeIcon {
+      opacity: base.$sn-theme-effect-opacity-disabled;
+    }
   }
 }
 
