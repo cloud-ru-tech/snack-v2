@@ -6470,6 +6470,11 @@
         "type": "string",
         "required": true,
         "description": "Заголовок страницы"
+      },
+      "truncateTitle": {
+        "type": "boolean",
+        "required": false,
+        "description": "Обрезать заголовок в одну строку с многоточием"
       }
     },
     "relatedTypes": {

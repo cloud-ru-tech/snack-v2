@@ -898,6 +898,7 @@ const actions: Action[] = [
 | `slotBeforeTitle` | `ReactNode` | — | Слот перед заголовком (например, кнопка «назад») |
 | `subtitle` | `ReactNode` | — | Подзаголовок под заголовком |
 | `title` | `string` | — | Заголовок страницы |
+| `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
 #### Related types
 
