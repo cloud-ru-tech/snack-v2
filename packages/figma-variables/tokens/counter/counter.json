@@ -45,7 +45,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
                 "$description": "Типографика каунтера, размер xs. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -63,9 +63,6 @@
             },
             "minHeight": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -73,9 +70,6 @@
             },
             "minWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -84,9 +78,6 @@
             "container": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -94,9 +85,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -104,9 +92,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -114,9 +99,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -124,9 +106,6 @@
               },
               "borderWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -176,7 +155,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.l}",
                 "$description": "Типографика каунтера, размер s. Собственная: габарит каунтера константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -194,9 +173,6 @@
             },
             "minHeight": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -204,9 +180,6 @@
             },
             "minWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -215,9 +188,6 @@
             "container": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -225,9 +195,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -235,9 +202,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -245,9 +209,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -255,9 +216,6 @@
               },
               "borderWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",

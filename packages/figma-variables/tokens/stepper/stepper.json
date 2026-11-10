@@ -7,9 +7,6 @@
             "stepStatus": {
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -17,9 +14,6 @@
               },
               "width": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -27,9 +21,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -37,9 +28,6 @@
               },
               "borderWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -50,9 +38,6 @@
               "progressLine": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -60,9 +45,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -71,9 +53,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -81,9 +60,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -95,9 +71,6 @@
             "stepStatus": {
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -105,9 +78,6 @@
               },
               "width": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -115,9 +85,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -125,9 +92,6 @@
               },
               "borderWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -138,9 +102,6 @@
               "progressLine": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -148,9 +109,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -159,9 +117,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -169,9 +124,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -183,9 +135,6 @@
         "step": {
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -193,9 +142,6 @@
           },
           "paddingHorizontal": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -205,9 +151,6 @@
         "stepRow": {
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -217,9 +160,6 @@
             "stepText": {
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",

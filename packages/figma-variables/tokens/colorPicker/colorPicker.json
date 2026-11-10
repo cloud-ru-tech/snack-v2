@@ -7,9 +7,6 @@
             "colorPicker": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -18,9 +15,6 @@
               "sliderTrack": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -30,9 +24,6 @@
               "parameter": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -42,9 +33,6 @@
               "colorArea": {
                 "minHeight": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -52,9 +40,6 @@
                 },
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -62,9 +47,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -76,9 +58,6 @@
               "bg": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -86,9 +65,6 @@
                 },
                 "borderWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -96,9 +72,6 @@
                 },
                 "width": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -106,9 +79,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -119,9 +89,6 @@
             "previewColor": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -129,9 +96,6 @@
               },
               "width": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -139,9 +103,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -153,9 +114,6 @@
             "colorPicker": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -164,9 +122,6 @@
               "sliderTrack": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -176,9 +131,6 @@
               "parameter": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -188,9 +140,6 @@
               "colorArea": {
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -198,9 +147,6 @@
                 },
                 "minHeight": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -208,9 +154,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -222,9 +165,6 @@
               "bg": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -232,9 +172,6 @@
                 },
                 "borderWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -242,9 +179,6 @@
                 },
                 "width": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -252,9 +186,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -265,9 +196,6 @@
             "previewColor": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -275,9 +203,6 @@
               },
               "width": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -285,9 +210,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -299,9 +221,6 @@
             "colorPicker": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -310,9 +229,6 @@
               "sliderTrack": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -322,9 +238,6 @@
               "parameter": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -334,9 +247,6 @@
               "colorArea": {
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -344,9 +254,6 @@
                 },
                 "minHeight": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -354,9 +261,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -368,9 +272,6 @@
               "bg": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -378,9 +279,6 @@
                 },
                 "borderWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -388,9 +286,6 @@
                 },
                 "width": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -398,9 +293,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -411,9 +303,6 @@
             "previewColor": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -421,9 +310,6 @@
               },
               "width": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -431,9 +317,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",

@@ -8,9 +8,6 @@
               "chevronWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -19,9 +16,6 @@
               },
               "paddingTop": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -29,9 +23,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -39,9 +30,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -51,9 +39,6 @@
                 "titleLine": {
                   "gap": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -63,9 +48,6 @@
               },
               "paddingBottom": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -74,9 +56,6 @@
             },
             "borderRadius": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -85,9 +64,6 @@
             "bodyContent": {
               "paddingVertical": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -95,9 +71,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -112,9 +85,6 @@
               "chevronWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -123,9 +93,6 @@
               },
               "paddingTop": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -133,9 +100,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -143,9 +107,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -155,9 +116,6 @@
                 "titleLine": {
                   "gap": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -167,9 +125,6 @@
               },
               "paddingBottom": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -178,9 +133,6 @@
             },
             "borderRadius": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -189,9 +141,6 @@
             "bodyContent": {
               "paddingVertical": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -199,9 +148,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -216,9 +162,6 @@
               "chevronWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -227,9 +170,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -237,9 +177,6 @@
               },
               "paddingTop": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -247,9 +184,6 @@
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -259,9 +193,6 @@
                 "titleLine": {
                   "gap": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -272,9 +203,6 @@
             },
             "borderRadius": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -283,19 +211,13 @@
             "bodyContent": {
               "paddingVertical": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.density.spacing.block.s.padding}"
               },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -310,8 +232,7 @@
               "$extensions": {
                 "com.figma.scopes": [
                   "WIDTH_HEIGHT"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "number",
               "$value": "{sn.primitive.dimension.32}"
@@ -320,8 +241,7 @@
               "$extensions": {
                 "com.figma.scopes": [
                   "WIDTH_HEIGHT"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "number",
               "$value": "{sn.primitive.dimension.32}"
@@ -330,8 +250,7 @@
               "$extensions": {
                 "com.figma.scopes": [
                   "GAP"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "number",
               "$value": "{sn.primitive.dimension.4}"
@@ -340,8 +259,7 @@
               "$extensions": {
                 "com.figma.scopes": [
                   "CORNER_RADIUS"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "number",
               "$value": "{sn.brand.anatomy.radius.button.m}"
@@ -350,8 +268,7 @@
               "$extensions": {
                 "com.figma.scopes": [
                   "STROKE_FLOAT"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "number",
               "$value": "{sn.brand.anatomy.line.button.strokeWeight}"

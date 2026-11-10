@@ -7,9 +7,6 @@
             "labelContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -18,9 +15,6 @@
             },
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -29,9 +23,6 @@
             "questionTooltipWrapper": {
               "maxHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -42,9 +33,6 @@
           "hintWrapper": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -53,9 +41,6 @@
             "hintContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -64,9 +49,6 @@
               "iconWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -77,8 +59,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "WIDTH_HEIGHT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.16}",
@@ -88,8 +69,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "STROKE_FLOAT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.strokeWeight.strokeRegular}",
@@ -101,9 +81,6 @@
           },
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -112,9 +89,6 @@
           "slotDecorator": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -127,9 +101,6 @@
             "labelContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -138,9 +109,6 @@
             },
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -149,9 +117,6 @@
             "questionTooltipWrapper": {
               "maxHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -162,9 +127,6 @@
           "hintWrapper": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -173,9 +135,6 @@
             "hintContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -184,9 +143,6 @@
               "iconWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -197,8 +153,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "WIDTH_HEIGHT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.16}",
@@ -208,8 +163,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "STROKE_FLOAT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.strokeWeight.strokeRegular}",
@@ -221,9 +175,6 @@
           },
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -232,9 +183,6 @@
           "slotDecorator": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -247,9 +195,6 @@
             "labelContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -258,9 +203,6 @@
             },
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -269,9 +211,6 @@
             "questionTooltipWrapper": {
               "maxHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -282,9 +221,6 @@
           "hintWrapper": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -293,9 +229,6 @@
             "hintContent": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -304,9 +237,6 @@
               "iconWrapper": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -317,8 +247,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "WIDTH_HEIGHT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.dimension.16}",
@@ -328,8 +257,7 @@
                     "$extensions": {
                       "com.figma.scopes": [
                         "STROKE_FLOAT"
-                      ],
-                      "com.figma.hiddenFromPublishing": false
+                      ]
                     },
                     "$type": "number",
                     "$value": "{sn.primitive.strokeWeight.strokeRegular}",
@@ -341,9 +269,6 @@
           },
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -352,9 +277,6 @@
           "slotDecorator": {
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",

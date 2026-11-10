@@ -5,9 +5,6 @@
         "s": {
           "borderRadius": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -15,9 +12,6 @@
           },
           "padding": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -25,9 +19,6 @@
           },
           "borderWidth": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -37,9 +28,6 @@
         "m": {
           "borderRadius": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -47,9 +35,6 @@
           },
           "padding": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -57,9 +42,6 @@
           },
           "borderWidth": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -69,9 +51,6 @@
         "l": {
           "borderRadius": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -79,9 +58,6 @@
           },
           "padding": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
@@ -89,9 +65,6 @@
           },
           "borderWidth": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",

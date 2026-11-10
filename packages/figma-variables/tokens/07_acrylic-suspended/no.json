@@ -3,9 +3,6 @@
     "acrylic": {
       "colorEffect2Level": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
           "com.figma.hiddenFromPublishing": true
         },
         "$type": "color",
@@ -13,9 +10,6 @@
       },
       "colorEffect1Level": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
           "com.figma.hiddenFromPublishing": true
         },
         "$type": "color",
@@ -23,9 +17,6 @@
       },
       "colorEffect": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
           "com.figma.hiddenFromPublishing": true
         },
         "$type": "color",
@@ -33,9 +24,6 @@
       },
       "effect": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
           "com.figma.hiddenFromPublishing": true
         },
         "$type": "boolean",
@@ -45,9 +33,6 @@
         "text": {
           "modeName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
@@ -55,9 +40,6 @@
           },
           "modificationName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",

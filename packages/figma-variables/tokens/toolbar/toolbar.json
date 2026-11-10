@@ -6,9 +6,6 @@
           "tool": {
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -16,42 +13,57 @@
             },
             "borderRadius": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
               "$value": "{sn.brand.anatomy.radius.toolbar.xs}"
             },
-            "bulkAction": {
+            "bulkTool": {
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.8}"
               },
-              "paddingLeft": {
+              "volumeWrapper": {
+                "gap": {
+                  "$extensions": {
+                    "com.figma.scopes": [
+                      "GAP"
+                    ],
+                    "com.figma.hiddenFromPublishing": true
+                  },
+                  "$type": "number",
+                  "$value": "{sn.primitive.dimension.2}"
+                },
+                "checkboxWrapper": {
+                  "square": {
+                    "$extensions": {
+                      "com.figma.scopes": [
+                        "WIDTH_HEIGHT"
+                      ],
+                      "com.figma.hiddenFromPublishing": true
+                    },
+                    "$type": "number",
+                    "$value": "{sn.primitive.dimension.24}"
+                  }
+                }
+              },
+              "minHeight": {
                 "$extensions": {
                   "com.figma.scopes": [
-                    "ALL_SCOPES"
+                    "WIDTH_HEIGHT"
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.density.size.xs}"
               }
             },
             "search": {
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -59,9 +71,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -70,44 +79,41 @@
             },
             "paddingHorizontal": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.xs}"
+              "$value": "{sn.primitive.dimension.4}"
             },
             "gap": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.density.spacing.interval.xs}"
+              "$value": "{sn.primitive.dimension.4}"
             },
             "minHeight": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
               "$value": "{sn.density.size.l}"
+            },
+            "bulkAction": {
+              "paddingLeft": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.4}"
+              }
             }
           },
           "gap": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
-            "$value": "{sn.density.spacing.interval.xs}"
+            "$value": "{sn.primitive.dimension.8}"
           }
         }
       }

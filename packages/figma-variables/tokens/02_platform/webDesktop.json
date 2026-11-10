@@ -4,23 +4,11 @@
       "property": {
         "boolean": {
           "showOnWebDesktop": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "boolean",
             "$value": "true",
             "$description": "Флаг видимости: true только в режиме webDesktop. Переключает показ элемента между платформами."
           },
           "showOnWebMobile": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "boolean",
             "$value": "false",
             "$description": "Флаг видимости: true только в режиме webMobile. Переключает показ элемента между платформами."
@@ -31,9 +19,6 @@
         "text": {
           "modeName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
@@ -41,9 +26,6 @@
           },
           "modificationName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
@@ -1191,6 +1173,111 @@
             "$type": "number",
             "$value": "{sn.primitive.dimension.48}"
           }
+        },
+        "calendar": {
+          "gridDate": {
+            "minWidth": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 232
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 232
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 296
+              }
+            },
+            "minHeight": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 224
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 224
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 280
+              }
+            }
+          }
+        },
+        "alert": {
+          "centeredWrapper": {
+            "height": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 24
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 24
+              }
+            }
+          }
+        },
+        "nestingLevel": {
+          "s": {
+            "level": {
+              "paddingRight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT",
+                    "GAP"
+                  ],
+                  "com.figma.codeSyntax": {
+                    "Web": "var(--sn-platform-compact-nestingLevel-s-level-paddingRight)"
+                  }
+                },
+                "$type": "number",
+                "$value": "{sn.primitive.dimension.12}"
+              }
+            }
+          }
         }
       },
       "comfort": {
@@ -2332,6 +2419,92 @@
             },
             "$type": "number",
             "$value": "{sn.primitive.dimension.52}"
+          }
+        },
+        "calendar": {
+          "gridDate": {
+            "minWidth": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 232
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 296
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 360
+              }
+            },
+            "minHeight": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 224
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 280
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 336
+              }
+            }
+          }
+        },
+        "alert": {
+          "centeredWrapper": {
+            "height": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 36
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 32
+              }
+            }
           }
         }
       },
@@ -3475,6 +3648,92 @@
             "$type": "number",
             "$value": "{sn.primitive.dimension.56}"
           }
+        },
+        "calendar": {
+          "gridDate": {
+            "minWidth": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 296
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 360
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 424
+              }
+            },
+            "minHeight": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 280
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 336
+              },
+              "l": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 392
+              }
+            }
+          }
+        },
+        "alert": {
+          "centeredWrapper": {
+            "height": {
+              "s": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 44
+              },
+              "m": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": 36
+              }
+            }
+          }
         }
       },
       "target": {
@@ -3759,8 +4018,7 @@
           "$extensions": {
             "com.figma.scopes": [
               "WIDTH_HEIGHT"
-            ],
-            "com.figma.hiddenFromPublishing": false
+            ]
           },
           "$type": "number",
           "$value": 0,

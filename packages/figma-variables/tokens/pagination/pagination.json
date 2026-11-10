@@ -9,9 +9,6 @@
                 "textWrapper": {
                   "paddingHorizontal": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -20,9 +17,6 @@
                 },
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -30,9 +24,6 @@
                 },
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -40,9 +31,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -51,9 +39,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -66,9 +51,6 @@
               "itemPaginationNumber": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -76,9 +58,6 @@
                 },
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -86,9 +65,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -97,9 +73,6 @@
                 "textWrapper": {
                   "paddingHorizontal": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -109,9 +82,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -122,9 +92,6 @@
               "itemPaginationSlider": {
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -132,9 +99,6 @@
                 },
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -142,9 +106,6 @@
                 },
                 "padding": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -155,9 +116,6 @@
                     "default": {
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -165,9 +123,6 @@
                       },
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -175,9 +130,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -187,9 +139,6 @@
                     "hovered": {
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -197,9 +146,6 @@
                       },
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -207,9 +153,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -219,9 +162,6 @@
                     "pressed": {
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -229,9 +169,6 @@
                       },
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -239,9 +176,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -253,9 +187,6 @@
                     "default": {
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -263,9 +194,6 @@
                       },
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -273,9 +201,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -287,9 +212,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -305,9 +227,6 @@
                     "default": {
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -315,9 +234,6 @@
                       },
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -325,9 +241,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -339,9 +252,6 @@
                     "default": {
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -349,9 +259,6 @@
                       },
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -359,9 +266,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -371,9 +275,6 @@
                     "hovered": {
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -381,9 +282,6 @@
                       },
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -391,9 +289,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -403,9 +298,6 @@
                     "pressed": {
                       "height": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -413,9 +305,6 @@
                       },
                       "width": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -423,9 +312,6 @@
                       },
                       "borderRadius": {
                         "$extensions": {
-                          "com.figma.scopes": [
-                            "ALL_SCOPES"
-                          ],
                           "com.figma.hiddenFromPublishing": true
                         },
                         "$type": "number",
@@ -436,9 +322,6 @@
                 },
                 "minWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -446,9 +329,6 @@
                 },
                 "height": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -456,9 +336,6 @@
                 },
                 "padding": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -467,9 +344,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",

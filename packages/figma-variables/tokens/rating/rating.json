@@ -7,9 +7,6 @@
             "container": {
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -17,9 +14,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -27,9 +21,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -41,8 +32,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "WIDTH_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.24}"
@@ -51,8 +41,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "WIDTH_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.24}"
@@ -63,9 +52,6 @@
             "container": {
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -73,9 +59,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -83,9 +66,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -97,8 +77,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "WIDTH_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.16}"
@@ -107,8 +86,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "WIDTH_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.dimension.16}"

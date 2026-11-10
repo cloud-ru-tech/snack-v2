@@ -9,8 +9,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_FAMILY"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "text",
                 "$value": "{sn.brand.font.fontFamily.regular.label}",
@@ -20,8 +19,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_SIZE"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.fontSize.11}",
@@ -31,8 +29,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LINE_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.lineHeight.14}",
@@ -42,10 +39,9 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_WEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
                 "$description": "Начертание подписи компонента, размер xs. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
               },
@@ -53,8 +49,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LETTER_SPACING"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.letterSpacing.s}",
@@ -65,9 +60,6 @@
               "textWrapper": {
                 "padding": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -76,9 +68,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -86,9 +75,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -96,9 +82,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -106,9 +89,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -121,8 +101,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "WIDTH_HEIGHT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.16}",
@@ -132,8 +111,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "STROKE_FLOAT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.strokeWeight.strokeRegular}",
@@ -148,8 +126,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_FAMILY"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "text",
                 "$value": "{sn.brand.font.fontFamily.regular.label}",
@@ -159,8 +136,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_SIZE"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.fontSize.11}",
@@ -170,8 +146,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LINE_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.lineHeight.14}",
@@ -181,10 +156,9 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_WEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
                 "$description": "Начертание подписи компонента, размер s. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
               },
@@ -192,8 +166,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LETTER_SPACING"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.letterSpacing.s}",
@@ -203,9 +176,6 @@
             "container": {
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -213,9 +183,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -223,9 +190,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -233,9 +197,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -244,9 +205,6 @@
               "textWrapper": {
                 "padding": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -260,8 +218,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "WIDTH_HEIGHT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.16}",
@@ -271,8 +228,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "STROKE_FLOAT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.strokeWeight.strokeRegular}",
@@ -287,8 +243,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_FAMILY"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "text",
                 "$value": "{sn.brand.font.fontFamily.regular.label}",
@@ -298,8 +253,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_SIZE"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.fontSize.12}",
@@ -309,8 +263,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LINE_HEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.lineHeight.16}",
@@ -320,10 +273,9 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "FONT_WEIGHT"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.m}",
                 "$description": "Начертание подписи компонента, размер m. Инвариантна к платформе и плотности: габарит компонента стоит на примитивах, типографика обязана стоять там же."
               },
@@ -331,8 +283,7 @@
                 "$extensions": {
                   "com.figma.scopes": [
                     "LETTER_SPACING"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
+                  ]
                 },
                 "$type": "number",
                 "$value": "{sn.primitive.font.letterSpacing.s}",
@@ -343,9 +294,6 @@
               "textWrapper": {
                 "padding": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -354,9 +302,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -364,9 +309,6 @@
               },
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -374,9 +316,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -384,9 +323,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -399,8 +335,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "WIDTH_HEIGHT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.dimension.24}",
@@ -410,8 +345,7 @@
                   "$extensions": {
                     "com.figma.scopes": [
                       "STROKE_FLOAT"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
+                    ]
                   },
                   "$type": "number",
                   "$value": "{sn.primitive.strokeWeight.strokeMedium}",

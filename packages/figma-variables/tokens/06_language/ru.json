@@ -1,382 +1,238 @@
 {
   "sn": {
     "language": {
-      "text": {
-        "boolean": {
-          "showEn": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "boolean",
-            "$value": "false"
+      "boolean": {
+        "showEn": {
+          "$extensions": {
+            "com.figma.hiddenFromPublishing": true
           },
-          "showRu": {
+          "$type": "boolean",
+          "$value": "false"
+        },
+        "showRu": {
+          "$extensions": {
+            "com.figma.hiddenFromPublishing": true
+          },
+          "$type": "boolean",
+          "$value": "true"
+        }
+      },
+      "text": {
+        "hint": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ]
+          },
+          "$type": "text",
+          "$value": "Текст подсказки"
+        },
+        "input": {
+          "placeholder": {
             "$extensions": {
               "com.figma.scopes": [
-                "ALL_SCOPES"
+                "TEXT_CONTENT"
+              ]
+            },
+            "$type": "text",
+            "$value": "Пример значения"
+          },
+          "value": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ]
+            },
+            "$type": "text",
+            "$value": "Указанное значение"
+          },
+          "noValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
               ],
               "com.figma.hiddenFromPublishing": true
             },
-            "$type": "boolean",
-            "$value": "true"
+            "$type": "text",
+            "$value": "—"
+          },
+          "multiLineValue": {
+            "$type": "text",
+            "$value": "Многострочное значение"
+          },
+          "endValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "конец значения"
+          },
+          "hiddenValue": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ],
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "text",
+            "$value": "•••••••••••"
+          },
+          "placeholderSearch": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "TEXT_CONTENT"
+              ]
+            },
+            "$type": "text",
+            "$value": "Поиск"
           }
         },
-        "component": {
-          "calendar": {
-            "day": {
-              "showOnMobile": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "boolean",
-                "$value": "true"
-              },
-              "1day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Вс"
-              },
-              "2day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Пн"
-              },
-              "3day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Вт"
-              },
-              "4day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Cр"
-              },
-              "5day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Чт"
-              },
-              "6day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Пт"
-              },
-              "7day": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Сб"
-              }
-            },
-            "month": {
-              "january": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Январь"
-              },
-              "february": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Февраль"
-              },
-              "march": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Март"
-              },
-              "april": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Апрель"
-              },
-              "may": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Май"
-              },
-              "june": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Июнь"
-              },
-              "july": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Июль"
-              },
-              "august": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Август"
-              },
-              "september": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Сентябрь"
-              },
-              "october": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Октябрь"
-              },
-              "november": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Ноябрь"
-              },
-              "december": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Декабрь"
-              }
-            },
-            "buttonText": {
-              "date": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Январь 2026"
-              },
-              "month": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2026"
-              },
-              "year": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2020-2029"
-              },
-              "time": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "8 Января 2026"
-              },
-              "preset": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Пресеты"
-              },
-              "dateNext": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Февраль 2026"
-              },
-              "monthNext": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2027"
-              },
-              "monthNext2": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2028"
-              },
-              "dateNext2": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "Март 2026"
-              },
-              "yearNext": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2030-2039"
-              },
-              "yearNext2": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
-                "$type": "text",
-                "$value": "2040-2049"
-              }
-            },
-            "timeWrapper": {
-              "timeHeader": {
-                "time": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
-                  "$type": "text",
-                  "$value": "00:00:00"
-                }
-              }
-            }
+        "caption": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ]
           },
+          "$type": "text",
+          "$value": "Опционально"
+        },
+        "description": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ]
+          },
+          "$type": "text",
+          "$value": "Текст описания"
+        },
+        "component": {
           "counter": {
             "signA": {
-              "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
-                "com.figma.hiddenFromPublishing": false
-              },
               "$type": "text",
               "$value": "+"
             },
             "signB": {
-              "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
-                "com.figma.hiddenFromPublishing": false
-              },
               "$type": "text",
               "$value": "K"
+            }
+          },
+          "calendar": {
+            "month": {
+              "january": {
+                "$type": "text",
+                "$value": "Январь"
+              },
+              "february": {
+                "$type": "text",
+                "$value": "Февраль"
+              },
+              "march": {
+                "$type": "text",
+                "$value": "Март"
+              },
+              "april": {
+                "$type": "text",
+                "$value": "Апрель"
+              },
+              "may": {
+                "$type": "text",
+                "$value": "Май"
+              },
+              "june": {
+                "$type": "text",
+                "$value": "Июнь"
+              },
+              "july": {
+                "$type": "text",
+                "$value": "Июль"
+              },
+              "august": {
+                "$type": "text",
+                "$value": "Август"
+              },
+              "september": {
+                "$type": "text",
+                "$value": "Сентябрь"
+              },
+              "october": {
+                "$type": "text",
+                "$value": "Октябрь"
+              },
+              "november": {
+                "$type": "text",
+                "$value": "Ноябрь"
+              },
+              "december": {
+                "$type": "text",
+                "$value": "Декабрь"
+              }
+            },
+            "day": {
+              "1day": {
+                "$type": "text",
+                "$value": "Вс"
+              },
+              "2day": {
+                "$type": "text",
+                "$value": "Пн"
+              },
+              "3day": {
+                "$type": "text",
+                "$value": "Вт"
+              },
+              "4day": {
+                "$type": "text",
+                "$value": "Cр"
+              },
+              "5day": {
+                "$type": "text",
+                "$value": "Чт"
+              },
+              "6day": {
+                "$type": "text",
+                "$value": "Пт"
+              },
+              "7day": {
+                "$type": "text",
+                "$value": "Сб"
+              }
+            },
+            "buttonText": {
+              "date": {
+                "$type": "text",
+                "$value": "Январь 2026"
+              },
+              "month": {
+                "$type": "text",
+                "$value": "2026"
+              },
+              "year": {
+                "$type": "text",
+                "$value": "2020-2029"
+              },
+              "time": {
+                "$type": "text",
+                "$value": "8 Января 2026"
+              },
+              "preset": {
+                "$type": "text",
+                "$value": "Пресеты"
+              },
+              "dateNext": {
+                "$type": "text",
+                "$value": "Февраль 2026"
+              },
+              "monthNext": {
+                "$type": "text",
+                "$value": "2027"
+              },
+              "yearNext": {
+                "$type": "text",
+                "$value": "2030-2039"
+              }
             }
           },
           "chip": {
@@ -414,53 +270,23 @@
           "notification": {
             "header": {
               "title": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Уведомления"
               },
               "markAll": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Отметить все как прочитанное"
               },
               "filter": {
                 "all": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Все"
                 },
                 "unread": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Непрочитанные"
                 },
                 "system": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Системные"
                 }
@@ -468,68 +294,32 @@
             },
             "footer": {
               "allEvents": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Все события"
               }
             },
             "noData": {
               "title": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Нет уведомлений"
               },
               "description": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Здесь вы увидите уведомления о новых событиях, когда что-то происходит."
               }
             },
             "error": {
               "title": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Мы уже это исправляем"
               },
               "description": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ваши уведомления скоро появятся здесь"
               }
             },
             "card": {
               "readed": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Прочитанные"
               }
@@ -586,7 +376,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "Количество строк:"
+              "$value": "Строки:"
             },
             "volume": {
               "$extensions": {
@@ -606,7 +396,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
-              "$value": "5 из 100"
+              "$value": "0 из 100"
             },
             "rowSelectedFalse": {
               "$extensions": {
@@ -627,193 +417,107 @@
               },
               "$type": "text",
               "$value": "100 из 100"
+            },
+            "sorting": {
+              "sorting": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Сортировка"
+              },
+              "sortingReset": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Сброс сортировки"
+              }
             }
           },
           "toaster": {
             "toastUpload": {
               "title": {
                 "errorLoading": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Ошибка загрузки"
                 },
                 "loading": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загрузка..."
                 },
                 "pauseLoading": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загрузка приостановлена"
                 },
                 "uploaded": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загружено"
                 },
                 "errorUploaded": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загружено с ошибками"
                 }
               },
               "status": {
                 "uploaded": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загружено"
                 },
                 "paused": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Приостановлено"
                 },
                 "error": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Ошибка"
                 },
                 "loading": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Загрузка..."
                 }
               },
               "show": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Показать"
               },
               "mb": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "МБ"
               },
               "statusText": {
                 "3minutesLeft": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Осталось 3 минуты"
                 },
                 "checkTheFiles": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Проверьте файлы"
                 },
                 "clickToContinue": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Нажмите чтобы продолжить"
                 },
                 "allSuccessful": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Все прошло успешно"
                 },
                 "tryAgain": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Попробовать еще раз"
                 }
               },
               "fileName": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "имя_файла.расширение"
               },
               "cancelAll": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Отменить все"
               }
@@ -821,32 +525,14 @@
             "toast": {
               "systemEvent": {
                 "closeAll": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Закрыть все"
                 },
                 "expand": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Развернуть"
                 },
                 "collapse": {
-                  "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "com.figma.hiddenFromPublishing": false
-                  },
                   "$type": "text",
                   "$value": "Свернуть"
                 }
@@ -855,22 +541,10 @@
           },
           "timeline": {
             "oppositionTitle": {
-              "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
-                "com.figma.hiddenFromPublishing": false
-              },
               "$type": "text",
               "$value": "Заголовок оппозиции"
             },
             "contentTitle": {
-              "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
-                "com.figma.hiddenFromPublishing": false
-              },
               "$type": "text",
               "$value": "Заголовок контента"
             }
@@ -878,321 +552,127 @@
           "table": {
             "cell": {
               "cell1": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 1"
               },
               "cellTree": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка дерева"
               },
               "cell2": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 2"
               },
               "cell3": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 3"
               },
               "cell4": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 4"
               },
               "cell5": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 5"
               },
               "cell6": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 6"
               },
               "cell7": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Ячейка 7"
               }
             },
             "column": {
               "column1": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 1"
               },
               "column2": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 2"
               },
               "column3": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 3"
               },
               "column4": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 4"
               },
               "column5": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 5"
               },
               "column6": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 6"
               },
               "column7": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка 7"
               },
               "columnTree": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Колонка дерева"
               }
             },
             "data": {
               "notFound": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Попробуйте ввести другой запрос"
               },
               "noData": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Попробуйте обновить страницу"
               },
               "dataError": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": false
-                },
                 "$type": "text",
                 "$value": "Попробуйте обновить страницу"
+              }
+            },
+            "button": {
+              "showMore": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Показать ещё"
+              },
+              "refreshing": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Обновить"
+              }
+            },
+            "pagination": {
+              "page": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "TEXT_CONTENT"
+                  ],
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "text",
+                "$value": "Страница:"
               }
             }
           }
         },
-        "hint": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "TEXT_CONTENT"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
-          "$type": "text",
-          "$value": "Текст подсказки"
-        },
-        "input": {
-          "placeholder": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "text",
-            "$value": "Пример значения"
-          },
-          "value": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "text",
-            "$value": "Указанное значение"
-          },
-          "noValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "text",
-            "$value": "—"
-          },
-          "multiLineValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "text",
-            "$value": "Многострочное значение"
-          },
-          "endValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "text",
-            "$value": "конец значения"
-          },
-          "hiddenValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": true
-            },
-            "$type": "text",
-            "$value": "•••••••••••"
-          },
-          "placeholderSearch": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "TEXT_CONTENT"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
-            "$type": "text",
-            "$value": "Поиск"
-          }
-        },
-        "caption": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "TEXT_CONTENT"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
-          "$type": "text",
-          "$value": "Опционально"
-        },
-        "description": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "TEXT_CONTENT"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
-          "$type": "text",
-          "$value": "Текст описания"
-        },
         "label": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Текст лейбла"
         },
         "item": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Текст пункта"
         },
@@ -1200,9 +680,6 @@
           "selectAll": {
             "true": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
@@ -1210,9 +687,6 @@
             },
             "false": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "text",
@@ -1220,32 +694,14 @@
             }
           },
           "apply": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Примениить"
           },
           "cancel": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Отменить"
           },
           "current": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Текущее"
           },
@@ -1342,62 +798,26 @@
         },
         "inputDate": {
           "datePlaceholder": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "ДД.ММ.ГГГГ"
           },
           "timePlaceholder": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "чч:мм"
           },
           "timeSecondsPlaceholder": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": ":сс"
           },
           "timeSecondsValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": ":00"
           },
           "dateValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "30.09.2023"
           },
           "timeValue": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "00:00"
           },
@@ -1422,12 +842,6 @@
             "$value": "--:--"
           },
           "timeSeparator": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": ","
           },
@@ -1453,32 +867,14 @@
           }
         },
         "required": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "*"
         },
         "category": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Категория"
         },
         "subcategory": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Подкатегория"
         },
@@ -1504,73 +900,31 @@
         },
         "data": {
           "notFound": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Не найдено"
           },
           "noData": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Нет данных"
           },
           "dataError": {
-            "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
-              "com.figma.hiddenFromPublishing": false
-            },
             "$type": "text",
             "$value": "Ошибка данных"
           }
         },
         "text": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Текст"
         },
         "primary": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Первичный"
         },
         "secondary": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Вторичный"
         },
         "time": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Время"
         },
@@ -1578,30 +932,38 @@
           "$extensions": {
             "com.figma.scopes": [
               "TEXT_CONTENT"
-            ],
-            "com.figma.hiddenFromPublishing": false
+            ]
           },
           "$type": "text",
           "$value": "Основной текст"
         },
         "stepName": {
-          "$extensions": {
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.hiddenFromPublishing": false
-          },
           "$type": "text",
           "$value": "Название шага"
+        },
+        "copy": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ]
+          },
+          "$type": "text",
+          "$value": "Копировать"
+        },
+        "copied": {
+          "$extensions": {
+            "com.figma.scopes": [
+              "TEXT_CONTENT"
+            ]
+          },
+          "$type": "text",
+          "$value": "Скопированно"
         }
       },
       "kitService": {
         "text": {
           "modificationName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
@@ -1609,9 +971,6 @@
           },
           "modeName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",

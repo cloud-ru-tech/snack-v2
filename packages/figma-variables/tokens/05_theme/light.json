@@ -8,8 +8,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.90}",
@@ -20,8 +19,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.95}",
@@ -32,8 +30,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.99}",
@@ -45,8 +42,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.80}",
@@ -58,8 +54,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.onAccentLight}",
@@ -71,8 +66,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.50}",
@@ -84,8 +78,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.40}",
@@ -97,8 +90,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.primary.transparent}",
@@ -111,8 +103,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.90}",
@@ -123,8 +114,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.95}",
@@ -135,8 +125,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.99}",
@@ -148,8 +137,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.80}",
@@ -161,8 +149,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.99}",
@@ -174,8 +161,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.50}",
@@ -187,8 +173,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.40}",
@@ -200,8 +185,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.transparent.forLightMode}",
@@ -214,8 +198,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.90}",
@@ -226,8 +209,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.95}",
@@ -238,8 +220,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.99}",
@@ -251,8 +232,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.80}",
@@ -264,8 +244,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.99}",
@@ -277,8 +256,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.50}",
@@ -290,8 +268,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.red.40}",
@@ -303,8 +280,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#d52e3317",
@@ -317,8 +293,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.90}",
@@ -329,8 +304,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.95}",
@@ -341,8 +315,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.99}",
@@ -354,8 +327,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.80}",
@@ -367,8 +339,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.99}",
@@ -380,8 +351,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.50}",
@@ -393,8 +363,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.orange.40}",
@@ -406,8 +375,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#f57e1f1f",
@@ -420,8 +388,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.90}",
@@ -432,8 +399,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.95}",
@@ -444,8 +410,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.99}",
@@ -457,8 +422,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.80}",
@@ -470,8 +434,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.30}",
@@ -483,8 +446,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.50}",
@@ -496,8 +458,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.yellow.40}",
@@ -509,8 +470,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#f3b9172e",
@@ -523,8 +483,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.90}",
@@ -535,8 +494,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.95}",
@@ -547,8 +505,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.99}",
@@ -560,8 +517,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.80}",
@@ -573,8 +529,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.99}",
@@ -586,8 +541,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.50}",
@@ -599,8 +553,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.green.40}",
@@ -612,8 +565,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#41b95424",
@@ -626,8 +578,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.90}",
@@ -638,8 +589,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.95}",
@@ -650,8 +600,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.99}",
@@ -663,8 +612,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.80}",
@@ -676,8 +624,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.99}",
@@ -689,8 +636,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.50}",
@@ -702,8 +648,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.blue.40}",
@@ -715,8 +660,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#4387e221",
@@ -729,8 +673,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.90}",
@@ -741,8 +684,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.95}",
@@ -753,8 +695,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.99}",
@@ -766,8 +707,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.80}",
@@ -779,8 +719,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.99}",
@@ -792,8 +731,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.50}",
@@ -805,8 +743,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.violet.40}",
@@ -818,8 +755,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#b163cc21",
@@ -832,8 +768,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.90}",
@@ -844,8 +779,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.95}",
@@ -856,8 +790,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.99}",
@@ -869,8 +802,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.80}",
@@ -882,8 +814,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.99}",
@@ -895,8 +826,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.50}",
@@ -908,8 +838,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.palette.pink.40}",
@@ -921,8 +850,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#dd5a8e21",
@@ -935,8 +863,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.05}",
@@ -948,8 +875,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.30}",
@@ -961,8 +887,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.05}",
@@ -974,8 +899,7 @@
                 "ALL_FILLS",
                 "STROKE_COLOR",
                 "EFFECT_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.70}",
@@ -986,8 +910,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.10}",
@@ -998,8 +921,7 @@
               "com.figma.scopes": [
                 "FRAME_FILL",
                 "SHAPE_FILL"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.20}",
@@ -1011,8 +933,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.70}",
@@ -1024,8 +945,7 @@
                 "FRAME_FILL",
                 "SHAPE_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.neutral.transparentInverted.forLightMode}",
@@ -1040,8 +960,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#000000",
@@ -1054,8 +973,7 @@
                 "SHAPE_FILL",
                 "TEXT_FILL",
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "#ffffff",
@@ -1067,8 +985,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.version.main}",
@@ -1079,8 +996,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.version.secondary}",
@@ -1091,8 +1007,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.version.tertiary}",
@@ -1103,8 +1018,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.version.disabled}",
@@ -1117,8 +1031,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.inversion.disabled}",
@@ -1129,8 +1042,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.inversion.tertiary}",
@@ -1141,8 +1053,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.inversion.secondary}",
@@ -1153,8 +1064,7 @@
                 "com.figma.scopes": [
                   "SHAPE_FILL",
                   "TEXT_FILL"
-                ],
-                "com.figma.hiddenFromPublishing": false
+                ]
               },
               "$type": "color",
               "$value": "{sn.brand.color.text.inversion.main}",
@@ -1165,8 +1075,7 @@
             "$extensions": {
               "com.figma.scopes": [
                 "STROKE_COLOR"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "color",
             "$value": "{sn.brand.color.state.neutralBorder.forLightMode.default.borderColor}",
@@ -1178,8 +1087,7 @@
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
-            ],
-            "com.figma.hiddenFromPublishing": false
+            ]
           },
           "$type": "color",
           "$value": "{sn.brand.color.overlay.forLightMode.blackout}",
@@ -2064,8 +1972,7 @@
           "$extensions": {
             "com.figma.scopes": [
               "EFFECT_FLOAT"
-            ],
-            "com.figma.hiddenFromPublishing": false
+            ]
           },
           "$type": "number",
           "$value": "{sn.brand.effect.blur.overlay.backgroundBlur}",
@@ -2076,8 +1983,7 @@
             "$extensions": {
               "com.figma.scopes": [
                 "OPACITY"
-              ],
-              "com.figma.hiddenFromPublishing": false
+              ]
             },
             "$type": "number",
             "$value": 40,
@@ -2089,9 +1995,6 @@
         "text": {
           "modificationName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",
@@ -2099,9 +2002,6 @@
           },
           "modeName": {
             "$extensions": {
-              "com.figma.scopes": [
-                "ALL_SCOPES"
-              ],
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "text",

@@ -7,30 +7,14 @@
             "timePicker": {
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": 160
               },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 224
-              },
               "drum": {
                 "maxWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -39,9 +23,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -49,9 +30,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -60,9 +38,6 @@
               "selectedTime": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -74,9 +49,6 @@
               "container": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -85,9 +57,6 @@
                 "labelWrapper": {
                   "paddingHorizontal": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -96,9 +65,6 @@
                   "marker": {
                     "height": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -106,9 +72,6 @@
                     },
                     "borderRadius": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -116,9 +79,6 @@
                     },
                     "width": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -129,9 +89,6 @@
               },
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -139,9 +96,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -149,43 +103,35 @@
               }
             },
             "gridDate": {
-              "minWidth": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 232
-              },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 224
-              },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": "{sn.density.spacing.control.container.horizontal.s}"
+              },
+              "minWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minWidth.s}"
+              },
+              "minHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minHeight.s}"
               }
             },
             "header": {
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -193,9 +139,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -207,9 +150,6 @@
             "itemCalendar": {
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -217,9 +157,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -228,9 +165,6 @@
               "container": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -239,9 +173,6 @@
                 "labelWrapper": {
                   "paddingHorizontal": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -250,9 +181,6 @@
                   "marker": {
                     "height": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -260,9 +188,6 @@
                     },
                     "borderRadius": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -270,9 +195,6 @@
                     },
                     "width": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -283,64 +205,43 @@
               }
             },
             "gridDate": {
-              "minWidth": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 232
-              },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 224
-              },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": "{sn.density.spacing.control.container.horizontal.m}"
+              },
+              "minWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minWidth.m}"
+              },
+              "minHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minHeight.m}"
               }
             },
             "timePicker": {
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": 192
               },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 224
-              },
               "drum": {
                 "maxWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -349,9 +250,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -359,9 +257,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -370,9 +265,6 @@
               "selectedTime": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -383,9 +275,6 @@
             "header": {
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -393,9 +282,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -407,9 +293,6 @@
             "itemCalendar": {
               "minHeight": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -417,9 +300,6 @@
               },
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -428,9 +308,6 @@
               "container": {
                 "borderRadius": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -439,9 +316,6 @@
                 "labelWrapper": {
                   "paddingHorizontal": {
                     "$extensions": {
-                      "com.figma.scopes": [
-                        "ALL_SCOPES"
-                      ],
                       "com.figma.hiddenFromPublishing": true
                     },
                     "$type": "number",
@@ -450,9 +324,6 @@
                   "marker": {
                     "height": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -460,9 +331,6 @@
                     },
                     "borderRadius": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -470,9 +338,6 @@
                     },
                     "width": {
                       "$extensions": {
-                        "com.figma.scopes": [
-                          "ALL_SCOPES"
-                        ],
                         "com.figma.hiddenFromPublishing": true
                       },
                       "$type": "number",
@@ -483,64 +348,43 @@
               }
             },
             "gridDate": {
-              "minWidth": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 296
-              },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 280
-              },
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": "{sn.density.spacing.control.container.horizontal.l}"
+              },
+              "minWidth": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minWidth.l}"
+              },
+              "minHeight": {
+                "$extensions": {
+                  "com.figma.scopes": [
+                    "WIDTH_HEIGHT"
+                  ]
+                },
+                "$type": "number",
+                "$value": "{sn.density.calendar.gridDate.minHeight.l}"
               }
             },
             "timePicker": {
               "minWidth": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
                 "$value": 224
               },
-              "minHeight": {
-                "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "com.figma.hiddenFromPublishing": true
-                },
-                "$type": "number",
-                "$value": 280
-              },
               "drum": {
                 "maxWidth": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -549,9 +393,6 @@
               },
               "gap": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -559,9 +400,6 @@
               },
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -570,9 +408,6 @@
               "selectedTime": {
                 "gap": {
                   "$extensions": {
-                    "com.figma.scopes": [
-                      "ALL_SCOPES"
-                    ],
                     "com.figma.hiddenFromPublishing": true
                   },
                   "$type": "number",
@@ -583,9 +418,6 @@
             "header": {
               "paddingHorizontal": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -593,9 +425,6 @@
               },
               "height": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",

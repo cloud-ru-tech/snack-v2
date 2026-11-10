@@ -45,7 +45,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
                 "$description": "Типографика инициалов аватара, размер xs. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -63,9 +63,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -74,9 +71,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -86,9 +80,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -97,9 +88,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -108,9 +96,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -160,7 +145,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.s}",
                 "$description": "Типографика инициалов аватара, размер s. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -178,9 +163,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -189,9 +171,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -201,9 +180,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -212,9 +188,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -223,9 +196,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -275,7 +245,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.label.l}",
                 "$description": "Типографика инициалов аватара, размер m. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -293,9 +263,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -304,9 +271,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -316,9 +280,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -327,9 +288,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -338,9 +296,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -390,7 +345,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.title.m}",
                 "$description": "Типографика инициалов аватара, размер l. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -408,9 +363,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -419,9 +371,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -431,9 +380,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -442,9 +388,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -453,9 +396,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -505,7 +445,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.headline.m}",
                 "$description": "Типографика инициалов аватара, размер 3xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -523,9 +463,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -534,9 +471,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -546,9 +480,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -557,9 +488,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -568,9 +496,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -620,7 +545,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.display.s}",
                 "$description": "Типографика инициалов аватара, размер 6xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -638,9 +563,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -649,9 +571,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -661,9 +580,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -672,9 +588,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -683,9 +596,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -735,7 +645,7 @@
                   ],
                   "com.figma.hiddenFromPublishing": true
                 },
-                "$type": "number",
+                "$type": "fontWeights",
                 "$value": "{sn.theme.typography.fontWeight.regular.display.m}",
                 "$description": "Типографика инициалов аватара, размер 9xl. Собственная: габарит аватара константен, поэтому кегль и интерлиньяж не идут за платформой и плотностью."
               },
@@ -753,9 +663,6 @@
             },
             "square": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -764,9 +671,6 @@
             "rounded": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -776,9 +680,6 @@
             "squared": {
               "borderRadius": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
@@ -787,9 +688,6 @@
             },
             "borderWidth": {
               "$extensions": {
-                "com.figma.scopes": [
-                  "ALL_SCOPES"
-                ],
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
@@ -798,9 +696,6 @@
             "badge": {
               "padding": {
                 "$extensions": {
-                  "com.figma.scopes": [
-                    "ALL_SCOPES"
-                  ],
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
