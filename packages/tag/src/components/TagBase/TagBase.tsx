@@ -1,6 +1,6 @@
 import { CrossSVG } from '@ds/icons/interface/system';
 import { TruncateString } from '@ds/truncate-string';
-import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
+import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 
 import { APPEARANCE, SIZE, TEST_IDS } from '../../constants';
@@ -26,7 +26,7 @@ export function TagBase({
   return (
     <span
       ref={innerRef}
-      {...extractSupportProps(rest)}
+      {...rest}
       className={cn(styles.tag, className)}
       data-size={size}
       data-appearance={appearance}

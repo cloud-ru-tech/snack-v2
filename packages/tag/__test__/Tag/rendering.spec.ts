@@ -29,6 +29,16 @@ test.describe('Tag — rendering', () => {
     }
   });
 
+  test('shows the supplied tooltip on hover', async ({ gotoStory, getByTestId, page }) => {
+    await gotoStory(buildStoryOptions({ tooltipText: 'Role inherited from group' }));
+
+    await getByTestId(TEST_IDS.tag.root).hover();
+
+    await expect(page.getByRole('tooltip')).toHaveText('Role inherited from group');
+    await page.mouse.move(0, 0);
+    await expect(page.getByRole('tooltip')).not.toBeVisible();
+  });
+
   test.describe('states', () => {
     test('disabled tag renders', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ disabled: true }));
