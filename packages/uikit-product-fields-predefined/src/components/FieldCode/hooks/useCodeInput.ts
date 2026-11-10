@@ -1,9 +1,8 @@
-import { useValueControl } from '@ds/utils';
+import { useRefState, useValueControl } from '@ds/utils';
 import { ClipboardEvent, KeyboardEvent, useCallback, useEffect } from 'react';
 
 import { ZERO_WIDTH_SPACE } from '../constants';
 import { isNumberChar, isStringCodeLength, isZeroWidthSpace } from '../utils';
-import { useRefState } from './useRefState';
 
 export type UseCodeInputParams = {
   /** Количество цифр в коде (целое ≥ 1) */

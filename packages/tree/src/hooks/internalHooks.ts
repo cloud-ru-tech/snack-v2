@@ -1,9 +1,4 @@
-import { DependencyList, EffectCallback, MutableRefObject, useEffect, useRef, useState } from 'react';
-
-export function useRefState<T>(initial: T): MutableRefObject<T> {
-  const ref = useRef<T>(initial);
-  return ref;
-}
+import { DependencyList, EffectCallback, useEffect, useRef, useState } from 'react';
 
 export function useDebounceValue<T>(value: T, delay: number): T {
   const [debounced, setDebounced] = useState(value);

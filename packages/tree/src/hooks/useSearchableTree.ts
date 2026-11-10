@@ -1,8 +1,9 @@
+import { useRefState } from '@ds/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { collectEmptyNestedNodesInExpanded, traverse, updateTreeNode } from '../helpers';
 import { SearchableTreeDataLoadResult, TreeNodeProps } from '../types';
-import { useDebounceValue, useDidUpdate, useRefState } from './internalHooks';
+import { useDebounceValue, useDidUpdate } from './internalHooks';
 
 export type SearchResult<TTreeNode extends TreeNodeProps> = {
   tree: TTreeNode[];
