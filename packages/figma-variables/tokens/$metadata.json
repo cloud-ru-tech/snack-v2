@@ -28,9 +28,6 @@
     "06_language/ru",
     "02_platform/webDesktop",
     "02_platform/webMobile",
-    "03_density/compact",
-    "03_density/comfort",
-    "03_density/spacious",
     "breadcrumbs/breadcrumbs",
     "avatar/avatar",
     "counter/counter",
@@ -47,7 +44,6 @@
     "drawer/drawer",
     "skeleton/skeleton",
     "toggles/toggles",
-    "list/list",
     "divider/divider",
     "slider/slider",
     "alert/alert",
@@ -62,7 +58,6 @@
     "attachment/attachment",
     "colorPicker/colorPicker",
     "chip/chip",
-    "tree/tree",
     "accordion/accordion",
     "carousel/carousel",
     "codeEditor/codeEditor",
@@ -79,6 +74,11 @@
     "fieldDecorator/fieldDecorator",
     "popupPrivate/popupPrivate",
     "bottomSheet/bottomSheet",
-    "tabs/tabs"
+    "tabs/tabs",
+    "list/list",
+    "tree/tree",
+    "03_density/compact",
+    "03_density/comfort",
+    "03_density/spacious"
   ]
 }
