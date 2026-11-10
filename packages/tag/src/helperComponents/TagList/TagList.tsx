@@ -20,7 +20,7 @@ function renderTag(size: Size, handleRemoveItem?: (item: TagRowItemInner) => OnD
   return function TagRowItem(item: TagRowItemInner) {
     return (
       <div key={item.id ?? item.label} ref={setRef?.(item)} className={styles.tagWrapper}>
-        <Tag size={size} onDelete={handleRemoveItem?.(item)} {...item} />
+        <Tag size={size} {...(item.href ? {} : { onDelete: handleRemoveItem?.(item) })} {...item} />
       </div>
     );
   };
