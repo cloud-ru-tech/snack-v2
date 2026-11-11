@@ -22,6 +22,13 @@ $sizes: ('s', 'm', 'l');
   color: base.$sn-theme-color-available-version-textTertiary;
 }
 
+.treeNodeContentWrapper {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  min-width: 0;
+}
+
 .treeNodeTitle {
   overflow: hidden;
   display: flex;
@@ -62,7 +69,7 @@ $sizes: ('s', 'm', 'l');
   position: relative;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   box-sizing: border-box;
   width: 100%;
@@ -70,8 +77,8 @@ $sizes: ('s', 'm', 'l');
 
   @include m.has-state-layer-as-child(#{stateLayer});
 
-  &:hover .treeNodeActions,
-  &[data-droplist-active] .treeNodeActions {
+  &[data-droplist-active] .treeNodeActions,
+  &:not([aria-disabled='true']):hover .treeNodeActions {
     visibility: visible;
   }
 
@@ -178,7 +185,7 @@ $sizes: ('s', 'm', 'l');
   flex-shrink: 0;
 }
 
-// Колонка chevron-а: stretch на высоту строки, chevron по центру, TreeLine ниже.
+// Колонка chevron растянута на строку; кнопка центрируется по первой строке текста.
 .treeNodeExpandButtonWrapper {
   position: relative;
 
@@ -188,7 +195,9 @@ $sizes: ('s', 'm', 'l');
   flex-shrink: 0;
   align-items: center;
   align-self: stretch;
-  justify-content: center;
+  justify-content: flex-start;
+
+  padding-top: calc(var(--tree-control-center) - var(--tree-chevron-size) / 2);
 }
 
 .treeNodeExpandButtonWrapper > :last-child:not(.treeNodeExpandButton) {
@@ -201,7 +210,7 @@ $sizes: ('s', 'm', 'l');
   left: 0;
 
   width: 100%;
-  height: calc(50% - var(--tree-chevron-size, #{base.$sn-density-icon-s}) / 2);
+  height: calc(100% - var(--tree-control-center) - var(--tree-chevron-size) / 2);
 }
 
 .treeNodeLink {
@@ -241,6 +250,15 @@ $icon-size-by-size: (
     $icon-size: base.simple-var($icon-size-by-size, $size);
 
     --tree-chevron-size: #{$centered-width};
+    --tree-control-center: calc(#{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-top')} + #{$centered-padding-top} + #{$icon-size} / 2);
+
+    &:has(.treeNodeIcon) {
+      --tree-leaf-line-length: calc(#{$centered-width} + #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-left')} + #{$icon-size} / 2 - var(--tree-line-width) / 2);
+    }
+
+    &:has(.treeNodeCheckboxWrap) {
+      --tree-leaf-line-length: calc(#{$centered-width} + #{base.simple-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'padding-left')} + #{$centered-width} / 2 - var(--tree-line-width) / 2);
+    }
 
     .treeNodeContent {
       @include base.composite-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem');
@@ -249,6 +267,17 @@ $icon-size-by-size: (
 
     .treeNodeTitle {
       @include base.composite-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'contentWrapper', 'textWrapper');
+    }
+
+    .treeNodeTextContent {
+      box-sizing: border-box;
+      width: 100%;
+
+      @include base.composite-var(tree.$tree, 'anatomy', 'size', $size, 'treeItem', 'contentWrapper', 'textWrapper', 'textContent');
+    }
+
+    .treeNodeCheckboxWrap {
+      min-height: calc(#{$icon-size} + #{$centered-padding-top} + #{$centered-padding-bottom});
     }
 
     .treeNodeCheckboxWrap,

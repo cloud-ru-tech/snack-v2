@@ -26,7 +26,11 @@ const DEEP_TREE: TreeNodeProps[] = [
     title: 'Root',
     nested: [
       { id: 'leaf-1', title: 'Leaf 1' },
-      { id: 'branch', title: 'Branch', nested: [{ id: 'leaf-2', title: 'Leaf 2' }] },
+      {
+        id: 'branch',
+        title: 'Branch',
+        nested: [{ id: 'level-3', title: 'Level 3', nested: [{ id: 'leaf-2', title: 'Leaf 4' }] }],
+      },
     ],
   },
 ];
@@ -183,7 +187,7 @@ export const VisualMatrix: Story = {
               <div key='actions' className={styles.story}>
                 <Tree
                   data={DEEP_TREE}
-                  expandedNodes={['root', 'branch']}
+                  expandedNodes={['root', 'branch', 'level-3']}
                   parentActions={rowActions}
                   nodeActions={rowActions}
                 />

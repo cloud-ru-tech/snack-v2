@@ -7,3 +7,9 @@ export const TOGGLE_SIZE_MAP: Record<Size, NonNullable<CheckboxProps['size']>> =
   m: 's',
   l: 's',
 };
+
+export const CHECKBOX_SIZE_MAP = {
+  s: 'xs',
+  m: 'xs',
+  l: 's',
+} as const;

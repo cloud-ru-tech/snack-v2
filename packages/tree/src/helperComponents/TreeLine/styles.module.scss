@@ -39,11 +39,11 @@ $line-width: var(--tree-line-width, #{base.$sn-density-icon-s});
     box-sizing: border-box;
 
     &::after {
-      top: 50%;
+      top: var(--tree-control-center);
       left: calc(-50% - var(--tree-item-gap, 0px));
       transform: translateY(-50%);
 
-      width: calc(150% + var(--tree-item-gap, 0px));
+      width: var(--tree-leaf-line-length, calc(150% + var(--tree-item-gap, 0px)));
       height: base.$sn-primitive-strokeWeight-strokeRegular;
     }
 

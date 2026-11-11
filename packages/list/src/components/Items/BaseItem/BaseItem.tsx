@@ -14,7 +14,7 @@ import {
 import commonStyles from '../styles.module.scss';
 import { FlattenBaseItem } from '../types';
 import { isContentItem, isPrimitiveContent } from '../utils';
-import { TOGGLE_SIZE_MAP } from './constants';
+import { CHECKBOX_SIZE_MAP, TOGGLE_SIZE_MAP } from './constants';
 import styles from './styles.module.scss';
 
 type AllBaseItemProps = FlattenBaseItem & {
@@ -225,17 +225,19 @@ export function BaseItem({
 
   const checkboxNode =
     !itemRender && !switchProp && isSelectionMultiple && interactive ? (
-      <div className={styles.checkbox}>
-        <Checkbox
-          size={TOGGLE_SIZE_MAP[size]}
-          disabled={disabled}
-          tabIndex={-1}
-          onChange={isParentNode ? handleCheckboxChange : undefined}
-          checked={isChecked}
-          data-test-id={TEST_IDS.baseItemCheckbox}
-          onClick={handleCheckboxClick}
-          indeterminate={indeterminate}
-        />
+      <div className={styles.checkboxContentWrapper}>
+        <div className={styles.checkbox}>
+          <Checkbox
+            size={CHECKBOX_SIZE_MAP[size]}
+            disabled={disabled}
+            tabIndex={-1}
+            onChange={isParentNode ? handleCheckboxChange : undefined}
+            checked={isChecked}
+            data-test-id={TEST_IDS.baseItemCheckbox}
+            onClick={handleCheckboxClick}
+            indeterminate={indeterminate}
+          />
+        </div>
       </div>
     ) : undefined;
 

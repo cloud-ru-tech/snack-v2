@@ -7,6 +7,7 @@ import { ParentNode } from '../../types';
 import { TreeItem } from '../TreeItem';
 import { TreeLine } from '../TreeLine';
 import { TreeNode, TreeNodeProps } from '../TreeNode';
+import nodeStyles from '../TreeNode/styles.module.scss';
 import styles from './styles.module.scss';
 
 type ExpandableTreeNodeProps = {
@@ -38,15 +39,21 @@ export const ExpandableTreeNode = forwardRef<HTMLDivElement, ExpandableTreeNodeP
       const lastItem = childrenRefs.current?.at(-1);
 
       if (lastItem) {
-        // Trunk обрывается L-bend'ом на середине СТРОКИ последнего ребёнка, не его поддерева.
-        // Укорачиваем на (wrapperHeight - rowHeight/2); для листа == rowHeight/2.
+        // Вертикаль заканчивается на центре первой строки последнего ребёнка.
         const lastRow =
           (lastItem.hasAttribute('data-node-id') ? lastItem : lastItem.querySelector('[data-node-id]')) ?? lastItem;
 
         const recompute = () => {
           const wrapperHeight = lastItem.getBoundingClientRect().height;
-          const rowHeight = lastRow.getBoundingClientRect().height;
-          setLastItemHeight(wrapperHeight - rowHeight / 2);
+          const title = lastRow.getElementsByClassName(nodeStyles.treeNodeTitle)[0];
+          if (!title) return;
+          const titleStyle = getComputedStyle(title);
+          const center =
+            title.getBoundingClientRect().top -
+            lastRow.getBoundingClientRect().top +
+            parseFloat(titleStyle.paddingTop) +
+            parseFloat(titleStyle.lineHeight) / 2;
+          setLastItemHeight(wrapperHeight - center);
         };
 
         const observer = new ResizeObserver(() => recompute());

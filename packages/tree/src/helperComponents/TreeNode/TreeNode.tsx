@@ -13,7 +13,7 @@ import { checkNestedNodesSelection, findAllChildNodeIds } from '../../helpers';
 import { TreeNodeProps } from '../../types';
 import { TreeLine } from '../TreeLine';
 import { TreeNodeActions, TreeNodeHref } from './components';
-import { CONTROL_SIZE_BY_TREE_SIZE } from './constants';
+import { CONTROL_SIZE_BY_TREE_SIZE, SPINNER_SIZE_BY_TREE_SIZE } from './constants';
 import styles from './styles.module.scss';
 import { TreeNodeComponentProps } from './types';
 import { stopPropagationClick } from './utils';
@@ -298,7 +298,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
                     aria-hidden
                     data-state='emptyNeutralOnBackground'
                   />
-                  {loading ? <Spinner size={CONTROL_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
+                  {loading ? <Spinner size={SPINNER_SIZE_BY_TREE_SIZE[size]} /> : <ChevronRightSVG />}
                 </button>
                 <TreeLine visible={isExpanded && showLines} />
               </>
@@ -317,6 +317,7 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
               : undefined
           }
           aria-disabled={disabled}
+          data-disabled={disabled || undefined}
           data-multiselect={isMultiSelect || undefined}
           data-droplist-active={isDroplistOpen || isDroplistTriggerFocused || undefined}
           onClick={handleClick}
@@ -359,20 +360,24 @@ export const TreeNode = forwardRef<HTMLDivElement, TreeNodeComponentProps>(
             </div>
           )}
 
-          {treeNodeIcon && (
-            <div className={styles.treeNodeIcon} data-test-id={TEST_IDS.icon}>
-              {treeNodeIcon}
-            </div>
-          )}
+          <div className={styles.treeNodeContentWrapper}>
+            {treeNodeIcon && (
+              <div className={styles.treeNodeIcon} data-test-id={TEST_IDS.icon}>
+                {treeNodeIcon}
+              </div>
+            )}
 
-          <Typography variant='body' size={size} as='div' className={styles.treeNodeTitle}>
-            <TreeNodeHref href={href} onClick={handleAnchorClick} ref={anchorRef}>
-              {typeof title === 'string' && (
-                <TruncateString text={title} maxLines={titleMaxLines} data-test-id={TEST_IDS.title} />
-              )}
-              {typeof title !== 'string' && title({ id, disabled, nested } as TreeNodeProps)}
-            </TreeNodeHref>
-          </Typography>
+            <Typography variant='body' size={size} as='div' className={styles.treeNodeTitle}>
+              <div className={styles.treeNodeTextContent}>
+                <TreeNodeHref href={href} onClick={handleAnchorClick} ref={anchorRef}>
+                  {typeof title === 'string' && (
+                    <TruncateString text={title} maxLines={titleMaxLines} data-test-id={TEST_IDS.title} />
+                  )}
+                  {typeof title !== 'string' && title({ id, disabled, nested } as TreeNodeProps)}
+                </TreeNodeHref>
+              </div>
+            </Typography>
+          </div>
 
           {getNodeActions && (
             <TreeNodeActions

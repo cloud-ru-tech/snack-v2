@@ -8,10 +8,8 @@
 
 $sizes: 's', 'm', 'l';
 
-// Слот чекбокса использует ту же модель центрирования, что и beforeContent icon
-// (Figma listItem): строка выровнена по flex-start, контрол центрируется
-// внутри centeredWrapper по высоте первой строки текста. Размер контейнера/паддинги —
-// per-size в `.droplistItem[data-size]` ниже.
+// Внешняя обёртка несёт вертикальные поля; внутренний слот центрирует чекбокс
+// относительно первой строки текста без дополнительного padding.
 .checkbox {
   display: inline-flex;
   flex-grow: 0;
@@ -177,13 +175,16 @@ $level: var(--level, 0);
         padding-left: calc($itemPaddingLeft + $level * #{$nestingLevelStep} + $itemGap);
       }
 
-      // Чекбокс: тот же centeredWrapper, что у иконки — контейнер = icon-сетке (16/24/24),
-      // контрол центрируется внутри, верх контейнера совпадает с первой строкой текста.
+      .checkboxContentWrapper {
+        display: flex;
+        flex-shrink: 0;
+        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'padding-top');
+        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'padding-bottom');
+      }
+
       .checkbox {
         width: base.simple-var(icons.$iconSizeMap, $size);
-        height: base.simple-var(icons.$iconSizeMap, $size);
-        padding-top: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-top');
-        padding-bottom: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'centeredWrapper', 'padding-bottom');
+        height: base.simple-var(list.$list, 'anatomy', 'size', $size, 'listItem', 'contentWrapper', 'textWrapper', 'textContent', 'headline', 'min-height');
       }
 
       .beforeContent,
@@ -281,8 +282,8 @@ $level: var(--level, 0);
     }
 
     .beforeContent,
+    .afterContent,
     .dragHandle {
-      // TODO Phase 5 token missing: $opacity-a064 (аналог — effect-opacity-disabled 0.4)
       opacity: base.$sn-theme-effect-opacity-disabled;
     }
 
