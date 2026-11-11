@@ -298,6 +298,35 @@ export declare const themeVars: {
                     '7xl': string;
                     '8xl': string;
                 };
+                calendar: {
+                    gridDate: {
+                        minWidth: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                        minHeight: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                    };
+                };
+                alert: {
+                    centeredWrapper: {
+                        height: {
+                            s: string;
+                            m: string;
+                        };
+                    };
+                };
+                nestingLevel: {
+                    s: {
+                        level: {
+                            paddingRight: string;
+                        };
+                    };
+                };
             };
             comfort: {
                 scale: {
@@ -452,6 +481,28 @@ export declare const themeVars: {
                     '7xl': string;
                     '8xl': string;
                 };
+                calendar: {
+                    gridDate: {
+                        minWidth: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                        minHeight: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                    };
+                };
+                alert: {
+                    centeredWrapper: {
+                        height: {
+                            s: string;
+                            m: string;
+                        };
+                    };
+                };
             };
             spacious: {
                 scale: {
@@ -605,6 +656,28 @@ export declare const themeVars: {
                     '6xl': string;
                     '7xl': string;
                     '8xl': string;
+                };
+                calendar: {
+                    gridDate: {
+                        minWidth: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                        minHeight: {
+                            s: string;
+                            m: string;
+                            l: string;
+                        };
+                    };
+                };
+                alert: {
+                    centeredWrapper: {
+                        height: {
+                            s: string;
+                            m: string;
+                        };
+                    };
                 };
             };
             target: {
@@ -825,6 +898,7 @@ export declare const themeVars: {
                     level: {
                         paddingRight: string;
                         paddingTop: string;
+                        width: string;
                     };
                 };
                 l: {
@@ -918,6 +992,28 @@ export declare const themeVars: {
             };
             touchTarget: {
                 minSize: string;
+            };
+            calendar: {
+                gridDate: {
+                    minWidth: {
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                    minHeight: {
+                        s: string;
+                        m: string;
+                        l: string;
+                    };
+                };
+            };
+            alert: {
+                centeredWrapper: {
+                    height: {
+                        s: string;
+                        m: string;
+                    };
+                };
             };
         };
         brand: {

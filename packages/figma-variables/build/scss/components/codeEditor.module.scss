@@ -5,6 +5,12 @@
 @forward '../styles/styles.module';
 @use '../styles/styles.module' as st;
 
+$sn-codeEditor-language-javascript: "Javascript";
+$sn-codeEditor-language-typescript: "Typescript";
+$sn-codeEditor-language-json: "Json";
+$sn-codeEditor-language-yaml: "Yaml";
+$sn-codeEditor-language-markdown: "Markdown";
+$sn-codeEditor-language-shell: "Shell";
 $sn-codeEditor-anatomy-size-rowNumbers-paddingLeft: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingLeft, #{st.$sn-primitive-dimension-4});
 $sn-codeEditor-anatomy-size-rowNumbers-paddingRight: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingRight, #{st.$sn-primitive-dimension-24});
 $sn-codeEditor-anatomy-size-rowNumbers-paddingVertical: var(--sn-codeEditor-anatomy-size-rowNumbers-paddingVertical, #{st.$sn-primitive-dimension-4});
@@ -17,6 +23,14 @@ $sn-codeEditor-anatomy-size-header-paddingVertical: var(--sn-codeEditor-anatomy-
 $sn-codeEditor-anatomy-size-header-gap: var(--sn-codeEditor-anatomy-size-header-gap, #{st.$sn-primitive-dimension-8});
 
 $codeEditor: (
+  "language": (
+    "javascript": $sn-codeEditor-language-javascript,
+    "typescript": $sn-codeEditor-language-typescript,
+    "json": $sn-codeEditor-language-json,
+    "yaml": $sn-codeEditor-language-yaml,
+    "markdown": $sn-codeEditor-language-markdown,
+    "shell": $sn-codeEditor-language-shell
+  ),
   "anatomy": (
     "size": (
       "rowNumbers": (

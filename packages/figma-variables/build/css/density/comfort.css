@@ -89,13 +89,14 @@
   --sn-density-icon-half-xs: var(--sn-platform-comfort-icon-half-xs, 12px);
   --sn-density-icon-half-s: var(--sn-platform-comfort-icon-half-s, 12px);
   --sn-density-nestingLevel-s-paddingLeft: var(--sn-platform-comfort-icon-half-xs, 12px);
-  --sn-density-nestingLevel-s-level-paddingRight: var(--sn-platform-comfort-scale-050-m, 16px);
+  --sn-density-nestingLevel-s-level-paddingRight: var(--sn-primitive-dimension-16, 16px);
   --sn-density-nestingLevel-s-level-paddingTop: var(--sn-platform-comfort-scale-050-m, 16px);
   --sn-density-nestingLevel-m-paddingLeft: var(--sn-platform-comfort-icon-half-s, 12px);
-  --sn-density-nestingLevel-m-level-paddingRight: var(--sn-platform-comfort-scale-050-l, 20px);
+  --sn-density-nestingLevel-m-level-paddingRight: var(--sn-primitive-dimension-16, 16px);
   --sn-density-nestingLevel-m-level-paddingTop: var(--sn-platform-comfort-scale-050-l, 20px);
+  --sn-density-nestingLevel-m-level-width: var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, 12px));
   --sn-density-nestingLevel-l-paddingLeft: var(--sn-platform-comfort-icon-half-s, 12px);
-  --sn-density-nestingLevel-l-level-paddingRight: var(--sn-platform-comfort-scale-050-xl, 24px);
+  --sn-density-nestingLevel-l-level-paddingRight: var(--sn-primitive-dimension-20, 20px);
   --sn-density-nestingLevel-l-level-paddingTop: var(--sn-platform-comfort-scale-050-xl, 24px);
   --sn-density-view-screen-width: var(--sn-platform-view-screen-width, 1248px);
   --sn-density-view-screen-height: var(--sn-platform-view-screen-height, 728px);
@@ -159,4 +160,12 @@
   --sn-density-scale-050-l: var(--sn-platform-comfort-scale-050-l, 20px);
   --sn-density-table-headToggleOffset: var(--sn-platform-comfort-spacing-headToggleOffset, 0px);
   --sn-density-touchTarget-minSize: var(--sn-platform-touchTarget-minSize, 0px);
+  --sn-density-calendar-gridDate-minWidth-s: var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px);
+  --sn-density-calendar-gridDate-minWidth-m: var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px);
+  --sn-density-calendar-gridDate-minWidth-l: var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px);
+  --sn-density-calendar-gridDate-minHeight-s: var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px);
+  --sn-density-calendar-gridDate-minHeight-m: var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px);
+  --sn-density-calendar-gridDate-minHeight-l: var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px);
+  --sn-density-alert-centeredWrapper-height-s: var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px);
+  --sn-density-alert-centeredWrapper-height-m: var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px);
 }

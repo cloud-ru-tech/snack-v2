@@ -14,7 +14,7 @@
   --sn-tag-anatomy-size-xs-container-textWrapper-paddingHorizontal: var(--sn-primitive-dimension-2, 2px);
   --sn-tag-anatomy-size-xs-container-minWidth: var(--sn-primitive-dimension-16, 16px);
   --sn-tag-anatomy-size-xs-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
-  --sn-tag-anatomy-size-xs-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px);
+  --sn-tag-anatomy-size-xs-tagRow-gap: var(--sn-primitive-dimension-2, 2px);
   --sn-tag-anatomy-size-xs-buttonRemove-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-tag-anatomy-size-xs-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
   --sn-tag-anatomy-size-s-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
@@ -28,7 +28,7 @@
   --sn-tag-anatomy-size-s-container-minHeight: var(--sn-primitive-dimension-24, 24px);
   --sn-tag-anatomy-size-s-container-minWidth: var(--sn-primitive-dimension-24, 24px);
   --sn-tag-anatomy-size-s-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
-  --sn-tag-anatomy-size-s-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px);
+  --sn-tag-anatomy-size-s-tagRow-gap: var(--sn-primitive-dimension-2, 2px);
   --sn-tag-anatomy-size-s-buttonRemove-icon-square: var(--sn-primitive-dimension-16, 16px);
   --sn-tag-anatomy-size-s-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
   --sn-tag-anatomy-size-m-text-fontFamily: var(--sn-brand-font-fontFamily-regular-label, SB Sans Text);
@@ -42,7 +42,7 @@
   --sn-tag-anatomy-size-m-container-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-tag-anatomy-size-m-container-minWidth: var(--sn-primitive-dimension-32, 32px);
   --sn-tag-anatomy-size-m-container-borderWidth: var(--sn-brand-anatomy-line-button-strokeWeight, 1px);
-  --sn-tag-anatomy-size-m-tagRow-gap: var(--sn-density-spacing-control-wrapper-horizontal-xs, 4px);
+  --sn-tag-anatomy-size-m-tagRow-gap: var(--sn-primitive-dimension-2, 2px);
   --sn-tag-anatomy-size-m-buttonRemove-icon-square: var(--sn-primitive-dimension-24, 24px);
   --sn-tag-anatomy-size-m-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
 }

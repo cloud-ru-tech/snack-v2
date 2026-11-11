@@ -27,7 +27,7 @@
   --sn-accordion-anatomy-accordionTertiary-container-titleContent-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
   --sn-accordion-anatomy-accordionTertiary-container-titleContent-titleWrapper-titleLine-gap: var(--sn-primitive-dimension-4, 4px);
   --sn-accordion-anatomy-accordionTertiary-container-borderRadius: var(--sn-brand-anatomy-radius-block-s, 4px);
-  --sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical: var(--sn-primitive-dimension-4, 4px);
+  --sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingVertical: var(--sn-density-spacing-block-s-padding, 12px);
   --sn-accordion-anatomy-accordionTertiary-container-bodyContent-paddingHorizontal: var(--sn-primitive-dimension-0, 0px);
   --sn-accordion-anatomy-buttonChevron-container-minWidth: var(--sn-primitive-dimension-32, 32px);
   --sn-accordion-anatomy-buttonChevron-container-minHeight: var(--sn-primitive-dimension-32, 32px);

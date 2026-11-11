@@ -5,12 +5,15 @@
 .sn-toolbar {
   --sn-toolbar-anatomy-container-tool-borderWidth: var(--sn-primitive-strokeWeight-strokeRegular, 1px);
   --sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-brand-anatomy-radius-toolbar-xs, 2px);
-  --sn-toolbar-anatomy-container-tool-bulkAction-gap: var(--sn-primitive-dimension-8, 8px);
-  --sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-toolbar-anatomy-container-tool-bulkTool-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-gap: var(--sn-primitive-dimension-2, 2px);
+  --sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-checkboxWrapper-square: var(--sn-primitive-dimension-24, 24px);
+  --sn-toolbar-anatomy-container-tool-bulkTool-minHeight: var(--sn-density-size-xs, 24px);
   --sn-toolbar-anatomy-container-tool-search-minHeight: var(--sn-density-size-m, 40px);
   --sn-toolbar-anatomy-container-tool-search-borderRadius: var(--sn-brand-anatomy-radius-field-m, 2px);
-  --sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-density-spacing-interval-xs, 8px);
-  --sn-toolbar-anatomy-container-tool-gap: var(--sn-density-spacing-interval-xs, 8px);
+  --sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-toolbar-anatomy-container-tool-gap: var(--sn-primitive-dimension-4, 4px);
   --sn-toolbar-anatomy-container-tool-minHeight: var(--sn-density-size-l, 48px);
-  --sn-toolbar-anatomy-container-gap: var(--sn-density-spacing-interval-xs, 8px);
+  --sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-primitive-dimension-4, 4px);
+  --sn-toolbar-anatomy-container-gap: var(--sn-primitive-dimension-8, 8px);
 }

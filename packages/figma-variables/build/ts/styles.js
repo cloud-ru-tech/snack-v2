@@ -298,6 +298,35 @@ export const themeVars = {
           '6xl': 'var(--sn-platform-compact-radius-6xl, 40px)',
           '7xl': 'var(--sn-platform-compact-radius-7xl, 44px)',
           '8xl': 'var(--sn-platform-compact-radius-8xl, 48px)'
+        },
+        calendar: {
+          gridDate: {
+            minWidth: {
+              s: 'var(--sn-platform-compact-calendar-gridDate-minWidth-s, 232px)',
+              m: 'var(--sn-platform-compact-calendar-gridDate-minWidth-m, 232px)',
+              l: 'var(--sn-platform-compact-calendar-gridDate-minWidth-l, 296px)'
+            },
+            minHeight: {
+              s: 'var(--sn-platform-compact-calendar-gridDate-minHeight-s, 224px)',
+              m: 'var(--sn-platform-compact-calendar-gridDate-minHeight-m, 224px)',
+              l: 'var(--sn-platform-compact-calendar-gridDate-minHeight-l, 280px)'
+            }
+          }
+        },
+        alert: {
+          centeredWrapper: {
+            height: {
+              s: 'var(--sn-platform-compact-alert-centeredWrapper-height-s, 24px)',
+              m: 'var(--sn-platform-compact-alert-centeredWrapper-height-m, 24px)'
+            }
+          }
+        },
+        nestingLevel: {
+          s: {
+            level: {
+              paddingRight: 'var(--sn-platform-compact-nestingLevel-s-level-paddingRight, 12px)'
+            }
+          }
         }
       },
       comfort: {
@@ -452,6 +481,28 @@ export const themeVars = {
           '6xl': 'var(--sn-platform-comfort-radius-6xl, 44px)',
           '7xl': 'var(--sn-platform-comfort-radius-7xl, 48px)',
           '8xl': 'var(--sn-platform-comfort-radius-8xl, 52px)'
+        },
+        calendar: {
+          gridDate: {
+            minWidth: {
+              s: 'var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px)',
+              m: 'var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px)',
+              l: 'var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px)'
+            },
+            minHeight: {
+              s: 'var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px)',
+              m: 'var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px)',
+              l: 'var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px)'
+            }
+          }
+        },
+        alert: {
+          centeredWrapper: {
+            height: {
+              s: 'var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px)',
+              m: 'var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px)'
+            }
+          }
         }
       },
       spacious: {
@@ -606,6 +657,28 @@ export const themeVars = {
           '6xl': 'var(--sn-platform-spacious-radius-6xl, 48px)',
           '7xl': 'var(--sn-platform-spacious-radius-7xl, 52px)',
           '8xl': 'var(--sn-platform-spacious-radius-8xl, 56px)'
+        },
+        calendar: {
+          gridDate: {
+            minWidth: {
+              s: 'var(--sn-platform-spacious-calendar-gridDate-minWidth-s, 296px)',
+              m: 'var(--sn-platform-spacious-calendar-gridDate-minWidth-m, 360px)',
+              l: 'var(--sn-platform-spacious-calendar-gridDate-minWidth-l, 424px)'
+            },
+            minHeight: {
+              s: 'var(--sn-platform-spacious-calendar-gridDate-minHeight-s, 280px)',
+              m: 'var(--sn-platform-spacious-calendar-gridDate-minHeight-m, 336px)',
+              l: 'var(--sn-platform-spacious-calendar-gridDate-minHeight-l, 392px)'
+            }
+          }
+        },
+        alert: {
+          centeredWrapper: {
+            height: {
+              s: 'var(--sn-platform-spacious-alert-centeredWrapper-height-s, 44px)',
+              m: 'var(--sn-platform-spacious-alert-centeredWrapper-height-m, 36px)'
+            }
+          }
         }
       },
       target: {
@@ -824,14 +897,15 @@ export const themeVars = {
         m: {
           paddingLeft: 'var(--sn-density-nestingLevel-m-paddingLeft, 12px)',
           level: {
-            paddingRight: 'var(--sn-density-nestingLevel-m-level-paddingRight, 20px)',
-            paddingTop: 'var(--sn-density-nestingLevel-m-level-paddingTop, 20px)'
+            paddingRight: 'var(--sn-density-nestingLevel-m-level-paddingRight, 16px)',
+            paddingTop: 'var(--sn-density-nestingLevel-m-level-paddingTop, 20px)',
+            width: 'var(--sn-density-nestingLevel-m-level-width, 12px)'
           }
         },
         l: {
           paddingLeft: 'var(--sn-density-nestingLevel-l-paddingLeft, 12px)',
           level: {
-            paddingRight: 'var(--sn-density-nestingLevel-l-level-paddingRight, 24px)',
+            paddingRight: 'var(--sn-density-nestingLevel-l-level-paddingRight, 20px)',
             paddingTop: 'var(--sn-density-nestingLevel-l-level-paddingTop, 24px)'
           }
         }
@@ -919,6 +993,28 @@ export const themeVars = {
       },
       touchTarget: {
         minSize: 'var(--sn-density-touchTarget-minSize, 0px)'
+      },
+      calendar: {
+        gridDate: {
+          minWidth: {
+            s: 'var(--sn-density-calendar-gridDate-minWidth-s, 232px)',
+            m: 'var(--sn-density-calendar-gridDate-minWidth-m, 296px)',
+            l: 'var(--sn-density-calendar-gridDate-minWidth-l, 360px)'
+          },
+          minHeight: {
+            s: 'var(--sn-density-calendar-gridDate-minHeight-s, 224px)',
+            m: 'var(--sn-density-calendar-gridDate-minHeight-m, 280px)',
+            l: 'var(--sn-density-calendar-gridDate-minHeight-l, 336px)'
+          }
+        }
+      },
+      alert: {
+        centeredWrapper: {
+          height: {
+            s: 'var(--sn-density-alert-centeredWrapper-height-s, 36px)',
+            m: 'var(--sn-density-alert-centeredWrapper-height-m, 32px)'
+          }
+        }
       }
     },
     brand: {

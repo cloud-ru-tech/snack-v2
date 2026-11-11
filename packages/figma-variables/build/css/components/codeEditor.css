@@ -3,6 +3,12 @@
  */
   
 .sn-codeEditor {
+  --sn-codeEditor-language-javascript: "Javascript";
+  --sn-codeEditor-language-typescript: "Typescript";
+  --sn-codeEditor-language-json: "Json";
+  --sn-codeEditor-language-yaml: "Yaml";
+  --sn-codeEditor-language-markdown: "Markdown";
+  --sn-codeEditor-language-shell: "Shell";
   --sn-codeEditor-anatomy-size-rowNumbers-paddingLeft: var(--sn-primitive-dimension-4, 4px);
   --sn-codeEditor-anatomy-size-rowNumbers-paddingRight: var(--sn-primitive-dimension-24, 24px);
   --sn-codeEditor-anatomy-size-rowNumbers-paddingVertical: var(--sn-primitive-dimension-4, 4px);

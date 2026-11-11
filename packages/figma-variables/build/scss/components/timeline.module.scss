@@ -14,7 +14,7 @@ $sn-timeline-anatomy-size-container-track-dot-borderRadius: var(--sn-timeline-an
 $sn-timeline-anatomy-size-container-track-dot-subEvent-square: var(--sn-timeline-anatomy-size-container-track-dot-subEvent-square, #{st.$sn-primitive-dimension-8});
 $sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth: var(--sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
 $sn-timeline-anatomy-size-container-track-dot-topLine-height: var(--sn-timeline-anatomy-size-container-track-dot-topLine-height, #{$sn-timeline-anatomy-size-container-track-paddingTop});
-$sn-timeline-anatomy-size-container-gap: var(--sn-timeline-anatomy-size-container-gap, #{st.$sn-density-spacing-interval-m});
+$sn-timeline-anatomy-size-container-gap: var(--sn-timeline-anatomy-size-container-gap, #{st.$sn-primitive-dimension-16});
 $sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-content-paddingBottom, #{$sn-timeline-anatomy-size-container-track-paddingBottom});
 
 $timeline: (

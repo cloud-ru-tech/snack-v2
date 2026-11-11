@@ -89,13 +89,14 @@
   --sn-density-icon-half-xs: var(--sn-platform-compact-icon-half-xs, 8px);
   --sn-density-icon-half-s: var(--sn-platform-compact-icon-half-s, 12px);
   --sn-density-nestingLevel-s-paddingLeft: var(--sn-platform-compact-icon-half-xs, 8px);
-  --sn-density-nestingLevel-s-level-paddingRight: var(--sn-platform-compact-scale-050-m, 12px);
+  --sn-density-nestingLevel-s-level-paddingRight: var(--sn-platform-compact-nestingLevel-s-level-paddingRight, 12px);
   --sn-density-nestingLevel-s-level-paddingTop: var(--sn-platform-compact-scale-050-m, 12px);
   --sn-density-nestingLevel-m-paddingLeft: var(--sn-platform-compact-icon-half-s, 12px);
-  --sn-density-nestingLevel-m-level-paddingRight: var(--sn-platform-compact-scale-050-l, 16px);
+  --sn-density-nestingLevel-m-level-paddingRight: var(--sn-primitive-dimension-16, 16px);
   --sn-density-nestingLevel-m-level-paddingTop: var(--sn-platform-compact-scale-050-l, 16px);
+  --sn-density-nestingLevel-m-level-width: var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-compact-icon-half-s, 12px));
   --sn-density-nestingLevel-l-paddingLeft: var(--sn-platform-compact-icon-half-s, 12px);
-  --sn-density-nestingLevel-l-level-paddingRight: var(--sn-platform-compact-scale-050-xl, 20px);
+  --sn-density-nestingLevel-l-level-paddingRight: var(--sn-primitive-dimension-20, 20px);
   --sn-density-nestingLevel-l-level-paddingTop: var(--sn-platform-compact-scale-050-xl, 20px);
   --sn-density-view-screen-width: var(--sn-platform-view-screen-width, 1248px);
   --sn-density-view-screen-height: var(--sn-platform-view-screen-height, 728px);
@@ -159,4 +160,12 @@
   --sn-density-scale-050-l: var(--sn-platform-compact-scale-050-l, 16px);
   --sn-density-table-headToggleOffset: var(--sn-platform-compact-spacing-headToggleOffset, 4px);
   --sn-density-touchTarget-minSize: var(--sn-platform-touchTarget-minSize, 0px);
+  --sn-density-calendar-gridDate-minWidth-s: var(--sn-platform-compact-calendar-gridDate-minWidth-s, 232px);
+  --sn-density-calendar-gridDate-minWidth-m: var(--sn-platform-compact-calendar-gridDate-minWidth-m, 232px);
+  --sn-density-calendar-gridDate-minWidth-l: var(--sn-platform-compact-calendar-gridDate-minWidth-l, 296px);
+  --sn-density-calendar-gridDate-minHeight-s: var(--sn-platform-compact-calendar-gridDate-minHeight-s, 224px);
+  --sn-density-calendar-gridDate-minHeight-m: var(--sn-platform-compact-calendar-gridDate-minHeight-m, 224px);
+  --sn-density-calendar-gridDate-minHeight-l: var(--sn-platform-compact-calendar-gridDate-minHeight-l, 280px);
+  --sn-density-alert-centeredWrapper-height-s: var(--sn-platform-compact-alert-centeredWrapper-height-s, 24px);
+  --sn-density-alert-centeredWrapper-height-m: var(--sn-platform-compact-alert-centeredWrapper-height-m, 24px);
 }

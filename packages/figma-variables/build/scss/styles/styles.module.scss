@@ -370,6 +370,35 @@ $base-styles: (
           "6xl": var(--sn-platform-compact-radius-6xl, var(--sn-primitive-dimension-40, 40px)),
           "7xl": var(--sn-platform-compact-radius-7xl, var(--sn-primitive-dimension-44, 44px)),
           "8xl": var(--sn-platform-compact-radius-8xl, var(--sn-primitive-dimension-48, 48px))
+        ),
+        "calendar": (
+          "gridDate": (
+            "minWidth": (
+              "s": var(--sn-platform-compact-calendar-gridDate-minWidth-s, 232px),
+              "m": var(--sn-platform-compact-calendar-gridDate-minWidth-m, 232px),
+              "l": var(--sn-platform-compact-calendar-gridDate-minWidth-l, 296px)
+            ),
+            "minHeight": (
+              "s": var(--sn-platform-compact-calendar-gridDate-minHeight-s, 224px),
+              "m": var(--sn-platform-compact-calendar-gridDate-minHeight-m, 224px),
+              "l": var(--sn-platform-compact-calendar-gridDate-minHeight-l, 280px)
+            )
+          )
+        ),
+        "alert": (
+          "centeredWrapper": (
+            "height": (
+              "s": var(--sn-platform-compact-alert-centeredWrapper-height-s, 24px),
+              "m": var(--sn-platform-compact-alert-centeredWrapper-height-m, 24px)
+            )
+          )
+        ),
+        "nestingLevel": (
+          "s": (
+            "level": (
+              "paddingRight": var(--sn-platform-compact-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-12, 12px))
+            )
+          )
         )
       ),
       "comfort": (
@@ -524,6 +553,28 @@ $base-styles: (
           "6xl": var(--sn-platform-comfort-radius-6xl, var(--sn-primitive-dimension-44, 44px)),
           "7xl": var(--sn-platform-comfort-radius-7xl, var(--sn-primitive-dimension-48, 48px)),
           "8xl": var(--sn-platform-comfort-radius-8xl, var(--sn-primitive-dimension-52, 52px))
+        ),
+        "calendar": (
+          "gridDate": (
+            "minWidth": (
+              "s": var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px),
+              "m": var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px),
+              "l": var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px)
+            ),
+            "minHeight": (
+              "s": var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px),
+              "m": var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px),
+              "l": var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px)
+            )
+          )
+        ),
+        "alert": (
+          "centeredWrapper": (
+            "height": (
+              "s": var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px),
+              "m": var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px)
+            )
+          )
         )
       ),
       "spacious": (
@@ -678,6 +729,28 @@ $base-styles: (
           "6xl": var(--sn-platform-spacious-radius-6xl, var(--sn-primitive-dimension-48, 48px)),
           "7xl": var(--sn-platform-spacious-radius-7xl, var(--sn-primitive-dimension-52, 52px)),
           "8xl": var(--sn-platform-spacious-radius-8xl, var(--sn-primitive-dimension-56, 56px))
+        ),
+        "calendar": (
+          "gridDate": (
+            "minWidth": (
+              "s": var(--sn-platform-spacious-calendar-gridDate-minWidth-s, 296px),
+              "m": var(--sn-platform-spacious-calendar-gridDate-minWidth-m, 360px),
+              "l": var(--sn-platform-spacious-calendar-gridDate-minWidth-l, 424px)
+            ),
+            "minHeight": (
+              "s": var(--sn-platform-spacious-calendar-gridDate-minHeight-s, 280px),
+              "m": var(--sn-platform-spacious-calendar-gridDate-minHeight-m, 336px),
+              "l": var(--sn-platform-spacious-calendar-gridDate-minHeight-l, 392px)
+            )
+          )
+        ),
+        "alert": (
+          "centeredWrapper": (
+            "height": (
+              "s": var(--sn-platform-spacious-alert-centeredWrapper-height-s, 44px),
+              "m": var(--sn-platform-spacious-alert-centeredWrapper-height-m, 36px)
+            )
+          )
         )
       ),
       "target": (
@@ -889,21 +962,22 @@ $base-styles: (
         "s": (
           "paddingLeft": var(--sn-density-nestingLevel-s-paddingLeft, var(--sn-platform-comfort-icon-half-xs, var(--sn-primitive-dimension-12, 12px))),
           "level": (
-            "paddingRight": var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px))),
+            "paddingRight": var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-16, 16px)),
             "paddingTop": var(--sn-density-nestingLevel-s-level-paddingTop, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px)))
           )
         ),
         "m": (
           "paddingLeft": var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))),
           "level": (
-            "paddingRight": var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px))),
-            "paddingTop": var(--sn-density-nestingLevel-m-level-paddingTop, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px)))
+            "paddingRight": var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-primitive-dimension-16, 16px)),
+            "paddingTop": var(--sn-density-nestingLevel-m-level-paddingTop, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px))),
+            "width": var(--sn-density-nestingLevel-m-level-width, var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))))
           )
         ),
         "l": (
           "paddingLeft": var(--sn-density-nestingLevel-l-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))),
           "level": (
-            "paddingRight": var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px))),
+            "paddingRight": var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-primitive-dimension-20, 20px)),
             "paddingTop": var(--sn-density-nestingLevel-l-level-paddingTop, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px)))
           )
         )
@@ -991,6 +1065,28 @@ $base-styles: (
       ),
       "touchTarget": (
         "minSize": var(--sn-density-touchTarget-minSize, var(--sn-platform-touchTarget-minSize, 0px))
+      ),
+      "calendar": (
+        "gridDate": (
+          "minWidth": (
+            "s": var(--sn-density-calendar-gridDate-minWidth-s, var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px)),
+            "m": var(--sn-density-calendar-gridDate-minWidth-m, var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px)),
+            "l": var(--sn-density-calendar-gridDate-minWidth-l, var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px))
+          ),
+          "minHeight": (
+            "s": var(--sn-density-calendar-gridDate-minHeight-s, var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px)),
+            "m": var(--sn-density-calendar-gridDate-minHeight-m, var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px)),
+            "l": var(--sn-density-calendar-gridDate-minHeight-l, var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px))
+          )
+        )
+      ),
+      "alert": (
+        "centeredWrapper": (
+          "height": (
+            "s": var(--sn-density-alert-centeredWrapper-height-s, var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px)),
+            "m": var(--sn-density-alert-centeredWrapper-height-m, var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px))
+          )
+        )
       )
     ),
     "brand": (
@@ -2853,6 +2949,35 @@ $sn-platform: (
       "6xl": var(--sn-platform-compact-radius-6xl, var(--sn-primitive-dimension-40, 40px)),
       "7xl": var(--sn-platform-compact-radius-7xl, var(--sn-primitive-dimension-44, 44px)),
       "8xl": var(--sn-platform-compact-radius-8xl, var(--sn-primitive-dimension-48, 48px))
+    ),
+    "calendar": (
+      "gridDate": (
+        "minWidth": (
+          "s": var(--sn-platform-compact-calendar-gridDate-minWidth-s, 232px),
+          "m": var(--sn-platform-compact-calendar-gridDate-minWidth-m, 232px),
+          "l": var(--sn-platform-compact-calendar-gridDate-minWidth-l, 296px)
+        ),
+        "minHeight": (
+          "s": var(--sn-platform-compact-calendar-gridDate-minHeight-s, 224px),
+          "m": var(--sn-platform-compact-calendar-gridDate-minHeight-m, 224px),
+          "l": var(--sn-platform-compact-calendar-gridDate-minHeight-l, 280px)
+        )
+      )
+    ),
+    "alert": (
+      "centeredWrapper": (
+        "height": (
+          "s": var(--sn-platform-compact-alert-centeredWrapper-height-s, 24px),
+          "m": var(--sn-platform-compact-alert-centeredWrapper-height-m, 24px)
+        )
+      )
+    ),
+    "nestingLevel": (
+      "s": (
+        "level": (
+          "paddingRight": var(--sn-platform-compact-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-12, 12px))
+        )
+      )
     )
   ),
   "comfort": (
@@ -3007,6 +3132,28 @@ $sn-platform: (
       "6xl": var(--sn-platform-comfort-radius-6xl, var(--sn-primitive-dimension-44, 44px)),
       "7xl": var(--sn-platform-comfort-radius-7xl, var(--sn-primitive-dimension-48, 48px)),
       "8xl": var(--sn-platform-comfort-radius-8xl, var(--sn-primitive-dimension-52, 52px))
+    ),
+    "calendar": (
+      "gridDate": (
+        "minWidth": (
+          "s": var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px),
+          "m": var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px),
+          "l": var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px)
+        ),
+        "minHeight": (
+          "s": var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px),
+          "m": var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px),
+          "l": var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px)
+        )
+      )
+    ),
+    "alert": (
+      "centeredWrapper": (
+        "height": (
+          "s": var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px),
+          "m": var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px)
+        )
+      )
     )
   ),
   "spacious": (
@@ -3161,6 +3308,28 @@ $sn-platform: (
       "6xl": var(--sn-platform-spacious-radius-6xl, var(--sn-primitive-dimension-48, 48px)),
       "7xl": var(--sn-platform-spacious-radius-7xl, var(--sn-primitive-dimension-52, 52px)),
       "8xl": var(--sn-platform-spacious-radius-8xl, var(--sn-primitive-dimension-56, 56px))
+    ),
+    "calendar": (
+      "gridDate": (
+        "minWidth": (
+          "s": var(--sn-platform-spacious-calendar-gridDate-minWidth-s, 296px),
+          "m": var(--sn-platform-spacious-calendar-gridDate-minWidth-m, 360px),
+          "l": var(--sn-platform-spacious-calendar-gridDate-minWidth-l, 424px)
+        ),
+        "minHeight": (
+          "s": var(--sn-platform-spacious-calendar-gridDate-minHeight-s, 280px),
+          "m": var(--sn-platform-spacious-calendar-gridDate-minHeight-m, 336px),
+          "l": var(--sn-platform-spacious-calendar-gridDate-minHeight-l, 392px)
+        )
+      )
+    ),
+    "alert": (
+      "centeredWrapper": (
+        "height": (
+          "s": var(--sn-platform-spacious-alert-centeredWrapper-height-s, 44px),
+          "m": var(--sn-platform-spacious-alert-centeredWrapper-height-m, 36px)
+        )
+      )
     )
   ),
   "target": (
@@ -3373,21 +3542,22 @@ $sn-density: (
     "s": (
       "paddingLeft": var(--sn-density-nestingLevel-s-paddingLeft, var(--sn-platform-comfort-icon-half-xs, var(--sn-primitive-dimension-12, 12px))),
       "level": (
-        "paddingRight": var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px))),
+        "paddingRight": var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-16, 16px)),
         "paddingTop": var(--sn-density-nestingLevel-s-level-paddingTop, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px)))
       )
     ),
     "m": (
       "paddingLeft": var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))),
       "level": (
-        "paddingRight": var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px))),
-        "paddingTop": var(--sn-density-nestingLevel-m-level-paddingTop, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px)))
+        "paddingRight": var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-primitive-dimension-16, 16px)),
+        "paddingTop": var(--sn-density-nestingLevel-m-level-paddingTop, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px))),
+        "width": var(--sn-density-nestingLevel-m-level-width, var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))))
       )
     ),
     "l": (
       "paddingLeft": var(--sn-density-nestingLevel-l-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))),
       "level": (
-        "paddingRight": var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px))),
+        "paddingRight": var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-primitive-dimension-20, 20px)),
         "paddingTop": var(--sn-density-nestingLevel-l-level-paddingTop, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px)))
       )
     )
@@ -3475,6 +3645,28 @@ $sn-density: (
   ),
   "touchTarget": (
     "minSize": var(--sn-density-touchTarget-minSize, var(--sn-platform-touchTarget-minSize, 0px))
+  ),
+  "calendar": (
+    "gridDate": (
+      "minWidth": (
+        "s": var(--sn-density-calendar-gridDate-minWidth-s, var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px)),
+        "m": var(--sn-density-calendar-gridDate-minWidth-m, var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px)),
+        "l": var(--sn-density-calendar-gridDate-minWidth-l, var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px))
+      ),
+      "minHeight": (
+        "s": var(--sn-density-calendar-gridDate-minHeight-s, var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px)),
+        "m": var(--sn-density-calendar-gridDate-minHeight-m, var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px)),
+        "l": var(--sn-density-calendar-gridDate-minHeight-l, var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px))
+      )
+    )
+  ),
+  "alert": (
+    "centeredWrapper": (
+      "height": (
+        "s": var(--sn-density-alert-centeredWrapper-height-s, var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px)),
+        "m": var(--sn-density-alert-centeredWrapper-height-m, var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px))
+      )
+    )
   )
 );
 
@@ -5269,6 +5461,15 @@ $sn-platform-compact-radius-5xl: var(--sn-platform-compact-radius-5xl, var(--sn-
 $sn-platform-compact-radius-6xl: var(--sn-platform-compact-radius-6xl, var(--sn-primitive-dimension-40, 40px));
 $sn-platform-compact-radius-7xl: var(--sn-platform-compact-radius-7xl, var(--sn-primitive-dimension-44, 44px));
 $sn-platform-compact-radius-8xl: var(--sn-platform-compact-radius-8xl, var(--sn-primitive-dimension-48, 48px));
+$sn-platform-compact-calendar-gridDate-minWidth-s: var(--sn-platform-compact-calendar-gridDate-minWidth-s, 232px);
+$sn-platform-compact-calendar-gridDate-minWidth-m: var(--sn-platform-compact-calendar-gridDate-minWidth-m, 232px);
+$sn-platform-compact-calendar-gridDate-minWidth-l: var(--sn-platform-compact-calendar-gridDate-minWidth-l, 296px);
+$sn-platform-compact-calendar-gridDate-minHeight-s: var(--sn-platform-compact-calendar-gridDate-minHeight-s, 224px);
+$sn-platform-compact-calendar-gridDate-minHeight-m: var(--sn-platform-compact-calendar-gridDate-minHeight-m, 224px);
+$sn-platform-compact-calendar-gridDate-minHeight-l: var(--sn-platform-compact-calendar-gridDate-minHeight-l, 280px);
+$sn-platform-compact-alert-centeredWrapper-height-s: var(--sn-platform-compact-alert-centeredWrapper-height-s, 24px);
+$sn-platform-compact-alert-centeredWrapper-height-m: var(--sn-platform-compact-alert-centeredWrapper-height-m, 24px);
+$sn-platform-compact-nestingLevel-s-level-paddingRight: var(--sn-platform-compact-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-12, 12px));
 $sn-platform-comfort-scale-100-xs: var(--sn-platform-comfort-scale-100-xs, var(--sn-primitive-dimension-24, 24px));
 $sn-platform-comfort-scale-100-s: var(--sn-platform-comfort-scale-100-s, var(--sn-primitive-dimension-32, 32px));
 $sn-platform-comfort-scale-100-m: var(--sn-platform-comfort-scale-100-m, var(--sn-primitive-dimension-40, 40px));
@@ -5375,6 +5576,14 @@ $sn-platform-comfort-radius-5xl: var(--sn-platform-comfort-radius-5xl, var(--sn-
 $sn-platform-comfort-radius-6xl: var(--sn-platform-comfort-radius-6xl, var(--sn-primitive-dimension-44, 44px));
 $sn-platform-comfort-radius-7xl: var(--sn-platform-comfort-radius-7xl, var(--sn-primitive-dimension-48, 48px));
 $sn-platform-comfort-radius-8xl: var(--sn-platform-comfort-radius-8xl, var(--sn-primitive-dimension-52, 52px));
+$sn-platform-comfort-calendar-gridDate-minWidth-s: var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px);
+$sn-platform-comfort-calendar-gridDate-minWidth-m: var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px);
+$sn-platform-comfort-calendar-gridDate-minWidth-l: var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px);
+$sn-platform-comfort-calendar-gridDate-minHeight-s: var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px);
+$sn-platform-comfort-calendar-gridDate-minHeight-m: var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px);
+$sn-platform-comfort-calendar-gridDate-minHeight-l: var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px);
+$sn-platform-comfort-alert-centeredWrapper-height-s: var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px);
+$sn-platform-comfort-alert-centeredWrapper-height-m: var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px);
 $sn-platform-spacious-scale-100-xs: var(--sn-platform-spacious-scale-100-xs, var(--sn-primitive-dimension-32, 32px));
 $sn-platform-spacious-scale-100-s: var(--sn-platform-spacious-scale-100-s, var(--sn-primitive-dimension-40, 40px));
 $sn-platform-spacious-scale-100-m: var(--sn-platform-spacious-scale-100-m, var(--sn-primitive-dimension-48, 48px));
@@ -5481,6 +5690,14 @@ $sn-platform-spacious-radius-5xl: var(--sn-platform-spacious-radius-5xl, var(--s
 $sn-platform-spacious-radius-6xl: var(--sn-platform-spacious-radius-6xl, var(--sn-primitive-dimension-48, 48px));
 $sn-platform-spacious-radius-7xl: var(--sn-platform-spacious-radius-7xl, var(--sn-primitive-dimension-52, 52px));
 $sn-platform-spacious-radius-8xl: var(--sn-platform-spacious-radius-8xl, var(--sn-primitive-dimension-56, 56px));
+$sn-platform-spacious-calendar-gridDate-minWidth-s: var(--sn-platform-spacious-calendar-gridDate-minWidth-s, 296px);
+$sn-platform-spacious-calendar-gridDate-minWidth-m: var(--sn-platform-spacious-calendar-gridDate-minWidth-m, 360px);
+$sn-platform-spacious-calendar-gridDate-minWidth-l: var(--sn-platform-spacious-calendar-gridDate-minWidth-l, 424px);
+$sn-platform-spacious-calendar-gridDate-minHeight-s: var(--sn-platform-spacious-calendar-gridDate-minHeight-s, 280px);
+$sn-platform-spacious-calendar-gridDate-minHeight-m: var(--sn-platform-spacious-calendar-gridDate-minHeight-m, 336px);
+$sn-platform-spacious-calendar-gridDate-minHeight-l: var(--sn-platform-spacious-calendar-gridDate-minHeight-l, 392px);
+$sn-platform-spacious-alert-centeredWrapper-height-s: var(--sn-platform-spacious-alert-centeredWrapper-height-s, 44px);
+$sn-platform-spacious-alert-centeredWrapper-height-m: var(--sn-platform-spacious-alert-centeredWrapper-height-m, 36px);
 $sn-platform-target-minimum: var(--sn-platform-target-minimum, var(--sn-primitive-dimension-24, 24px));
 $sn-platform-view-screen-width: var(--sn-platform-view-screen-width, 1248px);
 $sn-platform-view-screen-height: var(--sn-platform-view-screen-height, 728px);
@@ -5605,13 +5822,14 @@ $sn-density-icon-strokeWeight-l: var(--sn-density-icon-strokeWeight-l, var(--sn-
 $sn-density-icon-half-xs: var(--sn-density-icon-half-xs, var(--sn-platform-comfort-icon-half-xs, var(--sn-primitive-dimension-12, 12px)));
 $sn-density-icon-half-s: var(--sn-density-icon-half-s, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px)));
 $sn-density-nestingLevel-s-paddingLeft: var(--sn-density-nestingLevel-s-paddingLeft, var(--sn-platform-comfort-icon-half-xs, var(--sn-primitive-dimension-12, 12px)));
-$sn-density-nestingLevel-s-level-paddingRight: var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px)));
+$sn-density-nestingLevel-s-level-paddingRight: var(--sn-density-nestingLevel-s-level-paddingRight, var(--sn-primitive-dimension-16, 16px));
 $sn-density-nestingLevel-s-level-paddingTop: var(--sn-density-nestingLevel-s-level-paddingTop, var(--sn-platform-comfort-scale-050-m, var(--sn-primitive-dimension-16, 16px)));
 $sn-density-nestingLevel-m-paddingLeft: var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px)));
-$sn-density-nestingLevel-m-level-paddingRight: var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px)));
+$sn-density-nestingLevel-m-level-paddingRight: var(--sn-density-nestingLevel-m-level-paddingRight, var(--sn-primitive-dimension-16, 16px));
 $sn-density-nestingLevel-m-level-paddingTop: var(--sn-density-nestingLevel-m-level-paddingTop, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px)));
+$sn-density-nestingLevel-m-level-width: var(--sn-density-nestingLevel-m-level-width, var(--sn-density-nestingLevel-m-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px))));
 $sn-density-nestingLevel-l-paddingLeft: var(--sn-density-nestingLevel-l-paddingLeft, var(--sn-platform-comfort-icon-half-s, var(--sn-primitive-dimension-12, 12px)));
-$sn-density-nestingLevel-l-level-paddingRight: var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px)));
+$sn-density-nestingLevel-l-level-paddingRight: var(--sn-density-nestingLevel-l-level-paddingRight, var(--sn-primitive-dimension-20, 20px));
 $sn-density-nestingLevel-l-level-paddingTop: var(--sn-density-nestingLevel-l-level-paddingTop, var(--sn-platform-comfort-scale-050-xl, var(--sn-primitive-dimension-24, 24px)));
 $sn-density-view-screen-width: var(--sn-density-view-screen-width, var(--sn-platform-view-screen-width, 1248px));
 $sn-density-view-screen-height: var(--sn-density-view-screen-height, var(--sn-platform-view-screen-height, 728px));
@@ -5661,6 +5879,14 @@ $sn-density-scale-050-m: var(--sn-density-scale-050-m, var(--sn-platform-comfort
 $sn-density-scale-050-l: var(--sn-density-scale-050-l, var(--sn-platform-comfort-scale-050-l, var(--sn-primitive-dimension-20, 20px)));
 $sn-density-table-headToggleOffset: var(--sn-density-table-headToggleOffset, var(--sn-platform-comfort-spacing-headToggleOffset, var(--sn-primitive-dimension-0, 0px)));
 $sn-density-touchTarget-minSize: var(--sn-density-touchTarget-minSize, var(--sn-platform-touchTarget-minSize, 0px));
+$sn-density-calendar-gridDate-minWidth-s: var(--sn-density-calendar-gridDate-minWidth-s, var(--sn-platform-comfort-calendar-gridDate-minWidth-s, 232px));
+$sn-density-calendar-gridDate-minWidth-m: var(--sn-density-calendar-gridDate-minWidth-m, var(--sn-platform-comfort-calendar-gridDate-minWidth-m, 296px));
+$sn-density-calendar-gridDate-minWidth-l: var(--sn-density-calendar-gridDate-minWidth-l, var(--sn-platform-comfort-calendar-gridDate-minWidth-l, 360px));
+$sn-density-calendar-gridDate-minHeight-s: var(--sn-density-calendar-gridDate-minHeight-s, var(--sn-platform-comfort-calendar-gridDate-minHeight-s, 224px));
+$sn-density-calendar-gridDate-minHeight-m: var(--sn-density-calendar-gridDate-minHeight-m, var(--sn-platform-comfort-calendar-gridDate-minHeight-m, 280px));
+$sn-density-calendar-gridDate-minHeight-l: var(--sn-density-calendar-gridDate-minHeight-l, var(--sn-platform-comfort-calendar-gridDate-minHeight-l, 336px));
+$sn-density-alert-centeredWrapper-height-s: var(--sn-density-alert-centeredWrapper-height-s, var(--sn-platform-comfort-alert-centeredWrapper-height-s, 36px));
+$sn-density-alert-centeredWrapper-height-m: var(--sn-density-alert-centeredWrapper-height-m, var(--sn-platform-comfort-alert-centeredWrapper-height-m, 32px));
 $sn-brand-color-primary-10: var(--sn-brand-color-primary-10, #242424);
 $sn-brand-color-primary-20: var(--sn-brand-color-primary-20, #2c2c2c);
 $sn-brand-color-primary-30: var(--sn-brand-color-primary-30, #3d3d3d);
