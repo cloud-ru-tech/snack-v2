@@ -30,14 +30,20 @@
   transition: grid-template-rows 200ms;
 
   &[data-expanded='true'] {
-    overflow: unset;
     grid-template-rows: 1fr;
 
-    .expandableContent {
+    > .expandableContent {
+      visibility: visible;
+    }
+  }
+
+  &[data-expanded='true'][data-entered='true'] {
+    overflow: unset;
+
+    > .expandableContent {
       // После раскрытия снимаем вертикальный клип — иначе режет focus-outline
       // и shadow elevated-кнопок у вложенных строк (тень/outline выходит за bbox).
       overflow: unset;
-      visibility: visible;
     }
   }
 }

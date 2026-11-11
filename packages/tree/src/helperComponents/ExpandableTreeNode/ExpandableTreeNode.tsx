@@ -27,7 +27,6 @@ export const ExpandableTreeNode = forwardRef<HTMLDivElement, ExpandableTreeNodeP
     const [state, toggle] = useTransition({
       timeout: TRANSITION_TIMING.accordionFolding,
       initialEntered: isExpanded || undefined,
-      enter: isExpanded,
     });
 
     const showContent = node.nested && node.nested.length > 0 && state.status !== 'exited';
@@ -122,6 +121,7 @@ export const ExpandableTreeNode = forwardRef<HTMLDivElement, ExpandableTreeNodeP
           <div
             className={styles.expandableWrap}
             data-expanded={isExpanded || undefined}
+            data-entered={state.status === 'entered' || undefined}
             data-test-id={TEST_IDS.expandable}
           >
             {showContent && (
