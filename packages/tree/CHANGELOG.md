@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.46 (2026-11-11)
+
+### Bug Fixes
+
+- **FF-9112:** tree expanding animation ([c28510c](https://github.com/cloud-ru-tech/snack-v2/commit/c28510c41adfa797e2795ed694eff191ab5b951f))
+
 ## 1.0.45 (2026-11-11)
 
 ### Bug Fixes
