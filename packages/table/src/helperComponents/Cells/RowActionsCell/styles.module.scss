@@ -1,7 +1,10 @@
+@use '@ds/figma-variables/build/scss/components/table.module' as table;
+
 // Ячейка действий строки: кнопка-троеточие (Droplist) по центру. Вертикальный разделитель
 // слева рисует sticky-обёртка закреплённого блока (.rowPinnedCells[data-position='right']::after).
 
 .rowActionsHeader {
+  max-width: table.$sn-table-anatomy-content-headLine-actionWrapper-maxWidth;
   padding: 0 !important;
 }
 
@@ -12,6 +15,7 @@
 
 .rowActionsCell {
   position: relative;
+  max-width: table.$sn-table-anatomy-content-tableLine-actionWrapper-maxWidth;
 }
 
 .rowActionsCellWrap {

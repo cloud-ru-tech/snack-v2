@@ -25,11 +25,14 @@ export function BulkActions({
   return (
     <>
       <div className={styles.bulkTool} data-test-id={TEST_IDS.bulkTool}>
-        {showCheckboxInToolbar && (
-          <BulkActionsCheckbox checked={checked} indeterminate={indeterminate} onCheck={onCheck} />
-        )}
-
-        <SelectionLabel selectedCount={selectedCount} totalCount={totalCount} hasSelection={hasSelection} />
+        <div className={styles.volumeWrapper}>
+          {showCheckboxInToolbar && (
+            <div className={styles.checkboxWrapper}>
+              <BulkActionsCheckbox checked={checked} indeterminate={indeterminate} onCheck={onCheck} />
+            </div>
+          )}
+          <SelectionLabel selectedCount={selectedCount} totalCount={totalCount} hasSelection={hasSelection} />
+        </div>
 
         {showInlineActions && (
           <BulkActionsControls variant='toolbar' actions={actions} resizingContainerRef={resizingContainerRef} />

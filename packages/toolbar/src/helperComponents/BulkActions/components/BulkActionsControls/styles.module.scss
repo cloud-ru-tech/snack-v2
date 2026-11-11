@@ -7,7 +7,7 @@ $action-focus-padding: calc(2 * #{base.$sn-primitive-strokeWeight-strokeSemiBold
 .actionsArea {
   display: flex;
   flex: 1 1 0;
-  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-gap;
+  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkTool-gap;
   align-items: center;
 
   box-sizing: border-box;

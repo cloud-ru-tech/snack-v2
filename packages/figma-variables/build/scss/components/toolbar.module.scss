@@ -7,14 +7,17 @@
 
 $sn-toolbar-anatomy-container-tool-borderWidth: var(--sn-toolbar-anatomy-container-tool-borderWidth, #{st.$sn-primitive-strokeWeight-strokeRegular});
 $sn-toolbar-anatomy-container-tool-borderRadius: var(--sn-toolbar-anatomy-container-tool-borderRadius, #{st.$sn-brand-anatomy-radius-toolbar-xs});
-$sn-toolbar-anatomy-container-tool-bulkAction-gap: var(--sn-toolbar-anatomy-container-tool-bulkAction-gap, #{st.$sn-primitive-dimension-8});
-$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-toolbar-anatomy-container-tool-bulkTool-gap: var(--sn-toolbar-anatomy-container-tool-bulkTool-gap, #{st.$sn-primitive-dimension-8});
+$sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-gap: var(--sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-gap, #{st.$sn-primitive-dimension-2});
+$sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-checkboxWrapper-square: var(--sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-checkboxWrapper-square, #{st.$sn-primitive-dimension-24});
+$sn-toolbar-anatomy-container-tool-bulkTool-minHeight: var(--sn-toolbar-anatomy-container-tool-bulkTool-minHeight, #{st.$sn-density-size-xs});
 $sn-toolbar-anatomy-container-tool-search-minHeight: var(--sn-toolbar-anatomy-container-tool-search-minHeight, #{st.$sn-density-size-m});
 $sn-toolbar-anatomy-container-tool-search-borderRadius: var(--sn-toolbar-anatomy-container-tool-search-borderRadius, #{st.$sn-brand-anatomy-radius-field-m});
-$sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-toolbar-anatomy-container-tool-paddingHorizontal, #{st.$sn-density-spacing-interval-xs});
-$sn-toolbar-anatomy-container-tool-gap: var(--sn-toolbar-anatomy-container-tool-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-toolbar-anatomy-container-tool-paddingHorizontal: var(--sn-toolbar-anatomy-container-tool-paddingHorizontal, #{st.$sn-primitive-dimension-4});
+$sn-toolbar-anatomy-container-tool-gap: var(--sn-toolbar-anatomy-container-tool-gap, #{st.$sn-primitive-dimension-4});
 $sn-toolbar-anatomy-container-tool-minHeight: var(--sn-toolbar-anatomy-container-tool-minHeight, #{st.$sn-density-size-l});
-$sn-toolbar-anatomy-container-gap: var(--sn-toolbar-anatomy-container-gap, #{st.$sn-density-spacing-interval-xs});
+$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft: var(--sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft, #{st.$sn-primitive-dimension-4});
+$sn-toolbar-anatomy-container-gap: var(--sn-toolbar-anatomy-container-gap, #{st.$sn-primitive-dimension-8});
 
 $toolbar: (
   "anatomy": (
@@ -22,9 +25,16 @@ $toolbar: (
       "tool": (
         "border-width": $sn-toolbar-anatomy-container-tool-borderWidth,
         "border-radius": $sn-toolbar-anatomy-container-tool-borderRadius,
-        "bulkAction": (
-          "gap": $sn-toolbar-anatomy-container-tool-bulkAction-gap,
-          "padding-left": $sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft
+        "bulkTool": (
+          "gap": $sn-toolbar-anatomy-container-tool-bulkTool-gap,
+          "volumeWrapper": (
+            "gap": $sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-gap,
+            "checkboxWrapper": (
+              "width": $sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-checkboxWrapper-square,
+              "height": $sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-checkboxWrapper-square
+            )
+          ),
+          "min-height": $sn-toolbar-anatomy-container-tool-bulkTool-minHeight
         ),
         "search": (
           "min-height": $sn-toolbar-anatomy-container-tool-search-minHeight,
@@ -33,7 +43,10 @@ $toolbar: (
         "padding-left": $sn-toolbar-anatomy-container-tool-paddingHorizontal,
         "padding-right": $sn-toolbar-anatomy-container-tool-paddingHorizontal,
         "gap": $sn-toolbar-anatomy-container-tool-gap,
-        "min-height": $sn-toolbar-anatomy-container-tool-minHeight
+        "min-height": $sn-toolbar-anatomy-container-tool-minHeight,
+        "bulkAction": (
+          "padding-left": $sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft
+        )
       ),
       "gap": $sn-toolbar-anatomy-container-gap
     )

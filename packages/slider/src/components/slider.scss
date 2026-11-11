@@ -7,8 +7,7 @@ $handle-size: sl.$sn-slider-anatomy-size-handle-container-square;
 $track-line-height: sl.$sn-slider-anatomy-size-container-trackLine-maxHeight;
 $scale-step-height: sl.$sn-slider-anatomy-size-scaleStep-maxHeight;
 $scale-gap: sl.$sn-slider-anatomy-size-container-gap;
-
-$height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + base.$sn-regular-body-s-lineHeight);
+$scale-height: sl.$sn-slider-anatomy-size-container-scaleWrapper-height;
 
 .#{$theme-class}.rc-slider {
   touch-action: none;
@@ -234,7 +233,7 @@ $height-with-marks: calc($track-line-height + $scale-gap + $scale-step-height + 
 }
 
 .#{$theme-class}.rc-slider.withMarks {
-  height: $height-with-marks;
+  height: calc($track-line-height + $scale-gap + $scale-height);
 }
 
 .#{$theme-class}.rc-slider.reverse .rc-slider-mark-text:nth-child(1) {

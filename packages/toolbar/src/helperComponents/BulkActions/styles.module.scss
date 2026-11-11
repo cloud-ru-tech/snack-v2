@@ -3,11 +3,27 @@
 
 .bulkTool {
   display: flex;
-  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-gap;
+  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkTool-gap;
   align-items: center;
 
   box-sizing: border-box;
   width: 100%;
-  min-height: base.$sn-primitive-dimension-24;
+  min-height: toolbar.$sn-toolbar-anatomy-container-tool-bulkTool-minHeight;
   padding-left: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft;
+}
+
+.volumeWrapper {
+  display: flex;
+  flex-shrink: 0;
+  gap: toolbar.$sn-toolbar-anatomy-container-tool-bulkTool-volumeWrapper-gap;
+  align-items: center;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  @include base.composite-var(toolbar.$toolbar, 'anatomy', 'container', 'tool', 'bulkTool', 'volumeWrapper', 'checkboxWrapper');
 }

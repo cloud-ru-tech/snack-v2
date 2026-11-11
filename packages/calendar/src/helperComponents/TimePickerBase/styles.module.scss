@@ -33,7 +33,7 @@ $typography: (
       // `min-width` (не `width`): токен и так семантически minimum, а `flex-grow: 1` позволяет колонкам
       // растягиваться под ширину дропдауна/футера (иначе фикс-ширина зажимала бы список уже футера).
       min-width: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-width');
-      height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-height');
+      height: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'min-height');
       padding-right: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-right');
       padding-left: base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'padding-left');
     }
@@ -60,7 +60,7 @@ $typography: (
     @each $size in $sizes {
       &[data-size='#{$size}'] {
         min-height: calc(
-          #{base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'timePicker', 'min-height')} / #{$visibleRows}
+          #{base.simple-var(calendar.$calendar, 'anatomy', 'size', $size, 'gridDate', 'min-height')} / #{$visibleRows}
         );
         border-radius: base.simple-var(
           calendar.$calendar,

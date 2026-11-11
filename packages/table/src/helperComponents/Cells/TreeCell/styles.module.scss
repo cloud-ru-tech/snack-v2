@@ -138,17 +138,7 @@
   align-items: center;
 
   box-sizing: border-box;
-  // cellToggles: 32px + padding-left 4px (sn/table/content/tableLine/pinnedWrapper/elementWrapper/cellToggles)
-  width: base.simple-var(
-    table.$table,
-    'anatomy',
-    'content',
-    'tableLine',
-    'pinnedWrapper',
-    'elementWrapper',
-    'cellToggles',
-    'width'
-  );
+  width: table.$sn-table-anatomy-content-tableLineTree-pinnedWrapper-elementWrapper-cellToggles-width;
   height: 100%;
   padding-left: base.simple-var(
     table.$table,
