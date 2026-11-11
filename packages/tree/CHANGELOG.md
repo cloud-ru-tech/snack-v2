@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.45 (2026-11-11)
+
+### Bug Fixes
+
+- **FF-9112:** use useRefState from utils ([712ed2a](https://github.com/cloud-ru-tech/snack-v2/commit/712ed2a25244ea744f34e19c4b05d416522d0939))
+
 ## 1.0.44 (2026-11-04)
 
 **Note:** Version bump only for package @ds/tree

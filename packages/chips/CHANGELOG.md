@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.11 (2026-11-11)
+
+**Note:** Version bump only for package @ds/chips
+
 ## 1.2.10 (2026-11-04)
 
 **Note:** Version bump only for package @ds/chips

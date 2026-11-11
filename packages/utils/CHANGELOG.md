@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2026-11-11)
+
+### Features
+
+- **FF-9112:** add useRefState hook ([c59b1d6](https://github.com/cloud-ru-tech/snack-v2/commit/c59b1d62f1afe4a995985ae9138c4bcd185acc8d))
+
 # 1.3.0 (2026-10-17)
 
 ### Features
