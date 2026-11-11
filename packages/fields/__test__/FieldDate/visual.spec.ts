@@ -40,20 +40,13 @@ async function wheelDrum(page: Page, columnTestId: string, deltaRows: number) {
   await page.mouse.wheel(0, deltaRows * itemHeight);
 }
 
-// Клик по видимой ячейке дня. Список бесконечный: одинаковый номер есть в каждом месяце, а месяцы выше
-// вьюпорта остаются в DOM (`.first()`/`:visible` их не отсеивают). Берём ячейку по попаданию во вьюпорт.
-function clickVisibleDay(page: Page, num: string) {
-  return page.evaluate(
-    ({ testId, value }) => {
-      const cell = [...document.querySelectorAll(`[data-test-id="${testId}"]`)].find(el => {
-        if (el.textContent?.trim() !== value) return false;
-        const r = el.getBoundingClientRect();
-        return r.top > 90 && r.bottom < window.innerHeight - 100;
-      });
-      (cell as HTMLElement | undefined)?.click();
-    },
-    { testId: DAY_ITEM_TEST_ID, value: num },
-  );
+// Соседние месяцы тоже могут быть видны после автоскролла.
+async function clickCurrentMonthDay(page: Page, day: string) {
+  const month = page.getByTestId(`calendar-mobile-period-block-${MOBILE_SHEET_TEST_ID}`).filter({
+    has: page.locator(TODAY_CELL),
+  });
+  await month.getByRole('button', { name: day, exact: true }).click();
+  await page.mouse.move(0, 0);
 }
 
 test.describe('FieldDate — visual regression', () => {
@@ -95,7 +88,7 @@ test.describe('FieldDate — visual regression', () => {
 
   // Mobile-сценарий выбора одной даты (mode=date): поле → тап → выбор дня (подсветка в черновике) →
   // Apply → поле с применённой датой. Календарь без value скроллится к текущему месяцу (2026-07);
-  // берём ВИДИМУЮ ячейку «15» — это июль.
+  // выбираем 15-е число в блоке текущего месяца.
   test('date: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions({ mode: 'date' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
@@ -117,7 +110,7 @@ test.describe('FieldDate — visual regression', () => {
 
     // В mode=date выбор дня фиксирует его в черновике (подсветка ячейки) и активирует Apply; шит остаётся
     // открытым — коммит в поле только по Apply (FF-8654).
-    await clickVisibleDay(page, '15');
+    await clickCurrentMonthDay(page, '15');
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
     const dateApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
     await expect(dateApply).toBeEnabled();
@@ -154,7 +147,7 @@ test.describe('FieldDate — visual regression', () => {
     await frame('2. open calendar');
 
     // Выбор дня в date-time не закрывает шит, а переводит на под-экран выбора времени (барабан).
-    await clickVisibleDay(page, '15');
+    await clickCurrentMonthDay(page, '15');
     await expect(getByTestId('time-picker-drum')).toBeVisible();
 
     // Возвращаемся на календарь (←), чтобы показать выбранный день подсвеченным в сетке. Оттуда

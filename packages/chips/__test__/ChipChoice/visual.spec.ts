@@ -66,8 +66,7 @@ test.describe('ChipChoice — visual regression', () => {
   });
 
   // Полный мобильный сценарий выбора диапазона: чип закрыт → тап → выбор начала → выбор конца → Apply.
-  // Календарь без value скроллится к текущему месяцу (сегодня 2026-07). Список бесконечный и держит
-  // в DOM месяцы выше вьюпорта, поэтому берём именно ВИДИМУЮ ячейку (`visible: true`) — это июль.
+  // Дни выбираем в текущем месяце, даже если видны соседние.
   test('date-range: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(
@@ -75,21 +74,13 @@ test.describe('ChipChoice — visual regression', () => {
     );
     await waitForFonts();
 
-    // Клик по видимой ячейке дня. Список бесконечный: одинаковый номер есть в каждом месяце, а месяцы
-    // выше вьюпорта остаются в DOM (у них есть bbox → `.first()`/`:visible` их не отсеивают). Поэтому
-    // выбираем ячейку по реальному попаданию во вьюпорт (между шапкой и футером) — это текущий месяц (июль).
-    const clickVisibleDay = (n: string) =>
-      page.evaluate(
-        ({ testId, num }) => {
-          const cell = [...document.querySelectorAll(`[data-test-id="${testId}"]`)].find(el => {
-            if (el.textContent?.trim() !== num) return false;
-            const r = el.getBoundingClientRect();
-            return r.top > 90 && r.bottom < window.innerHeight - 100;
-          });
-          (cell as HTMLElement | undefined)?.click();
-        },
-        { testId: DAY_ITEM_TEST_ID, num: n },
-      );
+    const month = page.getByTestId(`calendar-mobile-period-block-${CHIP_CHOICE_TEST_IDS.droplist}`).filter({
+      has: page.locator(TODAY_CELL),
+    });
+    const clickCurrentMonthDay = async (day: string) => {
+      await month.getByRole('button', { name: day, exact: true }).click();
+      await page.mouse.move(0, 0);
+    };
 
     const cells: ScreenshotCell[] = [];
     const frame = async (label: string) => {
@@ -108,16 +99,14 @@ test.describe('ChipChoice — visual regression', () => {
     await frame('2. open');
 
     // 3. Выбор начала диапазона (10 июля) — подсветка старта (Apply ещё неактивен, выбран один конец).
-    // `.click()` из evaluate обновляет React-состояние асинхронно — ЖДЁМ появления выбранной ячейки,
-    // иначе снимок ловит кадр до подсветки (флак).
-    await clickVisibleDay('10');
+    await clickCurrentMonthDay('10');
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
     await frame('3. range start');
 
     // 4. Выбор конца (20 июля) — залитый диапазон, футер со значением, активный Apply.
     // Ждём, пока футер покажет полный диапазон (рендер выбора асинхронный), иначе снимок ловит
     // промежуточный кадр.
-    await clickVisibleDay('20');
+    await clickCurrentMonthDay('20');
     await expect(getByTestId('selected-chip-choice__droplist')).toContainText('10.07.2026');
     await expect(getByTestId(MOBILE_APPLY_TEST_ID)).toBeEnabled();
     await frame('4. range selected');
