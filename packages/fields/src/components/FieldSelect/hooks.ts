@@ -116,9 +116,16 @@ export function useCustomOption({
         return 'skipped';
       }
 
+      const list = listRef.current;
+      const dialog = list?.closest('[role="dialog"]');
+      // Мобильный Droplist при открытии переводит фокус на панель за пределами списка.
+      if (dialog && event.relatedTarget === dialog && !dialog.contains(event.currentTarget)) {
+        return 'inside';
+      }
+
       if (
         isCustomOptionBlurInsideField(event.relatedTarget, [
-          listRef.current,
+          list,
           clearButtonRef.current,
           copyButtonRef.current,
           ...(footerActiveElementsRefs?.map(ref => ref.current) ?? []),
