@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.3 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** forward tooltip handlers to tags ([3c8c73e](https://github.com/cloud-ru-tech/snack-v2/commit/3c8c73ef2f51473bc04651ccfc417557ebcdb774))
+- **FF-8815:** omit delete handlers from link tags ([4c1ea95](https://github.com/cloud-ru-tech/snack-v2/commit/4c1ea95b0782f2764a17153e81c5943dca9110b6))
+- **FF-8815:** reserve tag overflow controls only when needed ([05c0161](https://github.com/cloud-ru-tech/snack-v2/commit/05c0161c1fe50660a79edaecf0c33ecc1ed31d37))
+
 ## 1.2.2 (2026-11-11)
 
 **Note:** Version bump only for package @ds/tag

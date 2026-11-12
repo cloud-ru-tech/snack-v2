@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.1 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** handle overflowing mobile page actions ([8ad0498](https://github.com/cloud-ru-tech/snack-v2/commit/8ad0498454c846bfe58636b3b154d724b83611cb))
+
 # 1.4.0 (2026-11-11)
 
 ### Features

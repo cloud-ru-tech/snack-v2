@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.13 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-9395:** preserve typed query on mobile select open ([b0d5261](https://github.com/cloud-ru-tech/snack-v2/commit/b0d526105a49169254f2604c264bb29d53351756))
+
 ## 3.0.12 (2026-11-11)
 
 **Note:** Version bump only for package @ds/fields

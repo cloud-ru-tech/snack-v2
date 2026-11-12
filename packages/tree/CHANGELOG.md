@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.47 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** align tree item heights and branch indicators ([d0cb6e8](https://github.com/cloud-ru-tech/snack-v2/commit/d0cb6e80e5d2a3a221ba4ef45d65c501e97907af))
+- **FF-8815:** updated version of disabled tree item ([d10d488](https://github.com/cloud-ru-tech/snack-v2/commit/d10d4889fb4842f96e325303cabf3884b60782b8))
+- **FF-9395:** align tree and list item layouts ([01ef3d8](https://github.com/cloud-ru-tech/snack-v2/commit/01ef3d8a025e44b1758025a7443130e78f2d4e10))
+
 ## 1.0.46 (2026-11-11)
 
 ### Bug Fixes

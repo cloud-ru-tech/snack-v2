@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.17 (2026-11-12)
+
+**Note:** Version bump only for package @ds/ai-field-request
+
 ## 0.1.16 (2026-11-11)
 
 **Note:** Version bump only for package @ds/ai-field-request

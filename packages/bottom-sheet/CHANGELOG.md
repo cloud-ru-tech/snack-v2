@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.2.0 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** synchronize modal and bottom sheet modes ([621b2d6](https://github.com/cloud-ru-tech/snack-v2/commit/621b2d6ad7999a271d52f6ef26cdb6638f4ce11f))
+
+### Features
+
+- **FF-8815:** add bottom sheet interaction modes ([b4ccdf1](https://github.com/cloud-ru-tech/snack-v2/commit/b4ccdf162d0ea5e482574e4bdc9f865e672f3238))
+
 ## 2.1.2 (2026-11-11)
 
 **Note:** Version bump only for package @ds/bottom-sheet

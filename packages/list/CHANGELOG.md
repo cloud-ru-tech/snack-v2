@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.3 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-9395:** align tree and list item layouts ([01ef3d8](https://github.com/cloud-ru-tech/snack-v2/commit/01ef3d8a025e44b1758025a7443130e78f2d4e10))
+
 ## 3.1.2 (2026-11-11)
 
 **Note:** Version bump only for package @ds/list

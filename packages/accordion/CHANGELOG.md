@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.13 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** size accordion chevrons to their slots ([ffe7a01](https://github.com/cloud-ru-tech/snack-v2/commit/ffe7a0191b1776c55f5e8061ee8c351fadf70d63))
+
 ## 1.2.12 (2026-11-11)
 
 **Note:** Version bump only for package @ds/accordion

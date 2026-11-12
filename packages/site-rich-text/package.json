@@ -1,6 +1,6 @@
 {
   "name": "@ds/site-rich-text",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Блок форматированного текста для сайта: HTML-строка или ReactNode со стилями абзацев, ссылок, списков и изображений.",
   "repository": {
     "type": "git",

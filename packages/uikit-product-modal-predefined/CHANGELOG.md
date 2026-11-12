@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.5 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** size mobile news scroll area to active slide ([4e749ed](https://github.com/cloud-ru-tech/snack-v2/commit/4e749ed07cda6c98a2b906cc26f8b998491544c7))
+
 ## 1.1.4 (2026-11-11)
 
 **Note:** Version bump only for package @ds/uikit-product-modal-predefined

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.10 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-9395:** use updated component anatomy tokens ([c35891c](https://github.com/cloud-ru-tech/snack-v2/commit/c35891c6da7162de0287e798bbdf808eaa0f5a2c))
+
 ## 2.2.9 (2026-11-11)
 
 **Note:** Version bump only for package @ds/table

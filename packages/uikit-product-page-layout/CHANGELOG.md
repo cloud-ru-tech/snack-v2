@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.3.0 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** forward truncateTitle in mobile page services ([3ff433f](https://github.com/cloud-ru-tech/snack-v2/commit/3ff433fe5f442dde340df59ab4fb5a44841dbe8b))
+- **FF-8815:** handle overflowing mobile page actions ([8ad0498](https://github.com/cloud-ru-tech/snack-v2/commit/8ad0498454c846bfe58636b3b154d724b83611cb))
+- **FF-8815:** page form fix on narrow screen ([521ee8d](https://github.com/cloud-ru-tech/snack-v2/commit/521ee8dfe9ccb60a7e126f2d0725cb62d9fdc701))
+
+### Features
+
+- **FF-8815:** support custom page actions ([1d68f54](https://github.com/cloud-ru-tech/snack-v2/commit/1d68f54deb37fe81fcfb9bda6286853798ceb75f))
+
 ## 2.2.1 (2026-11-11)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout

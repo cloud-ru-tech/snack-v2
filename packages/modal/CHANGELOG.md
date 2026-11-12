@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.3 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-8815:** default mobile modal and drawer buttons to vertical ([804ea56](https://github.com/cloud-ru-tech/snack-v2/commit/804ea568ae38c3359a9c1680066d1761575d5500))
+- **FF-8815:** synchronize modal and bottom sheet modes ([621b2d6](https://github.com/cloud-ru-tech/snack-v2/commit/621b2d6ad7999a271d52f6ef26cdb6638f4ce11f))
+
 ## 2.1.2 (2026-11-11)
 
 **Note:** Version bump only for package @ds/modal

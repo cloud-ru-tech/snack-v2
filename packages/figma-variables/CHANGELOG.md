@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.2 (2026-11-12)
+
+### Bug Fixes
+
+- **FF-9395:** align tree and list item layouts ([01ef3d8](https://github.com/cloud-ru-tech/snack-v2/commit/01ef3d8a025e44b1758025a7443130e78f2d4e10))
+- **FF-9395:** padding tree and nestingLevel ([ef52ed9](https://github.com/cloud-ru-tech/snack-v2/commit/ef52ed91b7699d18dc8aa7c3b1646722e551c105))
+- **FF-9395:** pushed all tokens ([d37b3ee](https://github.com/cloud-ru-tech/snack-v2/commit/d37b3eecff0c7f5b6b0fdb3efb9992c6dfd77f5a))
+- **FF-9395:** use updated component anatomy tokens ([c35891c](https://github.com/cloud-ru-tech/snack-v2/commit/c35891c6da7162de0287e798bbdf808eaa0f5a2c))
+
 ## 3.0.1 (2026-10-21)
 
 ### Bug Fixes
