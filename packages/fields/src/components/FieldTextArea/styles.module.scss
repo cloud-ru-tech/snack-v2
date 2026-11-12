@@ -39,6 +39,20 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
 // не от чего отсчитывать (контейнер с auto-высотой схлопывается обратно).
 .scrollContainerResizable {
   height: calc(var(--field-textarea-min-rows, 3) * var(--field-textarea-row-height));
+
+  // Отключаем pointer-events, чтобы не перехватывать их на resize-handle.
+  // Без этого в Safari сломан resize.
+  > [data-overlayscrollbars-contents] {
+    pointer-events: none;
+
+    .inputArea {
+      pointer-events: none;
+
+      * {
+        pointer-events: auto;
+      }
+    }
+  }
 }
 
 .textarea {
@@ -88,7 +102,8 @@ $scrollbar-width: base.simple-var(scroll.$scroll, 'anatomy', 'container', 'size'
       // текста добирает его обратно. Паддинг строки уже даёт `.inputArea`, второй раз не считаем.
       $container-padding: base.simple-var(field.$field, 'anatomy', 'size', $size, 'fieldContainer', 'padding-right');
 
-      padding-right: calc(#{$button-slot} + #{$container-padding});
+      // В Safari паддинг перекрывает нативный ресайз и не дает им пользоваться.
+      max-width: calc(100% - (#{$button-slot} + #{$container-padding}));
 
       @include base.composite-var(base.$sn-regular, 'body', $size);
     }
