@@ -50,7 +50,9 @@ $captionTypography: (
 
   .caption {
     overflow: hidden;
-    flex: 1 0 0;
+    flex: 1 1 auto;
+
+    min-width: 0;
 
     color: base.$sn-theme-color-available-version-textTertiary;
     text-align: right;
