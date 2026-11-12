@@ -2,8 +2,9 @@ import { LAYOUT_TYPE, withLayoutType } from '@ds/adaptive';
 import { Button, VIEW } from '@ds/button';
 import { KebabSVG } from '@ds/icons/interface/system';
 import { Droplist, DroplistProps, Item } from '@ds/list';
+import { ModalCustom } from '@ds/modal';
 import { Tooltip } from '@ds/tooltip';
-import { quotaLocale, QuotaWidget } from '@ds/uikit-product-quota';
+import { quotaLocale, QuotaWidgetContent } from '@ds/uikit-product-quota';
 import { useDynamicList } from '@ds/utils';
 import { MouseEvent, ReactNode, useMemo, useRef, useState } from 'react';
 
@@ -27,6 +28,9 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [openQuotaIndex, setOpenQuotaIndex] = useState<number>();
+  const activeAction = openQuotaIndex === undefined ? undefined : items[openQuotaIndex];
+  const openQuota = activeAction?.variant === BUTTON_TYPE.Quota ? activeAction : undefined;
   const availableItems = useMemo(() => items.filter(item => !item.hidden), [items]);
   const { visibleItems, hiddenItems } = useDynamicList({
     parentContainerRef: containerRef,
@@ -40,10 +44,10 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
     return null;
   }
 
-  const hiddenItemsWithKebab = hiddenItems.concat(visibleItems.filter(item => item.variant === BUTTON_TYPE.Kebab));
-  const visibleItemsWithoutKebab = visibleItems.filter(item => item.variant !== BUTTON_TYPE.Kebab);
+  const overflowItems = hiddenItems.concat(visibleItems.filter(action => action.variant === BUTTON_TYPE.Kebab));
+  const visibleActions = visibleItems.filter(action => action.variant !== BUTTON_TYPE.Kebab);
 
-  const droplistItems = hiddenItemsWithKebab.reduce<Item[]>((acc, action) => {
+  const droplistItems = overflowItems.reduce<Item[]>((acc, action) => {
     if (action.variant === 'custom') {
       const { asListItem } = action.render();
       acc.push({
@@ -87,19 +91,14 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
         break;
       }
       case BUTTON_TYPE.Quota: {
-        // QuotaWidget самодостаточен (свой триггер + dropdown) — рендерим инлайн как inactive-айтем.
-        const quotaWidget = <QuotaWidget {...action} buttonProps={{ size: 'm', fullWidth: true }} />;
-
         acc.push({
-          type: 'group',
-          label: tQuota('quotas'),
-          divider: acc.length > 0,
-          items: [
-            {
-              inactive: true,
-              content: action.tooltip ? <Tooltip {...action.tooltip}>{quotaWidget}</Tooltip> : quotaWidget,
-            },
-          ],
+          content: { label: action.buttonProps?.label ?? tQuota('quotas') },
+          disabled: action.buttonProps?.disabled,
+          onClick: () => {
+            setIsOpen(false);
+            setOpenQuotaIndex(items.indexOf(action));
+            action.onWidgetOpen?.();
+          },
         });
         break;
       }
@@ -160,7 +159,31 @@ function MobileActionsBase({ items, maxVisibleItems }: ActionsProps) {
         </Droplist>
       )}
 
-      {visibleItemsWithoutKebab.map((action, index) => (
+      {openQuota && (
+        <ModalCustom open onClose={() => setOpenQuotaIndex(undefined)}>
+          <ModalCustom.Header title={tQuota('quotas')} subtitle={openQuota.projectName} />
+          <ModalCustom.Body
+            content={
+              <QuotaWidgetContent
+                quotas={openQuota.quotas}
+                quotasUrl={openQuota.quotasUrl}
+                projectName={openQuota.projectName}
+                loading={openQuota.loading}
+                error={openQuota.error}
+                onRefresh={openQuota.onRefresh}
+                canEditQuota={openQuota.canEditQuota}
+                onIncreaseQuotaClick={openQuota.onIncreaseQuotaClick}
+                onQuotasUrlClick={openQuota.onQuotasUrlClick}
+                disableSorting={openQuota.disableSorting}
+                skeletonRowCount={openQuota.skeletonRowCount}
+                hideMobileHeader
+              />
+            }
+          />
+        </ModalCustom>
+      )}
+
+      {visibleActions.map((action, index) => (
         <ActionView
           {...action}
           key={index}
