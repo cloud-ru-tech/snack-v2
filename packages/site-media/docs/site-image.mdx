@@ -1,0 +1,47 @@
+---
+title: SiteImage
+package: '@ds/site-media'
+description: Обычное изображение с обязательными src и alt.
+order: 1
+---
+
+import { SiteImageDemo } from '../demos/SiteImageDemo';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import mediaDoc from './props.json';
+
+# SiteImage
+
+Возвращает `<img>`. `src` и `alt` обязательны; остальные стандартные атрибуты изображения передаются на тот же элемент.
+
+## Демо
+
+<SiteImageDemo client:visible />
+
+## Когда использовать
+
+Для изображений сайта, которым нужны явно заданные источник и альтернативный текст. Для декоративного изображения передаётся `alt=''`.
+
+## Анатомия
+
+Компонент не добавляет обёртку, размеры, стили или стратегию загрузки по умолчанию.
+
+## Установка
+
+```tsx
+import { SiteImage } from '@ds/site-media';
+```
+
+## Примеры использования
+
+```tsx
+<SiteImage src='/preview.webp' alt='Интерфейс сервиса' loading='lazy' width={720} height={405} />
+```
+
+## Props
+
+<PropsTable data={mediaDoc.SiteImage} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-media-siteimage--playground' height={480} />

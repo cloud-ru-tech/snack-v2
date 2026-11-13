@@ -1,0 +1,69 @@
+---
+title: SectionMedia
+package: '@ds/site-section'
+description: Секция сайта с заголовком и изображением или встроенным видео.
+order: 1
+---
+
+import { SectionMediaDemo } from '../demos/SectionMediaDemo';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import mediaDoc from './props.json';
+
+# SectionMedia
+
+Композиция `SectionBasic` и `SiteImage` или `SiteVideo` из `@ds/site-media`. Поддерживает все настройки `SectionBasic`, включая вкладки, фильтры, пагинацию и кнопку «Показать еще». Содержимое задаётся через `media` вместо `children`.
+
+## Демо
+
+<SectionMediaDemo client:visible />
+
+## Когда использовать
+
+Для самостоятельного раздела сайта с одним медиаобъектом.
+
+## Анатомия
+
+### Media.type
+
+- `image` — `src`, обязательный `alt`, опциональный `loading`.
+- `video` — `src`, опциональная обложка `poster` и параметры проигрывания.
+
+### Container (обязательный)
+
+- `new` — целевая геометрия макета.
+- `old` — совместимость с прежними секциями.
+
+## Адаптивность
+
+Три раскладки наследуются от `AdaptiveProvider`. Отступы и типографику предоставляет `SectionBasic`; медиа остаётся 16:9. Форс раскладки задаётся контекстом с согласованной платформой темы. На tablet сохранена типографика `SectionTitle` из репозитория (32/40 px): итоговая секция на 4 px выше макета.
+
+## Установка
+
+```tsx
+import { SectionMedia } from '@ds/site-section';
+```
+
+## Примеры использования
+
+```tsx
+<SectionMedia
+  container='new'
+  title='Видеопрезентация'
+  media={{ type: 'video', src: '/presentation.mp4', poster: '/presentation.webp' }}
+/>
+```
+
+## Props
+
+<PropsTable data={mediaDoc.SectionMedia} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-section-sectionmedia--playground' height={600} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-section', 'section-media')} />

@@ -1,0 +1,29 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  justify-content: center;
+
+  padding: base.$sn-primitive-dimension-16;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  text-align: center;
+
+  background: base.$sn-theme-color-neutral-background;
+}
+
+.title {
+  @include base.composite-var(base.$sn-regular, 'title', 'm');
+}
+
+.description {
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$sn-regular, 'body', 's');
+}

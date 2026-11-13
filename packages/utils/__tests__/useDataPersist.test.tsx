@@ -2,6 +2,7 @@
 import { act } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type {} from 'vitest/jsdom';
 
 import { DataPersistOptions, DataPersistStorage, useDataPersist } from '../src/hooks/useDataPersist';
 
@@ -30,6 +31,8 @@ function renderPersist(storages?: DataPersistStorage[], custom = {}) {
 
 beforeEach(() => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true);
+  vi.stubGlobal('localStorage', jsdom.window.localStorage);
+  vi.stubGlobal('sessionStorage', jsdom.window.sessionStorage);
   localStorage.clear();
   sessionStorage.clear();
   history.replaceState({}, '', '/');

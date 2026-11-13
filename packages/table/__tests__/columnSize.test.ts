@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getInitColumnSizeFromLocalStorage, saveStateToLocalStorage } from '../src/components/Table/utils/columnSize';
 
@@ -25,6 +25,10 @@ afterEach(() => {
 });
 
 describe('columnSize (non-browser environment)', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', undefined);
+  });
+
   it('getInitColumnSizeFromLocalStorage returns undefined outside the browser', () => {
     expect(getInitColumnSizeFromLocalStorage({ id: 'tbl', columnId: 'name' })).toBeUndefined();
   });

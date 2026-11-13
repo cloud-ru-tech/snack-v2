@@ -1,0 +1,138 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  pointer-events: none;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.toolbar {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+
+  padding: 0 base.$sn-primitive-dimension-8 base.$sn-primitive-dimension-8;
+
+  opacity: 0;
+  background: base.$sn-theme-color-neutral-background;
+
+  transition: opacity 0.15s ease-in-out;
+
+  &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+
+    width: 100%;
+    height: base.$sn-primitive-dimension-80;
+
+    background: linear-gradient(to bottom, transparent, base.$sn-theme-color-neutral-background);
+  }
+
+  &[data-visible='false'] {
+    pointer-events: none;
+  }
+
+  &[data-visible='true'],
+  &:focus-within {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+.timeline {
+  touch-action: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  height: base.$sn-primitive-dimension-16;
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeMedium solid base.$sn-theme-color-primary-accent;
+  }
+}
+
+.track {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: base.$sn-primitive-dimension-4;
+
+  background: base.$sn-theme-color-neutral-decor;
+}
+
+.buffered,
+.viewed {
+  position: absolute;
+  inset-block: 0;
+}
+
+.buffered {
+  background: base.$sn-theme-color-neutral-accent;
+}
+
+.viewed {
+  left: 0;
+  background: base.$sn-theme-color-primary-accent;
+}
+
+.tip {
+  pointer-events: none;
+
+  position: absolute;
+  bottom: calc(100% + #{base.$sn-primitive-dimension-8});
+
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+}
+
+.tipImage {
+  border-radius: base.$sn-density-radius-xs;
+  background-repeat: no-repeat;
+}
+
+.tipTime {
+  padding: base.$sn-primitive-dimension-4;
+  border-radius: base.$sn-density-radius-2xs;
+  color: base.$sn-theme-color-available-version-textMain;
+  background: base.$sn-theme-color-neutral-background;
+}
+
+.controls {
+  display: flex;
+  gap: base.$sn-primitive-dimension-12;
+  align-items: center;
+  min-width: 0;
+
+  .toolbar[data-layout-type='mobile'] & {
+    gap: base.$sn-primitive-dimension-4;
+  }
+}
+
+.volume {
+  flex-shrink: 0;
+  width: base.$sn-primitive-dimension-128;
+}
+
+.time {
+  color: base.$sn-theme-color-available-version-textMain;
+  white-space: nowrap;
+}
+
+.spacer {
+  flex: 1;
+}

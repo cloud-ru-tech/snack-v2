@@ -1,0 +1,60 @@
+{
+  "name": "@ds/site-media",
+  "version": "1.0.0",
+  "description": "Медиа для сайта: видеоплеер SiteVideo и изображение SiteImage с обязательными src и alt.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/site-media"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/site-media",
+  "license": "Apache-2.0",
+  "author": "daparfirov <daparfirov@cloud.ru>",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./locale": {
+      "source": "./src/locale/index.ts",
+      "types": "./dist/esm/locale/index.d.ts",
+      "import": "./dist/esm/locale/index.js",
+      "require": "./dist/cjs/locale/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/button": "workspace:^",
+    "@ds/figma-variables": "workspace:^",
+    "@ds/icons": "workspace:^",
+    "@ds/list": "workspace:^",
+    "@ds/locale": "workspace:^",
+    "@ds/skeleton": "workspace:^",
+    "@ds/slider": "workspace:^",
+    "@ds/theme": "workspace:^",
+    "@ds/tooltip": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/utils": "workspace:^",
+    "classnames": "catalog:",
+    "video.js": "^8.23.3"
+  }
+}

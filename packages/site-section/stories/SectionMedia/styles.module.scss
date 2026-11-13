@@ -1,0 +1,22 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+  align-items: flex-start;
+
+  width: max-content;
+}
+
+.desktop {
+  width: 1440px;
+}
+
+.tablet {
+  width: 768px;
+}
+
+.mobile {
+  width: 360px;
+}

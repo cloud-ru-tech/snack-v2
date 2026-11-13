@@ -2,6 +2,7 @@
 import { act, useState } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type {} from 'vitest/jsdom';
 
 import { usePersistState } from '../src/components/Toolbar/hooks/usePersistState/usePersistState';
 import { PersistedFilterState, ToolbarPersistConfig } from '../src/components/Toolbar/types';
@@ -44,6 +45,8 @@ const config: ToolbarPersistConfig<Filters> = {
 };
 beforeEach(() => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true);
+  vi.stubGlobal('localStorage', jsdom.window.localStorage);
+  vi.stubGlobal('sessionStorage', jsdom.window.sessionStorage);
   localStorage.clear();
   sessionStorage.clear();
   history.replaceState({}, '', '/');

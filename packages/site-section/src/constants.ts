@@ -32,6 +32,8 @@ export const SECTION_CONTAINER_BACKGROUND_TYPE = {
 } as const;
 
 export const TEST_IDS = {
+  section: 'section-media',
+  image: 'section-media__image',
   root: PREFIX,
   sectionTitle: `${PREFIX}__section-title`,
   tabs: `${PREFIX}__tabs`,

@@ -1,0 +1,11 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.image {
+  display: block;
+
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: base.$sn-density-radius-2xs;
+
+  object-fit: cover;
+}

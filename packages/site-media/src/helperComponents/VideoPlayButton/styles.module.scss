@@ -1,0 +1,112 @@
+@use 'sass:list';
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+$layouts: (
+  'desktop': (
+    base.$sn-primitive-dimension-80,
+    base.$sn-density-icon-l,
+  ),
+  'desktopSmall': (
+    base.$sn-primitive-dimension-80,
+    base.$sn-density-icon-l,
+  ),
+  'tablet': (
+    base.$sn-primitive-dimension-64,
+    base.$sn-density-icon-m,
+  ),
+  'mobile': (
+    base.$sn-primitive-dimension-40,
+    base.$sn-density-icon-s,
+  ),
+);
+
+.surface {
+  cursor: pointer;
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+
+  color: base.$sn-theme-color-available-inversion-textMain;
+
+  opacity: 0;
+  background: base.$sn-theme-color-blackout;
+
+  transition: opacity 0.15s ease-in-out;
+
+  &[data-visible='true'],
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: base.$sn-primitive-strokeWeight-strokeMedium solid base.$sn-theme-color-primary-accent;
+    outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeMedium});
+  }
+
+  &[data-compact='true'] {
+    inset: 0;
+
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    border-radius: base.$sn-primitive-dimension-full;
+
+    background: transparent;
+  }
+}
+
+.circle {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: base.$sn-primitive-dimension-full;
+
+  background: base.$sn-theme-color-blackout;
+
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    opacity: 0;
+    background: base.$sn-theme-color-blackout;
+  }
+
+  .surface:hover &::after {
+    opacity: 1;
+  }
+}
+
+.icon {
+  z-index: 1;
+}
+
+@each $layout, $dimensions in $layouts {
+  .surface[data-layout-type='#{$layout}'] .circle {
+    width: list.nth($dimensions, 1);
+    height: list.nth($dimensions, 1);
+  }
+
+  .surface[data-layout-type='#{$layout}'] svg.icon {
+    width: list.nth($dimensions, 2) !important;
+    height: list.nth($dimensions, 2) !important;
+  }
+}

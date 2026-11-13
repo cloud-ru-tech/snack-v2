@@ -46,6 +46,7 @@
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/pagination": "workspace:^",
+    "@ds/site-media": "workspace:^",
     "@ds/site-rich-text": "workspace:^",
     "@ds/site-section-title": "workspace:^",
     "@ds/site-tabs-segmented": "workspace:^",

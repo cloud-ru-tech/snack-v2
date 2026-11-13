@@ -1,0 +1,66 @@
+---
+title: SiteVideo
+package: '@ds/site-media'
+description: Самостоятельный видеоплеер с обложкой и управлением для MP4/HLS, YouTube и Rutube.
+order: 2
+---
+
+import { SiteVideoDemo } from '../demos/SiteVideoDemo';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import mediaDoc from './props.json';
+
+# SiteVideo
+
+Плеер занимает ширину родителя и сохраняет пропорцию 16:9. При смене `src` прежний плеер удаляется вместе с обработчиками; первый запуск нового источника снова вызывает `onPlay`.
+
+## Демо
+
+<SiteVideoDemo client:visible />
+
+## Когда использовать
+
+Для видео вне стандартной секции сайта. В `video` можно передать конфигурацию или React-элемент собственного плеера.
+
+## Анатомия
+
+### Controls (default `true`)
+
+- `true` — обложка, Play/Pause и панель управления.
+- `false` — видео без собственных элементов управления; подходит для фонового видео с `autoPlay`, `muted` и `loop`.
+
+`autoPlay` включает воспроизведение без звука; браузер может его заблокировать. При `controls=true` ручной запуск остаётся доступным.
+
+YouTube и Rutube определяются по домену URL. Их iframe подключается после нажатия Play либо при автоматическом запуске. Источник команд и уведомлений проверяется по `origin` и окну iframe. Панель провайдера и её доступность зависят от самого сервиса.
+
+## Адаптивность
+
+Раскладка наследуется от `AdaptiveProvider`. Кнопка Play/Pause имеет размеры 80/64/40 px для desktop/tablet/mobile; размер не передаётся пропом. На mobile панель MP4/HLS уплотняется. Для форсирования поддерева задаются раскладка контекста и согласованная платформа темы.
+
+## Установка
+
+```tsx
+import { SiteVideo } from '@ds/site-media';
+```
+
+## Примеры использования
+
+```tsx
+<SiteVideo video={{ src: '/presentation.mp4', poster: '/presentation.webp' }} />
+```
+
+Клавиатура: Enter/Space на кнопке — Play/Pause; K — Play/Pause, M — звук, F — fullscreen, стрелки влево/вправо — перемотка на 10 секунд. Timeline поддерживает стрелки, Home и End. Названия элементов доступны на русском и английском; оверрайды задаются через `siteMediaLocale`.
+
+## Props
+
+<PropsTable data={mediaDoc.SiteVideo} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-media-sitevideo--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-media', 'site-video')} />

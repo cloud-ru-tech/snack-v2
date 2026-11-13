@@ -1,0 +1,80 @@
+---
+title: SiteMedia
+package: '@ds/site-media'
+description: Видеоплеер и изображение для страниц сайта.
+order: 0
+---
+
+import { SiteVideoDemo } from '../demos/SiteVideoDemo';
+import { SiteImageDemo } from '../demos/SiteImageDemo';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import mediaDoc from './props.json';
+
+# SiteMedia
+
+`SiteVideo` воспроизводит MP4, HLS, YouTube и Rutube. `SiteImage` выводит обычный `<img>` с обязательными `src` и `alt`. Секция с заголовком и медиа — `SectionMedia` из `@ds/site-section`.
+
+## Демо
+
+<SiteVideoDemo client:visible />
+<SiteImageDemo client:visible />
+
+## Когда использовать
+
+| Рекомендуется                                    | Не рекомендуется                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `SiteVideo` для плеера в собственной композиции  | Повторять каркас готового `SectionMedia`             |
+| `SiteImage` для изображения с обязательным `alt` | Использовать имя файла вместо альтернативного текста |
+
+## Анатомия
+
+`SiteVideo` занимает ширину родителя с пропорцией 16:9. `SiteImage` передаёт стандартные атрибуты на `<img>`; размеры и оформление задаёт потребитель.
+
+### Управление видео
+
+До запуска показана обложка с Play. Во время воспроизведения движение указателя показывает Pause и панель. Панель MP4/HLS содержит перемотку, громкость, скорость и fullscreen. YouTube/Rutube используют управление провайдера.
+
+`onPlay` вызывается один раз при первом фактическом воспроизведении каждого источника. `onError` сообщает об ошибке. Предпросмотр HLS использует необязательный соседний `player_sprite.vtt`.
+
+## Адаптивность
+
+Раскладка видео наследуется от `AdaptiveProvider`: диаметр центральной кнопки — 80 px на desktop, 64 px на tablet и 40 px на mobile. `SiteImage` не задаёт собственную раскладку.
+
+## Установка
+
+```bash
+pnpm add @ds/site-media
+```
+
+```tsx
+import { SiteImage, SiteVideo } from '@ds/site-media';
+```
+
+## Примеры использования
+
+```tsx
+<SiteImage src='/preview.webp' alt='Интерфейс сервиса' loading='lazy' />
+<SiteVideo video={{ src: '/presentation.mp4', poster: '/preview.webp' }} />
+```
+
+## Props
+
+<PropsTable data={mediaDoc.SiteVideo} />
+<PropsTable data={mediaDoc.SiteImage} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-media-sitevideo--playground' height={480} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-media')} />
+
+## Смотри также
+
+- [SectionMedia](/components/site-section/section-media/) — секция с заголовком и медиа.
+- [SiteImage](/components/site-media/site-image/) — изображение.
+- [SiteVideo](/components/site-media/site-video/) — видеоплеер.

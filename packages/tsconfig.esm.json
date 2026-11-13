@@ -374,6 +374,9 @@
     },
     {
       "path": "./ai-history-line/tsconfig.esm.json"
+    },
+    {
+      "path": "./site-media/tsconfig.esm.json"
     }
   ]
 }

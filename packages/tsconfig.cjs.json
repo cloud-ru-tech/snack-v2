@@ -369,6 +369,9 @@
     },
     {
       "path": "./ai-history-line/tsconfig.cjs.json"
+    },
+    {
+      "path": "./site-media/tsconfig.cjs.json"
     }
   ]
 }

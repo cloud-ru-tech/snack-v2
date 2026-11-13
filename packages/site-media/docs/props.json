@@ -1,0 +1,360 @@
+{
+  "EmbedPlayer": {
+    "displayName": "EmbedPlayer",
+    "propsTypeName": null,
+    "props": {
+      "onError": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onFirstPlay": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "source": {
+        "type": "EmbedSource",
+        "required": true
+      },
+      "video": {
+        "type": "VideoPlayerProps",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "NativePlayer": {
+    "displayName": "NativePlayer",
+    "propsTypeName": null,
+    "props": {
+      "onError": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "onFirstPlay": {
+        "type": "(() => void)",
+        "required": false
+      },
+      "video": {
+        "type": "VideoPlayerProps",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PlaybackControls": {
+    "displayName": "PlaybackControls",
+    "propsTypeName": null,
+    "props": {
+      "compact": {
+        "type": "boolean",
+        "required": true
+      },
+      "fullscreen": {
+        "type": "boolean",
+        "required": true
+      },
+      "onPlaybackError": {
+        "type": "(error: unknown) => void",
+        "required": true
+      },
+      "onToggleFullscreen": {
+        "type": "() => void",
+        "required": true
+      },
+      "onTogglePlay": {
+        "type": "() => void",
+        "required": true
+      },
+      "player": {
+        "type": "Player",
+        "required": true
+      },
+      "state": {
+        "type": "PlayerState",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "PlayerError": {
+    "displayName": "PlayerError",
+    "propsTypeName": null,
+    "props": {
+      "onRetry": {
+        "type": "(() => void)",
+        "required": false
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SiteImage": {
+    "displayName": "SiteImage",
+    "propsTypeName": "SiteImageProps",
+    "description": "Изображение с обязательными источником и альтернативным текстом.",
+    "props": {
+      "alt": {
+        "type": "string",
+        "required": true,
+        "description": "Альтернативный текст; пустая строка — для декоративного изображения."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "src": {
+        "type": "string",
+        "required": true,
+        "description": "URL изображения."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "SiteVideo": {
+    "displayName": "SiteVideo",
+    "propsTypeName": "SiteVideoProps",
+    "description": "Воспроизводит MP4 и HLS со своей панелью управления, а YouTube и Rutube — во встроенном плеере провайдера.",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс обёртки плеера."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "onError": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Вызывается при ошибке загрузки или воспроизведения видео."
+      },
+      "onPlay": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Вызывается один раз при начале воспроизведения. При смене src может вызваться снова."
+      },
+      "video": {
+        "type": "ReactNode | VideoPlayerProps",
+        "required": true,
+        "description": "Параметры видео (src, обложка, управление) или React-элемент собственного плеера.",
+        "typeRefs": [
+          "VideoPlayerProps"
+        ]
+      }
+    },
+    "relatedTypes": {
+      "VideoPlayerProps": {
+        "kind": "interface",
+        "props": {
+          "autoPlay": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Автоматический запуск без звука, если разрешён браузером."
+          },
+          "controls": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показать управление и кнопку Play. По умолчанию `true`."
+          },
+          "loop": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Повторять видео."
+          },
+          "muted": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Отключить звук."
+          },
+          "poster": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Обложка перед началом воспроизведения."
+          },
+          "src": {
+            "type": "string",
+            "required": true,
+            "description": "URL файла MP4, плейлиста HLS, ролика YouTube или Rutube."
+          }
+        },
+        "own": true
+      }
+    }
+  },
+  "SpeedSelect": {
+    "displayName": "SpeedSelect",
+    "propsTypeName": null,
+    "props": {
+      "player": {
+        "type": "Player",
+        "required": true
+      },
+      "rate": {
+        "type": "number",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Timeline": {
+    "displayName": "Timeline",
+    "propsTypeName": null,
+    "props": {
+      "frames": {
+        "type": "SpriteFrame[]",
+        "required": true
+      },
+      "player": {
+        "type": "Player",
+        "required": true
+      },
+      "state": {
+        "type": "PlayerState",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "TimelinePreview": {
+    "displayName": "TimelinePreview",
+    "propsTypeName": null,
+    "props": {
+      "frame": {
+        "type": "SpriteFrame",
+        "required": false
+      },
+      "position": {
+        "type": "TimelinePosition",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "Toolbar": {
+    "displayName": "Toolbar",
+    "propsTypeName": null,
+    "props": {
+      "frames": {
+        "type": "SpriteFrame[]",
+        "required": true
+      },
+      "fullscreen": {
+        "type": "boolean",
+        "required": true
+      },
+      "onPlaybackError": {
+        "type": "(error: unknown) => void",
+        "required": true
+      },
+      "onToggleFullscreen": {
+        "type": "() => void",
+        "required": true
+      },
+      "onTogglePlay": {
+        "type": "() => void",
+        "required": true
+      },
+      "player": {
+        "type": "Player",
+        "required": true
+      },
+      "state": {
+        "type": "PlayerState",
+        "required": true
+      },
+      "visible": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "ToolbarButton": {
+    "displayName": "ToolbarButton",
+    "propsTypeName": null,
+    "props": {
+      "appearance": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "critical",
+          "neutral",
+          "primary"
+        ],
+        "defaultValue": "neutral"
+      },
+      "icon": {
+        "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+        "required": true
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": true
+      },
+      "showTooltip": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "testId": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  },
+  "VideoContent": {
+    "displayName": "VideoContent",
+    "propsTypeName": null,
+    "props": {
+      "onError": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Вызывается при ошибке загрузки или воспроизведения видео."
+      },
+      "onPlay": {
+        "type": "(() => void)",
+        "required": false,
+        "description": "Вызывается один раз при начале воспроизведения. При смене src может вызваться снова."
+      },
+      "video": {
+        "type": "ReactNode | VideoPlayerProps",
+        "required": true,
+        "description": "Параметры видео (src, обложка, управление) или React-элемент собственного плеера."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "VideoPlayButton": {
+    "displayName": "VideoPlayButton",
+    "propsTypeName": null,
+    "props": {
+      "compact": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      "onClick": {
+        "type": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+        "required": true
+      },
+      "onKeyDown": {
+        "type": "((event: KeyboardEvent<HTMLButtonElement>) => void)",
+        "required": false
+      },
+      "playing": {
+        "type": "boolean",
+        "required": true
+      },
+      "visible": {
+        "type": "boolean",
+        "required": true
+      }
+    },
+    "relatedTypes": {}
+  }
+}

@@ -5,28 +5,28 @@ description: Базовая секция сайта — заголовок, вк
 order: 0
 ---
 
-import { TitleAndContent } from '../demos/examples/TitleAndContent'
-import TitleAndContentSrc from '../demos/examples/TitleAndContent.tsx?raw'
-import { TabsAndFilters } from '../demos/examples/TabsAndFilters'
-import TabsAndFiltersSrc from '../demos/examples/TabsAndFilters.tsx?raw'
-import { ControlledTabs } from '../demos/examples/ControlledTabs'
-import ControlledTabsSrc from '../demos/examples/ControlledTabs.tsx?raw'
-import { Footer } from '../demos/examples/Footer'
-import FooterSrc from '../demos/examples/Footer.tsx?raw'
-import { ContainerTheme } from '../demos/examples/ContainerTheme'
-import ContainerThemeSrc from '../demos/examples/ContainerTheme.tsx?raw'
-import { AccentContainer } from '../demos/examples/AccentContainer'
-import AccentContainerSrc from '../demos/examples/AccentContainer.tsx?raw'
-import { BackgroundFill } from '../demos/examples/BackgroundFill'
-import BackgroundFillSrc from '../demos/examples/BackgroundFill.tsx?raw'
-import { OldContainer } from '../demos/examples/OldContainer'
-import OldContainerSrc from '../demos/examples/OldContainer.tsx?raw'
-import { Example } from '#docs/components/Example'
-import { PropsTable } from '#docs/components/PropsTable'
-import { StorybookEmbed } from '#docs/components/StorybookEmbed'
-import { FigmaEmbed } from '#docs/components/FigmaEmbed'
-import { figmaNode } from '#docs/lib/figma'
-import siteSectionDoc from './props.json'
+import { TitleAndContent } from '../demos/examples/TitleAndContent';
+import TitleAndContentSrc from '../demos/examples/TitleAndContent.tsx?raw';
+import { TabsAndFilters } from '../demos/examples/TabsAndFilters';
+import TabsAndFiltersSrc from '../demos/examples/TabsAndFilters.tsx?raw';
+import { ControlledTabs } from '../demos/examples/ControlledTabs';
+import ControlledTabsSrc from '../demos/examples/ControlledTabs.tsx?raw';
+import { Footer } from '../demos/examples/Footer';
+import FooterSrc from '../demos/examples/Footer.tsx?raw';
+import { ContainerTheme } from '../demos/examples/ContainerTheme';
+import ContainerThemeSrc from '../demos/examples/ContainerTheme.tsx?raw';
+import { AccentContainer } from '../demos/examples/AccentContainer';
+import AccentContainerSrc from '../demos/examples/AccentContainer.tsx?raw';
+import { BackgroundFill } from '../demos/examples/BackgroundFill';
+import BackgroundFillSrc from '../demos/examples/BackgroundFill.tsx?raw';
+import { OldContainer } from '../demos/examples/OldContainer';
+import OldContainerSrc from '../demos/examples/OldContainer.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import siteSectionDoc from './props.json';
 
 # SectionBasic
 
@@ -102,11 +102,11 @@ import siteSectionDoc from './props.json'
 
 Отступы по раскладке и `container` (внешние — вокруг блока, внутренние — внутри блока, по вертикали / по горизонтали):
 
-| Раскладка | `new`: внешние / внутренние | `old`: внешние / внутренние | Шаг между блоками |
-|---|---|---|---|
-| `desktop`, `desktopSmall` | 24 / 16 и 48 / 32 | 0 / 16 и 56 / 96 | 40 |
-| `tablet` | 16 / 8 и 24 / 16 | 0 / 16 и 40 / 24 | 32 |
-| `mobile` | 16 / 0 и 24 / 16 | 0 / 0 и 32 / 16 | 24 |
+| Раскладка                 | `new`: внешние / внутренние | `old`: внешние / внутренние | Шаг между блоками |
+| ------------------------- | --------------------------- | --------------------------- | ----------------- |
+| `desktop`, `desktopSmall` | 24 / 16 и 48 / 32           | 0 / 16 и 56 / 96            | 40                |
+| `tablet`                  | 16 / 8 и 24 / 16            | 0 / 16 и 40 / 24            | 32                |
+| `mobile`                  | 16 / 0 и 24 / 16            | 0 / 0 и 32 / 16             | 24                |
 
 Вкладки на desktop — размер `l`, на tablet и mobile — `m`. Типографика заголовка — в документации `@ds/site-section-title`.
 
@@ -119,7 +119,7 @@ pnpm add @ds/site-section
 ```
 
 ```ts
-import { SectionBasic } from '@ds/site-section'
+import { SectionBasic } from '@ds/site-section';
 ```
 
 ## Примеры использования
@@ -140,7 +140,11 @@ import { SectionBasic } from '@ds/site-section'
   <Footer client:visible />
 </Example>
 
-<Example title='Тёмный блок на светлом фоне' description='background.theme и containerBackground.theme' code={ContainerThemeSrc}>
+<Example
+  title='Тёмный блок на светлом фоне'
+  description='background.theme и containerBackground.theme'
+  code={ContainerThemeSrc}
+>
   <ContainerTheme client:visible />
 </Example>
 
@@ -167,3 +171,7 @@ import { SectionBasic } from '@ds/site-section'
 ## Figma
 
 <FigmaEmbed node={figmaNode('site-section')} />
+
+## Смотри также
+
+- [SectionMedia](/components/site-section/section-media/) — секция с изображением или видео.

@@ -75,7 +75,7 @@ pnpm add @ds/site-section
 ```
 
 ```ts
-import { SectionBasic } from '@ds/site-section'
+import { SectionBasic } from '@ds/site-section';
 ```
 
 ## Примеры использования
@@ -326,17 +326,20 @@ export function OldContainer() {
 | `label` | `string \| undefined` | — | Текст кнопки. По умолчанию — «Показать еще» из локали пакета. |
 | `onClick` | `((event: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика. |
 
+## Смотри также
+
+- **SectionMedia** — секция с изображением или видео.
 ## Адаптивность
 
 Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`), пропа `layoutType` нет.
 
 Отступы по раскладке и `container` (внешние — вокруг блока, внутренние — внутри блока, по вертикали / по горизонтали):
 
-| Раскладка | `new`: внешние / внутренние | `old`: внешние / внутренние | Шаг между блоками |
-|---|---|---|---|
-| `desktop`, `desktopSmall` | 24 / 16 и 48 / 32 | 0 / 16 и 56 / 96 | 40 |
-| `tablet` | 16 / 8 и 24 / 16 | 0 / 16 и 40 / 24 | 32 |
-| `mobile` | 16 / 0 и 24 / 16 | 0 / 0 и 32 / 16 | 24 |
+| Раскладка                 | `new`: внешние / внутренние | `old`: внешние / внутренние | Шаг между блоками |
+| ------------------------- | --------------------------- | --------------------------- | ----------------- |
+| `desktop`, `desktopSmall` | 24 / 16 и 48 / 32           | 0 / 16 и 56 / 96            | 40                |
+| `tablet`                  | 16 / 8 и 24 / 16            | 0 / 16 и 40 / 24            | 32                |
+| `mobile`                  | 16 / 0 и 24 / 16            | 0 / 0 и 32 / 16             | 24                |
 
 Вкладки на desktop — размер `l`, на tablet и mobile — `m`. Типографика заголовка — в документации `@ds/site-section-title`.
 
@@ -371,3 +374,89 @@ export function OldContainer() {
 | `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
 | `onClick` | `(() => void) \| undefined` | — |  |
 | `title` | `string` | — |  |
+
+## SectionMedia
+
+Секция сайта с заголовком и изображением или встроенным видео.
+
+Композиция `SectionBasic` и `SiteImage` или `SiteVideo` из `@ds/site-media`. Поддерживает все настройки `SectionBasic`, включая вкладки, фильтры, пагинацию и кнопку «Показать еще». Содержимое задаётся через `media` вместо `children`.
+
+### Когда использовать
+
+Для самостоятельного раздела сайта с одним медиаобъектом.
+
+### Анатомия
+
+#### Media.type
+
+- `image` — `src`, обязательный `alt`, опциональный `loading`.
+- `video` — `src`, опциональная обложка `poster` и параметры проигрывания.
+
+#### Container (обязательный)
+
+- `new` — целевая геометрия макета.
+- `old` — совместимость с прежними секциями.
+
+### Примеры использования
+
+```tsx
+<SectionMedia
+  container='new'
+  title='Видеопрезентация'
+  media={{ type: 'video', src: '/presentation.mp4', poster: '/presentation.webp' }}
+/>
+```
+
+### Props
+
+**SectionMediaProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `background` | `SectionBackground` | — | Внешний слой фона во всю ширину экрана (Figma `sectionBackground`): тема и заливка. |
+| `className` | `string` | — | CSS-класс корня. |
+| `container` | `"new"` \| `"old"` | — | Ширина и отступы секции: `new` — целевой вид, `old` — совместимость со страницами до редизайна. <br/> Временная настройка на период редизайна, задаётся явно. |
+| `containerBackground` | `SectionContainerBackground` | — | Блок по ширине `container` (Figma `contentWrapper` + `bgLocal`): тема блока и всего содержимого и заливка — <br/> подложка, картинка или акцентный цвет. Тема не задана — тема внешнего слоя. |
+| `data-test-id` | `string` | — |  |
+| `defaultTabBarValue` | `string` | — | Изначально выбранная вкладка (uncontrolled). |
+| `description` | `string` | — | Описание. Строка может содержать HTML-разметку. |
+| `filterItems` | `CustomOptionProps` \| `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `FieldSelectProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Поля-фильтры под вкладками. Рендерятся как `FieldSelect` размера `l`. |
+| `id` | `string` | — | HTML-атрибут `id` секции — якорь для навигации по странице. |
+| `media` | `SectionMediaContent` \| `VideoPlayerProps` | — | Изображение или видео. Медиа занимает ширину содержимого секции с пропорцией 16:9. |
+| `moreButton` | `SectionMoreButton` | — | Кнопка «Показать еще» в футере. |
+| `onError` | `(() => void)` | — | Вызывается при ошибке загрузки или воспроизведения видео. |
+| `onPlay` | `(() => void)` | — | Вызывается один раз при начале воспроизведения. При смене src может вызваться снова. |
+| `onTabBarChange` | `((value: string) => void)` | — | Колбэк выбора вкладки: значение `value` выбранного элемента `tabBarItems`. |
+| `pagination` | `PaginationProps` | — | Пагинация в футере. |
+| `tabBarItems` | `TabsSegmentedItem` | — | Вкладки под заголовком. Без `tabBarValue` / `defaultTabBarValue` изначально выбрана первая доступная. |
+| `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
+| `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
+| `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
+
+##### Related types
+
+**SectionBackground**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `fill` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Заливка. По умолчанию `neutralBackground`. |
+| `theme` | `ThemeAppearance` | — | Тема слоя. Не задана — тема страницы. |
+
+- `SectionContainer` = `"new"` \| `"old"`
+
+- `SectionContainerBackground` = `SectionContainerFill & { theme?: Partial<ThemeAppearance>; }`
+
+- `SectionMediaContent` = `(Pick<SiteImageProps, "loading" | "src" | "alt"> & { type: typeof MEDIA_TYPE.Image; }) | (VideoPlayerProps & { type: typeof MEDIA_TYPE.Video; })`
+
+**SectionMoreButton**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string \| undefined` | — | Тестовый id кнопки. По умолчанию — `TEST_IDS.moreButton`. |
+| `href` | `string \| undefined` | — | Ссылка. Если задана, кнопка рендерится как `<a>`. |
+| `label` | `string \| undefined` | — | Текст кнопки. По умолчанию — «Показать еще» из локали пакета. |
+| `onClick` | `((event: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика. |
+
+### Адаптивность
+
+Три раскладки наследуются от `AdaptiveProvider`. Отступы и типографику предоставляет `SectionBasic`; медиа остаётся 16:9. Форс раскладки задаётся контекстом с согласованной платформой темы. На tablet сохранена типографика `SectionTitle` из репозитория (32/40 px): итоговая секция на 4 px выше макета.

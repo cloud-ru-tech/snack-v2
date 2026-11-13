@@ -1,0 +1,41 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+
+  &:fullscreen {
+    border-radius: 0;
+    background: base.$sn-theme-color-neutral-background;
+  }
+}
+
+.mount {
+  position: absolute;
+  inset: 0;
+
+  > .player {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.media,
+.poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.media {
+  object-fit: contain;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}

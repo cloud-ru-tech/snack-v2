@@ -1,0 +1,9 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.root {
+  flex-shrink: 0;
+}
+
+.menu {
+  min-width: base.$sn-primitive-dimension-128;
+}
