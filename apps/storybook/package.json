@@ -132,9 +132,9 @@
     "shiki": "catalog:"
   },
   "devDependencies": {
-    "@storybook/addon-vitest": "10.5.5",
-    "@storybook/react": "10.5.5",
-    "@storybook/react-vite": "10.5.5",
+    "@storybook/addon-vitest": "10.6.2",
+    "@storybook/react": "10.6.2",
+    "@storybook/react-vite": "10.6.2",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitest/browser": "catalog:",
@@ -145,7 +145,7 @@
     "react-dom": "catalog:",
     "sass": "catalog:",
     "sass-embedded": "catalog:",
-    "storybook": "10.5.5",
+    "storybook": "10.6.2",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
