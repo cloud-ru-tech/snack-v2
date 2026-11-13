@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.15 (2026-11-13)
+
+### Bug Fixes
+
+- **FF-9422:** make resize work in Safari ([b791878](https://github.com/cloud-ru-tech/snack-v2/commit/b791878ea32b5c1ec8efccebfef874e2debe467d))
+
 ## 3.0.14 (2026-11-13)
 
 **Note:** Version bump only for package @ds/fields
