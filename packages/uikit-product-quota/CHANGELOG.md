@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2026-11-13)
+
+### Bug Fixes
+
+- **FF-8824:** update quota project header ([d1fcb7b](https://github.com/cloud-ru-tech/snack-v2/commit/d1fcb7b0fa17251c1272daeadbe844aefd8a41bc))
+
 ## 2.1.1 (2026-11-12)
 
 **Note:** Version bump only for package @ds/uikit-product-quota

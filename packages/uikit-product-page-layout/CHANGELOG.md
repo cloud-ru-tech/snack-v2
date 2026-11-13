@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.1 (2026-11-13)
+
+### Bug Fixes
+
+- **FF-8824:** open mobile quotas from overflow menu ([f569cfd](https://github.com/cloud-ru-tech/snack-v2/commit/f569cfd07fc5849c66c8881620c5232b87c9db2b))
+- **FF-9395:** fix min-height for proper mobile view ([52d9ff2](https://github.com/cloud-ru-tech/snack-v2/commit/52d9ff254a983dc8a81fbadd46d8049bc123676d))
+
 # 2.3.0 (2026-11-12)
 
 ### Bug Fixes
