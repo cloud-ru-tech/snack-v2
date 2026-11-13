@@ -118,7 +118,7 @@
     "postcss-discard-comments": "8.0.1",
     "postcss-scss": "4.0.9",
     "prettier": "3.9.6",
-    "qs": "6.15.3",
+    "qs": "6.16.1",
     "react": "catalog:",
     "react-docgen-typescript": "2.4.0",
     "react-dom": "catalog:",
