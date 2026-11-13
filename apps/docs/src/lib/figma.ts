@@ -358,7 +358,10 @@ export const FIGMA_NODES = {
     'tree-navigation': { ...PRODUCT, nodeId: '4302:20315' }, // pageLayoutTreeNavigation
   },
   'site-card-vacancy': { ...HR_PORTAL, nodeId: '766-17256' }, // site-card-vacancy → cardVacancy
-  'site-section': { ...SITE, nodeId: '229-10362' }, // sectionBasic
+  'site-section': {
+    _: { ...SITE, nodeId: '229-10362' }, // sectionBasic
+    'section-accordion': { ...SITE, fileKey: 'MvHKasIHFlsoJywtl4ncLE', nodeId: '2473-656' },
+  },
   'site-section-title': { ...SITE, nodeId: '2874-3271' }, // sectionTitle
   'site-tabs-segmented': { ...SITE, nodeId: '4625-6531' }, // tabsSegmentedV2
   'uikit-product-notification': {

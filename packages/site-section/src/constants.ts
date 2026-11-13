@@ -40,4 +40,5 @@ export const TEST_IDS = {
   footer: `${PREFIX}__footer`,
   pagination: `${PREFIX}__pagination`,
   moreButton: `${PREFIX}__more-button`,
+  item: 'section-accordion__item',
 } as const;

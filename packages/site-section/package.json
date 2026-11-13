@@ -39,15 +39,18 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/accordion": "workspace:^",
     "@ds/adaptive": "workspace:^",
     "@ds/button": "workspace:^",
     "@ds/fields": "workspace:^",
     "@ds/locale": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/pagination": "workspace:^",
+    "@ds/site-rich-text": "workspace:^",
     "@ds/site-section-title": "workspace:^",
     "@ds/site-tabs-segmented": "workspace:^",
     "@ds/theme": "workspace:^",
+    "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

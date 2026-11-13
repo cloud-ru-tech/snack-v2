@@ -26,5 +26,5 @@ theme-controls/
 
 - **Тулбар**: селекты темы, бренда, плотности и языка в хедере canvas; иконки из `src/config/svgPaths.ts`, цвет бренда из `src/config/brandColors.ts`.
 - **Preview**: декоратор читает `context.globals` и передаёт значения в `StoryWrapper`.
-- **Платформа**: отдельного селекта нет — декоратор в `preview.tsx` передаёт в `RootThemeProvider` платформу, согласованную с глобалом `layoutType` (переключатель Layout): `webMobile` только для Mobile.
+- **Платформа**: отдельного селекта нет — декоратор в `preview.tsx` передаёт в `RootThemeProvider` платформу, согласованную с глобалом `layoutType` (переключатель Layout): Mobile и Tablet → `webMobile`, Desktop → `webDesktop`.
 - **Синхронизация с документацией**: iframe слушает `postMessage({ type: 'theme-sync', ... })` и шлёт в channel; manager обновляет глобалы.

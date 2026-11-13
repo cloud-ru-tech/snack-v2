@@ -2,7 +2,7 @@ import '@ds/figma-variables/build/css/tokens.css';
 
 import './global.scss';
 
-import { AdaptiveProvider, isMobileLayout, LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
+import { AdaptiveProvider, LAYOUT_TYPE, LayoutType } from '@ds/adaptive';
 import { LocaleProvider } from '@ds/locale';
 import { PortalContextProvider } from '@ds/portal-context';
 import { PLATFORM, RootThemeProvider } from '@ds/theme';
@@ -27,12 +27,14 @@ const preview: Preview = {
   },
   globalTypes: {
     layoutType: {
-      description: 'Адаптивная раскладка (AdaptiveProvider) и платформа темы: Mobile → webMobile',
+      description:
+        'Адаптивная раскладка (AdaptiveProvider). Платформа темы: Mobile и Tablet → webMobile, Desktop → webDesktop',
       toolbar: {
         title: 'Layout',
         icon: 'mobile',
         items: [
           { value: LAYOUT_TYPE.Desktop, title: 'Desktop', icon: 'browser' },
+          { value: LAYOUT_TYPE.Tablet, title: 'Tablet', icon: 'tablet' },
           { value: LAYOUT_TYPE.Mobile, title: 'Mobile', icon: 'mobile' },
         ],
         dynamicTitle: true,
@@ -59,8 +61,11 @@ const preview: Preview = {
       const brandColor = (g[GLOBAL_KEYS.BRAND_COLOR] as string) || undefined;
       // Раскладка — глобал тулбара; форс для поддерева — `LayoutScope` из `#storybook/components`.
       const layoutType = (g.layoutType as LayoutType) ?? LAYOUT_TYPE.Desktop;
-      // Тема не читает раскладку сама — согласованную платформу передаём явно: webMobile только для mobile.
-      const platform = isMobileLayout(layoutType) ? PLATFORM.WebMobile : PLATFORM.WebDesktop;
+      // Тема не читает раскладку сама — согласованную платформу передаём явно.
+      const platform =
+        layoutType === LAYOUT_TYPE.Tablet || layoutType === LAYOUT_TYPE.Mobile
+          ? PLATFORM.WebMobile
+          : PLATFORM.WebDesktop;
 
       return (
         <AdaptiveProvider layoutType={layoutType}>

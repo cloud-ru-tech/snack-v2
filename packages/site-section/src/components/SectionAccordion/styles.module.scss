@@ -1,0 +1,16 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+// В макете sectionAccordion между accordionPrimary зазор 2 px.
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-2;
+}
+
+// Свой заголовок в слоте afterTitle, без TruncateString
+.itemTitle {
+  min-width: 0;
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: break-word;
+  white-space: normal;
+}

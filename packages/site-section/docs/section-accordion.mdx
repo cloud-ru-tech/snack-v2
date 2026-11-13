@@ -1,0 +1,31 @@
+---
+title: SectionAccordion
+package: '@ds/site-section'
+description: Секция сайта с аккордеоном. Пункт — заголовок и описание, по умолчанию можно открыть несколько.
+order: 1
+---
+
+import { SectionAccordionDemo } from '../demos/SectionAccordionDemo'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import siteSectionDoc from './props.json'
+
+# SectionAccordion
+
+Секция с вопросами и ответами. Ширина и фон как у `SectionBasic` с `container="new"`. Пункт — `title` и `description`: строка описания это HTML из CMS, компонент рисует её через `RichText`. По умолчанию открыто может быть несколько пунктов. Изначально открытые задаются `expandedDefault` — тем же значением, что `id` пункта: `accordion-item-${title}-${index}`.
+
+## Props
+
+<PropsTable data={siteSectionDoc.SectionAccordion} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-sectionaccordion--playground' height={640} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-section', 'section-accordion')} />
+
+<SectionAccordionDemo client:visible />

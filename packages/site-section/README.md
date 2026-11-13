@@ -339,3 +339,35 @@ export function OldContainer() {
 | `mobile` | 16 / 0 и 24 / 16 | 0 / 0 и 32 / 16 | 24 |
 
 Вкладки на desktop — размер `l`, на tablet и mobile — `m`. Типографика заголовка — в документации `@ds/site-section-title`.
+
+## SectionAccordion
+
+Секция сайта с аккордеоном. Пункт — заголовок и описание, по умолчанию можно открыть несколько.
+
+Секция с вопросами и ответами. Ширина и фон как у `SectionBasic` с `container="new"`. Пункт — `title` и `description`: строка описания это HTML из CMS, компонент рисует её через `RichText`. По умолчанию открыто может быть несколько пунктов. Изначально открытые задаются `expandedDefault` — тем же значением, что `id` пункта: `accordion-item-${title}-${index}`.
+
+### Props
+
+**SectionAccordionProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | CSS-класс корня. |
+| `data-test-id` | `string` | — |  |
+| `description` | `string` | — | Описание секции под заголовком. |
+| `expandedDefault` | `string \| string[]` | — |  |
+| `id` | `string` | — | HTML-атрибут `id` секции — якорь для навигации по странице. |
+| `items` | `SectionAccordionItem` | — | Пункты аккордеона. |
+| `onExpandedChange` | `((value: string[]) => void) \| ((value: string) => void) \| undefined` | — |  |
+| `selectionMode` | `"multiple"` \| `"single"` | `multiple` |  |
+| `title` | `string` | — | Заголовок секции. |
+
+##### Related types
+
+**SectionAccordionItem**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `description` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — |  |
+| `onClick` | `(() => void) \| undefined` | — |  |
+| `title` | `string` | — |  |

@@ -43,6 +43,81 @@
     },
     "relatedTypes": {}
   },
+  "SectionAccordion": {
+    "displayName": "SectionAccordion",
+    "propsTypeName": "SectionAccordionProps",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "CSS-класс корня."
+      },
+      "data-test-id": {
+        "type": "string",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "required": false,
+        "description": "Описание секции под заголовком."
+      },
+      "expandedDefault": {
+        "type": "string | string[]",
+        "required": false
+      },
+      "id": {
+        "type": "string",
+        "required": false,
+        "description": "HTML-атрибут `id` секции — якорь для навигации по странице."
+      },
+      "items": {
+        "type": "SectionAccordionItem[]",
+        "required": true,
+        "description": "Пункты аккордеона.",
+        "typeRefs": [
+          "SectionAccordionItem"
+        ]
+      },
+      "onExpandedChange": {
+        "type": "((value: string[]) => void) | ((value: string) => void) | undefined",
+        "required": false
+      },
+      "selectionMode": {
+        "type": "enum",
+        "required": false,
+        "values": [
+          "multiple",
+          "single"
+        ],
+        "defaultValue": "multiple"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Заголовок секции."
+      }
+    },
+    "relatedTypes": {
+      "SectionAccordionItem": {
+        "kind": "interface",
+        "props": {
+          "description": {
+            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+            "required": true
+          },
+          "onClick": {
+            "type": "(() => void) | undefined",
+            "required": false
+          },
+          "title": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "own": true
+      }
+    }
+  },
   "SectionBasic": {
     "displayName": "SectionBasic",
     "propsTypeName": "SectionBasicProps",
