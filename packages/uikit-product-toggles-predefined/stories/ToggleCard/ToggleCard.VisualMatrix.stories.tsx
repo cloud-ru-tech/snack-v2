@@ -1,9 +1,10 @@
+import { LAYOUT_TYPE } from '@ds/adaptive';
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { SIZE, ToggleCard, ToggleCardProps, ToggleGroup } from '@ds/uikit-product-toggles-predefined';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactNode } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -40,6 +41,7 @@ const checkedColumns = [false, true] as const;
 
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
+  globals: { density: 'compact' },
   parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
@@ -121,6 +123,21 @@ export const VisualMatrix: Story = {
                 promoBadge='−20%'
                 value='promoBadge'
               />,
+            ],
+          },
+          {
+            variantLabel: 'Layout',
+            cells: [
+              <div key='layout' className={styles.column}>
+                <span>Desktop</span>
+                <LayoutScope layoutType={LAYOUT_TYPE.Desktop}>
+                  <Cell {...baseProps} value='desktop' />
+                </LayoutScope>
+                <span>Mobile</span>
+                <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
+                  <Cell {...baseProps} value='mobile' />
+                </LayoutScope>
+              </div>,
             ],
           },
         ]}

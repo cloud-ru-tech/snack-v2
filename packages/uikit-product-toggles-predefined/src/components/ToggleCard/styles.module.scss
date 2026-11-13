@@ -4,11 +4,8 @@
  * `.content` соответствует Figma-слою `wrapper`. `@ds/card` content-слот padding
  * не задаёт — он целиком на этом пакете.
  *
- * Ось `size` (как в продуктовом ките) масштабирует анатомию карточки целиком:
- *   size | padding | gap | title       | description
- *   s    | 8       | 4   | title/s     | body/m
- *   m    | 16      | 8   | title/m     | body/m
- *   l    | 24      | 16  | title/l     | body/l
+ * Для размера m в макете заданы фиксированные отступы: 16 px внутри карточки
+ * и 8 px между эмблемой и текстом.
  */
 @use 'sass:map';
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
@@ -17,12 +14,12 @@
 
 $paddings: (
   's': base.$sn-density-spacing-interval-s,
-  'm': base.$sn-density-spacing-interval-m,
+  'm': base.$sn-primitive-dimension-16,
   'l': base.$sn-density-spacing-interval-l,
 );
 $gaps: (
   's': base.$sn-density-spacing-interval-xs,
-  'm': base.$sn-density-spacing-interval-s,
+  'm': base.$sn-primitive-dimension-8,
   'l': base.$sn-density-spacing-interval-m,
 );
 $title-typography: (
