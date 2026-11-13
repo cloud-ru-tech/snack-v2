@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.38 (2026-11-13)
+
+### Bug Fixes
+
+- **FF-9395:** toggle paddings updated ([555085f](https://github.com/cloud-ru-tech/snack-v2/commit/555085f6a3ef08254a96476d5977218142edcdfb))
+
 ## 1.0.37 (2026-11-12)
 
 **Note:** Version bump only for package @ds/uikit-product-toggles-predefined

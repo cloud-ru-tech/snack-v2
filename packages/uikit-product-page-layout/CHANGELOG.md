@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.2 (2026-11-13)
+
+### Bug Fixes
+
+- **FF-9395:** page form should hug content vertically ([697d915](https://github.com/cloud-ru-tech/snack-v2/commit/697d9154a6fb1876d1337860b1c451d9529e8ba0))
+
 ## 2.3.1 (2026-11-13)
 
 ### Bug Fixes
