@@ -2,7 +2,7 @@ import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { PopupCloseButton } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
-import { extractSupportProps, useModalOpenState } from '@ds/utils';
+import { extractSupportProps, useModalOpenState, useOverlayStack } from '@ds/utils';
 import RcDrawerImport, { DrawerProps as RcDrawerBaseProps } from '@rc-component/drawer';
 import cn from 'classnames';
 import { ComponentType, CSSProperties, useMemo } from 'react';
@@ -76,12 +76,10 @@ function DrawerFrame(props: DrawerCustomProps) {
     };
   }, [heightAutoVertical]);
 
-  // Esc обрабатывает rc-drawer (`keyboard={showBlackout}`) — он уважает стек порталов и закрывает
-  // только верхний дровер. `CloseWatcher` подключаем лишь там, где rc-drawer Esc не слушает
-  // (`showBlackout=false`): иначе два независимых обработчика закрывают и вложенный, и родительский.
-  useModalOpenState(open, onClose, { closeOnPopstate, closeByCloseWatcher: !showBlackout });
+  useModalOpenState(open, onClose, { closeOnPopstate, closeByCloseWatcher: false });
 
-  const focusTrapRef = useDrawerFocusTrap(Boolean(open));
+  const isTopOverlay = useOverlayStack(open, onClose);
+  const focusTrapRef = useDrawerFocusTrap(Boolean(open), isTopOverlay);
   const outerScrollLock = useOuterScrollLock(Boolean(open));
 
   // Без явного container портал идёт через PortalContextProvider (как у Modal): скоуп к локальному
@@ -98,7 +96,9 @@ function DrawerFrame(props: DrawerCustomProps) {
       panelRef={checkElement}
       mask={showBlackout}
       maskClosable={showBlackout}
-      keyboard={showBlackout}
+      keyboard={false}
+      focusTrap={false}
+      focusTriggerAfterClose={false}
       data-showblackout={showBlackout}
       open={open}
       onClose={onClose}

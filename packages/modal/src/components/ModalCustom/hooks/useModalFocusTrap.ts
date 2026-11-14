@@ -3,10 +3,10 @@ import { useEffect, useRef } from 'react';
 import { tabbable } from 'tabbable';
 
 /**
- * Focus scope: фокус при открытии только на контейнере диалога (без прыжка на кнопки — удобно при открытии мышью);
- * Tab / Shift+Tab циклически ходят по tabbable внутри; возврат фокуса после закрытия.
+ * Focus scope: при открытии сохраняет фокус на поле с autoFocus или переводит его на контейнер диалога.
+ * Tab / Shift+Tab циклически ходят по tabbable внутри.
  */
-export function useModalFocusTrap(active: boolean) {
+export function useModalFocusTrap(active: boolean, isTopOverlay: () => boolean) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -14,26 +14,11 @@ export function useModalFocusTrap(active: boolean) {
       return;
     }
 
-    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const container = containerRef.current;
-
-    if (!container) {
-      return;
+    if (container && isTopOverlay() && !container.contains(document.activeElement)) {
+      container.focus({ preventScroll: true });
     }
-
-    container.focus({ preventScroll: true });
-
-    return () => {
-      if (
-        previous &&
-        previous !== document.body &&
-        previous !== document.documentElement &&
-        document.documentElement.contains(previous)
-      ) {
-        previous.focus({ preventScroll: true });
-      }
-    };
-  }, [active]);
+  }, [active, isTopOverlay]);
 
   useEffect(() => {
     if (!active) {
@@ -41,7 +26,7 @@ export function useModalFocusTrap(active: boolean) {
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== 'Tab') {
+      if (event.key !== 'Tab' || event.defaultPrevented || !isTopOverlay()) {
         return;
       }
 
@@ -50,51 +35,18 @@ export function useModalFocusTrap(active: boolean) {
         return;
       }
 
-      const activeElement = document.activeElement;
-      if (!(activeElement instanceof HTMLElement)) {
-        return;
-      }
-
-      const focusInsideDialog = activeElement === container || container.contains(activeElement);
-      if (!focusInsideDialog) {
-        return;
-      }
-
       const nodes = tabbable(container);
-      if (nodes.length === 0) {
-        event.preventDefault();
-        container.focus();
-        return;
-      }
+      const index = nodes.findIndex(node => node === document.activeElement);
+      const previousIndex = index <= 0 ? nodes.length - 1 : index - 1;
+      const nextNode = event.shiftKey ? nodes[previousIndex] : (nodes[index + 1] ?? nodes[0]);
 
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-
-      if (activeElement === container) {
-        event.preventDefault();
-        if (event.shiftKey) {
-          last?.focus();
-        } else {
-          first?.focus();
-        }
-        return;
-      }
-
-      if (event.shiftKey && activeElement === first) {
-        event.preventDefault();
-        last?.focus();
-        return;
-      }
-
-      if (!event.shiftKey && activeElement === last) {
-        event.preventDefault();
-        first?.focus();
-      }
+      event.preventDefault();
+      (nextNode ?? container).focus({ preventScroll: true });
     };
 
     document.addEventListener('keydown', handleKeyDown, true);
     return () => document.removeEventListener('keydown', handleKeyDown, true);
-  }, [active]);
+  }, [active, isTopOverlay]);
 
   return containerRef;
 }

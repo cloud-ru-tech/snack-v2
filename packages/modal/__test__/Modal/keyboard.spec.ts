@@ -15,11 +15,11 @@ test.describe('Modal — keyboard', () => {
     await expect(getByTestId(M.root)).not.toBeVisible();
   });
 
-  test('Escape returns focus to trigger button after open via click', async ({ gotoStory, page, getByTestId }) => {
+  test('Escape returns focus to the focused trigger', async ({ gotoStory, page, getByTestId }) => {
     await gotoStory(buildStoryOptions({ mode: MODE.Regular }));
 
     const trigger = getByTestId(MODAL_TRIGGER_TEST_ID);
-    await trigger.click();
+    await trigger.press('Enter');
     await expect(getByTestId(M.root)).toBeVisible();
 
     await page.keyboard.press('Escape');
@@ -60,7 +60,7 @@ test.describe('Modal — keyboard', () => {
     const closeBtn = getByTestId(M.closeButton);
     const dialog = getByTestId(M.root);
 
-    await toggle.click();
+    await toggle.press('Enter');
     await expect(dialog).toBeVisible();
     await expect(dialog).toBeFocused();
 

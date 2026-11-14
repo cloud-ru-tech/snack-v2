@@ -1,5 +1,6 @@
 import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { Drawer, POSITION, WIDTH } from '@ds/drawer';
+import { FieldTextArea } from '@ds/fields';
 import { Modal } from '@ds/modal';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -81,4 +82,33 @@ export const InModal: Story = {
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByTestId(IN_MODAL_IDS.modal.triggerOpen)).toBeVisible();
   },
+};
+
+function ModalOverDrawerScenario() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  return (
+    <>
+      <Button label='Open drawer' onClick={() => setDrawerOpen(true)} />
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        position={POSITION.Right}
+        title='Drawer'
+        content={<Button label='Open modal' onClick={() => setModalOpen(true)} />}
+      />
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title='Modal'
+        content={<FieldTextArea label='Feedback' autoFocus />}
+      />
+    </>
+  );
+}
+
+export const ModalOverDrawer: Story = {
+  tags: ['test'],
+  render: () => <ModalOverDrawerScenario />,
 };

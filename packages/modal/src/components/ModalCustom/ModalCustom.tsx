@@ -2,7 +2,7 @@ import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, BottomSheetCustomProps, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { PopupCloseButton } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
-import { extractSupportProps, isBrowser, useModalOpenState, WithSupportProps } from '@ds/utils';
+import { extractSupportProps, isBrowser, useModalOpenState, useOverlayStack, WithSupportProps } from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -82,26 +82,10 @@ function ModalFrame({
         close();
       }
     },
-    { closeOnPopstate },
+    { closeOnPopstate, closeByCloseWatcher: false },
   );
 
-  useEffect(() => {
-    if (!open || !isBrowser() || !isRegular) {
-      return;
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        close();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [close, isRegular, open]);
+  const isTopOverlay = useOverlayStack(open, isRegular ? close : undefined);
 
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   const portalContextRef = usePortalContext();
@@ -113,6 +97,8 @@ function ModalFrame({
     }
 
     if (!open) {
+      // При следующем открытии стек сохраняет внешний фокус до монтирования autoFocus-полей.
+      setPortalContainer(null);
       return;
     }
 
@@ -134,7 +120,7 @@ function ModalFrame({
   }, [open, container, portalContextRef]);
 
   const focusTrapActive = Boolean(open && portalContainer);
-  const dialogRef = useModalFocusTrap(focusTrapActive);
+  const dialogRef = useModalFocusTrap(focusTrapActive, isTopOverlay);
 
   if (!open || !portalContainer) {
     return null;

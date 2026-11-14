@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, CONTENT_WRAPPER_SELECTOR, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
+import { buildStoryOptions, CONTENT_WRAPPER_SELECTOR, DRAWER_STORIES, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
 
 test.describe('Drawer — keyboard', () => {
   test('closes on Escape', async ({ gotoStory, page, getByTestId }) => {
@@ -53,13 +53,48 @@ test.describe('Drawer — keyboard', () => {
     const trigger = getByTestId(TEST_IDS.drawer.triggerOpen);
     await trigger.focus();
     await expect(trigger).toBeFocused();
-    await trigger.click();
+    await trigger.press('Enter');
 
     await expect(getByTestId(TEST_IDS.header)).toBeVisible();
 
     await page.keyboard.press('Escape');
     await expect(getByTestId(TEST_IDS.header)).not.toBeVisible();
     await expect(trigger).toBeFocused();
+  });
+
+  test('modal above a drawer keeps field focus and closes first on Escape', async ({ gotoStory, page }) => {
+    await gotoStory(
+      buildStoryOptions(
+        undefined,
+        { ...DRAWER_STORIES.inModal, story: 'modal-over-drawer' },
+        { layoutType: 'desktop' },
+      ),
+    );
+
+    const drawerTrigger = page.getByRole('button', { name: 'Open drawer' });
+    const modalTrigger = page.getByRole('button', { name: 'Open modal' });
+    await drawerTrigger.press('Enter');
+    await modalTrigger.press('Enter');
+
+    const field = page.getByRole('textbox');
+    await expect(field).toBeFocused();
+    await page.keyboard.type('Feedback');
+    await expect(field).toHaveValue('Feedback');
+
+    await page.keyboard.press('Escape');
+    await expect(field).not.toBeVisible();
+    await expect(modalTrigger).toBeFocused();
+
+    // Повторное открытие использует тот же экземпляр Modal с уже созданным порталом.
+    await modalTrigger.press('Enter');
+    await expect(field).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(field).not.toBeVisible();
+    await expect(modalTrigger).toBeFocused();
+
+    await page.keyboard.press('Escape');
+    await expect(modalTrigger).not.toBeVisible();
+    await expect(drawerTrigger).toBeFocused();
   });
 
   test('Escape closes only child nested drawer, parent stays open', async ({ gotoStory, page, getByTestId }) => {
