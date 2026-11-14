@@ -16,6 +16,32 @@ test.describe('TruncateString — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toContainText('Custom text content');
   });
 
+  test('shows the tooltip when overflow rounds to the same integer width', async ({ gotoStory, getByTestId, page }) => {
+    const text = 'Fractional overflow';
+    await gotoStory(buildStoryOptions({ text }));
+    const label = getByTestId(TEST_IDS.root);
+
+    await page.evaluate(() => document.fonts.ready);
+    await label.evaluate(element => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      element.style.fontFamily = 'monospace';
+      element.style.fontSize = '16px';
+      const textWidth = range.getBoundingClientRect().width;
+      const delta = textWidth - Math.round(textWidth) + 0.49;
+      const container = element.parentElement;
+      if (container) {
+        container.style.fontFamily = 'monospace';
+        container.style.fontSize = '16px';
+        container.style.width = `${textWidth - Math.min(0.25, delta)}px`;
+      }
+    });
+    await expect.poll(() => label.evaluate(element => element.scrollWidth - element.clientWidth)).toBe(0);
+
+    await label.hover();
+    await expect(page.getByRole('tooltip')).toHaveText(text);
+  });
+
   test('props propagation across key variants', async ({ gotoStory, getByTestId }) => {
     for (const variant of KEY_VARIANTS) {
       await gotoStory(buildStoryOptions({ variant }));
