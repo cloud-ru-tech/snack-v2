@@ -168,14 +168,14 @@ $bottomPaddingHack: 'accordionPrimary', 'accordionSecondary';
   position: relative;
 
   display: grid;
-  grid-template-rows: 0fr;
+  grid-template-rows: minmax(0, 0fr);
 
   box-sizing: border-box;
 
   transition: grid-template-rows var(--sn-collapse-block-animation-duration, 300ms) ease-out;
 
   &[data-expanded] {
-    grid-template-rows: 1fr;
+    grid-template-rows: minmax(0, 1fr);
   }
 }
 

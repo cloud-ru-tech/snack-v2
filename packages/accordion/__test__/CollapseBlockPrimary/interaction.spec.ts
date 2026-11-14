@@ -15,6 +15,32 @@ test.describe('CollapseBlockPrimary — interaction', () => {
     await expect(getByTestId(TEST_IDS.content)).toContainText('Expanded content');
   });
 
+  test('fits wrapped content after the expanded block becomes narrower', async ({ gotoStory, getByTestId }) => {
+    const text = 'Accordion content should wrap onto additional lines when the available width decreases. '.repeat(4);
+    await gotoStory(buildStoryOptions());
+    await getByTestId(TEST_IDS.title).click();
+
+    const block = getByTestId(TEST_IDS.collapseBlock);
+    const content = getByTestId(TEST_IDS.content);
+    await expect(block).toHaveAttribute('data-completely-open', 'true');
+    await content.evaluate((element, value) => {
+      element.textContent = value;
+    }, text);
+    const originalHeight = (await content.boundingBox())?.height ?? 0;
+
+    await block.evaluate(element => {
+      element.style.width = '250px';
+    });
+
+    await expect.poll(async () => (await content.boundingBox())?.height).toBeGreaterThan(originalHeight);
+    await expect
+      .poll(async () => {
+        const [blockBox, contentBox] = await Promise.all([block.boundingBox(), content.boundingBox()]);
+        return Boolean(blockBox && contentBox && blockBox.y + blockBox.height >= contentBox.y + contentBox.height);
+      })
+      .toBe(true);
+  });
+
   test('collapses on second title click', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions(PLAYGROUND_DEFAULT_ARGS));
 
