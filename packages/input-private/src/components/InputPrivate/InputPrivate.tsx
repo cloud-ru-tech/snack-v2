@@ -1,6 +1,6 @@
 import { extractSupportProps } from '@ds/utils';
 import cn from 'classnames';
-import { ChangeEventHandler, forwardRef } from 'react';
+import { ChangeEventHandler, FocusEventHandler, forwardRef, UIEventHandler } from 'react';
 
 import { INPUT_MODE, TYPE } from './constants';
 import styles from './styles.module.scss';
@@ -45,6 +45,18 @@ export const InputPrivate = forwardRef<HTMLInputElement, InputPrivateProps>(
       onChange?.(e.target.value, e);
     };
 
+    const handleBlur: FocusEventHandler<HTMLInputElement> = event => {
+      event.currentTarget.scrollLeft = 0;
+      onBlur?.(event);
+    };
+
+    const handleScroll: UIEventHandler<HTMLInputElement> = event => {
+      const input = event.currentTarget;
+      if (input.ownerDocument.activeElement !== input && input.scrollLeft !== 0) {
+        input.scrollLeft = 0;
+      }
+    };
+
     let autoComplete: string;
 
     switch (autoCompleteProp) {
@@ -75,7 +87,8 @@ export const InputPrivate = forwardRef<HTMLInputElement, InputPrivateProps>(
         disabled={disabled}
         readOnly={readonly}
         onFocus={onFocus}
-        onBlur={onBlur}
+        onBlur={handleBlur}
+        onScroll={handleScroll}
         onKeyDown={onKeyDown}
         onPaste={onPaste}
         tabIndex={tabIndex}

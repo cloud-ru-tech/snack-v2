@@ -7,6 +7,7 @@ export { TEST_IDS };
 export const INPUT_PRIVATE_STORIES = {
   playground: { name: 'inputprivate', story: 'playground' },
   interactionTest: { name: 'inputprivate-tests-interaction', story: 'interaction-test' },
+  registrationError: { name: 'inputprivate-tests-registrationerror', story: 'registration-error' },
 } as const satisfies Record<string, StoryRef>;
 
 export function buildStoryOptions(
