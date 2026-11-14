@@ -2,7 +2,7 @@
 
 `@ds/toolbar` — Панель инструментов списков и таблиц — поиск, фильтры, массовые действия, меню «Ещё».
 
-`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Панель адаптивна: на mobile меню «⋯» и bulk-действия переезжают в `BottomSheet`. Раскладку компонент берёт из `AdaptiveProvider` — отдельного пропа `layoutType` нет.
+`Toolbar` — композитная панель над таблицей или списком: поиск, обновление, фильтры, переключатель вида данных, массовые действия и overflow-меню «⋯». Панель адаптивна: на mobile меню «⋯» и массовые действия открываются в `BottomSheet`. Раскладку компонент берёт из `AdaptiveProvider` — отдельного пропа `layoutType` нет.
 
 ## Когда использовать
 
@@ -256,7 +256,7 @@ export function WithDataView() {
 |------|------|---------|-------------|
 | `className` | `string \| undefined` | — | CSS-класс |
 | `defaultValue` | `Partial<TState> \| undefined` | — | Начальное состояние фильтров |
-| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
 | `initialOpen` | `boolean \| undefined` | — | Начальное состояние filter-row (mobile) |
 | `onChange` | `((filters: TState) => void) \| undefined` | — | Колбек изменения состояния фильтров |
 | `onOpenChange` | `((isOpen: boolean) => void) \| undefined` | — |  |
@@ -311,13 +311,13 @@ export function WithDataView() {
 `Toolbar` — адаптивный компонент: DOM остаётся единым, но при mobile-раскладке панель перестраивается. Раскладку он берёт из `AdaptiveProvider` (контекст `@ds/adaptive`); публичный API единый для обеих платформ:
 
 - **desktop** (по умолчанию) — overflow «⋯» открывается в `Droplist`, bulk-действия идут строкой под чипами фильтров.
-- **mobile** — overflow «⋯» и bulk-действия переезжают в `BottomSheet` (панель снизу без backdrop при активном выборе). Кнопки слота `after` переносятся пунктами в меню «⋯»; элементы `pinnedAfter` остаются в строке панели (так `Table` держит отдельную кнопку сортировки).
+- **mobile** — массовые действия автоматически открываются в `BottomSheet` при выборе строк. Кнопки слота `after` переносятся пунктами в меню «⋯»; элементы `pinnedAfter` остаются в строке панели (так `Table` держит отдельную кнопку сортировки).
 
 Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-перестроение включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
 ### Mobile layout
 
-Mobile-раскладка — включите чекбокс, чтобы открыть bulk-панель в BottomSheet внутри рамки
+Mobile-раскладка — выберите строки и откройте дополнительные действия кнопкой «⋯»
 
 ```tsx
 import { AdaptiveProvider, LAYOUT_TYPE } from '@ds/adaptive';

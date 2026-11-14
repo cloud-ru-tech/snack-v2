@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   gap: toolbar.$sn-toolbar-anatomy-container-gap;
+
+  box-sizing: border-box;
   width: 100%;
 }
 

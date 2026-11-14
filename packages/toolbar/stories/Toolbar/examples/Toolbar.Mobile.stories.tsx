@@ -20,10 +20,7 @@ function MobileExample() {
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Mobile</DemoTitle>
-        <DemoHint>
-          Mobile: bulk-действия в BottomSheet без затемнения фона (пока есть выбор); overflow «⋯» — отдельный
-          BottomSheet с backdrop.
-        </DemoHint>
+        <DemoHint>Действия над выбранными строками автоматически открываются в BottomSheet.</DemoHint>
         <DemoActions block>
           <label className={styles.mobileSelectionControl} htmlFor={selectionToggleId}>
             <Checkbox
@@ -47,8 +44,18 @@ function MobileExample() {
                 selectedCount={checked ? 12 : 0}
                 totalCount={100}
                 bulkActions={[
-                  { label: 'Подтвердить', icon: CheckSVG, onClick: () => undefined },
-                  { label: 'Отклонить', icon: CrossSVG, onClick: () => undefined },
+                  {
+                    label: 'Подтвердить',
+                    icon: CheckSVG,
+                    onClick: () => undefined,
+                    'data-test-id': TOOLBAR_TEST_IDS.confirmAction,
+                  },
+                  {
+                    label: 'Отклонить',
+                    icon: CrossSVG,
+                    onClick: () => undefined,
+                    'data-test-id': TOOLBAR_TEST_IDS.rejectAction,
+                  },
                 ]}
               />
             </LayoutScope>
@@ -76,10 +83,11 @@ export const Mobile: Story = {
     await expect(canvas.getByTestId(TEST_IDS.mobile)).toBeVisible();
     await expect(canvas.getByTestId(TEST_IDS.mobileSelectionToggle)).toBeVisible();
 
-    // На mobile bulk-чекбокс рендерится и в строке тулбара, и в BottomSheet
-    // (обе точки — один слот select-all, общий data-test-id из @ds/toolbar).
-    const bulkCheckboxes = canvas.getAllByTestId(TOOLBAR_TEST_IDS.checkbox);
-    expect(bulkCheckboxes.length).toBeGreaterThan(0);
-    await expect(bulkCheckboxes[0]).toBeVisible();
+    await expect(
+      within(canvasElement.ownerDocument.body).getByTestId(TOOLBAR_TEST_IDS.mobileBulkActionsSheet),
+    ).toBeVisible();
+    await expect(
+      within(canvas.getByTestId(TEST_IDS.mobile)).queryByTestId(TOOLBAR_TEST_IDS.confirmAction),
+    ).not.toBeInTheDocument();
   },
 };

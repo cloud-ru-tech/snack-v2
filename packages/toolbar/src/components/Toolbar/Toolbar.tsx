@@ -9,11 +9,11 @@ import { useMemo, useRef } from 'react';
 import { BulkActions, DataView, FilterButton, MoreActions, Search, Separator } from '../../helperComponents';
 import { toolbarLocale } from '../../locale';
 import { TEST_IDS } from '../../testIds';
-import { extractBulkActionsProps, isBulkActionsProps } from './helpers';
 import { useFilters, usePersistState } from './hooks';
 import styles from './styles.module.scss';
 import { ToolbarProps } from './types';
 import { buildMobileOverflowActions } from './utils/buildMobileOverflowActions';
+import { extractBulkActionsProps, isBulkActionsProps } from './utils/bulkActions';
 
 export function Toolbar<TState extends FiltersState = Record<string, unknown>>({
   className,

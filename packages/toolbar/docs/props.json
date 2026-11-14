@@ -540,25 +540,6 @@
         },
         "own": true
       },
-      "ChipChoiceDateWithSeconds": {
-        "kind": "interface",
-        "props": {
-          "mode": {
-            "type": "\"date-time\" | undefined",
-            "required": false,
-            "values": [
-              "date-time"
-            ],
-            "description": "Режим выбора даты и времени"
-          },
-          "showSeconds": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать секунды в выборе и отображении времени"
-          }
-        },
-        "own": false
-      },
       "DataViewBaseProps": {
         "kind": "interface",
         "props": {
@@ -605,6 +586,21 @@
           "list"
         ],
         "own": true
+      },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -699,6 +695,7 @@
               "ChipChoiceDateWithSeconds",
               "ChipChoiceRowFilter",
               "DropdownBridgeProps",
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",

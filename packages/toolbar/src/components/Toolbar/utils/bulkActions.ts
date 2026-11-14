@@ -1,6 +1,6 @@
 import { FiltersState } from '@ds/chips';
 
-import { ToolbarBulkActionProps, ToolbarProps } from './types';
+import { ToolbarBulkActionProps, ToolbarProps } from '../types';
 
 export function extractBulkActionsProps({
   onCheck,

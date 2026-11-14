@@ -13,6 +13,8 @@ import { TEST_IDS } from '../testIds';
 
 // Отдельный мок: в Interaction-панели Storybook args.fn() не всегда совпадает с инстансом в render.
 const onFilterOpenChange = fn();
+const onMobileAction = fn();
+const onDisabledAction = fn();
 
 type InteractionArgs = {
   onRefresh: () => void;
@@ -67,6 +69,40 @@ function InteractionDemo({ onRefresh, onCheck }: InteractionArgs) {
           </div>
         </DemoActions>
       </DemoPanel>
+      <DemoPanel>
+        <DemoTitle>Мобильные массовые действия</DemoTitle>
+        <div className={styles.containerMobile}>
+          <LayoutScope layoutType={LAYOUT_TYPE.Mobile}>
+            <Toolbar
+              data-test-id={TEST_IDS.mobile}
+              checked
+              selectedCount={3}
+              totalCount={100}
+              bulkActions={[
+                {
+                  label: 'Подтвердить',
+                  icon: CheckSVG,
+                  onClick: onMobileAction,
+                  'data-test-id': TOOLBAR_TEST_IDS.confirmAction,
+                },
+                {
+                  label: 'Отклонить',
+                  icon: CrossSVG,
+                  onClick: onMobileAction,
+                  'data-test-id': TOOLBAR_TEST_IDS.rejectAction,
+                },
+                {
+                  label: 'Недоступно',
+                  icon: CrossSVG,
+                  onClick: onDisabledAction,
+                  disabled: true,
+                  'data-test-id': TOOLBAR_TEST_IDS.disabledAction,
+                },
+              ]}
+            />
+          </LayoutScope>
+        </div>
+      </DemoPanel>
     </DemoPage>
   );
 }
@@ -89,22 +125,23 @@ export const InteractionTest: Story = {
   render: args => <InteractionDemo {...args} />,
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
+    const desktop = within(canvas.getByTestId(TEST_IDS.root));
 
     await step('click: refresh button calls onRefresh', async () => {
-      await userEvent.click(canvas.getByTestId(TOOLBAR_TEST_IDS.refreshButton));
+      await userEvent.click(desktop.getByTestId(TOOLBAR_TEST_IDS.refreshButton));
       expect(args.onRefresh).toHaveBeenCalledTimes(1);
     });
 
     await step('click: bulk checkbox calls onCheck', async () => {
       // data-test-id чекбокса — на корневом span, а обработчик клика — на вложенном `<input>`
       // (см. test-environment-pitfalls): `userEvent.click` по корню до input не доходит, кликаем сам input.
-      await userEvent.click(canvas.getByTestId(`${TOOLBAR_TEST_IDS.checkbox}${NATIVE_INPUT_SUFFIX}`));
+      await userEvent.click(desktop.getByTestId(`${TOOLBAR_TEST_IDS.checkbox}${NATIVE_INPUT_SUFFIX}`));
       expect(args.onCheck).toHaveBeenCalledTimes(1);
     });
 
     await step('click: filter button toggles open state', async () => {
       onFilterOpenChange.mockClear();
-      const filterButton = canvas.getByTestId(TOOLBAR_TEST_IDS.filterButton);
+      const filterButton = desktop.getByTestId(TOOLBAR_TEST_IDS.filterButton);
       await expect(filterButton).not.toHaveAttribute('data-filter-open');
 
       await userEvent.click(filterButton, { pointerEventsCheck: 0 });
@@ -113,6 +150,23 @@ export const InteractionTest: Story = {
         expect(onFilterOpenChange.mock.calls.at(-1)?.[0]).toBe(true);
       });
       await expect(filterButton).toHaveAttribute('data-filter-open', 'true');
+    });
+
+    await step('mobile: bulk actions open in a sheet and preserve callbacks and disabled state', async () => {
+      onMobileAction.mockClear();
+      onDisabledAction.mockClear();
+      const mobile = within(canvas.getByTestId(TEST_IDS.mobile));
+      const body = within(canvasElement.ownerDocument.body);
+      await expect(mobile.queryByTestId(TOOLBAR_TEST_IDS.confirmAction)).not.toBeInTheDocument();
+      const sheet = within(body.getByTestId(TOOLBAR_TEST_IDS.mobileBulkActionsSheet));
+      await userEvent.click(sheet.getByTestId(TOOLBAR_TEST_IDS.confirmAction));
+      expect(onMobileAction).toHaveBeenCalledTimes(1);
+      await waitFor(() => expect(sheet.getByTestId(TOOLBAR_TEST_IDS.rejectAction)).toBeVisible());
+      await userEvent.click(sheet.getByTestId(TOOLBAR_TEST_IDS.disabledAction));
+      expect(onDisabledAction).not.toHaveBeenCalled();
+      await userEvent.click(sheet.getByTestId(TOOLBAR_TEST_IDS.rejectAction));
+      expect(onMobileAction).toHaveBeenCalledTimes(2);
+      await expect(body.getByTestId(TOOLBAR_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
     });
   },
 };

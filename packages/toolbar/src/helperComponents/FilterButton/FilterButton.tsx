@@ -24,8 +24,8 @@ export function FilterButton({ open, onOpenChange, numberOfFilters }: FilterButt
   return (
     <Tooltip tip={open ? t('hideFilters') : t('showFilters')} triggerClassName={styles.trigger}>
       <Button
-        view={open ? 'tonal' : 'function'}
-        appearance={open ? 'primary' : 'neutral'}
+        view='function'
+        appearance='neutral'
         size='m'
         icon={<FilterSVG />}
         iconPosition='after'

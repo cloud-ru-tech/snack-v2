@@ -9,7 +9,6 @@
   box-sizing: border-box;
   width: 100%;
   min-height: toolbar.$sn-toolbar-anatomy-container-tool-bulkTool-minHeight;
-  padding-left: toolbar.$sn-toolbar-anatomy-container-tool-bulkAction-paddingLeft;
 }
 
 .volumeWrapper {
@@ -25,5 +24,13 @@
   align-items: center;
   justify-content: center;
 
-  @include base.composite-var(toolbar.$toolbar, 'anatomy', 'container', 'tool', 'bulkTool', 'volumeWrapper', 'checkboxWrapper');
+  @include base.composite-var(
+    toolbar.$toolbar,
+    'anatomy',
+    'container',
+    'tool',
+    'bulkTool',
+    'volumeWrapper',
+    'checkboxWrapper'
+  );
 }

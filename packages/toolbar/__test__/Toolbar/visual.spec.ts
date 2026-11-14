@@ -10,7 +10,13 @@ import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
 import { expect, test } from '#playwright-tooling/fixtures';
 import { assertVisualMatrixSnapshot, waitForSettledInViewport } from '#playwright-tooling/utils';
 
-import { buildStoryOptions, TEST_IDS, TOOLBAR_COMPONENT_TEST_IDS, TOOLBAR_STORIES } from './helpers';
+import {
+  buildStoryOptions,
+  BULK_MENU_TEST_IDS,
+  TEST_IDS,
+  TOOLBAR_COMPONENT_TEST_IDS,
+  TOOLBAR_STORIES,
+} from './helpers';
 
 test.describe('Toolbar — visual regression', () => {
   // eslint-disable-next-line no-empty-pattern
@@ -72,6 +78,34 @@ test.describe('Toolbar — visual regression', () => {
     );
   });
 
+  test('open-mobile-bulk-overflow (back to selected actions)', async ({
+    page,
+    gotoStory,
+    getByTestId,
+    waitForFonts,
+  }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(
+      buildStoryOptions({ showBulkActions: true, bulkChecked: true }, TOOLBAR_STORIES.playground, {
+        layoutType: LAYOUT_TYPE.Mobile,
+      }),
+    );
+    await waitForFonts();
+    await getByTestId(TOOLBAR_COMPONENT_TEST_IDS.moreBulkActionsButton).click();
+    const menu = getByTestId(BULK_MENU_TEST_IDS.root);
+    await expect(menu).toBeVisible();
+    await waitForSettledInViewport(menu);
+
+    expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
+      'open-mobile-bulk-overflow.png',
+      MATCH_SNAPSHOT_DEFAULT_OPTS,
+    );
+    await getByTestId(BULK_MENU_TEST_IDS.backButton).click();
+    await expect(menu).toBeHidden();
+    await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
+    await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.moreBulkActionsButton)).toBeVisible();
+  });
+
   test('open-mobile-bulk (BottomSheet without backdrop)', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(
@@ -80,7 +114,8 @@ test.describe('Toolbar — visual regression', () => {
       }),
     );
     await waitForFonts();
-    await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
+    await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.rejectAction)).toBeVisible();
+    await waitForSettledInViewport(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet));
 
     // Mobile bulk-actions — full-viewport BottomSheet overlay: снимаем viewport, а не `#storybook-root`
     // (он выше мобильного вьюпорта → под sheet'ом зияет фон DemoPage).

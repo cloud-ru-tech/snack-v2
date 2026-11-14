@@ -92,7 +92,6 @@ export function BulkActionsControls({
       {hiddenItems.length > 0 && (
         <Droplist
           label={isSheet ? t('multipleActions') : undefined}
-          // TODO: slotAfterTitle должен расширяться на всю ширину, а section-label уходить вправо
           slotAfterTitle={
             isSheet ? (
               <SelectionLabel
@@ -105,6 +104,7 @@ export function BulkActionsControls({
           }
           open={isMoreOpen}
           onOpenChange={setIsMoreOpen}
+          onBackButtonClick={isSheet ? () => setIsMoreOpen(false) : undefined}
           trigger='clickAndFocusVisible'
           triggerElemRef={triggerRef}
           triggerClassName={styles.triggerClassName}

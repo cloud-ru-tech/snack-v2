@@ -10,6 +10,12 @@ export { TEST_IDS as TOOLBAR_COMPONENT_TEST_IDS } from '../../src/testIds';
 
 export const TOOLBAR_TEST_ID = TEST_IDS.root;
 
+/** Локальные копии test-id List и PopupHeader без импорта CSS в Playwright. */
+export const BULK_MENU_TEST_IDS = {
+  root: 'list__mobile-droplist-root',
+  backButton: 'bottom-sheet__back-button',
+} as const;
+
 export const TOOLBAR_STORIES = {
   playground: { name: 'toolbar', story: 'playground' },
   visualMatrix: { name: 'toolbar', story: 'visual-matrix' },

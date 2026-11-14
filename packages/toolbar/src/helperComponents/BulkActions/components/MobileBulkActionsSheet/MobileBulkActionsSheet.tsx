@@ -50,7 +50,6 @@ export function MobileBulkActionsSheet({
       open={open}
       onClose={CLOSE_STUB_CALLBACK}
       title={t('multipleActions')}
-      // TODO: slotAfterTitle должен расширяться на всю ширину, а section-label уходить вправо
       slotAfterTitle={
         <SelectionLabel
           placement='headline'

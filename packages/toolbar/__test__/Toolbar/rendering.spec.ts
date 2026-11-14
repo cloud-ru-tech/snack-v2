@@ -72,12 +72,13 @@ test.describe('Toolbar — rendering', () => {
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.bulkActions)).toBeVisible();
     });
 
-    test('mobile bulk selection renders bottom sheet', async ({ gotoStory, getByTestId }) => {
+    test('mobile bulk selection opens actions in a bottom sheet', async ({ gotoStory, getByTestId }) => {
       await gotoStory(
         buildStoryOptions({ showBulkActions: true, bulkChecked: true }, TOOLBAR_STORIES.playground, {
           layoutType: LAYOUT_TYPE.Mobile,
         }),
       );
+      await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.bulkActions)).toBeVisible();
       await expect(getByTestId(TOOLBAR_COMPONENT_TEST_IDS.mobileBulkActionsSheet)).toBeVisible();
     });
 

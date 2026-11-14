@@ -21,7 +21,7 @@ export function SelectionLabel({
   const { t } = toolbarLocale.useTranslations();
 
   const valueLabel =
-    hasSelection && totalCount != null
+    totalCount != null
       ? t('selectedCountOf', { count: selectedCount, total: totalCount })
       : t('selectedCount', { count: selectedCount });
 
