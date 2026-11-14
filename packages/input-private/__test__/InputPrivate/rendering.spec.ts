@@ -8,6 +8,20 @@ test.describe('InputPrivate — rendering', () => {
     await expect(getByTestId(TEST_IDS.root)).toBeVisible();
   });
 
+  test('scrolls long text to the caret while focused', async ({ gotoStory, getByTestId, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Chromium caret scrolling regression');
+    await gotoStory(buildStoryOptions({ value: 'Long input text '.repeat(30) }));
+    const input = getByTestId(TEST_IDS.root);
+    await expect(input).toHaveCSS('text-overflow', 'ellipsis');
+
+    await input.press('End');
+    await expect(input).toHaveCSS('text-overflow', 'clip');
+    await expect.poll(() => input.evaluate(element => element.scrollLeft)).toBeGreaterThan(0);
+
+    await input.blur();
+    await expect(input).toHaveCSS('text-overflow', 'ellipsis');
+  });
+
   test.describe('props propagation', () => {
     test('autoComplete=true → autocomplete="on"', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions({ autoComplete: true }));

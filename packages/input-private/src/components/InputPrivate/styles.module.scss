@@ -15,18 +15,18 @@
   background-color: transparent;
   outline: 0;
 
-  &:placeholder-shown {
-    text-overflow: ellipsis;
+  &:focus:not(:placeholder-shown) {
+    text-overflow: clip;
   }
 
   // Отключённое значение в макете красится тем же `textMain`, а гасит его `opacity: 0.4`
   // обёртки-потребителя. Свой `textDisabled` здесь давал второе умножение: 0.35 × 0.4 = 0.14.
 
-  &[type="number"] {
+  &[type='number'] {
     appearance: textfield;
 
     &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button, {
+    &::-webkit-inner-spin-button {
       margin: 0;
       appearance: none;
     }
