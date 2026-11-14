@@ -81,7 +81,7 @@ export function ButtonCombo({
         items={droplistItems}
         open={open}
         onOpenChange={setOpen}
-        selection={{ defaultValue, mode: 'single', onChange: handleSelectionChange }}
+        selection={{ value, defaultValue, mode: 'single', onChange: handleSelectionChange }}
         className={dropdownClassName}
         triggerClassName={styles.trigger}
         size={size}
