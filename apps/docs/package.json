@@ -18,7 +18,7 @@
     "@ds/portal-context": "workspace:*",
     "@ds/theme": "workspace:*",
     "@ds/utils": "workspace:*",
-    "astro": "7.1.5",
+    "astro": "7.4.7",
     "mermaid": "11.16.1",
     "react": "catalog:",
     "react-dom": "catalog:",
