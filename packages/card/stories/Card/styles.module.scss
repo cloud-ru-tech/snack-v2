@@ -29,3 +29,10 @@
 .matrixCell {
   padding: base.$sn-density-spacing-interval-s;
 }
+
+.adaptiveCardContent {
+  display: grid;
+  place-items: center;
+  width: 160px;
+  height: 96px;
+}

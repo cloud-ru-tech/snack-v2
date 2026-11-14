@@ -24,6 +24,17 @@ $radius-to-badge-padding-top: (
   'l': card.$sn-card-anatomy-radius-l-container-badge-paddingTop,
 );
 
+$radius-to-badge-padding-right: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingRight,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingRight,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingRight,
+);
+$radius-to-badge-padding-bottom: (
+  's': card.$sn-card-anatomy-radius-s-container-badge-paddingBottom,
+  'm': card.$sn-card-anatomy-radius-m-container-badge-paddingBottom,
+  'l': card.$sn-card-anatomy-radius-l-container-badge-paddingBottom,
+);
+
 .acrylic {
   pointer-events: none;
   position: absolute;
@@ -61,6 +72,10 @@ $radius-to-badge-padding-top: (
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &[data-mobile] {
+    inset: auto 0 0 auto;
+  }
 }
 
 .card {
@@ -160,9 +175,14 @@ $radius-to-badge-padding-top: (
     &[data-radius='#{$r}'] {
       border-radius: base.simple-var($radius-to-border-radius, $r);
 
-      .checkWrapper {
+      .checkWrapper:not([data-mobile]) {
         padding-top: base.simple-var($radius-to-badge-padding-top, $r);
         padding-left: base.simple-var($radius-to-badge-padding-left, $r);
+      }
+
+      .checkWrapper[data-mobile] {
+        padding-right: base.simple-var($radius-to-badge-padding-right, $r);
+        padding-bottom: base.simple-var($radius-to-badge-padding-bottom, $r);
       }
     }
   }

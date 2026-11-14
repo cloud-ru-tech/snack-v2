@@ -3,7 +3,7 @@ import { BACKGROUND_PREDEFINED_FILL } from '@ds/materials';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, ReactElement } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import styles from './styles.module.scss';
 
@@ -60,6 +60,26 @@ export const VisualMatrix: Story = {
           }))}
         />
       ))}
+
+      <StoryTable
+        sectionTitle='Selection badge by layout'
+        firstColumnHeader='Radius / state'
+        columnHeaders={['desktop', 'mobile']}
+        rows={keyRadii.flatMap(radius =>
+          interactionStates
+            .filter(({ extra }) => extra.checked)
+            .map(({ key, extra }) => ({
+              variantLabel: `${radius} / ${key}`,
+              cells: (['desktop', 'mobile'] as const).map(layoutType => (
+                <LayoutScope key={layoutType} layoutType={layoutType}>
+                  <Card radius={radius} view={VIEW.Outline} {...extra}>
+                    <div className={styles.adaptiveCardContent}>{layoutType}</div>
+                  </Card>
+                </LayoutScope>
+              )),
+            })),
+        )}
+      />
 
       {/* backgroundPredefined (acrylic fills) — не отражено в Figma `card`-мастере, но
           часть публичного API. Снимаем отдельной секцией на radius=m / view=simple. */}

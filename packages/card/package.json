@@ -33,6 +33,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@ds/adaptive": "workspace:^",
     "@ds/materials": "workspace:^",
     "@ds/tag": "workspace:^",
     "@ds/toggles": "workspace:^",

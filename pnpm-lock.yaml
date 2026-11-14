@@ -1382,6 +1382,9 @@ importers:
 
   packages/card:
     dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials

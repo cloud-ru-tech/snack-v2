@@ -1,3 +1,4 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { ACRYLIC_LEVEL, BACKGROUND_PREDEFINED_FILL, backgroundPredefinedFillToAcrylic } from '@ds/materials';
 import { Checkbox, SIZE as CHECKBOX_SIZE } from '@ds/toggles';
 import { extractSupportProps, withInnerRefSupport } from '@ds/utils';
@@ -25,6 +26,7 @@ export function Card<T extends ElementType = 'div'>({
   innerRef,
   ...rest
 }: CardProps<T>): ReactElement | null {
+  const { layoutType } = useAdaptiveLayout();
   const Component: ElementType = as ?? 'div';
   const supportProps = extractSupportProps(rest);
   const { appearance, level } = backgroundPredefinedFillToAcrylic(backgroundPredefined);
@@ -87,7 +89,7 @@ export function Card<T extends ElementType = 'div'>({
             цвет переключается по data-view/data-checked родителя (см. styles.module.scss). */}
         {(view === VIEW.Outline || checked) && <span className={styles.outlineBorder} aria-hidden />}
         {checked && multiSelect && (
-          <span className={styles.checkWrapper} aria-hidden>
+          <span className={styles.checkWrapper} data-mobile={isMobileLayout(layoutType) || undefined} aria-hidden>
             <Checkbox checked size={CHECKBOX_SIZE.XS} tabIndex={-1} data-test-id={TEST_IDS.checkBadge} />
           </span>
         )}

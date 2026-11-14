@@ -12,6 +12,18 @@ const KEY_COMBOS = [
 ] as const;
 
 test.describe('Card — rendering', () => {
+  test('places the selection badge at the bottom right on mobile', async ({ gotoStory, getByTestId }) => {
+    await gotoStory({
+      ...buildStoryOptions({ checked: true, multiSelect: true }),
+      globals: { layoutType: 'mobile' },
+    });
+
+    const badge = getByTestId(TEST_IDS.checkBadge);
+    await expect(badge).toBeVisible();
+    await expect(badge.locator('..')).toHaveCSS('right', '0px');
+    await expect(badge.locator('..')).toHaveCSS('bottom', '0px');
+  });
+
   test.describe('render', () => {
     test('renders with default props', async ({ gotoStory, getByTestId }) => {
       await gotoStory(buildStoryOptions());
