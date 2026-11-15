@@ -215,6 +215,8 @@ export function Forced() {
 | `title` | `ReactNode` | — | Заголовок. Типографика зависит от поверхности: `title-l` на sheet, `headline-s` на window (modal/drawer). |
 | `truncate` | `{ title?: number; subtitle?: number; } \| undefined` | — | Усечение строковых `title`/`subtitle` через `TruncateString` (число строк). Применяется только <br/> когда задано — по умолчанию текст не усекается. Актуально для window-поверхности (modal/drawer), <br/> где длинный заголовок иначе переносится на несколько строк. |
 | `width` | `"l"` \| `"m"` \| `"s"` | — | Размер окна |
+| `withFooterDivider` | `boolean` | `false` | Только mobile: разделитель над футером. |
+| `withHeaderDivider` | `boolean` | `false` | Только mobile: разделитель под шапкой. |
 
 ##### Related types
 

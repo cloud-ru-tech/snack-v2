@@ -170,6 +170,8 @@ export const Playground: Story = {
     longContent: false,
   },
   argTypes: {
+    withHeaderDivider: { control: 'boolean' },
+    withFooterDivider: { control: 'boolean' },
     mode: { control: 'select', options: ['regular', 'aggressive', 'forced'] },
     open: { table: { disable: true } },
     onClose: { table: { disable: true } },

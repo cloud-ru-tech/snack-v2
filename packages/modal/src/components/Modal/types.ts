@@ -34,6 +34,16 @@ export type ModalProps = WithSupportProps<
       footerActionsOrientation?: FooterActionsOrientation;
       /** Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. */
       footer?: ReactNode;
+      /**
+       * Только mobile: разделитель под шапкой.
+       * @default false
+       */
+      withHeaderDivider?: boolean;
+      /**
+       * Только mobile: разделитель над футером.
+       * @default false
+       */
+      withFooterDivider?: boolean;
       /** CSS-класс для окна */
       className?: string;
       /** Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт */

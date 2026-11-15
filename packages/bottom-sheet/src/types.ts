@@ -159,6 +159,10 @@ export type BottomSheetProps = Omit<BottomSheetCustomProps, 'children' | 'disabl
    * @default true
    */
   withDividers?: boolean;
+  /** Разделитель под шапкой. По умолчанию используется `withDividers`. */
+  withHeaderDivider?: boolean;
+  /** Разделитель над футером. По умолчанию используется `withDividers`. */
+  withFooterDivider?: boolean;
   /**
    * Основная кнопка действия — объект пропсов `Button` (по умолчанию `view='filled'`,
    * `appearance='primary'`). Ширина зависит от `footerActionsOrientation` и числа кнопок.

@@ -208,6 +208,18 @@
         "required": false,
         "defaultValue": "true",
         "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
+      },
+      "withFooterDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Разделитель над футером. По умолчанию используется `withDividers`."
+      },
+      "withHeaderDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Разделитель под шапкой. По умолчанию используется `withDividers`."
       }
     },
     "relatedTypes": {

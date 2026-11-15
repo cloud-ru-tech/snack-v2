@@ -25,6 +25,8 @@ export function MobileModal({
   additionalButton,
   footerActionsOrientation = FOOTER_ACTIONS_ORIENTATION.Vertical,
   footer,
+  withHeaderDivider = false,
+  withFooterDivider = false,
   loading = false,
   loadingState,
   className,
@@ -45,8 +47,8 @@ export function MobileModal({
   // Футер собирает сам `BottomSheet`; при `loading` его скрываем (как на desktop).
   return (
     <BottomSheet
-      // Дефолт `withDividers` сменился на `true` — здесь вид сохраняем прежним.
-      withDividers={false}
+      withHeaderDivider={withHeaderDivider}
+      withFooterDivider={withFooterDivider}
       open={open}
       onClose={onClose}
       mode={mode}

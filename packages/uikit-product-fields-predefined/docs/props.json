@@ -5841,6 +5841,16 @@
             "typeRefs": [
               "ModalWidth"
             ]
+          },
+          "withFooterDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Только mobile: разделитель над футером."
+          },
+          "withHeaderDivider": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Только mobile: разделитель под шапкой."
           }
         },
         "own": false

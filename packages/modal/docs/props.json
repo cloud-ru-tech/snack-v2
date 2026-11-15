@@ -141,6 +141,18 @@
         ],
         "defaultValue": "s",
         "description": "Размер окна"
+      },
+      "withFooterDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель над футером."
+      },
+      "withHeaderDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель под шапкой."
       }
     },
     "relatedTypes": {}
@@ -421,6 +433,18 @@
           "s"
         ],
         "description": "Размер окна"
+      },
+      "withFooterDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель над футером."
+      },
+      "withHeaderDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель под шапкой."
       }
     },
     "relatedTypes": {}
@@ -584,6 +608,18 @@
         "typeRefs": [
           "ModalWidth"
         ]
+      },
+      "withFooterDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель над футером."
+      },
+      "withHeaderDivider": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Только mobile: разделитель под шапкой."
       }
     },
     "relatedTypes": {

@@ -28,6 +28,8 @@ export function BottomSheet({
   footer,
   footerTestIds,
   withDividers = true,
+  withHeaderDivider = withDividers,
+  withFooterDivider = withDividers,
   swipeEnabled = true,
   // safeAreaTop/safeAreaBottom уходят в `...rest` → BottomSheetCustom (env-паддинг на `.content`).
   className,
@@ -96,13 +98,13 @@ export function BottomSheet({
             />
           )}
 
-          {withDividers && hasHeader && (
+          {withHeaderDivider && hasHeader && (
             <div className={styles.divider} data-test-id={TEST_IDS.dividerTop} aria-hidden />
           )}
 
           <BottomSheetCustom.Body bodyPadding={bodyPadding}>{content}</BottomSheetCustom.Body>
 
-          {withDividers && hasFooter && (
+          {withFooterDivider && hasFooter && (
             <div className={styles.divider} data-test-id={TEST_IDS.dividerBottom} aria-hidden />
           )}
 

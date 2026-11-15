@@ -115,6 +115,8 @@ const meta: Meta<PlaygroundStoryProps> = {
     mode: MODE.Regular,
     width: WIDTH.S,
     heightAuto: true,
+    withHeaderDivider: false,
+    withFooterDivider: false,
     loading: false,
     showMedia: true,
 
@@ -143,6 +145,14 @@ const meta: Meta<PlaygroundStoryProps> = {
     'data-test-id': TEST_IDS.modal.root,
   },
   argTypes: {
+    withHeaderDivider: {
+      control: 'boolean',
+      if: { global: 'layoutType', eq: 'mobile' },
+    },
+    withFooterDivider: {
+      control: 'boolean',
+      if: { global: 'layoutType', eq: 'mobile' },
+    },
     content: {
       control: 'text',
       description: 'Контент модалки',
