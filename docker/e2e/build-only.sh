@@ -50,9 +50,15 @@ trap restore_macos_package_node_modules EXIT
 
 hide_macos_package_node_modules
 
-# Активируем pnpm всегда — даже при BUILD_ONLY_INSTALL=0 дальше нужен `pnpm build:packages`.
-corepack enable
-corepack prepare pnpm@10.22.0 --activate
+# В локальном образе pnpm уже установлен. Для сторонних образов сохраняем подготовку.
+if [[ "$(pnpm --version 2>/dev/null || true)" != "10.22.0" ]]; then
+  if command -v corepack >/dev/null 2>&1; then
+    corepack enable
+    corepack prepare pnpm@10.22.0 --activate
+  else
+    npm install --global pnpm@10.22.0
+  fi
+fi
 
 if [[ "${BUILD_ONLY_INSTALL:-1}" == "1" ]]; then
   echo '→ pnpm install --frozen-lockfile'

@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { getInitColumnSizeFromLocalStorage, saveStateToLocalStorage } from '../src/components/Table/utils/columnSize';

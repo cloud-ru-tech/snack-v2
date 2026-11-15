@@ -11,7 +11,7 @@
 # PLAYWRIGHT_VERSION передаётся из package.json (@playwright/test) скриптом docker-e2e.mts:
 # при обновлении версии build-arg меняется → слой пересобирается → ревизия chromium остаётся синхронной.
 
-ARG NODE_IMAGE=node:24.11.1-bookworm-slim
+ARG NODE_IMAGE=node:26.13.1-bookworm-slim
 FROM ${NODE_IMAGE}
 
 ARG PLAYWRIGHT_VERSION=1.59.1
@@ -19,8 +19,8 @@ ARG PNPM_VERSION=10.22.0
 
 ENV CI=true
 
-# pnpm через corepack — один раз в образ (в run.sh остаётся дублирующий prepare для других базовых образов).
-RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+# Node 25+ не содержит Corepack: устанавливаем фиксированную версию pnpm напрямую.
+RUN npm install --global pnpm@${PNPM_VERSION} && npm cache clean --force
 
 # OS-зависимости chromium + бинарный файл chromium под ревизию Playwright. Бинарный файл устанавливается
 # в путь по умолчанию (/root/.cache/ms-playwright) слоем образа — поэтому docker-e2e.mts НЕ монтирует browser-volume

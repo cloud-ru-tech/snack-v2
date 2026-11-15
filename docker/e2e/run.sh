@@ -67,9 +67,15 @@ if needs_isolated_node_modules; then
   hide_macos_package_node_modules
 fi
 
-# Активируем pnpm всегда — даже при DOCKER_E2E_INSTALL=0 дальше нужны `pnpm exec` / `pnpm build`.
-corepack enable
-corepack prepare pnpm@10.22.0 --activate
+# В локальном образе pnpm уже установлен. Для сторонних образов сохраняем подготовку.
+if [[ "$(pnpm --version 2>/dev/null || true)" != "10.22.0" ]]; then
+  if command -v corepack >/dev/null 2>&1; then
+    corepack enable
+    corepack prepare pnpm@10.22.0 --activate
+  else
+    npm install --global pnpm@10.22.0
+  fi
+fi
 
 if [[ "${DOCKER_E2E_INSTALL:-1}" == "1" ]]; then
   echo '→ pnpm install --frozen-lockfile'
