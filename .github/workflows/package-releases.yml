@@ -60,4 +60,8 @@ jobs:
           RELEASES_SINCE: ${{ inputs.since || '2026-11-13T00:00:00Z' }}
           RELEASES_MAX: ${{ inputs.max || '100' }}
           DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+          # Краткое описание изменений от модели Cloud.ru Foundation Models.
+          # Без секрета релизы создаются только с секцией CHANGELOG.
+          CLOUDRU_API_KEY: ${{ secrets.CLOUDRU_API_KEY }}
+          CLOUDRU_MODEL: ${{ vars.CLOUDRU_MODEL }}
         run: node .github/scripts/package-releases.mjs
