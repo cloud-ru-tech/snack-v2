@@ -62,7 +62,7 @@ export const InteractionTest: Story = {
       const chevron2 = within(block2).getAllByTestId(TEST_IDS.collapseBlock.chevron)[0];
       await userEvent.click(chevron2);
       await waitFor(() => expect(block2).toHaveAttribute('data-expanded', 'true'));
-      await waitFor(() => expect(block1).toHaveAttribute('data-expanded', 'false'));
+      await waitFor(() => expect(block1).not.toHaveAttribute('data-expanded'));
     });
   },
 };
