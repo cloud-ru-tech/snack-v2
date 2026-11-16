@@ -2,7 +2,7 @@ import { CSS, Transform } from '@dnd-kit/utilities';
 import { Cell, Header } from '@tanstack/react-table';
 import { CSSProperties, useMemo } from 'react';
 
-import { TABLE_COLUMN_CSS_VARS } from '../constants';
+import { DefaultColumns, TABLE_COLUMN_CSS_VARS } from '../constants';
 
 type CellSizesOptions = {
   isDraggable?: boolean;
@@ -16,8 +16,10 @@ export function useCellSizes<TData>(
   const column = element.column;
   const transform = options?.transform ?? null;
 
-  const minWidth = column.columnDef.minSize;
-  const maxWidth = column.columnDef.maxSize;
+  // Ширину служебной колонки действий задаёт токен actionWrapper в SCSS.
+  const isRowActions = column.id === DefaultColumns.RowActions;
+  const minWidth = isRowActions ? undefined : column.columnDef.minSize;
+  const maxWidth = isRowActions ? undefined : column.columnDef.maxSize;
   const width = `var(${TABLE_COLUMN_CSS_VARS.size(column.id)})`;
   const flexShrink = `var(${TABLE_COLUMN_CSS_VARS.flex(column.id)})`;
   const isHeaderCell = 'headerGroup' in element;

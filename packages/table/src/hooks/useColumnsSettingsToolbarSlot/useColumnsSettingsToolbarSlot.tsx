@@ -100,6 +100,7 @@ export function useColumnsSettingsToolbarSlot({
     scroll: true,
     className: styles.columnsSettings,
     size: SIZE.M,
+    withDividers: false,
     selection,
     placement: 'bottom-end',
     open,

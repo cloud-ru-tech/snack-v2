@@ -65,7 +65,7 @@ export const LoadMoreButton: Story = {
     const root = canvas.getByTestId(TEST_IDS.table.root);
     await expect(root).toBeVisible();
 
-    // кнопка «Загрузить ещё» видна, т.к. hasMore=true
+    // кнопка «Показать ещё» видна, т.к. hasMore=true
     const btn = canvas.getByTestId(TEST_IDS.component.loadMoreButton);
     await expect(btn).toBeVisible();
   },

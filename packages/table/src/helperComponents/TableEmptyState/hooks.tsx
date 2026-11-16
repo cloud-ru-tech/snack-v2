@@ -1,3 +1,4 @@
+import { Button } from '@ds/button';
 import { CrossSVG, SearchSVG } from '@ds/icons/interface/system';
 import { useMemo } from 'react';
 
@@ -8,10 +9,12 @@ export function useEmptyState({
   noDataState: noDataStateProp,
   noResultsState: noResultsStateProp,
   errorDataState: errorDataStateProp,
+  onRefresh,
 }: {
   noDataState?: EmptyStateProps;
   noResultsState?: EmptyStateProps;
   errorDataState?: EmptyStateProps;
+  onRefresh?(): void;
 }): {
   noDataState: EmptyStateProps;
   noResultsState: EmptyStateProps;
@@ -37,6 +40,9 @@ export function useEmptyState({
       icon: { icon: CrossSVG, appearance: 'neutral', background: true },
       title: t('errorData.title'),
       content: t('errorData.content'),
+      footer: onRefresh ? (
+        <Button label={t('refresh')} onClick={onRefresh} size='s' appearance='neutral' view='outline' />
+      ) : undefined,
       ...errorDataStateProp,
     };
 
@@ -45,5 +51,5 @@ export function useEmptyState({
       noResultsState,
       errorDataState,
     };
-  }, [errorDataStateProp, noDataStateProp, noResultsStateProp, t]);
+  }, [errorDataStateProp, noDataStateProp, noResultsStateProp, onRefresh, t]);
 }

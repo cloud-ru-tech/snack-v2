@@ -33,6 +33,7 @@ $divider-width: base.simple-var(
   display: grid;
   grid-template-rows: minmax(0, 100%) max-content;
 
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   min-height: 0;
@@ -208,9 +209,7 @@ $divider-width: base.simple-var(
 .stickyTableHeader {
   position: sticky;
   z-index: 3;
-  top: calc(
-    var(--table-sticky-controls-offset-top, 0px) + var(--table-sticky-toolbar-offset, 0px)
-  );
+  top: calc(var(--table-sticky-controls-offset-top, 0px) + var(--table-sticky-toolbar-offset, 0px));
 
   // Фон на обёртке: покрывает всю ширину/высоту chrome (в т.ч. пустое место у pinned),
   // без второго acrylic-слоя ControlsChrome.

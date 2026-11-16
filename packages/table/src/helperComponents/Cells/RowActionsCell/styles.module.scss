@@ -4,6 +4,7 @@
 // слева рисует sticky-обёртка закреплённого блока (.rowPinnedCells[data-position='right']::after).
 
 .rowActionsHeader {
+  min-width: table.$sn-table-anatomy-content-headLine-actionWrapper-maxWidth;
   max-width: table.$sn-table-anatomy-content-headLine-actionWrapper-maxWidth;
   padding: 0 !important;
 }
@@ -15,6 +16,7 @@
 
 .rowActionsCell {
   position: relative;
+  min-width: table.$sn-table-anatomy-content-tableLine-actionWrapper-maxWidth;
   max-width: table.$sn-table-anatomy-content-tableLine-actionWrapper-maxWidth;
 }
 

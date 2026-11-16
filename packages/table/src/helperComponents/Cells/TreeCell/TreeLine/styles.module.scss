@@ -10,7 +10,10 @@ $list-row-gap: table.$sn-table-anatomy-content-tableLine-pinnedWrapper-elementWr
 
 .treeLine {
   position: relative;
+
   flex-shrink: 0;
+
+  box-sizing: border-box;
   width: $level-width;
   height: 100%;
 

@@ -104,6 +104,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   onRefresh,
   pageSize = DEFAULT_PAGE_SIZE,
   pageCount,
+  rowCount,
   loading = false,
   infiniteLoading = false,
   onLoadMore,
@@ -294,6 +295,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     pagination,
     onPaginationChange,
     pageCount,
+    rowCount,
     pageSize,
     manualSorting,
     manualPagination,
@@ -338,7 +340,12 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     savedState,
   });
 
-  const emptyStates = useEmptyState({ noDataState, noResultsState, errorDataState });
+  const emptyStates = useEmptyState({
+    noDataState,
+    noResultsState,
+    errorDataState,
+    onRefresh: onRefresh ? handleOnRefresh : undefined,
+  });
 
   usePageReset({
     manualPagination,
@@ -770,9 +777,9 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
                 columnSizeVars={columnSizes.vars as CSSProperties}
               >
                 {scrollContent}
+                {loadMoreButtonNode}
               </TableScrollHost>
             </DndContext>
-            {loadMoreButtonNode}
             {!isCardsView && outline ? <span className={styles.contentBorder} aria-hidden /> : null}
           </div>
 

@@ -36,7 +36,7 @@ const meta: Meta<StoryArgs> = {
     loadMoreTrigger: {
       control: 'radio',
       options: ['scroll', 'button'] satisfies LoadMoreTrigger[],
-      description: 'Механизм дозагрузки: scroll-observer или кнопка «Загрузить ещё».',
+      description: 'Механизм дозагрузки: scroll-observer или кнопка «Показать ещё».',
     },
     headlineKey: { if: { arg: 'defaultView', eq: VIEW.Cards } },
     view: { table: { disable: true } },

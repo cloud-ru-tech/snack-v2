@@ -75,6 +75,8 @@ export function useTableSortingToolbarSlot<TData extends object>({
     afterContent: (
       <Droplist
         scroll
+        size='m'
+        withDividers={false}
         items={items}
         selection={selection}
         virtualized={items.length > 10}

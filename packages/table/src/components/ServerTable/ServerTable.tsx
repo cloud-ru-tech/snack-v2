@@ -73,6 +73,7 @@ export function ServerTable<TData extends object, TFilters extends FiltersState 
       }}
       columnFilters={columnFilters}
       pageCount={pageCount}
+      rowCount={total}
       pagination={{
         ...pagination,
         state: {

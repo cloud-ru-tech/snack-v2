@@ -9,6 +9,8 @@
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
   justify-content: flex-end;
+
+  box-sizing: border-box;
 }
 
 // Мастер table-view (16097:44286): пагинация у левого края, чип объёма строк у правого
@@ -20,4 +22,11 @@
 
 .footer[data-view='cards'] .pagination {
   flex: 1;
+}
+
+.mobilePagination {
+  display: flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+  margin-right: auto;
 }

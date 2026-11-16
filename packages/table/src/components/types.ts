@@ -373,6 +373,7 @@ export type InfiniteTableProps<
   pagination?: never;
   autoResetPageIndex?: never;
   pageCount?: never;
+  rowCount?: never;
   /** Режим работы "бесконечной" загрузки */
   infiniteLoading?: boolean;
   suppressPagination?: never;
@@ -381,7 +382,7 @@ export type InfiniteTableProps<
   /**
    * Колбэк дозагрузки следующей порции данных.
    * В режиме `loadMoreTrigger='scroll'` вызывается автоматически при достижении конца списка;
-   * в режиме `loadMoreTrigger='button'` — по нажатию кнопки «Загрузить ещё».
+   * в режиме `loadMoreTrigger='button'` — по нажатию кнопки «Показать ещё».
    */
   onLoadMore?: () => void;
   /** Есть ли ещё данные для загрузки. Управляет видимостью кнопки / активностью observer-а. */
@@ -389,7 +390,7 @@ export type InfiniteTableProps<
   /**
    * Механизм подгрузки следующей порции данных.
    * - `'scroll'` (по умолчанию) — IntersectionObserver на scroll-stub в конце списка.
-   * - `'button'` — кнопка «Загрузить ещё» под таблицей.
+   * - `'button'` — кнопка «Показать ещё» под таблицей.
    */
   loadMoreTrigger?: LoadMoreTrigger;
 };
@@ -412,6 +413,8 @@ export type ClientTableProps<
   autoResetPageIndex?: boolean;
   /** Кол-во страниц (для внешнего управления) */
   pageCount?: number;
+  /** Общее количество строк при внешнем управлении пагинацией. */
+  rowCount?: number;
   /** Отключение пагинации */
   suppressPagination?: boolean;
   manualPagination?: boolean;
@@ -428,7 +431,7 @@ export type TableProps<TData extends object, TFilters extends FiltersState = Rec
 
 export type ServerTableProps<TData extends object, TFilters extends FiltersState = Record<string, unknown>> = Omit<
   ClientTableProps<TData, TFilters>,
-  'pageSize' | 'pageCount' | 'pagination' | 'search' | 'data' | 'toolbarCheckBoxMode'
+  'pageSize' | 'pageCount' | 'rowCount' | 'pagination' | 'search' | 'data' | 'toolbarCheckBoxMode'
 > & {
   /** Данные для отрисовки */
   items?: TData[];

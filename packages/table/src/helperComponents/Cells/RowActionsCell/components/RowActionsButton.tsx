@@ -16,9 +16,7 @@ export function RowActionsButton({ variant = 'cell', size, ...rest }: RowActions
   return (
     <Button
       {...rest}
-      // В table-строке мастер (actionWrapper 16236:23147) — кнопка size=l (40×40). В карточке
-      // размещение действий макетом не задано, оставляем дефолт.
-      size={size ?? (isCardsView ? undefined : SIZE.L)}
+      size={size ?? (isCardsView ? undefined : SIZE.S)}
       appearance='neutral'
       view={VIEW.Function}
       style={

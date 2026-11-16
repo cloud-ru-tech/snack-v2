@@ -43,6 +43,7 @@ type UseTableInstanceParams<TData extends object> = {
   pagination: PaginationState;
   onPaginationChange: OnChangeFn<PaginationState>;
   pageCount?: number;
+  rowCount?: number;
   pageSize: number;
   manualSorting: boolean;
   manualPagination: boolean;
@@ -82,6 +83,7 @@ export function useTableInstance<TData extends object>({
   pagination,
   onPaginationChange,
   pageCount,
+  rowCount,
   pageSize,
   manualSorting,
   manualPagination,
@@ -137,6 +139,7 @@ export function useTableInstance<TData extends object>({
       expanded,
     },
     pageCount,
+    rowCount,
     defaultColumn: {
       enableSorting: false,
       enableResizing: false,
