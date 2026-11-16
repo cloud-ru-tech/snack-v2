@@ -5,6 +5,7 @@ import { StoryTable } from '#storybook/components';
 
 import { PRESET_USERS, presetUserColumns } from '../presetFixtures';
 import { TEST_IDS } from '../testIds';
+import { EmptyStateRefresh } from './examples/EmptyStateRefresh';
 import styles from './styles.module.scss';
 
 const meta: Meta<typeof SimpleTable> = {
@@ -44,6 +45,10 @@ export const VisualMatrix: Story = {
           {
             variantLabel: 'empty',
             cells: [<SimpleTable key='empty' {...baseProps} data={[]} />],
+          },
+          {
+            variantLabel: 'empty with refresh',
+            cells: [<EmptyStateRefresh key='empty-refresh' />],
           },
           {
             variantLabel: 'error',

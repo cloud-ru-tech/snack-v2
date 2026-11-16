@@ -17,6 +17,7 @@ test.describe('SimpleTable — visual regression', () => {
     await gotoStory(buildStoryOptions());
     await waitForFonts();
     await expect(getByTestId(TEST_IDS.component.loadingCellSkeleton).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Обновить', exact: true })).toBeVisible();
     await assertVisualMatrixSnapshot(page);
   });
 });

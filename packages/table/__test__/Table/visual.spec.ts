@@ -17,14 +17,7 @@ import {
   waitForSettledInViewport,
 } from '#playwright-tooling/utils';
 
-import {
-  buildStoryOptions,
-  getPageNumberTestId,
-  headerCellById,
-  MOBILE_GLOBALS,
-  TABLE_STORIES,
-  TEST_IDS,
-} from './helpers';
+import { buildStoryOptions, headerCellById, MOBILE_GLOBALS, TABLE_STORIES, TEST_IDS } from './helpers';
 
 /** Локальные копии test-id из `@ds/chips` — без импорта пакета (CSS в playwright-compile). */
 const CHIP_CHOICE_TEST_IDS = {
@@ -373,7 +366,7 @@ test.describe('Table — visual regression', () => {
     const rows = getByTestId(COMPONENT.bodyRow);
     await expect(rows.first()).toBeVisible();
     await expect(rows).toHaveCount(MOBILE_STICKY_CONTROLS_PAGE_SIZE);
-    await expect(getByTestId(getPageNumberTestId(2))).toBeVisible();
+    await expect(page.getByRole('button', { name: /Следующая страница|Next page/ })).toBeVisible();
     await waitForSettledInViewport(root);
 
     const cells: ScreenshotCell[] = [

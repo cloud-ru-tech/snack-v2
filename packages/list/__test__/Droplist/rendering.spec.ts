@@ -44,6 +44,14 @@ test.describe('Droplist — rendering', () => {
     });
   });
 
+  test('mobile layout uses large items and search by default', async ({ page, gotoStory, getByTestId }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions({ showSearch: true }, undefined, { layoutType: 'mobile' }));
+    await getByTestId(TEST_IDS.droplist.triggerOpen).click();
+    await expect(getByTestId(itemTestId('overview'))).toHaveAttribute('data-size', 'l');
+    await expect(getByTestId(LIST_INTERNAL_TEST_IDS.searchItem)).toHaveAttribute('data-size', 'l');
+  });
+
   for (const layoutType of ['desktop', 'mobile'] as const) {
     for (const size of ['s', 'm', 'l'] as const) {
       test(`${layoutType}: size=${size} applies to items and the whole search field`, async ({
@@ -56,7 +64,7 @@ test.describe('Droplist — rendering', () => {
         }
         await gotoStory(buildStoryOptions({ size, showSearch: true }, undefined, { layoutType }));
         await getByTestId(TEST_IDS.droplist.triggerOpen).click();
-        const expectedSize = layoutType === 'mobile' ? 'm' : size;
+        const expectedSize = layoutType === 'mobile' ? 'l' : size;
         const search = getByTestId(LIST_INTERNAL_TEST_IDS.searchItem);
         await expect(getByTestId(itemTestId('overview'))).toHaveAttribute('data-size', expectedSize);
         await expect(search).toHaveAttribute('data-size', expectedSize);

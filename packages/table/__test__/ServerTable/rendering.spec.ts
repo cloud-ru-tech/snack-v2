@@ -33,10 +33,54 @@ test.describe('ServerTable — rendering', () => {
     await expect(getByTestId(getPageNumberTestId(3))).toHaveCount(0);
   });
 
+  test('mobile pagination advances to the last page', async ({ gotoStory, page, getByTestId }) => {
+    await gotoStory(buildStoryOptions({ layoutType: 'mobile', view: 'table' }));
+    const next = page.getByRole('button', { name: /Следующая страница|Next page/ });
+    await next.click();
+    await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(5);
+    await expect(next).toBeDisabled();
+    await expect(page.getByRole('button', { name: /Предыдущая страница|Previous page/ })).toBeEnabled();
+
+    const pagination = page.getByRole('navigation', { name: /Навигация по страницам|Pagination/ });
+    await pagination
+      .getByRole('button', { name: /Страница|Page/ })
+      .filter({ hasText: '2' })
+      .click();
+    await page.getByRole('menuitem', { name: '1', exact: true }).click();
+    await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(PLAYGROUND_LIMIT);
+    await expect(next).toBeEnabled();
+  });
+
   test('rows-per-page chip renders current limit from pagination options', async ({ gotoStory, getByTestId }) => {
     // Playground args: pagination.options = [5, 10, 20], текущий limit = 10
     await gotoStory(buildStoryOptions());
     const chipValue = getByTestId(CHIP_CHOICE_VALUE_TEST_ID);
+    await expect(chipValue).toBeVisible();
+    await expect(chipValue).toContainText(String(PLAYGROUND_LIMIT));
+  });
+
+  test('shows the current limit when it is absent from pagination options', async ({
+    gotoStory,
+    getByTestId,
+    setStoryArgs,
+  }) => {
+    await gotoStory(buildStoryOptions());
+    await setStoryArgs({ pagination: { options: [20, 50] } });
+    await expect(getByTestId(CHIP_CHOICE_VALUE_TEST_ID)).toContainText(String(PLAYGROUND_LIMIT));
+  });
+
+  test('keeps the rows-per-page selector on an incomplete last server page', async ({
+    gotoStory,
+    getByTestId,
+    setStoryArgs,
+  }) => {
+    await gotoStory(buildStoryOptions());
+    await setStoryArgs({ pagination: { options: [10, 20] } });
+    const chipValue = getByTestId(CHIP_CHOICE_VALUE_TEST_ID);
+    await expect(chipValue).toBeVisible();
+
+    await getByTestId(getPageNumberTestId(2)).click();
+    await expect(getByTestId(COMPONENT.bodyRow)).toHaveCount(5);
     await expect(chipValue).toBeVisible();
     await expect(chipValue).toContainText(String(PLAYGROUND_LIMIT));
   });

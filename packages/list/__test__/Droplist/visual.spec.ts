@@ -140,7 +140,7 @@ test.describe('Droplist — visual regression', () => {
     expect(png).toMatchSnapshot('open-virtualized.png', MATCH_SNAPSHOT_DEFAULT_OPTS);
   });
 
-  // Mobile: список (в переданном size — здесь Playground-дефолт) в BottomSheet (MobileDroplist).
+  // Mobile: список размера l по умолчанию в BottomSheet (MobileDroplist).
   // Форс layoutType=mobile через тулбар-глобал + mobile-вьюпорт.
   test('open mobile (bottom sheet surface)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);

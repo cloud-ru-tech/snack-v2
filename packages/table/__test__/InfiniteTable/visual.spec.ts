@@ -19,4 +19,11 @@ test.describe('InfiniteTable — visual regression', () => {
     await expect(getByTestId(TEST_IDS.component.loadingCellSkeleton).first()).toBeVisible();
     await assertVisualMatrixSnapshot(page);
   });
+
+  test('visual matrix in Russian', async ({ page, gotoStory, waitForFonts }) => {
+    await gotoStory({ ...buildStoryOptions(), globals: { language: 'ru-RU' } });
+    await waitForFonts();
+    await expect(page.getByRole('button', { name: 'Показать ещё', exact: true }).first()).toBeVisible();
+    await assertVisualMatrixSnapshot(page, 'visual-matrix-ru.png');
+  });
 });
