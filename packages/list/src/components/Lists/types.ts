@@ -1,4 +1,5 @@
 import { DragEndEvent } from '@dnd-kit/core';
+import { LayoutPresets } from '@ds/adaptive';
 import { BottomSheetProps } from '@ds/bottom-sheet';
 import { DropdownProps } from '@ds/dropdown';
 import { WithSupportProps } from '@ds/utils';
@@ -172,6 +173,13 @@ export type ReorderableBaseDroplistProps = DroplistOwnProps & DroplistListProps<
  */
 export type DesktopDroplistProps = DroplistOwnProps & DroplistListProps<ListImplProps>;
 
+export type DroplistLayoutDefaults = Pick<ListProps, 'size'>;
+
+type DroplistAdaptiveProps = {
+  /** Переопределение размера списка по раскладке. На mobile по умолчанию `l`. */
+  layoutPresets?: LayoutPresets<DroplistLayoutDefaults>;
+};
+
 /** Только mobile (`BottomSheet`)-слоты адаптивного `Droplist`. */
 type DroplistMobileSlots = {
   /** Только mobile (`BottomSheet`): заголовок шапки. */
@@ -187,10 +195,11 @@ type DroplistMobileSlots = {
 /**
  * Props адаптивного `Droplist` (дефолтный droplist): базовые props + mobile-слоты `BottomSheet`.
  * Раскладку берёт из `AdaptiveProvider` (контекст): на `mobile` рендерит `MobileDroplist`
- * (список size `m` в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
+ * (список размера `l` по умолчанию в `BottomSheet`), иначе — `DesktopDroplist` (анкорный popover). Mobile-слоты
  * применяются только на mobile.
  */
 export type DroplistProps = BaseDroplistProps &
+  DroplistAdaptiveProps &
   DroplistMobileSlots &
   Pick<BottomSheetProps, 'snapPoints' | 'withDividers'>;
 
@@ -198,10 +207,10 @@ export type DroplistProps = BaseDroplistProps &
  * Props адаптивного `ReorderableDroplist`: props `ReorderableList` + popover/mobile-обвязка
  * `Droplist`. Отдельный компонент по той же причине, что и `ReorderableList`.
  */
-export type ReorderableDroplistProps = ReorderableBaseDroplistProps & DroplistMobileSlots;
+export type ReorderableDroplistProps = ReorderableBaseDroplistProps & DroplistMobileSlots & DroplistAdaptiveProps;
 
 /** @internal Props общей реализации адаптивного дроплиста: реализация + mobile-слоты. */
-export type DroplistImplProps = DesktopDroplistProps & DroplistMobileSlots;
+export type DroplistImplProps = DesktopDroplistProps & DroplistMobileSlots & DroplistAdaptiveProps;
 
 /**
  * @internal Props mobile-реализации (`BottomSheet`): реализация дроплиста без popover-пропов

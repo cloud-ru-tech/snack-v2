@@ -129,6 +129,8 @@ export type ChipChoiceSelectCommonProps<T extends ContentRenderProps = ContentRe
     | 'dataFiltered'
     | 'noResultsState'
     | 'loading'
+    | 'layoutPresets'
+    | 'withDividers'
     | 'scrollToSelectedItem'
     | 'virtualized'
     | 'itemRender'

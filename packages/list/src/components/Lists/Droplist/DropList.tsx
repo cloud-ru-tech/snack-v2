@@ -1,13 +1,16 @@
-import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
+import { isMobileLayout, LayoutPresets, mergePresets, useAdaptiveLayout, useLayoutDefaults } from '@ds/adaptive';
 
 import { DesktopDroplist } from '../../../helperComponents/DesktopDroplist';
 import { MobileDroplist } from '../../../helperComponents/MobileDroplist';
-import { DroplistImplProps, DroplistProps, ReorderableDroplistProps } from '../types';
+import { DroplistImplProps, DroplistLayoutDefaults, DroplistProps, ReorderableDroplistProps } from '../types';
+
+const DROPLIST_LAYOUT_PRESETS: LayoutPresets<DroplistLayoutDefaults> = { mobile: { size: 'l' } };
 
 /** @internal Общая реализация `Droplist`/`ReorderableDroplist`: свап поверхности по раскладке. */
 function DroplistImpl({
   children,
-  size = 'm',
+  size,
+  layoutPresets,
   label,
   actionButton,
   slotAfterTitle,
@@ -16,11 +19,17 @@ function DroplistImpl({
 }: DroplistImplProps) {
   const { layoutType } = useAdaptiveLayout();
 
+  const { size: resolvedSize } = useLayoutDefaults<DroplistLayoutDefaults>(
+    { size: 'm' },
+    mergePresets(DROPLIST_LAYOUT_PRESETS, layoutPresets),
+    { size },
+  );
+
   if (isMobileLayout(layoutType)) {
     return (
       <MobileDroplist
         {...rest}
-        size='m'
+        size={resolvedSize}
         label={label}
         actionButton={actionButton}
         slotAfterTitle={slotAfterTitle}
@@ -32,7 +41,7 @@ function DroplistImpl({
   }
 
   return (
-    <DesktopDroplist {...rest} size={size}>
+    <DesktopDroplist {...rest} size={resolvedSize}>
       {children}
     </DesktopDroplist>
   );
@@ -40,7 +49,7 @@ function DroplistImpl({
 
 /**
  * Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит
- * список (size `m`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).
+ * список (по умолчанию размера `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).
  * Слоты `label` / `actionButton` / `slotAfterTitle` / `onBackButtonClick` применяются только на mobile.
  * Чтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный
  * `<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.
