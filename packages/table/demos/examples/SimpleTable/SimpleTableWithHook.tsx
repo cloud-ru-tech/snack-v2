@@ -24,7 +24,6 @@ export function SimpleTableWithHook() {
   const tableProps = useSimpleTableProps({
     data: USERS,
     columns,
-    pageSize: 5,
     getRowId: user => user.id,
     outline: true,
   });

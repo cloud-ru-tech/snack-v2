@@ -22,7 +22,6 @@ type Story = StoryObj<typeof SimpleTable>;
 const baseProps = {
   data: PRESET_USERS.slice(0, 5),
   columns: presetUserColumns,
-  pageSize: 5,
   getRowId: (user: (typeof PRESET_USERS)[number]) => user.id,
   outline: true,
 } as const;

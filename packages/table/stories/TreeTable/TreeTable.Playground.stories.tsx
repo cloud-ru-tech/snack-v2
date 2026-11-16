@@ -1,4 +1,4 @@
-import { TreeTable, TreeTableInput, VIEW } from '@ds/table';
+import { TreeTable, TreeTableInput } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 import { ComponentType } from 'react';
 import { expect, within } from 'storybook/test';
@@ -32,8 +32,6 @@ const meta: Meta<StoryArgs> = {
     secondaryColumns: treeSecondaryColumns,
     getRowId: user => user.id,
     expandingInitialState: { 'org-cloud': true },
-    defaultView: VIEW.Table,
-    headlineKey: 'name',
     outline: true,
     loading: false,
     showSelection: false,
@@ -48,10 +46,6 @@ const meta: Meta<StoryArgs> = {
       if: { arg: 'showSelection', eq: true },
     },
 
-    headlineKey: { if: { arg: 'defaultView', eq: VIEW.Cards } },
-    view: { table: { disable: true } },
-    onViewChange: { table: { disable: true } },
-
     data: { table: { disable: true } },
     getChildren: { table: { disable: true } },
     primaryColumn: { table: { disable: true } },
@@ -61,7 +55,6 @@ const meta: Meta<StoryArgs> = {
     expandingInitialState: { table: { disable: true } },
     expandingState: { table: { disable: true } },
     onExpandingChange: { table: { disable: true } },
-    renderCard: { table: { disable: true } },
     search: { table: { disable: true } },
     sorting: { table: { disable: true } },
     columnFilters: { table: { disable: true } },

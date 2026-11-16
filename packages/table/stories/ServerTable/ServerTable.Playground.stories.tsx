@@ -23,7 +23,7 @@ const meta: Meta<StoryArgs> = {
     defaultView: VIEW.Table,
     headlineId: 'name',
     outline: true,
-    pagination: { options: [5, 10, 20], optionsLabel: 'Строк на странице' },
+    pagination: { options: [5, 10, 20] },
     'data-test-id': TEST_IDS.serverTable.root,
   },
   argTypes: {

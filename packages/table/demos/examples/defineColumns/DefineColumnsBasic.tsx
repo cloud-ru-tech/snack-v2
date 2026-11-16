@@ -22,5 +22,5 @@ const columns = [
 ] as const;
 
 export function DefineColumnsBasic() {
-  return <SimpleTable data={PRODUCTS} columns={[...columns]} pageSize={5} getRowId={row => row.id} outline />;
+  return <SimpleTable data={PRODUCTS} columns={[...columns]} getRowId={row => row.id} outline />;
 }

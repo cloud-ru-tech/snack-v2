@@ -1,6 +1,4 @@
-import { SimpleColumnDef, StatusColumnConfig } from '@ds/table';
-
-import { mapUserStatusToAppearance, SAMPLE_USERS, User, userStatusLabel } from './fixtures';
+import { SimpleColumnDef } from '@ds/table';
 
 export type PresetUser = {
   id: string;
@@ -27,18 +25,3 @@ export const presetUserColumns: SimpleColumnDef<PresetUser>[] = [
   { key: 'role', header: 'Роль', sortable: true, width: 140 },
   { key: 'balance', header: 'Баланс', sortable: true, align: 'right', width: 140, format: 'currency' },
 ];
-
-export const PRESET_ADMIN_USERS: User[] = SAMPLE_USERS;
-
-export const presetAdminColumns: SimpleColumnDef<User>[] = [
-  { key: 'name', header: 'Имя', sortable: true, width: 200 },
-  { key: 'email', header: 'Email', width: 240 },
-  { key: 'role', header: 'Роль', sortable: true, width: 140 },
-  { key: 'amount', header: 'Сумма', sortable: true, align: 'right', width: 140, format: 'currency' },
-];
-
-export const presetAdminStatusColumn: StatusColumnConfig<User> = {
-  key: 'status',
-  mapStatusToAppearance: mapUserStatusToAppearance,
-  renderDescription: userStatusLabel,
-};

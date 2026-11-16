@@ -2,7 +2,7 @@ import { Table } from '../../components/Table';
 import { SimpleTableInput } from './toSimpleTableProps';
 import { useSimpleTableProps } from './useSimpleTableProps';
 
-/** Минимальная клиентская таблица: данные, колонки, пагинация */
+/** Клиентская таблица с декларативными колонками, без панели инструментов и пагинации. */
 export function SimpleTable<TData extends object>(props: SimpleTableInput<TData>) {
   const tableProps = useSimpleTableProps(props);
 

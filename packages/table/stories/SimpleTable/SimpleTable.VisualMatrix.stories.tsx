@@ -1,4 +1,4 @@
-import { SimpleTable, VIEW } from '@ds/table';
+import { SimpleTable } from '@ds/table';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 const meta: Meta<typeof SimpleTable> = {
   title: 'Components/Table/SimpleTable',
   component: SimpleTable,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
 };
 
 export default meta;
@@ -19,7 +19,6 @@ type Story = StoryObj<typeof SimpleTable>;
 const baseProps = {
   data: PRESET_USERS,
   columns: presetUserColumns,
-  pageSize: 5,
   getRowId: (user: (typeof PRESET_USERS)[number]) => user.id,
   'data-test-id': TEST_IDS.table.root,
   outline: true,
@@ -47,8 +46,8 @@ export const VisualMatrix: Story = {
             cells: [<SimpleTable key='empty' {...baseProps} data={[]} />],
           },
           {
-            variantLabel: 'cards',
-            cells: [<SimpleTable key='cards' {...baseProps} headlineKey='name' defaultView={VIEW.Cards} />],
+            variantLabel: 'error',
+            cells: [<SimpleTable key='error' {...baseProps} data={[]} dataError />],
           },
         ]}
       />

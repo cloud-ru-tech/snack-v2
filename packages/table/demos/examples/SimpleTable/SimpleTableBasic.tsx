@@ -24,5 +24,5 @@ const columns: SimpleColumnDef<User>[] = [
 ];
 
 export function SimpleTableBasic() {
-  return <SimpleTable data={USERS} columns={columns} pageSize={5} getRowId={user => user.id} outline />;
+  return <SimpleTable data={USERS} columns={columns} getRowId={user => user.id} outline />;
 }

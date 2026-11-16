@@ -1,6 +1,6 @@
 import { Row, RowSelectionState } from '@tanstack/react-table';
 
-import { CardViewInput, defineColumns, mapCardViewProps, SimpleColumnDef } from '../../columnUtils';
+import { defineColumns, SimpleColumnDef } from '../../columnUtils';
 import { ClientTableProps } from '../../components/types';
 import { ExpandedState } from '../../types';
 import { wrapGetRowId } from '../wrapGetRowId';
@@ -17,33 +17,39 @@ type TreeTablePrimaryColumn<TData extends object> = {
 type TreeTableSelectionConfig<TData extends object> = {
   multiRow?: boolean;
   enable?: boolean | ((row: TData) => boolean);
-  onChange?: (state: RowSelectionState) => void;
+  onChange?(state: RowSelectionState): void;
   state?: RowSelectionState;
   initialState?: RowSelectionState;
 };
 
 /** Входные пропсы `TreeTable` / `useTreeTableProps` */
-export type TreeTableInput<TData extends object> = CardViewInput<TData> & {
+export type TreeTableInput<TData extends object> = {
   data: TData[];
-  getChildren: (row: TData) => TData[] | undefined;
+  getChildren(row: TData): TData[] | undefined;
   primaryColumn: TreeTablePrimaryColumn<TData>;
   secondaryColumns?: SimpleColumnDef<TData>[];
   selection?: TreeTableSelectionConfig<TData>;
   expandingInitialState?: ExpandedState;
   expandingState?: ExpandedState;
-  onExpandingChange?: (state: ExpandedState) => void;
-  getRowId: (row: TData) => string;
+  onExpandingChange?(state: ExpandedState): void;
+  getRowId(row: TData): string;
 } & Omit<
-    ClientTableProps<TData>,
-    | 'data'
-    | 'columnDefinitions'
-    | 'getRowId'
-    | 'headlineId'
-    | 'expanding'
-    | 'suppressPagination'
-    | 'rowSelection'
-    | 'rowPinning'
-  >;
+  ClientTableProps<TData>,
+  | 'data'
+  | 'columnDefinitions'
+  | 'getRowId'
+  | 'headlineId'
+  | 'expanding'
+  | 'view'
+  | 'defaultView'
+  | 'onViewChange'
+  | 'renderCard'
+  | 'cardColumns'
+  | 'cardMinWidth'
+  | 'showDataView'
+  | 'rowSelection'
+  | 'rowPinning'
+>;
 
 function getExpandingShowToggle(showToggle: boolean | undefined, hasSelection: boolean) {
   if (showToggle !== undefined) {
@@ -79,22 +85,17 @@ export function toTreeTableProps<TData extends object>(input: TreeTableInput<TDa
     expandingState,
     onExpandingChange,
     getRowId,
-    headlineKey,
-    defaultView,
-    view,
-    onViewChange,
-    renderCard,
     outline,
     ...rest
   } = input;
 
   return {
     ...rest,
-    ...mapCardViewProps({ headlineKey, defaultView, view, onViewChange, renderCard }),
+    view: 'table',
     data,
     columnDefinitions: defineColumns(secondaryColumns),
     getRowId: wrapGetRowId(getRowId),
-    suppressPagination: true,
+
     outline: outline ?? true,
     expanding: {
       getSubRows: getChildren,
