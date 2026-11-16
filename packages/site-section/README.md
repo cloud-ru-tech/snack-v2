@@ -292,7 +292,7 @@ export function OldContainer() {
 | `data-test-id` | `string` | — |  |
 | `defaultTabBarValue` | `string` | — | Изначально выбранная вкладка (uncontrolled). |
 | `description` | `string` | — | Описание. Строка может содержать HTML-разметку. |
-| `filterItems` | `CustomOptionProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `FieldSelectProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Поля-фильтры под вкладками. Рендерятся как `FieldSelect` размера `l`. |
+| `filterItems` | `CustomOptionProps` \| `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `FieldSelectProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Поля-фильтры под вкладками. Рендерятся как `FieldSelect` размера `l`. |
 | `id` | `string` | — | HTML-атрибут `id` секции — якорь для навигации по странице. |
 | `moreButton` | `SectionMoreButton` | — | Кнопка «Показать еще» в футере. |
 | `onTabBarChange` | `((value: string) => void)` | — | Колбэк выбора вкладки: значение `value` выбранного элемента `tabBarItems`. |

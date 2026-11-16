@@ -764,6 +764,11 @@
         "required": false,
         "description": "Текст чипа"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`."
+      },
       "loading": {
         "type": "boolean",
         "required": false,
@@ -914,6 +919,12 @@
         ],
         "defaultValue": "gte",
         "description": "Стратегия управления шириной контейнера поповера"
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {}
@@ -945,6 +956,7 @@
           "ChipChoiceDateWithSeconds",
           "ChipChoiceRowFilter",
           "DropdownBridgeProps",
+          "DroplistAdaptiveProps",
           "DroplistListProps",
           "DroplistMobileSlots",
           "EmptyState",
@@ -1202,6 +1214,40 @@
         },
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
+      "DroplistLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -1311,32 +1357,26 @@
         "type": "string | number",
         "own": false
       },
-      "OnChangeHandler": {
-        "kind": "alias",
-        "type": "(value: T) => void",
-        "own": false
-      },
-      "OutsideClickHandler": {
-        "kind": "alias",
-        "type": "(event: MouseEvent) => boolean",
-        "own": false
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
         "own": false
       },
       "PublicListContextType": {
@@ -1629,6 +1669,11 @@
         "required": false,
         "description": "Текст чипа"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`."
+      },
       "loading": {
         "type": "boolean",
         "required": false,
@@ -1779,6 +1824,12 @@
         ],
         "defaultValue": "gte",
         "description": "Стратегия управления шириной контейнера поповера"
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {}
@@ -2136,6 +2187,11 @@
         "required": false,
         "description": "Текст чипа"
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`."
+      },
       "loading": {
         "type": "boolean",
         "required": false,
@@ -2314,6 +2370,12 @@
         ],
         "defaultValue": "gte",
         "description": "Стратегия управления шириной контейнера поповера"
+      },
+      "withDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
       }
     },
     "relatedTypes": {}

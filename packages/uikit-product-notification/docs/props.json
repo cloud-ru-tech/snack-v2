@@ -666,6 +666,7 @@
         "required": false,
         "description": "Кнопка настроек и выпадающий список",
         "typeRefs": [
+          "DroplistAdaptiveProps",
           "DroplistListProps",
           "DroplistMobileSlots",
           "EmptyState",
@@ -703,40 +704,6 @@
       }
     },
     "relatedTypes": {
-      "Action": {
-        "kind": "interface",
-        "props": {
-          "content": {
-            "type": "ReactNode | ItemContentProps",
-            "required": false,
-            "description": "Основной контент айтема",
-            "typeRefs": [
-              "ItemContent"
-            ]
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг неактивности элемента"
-          },
-          "icon": {
-            "type": "ReactElement<any, string | JSXElementConstructor<any>> | undefined",
-            "required": false,
-            "description": "Иконка слева от текста"
-          },
-          "onClick": {
-            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки клика"
-          },
-          "tagLabel": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Лейбл-тег справа от текста"
-          }
-        },
-        "own": true
-      },
       "BarHideStrategy": {
         "kind": "union",
         "values": [
@@ -867,6 +834,40 @@
         },
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
+      "DroplistLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -967,6 +968,28 @@
             "typeRefs": [
               "IconPredefinedProps"
             ]
+          }
+        },
+        "own": false
+      },
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
           }
         },
         "own": false
@@ -1106,54 +1129,6 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Отключает возможность взаимодействовать со скролбарами мышью."
-          }
-        },
-        "own": false
-      },
-      "Segment": {
-        "kind": "interface",
-        "props": {
-          "counter": {
-            "type": "string | number | undefined",
-            "required": false,
-            "description": "Счётчик в сегменте (отображается после лейбла)."
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние активности сегмента."
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка сегмента."
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно лейбла.",
-            "typeRefs": [
-              "IconPosition (@ds/segment-control)"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текстовый заголовок сегмента."
-          },
-          "renderWrapSegment": {
-            "type": "((segment: ReactNode) => ReactNode) | undefined",
-            "required": false,
-            "description": "Render-обёртка над сегментом."
-          },
-          "value": {
-            "type": "Value",
-            "required": true,
-            "description": "Идентификатор сегмента."
           }
         },
         "own": false
@@ -1319,15 +1294,6 @@
         "own": false
       },
       "Size": {
-        "kind": "union",
-        "values": [
-          "l",
-          "m",
-          "s"
-        ],
-        "own": false
-      },
-      "Size (@ds/segment-control)": {
         "kind": "union",
         "values": [
           "l",

@@ -284,6 +284,7 @@
         "type": "Pick<DroplistProps, \"className\" | \"open\" | \"onOpenChange\" | \"items\" | \"closeDroplistOnItemClick\">",
         "required": true,
         "typeRefs": [
+          "DroplistAdaptiveProps",
           "DroplistListProps",
           "DroplistMobileSlots",
           "DroplistProps",
@@ -520,6 +521,21 @@
         },
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -688,6 +704,15 @@
             "type": "string | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
@@ -999,15 +1024,6 @@
       "PolymorphicRef": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": false
-      },
-      "PopoverWidthStrategy": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "eq",
-          "gte"
-        ],
         "own": false
       },
       "PublicListContextType": {
@@ -1232,6 +1248,7 @@
         "type": "Pick<DroplistProps, \"className\" | \"open\" | \"onOpenChange\" | \"items\" | \"closeDroplistOnItemClick\">",
         "required": true,
         "typeRefs": [
+          "DroplistAdaptiveProps",
           "DroplistListProps",
           "DroplistMobileSlots",
           "DroplistProps",
@@ -1468,6 +1485,21 @@
         },
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -1636,6 +1668,15 @@
             "type": "string | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
@@ -1947,15 +1988,6 @@
       "PolymorphicRef": {
         "kind": "alias",
         "type": "ComponentPropsWithRef<T>[\"ref\"]",
-        "own": false
-      },
-      "PopoverWidthStrategy": {
-        "kind": "union",
-        "values": [
-          "auto",
-          "eq",
-          "gte"
-        ],
         "own": false
       },
       "PublicListContextType": {
@@ -3704,6 +3736,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -3730,6 +3763,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -3928,6 +3962,21 @@
         },
         "own": true
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -4096,6 +4145,15 @@
             "type": "string | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
@@ -4425,37 +4483,6 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "QuotaItem": {
-        "kind": "interface",
-        "props": {
-          "limit": {
-            "type": "number",
-            "required": true,
-            "description": "Лимит квоты"
-          },
-          "name": {
-            "type": "string",
-            "required": true,
-            "description": "Название квоты"
-          },
-          "remains": {
-            "type": "number",
-            "required": true,
-            "description": "Остаток квоты"
-          },
-          "unitDisplayName": {
-            "type": "string",
-            "required": true,
-            "description": "Единица измерения квоты"
-          },
-          "usage": {
-            "type": "number",
-            "required": true,
-            "description": "Потребление квоты"
           }
         },
         "own": false
@@ -4914,6 +4941,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -4940,6 +4968,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -5138,6 +5167,21 @@
         },
         "own": true
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -5306,6 +5350,15 @@
             "type": "string | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
@@ -5635,37 +5688,6 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "QuotaItem": {
-        "kind": "interface",
-        "props": {
-          "limit": {
-            "type": "number",
-            "required": true,
-            "description": "Лимит квоты"
-          },
-          "name": {
-            "type": "string",
-            "required": true,
-            "description": "Название квоты"
-          },
-          "remains": {
-            "type": "number",
-            "required": true,
-            "description": "Остаток квоты"
-          },
-          "unitDisplayName": {
-            "type": "string",
-            "required": true,
-            "description": "Единица измерения квоты"
-          },
-          "usage": {
-            "type": "number",
-            "required": true,
-            "description": "Потребление квоты"
           }
         },
         "own": false
@@ -6647,6 +6669,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -6673,6 +6696,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -7542,6 +7566,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -7568,6 +7593,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -7766,6 +7792,21 @@
         },
         "own": true
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -7934,6 +7975,15 @@
             "type": "string | undefined",
             "required": false,
             "description": "Только mobile (`BottomSheet`): заголовок шапки."
+          },
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           },
           "limitedScrollHeight": {
             "type": "boolean | undefined",
@@ -8263,37 +8313,6 @@
           "virtualized": {
             "type": "boolean | undefined",
             "required": false
-          }
-        },
-        "own": false
-      },
-      "QuotaItem": {
-        "kind": "interface",
-        "props": {
-          "limit": {
-            "type": "number",
-            "required": true,
-            "description": "Лимит квоты"
-          },
-          "name": {
-            "type": "string",
-            "required": true,
-            "description": "Название квоты"
-          },
-          "remains": {
-            "type": "number",
-            "required": true,
-            "description": "Остаток квоты"
-          },
-          "unitDisplayName": {
-            "type": "string",
-            "required": true,
-            "description": "Единица измерения квоты"
-          },
-          "usage": {
-            "type": "number",
-            "required": true,
-            "description": "Потребление квоты"
           }
         },
         "own": false
@@ -9299,6 +9318,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",
@@ -9325,6 +9345,7 @@
             "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
             "required": true,
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "DroplistProps",

@@ -1,10 +1,10 @@
 # Table — внутренняя структура
 
-`Table.tsx` — оркестратор: пропсы, хуки, `TableContext.Provider` и сборка layout. Вся остальная логика и JSX разнесены по модулям этой папки и соседним пакетным примитивам.
+`Table.tsx` связывает пропсы, состояние и контексты таблицы и собирает панель инструментов, область прокрутки и пагинацию.
 
 Публичный API компонента — в [packages/table/docs/table.mdx](../../../docs/table.mdx).
 
-Preset-ы (`AdminTable`, `ServerTable`, `EntitiesTable`, …) и `helperComponents/` — вне этой папки; здесь только core `Table`.
+`Table` и `ServerTable` — базовые компоненты. `ServerTable` использует `Table` для серверной пагинации, сортировки и фильтрации. Готовые варианты находятся в [src/presets](../../presets), общие компоненты — в [src/helperComponents](../../helperComponents). `SimpleTable` отображает все переданные строки без панели инструментов и пагинации.
 
 ## Архитектура
 
@@ -26,6 +26,8 @@ flowchart TB
   CardsBody[TableCardsBody]
   Skeleton[TableSkeletonBody]
   Chrome[TableChrome]
+  Pagination[TablePagination]
+  LoadMore[LoadMoreButton]
   Helpers[helperComponents]
 
   Table --> Adaptive
@@ -41,8 +43,10 @@ flowchart TB
   Table --> ScrollHost
   ScrollHost --> RowsBody
   ScrollHost --> CardsBody
-  Table --> Skeleton
+  ScrollHost --> Skeleton
+  ScrollHost --> LoadMore
   Table --> Chrome
+  Table --> Pagination
   RowsBody --> Helpers
   CardsBody --> Helpers
   ScrollHost --> Helpers
@@ -65,10 +69,11 @@ flowchart TB
 | Page index | `hooks/usePageReset` | сброс `pageIndex`, если страница вне диапазона (client pagination) |
 | Adaptive | `@ds/adaptive` + `TABLE_LAYOUT_PRESETS` | `layoutType`, mobile-дефолты `stickyControls`, `fullWidth` |
 | Context | `contexts/` (`TableContext`, `CellAutoResizeContext`) | auto-resize ячеек, `fullWidth`, virtualization padding, shared table API для строк/ячеек |
-| Table rows | `components/TableRowsBody` | pinned top rows, virtualization, infinite tail, load-more, empty state |
-| Cards view | `components/TableCardsBody` | сетка карточек, mobile list, load-more button |
+| Table rows | `components/TableRowsBody` | закреплённые сверху строки, виртуализация, индикатор дозагрузки, пустые состояния |
+| Cards view | `components/TableCardsBody` | сетка карточек и список на мобильной раскладке |
 | Loading | `components/TableSkeletonBody` | skeleton table/cards |
-| Scroll shell | `components/TableScrollHost` | варианты `Scroll`, sticky header plate, mobile cards container |
+| Scroll shell | `components/TableScrollHost` | контейнер прокрутки для строк и карточек, закреплённый заголовок, кнопка дозагрузки после содержимого |
+| Пагинация | `helperComponents/TablePagination` | кнопки перехода и выбор страницы через BottomSheet на мобильной раскладке |
 | Chrome | `components/TableChrome` | `ControlsChrome` для toolbar и pagination |
 | Layout shell | `Table.tsx` + `styles.module.scss` | `.wrapper`, grid/flex, `data-fit-content` при `fullWidth={false}`, провайдеры |
 | Утилиты | `utils/` | pinning, column ids, CSS-vars, `getTableColumnsDefinitions`, `saveTableState/*` |
@@ -91,6 +96,7 @@ packages/table/src/components/Table/
 │   ├── useColumnSizes.ts
 │   ├── useTableScroll.ts
 │   ├── useTableToolbar.ts
+│   ├── useTableView.ts
 │   ├── useColumnSettings/
 │   ├── useFilters/
 │   ├── useRowVirtualizer.ts

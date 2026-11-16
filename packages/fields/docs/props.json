@@ -1144,6 +1144,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",

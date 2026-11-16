@@ -707,23 +707,13 @@ export function PanelScenario() {
 | `scrollContainerRef` | `RefObject<HTMLElement>` | — | Ссылка на контейнер, который скроллится |
 | `scrollEndRef` | `RefObject<HTMLDivElement>` | — | Ссылка на элемент, обозначающий самый конец прокручиваемого списка |
 | `segments` | `SegmentControlProps` | — | Сегменты для фильтрации |
-| `settings` | `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `NotificationPanelSettingsProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Кнопка настроек и выпадающий список |
+| `settings` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `NotificationPanelSettingsProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Кнопка настроек и выпадающий список |
 | `showBlackout` | `boolean` | `true` | Отображение темной подложки |
 | `skeletonsAmount` | `number` | `2` | Количество скелетонов карточек для отображения при загрузке |
 | `title` | `string` | — | Заголовок панели |
 | `width` | `Width` | `s` | Ширина (только при position: "left" \| "right") |
 
 ##### Related types
-
-**Action**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `content` | `ItemContent` | — | Основной контент айтема |
-| `disabled` | `boolean \| undefined` | — | Флаг неактивности элемента |
-| `icon` | `ReactElement<any, string \| JSXElementConstructor<any>> \| undefined` | — | Иконка слева от текста |
-| `onClick` | `((e: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбек обработки клика |
-| `tagLabel` | `string \| undefined` | — | Лейбл-тег справа от текста |
 
 **NotificationPanelSettingsProps**
 

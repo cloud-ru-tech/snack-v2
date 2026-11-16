@@ -683,13 +683,10 @@ List в popover. Оборачивает триггер (кнопку / поле)
 
 ### Анатомия
 
-#### Size (default `s`)
+#### Размер строк
 
-Размер задаёт высоту строки списка (Figma `listItem`): `s` = 40px, `m` = 52px, `l` = 66px. Совпадает с `size` у **List**.
-
-- `s` — дефолт. Компактные селекторы у кнопок toolbar/header.
-- `m` — списки объектов с описанием.
-- `l` — крупные меню, mobile.
+`size` задаёт размер строк: `s`, `m` или `l`. Фактическая высота зависит от платформы и плотности темы.
+Дефолты по раскладкам и их переопределение описаны в разделе [Адаптивность](#adaptive).
 
 #### Selection mode (default off)
 
@@ -966,6 +963,7 @@ export function DroplistWithHeader() {
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Только mobile (`BottomSheet`): заголовок шапки. |
+| `layoutPresets` | `DroplistLayoutDefaults` \| `LayoutPresets` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
 | `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
 | `listRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент выпадающего списка |
 | `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
@@ -1043,6 +1041,12 @@ export function DroplistWithHeader() {
 | `label` | `string \| undefined` | — | Заголовок группы |
 | `truncate` | `{ variant?: TruncateStringProps["variant"]; } \| undefined` | — | Настройки усечения длинного заголовка группы |
 
+**DroplistLayoutDefaults**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"l"` \| `"m"` \| `"s"` | — | Размер списка |
+
 **EmptyStateProps**
 
 | Prop | Type | Default | Description |
@@ -1068,8 +1072,6 @@ export function DroplistWithHeader() {
 | `truncate` | `TruncateProps` | — |  |
 
 - `ItemId` = `string | number`
-
-- `OnChangeHandler` = `(value: T) => void`
 
 **ScrollProps**
 
@@ -1154,6 +1156,25 @@ export function DroplistWithHeader() {
 
 Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
+#### Размер по раскладке
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `size` | `m` по умолчанию; можно задать обычным пропом | `l` по умолчанию; переопределяется через `layoutPresets.mobile.size` |
+
+Приоритет: `layoutPresets` для текущей раскладки → пресет компонента → обычный проп → базовый дефолт.
+Поэтому `size='s'` задаёт размер S на desktop, а на mobile сохраняется L.
+
+```tsx
+// S на desktop, L на mobile
+<Droplist size='s' items={items}>{trigger}</Droplist>
+
+// S на обеих раскладках
+<Droplist size='s' layoutPresets={{ mobile: { size: 's' } }} items={items}>
+  {trigger}
+</Droplist>
+```
+
 #### Как форсировать платформу
 
 Форс — только контекстом, не пропом:
@@ -1183,7 +1204,8 @@ export function DroplistWithHeader() {
 | `trigger`, `placement`, `widthStrategy`, `triggerElemRef`, `listRef`, `triggerClassName` | используется | игнорируется |
 | `label`, `actionButton`, `slotAfterTitle`, `onBackButtonClick` | игнорируется | используется |
 | `items`, `selection`, `collapse`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
-| `open`, `onOpenChange`, `closeOnPopstate`, `size` | используется | используется |
+| `open`, `onOpenChange`, `closeOnPopstate` | используется | используется |
+| `size`, `layoutPresets` | размер определяется с учётом пресетов | размер определяется с учётом пресетов |
 
 #### Mobile — BottomSheet
 

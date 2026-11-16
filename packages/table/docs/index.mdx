@@ -24,7 +24,6 @@ flowchart TB
 
   subgraph hooks [Хуки]
     useSimple[useSimpleTableProps]
-    useAdmin[useAdminTableProps]
     useTree[useTreeTableProps]
     useInfinite[useInfiniteTableProps]
     useEntities[useEntitiesTableProps]
@@ -32,9 +31,6 @@ flowchart TB
 
   subgraph presets [Preset-компоненты]
     SimpleTable
-    ServerSimpleTable
-    AdminTable
-    ServerAdminTable
     EntitiesTable
     TreeTable
     InfiniteTable
@@ -48,21 +44,17 @@ flowchart TB
 
   public -.->|columnDefinitions| Table
   useSimple --> SimpleTable
-  useAdmin --> AdminTable
   useTree --> TreeTable
   useInfinite --> InfiniteTable
   useEntities --> EntitiesTable
   SimpleTable --> Table
-  ServerSimpleTable --> ServerTable
-  AdminTable --> Table
-  ServerAdminTable --> ServerTable
   EntitiesTable --> ServerTable
   TreeTable --> Table
   InfiniteTable --> Table
   ServerTable --> Table
 ```
 
-`defineColumns`, `statusColumn` и `actionsColumn` — публичные утилиты: ими собирают `columnDefinitions` для [`Table`](/components/table/table) напрямую. Preset-ы дают тот же результат через упрощённые пропсы (`columns`, `statusColumn`, `rowActions` в `AdminTable`).
+`defineColumns`, `statusColumn` и `actionsColumn` — публичные утилиты: ими собирают `columnDefinitions` для [`Table`](/components/table/table) напрямую. Preset-ы дают тот же результат через упрощённые пропсы.
 
 `ServerTable` — обёртка над `Table` для серверной пагинации, сортировки и фильтрации.
 
@@ -75,8 +67,8 @@ flowchart TB
 | Полный контроль над API                          | [`Table`](/components/table/table)                  |
 | Серверная пагинация                              | [`ServerTable`](/components/table/server-table)     |
 | Серверный список сущностей + queryFn             | [`EntitiesTable`](/components/table/entities-table) |
-| Простой список: данные + колонки + пагинация     | [`SimpleTable`](/components/table/simple-table)     |
-| Админка: поиск, фильтры, выбор, статус, действия | [`AdminTable`](/components/table/admin-table)       |
+| Простой список с декларативными колонками     | [`SimpleTable`](/components/table/simple-table)     |
+| Админка: поиск, фильтры, выбор, статус, действия | [`Table`](/components/table/table)       |
 | Иерархия (дерево)                                | [`TreeTable`](/components/table/tree-table)         |
 | Бесконечная прокрутка                            | [`InfiniteTable`](/components/table/infinite-table) |
 

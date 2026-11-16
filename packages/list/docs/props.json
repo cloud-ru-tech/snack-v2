@@ -568,7 +568,7 @@
   "Droplist": {
     "displayName": "Droplist",
     "propsTypeName": "DroplistProps",
-    "description": "Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит\nсписок (size `m`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).\nСлоты `label` / `actionButton` / `slotAfterTitle` / `onBackButtonClick` применяются только на mobile.\nЧтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный\n`<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.",
+    "description": "Адаптивный `Droplist`: раскладку берёт из `AdaptiveProvider` (контекст). На `mobile` рендерит\nсписок (по умолчанию размера `l`) в `BottomSheet` (`MobileDroplist`), иначе — анкорный popover (`DesktopDroplist`).\nСлоты `label` / `actionButton` / `slotAfterTitle` / `onBackButtonClick` применяются только на mobile.\nЧтобы всегда был popover — `withLayoutType(Droplist, 'desktop')` либо вложенный\n`<AdaptiveProvider layoutType='desktop'>`. Пропа `layoutType` у компонента нет.",
     "props": {
       "actionButton": {
         "type": "ReactNode",
@@ -705,6 +705,15 @@
         "type": "string",
         "required": false,
         "description": "Только mobile (`BottomSheet`): заголовок шапки."
+      },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+        "typeRefs": [
+          "DroplistLayoutDefaults",
+          "LayoutPresets"
+        ]
       },
       "limitedScrollHeight": {
         "type": "boolean",
@@ -1124,6 +1133,25 @@
         },
         "own": true
       },
+      "DroplistLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": true
+      },
       "EmptyStateProps": {
         "kind": "interface",
         "props": {
@@ -1156,79 +1184,6 @@
           }
         },
         "own": true
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/icon-predefined)"
-            ]
-          }
-        },
-        "own": false
       },
       "Item": {
         "kind": "alias",
@@ -1277,10 +1232,27 @@
         "type": "string | number",
         "own": true
       },
-      "OnChangeHandler": {
-        "kind": "alias",
-        "type": "(value: T) => void",
-        "own": true
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
       },
       "Placement": {
         "kind": "union",
@@ -2874,6 +2846,15 @@
         "required": false,
         "description": "Только mobile (`BottomSheet`): заголовок шапки."
       },
+      "layoutPresets": {
+        "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
+        "required": false,
+        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+        "typeRefs": [
+          "DroplistLayoutDefaults",
+          "LayoutPresets"
+        ]
+      },
       "limitedScrollHeight": {
         "type": "boolean",
         "required": false,
@@ -3278,6 +3259,25 @@
         },
         "own": true
       },
+      "DroplistLayoutDefaults": {
+        "kind": "interface",
+        "props": {
+          "size": {
+            "type": "Size | undefined",
+            "required": false,
+            "values": [
+              "l",
+              "m",
+              "s"
+            ],
+            "description": "Размер списка",
+            "typeRefs": [
+              "Size"
+            ]
+          }
+        },
+        "own": true
+      },
       "EmptyStateProps": {
         "kind": "interface",
         "props": {
@@ -3310,79 +3310,6 @@
           }
         },
         "own": true
-      },
-      "IconPredefinedProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "blue",
-              "green",
-              "neutral",
-              "orange",
-              "pink",
-              "primary",
-              "red",
-              "violet",
-              "yellow"
-            ],
-            "description": "Внешний вид",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "background": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Наличие цветной подложки"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "icon": {
-            "type": "((props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => ReactNode) | (new (props: { size?: number; className?: string; }, deprecatedLegacyContext?: any) => Component<any, any>)",
-            "required": true,
-            "description": "JSX иконки"
-          },
-          "innerRef": {
-            "type": "Ref<HTMLDivElement> | undefined",
-            "required": false,
-            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
-          },
-          "shape": {
-            "type": "\"rounded\" | \"squared\" | undefined",
-            "required": false,
-            "values": [
-              "rounded",
-              "squared"
-            ],
-            "description": "Форма: круглая или квадратная"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "3xl",
-              "5xl",
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size (@ds/icon-predefined)"
-            ]
-          }
-        },
-        "own": false
       },
       "Item": {
         "kind": "alias",
@@ -3431,10 +3358,27 @@
         "type": "string | number",
         "own": true
       },
-      "OnChangeHandler": {
-        "kind": "alias",
-        "type": "(value: T) => void",
-        "own": true
+      "LayoutPresets": {
+        "kind": "interface",
+        "props": {
+          "desktop": {
+            "type": "any",
+            "required": false
+          },
+          "desktopSmall": {
+            "type": "any",
+            "required": false
+          },
+          "mobile": {
+            "type": "any",
+            "required": false
+          },
+          "tablet": {
+            "type": "any",
+            "required": false
+          }
+        },
+        "own": false
       },
       "Placement": {
         "kind": "union",

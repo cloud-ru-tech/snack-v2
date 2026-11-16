@@ -2261,6 +2261,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
@@ -3020,6 +3021,21 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -3172,127 +3188,6 @@
         },
         "own": false
       },
-      "FieldElementDroplistProps": {
-        "kind": "interface",
-        "props": {
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "onOpenChange": {
-            "type": "((open: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены состояния раскрытия"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Контролируемое состояние раскрытия"
-          },
-          "pinBottom": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные снизу",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "pinTop": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные сверху",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollToSelectedItem": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
-          },
-          "search": {
-            "type": "SearchState | undefined",
-            "required": false,
-            "description": "Настройки поисковой строки",
-            "typeRefs": [
-              "SearchState"
-            ]
-          },
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
-          },
-          "widthStrategy": {
-            "type": "PopoverWidthStrategy | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "eq",
-              "gte"
-            ],
-            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-            "typeRefs": [
-              "PopoverWidthStrategy"
-            ]
-          }
-        },
-        "own": false
-      },
       "FieldElementSlot": {
         "kind": "interface",
         "props": {
@@ -3321,6 +3216,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
@@ -4056,6 +3952,21 @@
         "type": "(params: { getReferenceProps: GetReferencePropsFunc; ref: (node: ReferenceType | null) => void; }) => ReactNode",
         "own": false
       },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
+          }
+        },
+        "own": false
+      },
       "DroplistListProps": {
         "kind": "alias",
         "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
@@ -4208,127 +4119,6 @@
         },
         "own": false
       },
-      "FieldElementDroplistProps": {
-        "kind": "interface",
-        "props": {
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "onOpenChange": {
-            "type": "((open: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек смены состояния раскрытия"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Контролируемое состояние раскрытия"
-          },
-          "pinBottom": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные снизу",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "pinTop": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные сверху",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollToSelectedItem": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
-          },
-          "search": {
-            "type": "SearchState | undefined",
-            "required": false,
-            "description": "Настройки поисковой строки",
-            "typeRefs": [
-              "SearchState"
-            ]
-          },
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
-          },
-          "widthStrategy": {
-            "type": "PopoverWidthStrategy | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "eq",
-              "gte"
-            ],
-            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-            "typeRefs": [
-              "PopoverWidthStrategy"
-            ]
-          }
-        },
-        "own": false
-      },
       "FieldElementSlot": {
         "kind": "interface",
         "props": {
@@ -4357,6 +4147,7 @@
             "required": false,
             "description": "Встроенный выпадающий список (действия / выбор) на `@ds/list` `Droplist`",
             "typeRefs": [
+              "DroplistAdaptiveProps",
               "DroplistListProps",
               "DroplistMobileSlots",
               "EmptyState",
@@ -5426,6 +5217,7 @@
         "description": "Пропсы, прокидываемые в `FieldSelect` (`@ds/fields`).",
         "typeRefs": [
           "CustomOptionProps",
+          "DroplistAdaptiveProps",
           "DroplistListProps",
           "DroplistMobileSlots",
           "EmptyState",
@@ -5460,6 +5252,21 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Разрешить фиксировать произвольный ввод из строки поиска как выбранную опцию\n(значение, которого нет в `items`)."
+          }
+        },
+        "own": false
+      },
+      "DroplistAdaptiveProps": {
+        "kind": "interface",
+        "props": {
+          "layoutPresets": {
+            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
+            "required": false,
+            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "typeRefs": [
+              "DroplistLayoutDefaults",
+              "LayoutPresets"
+            ]
           }
         },
         "own": false
@@ -5555,22 +5362,6 @@
           }
         },
         "own": true
-      },
-      "FieldLength": {
-        "kind": "interface",
-        "props": {
-          "current": {
-            "type": "number",
-            "required": true,
-            "description": "Текущая длина текста"
-          },
-          "max": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Максимально допустимая длина"
-          }
-        },
-        "own": false
       },
       "FieldSelectDecoratorProps": {
         "kind": "interface",

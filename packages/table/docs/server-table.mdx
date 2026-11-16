@@ -18,7 +18,7 @@ import doc from './props.json'
 
 `ServerTable` — обёртка над [`Table`](/components/table/table) для постраничных данных с бэкенда. Страница данных приходит снаружи (`items` / `total` / `limit` / `offset`), смена страницы, поиск и сортировка делегируются серверу: компонент вызывает `onChangePage`, `search.onChange` и `sorting.onChange`, а отрисовывает то, что передано в пропсах.
 
-Для типовых серверных сценариев есть preset-ы `ServerSimpleTable` и `ServerAdminTable` (см. [обзор пакета](/components/table)) — они маппят упрощённый API в `ServerTable`, как `SimpleTable` / `AdminTable` маппят в `Table`.
+Декларативное описание колонок можно преобразовать через `defineColumns` и передать в `columnDefinitions`.
 
 ## Когда использовать
 
@@ -29,12 +29,11 @@ import doc from './props.json'
 Когда **не** нужен:
 
 - Данные загружены на клиент целиком:
-  - используйте [`Table`](/components/table/table) или [`SimpleTable`](/components/table/simple-table) — пагинация, поиск и сортировка работают локально.
+  - используйте [`Table`](/components/table/table) для локальной пагинации или [`SimpleTable`](/components/table/simple-table) для отображения всех строк.
 
 Рекомендации по выбору API:
 
-- Простой серверный список (колонки + пагинация) — `ServerSimpleTable`.
-- Админ-экран с поиском, статусом, выбором и действиями — `ServerAdminTable`.
+- Админ-экран с поиском, статусом, выбором и действиями — `ServerTable`.
 - Нестандартные колонки, фильтры или поведение тулбара — `ServerTable` напрямую.
 
 ## Анатомия
@@ -111,7 +110,6 @@ import { ServerTable } from '@ds/table'
 
 ## Смотри также
 
-- [Обзор пакета](/components/table) — `ServerSimpleTable`, `ServerAdminTable` и выбор компонента.
+- [Обзор пакета](/components/table) — выбор компонента.
 - [Table](/components/table/table) — клиентская таблица для данных, загруженных целиком.
-- [SimpleTable](/components/table/simple-table) — клиентский аналог `ServerSimpleTable`.
-- [AdminTable](/components/table/admin-table) — клиентский аналог `ServerAdminTable`.
+- [SimpleTable](/components/table/simple-table) — таблица для отображения готового массива данных.

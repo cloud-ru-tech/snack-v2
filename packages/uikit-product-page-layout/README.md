@@ -120,14 +120,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **CustomAction**
 
@@ -194,14 +194,14 @@ import {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **CustomAction**
 
@@ -619,7 +619,7 @@ const actions: Action[] = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## ButtonKebab
 
@@ -628,7 +628,7 @@ const actions: Action[] = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 ## ButtonQuota
 
@@ -801,14 +801,14 @@ const actions: Action[] = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **CustomAction**
 
@@ -841,14 +841,14 @@ const actions: Action[] = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **CustomAction**
 
@@ -909,14 +909,14 @@ const actions: Action[] = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **ButtonKebabProps**
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `button` | `ButtonProps` | — |  |
-| `list` | `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
+| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
 
 **CustomAction**
 

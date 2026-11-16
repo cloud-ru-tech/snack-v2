@@ -51,13 +51,10 @@ import listDoc from './props.json'
 
 ## Анатомия
 
-### Size (default `s`)
+### Размер строк
 
-Размер задаёт высоту строки списка (Figma `listItem`): `s` = 40px, `m` = 52px, `l` = 66px. Совпадает с `size` у [List](/components/list/list).
-
-- `s` — дефолт. Компактные селекторы у кнопок toolbar/header.
-- `m` — списки объектов с описанием.
-- `l` — крупные меню, mobile.
+`size` задаёт размер строк: `s`, `m` или `l`. Фактическая высота зависит от платформы и плотности темы.
+Дефолты по раскладкам и их переопределение описаны в разделе [Адаптивность](#adaptive).
 
 ### Selection mode (default off)
 
@@ -191,6 +188,25 @@ import '@ds/list/style.css'
 
 Верстайте под desktop и поставьте один `<AdaptiveProvider>` в корне приложения — mobile-поверхность включается автоматически (desktop-first). Пропа `layoutType` у компонента нет: источник раскладки — только контекст.
 
+### Размер по раскладке
+
+| Проп | desktop | mobile |
+|------|---------|--------|
+| `size` | `m` по умолчанию; можно задать обычным пропом | `l` по умолчанию; переопределяется через `layoutPresets.mobile.size` |
+
+Приоритет: `layoutPresets` для текущей раскладки → пресет компонента → обычный проп → базовый дефолт.
+Поэтому `size='s'` задаёт размер S на desktop, а на mobile сохраняется L.
+
+```tsx
+// S на desktop, L на mobile
+<Droplist size='s' items={items}>{trigger}</Droplist>
+
+// S на обеих раскладках
+<Droplist size='s' layoutPresets={{ mobile: { size: 's' } }} items={items}>
+  {trigger}
+</Droplist>
+```
+
 ### Как форсировать платформу
 
 Форс — только контекстом, не пропом:
@@ -220,7 +236,8 @@ import '@ds/list/style.css'
 | `trigger`, `placement`, `widthStrategy`, `triggerElemRef`, `listRef`, `triggerClassName` | используется | игнорируется |
 | `label`, `actionButton`, `slotAfterTitle`, `onBackButtonClick` | игнорируется | используется |
 | `items`, `selection`, `collapse`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
-| `open`, `onOpenChange`, `closeOnPopstate`, `size` | используется | используется |
+| `open`, `onOpenChange`, `closeOnPopstate` | используется | используется |
+| `size`, `layoutPresets` | размер определяется с учётом пресетов | размер определяется с учётом пресетов |
 
 <Example title='Mobile — BottomSheet' description='Раскладка форсирована в mobile: по клику триггера список открывается в BottomSheet.' code={MobileDroplistSrc}>
   <MobileDroplist client:visible />

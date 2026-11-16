@@ -32,7 +32,6 @@ flowchart TB
 
   subgraph hooks [Хуки]
     useSimple[useSimpleTableProps]
-    useAdmin[useAdminTableProps]
     useTree[useTreeTableProps]
     useInfinite[useInfiniteTableProps]
     useEntities[useEntitiesTableProps]
@@ -40,9 +39,6 @@ flowchart TB
 
   subgraph presets [Preset-компоненты]
     SimpleTable
-    ServerSimpleTable
-    AdminTable
-    ServerAdminTable
     EntitiesTable
     TreeTable
     InfiniteTable
@@ -56,21 +52,17 @@ flowchart TB
 
   public -.->|columnDefinitions| Table
   useSimple --> SimpleTable
-  useAdmin --> AdminTable
   useTree --> TreeTable
   useInfinite --> InfiniteTable
   useEntities --> EntitiesTable
   SimpleTable --> Table
-  ServerSimpleTable --> ServerTable
-  AdminTable --> Table
-  ServerAdminTable --> ServerTable
   EntitiesTable --> ServerTable
   TreeTable --> Table
   InfiniteTable --> Table
   ServerTable --> Table
 ```
 
-`defineColumns`, `statusColumn` и `actionsColumn` — публичные утилиты: ими собирают `columnDefinitions` для **`Table`** напрямую. Preset-ы дают тот же результат через упрощённые пропсы (`columns`, `statusColumn`, `rowActions` в `AdminTable`).
+`defineColumns`, `statusColumn` и `actionsColumn` — публичные утилиты: ими собирают `columnDefinitions` для **`Table`** напрямую. Preset-ы дают тот же результат через упрощённые пропсы.
 
 `ServerTable` — обёртка над `Table` для серверной пагинации, сортировки и фильтрации.
 
@@ -112,8 +104,6 @@ flowchart TB
   - используйте **`ServerTable`**.
 - Простой справочник без поиска и фильтров:
   - **`SimpleTable`** вместо ручной сборки `columnDefinitions`.
-- Типичный админ-экран (поиск, статус, выбор, действия):
-  - **`AdminTable`** вместо полного `Table`.
 - Простой список без колонок и сортировки:
   - используйте список или карточки.
 
@@ -953,7 +943,7 @@ export function FullWidth() {
 | `infiniteLoading` | `boolean` | `false` | Режим работы "бесконечной" загрузки |
 | `keepPinnedRows` | `boolean` | `false` | Параметр отвечает за отображение закрепленных строк на всех страницах таблицы |
 | `layoutPresets` | `LayoutPresets` \| `TableLayoutDefaults` | — | Override дефолтов адаптива для этого инстанса (`mergePresets` поверх `TABLE_LAYOUT_PRESETS`). <br/> `stickyControls` в пресете tier'а заменяет DS-объект целиком — указывайте все нужные поля. <br/> Escape-hatch: обычно не нужен — DS-пресет применяется автоматически по `AdaptiveProvider`. |
-| `loadMoreTrigger` | `"button"` \| `"scroll"` | `scroll` | Механизм подгрузки следующей порции данных. <br/> - `'scroll'` (по умолчанию) — IntersectionObserver на scroll-stub в конце списка. <br/> - `'button'` — кнопка «Загрузить ещё» под таблицей. |
+| `loadMoreTrigger` | `"button"` \| `"scroll"` | `scroll` | Механизм подгрузки следующей порции данных. <br/> - `'scroll'` (по умолчанию) — IntersectionObserver на scroll-stub в конце списка. <br/> - `'button'` — кнопка «Показать ещё» под таблицей. |
 | `loading` | `boolean` | `false` | Состояние загрузки |
 | `manualFiltering` | `boolean` | `false` |  |
 | `manualPagination` | `boolean` | `false` |  |
@@ -962,7 +952,7 @@ export function FullWidth() {
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
 | `onExport` | `(() => void)` | — | Колбэк экспорта данных. Рендерит иконку в тулбаре перед настройками колонок. |
-| `onLoadMore` | `(() => void)` | — | Колбэк дозагрузки следующей порции данных. <br/> В режиме `loadMoreTrigger='scroll'` вызывается автоматически при достижении конца списка; <br/> в режиме `loadMoreTrigger='button'` — по нажатию кнопки «Загрузить ещё». |
+| `onLoadMore` | `(() => void)` | — | Колбэк дозагрузки следующей порции данных. <br/> В режиме `loadMoreTrigger='scroll'` вызывается автоматически при достижении конца списка; <br/> в режиме `loadMoreTrigger='button'` — по нажатию кнопки «Показать ещё». |
 | `onRefresh` | `(() => void)` | — | Колбэк обновления данных |
 | `onRowClick` | `RowClickHandler` | — | Колбэк клика по строке |
 | `onViewChange` | `((view: View) => void)` | — | Колбэк на смену режима отображения |
@@ -972,6 +962,7 @@ export function FullWidth() {
 | `pagination` | `{ state?: PaginationState; options?: number[]; optionsLabel?: string \| undefined; onChange?(state: PaginationState): void; optionsRender?(value: string \| number, idx: number): string \| number; } \| undefined` | — | Параметры пагинации: `state`, `options`, `optionsLabel`, `onChange`, `optionsRender`. |
 | `renderCard` | `((context: RenderCardContext<TData>) => ReactNode)` | — | Кастомный рендер карточки в `view='cards'`. Получает контекст с tanstack <br/> `row` / `table` и `defaultRender` (готовый элемент дефолтной карточки — <br/> можно обернуть). Возврат заменяет дефолтную карточку. |
 | `rowAutoHeight` | `boolean` | — |  |
+| `rowCount` | `number` | — | Общее количество строк при внешнем управлении пагинацией. |
 | `rowPinning` | `Pick<RowPinningState, "top">` | `{     top: [],   }` | Определение, какие строки должны быть закреплены в таблице |
 | `rowSelection` | `RowAppearance` | — | Параметры выбора строк: `initialState`, `state`, `enable`, `appearance`, `multiRow`, `onChange`. |
 | `rowVirtualizerInstanceRef` | `RowVirtualizer` | — | Ref на инстанс row-virtualizer'а для управления прокруткой снаружи |
@@ -1056,7 +1047,6 @@ export function FullWidth() {
 - **Обзор пакета** — архитектура, выбор компонента, preset-ы.
 - **`defineColumns`** — декларативные колонки для preset-ов и escape hatch.
 - **SimpleTable** — минимальный клиентский preset.
-- **AdminTable** — админ-экран на клиенте.
 - **TreeTable** — иерархические данные.
 - **InfiniteTable** — бесконечная прокрутка.
 - **ServerTable** — постраничные данные с бэкенда.
@@ -1175,7 +1165,7 @@ localStorage и sessionStorage используют ключ `${id}_filter` и J
 
 `ServerTable` — обёртка над **`Table`** для постраничных данных с бэкенда. Страница данных приходит снаружи (`items` / `total` / `limit` / `offset`), смена страницы, поиск и сортировка делегируются серверу: компонент вызывает `onChangePage`, `search.onChange` и `sorting.onChange`, а отрисовывает то, что передано в пропсах.
 
-Для типовых серверных сценариев есть preset-ы `ServerSimpleTable` и `ServerAdminTable` (см. **обзор пакета**) — они маппят упрощённый API в `ServerTable`, как `SimpleTable` / `AdminTable` маппят в `Table`.
+Декларативное описание колонок можно преобразовать через `defineColumns` и передать в `columnDefinitions`.
 
 ### Когда использовать
 
@@ -1186,12 +1176,11 @@ localStorage и sessionStorage используют ключ `${id}_filter` и J
 Когда **не** нужен:
 
 - Данные загружены на клиент целиком:
-  - используйте **`Table`** или **`SimpleTable`** — пагинация, поиск и сортировка работают локально.
+  - используйте **`Table`** для локальной пагинации или **`SimpleTable`** для отображения всех строк.
 
 Рекомендации по выбору API:
 
-- Простой серверный список (колонки + пагинация) — `ServerSimpleTable`.
-- Админ-экран с поиском, статусом, выбором и действиями — `ServerAdminTable`.
+- Админ-экран с поиском, статусом, выбором и действиями — `ServerTable`.
 - Нестандартные колонки, фильтры или поведение тулбара — `ServerTable` напрямую.
 
 ### Анатомия
@@ -1517,16 +1506,15 @@ export function ServerDriven() {
 
 ### Смотри также
 
-- **Обзор пакета** — `ServerSimpleTable`, `ServerAdminTable` и выбор компонента.
+- **Обзор пакета** — выбор компонента.
 - **Table** — клиентская таблица для данных, загруженных целиком.
-- **SimpleTable** — клиентский аналог `ServerSimpleTable`.
-- **AdminTable** — клиентский аналог `ServerAdminTable`.
+- **SimpleTable** — таблица для отображения готового массива данных.
 
 ## SimpleTable
 
-Минимальная клиентская таблица: данные, колонки и пагинация с предустановленными дефолтами.
+Минимальная клиентская таблица: данные и декларативные колонки.
 
-`SimpleTable` — preset-обёртка над **`Table`** для простых списков: декларативные колонки через `defineColumns`, пагинация и `outline` включены по умолчанию.
+`SimpleTable` — preset-обёртка над **`Table`** для простых списков: декларативные колонки через `defineColumns`, `outline` включён по умолчанию. Таблица отображает все строки без панели инструментов и пагинации.
 
 ### Когда использовать
 
@@ -1536,8 +1524,8 @@ export function ServerDriven() {
 
 Когда **не** нужен:
 
-- Поиск, фильтры, выбор строк — используйте `AdminTable`.
-- Данные с бэкенда постранично — `ServerSimpleTable` или `ServerTable`.
+- Поиск, фильтры, выбор строк — используйте `Table`.
+- Данные с бэкенда постранично — `ServerTable`.
 
 ### Примеры использования
 
@@ -1572,7 +1560,7 @@ const columns: SimpleColumnDef<User>[] = [
 ];
 
 export function SimpleTableBasic() {
-  return <SimpleTable data={USERS} columns={columns} pageSize={5} getRowId={user => user.id} outline />;
+  return <SimpleTable data={USERS} columns={columns} getRowId={user => user.id} outline />;
 }
 ```
 
@@ -1605,7 +1593,6 @@ export function SimpleTableWithHook() {
   const tableProps = useSimpleTableProps({
     data: USERS,
     columns,
-    pageSize: 5,
     getRowId: user => user.id,
     outline: true,
   });
@@ -1614,278 +1601,21 @@ export function SimpleTableWithHook() {
 }
 ```
 
-#### Карточный режим
+### Возможности и API
 
-```tsx
-import { SimpleColumnDef, SimpleTable, VIEW } from '@ds/table';
-import { useState } from 'react';
+`SimpleTable` принимает данные через `data`, а описание колонок — через `columns`.
+Форматирование значений задаётся через `format`; для полной настройки колонки используется `column`.
+Все строки отображаются сразу в табличном виде. Поддерживаются сортировка колонок,
+обработка нажатия на строку, состояния загрузки, ошибки и отсутствия данных.
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-};
-
-const USERS: User[] = [
-  { id: 'u-1', name: 'Анна Иванова', email: 'anna.ivanova@example.com', role: 'Owner' },
-  { id: 'u-2', name: 'Борис Петров', email: 'boris.petrov@example.com', role: 'Admin' },
-  { id: 'u-3', name: 'Вера Сидорова', email: 'vera.sidorova@example.com', role: 'Editor' },
-];
-
-const columns: SimpleColumnDef<User>[] = [
-  { key: 'name', header: 'Имя', sortable: true, width: 200 },
-  { key: 'email', header: 'Email', width: 240 },
-  { key: 'role', header: 'Роль', width: 140 },
-];
-
-export function SimpleTableCardView() {
-  const [view, setView] = useState<typeof VIEW.Table | typeof VIEW.Cards>(VIEW.Cards);
-
-  return (
-    <SimpleTable
-      data={USERS}
-      columns={columns}
-      pageSize={5}
-      getRowId={user => user.id}
-      headlineKey='name'
-      view={view}
-      onViewChange={setView}
-      outline
-    />
-  );
-}
-```
-
-## AdminTable
-
-Админ-таблица: поиск, статус, выбор строк и действия с предустановленными дефолтами.
-
-`AdminTable` — preset над **`Table`** для типичных админ-экранов: поиск, колонка статуса, настройки колонок, опционально фильтры, выбор строк и действия.
-
-### Когда использовать
-
-- Списки сущностей с поиском и статусом на клиенте.
-- Нужен упрощённый API вместо сборки `columnDefinitions` + toolbar-пропсов вручную.
-
-Когда **не** нужен:
-
-- Данные с бэкенда постранично — `ServerAdminTable`.
-- Простой справочник без поиска — `SimpleTable`.
-
-### Примеры использования
-
-#### Базовое использование
-
-```tsx
-import { AdminTable, SimpleColumnDef, STATUS_APPEARANCE } from '@ds/table';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  amount: number;
-};
-
-const USERS: User[] = [
-  {
-    id: 'u-1',
-    name: 'Анна Иванова',
-    email: 'anna.ivanova@example.com',
-    role: 'Owner',
-    status: 'active',
-    amount: 12990,
-  },
-  {
-    id: 'u-2',
-    name: 'Борис Петров',
-    email: 'boris.petrov@example.com',
-    role: 'Admin',
-    status: 'pending',
-    amount: 8450,
-  },
-  {
-    id: 'u-3',
-    name: 'Вера Сидорова',
-    email: 'vera.sidorova@example.com',
-    role: 'Editor',
-    status: 'blocked',
-    amount: 4300,
-  },
-  {
-    id: 'u-4',
-    name: 'Глеб Кузнецов',
-    email: 'gleb.kuznetsov@example.com',
-    role: 'Viewer',
-    status: 'invited',
-    amount: 0,
-  },
-  { id: 'u-5', name: 'Дарья Орлова', email: 'darya.orlova@example.com', role: 'Editor', status: 'active', amount: 990 },
-];
-
-const columns: SimpleColumnDef<User>[] = [
-  { key: 'name', header: 'Имя', sortable: true, width: 200 },
-  { key: 'email', header: 'Email', width: 240 },
-  { key: 'role', header: 'Роль', sortable: true, width: 140 },
-  { key: 'amount', header: 'Сумма', sortable: true, align: 'right', width: 140, format: 'currency' },
-];
-
-const statusLabels: Record<string, string> = {
-  active: 'Активен',
-  pending: 'Ожидание',
-  blocked: 'Заблокирован',
-  invited: 'Приглашён',
-};
-
-export function AdminTableBasic() {
-  return (
-    <AdminTable
-      data={USERS}
-      columns={columns}
-      statusColumn={{
-        key: 'status',
-        mapStatusToAppearance: value => {
-          switch (value) {
-            case 'active':
-              return STATUS_APPEARANCE.Green;
-            case 'pending':
-              return STATUS_APPEARANCE.Yellow;
-            case 'blocked':
-              return STATUS_APPEARANCE.Red;
-            case 'invited':
-              return STATUS_APPEARANCE.Blue;
-            default:
-              return STATUS_APPEARANCE.Neutral;
-          }
-        },
-        renderDescription: status => statusLabels[status] ?? status,
-      }}
-      pageSize={5}
-      getRowId={user => user.id}
-      search
-      outline
-    />
-  );
-}
-```
-
-#### Через хук useAdminTableProps
-
-```tsx
-import { SimpleColumnDef, STATUS_APPEARANCE, Table, useAdminTableProps } from '@ds/table';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  amount: number;
-};
-
-const USERS: User[] = [
-  {
-    id: 'u-1',
-    name: 'Анна Иванова',
-    email: 'anna.ivanova@example.com',
-    role: 'Owner',
-    status: 'active',
-    amount: 12990,
-  },
-  {
-    id: 'u-2',
-    name: 'Борис Петров',
-    email: 'boris.petrov@example.com',
-    role: 'Admin',
-    status: 'pending',
-    amount: 8450,
-  },
-  {
-    id: 'u-3',
-    name: 'Вера Сидорова',
-    email: 'vera.sidorova@example.com',
-    role: 'Editor',
-    status: 'blocked',
-    amount: 4300,
-  },
-];
-
-const columns: SimpleColumnDef<User>[] = [
-  { key: 'name', header: 'Имя', sortable: true, width: 200 },
-  { key: 'email', header: 'Email', width: 240 },
-  { key: 'role', header: 'Роль', sortable: true, width: 140 },
-];
-
-export function AdminTableWithHook() {
-  const tableProps = useAdminTableProps({
-    data: USERS,
-    columns,
-    statusColumn: {
-      key: 'status',
-      mapStatusToAppearance: value => (value === 'active' ? STATUS_APPEARANCE.Green : STATUS_APPEARANCE.Yellow),
-      renderDescription: status => (status === 'active' ? 'Активен' : 'Ожидание'),
-    },
-    pageSize: 5,
-    getRowId: user => user.id,
-    search: true,
-  });
-
-  return <Table {...tableProps} outline />;
-}
-```
-
-#### Карточный режим
-
-```tsx
-import { AdminTable, SimpleColumnDef, VIEW } from '@ds/table';
-import { useState } from 'react';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  amount: number;
-};
-
-const USERS: User[] = [
-  { id: 'u-1', name: 'Анна Иванова', email: 'anna.ivanova@example.com', role: 'Owner', amount: 12990 },
-  { id: 'u-2', name: 'Борис Петров', email: 'boris.petrov@example.com', role: 'Admin', amount: 8450 },
-  { id: 'u-3', name: 'Вера Сидорова', email: 'vera.sidorova@example.com', role: 'Editor', amount: 4300 },
-];
-
-const columns: SimpleColumnDef<User>[] = [
-  { key: 'name', header: 'Имя', sortable: true, width: 200 },
-  { key: 'email', header: 'Email', width: 240 },
-  { key: 'role', header: 'Роль', sortable: true, width: 140 },
-];
-
-export function AdminTableCardView() {
-  const [view, setView] = useState<typeof VIEW.Table | typeof VIEW.Cards>(VIEW.Cards);
-
-  return (
-    <AdminTable
-      data={USERS}
-      columns={columns}
-      pageSize={5}
-      getRowId={user => user.id}
-      search
-      headlineKey='name'
-      view={view}
-      onViewChange={setView}
-      outline
-    />
-  );
-}
-```
+Для панели инструментов, пагинации, выбора строк, поиска, фильтров и карточного режима
+используется `Table`. Для серверной обработки данных — `ServerTable`.
 
 ## TreeTable
 
-Иерархическая таблица: expanding, без пагинации, с опциональным выбором строк.
+Иерархическая таблица: раскрытие строк, постраничная навигация и выбор строк.
 
-`TreeTable` — preset для иерархических данных: `getChildren`, tree-колонка через `primaryColumn`, без пагинации.
+`TreeTable` — preset для иерархических данных: `getChildren`, tree-колонка через `primaryColumn`, с пагинацией корневых строк. Дочерние строки отображаются вместе с родителем и не уменьшают число корневых строк на странице. Представление — только таблица, включая мобильный режим.
 
 ### Когда использовать
 
@@ -1894,7 +1624,7 @@ export function AdminTableCardView() {
 
 Когда **не** нужен:
 
-- Плоский список — `SimpleTable` / `AdminTable`.
+- Плоский список — `SimpleTable`.
 - Закрепление строк (`rowPinning`) — только на полном `Table`.
 
 ### Примеры использования
@@ -2191,44 +1921,8 @@ Server-driven список сущностей: state пагинации/поис
 
 Когда **не** нужен:
 
-- Ручной fetch и упрощённый API (`columns`, `statusColumn`) — **`ServerAdminTable`**.
-- Клиентские данные в памяти — **`AdminTable`** или **`SimpleTable`**.
-
-#### EntitiesTable vs ServerAdminTable
-
-| | `EntitiesTable` | `ServerAdminTable` |
-| --- | --- | --- |
-| Вход колонок | `columnDefinitions` | `columns` + `statusColumn` / `rowActions` |
-| Данные | `queryFn` (custom hook на render) | `items` / `total` / `loading` вручную |
-| State пагинации | внутри (`useEntitiesTableState`) | снаружи |
-| `savedState` | из обязательного `id` | не задаётся preset-ом |
-| Drag колонок | включён по умолчанию | только меню настроек |
-
-Оба preset-а валидны; выбор — по входному API и способу загрузки данных.
-
-#### Переход на ServerAdminTable
-
-Если экран укладывается в `columns` + `statusColumn` и вы сами управляете fetch — уберите `queryFn`, state страницы вынесите наружу, колонки упростите. `savedState` из `id` не переносится; drag — через `columnsSettings`.
-
-```tsx
-// Было
-<EntitiesTable id="entities" queryFn={useEntitiesQuery} columnDefinitions={columnDefinitions} getRowId={row => row.id} />
-
-// Стало: items/total/loading + offset/limit/search снаружи
-<ServerAdminTable
-  items={items}
-  total={total}
-  offset={offset}
-  limit={limit}
-  loading={loading}
-  columns={columns}
-  statusColumn={statusColumn}
-  getRowId={row => row.id}
-  onChangePage={(nextOffset, nextLimit) => { setOffset(nextOffset); setLimit(nextLimit); }}
-  search={{ state: search, onChange: value => { setOffset(0); setSearch(value); } }}
-  columnsSettings={{ enableDrag: true, enableSettingsMenu: true }}
-/>
-```
+- Ручная загрузка страниц — **`ServerTable`**.
+- Клиентские данные в памяти — **`Table`** или **`SimpleTable`**.
 
 ### Примеры использования
 
@@ -2569,5 +2263,4 @@ export function EntitiesTableWithFilters() {
 
 ### Смотри также
 
-- **`ServerAdminTable`** — ручной fetch и упрощённый API колонок.
-- **`ServerTable`** — escape hatch без product-дефолтов.
+- **`ServerTable`** — таблица с ручной загрузкой страниц.

@@ -434,7 +434,7 @@ export function ChoiceRowPinned() {
 | `className` | `string` | — | CSS-класс |
 | `data-test-id` | `string` | — |  |
 | `defaultValue` | `Partial<TState>` | — | Начальное состояние фильтров |
-| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
+| `filters` | `BaseChipProps` \| `ChipChoiceDateWithSeconds` \| `ChipChoiceRowFilter` \| `DropdownBridgeProps` \| `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionMultipleState` \| `SelectionSingleState` \| `SelectionState` | — | Массив чипов |
 | `onChange` | `((filters: TState) => void)` | — | Колбек изменения состояния фильтров |
 | `onVisibleFiltersChange` | `((value: string[]) => void)` | — | Коллбек на изменение видимых фильтров |
 | `showAddButton` | `boolean` | `true` | Скрыть/показать кнопку добавления фильров |
@@ -611,6 +611,7 @@ export function ChoiceSingleManualApply() {
 | `icon` | `ReactNode` | — | Иконка |
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
+| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
@@ -635,6 +636,7 @@ export function ChoiceSingleManualApply() {
 | `valueRender` | `((option?: BaseOption<T>) => ReactNode)` | — | Колбек формирующий отображение выбранного значения |
 | `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `gte` | Стратегия управления шириной контейнера поповера |
+| `withDividers` | `boolean` | `true` | Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал <br/> от прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии. |
 
 ### Смотри также
 
@@ -773,6 +775,7 @@ export function ChoiceMultipleSearchable() {
 | `icon` | `ReactNode` | — | Иконка |
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
+| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
@@ -797,6 +800,7 @@ export function ChoiceMultipleSearchable() {
 | `valueRender` | `((option?: BaseOption<T>[]) => ReactNode)` | — | Колбек формирующий отображение выбранного значения |
 | `virtualized` | `boolean` | — | Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000. |
 | `widthStrategy` | `"auto"` \| `"eq"` \| `"gte"` | `gte` | Стратегия управления шириной контейнера поповера |
+| `withDividers` | `boolean` | `true` | Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал <br/> от прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии. |
 
 ### Смотри также
 
