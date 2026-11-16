@@ -10,6 +10,8 @@ export const TEST_IDS = {
   root: 'stepper',
   stepSuffix: '_element-step',
   tailSuffix: '_element-tail',
+  titleSuffix: '_element-title',
+  descriptionSuffix: '_element-description',
 } as const;
 
 /** Сборка test-id'а конкретного шага по root testId и индексу. */

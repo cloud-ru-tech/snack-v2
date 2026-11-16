@@ -2,11 +2,12 @@ import { STEP_STATE, Stepper, StepState, StepViewData } from '@ds/stepper';
 import { Meta, StoryObj } from '@storybook/react';
 import { ReactElement } from 'react';
 
-import { StoryTable } from '#storybook/components';
+import { LayoutScope, StoryTable } from '#storybook/components';
 
 import { DesktopStep } from '../../src/helperComponents/DesktopStep';
 import { MobileStep } from '../../src/helperComponents/MobileStep';
 import styles from './styles.module.scss';
+import { TEST_IDS } from './testIds';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
@@ -14,6 +15,23 @@ const meta: Meta<typeof Stepper> = {
 };
 export default meta;
 type Story = StoryObj<typeof Stepper>;
+
+const LAYOUTS = ['desktop', 'mobile'] as const;
+
+const LONG_TEXT_STEPS = [
+  {
+    title: 'Configure network settings and access rules for the cluster',
+    description:
+      'Select a virtual network, subnets and security groups. Access rules apply to every node of the cluster after creation.',
+  },
+  { title: 'Review the configuration before launching the cluster', description: 'Short description' },
+  { title: 'Launch' },
+];
+
+const LONG_TEXT_CONTAINER = {
+  desktop: styles.containerMatrixDesktop,
+  mobile: styles.containerMatrixMobile,
+};
 
 const STATES: StepState[] = [
   STEP_STATE.Waiting,
@@ -61,6 +79,18 @@ function mobileAtState(state: StepState): ReactElement {
   );
 }
 
+function longTextAtLayout(layout: (typeof LAYOUTS)[number]): ReactElement {
+  return (
+    <LayoutScope key={layout} layoutType={layout}>
+      <div className={LONG_TEXT_CONTAINER[layout]}>
+        <Stepper steps={LONG_TEXT_STEPS} data-test-id={TEST_IDS.longText[layout].root}>
+          {({ stepper }) => stepper}
+        </Stepper>
+      </div>
+    </LayoutScope>
+  );
+}
+
 export const VisualMatrix: Story = {
   tags: ['test', 'dev'],
   parameters: { controls: { disable: true } },
@@ -83,6 +113,12 @@ export const VisualMatrix: Story = {
           variantLabel: state,
           cells: [mobileAtState(state)],
         }))}
+      />
+      <StoryTable
+        sectionTitle='Long text'
+        firstColumnHeader='Content'
+        columnHeaders={LAYOUTS.map(layout => layout.toUpperCase())}
+        rows={[{ variantLabel: 'truncated', cells: LAYOUTS.map(longTextAtLayout) }]}
       />
     </div>
   ),

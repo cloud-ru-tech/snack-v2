@@ -1,7 +1,8 @@
+import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import cn from 'classnames';
 
-import { STEP_STATE } from '../../constants';
+import { STEP_STATE, TEST_IDS } from '../../constants';
 import { StepViewData } from '../../types';
 import { getTestIdBuilder } from '../../utils';
 import { StepIcon } from '../StepIcon';
@@ -20,6 +21,8 @@ export type DesktopStepProps = {
 
 const getTailTestId = getTestIdBuilder('_element-tail');
 const getStepTestId = getTestIdBuilder('_element-step');
+const getTitleTestId = getTestIdBuilder(TEST_IDS.titleSuffix);
+const getDescriptionTestId = getTestIdBuilder(TEST_IDS.descriptionSuffix);
 
 export function DesktopStep({ step, className, 'data-test-id': testId, hideTailLine }: DesktopStepProps) {
   // hover/press state-layer есть только у кликабельных навигационных кружков —
@@ -59,12 +62,12 @@ export function DesktopStep({ step, className, 'data-test-id': testId, hideTailL
 
       <div className={styles.content}>
         <Typography variant='body' size='m' as='div' className={styles.title}>
-          {step.title}
+          <TruncateString text={step.title} data-test-id={getTitleTestId(testId)} />
         </Typography>
 
         {step.description && (
           <Typography variant='body' size='s' as='div' className={styles.description}>
-            {step.description}
+            <TruncateString text={step.description} maxLines={2} data-test-id={getDescriptionTestId(testId)} />
           </Typography>
         )}
       </div>

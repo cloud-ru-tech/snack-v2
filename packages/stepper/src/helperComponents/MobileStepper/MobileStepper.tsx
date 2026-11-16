@@ -1,11 +1,17 @@
+import { TruncateString } from '@ds/truncate-string';
 import { Typography } from '@ds/typography';
 import cn from 'classnames';
 
+import { TEST_IDS } from '../../constants';
 import { StepperContext } from '../../context';
 import { useStepperController } from '../../hooks/useStepperController';
 import { StepperApi, StepperProps } from '../../types';
+import { getTestIdBuilder } from '../../utils';
 import { MobileStep } from '../MobileStep';
 import styles from './styles.module.scss';
+
+const getTitleTestId = getTestIdBuilder(TEST_IDS.titleSuffix);
+const getDescriptionTestId = getTestIdBuilder(TEST_IDS.descriptionSuffix);
 
 export function MobileStepper({
   children,
@@ -41,12 +47,12 @@ export function MobileStepper({
       {currentStep && (
         <div className={styles.content}>
           <Typography variant='body' size='m' as='div' className={styles.title}>
-            {currentStep.title}
+            <TruncateString text={currentStep.title} data-test-id={getTitleTestId(testId)} />
           </Typography>
 
           {currentStep.description && (
             <Typography variant='body' size='s' as='div' className={styles.description}>
-              {currentStep.description}
+              <TruncateString text={currentStep.description} maxLines={2} data-test-id={getDescriptionTestId(testId)} />
             </Typography>
           )}
         </div>

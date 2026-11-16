@@ -2440,6 +2440,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
