@@ -19,8 +19,11 @@ test.describe('AiAttachment — visual regression', () => {
     await assertVisualMatrixSnapshot(page);
   });
 
-  test('interaction states (default × hover)', async ({ page, gotoStory, waitForFonts }) => {
-    await gotoStory(buildStoryOptions());
+  test('interaction states (default × hover)', async ({ page, gotoStory, waitForFonts, remountStory }) => {
+    await gotoStory(buildStoryOptions({ tooltip: undefined }));
+    await waitForFonts();
+    // TruncateString должен измерять имя файла с загруженным шрифтом.
+    await remountStory();
     await waitForFonts();
     const target = page.getByTestId(TEST_IDS.root);
     await expect(target).toBeVisible();

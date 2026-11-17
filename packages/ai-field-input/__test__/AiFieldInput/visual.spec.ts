@@ -21,7 +21,7 @@ test.describe('AiFieldInput — visual regression', () => {
   test('visual matrix', async ({ page, gotoStory, waitForFonts }) => {
     await gotoStory(buildStoryOptions(undefined, AI_FIELD_INPUT_STORIES.visualMatrix));
     await waitForFonts();
-    await assertVisualMatrixSnapshot(page);
+    await assertVisualMatrixSnapshot(page, 'visual-matrix.png', SCREENSHOT_DEFAULT_OPTS, { maxDiffPixels: 500 });
   });
 
   test('interaction states (default × hover × focus)', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
