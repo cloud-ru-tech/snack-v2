@@ -8,17 +8,35 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import styles from './styles.module.scss';
 import { TEST_IDS } from './testIds';
 
-const meta: Meta<BlockProps> = {
+type StoryProps = BlockProps & {
+  showBackground: boolean;
+  customText: string;
+  headerText: string;
+};
+
+const meta: Meta<StoryProps> = {
   title: 'Components/Block',
   component: Block,
   parameters: { layout: 'fullscreen' },
   args: {
+    showHeader: false,
+    headerText: 'Текст заглавия',
+    customText: '# slot content',
     size: SIZE.L,
     view: VIEW.Simple,
     backgroundPredefined: BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
+    header: { table: { disable: true } },
+    showHeader: { control: 'boolean' },
+    headerText: {
+      name: '[Stories]: Header text',
+      control: 'text',
+    },
+    customText: {
+      name: '[Stories]: Custom text',
+    },
     size: {
       control: 'radio',
       options: Object.values(SIZE),
@@ -36,21 +54,16 @@ const meta: Meta<BlockProps> = {
 
 export default meta;
 
-type StoryProps = BlockProps & {
-  showBackground: boolean;
-  customText: string;
-};
-
 type Story = StoryObj<StoryProps>;
 
-const Template: StoryFn<StoryProps> = ({ showBackground, customText, ...args }: StoryProps) => (
+const Template: StoryFn<StoryProps> = ({ showBackground, customText, headerText, ...args }: StoryProps) => (
   <DemoPage>
     <DemoPanel>
       <DemoTitle>Playground</DemoTitle>
       <DemoHint>Контейнер-блок со слоем backgroundPredefined и акриловым эффектом.</DemoHint>
       <DemoActions block>
         <div className={styles.externalWrapper} data-show-background={showBackground || undefined}>
-          <Block {...args}>
+          <Block {...args} header={headerText}>
             <span className={styles.sampleContent}>{customText}</span>
           </Block>
         </div>
@@ -65,14 +78,10 @@ export const Playground: Story = {
     showBackground: true,
     size: SIZE.L,
     view: VIEW.Simple,
-    customText: '# slot content',
   },
   argTypes: {
     showBackground: {
       name: '[Stories]: Show colorful background',
-    },
-    customText: {
-      name: '[Stories]: Custom text',
     },
   },
   render: Template,

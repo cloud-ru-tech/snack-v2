@@ -13,6 +13,10 @@ import { Size, View } from './types';
 export type BlockProps = {
   /** Содержимое */
   children: ReactNode;
+  /** Содержимое шапки. Растягивается на всю доступную ширину блока. */
+  header?: ReactNode;
+  /** Показывать шапку, если передано её содержимое. По умолчанию скрыта. */
+  showHeader?: boolean;
   /** Визуальный режим поверхности */
   view?: View;
   /** Размер */
@@ -71,6 +75,8 @@ export type BlockProps = {
  */
 export function Block({
   children,
+  header,
+  showHeader = false,
   view = VIEW.Simple,
   size = SIZE.M,
   backgroundPredefined = BACKGROUND_PREDEFINED_FILL.NeutralBackground1Level,
@@ -91,6 +97,9 @@ export function Block({
     >
       <div className={styles.acrylic} />
       {view === VIEW.Outline && <div className={styles.borderLayer} />}
+      {showHeader && header != null && typeof header !== 'boolean' && header !== '' && (
+        <div className={styles.header}>{header}</div>
+      )}
       <div className={cn(styles.content, contentClassName)}>{children}</div>
     </div>
   );

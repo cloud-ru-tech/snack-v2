@@ -26,22 +26,43 @@ export const VisualMatrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
+      {[false, true].map(showHeader => (
+        <div key={String(showHeader)} className={styles.externalWrapper}>
+          <StoryTable
+            sectionTitle={`View × Size · showHeader=${showHeader}`}
+            firstColumnHeader='View'
+            columnHeaders={keySizes.map(s => s.toUpperCase())}
+            rows={keyViews.map(view => ({
+              variantLabel: view,
+              cells: keySizes.map(size => (
+                <Block key={size} view={view} size={size} showHeader={showHeader} header='Текст заглавия'>
+                  <span className={styles.sampleContent}># slot content</span>
+                </Block>
+              )),
+            }))}
+          />
+        </div>
+      ))}
+
       <div className={styles.externalWrapper}>
         <StoryTable
-          sectionTitle='View × Size'
+          sectionTitle='Nested headers · L → M → S'
           firstColumnHeader='View'
-          columnHeaders={keySizes.map(s => s.toUpperCase())}
+          columnHeaders={['Composition']}
           rows={keyViews.map(view => ({
             variantLabel: view,
-            cells: keySizes.map(size => (
-              <Block key={size} view={view} size={size}>
-                <span className={styles.sampleContent}># slot content</span>
-              </Block>
-            )),
+            cells: [
+              <Block key={view} size={SIZE.L} view={view} header='Большой блок' showHeader>
+                <Block size={SIZE.M} view={view} header='Средний блок' showHeader>
+                  <Block size={SIZE.S} view={view} header='Малый блок с длинным заголовком' showHeader>
+                    <span className={styles.sampleContent}># slot content</span>
+                  </Block>
+                </Block>
+              </Block>,
+            ],
           }))}
         />
       </div>
-
       <div className={styles.externalWrapper}>
         <StoryTable
           sectionTitle='BackgroundPredefined × View'
