@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2026-11-17)
+
+**Note:** Version bump only for package @ds/ai-field-input
+
 # 1.2.0 (2026-11-17)
 
 ### Features

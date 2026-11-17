@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.18 (2026-11-17)
+
+### Bug Fixes
+
+- **FF-9391:** preserve caret scrolling in focused inputs ([863b012](https://github.com/cloud-ru-tech/snack-v2/commit/863b012b82be5045512523efbd20ad7ff8a8e95b))
+- **FF-9391:** reset input scroll after blur ([187e206](https://github.com/cloud-ru-tech/snack-v2/commit/187e206c2b13b4c1fe821d807bf8e62d82eb44e4))
+
 ## 1.0.17 (2026-11-12)
 
 **Note:** Version bump only for package @ds/input-private

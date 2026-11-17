@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.14 (2026-11-17)
+
+### Bug Fixes
+
+- **FF-9260:** resize expanded accordion content ([8d906e8](https://github.com/cloud-ru-tech/snack-v2/commit/8d906e83bf63aafe3b75b8231f5de2a07b73b0a7))
+- **FF-9283:** align accordion interaction assertion ([1f329e1](https://github.com/cloud-ru-tech/snack-v2/commit/1f329e12f256e84faf4409d313be758aa549ab6f))
+
 ## 1.2.13 (2026-11-12)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.16 (2026-11-17)
+
+### Bug Fixes
+
+- **FF-9283:** preserve mobile select search without trigger text selection ([88039d6](https://github.com/cloud-ru-tech/snack-v2/commit/88039d630f82da7eb3b510c5c10ab515c3510c4e))
+
 ## 3.0.15 (2026-11-13)
 
 ### Bug Fixes

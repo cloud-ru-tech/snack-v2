@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.2.0 (2026-11-17)
+
+### Features
+
+- **FF-9283:** add separate header and footer dividers to modal ([4702bfd](https://github.com/cloud-ru-tech/snack-v2/commit/4702bfd2406a46566201e42fa8d5d5a4bf302a75))
+
 ## 4.1.3 (2026-11-13)
 
 **Note:** Version bump only for package @ds/uikit-product-fields-predefined

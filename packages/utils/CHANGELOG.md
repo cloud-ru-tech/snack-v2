@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.2 (2026-11-17)
+
+### Bug Fixes
+
+- **FF-9283:** coordinate overlay dismissal and focus ([f123874](https://github.com/cloud-ru-tech/snack-v2/commit/f123874b4fbb3afbde185299b2acbee6d0083c66))
+
 ## 1.4.1 (2026-11-12)
 
 ### Bug Fixes

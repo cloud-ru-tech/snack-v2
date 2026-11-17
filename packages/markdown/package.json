@@ -1,6 +1,6 @@
 {
   "name": "@ds/markdown",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "description": "Просмотр и редактирование markdown — рендер GFM и WYSIWYG-редактор на TipTap.",
   "repository": {
     "type": "git",

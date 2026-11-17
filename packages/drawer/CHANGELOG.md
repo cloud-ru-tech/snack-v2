@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.4.0 (2026-11-17)
+
+### Bug Fixes
+
+- **FF-9283:** coordinate overlay dismissal and focus ([f123874](https://github.com/cloud-ru-tech/snack-v2/commit/f123874b4fbb3afbde185299b2acbee6d0083c66))
+
+### Features
+
+- **FF-9283:** add modal and drawer scroll lock control ([1d592d5](https://github.com/cloud-ru-tech/snack-v2/commit/1d592d509626a830d3e1ae765c976243a0447159))
+
 ## 2.3.1 (2026-11-12)
 
 ### Bug Fixes
