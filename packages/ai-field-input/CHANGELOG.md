@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2026-11-17)
+
+### Features
+
+- **AINFR-5621:** add secure prop to field input ([607c05c](https://github.com/cloud-ru-tech/snack-v2/commit/607c05c770040ccac3f92bf13a3c5f281d30a356))
+
 ## 1.1.2 (2026-11-12)
 
 **Note:** Version bump only for package @ds/ai-field-input
