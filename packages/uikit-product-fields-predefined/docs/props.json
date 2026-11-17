@@ -5771,6 +5771,11 @@
             "required": false,
             "description": "Контент тела вместо спиннера при `loading`"
           },
+          "lockScroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею."
+          },
           "media": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
             "required": false,
