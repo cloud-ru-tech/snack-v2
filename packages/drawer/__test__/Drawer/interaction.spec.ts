@@ -1,12 +1,43 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 import { dataTestIdSelector } from '#playwright-tooling/utils';
 
+import { TEST_IDS as SHEET_TEST_IDS } from '../../../popup-private/src/constants';
 import { NESTED_DRAWER_BODY, NESTED_DRAWER_TITLE } from '../../stories/Drawer/constants';
 import { buildStoryOptions, DRAWER_STORIES, OVERLAY_SELECTOR, TEST_IDS } from './helpers';
 
 const CHROME_VIEWPORT = { width: 1200, height: 871 };
 
 test.describe('Drawer — interaction', () => {
+  for (const layoutType of ['desktop', 'mobile']) {
+    test(`lockScroll=false allows an external overlay to scroll on ${layoutType}`, async ({
+      gotoStory,
+      page,
+      getByTestId,
+    }) => {
+      await page.setViewportSize(layoutType === 'mobile' ? { width: 390, height: 844 } : CHROME_VIEWPORT);
+      await gotoStory(buildStoryOptions({ lockScroll: false, showAfterHeadline: false }, undefined, { layoutType }));
+      await getByTestId(TEST_IDS.drawer.triggerOpen).click();
+      const title = getByTestId(layoutType === 'mobile' ? SHEET_TEST_IDS.title : TEST_IDS.title);
+      await expect(title).toBeVisible();
+
+      await page.evaluate(() => {
+        const overlay = document.createElement('div');
+        overlay.dataset.testId = 'external-overlay';
+        overlay.style.cssText = 'position:fixed;inset:40px;z-index:99999;overflow:auto;background:white';
+        const content = document.createElement('div');
+        content.style.height = '3000px';
+        overlay.append(content);
+        document.body.append(overlay);
+      });
+
+      const overlay = page.getByTestId('external-overlay');
+      await overlay.hover();
+      await page.mouse.wheel(0, 300);
+      await expect.poll(() => overlay.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+      await expect(title).toBeVisible();
+    });
+  }
+
   test('opens via trigger button from closed state', async ({ gotoStory, getByTestId }) => {
     await gotoStory(
       buildStoryOptions({

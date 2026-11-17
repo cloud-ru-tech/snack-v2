@@ -33,6 +33,7 @@ export function MobileModal({
   rootClassName,
   container,
   closeOnPopstate,
+  lockScroll,
   ...rest
 }: ModalProps) {
   let bodyContent = content;
@@ -73,6 +74,7 @@ export function MobileModal({
       rootClassName={rootClassName}
       container={container}
       closeOnPopstate={closeOnPopstate}
+      lockScroll={lockScroll}
       {...extractSupportProps(rest)}
     />
   );

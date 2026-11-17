@@ -254,6 +254,7 @@ export function NestedDrawer() {
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<...> \| ReactPortal \| null))` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | — | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. <br/> По умолчанию 'vertical' на mobile, 'horizontal' на desktop. |
 | `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
+| `lockScroll` | `boolean` | — | Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею. <br/> По умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки. <br/> На mobile по умолчанию включена. |
 | `media` | `ReactNode` | — | Медиа-контент |
 | `nestedDrawer` | `DrawerProps` | — | Вложенный Drawer |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
@@ -297,6 +298,7 @@ export function NestedDrawer() {
 | `footer` | `(ReactElement<any, string \| JSXElementConstructor<any>> & (string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null)) \| undefined` | — | Футер <br/> Произвольный футер. Приоритетнее `approveButton` / `cancelButton` / `additionalButton`. |
 | `footerActionsOrientation` | `"horizontal"` \| `"vertical"` | — | Ориентация кнопок футера. Применяется только при двух кнопках; игнорируется при заданном `footer`. <br/> По умолчанию 'vertical' на mobile, 'horizontal' на desktop. |
 | `heightAuto` | `boolean \| undefined` | — | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
+| `lockScroll` | `boolean \| undefined` | — | Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею. <br/> По умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки. <br/> На mobile по умолчанию включена. |
 | `media` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Медиа-контент |
 | `nestedDrawer` | `DrawerProps` | — | Вложенный Drawer |
 | `onBackButtonClick` | `(() => void) \| undefined` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
@@ -443,6 +445,7 @@ export function CustomComposition() {
 | `disableMotions` | `boolean` | `false` | Отключить анимации |
 | `footer` | `ReactElement<any, string \| JSXElementConstructor<any>>` | — | Футер |
 | `heightAuto` | `boolean` | `false` | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
+| `lockScroll` | `boolean` | — | Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею. <br/> По умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки. <br/> На mobile по умолчанию включена. |
 | `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |
@@ -472,6 +475,7 @@ export function CustomComposition() {
 | `disableMotions` | `boolean \| undefined` | — | Отключить анимации |
 | `footer` | `ReactElement<any, string \| JSXElementConstructor<any>> \| undefined` | — | Футер |
 | `heightAuto` | `boolean \| undefined` | — | Высота панели по контенту (только при `position: "top" \| "bottom"`). |
+| `lockScroll` | `boolean \| undefined` | — | Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею. <br/> По умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки. <br/> На mobile по умолчанию включена. |
 | `nestedDrawer` | `DrawerCustomProps` | — | Вложенный Drawer |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан. |

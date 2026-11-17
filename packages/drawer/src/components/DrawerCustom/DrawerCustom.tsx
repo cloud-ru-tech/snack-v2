@@ -30,6 +30,7 @@ const RcDrawer = interopDefault<ComponentType<RcDrawerBaseProps>>(RcDrawerImport
 function DrawerFrame(props: DrawerCustomProps) {
   const {
     showBlackout = true,
+    lockScroll,
     showButtonClosed = true,
     open,
     onClose,
@@ -130,7 +131,7 @@ function DrawerFrame(props: DrawerCustomProps) {
         срабатывает → wheel по search/header/mask уходит в скролл страницы под дровером.
       */}
       <RemoveScroll
-        enabled={showBlackout || outerScrollLock}
+        enabled={lockScroll ?? (showBlackout || outerScrollLock)}
         removeScrollBar={false}
         ref={focusTrapRef}
         className={styles.scrollLock}
@@ -175,6 +176,7 @@ export function DrawerCustom(props: DrawerCustomProps) {
       container,
       closeOnPopstate,
       showBlackout,
+      lockScroll,
       snapPoints,
       swipeEnabled,
       safeAreaTop,
@@ -191,6 +193,7 @@ export function DrawerCustom(props: DrawerCustomProps) {
         rootClassName={rootClassName}
         closeOnPopstate={closeOnPopstate}
         showBackdrop={showBlackout}
+        lockScroll={lockScroll}
         snapPoints={snapPoints}
         swipeEnabled={swipeEnabled}
         safeAreaTop={safeAreaTop}

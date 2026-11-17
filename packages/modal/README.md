@@ -204,6 +204,7 @@ export function Forced() {
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
 | `loading` | `boolean` | — | Состояние загрузки: в теле показывается спиннер или `loadingState`, футер скрыт |
 | `loadingState` | `ReactNode` | — | Контент тела вместо спиннера при `loading` |
+| `lockScroll` | `boolean` | `true` | Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею. |
 | `media` | `ReactNode` | — | Медиа-контент |
 | `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `onBackButtonClick` | `(() => void)` | — | Callback клика на back-кнопку (слева в шапке). <br/> Наличие callback'а авто-рендерит `Button view='function' icon={<ArrowLeftSVG />}`. |
@@ -336,6 +337,7 @@ export function CustomComposition() {
 | `container` | `ModalContainer` | — | Явный DOM-контейнер для `createPortal`; иначе `usePortalContext()` или `document.body`. |
 | `data-test-id` | `string` | — |  |
 | `heightAuto` | `boolean` | — | Растягивать по высоте в пределах контейнера |
+| `lockScroll` | `boolean` | `true` | Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею. |
 | `mode` | `"aggressive"` \| `"forced"` \| `"regular"` | `MODE.Regular` | Режим закрытия: Regular — overlay/Esc/кнопка; Aggressive — только кнопка; Forced — без кнопки и overlay/Esc. <br/> Aggressive и Forced размывают фон под подложкой. <br/> На mobile Aggressive запрещает закрытие кликом по подложке, Forced также отключает свайп. |
 | `onClose` | `() => void` | — | Колбэк закрытия |
 | `open` | `boolean` | — | Управление состоянием показан/не показан |

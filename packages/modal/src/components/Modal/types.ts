@@ -17,7 +17,15 @@ export type ModalProps = WithSupportProps<
     Pick<DialogBodyProps, 'content'> &
     Pick<
       ModalCustomProps,
-      'open' | 'onClose' | 'mode' | 'rootClassName' | 'width' | 'heightAuto' | 'container' | 'closeOnPopstate'
+      | 'open'
+      | 'onClose'
+      | 'mode'
+      | 'rootClassName'
+      | 'width'
+      | 'heightAuto'
+      | 'container'
+      | 'closeOnPopstate'
+      | 'lockScroll'
     > & {
       /** Медиа-контент */
       media?: ReactNode;

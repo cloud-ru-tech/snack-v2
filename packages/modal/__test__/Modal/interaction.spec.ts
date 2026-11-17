@@ -7,6 +7,35 @@ import { buildStoryOptions, MODAL_TRIGGER_TEST_ID, TEST_IDS } from './helpers';
 const M = TEST_IDS.modal;
 
 test.describe('Modal — interaction', () => {
+  for (const layoutType of ['desktop', 'mobile']) {
+    test(`lockScroll=false allows an external overlay to scroll on ${layoutType}`, async ({
+      gotoStory,
+      page,
+      getByTestId,
+    }) => {
+      await page.setViewportSize(layoutType === 'mobile' ? { width: 390, height: 844 } : { width: 1200, height: 871 });
+      await gotoStory(buildStoryOptions({ lockScroll: false }, undefined, { layoutType }));
+      await getByTestId(MODAL_TRIGGER_TEST_ID).click();
+      await expect(getByTestId(M.root)).toBeVisible();
+
+      await page.evaluate(() => {
+        const overlay = document.createElement('div');
+        overlay.dataset.testId = 'external-overlay';
+        overlay.style.cssText = 'position:fixed;inset:40px;z-index:99999;overflow:auto;background:white';
+        const content = document.createElement('div');
+        content.style.height = '3000px';
+        overlay.append(content);
+        document.body.append(overlay);
+      });
+
+      const overlay = page.getByTestId('external-overlay');
+      await overlay.hover();
+      await page.mouse.wheel(0, 300);
+      await expect.poll(() => overlay.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+      await expect(getByTestId(M.root)).toBeVisible();
+    });
+  }
+
   test('opens via trigger button from closed state', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions());
 

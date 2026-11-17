@@ -27,6 +27,7 @@ export function MobileDrawer({
   open,
   onClose,
   showBlackout,
+  lockScroll,
   container,
   closeOnPopstate,
   swipeEnabled,
@@ -46,6 +47,7 @@ export function MobileDrawer({
       open={open}
       onClose={onClose}
       showBackdrop={showBlackout}
+      lockScroll={lockScroll}
       title={title}
       subtitle={subtitle}
       slotAfterTitle={slotAfterTitle}

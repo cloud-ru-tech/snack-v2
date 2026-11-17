@@ -33,6 +33,7 @@ export function DesktopModal({
   onBackButtonClick,
   container,
   closeOnPopstate,
+  lockScroll,
   ...rest
 }: ModalProps) {
   const titleId = useId();
@@ -87,6 +88,7 @@ export function DesktopModal({
       heightAuto={heightAuto}
       container={container}
       closeOnPopstate={closeOnPopstate}
+      lockScroll={lockScroll}
       aria-labelledby={hasTitle ? titleId : undefined}
       {...supportProps}
     >

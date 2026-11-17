@@ -74,6 +74,12 @@
         "required": false,
         "description": "Контент тела вместо спиннера при `loading`"
       },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею."
+      },
       "media": {
         "type": "ReactNode",
         "required": false,
@@ -367,6 +373,12 @@
         "required": false,
         "description": "Контент тела вместо спиннера при `loading`"
       },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею."
+      },
       "media": {
         "type": "ReactNode",
         "required": false,
@@ -536,6 +548,12 @@
         "type": "ReactNode",
         "required": false,
         "description": "Контент тела вместо спиннера при `loading`"
+      },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею."
       },
       "media": {
         "type": "ReactNode",
@@ -730,6 +748,12 @@
         "type": "boolean",
         "required": false,
         "description": "Растягивать по высоте в пределах контейнера"
+      },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею."
       },
       "mode": {
         "type": "enum",

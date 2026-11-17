@@ -49,6 +49,11 @@ export type ModalCustomProps = WithSupportProps<{
   container?: ModalContainer;
   /** Закрытие при навигации по истории */
   closeOnPopstate?: boolean;
+  /**
+   * Блокировать прокрутку вне модального окна. `false` позволяет передать управление внешнему оверлею.
+   * @default true
+   */
+  lockScroll?: boolean;
 }> &
   // Только mobile: управляют sheet-поверхностью (на desktop игнорируются).
   Pick<BottomSheetCustomProps, 'snapPoints' | 'swipeEnabled' | 'safeAreaTop' | 'safeAreaBottom' | 'showBackdrop'>;
@@ -65,6 +70,7 @@ function ModalFrame({
   heightAuto = true,
   container,
   closeOnPopstate,
+  lockScroll = true,
   ...rest
 }: ModalCustomProps) {
   const close = useCallback(() => {
@@ -127,7 +133,7 @@ function ModalFrame({
   }
 
   return createPortal(
-    <RemoveScroll>
+    <RemoveScroll enabled={lockScroll}>
       <div
         className={cn(styles.root, rootClassName)}
         data-overlay-blur={overlayBackdropBlur ? 'true' : undefined}
@@ -194,6 +200,7 @@ export function ModalCustom(props: ModalCustomProps) {
       safeAreaTop,
       safeAreaBottom,
       showBackdrop,
+      lockScroll,
       ...rest
     } = props;
     return (
@@ -210,6 +217,7 @@ export function ModalCustom(props: ModalCustomProps) {
         safeAreaTop={safeAreaTop}
         safeAreaBottom={safeAreaBottom}
         showBackdrop={showBackdrop}
+        lockScroll={lockScroll}
         {...extractSupportProps(rest)}
       >
         {children}

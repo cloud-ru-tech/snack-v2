@@ -74,6 +74,11 @@
         "defaultValue": "false",
         "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
+      },
       "media": {
         "type": "ReactNode",
         "required": false,
@@ -426,6 +431,11 @@
         "defaultValue": "false",
         "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
+      },
       "media": {
         "type": "ReactNode",
         "required": false,
@@ -654,6 +664,11 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+          },
+          "lockScroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
           },
           "media": {
             "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
@@ -898,6 +913,11 @@
         "defaultValue": "false",
         "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
       },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
+      },
       "nestedDrawer": {
         "type": "ReactElement<Omit<DrawerCustomProps, \"resizable\">, string | JSXElementConstructor<any>>",
         "required": false,
@@ -1038,6 +1058,11 @@
             "type": "boolean | undefined",
             "required": false,
             "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+          },
+          "lockScroll": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
           },
           "nestedDrawer": {
             "type": "ReactElement<Omit<DrawerCustomProps, \"resizable\">, string | JSXElementConstructor<any>> | undefined",
@@ -1372,6 +1397,11 @@
         "required": false,
         "defaultValue": "false",
         "description": "Высота панели по контенту (только при `position: \"top\" | \"bottom\"`)."
+      },
+      "lockScroll": {
+        "type": "boolean",
+        "required": false,
+        "description": "Блокировать прокрутку вне дровера. `false` позволяет передать управление внешнему оверлею.\nПо умолчанию блокировка включена при наличии подложки или внешней блокировки прокрутки.\nНа mobile по умолчанию включена."
       },
       "media": {
         "type": "ReactNode",
