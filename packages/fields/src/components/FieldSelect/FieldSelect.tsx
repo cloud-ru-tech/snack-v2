@@ -125,6 +125,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
 
   const resolvedAutoFocus = useAdaptiveAutoFocus(autoFocus, layoutPresets);
   const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
 
   const inputRef = useRef<HTMLInputElement>(null);
   // Отдельный ref на реальный <input>: `inputRef.current` перезаписывается span-обёрткой PopoverPrivate.
@@ -549,7 +550,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   const { postfixButtons, inputTabIndex, onInputKeyDown } = useButtonNavigation({
     inputRef: inputElementRef,
     postfixButtons: useMemo(() => [clearButtonSettings, copyButtonSettings], [clearButtonSettings, copyButtonSettings]),
-    readonly: !searchable || Boolean(readOnly),
+    readonly: isMobile || !searchable || Boolean(readOnly),
     submitKeys: ['Enter', ' ', 'Tab'],
   });
 
@@ -621,20 +622,22 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       handleOpenChange(true);
     }
 
-    inputElementRef.current?.focus();
-  }, [disabled, readOnly, open, handleOpenChange]);
+    if (!isMobile) {
+      inputElementRef.current?.focus();
+    }
+  }, [disabled, readOnly, open, handleOpenChange, isMobile]);
 
   const handleInputFocus = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       setFocusVisible(event.target.matches(':focus-visible'));
 
-      if (searchable) {
+      if (searchable && !isMobile) {
         event.target.select();
       }
 
       onFocusProp?.(event);
     },
-    [searchable, onFocusProp],
+    [searchable, onFocusProp, isMobile],
   );
 
   const handleInputBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -682,11 +685,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
     <InputPrivate
       ref={mergeRefs(ref, inputRef, inputElementRef)}
       className={cn(fieldStyles.fieldInput, !searchable && styles.readonlyCursor)}
-      value={inputValue}
+      value={isMobile ? selectedLabel : inputValue}
       onChange={searchable ? handleInputChange : undefined}
       placeholder={selectedLabel || hasChips ? '' : placeholder}
       disabled={disabled}
-      readonly={!searchable || readOnly}
+      readonly={isMobile || !searchable || readOnly}
       id={id}
       name={name}
       autoFocus={resolvedAutoFocus}
@@ -812,7 +815,7 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
         search={
           isMobileLayout(layoutType) && mobileSearchable && !readOnly && !disabled
             ? {
-                value: inputValue,
+                value: search?.value ?? (typing ? inputValue : ''),
                 onChange: handleInputChange,
                 onKeyDown: event => {
                   if (tryCommitFromKeyboard(event)) {

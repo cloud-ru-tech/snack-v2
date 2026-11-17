@@ -36,13 +36,15 @@ async function renderField(layoutType: 'mobile' | 'desktop', options: Partial<Fi
           {...options}
           items={options.items ?? []}
           placeholder='Company search'
-          search={{
-            value: query,
-            onChange: next => {
-              setQuery(next);
-              onSearch(next);
-            },
-          }}
+          search={
+            options.search ?? {
+              value: query,
+              onChange: next => {
+                setQuery(next);
+                onSearch(next);
+              },
+            }
+          }
         />
       </AdaptiveProvider>
     );
@@ -67,6 +69,19 @@ describe('FieldSelect mobile search', () => {
       await act(async () => search?.onChange('new company'));
       expect(field.onSearch).toHaveBeenCalledExactlyOnceWith('new company');
       expect(listProps.mock.lastCall?.[0].search?.value).toBe('new company');
+    } finally {
+      await field.cleanup();
+    }
+  });
+
+  it('should keep the selected label out of uncontrolled sheet search', async () => {
+    const field = await renderField('mobile', {
+      value: 'one',
+      items: [{ id: 'one', content: { label: 'One' } }],
+      search: {},
+    });
+    try {
+      expect(listProps.mock.lastCall?.[0].search?.value).toBe('');
     } finally {
       await field.cleanup();
     }

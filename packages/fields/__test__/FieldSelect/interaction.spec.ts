@@ -48,7 +48,7 @@ test.describe('FieldSelect — interaction', () => {
     const root = getByTestId(TEST_IDS.fieldSelect);
     const input = root.getByTestId(TEST_IDS.fieldSelectInput);
     await input.click();
-    await input.pressSequentially('sm');
+    await page.getByTestId('list__search-item').getByTestId('search__field-input').fill('sm');
 
     const small = page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_s`);
     await expect(small).toBeVisible();
@@ -57,5 +57,30 @@ test.describe('FieldSelect — interaction', () => {
     const chips = root.getByTestId(TEST_IDS.fieldSelectChips);
     await expect(chips.getByText('Small (1 vCPU, 2 GB)')).toBeVisible();
     await expect(chips.getByText('sm', { exact: true })).toHaveCount(0);
+  });
+
+  test('mobile trigger does not select text and search remains available in the sheet', async ({
+    page,
+    gotoStory,
+    getByTestId,
+  }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions({ defaultValue: 's' }, undefined, { layoutType: 'mobile' }));
+
+    const input = getByTestId(TEST_IDS.fieldSelect).getByTestId(TEST_IDS.fieldSelectInput);
+    await expect(input).toHaveAttribute('readonly', '');
+    await input.click();
+    expect(await input.evaluate((element: HTMLInputElement) => element.selectionStart === element.selectionEnd)).toBe(
+      true,
+    );
+
+    const search = page.getByTestId('list__search-item').getByTestId('search__field-input');
+    await expect(search).toBeEditable();
+    await search.fill('Medium');
+    const medium = page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_m`);
+    await expect(medium).toBeVisible();
+    await expect(page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_s`)).toBeHidden();
+    await medium.click();
+    await expect(input).toHaveValue(/Medium/);
   });
 });
