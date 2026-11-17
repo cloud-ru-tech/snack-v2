@@ -75,10 +75,10 @@
     "tabs/tabs",
     "markdown/markdown",
     "pagination/pagination",
-    "block/block",
     "bottomSheet/bottomSheet",
     "table/table",
     "fieldDecorator/fieldDecorator",
-    "popupPrivate/popupPrivate"
+    "popupPrivate/popupPrivate",
+    "block/block"
   ]
 }

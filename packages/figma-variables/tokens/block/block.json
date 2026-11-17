@@ -23,6 +23,16 @@
             },
             "$type": "number",
             "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP"
+              ]
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.8}",
+            "$description": "Отступ между header и body блока размера S."
           }
         },
         "m": {
@@ -46,6 +56,16 @@
             },
             "$type": "number",
             "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP"
+              ]
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.16}",
+            "$description": "Отступ между header и body блока размера M."
           }
         },
         "l": {
@@ -69,6 +89,16 @@
             },
             "$type": "number",
             "$value": "{sn.primitive.strokeWeight.strokeRegular}"
+          },
+          "gap": {
+            "$extensions": {
+              "com.figma.scopes": [
+                "GAP"
+              ]
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.24}",
+            "$description": "Отступ между header и body блока размера L."
           }
         }
       }
