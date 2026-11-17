@@ -1,0 +1,58 @@
+---
+title: RevealSections
+package: '@ds/site-reveal-section'
+description: Анимация группы секций с общими настройками и выборочными исключениями.
+order: 2
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import revealSectionDoc from './props.json'
+
+# RevealSections
+
+Применяет `RevealSection` к прямым дочерним элементам. Каждая секция наблюдается независимо. Компонент не добавляет общий DOM-контейнер.
+
+## Анатомия
+
+### Первая секция (default `skipFirst=true`)
+
+Первая секция отображается без анимации и дополнительной обёртки. Это позволяет оставить первый экран страницы видимым до гидратации. Для анимации всех секций используется `skipFirst={false}`.
+
+### Выборочные исключения
+
+`shouldSkip(child, index)` возвращает `true` для элементов без анимации. Индекс берётся из `Children.toArray(children)`: пустые React-узлы не учитываются, содержимое `Fragment` не разворачивается.
+
+Проверка `shouldSkip` выполняется после `skipFirst`. Если первая секция уже исключена через `skipFirst`, callback для неё не вызывается.
+
+### Общие параметры
+
+`disabled`, `skipInitialViewport`, `duration`, `delay`, `offset`, `easing`, `rootMargin` и `threshold` передаются всем создаваемым обёрткам. Одинаковая `delay` применяется к каждой секции; автоматического увеличения задержки по индексу нет.
+
+`className` и `style` также относятся к каждой обёртке, а не к группе целиком. На исключённые элементы эти пропсы не применяются. При `disabled` анимация отключается, но обёртки остаются; для удаления обёртки используется `shouldSkip` или `skipFirst`.
+
+### Начальная область просмотра (default `skipInitialViewport=false`)
+
+`skipInitialViewport` сохраняет видимые при первой проверке секции без анимации. Секции ниже экрана
+появляются при прокрутке. Для обработки всех дочерних элементов режим сочетается с `skipFirst={false}`.
+При SSR содержимое остаётся видимым; начальная проверка не учитывает `rootMargin` и `threshold`.
+
+## Установка
+
+```tsx
+import { RevealSections } from '@ds/site-reveal-section'
+
+<RevealSections shouldSkip={(_child, index) => index === 2}>
+  <section>Первый экран без анимации</section>
+  <section>Секция с анимацией</section>
+  <section>Исключённая секция без обёртки</section>
+</RevealSections>
+```
+
+## Props
+
+<PropsTable data={revealSectionDoc.RevealSections} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-revealsection-revealsections--playground' height={620} />

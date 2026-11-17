@@ -1,0 +1,102 @@
+---
+title: RevealSection
+package: '@ds/site-reveal-section'
+description: 'Однократное появление секций сайта при прокрутке: отдельная секция и группа секций.'
+order: 0
+---
+
+import { Single } from '../demos/examples/Single'
+import SingleSrc from '../demos/examples/Single.tsx?raw'
+import { Group } from '../demos/examples/Group'
+import GroupSrc from '../demos/examples/Group.tsx?raw'
+import { SkipSelected } from '../demos/examples/SkipSelected'
+import SkipSelectedSrc from '../demos/examples/SkipSelected.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+
+# RevealSection
+
+Пакет добавляет секциям сайта однократную анимацию появления: прозрачность меняется от 0 до 1, содержимое смещается снизу вверх. Сработавшая анимация не повторяется при обратной прокрутке.
+
+| Компонент | Назначение |
+|---|---|
+| [RevealSection](/components/site-reveal-section/reveal-section) | Анимация одной секции с произвольным содержимым. |
+| [RevealSections](/components/site-reveal-section/reveal-sections) | Анимация прямых дочерних элементов с общими настройками и выборочными исключениями. |
+
+## Когда использовать
+
+- Появление содержимого при прокрутке лендинга.
+- Единые параметры анимации для нескольких секций страницы.
+
+Для постоянно видимых элементов, основного содержимого первого экрана и блоков, которые должны работать без JavaScript, анимацию следует отключить или не добавлять обёртку.
+
+## Анатомия
+
+`RevealSection` добавляет один `div`, сохраняющий место содержимого в документе. На нём задаются `className`, `style` и стандартные HTML-атрибуты.
+
+`RevealSections` не добавляет общий DOM-контейнер: каждый прямой дочерний элемент получает свою обёртку, кроме исключённых через `skipFirst` или `shouldSkip`. У исключённых элементов дополнительного `div` нет.
+
+При `prefers-reduced-motion: reduce` содержимое видно сразу, без анимации. Если браузер не поддерживает `IntersectionObserver`, после монтирования содержимое также отображается сразу.
+
+### Параметры анимации
+
+| Prop | Default | Назначение |
+|---|---|---|
+| `duration` | `650` | Длительность перехода в миллисекундах. |
+| `delay` | `0` | Задержка перехода в миллисекундах. |
+| `offset` | `28` | Начальное смещение по вертикали в пикселях. |
+| `easing` | `'ease'` | CSS-функция плавности перехода. |
+| `rootMargin` | `'0px 0px -40px 0px'` | Отступы области наблюдения. |
+| `threshold` | `0` | Порог пересечения области наблюдения. |
+| `disabled` | `false` | Немедленное отображение без перехода. |
+
+Длительности и смещение сохраняют значения исходного компонента. Визуальные стили содержимого задаются самим содержимым.
+
+Анимация запускается один раз за время жизни обёртки. После появления или отключения наблюдение не возобновляется. Для повторного запуска требуется повторное монтирование, например смена `key`.
+
+При SSR содержимое с включённой анимацией изначально скрыто. Оно появляется после гидратации и срабатывания наблюдателя; без JavaScript останется скрытым, если анимация не отключена.
+
+## Установка
+
+```bash
+pnpm add @ds/site-reveal-section
+```
+
+```ts
+import { RevealSection, RevealSections } from '@ds/site-reveal-section'
+```
+
+## Примеры использования
+
+Внутри примеров прокручивается отдельная область. Повторный запуск доступен в Playground по кнопке «Повторить».
+
+<Example title='Одна секция' description='Анимация при входе в область просмотра.' code={SingleSrc}>
+  <Single client:visible />
+</Example>
+
+<Example title='Группа секций' description='Первая секция без анимации, остальные появляются независимо.' code={GroupSrc}>
+  <Group client:visible />
+</Example>
+
+<Example title='Выборочные исключения' description='shouldSkip исключает вторую секцию, skipFirst=false включает анимацию первой.' code={SkipSelectedSrc}>
+  <SkipSelected client:visible />
+</Example>
+
+- ✅ Первую секцию страницы оставлять видимой через `skipFirst`.
+- ❌ Скрывать основной контент первого экрана до завершения гидратации.
+- ✅ Использовать `disabled`, если содержимое должно отображаться сразу.
+- ❌ Считать `duration={0}` отключением наблюдения за прокруткой.
+- ✅ Учитывать дополнительный `div` вокруг анимируемых секций при построении CSS-сетки.
+- ❌ Ожидать, что анимируемый элемент останется прямым DOM-потомком внешнего контейнера.
+- ✅ Повторно монтировать обёртку для повторного запуска.
+- ❌ Ожидать повторной анимации при возврате к уже видимой секции.
+
+## Storybook
+
+<StorybookEmbed storyId='site-revealsection-revealsection--playground' height={620} />
+<StorybookEmbed storyId='site-revealsection-revealsections--playground' height={620} />
+
+## Смотри также
+
+- [SectionBasic](/components/site-section) — содержимое секций сайта.
+- [SectionTitle](/components/site-section-title) — заголовки секций.

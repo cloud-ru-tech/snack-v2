@@ -31,6 +31,9 @@
       "path": "./locale/tsconfig.esm.json"
     },
     {
+      "path": "./site-reveal-section/tsconfig.esm.json"
+    },
+    {
       "path": "./theme/tsconfig.esm.json"
     },
     {

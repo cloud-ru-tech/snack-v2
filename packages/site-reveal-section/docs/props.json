@@ -1,0 +1,124 @@
+{
+  "RevealSection": {
+    "displayName": "RevealSection",
+    "propsTypeName": "RevealSectionProps",
+    "props": {
+      "data-test-id": {
+        "type": "string",
+        "required": false,
+        "description": "Тестовый идентификатор обёртки."
+      },
+      "delay": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Задержка анимации в миллисекундах."
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Отображать содержимое сразу, без анимации."
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "650",
+        "description": "Длительность анимации в миллисекундах."
+      },
+      "easing": {
+        "type": "TransitionTimingFunction",
+        "required": false,
+        "defaultValue": "ease",
+        "description": "CSS-функция плавности перехода."
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "defaultValue": "28",
+        "description": "Начальное смещение по вертикали в пикселях."
+      },
+      "rootMargin": {
+        "type": "string",
+        "required": false,
+        "defaultValue": "0px 0px -40px 0px",
+        "description": "Отступы области наблюдения IntersectionObserver."
+      },
+      "skipInitialViewport": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Не использовать анимацию появления при инициализации компонента"
+      },
+      "threshold": {
+        "type": "number | number[]",
+        "required": false,
+        "defaultValue": "0",
+        "description": "Порог пересечения или массив порогов для IntersectionObserver."
+      }
+    },
+    "relatedTypes": {}
+  },
+  "RevealSections": {
+    "displayName": "RevealSections",
+    "propsTypeName": "RevealSectionsProps",
+    "props": {
+      "children": {
+        "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
+        "required": false
+      },
+      "delay": {
+        "type": "number",
+        "required": false,
+        "description": "Задержка анимации в миллисекундах."
+      },
+      "disabled": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отображать содержимое сразу, без анимации."
+      },
+      "duration": {
+        "type": "number",
+        "required": false,
+        "description": "Длительность анимации в миллисекундах."
+      },
+      "easing": {
+        "type": "TransitionTimingFunction",
+        "required": false,
+        "description": "CSS-функция плавности перехода."
+      },
+      "offset": {
+        "type": "number",
+        "required": false,
+        "description": "Начальное смещение по вертикали в пикселях."
+      },
+      "rootMargin": {
+        "type": "string",
+        "required": false,
+        "description": "Отступы области наблюдения IntersectionObserver."
+      },
+      "shouldSkip": {
+        "type": "((child: ReactNode, index: number) => boolean)",
+        "required": false,
+        "description": "Отображать подходящие под условие элементы без обёртки для анимации."
+      },
+      "skipFirst": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Отображать первый дочерний элемент без обёртки для анимации."
+      },
+      "skipInitialViewport": {
+        "type": "boolean",
+        "required": false,
+        "description": "Не использовать анимацию появления при инициализации компонента"
+      },
+      "threshold": {
+        "type": "number | number[]",
+        "required": false,
+        "description": "Порог пересечения или массив порогов для IntersectionObserver."
+      }
+    },
+    "relatedTypes": {}
+  }
+}

@@ -1,7 +1,9 @@
-import { config } from 'dotenv';
+import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { loadEnvFile } from 'node:process';
 
-config({ path: resolve(process.cwd(), '.env') });
+const envPath = resolve(process.cwd(), '.env');
+if (existsSync(envPath)) loadEnvFile(envPath);
 
 export type FigmaNodeRef = {
   fileKey: string;

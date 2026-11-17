@@ -26,6 +26,9 @@
       "path": "./locale/tsconfig.cjs.json"
     },
     {
+      "path": "./site-reveal-section/tsconfig.cjs.json"
+    },
+    {
       "path": "./theme/tsconfig.cjs.json"
     },
     {

@@ -1,0 +1,56 @@
+---
+title: RevealSection
+package: '@ds/site-reveal-section'
+description: Однократная анимация появления отдельной секции сайта.
+order: 1
+---
+
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import revealSectionDoc from './props.json'
+
+# RevealSection
+
+Обёртка для одной секции. Содержимое появляется, когда `IntersectionObserver` обнаруживает пересечение области просмотра с учётом `rootMargin` и `threshold`.
+
+## Анатомия
+
+Корень — `div`. В него передаются стандартные HTML-атрибуты, обработчики, `className` и `style`. Собственные CSS-переменные анимации можно переопределить через `style`.
+
+После первого появления наблюдатель отключается. `disabled` показывает содержимое без анимации; повторное включение не запускает наблюдение заново. Настройка `prefers-reduced-motion` также отключает визуальный переход.
+
+`duration={0}` убирает длительность перехода, но сохраняет ожидание пересечения области просмотра.
+
+Для порога `threshold={1}` вся секция должна помещаться в область наблюдения. Для секций выше экрана следует использовать меньший порог.
+
+### Начальная область просмотра (default `skipInitialViewport=false`)
+
+`skipInitialViewport` сохраняет содержимое видимым при SSR. При первой проверке `IntersectionObserver`
+видимые секции остаются без анимации, а секции вне области просмотра скрываются без перехода и
+появляются при последующей прокрутке. Без JavaScript содержимое остаётся видимым.
+
+Начальная проверка не учитывает `rootMargin` и `threshold`; эти параметры применяются к последующей
+анимации. Режим выбирается при монтировании. Изменение Controls следует применять кнопкой «Повторить».
+
+Компонент не определяет тип навигации. Потребитель может включить режим для начальной загрузки
+и отключить его для нового содержимого после клиентской навигации.
+
+## Установка
+
+```tsx
+import { RevealSection } from '@ds/site-reveal-section'
+
+<RevealSection duration={400} offset={16}>
+  <section>
+    <h2>Возможности платформы</h2>
+  </section>
+</RevealSection>
+```
+
+## Props
+
+<PropsTable data={revealSectionDoc.RevealSection} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-revealsection-revealsection--playground' height={620} />

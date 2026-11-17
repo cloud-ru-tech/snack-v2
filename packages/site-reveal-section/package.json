@@ -1,0 +1,38 @@
+{
+  "name": "@ds/site-reveal-section",
+  "version": "0.0.0",
+  "description": "Однократное появление секций сайта при прокрутке: отдельная секция и группа секций.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/site-reveal-section"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/site-reveal-section",
+  "license": "Apache-2.0",
+  "author": "Vladislav Stepanenko",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

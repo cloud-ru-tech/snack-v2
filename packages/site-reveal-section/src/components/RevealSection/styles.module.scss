@@ -1,0 +1,24 @@
+.root {
+  transform: translateY(var(--reveal-offset));
+  opacity: 0;
+  transition:
+    opacity var(--reveal-duration) var(--reveal-easing) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-easing) var(--reveal-delay);
+
+  &[data-revealed='true'] {
+    transform: none;
+    opacity: 1;
+  }
+
+  &[data-reveal-disabled='true'] {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
