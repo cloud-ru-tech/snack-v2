@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.48 (2026-11-18)
+
+### Bug Fixes
+
+- **FF-8798:** button to droplist current value sync ([b086618](https://github.com/cloud-ru-tech/snack-v2/commit/b086618a5106cd83a9bd2a27151c7b05be06ae1b))
+
 ## 1.0.47 (2026-11-17)
 
 **Note:** Version bump only for package @ds/button-combo
