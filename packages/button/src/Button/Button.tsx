@@ -44,7 +44,6 @@ export function Button<T extends ElementType = 'button'>({
       onClick: isDisabled
         ? (e: MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
-            onClick?.(e);
           }
         : onClick,
     };

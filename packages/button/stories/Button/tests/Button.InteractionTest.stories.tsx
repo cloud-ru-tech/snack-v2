@@ -122,3 +122,26 @@ export const AsAnchorRelNoopener: StoryObj<AnchorStoryArgs> = {
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   },
 };
+
+export const DisabledAnchor: StoryObj<AnchorStoryArgs> = {
+  tags: ['test', 'dev'],
+  args: {
+    as: 'a',
+    href: '#disabled-link-target',
+    label: 'Disabled link',
+    disabled: true,
+    onClick: fn(),
+    'data-test-id': ANCHOR_BUTTON_TEST_ID,
+  },
+  render: args => <Button {...args} />,
+  play: async ({ args, canvasElement }) => {
+    const link = within(canvasElement).getByTestId(ANCHOR_BUTTON_TEST_ID);
+    await expect(link).toHaveAttribute('aria-disabled', 'true');
+
+    const event = new MouseEvent('click', { bubbles: true, cancelable: true });
+    link.dispatchEvent(event);
+
+    expect(event.defaultPrevented).toBe(true);
+    expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
