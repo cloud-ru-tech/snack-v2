@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-11-18)
+
+### Bug Fixes
+
+- added gap tokens for block ([407f3b3](https://github.com/cloud-ru-tech/snack-v2/commit/407f3b32d44a1416c769a8cedd2716c554f13f5a))
+
+### Features
+
+- **FF-9465:** add optional block header and spacing tokens ([8b359e8](https://github.com/cloud-ru-tech/snack-v2/commit/8b359e8c663b14e8c7450d430c770e8f7f2d2cb7))
+
 ## 3.0.2 (2026-11-12)
 
 ### Bug Fixes

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-11-18)
+
+### Bug Fixes
+
+- **FF-9465:** render block header by content ([b30c987](https://github.com/cloud-ru-tech/snack-v2/commit/b30c987581a27766de8e7d088b6c7931edbabdd6))
+
+### Features
+
+- **FF-9465:** add optional block header and spacing tokens ([8b359e8](https://github.com/cloud-ru-tech/snack-v2/commit/8b359e8c663b14e8c7450d430c770e8f7f2d2cb7))
+
 ## 1.0.7 (2026-11-17)
 
 **Note:** Version bump only for package @ds/block
