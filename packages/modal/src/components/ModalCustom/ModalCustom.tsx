@@ -2,7 +2,14 @@ import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { BottomSheetCustom, BottomSheetCustomProps, OVERLAY_SURFACE, OverlaySurfaceProvider } from '@ds/bottom-sheet';
 import { PopupCloseButton } from '@ds/popup-private';
 import { usePortalContext } from '@ds/portal-context';
-import { extractSupportProps, isBrowser, useModalOpenState, useOverlayStack, WithSupportProps } from '@ds/utils';
+import {
+  extractSupportProps,
+  isBrowser,
+  useLayoutEffect,
+  useModalOpenState,
+  useOverlayStack,
+  WithSupportProps,
+} from '@ds/utils';
 import cn from 'classnames';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -96,7 +103,7 @@ function ModalFrame({
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   const portalContextRef = usePortalContext();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isBrowser()) {
       setPortalContainer(null);
       return;
@@ -111,7 +118,8 @@ function ModalFrame({
     const doc = window.document;
 
     if (container === undefined) {
-      setPortalContainer(portalContextRef.current ?? doc.body);
+      // Ref родительского DOM-узла может заполниться после layout-эффектов дочерней модалки.
+      setPortalContainer(portalContextRef.current);
       return;
     }
 
@@ -124,6 +132,12 @@ function ModalFrame({
 
     setPortalContainer(container);
   }, [open, container, portalContextRef]);
+
+  useEffect(() => {
+    if (isBrowser() && open && container === undefined && !portalContainer) {
+      setPortalContainer(portalContextRef.current ?? window.document.body);
+    }
+  }, [open, container, portalContextRef, portalContainer]);
 
   const focusTrapActive = Boolean(open && portalContainer);
   const dialogRef = useModalFocusTrap(focusTrapActive, isTopOverlay);
