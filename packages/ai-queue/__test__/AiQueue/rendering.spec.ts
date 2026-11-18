@@ -31,13 +31,10 @@ test.describe('AiQueue — rendering', () => {
     const content = page.getByTestId(TEST_IDS.content);
     await expect(content).toBeVisible();
 
-    // data-test-id сидит на OverlayScrollbars-хосте; реальный скроллер — внутренний
-    // viewport, поэтому метрики скролла читаем именно с него.
-    const isScrollable = await content.evaluate(node => {
-      const viewport = node.querySelector('[data-overlayscrollbars-viewport]') ?? node;
-      return viewport.scrollHeight > viewport.clientHeight;
-    });
-    expect(isScrollable).toBe(false);
+    // Viewport создаётся OverlayScrollbars и не поддерживает data-test-id.
+    const viewport = content.locator('[data-overlayscrollbars-viewport]');
+    await expect(viewport).toBeVisible();
+    await expect.poll(() => viewport.evaluate(node => node.scrollHeight > node.clientHeight)).toBe(false);
   });
 
   test('becomes scrollable for long list', async ({ page, gotoStory }) => {
@@ -46,16 +43,10 @@ test.describe('AiQueue — rendering', () => {
     const content = page.getByTestId(TEST_IDS.content);
     await expect(content).toBeVisible();
 
-    const metrics = await content.evaluate(node => {
-      const viewport = node.querySelector('[data-overlayscrollbars-viewport]') ?? node;
-      return {
-        scrollHeight: viewport.scrollHeight,
-        clientHeight: viewport.clientHeight,
-        overflowY: getComputedStyle(viewport).overflowY,
-      };
-    });
-
-    expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight);
-    expect(['auto', 'scroll']).toContain(metrics.overflowY);
+    // Viewport создаётся OverlayScrollbars и не поддерживает data-test-id.
+    const viewport = content.locator('[data-overlayscrollbars-viewport]');
+    await expect(viewport).toBeVisible();
+    await expect(viewport).toHaveCSS('overflow-y', /^(auto|scroll)$/);
+    await expect.poll(() => viewport.evaluate(node => node.scrollHeight > node.clientHeight)).toBe(true);
   });
 });
