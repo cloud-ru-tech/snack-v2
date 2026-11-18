@@ -46,12 +46,6 @@
         "required": false,
         "description": "Содержимое шапки. Растягивается на всю доступную ширину блока."
       },
-      "showHeader": {
-        "type": "boolean",
-        "required": false,
-        "defaultValue": "false",
-        "description": "Показывать шапку, если передано её содержимое. По умолчанию скрыта."
-      },
       "size": {
         "type": "enum",
         "required": false,

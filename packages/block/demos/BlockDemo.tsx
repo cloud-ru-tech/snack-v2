@@ -15,7 +15,6 @@ export function BlockDemo() {
         backgroundPredefined: 'neutralBackground1Level',
         children: '# slot content',
         header: 'Текст заглавия',
-        showHeader: false,
       }}
       controls={{
         view: { type: 'select', options: ['simple', 'outline', 'elevated'] },
@@ -38,7 +37,6 @@ export function BlockDemo() {
         size: { type: 'select', options: ['s', 'm', 'l'] },
         children: { type: 'text' },
         header: { type: 'text' },
-        showHeader: { type: 'boolean' },
       }}
     />
   );

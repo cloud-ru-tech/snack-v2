@@ -26,16 +26,16 @@ export const VisualMatrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <div className={styles.matrix}>
-      {[false, true].map(showHeader => (
-        <div key={String(showHeader)} className={styles.externalWrapper}>
+      {[false, true].map(withHeader => (
+        <div key={String(withHeader)} className={styles.externalWrapper}>
           <StoryTable
-            sectionTitle={`View × Size · showHeader=${showHeader}`}
+            sectionTitle={`View × Size · header=${withHeader ? 'content' : 'empty'}`}
             firstColumnHeader='View'
             columnHeaders={keySizes.map(s => s.toUpperCase())}
             rows={keyViews.map(view => ({
               variantLabel: view,
               cells: keySizes.map(size => (
-                <Block key={size} view={view} size={size} showHeader={showHeader} header='Текст заглавия'>
+                <Block key={size} view={view} size={size} header={withHeader ? 'Текст заглавия' : undefined}>
                   <span className={styles.sampleContent}># slot content</span>
                 </Block>
               )),
@@ -52,9 +52,9 @@ export const VisualMatrix: Story = {
           rows={keyViews.map(view => ({
             variantLabel: view,
             cells: [
-              <Block key={view} size={SIZE.L} view={view} header='Большой блок' showHeader>
-                <Block size={SIZE.M} view={view} header='Средний блок' showHeader>
-                  <Block size={SIZE.S} view={view} header='Малый блок с длинным заголовком' showHeader>
+              <Block key={view} size={SIZE.L} view={view} header='Большой блок'>
+                <Block size={SIZE.M} view={view} header='Средний блок'>
+                  <Block size={SIZE.S} view={view} header='Малый блок с длинным заголовком'>
                     <span className={styles.sampleContent}># slot content</span>
                   </Block>
                 </Block>

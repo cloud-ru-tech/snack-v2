@@ -22,12 +22,20 @@ test.describe('Block — rendering', () => {
       });
     }
   });
-  test('hides the header by default and when its content is empty', async ({ gotoStory, getByTestId }) => {
-    await gotoStory(buildStoryOptions({ headerText: 'Block header' }));
-    await expect(getByTestId(TEST_IDS.root).getByText('Block header')).toHaveCount(0);
-
-    await gotoStory(buildStoryOptions({ showHeader: true, headerText: '' }));
-    await expect(getByTestId(TEST_IDS.root).locator(':scope > div')).toHaveCount(2);
+  test('does not reserve space for empty React content', async ({ gotoStory, page }) => {
+    await gotoStory(buildStoryOptions(undefined, { name: 'block-tests-headercontent', story: 'header-content-test' }));
+    for (const size of ['s', 'm', 'l']) {
+      const reference = page.getByTestId(`header-${size}-undefined`);
+      await expect(reference).toBeVisible();
+      const referenceHeight = (await reference.boundingBox())?.height;
+      for (const value of ['null', 'false', 'true', 'string', 'array', 'fragment', 'component']) {
+        const root = page.getByTestId(`header-${size}-${value}`);
+        await expect(root).toBeVisible();
+        expect((await root.boundingBox())?.height).toBe(referenceHeight);
+      }
+      await expect(page.getByTestId(`header-${size}-zero`).getByText('0', { exact: true })).toBeVisible();
+      await expect(page.getByTestId(`header-${size}-content`).getByText('Header', { exact: true })).toBeVisible();
+    }
   });
 
   for (const [size, gap] of [
@@ -36,7 +44,7 @@ test.describe('Block — rendering', () => {
     ['l', 24],
   ] as const) {
     test(`header fills resized block and uses component gap: ${size}`, async ({ gotoStory, getByTestId }) => {
-      await gotoStory(buildStoryOptions({ size, showHeader: true, headerText: 'Block header' }));
+      await gotoStory(buildStoryOptions({ size, headerText: 'Block header' }));
       const root = getByTestId(TEST_IDS.root);
       const header = root.getByText('Block header', { exact: true });
       await expect(header).toBeVisible();

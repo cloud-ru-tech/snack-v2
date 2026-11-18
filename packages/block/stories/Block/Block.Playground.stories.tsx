@@ -19,7 +19,6 @@ const meta: Meta<StoryProps> = {
   component: Block,
   parameters: { layout: 'fullscreen' },
   args: {
-    showHeader: false,
     headerText: 'Текст заглавия',
     customText: '# slot content',
     size: SIZE.L,
@@ -29,7 +28,6 @@ const meta: Meta<StoryProps> = {
   },
   argTypes: {
     header: { table: { disable: true } },
-    showHeader: { control: 'boolean' },
     headerText: {
       name: '[Stories]: Header text',
       control: 'text',

@@ -76,4 +76,8 @@ $sizes: 's', 'm', 'l';
 
   color: base.$sn-theme-color-available-version-textMain;
   overflow-wrap: anywhere;
+
+  &:empty {
+    display: none;
+  }
 }
