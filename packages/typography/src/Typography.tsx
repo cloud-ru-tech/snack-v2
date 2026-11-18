@@ -33,7 +33,7 @@ function getDefaultTag(variant: TypographyVariant): ElementType {
     case VARIANT.title:
       return 'h2';
     case VARIANT.label:
-      return 'label';
+      return 'span';
     case VARIANT.body:
     default:
       return 'p';
