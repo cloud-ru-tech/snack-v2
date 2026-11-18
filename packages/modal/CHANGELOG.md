@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.1 (2026-11-18)
+
+### Bug Fixes
+
+- **FF-9109:** prevent flicker when switching modals ([5ed1028](https://github.com/cloud-ru-tech/snack-v2/commit/5ed10286806c4a00cd561e4b9f0f649e233fc1af))
+
 # 2.2.0 (2026-11-17)
 
 ### Bug Fixes

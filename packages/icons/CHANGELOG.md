@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.8.0 (2026-11-18)
+
+### Features
+
+- **RM-4819:** add sberpay and digital rubles logos ([42a9568](https://github.com/cloud-ru-tech/snack-v2/commit/42a9568a557d735a9cb4d2603b264b17fa098913))
+
 ## 1.7.5 (2026-11-17)
 
 **Note:** Version bump only for package @ds/icons

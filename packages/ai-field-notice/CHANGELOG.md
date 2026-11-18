@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2026-11-18)
+
+**Note:** Version bump only for package @ds/ai-field-notice
+
 ## 2.1.3 (2026-11-17)
 
 **Note:** Version bump only for package @ds/ai-field-notice
