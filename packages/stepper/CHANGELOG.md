@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.20 (2026-11-19)
+
+### Bug Fixes
+
+- **MLINF-2210:** truncate stepper step title within step width ([b6a9a75](https://github.com/cloud-ru-tech/snack-v2/commit/b6a9a751b6ba2a2587bcc3131294b848ecc49783))
+
 ## 1.0.19 (2026-11-18)
 
 **Note:** Version bump only for package @ds/stepper
