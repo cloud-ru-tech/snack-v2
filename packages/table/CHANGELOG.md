@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2026-11-19)
+
+### Bug Fixes
+
+- **FF-9301:** align table pagination and responsive states ([5dea3c9](https://github.com/cloud-ru-tech/snack-v2/commit/5dea3c9e7717909cf03206b5b7c8fc5b45cf2964))
+
+### BREAKING CHANGES
+
+- **FF-9301:** simplify table presets and remove admin variants ([4ae3109](https://github.com/cloud-ru-tech/snack-v2/commit/4ae310942f8ef6606f05fa9f2b8410545d707ebd))
+
 ## 2.2.12 (2026-11-18)
 
 **Note:** Version bump only for package @ds/table

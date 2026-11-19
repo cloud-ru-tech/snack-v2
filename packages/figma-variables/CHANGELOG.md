@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.1 (2026-11-19)
+
+### Bug Fixes
+
+- **FF-9283:** add mobile card badge tokens ([030943f](https://github.com/cloud-ru-tech/snack-v2/commit/030943f0fc72d7954a5ff852a1e8d3729fb4347c))
+
 # 3.1.0 (2026-11-18)
 
 ### Bug Fixes

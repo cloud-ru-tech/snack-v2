@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.12 (2026-11-19)
+
+### Bug Fixes
+
+- **FF-9302:** align toolbar filters and mobile actions ([0f0d7fc](https://github.com/cloud-ru-tech/snack-v2/commit/0f0d7fca3e51a871111c3ee09efba814973b166a))
+
 ## 2.1.11 (2026-11-18)
 
 **Note:** Version bump only for package @ds/toolbar

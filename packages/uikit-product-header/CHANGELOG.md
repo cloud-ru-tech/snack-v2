@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.13 (2026-11-19)
+
+### Bug Fixes
+
+- **FF-9337:** show the scrollbar in the mobile user menu ([249fe95](https://github.com/cloud-ru-tech/snack-v2/commit/249fe9520b5adae4091590917d160eace5f5f9ec))
+
 ## 2.3.12 (2026-11-18)
 
 **Note:** Version bump only for package @ds/uikit-product-header

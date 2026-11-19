@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.2.0 (2026-11-19)
+
+### Features
+
+- **FF-9301:** add adaptive list size presets ([565730a](https://github.com/cloud-ru-tech/snack-v2/commit/565730a4812c4255aa5c16e8ec61df51c69e9eb9))
+- **FF-9337:** adapt droplist search to list size ([bc21940](https://github.com/cloud-ru-tech/snack-v2/commit/bc21940e310360380432af900fa8d0173635fa7a))
+
 ## 3.1.5 (2026-11-18)
 
 **Note:** Version bump only for package @ds/list

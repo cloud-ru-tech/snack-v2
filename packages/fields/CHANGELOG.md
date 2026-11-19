@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-11-19)
+
+### Features
+
+- **FF-9337:** adapt droplist search to list size ([bc21940](https://github.com/cloud-ru-tech/snack-v2/commit/bc21940e310360380432af900fa8d0173635fa7a))
+
 ## 3.0.17 (2026-11-18)
 
 **Note:** Version bump only for package @ds/fields

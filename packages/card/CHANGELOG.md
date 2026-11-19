@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.40 (2026-11-19)
+
+### Bug Fixes
+
+- **FF-9412:** position selection badge for mobile ([6c8d9b5](https://github.com/cloud-ru-tech/snack-v2/commit/6c8d9b5d61bb550152fbeda449f640330b63bb46))
+
 ## 1.0.39 (2026-11-18)
 
 **Note:** Version bump only for package @ds/card
