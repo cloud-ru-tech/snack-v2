@@ -50,6 +50,7 @@
     "@ds/site-rich-text": "workspace:^",
     "@ds/site-section-title": "workspace:^",
     "@ds/site-tabs-segmented": "workspace:^",
+    "@ds/table": "workspace:^",
     "@ds/theme": "workspace:^",
     "@ds/typography": "workspace:^",
     "@ds/utils": "workspace:^",

@@ -1,0 +1,92 @@
+---
+title: SectionTable
+package: '@ds/site-section'
+description: Секция сайта с таблицей — SectionBasic и Table из @ds/table без тулбара и пагинации.
+order: 1
+---
+
+import { TableWithTitle } from '../demos/examples/TableWithTitle'
+import TableWithTitleSrc from '../demos/examples/TableWithTitle.tsx?raw'
+import { TableCaption } from '../demos/examples/TableCaption'
+import TableCaptionSrc from '../demos/examples/TableCaption.tsx?raw'
+import { TableOldContainer } from '../demos/examples/TableOldContainer'
+import TableOldContainerSrc from '../demos/examples/TableOldContainer.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import siteSectionDoc from './props.json'
+
+# SectionTable
+
+Секция с таблицей. Основа — `SectionBasic`: заголовок, вкладки, фильтры, фоны и футер секции. В содержимом — `Table` из `@ds/table` без тулбара и пагинации. На узкой ширине таблица остаётся сеткой и скроллится по горизонтали.
+
+## Когда использовать
+
+- Прайс, сравнение конфигураций, список зон: заголовок секции и таблица с колонками.
+- Та же секция, что `SectionBasic`, когда содержимое — таблица, а не произвольный `children`.
+
+Когда **не** нужен:
+
+- Таблица в консоли с выбором строк, тулбаром и серверной пагинацией:
+  - используйте `@ds/table` напрямую.
+- Секция без таблицы:
+  - используйте `SectionBasic` и передайте содержимое в `children`.
+
+## Анатомия
+
+Шасси совпадает с `SectionBasic`. Заголовок по умолчанию с `type="descriptionUnderTitle"`: описание под заголовком. Вместо `children` секция принимает колонки и строки.
+
+- `columnDefinitions` — колонки `Table`: шапка и ячейки строк.
+- `headerRowBackgroundColor` — фон шапки. По умолчанию `neutral`.
+- `data` — строки.
+- `caption` — подпись под таблицей. Без пропа не рендерится.
+- `getRowId` — стабильный идентификатор строки.
+
+Тулбар, футер и пагинация таблицы выключены. Пагинация секции по-прежнему задаётся пропом `pagination`. Вид зафиксирован как сетка на desktop, tablet и mobile.
+
+### Container (обязательный)
+
+- `new` — целевой вид секции.
+- `old` — ширина и отступы страниц до редизайна.
+
+## Установка
+
+```bash
+pnpm add @ds/site-section
+```
+
+```ts
+import { SectionTable } from '@ds/site-section'
+```
+
+## Примеры использования
+
+<Example title='Заголовок и таблица' description='title, description, columnDefinitions и data' code={TableWithTitleSrc}>
+  <TableWithTitle client:visible />
+</Example>
+
+<Example title='Подпись под таблицей' description='caption' code={TableCaptionSrc}>
+  <TableCaption client:visible />
+</Example>
+
+<Example title='Секция до редизайна' description="container='old'" code={TableOldContainerSrc}>
+  <TableOldContainer client:visible />
+</Example>
+
+## Props
+
+<PropsTable data={siteSectionDoc.SectionTable} />
+
+## Storybook
+
+<StorybookEmbed storyId='site-section-sectiontable--playground' height={640} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('site-section', 'section-table')} />
+
+## Смотри также
+
+- [SectionBasic](/components/site-section/) — секция с произвольным содержимым.

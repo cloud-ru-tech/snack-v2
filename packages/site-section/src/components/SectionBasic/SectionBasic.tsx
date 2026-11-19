@@ -11,7 +11,7 @@ import { SectionFilter, SectionFooter, SectionWrapper } from '../../helperCompon
 import { SectionBackground, SectionContainer, SectionContainerBackground, SectionMoreButton } from '../../types';
 
 export type SectionBasicProps = WithSupportProps<
-  Pick<SectionTitleProps, 'title' | 'description' | 'titleTag'> & {
+  Pick<SectionTitleProps, 'title' | 'description' | 'titleTag' | 'type'> & {
     /**
      * Ширина и отступы секции: `new` — целевой вид, `old` — совместимость со страницами до редизайна.
      * Временная настройка на период редизайна, задаётся явно.
@@ -58,6 +58,7 @@ export function SectionBasic({
   title,
   description,
   titleTag,
+  type,
   tabBarItems,
   tabBarValue,
   defaultTabBarValue,
@@ -89,6 +90,7 @@ export function SectionBasic({
           title={title}
           description={description}
           titleTag={titleTag}
+          type={type}
           data-test-id={TEST_IDS.sectionTitle}
         />
       )}

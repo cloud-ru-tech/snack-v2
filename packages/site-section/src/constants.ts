@@ -43,4 +43,6 @@ export const TEST_IDS = {
   pagination: `${PREFIX}__pagination`,
   moreButton: `${PREFIX}__more-button`,
   item: 'section-accordion__item',
+  table: 'section-table__table',
+  caption: 'section-table__caption',
 } as const;

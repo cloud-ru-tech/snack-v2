@@ -1,0 +1,17 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.table {
+  width: 100%;
+  min-width: 0;
+}
+
+.caption {
+  margin-top: base.$sn-primitive-dimension-8;
+  color: base.$sn-theme-color-available-version-textSecondary;
+
+  @include base.composite-var(base.$sn-thin, 'body', 's');
+
+  &[data-layout-type='mobile'] {
+    margin-top: base.$sn-primitive-dimension-16;
+  }
+}

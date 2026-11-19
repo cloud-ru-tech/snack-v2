@@ -301,6 +301,7 @@ export function OldContainer() {
 | `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
 | `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
 | `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
+| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка блока. |
 
 #### Related types
 
@@ -329,6 +330,7 @@ export function OldContainer() {
 ## Смотри также
 
 - **SectionMedia** — секция с изображением или видео.
+- **SectionTable** — секция с таблицей.
 ## Адаптивность
 
 Раскладка читается из `AdaptiveProvider` (`@ds/adaptive`), пропа `layoutType` нет.
@@ -432,6 +434,7 @@ export function OldContainer() {
 | `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
 | `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
 | `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
+| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка блока. |
 
 ##### Related types
 
@@ -460,3 +463,190 @@ export function OldContainer() {
 ### Адаптивность
 
 Три раскладки наследуются от `AdaptiveProvider`. Отступы и типографику предоставляет `SectionBasic`; медиа остаётся 16:9. Форс раскладки задаётся контекстом с согласованной платформой темы. На tablet сохранена типографика `SectionTitle` из репозитория (32/40 px): итоговая секция на 4 px выше макета.
+
+## SectionTable
+
+Секция сайта с таблицей — SectionBasic и Table из @ds/table без тулбара и пагинации.
+
+Секция с таблицей. Основа — `SectionBasic`: заголовок, вкладки, фильтры, фоны и футер секции. В содержимом — `Table` из `@ds/table` без тулбара и пагинации. На узкой ширине таблица остаётся сеткой и скроллится по горизонтали.
+
+### Когда использовать
+
+- Прайс, сравнение конфигураций, список зон: заголовок секции и таблица с колонками.
+- Та же секция, что `SectionBasic`, когда содержимое — таблица, а не произвольный `children`.
+
+Когда **не** нужен:
+
+- Таблица в консоли с выбором строк, тулбаром и серверной пагинацией:
+  - используйте `@ds/table` напрямую.
+- Секция без таблицы:
+  - используйте `SectionBasic` и передайте содержимое в `children`.
+
+### Анатомия
+
+Шасси совпадает с `SectionBasic`. Заголовок по умолчанию с `type="descriptionUnderTitle"`: описание под заголовком. Вместо `children` секция принимает колонки и строки.
+
+- `columnDefinitions` — колонки `Table`: шапка и ячейки строк.
+- `headerRowBackgroundColor` — фон шапки. По умолчанию `neutral`.
+- `data` — строки.
+- `caption` — подпись под таблицей. Без пропа не рендерится.
+- `getRowId` — стабильный идентификатор строки.
+
+Тулбар, футер и пагинация таблицы выключены. Пагинация секции по-прежнему задаётся пропом `pagination`. Вид зафиксирован как сетка на desktop, tablet и mobile.
+
+#### Container (обязательный)
+
+- `new` — целевой вид секции.
+- `old` — ширина и отступы страниц до редизайна.
+
+### Примеры использования
+
+#### Заголовок и таблица
+
+title, description, columnDefinitions и data
+
+```tsx
+import { SectionTable } from '@ds/site-section';
+import { ColumnDefinition } from '@ds/table';
+
+type Row = { name: string; cpu: string; price: string };
+
+const COLUMN_DEFINITIONS: ColumnDefinition<Row>[] = [
+  { id: 'name', accessorKey: 'name', header: 'Конфигурация', size: 220 },
+  { id: 'cpu', accessorKey: 'cpu', header: 'vCPU', size: 120 },
+  { id: 'price', accessorKey: 'price', header: 'Цена', size: 140, align: 'right', headerAlign: 'right' },
+];
+
+const DATA: Row[] = [
+  { name: 'Standard-2', cpu: '4', price: '2 400 ₽' },
+  { name: 'Standard-4', cpu: '8', price: '4 800 ₽' },
+  { name: 'Memory-4', cpu: '4', price: '6 200 ₽' },
+];
+
+export function TableWithTitle() {
+  return (
+    <SectionTable
+      container='new'
+      title='Тарифы'
+      description='Сравнение конфигураций виртуальных машин.'
+      columnDefinitions={COLUMN_DEFINITIONS}
+      data={DATA}
+    />
+  );
+}
+```
+
+#### Подпись под таблицей
+
+caption
+
+```tsx
+import { SectionTable } from '@ds/site-section';
+import { ColumnDefinition } from '@ds/table';
+
+type Row = { name: string; region: string };
+
+const COLUMN_DEFINITIONS: ColumnDefinition<Row>[] = [
+  { id: 'name', accessorKey: 'name', header: 'Зона', size: 240 },
+  { id: 'region', accessorKey: 'region', header: 'Регион', size: 200 },
+];
+
+const DATA: Row[] = [
+  { name: 'ru-central1-a', region: 'Москва' },
+  { name: 'ru-central1-b', region: 'Москва' },
+  { name: 'ru-central2-a', region: 'Санкт-Петербург' },
+];
+
+export function TableCaption() {
+  return (
+    <SectionTable
+      container='new'
+      title='Зоны доступности'
+      columnDefinitions={COLUMN_DEFINITIONS}
+      data={DATA}
+      caption='Список зон, в которых можно разместить ресурсы.'
+    />
+  );
+}
+```
+
+#### Секция до редизайна
+
+container='old'
+
+```tsx
+import { SectionTable } from '@ds/site-section';
+import { ColumnDefinition } from '@ds/table';
+
+type Row = { service: string; status: string };
+
+const COLUMN_DEFINITIONS: ColumnDefinition<Row>[] = [
+  { id: 'service', accessorKey: 'service', header: 'Сервис', size: 280 },
+  { id: 'status', accessorKey: 'status', header: 'Статус', size: 160 },
+];
+
+const DATA: Row[] = [
+  { service: 'Compute', status: 'Доступен' },
+  { service: 'Object Storage', status: 'Доступен' },
+  { service: 'Managed Kubernetes', status: 'Доступен' },
+];
+
+export function TableOldContainer() {
+  return <SectionTable container='old' title='Сервисы' columnDefinitions={COLUMN_DEFINITIONS} data={DATA} />;
+}
+```
+
+### Props
+
+**SectionTableProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `background` | `SectionBackground` | — | Внешний слой фона во всю ширину экрана (Figma `sectionBackground`): тема и заливка. |
+| `caption` | `string` | — | Подпись под таблицей. |
+| `className` | `string` | — | CSS-класс корня. |
+| `columnDefinitions` | `ColumnDefinition` \| `Except` | — | Колонки `Table`: шапка и ячейки строк. |
+| `container` | `"new"` \| `"old"` | — | Ширина и отступы секции: `new` — целевой вид, `old` — совместимость со страницами до редизайна. <br/> Временная настройка на период редизайна, задаётся явно. |
+| `containerBackground` | `SectionContainerBackground` | — | Блок по ширине `container` (Figma `contentWrapper` + `bgLocal`): тема блока и всего содержимого и заливка — <br/> подложка, картинка или акцентный цвет. Тема не задана — тема внешнего слоя. |
+| `data` | `TData[]` | — | Строки таблицы. |
+| `data-test-id` | `string` | — |  |
+| `defaultTabBarValue` | `string` | — | Изначально выбранная вкладка (uncontrolled). |
+| `description` | `string` | — | Описание. Строка может содержать HTML-разметку. |
+| `filterItems` | `CustomOptionProps` \| `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `EmptyState` \| `FieldSelectDecoratorProps` \| `FieldSelectProps` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — | Поля-фильтры под вкладками. Рендерятся как `FieldSelect` размера `l`. |
+| `getRowId` | `((row: TData) => string)` | — | Стабильный идентификатор строки. |
+| `headerRowBackgroundColor` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"red"` \| `"violet"` \| `"yellow"` | `neutral` | Фон шапки. |
+| `id` | `string` | — | HTML-атрибут `id` секции — якорь для навигации по странице. |
+| `moreButton` | `SectionMoreButton` | — | Кнопка «Показать еще» в футере. |
+| `onTabBarChange` | `((value: string) => void)` | — | Колбэк выбора вкладки: значение `value` выбранного элемента `tabBarItems`. |
+| `pagination` | `PaginationProps` | — | Пагинация в футере. |
+| `tabBarItems` | `TabsSegmentedItem` | — | Вкладки под заголовком. Без `tabBarValue` / `defaultTabBarValue` изначально выбрана первая доступная. |
+| `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
+| `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
+| `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
+| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | `descriptionUnderTitle` | Раскладка блока. |
+
+##### Related types
+
+**SectionBackground**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `fill` | `"blueBackground"` \| `"decorTransparent"` \| `"greenBackground"` \| `"neutralBackground"` \| `"neutralBackground1Level"` \| `"orangeBackground"` \| `"pinkBackground"` \| `"primaryBackground"` \| `"redBackground"` \| `"transparent"` \| `"violetBackground"` \| `"yellowBackground"` | — | Заливка. По умолчанию `neutralBackground`. |
+| `theme` | `ThemeAppearance` | — | Тема слоя. Не задана — тема страницы. |
+
+- `SectionContainer` = `"new"` \| `"old"`
+
+- `SectionContainerBackground` = `SectionContainerFill & { theme?: Partial<ThemeAppearance>; }`
+
+**SectionMoreButton**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data-test-id` | `string \| undefined` | — | Тестовый id кнопки. По умолчанию — `TEST_IDS.moreButton`. |
+| `href` | `string \| undefined` | — | Ссылка. Если задана, кнопка рендерится как `<a>`. |
+| `label` | `string \| undefined` | — | Текст кнопки. По умолчанию — «Показать еще» из локали пакета. |
+| `onClick` | `((event: MouseEvent<HTMLElement>) => void) \| undefined` | — | Колбэк клика. |
+
+### Смотри также
+
+- **SectionBasic** — секция с произвольным содержимым.

@@ -366,8 +366,10 @@ export const FIGMA_NODES = {
     'site-video': { fileKey: 'MvHKasIHFlsoJywtl4ncLE', fileName: 'upd-brand-mode', nodeId: '4254-16167' },
   },
   'site-section': {
-    _: { ...SITE, nodeId: '229-10362' },
+    _: { ...SITE, nodeId: '229-10362' }, // sectionBasic
     'section-media': { fileKey: 'MvHKasIHFlsoJywtl4ncLE', fileName: 'upd-brand-mode', nodeId: '4254-16240' },
+    'section-accordion': { ...SITE, fileKey: 'MvHKasIHFlsoJywtl4ncLE', nodeId: '2473-656' },
+    'section-table': { ...SITE, nodeId: '4116-3192' }, // sectionTable, device=desktop
   },
   'site-section-title': { ...SITE, nodeId: '2874-3271' }, // sectionTitle
   'site-tabs-segmented': { ...SITE, nodeId: '4625-6531' }, // tabsSegmentedV2
