@@ -17,7 +17,7 @@
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.primitive.dimension.4}"
+                "$value": "{sn.primitive.dimension.32}"
               },
               "paddingHorizontal": {
                 "$extensions": {

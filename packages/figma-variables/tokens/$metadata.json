@@ -66,12 +66,10 @@
     "tree/tree",
     "accordion/accordion",
     "carousel/carousel",
-    "stepper/stepper",
     "toolbar/toolbar",
     "rating/rating",
     "toaster/toaster",
     "hotSpot/hotSpot",
-    "timeline/timeline",
     "tabs/tabs",
     "markdown/markdown",
     "pagination/pagination",
@@ -79,6 +77,8 @@
     "fieldDecorator/fieldDecorator",
     "popupPrivate/popupPrivate",
     "table/table",
-    "block/block"
+    "block/block",
+    "stepper/stepper",
+    "timeline/timeline"
   ]
 }

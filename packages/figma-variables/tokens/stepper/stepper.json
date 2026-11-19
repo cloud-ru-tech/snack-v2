@@ -140,12 +140,28 @@
             "$type": "number",
             "$value": "{sn.primitive.dimension.8}"
           },
-          "paddingHorizontal": {
+          "paddingLeft": {
             "$extensions": {
               "com.figma.hiddenFromPublishing": true
             },
             "$type": "number",
-            "$value": "{sn.primitive.dimension.4}"
+            "$value": "{sn.primitive.dimension.0}"
+          },
+          "paddingRight": {
+            "$extensions": {
+              "com.figma.hiddenFromPublishing": true
+            },
+            "$type": "number",
+            "$value": "{sn.primitive.dimension.8}"
+          },
+          "lastStep": {
+            "maxWidth": {
+              "$extensions": {
+                "com.figma.hiddenFromPublishing": true
+              },
+              "$type": "number",
+              "$value": 200
+            }
           }
         },
         "stepRow": {
@@ -158,12 +174,19 @@
           },
           "contentWrapper": {
             "stepText": {
-              "paddingHorizontal": {
+              "paddingLeft": {
                 "$extensions": {
                   "com.figma.hiddenFromPublishing": true
                 },
                 "$type": "number",
-                "$value": "{sn.stepper.anatomy.step.paddingHorizontal}"
+                "$value": "{sn.stepper.anatomy.step.paddingLeft}"
+              },
+              "paddingRight": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.stepper.anatomy.step.paddingRight}"
               }
             }
           }
