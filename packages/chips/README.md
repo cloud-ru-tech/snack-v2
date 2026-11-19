@@ -611,7 +611,7 @@ export function ChoiceSingleManualApply() {
 | `icon` | `ReactNode` | — | Иконка |
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
-| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
+| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`. |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |
@@ -775,7 +775,7 @@ export function ChoiceMultipleSearchable() {
 | `icon` | `ReactNode` | — | Иконка |
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `label` | `string` | — | Текст чипа |
-| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
+| `layoutPresets` | `Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>` | — | Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`. |
 | `loading` | `boolean` | — | Состояние загрузки <br/> Флаг, отвечающий за состояние загрузки списка |
 | `noDataState` | `EmptyStateProps` | — | Экран при отсутствии данных |
 | `noResultsState` | `EmptyStateProps` | — | Экран при отсутствии результатов поиска или фильтров |

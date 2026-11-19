@@ -3027,7 +3027,7 @@
           "layoutPresets": {
             "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
             "required": false,
-            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
             "typeRefs": [
               "DroplistLayoutDefaults",
               "LayoutPresets"
@@ -3958,7 +3958,7 @@
           "layoutPresets": {
             "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
             "required": false,
-            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
             "typeRefs": [
               "DroplistLayoutDefaults",
               "LayoutPresets"
@@ -5262,7 +5262,7 @@
           "layoutPresets": {
             "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
             "required": false,
-            "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+            "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
             "typeRefs": [
               "DroplistLayoutDefaults",
               "LayoutPresets"

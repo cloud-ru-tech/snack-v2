@@ -239,6 +239,8 @@ import '@ds/list/style.css'
 | `open`, `onOpenChange`, `closeOnPopstate` | используется | используется |
 | `size`, `layoutPresets` | размер определяется с учётом пресетов | размер определяется с учётом пресетов |
 
+На desktop поиск по умолчанию виден при любом количестве пунктов (`alwaysShowSearch` равен `true`). На мобильных устройствах поиск появляется при 10 и более пунктах, включая вложенные и закреплённые. При фильтрации поле остаётся доступным до закрытия списка. Для серверного поиска задайте `layoutPresets={{ mobile: { alwaysShowSearch: true } }}`, чтобы можно было ввести запрос даже при пустом списке.
+
 <Example title='Mobile — BottomSheet' description='Раскладка форсирована в mobile: по клику триггера список открывается в BottomSheet.' code={MobileDroplistSrc}>
   <MobileDroplist client:visible />
 </Example>

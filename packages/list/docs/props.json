@@ -270,6 +270,11 @@
     "propsTypeName": null,
     "description": "Desktop-поверхность `Droplist`: анкорный popover (`Dropdown`) со списком. Internal — наружу\nне реэкспортится; рендерится адаптивным `Droplist` на не-mobile раскладке. Так как вызывается\nтолько на desktop-раскладке, внутренний адаптивный `Dropdown` всегда рендерит popover.",
     "props": {
+      "alwaysShowSearch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать включённый поиск при любом количестве пунктов."
+      },
       "barHideStrategy": {
         "type": "enum",
         "required": false,
@@ -575,6 +580,11 @@
         "required": false,
         "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
       },
+      "alwaysShowSearch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать включённый поиск при любом количестве пунктов."
+      },
       "barHideStrategy": {
         "type": "enum",
         "required": false,
@@ -709,7 +719,7 @@
       "layoutPresets": {
         "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
         "required": false,
-        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+        "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
         "typeRefs": [
           "DroplistLayoutDefaults",
           "LayoutPresets"
@@ -1136,6 +1146,11 @@
       "DroplistLayoutDefaults": {
         "kind": "interface",
         "props": {
+          "alwaysShowSearch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать включённый поиск при любом количестве пунктов."
+          },
           "size": {
             "type": "Size | undefined",
             "required": false,
@@ -2206,6 +2221,11 @@
         "required": false,
         "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
       },
+      "alwaysShowSearch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать включённый поиск при любом количестве пунктов."
+      },
       "barHideStrategy": {
         "type": "enum",
         "required": false,
@@ -2717,6 +2737,11 @@
         "required": false,
         "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
       },
+      "alwaysShowSearch": {
+        "type": "boolean",
+        "required": false,
+        "description": "Показывать включённый поиск при любом количестве пунктов."
+      },
       "barHideStrategy": {
         "type": "enum",
         "required": false,
@@ -2849,7 +2874,7 @@
       "layoutPresets": {
         "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>>",
         "required": false,
-        "description": "Переопределение размера списка по раскладке. На mobile по умолчанию `l`.",
+        "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
         "typeRefs": [
           "DroplistLayoutDefaults",
           "LayoutPresets"
@@ -3262,6 +3287,11 @@
       "DroplistLayoutDefaults": {
         "kind": "interface",
         "props": {
+          "alwaysShowSearch": {
+            "type": "boolean | undefined",
+            "required": false,
+            "description": "Показывать включённый поиск при любом количестве пунктов."
+          },
           "size": {
             "type": "Size | undefined",
             "required": false,

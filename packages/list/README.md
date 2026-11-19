@@ -941,6 +941,7 @@ export function DroplistWithHeader() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `actionButton` | `ReactNode` | — | Только mobile (`BottomSheet`): action-кнопка справа в шапке. |
+| `alwaysShowSearch` | `boolean` | — | Показывать включённый поиск при любом количестве пунктов. |
 | `barHideStrategy` | `"leave"` \| `"move"` \| `"never"` \| `"scroll"` | — | Управление скрытием скролл баров: <br/> <br> - `Never` - показывать всегда <br/> <br> - `Leave` - скрывать когда курсор покидает компонент <br/> <br> - `Scroll` - показывать только когда происходит скроллинг <br/> <br> - `Move` - показывать при движении курсора над компонентом |
 | `children` | `ReactNode \| ({onKeyDown}) => ReactNode * Рендер функция принимает аргументы `onKeyDown` - хендлер ввода, для поддержки управления с клавиатуры` | — | Триггер для дроплиста |
 | `className` | `string` | — | CSS-класс |
@@ -963,7 +964,7 @@ export function DroplistWithHeader() {
 | `itemRender` | `((props: ItemRenderProps) => ReactNode)` | — | Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`. <br/> Не задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат. |
 | `items` | `BaseItemWithoutNonGroup` \| `CommonGroupItem` \| `Item` \| `ScrollProps` | — | Основные элементы списка |
 | `label` | `string` | — | Только mobile (`BottomSheet`): заголовок шапки. |
-| `layoutPresets` | `DroplistLayoutDefaults` \| `LayoutPresets` | — | Переопределение размера списка по раскладке. На mobile по умолчанию `l`. |
+| `layoutPresets` | `DroplistLayoutDefaults` \| `LayoutPresets` | — | Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`. |
 | `limitedScrollHeight` | `boolean` | — | Ограничить максимальную высоту скролл-контейнера в зависимости от `size` |
 | `listRef` | `RefObject<HTMLElement>` | — | Ссылка на элемент выпадающего списка |
 | `loading` | `boolean` | — | Флаг, отвечающий за состояние загрузки списка |
@@ -1045,6 +1046,7 @@ export function DroplistWithHeader() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `alwaysShowSearch` | `boolean \| undefined` | — | Показывать включённый поиск при любом количестве пунктов. |
 | `size` | `"l"` \| `"m"` \| `"s"` | — | Размер списка |
 
 **EmptyStateProps**
@@ -1206,6 +1208,8 @@ export function DroplistWithHeader() {
 | `items`, `selection`, `collapse`, `search`, `footer`, `headerDivider`, `footerDivider` | используется | используется |
 | `open`, `onOpenChange`, `closeOnPopstate` | используется | используется |
 | `size`, `layoutPresets` | размер определяется с учётом пресетов | размер определяется с учётом пресетов |
+
+На desktop поиск по умолчанию виден при любом количестве пунктов (`alwaysShowSearch` равен `true`). На мобильных устройствах поиск появляется при 10 и более пунктах, включая вложенные и закреплённые. При фильтрации поле остаётся доступным до закрытия списка. Для серверного поиска задайте `layoutPresets={{ mobile: { alwaysShowSearch: true } }}`, чтобы можно было ввести запрос даже при пустом списке.
 
 #### Mobile — BottomSheet
 
