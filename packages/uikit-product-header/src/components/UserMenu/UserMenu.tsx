@@ -133,7 +133,7 @@ export function UserMenu({
       pinTop={pinTop}
       items={menuItems}
       pinBottom={pinBottom}
-      scroll={!isMobile}
+      scroll
       trigger='click'
       placement='bottom-end'
       className={styles.userMenuDroplist}

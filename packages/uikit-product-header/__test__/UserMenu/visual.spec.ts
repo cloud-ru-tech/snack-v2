@@ -43,6 +43,10 @@ test.describe('UserMenu — visual regression', () => {
     await getByTestId(TEST_IDS.userMenu.button).click();
     await waitForSettledInViewport(getByTestId(TEST_IDS.userMenu.root));
     await page.mouse.move(0, 0);
+    // Полосу создаёт OverlayScrollbars внутри прокручиваемой части меню.
+    const scrollbar = getByTestId(TEST_IDS.userMenu.root).locator('.os-scrollbar-vertical');
+    await expect(scrollbar).toHaveClass(/os-scrollbar-visible/);
+    await expect(scrollbar).toHaveCSS('opacity', '1');
     expect(await page.screenshot(SCREENSHOT_DEFAULT_OPTS)).toMatchSnapshot(
       'open-mobile.png',
       MATCH_SNAPSHOT_DEFAULT_OPTS,
