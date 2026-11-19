@@ -5,6 +5,7 @@ import { cloneElement, isValidElement, MouseEvent, useMemo, useRef, useState } f
 
 import { Item, ItemId, NextListItem, ReorderItem } from '../../components/Items';
 import { OnChangeHandler } from '../../components/Lists/contexts';
+import { useDroplistSearch } from '../../components/Lists/Droplist/useDroplistSearch';
 import { List, ReorderableList } from '../../components/Lists/List';
 import { BaseDroplistProps, MobileDroplistProps } from '../../components/Lists/types';
 import { TEST_IDS } from '../../constants';
@@ -21,6 +22,7 @@ import { buildLevelItems, nextListOption, resolveItemByPath } from './utils';
 export function MobileDroplist({
   items,
   selection,
+  alwaysShowSearch,
   open: openProp,
   onOpenChange,
   children,
@@ -49,6 +51,8 @@ export function MobileDroplist({
   const portalContext = usePortalContext();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [open = false, setIsOpen] = useValueControl({ value: openProp, onChange: onOpenChange });
+
+  const visibleSearch = useDroplistSearch(search, alwaysShowSearch, open, items, rest.pinTop, rest.pinBottom);
 
   // Стек заходов во вложенные next-list'ы: индексный путь от корня на каждый уровень.
   // Пустой — корневой уровень. Хранится путь, а не сам айтем: айтемы пересобираются на каждом
@@ -166,7 +170,7 @@ export function MobileDroplist({
               closeOnClick,
             );
         // Поиск/виртуализация/footer/actions — только на корне; sublists всегда статичны по контенту.
-        const searchable = isRoot && Boolean(search);
+        const searchable = isRoot && Boolean(visibleSearch);
         const expanded = searchable || (isRoot && virtualized);
 
         const scrollable = isRoot && (virtualized || scroll);
@@ -174,7 +178,7 @@ export function MobileDroplist({
         const listCommonProps = {
           selection: listSelection,
           size,
-          search: searchable ? search : undefined,
+          search: isRoot ? visibleSearch : undefined,
           loading: isRoot ? undefined : item?.loading,
           dataError: isRoot ? undefined : item?.dataError,
           dataFiltered: isRoot ? undefined : item?.dataFiltered,

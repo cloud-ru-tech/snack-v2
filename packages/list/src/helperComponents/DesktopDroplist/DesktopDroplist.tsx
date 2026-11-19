@@ -17,6 +17,7 @@ import {
   DEFAULT_SIZE,
   FOCUS_DEFERRAL_TIMEOUT,
 } from '../../components/Lists/Droplist/constants';
+import { useDroplistSearch } from '../../components/Lists/Droplist/useDroplistSearch';
 import { useListItemsModel, useNewKeyboardNavigation } from '../../components/Lists/hooks';
 import { ListPrivate } from '../../components/Lists/ListPrivate';
 import styles from '../../components/Lists/styles.module.scss';
@@ -31,7 +32,7 @@ const NO_ITEMS: Item[] = [];
  */
 export function DesktopDroplist({
   items: itemsProp,
-  search,
+  search: searchProp,
   pinBottom: pinBottomProp = NO_ITEMS,
   pinTop: pinTopProp = NO_ITEMS,
   footerActiveElementsRefs,
@@ -41,6 +42,7 @@ export function DesktopDroplist({
   widthStrategy,
   triggerElemRef: triggerElemRefProp,
   container,
+  alwaysShowSearch,
   open: openProp,
   onOpenChange,
   collapse = {},
@@ -65,6 +67,14 @@ export function DesktopDroplist({
   onItemsReorder,
   ...props
 }: DesktopDroplistProps) {
+  const [open = false, setOpen] = useValueControl<boolean>({
+    value: openProp,
+    defaultValue: false,
+    onChange: onOpenChange,
+  });
+
+  const search = useDroplistSearch(searchProp, alwaysShowSearch, open, itemsProp, pinTopProp, pinBottomProp);
+
   const {
     hasSearch,
     openCollapseItems,
@@ -87,12 +97,6 @@ export function DesktopDroplist({
     selectionMode: selection?.mode,
     footerActiveElementsRefs,
     onItemsReorder,
-  });
-
-  const [open = false, setOpen] = useValueControl<boolean>({
-    value: openProp,
-    defaultValue: false,
-    onChange: onOpenChange,
   });
 
   const triggerElemRef = useRef<HTMLElement>(null);

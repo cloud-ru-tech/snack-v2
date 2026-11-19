@@ -52,6 +52,26 @@ test.describe('Droplist — rendering', () => {
     await expect(getByTestId(LIST_INTERNAL_TEST_IDS.searchItem)).toHaveAttribute('data-size', 'l');
   });
 
+  test('layout preset overrides the explicit alwaysShowSearch prop', async ({
+    gotoStory,
+    getByTestId,
+    setStoryArgs,
+  }) => {
+    await gotoStory(
+      buildStoryOptions({
+        showSearch: true,
+        emptyState: 'no-data',
+        alwaysShowSearch: false,
+      }),
+    );
+    await getByTestId(TEST_IDS.droplist.triggerOpen).click();
+    await expect(getByTestId(LIST_INTERNAL_TEST_IDS.noData)).toBeVisible();
+    const search = getByTestId(LIST_INTERNAL_TEST_IDS.searchItem);
+    await expect(search).toHaveCount(0);
+    await setStoryArgs({ layoutPresets: { desktop: { alwaysShowSearch: true } } });
+    await expect(search).toBeVisible();
+  });
+
   for (const layoutType of ['desktop', 'mobile'] as const) {
     for (const size of ['s', 'm', 'l'] as const) {
       test(`${layoutType}: size=${size} applies to items and the whole search field`, async ({

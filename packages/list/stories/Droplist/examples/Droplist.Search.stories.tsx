@@ -8,7 +8,7 @@ import { DemoActions, DemoHint, DemoPage, DemoPanel, DemoTitle } from '#storyboo
 import { TEST_IDS } from '../../testIds';
 
 // satisfies сохраняет литеральный тип элементов: фильтр читает `content.label` без кастов.
-const ALL_ITEMS = [
+const SHORT_LIST = [
   { id: 'overview', content: { label: 'Overview' } },
   { id: 'analytics', content: { label: 'Analytics' } },
   { id: 'billing', content: { label: 'Billing' } },
@@ -16,10 +16,21 @@ const ALL_ITEMS = [
   { id: 'members', content: { label: 'Members' } },
 ] satisfies Item[];
 
-function SearchRender(args: DroplistProps) {
+const LONG_LIST = [
+  ...SHORT_LIST,
+  { id: 'projects', content: { label: 'Projects' } },
+  { id: 'teams', content: { label: 'Teams' } },
+  { id: 'roles', content: { label: 'Roles' } },
+  { id: 'audit', content: { label: 'Audit log' } },
+  { id: 'reports', content: { label: 'Reports' } },
+  { id: 'notifications', content: { label: 'Notifications' } },
+  { id: 'integrations', content: { label: 'Integrations' } },
+] satisfies Item[];
+
+function SearchRender({ options, ...args }: DroplistProps & { options: typeof SHORT_LIST }) {
   const [query, setQuery] = useState('');
 
-  const items = ALL_ITEMS.filter(item => item.content.label.toLowerCase().includes(query.toLowerCase()));
+  const items = options.filter(item => item.content.label.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <DemoPage>
@@ -47,10 +58,19 @@ const meta: Meta<DroplistProps> = {
   component: Droplist,
   parameters: { layout: 'fullscreen' },
   args: { size: 'm', placement: 'bottom-start', trigger: 'click', marker: true },
-  render: args => <SearchRender {...args} />,
+  render: args => <SearchRender {...args} options={SHORT_LIST} />,
 };
 
 export default meta;
 type Story = StoryObj<DroplistProps>;
 
-export const Search: Story = { tags: ['dev', 'test'] };
+export const Search: Story = {
+  tags: ['dev', 'test'],
+  args: { layoutPresets: { mobile: { alwaysShowSearch: true } } },
+};
+
+export const LongList: Story = {
+  tags: ['dev', 'test'],
+  globals: { layoutType: 'mobile' },
+  render: args => <SearchRender {...args} options={LONG_LIST} />,
+};

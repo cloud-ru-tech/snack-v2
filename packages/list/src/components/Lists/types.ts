@@ -122,6 +122,8 @@ export type ListImplProps = ListPropsCommon & {
 
 /** Собственные props дроплиста — всё, что не приходит из `List`. */
 type DroplistOwnProps = {
+  /** Показывать включённый поиск при любом количестве пунктов. */
+  alwaysShowSearch?: boolean;
   /** Ссылка на элемент-триггер для дроплиста */
   triggerElemRef?: RefObject<HTMLElement>;
   /**
@@ -173,10 +175,10 @@ export type ReorderableBaseDroplistProps = DroplistOwnProps & DroplistListProps<
  */
 export type DesktopDroplistProps = DroplistOwnProps & DroplistListProps<ListImplProps>;
 
-export type DroplistLayoutDefaults = Pick<ListProps, 'size'>;
+export type DroplistLayoutDefaults = Pick<BaseDroplistProps, 'size' | 'alwaysShowSearch'>;
 
 type DroplistAdaptiveProps = {
-  /** Переопределение размера списка по раскладке. На mobile по умолчанию `l`. */
+  /** Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`. */
   layoutPresets?: LayoutPresets<DroplistLayoutDefaults>;
 };
 

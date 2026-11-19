@@ -63,9 +63,10 @@ test.describe('FieldSelect — interaction', () => {
     page,
     gotoStory,
     getByTestId,
+    setStoryArgs,
   }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
-    await gotoStory(buildStoryOptions({ defaultValue: 's' }, undefined, { layoutType: 'mobile' }));
+    await gotoStory(buildStoryOptions({ defaultValue: 'm' }, undefined, { layoutType: 'mobile' }));
 
     const input = getByTestId(TEST_IDS.fieldSelect).getByTestId(TEST_IDS.fieldSelectInput);
     await expect(input).toHaveAttribute('readonly', '');
@@ -75,12 +76,36 @@ test.describe('FieldSelect — interaction', () => {
     );
 
     const search = page.getByTestId('list__search-item').getByTestId('search__field-input');
+    await expect(page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_m`)).toBeVisible();
+    await expect(search).toHaveCount(0);
+    const items = Array.from({ length: 9 }, (_, index) => ({
+      id: String(index),
+      content: { label: 'Option ' + index },
+    }));
+    await setStoryArgs({ items: [...items, { id: 'm', content: { label: 'Medium' } }] });
     await expect(search).toBeEditable();
+    await search.fill('zzzzz');
+    await expect(page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_m`)).toBeHidden();
+    await expect(search).toBeFocused();
     await search.fill('Medium');
     const medium = page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_m`);
     await expect(medium).toBeVisible();
-    await expect(page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_s`)).toBeHidden();
+    await expect(page.getByTestId(`${LIST_BASE_ITEM_TEST_ID}_0`)).toBeHidden();
+    await expect(search).toBeFocused();
     await medium.click();
     await expect(input).toHaveValue(/Medium/);
+  });
+
+  test('mobile autocomplete keeps search available with no server results', async ({
+    page,
+    gotoStory,
+    getByTestId,
+  }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await gotoStory(buildStoryOptions({ autocomplete: true, items: [] }, undefined, { layoutType: 'mobile' }));
+    await getByTestId(TEST_IDS.fieldSelectInput).click();
+    const search = getByTestId('list__search-item').getByTestId('search__field-input');
+    await search.fill('query');
+    await expect(search).toHaveValue('query');
   });
 });

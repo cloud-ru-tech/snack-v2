@@ -4,11 +4,14 @@ import { DesktopDroplist } from '../../../helperComponents/DesktopDroplist';
 import { MobileDroplist } from '../../../helperComponents/MobileDroplist';
 import { DroplistImplProps, DroplistLayoutDefaults, DroplistProps, ReorderableDroplistProps } from '../types';
 
-const DROPLIST_LAYOUT_PRESETS: LayoutPresets<DroplistLayoutDefaults> = { mobile: { size: 'l' } };
+export const DROPLIST_LAYOUT_PRESETS: LayoutPresets<DroplistLayoutDefaults> = {
+  mobile: { size: 'l', alwaysShowSearch: false },
+};
 
 /** @internal Общая реализация `Droplist`/`ReorderableDroplist`: свап поверхности по раскладке. */
 function DroplistImpl({
   children,
+  alwaysShowSearch,
   size,
   layoutPresets,
   label,
@@ -19,17 +22,17 @@ function DroplistImpl({
 }: DroplistImplProps) {
   const { layoutType } = useAdaptiveLayout();
 
-  const { size: resolvedSize } = useLayoutDefaults<DroplistLayoutDefaults>(
-    { size: 'm' },
+  const resolvedProps = useLayoutDefaults<DroplistLayoutDefaults>(
+    { size: 'm', alwaysShowSearch: true },
     mergePresets(DROPLIST_LAYOUT_PRESETS, layoutPresets),
-    { size },
+    { size, alwaysShowSearch },
   );
 
   if (isMobileLayout(layoutType)) {
     return (
       <MobileDroplist
         {...rest}
-        size={resolvedSize}
+        {...resolvedProps}
         label={label}
         actionButton={actionButton}
         slotAfterTitle={slotAfterTitle}
@@ -41,7 +44,7 @@ function DroplistImpl({
   }
 
   return (
-    <DesktopDroplist {...rest} size={resolvedSize}>
+    <DesktopDroplist {...rest} {...resolvedProps}>
       {children}
     </DesktopDroplist>
   );

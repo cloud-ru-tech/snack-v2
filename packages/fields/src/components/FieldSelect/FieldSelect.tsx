@@ -190,12 +190,11 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
   );
 
   const allItems = useMemo(() => [...(pinTop ?? []), ...items, ...(pinBottom ?? [])], [items, pinTop, pinBottom]);
-  const mobileSearchable = useMemo(
+  const requiresSearchInput = useMemo(
     () =>
-      searchable ||
       autocomplete ||
       resolveAddCustomOptionTriggers({ allowCustomOption, addCustomOptionTriggers, multiple }).includes('enter'),
-    [searchable, autocomplete, allowCustomOption, addCustomOptionTriggers, multiple],
+    [autocomplete, allowCustomOption, addCustomOptionTriggers, multiple],
   );
 
   const selectedIds = useMemo(
@@ -812,8 +811,9 @@ export const FieldSelect = forwardRef<HTMLInputElement, FieldSelectProps>(functi
       <Droplist
         items={filteredItems}
         label={label}
+        layoutPresets={requiresSearchInput ? { mobile: { alwaysShowSearch: true } } : undefined}
         search={
-          isMobileLayout(layoutType) && mobileSearchable && !readOnly && !disabled
+          isMobileLayout(layoutType) && (searchable || requiresSearchInput) && !readOnly && !disabled
             ? {
                 value: search?.value ?? (typing ? inputValue : ''),
                 onChange: handleInputChange,
