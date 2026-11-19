@@ -63,14 +63,14 @@ export const LoadStatus = forwardRef<HTMLDivElement, LoadStatusProps>(function L
     >
       {isShowHeader && (
         <div className={styles.header} data-test-id={TEST_IDS.header}>
-          <Typography className={styles.labelRow} variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.regular}>
+          <Typography className={styles.labelRow} variant={VARIANT.body} size={SIZE.s} weight={WEIGHT.regular}>
             {label}
 
             {value && <span className={styles.labelValue}>{value}</span>}
           </Typography>
 
           {symbol && (
-            <Typography className={styles.valueSymbol} variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.regular}>
+            <Typography className={styles.valueSymbol} variant={VARIANT.body} size={SIZE.s} weight={WEIGHT.regular}>
               {progressSymbolValue}
             </Typography>
           )}
@@ -84,7 +84,7 @@ export const LoadStatus = forwardRef<HTMLDivElement, LoadStatusProps>(function L
             <NotifierCriticalFilledSVG className={styles.errorIcon} size={16} data-test-id={TEST_IDS.errorIcon} />
           )}
 
-          <Typography className={styles.hint} variant={VARIANT.body} size={SIZE.m} weight={WEIGHT.regular}>
+          <Typography className={styles.hint} variant={VARIANT.body} size={SIZE.s} weight={WEIGHT.regular}>
             {hint}
           </Typography>
         </div>
