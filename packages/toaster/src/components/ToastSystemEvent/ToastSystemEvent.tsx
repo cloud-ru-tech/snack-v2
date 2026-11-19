@@ -84,6 +84,7 @@ export function ToastSystemEvent({
               onClick={link.onClick}
               appearance={APPEARANCE_TO_LINK_APPEARANCE[appearance]}
               roleAppearance='onAccent'
+              underlined
               className={styles.link}
               data-test-id={TEST_IDS.systemEventLink}
             />
