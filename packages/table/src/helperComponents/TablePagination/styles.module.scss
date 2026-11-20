@@ -4,6 +4,17 @@
 @use '@ds/figma-variables/build/scss/styles/styles.module' as base;
 @use '@ds/figma-variables/build/scss/components/table.module' as table;
 
+.safeAreaWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: stretch;
+}
+
+.safeAreaBottom {
+  padding-bottom: base.$sn-primitive-dimension-8;
+}
+
 .footer {
   display: flex;
   gap: base.$sn-primitive-dimension-8;

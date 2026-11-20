@@ -93,7 +93,7 @@ export function TablePagination<TData>({
     return null;
   }
 
-  return (
+  const footer = (
     <div className={styles.footer} data-view={view}>
       {showPagination && useCompactPagination && (
         <nav className={styles.mobilePagination} aria-label={t('pagination')}>
@@ -153,5 +153,14 @@ export function TablePagination<TData>({
         />
       )}
     </div>
+  );
+
+  return mobile ? (
+    <div className={styles.safeAreaWrapper}>
+      {footer}
+      <div className={styles.safeAreaBottom} aria-hidden />
+    </div>
+  ) : (
+    footer
   );
 }
