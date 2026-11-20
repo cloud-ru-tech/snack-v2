@@ -1,10 +1,11 @@
+import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button } from '@ds/button';
 import { InfoOutlineSVG } from '@ds/icons/interface/product';
 import { CollapseVerticalSVG, ExpandVerticalSVG, StarFilledSVG, StarSVG } from '@ds/icons/interface/system';
 import { Tooltip, TooltipProps, TRIGGER } from '@ds/tooltip';
 import { preventEventDefault, preventEventDefaultAndPropagation } from '@ds/utils';
 import cn from 'classnames';
-import { MouseEvent, ReactElement, RefObject, useCallback, useRef, useState } from 'react';
+import { MouseEvent, ReactElement, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 import { TOOLTIP_HOVER_DELAY_OPEN_MS, VISIBILITY_STRATEGY } from '../../constants';
 import { cardPredefinedLocale } from '../../locale';
@@ -53,6 +54,8 @@ export function CardActionsSurface({
 
   const [visibleTooltip, setVisibleTooltip] = useState<TooltipType | undefined>(undefined);
   const rootRef = useRef<HTMLDivElement>(null);
+  const { layoutType } = useAdaptiveLayout();
+  const isMobile = isMobileLayout(layoutType);
 
   const tooltipTrigger =
     tooltip?.trigger ??
@@ -70,6 +73,12 @@ export function CardActionsSurface({
     },
     [onTooltipOpenChange, tooltipTrigger],
   );
+
+  useEffect(() => {
+    if (isMobile && visibleTooltip === 'favorite') {
+      getHandleTooltipOpenChange('favorite')(false);
+    }
+  }, [getHandleTooltipOpenChange, isMobile, visibleTooltip]);
 
   if (!tooltip && !favorite && !expandable) {
     return null;
@@ -96,6 +105,25 @@ export function CardActionsSurface({
   };
 
   const { buttonRef: tooltipButtonRef, 'data-test-id': tooltipTestId, ...tooltipProps } = tooltip ?? {};
+  const favoriteLabel = favorite?.checked ? t('actions.favoriteRemove') : t('actions.favoriteAdd');
+  const favoriteButton = favorite?.enabled && (
+    <Button
+      as='span'
+      role='button'
+      aria-label={favoriteLabel}
+      aria-pressed={Boolean(favorite.checked)}
+      size='m'
+      appearance='neutral'
+      view='simple'
+      icon={favorite.checked ? <StarFilledSVG /> : <StarSVG />}
+      onClick={handleFavoriteClick}
+      className={styles.favorite}
+      innerRef={favorite.buttonRef}
+      tabIndex={-1}
+      data-test-id={favorite['data-test-id']}
+      data-checked={favorite.checked || undefined}
+    />
+  );
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -134,31 +162,19 @@ export function CardActionsSurface({
         </Tooltip>
       )}
 
-      {favorite?.enabled && (
+      {favoriteButton && !isMobile ? (
         <Tooltip
-          tip={favorite.checked ? t('actions.favoriteRemove') : t('actions.favoriteAdd')}
+          tip={favoriteLabel}
           trigger={tooltipTrigger}
           triggerClassName={styles.tooltipTrigger}
           hoverDelayOpen={TOOLTIP_HOVER_DELAY_OPEN_MS}
           open={visibleTooltip === 'favorite'}
           onOpenChange={getHandleTooltipOpenChange('favorite')}
         >
-          <Button
-            as='span'
-            role='button'
-            aria-pressed={Boolean(favorite.checked)}
-            size='m'
-            appearance='neutral'
-            view='simple'
-            icon={favorite.checked ? <StarFilledSVG /> : <StarSVG />}
-            onClick={handleFavoriteClick}
-            className={styles.favorite}
-            innerRef={favorite.buttonRef}
-            tabIndex={-1}
-            data-test-id={favorite['data-test-id']}
-            data-checked={favorite.checked || undefined}
-          />
+          {favoriteButton}
         </Tooltip>
+      ) : (
+        favoriteButton
       )}
 
       {expandable && (
