@@ -455,6 +455,11 @@
         "required": false,
         "description": "Отключение пагинации"
       },
+      "suppressRowHover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает подсветку строк при наведении в табличном виде."
+      },
       "suppressSearch": {
         "type": "boolean",
         "required": false,
@@ -944,6 +949,11 @@
       "suppressPagination": {
         "type": "undefined",
         "required": false
+      },
+      "suppressRowHover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает подсветку строк при наведении в табличном виде."
       },
       "suppressSearch": {
         "type": "boolean",
@@ -1906,6 +1916,11 @@
         "type": "boolean",
         "required": false,
         "description": "Отключение пагинации"
+      },
+      "suppressRowHover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает подсветку строк при наведении в табличном виде."
       },
       "suppressSearch": {
         "type": "boolean",
@@ -3260,6 +3275,11 @@
         "required": false,
         "defaultValue": "false",
         "description": "Отключение пагинации"
+      },
+      "suppressRowHover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает подсветку строк при наведении в табличном виде."
       },
       "suppressSearch": {
         "type": "boolean",
@@ -4720,6 +4740,11 @@
         "type": "boolean",
         "required": false,
         "description": "Отключение пагинации"
+      },
+      "suppressRowHover": {
+        "type": "boolean",
+        "required": false,
+        "description": "Отключает подсветку строк при наведении в табличном виде."
       },
       "suppressSearch": {
         "type": "boolean",

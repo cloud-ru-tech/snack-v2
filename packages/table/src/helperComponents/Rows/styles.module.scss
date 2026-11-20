@@ -272,14 +272,14 @@ $row-bg-tones: (
   @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-default-filled);
 }
 
-.bodyRow[data-selected]:hover,
+.bodyRow[data-selected]:where([data-row-hover]):hover,
 .bodyRow[data-selected][data-actions-opened] {
   border-color: base.$sn-theme-color-primary-accent;
 
   @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-hovered-filled);
 }
 
-.bodyRow[data-selected]:hover .rowPinnedCells,
+.bodyRow[data-selected]:where([data-row-hover]):hover .rowPinnedCells,
 .bodyRow[data-selected][data-actions-opened] .rowPinnedCells {
   @include row-state-layer(base.$sn-theme-color-material-stateLayer-activated-hovered-filled);
 }
@@ -295,25 +295,25 @@ $row-bg-tones: (
   outline-offset: calc(-1 * #{base.$sn-primitive-strokeWeight-strokeSemiBold});
 }
 
-.bodyRow:not([data-row-appearance='disabled']):hover::before {
+.bodyRow:not([data-row-appearance='disabled']):where([data-row-hover]):hover::before {
   height: 0;
 }
 
 // Hover/actions-opened неселектнутой строки: regular state-layer (нейтральный).
-.bodyRow:not([data-row-appearance='disabled'], [data-selected]):hover,
+.bodyRow:not([data-row-appearance='disabled'], [data-selected]):where([data-row-hover]):hover,
 .bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] {
   border-color: base.$sn-theme-color-available-borderColor;
 
   @include row-state-layer(base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled);
 }
 
-.bodyRow:not([data-row-appearance='disabled'], [data-selected]):hover .rowPinnedCells,
+.bodyRow:not([data-row-appearance='disabled'], [data-selected]):where([data-row-hover]):hover .rowPinnedCells,
 .bodyRow:not([data-row-appearance='disabled'], [data-selected])[data-actions-opened] .rowPinnedCells {
   border-color: inherit;
 
   @include row-state-layer(base.$sn-theme-color-material-stateLayer-neutral-onBackground-hovered-filled);
 }
 
-.bodyRow:not([data-row-appearance='disabled']):hover + .bodyRow::before {
+.bodyRow:not([data-row-appearance='disabled']):where([data-row-hover]):hover + .bodyRow::before {
   height: 0;
 }

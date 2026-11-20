@@ -39,7 +39,7 @@ export function BodyRow<TData>({
   const { leftPinned, rightPinned, unpinned } = useRowCells(row);
   const [dropListOpened, setDropListOpen] = useState(false);
   const disabled = !row.getCanSelect();
-  const { getRowBackgroundColor, columnVirtualPadding } = useTableContext();
+  const { getRowBackgroundColor, suppressRowHover, columnVirtualPadding } = useTableContext();
 
   const handleRowClick = (e: MouseEvent<HTMLDivElement>) => {
     if (disabled && disabledRowAppearance === RowAppearance.Disabled) {
@@ -66,6 +66,7 @@ export function BodyRow<TData>({
         data-clickable={Boolean(onRowClick) || undefined}
         data-disabled={disabled || undefined}
         data-row-appearance={disabled ? disabledRowAppearance : undefined}
+        data-row-hover={suppressRowHover ? undefined : true}
         data-selected={isSelected || undefined}
         data-actions-opened={dropListOpened || undefined}
         data-test-id={TEST_IDS.bodyRow}

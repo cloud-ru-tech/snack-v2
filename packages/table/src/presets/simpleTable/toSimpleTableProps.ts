@@ -44,6 +44,7 @@ export function toSimpleTableProps<TData extends object>(input: SimpleTableInput
     outline: outline ?? true,
     pageSize: Math.max(data.length, 1),
     manualPagination: true,
+    suppressRowHover: true,
     suppressToolbar: true,
     suppressPagination: true,
     getRowId: wrapGetRowId(getRowId),

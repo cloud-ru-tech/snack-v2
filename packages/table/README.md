@@ -976,6 +976,7 @@ export function FullWidth() {
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | `false` | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | `false` | Отключение пагинации |
+| `suppressRowHover` | `boolean` | — | Отключает подсветку строк при наведении в табличном виде. |
 | `suppressSearch` | `boolean` | `false` | Отключение поиска |
 | `suppressToolbar` | `boolean` | `false` | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
@@ -1432,6 +1433,7 @@ export function ServerDriven() {
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | — | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | — | Отключение пагинации |
+| `suppressRowHover` | `boolean` | — | Отключает подсветку строк при наведении в табличном виде. |
 | `suppressSearch` | `boolean` | — | Отключение поиска |
 | `suppressToolbar` | `boolean` | — | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |
@@ -2256,6 +2258,7 @@ export function EntitiesTableWithFilters() {
 | `stickyControls` | `StickyControls` | — | Sticky-хром при скролле страницы: при `enabled: true` тулбар и пагинация липнут к верху/низу <br/> viewport, в table-view заголовок колонок — под тулбаром; тело растёт по контенту. <br/> При `enabled: false` все блоки идут сплошным потоком без sticky. <br/> Дефолты: desktop — `enabled: false` (offsets не применяются); <br/> mobile — `{ enabled: true, offsetTop: 0, offsetBottom: 0 }` (`TABLE_LAYOUT_PRESETS`); <br/> `backgroundPredefined` — `neutralBackground1Level` на всех раскладках. <br/> Явный проп = desktop-значение; mobile-override — `layoutPresets.mobile`. <br/> @example `stickyControls={{ enabled: true, offsetTop: 64 }}` — sticky на desktop, app header 64px. |
 | `suppressHeader` | `boolean` | — | Отключение хедера таблицы; в режиме `view='cards'` скрывает подписи-заголовки полей карточки |
 | `suppressPagination` | `boolean` | — | Отключение пагинации |
+| `suppressRowHover` | `boolean` | — | Отключает подсветку строк при наведении в табличном виде. |
 | `suppressSearch` | `boolean` | — | Отключение поиска |
 | `suppressToolbar` | `boolean` | — | Отключение тулбара |
 | `toolbarAfter` | `ReactNode` | — | Дополнительный слот в `Toolbar` после строки поиска |

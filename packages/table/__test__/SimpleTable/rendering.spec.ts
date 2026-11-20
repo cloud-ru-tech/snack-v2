@@ -36,6 +36,17 @@ test.describe('SimpleTable — rendering', () => {
     await expect(page.getByRole('navigation')).toHaveCount(0);
   });
 
+  test('keeps rows visually unchanged on hover', async ({ gotoStory, getByTestId, waitForFonts }) => {
+    await gotoStory(buildStoryOptions({}, SIMPLE_TABLE_STORIES.playground));
+    await waitForFonts();
+
+    const rows = getByTestId(TEST_IDS.component.bodyRow);
+    const table = getByTestId(TEST_IDS.table.root);
+    const before = await table.screenshot();
+    await rows.nth(1).hover();
+    expect(await table.screenshot()).toEqual(before);
+  });
+
   test('keeps the table layout on mobile', async ({ gotoStory, getByTestId }) => {
     await gotoStory({ ...buildStoryOptions({}, SIMPLE_TABLE_STORIES.playground), globals: { layoutType: 'mobile' } });
     await expect(getByTestId(TEST_IDS.component.headerRow)).toBeVisible();

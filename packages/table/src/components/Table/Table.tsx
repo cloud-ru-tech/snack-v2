@@ -140,6 +140,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
   rowAutoHeight,
   columnsSettings: columnsSettingsProp,
   getRowBackgroundColor,
+  suppressRowHover,
   headerRowBackgroundColor,
   toolbarCheckBoxMode,
   view: viewProp,
@@ -600,6 +601,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
     () => ({
       table: isLoadingState ? loadingTable : table,
       getRowBackgroundColor,
+      suppressRowHover,
       headerRowBackgroundColor,
       isCardsView,
       virtualCenterColumnIds: isLoadingState || !columnVirtualizer ? null : columnVirtualizer.virtualColumnIds,
@@ -614,6 +616,7 @@ export function Table<TData extends object, TFilters extends FiltersState = Reco
       loadingTable,
       table,
       getRowBackgroundColor,
+      suppressRowHover,
       headerRowBackgroundColor,
       isCardsView,
       columnVirtualizer,

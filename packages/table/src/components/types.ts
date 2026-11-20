@@ -325,6 +325,8 @@ type BaseTableProps<TData extends object, TFilters extends FiltersState = Record
    * @returns цвет фона строки или `undefined`
    */
   getRowBackgroundColor?: (data: TData) => TableRowColor | undefined;
+  /** Отключает подсветку строк при наведении в табличном виде. */
+  suppressRowHover?: boolean;
   /**
    * Accent-тон фона строки заголовков колонок (`tableHeadLine`).
    * Работает только в `view='table'`.

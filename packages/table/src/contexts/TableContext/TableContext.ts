@@ -7,6 +7,7 @@ import { TABLE_ROW_COLOR } from '../../constants';
 type TableContextValue<TData> = {
   table: Table<TData>;
   getRowBackgroundColor?: (data: TData) => ValueOf<typeof TABLE_ROW_COLOR> | undefined;
+  suppressRowHover?: boolean;
   headerRowBackgroundColor?: ValueOf<typeof TABLE_ROW_COLOR>;
   /** Строка отрисована в режиме карточек (`view='cards'`). */
   isCardsView?: boolean;
