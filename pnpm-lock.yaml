@@ -3246,6 +3246,9 @@ importers:
       '@ds/uikit-product-card-predefined':
         specifier: workspace:^
         version: link:../uikit-product-card-predefined
+      '@ds/uikit-product-promo-tag-predefined':
+        specifier: workspace:^
+        version: link:../uikit-product-promo-tag-predefined
       '@ds/uikit-product-switch-row':
         specifier: workspace:^
         version: link:../uikit-product-switch-row

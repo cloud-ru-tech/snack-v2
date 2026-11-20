@@ -1,5 +1,6 @@
 import { Typography } from '@ds/typography';
 import { CardActionsSurface, createCardActionsKeyDownHandler } from '@ds/uikit-product-card-predefined';
+import { PromoTagPredefined } from '@ds/uikit-product-promo-tag-predefined';
 import { TitleClickable } from '@ds/uikit-product-title-clickable';
 import { stopEventPropagation } from '@ds/utils';
 import { memo, MouseEvent, useCallback, useMemo, useRef } from 'react';
@@ -78,7 +79,12 @@ function SubCategoryTitleBase({ groupId, service, groupFavoritesEnabled, expanda
             href={service.href}
             onClick={handleServiceClick}
             innerRef={titleRef}
-            content={<TitleClickable.SimpleTitle title={service.label} icon={emblem} />}
+            content={
+              <div className={styles.titleContent}>
+                <TitleClickable.SimpleTitle title={service.label} icon={emblem} />
+                {service.badge && <PromoTagPredefined {...service.badge} />}
+              </div>
+            }
             className={styles.subcategoryTitleClickable}
             data-test-id={titleTestId}
           />

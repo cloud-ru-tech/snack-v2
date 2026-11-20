@@ -510,6 +510,7 @@ export const SERVICE_GROUPS: LinksGroup[] = [
         onClick: EMPTY_ON_CLICK,
         href: EMPTY_HREF,
         icon: PlaceholderSVG,
+        badge: { variant: 'preview' as const },
         aliases: ['контроль затрат', 'cost control', 'биллинг', 'затраты'],
       },
       {
@@ -625,11 +626,13 @@ export const ADMINISTRATIVE_SECTIONS: LinksGroup[] = [
         id: 'costControl',
         label: 'Контроль затрат',
         description: 'Краткое описание сервиса поддержки',
+        badge: { variant: 'preview' as const },
         aliases: ['контроль затрат', 'cost control'],
         items: [
           {
             id: 'agreements',
             label: 'Договор',
+            badge: { variant: 'preview' as const },
             aliases: ['agreements', 'договоры', 'договор'],
           },
           {
