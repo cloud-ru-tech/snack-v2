@@ -39,6 +39,7 @@ $chip-sizes: (
 
 .readonlyCursor {
   cursor: pointer;
+  caret-color: transparent;
 }
 
 // Контейнер «чипы + поисковый input» (паритет с легаси FieldSelect .contentWrapper):
