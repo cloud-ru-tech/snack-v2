@@ -9207,6 +9207,7 @@
   --sn-table-anatomy-content-body-minHeight: 304px;
   --sn-table-anatomy-content-tableLineTree-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-density-icon-s, 24px);
   --sn-table-anatomy-view-line-gap: var(--sn-primitive-dimension-8, 8px);
+  --sn-table-anatomy-view-line-safeArea-paddingBottom: var(--sn-table-anatomy-view-line-gap, var(--sn-primitive-dimension-8, 8px));
   --sn-table-anatomy-view-card-gap: var(--sn-primitive-dimension-8, 8px);
   --sn-table-anatomy-content-body-slot-gap: var(--sn-table-anatomy-view-card-gap, var(--sn-primitive-dimension-8, 8px));
   --sn-table-anatomy-view-loadTrigger-paddingVertical: var(--sn-primitive-dimension-8, 8px);

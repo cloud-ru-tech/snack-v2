@@ -440,6 +440,15 @@
               },
               "$type": "number",
               "$value": "{sn.primitive.dimension.8}"
+            },
+            "safeArea": {
+              "paddingBottom": {
+                "$extensions": {
+                  "com.figma.hiddenFromPublishing": true
+                },
+                "$type": "number",
+                "$value": "{sn.table.anatomy.view.line.gap}"
+              }
             }
           },
           "card": {

@@ -51,6 +51,7 @@ $sn-table-anatomy-view-card-gap: var(--sn-table-anatomy-view-card-gap, #{st.$sn-
 $sn-table-anatomy-content-body-slot-gap: var(--sn-table-anatomy-content-body-slot-gap, #{$sn-table-anatomy-view-card-gap});
 $sn-table-anatomy-content-tableLineTree-pinnedWrapper-elementWrapper-cellToggles-width: var(--sn-table-anatomy-content-tableLineTree-pinnedWrapper-elementWrapper-cellToggles-width, #{st.$sn-density-icon-s});
 $sn-table-anatomy-view-line-gap: var(--sn-table-anatomy-view-line-gap, #{st.$sn-primitive-dimension-8});
+$sn-table-anatomy-view-line-safeArea-paddingBottom: var(--sn-table-anatomy-view-line-safeArea-paddingBottom, #{$sn-table-anatomy-view-line-gap});
 $sn-table-anatomy-view-loadTrigger-paddingVertical: var(--sn-table-anatomy-view-loadTrigger-paddingVertical, #{st.$sn-primitive-dimension-8});
 
 $table: (
@@ -173,7 +174,10 @@ $table: (
     ),
     "view": (
       "line": (
-        "gap": $sn-table-anatomy-view-line-gap
+        "gap": $sn-table-anatomy-view-line-gap,
+        "safeArea": (
+          "padding-bottom": $sn-table-anatomy-view-line-safeArea-paddingBottom
+        )
       ),
       "card": (
         "gap": $sn-table-anatomy-view-card-gap
