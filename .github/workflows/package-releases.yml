@@ -1,0 +1,67 @@
+name: Package releases
+
+# Создаёт GitHub Release на каждый тег пакета (`@ds/<pkg>@<version>`), который
+# пришёл из GitLab-зеркала. Текст релиза — секция CHANGELOG.md пакета.
+#
+# Почему не только `push`:
+# - коммит `[ci skip] Version bump` от lerna — обычно последний в пуше зеркала,
+#   а `[ci skip]` в head-коммите отменяет запуск по `push`;
+# - при пуше больше трёх тегов разом GitHub не создаёт событие для тегов.
+# Поэтому основной триггер — расписание; скрипт идемпотентен и сам находит
+# теги без релиза.
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'Учитывать теги, созданные не раньше этой даты (ISO 8601)'
+        required: false
+      max:
+        description: 'Максимум релизов за запуск'
+        required: false
+        default: '100'
+      dry_run:
+        description: 'Только показать план, ничего не создавать'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: package-releases
+  cancel-in-progress: false
+
+jobs:
+  releases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          fetch-tags: true
+          filter: blob:none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Create missing releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Теги до этой даты релизов не получают: история (2600+ тегов) не
+          # переносится автоматически. Бэкфилл — ручным запуском с `since`.
+          RELEASES_SINCE: ${{ inputs.since || '2026-11-13T00:00:00Z' }}
+          RELEASES_MAX: ${{ inputs.max || '100' }}
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+          # Краткое описание изменений от модели Cloud.ru Foundation Models.
+          # Без секрета релизы создаются только с секцией CHANGELOG.
+          CLOUDRU_API_KEY: ${{ secrets.CLOUDRU_API_KEY }}
+          CLOUDRU_MODEL: ${{ vars.CLOUDRU_MODEL }}
+        run: node .github/scripts/package-releases.mjs
