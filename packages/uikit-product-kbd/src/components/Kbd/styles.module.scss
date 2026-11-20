@@ -1,0 +1,22 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.kbd {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-width: base.$sn-primitive-dimension-16;
+  height: base.$sn-primitive-dimension-16;
+  padding: 0 base.$sn-primitive-dimension-2;
+  border-radius: base.$sn-density-radius-3xs;
+
+  color: base.$sn-theme-color-neutral-text;
+  text-align: center;
+  white-space: nowrap;
+
+  background-color: base.$sn-theme-color-neutral-decor;
+}

@@ -646,6 +646,9 @@ importers:
       '@ds/uikit-product-info-row':
         specifier: workspace:*
         version: link:../../packages/uikit-product-info-row
+      '@ds/uikit-product-kbd':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-kbd
       '@ds/uikit-product-layout':
         specifier: workspace:*
         version: link:../../packages/uikit-product-layout
@@ -3345,6 +3348,21 @@ importers:
       '@ds/truncate-string':
         specifier: workspace:^
         version: link:../truncate-string
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-kbd:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

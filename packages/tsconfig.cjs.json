@@ -41,6 +41,9 @@
       "path": "./ai-card/tsconfig.cjs.json"
     },
     {
+      "path": "./ai-code-diff/tsconfig.cjs.json"
+    },
+    {
       "path": "./ai-icon-giga/tsconfig.cjs.json"
     },
     {
@@ -152,9 +155,6 @@
       "path": "./site-rich-text/tsconfig.cjs.json"
     },
     {
-      "path": "./site-section/tsconfig.cjs.json"
-    },
-    {
       "path": "./site-section-title/tsconfig.cjs.json"
     },
     {
@@ -162,9 +162,6 @@
     },
     {
       "path": "./skeleton/tsconfig.cjs.json"
-    },
-    {
-      "path": "./stepper/tsconfig.cjs.json"
     },
     {
       "path": "./timeline/tsconfig.cjs.json"
@@ -189,6 +186,9 @@
     },
     {
       "path": "./ai-field-request/tsconfig.cjs.json"
+    },
+    {
+      "path": "./ai-history-line/tsconfig.cjs.json"
     },
     {
       "path": "./alert/tsconfig.cjs.json"
@@ -245,10 +245,16 @@
       "path": "./color-picker/tsconfig.cjs.json"
     },
     {
+      "path": "./site-media/tsconfig.cjs.json"
+    },
+    {
       "path": "./status/tsconfig.cjs.json"
     },
     {
       "path": "./avatar/tsconfig.cjs.json"
+    },
+    {
+      "path": "./stepper/tsconfig.cjs.json"
     },
     {
       "path": "./tabs/tsconfig.cjs.json"
@@ -270,6 +276,9 @@
     },
     {
       "path": "./markdown/tsconfig.cjs.json"
+    },
+    {
+      "path": "./site-section/tsconfig.cjs.json"
     },
     {
       "path": "./toaster/tsconfig.cjs.json"
@@ -312,6 +321,9 @@
     },
     {
       "path": "./uikit-product-info-row/tsconfig.cjs.json"
+    },
+    {
+      "path": "./uikit-product-kbd/tsconfig.cjs.json"
     },
     {
       "path": "./uikit-product-layout/tsconfig.cjs.json"
@@ -363,15 +375,6 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.cjs.json"
-    },
-    {
-      "path": "./ai-code-diff/tsconfig.cjs.json"
-    },
-    {
-      "path": "./ai-history-line/tsconfig.cjs.json"
-    },
-    {
-      "path": "./site-media/tsconfig.cjs.json"
     }
   ]
 }

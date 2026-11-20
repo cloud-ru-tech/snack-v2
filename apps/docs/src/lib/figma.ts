@@ -40,6 +40,8 @@ const INPUT_SPEC = {
   fileKey: 'UrThvQIUarqTZr59TD8ZF9',
   fileName: 'Input-Specification',
 } as const;
+/** Сквозной поиск (FF-9259). Перенести на PRODUCT, когда мастер kbd появится в Product UI Kit. */
+const CROSS_SEARCH = { fileKey: 'kAa6Shr4vT6p3mtKzqD9y5', fileName: 'FF-9259--Сквозной-поиск-' } as const;
 const SITE = { fileKey: 'pPmEDn55ttzYFGxTUBDNh7', fileName: '-LIB--SITE--Product-UI-Kit-Snack-v2' } as const;
 const HR_PORTAL = {
   fileKey: 'OWs2qGFYto945j5TEJmQgV',
@@ -279,6 +281,7 @@ export const FIGMA_NODES = {
   'uikit-product-error-pages': { ...PRODUCT, nodeId: '6557:2619' }, // uikit-product-error-pages → ErrorPage
   'uikit-product-config-selector': { ...PRODUCT, nodeId: '3036:14232' }, // uikit-product-config-selector → ConfigSelector
   'uikit-product-info-row': { ...PRODUCT, nodeId: '3040-21176' }, // uikit-product-info-row → InfoRow
+  'uikit-product-kbd': { ...CROSS_SEARCH, nodeId: '19636:82467' }, // uikit-product-kbd → kbd
   'uikit-product-layout': {
     _: { ...PRODUCT, nodeId: '3070:32389' }, // layout canvas
     'empty-block': { ...PRODUCT, nodeId: '3957:129' }, // layout/empty-block → EmptyBlock

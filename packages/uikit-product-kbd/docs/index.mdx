@@ -1,0 +1,157 @@
+---
+title: Kbd
+package: '@ds/uikit-product-kbd'
+description: Подсказка клавиши в теге kbd — клавиша или сочетание клавиш, модификаторы с отображением по ОС.
+order: 100
+---
+
+import { KbdDemo } from '../demos/KbdDemo'
+import { SingleKey } from '../demos/examples/SingleKey'
+import SingleKeySrc from '../demos/examples/SingleKey.tsx?raw'
+import { KeyName } from '../demos/examples/KeyName'
+import KeyNameSrc from '../demos/examples/KeyName.tsx?raw'
+import { Combination } from '../demos/examples/Combination'
+import CombinationSrc from '../demos/examples/Combination.tsx?raw'
+import { SearchHints } from '../demos/examples/SearchHints'
+import SearchHintsSrc from '../demos/examples/SearchHints.tsx?raw'
+import { WithAriaLabel } from '../demos/examples/WithAriaLabel'
+import WithAriaLabelSrc from '../demos/examples/WithAriaLabel.tsx?raw'
+import { ShortcutText } from '../demos/examples/ShortcutText'
+import ShortcutTextSrc from '../demos/examples/ShortcutText.tsx?raw'
+import { Example } from '#docs/components/Example'
+import { PropsTable } from '#docs/components/PropsTable'
+import { StorybookEmbed } from '#docs/components/StorybookEmbed'
+import { FigmaEmbed } from '#docs/components/FigmaEmbed'
+import { figmaNode } from '#docs/lib/figma'
+import kbdDoc from './props.json'
+
+# Kbd
+
+Показывает клавишу или сочетание клавиш. Используется в подсказках горячих клавиш, рядом с действием и в инструкциях по навигации с клавиатуры: `/` — открыть поиск, `↑` и `↓` — выбрать результат, `↵` — перейти, `Esc` — закрыть.
+
+## Демо
+
+<KbdDemo client:visible />
+
+## Когда использовать
+
+- В интерфейсах с физической клавиатурой.
+- Рядом с действием, которое доступно в текущем контексте.
+
+Когда **не** нужен `Kbd`:
+
+- На мобильном экране без клавиатуры:
+  - подсказки горячих клавиш там обычно не нужны; решение принимает экран, сам компонент не скрывается.
+- Нужно нажатие, фильтр или статус:
+  - `Kbd` не интерактивен — у него нет нажатия, hover и фокуса. Обработчик клавиши регистрируется в интерфейсе отдельно, компонент горячую клавишу не включает.
+
+## Do / Don't
+
+- ✅ Одна клавиша — один `Kbd`, сочетание — `KbdShortcut`.
+- ❌ Несколько клавиш в одном `Kbd` (`Ctrl+K`).
+- ✅ Разделитель `+` между клавишами: `Ctrl + K`, на macOS — `⌘ + K`. `KbdShortcut` ставит его сам.
+- ❌ Разделитель внутри `Kbd`.
+- ✅ Подпись действия рядом, за пределами `Kbd`.
+- ❌ Длинное описание внутри `Kbd`.
+- ✅ Модификаторы и `↵` — через `keyName`; остальные символы — те, что есть в шрифте, иначе текстовое название клавиши.
+- ❌ Эмодзи и произвольные иконки.
+- ✅ Альтернативы и последовательности — текстом: «↑ или ↓», «G, затем H».
+- ❌ Разные обозначения одной клавиши в разных местах интерфейса.
+
+## Анатомия
+
+Тег `<kbd>` с подписью клавиши. Высота и минимальная ширина — 16 px, дальше ширина растёт по содержимому; подпись не переносится и не обрезается, короткие символы центрируются. Размер один, цвета и геометрия задаются токенами компонента и не переопределяются для отдельных подсказок.
+
+### KeyName
+
+Предопределённые клавиши: символ и название для скринридера берутся из карты, `children` игнорируется.
+
+| `keyName` | macOS | Windows / Linux | Название для скринридера |
+|-----------|-------|-----------------|--------------------------|
+| `mod` | `⌘` | `Ctrl` | Command / Control |
+| `ctrl` | `⌃` | `Ctrl` | Control |
+| `alt` | `⌥` | `Alt` | Option / Alt |
+| `meta` | `⌘` | `Win` | Command / Windows |
+| `shift` | `Shift` | `Shift` | Shift |
+| `up` · `down` · `left` · `right` | `↑` `↓` `←` `→` | `↑` `↓` `←` `→` | Стрелка вверх, вниз, влево, вправо |
+| `enter` | `↵` | `↵` | Enter |
+| `esc` | `Esc` | `Esc` | Escape |
+
+`mod` — основной модификатор сочетаний: `⌘` на macOS и `Ctrl` на остальных системах. `meta` — физическая клавиша `⌘` / `Win`, для сочетаний с клавишей `Win` на Windows.
+
+`Shift` и `Esc` подписаны текстом на всех системах.
+
+Символов `⌘ ⌃ ⌥ ↵` нет в SB Sans Interface, их отрисовывает системный шрифт, поэтому начертание зависит от ОС. Стрелки входят в шрифт.
+
+### KbdShortcut
+
+Сочетание клавиш: каждая клавиша — отдельный `Kbd`, между ними `+`. Значения `keyName` в `keys` (`mod`, `shift`, `enter`, …) зависят от ОС, остальные выводятся текстом:
+
+- `['mod', 'K']` — `⌘ + K` на macOS, `Ctrl + K` на остальных;
+- `['mod', 'shift', 'P']` — `⌘ + Shift + P` и `Ctrl + Shift + P`.
+
+Скринридер читает одно название сочетания («Command + K»), а не отдельные клавиши и разделители. Альтернативы и последовательности («↑ или ↓», «G, затем H») собираются из `Kbd` вручную.
+
+Хук `useKbdShortcut(keys)` возвращает то же сочетание строкой — для мест, где компонент использовать нельзя: текст `Tooltip`, атрибуты `title` и `placeholder`.
+
+### Platform (default auto)
+
+ОС для `keyName` в `Kbd`, `KbdShortcut` и `useKbdShortcut` определяется по user-agent. На сервере и при гидрации используется `other`, после гидрации на macOS символы меняются. В SSR-приложении платформу передают явно: `platform='mac'` или `platform='other'` по user-agent запроса.
+
+### Доступное название
+
+Символ без контекста скринридер прочитает буквально (`⌘` — «place of interest sign»). Название задаётся пропом `aria-label` или берётся из `keyName`. Оно выводится скрытым текстом внутри `<kbd>`, а видимый символ скрывается от скринридера: атрибут `aria-label` на `<kbd>` скринридеры не читают.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-kbd
+```
+
+```ts
+import { Kbd, KbdShortcut, useKbdShortcut } from '@ds/uikit-product-kbd'
+```
+
+## Примеры использования
+
+<Example title='Клавиша текстом' code={SingleKeySrc}>
+  <SingleKey client:visible />
+</Example>
+
+<Example title='Предопределённые клавиши' description='Символ модификаторов зависит от ОС.' code={KeyNameSrc}>
+  <KeyName client:visible />
+</Example>
+
+<Example title='Сочетание клавиш' description='KbdShortcut: клавиши отдельными Kbd, «+» между ними, модификатор зависит от ОС.' code={CombinationSrc}>
+  <Combination client:visible />
+</Example>
+
+<Example title='Подсказки поиска' code={SearchHintsSrc}>
+  <SearchHints client:visible />
+</Example>
+
+<Example title='Название для скринридера' code={WithAriaLabelSrc}>
+  <WithAriaLabel client:visible />
+</Example>
+
+<Example title='Сочетание строкой' description='useKbdShortcut — для текста, где компонент использовать нельзя.' code={ShortcutTextSrc}>
+  <ShortcutText client:visible />
+</Example>
+
+## Props
+
+### Kbd
+
+<PropsTable data={kbdDoc.Kbd} />
+
+### KbdShortcut
+
+<PropsTable data={kbdDoc.KbdShortcut} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-kbd-kbd--playground' height={300} />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-kbd')} height={300} title='Kbd в Figma' />

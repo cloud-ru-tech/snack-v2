@@ -46,6 +46,9 @@
       "path": "./ai-card/tsconfig.esm.json"
     },
     {
+      "path": "./ai-code-diff/tsconfig.esm.json"
+    },
+    {
       "path": "./ai-icon-giga/tsconfig.esm.json"
     },
     {
@@ -157,9 +160,6 @@
       "path": "./site-rich-text/tsconfig.esm.json"
     },
     {
-      "path": "./site-section/tsconfig.esm.json"
-    },
-    {
       "path": "./site-section-title/tsconfig.esm.json"
     },
     {
@@ -167,9 +167,6 @@
     },
     {
       "path": "./skeleton/tsconfig.esm.json"
-    },
-    {
-      "path": "./stepper/tsconfig.esm.json"
     },
     {
       "path": "./timeline/tsconfig.esm.json"
@@ -194,6 +191,9 @@
     },
     {
       "path": "./ai-field-request/tsconfig.esm.json"
+    },
+    {
+      "path": "./ai-history-line/tsconfig.esm.json"
     },
     {
       "path": "./alert/tsconfig.esm.json"
@@ -250,10 +250,16 @@
       "path": "./color-picker/tsconfig.esm.json"
     },
     {
+      "path": "./site-media/tsconfig.esm.json"
+    },
+    {
       "path": "./status/tsconfig.esm.json"
     },
     {
       "path": "./avatar/tsconfig.esm.json"
+    },
+    {
+      "path": "./stepper/tsconfig.esm.json"
     },
     {
       "path": "./tabs/tsconfig.esm.json"
@@ -275,6 +281,9 @@
     },
     {
       "path": "./markdown/tsconfig.esm.json"
+    },
+    {
+      "path": "./site-section/tsconfig.esm.json"
     },
     {
       "path": "./toaster/tsconfig.esm.json"
@@ -317,6 +326,9 @@
     },
     {
       "path": "./uikit-product-info-row/tsconfig.esm.json"
+    },
+    {
+      "path": "./uikit-product-kbd/tsconfig.esm.json"
     },
     {
       "path": "./uikit-product-layout/tsconfig.esm.json"
@@ -368,15 +380,6 @@
     },
     {
       "path": "./uikit-product-widget/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-code-diff/tsconfig.esm.json"
-    },
-    {
-      "path": "./ai-history-line/tsconfig.esm.json"
-    },
-    {
-      "path": "./site-media/tsconfig.esm.json"
     }
   ]
 }

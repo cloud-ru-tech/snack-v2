@@ -1,0 +1,37 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.grid {
+  display: grid;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.combination {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  color: base.$sn-theme-color-available-version-textSecondary;
+  white-space: nowrap;
+}
+
+// Сцена поиска из макета 18075:2666: gap 4 внутри подсказки, 16 между подсказками.
+.searchTrigger,
+.hint {
+  @include base.composite-var(base.$sn-regular-body-s);
+
+  display: inline-flex;
+  gap: base.$sn-primitive-dimension-4;
+  align-items: center;
+
+  color: base.$sn-theme-color-available-version-textMain;
+  white-space: nowrap;
+}
+
+.hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: base.$sn-primitive-dimension-16;
+  align-items: center;
+}

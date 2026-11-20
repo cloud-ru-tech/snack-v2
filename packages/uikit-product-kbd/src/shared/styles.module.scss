@@ -1,0 +1,14 @@
+// Visually-hidden: текст остаётся в дереве доступности. Литералы — не дизайн-параметры, токенов для них нет.
+.srOnly {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+
+  white-space: nowrap;
+
+  clip-path: inset(50%);
+}
