@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-kbd",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Подсказка клавиши в теге kbd: клавиша или сочетание клавиш, модификаторы с отображением по ОС.",
   "repository": {
     "type": "git",

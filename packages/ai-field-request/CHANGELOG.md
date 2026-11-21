@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.1 (2026-11-21)
+
+### Bug Fixes
+
+- **FF-9421:** bump pre-1.0 packages and package template to 1.0.0 ([928326b](https://github.com/cloud-ru-tech/snack-v2/commit/928326b1d942887ffe8c32e3ac1b17a3f7a2e238))
+
 ## 0.1.20 (2026-11-19)
 
 **Note:** Version bump only for package @ds/ai-field-request
