@@ -7,7 +7,18 @@
     "playwright": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "figma-local-mcp": {
+      "type": "http",
+      "url": "http://127.0.0.1:3845/mcp"
+    },
+    "astro-docs": {
+      "type": "http",
+      "url": "https://mcp.docs.astro.build/mcp"
     }
   }
 }

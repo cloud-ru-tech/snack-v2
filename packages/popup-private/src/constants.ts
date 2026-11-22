@@ -33,19 +33,6 @@ export const FOOTER_ACTIONS_ORIENTATION = {
  *
  * Значения намеренно сохраняют префикс `bottom-sheet__` — на фазе выноса слоя из `@ds/bottom-sheet`
  * они переносятся 1:1 без смены поведения; переименование в `popup-private__*` — отдельная фаза.
- *
- * Figma-typo-мост (см. `.claude/rules/figma-integration.md`):
- *   Figma `badgeHandle`          → код `handle` (показывается при `swipeEnabled`)
- *   Figma `blackout`             → код `backdrop` / `showBackdrop`
- *   Figma `topBar`               → код `header` / `onBackButtonClick`
- *   Figma `bottomBar`            → код `footer`
- *   Figma `+ slotMedia`          → код `media`
- *   Figma `+ slotSubtitle`      → код `subtitle` (текст под title)
- *   Figma `+ slotSecondTitle`    → код `slotSecondTitle` (search/segment, только sheet)
- *   Figma `+ slotAfterHeadline`  → код `slotAfterTitle`
- *   Figma `+ slotBottomBar`      → код `footer` (ReactNode)
- *   Figma `buttonBefore` (48×48) → код auto-back-button по `onBackButtonClick`
- *   Figma `buttonAfter`  (48×48) → код `actionButton` (ReactNode)
  */
 export const TEST_IDS = {
   root: 'bottom-sheet',

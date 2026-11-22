@@ -51,7 +51,7 @@ design-system/
 ├── playwright.config.ts                 # Сканирует packages/**/__test__/**/*.spec.ts
 │
 ├── scripts/                             # add-package, build-pkg, gen-props, gen-readme
-├── .claude/                             # Rules / Skills / Commands для Claude Code и Cursor
+├── .agents/skills/                      # Общие навыки для агентов
 │
 ├── tsconfig.base.json                   # Единый источник общих compilerOptions
 ├── tsconfig.json                        # Typecheck-профиль (noEmit), #playwright-tooling/*
@@ -107,9 +107,9 @@ pnpm --filter @ds/tests exec playwright install
 | `pnpm test:e2e:docker:update-snapshots:changed`   | Переснять в Linux **только разошедшиеся** baseline'ы (`=changed`)                                                                                                                     |
 | `pnpm test:e2e:docker:visual`                     | Только `visual.spec.ts` в Docker                                                                                                                                                      |
 | `pnpm test:e2e:docker:visual:update` / `:changed` | Только `visual.spec.ts` в Docker с пересъёмом baseline'ов — всех (`=all`) либо только разошедшихся (`:changed`)                                                                       |
-| `pnpm test:e2e:audit`                             | Статический аудит Playwright spec'ов на соответствие [e2e-testing-standard.md](./.claude/rules/e2e-testing-standard.md). Опционально — фильтр по пакету: `pnpm test:e2e:audit button` |
+| `pnpm test:e2e:audit`                             | Статический аудит Playwright spec'ов на соответствие [e2e-testing-standard.md](.agents/skills/component-e2e-tests/references/e2e-testing-standard.md). Опционально — фильтр по пакету: `pnpm test:e2e:audit button` |
 
-Селективные команды для итеративной работы над одним пакетом — см. [`.claude/rules/fast-build-commands.md`](./.claude/rules/fast-build-commands.md).
+Селективные команды для итеративной работы над одним пакетом — см. [`.agents/skills/component-validation/references/fast-build-commands.md`](.agents/skills/component-validation/references/fast-build-commands.md).
 
 ## Локальное подключение пакетов к приложению (ds-link)
 
@@ -167,16 +167,16 @@ pnpm release
 
 Подробное руководство — в [Contribution Guide](/apps/docs/src/content/patterns/contribution-guide.mdx) документационного портала.
 
-Базовый процесс через Claude Code (`/<slash-command>` работают и в Claude Code, и в Cursor):
+Пример рабочего процесса с навыками из [AGENTS.md](./AGENTS.md). В Codex выберите навык через `$`, в Cursor — через `/`. Claude Code 2.1.277+ может загружать `AGENTS.md` напрямую. Если общие инструкции не загрузились, укажите `AGENTS.md` в запросе. Для явного вызова навыка укажите путь к его `SKILL.md`.
 
 ```bash
 pnpm add-package                    # создаёт packages/<pkg>/ и подключает его к репо
-/add-stories <pkg>                  # Playground + VisualMatrix (+ examples/ / tests/ при необходимости)
+/component-story-set <pkg>                  # Playground + VisualMatrix (+ examples/ / tests/ при необходимости)
 pnpm dev:storybook                  # в отдельном терминале
 pnpm test:e2e:update-snapshots packages/<pkg>   # baselines на Linux-хосте; на Mac — через Docker, см. ниже
-/add-tests <pkg>                    # Playwright spec'и по rules
+/component-e2e-tests <pkg>                    # Playwright spec'и по rules
 /test-coverage <pkg>                # отчёт coverage + аудит E2E перед PR
-/add-docs <pkg>                     # docs/index.mdx + demos/
+/component-docs <pkg>                     # docs/index.mdx + demos/
 pnpm gen:props && pnpm gen:readme   # генерация props.json и README
 /make-commit                        # conventional commit из staged diff
 ```
@@ -256,7 +256,7 @@ DOCKER_E2E_INSTALL=0 DOCKER_E2E_SKIP_STORYBOOK_BUILD=1 \
 
 - **`Cannot find module '@ds/...'` при build в Docker.** Конфликт macOS `packages/*/node_modules` (bind-mount) с Linux root `node_modules` (volume). Скрипт `docker/e2e/run.sh` скрывает macOS-`node_modules` на время install/build и восстанавливает после выхода. Сброс volume: `docker volume rm snack-v2-e2e-root-node-modules`.
 
-Перед первым PR прочитать [`.claude/rules/`](./.claude/rules/) — там стандарты на структуру, stories, тесты, документацию.
+Перед первым PR прочитать [AGENTS.md](./AGENTS.md) — там стандарты на структуру, stories, тесты, документацию.
 
 ### Доменная группировка пакетов
 

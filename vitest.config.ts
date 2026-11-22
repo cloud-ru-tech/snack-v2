@@ -84,9 +84,8 @@ export default createConfig(
         'scripts/__tests__/**/*.test.ts',
       ],
       // Базовый конфиг добавляет `**/__tests__/**/*.spec.*` — в репо `.spec.ts`
-      // зарезервирован под Playwright (`__test__/`), а `.claude/` — временный
-      // скретч агента. Исключаем, чтобы не тянуть их в unit-прогон.
-      exclude: ['**/.claude/**'],
+      // зарезервирован под Playwright (`__test__/`). Исключаем временные файлы агентов.
+      exclude: ['**/.agents/**', '**/.claude/**', '**/tmp/**'],
       testTimeout: 120_000,
       coverage: {
         // Активируется только при `--coverage`. Дамп в coverage/raw/vitest/ —

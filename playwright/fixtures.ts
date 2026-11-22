@@ -407,5 +407,5 @@ export const test = base.extend<PlaywrightFixtures>({
 export { expect } from '@playwright/test';
 // `Locator` / `Page` — type-only re-export. TS-флаг `isolatedModules` требует
 // явный `export type` для re-export'а типов из внешних пакетов; без него TS1205.
-// Это исключение к [imports-exports.md](../.claude/rules/imports-exports.md).
+// Это исключение к [imports-exports.md](../.agents/skills/component-development/references/imports-exports.md).
 export type { Locator, Page } from '@playwright/test';

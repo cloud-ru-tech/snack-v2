@@ -1,21 +1,20 @@
 {
   "mcpServers": {
-    "context7": {
+    "figma-remote-mcp": {
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "playwright": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
     },
-    "Figma": {
-      "url": "http://127.0.0.1:3845/mcp",
-      "headers": {}
+    "figma-local-mcp": {
+      "url": "http://127.0.0.1:3845/mcp"
     },
-    "Astro docs server": {
-      "url": "https://mcp.docs.astro.build/mcp",
-      "headers": {}
-    },
-    "Playwright": {
-      "command": "npx -y @playwright/mcp@latest",
-      "env": {},
-      "args": []
+    "astro-docs": {
+      "url": "https://mcp.docs.astro.build/mcp"
     }
   }
 }

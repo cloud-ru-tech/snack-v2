@@ -1,7 +1,7 @@
 /**
  * Shared coverage aggregation and report formatting.
  * Used by coverage-pkg.mts and coverage-gate.mts.
- * Thresholds and exemptions — `.claude/rules/coverage-standard.md`.
+ * Thresholds and exemptions — `.agents/skills/test-coverage/references/coverage-standard.md`.
  */
 import { readFileSync } from 'fs';
 import { resolve } from 'path';

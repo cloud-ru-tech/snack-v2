@@ -1,9 +1,3 @@
-/**
- * Fixture-story для покрытия hook'а useButtonNavigation arrow-навигацией
- * через prefix/postfix кнопки. Реальные потребители (Search, search-private)
- * дёргают хук с одной clearButton — arrow-ветви остаются непокрытыми.
- * См. .claude/rules/coverage-standard.md §«fixture-стори».
- */
 import { Button } from '@ds/button';
 import { InputPrivate, useButtonNavigation, useClearButton } from '@ds/input-private';
 import { Meta, StoryObj } from '@storybook/react';

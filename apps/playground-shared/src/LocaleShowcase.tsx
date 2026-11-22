@@ -6,7 +6,7 @@ import { greetingLocale } from './localeDemo';
 import styles from './scene.module.scss';
 
 /**
- * Витрина новой системы локализации (план: `.claude/plan/locale-decentralization.md`).
+ * Примеры использования локализации.
  *
  * Остров обёрнут в `LocaleProvider store={getGlobalLocaleStore().store}` — язык приезжает из глобального
  * singleton-стора (его двигает `LocaleSwitch` в шапке; в single-spa — из другого MFE). Демонстрирует:

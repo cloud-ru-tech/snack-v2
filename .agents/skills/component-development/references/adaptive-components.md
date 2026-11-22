@@ -1,0 +1,147 @@
+# Адаптивные компоненты — стандарт
+
+**Область действия:** компоненты `@ds/*`, которые на mobile меняют поверхность или дефолты, и их потребители (`uikit-product-*`, прикладные). Механика — пакет `@ds/adaptive`.
+
+## Принцип
+
+Адаптивность управляется **одним контекстом** (`AdaptiveProvider`), а не парными пакетами (`@snack-uikit/*` + `@cloud-ru/uikit-product-mobile-*`) и не пропсом, переданным через дерево. Потребитель верстает под desktop, ставит **один `<AdaptiveProvider>` в корне** — mobile работает автоматически (desktop-first, см. ниже).
+
+Публичный API адаптивного компонента **не различается** mobile/desktop: один компонент `X`, один тип `XProps`. Класс реализации (surface-swap / preset-defaults) — деталь внутреннего рендера, не часть контракта.
+
+## Источник раскладки — только контекст
+
+- Компонент читает раскладку через `useAdaptiveLayout()` (из `@ds/adaptive`) и ветвит по `isMobileLayout(layoutType)` (mobile-путь строго на тире `mobile`).
+- **Пропса `layoutType` у компонентов нет.** Node-only пропс не каскадит на потомков (десктоп-модалка с мобильным дроплистом внутри) — это была боль легаси. Источник один — контекст.
+- **Форс платформы — только контекстом:**
+  - поддерево: `<AdaptiveProvider layoutType='desktop'>…</AdaptiveProvider>`;
+  - компонент/секция/generic: `withLayoutType(X, 'desktop')` (сахар над провайдером; module-scope, не в рендере; для дженериков — инлайновый `AdaptiveProvider`).
+- В приложении/демо — один `AdaptiveProvider` в корне (статичный `layoutType` или реактивный `store`). `useAdaptiveBootstrap()` (UA + matchMedia) зовётся в корне приложения, не внутри компонентов.
+- **Платформа темы — отдельная ось `@ds/theme`, раскладку она не читает.** Потребитель передаёт согласованные значения в оба провайдера: `platform: isMobileLayout(layoutType) ? PLATFORM.WebMobile : PLATFORM.WebDesktop`. Форс раскладки в поддереве без смены платформы оставляет desktop-размеры токенов.
+
+## Принцип desktop-first
+
+Figma в большинстве случаев даёт только desktop. Mobile — **автоматический**: mobile-поверхности и mobile-дефолты компонентов из коробки = де-факто «дизайн мобилки». Источник mobile-значений (раз Figma-mobile нет) — легаси `@cloud-ru/uikit-product-mobile-*`, иначе решение DS. Планка качества DS-дефолтов высокая: их не страхует per-app дизайн-ревью. Override — escape-hatch, не основной путь.
+
+## Инвариант: единый `XProps` + JSDoc-пометки платформы
+
+- `XProps` = общий контракт + платформенные пропсы. `BaseXProps`/`DesktopXProps`/`MobileXProps` — internal-строительные блоки, **наружу не реэкспортятся**. Единственный публичный тип — `XProps`.
+- Реально-платформенный пропс (работает только на одной поверхности) **разрешён**, но **обязан** нести доступную для поиска JSDoc-пометку, начинающуюся с **`Только mobile:`** / **`Только desktop:`**; на другой поверхности молча игнорируется.
+- Для пропсов, пришедших через `Pick<…>` из чужого типа (нельзя повесить JSDoc по-пропно) — **санкционированный fallback**: пометка платформы в **type-level JSDoc** самого `XProps` (перечислить desktop-only / mobile-only пропсы).
+- `DesktopX`/`MobileX` — внутренние модули, которыми рендерит адаптивный `X`. Лежат в `packages/<pkg>/src/helperComponents/<Name>/<Name>.tsx` (nested-папка + `index.ts`, как остальные helper-слоты пакета), **наружу из публичного `src/index.ts` не реэкспортятся**.
+
+## Класс 1 — surface-swap
+
+**Когда нужна отдельная mobile-поверхность.** Только если на телефоне другой **состав или раскладка слоёв**: всплывающий компонент → `BottomSheet`, боковая навигация → нижняя, колонки → стек. Тест: «что в дереве слоёв различается?». Ничего — surface-swap не нужен: «то же, но крупнее» даёт платформа темы. Контролы в слотах `BottomSheet` — `size=m` как выбор композиции, а не «крупнее, потому что mobile». Если макет оставляет popover на mobile (триггер в sticky-зоне, экран без скролла) — следовать макету, не свапать.
+
+`X` читает контекст и ветвит рендер между внутренними desktop/mobile поверхностями (`helperComponents/`) под единым API:
+
+```tsx
+// X.tsx (публичный)
+export function X(props: XProps) {
+  const { layoutType } = useAdaptiveLayout();
+  return isMobileLayout(layoutType) ? <MobileX {...props} /> : <DesktopX {...props} />;
+}
+```
+
+- Общее тело (контент/состояния) выносится в отдельный helper-компонент и переиспользуется обеими поверхностями (`helperComponents/XBody/XBody.tsx`).
+- Mobile-поверхность портальных компонентов = `@ds/bottom-sheet` (`BottomSheet`/`BottomSheetCustom`). Слоты компонента маппятся на API sheet'а (заголовок → `title`, подсказка → `slotAfterTitle`, контент → `content`, футер → `footer`, разделители → `withDividers` и т.п.). Триггер (`children`) клонируется для открытия; controlled `open`/`onOpenChange` поддерживаются через `useValueControl`.
+- Для композитов база экспортирует **точку потребления** — адаптивный компонент целиком либо хук выбора поверхности (`useAdaptive<X>Custom`-style, возвращает `XCustom | BottomSheetCustom`).
+
+## Класс 2 — preset-defaults
+
+DOM один, по раскладке меняются дефолты пропсов:
+
+```tsx
+// X.tsx
+type XLayoutDefaults = Pick<XProps, 'collapsible'>; // только пресет-участвующие пропсы
+
+export const X_LAYOUT_PRESETS: LayoutPresets<XLayoutDefaults> = { mobile: { collapsible: true } };
+
+export function X({ collapsible, layoutPresets, ...props }: XProps) {
+  const { collapsible: resolved } = useLayoutDefaults<XLayoutDefaults>(
+    { collapsible: false },                          // база (desktop)
+    mergePresets(X_LAYOUT_PRESETS, layoutPresets),   // DS-пресет ⊕ instance-override
+    { collapsible },                                 // явный пропс (может быть undefined)
+  );
+  return <XBase {...props} collapsible={resolved} />;
+}
+```
+
+- **Preset-участвующие пропсы — без destructure-дефолта** (иначе дефолт перебьёт пресет; дефолт держим в `base`-аргументе `useLayoutDefaults`).
+- **`size` в пресеты не кладётся.** Раскладка не переключает `size`: «то же, но крупнее» на mobile даёт платформа темы (`PLATFORM.WebMobile`), а не смена значения оси. Один `size` на обе раскладки — и в DS, и у потребителя: ветка `isMobileLayout(layoutType) ? 'm' : 's'` в композите запрещена.
+- Константа `X_LAYOUT_PRESETS: LayoutPresets<...>` **экспортируется** (документируема, форкабельна), типизируется участвующими пропсами (`Pick<…>`), а не всем `XProps` — чтобы override не давал silent no-op на непартисипирующих ключах.
+- Императивный (нереактовый) путь: раскладку берёт `getGlobalAdaptiveStore()`, дефолты — чистой `resolveByLayout(...)`.
+
+## Приоритет адаптивных пресетов
+
+**Главное:** перенос пропса из desktop-макета не должен ломать mobile. Поэтому пресет раскладки **выше** явного пропса — пропс задаёт desktop-значение, mobile-дефолт сохраняется и переопределяется только явно.
+
+Приоритет ключа: **`layoutPresets[layout]` (instance) > `X_LAYOUT_PRESETS[layout]` (DS-пресет) > явный пропс (= desktop-значение) > базовый дефолт**.
+
+```tsx
+<X />                                                    // desktop: база · mobile: пресет (DS-дефолт)
+<X collapsible={false} />                               // desktop: false · mobile: ОСТАЁТСЯ пресет (пропс = desktop)
+<X layoutPresets={{ mobile: { collapsible: false } }}/> // mobile: false (явное переопределение mobile)
+<X layoutPresets={{ desktop: { collapsible: true } }}/> // desktop: true · mobile: дефолт (меняем только desktop)
+```
+
+- **Адаптивные (preset-участвующие) пропсы** ведут себя так: явный пропс = desktop, mobile берёт DS-пресет. Они перечислены в секции `## Адаптивность` компонента.
+- **Остальные пропсы** не проходят через `useLayoutDefaults` — явный пропс применяется на всех раскладках (у них нет per-layout различий).
+- Ключа «все раскладки разом» (`all`) нет — нужно изменить mobile, пиши `layoutPresets.mobile`. (Добавим `all`, если появится реальный кейс «одним махом везде».)
+- При добавлении пропса в `X_LAYOUT_PRESETS` (делаем его адаптивным) смысл существующего явного пропса меняется с «все раскладки» на «только desktop» — учитывать при эволюции пресетов.
+- Provider-level override пресетов (Уровень 2) — отложен (YAGNI), точка расширения зарезервирована.
+
+## Примитивы `@ds/adaptive`
+
+| Символ | Назначение |
+|--------|------------|
+| `AdaptiveProvider` | единый источник раскладки (статичный `layoutType` или реактивный `store`) |
+| `useAdaptiveLayout()` | чтение раскладки компонентом |
+| `isMobileLayout(layoutType)` | канон ветвления (mobile строго на `mobile`) |
+| `withLayoutType(X, t)` | HOC-форс (сахар над провайдером) |
+| `LayoutPresets<P>` | тип карты пресетов `{ mobile?: Partial<P>, … }` |
+| `resolveByLayout({ layoutType, base, presets, explicit })` | вычисление вне React |
+| `mergePresets(...presets)` | deep-merge пресетов (Уровень 0 ⊕ Уровень 1) |
+| `useLayoutDefaults(base, presets, explicit)` | вычисление по контексту React |
+| `@ds/adaptive` в `dependencies` | обычная зависимость; singleton-ность раскладки даёт `Symbol.for`-контекст/стор (`@ds/context-kit`, см. `keys.ts`), а не физическая дедупликация пакета — поэтому `peerDependencies` **не нужны** (несколько копий пакета делят один контекст) |
+
+## SSR
+
+`@ds/adaptive` отдаёт `desktop` на сервере (desktop-first, клиент вычисляет раскладку после загрузки). Чтобы убрать flip в SSR-приложении — вычислить раскладку из request-UA на сервере через `@ds/adaptive/ssr` (`getAdaptive(INITIAL_ADAPTIVE_QUERIES_VALUE, ua)`) и передать статикой в `<AdaptiveProvider layoutType={…}>`.
+
+## Слои base → composite
+
+| Слой | swap реализует |
+|------|----------------|
+| **База** (`@ds/*`) | сам компонент (ветвит по контексту) + экспорт точки потребления для композитов |
+| **Композит** (`uikit-product-*`, прикладные) | **НЕ реимплементит swap** — рендерит базовый адаптивный компонент / его хук выбора |
+
+**Анти-паттерн (ревью возвращает):** ручная ветка `isMobileLayout ? <BottomSheet> : <Popover>` в композите при том, что база уже это даёт. Раскладку композит читает только для собственной вёрстки, не для свапа поверхности базы.
+
+## Storybook, E2E и документация
+
+- **`layoutType` — Storybook toolbar-global, не story-prop и не пропс компонента:** один глобальный `<AdaptiveProvider layoutType={globals.layoutType}>` в `apps/storybook/.storybook/preview.tsx` оборачивает все стори (тулбар-переключатель desktop/mobile). Адаптивные Playground'и **не** заводят ни per-story обёртку, ни arg/контрол `layoutType`. Desktop-only контролы показываются по условию `if: { global: 'layoutType', eq: 'desktop' }`. Декоратор передаёт в `RootThemeProvider` платформу, согласованную с `layoutType`. Форс конкретной стори и VisualMatrix, рендерящие обе раскладки осью, — `<LayoutScope layoutType={…}>` из `#storybook/components` (`AdaptiveProvider` + платформа темы для поддерева); голый `AdaptiveProvider` / `withLayoutType` в stories не меняет платформу.
+- **VisualMatrix:**
+  - inline-renderable компонент (preset-класс): `layoutType` — **ось `StoryTable`** (desktop+mobile секции рядом, каждая в своём `LayoutScope`) → один `visual-matrix.png` показывает разницу.
+  - portal/overlay компонент (surface-swap): VM — desktop-ось; mobile-поверхность снимается отдельно в `visual.spec`.
+- **Visual baselines:** mobile-снимок требует (1) переключить toolbar-global `layoutType='mobile'` (в e2e — через URL-globals) + (2) `page.setViewportSize(MOBILE_VIEWPORT)` (`#playwright-tooling/constants/common`). Имена: portal → `open-desktop.png` + `open-mobile.png`; inline → общий `visual-matrix.png` с осью `layoutType`. Mobile-baseline = ground truth DS (Figma-parity тут не применим).
+- **Доки — секция `## Адаптивность`** (id `adaptive`): сообщение (desktop-first), как форсить, таблица пресетов (preset-класс) либо таблица «пропс → игнорируется на mobile/desktop» (surface-swap, синхронно с JSDoc-тегами), линк на центральную модель, `<StorybookEmbed>` адаптивной стори.
+
+## Запреты
+
+- Пропс `layoutType` у адаптивного компонента; форс пропсом вместо контекста.
+- Парные `mobile-*` пакеты; реимплементация surface-swap в композите.
+- `DesktopX`/`MobileX`/`*Props`/`BaseXProps` в публичном барреле.
+- Платформенный пропс без JSDoc-пометки `Только mobile:`/`Только desktop:`.
+- destructure-дефолт у preset-участвующего пропса — дефолт держи в `base`-аргументе `useLayoutDefaults` (single source), не в деструктуризации.
+- `size`, зависящий от раскладки: в `X_LAYOUT_PRESETS` / `layoutPresets` и ветками по `isMobileLayout` у потребителя — mobile-масштаб даёт платформа темы.
+- `X_LAYOUT_PRESETS`, типизированный всем `XProps` (silent no-op на непартисипирующих ключах) — типизируй участвующими (`Pick`).
+- `layoutType` как пропс компонента или story-arg в stories (раскладка — через toolbar-global `AdaptiveProvider` в `preview.tsx`; форс — `LayoutScope`).
+
+## Связанные правила
+
+- [stories-standard.md](../../component-story-set/references/stories-standard.md), [trigger-based-stories.md](../../component-story-set/references/trigger-based-stories.md) — каркас стори (surface-swap-компоненты обычно trigger-based).
+- [visual-regression-standard.md](../../component-e2e-tests/references/visual-regression-standard.md), [e2e-testing-standard.md](../../component-e2e-tests/references/e2e-testing-standard.md) — снимки/специ.
+- [docs-structure.md](../../component-docs/references/docs-structure.md) — секция `## Адаптивность`.
+- [packages-deps.md](../../new-component-package/references/packages-deps.md) — `@ds/adaptive` подключается обычной `dependencies` (singleton через `Symbol.for`-контекст, не peer).
+- [component-api-surface.md](component-api-surface.md) — `constants.ts`/`types.ts`/`TEST_IDS`.
