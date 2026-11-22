@@ -4,7 +4,7 @@
   
 .sn-timeline {
   --sn-timeline-anatomy-size-container-track-paddingTop: var(--sn-primitive-dimension-4, 4px);
-  --sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-primitive-dimension-4, 4px);
+  --sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-primitive-dimension-32, 32px);
   --sn-timeline-anatomy-size-container-track-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-timeline-anatomy-size-container-track-dot-minHeight: var(--sn-primitive-dimension-16, 16px);
   --sn-timeline-anatomy-size-container-track-dot-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
@@ -13,5 +13,5 @@
   --sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
   --sn-timeline-anatomy-size-container-track-dot-topLine-height: var(--sn-timeline-anatomy-size-container-track-paddingTop, var(--sn-primitive-dimension-4, 4px));
   --sn-timeline-anatomy-size-container-gap: var(--sn-primitive-dimension-16, 16px);
-  --sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, var(--sn-primitive-dimension-4, 4px));
+  --sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, var(--sn-primitive-dimension-32, 32px));
 }

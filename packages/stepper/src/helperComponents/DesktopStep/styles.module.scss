@@ -19,8 +19,8 @@
 
   box-sizing: border-box;
   width: 100%;
-  padding-right: base.$sn-stepper-anatomy-step-paddingHorizontal;
-  padding-left: base.$sn-stepper-anatomy-step-paddingHorizontal;
+  padding-right: base.$sn-stepper-anatomy-step-paddingRight;
+  padding-left: base.$sn-stepper-anatomy-step-paddingLeft;
 }
 
 .statusContainer {
@@ -84,8 +84,8 @@
 
   box-sizing: border-box;
   min-width: 0;
-  padding-right: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal;
-  padding-left: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal;
+  padding-right: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingRight;
+  padding-left: base.$sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingLeft;
 }
 
 .title {

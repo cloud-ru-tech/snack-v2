@@ -9160,9 +9160,12 @@
   --sn-stepper-anatomy-size-s-progressWrapper-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-stepper-anatomy-size-s-progressWrapper-height: var(--sn-stepper-anatomy-size-s-progressWrapper-progressLine-height, var(--sn-primitive-dimension-4, 4px));
   --sn-stepper-anatomy-step-gap: var(--sn-primitive-dimension-8, 8px);
-  --sn-stepper-anatomy-step-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
+  --sn-stepper-anatomy-step-paddingLeft: var(--sn-primitive-dimension-0, 0px);
+  --sn-stepper-anatomy-step-paddingRight: var(--sn-primitive-dimension-8, 8px);
+  --sn-stepper-anatomy-step-lastStep-maxWidth: 200px;
   --sn-stepper-anatomy-stepRow-gap: var(--sn-primitive-dimension-4, 4px);
-  --sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingHorizontal: var(--sn-stepper-anatomy-step-paddingHorizontal, var(--sn-primitive-dimension-4, 4px));
+  --sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingLeft: var(--sn-stepper-anatomy-step-paddingLeft, var(--sn-primitive-dimension-0, 0px));
+  --sn-stepper-anatomy-stepRow-contentWrapper-stepText-paddingRight: var(--sn-stepper-anatomy-step-paddingRight, var(--sn-primitive-dimension-8, 8px));
   --sn-table-anatomy-content-tableHead-paddingLeft: var(--sn-primitive-dimension-12, 12px);
   --sn-table-anatomy-content-tableHead-paddingRight: var(--sn-primitive-dimension-12, 12px);
   --sn-table-anatomy-content-tableHead-gap: var(--sn-primitive-dimension-2, 2px);
@@ -9304,7 +9307,7 @@
   --sn-tag-anatomy-size-m-buttonRemove-icon-square: var(--sn-primitive-dimension-24, 24px);
   --sn-tag-anatomy-size-m-buttonRemove-icon-strokeWeight: var(--sn-primitive-strokeWeight-strokeMedium, 1.5px);
   --sn-timeline-anatomy-size-container-track-paddingTop: var(--sn-primitive-dimension-4, 4px);
-  --sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-primitive-dimension-4, 4px);
+  --sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-primitive-dimension-32, 32px);
   --sn-timeline-anatomy-size-container-track-paddingHorizontal: var(--sn-primitive-dimension-4, 4px);
   --sn-timeline-anatomy-size-container-track-dot-minHeight: var(--sn-primitive-dimension-16, 16px);
   --sn-timeline-anatomy-size-container-track-dot-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
@@ -9313,7 +9316,7 @@
   --sn-timeline-anatomy-size-container-track-dot-trackLine-borderWidth: var(--sn-primitive-strokeWeight-strokeSemiBold, 2px);
   --sn-timeline-anatomy-size-container-track-dot-topLine-height: var(--sn-timeline-anatomy-size-container-track-paddingTop, var(--sn-primitive-dimension-4, 4px));
   --sn-timeline-anatomy-size-container-gap: var(--sn-primitive-dimension-16, 16px);
-  --sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, var(--sn-primitive-dimension-4, 4px));
+  --sn-timeline-anatomy-size-container-content-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, var(--sn-primitive-dimension-32, 32px));
   --sn-toaster-anatomy-toast-systemEvent-container-paddingHorizontal: var(--sn-primitive-dimension-16, 16px);
   --sn-toaster-anatomy-toast-systemEvent-container-paddingVertical: var(--sn-primitive-dimension-16, 16px);
   --sn-toaster-anatomy-toast-systemEvent-container-gap: var(--sn-primitive-dimension-16, 16px);

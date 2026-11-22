@@ -1,6 +1,13 @@
+@use '@ds/figma-variables/build/scss/components/stepper.module' as base;
+
 .stepper {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
+
+  > :last-child {
+    flex: 0 1 auto;
+    max-width: base.$sn-stepper-anatomy-step-lastStep-maxWidth;
+  }
 }

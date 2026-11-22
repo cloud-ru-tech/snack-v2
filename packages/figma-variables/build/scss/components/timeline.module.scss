@@ -6,7 +6,7 @@
 @use '../styles/styles.module' as st;
 
 $sn-timeline-anatomy-size-container-track-paddingTop: var(--sn-timeline-anatomy-size-container-track-paddingTop, #{st.$sn-primitive-dimension-4});
-$sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, #{st.$sn-primitive-dimension-4});
+$sn-timeline-anatomy-size-container-track-paddingBottom: var(--sn-timeline-anatomy-size-container-track-paddingBottom, #{st.$sn-primitive-dimension-32});
 $sn-timeline-anatomy-size-container-track-paddingHorizontal: var(--sn-timeline-anatomy-size-container-track-paddingHorizontal, #{st.$sn-primitive-dimension-4});
 $sn-timeline-anatomy-size-container-track-dot-minHeight: var(--sn-timeline-anatomy-size-container-track-dot-minHeight, #{st.$sn-primitive-dimension-16});
 $sn-timeline-anatomy-size-container-track-dot-borderWidth: var(--sn-timeline-anatomy-size-container-track-dot-borderWidth, #{st.$sn-primitive-strokeWeight-strokeSemiBold});
