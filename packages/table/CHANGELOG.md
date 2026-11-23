@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2026-11-23)
+
+### Bug Fixes
+
+- **FF-9498:** add gap for mobile pagination ([121307a](https://github.com/cloud-ru-tech/snack-v2/commit/121307a6278cba3d769d88034d1a5fdb58a7e8d9))
+- **FF-9498:** disable row hover in SimpleTable ([02a2dad](https://github.com/cloud-ru-tech/snack-v2/commit/02a2dad06c434f1ef8c95c906b5c8798a0721702))
+
+### Features
+
+- **SITE-12380:** add new component site-media ([1fd2005](https://github.com/cloud-ru-tech/snack-v2/commit/1fd2005c89463d2bafa8cd933777fd9e9ef95d35))
+
 # 3.0.0 (2026-11-19)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.2 (2026-11-23)
+
+### Bug Fixes
+
+- **FF-9498:** table safeArea ([aa224ce](https://github.com/cloud-ru-tech/snack-v2/commit/aa224ce40fae8ff32df05ba529df2db4bd840d6d))
+
 ## 3.1.1 (2026-11-19)
 
 ### Bug Fixes
