@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.4.0 (2026-11-23)
+
+### Features
+
+- **FF-9408:** show service badges in subcategory titles ([82cdf2f](https://github.com/cloud-ru-tech/snack-v2/commit/82cdf2fe013e689279f57b9b02441a374d6cef5b))
+
 ## 2.3.13 (2026-11-19)
 
 ### Bug Fixes
