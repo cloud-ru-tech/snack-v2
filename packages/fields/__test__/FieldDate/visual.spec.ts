@@ -24,6 +24,8 @@ const MOBILE_SHEET_TEST_ID = 'field-date__calendar-dropdown';
 const DAY_ITEM_TEST_ID = 'item-field-date__calendar-dropdown';
 const DRUM_HOURS_TEST_ID = 'time-picker-drum__hours';
 const MOBILE_APPLY_TEST_ID = 'calendar-mobile-apply';
+// Фиксируем день, чтобы месяц, подсветка сегодня и применённое значение совпадали со снимками.
+const MOBILE_SCENARIO_DATE = '2026-07-09T12:00:00Z';
 // Якоря для ожидания автоскролла: `.first()` по ячейке дня — это месяц выше вьюпорта, он туда не въезжает.
 const TODAY_CELL = `[data-current]:not([data-another]) > [data-test-id="${DAY_ITEM_TEST_ID}"]`;
 const CHECKED_CELL = `[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked]:not([data-another])`;
@@ -40,13 +42,23 @@ async function wheelDrum(page: Page, columnTestId: string, deltaRows: number) {
   await page.mouse.wheel(0, deltaRows * itemHeight);
 }
 
-// Соседние месяцы тоже могут быть видны после автоскролла.
-async function clickCurrentMonthDay(page: Page, day: string) {
-  const month = page.getByTestId(`calendar-mobile-period-block-${MOBILE_SHEET_TEST_ID}`).filter({
+function currentMonth(page: Page) {
+  return page.getByTestId(`calendar-mobile-period-block-${MOBILE_SHEET_TEST_ID}`).filter({
     has: page.locator(TODAY_CELL),
   });
-  await month.getByRole('button', { name: day, exact: true }).click();
+}
+
+// Соседние месяцы тоже могут быть видны после автоскролла.
+async function clickCurrentMonthDay(page: Page, day: string) {
+  await currentMonth(page).getByRole('button', { name: day, exact: true }).click();
   await page.mouse.move(0, 0);
+}
+
+async function alignCurrentMonthForScreenshot(page: Page, anchor: string) {
+  await waitForSettledInViewport(page.locator(anchor));
+  // Виртуализатор может оставить видимой часть предыдущего месяца после замеров строк.
+  await currentMonth(page).evaluate(month => month.scrollIntoView({ block: 'start', behavior: 'instant' }));
+  await waitForSettledInViewport(page.locator(anchor));
 }
 
 test.describe('FieldDate — visual regression', () => {
@@ -87,9 +99,10 @@ test.describe('FieldDate — visual regression', () => {
   });
 
   // Mobile-сценарий выбора одной даты (mode=date): поле → тап → выбор дня (подсветка в черновике) →
-  // Apply → поле с применённой датой. Календарь без value скроллится к текущему месяцу (2026-07);
+  // Apply → поле с применённой датой. Календарь без value скроллится к зафиксированному месяцу;
   // выбираем 15-е число в блоке текущего месяца.
   test('date: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.clock.setFixedTime(MOBILE_SCENARIO_DATE);
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions({ mode: 'date' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
     await waitForFonts();
@@ -105,7 +118,7 @@ test.describe('FieldDate — visual regression', () => {
     await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeVisible();
     // Календарь автоскроллится к текущему месяцу (JS-скролл, `animations:disabled` его не замораживает).
     // Ждём стабилизации bbox ячейки дня, иначе клик/снимок ловят кадр прокрутки (флак под нагрузкой).
-    await waitForSettledInViewport(page.locator(TODAY_CELL));
+    await alignCurrentMonthForScreenshot(page, TODAY_CELL);
     await frame('2. open calendar');
 
     // В mode=date выбор дня фиксирует его в черновике (подсветка ячейки) и активирует Apply; шит остаётся
@@ -114,7 +127,7 @@ test.describe('FieldDate — visual regression', () => {
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
     const dateApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
     await expect(dateApply).toBeEnabled();
-    await waitForSettledInViewport(page.locator(CHECKED_CELL));
+    await alignCurrentMonthForScreenshot(page, CHECKED_CELL);
     await frame('3. date selected in calendar');
 
     // Apply — шит закрывается, поле показывает применённую дату.
@@ -129,6 +142,7 @@ test.describe('FieldDate — visual regression', () => {
   // Mobile-сценарий date-time: поле → тап → выбор дня → под-экран времени → скролл барабана → Apply времени
   // (возврат на календарь с выбранными датой+временем) → Apply календаря → поле с применённым значением.
   test('date-time: mobile selection scenario', async ({ page, gotoStory, waitForFonts, getByTestId }) => {
+    await page.clock.setFixedTime(MOBILE_SCENARIO_DATE);
     await page.setViewportSize(MOBILE_VIEWPORT);
     await gotoStory(buildStoryOptions({ mode: 'date-time' }, FIELD_DATE_STORIES.playground, { layoutType: 'mobile' }));
     await waitForFonts();
@@ -143,7 +157,7 @@ test.describe('FieldDate — visual regression', () => {
     await getByTestId(TEST_IDS.fieldDate).getByTestId(TEST_IDS.fieldDateCalendar).click();
     await expect(getByTestId(MOBILE_SHEET_TEST_ID)).toBeVisible();
     // Календарь автоскроллится к текущему месяцу (JS-скролл) — ждём стабилизации bbox ячейки дня.
-    await waitForSettledInViewport(page.locator(TODAY_CELL));
+    await alignCurrentMonthForScreenshot(page, TODAY_CELL);
     await frame('2. open calendar');
 
     // Выбор дня в date-time не закрывает шит, а переводит на под-экран выбора времени (барабан).
@@ -154,7 +168,7 @@ test.describe('FieldDate — visual regression', () => {
     // же виден переход к времени (кнопка time). Ждём чекнутую ячейку и стабилизацию скролла.
     await getByTestId('bottom-sheet__back-button').click();
     await expect(page.locator(`[data-test-id="${DAY_ITEM_TEST_ID}"][data-checked="true"]`).first()).toBeVisible();
-    await waitForSettledInViewport(page.locator(CHECKED_CELL));
+    await alignCurrentMonthForScreenshot(page, CHECKED_CELL);
     await frame('3. date selected in calendar');
 
     // Возвращаемся к выбору времени кнопкой time-переключателя.
@@ -179,7 +193,7 @@ test.describe('FieldDate — visual regression', () => {
     await timeApply.click();
     const calendarApply = getByTestId(MOBILE_SHEET_TEST_ID).getByTestId(MOBILE_APPLY_TEST_ID);
     await expect(calendarApply).toBeEnabled();
-    await waitForSettledInViewport(page.locator(CHECKED_CELL));
+    await alignCurrentMonthForScreenshot(page, CHECKED_CELL);
     await frame('5. date & time selected');
 
     // Финальный Apply экрана календаря — коммит значения в поле (closeOnApply=true): шит закрывается,
