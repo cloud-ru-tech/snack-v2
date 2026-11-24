@@ -27,11 +27,9 @@
     "07_acrylic-suspended/no",
     "06_language/en",
     "06_language/ru",
-    "02_platform/webDesktop",
-    "02_platform/webMobile",
-    "03_density/compact",
     "03_density/comfort",
     "03_density/spacious",
+    "03_density/compact",
     "breadcrumbs/breadcrumbs",
     "avatar/avatar",
     "counter/counter",
@@ -79,6 +77,8 @@
     "table/table",
     "block/block",
     "stepper/stepper",
-    "timeline/timeline"
+    "timeline/timeline",
+    "02_platform/webDesktop",
+    "02_platform/webMobile"
   ]
 }

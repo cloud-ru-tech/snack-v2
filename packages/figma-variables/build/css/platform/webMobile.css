@@ -51,11 +51,11 @@
   --sn-platform-compact-spacing-interval-2xs: var(--sn-primitive-dimension-0, 0px);
   --sn-platform-compact-spacing-interval-xs: var(--sn-primitive-dimension-2, 2px);
   --sn-platform-compact-spacing-interval-s: var(--sn-primitive-dimension-4, 4px);
-  --sn-platform-compact-spacing-interval-m: var(--sn-primitive-dimension-6, 6px);
-  --sn-platform-compact-spacing-interval-l: var(--sn-primitive-dimension-10, 10px);
-  --sn-platform-compact-spacing-interval-xl: var(--sn-primitive-dimension-14, 14px);
-  --sn-platform-compact-spacing-interval-2xl: var(--sn-primitive-dimension-20, 20px);
-  --sn-platform-compact-spacing-interval-3xl: var(--sn-primitive-dimension-28, 28px);
+  --sn-platform-compact-spacing-interval-m: var(--sn-primitive-dimension-8, 8px);
+  --sn-platform-compact-spacing-interval-l: var(--sn-primitive-dimension-12, 12px);
+  --sn-platform-compact-spacing-interval-xl: var(--sn-primitive-dimension-16, 16px);
+  --sn-platform-compact-spacing-interval-2xl: var(--sn-primitive-dimension-24, 24px);
+  --sn-platform-compact-spacing-interval-3xl: var(--sn-primitive-dimension-32, 32px);
   --sn-platform-compact-spacing-headToggleOffset: var(--sn-primitive-dimension-0, 0px);
   --sn-platform-compact-icon-2xs: var(--sn-primitive-dimension-8, 8px);
   --sn-platform-compact-icon-xs: var(--sn-primitive-dimension-24, 24px);

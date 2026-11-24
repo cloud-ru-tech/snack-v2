@@ -531,7 +531,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.6}"
+              "$value": "{sn.primitive.dimension.8}"
             },
             "l": {
               "$extensions": {
@@ -541,7 +541,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.10}"
+              "$value": "{sn.primitive.dimension.12}"
             },
             "xl": {
               "$extensions": {
@@ -551,7 +551,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.14}"
+              "$value": "{sn.primitive.dimension.16}"
             },
             "2xl": {
               "$extensions": {
@@ -561,7 +561,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.20}"
+              "$value": "{sn.primitive.dimension.24}"
             },
             "3xl": {
               "$extensions": {
@@ -571,7 +571,7 @@
                 "com.figma.hiddenFromPublishing": true
               },
               "$type": "number",
-              "$value": "{sn.primitive.dimension.28}"
+              "$value": "{sn.primitive.dimension.32}"
             }
           },
           "headToggleOffset": {
