@@ -1,0 +1,56 @@
+name: Package releases
+
+on:
+  push:
+    branches: [master]
+  # GitLab отправляет теги пачками, а коммит версий содержит [ci skip].
+  # Сверка по расписанию подбирает теги после синхронизации зеркала.
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'Обрабатывать теги с указанной даты (ISO 8601). По умолчанию — с подключения workflow.'
+        required: false
+      max:
+        description: 'Максимум релизов за запуск'
+        default: '100'
+        required: false
+      dry_run:
+        description: 'Показать план и тексты релизов'
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: package-releases
+  cancel-in-progress: false
+
+jobs:
+  releases:
+    if: github.repository == 'cloud-ru-tech/snack-v2' && github.ref == 'refs/heads/master'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: master
+          fetch-depth: 0
+          sparse-checkout: .github
+          persist-credentials: false
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Create missing releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASES_SINCE: ${{ inputs.since }}
+          RELEASES_MAX: ${{ inputs.max || '100' }}
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+        run: node .github/scripts/package-releases.mjs
