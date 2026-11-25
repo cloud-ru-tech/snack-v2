@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.2.6 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-8798:** hide favorite tooltip on mobile ([1b62d64](https://github.com/cloud-ru-tech/snack-v2/commit/1b62d64ba0cf8b942a62ff827951934ed90dd873))
+
 ## 4.2.5 (2026-11-25)
 
 **Note:** Version bump only for package @ds/uikit-product-card-predefined

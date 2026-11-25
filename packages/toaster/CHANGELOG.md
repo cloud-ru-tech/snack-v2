@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.10 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-8798:** add link underline ([693a58f](https://github.com/cloud-ru-tech/snack-v2/commit/693a58f50e48044faae34873c144bd2aecedbc88))
+
 ## 1.1.9 (2026-11-18)
 
 **Note:** Version bump only for package @ds/toaster

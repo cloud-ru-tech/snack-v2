@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.20 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-8798:** load status label size from m to s ([fd433e5](https://github.com/cloud-ru-tech/snack-v2/commit/fd433e575d076f4e5367ef1280a9d8e8d6513fe5))
+
 ## 1.0.19 (2026-11-18)
 
 **Note:** Version bump only for package @ds/uikit-product-load-status

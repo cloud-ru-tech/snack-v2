@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.3 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-8798:** use span tag for variant='label' ([ea2c0a2](https://github.com/cloud-ru-tech/snack-v2/commit/ea2c0a2c6b68944ab737cb854ce2c9aedd3ffecf))
+
 ## 1.0.2 (2026-10-12)
 
 ### Bug Fixes

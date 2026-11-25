@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.4 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-8798:** sn.platform.compact.spacing.interval ([04dbe9f](https://github.com/cloud-ru-tech/snack-v2/commit/04dbe9fc27b8e3fd0c701b88d8345cb202121284))
+
 ## 3.1.3 (2026-11-25)
 
 ### Bug Fixes
