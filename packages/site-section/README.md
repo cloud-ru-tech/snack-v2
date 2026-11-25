@@ -301,7 +301,7 @@ export function OldContainer() {
 | `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
 | `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
 | `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
-| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка блока. |
+| `titleType` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка заголовка. |
 
 #### Related types
 
@@ -434,7 +434,7 @@ export function OldContainer() {
 | `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
 | `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
 | `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
-| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка блока. |
+| `titleType` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | — | Раскладка заголовка. |
 
 ##### Related types
 
@@ -484,7 +484,7 @@ export function OldContainer() {
 
 ### Анатомия
 
-Шасси совпадает с `SectionBasic`. Заголовок по умолчанию с `type="descriptionUnderTitle"`: описание под заголовком. Вместо `children` секция принимает колонки и строки.
+Основа совпадает с `SectionBasic`. Заголовок по умолчанию с `titleType="descriptionUnderTitle"`: описание под заголовком. Вместо `children` секция принимает колонки и строки.
 
 - `columnDefinitions` — колонки `Table`: шапка и ячейки строк.
 - `headerRowBackgroundColor` — фон шапки. По умолчанию `neutral`.
@@ -623,7 +623,7 @@ export function TableOldContainer() {
 | `tabBarValue` | `string` | — | Выбранная вкладка (controlled), например из параметра URL `?tab=ai`. |
 | `title` | `string` | — | Заголовок. Строка может содержать строчную HTML-разметку (`a`, `strong`, `em`, `br`). |
 | `titleTag` | `"h1"` \| `"h2"` \| `"h3"` \| `"h4"` | — | Тег заголовка. |
-| `type` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | `descriptionUnderTitle` | Раскладка блока. |
+| `titleType` | `"centered"` \| `"descriptionRight"` \| `"descriptionUnderTitle"` \| `"small"` | `descriptionUnderTitle` | Раскладка заголовка. |
 
 ##### Related types
 

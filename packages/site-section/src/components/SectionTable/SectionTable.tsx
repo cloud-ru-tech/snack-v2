@@ -30,13 +30,13 @@ export function SectionTable<TData extends object>({
   caption,
   headerRowBackgroundColor = TABLE_ROW_COLOR.Neutral,
   className,
-  type = SECTION_TITLE_TYPE.DescriptionUnderTitle,
+  titleType = SECTION_TITLE_TYPE.DescriptionUnderTitle,
   ...sectionProps
 }: SectionTableProps<TData>) {
   const { layoutType } = useAdaptiveLayout();
 
   return (
-    <SectionBasic className={className} type={type} {...sectionProps}>
+    <SectionBasic className={className} titleType={titleType} {...sectionProps}>
       <div className={styles.table}>
         <Table
           data={data}
