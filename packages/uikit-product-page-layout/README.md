@@ -366,6 +366,7 @@ const actions: Action[] = [
 
 - `items` — данные дерева (`TreeNodeProps[]` из **`@ds/tree`**).
 - `menuTitle` — заголовок меню.
+- `subtitle` — содержимое между заголовком меню и деревом разделов.
 - `selected` / `onSelect` — выбранный узел и колбэк выбора.
 - `isMenuOpen` / `onMenuToggle` / `defaultMenuOpened` — управление раскрытием (в `popover`). В контролируемом режиме `onMenuToggle` обязателен.
 - `enableShrinkMenuButton` — кнопка «Свернуть всё».
@@ -781,6 +782,7 @@ const actions: Action[] = [
 | `menuTitle` | `string` | — |  |
 | `onSelect` | `((selectedKey: string, node: TreeNodeProps) => void)` | — |  |
 | `selected` | `string` | — |  |
+| `subtitle` | `ReactNode` | — |  |
 | `withDefaultOpenedMenuList` | `boolean` | — |  |
 
 ## MobileActions

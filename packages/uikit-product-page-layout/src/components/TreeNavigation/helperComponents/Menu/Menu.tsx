@@ -2,7 +2,7 @@ import { APPEARANCE, Button, VIEW } from '@ds/button';
 import { HorizontalMenuCloseSVG, HorizontalMenuOpenSVG } from '@ds/icons/interface/product';
 import { Tree, TreeNodeId, TreeNodeProps } from '@ds/tree';
 import { SIZE, Typography, VARIANT } from '@ds/typography';
-import { useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 
 import { pageLayoutLocale } from '../../../../locale';
 import styles from './styles.module.scss';
@@ -11,6 +11,7 @@ import { getExpandedNodes } from './utils';
 type MenuProps = {
   menuTitle?: string;
   menuItems: TreeNodeProps[];
+  subtitle?: ReactNode;
   enableShrinkMenuButton?: boolean;
   withDefaultOpenedMenuList?: boolean;
   selected?: TreeNodeId;
@@ -20,6 +21,7 @@ type MenuProps = {
 export function Menu({
   menuTitle,
   menuItems,
+  subtitle,
   enableShrinkMenuButton = true,
   withDefaultOpenedMenuList,
   selected,
@@ -56,6 +58,8 @@ export function Menu({
           )}
         </div>
       )}
+
+      {subtitle}
 
       <Tree
         data={menuItems}

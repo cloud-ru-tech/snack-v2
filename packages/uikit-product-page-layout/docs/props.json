@@ -3547,6 +3547,10 @@
         "type": "string",
         "required": false
       },
+      "subtitle": {
+        "type": "ReactNode",
+        "required": false
+      },
       "withDefaultOpenedMenuList": {
         "type": "boolean",
         "required": false
@@ -10490,7 +10494,7 @@
         ]
       },
       "menu": {
-        "type": "{ menuTitle?: string | undefined; items: TreeNodeProps[]; isMenuOpen?: boolean | undefined; onMenuToggle?(open: boolean): void; defaultMenuOpened?: boolean | undefined; enableShrinkMenuButton?: boolean | undefined; withDefaultOpenedMenuList?: boolean | undefined; selected?: string | undefined; onSelect?(selectedKey:...",
+        "type": "{ menuTitle?: string | undefined; subtitle?: ReactNode; items: TreeNodeProps[]; isMenuOpen?: boolean | undefined; onMenuToggle?(open: boolean): void; defaultMenuOpened?: boolean | undefined; enableShrinkMenuButton?: boolean | undefined; withDefaultOpenedMenuList?: boolean | undefined; selected?: string | undefined; ...",
         "required": true,
         "typeRefs": [
           "TreeNodeId",

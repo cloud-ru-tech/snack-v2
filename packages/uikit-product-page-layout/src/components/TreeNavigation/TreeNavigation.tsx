@@ -16,6 +16,7 @@ export function TreeNavigation({
   header: { title, icon, description, status, actions },
   menu: {
     menuTitle,
+    subtitle,
     items,
     enableShrinkMenuButton,
     withDefaultOpenedMenuList,
@@ -41,13 +42,14 @@ export function TreeNavigation({
       <Menu
         menuItems={items}
         menuTitle={menuTitle}
+        subtitle={subtitle}
         enableShrinkMenuButton={enableShrinkMenuButton}
         withDefaultOpenedMenuList={withDefaultOpenedMenuList}
         selected={selected}
         onSelect={onSelect}
       />
     ),
-    [onSelect, selected, items, menuTitle, enableShrinkMenuButton, withDefaultOpenedMenuList],
+    [onSelect, selected, items, menuTitle, subtitle, enableShrinkMenuButton, withDefaultOpenedMenuList],
   );
 
   return (

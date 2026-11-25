@@ -20,6 +20,8 @@ export type TreeNavigationProps = {
   menu: {
     /** Заголовок меню */
     menuTitle?: string;
+    /** Подзаголовок меню над деревом разделов */
+    subtitle?: ReactNode;
     /** Данные для дерева меню */
     items: TreeNodeProps[];
     /** Управляемый режим: если передан, меню открывается как popover. */
