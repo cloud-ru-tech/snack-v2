@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.2 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-9494:** reduce header breadcrumb padding ([f1debc3](https://github.com/cloud-ru-tech/snack-v2/commit/f1debc3ff33e4972a4e438b4d2e773c09642a6df))
+
 ## 2.4.1 (2026-11-25)
 
 **Note:** Version bump only for package @ds/uikit-product-header
