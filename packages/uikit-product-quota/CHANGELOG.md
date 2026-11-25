@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.6 (2026-11-25)
+
+**Note:** Version bump only for package @ds/uikit-product-quota
+
 ## 2.1.5 (2026-11-19)
 
 **Note:** Version bump only for package @ds/uikit-product-quota

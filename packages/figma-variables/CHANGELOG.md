@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.3 (2026-11-25)
+
+### Bug Fixes
+
+- **FF-9074:** align stepper and timeline with design ([ee77df2](https://github.com/cloud-ru-tech/snack-v2/commit/ee77df260abcd603e14cc64a6c4cf5cc4301ba37))
+- stepper and timeline variables ([8f353ab](https://github.com/cloud-ru-tech/snack-v2/commit/8f353ab124002e360e5d2ff6ee6562f899786c56))
+
 ## 3.1.2 (2026-11-23)
 
 ### Bug Fixes
