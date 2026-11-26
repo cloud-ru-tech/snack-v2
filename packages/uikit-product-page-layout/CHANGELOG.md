@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.4.0 (2026-11-26)
+
+### Features
+
+- **CLOUDOM-4458:** add subtitle prop to TreeNavigation ([66002f5](https://github.com/cloud-ru-tech/snack-v2/commit/66002f522b2b7abd2ef3af6c93bd8e0a617e6b6e))
+
 ## 2.3.8 (2026-11-25)
 
 **Note:** Version bump only for package @ds/uikit-product-page-layout
