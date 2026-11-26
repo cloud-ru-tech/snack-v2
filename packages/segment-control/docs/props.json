@@ -4,7 +4,7 @@
     "propsTypeName": null,
     "props": {
       "counter": {
-        "type": "string | number",
+        "type": "SegmentCounterProps",
         "required": false,
         "description": "Счётчик в сегменте (отображается после лейбла)."
       },
@@ -166,9 +166,12 @@
         "kind": "interface",
         "props": {
           "counter": {
-            "type": "string | number | undefined",
+            "type": "SegmentCounterProps | undefined",
             "required": false,
-            "description": "Счётчик в сегменте (отображается после лейбла)."
+            "description": "Счётчик в сегменте (отображается после лейбла).",
+            "typeRefs": [
+              "SegmentCounterProps"
+            ]
           },
           "disabled": {
             "type": "boolean | undefined",
@@ -206,6 +209,80 @@
             "type": "Value",
             "required": true,
             "description": "Идентификатор сегмента."
+          }
+        },
+        "own": true
+      },
+      "SegmentCounterProps": {
+        "kind": "interface",
+        "props": {
+          "appearance": {
+            "type": "Appearance | undefined",
+            "required": false,
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "primary",
+              "red",
+              "violet",
+              "yellow"
+            ],
+            "description": "Внешний вид",
+            "typeRefs": [
+              "Appearance"
+            ]
+          },
+          "className": {
+            "type": "string | undefined",
+            "required": false,
+            "description": "Дополнительный CSS-класс"
+          },
+          "data-test-id": {
+            "type": "string | undefined",
+            "required": false
+          },
+          "innerRef": {
+            "type": "Ref<HTMLDivElement> | undefined",
+            "required": false,
+            "description": "Ref на корневой DOM-элемент.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт."
+          },
+          "plusLimit": {
+            "type": "number | undefined",
+            "required": false,
+            "description": "Порог сокращения значения для варианта `count-plus`"
+          },
+          "roleAppearance": {
+            "type": "RoleAppearance | undefined",
+            "required": false,
+            "values": [
+              "accent",
+              "decor"
+            ],
+            "description": "Роль, в которой применяется `appearance`: акцентная заливка или декоративная",
+            "typeRefs": [
+              "RoleAppearance"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "description": "Значение"
+          },
+          "variant": {
+            "type": "Variant | undefined",
+            "required": false,
+            "values": [
+              "count",
+              "count-k",
+              "count-plus"
+            ],
+            "description": "Вариант форматирования",
+            "typeRefs": [
+              "Variant"
+            ]
           }
         },
         "own": true

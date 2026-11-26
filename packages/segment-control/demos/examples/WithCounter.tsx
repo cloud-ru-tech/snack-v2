@@ -5,8 +5,8 @@ export function WithCounter() {
     <SegmentControl
       defaultValue='inbox'
       items={[
-        { value: 'inbox', label: 'Inbox', counter: 12 },
-        { value: 'drafts', label: 'Drafts', counter: 3 },
+        { value: 'inbox', label: 'Inbox', counter: { value: 12 } },
+        { value: 'drafts', label: 'Drafts', counter: { value: 3 } },
         { value: 'archive', label: 'Archive' },
       ]}
     />

@@ -148,8 +148,8 @@ export function WithCounter() {
     <SegmentControl
       defaultValue='inbox'
       items={[
-        { value: 'inbox', label: 'Inbox', counter: 12 },
-        { value: 'drafts', label: 'Drafts', counter: 3 },
+        { value: 'inbox', label: 'Inbox', counter: { value: 12 } },
+        { value: 'drafts', label: 'Drafts', counter: { value: 3 } },
         { value: 'archive', label: 'Archive' },
       ]}
     />
@@ -257,13 +257,26 @@ export function Controlled() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `counter` | `string \| number \| undefined` | — | Счётчик в сегменте (отображается после лейбла). |
+| `counter` | `SegmentCounterProps` | — | Счётчик в сегменте (отображается после лейбла). |
 | `disabled` | `boolean \| undefined` | — | Состояние активности сегмента. |
 | `icon` | `string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode> \| ReactPortal \| null \| undefined` | — | Иконка сегмента. |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно лейбла. |
 | `label` | `string \| undefined` | — | Текстовый заголовок сегмента. |
 | `renderWrapSegment` | `((segment: ReactNode) => ReactNode) \| undefined` | — | Render-обёртка над сегментом. |
 | `value` | `Value` | — | Идентификатор сегмента. |
+
+**SegmentCounterProps**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `appearance` | `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"` | — | Внешний вид |
+| `className` | `string \| undefined` | — | Дополнительный CSS-класс |
+| `data-test-id` | `string \| undefined` | — |  |
+| `innerRef` | `Ref<HTMLDivElement> \| undefined` | — | Ref на корневой DOM-элемент. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
+| `plusLimit` | `number \| undefined` | — | Порог сокращения значения для варианта `count-plus` |
+| `roleAppearance` | `"accent"` \| `"decor"` | — | Роль, в которой применяется `appearance`: акцентная заливка или декоративная |
+| `value` | `number` | — | Значение |
+| `variant` | `"count"` \| `"count-k"` \| `"count-plus"` | — | Вариант форматирования |
 
 - `Size` = `"l"` \| `"m"` \| `"s"`
 

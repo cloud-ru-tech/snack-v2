@@ -1,4 +1,4 @@
-import { Counter } from '@ds/counter';
+import { Counter, SIZE as COUNTER_SIZE } from '@ds/counter';
 import { TruncateString } from '@ds/truncate-string';
 import cn from 'classnames';
 import { useEffect, useRef } from 'react';
@@ -84,9 +84,9 @@ export function Segment({
             {icon}
           </span>
         )}
-        {counter != null && (
+        {counter && (
           <span className={styles.counter} data-text-opacity>
-            <Counter size='xs' appearance='primary' value={Number(counter) || 0} />
+            <Counter {...counter} size={COUNTER_SIZE.XS} />
           </span>
         )}
       </span>

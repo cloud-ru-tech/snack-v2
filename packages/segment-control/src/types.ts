@@ -1,7 +1,11 @@
+import type { CounterProps } from '@ds/counter';
 import { ValueOf } from '@ds/utils';
 import { ReactNode } from 'react';
 
 import { ICON_POSITION, SIZE, WIDTH } from './constants';
+
+/** Пропсы `Counter` для сегмента; `size` задаётся в `Segment` (`xs`). */
+export type SegmentCounterProps = Omit<CounterProps, 'size'>;
 
 export type IdType = string | number;
 
@@ -23,7 +27,7 @@ export type Segment<Value extends IdType = IdType> = {
   /** Позиция иконки относительно лейбла. */
   iconPosition?: IconPosition;
   /** Счётчик в сегменте (отображается после лейбла). */
-  counter?: string | number;
+  counter?: SegmentCounterProps;
   /** Render-обёртка над сегментом. */
   renderWrapSegment?: (segment: ReactNode) => ReactNode;
 };

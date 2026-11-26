@@ -53,8 +53,8 @@ const layouts: Array<{ key: string; items: Segment[] }> = [
   {
     key: 'withCounter',
     items: [
-      { value: 'inbox', label: 'Inbox', counter: 12 },
-      { value: 'drafts', label: 'Drafts', counter: 3 },
+      { value: 'inbox', label: 'Inbox', counter: { value: 12 } },
+      { value: 'drafts', label: 'Drafts', counter: { value: 3, appearance: 'neutral' } },
       { value: 'archive', label: 'Archive' },
     ],
   },
