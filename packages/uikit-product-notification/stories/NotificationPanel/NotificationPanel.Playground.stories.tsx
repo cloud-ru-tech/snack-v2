@@ -84,9 +84,9 @@ function PlaygroundRender({
         readAllButton={readAllButton && { ...readAllButton, onClick: () => setAllRead(prev => !prev) }}
         segments={{
           items: [
-            { value: SEGMENT_FILTER.All, label: 'Все', counter: 20 },
-            { value: SEGMENT_FILTER.Service, label: 'Сервисные', counter: 8 },
-            { value: SEGMENT_FILTER.System, label: 'Системные', counter: 4 },
+            { value: SEGMENT_FILTER.All, label: 'Все', counter: { value: 20 } },
+            { value: SEGMENT_FILTER.Service, label: 'Сервисные', counter: { value: 8 } },
+            { value: SEGMENT_FILTER.System, label: 'Системные', counter: { value: 4 } },
           ],
           value: segmentFilter,
           onChange: value => setSegmentFilter(String(value) as SegmentFilter),
