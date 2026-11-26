@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2026-11-26)
+
+### Features
+
+- **SITE-12461:** add section table ([e2333df](https://github.com/cloud-ru-tech/snack-v2/commit/e2333df8e9050b1de135bcdaf70ed3bd2bdcc5cc))
+- **SITE-12461:** rename prop for section basic ([f1d7f00](https://github.com/cloud-ru-tech/snack-v2/commit/f1d7f0083c2abee018cad49b6aec1fefa552497b))
+- **SITE-12461:** upd visual-matrix ([af61948](https://github.com/cloud-ru-tech/snack-v2/commit/af619484bcb53f0e5bd7a5ce5857c71e17e93f2d))
+
 ## 1.3.3 (2026-11-25)
 
 **Note:** Version bump only for package @ds/site-section
