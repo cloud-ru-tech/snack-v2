@@ -69,7 +69,11 @@ export function HotSpot({
 
   if (!children) {
     return (
-      <span {...extractSupportProps(rest)} className={styles.hotSpotDotContainer}>
+      <span
+        {...extractSupportProps(rest)}
+        className={styles.hotSpotDotContainer}
+        style={{ '--duration': duration } as CSSProperties}
+      >
         {dotRender ? dotRender(dotJSX) : dotJSX}
       </span>
     );

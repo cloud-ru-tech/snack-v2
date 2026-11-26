@@ -94,20 +94,25 @@ $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
     height: base.$sn-primitive-dimension-24;
   }
 
-  &[data-pulse] {
-    &::before {
-      content: '';
+  &[data-pulse]::before {
+    pointer-events: none;
+    content: '';
 
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    position: absolute;
+    inset: 0;
 
-      @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+    border-radius: inherit;
 
-      opacity: hotspot.$sn-hotSpot-effect-opacity-pulse-opacity;
+    opacity: hotspot.$sn-hotSpot-effect-opacity-pulse-opacity;
 
-      animation: pulse var(--duration, 2s) infinite;
+    animation: pulse var(--duration, 2s) infinite;
+
+    @supports (transform: scale(calc(1px / 1px))) {
+      --hot-spot-pulse-scale: calc(#{hotspot.$sn-hotSpot-anatomy-pulse-square} / #{hotspot.$sn-hotSpot-anatomy-dot-square});
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
     }
   }
 
@@ -136,16 +141,13 @@ $appearances: 'primary', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', '
 }
 
 @keyframes pulse {
-  0% {
-    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+  0%,
+  100% {
+    transform: scale(1);
   }
 
   70% {
-    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'pulse');
-  }
-
-  100% {
-    @include base.composite-var(hotspot.$hotSpot, 'anatomy', 'dot');
+    transform: scale(var(--hot-spot-pulse-scale, 2));
   }
 }
 
