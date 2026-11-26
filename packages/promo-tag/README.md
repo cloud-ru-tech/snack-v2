@@ -13,6 +13,10 @@
 
 ## Анатомия
 
+### Длинная подпись
+
+Передайте `truncate={{ variant: 'end' }}`, чтобы при нехватке места показать многоточие в конце подписи. Значение `'middle'` сохраняет начало и конец. У статического тега полная подпись появляется в подсказке сверху. Положение можно изменить, например `truncate={{ variant: 'middle', tooltipPlacement: 'bottom' }}`. Кнопки и ссылки сокращают подпись без подсказки.
+
 ### Appearance
 Цветовая палитра: `primary` — брендовый акцент, `neutral` — без окраски; `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `pink` — декоративные категории.
 
@@ -120,12 +124,20 @@ export function Polymorphic() {
 | `onClick` | `MouseEventHandler<HTMLElement>` | — | Колбэк для обработки клика на тег |
 | `roleAppearance` | `"accent"` \| `"decor"` | `accent` | Роль, в которой применяется `appearance`: акцентная заливка или декоративная |
 | `size` | `"m"` \| `"s"` \| `"xs"` | `s` | Размер |
+| `truncate` | `PromoTagTruncate` | — | Сокращает подпись до одной строки при нехватке места |
 
 #### Related types
 
 - `Appearance` = `"blue"` \| `"green"` \| `"neutral"` \| `"orange"` \| `"pink"` \| `"primary"` \| `"red"` \| `"violet"` \| `"yellow"`
 
 - `PolymorphicRef` = `ComponentPropsWithRef<T>["ref"]`
+
+**PromoTagTruncate**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tooltipPlacement` | `"bottom"` \| `"bottom-end"` \| `"bottom-start"` \| `"left"` \| `"left-end"` \| `"left-start"` \| `"right"` \| `"right-end"` \| `"right-start"` \| `"top"` \| `"top-end"` \| `"top-start"` | — | Положение подсказки с полной подписью. По умолчанию сверху |
+| `variant` | `"end"` \| `"middle"` | — | Положение многоточия |
 
 - `RoleAppearance` = `"accent"` \| `"decor"`
 

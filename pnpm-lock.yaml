@@ -2206,6 +2206,9 @@ importers:
       '@ds/materials':
         specifier: workspace:^
         version: link:../materials
+      '@ds/truncate-string':
+        specifier: workspace:^
+        version: link:../truncate-string
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

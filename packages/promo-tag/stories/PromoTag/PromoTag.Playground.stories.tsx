@@ -1,5 +1,7 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
-import { APPEARANCE, PromoTag, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
+import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
+import { PLACEMENT } from '@ds/tooltip';
+import { VARIANT } from '@ds/truncate-string';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
@@ -13,23 +15,35 @@ const slotPresets = {
   iconAfter: <PlaceholderSVG data-test-id={TEST_IDS.afterNode} />,
 } as const;
 
-const meta: Meta<typeof PromoTag> = {
+type TruncateOptions = NonNullable<PromoTagProps['truncate']>;
+type PlaygroundArgs = PromoTagProps & TruncateOptions & { clickable: boolean; enableTruncate: boolean };
+
+const meta: Meta<PlaygroundArgs> = {
   title: 'Components/PromoTag',
   component: PromoTag,
   parameters: { layout: 'fullscreen' },
-  render: args => (
+  render: ({ clickable, onClick, enableTruncate, variant, tooltipPlacement, ...args }) => (
     <DemoPage>
       <DemoPanel>
         <DemoTitle>Playground</DemoTitle>
-        <DemoHint>Промо-тег с иконкой до или после текста и набором appearance/roleAppearance.</DemoHint>
+        <DemoHint>Введите длинную подпись и включите обрезание. У кликабельного тега подсказка скрыта.</DemoHint>
         <DemoActions align='center'>
-          <PromoTag {...args} />
+          <PromoTag
+            {...args}
+            truncate={enableTruncate ? { variant, tooltipPlacement } : undefined}
+            onClick={clickable ? onClick : undefined}
+          />
         </DemoActions>
       </DemoPanel>
     </DemoPage>
   ),
   args: {
     label: 'Promo tag',
+    clickable: false,
+    enableTruncate: false,
+    variant: VARIANT.End,
+    tooltipPlacement: PLACEMENT.Top,
+    style: { maxWidth: 160 },
     appearance: APPEARANCE.Primary,
     roleAppearance: ROLE_APPEARANCE.Accent,
     size: SIZE.Xs,
@@ -38,6 +52,21 @@ const meta: Meta<typeof PromoTag> = {
     'data-test-id': TEST_IDS.root,
   },
   argTypes: {
+    clickable: { name: '[Stories]: clickable', control: 'boolean' },
+    truncate: { table: { disable: true } },
+    enableTruncate: { name: '[Stories]: enableTruncate', control: 'boolean' },
+    variant: {
+      name: '[Stories]: truncate.variant',
+      control: 'radio',
+      options: Object.values(VARIANT),
+      if: { arg: 'enableTruncate', eq: true },
+    },
+    tooltipPlacement: {
+      name: '[Stories]: truncate.tooltipPlacement',
+      control: 'select',
+      options: Object.values(PLACEMENT),
+      if: { arg: 'enableTruncate', eq: true },
+    },
     label: { control: 'text', description: 'Текст компонента' },
     appearance: { control: 'select', options: Object.values(APPEARANCE) },
     roleAppearance: { control: 'radio', options: Object.values(ROLE_APPEARANCE) },
@@ -59,7 +88,7 @@ const meta: Meta<typeof PromoTag> = {
 
 export default meta;
 
-type Story = StoryObj<typeof PromoTag>;
+type Story = StoryObj<PlaygroundArgs>;
 
 export const Playground: Story = {
   tags: ['dev', 'test'],

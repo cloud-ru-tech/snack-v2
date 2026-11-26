@@ -21,7 +21,7 @@ test.describe('PromoTag — visual regression', () => {
   });
 
   test('interaction-states', async ({ page, gotoStory, getByTestId, waitForFonts }) => {
-    await gotoStory(buildStoryOptions());
+    await gotoStory(buildStoryOptions({ clickable: true }));
     await waitForFonts();
 
     await assertInteractionStatesSnapshot(page, {

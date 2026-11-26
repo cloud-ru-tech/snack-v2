@@ -1,5 +1,6 @@
 import { PlaceholderSVG } from '@ds/icons/interface/system';
 import { APPEARANCE, PromoTag, PromoTagProps, ROLE_APPEARANCE, SIZE } from '@ds/promo-tag';
+import { VARIANT } from '@ds/truncate-string';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { StoryTable } from '#storybook/components';
@@ -98,6 +99,23 @@ export const VisualMatrix: Story = {
             )),
           },
         ]}
+      />
+      <StoryTable
+        sectionTitle='Truncate × Size'
+        firstColumnHeader='Variant'
+        columnHeaders={keySizes.map(size => size.toUpperCase())}
+        rows={Object.values(VARIANT).map(variant => ({
+          variantLabel: variant,
+          cells: keySizes.map(size => (
+            <PromoTag
+              key={size}
+              size={size}
+              label='Специальное предложение для новых клиентов'
+              truncate={{ variant }}
+              style={{ maxWidth: 160 }}
+            />
+          )),
+        }))}
       />
     </>
   ),

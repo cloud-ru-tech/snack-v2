@@ -1,3 +1,4 @@
+import { TruncateString } from '@ds/truncate-string';
 import { withInnerRefSupport } from '@ds/utils';
 import cn from 'classnames';
 import { ElementType, ReactElement } from 'react';
@@ -13,6 +14,7 @@ export function PromoTag<T extends ElementType = 'button'>({
   roleAppearance = ROLE_APPEARANCE.Accent,
   className,
   label,
+  truncate,
   beforeContent = null,
   afterContent = null,
   onClick,
@@ -33,13 +35,27 @@ export function PromoTag<T extends ElementType = 'button'>({
       className={cn(styles.container, className)}
       data-appearance={appearance}
       data-role-appearance={roleAppearance}
+      data-truncate={truncate ? true : undefined}
       data-size={size}
       data-clickable={isInteractive || undefined}
       {...spreadProps}
     >
       {isInteractive && <span className={styles.stateLayer} aria-hidden data-state='emptyDarkOnAccent' />}
       {beforeContent && <span className={styles.element}>{beforeContent}</span>}
-      {Boolean(label) && <span className={styles.labelWrapper}>{label}</span>}
+      {label && (
+        <span className={styles.labelWrapper}>
+          {truncate ? (
+            <TruncateString
+              variant={truncate.variant}
+              text={label}
+              placement={truncate.tooltipPlacement}
+              hideTooltip={isInteractive}
+            />
+          ) : (
+            label
+          )}
+        </span>
+      )}
       {afterContent && <span className={styles.element}>{afterContent}</span>}
     </Component>
   );

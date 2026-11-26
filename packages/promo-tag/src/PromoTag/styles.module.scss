@@ -35,6 +35,10 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
   box-sizing: border-box;
   border-width: 0;
 
+  &[data-truncate='true'] {
+    max-width: 100%;
+  }
+
   &[data-clickable] {
     @include materials.has-state-layer-as-child(#{stateLayer});
 
@@ -67,6 +71,10 @@ $appearances: 'blue', 'green', 'neutral', 'orange', 'pink', 'primary', 'red', 'v
 .labelWrapper {
   display: flex;
   align-items: center;
+
+  .container[data-truncate='true'] > & {
+    min-width: 0;
+  }
 
   @each $size in $sizes {
     .container[data-size='#{$size}'] > & {

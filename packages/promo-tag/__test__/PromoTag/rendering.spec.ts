@@ -1,6 +1,6 @@
 import { expect, test } from '#playwright-tooling/fixtures';
 
-import { buildStoryOptions, PROMO_TAG_KEY_COMBOS, TEST_IDS } from './helpers';
+import { buildStoryOptions, PROMO_TAG_KEY_COMBOS, PROMO_TAG_STORIES, TEST_IDS } from './helpers';
 
 test.describe('PromoTag — rendering', () => {
   test('renders with default props', async ({ gotoStory, getByTestId }) => {
@@ -14,6 +14,41 @@ test.describe('PromoTag — rendering', () => {
 
     await expect(getByTestId(TEST_IDS.root)).toHaveText('Super promo tag');
   });
+
+  for (const variant of ['end', 'middle']) {
+    test(`shows the full label for ${variant} truncation`, async ({ gotoStory, getByTestId, page }) => {
+      const label = 'Специальное предложение для новых клиентов';
+      await gotoStory(buildStoryOptions({ label, 'truncate.variant': variant }, PROMO_TAG_STORIES.withTruncate));
+
+      await getByTestId(TEST_IDS.root).hover();
+      await expect(page.getByRole('tooltip')).toHaveText(label);
+    });
+  }
+
+  test('configures truncation in the playground', async ({ gotoStory, getByTestId, page }) => {
+    const label = 'Special promotional offer for new customers';
+    await gotoStory(buildStoryOptions({ label, enableTruncate: true, variant: 'middle', tooltipPlacement: 'bottom' }));
+
+    await getByTestId(TEST_IDS.root).hover();
+    await expect(page.getByRole('tooltip')).toHaveText(label);
+  });
+
+  for (const props of [{ clickable: true }, { as: 'a', href: 'promo' }]) {
+    test(`truncates the ${props.clickable ? 'button' : 'link'} without a tooltip`, async ({
+      gotoStory,
+      getByTestId,
+      page,
+    }) => {
+      const label = 'Special promotional offer for new customers';
+      await gotoStory(buildStoryOptions({ ...props, label, enableTruncate: true, variant: 'middle' }));
+      const root = getByTestId(TEST_IDS.root);
+      await expect(root).toHaveRole(props.clickable ? 'button' : 'link');
+      await expect(root).toHaveAccessibleName(label);
+      await expect(root.getByText(/Special.*\.\.\..*customers/)).toBeVisible();
+      await root.hover();
+      await expect(page.getByRole('tooltip')).toHaveCount(0);
+    });
+  }
 
   test('renders beforeContent', async ({ gotoStory, getByTestId }) => {
     await gotoStory(buildStoryOptions({ beforeContent: 'iconBefore', size: 'xs' }));

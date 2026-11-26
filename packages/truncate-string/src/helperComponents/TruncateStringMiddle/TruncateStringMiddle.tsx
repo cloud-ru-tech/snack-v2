@@ -32,10 +32,6 @@ export function TruncateStringMiddle({
   const truncatedTextElementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (hideTooltip) {
-      return;
-    }
-
     const setTruncate = throttle(() => {
       setTruncatedString(
         truncateStringMiddle({
@@ -44,7 +40,7 @@ export function TruncateStringMiddle({
           text,
         }),
       );
-      setShowTooltip(isEllipsisActive(textElementRef.current));
+      setShowTooltip(!hideTooltip && isEllipsisActive(textElementRef.current));
     }, 50);
 
     setTruncate();
@@ -63,6 +59,7 @@ export function TruncateStringMiddle({
     return () => {
       cancelAnimationFrame(rafId);
       observer?.disconnect();
+      setTruncate.cancel();
     };
   }, [showTooltip, text, hideTooltip]);
 
@@ -71,7 +68,12 @@ export function TruncateStringMiddle({
       <span ref={textElementRef} className={styles.fullText} data-test-id={TEST_IDS.fullText}>
         {text}
       </span>
-      <span ref={truncatedTextElementRef} className={styles.truncatedText} data-test-id={TEST_IDS.truncatedText}>
+      <span
+        aria-hidden
+        ref={truncatedTextElementRef}
+        className={styles.truncatedText}
+        data-test-id={TEST_IDS.truncatedText}
+      >
         {truncatedString}
       </span>
     </>
