@@ -907,9 +907,12 @@
         "kind": "interface",
         "props": {
           "counter": {
-            "type": "string | number | undefined",
+            "type": "SegmentCounterProps | undefined",
             "required": false,
-            "description": "Счётчик в сегменте (отображается после лейбла)."
+            "description": "Счётчик в сегменте (отображается после лейбла).",
+            "typeRefs": [
+              "SegmentCounterProps"
+            ]
           },
           "disabled": {
             "type": "boolean | undefined",
