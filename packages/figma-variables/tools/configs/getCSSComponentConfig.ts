@@ -3,7 +3,7 @@ import StyleDictionary, { type Config } from 'style-dictionary';
 
 import { getStyleDictionaryLogConfig } from '../config/getStyleDictionaryLogConfig.js';
 import { createSourceTokensExcludeGroupsFilter } from '../filters/SourceTokensExcludeGroupsFilter.js';
-import { FormatName, type TokenSet, TransformName, PreprocessorName } from '../types.js';
+import { FormatName, PreprocessorName, type TokenSet, TransformName } from '../types.js';
 import { collectThemeIncludes } from '../utils/themeIncludes.js';
 import { toFilePaths } from '../utils/tokenSets.js';
 

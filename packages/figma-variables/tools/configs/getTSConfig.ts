@@ -2,7 +2,7 @@ import StyleDictionary, { type Config } from 'style-dictionary';
 
 import { getStyleDictionaryLogConfig } from '../config/getStyleDictionaryLogConfig.js';
 import { createExcludeGroupsFilter } from '../filters/ExcludeGroupsFilter.js';
-import { FilterName, FormatName, type TokenSet, PreprocessorName } from '../types.js';
+import { FilterName, FormatName, PreprocessorName, type TokenSet } from '../types.js';
 import { toFilePaths } from '../utils/tokenSets.js';
 
 export function getTSConfig(tokenSets: TokenSet[], buildPath: string, excludeGroups: string[] = []): Config | null {
