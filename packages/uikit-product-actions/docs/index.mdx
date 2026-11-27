@@ -1,0 +1,62 @@
+---
+title: Actions
+package: '@ds/uikit-product-actions'
+description: Адаптивная панель действий с меню переполнения.
+---
+
+import { BasicActions } from '../demos/examples/BasicActions';
+import BasicActionsSource from '../demos/examples/BasicActions.tsx?raw';
+import { LimitedActions } from '../demos/examples/LimitedActions';
+import LimitedActionsSource from '../demos/examples/LimitedActions.tsx?raw';
+import { ActionTypes } from '../demos/examples/ActionTypes';
+import ActionTypesSource from '../demos/examples/ActionTypes.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import doc from './props.json';
+
+# Actions
+
+Общая панель действий для блоков и страничных раскладок.
+
+## Когда использовать
+
+Используйте панель, если действия должны переходить в меню при нехватке места. Массив `items` задаёт приоритет: первое действие остаётся видимым дольше остальных и находится ближе к меню. Для переставляемых действий задавайте уникальный `id`. Без `id` ключом служит исходная позиция в `items`, поэтому скрытие соседей не меняет ключ.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-actions
+```
+
+## Примеры использования
+
+<Example title='Панель действий' code={BasicActionsSource}>
+  <BasicActions client:visible />
+</Example>
+
+`maxVisibleItems={1}` оставляет одну кнопку в панели. Остальные действия доступны в меню с тремя точками, даже если ширины контейнера достаточно для всех кнопок.
+
+<Example title='Ограничение числа видимых действий' code={LimitedActionsSource}>
+  <LimitedActions client:visible />
+</Example>
+
+`variant` задаёт тип действия. `dropdown`, `droplist` и `kebab` открывают меню, `quota` — виджет квот. Для `custom` задаются отдельные представления в панели и в меню. В примере `collapse={false}` сохраняет каждое действие в панели на desktop.
+
+<Example title='Все типы действий' code={ActionTypesSource}>
+  <ActionTypes client:visible />
+</Example>
+
+## Адаптивность
+
+Панель учитывает ширину контейнера и ограничение `maxVisibleItems`. На desktop дополнительные действия открываются в popover, на mobile — в bottom-sheet. Мобильные текстовые кнопки делят доступную ширину. `collapse={false}` отключает сворачивание только на desktop и сохраняет поведение панели PageLayout.
+
+Для `variant: 'custom'` передайте `render`, возвращающий `default` (кнопка) и `asListItem` (пункт меню). React hooks вызывайте внутри компонента из `default`.
+
+## Props
+
+<PropsTable data={doc.Actions} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-actions--playground' />

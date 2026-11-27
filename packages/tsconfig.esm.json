@@ -370,6 +370,9 @@
       "path": "./uikit-product-quota/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-actions/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-page-layout/tsconfig.esm.json"
     },
     {

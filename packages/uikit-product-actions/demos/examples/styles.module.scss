@@ -1,0 +1,24 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.example {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-16;
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.variant {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-8;
+}
+
+.actions {
+  justify-content: flex-end;
+  height: auto;
+}

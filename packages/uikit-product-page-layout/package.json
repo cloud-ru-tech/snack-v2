@@ -56,9 +56,8 @@
     "@ds/tree": "workspace:^",
     "@ds/truncate-string": "workspace:^",
     "@ds/typography": "workspace:^",
-    "@ds/uikit-product-button-predefined": "workspace:^",
+    "@ds/uikit-product-actions": "workspace:^",
     "@ds/uikit-product-copy": "workspace:^",
-    "@ds/uikit-product-quota": "workspace:^",
     "@ds/utils": "workspace:^",
     "classnames": "catalog:"
   },

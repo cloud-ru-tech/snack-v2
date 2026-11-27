@@ -616,6 +616,9 @@ importers:
       '@ds/typography':
         specifier: workspace:*
         version: link:../../packages/typography
+      '@ds/uikit-product-actions':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-actions
       '@ds/uikit-product-avatar-detail':
         specifier: workspace:*
         version: link:../../packages/uikit-product-avatar-detail
@@ -2857,6 +2860,45 @@ importers:
         specifier: 'catalog:'
         version: 2.5.1
 
+  packages/uikit-product-actions:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/button':
+        specifier: workspace:^
+        version: link:../button
+      '@ds/figma-variables':
+        specifier: workspace:^
+        version: link:../figma-variables
+      '@ds/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@ds/list':
+        specifier: workspace:^
+        version: link:../list
+      '@ds/locale':
+        specifier: workspace:^
+        version: link:../locale
+      '@ds/modal':
+        specifier: workspace:^
+        version: link:../modal
+      '@ds/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@ds/uikit-product-button-predefined':
+        specifier: workspace:^
+        version: link:../uikit-product-button-predefined
+      '@ds/uikit-product-quota':
+        specifier: workspace:^
+        version: link:../uikit-product-quota
+      '@ds/utils':
+        specifier: workspace:^
+        version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
   packages/uikit-product-avatar-detail:
     dependencies:
       '@ds/avatar':
@@ -3605,15 +3647,12 @@ importers:
       '@ds/typography':
         specifier: workspace:^
         version: link:../typography
-      '@ds/uikit-product-button-predefined':
+      '@ds/uikit-product-actions':
         specifier: workspace:^
-        version: link:../uikit-product-button-predefined
+        version: link:../uikit-product-actions
       '@ds/uikit-product-copy':
         specifier: workspace:^
         version: link:../uikit-product-copy
-      '@ds/uikit-product-quota':
-        specifier: workspace:^
-        version: link:../uikit-product-quota
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils

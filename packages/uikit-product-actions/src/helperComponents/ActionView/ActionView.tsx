@@ -1,0 +1,80 @@
+import { Button, ButtonProps, Size, VIEW } from '@ds/button';
+import { Tooltip } from '@ds/tooltip';
+import { ButtonDropdown, ButtonDropdownProps } from '@ds/uikit-product-button-predefined';
+import { ReactNode } from 'react';
+
+import { BUTTON_TYPE } from '../../constants';
+import { Action } from '../../types';
+import { ButtonDroplist, ButtonDroplistProps } from '../ButtonDroplist';
+import { ButtonKebab, ButtonKebabProps } from '../ButtonKebab';
+import { ButtonQuota, ButtonQuotaProps } from '../ButtonQuota';
+
+type CommonProps = { className?: string; size?: Size; fullWidth?: boolean };
+
+/**
+ * Рендерит один action. Составные варианты (`dropdown`/`kebab`/`droplist`) монтируют адаптивные
+ * `@ds`-примитивы, которые берут раскладку из `AdaptiveProvider`. Раскладку фиксируют обёртки
+ * `DesktopActions` / `MobileActions` (`withLayoutType`), поэтому отдельный проп `layoutType` не нужен.
+ */
+export function ActionView({ hidden, tooltip, commonProps, ...action }: Action & { commonProps: CommonProps }) {
+  if (hidden) return null;
+
+  if (action.variant === 'custom') {
+    const content = (
+      <div className={commonProps.className} data-full-width={commonProps.fullWidth || undefined}>
+        {action.render().default}
+      </div>
+    );
+    return tooltip ? (
+      <Tooltip {...tooltip} disableSpanWrapper={commonProps.fullWidth || tooltip.disableSpanWrapper}>
+        {content}
+      </Tooltip>
+    ) : (
+      content
+    );
+  }
+
+  const { variant, ...buttonProps } = action;
+
+  // disableSpanWrapper — кнопка остаётся ПРЯМЫМ flex-потомком контейнера действий: без него Tooltip
+  // добавляет span-обёртку (`flex:0 1 auto`), и `fullWidth`-кнопка (`flex:1 1 0`) не растягивается на
+  // всю ширину (mobile: 2 действия должны делить строку). Как в MobilePageForm ButtonGroup.
+  const addTooltip = (component: ReactNode) =>
+    tooltip ? (
+      <Tooltip {...tooltip} disableSpanWrapper>
+        {component}
+      </Tooltip>
+    ) : (
+      component
+    );
+
+  switch (variant) {
+    case BUTTON_TYPE.Outline:
+      return addTooltip(<Button view={VIEW.Outline} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
+    case BUTTON_TYPE.Tonal:
+      return addTooltip(<Button view={VIEW.Tonal} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
+    case BUTTON_TYPE.Function:
+      return addTooltip(<Button view={VIEW.Function} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
+    case BUTTON_TYPE.Simple:
+      return addTooltip(<Button view={VIEW.Simple} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
+    case BUTTON_TYPE.Dropdown: {
+      return addTooltip(<ButtonDropdown {...(buttonProps as ButtonDropdownProps)} {...commonProps} />);
+    }
+    case BUTTON_TYPE.Kebab: {
+      const { button, list } = buttonProps as ButtonKebabProps;
+      return addTooltip(<ButtonKebab button={{ ...button, ...commonProps }} list={list} />);
+    }
+    case BUTTON_TYPE.Droplist: {
+      const { button, list } = buttonProps as ButtonDroplistProps;
+      return addTooltip(<ButtonDroplist button={{ ...button, ...commonProps }} list={list} />);
+    }
+    case BUTTON_TYPE.Quota: {
+      const quotaProps = buttonProps as ButtonQuotaProps;
+
+      return addTooltip(<ButtonQuota {...quotaProps} buttonProps={quotaProps.buttonProps ?? commonProps} />);
+    }
+    case BUTTON_TYPE.Filled:
+    default:
+      return addTooltip(<Button view={VIEW.Filled} {...(buttonProps as ButtonProps<'a'>)} {...commonProps} />);
+  }
+}

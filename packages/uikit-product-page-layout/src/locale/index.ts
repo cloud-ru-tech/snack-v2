@@ -6,6 +6,7 @@ import { defineLocale, defineMessages } from '@ds/locale';
  */
 const PAGE_LAYOUT_MESSAGES = defineMessages({
   'en-GB': {
+    Actions: { more: 'More actions' },
     PageForm: {
       continue: 'Continue',
       create: 'Create',
@@ -31,6 +32,7 @@ const PAGE_LAYOUT_MESSAGES = defineMessages({
     },
   },
   'ru-RU': {
+    Actions: { more: 'Другие действия' },
     PageForm: {
       continue: 'Продолжить',
       create: 'Создать',

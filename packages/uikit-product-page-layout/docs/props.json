@@ -108,6 +108,10 @@
         ],
         "description": "Позиция иконки относительно текста"
       },
+      "id": {
+        "type": "string",
+        "required": false
+      },
       "innerRef": {
         "type": "((instance: HTMLButtonElement | null) => void) | RefObject<HTMLButtonElement> | ((instance: HTMLAnchorElement | null) => void) | RefObject<...> | null",
         "required": false,
@@ -2571,6 +2575,13 @@
       }
     }
   },
+  "ButtonQuotaProps": {
+    "displayName": "ButtonQuotaProps",
+    "propsTypeName": null,
+    "description": "Кнопка квот с адаптивным виджетом.",
+    "props": {},
+    "relatedTypes": {}
+  },
   "ConditionalPopover": {
     "displayName": "ConditionalPopover",
     "propsTypeName": null,
@@ -2677,11 +2688,16 @@
   "DesktopActions": {
     "displayName": "DesktopActions",
     "propsTypeName": "Pick",
-    "description": "Десктопная панель действий. Форсирует `desktop`-раскладку через `withLayoutType`, чтобы вложенные\nадаптивные `@ds`-примитивы (`ButtonDropdown`/`ButtonKebab`/`ButtonDroplist`) рендерили\ndesktop-popover даже под mobile-провайдером.",
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Класс контейнера действий."
+      },
       "items": {
         "type": "Action[]",
-        "required": true
+        "required": true,
+        "description": "Действия в порядке приоритета: первое остаётся видимым дольше остальных."
       }
     },
     "relatedTypes": {}
@@ -3560,1196 +3576,31 @@
   },
   "MobileActions": {
     "displayName": "MobileActions",
-    "propsTypeName": "ActionsProps",
-    "description": "Мобильная панель действий. Форсирует `mobile`-раскладку через `withLayoutType`, чтобы вложенные\nадаптивные `@ds`-примитивы (`ButtonDropdown`/`ButtonKebab`/`ButtonDroplist`) рендерили\nbottom-sheet даже под desktop-провайдером.",
+    "propsTypeName": "Pick",
     "props": {
+      "className": {
+        "type": "string",
+        "required": false,
+        "description": "Класс контейнера действий."
+      },
+      "groupDividers": {
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Разделять группы пунктов меню."
+      },
       "items": {
         "type": "Action[]",
         "required": true,
-        "typeRefs": [
-          "Action",
-          "ButtonDropdownDroplistConfig",
-          "ButtonDroplistProps",
-          "ButtonKebabProps",
-          "CustomAction",
-          "QuotaWidgetPropsBase"
-        ]
+        "description": "Действия в порядке приоритета: первое остаётся видимым дольше остальных."
       },
       "maxVisibleItems": {
         "type": "number",
-        "required": false
+        "required": false,
+        "description": "Максимальное число видимых действий. Остальные доступны в меню."
       }
     },
-    "relatedTypes": {
-      "Action": {
-        "kind": "alias",
-        "type": "CustomAction | StandardAction",
-        "own": true
-      },
-      "BaseItemWithoutNonGroup": {
-        "kind": "interface",
-        "props": {
-          "afterContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Слот после основного контента"
-          },
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Слот до основного контента"
-          },
-          "checked": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляемое состояние выбранности айтема"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "content": {
-            "type": "ReactNode | ItemContentProps",
-            "required": false,
-            "description": "Основной контент айтема",
-            "typeRefs": [
-              "ItemContent"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг неактивности элемента"
-          },
-          "hidden": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скрыть элемент из списка (не рендерится и исключается из навигации)"
-          },
-          "id": {
-            "type": "ItemId | undefined",
-            "required": false,
-            "description": "Уникальный идентификатор",
-            "typeRefs": [
-              "ItemId"
-            ]
-          },
-          "itemRef": {
-            "type": "RefObject<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на DOM-элемент айтема"
-          },
-          "itemWrapRender": {
-            "type": "((item: ReactNode) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-обёртка вокруг айтема (например, для проксирования в `Tooltip`/`Link`)"
-          },
-          "onBlur": {
-            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки блюра"
-          },
-          "onClick": {
-            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки клика"
-          },
-          "onFocus": {
-            "type": "((e: FocusEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки фокуса"
-          },
-          "onKeyDown": {
-            "type": "((e: KeyboardEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки нажатия клавиши"
-          },
-          "onMouseDown": {
-            "type": "((e: MouseEvent<HTMLElement>) => void) | undefined",
-            "required": false,
-            "description": "Колбек обработки нажатия кнопки мыши"
-          },
-          "showSwitchIcon": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг отображения иконки у чекбоксов"
-          }
-        },
-        "own": false
-      },
-      "ButtonDropdownDroplistConfig": {
-        "kind": "interface",
-        "props": {
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          }
-        },
-        "own": false
-      },
-      "ButtonDroplistProps": {
-        "kind": "interface",
-        "props": {
-          "button": {
-            "type": "(Omit<ButtonProps, \"view\" | \"appearance\"> & { buttonType?: \"filled\"; }) | (Omit<ButtonProps, \"view\" | \"icon\" | \"appearance\" | \"iconPosition\"> & { buttonType?: \"function\"; })",
-            "required": true,
-            "typeRefs": [
-              "ButtonProps"
-            ]
-          },
-          "list": {
-            "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
-            "required": true,
-            "typeRefs": [
-              "DroplistAdaptiveProps",
-              "DroplistListProps",
-              "DroplistMobileSlots",
-              "DroplistProps",
-              "EmptyState",
-              "PublicListContextType",
-              "ScrollProps",
-              "SelectionState"
-            ]
-          }
-        },
-        "own": true
-      },
-      "ButtonKebabProps": {
-        "kind": "interface",
-        "props": {
-          "button": {
-            "type": "Omit<ButtonProps, \"view\" | \"icon\" | \"label\"> | undefined",
-            "required": false,
-            "typeRefs": [
-              "ButtonProps"
-            ]
-          },
-          "list": {
-            "type": "{ className?: string | undefined; open?: boolean | undefined; onOpenChange?: ((isOpen: boolean) => void) | undefined; items: Item[]; closeDroplistOnItemClick?: boolean | undefined; }",
-            "required": true,
-            "typeRefs": [
-              "DroplistAdaptiveProps",
-              "DroplistListProps",
-              "DroplistMobileSlots",
-              "DroplistProps",
-              "EmptyState",
-              "PublicListContextType",
-              "ScrollProps",
-              "SelectionState"
-            ]
-          }
-        },
-        "own": true
-      },
-      "ButtonProps": {
-        "kind": "interface",
-        "props": {
-          "appearance": {
-            "type": "Appearance | undefined",
-            "required": false,
-            "values": [
-              "critical",
-              "neutral",
-              "primary"
-            ],
-            "description": "Вариант оформления",
-            "typeRefs": [
-              "Appearance"
-            ]
-          },
-          "as": {
-            "type": "T | undefined",
-            "required": false,
-            "description": "Элемент или компонент для рендера: 'button' | 'a' | ComponentType (например Link из react-router-dom)"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Дополнительный класс"
-          },
-          "counter": {
-            "type": "Omit<CounterProps, \"size\"> | undefined",
-            "required": false,
-            "description": "Пропсы для counter. `appearance` можно задать явно (по умолчанию наследуется от appearance кнопки).",
-            "typeRefs": [
-              "CounterProps"
-            ]
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disabled": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключена"
-          },
-          "fullWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "На всю ширину"
-          },
-          "icon": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Иконка"
-          },
-          "iconPosition": {
-            "type": "IconPosition | undefined",
-            "required": false,
-            "values": [
-              "after",
-              "before"
-            ],
-            "description": "Позиция иконки относительно текста",
-            "typeRefs": [
-              "IconPosition"
-            ]
-          },
-          "innerRef": {
-            "type": "PolymorphicRef<T> | undefined",
-            "required": false,
-            "description": "Ref на реальный DOM-элемент/инстанс, который рендерится через `as`.\nИспользуем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт.",
-            "typeRefs": [
-              "PolymorphicRef"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Текст кнопки"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Состояние загрузки"
-          },
-          "minWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Минимальная ширина контейнера (`min-width` из токена размера). По умолчанию `true`.\n`false` — кнопка сжимается по контенту вместо фиксированного минимума."
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер",
-            "typeRefs": [
-              "Size"
-            ]
-          },
-          "view": {
-            "type": "View | undefined",
-            "required": false,
-            "values": [
-              "elevated",
-              "filled",
-              "function",
-              "outline",
-              "simple",
-              "tonal"
-            ],
-            "description": "Вариант кнопки (Figma: filled, outline, function, simple, elevated)",
-            "typeRefs": [
-              "View"
-            ]
-          }
-        },
-        "own": false
-      },
-      "CommonGroupItem": {
-        "kind": "interface",
-        "props": {
-          "beforeContent": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Слот иконки слева от label."
-          },
-          "divider": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показать разделитель над группой"
-          },
-          "groupVariant": {
-            "type": "\"subtitle\" | \"subtitleTertiary\" | undefined",
-            "required": false,
-            "values": [
-              "subtitle",
-              "subtitleTertiary"
-            ],
-            "description": "Визуальный стиль заголовка группы"
-          },
-          "hidden": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Скрыть группу из списка"
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Заголовок группы"
-          },
-          "truncate": {
-            "type": "{ variant?: TruncateStringProps[\"variant\"]; } | undefined",
-            "required": false,
-            "description": "Настройки усечения длинного заголовка группы"
-          }
-        },
-        "own": false
-      },
-      "CustomAction": {
-        "kind": "interface",
-        "props": {
-          "hidden": {
-            "type": "boolean | undefined",
-            "required": false
-          },
-          "render": {
-            "type": "() => { default: ReactNode; asListItem: Item; }",
-            "required": true,
-            "description": "Вызывается при рендеринге; React hooks следует использовать внутри компонента default."
-          },
-          "tooltip": {
-            "type": "TooltipProps | undefined",
-            "required": false,
-            "typeRefs": [
-              "TooltipProps"
-            ]
-          },
-          "variant": {
-            "type": "\"custom\"",
-            "required": true
-          }
-        },
-        "own": true
-      },
-      "DroplistAdaptiveProps": {
-        "kind": "interface",
-        "props": {
-          "layoutPresets": {
-            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
-            "required": false,
-            "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
-            "typeRefs": [
-              "DroplistLayoutDefaults",
-              "LayoutPresets"
-            ]
-          }
-        },
-        "own": false
-      },
-      "DroplistListProps": {
-        "kind": "alias",
-        "type": "{ [P in Exclude<keyof T, \"tabIndex\" | \"onKeyDown\" | \"keyboardNavigationRef\" | \"hasListInFocusChain\">]: T[P]; }",
-        "own": false
-      },
-      "DroplistMobileSlots": {
-        "kind": "interface",
-        "props": {
-          "actionButton": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): заголовок шапки."
-          },
-          "onBackButtonClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
-          },
-          "slotAfterTitle": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
-          }
-        },
-        "own": false
-      },
-      "DroplistProps": {
-        "kind": "interface",
-        "props": {
-          "actionButton": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): action-кнопка справа в шапке."
-          },
-          "alwaysShowSearch": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать включённый поиск при любом количестве пунктов."
-          },
-          "barHideStrategy": {
-            "type": "BarHideStrategy | undefined",
-            "required": false,
-            "values": [
-              "leave",
-              "move",
-              "never",
-              "scroll"
-            ],
-            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
-            "typeRefs": [
-              "BarHideStrategy"
-            ]
-          },
-          "children": {
-            "type": "ReactNode | ((params: { onKeyDown?: (e: KeyboardEvent<HTMLElement>) => void; }) => ReactNode)",
-            "required": true,
-            "description": "Триггер для дроплиста"
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс"
-          },
-          "closeDroplistOnItemClick": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать выпадающий список после клика на базовый айтем.\n\nРаботает в режимах selection: 'none' | 'single'"
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "collapse": {
-            "type": "CollapseState | undefined",
-            "required": false,
-            "description": "Настройки раскрытия элементов",
-            "typeRefs": [
-              "CollapseState"
-            ]
-          },
-          "container": {
-            "type": "RefObject<HTMLElement | null> | undefined",
-            "required": false,
-            "description": "Контейнер портала (ref). Переопределяет `PortalContext` для этого дроплиста\n(по аналогии с `container` у Modal/Drawer). По умолчанию — из `PortalContextProvider`."
-          },
-          "contentRender": {
-            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер функция основного контента айтема"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "footer": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Кастомизируемый элемент в конце списка"
-          },
-          "footerActiveElementsRefs": {
-            "type": "RefObject<HTMLElement>[] | undefined",
-            "required": false,
-            "description": "Список ссылок на кастомные элементы, помещенные в специальную секцию внизу списка"
-          },
-          "footerDivider": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать divider между body и footer (Figma `dropdownContainer.dividerWrapper` снизу)"
-          },
-          "groupItemRender": {
-            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
-          },
-          "header": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Кастомизируемый элемент в начале списка — Figma `dropdownContainer.topBar`.\nПодходит для заголовка / справочного блока над поиском."
-          },
-          "headerDivider": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Показывать divider между header и body (Figma `dropdownContainer.dividerWrapper` сверху)"
-          },
-          "itemRender": {
-            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
-          },
-          "items": {
-            "type": "Item[]",
-            "required": true,
-            "description": "Основные элементы списка",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "label": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): заголовок шапки."
-          },
-          "layoutPresets": {
-            "type": "Partial<Record<LayoutType, Partial<DroplistLayoutDefaults>>> | undefined",
-            "required": false,
-            "description": "Переопределение размера списка и видимости поиска по раскладке. На mobile по умолчанию `l`.",
-            "typeRefs": [
-              "DroplistLayoutDefaults",
-              "LayoutPresets"
-            ]
-          },
-          "limitedScrollHeight": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Ограничить максимальную высоту скролл-контейнера в зависимости от `size`"
-          },
-          "listRef": {
-            "type": "RefObject<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент выпадающего списка"
-          },
-          "loading": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за состояние загрузки списка"
-          },
-          "marker": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отображать ли маркер у выбранного элемента списка"
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "onBackButtonClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): callback back-кнопки."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "onScroll": {
-            "type": "((event?: Event) => void) | undefined",
-            "required": false,
-            "description": "Колбек на скролл прокручиваемого списка"
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "pinBottom": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные снизу",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "pinTop": {
-            "type": "Item[] | undefined",
-            "required": false,
-            "description": "Элементы списка, закрепленные сверху",
-            "typeRefs": [
-              "BaseItemWithoutNonGroup",
-              "CommonGroupItem",
-              "Item",
-              "ScrollProps"
-            ]
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollContainerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс для scroll обертки основного списка айтемов"
-          },
-          "scrollContainerRef": {
-            "type": "Ref<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на контейнер, который скроллится"
-          },
-          "scrollRef": {
-            "type": "Ref<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
-          },
-          "scrollToSelectedItem": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг, отвечающий за прокручивание до выбранного элемента"
-          },
-          "search": {
-            "type": "SearchState | undefined",
-            "required": false,
-            "description": "Настройки поисковой строки",
-            "typeRefs": [
-              "SearchState"
-            ]
-          },
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер списка",
-            "typeRefs": [
-              "Size (@ds/list)"
-            ]
-          },
-          "slotAfterTitle": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": false,
-            "description": "Только mobile (`BottomSheet`): slot справа от заголовка."
-          },
-          "snapPoints": {
-            "type": "SnapPoint[] | undefined",
-            "required": false,
-            "description": "Массив фиксированных позиций sheet'а от меньшей к большей. По дефолту `undefined` —\nsheet `height: auto` с одним snap'ом по высоте контента.\n\nПример: `[0.5, 1]` — sheet открывается на половину экрана, drag вверх раскрывает\nдо full-viewport; drag вниз ниже `0.5` ведёт к закрытию.\n\nКонтракт массива (движок не сортирует и не дедуплицирует — порядок и различимость на\nстороне потребителя):\n- строго по возрастанию: индекс `0` — самая компактная позиция, последний — top / expanded;\n- значения должны резолвиться в различные высоты (`['50%', 0.5]` на типичном вьюпорте дадут\n  одну высоту → дубль-индекс будет недостижим свайпом);\n- `'fit-content'` имеет смысл только как ЕДИНСТВЕННЫЙ snap (без `snapPoints`); внутри массива\n  фиксированных позиций его «контентная» высота не определена.",
-            "typeRefs": [
-              "SnapPoint"
-            ]
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerElemRef": {
-            "type": "RefObject<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент-триггер для дроплиста"
-          },
-          "untouchableScrollbars": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить виртуализацию элементов списка. Рекомендуется при количестве элементов от 1000."
-          },
-          "widthStrategy": {
-            "type": "PopoverWidthStrategy | undefined",
-            "required": false,
-            "values": [
-              "auto",
-              "eq",
-              "gte"
-            ],
-            "description": "Стратегия управления шириной контейнера поповера\n<br/> - `auto` - соответствует ширине контента,\n<br/> - `gte` - Great Than or Equal, равен ширине таргета или больше ее, если контент в поповере шире,\n<br/> - `eq` - Equal, строго равен ширине таргета.",
-            "typeRefs": [
-              "PopoverWidthStrategy"
-            ]
-          },
-          "withDividers": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Тонкие линии между topBar↔body и body↔footer: разграничивают закреплённые шапку и подвал\nот прокручиваемого под ними содержимого. Передайте `false`, чтобы убрать обе линии."
-          }
-        },
-        "own": false
-      },
-      "EmptyState": {
-        "kind": "interface",
-        "props": {
-          "dataError": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Загрузка данных завершилась ошибкой: показывается `errorDataState`"
-          },
-          "dataFiltered": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Текущий пустой список — результат поиска/фильтра: показывается `noResultsState` вместо `noDataState`"
-          },
-          "errorDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при ошибке запроса",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noDataState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии данных",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          },
-          "noResultsState": {
-            "type": "EmptyStateProps | undefined",
-            "required": false,
-            "description": "Экран при отсутствии результатов поиска или фильтров",
-            "typeRefs": [
-              "EmptyStateProps"
-            ]
-          }
-        },
-        "own": false
-      },
-      "Item": {
-        "kind": "alias",
-        "type": "BaseItem | GroupItem | GroupSelectItem | NextListItem | AccordionItem",
-        "own": false
-      },
-      "Placement": {
-        "kind": "union",
-        "values": [
-          "bottom",
-          "bottom-end",
-          "bottom-start",
-          "left",
-          "left-end",
-          "left-start",
-          "right",
-          "right-end",
-          "right-start",
-          "top",
-          "top-end",
-          "top-start"
-        ],
-        "own": false
-      },
-      "PublicListContextType": {
-        "kind": "interface",
-        "props": {
-          "contentRender": {
-            "type": "((props: ContentRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер функция основного контента айтема"
-          },
-          "groupItemRender": {
-            "type": "((props: GroupItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция заголовка группы вместо дефолтной разметки `Separator`.\nНе задана — заголовок/разделитель рисуются как раньше."
-          },
-          "itemRender": {
-            "type": "((props: ItemRenderProps) => ReactNode) | undefined",
-            "required": false,
-            "description": "Рендер-функция оболочки строки вместо дефолтной разметки `BaseItem`.\nНе задана — строка рисуется как раньше. `itemWrapRender` по-прежнему оборачивает результат."
-          },
-          "marker": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отображать ли маркер у выбранного элемента списка"
-          },
-          "size": {
-            "type": "Size | undefined",
-            "required": false,
-            "values": [
-              "l",
-              "m",
-              "s"
-            ],
-            "description": "Размер списка",
-            "typeRefs": [
-              "Size (@ds/list)"
-            ]
-          },
-          "virtualized": {
-            "type": "boolean | undefined",
-            "required": false
-          }
-        },
-        "own": false
-      },
-      "QuotaWidgetPropsBase": {
-        "kind": "interface",
-        "props": {
-          "canEditQuota": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг наличия прав на редактирование квот"
-          },
-          "disableSorting": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Флаг отключения сортировки квот"
-          },
-          "error": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг ошибки при загрузке квот"
-          },
-          "loading": {
-            "type": "boolean",
-            "required": true,
-            "description": "Флаг загрузки квот"
-          },
-          "onIncreaseQuotaClick": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбек нажатия на кнопку увеличения квот"
-          },
-          "onRefresh": {
-            "type": "() => void",
-            "required": true,
-            "description": "Колбек на обновление списка квот при ошибке"
-          },
-          "onWidgetOpen": {
-            "type": "(() => void) | undefined",
-            "required": false,
-            "description": "Колбек открытия виджета квот"
-          },
-          "projectName": {
-            "type": "string",
-            "required": true,
-            "description": "Название проекта, по которому отображаются квоты"
-          },
-          "quotas": {
-            "type": "QuotaItem[]",
-            "required": true,
-            "description": "Список квот для отображения",
-            "typeRefs": [
-              "QuotaItem"
-            ]
-          },
-          "skeletonRowCount": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Количество строк-заглушек, пока идёт загрузка.\n\nСтрока — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки,\nв одну (mobile, аккордеон `QuotaWidgetMini`) — одну."
-          }
-        },
-        "own": false
-      },
-      "ScrollProps": {
-        "kind": "interface",
-        "props": {
-          "barHideStrategy": {
-            "type": "BarHideStrategy | undefined",
-            "required": false,
-            "values": [
-              "leave",
-              "move",
-              "never",
-              "scroll"
-            ],
-            "description": "Управление скрытием скролл баров:\n<br> - `Never` - показывать всегда\n<br> - `Leave` - скрывать когда курсор покидает компонент\n<br> - `Scroll` - показывать только когда происходит скроллинг\n<br> - `Move` - показывать при движении курсора над компонентом",
-            "typeRefs": [
-              "BarHideStrategy"
-            ]
-          },
-          "onScroll": {
-            "type": "((event?: Event) => void) | undefined",
-            "required": false,
-            "description": "Колбек на скролл прокручиваемого списка"
-          },
-          "scroll": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Включить ли скролл для основной части списка"
-          },
-          "scrollContainerRef": {
-            "type": "Ref<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на контейнер, который скроллится"
-          },
-          "scrollRef": {
-            "type": "Ref<HTMLElement> | undefined",
-            "required": false,
-            "description": "Ссылка на элемент, обозначающий самый конец прокручиваемого списка"
-          },
-          "untouchableScrollbars": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает возможность взаимодействовать со скролбарами мышью."
-          }
-        },
-        "own": false
-      },
-      "SelectionState": {
-        "kind": "interface",
-        "props": {
-          "selection": {
-            "type": "SelectionMultipleState | SelectionSingleState | undefined",
-            "required": false,
-            "description": "Настройки выбора элементов. `mode: 'single'` — один выбранный элемент (`value: ItemId`),\n`mode: 'multiple'` — множественный выбор (`value: ItemId[]`). Без `selection` выбора нет —\nклик вызывает только `onClick` элемента.",
-            "typeRefs": [
-              "SelectionMultipleState",
-              "SelectionSingleState"
-            ]
-          }
-        },
-        "own": false
-      },
-      "TooltipProps": {
-        "kind": "interface",
-        "props": {
-          "children": {
-            "type": "ReactNode | ChildrenFunction",
-            "required": false,
-            "description": "Триггер поповера (подробнее читайте ниже)",
-            "typeRefs": [
-              "ChildrenFunction"
-            ]
-          },
-          "className": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "closeOnPopstate": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Закрывать ли поповер при переходе по истории браузера"
-          },
-          "data-test-id": {
-            "type": "string | undefined",
-            "required": false
-          },
-          "disableMaxWidth": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключение ограничения ширины тултипа"
-          },
-          "disableSpanWrapper": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Отключает для `isValidElement` внешнюю обертку триггера\n<br/>\nПригодится для элементов с `position: absolute`\n<br/>\nРаботает для триггеров, которые умеют отдать свою DOM-ноду: нативные элементы, `forwardRef`-компоненты\nи компоненты, помеченные `withInnerRefSupport` из `@ds/utils`. Остальные всё равно получают `<span>` —\nбез ноды поповеру не от чего считать позицию; в dev-режиме об этом печатается предупреждение."
-          },
-          "fallbackPlacements": {
-            "type": "Placement[] | undefined",
-            "required": false,
-            "description": "Цепочка расположений которая будет применяться к поповеру от первого к последнему если при текущем он не влезает.",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "hoverDelayClose": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка закрытия по ховеру"
-          },
-          "hoverDelayOpen": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Задержка открытия по ховеру"
-          },
-          "offset": {
-            "type": "number | undefined",
-            "required": false,
-            "description": "Отступ поповера от его триггер-элемента (в пикселях)."
-          },
-          "onOpenChange": {
-            "type": "((isOpen: boolean) => void) | undefined",
-            "required": false,
-            "description": "Колбек отображения компонента. Срабатывает при изменении состояния open."
-          },
-          "open": {
-            "type": "boolean | undefined",
-            "required": false,
-            "description": "Управляет состоянием показан/не показан."
-          },
-          "placement": {
-            "type": "Placement | undefined",
-            "required": false,
-            "values": [
-              "bottom",
-              "bottom-end",
-              "bottom-start",
-              "left",
-              "left-end",
-              "left-start",
-              "right",
-              "right-end",
-              "right-start",
-              "top",
-              "top-end",
-              "top-start"
-            ],
-            "description": "Положение поповера относительно своего триггера (children).",
-            "typeRefs": [
-              "Placement"
-            ]
-          },
-          "tip": {
-            "type": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined",
-            "required": true,
-            "description": "Содержимое тултипа (текст или разметка)"
-          },
-          "trigger": {
-            "type": "Trigger | undefined",
-            "required": false,
-            "values": [
-              "click",
-              "clickAndFocusVisible",
-              "focus",
-              "focusVisible",
-              "hover",
-              "hoverAndFocus",
-              "hoverAndFocusVisible"
-            ],
-            "description": "Условие отображения поповера:\n<br/> - `click` - открывать по клику\n<br/> - `hover` - открывать по ховеру\n<br/> - `focusVisible` - открывать по focus-visible\n<br/> - `focus` - открывать по фокусу\n<br/> - `hoverAndFocusVisible` - открывать по ховеру и focus-visible\n<br/> - `hoverAndFocus` - открывать по ховеру и фокусу\n<br/> - `clickAndFocusVisible` - открывать по клику и focus-visible",
-            "typeRefs": [
-              "Trigger"
-            ]
-          },
-          "triggerClassName": {
-            "type": "string | undefined",
-            "required": false,
-            "description": "CSS-класс триггера"
-          },
-          "triggerRef": {
-            "type": "ForwardedRef<HTMLElement | ReferenceType | null> | undefined",
-            "required": false,
-            "description": "Ref ссылка на триггер"
-          }
-        },
-        "own": false
-      }
-    }
+    "relatedTypes": {}
   },
   "MobilePageCatalog": {
     "displayName": "MobilePageCatalog",
@@ -4793,8 +3644,8 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "CustomAction | StandardAction",
-        "own": true
+        "type": "(CustomAction | StandardAction) & { id?: string; }",
+        "own": false
       },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
@@ -4971,7 +3822,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonKebabProps": {
         "kind": "interface",
@@ -4998,7 +3849,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonProps": {
         "kind": "interface",
@@ -5184,7 +4035,7 @@
             "required": true
           }
         },
-        "own": true
+        "own": false
       },
       "DroplistAdaptiveProps": {
         "kind": "interface",
@@ -6526,8 +5377,8 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "CustomAction | StandardAction",
-        "own": true
+        "type": "(CustomAction | StandardAction) & { id?: string; }",
+        "own": false
       },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
@@ -6704,7 +5555,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonKebabProps": {
         "kind": "interface",
@@ -6731,7 +5582,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonProps": {
         "kind": "interface",
@@ -6953,7 +5804,7 @@
             "required": true
           }
         },
-        "own": true
+        "own": false
       },
       "DroplistListProps": {
         "kind": "alias",
@@ -7423,8 +6274,8 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "CustomAction | StandardAction",
-        "own": true
+        "type": "(CustomAction | StandardAction) & { id?: string; }",
+        "own": false
       },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
@@ -7601,7 +6452,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonKebabProps": {
         "kind": "interface",
@@ -7628,7 +6479,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonProps": {
         "kind": "interface",
@@ -7814,7 +6665,7 @@
             "required": true
           }
         },
-        "own": true
+        "own": false
       },
       "DroplistAdaptiveProps": {
         "kind": "interface",
@@ -9180,8 +8031,8 @@
     "relatedTypes": {
       "Action": {
         "kind": "alias",
-        "type": "CustomAction | StandardAction",
-        "own": true
+        "type": "(CustomAction | StandardAction) & { id?: string; }",
+        "own": false
       },
       "BaseItemWithoutNonGroup": {
         "kind": "interface",
@@ -9358,7 +8209,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonKebabProps": {
         "kind": "interface",
@@ -9385,7 +8236,7 @@
             ]
           }
         },
-        "own": true
+        "own": false
       },
       "ButtonProps": {
         "kind": "interface",
@@ -9607,7 +8458,7 @@
             "required": true
           }
         },
-        "own": true
+        "own": false
       },
       "Documentation": {
         "kind": "interface",

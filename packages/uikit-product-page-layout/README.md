@@ -111,33 +111,6 @@ import {
 | `maxVisibleActionsItems` | `number` | — |  |
 | `title` | `string` | — | Заголовок страницы |
 
-##### Related types
-
-- `Action` = `CustomAction | StandardAction`
-
-**ButtonDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**ButtonKebabProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**CustomAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hidden` | `boolean \| undefined` | — |  |
-| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
-| `tooltip` | `TooltipProps` | — |  |
-| `variant` | `"custom"` | — |  |
-
 ## PageServices
 
 Детальная страница инстанса — селект раздела, заголовок со статусом, действия и контент. Адаптивная — на mobile селект выносится наверх full-bleed-строкой.
@@ -186,31 +159,6 @@ import {
 | `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
 ##### Related types
-
-- `Action` = `CustomAction | StandardAction`
-
-**ButtonDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**ButtonKebabProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**CustomAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hidden` | `boolean \| undefined` | — |  |
-| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
-| `tooltip` | `TooltipProps` | — |  |
-| `variant` | `"custom"` | — |  |
 
 **Documentation**
 
@@ -588,6 +536,7 @@ const actions: Action[] = [
 | `href` | `string` | — |  |
 | `icon` | `ReactNode` | — | Иконка |
 | `iconPosition` | `"after"` \| `"before"` | — | Позиция иконки относительно текста |
+| `id` | `string` | — |  |
 | `innerRef` | `((instance: HTMLButtonElement \| null) => void) \| RefObject<HTMLButtonElement> \| ((instance: HTMLAnchorElement \| null) => void) \| RefObject<...> \| null` | — | Ref на реальный DOM-элемент/инстанс, который рендерится через `as`. <br/> Используем явный проп, чтобы не зависеть от `forwardRef` и не тащить type-assertions на экспорт. |
 | `items` | `Item[]` | — | Основные элементы списка |
 | `label` | `string` | — | Текст кнопки |
@@ -652,6 +601,13 @@ const actions: Action[] = [
 | `quotasUrl` | `string` | — | Ссылка на страницу квот по проекту |
 | `skeletonRowCount` | `number` | `4` | Количество строк-заглушек, пока идёт загрузка. <br/> Строка — это ряд сетки: в две колонки (desktop-дропдаун) она даёт две карточки, <br/> в одну (mobile, аккордеон `QuotaWidgetMini`) — одну. |
 
+## ButtonQuotaProps
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+
 ## ConditionalPopover
 
 ### Props
@@ -669,7 +625,8 @@ const actions: Action[] = [
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `Action[]` | — |  |
+| `className` | `string` | — | Класс контейнера действий. |
+| `items` | `Action[]` | — | Действия в порядке приоритета: первое остаётся видимым дольше остальных. |
 
 ## DesktopPageCatalog
 
@@ -787,39 +744,14 @@ const actions: Action[] = [
 
 ## MobileActions
 
-### Props `ActionsProps`
+### Props `Pick`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `Action` \| `ButtonDropdownDroplistConfig` \| `ButtonDroplistProps` \| `ButtonKebabProps` \| `CustomAction` \| `QuotaWidgetPropsBase` | — |  |
-| `maxVisibleItems` | `number` | — |  |
-
-#### Related types
-
-- `Action` = `CustomAction | StandardAction`
-
-**ButtonDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**ButtonKebabProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**CustomAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hidden` | `boolean \| undefined` | — |  |
-| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
-| `tooltip` | `TooltipProps` | — |  |
-| `variant` | `"custom"` | — |  |
+| `className` | `string` | — | Класс контейнера действий. |
+| `groupDividers` | `boolean` | `true` | Разделять группы пунктов меню. |
+| `items` | `Action[]` | — | Действия в порядке приоритета: первое остаётся видимым дольше остальных. |
+| `maxVisibleItems` | `number` | — | Максимальное число видимых действий. Остальные доступны в меню. |
 
 ## MobilePageCatalog
 
@@ -833,33 +765,6 @@ const actions: Action[] = [
 | `data-test-id` | `string` | — |  |
 | `maxVisibleActionsItems` | `number` | — |  |
 | `title` | `string` | — | Заголовок страницы |
-
-#### Related types
-
-- `Action` = `CustomAction | StandardAction`
-
-**ButtonDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**ButtonKebabProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**CustomAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hidden` | `boolean \| undefined` | — |  |
-| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
-| `tooltip` | `TooltipProps` | — |  |
-| `variant` | `"custom"` | — |  |
 
 ## MobilePageForm
 
@@ -903,31 +808,6 @@ const actions: Action[] = [
 | `truncateTitle` | `boolean` | — | Обрезать заголовок в одну строку с многоточием |
 
 #### Related types
-
-- `Action` = `CustomAction | StandardAction`
-
-**ButtonDroplistProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**ButtonKebabProps**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `button` | `ButtonProps` | — |  |
-| `list` | `DroplistAdaptiveProps` \| `DroplistListProps` \| `DroplistMobileSlots` \| `DroplistProps` \| `EmptyState` \| `PublicListContextType` \| `ScrollProps` \| `SelectionState` | — |  |
-
-**CustomAction**
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `hidden` | `boolean \| undefined` | — |  |
-| `render` | `() => { default: ReactNode; asListItem: Item; }` | — | Вызывается при рендеринге; React hooks следует использовать внутри компонента default. |
-| `tooltip` | `TooltipProps` | — |  |
-| `variant` | `"custom"` | — |  |
 
 - `SidebarItem` = `SidebarItemWithHref | SidebarItemWithItems`
 

@@ -11,16 +11,17 @@
   height: 100%;
 }
 
-.mobileActionsWrapper {
+.overflowActionsWrapper {
   display: flex;
-  // row-reverse: kebab (первый в DOM) встаёт справа, видимые действия — слева (Figma 3334:63034).
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-shrink: 0;
   gap: base.$sn-primitive-dimension-8;
   align-items: center;
+  justify-content: flex-end;
 
   box-sizing: border-box;
   width: 100%;
+  min-width: 0;
 }
 
 .button {
@@ -35,6 +36,24 @@
   }
 }
 
-.mobileActionsWrapper .button[data-full-width]:not([data-variant='icon-only']) {
+.overflowActionsWrapper[data-mobile] .button[data-full-width]:not([data-variant='icon-only']) {
   min-width: max-content;
+}
+
+.actionCell > div.button[data-full-width] {
+  display: grid;
+}
+
+.actionCell {
+  display: grid;
+  flex: 0 0 auto;
+  min-width: max-content;
+
+  .overflowActionsWrapper[data-mobile] & {
+    flex: 1 1 0;
+  }
+
+  .overflowActionsWrapper[data-mobile] &:has([data-variant='icon-only']) {
+    flex: 0 0 auto;
+  }
 }

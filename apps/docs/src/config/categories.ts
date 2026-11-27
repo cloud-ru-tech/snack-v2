@@ -121,7 +121,12 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       id: 'actions',
       label: 'Actions',
       description: 'Продуктовые действия: предопределённые кнопки, кликабельные заголовки, копирование.',
-      packages: ['uikit-product-button-predefined', 'uikit-product-title-clickable', 'uikit-product-copy'],
+      packages: [
+        'uikit-product-button-predefined',
+        'uikit-product-actions',
+        'uikit-product-title-clickable',
+        'uikit-product-copy',
+      ],
     },
     {
       id: 'inputs',
