@@ -75,6 +75,11 @@
   color: base.$sn-theme-color-primary-accent;
 
   background: base.$sn-theme-color-primary-decorTransparent;
+
+  // Инлайн-логотип GitHub задаёт заливку на самом path.
+  path[fill]:not([fill='none']) {
+    fill: currentcolor;
+  }
 }
 
 .cardTitle {
