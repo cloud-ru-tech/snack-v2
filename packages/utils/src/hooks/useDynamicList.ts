@@ -26,18 +26,33 @@ export function useDynamicList<T extends object>({
   items,
   maxVisibleItems = Infinity,
 }: UseDynamicListProps<T>): UseDynamicListReturnType<T> {
-  const adjustAmount = (value: number) => Math.min(maxVisibleItems, value);
+  const adjustAmount = (value: number) => Math.max(0, Math.min(maxVisibleItems, value));
 
-  const [visibleItemsAmount, setVisibleItemsAmount] = useState<number>(adjustAmount(items.length));
+  const [measurement, setMeasurement] = useState({
+    itemsCount: items.length,
+    limit: maxVisibleItems,
+    amount: adjustAmount(items.length),
+  });
+  // Reconcile the limit before rendering children, so a temporary stale count cannot unmount
+  // an action that remains visible when a preceding hidden action is restored.
+  const visibleItemsAmount =
+    measurement.itemsCount === items.length && measurement.limit === maxVisibleItems
+      ? measurement.amount
+      : adjustAmount(items.length);
+  if (measurement.itemsCount !== items.length || measurement.limit !== maxVisibleItems) {
+    setMeasurement({ itemsCount: items.length, limit: maxVisibleItems, amount: visibleItemsAmount });
+  }
+
   const [width, setWidth] = useState(Infinity);
   const widthRef = useRef(width);
 
-  const handleVisibleItemsAmount: typeof setVisibleItemsAmount = param => {
-    if (typeof param === 'number') {
-      setVisibleItemsAmount(adjustAmount(param));
-    } else {
-      setVisibleItemsAmount(v => param(adjustAmount(v)));
-    }
+  const handleVisibleItemsAmount = (value: number) => {
+    const amount = adjustAmount(value);
+    setMeasurement(previous =>
+      previous.itemsCount === items.length && previous.limit === maxVisibleItems && previous.amount === amount
+        ? previous
+        : { itemsCount: items.length, limit: maxVisibleItems, amount },
+    );
   };
 
   const tryHidingItem = useEventHandler(() => {
@@ -57,26 +72,16 @@ export function useDynamicList<T extends object>({
       const itemToHide = items[visibleItemsAmount - 1];
 
       if (itemToHide) {
-        handleVisibleItemsAmount(value => value - 1);
+        handleVisibleItemsAmount(visibleItemsAmount - 1);
       }
-    }
-  });
-
-  const tryShowingItem = useEventHandler(() => {
-    const itemToShow = items[visibleItemsAmount];
-
-    if (itemToShow) {
-      handleVisibleItemsAmount(value => value + 1);
     }
   });
 
   const toggleItemWidth = useEventHandler(
     ({ changedWidth, initialWidth }: { changedWidth: number; initialWidth: number }) => {
       if (changedWidth > initialWidth) {
-        //try to add extra item
-        if (visibleItemsAmount < maxVisibleItems) {
-          tryShowingItem();
-        }
+        // Re-measure the full eligible list: one resize may make room for several items.
+        handleVisibleItemsAmount(items.length);
       } else if (changedWidth < initialWidth) {
         // check if item should be hidden
         tryHidingItem();
