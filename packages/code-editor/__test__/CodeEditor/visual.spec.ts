@@ -3,6 +3,7 @@ import { VISUAL_BASELINE_PROJECT } from '#playwright-tooling/constants/projects'
 import { expect, test } from '#playwright-tooling/fixtures';
 import { assertInteractionStatesSnapshot } from '#playwright-tooling/utils';
 
+import { CODE_JSON } from '../../stories/CodeEditor/constants';
 import { buildStoryOptions, CODE_EDITOR_STORIES, TEST_IDS, waitForMonacoTokenization } from './helpers';
 
 test.describe('CodeEditor — visual regression', () => {
@@ -25,14 +26,15 @@ test.describe('CodeEditor — visual regression', () => {
     page,
     gotoStory,
     getByTestId,
+    setStoryArgs,
     waitForFonts,
   }) => {
     await gotoStory(buildStoryOptions({ hasHeader: true, language: 'json' }));
+    await setStoryArgs({ value: CODE_JSON });
+    await expect(getByTestId(TEST_IDS.root).locator('.view-lines')).toContainText('newsletter');
     await waitForFonts();
     await waitForMonacoTokenization(page);
 
-    // Снимаем весь редактор (виден header + monaco-body) — state-изменения
-    // целимся в copy-кнопку, и в кадре виден её контекст.
     const copyButton = getByTestId(TEST_IDS.copyButton);
     await assertInteractionStatesSnapshot(page, {
       target: getByTestId(TEST_IDS.root),

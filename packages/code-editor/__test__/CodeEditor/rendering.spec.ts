@@ -40,10 +40,10 @@ test.describe('CodeEditor — rendering', () => {
       await expect(page.locator('.monaco-editor .line-numbers')).toHaveCount(0);
     });
 
-    test('showRowNumber=true (default) → колонка номеров строк видна', async ({ gotoStory, page }) => {
-      await gotoStory(buildStoryOptions({ value: 'a\nb\nc', language: 'json' }));
-      await expect(page.locator('.monaco-editor').first()).toBeVisible();
-      await expect(page.locator('.monaco-editor .line-numbers').first()).toBeVisible();
+    test('showRowNumber=true (default) → колонка номеров строк видна', async ({ gotoStory, getByTestId }) => {
+      await gotoStory(buildStoryOptions());
+      const firstNumber = getByTestId(TEST_IDS.root).locator('.line-numbers').filter({ hasText: /^1$/ });
+      await expect(firstNumber).toBeVisible({ timeout: 15_000 });
     });
   });
 

@@ -76,6 +76,7 @@ test.describe('CalendarDropdown — visual regression', () => {
     await waitForFonts();
 
     await getByTestId(TEST_IDS.calendarDropdownTrigger).click();
+    await waitForSettledInViewport(getByTestId(TEST_IDS.calendarDropdown));
     await getByTestId(TEST_IDS.calendarMobileTimeButton).click();
     const drum = getByTestId(TEST_IDS.timePickerDrum);
     await expect(drum).toBeVisible();
