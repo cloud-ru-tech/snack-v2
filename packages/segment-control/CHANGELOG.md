@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-11-27)
+
+### BREAKING CHANGES
+
+- **LK-8854:** segment item counter accepts Counter props ([9bfbfa5](https://github.com/cloud-ru-tech/snack-v2/commit/9bfbfa5561de293880c5a59071219d03a25e8828))
+
 ## 1.0.24 (2026-11-18)
 
 **Note:** Version bump only for package @ds/segment-control
