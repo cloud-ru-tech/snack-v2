@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-button-close",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Кнопка-крестик для закрытия блока или удаления вложения в AI-компонентах.",
   "repository": {
     "type": "git",

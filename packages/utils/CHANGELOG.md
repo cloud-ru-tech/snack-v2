@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.5.0 (2026-11-27)
+
+### Bug Fixes
+
+- **FF-9078:** reconcile dynamic list limits and resize ([f14c0b0](https://github.com/cloud-ru-tech/snack-v2/commit/f14c0b0a164aa627b958087568965f31e9440c6b))
+
+### Features
+
+- **SITE-12380:** add new component site-media ([1fd2005](https://github.com/cloud-ru-tech/snack-v2/commit/1fd2005c89463d2bafa8cd933777fd9e9ef95d35))
+
 ## 1.4.2 (2026-11-17)
 
 ### Bug Fixes

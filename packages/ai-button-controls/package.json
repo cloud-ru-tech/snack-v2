@@ -1,6 +1,6 @@
 {
   "name": "@ds/ai-button-controls",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Кнопка-стрелка для прокрутки и листания в AI-компонентах.",
   "repository": {
     "type": "git",

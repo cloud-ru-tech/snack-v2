@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.21 (2026-11-27)
+
+**Note:** Version bump only for package @ds/status
+
 ## 1.1.20 (2026-11-18)
 
 **Note:** Version bump only for package @ds/status
