@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2026-11-27)
+
+### Features
+
+- **FF-9516:** truncate props for promo tag ([cef9825](https://github.com/cloud-ru-tech/snack-v2/commit/cef98254ebc96b502b89f9fe54f318db03dafd72))
+
 ## 1.0.9 (2026-11-27)
 
 **Note:** Version bump only for package @ds/promo-tag

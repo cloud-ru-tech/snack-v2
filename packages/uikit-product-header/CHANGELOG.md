@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.5.0 (2026-11-27)
+
+### Features
+
+- **FF-9517:** expose promo tag truncation in cards and menu banners ([b413df4](https://github.com/cloud-ru-tech/snack-v2/commit/b413df4106a16e18b2ac5b8187503fdc279fc115))
+
 ## 2.4.5 (2026-11-27)
 
 **Note:** Version bump only for package @ds/uikit-product-header

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.6 (2026-11-27)
+
+**Note:** Version bump only for package @ds/uikit-product-info-row
+
 ## 1.3.5 (2026-11-27)
 
 **Note:** Version bump only for package @ds/uikit-product-info-row
