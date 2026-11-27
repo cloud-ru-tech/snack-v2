@@ -79,6 +79,7 @@ function releaseNotes({ sha, slug, version, previous, tag }) {
   const path = `packages/${slug}/CHANGELOG.md`;
   const hasChangelog = Boolean(git('ls-tree', '--name-only', sha, '--', path));
   const body = hasChangelog && changelogSection(git('show', `${sha}:${path}`), version);
+  if (body === `**Note:** Version bump only for package @ds/${slug}`) return null;
   const links = [];
   if (hasChangelog) links.push(`[CHANGELOG](https://github.com/${repo}/blob/${sha}/${path})`);
   if (previous) {
@@ -120,14 +121,19 @@ async function readyToRelease({ sha, slug, version }) {
 const pending = pendingTags(existingReleaseTags());
 let count = 0;
 let deferred = 0;
+let bumpOnly = 0;
 for (const pkg of pending) {
   if (count >= max) break;
+  const notes = releaseNotes(pkg);
+  if (notes === null) {
+    bumpOnly++;
+    continue;
+  }
   if (!(await readyToRelease(pkg))) {
     console.info(`Deferred ${pkg.tag} until its version is available on npm.`);
     deferred++;
     continue;
   }
-  const notes = releaseNotes(pkg);
   if (dryRun) {
     console.info(`\n=== Would create ${pkg.tag}\n${notes}`);
   } else {
@@ -151,4 +157,6 @@ for (const pkg of pending) {
   }
   count++;
 }
-console.info(`${dryRun ? 'Planned' : 'Created'} ${count} releases, deferred ${deferred}.`);
+console.info(
+  `${dryRun ? 'Planned' : 'Created'} ${count} releases, deferred ${deferred}, skipped ${bumpOnly} version-only tags.`,
+);

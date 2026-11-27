@@ -165,7 +165,9 @@ pnpm release
 
 ### GitHub Releases
 
-GitLab присваивает пакетам версии и отправляет теги `@ds/<пакет>@<версия>` в зеркало. После обновления `master` и каждый час GitHub проверяет теги и создаёт недостающие релизы. Для публичного пакета релиз появится, когда версия `@cloud-ru/ds-<пакет>` станет доступна в npm. Текст берётся из `CHANGELOG.md` на коммите тега. [Релизы snack-v2](https://github.com/cloud-ru-tech/snack-v2/releases)
+GitLab присваивает пакетам версии и отправляет теги `@ds/<пакет>@<версия>` в зеркало. GitHub проверяет теги при push в `master` и каждые 15 минут по расписанию (`:00`, `:15`, `:30`, `:45`). Для коммитов с `[ci skip]` проверка проходит по расписанию.
+
+Для публичного пакета релиз появится, когда версия `@cloud-ru/ds-<пакет>` станет доступна в npm. Текст берётся из `CHANGELOG.md` на коммите тега. Если в разделе версии есть только запись `**Note:** Version bump only for package @ds/<пакет>`, workflow пропускает этот тег. [Релизы snack-v2](https://github.com/cloud-ru-tech/snack-v2/releases)
 
 Автоматическая публикация начинается с подключения workflow к `master`. Для более ранних тегов откройте **Actions → Package releases → Run workflow**, выберите `master` и укажите дату в `since`. Параметр `max` ограничивает число релизов за запуск (по умолчанию 100). Параметр `dry_run` выводит список и тексты для проверки. [Запуск workflow](https://github.com/cloud-ru-tech/snack-v2/actions/workflows/package-releases.yml)
 
