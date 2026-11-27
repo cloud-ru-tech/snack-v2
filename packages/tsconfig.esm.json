@@ -373,6 +373,9 @@
       "path": "./uikit-product-actions/tsconfig.esm.json"
     },
     {
+      "path": "./uikit-product-block-predefined/tsconfig.esm.json"
+    },
+    {
       "path": "./uikit-product-page-layout/tsconfig.esm.json"
     },
     {

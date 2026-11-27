@@ -1,0 +1,19 @@
+:global(.sb-story-wrapper):has(.preview, .matrix) {
+  min-height: 100dvh;
+}
+
+.matrix {
+  table,
+  th,
+  td {
+    background-color: transparent;
+  }
+}
+
+.wide {
+  width: 800px;
+}
+
+.narrow {
+  width: 320px;
+}

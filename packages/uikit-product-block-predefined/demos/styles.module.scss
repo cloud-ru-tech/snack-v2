@@ -1,0 +1,12 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.preview {
+  box-sizing: border-box;
+  width: 100%;
+  padding: base.$sn-primitive-dimension-24;
+  background: base.$sn-theme-color-neutral-background;
+}
+
+.mobile {
+  max-width: 360px;
+}

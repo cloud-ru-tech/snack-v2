@@ -1,0 +1,46 @@
+@use '@ds/figma-variables/build/scss/styles/styles.module' as base;
+
+.block {
+  width: 100%;
+  min-width: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: base.$sn-primitive-dimension-24;
+}
+
+.header {
+  display: flex;
+  gap: base.$sn-density-spacing-interval-m;
+  align-items: center;
+  justify-content: flex-end;
+
+  > .actions {
+    flex: 1 1 0;
+    gap: base.$sn-primitive-dimension-4;
+    width: auto;
+    min-width: base.$sn-primitive-dimension-32;
+  }
+
+  &:not([data-mobile])[data-with-title] > .actions {
+    max-width: calc(50% - #{base.$sn-density-spacing-interval-m});
+  }
+
+  &[data-mobile] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.title {
+  flex: 1;
+  min-width: 50%;
+  color: base.$sn-theme-color-available-version-textMain;
+  overflow-wrap: anywhere;
+}
+
+.body {
+  min-width: 0;
+}

@@ -368,6 +368,9 @@
       "path": "./uikit-product-actions/tsconfig.cjs.json"
     },
     {
+      "path": "./uikit-product-block-predefined/tsconfig.cjs.json"
+    },
+    {
       "path": "./uikit-product-page-layout/tsconfig.cjs.json"
     },
     {

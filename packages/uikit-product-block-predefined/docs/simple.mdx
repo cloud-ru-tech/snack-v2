@@ -1,0 +1,78 @@
+---
+title: BlockPredefinedSimple
+package: '@ds/uikit-product-block-predefined'
+description: Адаптивный блок с заголовком и действиями.
+order: 1
+---
+
+import { BlockPredefinedSimpleDemo } from '../demos/BlockPredefinedSimpleDemo';
+import { CustomExportAction } from '../demos/examples/CustomExportAction';
+import CustomExportActionSrc from '../demos/examples/CustomExportAction.tsx?raw';
+import { Example } from '#docs/components/Example';
+import { PropsTable } from '#docs/components/PropsTable';
+import { StorybookEmbed } from '#docs/components/StorybookEmbed';
+import { FigmaEmbed } from '#docs/components/FigmaEmbed';
+import { figmaNode } from '#docs/lib/figma';
+import doc from './props.json';
+
+# BlockPredefinedSimple
+
+Адаптивный блок с заголовком и действиями.
+
+## Демо
+
+<BlockPredefinedSimpleDemo client:visible />
+
+## Когда использовать
+
+Используйте блок для раздела страницы, у которого есть собственный заголовок и действия. Передайте содержимое раздела через `children`.
+
+## Компоновка
+
+Блок занимает ширину родителя: его можно использовать на всю страницу, в колонке или в узком контейнере. На десктопе заголовок занимает не меньше половины шапки и переносится без обрезания. Действия, которым не хватает места, перемещаются в меню «Другие действия». При увеличении ширины кнопки возвращаются в строку.
+
+Массив `actions` задаёт приоритет: первое действие остаётся в строке дольше остальных и располагается ближе к меню. Для переставляемых действий задавайте уникальный `id`, чтобы сохранять состояние React-компонентов.
+
+## Адаптивность
+
+При мобильной раскладке `AdaptiveProvider` действия располагаются под заголовком. По умолчанию видно не больше одного действия; лимит задаёт `maxVisibleActionsItems`. Если кнопка не помещается, она тоже переходит в меню. Меню использует desktop-popover или mobile-bottom-sheet в соответствии с контекстом раскладки.
+
+`BlockPredefinedSimple` и `PageServices` используют общую модель действий из `@ds/uikit-product-actions`.
+
+## Установка
+
+```bash
+pnpm add @ds/uikit-product-block-predefined
+```
+
+```tsx
+import { BlockPredefinedSimple } from '@ds/uikit-product-block-predefined';
+
+<BlockPredefinedSimple title='Участники' actions={[{ label: 'Пригласить', onClick: openInvite }]}>
+  <MemberList />
+</BlockPredefinedSimple>;
+```
+
+## Примеры использования
+
+<Example
+  title='Своя кнопка «Экспортировать»'
+  description='В мобильном примере видно одно действие — «Пригласить». Откройте меню ⋮ и выберите «Экспортировать».'
+  code={CustomExportActionSrc}
+>
+  <CustomExportAction client:visible />
+</Example>
+
+В массиве `actions` для экспорта задан `variant: 'custom'`. Когда действие видно в строке, блок показывает кнопку из `default`. Когда оно попадает в меню, блок показывает пункт из `asListItem`. Оба вызывают один обработчик `exportMembers`.
+
+## Props
+
+<PropsTable data={doc.BlockPredefinedSimple} />
+
+## Storybook
+
+<StorybookEmbed storyId='uikit-product-blockpredefined-simple--playground' />
+
+## Figma
+
+<FigmaEmbed node={figmaNode('uikit-product-block-predefined')} />

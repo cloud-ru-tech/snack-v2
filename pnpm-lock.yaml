@@ -622,6 +622,9 @@ importers:
       '@ds/uikit-product-avatar-detail':
         specifier: workspace:*
         version: link:../../packages/uikit-product-avatar-detail
+      '@ds/uikit-product-block-predefined':
+        specifier: workspace:*
+        version: link:../../packages/uikit-product-block-predefined
       '@ds/uikit-product-button-predefined':
         specifier: workspace:*
         version: link:../../packages/uikit-product-button-predefined
@@ -2922,6 +2925,27 @@ importers:
       '@ds/utils':
         specifier: workspace:^
         version: link:../utils
+      classnames:
+        specifier: 'catalog:'
+        version: 2.5.1
+
+  packages/uikit-product-block-predefined:
+    dependencies:
+      '@ds/adaptive':
+        specifier: workspace:^
+        version: link:../adaptive
+      '@ds/block':
+        specifier: workspace:^
+        version: link:../block
+      '@ds/figma-variables':
+        specifier: workspace:^
+        version: link:../figma-variables
+      '@ds/typography':
+        specifier: workspace:^
+        version: link:../typography
+      '@ds/uikit-product-actions':
+        specifier: workspace:^
+        version: link:../uikit-product-actions
       classnames:
         specifier: 'catalog:'
         version: 2.5.1

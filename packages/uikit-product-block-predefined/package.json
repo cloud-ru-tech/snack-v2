@@ -1,0 +1,46 @@
+{
+  "name": "@ds/uikit-product-block-predefined",
+  "version": "0.0.0",
+  "description": "Готовые блоки для разделов продуктовой страницы.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-ru-tech/snack-v2.git",
+    "directory": "packages/uikit-product-block-predefined"
+  },
+  "homepage": "https://github.com/cloud-ru-tech/snack-v2/tree/master/packages/uikit-product-block-predefined",
+  "license": "Apache-2.0",
+  "author": "Cloud.ru",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "./CHANGELOG.md",
+    "./LICENSE"
+  ],
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ds/adaptive": "workspace:^",
+    "@ds/block": "workspace:^",
+    "@ds/figma-variables": "workspace:^",
+    "@ds/typography": "workspace:^",
+    "@ds/uikit-product-actions": "workspace:^",
+    "classnames": "catalog:"
+  }
+}

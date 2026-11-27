@@ -177,6 +177,7 @@ export const CATEGORIES_BY_DOMAIN: Readonly<Record<string, readonly Category[]>>
       description:
         'Раскладка продуктовых интерфейсов и поверхности-контейнеры: предопределённые карточки, флекс-обёртки, страничный layout, хедер.',
       packages: [
+        'uikit-product-block-predefined',
         'uikit-product-card-predefined',
         'uikit-product-flex',
         'uikit-product-layout',

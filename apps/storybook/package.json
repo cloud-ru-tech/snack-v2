@@ -104,6 +104,7 @@
     "@ds/typography": "workspace:*",
     "@ds/uikit-product-actions": "workspace:*",
     "@ds/uikit-product-avatar-detail": "workspace:*",
+    "@ds/uikit-product-block-predefined": "workspace:*",
     "@ds/uikit-product-button-predefined": "workspace:*",
     "@ds/uikit-product-card-predefined": "workspace:*",
     "@ds/uikit-product-charts": "workspace:*",
