@@ -1397,6 +1397,14 @@
             "typeRefs": [
               "Size"
             ]
+          },
+          "truncate": {
+            "type": "PromoTagTruncate | undefined",
+            "required": false,
+            "description": "Сокращает подпись до одной строки при нехватке места",
+            "typeRefs": [
+              "PromoTagTruncate"
+            ]
           }
         },
         "own": false
@@ -1489,6 +1497,51 @@
             "typeRefs": [
               "Size"
             ]
+          },
+          "truncate": {
+            "type": "PromoTagTruncate | undefined",
+            "required": false,
+            "description": "Сокращает подпись до одной строки при нехватке места",
+            "typeRefs": [
+              "PromoTagTruncate"
+            ]
+          }
+        },
+        "own": false
+      },
+      "PromoTagTruncate": {
+        "kind": "interface",
+        "props": {
+          "tooltipPlacement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение подсказки с полной подписью. По умолчанию сверху",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "variant": {
+            "type": "\"end\" | \"middle\"",
+            "required": true,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Положение многоточия"
           }
         },
         "own": false
@@ -1695,6 +1748,14 @@
             "typeRefs": [
               "Size"
             ]
+          },
+          "truncate": {
+            "type": "PromoTagTruncate | undefined",
+            "required": false,
+            "description": "Сокращает подпись до одной строки при нехватке места",
+            "typeRefs": [
+              "PromoTagTruncate"
+            ]
           }
         },
         "own": false
@@ -1787,6 +1848,51 @@
             "typeRefs": [
               "Size"
             ]
+          },
+          "truncate": {
+            "type": "PromoTagTruncate | undefined",
+            "required": false,
+            "description": "Сокращает подпись до одной строки при нехватке места",
+            "typeRefs": [
+              "PromoTagTruncate"
+            ]
+          }
+        },
+        "own": false
+      },
+      "PromoTagTruncate": {
+        "kind": "interface",
+        "props": {
+          "tooltipPlacement": {
+            "type": "Placement | undefined",
+            "required": false,
+            "values": [
+              "bottom",
+              "bottom-end",
+              "bottom-start",
+              "left",
+              "left-end",
+              "left-start",
+              "right",
+              "right-end",
+              "right-start",
+              "top",
+              "top-end",
+              "top-start"
+            ],
+            "description": "Положение подсказки с полной подписью. По умолчанию сверху",
+            "typeRefs": [
+              "Placement"
+            ]
+          },
+          "variant": {
+            "type": "\"end\" | \"middle\"",
+            "required": true,
+            "values": [
+              "end",
+              "middle"
+            ],
+            "description": "Положение многоточия"
           }
         },
         "own": false
