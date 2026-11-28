@@ -37,7 +37,7 @@ catalog:
   tabbable: ^6.5.0
   typescript: 5.9.3
   unified: ^11.0.5
-  vitest: 4.1.10
+  vitest: 4.1.11
   '@vitest/browser': 4.1.10
   '@vitest/browser-playwright': 4.1.10
   '@vitest/coverage-istanbul': 4.1.10
