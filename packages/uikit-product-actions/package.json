@@ -1,6 +1,6 @@
 {
   "name": "@ds/uikit-product-actions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Адаптивная панель действий с меню переполнения.",
   "repository": {
     "type": "git",

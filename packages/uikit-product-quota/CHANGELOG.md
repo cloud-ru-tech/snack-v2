@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.10 (2026-11-28)
+
+### Bug Fixes
+
+- **FF-8824:** fit mobile quotas to content ([8465b30](https://github.com/cloud-ru-tech/snack-v2/commit/8465b3071b397966252d18e1ec274ef7f7c94829))
+
 ## 2.1.9 (2026-11-27)
 
 **Note:** Version bump only for package @ds/uikit-product-quota
