@@ -33,7 +33,7 @@ export type QuotaWidgetContentProps = WithSupportProps<
  * дропдауна и аккордеона. Используется внутри `QuotaWidget` (в дропдауне/BottomSheet) и напрямую,
  * когда контейнер-раскрытие даёт кто-то снаружи (напр. `sideBlock` формы уже открывает BottomSheet).
  *
- * На full-height BottomSheet шапка/кнопка уезжают в pinned-слоты `title`/`footer` (см. `QuotaWidget`),
+ * В мобильном BottomSheet шапка/кнопка уезжают в pinned-слоты `title`/`footer` (см. `QuotaWidget`),
  * а сюда остаются только карточки — тогда `hideMobileHeader`/`hideMobileIncreaseButton` = true.
  */
 export function QuotaWidgetContent({
@@ -56,8 +56,7 @@ export function QuotaWidgetContent({
   const isMobile = isMobileLayout(layoutType);
   const contentTestId = props['data-test-id'] ?? TEST_IDS.quotaWidget.content;
 
-  const showMobileIncreaseButton =
-    isMobile && !hideMobileIncreaseButton && canEditQuota && !error;
+  const showMobileIncreaseButton = isMobile && !hideMobileIncreaseButton && canEditQuota && !error;
 
   return (
     <div className={styles.content} data-mobile={isMobile} data-test-id={contentTestId}>

@@ -22,7 +22,7 @@ export function QuotaCardsGrid({
   isAccordion = false,
   skeletonRowCount,
 }: QuotaCardsGridProps) {
-  // На мобилке bottom-sheet-виджет full-height: снимаем фикс-cap высоты (`max-height`), карточки
+  // На мобилке в панели квот снимаем фикс-cap высоты (`max-height`), карточки
   // скроллятся телом листа. Для аккордеона (`QuotaWidgetMini`) это НЕ применяем — у него свой cap.
   const isMobile = isMobileLayout(useAdaptiveLayout().layoutType);
 

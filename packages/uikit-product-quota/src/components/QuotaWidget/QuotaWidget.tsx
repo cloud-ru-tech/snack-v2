@@ -1,6 +1,6 @@
 import { isMobileLayout, useAdaptiveLayout } from '@ds/adaptive';
 import { Button, ButtonProps } from '@ds/button';
-import { Dropdown, SNAP_POINTS_PRESET } from '@ds/dropdown';
+import { Dropdown } from '@ds/dropdown';
 import { ChevronDownSVG, ChevronUpSVG } from '@ds/icons/interface/system';
 import { WithSupportProps } from '@ds/utils';
 import { useState } from 'react';
@@ -58,7 +58,7 @@ export function QuotaWidget({
 
   const exhaustedCount = quotas.filter(checkIsExceeded).length;
 
-  // На мобилке лист full-height: шапку и кнопку выносим в pinned-слоты BottomSheet
+  // На мобилке шапку и кнопку выносим в pinned-слоты BottomSheet
   // (`title` сверху, `footer` снизу), а карточки скроллятся в теле листа — как в макете.
   const showMobileIncreaseButton = isMobile && canEditQuota && !error;
 
@@ -68,8 +68,6 @@ export function QuotaWidget({
       placement='bottom-end'
       // Desktop: отступы даёт `.content`; mobile: отступ тела даёт BottomSheet.
       bodyPadding={isMobile}
-      // Mobile: лист на всю высоту экрана (safe-area даёт сам BottomSheet).
-      snapPoints={SNAP_POINTS_PRESET.full}
       title={isMobile ? <QuotaMobileHeader projectName={projectName} /> : undefined}
       footer={showMobileIncreaseButton ? <QuotaIncreaseButton onClick={onIncreaseQuotaClick} /> : undefined}
       open={isOpen}

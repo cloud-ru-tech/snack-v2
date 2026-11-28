@@ -616,7 +616,7 @@
   "QuotaWidgetContent": {
     "displayName": "QuotaWidgetContent",
     "propsTypeName": "QuotaWidgetContentProps",
-    "description": "Голый контент квота-виджета: шапка проекта + карточки + кнопка расширения — без триггера,\nдропдауна и аккордеона. Используется внутри `QuotaWidget` (в дропдауне/BottomSheet) и напрямую,\nкогда контейнер-раскрытие даёт кто-то снаружи (напр. `sideBlock` формы уже открывает BottomSheet).\n\nНа full-height BottomSheet шапка/кнопка уезжают в pinned-слоты `title`/`footer` (см. `QuotaWidget`),\nа сюда остаются только карточки — тогда `hideMobileHeader`/`hideMobileIncreaseButton` = true.",
+    "description": "Голый контент квота-виджета: шапка проекта + карточки + кнопка расширения — без триггера,\nдропдауна и аккордеона. Используется внутри `QuotaWidget` (в дропдауне/BottomSheet) и напрямую,\nкогда контейнер-раскрытие даёт кто-то снаружи (напр. `sideBlock` формы уже открывает BottomSheet).\n\nВ мобильном BottomSheet шапка/кнопка уезжают в pinned-слоты `title`/`footer` (см. `QuotaWidget`),\nа сюда остаются только карточки — тогда `hideMobileHeader`/`hideMobileIncreaseButton` = true.",
     "props": {
       "canEditQuota": {
         "type": "boolean",

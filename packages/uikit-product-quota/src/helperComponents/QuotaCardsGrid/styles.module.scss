@@ -7,7 +7,7 @@
     max-height: 400px; // нет токена
   }
 
-  /* Mobile (full-height BottomSheet): без фикс-cap — карточки заполняют тело листа и скроллятся им. */
+  /* Mobile (BottomSheet): без фикс-cap — карточки заполняют тело листа и скроллятся им. */
   &[data-mobile='true'] {
     flex: 1 1 auto;
     min-height: 0;
